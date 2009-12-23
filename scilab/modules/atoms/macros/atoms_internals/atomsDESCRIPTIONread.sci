@@ -38,9 +38,22 @@
 // |
 // |-- categories_flat                       [1x1 struct]
 //     |-- Optimization - Linear
-//     |   `-- [ "Optimization" ; "Linear" ]
-//     |-- Optimization - General
-//     `-- Optimization - General
+//     |   |-- packages
+//     |   |   `-- ["simplex" "1.0" ; "lolimot" "0.9"]
+//     |   `-- label
+//     |       `-- [ "Optimization" "Linear" ]
+//     |-- Optimization
+//     |   |-- packages
+//     |   |   `-- ["simplex" "1.0" ; "lolimot" "0.9"]
+//     |   `-- label
+//     |       `-- [ "Optimization" "Linear" ]
+//     `-- Education
+//         |-- packages
+//         |   `-- ["module_lycee" "1.0" ; "module_lycee" "1.1"]
+//         `-- label
+//             `-- [ "Education" ]
+
+
 
 function description_out = atomsDESCRIPTIONread(file_in)
 	
@@ -88,10 +101,10 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 				
 				if  ~ isfield(packages,current_toolbox("Toolbox")) then
-					// Il s'agit de la première version de la toolbox trouvée
+					// This is the first version of the package
 					this_toolbox = struct();
 				else
-					// On récupère la liste des versions de cette toolbox
+					// Get the version list of this package
 					this_toolbox = packages(current_toolbox("Toolbox"));
 				end
 				
@@ -121,10 +134,10 @@ function description_out = atomsDESCRIPTIONread(file_in)
 				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 					
 					if  ~ isfield(packages,current_toolbox("Toolbox")) then
-						// Il s'agit de la première version de la toolbox trouvée
+						// This is the first version of the package
 						this_toolbox = struct();
 					else
-						// On récupère la liste des versions de cette toolbox
+						// Get the version list of this package
 						this_toolbox = packages(current_toolbox("Toolbox"));
 					end
 					
@@ -153,8 +166,15 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_toolbox(current_field) = current_value;
 			
 			// Category management
-			if (current_field == "Category") & (~ isfield(categories_flat,current_value))  then
-				atomsAddCategory(current_value);
+			if current_field == "Category" then
+				if ~ isfield(categories_flat,current_value) then
+					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
+				end
+				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+					categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
+				else
+					error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
+				end
 			end
 			
 			continue;
@@ -166,8 +186,15 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_toolbox(current_field) = [ current_toolbox(current_field) ; current_value ];
 			
 			// Category management
-			if (current_field == "Category") & (~ isfield(categories_flat,current_value)) then
-				atomsAddCategory(current_value);
+			if current_field == "Category" then
+				if ~ isfield(categories_flat,current_value) then
+					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
+				end
+				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+					categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
+				else
+					error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
+				end
 			end
 			
 			continue;
@@ -195,37 +222,84 @@ function description_out = atomsDESCRIPTIONread(file_in)
 endfunction
 
 // =============================================================================
-// atomsAddCategory
+// atomsCreateCategory
 // =============================================================================
 
-function atomsAddCategory(category_id)
+function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_id)
 	
 	category_main = "";
 	category_sub  = "";
+	cat_flat_out  = cat_flat_in;
+	cat_out       = cat_in;
 	
-	pattern_index = regexp(category_id,"/\s-\s/","o");
+	// Build the skeleton of the category
+	cat_struct             = struct();
+	cat_struct("label")    = [];
+	cat_struct("packages") = [];
+	cat_struct("is_main")  = %T;
+	
+	// Is this category a main category or a sub category
+	
+	pattern_index = regexp(cat_id,"/\s-\s/","o");
 	
 	if pattern_index <> [] then
-		category_main                = part(category_id,1:pattern_index-1);
-		category_sub                 = part(category_id,pattern_index+3:length(category_id) );
-		categories_flat(category_id) = [ category_main ; category_sub ];
+		
+		// Sub category
+		category_main         = part(cat_id,1:pattern_index-1);
+		category_sub          = part(cat_id,pattern_index+3:length(cat_id) );
+		cat_struct("label")   = [ category_main ; category_sub ];
+		cat_struct("is_main") = %F;
+		
 	else
-		category_main = category_id;
-		categories_flat(category_id) = [ category_main ];
+		// Main category
+		category_main = cat_id;
+		cat_struct("label")   = [ category_main ];
+		cat_struct("is_main") = %T;
+		
 	end
+	
+	cat_flat_out(cat_id)  = cat_struct;
 	
 	if isfield(categories,category_main) then
 		if category_sub <> "" then
-			subcategories             = categories(category_main);
-			subcategories             = [ subcategories ; category_sub ];
-			categories(category_main) = subcategories;
+			subcategories          = cat_out(category_main);
+			subcategories          = [ subcategories ; category_sub ];
+			cat_out(category_main) = subcategories;
 		end
 	else
 		if category_sub == "" then
-			categories(category_main) = [];
+			cat_out(category_main) = [];
 		else
-			categories(category_main) = category_sub;
+			cat_out(category_main) = category_sub;
 		end
+	end
+	
+	if cat_struct("is_main") & ~ isfield(cat_flat_out,category_main) then
+		[cat_out , cat_flat_out ] = atomsCreateCategory(cat_out,cat_flat_out,category_main)
+	end
+	
+endfunction
+
+// =============================================================================
+// atomsAddPackage2Cat
+// =============================================================================
+
+function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
+	
+	cat_flat_out  = cat_flat_in;
+	
+	if ~ isfield( cat_flat_out , category ) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a registered category"),"atomsAddPackage2Cat",2,category));
+	end
+	
+	cat_struct             = cat_flat_out(category);
+	package_mat            = [ cat_struct("packages") ; package ];
+	cat_struct("packages") = package_mat;
+	cat_flat_out(category) = cat_struct;
+	
+	if ~ cat_struct("is_main") then
+		label_mat    = cat_struct("label");
+		cat_flat_out = atomsAddPackage2Cat( cat_flat_out , package , label_mat(1))
 	end
 	
 endfunction
