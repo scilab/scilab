@@ -85,7 +85,48 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		 * Export the table models to the block exprs.
 		 */
 		private void exportToModel() {
-
+			final Vector customModel = ((DefaultTableModel) varCustomizeTable.getModel()).getDataVector();
+			final Vector valuesModel = ((DefaultTableModel) defaultValueTable.getModel()).getDataVector();
+			
+			/* We have one content that is not a variable : Window Title*/
+			final int nbOfVar = valuesModel.size()-1;
+			
+			final String[] values = new String[nbOfVar];
+			final String[] varNames = new String[nbOfVar];
+			final String[] varDesc = new String[nbOfVar+1];
+			final ScilabList polFields = new ScilabList();
+			
+			/* Title */
+			varDesc[0] = (String) ((Vector) valuesModel.get(0)).get(1);
+			
+			/* Other fields */
+			for (int i = 0; i < nbOfVar; i++) {
+				values[i] = (String) ((Vector) valuesModel.get(i+1)).get(1);
+				varNames[i] = (String) ((Vector) customModel.get(i+1)).get(1);
+				varDesc[i+1] = (String) ((Vector) customModel.get(i+1)).get(2);
+				
+				/* reconstruct pol fields
+				 * TODO: what are these fields ?  
+				 */
+				polFields.add(new ScilabString("pol"));
+				polFields.add(new ScilabDouble(-1.0));
+			}
+			
+			/* Construct fields from data */
+			ScilabList exprs = new ScilabList() {
+				{
+					add(new ScilabString(values));
+					add(new ScilabList() {
+						{
+							add(new ScilabString(varNames));
+							add(new ScilabString(varDesc));
+							add(polFields);
+						}
+					});
+				}
+			};
+			
+			getModel().setExprs(exprs);
 		}
 
 		/**
