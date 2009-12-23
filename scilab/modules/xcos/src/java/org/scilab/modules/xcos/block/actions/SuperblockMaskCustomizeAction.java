@@ -66,7 +66,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		private CustomizeFrameListener listener;
 
 		public CustomizeFrame() {
-			setTitle("Masked SuperBlock editor");
+			setTitle(XcosMessages.MASK_TITLE);
 			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			listener = new CustomizeFrameListener();
 			initComponents();
@@ -234,24 +234,24 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        tableManagement.setLayout(new java.awt.GridLayout(5, 1));
 
 	        insert.setMnemonic('n');
-	        insert.setText("Insert");
+	        insert.setText(XcosMessages.MASK_INSERT);
 	        tableManagement.add(insert);
 	        insert.addActionListener(listener.insertActionListener );
 
 	        delete.setMnemonic('l');
-	        delete.setText("Delete");
+	        delete.setText(XcosMessages.MASK_DELETE);
 	        tableManagement.add(delete);
 	        delete.addActionListener(listener.deleteActionListener );
 
 	        tableManagement.add(buttonBlob);
 
 	        moveUp.setMnemonic('u');
-	        moveUp.setText("Move Up");
+	        moveUp.setText(XcosMessages.MASK_MOVEUP);
 	        tableManagement.add(moveUp);
 	        moveUp.addActionListener(listener.moveUpActionListener );
 
 	        moveDown.setMnemonic('w');
-	        moveDown.setText("Move Down");
+	        moveDown.setText(XcosMessages.MASK_MOVEDOWN);
 	        tableManagement.add(moveDown);
 	        moveDown.addActionListener(listener.moveDownActionListener );
 
@@ -259,7 +259,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        varSettings.add(customizeMainPanel);
 
-	        rowLabel.setText("Rows :");
+	        rowLabel.setText(XcosMessages.MASK_ROWS + " :");
 	        rowManagement.add(rowLabel);
 
 	        rowSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
@@ -270,7 +270,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        varSettings.add(rowManagement);
 
-	        tabbedPane.addTab("Variable settings", varSettings);
+	        tabbedPane.addTab(XcosMessages.MASK_VARSETTINGS, varSettings);
 
 	        defaultValueTable.setModel(listener.getModel().valuesTableModel);
 	        defaultValuesScrollPane.setViewportView(defaultValueTable);
@@ -279,15 +279,15 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        
 	        defaultValues.add(defaultValuesScrollPane);
 
-	        tabbedPane.addTab("Default Values", defaultValues);
+	        tabbedPane.addTab(XcosMessages.MASK_DEFAULTVALUES, defaultValues);
 
 	        mainPanel.add(tabbedPane, java.awt.BorderLayout.CENTER);
 
-	        okButton.setText("OK");
+	        okButton.setText(XcosMessages.OK);
 	        validationPanel.add(okButton);
 	        okButton.addActionListener(listener.okActionListener );
 
-	        cancelButton.setText("Cancel");
+	        cancelButton.setText(XcosMessages.CANCEL);
 	        validationPanel.add(cancelButton);
 	        cancelButton.addActionListener(listener.cancelActionListener );
 
@@ -333,10 +333,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			 */
 			public final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-			            	new Object[] {1, "WinTitle", "Window title", false}
+			            	new Object[] {1, XcosMessages.MASK_WINTITLEVAR, XcosMessages.MASK_WINTITLE, false}
 			            },
 			            new String [] {
-			                "Row", "Variable name", "Variable description", "Editable"
+			                XcosMessages.MASK_ROWS, XcosMessages.MASK_VARNAME, XcosMessages.MASK_VARDESC, XcosMessages.MASK_EDITABLE
 			            }
 			    ) {
 			        Class[] types = new Class [] {
@@ -362,10 +362,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		     */
 			public final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
 		            new Object [][] {
-		            		new Object[] {"Window title", ""}
+		            		new Object[] {XcosMessages.MASK_WINTITLE, ""}
 		            },
 		            new String [] {
-		                "Variable names", "Values"
+		                XcosMessages.MASK_VARNAME, XcosMessages.MASK_VARVALUES
 		            }
 		        ) {
 		            Class[] types = new Class [] {

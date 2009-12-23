@@ -232,7 +232,22 @@ public final class XcosMessages {
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_HDF5 = Messages.gettext("Scilab file");
 
-
+    /** Superblock mask editor */
+    public static final String MASK_TITLE = Messages.gettext("Masked SuperBlock editor");
+    public static final String MASK_INSERT = Messages.gettext("Insert");
+    public static final String MASK_DELETE = Messages.gettext("Delete");
+    public static final String MASK_MOVEUP = Messages.gettext("Move Up");
+    public static final String MASK_MOVEDOWN = Messages.gettext("Move Down");
+    public static final String MASK_ROWS = Messages.gettext("Rows");
+    public static final String MASK_VARSETTINGS = Messages.gettext("Variable settings");
+    public static final String MASK_DEFAULTVALUES = Messages.gettext("Default values");
+    public static final String MASK_WINTITLEVAR = Messages.gettext("WinTitle");
+    public static final String MASK_WINTITLE = Messages.gettext("Window title");
+    public static final String MASK_VARNAME = Messages.gettext("Variable names");
+    public static final String MASK_VARDESC = Messages.gettext("Variable descriptions");
+    public static final String MASK_EDITABLE = Messages.gettext("Editable");
+    public static final String MASK_VARVALUES = Messages.gettext("Values");
+    
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
      * Related to Scilab bug #5190
