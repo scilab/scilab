@@ -66,6 +66,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		private CustomizeFrameListener listener;
 
 		public CustomizeFrame() {
+			setTitle("Masked SuperBlock editor");
 			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			listener = new CustomizeFrameListener();
 			initComponents();
