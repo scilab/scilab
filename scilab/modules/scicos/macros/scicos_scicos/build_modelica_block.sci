@@ -33,6 +33,8 @@ function [model,ok] = build_modelica_block(blklstm, cmmat, NiM, NoM, name, path)
 
 name = "imppart_" + stripblanks(name);
 path = pathconvert(stripblanks(path),%t,%t);
+//++ convert space to _
+name = strsubst(name, ' ', '_');
 
 [txt,rpar,ipar] = create_modelica1(blklstm,cmmat,name);
 
