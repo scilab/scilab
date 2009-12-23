@@ -6,4 +6,4 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
-if atomsVersion() <> ["1.0"] then pause, end
+if atomsVersion() <> ["1.1"] then pause, end
