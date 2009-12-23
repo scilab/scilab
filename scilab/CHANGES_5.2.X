@@ -23,6 +23,8 @@ Xcos:
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
+* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's filename contains space.
+
 Bug fixes:
 ==========
 
