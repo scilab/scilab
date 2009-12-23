@@ -67,7 +67,7 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
 	
 	// Get all package description
 	// =========================================================================
-	allpackages = atomsGetTOOLBOXES();
+	allpackages = atomsDESCRIPTIONget();
 	
 	// Check if it's a Atoms package
 	// =========================================================================

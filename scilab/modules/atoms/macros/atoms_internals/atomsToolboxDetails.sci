@@ -47,7 +47,7 @@ function details = atomsToolboxDetails(package,field)
 	// Get the full list of packages
 	// =========================================================================
 	
-	repositorypackages = atomsGetTOOLBOXES();
+	repositorypackages = atomsDESCRIPTIONget();
 	
 	name    = package(1);
 	version = package(2);
