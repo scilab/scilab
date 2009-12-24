@@ -422,8 +422,7 @@ public class SuperBlock extends BasicBlock {
 
 		while (blockCount > portCount) { // add if required
 			ExplicitInputPort port = new ExplicitInputPort();
-			port.setDataLines(-1);
-			port.setDataColumns(-2);
+			port.setDefaultValues();
 			addPort(port);
 			portCount++;
 		}
@@ -479,8 +478,7 @@ public class SuperBlock extends BasicBlock {
 
 		while (blockCount > portCount) { // add if required
 			ExplicitOutputPort port = new ExplicitOutputPort();
-			port.setDataLines(-1);
-			port.setDataColumns(-2);
+			port.setDefaultValues();
 			addPort(port);
 			portCount++;
 		}
