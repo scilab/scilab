@@ -122,52 +122,24 @@ public class BasicBlock extends XcosUIDObject {
     private boolean locked = false;
 
 	public enum SimulationFunctionType {
-		ESELECT, IFTHENELSE, DEFAULT, TYPE_1, TYPE_2, TYPE_3, C_OR_FORTRAN, SCILAB, UNKNOWN;
-
+		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0), TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
+		
+		private double value;
+		private SimulationFunctionType(double scilabValue) {
+			value = scilabValue;
+		}
+		
 		public static SimulationFunctionType convertScilabValue(int scilabValue) {
-			switch (scilabValue) {
-			case -2:
-				return ESELECT;
-			case -1:
-				return IFTHENELSE;
-			case 0:
-				return DEFAULT;
-			case 1:
-				return TYPE_1;
-			case 2:
-				return TYPE_2;
-			case 3:
-				return TYPE_3;
-			case 4:
-				return C_OR_FORTRAN;
-			case 5:
-				return SCILAB;
-			default:
-				return UNKNOWN;
+			for (SimulationFunctionType iter : SimulationFunctionType.values()) {
+				if (iter.getAsDouble() == scilabValue) {
+					return iter;
+				}
 			}
+			return UNKNOWN;
 		}
 
 		public double getAsDouble() {
-			switch (this) {
-			case ESELECT:
-				return -2.0;
-			case IFTHENELSE:
-				return -1.0;
-			case DEFAULT:
-				return 0.0;
-			case TYPE_1:
-				return 1.0;
-			case TYPE_2:
-				return 2.0;
-			case TYPE_3:
-				return 3.0;
-			case C_OR_FORTRAN:
-				return 4.0;
-			case SCILAB:
-				return 5.0;
-			default:
-				return Double.NaN;
-			}
+			return this.value;
 		}
 	};
 
