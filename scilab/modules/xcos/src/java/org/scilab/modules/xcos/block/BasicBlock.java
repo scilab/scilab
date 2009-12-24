@@ -127,7 +127,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	public enum SimulationFunctionType {
 		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		TYPE_3(	3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
+		TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
 
 		private double value;
 
@@ -169,17 +169,16 @@ public class BasicBlock extends XcosUIDObject {
 
 	public BasicBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
+	setStyle("");
+	setVisible(true);
+	setVertex(true);
+	setConnectable(false);
+	setGeometry(new mxGeometry(0, 0, 40, 40));
     }
 
     protected BasicBlock(String label) {
-	super();
+	this();
 	setValue(label);
-	setStyle("");
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,40,40));
     }
 
     protected BasicBlock(String label, String style) {

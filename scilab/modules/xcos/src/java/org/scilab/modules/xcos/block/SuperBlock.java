@@ -53,8 +53,6 @@ public class SuperBlock extends BasicBlock {
 
 	public SuperBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
 	}
 
 	public SuperBlock(String label) {

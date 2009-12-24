@@ -25,8 +25,6 @@ public final class EventInBlock extends ContextUpdate {
 
     public EventInBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
 
     public EventInBlock(String label) {

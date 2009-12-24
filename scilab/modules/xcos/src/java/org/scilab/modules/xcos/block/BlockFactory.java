@@ -69,11 +69,7 @@ public final class BlockFactory {
 			BasicBlock clone = null;
 			
 			if (block != null) {
-				try {
-					clone = (BasicBlock) block.clone();
-				} catch (CloneNotSupportedException e) {
-					e.printStackTrace();
-				}
+				clone = (BasicBlock) BlockFactory.createClone(block);
 			}
 			return clone;
 		}

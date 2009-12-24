@@ -21,8 +21,6 @@ public final class ConstBlock extends BasicBlock {
 
     public ConstBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
     
     protected ConstBlock(String label) {

@@ -25,8 +25,6 @@ public final class ExplicitInBlock extends ContextUpdate {
 
     public ExplicitInBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
 
     public ExplicitInBlock(String label) {

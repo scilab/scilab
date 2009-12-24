@@ -25,8 +25,6 @@ public final class EventOutBlock extends ContextUpdate {
 
     public EventOutBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
 
     public EventOutBlock(String label) {
