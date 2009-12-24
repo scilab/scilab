@@ -52,11 +52,12 @@ public final class TextBlock extends BasicBlock {
 
     public TextBlock() {
 	super();
+	setInterfaceFunctionName("TEXT_f");
     }
 
     public TextBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("TEXT_f");
+	this();
+	setValue(label);
     }
 
     /**

@@ -34,16 +34,17 @@ public final class SplitBlock extends BasicBlock {
 
 	public SplitBlock() {
 		super();
-	}
-
-	protected SplitBlock(String label) {
-		super(label);
 		setInterfaceFunctionName("SPLIT_f");
 		setSimulationFunctionName("lsplit");
 		setRealParameters(new ScilabDouble());
 		setIntegerParameters(new ScilabDouble());
 		setObjectsParameters(new ScilabList());
 		setExprs(new ScilabDouble());
+	}
+
+	protected SplitBlock(String label) {
+		this();
+		setValue(label);
 	}
 
 	// SPLIT_f <-> lsplit

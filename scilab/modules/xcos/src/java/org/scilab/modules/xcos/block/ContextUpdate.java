@@ -42,7 +42,7 @@ public abstract class ContextUpdate extends BasicBlock{
     }
 
     public ContextUpdate(String label) {
-	super(label);
+	this();
     }
 
     public void onContextChange(String[] context) {
