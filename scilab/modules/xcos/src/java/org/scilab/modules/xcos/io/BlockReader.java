@@ -1432,8 +1432,8 @@ public class BlockReader {
 	    for (int i = 0; i < size; i++) {
 		InputPort tempInputPort = null;
 		// "E" -> Explicit
-		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth() && 
-			i < graphicsStructure.get(12).getHeight()) {
+		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth()
+				&& i < graphicsStructure.get(12).getHeight()) {
 		    if (implicitExplicitInArray[i][0].equals("E")) {
 			tempInputPort = new ExplicitInputPort();
 		    }
