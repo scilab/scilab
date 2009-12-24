@@ -19,9 +19,6 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 
 /**
  * Ease the creation of blocks
- * 
- * @checkstyle DAC: As this is the constructor for all the block classes, this
- *             class is very coupled with *Block classes
  */
 public final class BlockFactory {
 
