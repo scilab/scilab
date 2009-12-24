@@ -182,12 +182,8 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     protected BasicBlock(String label, String style) {
-	super();
-	setValue(label);
+	this();
 	setStyle(style);
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,40,40));
     }
 
     public XcosDiagram getParentDiagram() {
