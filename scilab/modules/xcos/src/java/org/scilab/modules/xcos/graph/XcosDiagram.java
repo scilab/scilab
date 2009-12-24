@@ -67,6 +67,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -1868,7 +1869,7 @@ public class XcosDiagram extends ScilabGraph {
 		BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
 		if(block.getRealParameters() instanceof ScilabMList) {
 		    //we have a hidden SuperBlock, create a real one
-		    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+		    SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
@@ -2120,7 +2121,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		    } else if(block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
-			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 			newSP.setParentDiagram(block.getParentDiagram());
 			newSP.setRealParameters(block.getRealParameters());
 			newSP.createChildDiagram();

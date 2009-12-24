@@ -167,58 +167,7 @@ public class BasicBlock extends XcosUIDObject {
 		}
 	};
 
-	public static BasicBlock createBlock(String label) {
-		if (label.compareTo("TEXT_f") == 0) {
-			return new TextBlock(label);
-		}
-		if (label.compareTo("SUPER_f") == 0) {
-			return new SuperBlock(label);
-		}
-		if (label.compareTo("DSUPER") == 0) {
-			return new SuperBlock(label, true);
-		}
-		if (label.compareTo("CONST_m") == 0 || label.compareTo("CONST") == 0
-				|| label.compareTo("CONST_f") == 0) {
-			return new ConstBlock(label);
-		}
-		if (label.compareTo("AFFICH_m") == 0
-				|| label.compareTo("AFFICH_f") == 0) {
-			return new AfficheBlock(label);
-		}
-		if (label.compareTo("GAINBLK_f") == 0
-				|| label.compareTo("GAINBLK") == 0
-				|| label.compareTo("GAIN_f") == 0) {
-			return new GainBlock(label);
-		}
-		if (label.compareTo("IN_f") == 0) {
-			return new ExplicitInBlock(label);
-		}
-		if (label.compareTo("OUT_f") == 0) {
-			return new ExplicitOutBlock(label);
-		}
-		if (label.compareTo("INIMPL_f") == 0) {
-			return new ImplicitInBlock(label);
-		}
-		if (label.compareTo("OUTIMPL_f") == 0) {
-			return new ImplicitOutBlock(label);
-		}
-		if (label.compareTo("CLKINV_f") == 0) {
-			return new EventInBlock(label);
-		}
-		if (label.compareTo("CLKOUTV_f") == 0
-				|| label.compareTo("CLKOUT_f") == 0) {
-			return new EventOutBlock(label);
-		}
-		if (label.compareTo("SPLIT_f") == 0
-				|| label.compareTo("IMPSPLIT_f") == 0
-				|| label.compareTo("CLKSPLIT_f") == 0) {
-			return new SplitBlock(label);
-		} else {
-			return new BasicBlock(label);
-		}
-	}
-
-    public BasicBlock() {
+	public BasicBlock() {
 	super();
 	setVertex(false);
 	setVisible(false);
@@ -718,7 +667,7 @@ public class BasicBlock extends XcosUIDObject {
 
 		public void callBack() {
 		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
-		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -740,7 +689,7 @@ public class BasicBlock extends XcosUIDObject {
 		private static final long serialVersionUID = -99601763227525686L;
 
 		public void callBack() {
-		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -767,7 +716,7 @@ public class BasicBlock extends XcosUIDObject {
 		    private static final long serialVersionUID = 3345416658377835057L;
 
 		    public void callBack() {
-			BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+			BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 			mxGeometry geom = BasicBlock.this.getGeometry();
 			geom.setX(10);
@@ -938,35 +887,8 @@ public class BasicBlock extends XcosUIDObject {
 	BlockPositioning.toggleAntiClockwiseRotation(this);
 
     }
-    /**
-     * Create a clone for block added by context menu in palette
-     * @return the clone
-     */
-    public Object createClone() {
-	try {
-	    BasicBlock clone = (BasicBlock) clone();
 
-	    /* Clone children */
-	    for (int i = 0; i < getChildCount(); i++) {
-		if (getChildAt(i) instanceof InputPort) {
-		    clone.addPort((InputPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof OutputPort) {
-		    clone.addPort((OutputPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof CommandPort) {
-		    clone.addPort((CommandPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof ControlPort) {
-		    clone.addPort((ControlPort) getChildAt(i).clone());
-		}
-	    }
-
-	    return clone;
-	} catch (CloneNotSupportedException e) {
-	    e.printStackTrace();
-	    return null;
-	}
-    }
-
-    public int getAngle() {
+	public int getAngle() {
 	return angle;
     }
 
