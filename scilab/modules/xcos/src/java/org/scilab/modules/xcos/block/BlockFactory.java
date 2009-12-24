@@ -24,6 +24,63 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  *             class is very coupled with *Block classes
  */
 public final class BlockFactory {
+
+	/**
+	 * List the specific block interface function name.
+	 * 
+	 * @checkstyle DAC: As this is the constructor for all the block classes,
+	 *             this class is very coupled with *Block classes
+	 */
+	private enum BlockInterFunction {
+		TEXT_f(new TextBlock()),
+		SUPER_f(new SuperBlock()),
+		DSUPER(new SuperBlock() { { mask(); } }),
+		CONST_m(new ConstBlock()),
+		CONST(new ConstBlock()),
+		CONST_f(new ConstBlock()),
+		AFFICH_m(new AfficheBlock()),
+		AFFICH_f(new AfficheBlock()),
+		GAINBLK_f(new GainBlock()),
+		GAINBLK(new GainBlock()),
+		GAIN_f(new GainBlock()),
+		IN_f(new ExplicitInBlock()),
+		OUT_f(new ExplicitOutBlock()),
+		INIMPL_f(new ImplicitOutBlock()),
+		OUTIMPL_f(new ImplicitOutBlock()),
+		CLKINV_f(new EventInBlock()),
+		CLKOUTV_f(new EventOutBlock()),
+		CLKOUT_f(new EventOutBlock()),
+		SPLIT(new SplitBlock()),
+		IMPSPLIT_f(new SplitBlock()),
+		CLKSPLIT_f(new SplitBlock());
+		
+		private BasicBlock block;
+		/**
+		 * Default constructor
+		 * @param block The reference instance
+		 */
+		private BlockInterFunction(BasicBlock block) {
+			this.block = block;
+			block.setValue(this.name());
+		}
+		
+		/**
+		 * Create a block instance
+		 * @return The new block instance
+		 */
+		public BasicBlock createInstance() {
+			BasicBlock clone = null;
+			
+			if (block != null) {
+				try {
+					clone = (BasicBlock) block.clone();
+				} catch (CloneNotSupportedException e) {
+					e.printStackTrace();
+				}
+			}
+			return clone;
+		}
+	}
 	
 	/** Default singleton constructor */
 	private BlockFactory() {
@@ -36,57 +93,21 @@ public final class BlockFactory {
 	 * @return A new instance of a block.
 	 */
 	public static BasicBlock createBlock(String label) {
-		BasicBlock block;
+		BasicBlock block = null;
 		
-		if (label.compareTo("TEXT_f") == 0) {
-			return new TextBlock(label);
+		for (BlockInterFunction func : BlockInterFunction.values()) {
+			if (label.compareTo(func.name()) == 0) {
+				block = func.createInstance();
+				break;
+			}
 		}
-		if (label.compareTo("SUPER_f") == 0) {
-			return new SuperBlock(label);
+		
+		// Not specific block
+		if (block == null) {
+			block = new BasicBlock(label);
 		}
-		if (label.compareTo("DSUPER") == 0) {
-			return new SuperBlock(label, true);
-		}
-		if (label.compareTo("CONST_m") == 0
-				|| label.compareTo("CONST") == 0
-				|| label.compareTo("CONST_f") == 0) {
-			return new ConstBlock(label);
-		}
-		if (label.compareTo("AFFICH_m") == 0
-				|| label.compareTo("AFFICH_f") == 0) {
-			return new AfficheBlock(label);
-		}
-		if (label.compareTo("GAINBLK_f") == 0
-				|| label.compareTo("GAINBLK") == 0
-				|| label.compareTo("GAIN_f") == 0) {
-			return new GainBlock(label);
-		}
-		if (label.compareTo("IN_f") == 0) {
-			return new ExplicitInBlock(label);
-		}
-		if (label.compareTo("OUT_f") == 0) {
-			return new ExplicitOutBlock(label);
-		}
-		if (label.compareTo("INIMPL_f") == 0) {
-			return new ImplicitInBlock(label);
-		}
-		if (label.compareTo("OUTIMPL_f") == 0) {
-			return new ImplicitOutBlock(label);
-		}
-		if (label.compareTo("CLKINV_f") == 0) {
-			return new EventInBlock(label);
-		}
-		if (label.compareTo("CLKOUTV_f") == 0
-				|| label.compareTo("CLKOUT_f") == 0) {
-			return new EventOutBlock(label);
-		}
-		if (label.compareTo("SPLIT_f") == 0
-				|| label.compareTo("IMPSPLIT_f") == 0
-				|| label.compareTo("CLKSPLIT_f") == 0) {
-			return new SplitBlock(label);
-		} else {
-			return new BasicBlock(label);
-		}
+		
+		return block;
 	}
 
 	/**
