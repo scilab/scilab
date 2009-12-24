@@ -121,24 +121,31 @@ public class BasicBlock extends XcosUIDObject {
     private int ordering = 0;
     private boolean locked = false;
 
-    /**
-     * Represent a simulation function type compatible with scilab function type descriptors. 
-     */
+	/**
+	 * Represent a simulation function type compatible with Scilab/Scicos
+	 * function type descriptors.
+	 */
 	public enum SimulationFunctionType {
-		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0), TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
-		
+		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
+		TYPE_3(	3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
+
 		private double value;
+
 		/**
 		 * Default constructor
-		 * @param scilabValue Scilab/Scicos function type descriptor
+		 * 
+		 * @param scilabValue
+		 *            Scilab/Scicos function type descriptor
 		 */
 		private SimulationFunctionType(double scilabValue) {
 			value = scilabValue;
 		}
-		
+
 		/**
 		 * Get the Java descriptor from the Scilab descriptor.
-		 * @param scilabValue Scilab/Scicos function type descriptor
+		 * 
+		 * @param scilabValue
+		 *            Scilab/Scicos function type descriptor
 		 * @return The corresponding java descriptor
 		 */
 		public static SimulationFunctionType convertScilabValue(int scilabValue) {
@@ -152,6 +159,7 @@ public class BasicBlock extends XcosUIDObject {
 
 		/**
 		 * Get the Scilab Descriptor from the Java Descriptor
+		 * 
 		 * @return The corresponding Scilab/Scicos descriptor
 		 */
 		public double getAsDouble() {
