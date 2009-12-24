@@ -25,8 +25,6 @@ public final class ExplicitOutBlock extends ContextUpdate {
 
     public ExplicitOutBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
 
     public ExplicitOutBlock(String label) {

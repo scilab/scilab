@@ -52,8 +52,6 @@ public final class TextBlock extends BasicBlock {
 
     public TextBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
 
     public TextBlock(String label) {

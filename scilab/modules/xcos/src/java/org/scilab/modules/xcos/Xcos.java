@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -203,7 +204,7 @@ public final class Xcos {
 
 			block = diagram.getChildById(UID);
 			if (block != null) {
-			    SuperBlock newSP = (SuperBlock) BasicBlock.createBlock("SUPER_f");
+			    SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 			    newSP.setRealParameters(block.getRealParameters());
 			    newSP.setParentDiagram(block.getParentDiagram());
 			    if (show == true) {

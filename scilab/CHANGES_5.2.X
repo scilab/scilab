@@ -47,6 +47,8 @@ Bug fixes:
 
 * bug 5691 fixed - PDF/EPS exports with LaTeX/MathML failed.
 
+* bug 5696 semi/fixed - There was a lack of feedback when SELinux was 
+                   preventing Scilab to start under Fedora 12
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab

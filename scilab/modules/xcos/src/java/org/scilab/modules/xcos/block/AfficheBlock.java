@@ -25,8 +25,6 @@ public final class AfficheBlock extends BasicBlock {
 	
 	public AfficheBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
 	}
 	
 	protected AfficheBlock(String label) {

@@ -25,8 +25,6 @@ public final class ImplicitInBlock extends ContextUpdate {
 
 	public ImplicitInBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
 	}
 
 	public ImplicitInBlock(String label) {

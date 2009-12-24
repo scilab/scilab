@@ -32,6 +32,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
@@ -721,7 +722,7 @@ public class BlockReader {
 	String[] realNameOfTextFields = { "Text", "graphics", "model", "void",
 		"gui" };
 
-	TextBlock newBlock = (TextBlock) BasicBlock.createBlock("TEXT_f");
+	TextBlock newBlock = (TextBlock) BlockFactory.createBlock("TEXT_f");
 	// we test if the structure as enough field
 	if (blockFields.size() != realNameOfTextFields.length) {
 	    throw new WrongStructureException();
@@ -795,7 +796,7 @@ public class BlockReader {
 	if (!(blockFields.get(3) instanceof ScilabString)) {
 	    throw new WrongTypeException();
 	}
-	BasicBlock newBlock = BasicBlock.createBlock(getBlockInterfaceName(blockFields));
+	BasicBlock newBlock = BlockFactory.createBlock(getBlockInterfaceName(blockFields));
 	// newBlock.setValue(getBlockInterfaceName (blockFields));
 	newBlock.setInterfaceFunctionName(getBlockInterfaceName(blockFields));
 
@@ -1432,8 +1433,8 @@ public class BlockReader {
 	    for (int i = 0; i < size; i++) {
 		InputPort tempInputPort = null;
 		// "E" -> Explicit
-		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth() && 
-			i < graphicsStructure.get(12).getHeight()) {
+		if (graphicsStructure.get(12).getHeight() > graphicsStructure.get(12).getWidth()
+				&& i < graphicsStructure.get(12).getHeight()) {
 		    if (implicitExplicitInArray[i][0].equals("E")) {
 			tempInputPort = new ExplicitInputPort();
 		    }

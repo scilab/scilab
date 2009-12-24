@@ -53,12 +53,6 @@ public class SuperBlock extends BasicBlock {
 
 	public SuperBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
-	}
-
-	public SuperBlock(String label) {
-		super(label);
 		setInterfaceFunctionName("SUPER_f");
 		setSimulationFunctionName("super");
 		setRealParameters(new ScilabDouble());
@@ -68,6 +62,11 @@ public class SuperBlock extends BasicBlock {
 		setBlockType("h");
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
+	}
+
+	public SuperBlock(String label) {
+		this();
+		setValue(label);
 	}
 
 	public SuperBlock(String label, boolean masked) {

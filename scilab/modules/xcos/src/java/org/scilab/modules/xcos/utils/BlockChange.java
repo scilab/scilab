@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.utils;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 
@@ -45,7 +46,7 @@ public class BlockChange implements mxUndoableChange {
     public void execute() {
 	BasicBlock var;
 
-	var = (BasicBlock) updated.createClone();
+	var = (BasicBlock) BlockFactory.createClone(updated);
 	updated.doUpdateBlockSettings(old);
 	old = var;
 

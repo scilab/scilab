@@ -21,8 +21,6 @@ public final class GainBlock extends BasicBlock {
 
     public GainBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
     
     protected GainBlock(String label) {

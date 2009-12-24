@@ -34,8 +34,6 @@ public final class SplitBlock extends BasicBlock {
 
 	public SplitBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
 	}
 
 	protected SplitBlock(String label) {
