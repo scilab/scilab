@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -5,9 +17,27 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
+/**
+ * Ease the creation of blocks
+ * 
+ * @checkstyle DAC: As this is the constructor for all the block classes, this
+ *             class is very coupled with *Block classes
+ */
 public final class BlockFactory {
+	
+	/** Default singleton constructor */
+	private BlockFactory() {
+		// This class is a static singleton
+	}
 
+	/**
+	 * Instanciate a new block with the specified interface function name.
+	 * @param label The interface function name.
+	 * @return A new instance of a block.
+	 */
 	public static BasicBlock createBlock(String label) {
+		BasicBlock block;
+		
 		if (label.compareTo("TEXT_f") == 0) {
 			return new TextBlock(label);
 		}
@@ -17,7 +47,8 @@ public final class BlockFactory {
 		if (label.compareTo("DSUPER") == 0) {
 			return new SuperBlock(label, true);
 		}
-		if (label.compareTo("CONST_m") == 0 || label.compareTo("CONST") == 0
+		if (label.compareTo("CONST_m") == 0
+				|| label.compareTo("CONST") == 0
 				|| label.compareTo("CONST_f") == 0) {
 			return new ConstBlock(label);
 		}
@@ -59,31 +90,33 @@ public final class BlockFactory {
 	}
 
 	/**
-	 * Create a clone for block added by context menu in palette
-	 * @param block The block to be cloned
+	 * Create a clone for a block
+	 * 
+	 * @param block
+	 *            The block to be cloned
 	 * @return the clone
 	 */
 	public static Object createClone(BasicBlock block) {
-	try {
-	    BasicBlock clone = (BasicBlock) block.clone();
-	
-	    /* Clone children */
-	    for (int i = 0; i < block.getChildCount(); i++) {
-		if (block.getChildAt(i) instanceof InputPort) {
-		    clone.addPort((InputPort) block.getChildAt(i).clone());
-		} else if (block.getChildAt(i) instanceof OutputPort) {
-		    clone.addPort((OutputPort) block.getChildAt(i).clone());
-		} else if (block.getChildAt(i) instanceof CommandPort) {
-		    clone.addPort((CommandPort) block.getChildAt(i).clone());
-		} else if (block.getChildAt(i) instanceof ControlPort) {
-		    clone.addPort((ControlPort) block.getChildAt(i).clone());
+		try {
+			BasicBlock clone = (BasicBlock) block.clone();
+
+			/* Clone children */
+			for (int i = 0; i < block.getChildCount(); i++) {
+				if (block.getChildAt(i) instanceof InputPort) {
+					clone.addPort((InputPort) block.getChildAt(i).clone());
+				} else if (block.getChildAt(i) instanceof OutputPort) {
+					clone.addPort((OutputPort) block.getChildAt(i).clone());
+				} else if (block.getChildAt(i) instanceof CommandPort) {
+					clone.addPort((CommandPort) block.getChildAt(i).clone());
+				} else if (block.getChildAt(i) instanceof ControlPort) {
+					clone.addPort((ControlPort) block.getChildAt(i).clone());
+				}
+			}
+
+			return clone;
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
 		}
-	    }
-	
-	    return clone;
-	} catch (CloneNotSupportedException e) {
-	    e.printStackTrace();
-	    return null;
-	}
 	}
 }
