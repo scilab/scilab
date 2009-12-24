@@ -42,9 +42,10 @@ public final class BlockFactory {
 		GAIN_f(new GainBlock()),
 		IN_f(new ExplicitInBlock()),
 		OUT_f(new ExplicitOutBlock()),
-		INIMPL_f(new ImplicitOutBlock()),
+		INIMPL_f(new ImplicitInBlock()),
 		OUTIMPL_f(new ImplicitOutBlock()),
 		CLKINV_f(new EventInBlock()),
+		/* TODO: What about CLKIN_F ? */
 		CLKOUTV_f(new EventOutBlock()),
 		CLKOUT_f(new EventOutBlock()),
 		SPLIT(new SplitBlock()),
