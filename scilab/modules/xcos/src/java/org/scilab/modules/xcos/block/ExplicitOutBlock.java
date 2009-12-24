@@ -25,16 +25,16 @@ public final class ExplicitOutBlock extends ContextUpdate {
 
     public ExplicitOutBlock() {
 	super();
-    }
-
-    public ExplicitOutBlock(String label) {
-	super(label);
 	setInterfaceFunctionName("OUT_f");
 	setSimulationFunctionName("output");
 	setNbZerosCrossing(new ScilabDouble(0));
 	setNmode(new ScilabDouble(0));
 	setODState(new ScilabList());
 	setValue(1);
+    }
+
+    public ExplicitOutBlock(String label) {
+	this();
     }
 
     public void setExprs(ScilabType exprs) {

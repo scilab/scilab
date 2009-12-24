@@ -25,16 +25,16 @@ public final class EventOutBlock extends ContextUpdate {
 
     public EventOutBlock() {
 	super();
-    }
-
-    public EventOutBlock(String label) {
-	super(label);
 	setInterfaceFunctionName("CLKOUTV_f");
 	setSimulationFunctionName("output");
 	setNbZerosCrossing(new ScilabDouble(0));
 	setNmode(new ScilabDouble(0));
 	setODState(new ScilabList());
 	setValue(1);
+    }
+
+    public EventOutBlock(String label) {
+	this();
     }
 
     public void setExprs(ScilabType exprs) {

@@ -21,11 +21,12 @@ public final class GainBlock extends BasicBlock {
 
     public GainBlock() {
 	super();
+	setInterfaceFunctionName("GAINBLK_f");
     }
     
     protected GainBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("GAINBLK_f");
+	this();
+	setValue(label);
     }
     
     public void setExprs(ScilabType exprs) {

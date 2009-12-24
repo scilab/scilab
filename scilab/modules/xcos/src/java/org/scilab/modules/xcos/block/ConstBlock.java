@@ -21,12 +21,12 @@ public final class ConstBlock extends BasicBlock {
 
     public ConstBlock() {
 	super();
+	setInterfaceFunctionName("CONST_m");
+	setValue("1");
     }
     
     protected ConstBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("CONST_m");
-	setValue("1");
+	this();
     }
     
     public void setExprs(ScilabType exprs) {

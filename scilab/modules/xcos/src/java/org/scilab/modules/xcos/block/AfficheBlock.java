@@ -25,12 +25,12 @@ public final class AfficheBlock extends BasicBlock {
 	
 	public AfficheBlock() {
 		super();
+		setInterfaceFunctionName("AFFICH_m");
+		setValue("0.00");
 	}
 	
 	protected AfficheBlock(String label) {
-		super(label);
-		setInterfaceFunctionName("AFFICH_m");
-		setValue("0.00");
+		this();
 	}
 
 	public int getHashCode(){

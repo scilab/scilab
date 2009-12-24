@@ -182,7 +182,7 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     protected BasicBlock(String label, String style) {
-	this();
+	this(label);
 	setStyle(style);
     }
 
