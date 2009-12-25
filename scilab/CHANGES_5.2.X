@@ -42,7 +42,7 @@ Bug fixes:
 * bug 5696 semi/fixed - There was a lack of feedback when SELinux was 
                    preventing Scilab to start under Fedora 12.
 
-* bug xxxx fixed - Compilation under RHE4 was failing on the includes of
+* bug 5700 fixed - Compilation under RHE4 was failing on the includes of
                    term.h and termcap.h.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
