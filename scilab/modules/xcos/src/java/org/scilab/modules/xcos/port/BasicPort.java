@@ -173,4 +173,13 @@ public abstract class BasicPort extends XcosUIDObject {
     public String getTypeName() {
 	return typeName;
     }
+
+    /**
+     * Set the default values for newly created port.
+     */
+	public void setDefaultValues() {
+		setDataLines(-1);
+		setDataColumns(-2);
+		setDataType(DataType.UNKNOW_TYPE);
+	}
 }

@@ -66,8 +66,8 @@ public class CompileAction extends DefaultAction {
 						temp.deleteOnExit();
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						
-						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
-										 "xcos_compile(scs_m);";
+						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+						               + "xcos_compile(scs_m);";
 						try {
 							XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {

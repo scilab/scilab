@@ -31,7 +31,6 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 public class StartAction  extends DefaultAction {
 
     private static final long serialVersionUID = -7548486977403506053L;
-    private static String simulationEnd = "__simulationEnd__";
 
     public StartAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.START, scilabGraph);
@@ -49,6 +48,7 @@ public class StartAction  extends DefaultAction {
 	File temp;
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
 	XcosTab.setStartEnabled(false);
+	((XcosDiagram) getGraph(null)).setReadOnly(true);
 	
 	try {
 	    temp = File.createTempFile("xcos",".h5");
@@ -63,6 +63,7 @@ public class StartAction  extends DefaultAction {
 				public void actionPerformed(ActionEvent arg0) {
 					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				    XcosTab.setStartEnabled(true);
+				    ((XcosDiagram) getGraph(null)).setReadOnly(false);
 				}
 			});
 		} catch (InterpreterException e1) {
