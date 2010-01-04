@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "action_binding module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "action_binding module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "action_binding.dll"
             VALUE "ProductName", " action_binding"
             VALUE "ProductVersion", "5, 2, 0, 0"

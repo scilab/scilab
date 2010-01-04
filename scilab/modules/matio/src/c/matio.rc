@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "matio module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "matio"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "matio.rc"
             VALUE "ProductName", " matio"
             VALUE "ProductVersion", "5, 2, 0, 0"

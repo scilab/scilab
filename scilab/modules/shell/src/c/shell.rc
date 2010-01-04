@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "shell module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "shell module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "libshell.dll"
             VALUE "ProductName", "shell"
             VALUE "ProductVersion", "5, 2, 0, 0"
