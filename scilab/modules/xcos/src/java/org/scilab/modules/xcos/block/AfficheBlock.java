@@ -17,34 +17,54 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+/**
+ * Implement the AFFICH_m block
+ */
 public final class AfficheBlock extends BasicBlock {
 
     private static final long serialVersionUID = 6874403612919831380L;
     
-	private int hashCode = 0;
+	private int hashCode;
 	
+	/** Default constructor */
 	public AfficheBlock() {
 		super();
 		setInterfaceFunctionName("AFFICH_m");
 		setValue("0.00");
 	}
 	
+	/**
+	 * Constructor with label
+	 * @param label the default label.
+	 */
+	@Deprecated
 	protected AfficheBlock(String label) {
 		this();
 	}
 
-	public int getHashCode(){
-		//generate UID
+	/**
+	 * @return the instance UID.
+	 */
+	public int getHashCode() {
+		//generate UID if needed (initialization is 0)
 		if (hashCode == 0) {
 			hashCode = UUID.randomUUID().hashCode();			
 		}
 		return hashCode;
 	}
 	
-	public void setHashCode(int hashcode){
+	/**
+	 * Set the instance UID.
+	 * @param hashcode The new UID.
+	 */
+	public void setHashCode(int hashcode) {
 		this.hashCode = hashcode;
 	}
 
+	/**
+	 * @return The scilab formated object parameters
+	 */
+	@Override
 	public ScilabType getObjectsParameters() {
 		ScilabList list = new ScilabList();
 		list.add(new ScilabDouble(getHashCode()));
