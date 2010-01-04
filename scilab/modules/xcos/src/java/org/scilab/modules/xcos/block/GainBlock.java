@@ -22,6 +22,7 @@ public final class GainBlock extends BasicBlock {
     public GainBlock() {
 	super();
 	setInterfaceFunctionName("GAINBLK_f");
+	setValue("1.0");
     }
     
     protected GainBlock(String label) {
