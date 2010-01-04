@@ -13,10 +13,11 @@ Xcos:
 
 * bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored into /tmp/ instead of TMPDIR
 
-* bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
-
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
+* bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
+
+* bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
 
 
 Bug fixes:
