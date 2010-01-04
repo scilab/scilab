@@ -110,12 +110,12 @@ for i=1:size(scs_m.objs)
   end
 end
 
-IN=-sort(-IN);
+IN=-gsort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   error(msprintf(gettext("%s: Input ports are not numbered properly.\n"),"lincos"))
 end
 
-OUT=-sort(-OUT);
+OUT=-gsort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   error(msprintf(gettext("%s: Output ports are not numbered properly.\n"),"lincos"))
 end
@@ -156,8 +156,8 @@ for kfun=1:length(sim.funs)
   end
 end
 
-[junk,ind]=sort(-ko(:,2));ko=ko(ind,1);
-[junk,ind]=sort(-ki(:,2));ki=ki(ind,1);
+[junk,ind]=gsort(-ko(:,2));ko=ko(ind,1);
+[junk,ind]=gsort(-ki(:,2));ki=ki(ind,1);
 
 pointo=[];
 for k=ko' 

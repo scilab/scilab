@@ -82,7 +82,7 @@ case 'set' then
   model=arg1.model;
   exprs=graphics.exprs
   while %t do
-    [ok,tag,tagvis,exprs]=getvalue('Set block parameters',..
+    [ok,tag,tagvis,exprs]=scicos_getvalue('Set block parameters',..
 	['Tag';'Tag Visibility (1=Local 2=Scoped 3=Global)'],list('str',-1,'vec',1),exprs)
     if ~ok then break,end
     if ((tagvis<1)|(tagvis>3)) then

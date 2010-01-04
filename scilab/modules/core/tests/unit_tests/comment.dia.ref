@@ -218,6 +218,7 @@ function a=foo
 endfunction
 a=foo();
 if a<>15 then bugmes();quit;end
+warning('off');
 //with  getf
 t=['function a=foo'
   'a=0;k=0;//initialization'
@@ -259,6 +260,7 @@ if a<>15 then bugmes();quit;end
 getf(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then bugmes();quit;end
+warning('on');
 //with macr2lst
 //first define an utilitary function
 function [C,L,lc]=getcomments(lst,lc)

@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -19,19 +20,19 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class PreviousTabAction extends DefaultAction {
 
 	private PreviousTabAction(Xpad editor) {
-		super("Previous tab", editor);
+		super(XpadMessages.PREVIOUS_TAB, editor);
 	}
 	
 	public void doAction() {
-		int index = this.getEditor().getTabPane().getSelectedIndex();
-		System.out.println(index);
+		this.getEditor().getTabPane().getSelectedIndex();
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Save", null, new PreviousTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+		return createMenu(XpadMessages.PREVIOUS_TAB, null, new PreviousTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
 	 }
 }

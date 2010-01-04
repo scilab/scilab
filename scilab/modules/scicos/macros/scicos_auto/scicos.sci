@@ -35,6 +35,15 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 //--------------------------------------------------------------------------------------------
 // Copyright INRIA
 
+
+// SCILAB 5.2 --> XCOS
+
+error(msprintf(gettext("''scicos'' is no more available, please use ''xcos'' instead.\n")));
+
+return
+
+// SCILAB 5.2 --> XCOS
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //** Magic Global Variable for Diagram Browser and more
   global %scicos_navig
@@ -454,7 +463,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       mdialog = x_mdialog  ;
 
       //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
-      //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
+      //** In scilab 5 we use "modules/scicos/macros/scicos_util/scicos_getvalue.sci"
       //** by Alan Layec, modified in order to accept string, etc.
 
       if MSDOS then

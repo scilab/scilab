@@ -454,12 +454,37 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
       </varlistentry>
     </variablelist>
 
-    <para>If <literal>ind=2</literal> (resp. <literal>3, 4</literal>),
-    <literal>costf</literal> must provide <literal>f</literal> (resp.
-    <literal>g, f</literal> and <literal>g</literal>).</para>
-
-    <para>If <literal>ind=1</literal> nothing is computed (used for display
-    purposes only).</para>
+    <para>
+    The <literal>ind</literal> input argument is a message sent from the solver to the
+    cost function so that the cost function knows what to compute.</para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  If <literal>ind=2</literal>, <literal>costf</literal> must provide <literal>f</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=3</literal>, <literal>costf</literal> must provide <literal>g</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=4</literal>, <literal>costf</literal> must provide <literal>f</literal> and <literal>g</literal>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  If <literal>ind=1</literal>, <literal>costf</literal> can print messages.
+	</para>
+      </listitem>
+    </itemizedlist>
+    <para>When the <literal>imp</literal> option is set to a negative integer value, say
+    <literal>m</literal> for example, the cost function is called back every -<literal>m</literal>
+    iterations, with the <literal>ind=1</literal> parameter. This can be used to 
+    print messages, fill a log file or creating an interactive plot.
+    See below for sample uses of this feature.
+    </para>
 
     <para>On output, <literal>ind&lt;0</literal> means that
     <literal>f</literal> cannot be evaluated at <literal>x</literal> and
@@ -467,7 +492,7 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
   </refsection>
 
   <refsection>
-    <title>Example #1 : Scilab function</title>
+    <title>Example: Scilab function</title>
 
     <para>The following is an example with a Scilab function. Notice, for
     simplifications reasons, the Scilab function "cost" of the following
@@ -479,14 +504,14 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
 
     <programlisting role="example"><![CDATA[ 
 // External function written in Scilab
-xref=[1;2;3];
-x0=[1;-1;1];
 function [f,g,ind] = cost(x,ind)
+  xref=[1;2;3];
   f=0.5*norm(x-xref)^2;
   g=x-xref;
 endfunction
 
 // Simplest call
+x0=[1;-1;1];
 [f,xopt]=optim(cost,x0)
 
 // By conjugate gradient - you can use 'qn', 'gc' or 'nd'
@@ -511,26 +536,14 @@ endfunction
 // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
 [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3,100,1e-6,1e-6,[1e-3;1e-3;1e-3])
 
-// Print information messages while optimizing
-// Be careful, some messages are printed in a terminal. You must
-// Scilab from the command line to see these messages.
+// Additionnal messages are printed in the console.
 [f,xopt]=optim(cost,x0,imp=3)
 
-// Use the 'derivative' function to compute the partial
-// derivatives of the previous problem
-deff('y=my_f(x)','y=0.5*norm(x-xref)^2');
-deff('y=my_df(x)','y=derivative(my_f,x)');
-deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
-                              g=my_df(x)');
-
-// Simplest call
-xref=[1;2;3];x0=[1;-1;1]
-[f,xopt]=optim(cost,x0)
  ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Example #2 : C function</title>
+    <title>Example: C function</title>
 
     <para>The following is an example with a C function, where a C source code
     is written into a file, dynamically compiled and loaded into Scilab, and
@@ -570,7 +583,7 @@ C=['#include <math.h>'
 mputl(C,TMPDIR+'/rosenc.c')
 
 // compile the C code
-l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenc','rosenc.c',[],'c',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'rosenc','c')
@@ -583,7 +596,7 @@ p=100;
   </refsection>
 
   <refsection>
-    <title>Example #3 : Fortran function</title>
+    <title>Example: Fortran function</title>
 
     <para>The following is an example with a Fortran function.</para>
 
@@ -619,7 +632,7 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
 mputl(F,TMPDIR+'/rosenf.f')
 
 // compile the Fortran code
-l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'rosenf','f')
@@ -632,7 +645,7 @@ p=100;
   </refsection>
 
   <refsection>
-    <title>Example #4 : Fortran function with initialization</title>
+    <title>Example: Fortran function with initialization</title>
 
     <para>The following is an example with a Fortran function in which the
     "in" option is used to allocate memory inside the Scilab environment. In
@@ -708,7 +721,7 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 mputl(fortransource,TMPDIR+'/rosenf.f')
 
 // compile the C code
-libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 linkid=link(libpath,'rosenf','f');
@@ -722,7 +735,7 @@ x0=1.2*ones(1,5);
   </refsection>
 
   <refsection>
-    <title>Example #5 : Fortran function with initialization on Windows with
+    <title>Example: Fortran function with initialization on Windows with
     Intel Fortran Compiler</title>
 
     <para>Under the Windows operating system with Intel Fortran Compiler, one
@@ -754,7 +767,7 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
   </refsection>
 
   <refsection>
-    <title>Example #6 : Logging features</title>
+    <title>Example: Logging features</title>
 
     <para>The imp flag may take negative integer values, say k.
     In that case, the cost function is called once every -k iterations.
@@ -766,30 +779,53 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
     </para>
 
 <programlisting role="example">
-xref=[1;2;3];
-x0=[1;-1;1];
+<![CDATA[ 
 function [f,g,ind] = cost(x,ind)
-  f=0.5*norm(x-xref)^2;
-  g=x-xref;
-endfunction
-function [f,g,ind] = cost(x,ind)
-  if ind == 2 | ind == 4 then
+  xref=[1;2;3];
+  if ( ind == 1 | ind == 4 ) then
     f=0.5*norm(x-xref)^2;
   end
-  if ind == 3 | ind == 4 then
+  if ( ind == 1 | ind == 4 ) then
     g=x-xref;
   end
-  if ind == 1 then
+  if ( ind == 1 ) then
+    mprintf("===========\n")
     mprintf("x = %s\n", strcat(string(x)," "))
     mprintf("f = %e\n", f)
     g=x-xref;
     mprintf("g = %s\n", strcat(string(g)," "))
   end
 endfunction
+x0=[1;-1;1];
 [f,xopt]=optim(cost,x0,imp=-1)
+]]>
   </programlisting>
 
-    <para>In the following example, we solve the Rosenbrock test case.
+    <para>
+    The previous script produces the following output.
+    </para>
+
+<programlisting role="example">
+===========
+x = 1 -1 1
+f = 6.500000e+000
+g = 0 -3 -2
+===========
+x = 1 0 1.6666667
+f = 2.888889e+000
+g = 0 -2 -1.3333333
+===========
+x = 1 2 3
+f = 9.860761e-031
+g = 0 -4.441D-16 1.332D-15
+===========
+x = 1 2 3
+f = 0.000000e+000
+g = 0 0 0
+  </programlisting>
+
+    <para>
+    In the following example, we solve the Rosenbrock test case.
     For each iteration of the algorithm, we plot the current value of x
     into a 2D graph containing the contours of Rosenbrock's function.
     This allows to see the progress of the algorithm while the 
@@ -798,12 +834,13 @@ endfunction
     </para>
 
 <programlisting role="example">
+<![CDATA[ 
 // 1. Define rosenbrock
 function [ f , g , ind ] = rosenbrock ( x , ind )
-  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
   end
-  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
     g(2) = 200. * ( x(2) - x(1)**2 )
   end
@@ -829,7 +866,7 @@ ydata = ymin:stepy:ymax;
 for ix = 1:length(xdata)
     for iy = 1:length(ydata)
       x = [xdata(ix) ydata(iy)];
-      f = rosenbrock ( x , 2 );
+      [ f , g , ind ] = rosenbrock ( x , 4 );
       zdata ( ix , iy ) = f;
     end
 end
@@ -838,12 +875,13 @@ plot(x0(1) , x0(2) , "b.")
 plot(xopt(1) , xopt(2) , "r*")
 // 3. Plot the optimization process, during optimization
 [ fopt , xopt ] = optim ( rosenbrock , x0 , imp = -1)
+]]>
   </programlisting>
   </refsection>
 
 
   <refsection>
-    <title>Example #7 : Optimizing without derivatives</title>
+    <title>Example: Optimizing with numerical derivatives</title>
 
     <para>It is possible to optimize a problem without an explicit 
     knowledge of the derivative of the cost function.
@@ -857,19 +895,21 @@ plot(xopt(1) , xopt(2) , "r*")
 
 
 <programlisting role="example">
+<![CDATA[ 
 function f = rosenbrock ( x )
   f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 function [ f , g , ind ] = rosenbrockCost ( x , ind )
-  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     f = rosenbrock ( x );
   end
-  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     g= numdiff ( rosenbrock , x );
   end
 endfunction
 x0 = [-1.2 1.0];
 [ fopt , xopt ] = optim ( rosenbrockCost , x0 )
+]]>
   </programlisting>
 
     <para>In the following example, we use the derivative function to 
@@ -880,23 +920,274 @@ x0 = [-1.2 1.0];
 
 
 <programlisting role="example">
+<![CDATA[ 
 function f = rosenbrock ( x )
   f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
-  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     f = rosenbrock ( x );
   end
-  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+  if ((ind == 1) | (ind == 4)) then
     g= derivative ( rosenbrock , x.' , order = 4 );
   end
 endfunction
 x0 = [-1.2 1.0];
 [ fopt , xopt ] = optim ( rosenbrockCost2 , x0 )
+]]>
   </programlisting>
 
   </refsection>
 
+  <refsection>
+    <title>Example: Counting function evaluations and number of iterations</title>
+
+<para>
+The <literal>imp</literal> option can take negative values.
+If the <literal>imp</literal> is equal to <literal>m</literal> where 
+<literal>m</literal> is a negative integer, then the cost function is 
+evaluated every -<literal>m</literal> iterations, with the <literal>ind</literal>
+input argument equal to 1.
+The following example uses this feature to compute the number of iterations.
+The global variable <literal>mydata</literal> is used to store the 
+number of function evaluations as well as the number of iterations.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+xref=[1;2;3];
+x0=[1;-1;1];
+global _MYDATA_
+_MYDATA_ = tlist ( ["T_MYDATA","niter","nfevals"])
+_MYDATA_.niter = 0
+_MYDATA_.nfevals = 0
+function [f,g,ind] = cost(x,ind)
+  global _MYDATA_
+  disp(ind)
+  if ( ind == 1 )
+    _MYDATA_.niter = _MYDATA_.niter + 1
+  end
+  _MYDATA_.nfevals = _MYDATA_.nfevals + 1
+  f=0.5*norm(x-xref)^2;
+  g=x-xref;
+endfunction
+[f,xopt]=optim(cost,x0,imp=-1)
+mprintf ( "Number of function evaluations:%d\n",_MYDATA_.nfevals)
+mprintf ( "Number of iterations:%d\n",_MYDATA_.niter)
+]]>
+  </programlisting>
+
+<para>
+While the previous example perfectly works, there is a risk that 
+the same variable <literal>_MYDATA_</literal> is used by some internal function used by <literal>optim</literal>.
+In this case, the value may be wrong. This is why a sufficiently weird variable 
+name has been used.
+</para>
+
+  </refsection>
+
+  <refsection>
+    <title>Example : Passing extra parameters</title>
+
+<para>
+In most practical situations, the cost function depends on extra parameters
+which are required to evaluate the cost function. There are several methods to 
+achieve this goal.
+</para>
+
+<para>
+In the following example, the cost function uses 4 parameters <literal>a, b, c</literal> and 
+<literal>d</literal>. 
+We define the cost function with additionnal input arguments,
+which are declared after the index argument. 
+Then we pass a list as the first input argument of the <literal>optim</literal> 
+solver. The first element of the list is the cost function. The additionnal variables 
+are directly passed to the cost function.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
+    f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+    g(1) = 2 * a * ( x(1) - c )
+    g(2) = 2 * b * ( x(2) - d )
+endfunction
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+costf = list ( costfunction , a , b , c, d );
+[ fopt , xopt ] = optim ( costf , x0 , imp = 2 )
+]]>
+  </programlisting>
+
+<para>
+In complex cases, the cost function may have so many parameters, that having a 
+function which takes all arguments as inputs is not convenient.
+For example, consider the situation where the cost function needs 12 parameters.
+Then, designing a function with 14 input arguments (x, index and the 12 parameters) is 
+difficult to manage. Instead, we can use a more complex data structure to store 
+our data. In the following example, we use a tlist to store the 4 input arguments.
+This method can easily be expanded to an arbitrary number of parameters.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+function [ f , g , ind ] = costfunction ( x , ind , parameters )
+    // Get the parameters
+    a = parameters.a
+    b = parameters.b
+    c = parameters.c
+    d = parameters.d
+    f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+    g(1) = 2 * a * ( x(1) - c )
+    g(2) = 2 * b * ( x(2) - d )
+endfunction
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+// Store the parameters
+parameters = tlist ( [
+  "T_MYPARAMS"  
+  "a"
+  "b"
+  "c"
+  "d"
+  ]);
+parameters.a = a;
+parameters.b = b;
+parameters.c = c;
+parameters.d = d;
+costf = list ( costfunction , parameters );
+[ fopt , xopt ] = optim ( costf , x0 , imp = 2 )
+]]>
+  </programlisting>
+
+<para>
+In the following example, the parameters are defined before the optimizer is called.
+They are directly used in the cost function.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+// The example NOT to follow
+function [ f , g , ind ] = costfunction ( x , ind )
+    f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+    g(1) = 2 * a * ( x(1) - c )
+    g(2) = 2 * b * ( x(2) - d )
+endfunction
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+[ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
+]]>
+  </programlisting>
+
+<para>
+While the previous example perfectly works, there is a risk that 
+the same variables are used by some internal function used by <literal>optim</literal>.
+In this case, the value of the parameters are not what is expected and the 
+optimization can fail or, worse, give a wrong result. 
+It is also difficult to manage such a function, which requires that all the parameters
+are defined in the calling context.
+</para>
+
+<para>
+In the following example, we define the cost function with the classical header.
+Inside the function definition, we declare that the parameters <literal>a, b, c</literal> and 
+<literal>d</literal> are global variables.
+Then we declare and set the global variables.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+// Another example NOT to follow
+function [ f , g , ind ] = costfunction ( x , ind )
+    global a b c d 
+    f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
+    g(1) = 2 * a * ( x(1) - c )
+    g(2) = 2 * b * ( x(2) - d )
+endfunction
+x0 = [1 1];
+global a b c d 
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+[ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
+]]>
+  </programlisting>
+
+<para>
+While the previous example perfectly works, there is a risk that 
+the same variables are used by some internal function used by <literal>optim</literal>.
+In this case, the value of the parameters are not what is expected and the 
+optimization can fail or, worse, give a wrong result. 
+</para>
+
+  </refsection>
+  
+    <refsection>
+    <title>Example : Checking that derivatives are correct</title>
+
+<para>
+Many optimization problem can be avoided if the derivatives are 
+computed correctly. One common reason for failure in the step-length 
+procedure is an error in the calculation of the cost function and its 
+gradient. Incorrect calculation of derivatives is by far the most 
+common user error. 
+</para>
+
+<para>
+In the following example, we give a false implementation of Rosenbrock's 
+gradient. In order to check the computation of the derivatives,
+we use the <literal>derivative</literal> function. We define the 
+<literal>simplified</literal> function, which delegates the computation of <literal>f</literal>
+to the rosenbrock function. The <literal>simplified</literal> function is passed 
+as an input argument of the <literal>derivative</literal> function.
+</para>
+
+<programlisting role="example">
+<![CDATA[ 
+function [ f , g , index ] = rosenbrock ( x , index )
+    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    // Exact : 
+    g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+    // Wrong :
+    g(1) = - 1200. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+    g(2) = 200. * ( x(2) - x(1)**2 )
+endfunction
+function f = simplified ( x )
+  index = 1;
+  [ f , g , index ] = rosenbrock ( x , index )
+endfunction
+x0 = [-1.2 1];
+index = 1;
+[ f , g , index ] = rosenbrock ( x0 , index );
+gnd = derivative ( simplified , x0.' );
+mprintf ( "Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
+mprintf ( "Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));
+]]>
+  </programlisting>
+  
+  <para>
+The previous script produces the following output. Obviously, the difference between the 
+two gradient is enormous, which shows that the wrong formula has been 
+used in the gradient.
+</para>
+
+<programlisting role="example">
+Exact derivative:[-638 -88]
+Numerical derivative:[-215.6 -88]
+  </programlisting>
+
+
+  </refsection>
 
   <refsection>
     <title>See Also</title>

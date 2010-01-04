@@ -11,26 +11,53 @@
  */
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class LineNumbersAction extends DefaultCheckAction {
+/**
+ * LineNumbersAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class LineNumbersAction extends DefaultCheckAction {
 
-    private LineNumbersAction(Xpad editor) {
-	super("Line Numbers", editor);
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -2778300710964013775L;
+
+	/**
+	 * Construtor
+	 * @param editor Xpad
+	 */
+	private LineNumbersAction(Xpad editor) {
+		super(XpadMessages.LINE_NUMBERS, editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
 
+	/**
+	 * doAction
+	 */
     public void doAction() {
-	getEditor().displayLineNumbers(this.getState());
+    	getEditor().displayLineNumbers(this.getState());
     }
 
+    /**
+     * createCheckBoxMenu
+     * @param editor Xpad
+     * @return CheckBoxMenuItem
+     */
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("Line Numbers", null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    	CheckBoxMenuItem lineNumber = createCheckBoxMenu(XpadMessages.LINE_NUMBERS, null, 
+    			new LineNumbersAction(editor), 
+    			KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    lineNumber.setChecked(true);
+	return lineNumber;
     }
 }

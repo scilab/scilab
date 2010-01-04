@@ -13,7 +13,7 @@
 #ifndef __GW_OUTPUT_STREAM_H__
 #define __GW_OUTPUT_STREAM_H__
 
-#include "api_common.h"
+#include "api_scilab.h"
 #include "dynlib_output_stream.h"
 /*--------------------------------------------------------------------------*/
 OUTPUT_STREAM_IMPEXP int gw_output_stream(void);

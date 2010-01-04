@@ -16,11 +16,11 @@
 // example 1
 x=1
 
-link('foof1.o','foof1');
+link('foof1'+getdynlibext(),'foof1');
 exec('foof1.sci');
 out=foof1(x)
 
-link('fooc1.o','fooc1','c');
+link('fooc1'+getdynlibext(),'fooc1','c');
 exec('fooc1.sci');
 out=fooc1(x)
 
@@ -29,11 +29,11 @@ out=foos1(x)
 
 // example 2
 
-link('foof2.o','foof2');
+link('foof2'+getdynlibext(),'foof2');
 exec('foof2.sci');
 out=foof2()
 
-link('fooc2.o','fooc2','c');
+link('fooc2'+getdynlibext(),'fooc2','c');
 exec('fooc2.sci');
 out=fooc2()
 
@@ -43,11 +43,11 @@ out=foos2()
 // example 3
 x=2
 
-link('fooc3.o','fooc3','c');
+link('fooc3'+getdynlibext(),'fooc3','c');
 exec('fooc3.sci');
 out=fooc3(x)
 
-link('foof3.o','foof3');
+link('foof3'+getdynlibext(),'foof3');
 exec('foof3.sci');
 out=foof3(x)
 
@@ -58,11 +58,11 @@ out=foos3(x)
 x=1
 y=2
 
-link('foof4.o','foof4');
+link('foof4'+getdynlibext(),'foof4');
 exec('foof4.sci');
 out=foof4(x,y)
 
-link('fooc4.o','fooc4','c');
+link('fooc4'+getdynlibext(),'fooc4','c');
 exec('fooc4.sci');
 out=fooc4(x,y)
 
@@ -73,11 +73,11 @@ out=foos4(x,y)
 k=2
 x=[1,2,3]
 
-link('foof5.o','foof5');
+link('foof5'+getdynlibext(),'foof5');
 exec('foof5.sci');
 out=foof5(k,x)
 
-link('fooc5.o','fooc5','c');
+link('fooc5'+getdynlibext(),'fooc5','c');
 exec('fooc5.sci');
 out=fooc5(k,x)
 
@@ -88,11 +88,11 @@ out=foos5(k,x)
 k=2
 x=[1,2,3;4,5,6]
 
-link('foof6.o','foof6');
+link('foof6'+getdynlibext(),'foof6');
 exec('foof6.sci');
 out=foof6(k,x)
 
-link('fooc6.o','fooc6','c');
+link('fooc6'+getdynlibext(),'fooc6','c');
 exec('fooc6.sci');
 out=fooc6(k,x)
 
@@ -103,11 +103,11 @@ out=foos6(k,x)
 k=2
 x=[1,2,3;4,5,6]
 
-link('foof7.o','foof7');
+link('foof7'+getdynlibext(),'foof7');
 exec('foof7.sci');
 out=foof7(k,x)
 
-link('fooc7.o','fooc7','c');
+link('fooc7'+getdynlibext(),'fooc7','c');
 exec('fooc7.sci');
 out=fooc7(k,x)
 
@@ -116,11 +116,11 @@ out=foos7(k,x)
 
 // example 8
 
-link('foof8.o','foof8');
+link('foof8'+getdynlibext(),'foof8');
 exec('foof8.sci');
 out=foof8()
 
-link('fooc8.o','fooc8','c');
+link('fooc8'+getdynlibext(),'fooc8','c');
 exec('fooc8.sci');
 out=fooc8()
 

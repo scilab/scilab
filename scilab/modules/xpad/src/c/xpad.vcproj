@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;XPAD_EXPORTS"
@@ -68,14 +69,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\..\..\..\bin\scilocalization.lib libscilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="../../../../bin/sci$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -151,14 +152,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="../../../../bin/sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -209,6 +210,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -236,7 +238,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="..\..\..\..\bin\scilocalization.lib libscilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -246,7 +248,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="../../../../bin/sci$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -325,7 +327,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib"
-				OutputFile="../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../bin/sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -335,7 +337,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				ImportLibrary="../../../../bin/sci$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -378,7 +380,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\GiwsException.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_xpad.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_closeXpadFromScilab.cpp"
 				>
 			</File>
 			<File
@@ -408,6 +418,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_xpad.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\GiwsException.hxx"
 				>
 			</File>
 			<File

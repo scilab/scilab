@@ -168,7 +168,7 @@ deff('e=G(p,z)','pK1=p(1),pK2=p(2),v=z(2),pHexp=z(1),e=pHexp-fpH(v)');
 
 
 // graphic part
-xbasc()
+clf()
 //v=[0:1e-5:4.5e-4]
 v=X;
 fplot2d(v,fpH);

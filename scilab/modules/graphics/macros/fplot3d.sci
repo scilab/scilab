@@ -26,7 +26,9 @@ function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
 		return
 	end
 
-if rhs<3, error(' I need at least 3 arguments'),end;
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot3d", 3));
+end;
 
 opts=[]
 if exists('theta','local')==1 then opts=[opts,'theta=theta'],end
@@ -34,7 +36,6 @@ if exists('alpha','local')==1 then opts=[opts,'alpha=alpha'],end
 if exists('leg'  ,'local')==1 then opts=[opts,'leg=leg']    ,end
 if exists('flag' ,'local')==1 then opts=[opts,'flag=flag']  ,end
 if exists('ebox' ,'local')==1 then opts=[opts,'ebox=ebox']  ,end
-if size(opts,2)<rhs-3 then  error('invalid named arguments'),end
 if type(f)==11 then comp(f),end;
 
 execstr('plot3d(xr,yr,feval(xr,yr,f),'+strcat(opts,',')+')')

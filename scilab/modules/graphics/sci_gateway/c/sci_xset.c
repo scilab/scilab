@@ -175,9 +175,9 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     /*special treatement for xset default and old_style off F.Leray 23.09.04 */
     /* mimic clf(gcf(),'reset') behaviour here */
-    sciXbasc();
+    sciClearFigure(sciGetCurrentFigure());
 
-		ResetFigureToDefaultValues(pfigure);
+    ResetFigureToDefaultValues(pfigure);
   }
   else if( strcmp(cstk(l1),"clipgrf") == 0 ) {
     /* special treatement for xset("cligrf") */

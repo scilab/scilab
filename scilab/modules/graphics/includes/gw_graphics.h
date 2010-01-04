@@ -16,7 +16,7 @@
 #define __INTGRAPHICS__
 
 #include "dynlib_graphics.h"
-#include "api_common.h"
+#include "api_scilab.h"
 
 /*--------------------------------------------------------------------------*/ 
 GRAPHICS_IMPEXP int gw_graphics(void);

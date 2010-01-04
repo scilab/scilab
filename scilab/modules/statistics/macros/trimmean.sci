@@ -120,13 +120,13 @@ function t=trimmean(x,discard,orien, verbose)
     printf(gettext("Keeping %i values from %i to %i in sorted order\n"),nb,k1,k2);
   end  
   if orien == 'all' then
-     x = sort(x)
+     x = gsort(x)
      t = sum(x(k1:k2)) / nb
   elseif (orien=='r' | orien==1) then
-     x = sort(x,'r')
+     x = gsort(x,'r')
      t = sum(x(k1:k2,:),'r') / nb
   elseif (orien=='c' | orien==2) then
-     x = sort(x,'c')
+     x = gsort(x,'c')
      t = sum(x(:,k1:k2),'c') / nb
   else
      error(msprintf(gettext("Unexpected value of orien : %s\n"),string(orien)))

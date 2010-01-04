@@ -75,7 +75,7 @@ xsetech([0,0,1.0,0.5])
 // get the graphic scales of second subwindow 
 xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
-xbasc();
+clf();
 xset('default')
  ]]></programlisting>
   </refsection>

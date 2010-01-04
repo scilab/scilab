@@ -14,7 +14,7 @@
 #ifndef __GW_LOCALIZATION__
 #define __GW_LOCALIZATION__
 #include "dynlib_localization.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 LOCALIZATION_IMPEXP int gw_localization(void);
 /*--------------------------------------------------------------------------*/ 

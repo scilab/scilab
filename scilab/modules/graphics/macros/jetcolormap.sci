@@ -6,7 +6,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [cmap] = jetcolormap(n)
+function [cmap] = jetcolormap(varargin)
 //   PURPOSE
 //      to get the usual classic colormap which goes from 
 //      blue - lightblue - green - yellow - orange then red
@@ -14,10 +14,18 @@ function [cmap] = jetcolormap(n)
 //      Bruno Pincon
 //
 
+  // Check number of input argument
+  if size(varargin)<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "jetcolormap", 1));
+  end
+  n=varargin(1);
+
+  // Check size of input argument
 	if size(n,'*')<>1 then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"jetcolormap",1));
 	end
-	
+
+  // Check value of input argument
 	if n<3 then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"jetcolormap",1,3));
 	end

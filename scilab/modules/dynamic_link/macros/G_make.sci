@@ -14,6 +14,12 @@ function [res]=G_make(files,objects_or_dll)
   if ~haveacompiler() then
     error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'G_make'))
   end
+  
+  [lhs,rhs] = argn(0);
+  if rhs <> 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"G_make"));
+    return
+  end
 
   msg = '';
   

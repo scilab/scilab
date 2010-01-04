@@ -29,9 +29,7 @@ function nmplot_simplexhistory ( this , colorforeground , markforeground , marks
   for iter = 1:nbiter
     simplex = history(iter)
     xcoords  = simplex(1:n+1,1)
-    xcoords($+1) = simplex(1,1)
     ycoords  = simplex(1:n+1,2)
-    ycoords($+1) = simplex(1,2)
     plot2d ( xcoords , ycoords )
   end
   f = gcf()
@@ -39,6 +37,7 @@ function nmplot_simplexhistory ( this , colorforeground , markforeground , marks
     f.children(1).children(iter).children.foreground = colorforeground;
     f.children(1).children(iter).children.mark_foreground = markforeground
     f.children(1).children(iter).children.mark_style = markstyle;
+    f.children(1).children(iter).children.closed = "on";
   end
 endfunction
 

@@ -100,7 +100,9 @@ S=grand(action [,q1,....,ql])</synopsis>
      gaussian, etc...) where a sample is a column vector (says of dim
      <literal>m</literal>) and you get then <literal>n</literal> such
      random vectors (as an <literal> m x n</literal> matrix).
-     <literal>The last form</literal> is used to undertake various
+  </para>
+         <para>
+     The last form is used to undertake various
      manipulations onto the base generators like changing the base
      generator (since v 2.7 you may choose between several base
      generators), changing or retrieving its internal state (seeds),
@@ -116,7 +118,7 @@ S=grand(action [,q1,....,ql])</synopsis>
       <varlistentry>
         <term>beta</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'bet',A,B)</literal> generates
+          <para><literal>Y=grand(m,n,'bet',A,B)</literal> generates
           random variates from the beta distribution with parameters
           <literal>A</literal> and <literal>B</literal>.  The density
           of the beta is (<literal>0 &lt; x &lt; 1</literal>) :</para>
@@ -134,7 +136,7 @@ x   (1-x)   / beta(A,B)
         <term>binomial</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'bin',N,p)</literal> generates random
+	    <literal>Y=grand(m,n,'bin',N,p)</literal> generates random
 	    variates from the binomial distribution with parameters
 	    <literal>N</literal> (positive integer) and <literal>p</literal>
 	    (real in [0,1]) : number of successes in <literal>N</literal>
@@ -148,7 +150,7 @@ x   (1-x)   / beta(A,B)
         <term>negative binomial</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'nbn',N,p)</literal> generates random variates from the negative binomial 
+	    <literal>Y=grand(m,n,'nbn',N,p)</literal> generates random variates from the negative binomial 
 	    distribution with parameters <literal>N</literal> (positive integer) and <literal>p</literal> (real 
 	    in (0,1)) : number of failures occurring before <literal>N</literal> successes 
 	    in independant Bernouilli trials with probability <literal>p</literal> of success.
@@ -160,7 +162,7 @@ x   (1-x)   / beta(A,B)
         <term>chisquare</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'chi', Df)</literal> generates random
+	    <literal>Y=grand(m,n,'chi', Df)</literal> generates random
 	    variates from the chisquare distribution with <literal>Df</literal>
 	    (real &gt; 0.0) degrees of freedom.  Related function(s) : <link
 	    linkend="cdfchi">cdfchi</link>.
@@ -171,7 +173,7 @@ x   (1-x)   / beta(A,B)
         <term>non central chisquare</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'nch',Df,Xnon)</literal> generates
+	    <literal>Y=grand(m,n,'nch',Df,Xnon)</literal> generates
 	    random variates from the non central chisquare
 	    distribution with <literal>Df</literal> degrees of freedom
 	    (real &gt;= 1.0) and noncentrality parameter
@@ -183,7 +185,7 @@ x   (1-x)   / beta(A,B)
       <varlistentry>
         <term>exponential</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'exp',Av)</literal> generates
+          <para><literal>Y=grand(m,n,'exp',Av)</literal> generates
           random variates from the exponential distribution with mean
           <literal>Av</literal> (real &gt;= 0.0).</para>
         </listitem>
@@ -192,7 +194,7 @@ x   (1-x)   / beta(A,B)
         <term>F variance ratio</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'f',Dfn,Dfd)</literal> generates
+	    <literal>Y=grand(m,n,'f',Dfn,Dfd)</literal> generates
 	    random variates from the F (variance ratio) distribution
 	    with <literal>Dfn</literal> (real &gt; 0.0) degrees of
 	    freedom in the numerator and <literal>Dfd</literal> (real
@@ -205,7 +207,7 @@ x   (1-x)   / beta(A,B)
         <term>non central F variance ratio</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'nf',Dfn,Dfd,Xnon)</literal>
+	    <literal>Y=grand(m,n,'nf',Dfn,Dfd,Xnon)</literal>
 	    generates random variates from the noncentral F (variance
 	    ratio) distribution with <literal>Dfn</literal> (real
 	    &gt;= 1) degrees of freedom in the numerator, and
@@ -219,7 +221,7 @@ x   (1-x)   / beta(A,B)
       <varlistentry>
         <term>gamma</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'gam',shape,scale)</literal>
+          <para><literal>Y=grand(m,n,'gam',shape,scale)</literal>
           generates random variates from the gamma distribution with
           parameters <literal>shape</literal> (real &gt; 0) and
           <literal>scale</literal> (real &gt; 0). The density of the
@@ -238,7 +240,7 @@ scale       x          e          /  gamma(shape)
         <term>Gauss Laplace (normal)</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(m,n,'nor',Av,Sd)</literal> generates
+	    <literal>Y=grand(m,n,'nor',Av,Sd)</literal> generates
 	    random variates from the normal distribution with mean
 	    <literal>Av</literal> (real) and standard deviation
 	    <literal>Sd</literal> (real &gt;= 0). Related function(s)
@@ -249,7 +251,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>multivariate gaussian (multivariate normal)</term>
         <listitem>
-          <para>: <literal>Y=grand(n,'mn',Mean,Cov)</literal>
+          <para><literal>Y=grand(n,'mn',Mean,Cov)</literal>
           generates <literal>n</literal> multivariate normal random
           variates ; <literal>Mean</literal> must be a <literal>m x
           1</literal> matrix and <literal>Cov</literal> a <literal>m x
@@ -261,7 +263,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>geometric</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'geom', p)</literal> generates
+          <para><literal>Y=grand(m,n,'geom', p)</literal> generates
           random variates from the geometric distribution with
           parameter <literal>p</literal> : number of Bernouilli trials
           (with probability succes of <literal>p</literal>) until a
@@ -277,7 +279,7 @@ scale       x          e          /  gamma(shape)
         <term>markov</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(n,'markov',P,x0)</literal> generate
+	    <literal>Y=grand(n,'markov',P,x0)</literal> generate
 	    <literal>n</literal> successive states of a Markov chain
 	    described by the transition matrix
 	    <literal>P</literal>. Initial state is given by
@@ -293,7 +295,7 @@ scale       x          e          /  gamma(shape)
         <term>multinomial</term>
         <listitem>
           <para>
-	    : <literal>Y=grand(n,'mul',nb,P)</literal> generates
+	    <literal>Y=grand(n,'mul',nb,P)</literal> generates
 	    <literal>n</literal> observations from the Multinomial
 	    distribution : class <literal>nb</literal> events in
 	    <literal>m</literal> categories (put <literal>nb</literal>
@@ -316,7 +318,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>Poisson</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'poi',mu)</literal> generates
+          <para><literal>Y=grand(m,n,'poi',mu)</literal> generates
           random variates from the Poisson distribution with mean
           <literal>mu (real &gt;= 0.0)</literal>. Related function(s)
           : <link linkend="cdfpoi">cdfpoi</link>.</para>
@@ -325,7 +327,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>random permutations</term>
         <listitem>
-          <para>: <literal>Y=grand(n,'prm',vect)</literal> generate
+          <para><literal>Y=grand(n,'prm',vect)</literal> generate
           <literal>n</literal> random permutations of the column
           vector (<literal>m x 1</literal>)
           <literal>vect</literal>.</para>
@@ -334,7 +336,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>uniform (def)</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'def')</literal> generates
+          <para><literal>Y=grand(m,n,'def')</literal> generates
           random variates from the uniform distribution over
           <literal>[0,1)</literal> (1 is never return).</para>
         </listitem>
@@ -342,7 +344,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>uniform (unf)</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'unf',Low,High)</literal>
+          <para><literal>Y=grand(m,n,'unf',Low,High)</literal>
           generates random reals uniformly distributed in
           <literal>[Low, High)</literal>.</para>
         </listitem>
@@ -350,7 +352,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>uniform (uin)</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'uin',Low,High)</literal>
+          <para><literal>Y=grand(m,n,'uin',Low,High)</literal>
           generates random integers uniformly distributed between
           <literal>Low</literal> and <literal>High</literal>
           (included). <literal>High</literal> and
@@ -361,7 +363,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>uniform (lgi)</term>
         <listitem>
-          <para>: <literal>Y=grand(m,n,'lgi')</literal> returns the
+          <para><literal>Y=grand(m,n,'lgi')</literal> returns the
           basic output of the current generator : random integers
           following a uniform distribution over :</para>
           <itemizedlist>
@@ -448,14 +450,14 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'getgen'</term>
         <listitem>
-          <para>: <literal>S=grand('getgen')</literal> returns the current base generator ( <literal>S</literal> is
+          <para><literal>S=grand('getgen')</literal> returns the current base generator ( <literal>S</literal> is
      a string among 'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra'.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>action= 'setgen'</term>
         <listitem>
-          <para>: <literal>grand('setgen',gen)</literal> sets the current base generator to be <literal>gen</literal>
+          <para><literal>grand('setgen',gen)</literal> sets the current base generator to be <literal>gen</literal>
      a string among 'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra' (notes that this call 
      returns the new current generator, ie gen).</para>
         </listitem>
@@ -463,7 +465,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'getsd'</term>
         <listitem>
-          <para>: <literal>S=grand('getsd')</literal> gets the current state (the current seeds) of the current base
+          <para><literal>S=grand('getsd')</literal> gets the current state (the current seeds) of the current base
      generator ; <literal>S</literal> is given as a column vector (of integers) of dimension <literal>625</literal> 
      for mt (the first being an index in <literal>[1,624]</literal>), <literal>4</literal> for kiss, <literal>2</literal> 
      for clcg2,  <literal>40</literal> for fsultra, <literal>4</literal> for clcg4 
@@ -474,13 +476,13 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'setsd'</term>
         <listitem>
-          <para>: <literal>grand('setsd',S), grand('setsd',s1[,s2,s3,s4])</literal> sets the state of the current 
+          <para><literal>grand('setsd',S), grand('setsd',s1[,s2,s3,s4])</literal> sets the state of the current 
      base generator (the new seeds) :</para>
           <variablelist>
             <varlistentry>
               <term>for mt</term>
               <listitem>
-                <para>: <literal>S</literal> is a vector of integers of dim <literal>625</literal> (the first component is an index
+                <para><literal>S</literal> is a vector of integers of dim <literal>625</literal> (the first component is an index
        and must be in <literal>[1,624]</literal>, the <literal>624</literal> last ones must be in 
        <literal>[0,2^32[</literal>) (but must not be all zeros) ; a simpler initialisation may be done 
        with only one integer <literal>s1</literal> (<literal>s1</literal> must be in <literal>[0,2^32[</literal>) ;</para>
@@ -489,20 +491,20 @@ scale       x          e          /  gamma(shape)
             <varlistentry>
               <term>for kiss</term>
               <listitem>
-                <para>: <literal>4</literal> integers <literal>s1,s2, s3,s4</literal> in <literal>[0,2^32[</literal> must be provided ;</para>
+                <para><literal>4</literal> integers <literal>s1,s2, s3,s4</literal> in <literal>[0,2^32[</literal> must be provided ;</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>for clcg2</term>
               <listitem>
-                <para>: <literal>2</literal> integers <literal>s1</literal> in <literal>[1,2147483562]</literal> and <literal>s2</literal> 
+                <para><literal>2</literal> integers <literal>s1</literal> in <literal>[1,2147483562]</literal> and <literal>s2</literal> 
        in  <literal>[1,2147483398]</literal> must be given ;</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>for clcg4</term>
               <listitem>
-                <para>: <literal>4</literal> integers <literal>s1</literal> in <literal>[1,2147483646]</literal>, <literal>s2</literal> 
+                <para><literal>4</literal> integers <literal>s1</literal> in <literal>[1,2147483646]</literal>, <literal>s2</literal> 
        in <literal>[1,2147483542]</literal>, <literal>s3</literal> in <literal>[1,2147483422]</literal>, 
        <literal>s4</literal> in  <literal>[1,2147483322]</literal> are required ;
        <literal>CAUTION</literal> : with clcg4 you set the seeds of the current virtual
@@ -516,13 +518,13 @@ scale       x          e          /  gamma(shape)
             <varlistentry>
               <term>for urand</term>
               <listitem>
-                <para>: <literal>1</literal> integer <literal>s1</literal> in  <literal>[0,2^31</literal>[ must be given.</para>
+                <para><literal>1</literal> integer <literal>s1</literal> in  <literal>[0,2^31</literal>[ must be given.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>for fsultra</term>
               <listitem>
-                <para>:  <literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component 
+                <para>  <literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component 
        is an index and must be in <literal>[0,37]</literal>, the 2d component is a flag (0 or 1), the 3d
        an integer in [1,2^32[ and the 37 others integers in [0,2^32[) ; a simpler (and recommanded) 
        initialisation may be done with two integers <literal>s1</literal> and <literal>s2</literal> in 
@@ -535,7 +537,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'phr2sd'</term>
         <listitem>
-          <para>: <literal>Sd=grand('phr2sd', phrase)</literal> given a <literal>phrase</literal> (character string) generates 
+          <para><literal>Sd=grand('phr2sd', phrase)</literal> given a <literal>phrase</literal> (character string) generates 
      a <literal>1 x 2</literal> vector <literal>Sd</literal> which may be used as seeds to change the state of a 
      base generator (initialy suited for clcg2).</para>
         </listitem>
@@ -563,7 +565,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'setcgn'</term>
         <listitem>
-          <para>: <literal>grand('setcgn',G)</literal> sets the current virtual generator for clcg4 (when clcg4
+          <para><literal>grand('setcgn',G)</literal> sets the current virtual generator for clcg4 (when clcg4
      is set, this is the virtual (clcg4) generator number <literal>G</literal> which is used);  the virtual clcg4 
      generators are numbered from <literal>0,1,..,100</literal> (and so <literal>G</literal> must be an integer 
      in  <literal>[0,100]</literal>) ; by default the current virtual generator is <literal>0</literal>.</para>
@@ -572,13 +574,13 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'getcgn'</term>
         <listitem>
-          <para>: <literal>S=grand('getcgn')</literal> returns the number of the current virtual clcg4 generator.</para>
+          <para><literal>S=grand('getcgn')</literal> returns the number of the current virtual clcg4 generator.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>action= 'initgn'</term>
         <listitem>
-          <para>: <literal>grand('initgn',I)</literal> reinitializes the state of the current virtual generator</para>
+          <para><literal>grand('initgn',I)</literal> reinitializes the state of the current virtual generator</para>
           <variablelist>
             <varlistentry>
               <term>I = -1</term>
@@ -605,7 +607,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'setall'</term>
         <listitem>
-          <para>: <literal>grand('setall',s1,s2,s3,s4)</literal> sets the initial state of generator <literal>0</literal> 
+          <para><literal>grand('setall',s1,s2,s3,s4)</literal> sets the initial state of generator <literal>0</literal> 
      to <literal>s1,s2,s3,s4</literal>. The initial seeds of the other generators are set accordingly 
      to have synchronisation. For constraints on <literal>s1, s2, s3, s4</literal> see the 'setsd' action.</para>
         </listitem>
@@ -613,7 +615,7 @@ scale       x          e          /  gamma(shape)
       <varlistentry>
         <term>action= 'advnst'</term>
         <listitem>
-          <para>: <literal>grand('advnst',K)</literal> advances the state of the current generator by <literal>2^K</literal> values 
+          <para><literal>grand('advnst',K)</literal> advances the state of the current generator by <literal>2^K</literal> values 
      and  resets the initial seed to that value.</para>
         </listitem>
       </varlistentry>

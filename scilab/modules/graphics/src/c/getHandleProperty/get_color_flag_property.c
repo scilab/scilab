@@ -29,7 +29,7 @@ int get_color_flag_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SURFACE)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_flag") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag") ;
     return -1 ;
   }
 

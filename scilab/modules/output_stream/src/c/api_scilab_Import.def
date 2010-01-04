@@ -10,4 +10,6 @@ EXPORTS
 	createMatrixOfWideString
 	createMatrixOfBoolean
 	getVarDimension
+	printError
+	pvApiCtx DATA
 	

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 //
 // assert_close --
@@ -44,7 +45,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -63,6 +64,7 @@ endfunction
 //    * simplex : the simplex, as a simplex object
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
 //
 function myoutputcmd ( state , data )
   global _OUTPUCMDFLAG_
@@ -72,6 +74,7 @@ function myoutputcmd ( state , data )
   fval = data.fval
   x = data.x
   simplex = data.simplex
+  step = data.step
   // Simplex is a data structure, which can be managed
   // by the simplex class.
   v = optimsimplex_dirmat ( simplex )
@@ -79,8 +82,8 @@ function myoutputcmd ( state , data )
   _OUTPUCMDFLAG_ = 1
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
@@ -93,8 +96,6 @@ nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 // We are here, that means that the output command has been correctly

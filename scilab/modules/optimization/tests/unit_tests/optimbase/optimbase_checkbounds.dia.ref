@@ -58,15 +58,15 @@ assert_equal ( isok , %T );
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0 10.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 [ opt , isok ] = optimbase_checkbounds ( opt );
-The number of variables 2 does not match the number of min bounds 3 from [-5 -5 10]assert_equal ( isok , %F );
+assert_equal ( isok , %F );
 // The max bound does not have a consistent size
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0 10.0] );
 [ opt , isok ] = optimbase_checkbounds ( opt );
-The number of variables 2 does not match the number of max bounds 3 from [5 5 10]assert_equal ( isok , %F );
+assert_equal ( isok , %F );
 // The bounds are not consistent
 opt = optimbase_configure ( opt , "-boundsmin" , [5.0 5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [-5.0 -5.0] );
 [ opt , isok ] = optimbase_checkbounds ( opt );
-The max bound -5.000000e+000 for index 1 is lower than the min bound 5.000000e+000.assert_equal ( isok , %F );
+assert_equal ( isok , %F );
 opt = optimbase_destroy(opt);

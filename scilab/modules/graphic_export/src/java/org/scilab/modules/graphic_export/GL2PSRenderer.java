@@ -64,19 +64,24 @@ public class GL2PSRenderer extends ExportRenderer {
 	public int setGL2PSFile(String fileName, int fileType) {
 				
 		switch (getFileType()) {
-		case ExportRenderer.EPS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".eps");
-									   format = GL2PS.GL2PS_EPS;
-		break;
-		case ExportRenderer.PDF_EXPORT:  setFileName(ExportRenderer.getFileName() + ".pdf");
-									   format = GL2PS.GL2PS_PDF;
-		break;
-		case ExportRenderer.SVG_EXPORT:  setFileName(ExportRenderer.getFileName() + ".svg");
-									   format = GL2PS.GL2PS_SVG;
-		break;				  
-		case ExportRenderer.PS_EXPORT:  setFileName(ExportRenderer.getFileName() + ".ps");
-		   							   format = GL2PS.GL2PS_PS;
-		break;	
-		default: return ExportRenderer.INVALID_FILE;
+			case ExportRenderer.EPS_EXPORT: 
+				setFileName(ExportRenderer.getFileName() + ".eps");
+				format = GL2PS.GL2PS_EPS;
+				break;
+			case ExportRenderer.PDF_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".pdf");
+				format = GL2PS.GL2PS_PDF;
+				break;
+			case ExportRenderer.SVG_EXPORT:
+				setFileName(ExportRenderer.getFileName() + ".svg");
+				format = GL2PS.GL2PS_SVG;
+				break;			  
+			case ExportRenderer.PS_EXPORT:  
+				setFileName(ExportRenderer.getFileName() + ".ps");
+				format = GL2PS.GL2PS_PS;
+				break;	
+			default: 
+				return ExportRenderer.INVALID_FILE;
 		}
 		return ExportRenderer.SUCCESS;			
 	}
@@ -111,6 +116,8 @@ public class GL2PSRenderer extends ExportRenderer {
 				exportOrientation = 0;
 			}						
 			
+			GL gl = gLDrawable.getGL();
+			
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
 					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
@@ -123,7 +130,6 @@ public class GL2PSRenderer extends ExportRenderer {
 				return;
 			}
 
-			GL gl = gLDrawable.getGL();
 			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 			gLDrawable.setGL(newGL);
 
@@ -139,7 +145,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			
 			
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
-
+			
 			gLDrawable.setGL(gl);
 			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
@@ -152,7 +158,7 @@ public class GL2PSRenderer extends ExportRenderer {
 				setExportErrorFromGL2PS(gl2psEndPageStatut);
 				return;
 			}		
-
+			
 			sciRend.init(gLDrawable);
 			sciRend.display(gLDrawable);	
 
@@ -216,7 +222,8 @@ public class GL2PSRenderer extends ExportRenderer {
 	 * @param file exported file
 	 * @return permission status
 	 */
-	public int checkWritePermission(File file) {
+        /* Calixte added a static */
+	public static int checkWritePermission(File file) {
 		try {
 			file.createNewFile();			
 			if (!file.canWrite()) {

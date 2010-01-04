@@ -16,13 +16,12 @@
 #define __GETSCILABJNIENV_H__
 
 #include <jni.h> /* JNIEnv */
-#include "dynlib_jvm.h"
 
 /**
 * returns Scilab JNIEnv
 * @return JNIEnv
 */
-JVM_IMPEXP JNIEnv *getScilabJNIEnv(void);
+JNIEnv *getScilabJNIEnv(void);
 
 #endif /* __GETSCILABJAVAVM_H__ */
 /*--------------------------------------------------------------------------*/ 

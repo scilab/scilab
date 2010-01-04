@@ -77,7 +77,7 @@ case 'set' then
   exprs=graphics.exprs
   exprs=exprs(1) // compatibility
   while %t do
-    [ok,prt,exprs]=getvalue('Set Event Input block parameters',..
+    [ok,prt,exprs]=scicos_getvalue('Set Event Input block parameters',..
 	'Port number',list('vec',1),exprs)
     prt=int(prt)
     if ~ok then break,end

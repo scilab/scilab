@@ -37,50 +37,84 @@ The option is "disableUnderMode" and can be:
 <path value="@JHALL@"/>
 
 <!-- Load when needed -->
+
+<path value="@JGRAPHX@" load="onUse">
+	<load on="XCos"/>
+</path>
+
 <path value="@JOGL@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
+
 <path value="@GLUEGEN_RT@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 
+<!-- XCOS -->
 <path value="@JHDF5@" load="onUse">
-        <load on="hdf5BasedFeature"/>
+	<load on="XCos"/>
+	<load on="HDF5"/>
+</path>
+
+<path value="@JGRAPHX@" load="onUse">
+        <load on="xcos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
+<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+	<load on="XCos"/>
+</path>
+<!-- END -->
+
 <!-- Documentation (not mandatory) -->
 <path value="@JEUCLID_CORE@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="@FOP@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@SAXON@" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@XML_APIS_EXT@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- PDF doc generation -->
 <path value="@COMMONS_IO@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
 <path value="@XMLGRAPHICS_COMMONS@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@AVALON_FRAMEWORK@" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>
+
+<path value="@JLATEXMATH@" load="onUse">
+		<load on="graphics_latex_textrendering"/>
+		<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- helptools module doc generation -->

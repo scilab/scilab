@@ -150,6 +150,14 @@ int sci_strindex(char *fname,unsigned long fname_len)
 		}
 
 		wStrings_Input1 = to_wide_string(Strings_Input1[0]);
+		if (wStrings_Input1 == NULL)
+		{
+			/* string conversion fails */
+			freeArrayOfString(Strings_Input1,m1n1);
+			freeArrayOfString(Strings_Input2,m2n2);
+			Scierror(999,_("%s: Wrong value for input argument #%d: A valid string expected (UTF-8 Encoding problem).\n"),fname,1);
+			return 0;
+		}
 
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input2);
 		m2n2 = m2*n2;
@@ -257,12 +265,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 		}
 
 		FREE(wStrings_Input1);
-		for(i = 0 ; i < m2n2 ; i++)
-		{
-			FREE(wStrings_Input2[i]);
-		}
-		FREE(wStrings_Input2);
-
+		freeArrayOfWideString(wStrings_Input2, m2n2);
 		freeArrayOfString(Strings_Input1,m1n1);
 		freeArrayOfString(Strings_Input2,m2n2);
 

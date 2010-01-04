@@ -11,10 +11,8 @@
 // Warning : order !!
 // list of  : filename , module
 
-listmacrostoload = ['pathconvert','fileio';
-  'listfiles','fileio'
+listmacrostoload = ['listfiles','fileio'
   '%c_a_c','overloading';
-  'basename','fileio';
   'mputl','fileio';
   'genlib','functions';
   ];

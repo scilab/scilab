@@ -39,8 +39,6 @@ current_driver=driver()</synopsis>
     <para>
     This function is used to select a graphics driver, or with no arguments 
     to get the current graphics driver name.
-    Most of the time, a user can ignore this function and change the driver
-    by calling high level functions such as <literal>xbasc</literal>.
     The selected driver can be one of the followings:
   </para>
     <variablelist>
@@ -100,14 +98,6 @@ driver('X11');
     <programlisting role = ""><![CDATA[ 
 convert -delay 10  img*.gif anim.gif  
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xbasc">xbasc</link>
-      </member>
-    </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>

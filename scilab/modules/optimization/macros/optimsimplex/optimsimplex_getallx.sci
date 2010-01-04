@@ -16,6 +16,6 @@
 //   <no arg>
 //
 function x = optimsimplex_getallx ( this )
-  x = this.x (1:this.n , 1:this.nbve )
+  x = this.x ( 1:this.nbve , 1:this.n )
 endfunction
 

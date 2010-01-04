@@ -16,9 +16,8 @@
 //   <no arg>
 //
 function m = optimsimplex_dirmat ( this )
-  m = zeros(this.n,this.n)
-  for i=1:this.nbve-1
-    m(1:this.n,i) = this.x(1:this.n,i+1) - this.x(1:this.n,1)
-  end
+  nv = this.nbve;
+  v1 = this.x(1,1:this.n);
+  m(1:this.n,1:nv-1) = (this.x(2:nv,1:this.n) - v1 .*. ones(nv-1,1)).';
 endfunction
 

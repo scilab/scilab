@@ -28,6 +28,7 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
+
 <path value="$SCILAB/thirdparty/flexdock-0.5.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
 <path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup" disableUnderMode="NW"/>
@@ -36,58 +37,91 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
 <path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
 
-<!-- Load when needed -->
+<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
+	<load on="XCos"/>
+</path>
+
+
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
+
 <path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 
+<!-- XCOS -->
 <path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
-        <load on="hdf5BasedFeature"/>
+	<load on="XCos"/>
+	<load on="HDF5"/>
+</path>
+
+<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
+        <load on="xcos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
+<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+	<load on="XCos"/>
+</path>
+<!-- END -->
+
 <!-- Documentation (not mandatory) -->
 <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
 </path>
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
-	<load on="documentationGeneration"/>
-</path>
-<path value="$SCILAB/thirdparty/js.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
 <path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
-<path value="$SCILAB/thirdparty/docbook-xsl-saxon.jar" load="onUse">
+<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
-<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
+<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>	
+<path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
-
 
 <!-- PDF doc generation -->
 <path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
+<!-- PDF doc generation (dep of jeuclid) -->
+<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="graphics_mathml_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>
 <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
-<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
-	<load on="documentationGeneration"/>
+<path value="$SCILAB/thirdparty/jlatexmath-0.8.2.jar" load="onUse">
+		<load on="graphics_latex_textrendering"/>
+		<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
 <!-- helptools module doc generation -->
@@ -96,22 +130,25 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar" load="startup"/>
+<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
 
 <!-- Console GUI dep -->
+<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" disableUnderMode="NW"/>
 
-<path value="$SCILAB/modules/shell/jar/org.scilab.modules.shell.jar" load="startup" disableUnderMode="NW"/>
-<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" load="startup" disableUnderMode="NW"/>
-<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar" load="startup"/>
-<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="startup" disableUnderMode="NW"/>
+<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
 
-<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar" load="startup"/>
-<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar" load="startup"/>
+<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
+<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
+
+<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
 <path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
 <path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
-<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar" load="startup"/>
-<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>
-<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar" load="startup"/>
+
+<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
+
+<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
 
 <!-- xpad module -->
 <path value="$SCILAB/modules/xpad/jar/org.scilab.modules.xpad.jar" load="onUse">

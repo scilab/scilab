@@ -25,8 +25,7 @@
         <term>handle</term>
         <listitem>
           <para>argument optionnel. Handle(s) graphiques de type Axes
-          définissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
-          Option uniquement disponible en nouveau mode graphique.</para>
+          définissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,7 +36,7 @@
     courante en changeant les bornes, données sous la forme
     <literal>rect=[xmin,ymin,xmax,ymax]</literal>. En ancien mode graphique,
     fonctionne uniquement avec le pilote <literal>"Rec"</literal>.</para>
-    <para>En nouveau mode graphique, cette transformation s'applique aux axes
+    <para>En mode graphique, cette transformation s'applique aux axes
     spécifiés par <literal>handle</literal> Si <literal>handle</literal> n'est pas
     renseigné, la transformation s'applique à  l'axe courant de la figure
     courante. La transformation change les valeurs <literal>data_bounds</literal>
@@ -66,9 +65,6 @@ replot([-3,-2,8,4],f.children(2))
     <simplelist type="inline">
       <member>
         <link linkend="xbasr">xbasr</link>
-      </member>
-      <member>
-        <link linkend="xbasc">xbasc</link>
       </member>
       <member>
         <link linkend="clf">clf</link>

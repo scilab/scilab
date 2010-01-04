@@ -11,12 +11,8 @@ Description:
 <module name="Checker">
     <property name="severity" value="warning"/>
     <module name="TreeWalker">
-        <module name="JavadocMethod">
-            <property name="severity" value="error"/>
-        </module>
-        <module name="JavadocType">
-            <property name="severity" value="error"/>
-        </module>
+        <module name="JavadocMethod"/>
+        <module name="JavadocType"/>
         <module name="JavadocVariable">
             <property name="severity" value="info"/>
             <property name="scope" value="package"/>

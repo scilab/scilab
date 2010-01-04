@@ -9,7 +9,7 @@
 
 //
 // neldermead_restart --
-//   Restarts optimization.
+//   Update the simplex and restart the search.
 //
 function this = neldermead_restart ( this )
   this = neldermead_updatesimp ( this );

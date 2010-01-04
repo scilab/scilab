@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("switched_cap_filter.dem.sce");
-scicos_demostration(thispath+"/Switched_capacitor_integrator.cosf");
+xcos(thispath+"/Switched_capacitor_integrator.cosf");
 clear thispath;

@@ -18,6 +18,8 @@ use Data::Dumper;
 # Current directory
 my $directory           = getcwd();
 
+$0 =~ s/^\.\///;
+
 if( dirname($0) ne '.' )
 {
 	$directory .= '/'.dirname($0);

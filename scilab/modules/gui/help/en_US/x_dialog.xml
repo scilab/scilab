@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>x_dialog</refname>
-    <refpurpose> Xwindow dialog</refpurpose>
+    <refpurpose>Dialog for interactive multi-lines input.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -29,15 +29,14 @@
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>response : n column vector of strings if returned with "Ok" button or [] if returned with "Cancel" button</para>
+          <para>User answer: n column vector of strings if returned with "Ok" button or [] if returned with "Cancel" button</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-    Creates an X-window multi-lines dialog</para>
+    <para>Opens a dialog for interactive multi-lines input.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

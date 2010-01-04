@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Load one or several toolboxes
 
 function result = atomsUpdateDep(name_parent,version_parent,name_child,version_child)

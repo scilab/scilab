@@ -90,7 +90,7 @@ m = 30;
 xx = linspace(0,2*%pi,m);
 [X,Y] = ndgrid(xx,xx);
 Z = eval_cshep2d(X,Y, tl_coef);
-xbasc()
+clf()
 plot3d(xx,xx,Z,flag=[2 6 4])
 param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
 xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points")

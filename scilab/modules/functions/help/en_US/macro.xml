@@ -23,7 +23,7 @@
     <para>
     Macros are Scilab procedures ("macro", "function" and "procedure"
     have the save meaning). Usually, they are defined 
-    in files with an editor and loaded into Scilab by <literal>getf</literal> or through
+    in files with an editor and loaded into Scilab by <literal>exec</literal> or through
     a library.</para>
     <para>
     They can also be defined on-line (see <literal>deff</literal>). 
@@ -50,7 +50,7 @@ function [y1,...,yn]=foo(x1,...,xm)
         <link linkend="deff">deff</link>
       </member>
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="comp">comp</link>

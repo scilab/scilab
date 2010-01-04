@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry 
+	version="5.0-subset Scilab" 
+	xml:id="neldermead_overview" 
+	xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 4-11-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>overview</refname>
+
+    <refpurpose>An overview of the Nelder-Mead toolbox.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Purpose</title>
+
+    <para>The goal of this toolbox is to provide a Nelder-Mead direct search
+    optimization method. That Nelder-Mead algorithm may be used in the
+    following optimization context :</para>
+    <itemizedlist>
+        <listitem>
+          <para>there is no need to provide the derivatives of the objective
+          function,</para>
+        </listitem>
+
+        <listitem>
+          <para>the number of parameters is small (up to 10-20),</para>
+        </listitem>
+
+        <listitem>
+          <para>there are bounds and/or non linear constraints.</para>
+        </listitem>
+      </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Design</title>
+
+    <para>This package provides the following
+    components :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>neldermead</literal> provides various Nelder-Mead variants
+        and manages for Nelder-Mead specific settings, such as the method to
+        compute the initial simplex, the specific termination criteria,</para>
+      </listitem>
+
+      <listitem>
+        <para>
+	<literal>fminsearch</literal> provides a simplified Nelder-Mead algorithm.
+        Specific terminations criteria, initial simplex and auxiliary settings are automatically configured.
+	</para>
+      </listitem>
+
+      <listitem>
+        <para>
+	<literal>optimset</literal>, <literal>optimget</literal> provide Scilab
+        commands to emulate their Matlab counterparts.
+	</para>
+      </listitem>
+
+      <listitem>
+        <para>
+	<literal>optimplotfunccount</literal>, <literal>optimplotx</literal>
+	and <literal>optimplotfval</literal> provide plotting features for the 
+	<literal>fminsearch</literal> function.
+	</para>
+      </listitem>
+
+      <listitem>
+        <para>
+	<literal>nmplot</literal> provides a high-level component which
+        provides directly output pictures for Nelder-Mead algorithm.
+	</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The current component is based on the
+    following components </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>optimbase</literal> provides an abstract class for a general
+        optimization component, including the number of variables, the minimum
+        and maximum bounds, the number of non linear inequality constraints,
+        the loggin system, various termination criteria, the cost function,
+        etc...</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>optimsimplex</literal> provides a class to manage a simplex
+        made of an arbitrary number of vertices, including the computation of
+        a simplex by various methods (axes, regular, Pfeffer's, randomized
+        bounds), the computation of the size by various methods (diameter,
+        sigma +, sigma-, etc...),</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Features</title>
+
+    <para>The following is a list of features the Nelder-Mead prototype
+    algorithm currently provides :</para>
+
+    <itemizedlist>
+    
+     <listitem>
+        <para>Provides 3 algorithms, including</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Spendley et al. fixed shaped algorithm,</para>
+          </listitem>
+
+          <listitem>
+            <para>Nelder-Mead variable shape algorithm,</para>
+          </listitem>
+
+          <listitem>
+            <para>
+	    Box "complex" algorithm managing bounds and nonlinear inequality
+        constraints based on arbitrary number of vertices in the
+        simplex.
+	</para>
+          </listitem>
+
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Manage various simplex initializations</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>initial simplex given by user,</para>
+          </listitem>
+
+          <listitem>
+            <para>initial simplex computed with a length and along the
+            coordinate axes,</para>
+          </listitem>
+
+          <listitem>
+            <para>initial regular simplex computed with Spendley et al.
+            formula</para>
+          </listitem>
+
+          <listitem>
+            <para>initial simplex computed by a small perturbation around the
+            initial guess point</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Manage cost function</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>optionnal additionnal argument</para>
+          </listitem>
+
+          <listitem>
+            <para>direct communication of the task to perform : cost function
+            or inequality constraints</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Manage various termination criteria, including maximum number of
+        iterations, tolerance on function value (relative or absolute),</para>
+        <itemizedlist>
+            <listitem>
+              <para>tolerance on x (relative or absolute),</para>
+            </listitem>
+
+            <listitem>
+              <para>tolerance on standard deviation of function value
+              (original termination criteria in [3]),</para>
+            </listitem>
+
+            <listitem>
+              <para>maximum number of evaluations of cost function,</para>
+            </listitem>
+
+            <listitem>
+              <para>absolute or relative simplex size,</para>
+            </listitem>
+          </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Manage the history of the convergence, including</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>history of function values,</para>
+          </listitem>
+
+          <listitem>
+            <para>history of optimum point,</para>
+          </listitem>
+
+          <listitem>
+            <para>history of simplices,</para>
+          </listitem>
+
+          <listitem>
+            <para>history of termination criterias,</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Provide a plot command which allows to graphically see the
+        history of the simplices toward the optimum,</para>
+      </listitem>
+
+      <listitem>
+        <para>Provide query features for the status of the optimization
+        process number of iterations, number of function evaluations, status
+        of execution, function value at initial point, function value at
+        optimal point, etc...</para>
+      </listitem>
+
+      <listitem>
+        <para>Kelley restart based on simplex gradient,</para>
+      </listitem>
+
+      <listitem>
+        <para>O'Neill restart based on factorial search around optimum,</para>
+      </listitem>
+
+     </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Example : Optimizing the Rosenbrock function</title>
+
+    <para>In the following example, one searches the minimum of the 2D
+    Rosenbrock function. One begins by defining the function "rosenbrock"
+    which computes the Rosenbrock function. The traditionnal initial guess
+    [-1.2 1.0] is used. The initial simplex is computed along the axes with a
+    length equal to 0.1. The Nelder-Mead algorithm with variable simplex size
+    is used. The verbose mode is enabled so that messages are generated during
+    the algorithm. After the optimization is performed, the optimum is
+    retrieved with quiery features.</para>
+
+    <programlisting role="example"><![CDATA[ 
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",0.1);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+fopt = neldermead_get(nm,"-fopt");
+historyfopt = neldermead_get(nm,"-historyfopt");
+iterations = neldermead_get(nm,"-iterations");
+historyxopt = neldermead_get(nm,"-historyxopt");
+historysimplex = neldermead_get(nm,"-historysimplex");
+fx0 = neldermead_get(nm,"-fx0");
+status = neldermead_get(nm,"-status");
+nm = neldermead_destroy(nm);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin, 2008-2009</para>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>&#8220;Sequential Application of Simplex Designs in Optimisation and
+    Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
+    F. R., American Statistical Association and American Society for Quality,
+    1962</para>
+
+    <para>&#8220;A Simplex Method for Function Minimization&#8221;, Nelder, J.
+    A. and Mead, R., The Computer Journal, 1965</para>
+
+    <para>"A New Method of Constrained Optimization and a Comparison With
+    Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
+    British Computer Society</para>
+
+    <para>&#8220;Convergence Properties of the Nelder--Mead Simplex Method in
+    Low Dimensions&#8221;, Jeffrey C. Lagarias and James A. Reeds and Margaret
+    H. Wright and Paul E. Wright, SIAM Journal on Optimization, 1998</para>
+
+    <para>&#8220;Compact numerical methods for computers : linear algebra and
+    function minimisation&#8221;, Nash, J. C., Hilger, Bristol, 1979</para>
+
+    <para>&#8220;Iterative Methods for Optimization&#8221;, C. T. Kelley,
+    1999</para>
+
+    <para>&#8220;Iterative Methods for Optimization: Matlab Codes&#8221;,
+    http://www4.ncsu.edu/~ctk/matlab_darts.html</para>
+
+    <para>&#8220;Sequential Simplex Optimization: A Technique for Improving
+    Quality and Productivity in Research, Development, and
+    Manufacturing&#8221;, Walters, Fred H. and Jr, Lloyd R. and Morgan,
+    Stephen L. and Deming, Stanley N., 1991</para>
+
+    <para>&#8220;Numerical Recipes in C, Second Edition&#8221;, W. H. Press
+    and Saul A. Teukolsky and William T. Vetterling and Brian P. Flannery,
+    1992</para>
+
+    <para>&#8220;Detection and Remediation of Stagnation in the Nelder--Mead
+    Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
+    Optimization, Kelley,, C. T., 1999</para>
+
+    <para>Matlab &#8211; fminsearch ,
+    http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/fminsearch.html</para>
+
+    <para>GAMS, A19A20 - description,
+    http://gams.nist.gov/serve.cgi/Module/NASHLIB/A19A20/11238/</para>
+
+    <para>asa047.f,
+    http://people.sc.fsu.edu/~burkardt/f77_src/asa047/asa047.f</para>
+
+    <para>optim1.f,
+    http://www.stat.uconn.edu/~mhchen/survbook/example51/optim1.f</para>
+
+    <para>as47,f, http://lib.stat.cmu.edu/apstat/47</para>
+
+    <para>&#8220;Algorithm AS47 - Function minimization using a simplex
+    procedure, O'Neill, R., 1971, Applied Statistics</para>
+  </refsection>
+  
+    <refsection>
+    <title>TODO</title>
+
+    <itemizedlist>
+        <listitem>
+          <para>
+	  include Multi-Directionnal Search algorithm in the release
+	  </para>
+        </listitem>
+	
+        <listitem>
+          <para>
+	  include parabolic interpolation in the release
+	  </para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a neldermead_outputfunction to make nice and easy outputs
+	  </para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a stopping feature to the cost function and manage the <literal>stop</literal>
+	output argument to the output functions of <literal>fminsearch</literal>
+	</para>
+        </listitem>
+
+        <listitem>
+          <para>
+	  provide a (quadratic) penalized version of <literal>neldermead</literal> for 
+	  bound constrained problems
+	</para>
+        </listitem>
+
+      </itemizedlist>
+  </refsection>
+
+</refentry>
+

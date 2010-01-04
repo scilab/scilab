@@ -44,7 +44,8 @@ function [ga,gs,gi]=dtsi(g,tol)
 	else
 	  pol=roots(d),
 	  k=1,no=1,
-	  [a,l]=sort(real(pol)),pol=pol(l),
+	  [a,l]=gsort(real(pol));
+	  pol=pol(l);
 	  while k<=dd,
 	    if real(pol(k))<=tol then 
 	      k=dd+1,

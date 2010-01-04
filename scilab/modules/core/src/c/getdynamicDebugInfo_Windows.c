@@ -18,6 +18,7 @@
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
+#include "getos.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
@@ -127,58 +128,24 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 	if (str_info)
 	{
+		char *OS = getOSFullName();
+		char *OSRelease = getOSRelease();
 		strcpy(str_info ,_("Operating System: "));
-		switch (GetWindowsVersion())
+
+		if (OS && OSRelease)
 		{
-		case OS_ERROR : default :
-			strcat(str_info ,"Windows Unknown");
-		break;
-		case OS_WIN32_WINDOWS_NT_3_51 :
-			strcat(str_info ,"Windows NT 3.51");
-		break;
-		case OS_WIN32_WINDOWS_NT_4_0 :
-			strcat(str_info ,"Windows NT 4.0");
-		break;
-		case OS_WIN32_WINDOWS_95 :
-			strcat(str_info ,"Windows 95");
-		break;
-		case OS_WIN32_WINDOWS_98 :
-			strcat(str_info ,"Windows 98");
-		break;
-		case OS_WIN32_WINDOWS_Me :
-			strcat(str_info ,"Windows ME");
-		break;
-		case OS_WIN32_WINDOWS_2000 :
-			strcat(str_info ,"Windows 2000");
-		break;
-		case OS_WIN32_WINDOWS_XP :
-			strcat(str_info ,"Windows XP");
-		break;
-		case OS_WIN32_WINDOWS_XP_64 :
-			strcat(str_info ,"Windows XP x64");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003 :
-			strcat(str_info ,"Windows Server 2003");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003_R2 :
-			strcat(str_info ,"Windows Server 2003 R2");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003_64 :
-			strcat(str_info ,"Windows Server 2003 x64");
-		break;
-		case OS_WIN32_WINDOWS_VISTA :
-			strcat(str_info ,"Windows Vista");
-		break;
-		case OS_WIN32_WINDOWS_VISTA_64 :
-			strcat(str_info ,"Windows Vista x64");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2008 :
-			strcat(str_info ,"Windows Server 2008");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2008_64 :
-			strcat(str_info ,"Windows Server 2008 x64");
-		break;
+			strcat(str_info , OS);
+			strcat(str_info , " ");
+			strcat(str_info , OSRelease);
 		}
+		else
+		{
+			strcat(str_info, "ERROR");
+		}
+
+		if (OS) {FREE(OS); OS = NULL;}
+		if (OSRelease) {FREE(OSRelease); OSRelease = NULL;}
+
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 

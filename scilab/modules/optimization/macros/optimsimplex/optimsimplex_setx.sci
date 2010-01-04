@@ -10,11 +10,11 @@
 //
 // optimsimplex_setx --
 //   Set the coordinates of the vertex at given index,
-//   as a column vector, into the current simplex.
+//   as a row vector, into the current simplex.
 // Arguments
 //   ive : vertex index
 //
 function this = optimsimplex_setx ( this , ive , x )
-  this.x (1:this.n , ive ) = x(1:this.n);
+  this.x ( ive , 1:this.n ) = x(1:this.n);
 endfunction
 

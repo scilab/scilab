@@ -36,7 +36,7 @@ int get_font_color_property( sciPointObj * pobj )
   }
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"font_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_color") ;
     return -1 ;
   }
 }

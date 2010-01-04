@@ -18,7 +18,7 @@
 * @param
 * @return
 */
-int getNewVarAddressFromPosition(int _iVar, int** _piAddress);
+int getNewVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress);
 
 /**
 *

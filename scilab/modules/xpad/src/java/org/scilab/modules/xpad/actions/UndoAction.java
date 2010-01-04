@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
@@ -20,11 +20,12 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class UndoAction extends DefaultAction {
 
 	private UndoAction(Xpad editor) {
-		super("Undo", editor);
+		super(XpadMessages.UNDO, editor);
 	}
 
 	public void doAction() {
@@ -32,11 +33,11 @@ public class UndoAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
-	    return createMenu("Undo", null, new UndoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+	    return createMenu(XpadMessages.UNDO, null, new UndoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	public static PushButton createButton(Xpad editor) {
-	    return createButton("Undo", "edit-undo.png", new UndoAction(editor));
+	    return createButton(XpadMessages.UNDO, "edit-undo.png", new UndoAction(editor));
 	}
 
 }

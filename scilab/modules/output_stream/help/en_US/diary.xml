@@ -52,9 +52,9 @@
       diary(filenames, 'exists')
       diary(ids, 'exists')
       
-      diary(filename, 'new'|'append', 'prefix=Y-m-d H-i-s') 
+      diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss') 
       diary(filename, 'new'|'append', 'prefix=U')
-      diary(filename, 'new'|'append', [ 'prefix=Y-m-d H-i-s' ; 'prefix-only-commands' ] );
+      diary(filename, 'new'|'append', [ 'prefix=YYYY-MM-DD hh:mm:ss' ; 'prefix-only-commands' ] );
       
     </synopsis>
   </refsynopsisdiv>
@@ -200,15 +200,14 @@
   <refsection>
     <title>Diary and time-stamp</title>
 
-    <para><literal>diary(filename,'new','prefix=YYY-MM-DD
-    hh-mm-ss')</literal></para>
+    <para><literal>diary(filename,'new','prefix=YYYY-MM-DD hh:mm:ss')</literal></para>
 
     <para><literal>diary(filename,'new','prefix=U')</literal></para>
 
-    <para><literal>diary(filename,'new',[ 'prefix=YYY-MM-DD hh-mm-ss' ;
+    <para><literal>diary(filename,'new',[ 'prefix=YYYY-MM-DD hh:mm:ss' ;
     'prefix-only-commands' ] );</literal></para>
 
-    <para>'prefix=YYY-MM-DD hh-mm-ss' add date &amp; hour</para>
+    <para>'prefix=YYYY-MM-DD hh:mm:ss' add date &amp; hour</para>
 
     <para>'prefix=U' add UNIX time epoch</para>
 

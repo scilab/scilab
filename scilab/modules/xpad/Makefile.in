@@ -43,7 +43,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -63,8 +62,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscixpad_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GUI_TRUE@am__append_2 = libscixpad.la 
 subdir = modules/xpad
@@ -84,7 +83,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -112,8 +111,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscixpad_la_etcdir)" \
 	"$(DESTDIR)$(libscixpad_la_rootdir)" \
-	"$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscixpad_la_includedir)"
+	"$(DESTDIR)$(libscixpad_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscixpad_disable_la_LIBADD =
 am__objects_1 = libscixpad_disable_la-noxpad.lo
@@ -130,8 +128,10 @@ libscixpad_la_DEPENDENCIES =  \
 am__objects_2 = libscixpad_la-ScilabKeywords.lo
 am__objects_3 = libscixpad_la-ScilabKeywords_wrap.lo
 am__objects_4 = libscixpad_la-gw_xpad.lo
-am__objects_5 = libscixpad_la-sci_xpad.lo
-am__objects_6 = libscixpad_la-Xpad.lo libscixpad_la-callxpad.lo
+am__objects_5 = libscixpad_la-sci_xpad.lo \
+	libscixpad_la-sci_closeXpadFromScilab.lo
+am__objects_6 = libscixpad_la-Xpad.lo libscixpad_la-callxpad.lo \
+	libscixpad_la-GiwsException.lo
 am_libscixpad_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5) $(am__objects_6)
 libscixpad_la_OBJECTS = $(am_libscixpad_la_OBJECTS)
@@ -166,7 +166,6 @@ DIST_SOURCES = $(libscixpad_disable_la_SOURCES) \
 	$(libscixpad_la_SOURCES)
 DATA = $(libscixpad_la_etc_DATA) $(libscixpad_la_root_DATA) \
 	$(libscixpad_la_sci_gateway_DATA)
-HEADERS = $(libscixpad_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -174,6 +173,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -185,6 +185,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -245,8 +247,10 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -312,12 +316,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -384,7 +388,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -410,7 +413,7 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
-libscixpad_la_etc_DATA = etc/configuration_xpad.xml \
+libscixpad_la_etc_DATA = etc/xpadConfiguration.xml \
 				etc/xpad.quit \
 				etc/xpad.start
 
@@ -479,12 +482,17 @@ HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
-XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
-GIWS_WRAPPERS = Xpad.giws.xml
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp \
+	src/cpp/callxpad.cpp \
+	src/jni/GiwsException.cpp
+
+GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
+sci_gateway/cpp/sci_closeXpadFromScilab.cpp
+
 libscixpad_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
@@ -532,13 +540,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### xpad : gateway declaration ####
 libscixpad_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
-
-#### xpad : include files ####
-libscixpad_la_includedir = $(pkgincludedir)/xpad
-libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h \
-includes/callxpad.h
-
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -618,11 +619,13 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_disable_la-noxpad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-ScilabKeywords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-ScilabKeywords_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-Xpad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-callxpad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-gw_xpad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-sci_closeXpadFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-sci_xpad.Plo@am__quote@
 
 .c.o:
@@ -702,6 +705,13 @@ libscixpad_la-sci_xpad.lo: sci_gateway/cpp/sci_xpad.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-sci_xpad.lo `test -f 'sci_gateway/cpp/sci_xpad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xpad.cpp
 
+libscixpad_la-sci_closeXpadFromScilab.lo: sci_gateway/cpp/sci_closeXpadFromScilab.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-sci_closeXpadFromScilab.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-sci_closeXpadFromScilab.Tpo -c -o libscixpad_la-sci_closeXpadFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXpadFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXpadFromScilab.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixpad_la-sci_closeXpadFromScilab.Tpo $(DEPDIR)/libscixpad_la-sci_closeXpadFromScilab.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_closeXpadFromScilab.cpp' object='libscixpad_la-sci_closeXpadFromScilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-sci_closeXpadFromScilab.lo `test -f 'sci_gateway/cpp/sci_closeXpadFromScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeXpadFromScilab.cpp
+
 libscixpad_la-Xpad.lo: src/jni/Xpad.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-Xpad.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-Xpad.Tpo -c -o libscixpad_la-Xpad.lo `test -f 'src/jni/Xpad.cpp' || echo '$(srcdir)/'`src/jni/Xpad.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixpad_la-Xpad.Tpo $(DEPDIR)/libscixpad_la-Xpad.Plo
@@ -715,6 +725,13 @@ libscixpad_la-callxpad.lo: src/cpp/callxpad.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callxpad.cpp' object='libscixpad_la-callxpad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-callxpad.lo `test -f 'src/cpp/callxpad.cpp' || echo '$(srcdir)/'`src/cpp/callxpad.cpp
+
+libscixpad_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-GiwsException.Tpo -c -o libscixpad_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixpad_la-GiwsException.Tpo $(DEPDIR)/libscixpad_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscixpad_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -781,26 +798,6 @@ uninstall-libscixpad_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscixpad_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" && rm -f $$files
-install-libscixpad_la_includeHEADERS: $(libscixpad_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscixpad_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscixpad_la_includedir)"
-	@list='$(libscixpad_la_include_HEADERS)'; test -n "$(libscixpad_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscixpad_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscixpad_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscixpad_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscixpad_la_include_HEADERS)'; test -n "$(libscixpad_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscixpad_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscixpad_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -888,9 +885,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixpad_la_etcdir)" "$(DESTDIR)$(libscixpad_la_rootdir)" "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)" "$(DESTDIR)$(libscixpad_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscixpad_la_etcdir)" "$(DESTDIR)$(libscixpad_la_rootdir)" "$(DESTDIR)$(libscixpad_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -944,7 +941,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscixpad_la_etcDATA \
-	install-libscixpad_la_includeHEADERS \
 	install-libscixpad_la_rootDATA \
 	install-libscixpad_la_sci_gatewayDATA
 
@@ -993,7 +989,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscixpad_la_etcDATA \
-	uninstall-libscixpad_la_includeHEADERS \
 	uninstall-libscixpad_la_rootDATA \
 	uninstall-libscixpad_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1009,9 +1004,7 @@ uninstall-am: uninstall-libscixpad_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscixpad_la_etcDATA \
-	install-libscixpad_la_includeHEADERS \
-	install-libscixpad_la_rootDATA \
+	install-libscixpad_la_etcDATA install-libscixpad_la_rootDATA \
 	install-libscixpad_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1019,7 +1012,6 @@ uninstall-am: uninstall-libscixpad_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscixpad_la_etcDATA \
-	uninstall-libscixpad_la_includeHEADERS \
 	uninstall-libscixpad_la_rootDATA \
 	uninstall-libscixpad_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1031,10 +1023,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1057,7 +1051,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1069,7 +1063,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1175,10 +1169,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

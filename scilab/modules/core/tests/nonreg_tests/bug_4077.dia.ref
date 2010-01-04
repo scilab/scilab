@@ -11,6 +11,7 @@
 //
 // <-- Short Description -->
 // problem with getf and try
+warning('off');
 mputl(['function r=circe()'
 '  for j=1,end'
 '  try b=0,end'
@@ -18,3 +19,4 @@ mputl(['function r=circe()'
 'endfunction'],TMPDIR+'/circe.sci');
 for i=1,getf(TMPDIR+'/circe.sci'),end
 if type(circe)<>13 then bugmes();quit;end
+warning('on');

@@ -33,13 +33,13 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"zoom_box") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "zoom_box");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"zoom_box") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -58,7 +58,7 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
   }
   else
   {
-    Scierror(999, _("Argument must be a vector of size %d (or %d in 2d).\n"),6,4);
+    Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "zoom_box", "0x0, 2x2, 2x3");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

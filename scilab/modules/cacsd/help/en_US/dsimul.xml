@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list describing a discrete time linear system</para>
+          <para> <literal>syslin</literal> list describing a discrete time linear system</para>
         </listitem>
       </varlistentry>
       <varlistentry>

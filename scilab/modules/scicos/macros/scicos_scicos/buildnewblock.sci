@@ -63,6 +63,11 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
   if MSDOS then
     //**------------ Windows ----------------------------------------------
     //** on Windows we keep the old way : "hard coded" makefile (.mak)
+    if ~haveacompiler() then
+      ok = %f;
+      message([_("Sorry compiling problem");_("A compatible C compiler required.")]);
+      return 
+    end
 
     //** Try to open a file 
     [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 
@@ -75,7 +80,10 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     //** adjust path and name of object files
     //** to include in the building process
     if (libs ~= emptystr()) then
-      libs = pathconvert(libs,%f,%t)
+    
+      // MODELICAC on windows does not support '\' at the end of path
+      // TO DO: Fix MODELICAC
+      libs = pathconvert(libs,%f,%t);
     end
 
     //** def make file name
@@ -121,6 +129,8 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     end
 
     //** link scicos generated code in scilab
+    // MODELICAC on windows does not support '\' at the end of path
+    // TO DO: Fix MODELICAC
     libn = pathconvert(libn,%f,%t)
     ierr = execstr('libnumber=link(libn)','errcatch')
     ierr = execstr('link(libnumber,blknam,''c'')','errcatch')

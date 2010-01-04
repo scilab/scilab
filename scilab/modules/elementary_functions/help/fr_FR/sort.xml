@@ -14,7 +14,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>tri stable par l'agorithme "quick sort"</refpurpose>
+    <refpurpose>tri stable par l'agorithme "quick sort" (Déprécié voir gsort)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -51,6 +51,8 @@
   <refsection>
     <title>Description</title>
 
+    <para> sort sera replacé par gsort dans Scilab 5.3. </para>
+    
     <para>la fonction <literal>sort</literal> est désormais obsolete elle peut
     être remplacée par la fonction <link linkend="gsort">gsort</link>.</para>
 

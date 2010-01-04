@@ -5,14 +5,15 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/poly_reading_api"));
 cd(pathconvert(TMPDIR+"/poly_reading_api"));
+copyfile(SCI+"/modules/api_scilab/tests/unit_tests/poly_reading_api.c",pathconvert(TMPDIR+"/poly_reading_api/poly_reading_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("poly_reading",["read_poly","read_poly"],SCI+"/modules/api_scilab/tests/unit_tests/poly_reading_api.c",[],[],"",cflags);
+ilib_build("poly_reading",["read_poly","read_poly"],"poly_reading_api.c",[],"Makefile","",cflags);
 exec("loader.sce");
-
-            
+ 
 coeff1 = [ ..
 29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..
 4*%i,2*%i,%i,22,16,5,-3,0,-23*%i,-17*%i,-6*%i,0,0,24,18,0,0,0,-25*%i,-19*%i,0,0,0,26,20,0,0,0,-27*%i,-21*%i,0,0,0,28,0,0,0,0,0,0; ..
@@ -39,5 +40,4 @@ p = [p1, p2, p3, p4, p5 ; p6, p7, p8, p9 ,p10 ; p11, p12, p13, p14, p15];
 p1 = read_poly(p);
 coeff2 = coeff(p1);
 if or(coeff2 <> coeff1) then pause;end
-            
-        
+ 

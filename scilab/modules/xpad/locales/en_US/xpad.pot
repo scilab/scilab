@@ -1,0 +1,532 @@
+# Localization of the module xpad
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007/2008 - INRIA / Scilab
+# This file is distributed under the same license as the Scilab package.
+# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
+"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
+
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 126
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 156
+msgid "%s is a directory."
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 78
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 93
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 152
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 133
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 139
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_xpad.cpp, line: 63
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 40
+msgid "?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 95
+msgid "About"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 107
+msgid "All"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 167
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 82
+msgid "Auto (Default)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 105
+msgid "Backward"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 132
+msgid "Cancel"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 159
+msgid "Cannot load \"xpadConfiguration.xml\""
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 110
+msgid "Case sensitive"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 165
+msgid "Change Color"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 164
+msgid "Change Colors"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 36
+msgid "Close"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 37
+msgid "Close All"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 38
+msgid "Close All But This"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 145
+msgid "Colorization canceled"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 79
+msgid "Colorize"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 51
+msgid "Comment Selection"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 158
+msgid "Continue?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 47
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 442
+msgid "Copy"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 151
+msgid "Copyright (c)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 55
+msgid "Correct Indentation"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 161
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 162
+msgid "Could not find the temporary file."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 46
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 448
+msgid "Cut"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 133
+msgid "Default"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 50
+msgid "Delete"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 103
+msgid "Direction"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 73
+msgid "Document"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 43
+msgid "Edit"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 434
+msgid "Edit selection in a new tab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 149
+msgid "Editor"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 153
+msgid "Editor error"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 80
+msgid "Enable Auto Reformat"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 78
+msgid "Encoding"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 140
+msgid "Enter line number"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 90
+msgid "Evaluate Selection"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 88
+msgid "Execute"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 91
+msgid "Execute File Into Scilab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 412
+msgid "Execute selection into Scilab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 39
+msgid "Exit"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 26
+msgid "File"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 129
+msgid "File already exists"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 100
+msgid "Find"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 59
+msgid "Find/Replace"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 99
+msgid "Find:"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 104
+msgid "Forward"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 60
+msgid "Goto line"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 504
+msgid "Help about '"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 498
+msgid "Help about a selected text"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 65
+msgid "Highlight current line"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 116
+msgid "Invalid regular expression : %s"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 81
+msgid "Line Endings"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 67
+msgid "Line Numbers"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 89
+msgid "Load Into Scilab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 144
+msgid "Loading"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 84
+msgid "Mac Classic (CR)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 27
+msgid "New"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 134
+msgid "Next tab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 406
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 425
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 475
+msgid "No text selected"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 131
+msgid "Ok"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 28
+msgid "Open"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 109
+msgid "Options"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 33
+msgid "Page Setup"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 48
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 454
+msgid "Paste"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 135
+msgid "Previous tab"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 35
+msgid "Print"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 34
+msgid "Print Preview"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 29
+msgid "Recent Files"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 45
+msgid "Redo"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 113
+msgid "Regular expressions"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 114
+msgid "Replace"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 115
+msgid "Replace All"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 128
+msgid "Replace File?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 102
+msgid "Replace With :"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 101
+msgid "Replace/Find"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 70
+msgid "Reset default font"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 30
+msgid "Save"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 32
+msgid "Save All"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 31
+msgid "Save as"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 75
+msgid "Scilab"
+msgstr ""
+#
+# File: sci_gateway/c/gw_xpad.c, line: 38
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+#
+# File: src/noxpad/noxpad.c, line: 19
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 24
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 96
+msgid "Scilab text editor"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 94
+msgid "Scilab text editor help"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 106
+msgid "Scope"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 58
+msgid "Search"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 49
+# File: src/java/org/scilab/modules/xpad/XpadGUI.java, line: 464
+msgid "Select All"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 108
+msgid "Selected lines"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 68
+msgid "Set Colors"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 69
+msgid "Set Font"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 54
+msgid "Shift Left"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 53
+msgid "Shift Right"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 64
+msgid "Show/Hide ToolBar"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 121
+msgid "String %s not found"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 74
+msgid "Syntax Type"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 123
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 127
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 155
+msgid "The file could not be converted."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 154
+msgid "The file could not be saved."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 125
+msgid "This file"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 141
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 52
+msgid "Uncomment Selection"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 44
+msgid "Undo"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 85
+msgid "Unix (LF)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 130
+msgid "Untitled "
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 63
+msgid "View"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 112
+msgid "Whole word"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 83
+msgid "Windows/DOS (CR + LF)"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 66
+msgid "Word Wrap"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 111
+msgid "Wrap search"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 118
+msgid "You have passed the beginning of the document"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 117
+msgid "You have passed the end of the document"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 120
+msgid "You have reached the beginning of the document"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 119
+msgid "You have reached the end of the document"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 136
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 157
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/xpad/utils/XpadMessages.java, line: 124
+msgid "close this tab"
+msgstr ""

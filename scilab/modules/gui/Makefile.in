@@ -46,7 +46,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -66,8 +65,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @GUI_TRUE@am__append_2 = libscigui.la 
 subdir = modules/gui
@@ -87,7 +86,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -116,8 +115,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigui_la_etcdir)" \
 	"$(DESTDIR)$(libscigui_la_rootdir)" \
 	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscigui_la_iconsdir)" \
-	"$(DESTDIR)$(libscigui_la_includedir)"
+	"$(DESTDIR)$(libscigui_la_iconsdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigui_disable_la_LIBADD =
 am__objects_1 = libscigui_disable_la-nogui.lo
@@ -163,7 +161,8 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getinstalledlookandfeels.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
-	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo
+	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
+	libscigui_la-sci_about.lo
 am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -271,7 +270,6 @@ DIST_SOURCES = $(libscigui_disable_la_SOURCES) $(libscigui_la_SOURCES)
 DATA = $(libscigui_la_etc_DATA) $(libscigui_la_root_DATA) \
 	$(libscigui_la_sci_gateway_DATA) \
 	$(nobase_libscigui_la_icons_DATA)
-HEADERS = $(libscigui_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -279,6 +277,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -290,6 +289,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -350,8 +351,10 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -417,12 +420,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -489,7 +492,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -524,6 +526,9 @@ etc/main_menubar.xml \
 etc/main_toolbar.xml \
 etc/flexdock-themes.xml
 
+
+#### gui : tree functions ####
+MACROSDIRSEXT = macros/tree
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -740,7 +745,8 @@ sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
-sci_gateway/cpp/sci_uiputfile.cpp
+sci_gateway/cpp/sci_uiputfile.cpp \
+sci_gateway/cpp/sci_about.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
 	-I$(srcdir)/includes/ \
@@ -809,96 +815,6 @@ libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_b
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
-#### gui : include files ####
-libscigui_la_includedir = $(pkgincludedir)/gui
-libscigui_la_include_HEADERS = includes/gw_gui.h \
-includes/GraphicWindow.h \
-includes/InitializeGUI.h \
-includes/CallColorChooser.h \
-includes/CallFontChooser.h \
-includes/CallFigure.h \
-includes/CallJxclick.h \
-includes/CallJxgetmouse.h \
-includes/CallMessageBox.h \
-includes/CallHelpBrowser.h \
-includes/CallMainWindow.h \
-includes/CallWaitBar.h \
-includes/CheckBox.h \
-includes/ContextMenu.h \
-includes/DestroyJavaUiobject.h \
-includes/DestroyWaitBar.h \
-includes/EditBox.h \
-includes/Frame.h \
-includes/GetScreenProperty.h \
-includes/GetUicontrolBackgroundColor.h \
-includes/GetUicontrolFontAngle.h \
-includes/GetUicontrolFontName.h \
-includes/GetUicontrolFontSize.h \
-includes/GetUicontrolFontUnits.h \
-includes/GetUicontrolFontWeight.h \
-includes/GetUicontrolHorizontalAlignment.h \
-includes/GetUicontrolListboxTop.h \
-includes/GetUicontrolMax.h \
-includes/GetUicontrolMin.h \
-includes/GetUicontrolPosition.h \
-includes/GetUicontrolRelief.h \
-includes/GetUicontrolSliderStep.h \
-includes/GetUicontrolString.h \
-includes/GetUicontrolStyle.h \
-includes/GetUicontrolUnits.h \
-includes/GetUicontrolValue.h \
-includes/GetUicontrolVerticalAlignment.h \
-includes/GetUimenuLabel.h \
-includes/GetUiobjectCallback.h \
-includes/GetUiobjectForegroundColor.h \
-includes/GetUiobjectTag.h \
-includes/GetUiobjectVisible.h \
-includes/GetUiobjectEnable.h \
-includes/GetUimenuChecked.h \
-includes/InitUIMenu.h \
-includes/Label.h \
-includes/ListBox.h \
-includes/PopupMenu.h \
-includes/PushButton.h \
-includes/RadioButton.h \
-includes/SetUicontrolBackgroundColor.h \
-includes/SetUicontrolFontAngle.h \
-includes/SetUicontrolFontName.h \
-includes/SetUicontrolFontSize.h \
-includes/SetUicontrolFontUnits.h \
-includes/SetUicontrolFontWeight.h \
-includes/SetUicontrolHorizontalAlignment.h \
-includes/SetUicontrolListboxTop.h \
-includes/SetUicontrolMax.h \
-includes/SetUicontrolMin.h \
-includes/SetUicontrolParent.h \
-includes/SetUicontrolPosition.h \
-includes/SetUicontrolRelief.h \
-includes/SetUicontrolSliderStep.h \
-includes/SetUicontrolString.h \
-includes/SetUicontrolUnits.h \
-includes/SetUicontrolValue.h \
-includes/SetUicontrolVerticalAlignment.h \
-includes/SetUimenuLabel.h \
-includes/SetUiobjectCallback.h \
-includes/SetUiobjectForegroundColor.h \
-includes/SetUiobjectTag.h \
-includes/SetUiobjectVisible.h \
-includes/SetUiobjectEnable.h \
-includes/SetUimenuChecked.h \
-includes/Slider.h \
-includes/TerminateGui.h \
-includes/Toolbar.h \
-includes/DestroyUicontrol.h \
-includes/DestroyUimenu.h \
-includes/CallClipboard.h \
-includes/Widget.h \
-includes/exportUserInterface.hxx \
-includes/CallJuigetfile.hxx \
-includes/dynlib_gui.h \
-includes/CallJuigetfile.h
-
-
 #### gui : icons files ####
 libscigui_la_iconsdir = $(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
@@ -931,7 +847,11 @@ images/icons/edit-find-replace.png \
 images/icons/edit-find.png \
 images/icons/edit-redo.png \
 images/icons/edit-undo.png \
-images/icons/media-floppy.png
+images/icons/media-floppy.png \
+images/icons/aboutscilab.png \
+images/icons/package-x-generic.png \
+images/icons/utilities-system-monitor.png \
+images/icons/applications-system.png
 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
@@ -1115,6 +1035,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-messageboxoptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
@@ -1528,6 +1449,13 @@ libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uiputfile.cpp' object='libscigui_la-sci_uiputfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
+
+libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_about.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_about.Tpo -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_about.Tpo $(DEPDIR)/libscigui_la-sci_about.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_about.cpp' object='libscigui_la-sci_about.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
@@ -2254,26 +2182,6 @@ uninstall-nobase_libscigui_la_iconsDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscigui_la_iconsdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscigui_la_iconsdir)" && rm -f $$files
-install-libscigui_la_includeHEADERS: $(libscigui_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_includedir)"
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscigui_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscigui_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscigui_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigui_la_include_HEADERS)'; test -n "$(libscigui_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscigui_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscigui_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -2361,9 +2269,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -2417,7 +2325,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscigui_la_etcDATA \
-	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA \
 	install-nobase_libscigui_la_iconsDATA
@@ -2467,7 +2374,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscigui_la_etcDATA \
-	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
 	uninstall-nobase_libscigui_la_iconsDATA \
@@ -2484,9 +2390,7 @@ uninstall-am: uninstall-libscigui_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscigui_la_etcDATA \
-	install-libscigui_la_includeHEADERS \
-	install-libscigui_la_rootDATA \
+	install-libscigui_la_etcDATA install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA install-man \
 	install-nobase_libscigui_la_iconsDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -2495,7 +2399,6 @@ uninstall-am: uninstall-libscigui_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscigui_la_etcDATA \
-	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
 	uninstall-nobase_libscigui_la_iconsDATA \
@@ -2508,10 +2411,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -2534,7 +2439,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -2546,7 +2451,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -2652,10 +2557,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

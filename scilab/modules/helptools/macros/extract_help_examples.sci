@@ -69,7 +69,7 @@ function t=gettesttype(T)
   interactive=['%io(1)','mscanf','dialog','tk','message','getcolor', ...
 	       'xset()','xclick','xgetmouse', 'locate','edit', ...
 	       'x_choices','x_matrix','show_graph','addmenu','delmenu',..
-	       'uicontrol','uimenu','showprofile','scipad','emacs','setbpt',..
+	       'uicontrol','uimenu','showprofile','editor','emacs','setbpt',..
 	       'eventhandler','dragrect','rubber','getfile','getvalue',...
 	       'portrait','plotprofile','getfont','getmark','getlinestyle']
   
@@ -368,7 +368,7 @@ function ln=add_ref_code(l)
 	  ln($+1)=lk
 	end
 	
-      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then 
+      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then 
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_build'
 	ln($+1)=lk
@@ -452,7 +452,7 @@ function ln=add_cmp_code(l)
 	else
 	  ln($+1)=lk
 	end
-      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then
+      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_run'
 	ln($+1)=lk
@@ -510,14 +510,14 @@ function r=xbasc_build(w)
       %wins_ref=ghdl2tree(scf(k));save(%U,%wins_ref);
     end
     
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_ref=xget('window');
     save(%U,ids_ref)
     %wins_ref=ghdl2tree(gcf());
     save(%U,%wins_ref)
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   
@@ -549,7 +549,7 @@ function r=xbasc_run(w)
       load(%U,'%wins_ref');
       if %CMP(%wins_, %wins_ref) then r=%t,return,end
     end
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_=xget('window');
@@ -558,7 +558,7 @@ function r=xbasc_run(w)
     %wins_=ghdl2tree(gcf());
     load(%U,'%wins_ref');
     if %CMP(%wins_, %wins_ref) then r=%t,return,end
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   

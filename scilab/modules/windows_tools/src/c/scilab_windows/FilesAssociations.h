@@ -18,39 +18,11 @@
 #include "BOOL.h" /* BOOL */
 /*--------------------------------------------------------------------------*/
 /**
-* check if filename exists (windows only)
-* @param[in] a filename
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAFile(char *chainefichier);
-
-/**
 * check if it is a .bin or .sav
 * @param[in]
 * @return TRUE or FALSE
 */
 SCILAB_WINDOWS_IMPEXP BOOL IsABinOrSavFile(char *chainefichier);
-
-/**
-* check if it is a .graph or .graphb
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFile(char *chainefichier);
-
-/**
-* check if it is a .graph
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraph(char *chainefichier);
-
-/**
-* check if it is a .graphb
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraphb(char *chainefichier);
 
 /**
 * check if it is a scicos file
@@ -60,18 +32,11 @@ SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraphb(char *chainefichier);
 SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFile(char *chainefichier);
 
 /**
-* check if it is a .cos
+* check if it is a Xpad file
 * @param[in]
 * @return TRUE or FALSE
 */
-SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOS(char *chainefichier);
-
-/**
-* check if it is a .cosf
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOSF(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAXpadFile(char *chainefichier);
 
 /**
 * get command to do by file extension
@@ -81,13 +46,6 @@ SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOSF(char *chainefichier);
 * @return TRUE or FALSE
 */
 SCILAB_WINDOWS_IMPEXP int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
-
-/**
-* convert (lower cases) extension
-* @param[in]
-* @return TRUE or FALSE
-*/
-SCILAB_WINDOWS_IMPEXP void ExtensionFileIntoLowerCase(char *fichier);
 
 #endif /*  __FILEASSOCIATION_H__ */
 /*--------------------------------------------------------------------------*/

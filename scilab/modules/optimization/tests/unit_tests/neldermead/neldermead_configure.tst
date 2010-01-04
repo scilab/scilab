@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with configured settings.
@@ -48,7 +50,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -61,7 +63,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",10);
 nm = neldermead_search(nm);
@@ -80,13 +81,80 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
 iterations = neldermead_get(nm,"-iterations");
 assert_equal ( iterations , 10 );
 // Cleanup
+nm = neldermead_destroy(nm);
+
+// Wrong -method flag
+nm = neldermead_new ();
+cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "unknownValueForOption: Unknown value foo for -method option";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+// Wrong -simplex0method flag
+nm = neldermead_new ();
+cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "unknownValueForOption: Unknown value foo for -simplex0method option";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+// Wrong -tolsimplexizemethod flag
+nm = neldermead_new ();
+cmd = "nm = neldermead_configure(nm,''-tolsimplexizemethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+// Wrong -tolssizedeltafvmethod flag
+nm = neldermead_new ();
+cmd = "nm = neldermead_configure(nm,''-tolssizedeltafvmethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+//
+// Check wrong key for get method
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",0.1);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-maxfunevals",2);
+nm = neldermead_search(nm);
+cmd = "funevals = neldermead_get(nm,''-foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: Unknown key -foo";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+
+//
+// Check that x0 is forced to be a column vector
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+cmd = "nm = neldermead_configure(nm,''-x0'',[-1.2 1.0]);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
+assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
 

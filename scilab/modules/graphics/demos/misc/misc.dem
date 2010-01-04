@@ -6,7 +6,7 @@
 //
 
 mode(-1);
-xbasc();
+clf();
 drawlater();
 mode(1);
 ncolor=228;

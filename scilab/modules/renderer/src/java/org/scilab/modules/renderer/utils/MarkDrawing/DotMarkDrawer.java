@@ -41,8 +41,11 @@ public class DotMarkDrawer extends MarkDrawingStrategy  {
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		GLU glu = new GLU();
-		glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+    if(!isFrontTransparent)
+    {
+		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+		  GLU glu = new GLU();
+		  glu.gluDisk(glu.gluNewQuadric(), 0.0, 1.0, NB_SLICES, 1);
+    }
 	}
 }

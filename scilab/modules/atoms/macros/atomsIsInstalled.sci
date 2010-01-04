@@ -19,7 +19,7 @@
 // Output parameters :
 //   res      : matrix of boolean
 
-function res = atomsIsInstalled(name,version,allusers)
+function res = atomsIsInstalled(packages,section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -34,67 +34,102 @@ function res = atomsIsInstalled(name,version,allusers)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsInstalled",1,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsInstalled",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",1));
 	end
 	
-	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",2));
+	if size(packages(1,:),"*") > 3 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix expected.\n"),"atomsIsInstalled",1));
 	end
 	
-	// name and version must have the same size
+	// Remove leadind & trailing whitespaces
+	// =========================================================================
+	packages = stripblanks(packages);
+	
+	// Complete packages matrix with empty columns to have a mx3 matrix
 	// =========================================================================
 	
-	if rhs>1 & version<>[] & or(size(name)<>size(version)) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsInstalled",1,2));
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
 	end
 	
-	// Value of version if not precised
+	// "all", "user" section or "allusers" section packages ?
 	// =========================================================================
 	
 	if rhs < 2 then
-		version = [];
-	end
-	
-	// allusers management
-	// =========================================================================
-	
-	if rhs < 3 then
-		allusers = %T;
-	end
-	
-	// Get the list of installed packages
-	// =========================================================================
-	packages = atomsGetInstalled(allusers);
-	
-	// Loop on name
-	// =========================================================================
-	
-	for i=1:size(name,"*")
+		section = "all"
 		
-		if isempty(version) then
-			// Just check the name
-			res(i) = or(packages(:,1) == name(i));
+	else
+		// Just check if it's a boolean
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsIsInstalled",2));
+		end
 		
-		else
-			// Filter on names
-			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
-			
-			// Check if the wnated version is present$
-			res(i) = or(packages_version == version(i) );
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsIsInstalled",2));
 		end
 		
 	end
 	
-	// Reshape the matrix
+	// Get the list of installed packages
 	// =========================================================================
-	res = matrix(res,size(name) );
+	installedpackages = atomsGetInstalled(section);
+	
+	// Loop on packages
+	// =========================================================================
+	
+	for i=1:size(packages(:,1),"*")
+		
+		name    = packages(i,1);
+		version = packages(i,2);
+		section = packages(i,3);
+		
+		if packages(i,3) == "all" then
+			section = "";
+		else
+			section = packages(i,3);
+		end
+		
+		if isempty(version) & isempty(section) then
+			// Just check the name
+			res(i) = or(installedpackages(:,1) == name);
+			
+		elseif isempty(version) & ~isempty(section) then
+			// Filter on names
+			packages_filtered = installedpackages( find(installedpackages(:,1) == name) , 3 );
+			
+			// Check if the wanted section is present
+			res(i) = or(packages_filtered == section);
+			
+		elseif ~isempty(version) & isempty(section) then
+			// Filter on names
+			packages_filtered = installedpackages( find(installedpackages(:,1) == name) , 2 );
+			
+			// Check if the wanted version is present
+			res(i) = or(packages_filtered == version);
+			
+		else
+			// Filter on names
+			packages_filtered = installedpackages( find(installedpackages(:,1) == name) , [2 3] );
+			
+			// Filter on version
+			packages_filtered = packages_filtered( find(packages_filtered(:,1) == version) , 2 );
+			
+			// Check if the wanted section is present
+			res(i) = or(packages_filtered == section);
+		end
+		
+	end
 	
 endfunction

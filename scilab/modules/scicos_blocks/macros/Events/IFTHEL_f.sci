@@ -37,7 +37,7 @@ case 'set' then
   if exprs==[] then exprs=string(1);end
   if size(exprs,'*')==1 then exprs(2)=string(1);end
   while %t do
-    [ok,inh,nmod,exprs]=getvalue('Set parameters',..
+    [ok,inh,nmod,exprs]=scicos_getvalue('Set parameters',..
 	['Inherit (1: no, 0: yes)';'zero-crossing (0: no, 1: yes)'],..
 				 list('vec',1,'vec',1),exprs)
     if ~ok then break,end

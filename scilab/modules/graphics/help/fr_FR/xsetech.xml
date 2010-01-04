@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>xsetech</refname>
-    <refpurpose> sélectionne la sous-fenêtre d'une fenêtre graphique pour les dessins  </refpurpose>
+    <refpurpose> sélectionne la sous-fenêtre d'une fenêtre graphique pour les dessins </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -66,7 +66,7 @@ xsetech()</synopsis>
     <literal>frect</literal> n'est pas donné la valeur courante de l'échelle graphique n'est pas
     modifiée. La valeur par défaut de <literal>rect</literal> est <literal>[0,0,1,1]</literal>
     (à la création de la fenêtre, ou par exemple après un <literal>xset('default')</literal> 
-    ou après effacement complet de la fenêtre avec <literal>xbasc()</literal>).
+    ou après effacement complet de la fenêtre avec <literal>clf()</literal>).
   </para>
     <para><literal>arect=[x_gauche, x_droite, y_haut, y_bas]</literal> est utilisé pour définir le cadre
     dans la sous-fenêtre. Le cadre est spécifié (comme <literal>wrect</literal>) en utilisant des 
@@ -94,7 +94,7 @@ xsetech([0,0.5,1.0,0.5])
 // on la change avec l'argument rect de plot2d 
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
 // 4 dessins sur une seule fenêtre
-xbasc()
+clf()
 xset("font",2,0)
 xsetech([0,0,0.5,0.5]); plot3d()
 xsetech([0.5,0,0.5,0.5]); plot2d()
@@ -103,14 +103,14 @@ xsetech([0,0.5,0.5,0.5]); histplot()
 // retour aux valeurs par défaut 
 xsetech([0,0,1,1])
 // Un dessin avec arect change
-xbasc()
+clf()
 xset("default")
 xsetech(arect=[0,0,0,0]) 
 x=1:0.1:10;plot2d(x',sin(x)')
-xbasc()
+clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
-xbasc()
+clf()
 xset("default")
  ]]></programlisting>
   </refsection>

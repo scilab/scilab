@@ -27,19 +27,19 @@
 /*--------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)
 {
-  int dstyle = -1, *style,flag;
-  int mn2;
-  int m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
-  double arsize = 0.0 ;
+  int dstyle = -1, *style, colorFlag;
+  double * zptr = NULL;
+  int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc; 
+  const double arsize = 0.0 ; // no arrow here
   sciPointObj * psubwin = NULL ;
 
 
-  CheckRhs(2,3);
+  CheckRhs(2,4);
 
-  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
-  CheckSameDims(1,2,m1,n1,m2,n2);
-  if (m2*n2 == 0)
+  GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&mx,&nx,&lx);
+  GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&my,&ny,&ly);
+  CheckSameDims(1,2,mx,nx,my,ny);
+  if (my*ny == 0)
 	{
 		/* Empty segs */
 		LhsVar(1)=0;
@@ -49,35 +49,57 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 
   if (Rhs == 3)
   {
-    GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3); 
-	CheckVector(3,m3,n3);
-    if (m3 * n3 == 1) dstyle = *istk(l3 );
-    if (m3 * n3 != 1 && m2 * n2 / 2 != m3 * n3) {
-      Scierror(999,_("%s: Wrong size for input argument #%d: %d expected.\n"),fname, 3, m2 * n2 / 2);
+    GetVarDimension(3,&mz,&nz);
+    if( mz*nz == mx*nx)
+    {
+      GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mz,&nz,&lz);
+      zptr = stk(lz);
+    }
+    else
+    {
+      mc=mz; nc=nz; lc=lz;
+      if (mc * nc == 1) dstyle = *istk(lc);
+      if (mc * nc != 1 && mx*nx / 2 != mc*nc)
+      {
+        Scierror(999,_("%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"),fname, 3, 1, mx*nx/2, mx*nx);
+        return 0;
+      }
+      GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&mc,&nc,&lc);
+      CheckVector(3,mc,nc);
+    }
+  }
+
+  if (Rhs == 4)
+  {
+    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&mz,&nz,&lz);
+    CheckSameDims(1,3,mx,nx,mz,nz);
+    zptr = stk(lz);
+
+    GetRhsVar(4,MATRIX_OF_INTEGER_DATATYPE,&mc,&nc,&lc);
+    CheckVector(4,mc,nc);
+
+    if (mc * nc != 1 && mx*nx / 2 != mc*nc)
+    {
+      Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d expected.\n"),fname, 4, 1, mx*nx/2);
       return 0;
     }
   }
-  mn2 = m2 * n2; 
 
-  psubwin = sciGetCurrentSubWin();
-
-  if (Rhs == 3 && m3 * n3 != 1)
-  {
-    style = istk(l3);
-    flag = 1 ;
-  }
-  else if (Rhs == 3 && m3 * n3 == 1) {
-    style = istk(l3);
-    flag = 0 ;
+  if(mc*nc == 0)
+  { /* no color specified, use current color (taken from axes parent) */
+    int col;
+    psubwin = sciGetCurrentSubWin();
+    col   = sciGetForegroundToDisplay(psubwin);
+    style = &col;
+    colorFlag  = 0;
   }
   else
-  { /* Rhs < 3 => no color specified, use current color (taken from axes parent) */
-    int col = sciGetForegroundToDisplay(psubwin);
-    style = &col;
-    flag= 0 ;
+  {
+    style = istk(lc);
+    colorFlag = (mc*nc == 1) ? 0 : 1;
   }
 
-  Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  Objsegs (style,colorFlag,mx*nx,stk(lx),stk(ly),zptr,arsize);
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
     

@@ -25,4 +25,5 @@ function beziertest
 endfunction
 
 beziertest();
+demo_viewCode("beziertest.sce");
 clear beziertest;

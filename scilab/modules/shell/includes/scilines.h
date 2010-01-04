@@ -14,8 +14,7 @@
 #define __SCILINES_H__
 
 #include "machine.h" /* C2F */
-#include "dynlib_shell.h"
-#include "BOOL.h" /* C2F */
+#include "BOOL.h"
 
 /**
 * set number of lines and columns to display data
@@ -23,13 +22,13 @@
 * @param[in] number of columns
 * @return 0
 */
-SHELL_IMPEXP int scilines(int nl, int nc);
+int scilines(int nl, int nc);
 
 /**
 * set default number of lines and columns to display data
 * @return 0
 */
-SHELL_IMPEXP int scilinesdefault(void);
+int scilinesdefault(void);
 
 /**
 * set number of lines and columns to display data (C2F version)
@@ -37,39 +36,39 @@ SHELL_IMPEXP int scilinesdefault(void);
 * @param[in] number of columns
 * @return 0
 */
-SHELL_IMPEXP int C2F(scilines)(int *nl, int *nc);
+int C2F(scilines)(int *nl, int *nc);
 
 /**
 * set default number of lines and columns to display data (C2F version)
 * @return 0
 */
-SHELL_IMPEXP int C2F(scilinesdefault)(void);
+int C2F(scilinesdefault)(void);
 
 /**
 * set number of columns to display data
 * @param new size of columns
 * @return TRUE or FALSE
 */ 
-SHELL_IMPEXP BOOL setColumnsSize(int colums);
+BOOL setColumnsSize(int colums);
 
 /**
 * set number of lines to display data
 * @param new size of lines
 * @return TRUE or FALSE
 */ 
-SHELL_IMPEXP BOOL setLinesSize(int lines_);
+BOOL setLinesSize(int lines_);
 
 /**
 * get number of columns to display data
 * @return numbers of columns
 */ 
-SHELL_IMPEXP int getColumnsSize(void);
+int getColumnsSize(void);
 
 /**
 * get number of lines to display data
 * @return numbers of lines
 */ 
-SHELL_IMPEXP int getLinesSize(void);
+int getLinesSize(void);
 
 #endif /* __SCILINES_H__ */
 /*--------------------------------------------------------------------------*/

@@ -9,6 +9,7 @@
 
 
 function p=tk_getdir(startdir,Title)
+  warnobsolete("uigetdir", "5.2.1");
   if ~with_tk() then error(gettext("Tcl/Tk interface not loaded.")),end
   arg=''
   if exists("startdir","local")==1 then 

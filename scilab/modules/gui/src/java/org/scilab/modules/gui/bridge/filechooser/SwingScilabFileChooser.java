@@ -25,6 +25,7 @@ import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 
 /**
@@ -51,6 +52,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public SwingScilabFileChooser() {
 		super();
+		
+		
 		//System.out.println("[Constructor] SwingScilabFileChooser");
 		/** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
 		//putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
@@ -58,6 +61,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		 * Bug 4187 fixed: uigetdir() opens on "Desktop" and not on "Computer" on windows
 		 * No need to use 'putClientProperty' anymore (bug 3231)
 		 */
+		/* Bug 5111 : The Current directory have to be set before */
+		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory() ));
 	}	
 
 	/**
@@ -80,10 +85,9 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		
 		//If the mask description is empty we allocate description 
 		//according to the extensions given
-		if (fileMaskDescription.length == 0) {
-			maskDescription = new String[mask.length];			
+		if (fileMaskDescription == null || fileMaskDescription.length == 0) {
 			for (int i = 0; i < mask.length; i++) {
-				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i], i/*, maskSize*/));
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], null, i/*, maskSize*/));
 			}
 		} else {
 			//If the mask description is filled
@@ -121,7 +125,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 * Display this chooser and wait for user selection 
 	 */
 	public void displayAndWait() {
-		
 		JFrame parentFrame = new JFrame();
 		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int returnValue = 0;
@@ -197,7 +200,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			if (AllFilesSelected.getDescription().equals("All Files")){
 				FileChooserInfos.getInstance().setFilterIndex(maskSize + 1);
 			}
-			
+			//TODO
+			ConfigManager.saveLastOpenedDirectory(selectionPath);
 		//User cancel the uigetfile	
 		} else {			
 			selection = new String[1];

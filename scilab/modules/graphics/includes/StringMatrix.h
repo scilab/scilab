@@ -27,7 +27,7 @@
  * The StringMatrix is just a pointer matrix. So it can be used in any function using
  * sciMatrix. The typedef is used for a more understandable code.
  */
-GRAPHICS_IMPEXP typedef sciMatrix StringMatrix ;
+typedef sciMatrix StringMatrix ;
 
 /*----------------------------------------------------------------------------------*/
 /* Constructors */

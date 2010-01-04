@@ -39,11 +39,11 @@ int get_alignment_property( sciPointObj * pobj )
       return sciReturnString("center");
       break ;
     default:
-      Scierror(999,_("Error accessing alignment property.\n"));
+      Scierror(999, _("Wrong value for '%s' property.\n"),"alignment");
       return -1 ;
     }
   }
-  Scierror(999,_("%s property does not exist for this handle.\n"),"alignment");
+  Scierror(999, _("'%s' property does not exist for this handle.\n"),"alignment");
   return -1 ;
 
 }

@@ -25,77 +25,125 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * DefaultCheckAction Class
+ * @author Bruno JOFRET
+ *
+ */
 public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem, ActionListener {
-    private Xpad _editor;
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 5618123082228356437L;
+	private Xpad editorBackup;
 
-    public DefaultCheckAction(Xpad editor) {
-	super();
-	setText("Default...");
-	setState(true);
-	_editor = editor;
-	setCallback(new CallBack("Default...") {
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
+	@SuppressWarnings("serial")
+	public DefaultCheckAction(Xpad editor) {
+		super();
+		setText(XpadMessages.DEFAULT + XpadMessages.DOTS);
+		setState(true);
+		editorBackup = editor;
 
-	    public void callBack() {
-		doAction();
-	    }
+		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
+			public void callBack() {
+				doAction();
+			}
 
-	    public void actionPerformed(ActionEvent e) {
-		callBack();
-	    } 
-	});
-    }
-
-    protected DefaultCheckAction(String label, Xpad editor) {
-	super();
-	setText(label);
-	setState(true);
-	_editor = editor;
-	setCallback(new CallBack("Default...") {
-	    public void callBack() {
-		doAction();
-	    }
-
-	    public void actionPerformed(ActionEvent e) {
-		callBack();
-	    } 
-	});
-    }
-
-  
-    
-    public Xpad getEditor() {
-	return _editor;
-    }
-
-    public void doAction() {
-	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void actionPerformed(ActionEvent arg0) {
-	doAction();
-    }
-    
-    protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
-	defaultCheckAction.setText(title);
-	defaultCheckAction.setChecked(false);
-	if (keyStroke != null) {
-	    ((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
+			public void actionPerformed(ActionEvent e) {
+				callBack();
+			} 
+		});
 	}
-	
-	return defaultCheckAction;
-	
-    }
 
-    public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
-	return this;
-    }
+	/**
+	 * 
+	 * @param label label (string)
+	 * @param editor Xpad
+	 */
+	@SuppressWarnings("serial")
+	protected DefaultCheckAction(String label, Xpad editor) {
+		super();
+		setText(label);
+		setState(true);
+		editorBackup = editor;
+		setCallback(new CallBack(XpadMessages.DEFAULT + XpadMessages.DOTS) {
+			public void callBack() {
+				doAction();
+			}
 
-    public SimpleMenuItem getAsSimpleMenuItem() {
-	return null;
-    }
+			public void actionPerformed(ActionEvent e) {
+				callBack();
+			} 
+		});
+	}
 
-    public SimpleMenu getAsSimpleMenu() {
-	return null;
-    }
+	/**
+	 * get Editor
+	 * @return Xpad
+	 */
+	public Xpad getEditor() {
+		return editorBackup;
+	}
+
+	/**
+	 * doAction
+	 */
+	public void doAction() {
+		JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = " + getState() + ")", null, JOptionPane.ERROR_MESSAGE);
+	}
+
+	/**
+	 * actionPerformed
+	 * @param arg0 ActionEvent
+	 */
+	public void actionPerformed(ActionEvent arg0) {
+		doAction();
+	}
+
+	/**
+	 * createCheckBoxMenu
+	 * @param title String
+	 * @param icon  String
+	 * @param defaultCheckAction DefaultCheckAction
+	 * @param keyStroke KeyStroke
+	 * @return CheckBoxMenuItem
+	 */
+	protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
+		defaultCheckAction.setText(title);
+		defaultCheckAction.setChecked(false);
+		if (keyStroke != null) {
+			((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
+		}
+		return defaultCheckAction;
+	}
+
+	/**
+	 * getAsSimpleCheckBoxMenuItem
+	 * @return SimpleCheckBoxMenuItem
+	 */
+	public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
+		return this;
+	}
+
+	/**
+	 * getAsSimpleMenuItem
+	 * @return SimpleMenuItem
+	 */
+	public SimpleMenuItem getAsSimpleMenuItem() {
+		return null;
+	}
+
+	/**
+	 * getAsSimpleMenu
+	 * @return SimpleMenu
+	 */
+	public SimpleMenu getAsSimpleMenu() {
+		return null;
+	}
 }

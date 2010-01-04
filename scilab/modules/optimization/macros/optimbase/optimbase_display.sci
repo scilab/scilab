@@ -14,16 +14,14 @@
 //
 function this = optimbase_display ( this )
   mprintf("Optimization Object\n");
-  mprintf("Verbose logging : %s\n", string(this.verbose));
-  mprintf("Verbose Termination : %s\n", string(this.verbosetermination));
-  mprintf("Store History : %s\n", string(this.storehistory));
   mprintf("Number of variables : %s\n", string(this.numberofvariables));
-  mprintf("Initial Guess :\n");
   x0 = optimbase_cget (this,"-x0")
-  disp(x0)
-  mprintf("Initial Function Value :%e\n",this.fx0);
-  mprintf("Optimum Parameters :\n");
-  disp(this.xopt)
+  mprintf("Initial Guess : [%s]\n" , _strvec(x0) );
+  mprintf("Initial Function Value :%s\n",_strvec(this.fx0));
+  mprintf("Number of Inequality Constraints :%d\n",this.nbineqconst);
+  mprintf("Bounds Mininimum : [%s]\n", _strvec(this.boundsmin));
+  mprintf("Bounds Maxinimum :[%s]\n", _strvec(this.boundsmax));
+  mprintf("Optimum Parameters : [%s]\n" , _strvec(this.xopt));
   mprintf("Optimum Function Value :%e\n",this.fopt);
   mprintf("Number of iterations : %d\n", this.iterations);
   mprintf("Maximum number of iterations : %s\n", string(this.maxiter));
@@ -36,5 +34,18 @@ function this = optimbase_display ( this )
   mprintf("Termination Absolute Tolerance on x : %s\n", string(this.tolxabsolute));
   mprintf("Termination Relative Tolerance on x : %s\n", string(this.tolxrelative));
   mprintf("Optimization Status : %s\n", this.status);
+  mprintf("Verbose logging : %s\n", string(this.verbose));
+  mprintf("Verbose Termination : %s\n", string(this.verbosetermination));
+  mprintf("Verbose Log File : %s\n", this.logfile );
+  mprintf("Verbose Log File Startup Up: %s\n", string(this.logstartup) );
+  mprintf("Store History : %s\n", string(this.storehistory));
 endfunction
+
+  //
+  // _strvec --
+  //  Returns a string for the given vector.
+  //
+  function str = _strvec ( x )
+    str = strcat(string(x)," ")
+  endfunction
 

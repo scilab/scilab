@@ -14,14 +14,14 @@
 // Arguments
 //   flag : %T or %F
 //
-function [ opt , isok ] = optimbase_checkx0 ( this )
-    optimbase_log ( this , sprintf ( "Checking initial guess..." ) )
+function [ this , isok ] = optimbase_checkx0 ( this )
+    this = optimbase_log ( this , sprintf ( "Checking initial guess..." ) )
     [ this , isfeasible ] = optimbase_isfeasible ( this , this.x0 )
     isok = ( isfeasible == 1 )
     if ( isok ) then
-      optimbase_log ( this , sprintf ( "... initial guess is feasible." ) )
+      this = optimbase_log ( this , sprintf ( "... initial guess is feasible." ) )
     else
-      optimbase_log ( this , sprintf ( "... initial guess is not feasible." ) )
+      this = optimbase_log ( this , sprintf ( "... initial guess is not feasible." ) )
     end
 endfunction
 

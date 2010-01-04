@@ -55,8 +55,8 @@ clf();
 plot2d(x, x, axesflag=4);
 axes = gca();
 if (axes.axes_visible <> ["on","on","on"]) then pause; end
-if (axes.x_location <> "origin") then pause; end
-if (axes.y_location <> "origin") then pause; end
+if (axes.x_location <> "middle") then pause; end
+if (axes.y_location <> "middle") then pause; end
 
 // axesflag=5: axes + box + x centered + y centered
 clf();
@@ -64,8 +64,8 @@ plot2d(x, x, axesflag=5);
 axes = gca();
 if (axes.axes_visible <> ["on","on","on"]) then pause; end
 if (axes.box <> "on") then pause; end;
-if (axes.x_location <> "origin") then pause; end
-if (axes.y_location <> "origin") then pause; end
+if (axes.x_location <> "middle") then pause; end
+if (axes.y_location <> "middle") then pause; end
 
 // axesflag=9: axes + !box + y left
 clf();

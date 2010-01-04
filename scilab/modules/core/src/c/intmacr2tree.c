@@ -210,7 +210,11 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	  cod_sav=data[cod_ind];
 	  GetInstruction(data,&cod_ind,&nblines,&newinstr);
 
-          if (cod_sav==15)
+          if (cod_sav==25)
+            {
+              newinstr=0; /* Profiling */
+            }
+          else if (cod_sav==15)
             {
               if (beginStorage>0) /* Inside a list of inputs or operands */
                 {
@@ -1430,6 +1434,8 @@ static int CreateOperationTList(int *data,int *index2)
   orig = Top;
   dest = Top - nb_operands;
   VCopyObj("CreateOperationTList",&orig,&dest,20L);
+
+  freeArrayOfString(operator,1); 
 
   return 0;
 }

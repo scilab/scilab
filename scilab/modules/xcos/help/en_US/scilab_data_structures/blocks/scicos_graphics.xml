@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_graphics">
+  <refnamediv>
+    <refname>scicos_graphics</refname>
+    <refpurpose>Define a graphics structure</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_graphics">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="graphics_scicos_graphics">
+    <title>graphics</title>
+    <para>
+ Scilab object including
+ graphical information concerning
+ the features of the block.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Size : 14.
+</para>
+    <para>
+Type : scilab list.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">orig</emphasis>
+        </para>
+        <para> Vector [xo,yo], where xo is the x coordinate of the block origin and yo is the y coordinate of the block origin.</para>
+        <para> 
+[xo,yo] is the coordinate of down-left point of
+          the block shape.
+</para>
+        <para>
+</para>
+        <para> 
+Size : 2.
+</para>
+        <para>
+Type : row vector of real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sz</emphasis>
+        </para>
+        <para> Vector [w,h], where w is the block width and h the block height.</para>
+        <para> 
+Size : 2.
+</para>
+        <para>
+Type : row vector of real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">flip</emphasis>
+        </para>
+        <para> Set the block orientation. If true the input ports are on the left of the box and output ports are on the right.</para>
+        <para> If false the input ports are on the right of the box and output ports are on the left.</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : boolean.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">theta</emphasis>
+        </para>
+        <para> Set the angle of the Scicos object.</para>
+        <para> This value is in degree and is included in [-360,360].</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">exprs</emphasis>
+        </para>
+        <para> Strings including formal expressions used in the dialog box of the block.</para>
+        <para> 
+Size : number of formal expressions.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">pin</emphasis>
+        </para>
+        <para> Vector. pin(i) is the number of the link connected to the ith regular input port (counting from one), or 0 if this port is not connected.</para>
+        <para> 
+Size : number of regular input ports.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">pout</emphasis>
+        </para>
+        <para> Vector. pout(i) is the number of the link connected to the ith regular output port (counting from one), or 0 if this port is not connected.</para>
+        <para> 
+Size : number of regular output ports.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">pein</emphasis>
+        </para>
+        <para> Vector. pein(i) is the number of the link connected to the ith event input port (counting from one), or 0 if this port is not connected.</para>
+        <para> 
+Size : number of events input ports.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">peout</emphasis>
+        </para>
+        <para> Vector. peout(i) is the number of the link connected to the ith event output port (counting from one), or 0 if this port is not connected.</para>
+        <para> 
+Size : number of events output ports.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">gr_i</emphasis>
+        </para>
+        <para> Strings including Scilab graphics expressions for customizing the block graphical aspect. This field may be set with Icon sub_menu.</para>
+        <para> 
+Size : -.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">id</emphasis>
+        </para>
+        <para> A string including an identification for the block. The string is displayed under the block in the diagram.</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : string.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">in_implicit</emphasis>
+        </para>
+        <para> A vector of strings including 'E' or 'I'.</para>
+        <para> 'E' and 'I' stand respectively for explicit and implicit port, and this vector indicates the nature of each input port. For regular blocks (not implicit), this vector is empty or contains only "E".</para>
+        <para> 
+Size : nul or number of regular input ports.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">out_implicit</emphasis>
+        </para>
+        <para> A vector of strings including 'E' or 'I'.</para>
+        <para> 'E' and 'I' stand respectively for explicit and implicit port, and this vector indicates the nature of each output port. For regular blocks (not implicit), this vector is empty or contains only "E".</para>
+        <para> 
+Size : nul or number of regular output ports.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_scicos_graphics">
+    <title>File content</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_graphics.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

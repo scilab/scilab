@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 //
 // Check behaviour with default settings.
@@ -49,7 +50,7 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -62,14 +63,12 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",400);
-nm = neldermead_configure(nm,"-tolfunmethod","disabled");
-nm = neldermead_configure(nm,"-tolxmethod","enabled");
+nm = neldermead_configure(nm,"-tolfunmethod",%f);
+nm = neldermead_configure(nm,"-tolxmethod",%t);
 nm = neldermead_configure(nm,"-tolxrelative",10.e-16);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -88,15 +87,13 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",600);
 nm = neldermead_configure(nm,"-maxfunevals",600);
-nm = neldermead_configure(nm,"-tolfunmethod","disabled");
-nm = neldermead_configure(nm,"-tolxmethod","enabled");
+nm = neldermead_configure(nm,"-tolfunmethod",%f);
+nm = neldermead_configure(nm,"-tolxmethod",%t);
 nm = neldermead_configure(nm,"-tolxabsolute",10.e-16);
 nm = neldermead_configure(nm,"-tolxrelative",0.0);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -104,5 +101,31 @@ assert_close ( xopt , [1.0;1.0], 1e-14 );
 // Check status
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolx" );
+nm = neldermead_destroy(nm);
+
+//
+// Test tolerance on variance of function values
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",600);
+nm = neldermead_configure(nm,"-maxfunevals",600);
+nm = neldermead_configure(nm,"-tolfunmethod",%f);
+nm = neldermead_configure(nm,"-tolxmethod",%f);
+nm = neldermead_configure(nm,"-tolvarianceflag",%t);
+nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-4);
+nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_search(nm);
+// Check optimum point
+fopt = neldermead_get(nm,"-fopt");
+assert_close ( fopt , 4.0, 1e-1 );
+// Check status
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "tolvariance" );
 nm = neldermead_destroy(nm);
 

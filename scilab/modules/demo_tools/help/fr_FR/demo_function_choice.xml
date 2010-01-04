@@ -38,14 +38,14 @@
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 demolist=[
-	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
-	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
-	'Simulation of a geometric random variable','set figure_style new;xbasc();GeomT(1000);';
-	'Simulation of a Poisson random variable','set figure_style new;xbasc();PoissonT() ;';
-	'Simulation of an exponential random variable','set figure_style new;xbasc();ExpT();';
-	'Simulation of a Weibull random variable','set figure_style new;xbasc();WeibullT();';
-	'Simulation of an hyper geometric random variable','set figure_style new;xbasc();HyperGeomT();';
-	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
+	'Simulation of a binomial random variable','set figure_style new;clf();BinomialT();';
+	'Simulation of a discrete random variable','set figure_style new;clf();RndDiscT();';
+	'Simulation of a geometric random variable','set figure_style new;clf();GeomT(1000);';
+	'Simulation of a Poisson random variable','set figure_style new;clf();PoissonT() ;';
+	'Simulation of an exponential random variable','set figure_style new;clf();ExpT();';
+	'Simulation of a Weibull random variable','set figure_style new;clf();WeibullT();';
+	'Simulation of an hyper geometric random variable','set figure_style new;clf();HyperGeomT();';
+	'Simulation of an Erlang random variable','set figure_style new;clf();ErlangT();'];
 
 demo_function_choice();
  ]]></programlisting>

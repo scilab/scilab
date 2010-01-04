@@ -13,7 +13,7 @@
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
 #include "dynlib_fileio.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
@@ -57,6 +57,8 @@ FILEIO_IMPEXP int sci_copyfile(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_isfile(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_fileparts(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_movefile(char *fname,unsigned long fname_len);
+FILEIO_IMPEXP int sci_basename(char *fname,unsigned long fname_len);
+FILEIO_IMPEXP int sci_pathconvert(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

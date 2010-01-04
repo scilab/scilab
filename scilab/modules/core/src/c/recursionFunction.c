@@ -59,7 +59,7 @@ recursion_function_called getRecursionFunctionToCall(void)
 			function_number = (recursion_function_called) ir;
 		}
 	}
-	return function_number;
+	return (recursion_function_called)function_number;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getrecursiongatewaytocall)(int *callID)

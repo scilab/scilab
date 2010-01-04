@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 //
 // assert_close --
@@ -44,7 +45,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
@@ -80,8 +81,8 @@ function myoutputcmd ( state , data , myobj )
   _OUTPUCMDFLAG_ = myobj.myarg
 endfunction
 
-global _OUTPUCMDFLAG_
-_OUTPUCMDFLAG_ = 0
+global _OUTPUCMDFLAG_;
+_OUTPUCMDFLAG_ = 0;
 
 myobj = tlist(["T_MYSTUFF","myarg"]);
 myobj.myarg = 12;
@@ -97,8 +98,6 @@ nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_configure(nm,"-outputcommandarg",myobj);
 nm = neldermead_search(nm);

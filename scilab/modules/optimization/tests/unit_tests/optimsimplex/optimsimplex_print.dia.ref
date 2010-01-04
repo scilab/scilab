@@ -49,8 +49,9 @@ endfunction
 // Test print with all data here.
 //
 simplex = [...
-0.0 1.0 0.0
-0.0 0.0 2.0
+    0.    0.  
+    1.    0.  
+    0.    2.  
 ];
 s1 = optimsimplex_new ();
 s1 = optimsimplex_setn ( s1 , 2 );
@@ -58,9 +59,16 @@ s1 = optimsimplex_setnbve ( s1 , 3 );
 s1 = optimsimplex_setallx ( s1 , simplex );
 s1 = optimsimplex_setallfv ( s1 , [12.0 13.0 14.0]' );
 optimsimplex_print ( s1 );
-Vertex #1/3 : fv=12.000000, x=0.000000 0.000000
-Vertex #2/3 : fv=13.000000, x=1.000000 0.000000
-Vertex #3/3 : fv=14.000000, x=0.000000 2.000000
+Dimension : 2
+
+Number of vertices : 3
+
+Vertex #1/3 : fv=1.200000e+001, x=0.000000e+000 0.000000e+000
+
+Vertex #2/3 : fv=1.300000e+001, x=1.000000e+000 0.000000e+000
+
+Vertex #3/3 : fv=1.400000e+001, x=0.000000e+000 2.000000e+000
+
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test print with no data
@@ -68,6 +76,7 @@ s1 = optimsimplex_destroy ( s1 );
 s1 = optimsimplex_new ();
 optimsimplex_print ( s1 );
 Empty simplex (zero dimension)
+
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test print with n set, but no data
@@ -76,6 +85,7 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setn ( s1 , 2 );
 optimsimplex_print ( s1 );
 Empty simplex (zero vertices)
+
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test print with n set, x set, but no function values
@@ -86,4 +96,5 @@ s1 = optimsimplex_setnbve ( s1 , 3 );
 s1 = optimsimplex_setallx ( s1 , simplex );
 optimsimplex_print ( s1 );
 Empty simplex (zero function values)
+
 s1 = optimsimplex_destroy ( s1 );

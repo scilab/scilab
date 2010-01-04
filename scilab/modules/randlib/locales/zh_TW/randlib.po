@@ -1,0 +1,406 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-14 07:04+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
+"                                             s2 in [1, 2147483542]\n"
+"                                             s3 in [1, 2147483422]\n"
+"                                             s4 in [1, 2147483322]"
+msgstr ""
+"\n"
+" clcg4 中的亂數種子有誤, s1必須是介於 [1, 2147483646] 的整數範圍.\n"
+"                                              s2必須是介於 [1, 2147483646] "
+"的整數範圍.\n"
+"                                              s3必須是介於 [1, 2147483646] "
+"的整數範圍.\n"
+"                                              s4必須是介於[1, 2147483646] 的整數範圍."
+
+#, c-format
+msgid ""
+"\n"
+"=> be aware that you have may lost synchronization\n"
+"    between the virtual gen %d and the others !\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgstr ""
+"\n"
+"=> 察覺到你可能失去同步化\n"
+"    介於 virtual gen %d 和其它值之間 !\n"
+"    如果你要覆蓋它,使用 grand((\"setall\", s1, s2, s3, s4) ."
+
+msgid ""
+"\n"
+"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultra 的亂數種子有誤. 必須是介於 [0, 2^32-1] 的整數範圍之間\n"
+
+msgid ""
+"\n"
+"Bad seed for urand, must be an int in [0,  2147483647]\n"
+msgstr ""
+"\n"
+"urand 的亂數種子有誤, 必須是介於 [0, 2147483647] 的整數值.\n"
+
+msgid ""
+"\n"
+"Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
+"                                        and  s2 in [1, 2147483398]\n"
+msgstr ""
+"\n"
+"clcg2 中指定的亂數種子錯有誤,  s1 必須是在 [1, 2147483562] \n"
+"                                                     且 s2 是在 [1, 2147483562] "
+" 的整數值範圍.\n"
+
+#, c-format
+msgid ""
+"\n"
+"The first component of the fsultra state, must be an int in [0, %d]\n"
+msgstr ""
+"\n"
+"fsultra state 的第一個元件, 必須是介於 [0, %d] 的整數範圍.\n"
+
+msgid ""
+"\n"
+"The second component of the fsultra state, must be 0 or 1\n"
+msgstr ""
+"\n"
+"fsultra state 的第二個元件, 必須是 [0, %d] 的整數範圍.\n"
+
+msgid ""
+"\n"
+"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultra state 的第三個元件, 必須是介於 [0, %d] 的整數範圍.\n"
+
+#, c-format
+msgid "%s Wrong value for first input argument %s.\n"
+msgstr "%s: 第一個輸入參數 %s 數值錯誤.\n"
+
+#, c-format
+msgid "%s: Missing P matrix and X0 for Markov chain\n"
+msgstr "%s: Markov chain 馬可夫鍵中找不到 矩陣P 和 X0\n"
+
+#, c-format
+msgid "%s: The %s option affects only the %s generator\n"
+msgstr "%s: %s 選項僅影響到 %s 產生器\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 輸入參數的個數錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
+msgstr "%s:輸入參數的個數錯誤: 指定 %d 不正常的選項 '%s' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
+"generator.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' with the %s "
+"generator.\n"
+msgstr "%s:  輸入參數的數量錯誤: 指定 %d 個不正常的 %s 產生器與 %s\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
+"the %s generator.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
+"or %s generator.\n"
+msgstr "%s: 輸入參數的數量錯誤: 指定 %d 給 '%s' 選項與 %s 或 %s 產生器.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
+msgstr "%s: 輸出參數個數錯誤: 指定 %d 不正常的選項 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
+msgstr "%s: 輸出參數的數量錯誤: %d 指定給選項 '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+msgstr "%s: 第二個輸入參數錯誤: 應該為 方形矩陣或 列向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Column vector expected.\n"
+msgstr "%s: 輸入參數的尺寸錯誤: 應該為行向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
+msgstr "%s: 輸入參數尺寸錯誤: 指定一個 %s 純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
+msgstr "%s: 輸入參數的尺寸錯誤: Mean 和 Cov 是一個空值.\n"
+
+#, c-format
+msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgstr "%s: 第二個輸入參數的尺寸錯誤: %dx%d 被指定.\n"
+
+#, c-format
+msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
+msgstr "%s:   第五個輸入參數的型態錯誤: 被指定的純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgstr "%s: 第一個輸入參數型態錯誤: 指定一純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
+msgstr "%s:  第四個輸入參數的型態錯誤: 被指定的純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr "%s: 輸入參數的型態錯誤: 應該為 行向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: 輸入參數資料型態錯誤: 應該是一個純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Square matrix expected.\n"
+msgstr "%s: 輸入參數的型態錯誤: 應該為方形矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Mean and Cov have incompatible "
+"dimensions\n"
+msgstr "%s: 輸入參數的型態錯誤: Mean 與 Cov 的維度不相容.\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgstr "%s: 第二個輸入參數的型態錯誤: 被指定的純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for third input argument: Scalar expected.\n"
+msgstr "%s:  第三個輸入參數的型態錯誤: 被指定的純量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"deviate.\n"
+msgstr "%s: 第一個輸入參數值錯誤: 必需是隨機誤差的個數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"simulation.\n"
+msgstr "%s: 第一個輸入參數的數值錯誤: 必需是 random simulation 隨機模擬的個數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s.\n"
+msgstr "%s: 輸入參數的值錯誤 %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
+msgstr "%s: 輸入參數的數值錯誤: 必須介於 '%s' 和 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Number of random simulation expected.\n"
+msgstr "%s: 輸入的參數值錯誤: 應該為 random simulation 隨機模擬 的個數.\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgstr "%s: 第二個輸入參的數值錯誤: %d, %d 或 %d 被指定.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
+"'%s' expected.\n"
+msgstr "%s: 第二個輸入參數值錯誤: 指定 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgstr "%s: 第二個輸入參數值錯誤: 必需大於 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgstr "%s: 第二個輸入參數值錯誤: 必需介於 %d 與 %d 之間.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: Vector of %d or %d values for %s "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: X0(%d) must be in the range [1,%d]\n"
+msgstr "%s: X0(%d) 必需在 [1,%d] 的範圍內.\n"
+
+msgid "Av < 0\n"
+msgstr "Av 小於 0\n"
+
+msgid "Av < 0.0\n"
+msgstr "Av 小於 0.0\n"
+
+msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
+msgstr "mt 的亂數種子有誤, 必須是 [0, 2^32-1] 範圍的整數值\n"
+
+msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
+msgstr "給 kiss 錯誤的亂數種子, 應該是介於 [0, 2^32-1] 的整數值\n"
+
+msgid "DF < 1 or XNONC < 0\n"
+msgstr "DF 小於 1 或 XNONC 小於 0\n"
+
+msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+msgstr "DF 小於 1.0 或 DF 小於等於 0.0 或 Xnonc 小於 0.0\n"
+
+msgid "Degrees of freedom nonpositive\n"
+msgstr "非正定自由度的階度\n"
+
+msgid "Low > High\n"
+msgstr "Low 小於 High\n"
+
+msgid "Missing A and B for beta law\n"
+msgstr "針對 beta law 找不到 A 和 B\n"
+
+msgid "Missing Av and Sd for Normal law\n"
+msgstr "Normal law 找不到 Av 和 Sd\n"
+
+msgid "Missing Av for Poisson law\n"
+msgstr "Poisson law 中找不到 Av\n"
+
+msgid "Missing Av for exponential law\n"
+msgstr "exponential law 指數 中找不到 Av\n"
+
+msgid "Missing Df and Xnonc for non-central chi-square law\n"
+msgstr "non-central chi-square law  中找不到 Df 和 Xnonc\n"
+
+msgid "Missing Df for chi-square law\n"
+msgstr "chi-square law 中找不到 Df\n"
+
+msgid "Missing Dfn and Dfd for F law\n"
+msgstr "對 F law 找不到 Dfn 和 Dfd\n"
+
+msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
+msgstr "non-central F law 中找不到 Dfn, Dfd 和 Xnonc\n"
+
+msgid "Missing Low and High for Uniform Real law\n"
+msgstr "Uniform Real law 中找不到 Low 和 High\n"
+
+msgid "Missing Low and High for Uniform int law\n"
+msgstr "Uniform int law 中找不到 Low 和 High\n"
+
+msgid "Missing Mean and Cov for Multivariate Normal law\n"
+msgstr "Multivariate Normal law 中找不到 Mean 和 Cov\n"
+
+msgid "Missing N and P for Binomial law\n"
+msgstr "Binomial law 中找不到 N 和 P\n"
+
+msgid "Missing N and P for MULtinomial law\n"
+msgstr "MULtinomial 定則中缺乏 N 和 P\n"
+
+msgid "Missing N and P for Negative Binomial law\n"
+msgstr "Negative Binomial law 中找不到 N 和 P\n"
+
+msgid "Missing p for Geometric law\n"
+msgstr "Geometric law 中找不到 p\n"
+
+msgid "Missing shape and scale for Gamma law\n"
+msgstr "Gamma law 找不到 shape 與 scale\n"
+
+msgid "Missing vect for random permutation\n"
+msgstr "隨機排列中找不到 vect\n"
+
+msgid "N < 0\n"
+msgstr "N 小於 0\n"
+
+msgid "Ncat <= 1\n"
+msgstr "Ncat 小於等於 1\n"
+
+msgid "P is not in [0,1]\n"
+msgstr "P 不在 [0,1] 範圍中.\n"
+
+#, c-format
+msgid "P(%d) < 0\n"
+msgstr "P(%d) 小於 0\n"
+
+#, c-format
+msgid "P(%d) > 1\n"
+msgstr "P(%d) 大於 1\n"
+
+#, c-format
+msgid "P(%d,%d) < 0\n"
+msgstr "P(%d,%d) 小於 0\n"
+
+#, c-format
+msgid "P(%d,%d) > 1\n"
+msgstr "P(%d,%d) 大於 1\n"
+
+#, c-format
+msgid "Rand(...,'bet',..): A or B < %f\n"
+msgstr "Rand(...,'bet',..): A 或 B 小於 %f\n"
+
+msgid "Rand: DF <= 0\n"
+msgstr "Rand: DF 小於等於 0\n"
+
+msgid "Random"
+msgstr "亂數"
+
+msgid "SD < 0.0\n"
+msgstr "SD 小於 0.0\n"
+
+msgid "Scilab randlib interface not installed.\n"
+msgstr "Scilab 的 randlib 介面尚未安裝.\n"
+
+#, c-format
+msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
+msgstr "計算 P(%d, 1:%d)=%f ~= 1 的和\n"
+
+msgid "Sum of P(i) > 1\n"
+msgstr "P(i) 小於 1 的和\n"
+
+#, c-format
+msgid "The %s option affects only the %s generator\n"
+msgstr "%s 選項僅影響 %s 產生器\n"
+
+#, c-format
+msgid "The %s option affects only the clcg4 generator\n"
+msgstr "選項%s 僅針對 clcg4 產生器有作用\n"
+
+msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
+msgstr "mt state mt 的第一個元件, 必須在 [1, 624] 的整數.\n"
+
+msgid "This information concerns only the clcg4 generator\n"
+msgstr "這個資訊僅對於 clcg4 產生器有用.\n"
+
+msgid "X0 is empty\n"
+msgstr "X0 是空的\n"
+
+msgid "a and b must integers with (b-a+1) <= 2147483561"
+msgstr "a 和 b 在 (b-a+1) <= 2147483561 中必須是整數"
+
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A 小於等於 0.0 或 R 小於等於 0.0\n"

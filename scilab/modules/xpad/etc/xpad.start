@@ -9,12 +9,12 @@
 
 // Load  functions libraries
 // =============================================================================
-//load('SCI/modules/xpad/macros/lib');
+load('SCI/modules/xpad/macros/lib');
 
 // Add help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
-	//add_module_help_chapter("Xpad");
+	add_module_help_chapter("xpad");
 end
 
 // Add demos

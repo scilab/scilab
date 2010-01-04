@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,1)==1 then exprs=[exprs,sci2exp(1)];end
   while %t do
-    [ok,z0,it,exprs]=getvalue('Set delay parameters',..
+    [ok,z0,it,exprs]=scicos_getvalue('Set delay parameters',..
 	['Register initial condition';..
          'Datatype (1=double 3=int32 ...)'],..
           list('vec',-1,'vec',1),exprs)

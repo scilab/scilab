@@ -43,7 +43,7 @@ drawnow();
 messagebox('click to continue',"modal");
 
 
-xbasc();
+clf();
 drawlater();
 emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2]);
 emc2V(2,3,6,20,path+'MESH.VAL',[-2,-2,2,2]);

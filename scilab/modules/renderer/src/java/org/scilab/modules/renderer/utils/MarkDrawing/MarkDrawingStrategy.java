@@ -61,6 +61,30 @@ public abstract class MarkDrawingStrategy {
 												   MarkStyle.TRIANGLE_LEFT,
 												   MarkStyle.PENTAGRAM };
 	
+  /**
+   * Transparency variables
+   */
+  protected boolean isFrontTransparent = false;
+  protected boolean isBackTransparent = false;
+
+  /**
+   * Set front transparency methode
+   * @param value is the new value of isFrontTransparent
+   */
+  public void setFrontTransparency(boolean value)
+  {
+    isFrontTransparent = value;
+  }
+
+  /**
+   * Set back transparency methode
+   * @param value is the new value of isBackTransparent
+   */
+  public void setBackTransparency(boolean value)
+  {
+    isBackTransparent = value;
+  }
+
 	/**
 	 * Default constructor
 	 */

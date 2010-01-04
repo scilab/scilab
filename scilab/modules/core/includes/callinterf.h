@@ -78,14 +78,14 @@
 /* 54 */						#include "../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../history_manager/includes/gw_history_manager.h"
 /* 56 */						#include "dynamic_gateways.h" /* spreadsheet */
-/* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
+/* 57 */						#include "dynamic_gateways.h" /* graphic_export */
 /* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
 /* 59 */						#include "dynamic_gateways.h" /* matio */
 /* 60 */						#include "dynamic_gateways.h" /* helptools */
 /* 61 */						#include "../../call_scilab/includes/gw_call_scilab.h"
-/* 62 */						#include "../../hdf5/includes/gw_hdf5.h"
+/* 62 */						#include "dynamic_gateways.h" /* hdf5 */
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
-/* 64 */						 /* xcos */
+/* 64 */						#include "dynamic_gateways.h" /* xcos */
 
 /*-------------------------------------
  * long jump to stop interface computation

@@ -15,7 +15,8 @@ src/cpp/api_list.cpp \
 src/cpp/api_poly.cpp \
 src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
-src/cpp/api_pointer.cpp
+src/cpp/api_pointer.cpp \
+src/cpp/api_error.cpp
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -67,10 +68,11 @@ libsciapi_scilab_la_etc_DATA = etc/api_scilab.quit etc/api_scilab.start
 
 
 #### api_scilab : include files ####
-libsciapi_scilab_la_includedir=$(pkgincludedir)/api_scilab
+libsciapi_scilab_la_includedir=$(pkgincludedir)
 libsciapi_scilab_la_include_HEADERS = includes/api_boolean.h \
 includes/api_boolean_sparse.h \
 includes/api_common.h \
+includes/api_error.h \
 includes/api_double.h \
 includes/api_int.h \
 includes/api_list.h \
@@ -78,7 +80,6 @@ includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
-includes/api_scilab.h \
-includes/dynlib_api_scilab.h
+includes/api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

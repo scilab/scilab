@@ -84,10 +84,15 @@ src/jni/JOGLConstant.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-USEANT=1
-
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
+
+if SWIG
+BUILT_SOURCES=swig
 endif
 
 # All the sources needed by libscigraphic_export.la
@@ -102,6 +107,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
 endif
 
@@ -110,10 +116,5 @@ libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
-
-#### graphic_export : include files ####
-libscigraphic_export_la_includedir=$(pkgincludedir)/graphic_export
-libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
-includes/dynlib_graphic_export.h
 
 include $(top_srcdir)/Makefile.incl.am

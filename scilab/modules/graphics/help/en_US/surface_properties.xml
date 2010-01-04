@@ -143,7 +143,7 @@
         <listitem>
           <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant edge.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,7 +151,7 @@
         <listitem>
           <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant face.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

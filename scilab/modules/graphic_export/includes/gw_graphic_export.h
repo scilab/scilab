@@ -14,7 +14,7 @@
 #define __GW_GRAPHIC_EXPORT__
 /*--------------------------------------------------------------------------*/ 
 #include "dynlib_graphic_export.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 GRAPHIC_EXPORT_IMPEXP int gw_graphic_export(void);
 /*--------------------------------------------------------------------------*/

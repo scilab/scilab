@@ -10,6 +10,12 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine bitops(op)
 c     addition
       include 'stack.h'
+      
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
+
       common /mtlbc/ mmode
       integer is1,op
       external memused

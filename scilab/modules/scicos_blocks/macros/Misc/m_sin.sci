@@ -46,11 +46,11 @@ case -2 then //update
   model=t
   exprs=x
   if exprs==[] then
-    [ok,gain,phase,exprs1]=getvalue('Set Sin block parameters',..
+    [ok,gain,phase,exprs1]=scicos_getvalue('Set Sin block parameters',..
 	['Frequency';'Phase'],list('vec',1,'vec',1))
   else
   
-    [ok,gain,phase,exprs1]=getvalue('Set Sin block parameters',..
+    [ok,gain,phase,exprs1]=scicos_getvalue('Set Sin block parameters',..
 	['Frequency';'Phase'],list('vec',1,'vec',1),exprs)
   end
   if ok then

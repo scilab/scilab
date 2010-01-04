@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl,slc</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists (linear systems in state-space form)</para>
+          <para> <literal>syslin</literal> lists (linear systems in state-space form)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

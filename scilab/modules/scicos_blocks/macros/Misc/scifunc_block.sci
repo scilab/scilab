@@ -84,7 +84,7 @@ case 'set' then
 
   if size(exprs(1),'*')==8 then exprs(1)(9)='0';end
   while %t do
-    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=getvalue(..
+    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
 	['Set scifunc_block parameters';'only regular blocks supported'],..
 	  ['input ports sizes';
 	  'output port sizes';

@@ -130,7 +130,7 @@ union('a'+string(A),'b'+string(B))
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>
 
-      <member><link linkend="sort">sort</link></member>
+      <member><link linkend="gsort">gsort</link></member>
     </simplelist>
   </refsection>
 </refentry>

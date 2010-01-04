@@ -100,6 +100,16 @@ GRAPHICS_IMPEXP unsigned long getHandleFromStack( size_t stackPointer ) ;
  *         FALSE otherwise
  */
 GRAPHICS_IMPEXP BOOL isStringParamEqual( size_t stackPointer, const char * str ) ;
+
+/**
+ * @return TRUE if the given parameter is 'on', %T, 'T', 1, ...
+ *         FALSE if the given parameter is 'off', %F, 'F', 0, ...
+ *         NOT_A_BOOLEAN_VALUE otherwise
+ */
+GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(size_t stackPointer, int valueType, int nbRow, int nbCol, char* propertyName);
+// with that we are sure to be nether equal to TRUE nor FALSE
+#define NOT_A_BOOLEAN_VALUE (2*FALSE) - TRUE
+
 /*------------------------------------------------------------------------------*/
 /* Tlist */
 typedef struct 

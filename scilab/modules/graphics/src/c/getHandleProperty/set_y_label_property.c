@@ -32,7 +32,7 @@ int set_y_label_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "y_label") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_label");
     return SET_PROPERTY_ERROR ;
   }
   else

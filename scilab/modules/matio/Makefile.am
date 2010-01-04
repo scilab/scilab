@@ -73,8 +73,3 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
-
-#### matio : include files ####
-libscimatio_la_includedir=$(pkgincludedir)/matio
-libscimatio_la_include_HEADERS = includes/gw_matio.h \
-	includes/dynlib_matio.h

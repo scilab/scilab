@@ -428,7 +428,7 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
 mputl([rescode;jaccode],TMPDIR+'/mycode.c') //create the C file
 
 // - compile it
-ilib_for_link(['chemres','chemjac'],'mycode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
 
 // - link it with Scilab
 exec(TMPDIR+'/loader.sce') //incremental linking

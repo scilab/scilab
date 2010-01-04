@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Ids,Vt,Maxexp,R,exprs]=getvalue('Set Diode block parameter',..
+    [ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue('Set Diode block parameter',..
 					['Saturation cuurent (A)',..
 		    'Voltage equivalent to temperature (Volt)',..
 		    'Max exponent for linear continuation',..

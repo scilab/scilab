@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -125,8 +126,12 @@
                 the top of the axes rectangle.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"middle"</literal> . In this case the x axis is drawn
-                at the position nearest to the 0 y coordinates.</para>
+                    <para><literal>"middle"</literal>. In this case the x axis is drawn
+                at the centered position.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. In this case the x axis is drawn
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -146,8 +151,12 @@
                 the right of the axes rectangle.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"middle"</literal>. In this case the y axis is drawn at
-                the position nearest to the 0 x coordinates.</para>
+                    <para><literal>"middle"</literal>. In this case the y axis is drawn
+                at the centered position.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. In this case the y axis is drawn
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -241,6 +250,8 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> x_ticks.locations</literal> real vector too.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -251,6 +262,8 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> y_ticks.locations</literal> real vector too.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -261,6 +274,7 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> z_ticks.locations</literal> real vector too.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -425,8 +439,11 @@
             <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
             specifying the margins portion for this axes. This vector is
             composed of numbers between [0 1] with default: [0.125 0.125 0.125
-            0.125] (these numbers are ratio relatives to the corresponding
-            figure <literal>figure_size</literal> property values).</para>
+            0.125]. These numbers are ratios relative to associated values of the
+            <literal>axes_bounds</literal> property, which are <literal>width</literal> for
+            <literal>margin_left</literal> and <literal>margin_right</literal>, and
+            <literal>height</literal> for <literal>margin_top</literal> and
+            <literal>margin_bottom</literal>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -590,7 +607,7 @@
             rectangle, legend, surface, segment and axis objects are using
             this property to specify a foreground (edge) color for their
             marks. Its value should be a color index (relative to the current
-            color_map). Note that the default value is <literal>-1</literal>
+            color_map) or 0 for transparant edge. Note that the default value is <literal>-1</literal>
             (default black) and, even if you change the
             <literal>color_map</literal>, this <literal>-1</literal> value will always
             point onto the default black color.</para>
@@ -604,7 +621,7 @@
             created under this axes. Polyline, rectangle, legend, surface,
             segment and axis objects are using this property to specify a
             background (face) color for their marks. It takes as value an
-            index relative to the current colormap.Note that the default value
+            index relative to the current colormap or 0 for transparant face. Note that the default value
             is <literal>-2</literal> (default white) and, even if you change the
             <literal>color_map</literal>, this <literal>-2</literal> value will always
             point onto the default white color.</para>
@@ -784,6 +801,7 @@ da.title.foreground = 12;
 da.title.font_size = 4;
 // x labels default
 da.x_label.text="x";
+da.x_label.text="x"; // Latex or MathML can be used here also
 da.x_label.font_style = 8;
 da.x_label.font_size = 2;
 da.x_label.foreground = 5;
@@ -800,6 +818,19 @@ da.foreground = 7;
 x=(0:0.1:2*%pi)';
 plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
 sda() // back to default axes model
+
+
+// Example with LaTeX / MathML ticks:
+plot2d();
+a=gca();
+
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+// Only LaTeX expression
+a.x_ticks.labels=["0";"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+
+// Mixed expression: MathML and LaTex
+a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
+
  ]]></programlisting>
   </refsection>
   <refsection>

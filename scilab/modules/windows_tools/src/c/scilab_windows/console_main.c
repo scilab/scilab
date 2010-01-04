@@ -12,6 +12,7 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <Windows.h>
+#include <shellapi.h>
 #include "console_main.h"
 #include "core_math.h"
 #include "getcommandlineargs.h"
@@ -25,6 +26,7 @@
 #include "scilab_main.h"
 #include "console.h"
 #include "WndThread.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 /*--------------------------------------------------------------------------*/ 
@@ -66,10 +68,12 @@ int Console_Main(int argc, char **argv)
 	MessageBox (NULL, "ERROR" ,"getScilabDirectory()", MB_ICONSTOP | MB_OK);
 	exit(1);
   }
-
+  else
+  {
+	FREE(ScilabDirectory);
+	ScilabDirectory = NULL;
+  }
  
-  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}
-
   argcount = my_argc;
   while (argcount > 0)
   {
@@ -120,7 +124,7 @@ int Console_Main(int argc, char **argv)
 		printf("-e Instruction : execute the scilab instruction given in Instruction argument.\n"); 
 		printf("-f File : execute the scilab script given in File argument.\n"); 
 		printf("  '-e' and '-f' options are mutually exclusive.\n\n"); 
-		printf("-l lang : it fixes the user language.\n  The possible lang values are 'fr' for french and 'en' for english.\n  The default language is english.\n  This default value is fixed the scilab.start file.\n\n" ); 
+		printf("-l lang : it fixes the user language.\n\n" ); 
 		printf("-mem N : set the initial stacksize.\n"); 
 		printf("-ns : if this option is present the startup file scilab.start is not executed.\n"); 
 		printf("-nb : if this option is present then scilab welcome banner is not displayed.\n"); 

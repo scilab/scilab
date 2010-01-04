@@ -1,0 +1,417 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2009-12-11 15:24+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+" è stato modificato dall'ultimo salvataggio\n"
+"salvarlo?"
+
+msgid "%s is a directory."
+msgstr "%s è una directory."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
+"erano attese le stesse dimensioni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"reale.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
+"di stringhe.\n"
+
+msgid "?"
+msgstr "_?"
+
+msgid "About"
+msgstr "I_nformazioni"
+
+msgid "All"
+msgstr "Tutto"
+
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr "Chiudere veramente l'Editor di testo?"
+
+msgid "Auto (Default)"
+msgstr ""
+
+msgid "Backward"
+msgstr "_Indietro"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Cannot load \"xpadConfiguration.xml\""
+msgstr "Non è possibile caricare \"xpadConfiguration.xml\""
+
+msgid "Case sensitive"
+msgstr "Distingui fra maiuscolo e minuscolo"
+
+msgid "Change Color"
+msgstr "Cambia il colore"
+
+msgid "Change Colors"
+msgstr "Cambia i colori"
+
+msgid "Close"
+msgstr "_Chiudi"
+
+msgid "Close All"
+msgstr "Chiudi tutte"
+
+msgid "Close All But This"
+msgstr "Chiudi tutte tranne questa"
+
+msgid "Colorization canceled"
+msgstr "Colorazione annullata"
+
+msgid "Colorize"
+msgstr "_Colora"
+
+msgid "Comment Selection"
+msgstr "_Commenta la selezione"
+
+msgid "Continue?"
+msgstr "Continuare?"
+
+msgid "Copy"
+msgstr "_Copia"
+
+msgid "Copyright (c)"
+msgstr "Diritto d'atutore (c)"
+
+msgid "Correct Indentation"
+msgstr "Correggi l'indentazione"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
+
+msgid "Could not find the temporary file."
+msgstr "Non è possibile trovare il file temporaneo"
+
+msgid "Cut"
+msgstr "_Taglia"
+
+msgid "Default"
+msgstr "Predefinito"
+
+msgid "Delete"
+msgstr "Eli_mina"
+
+msgid "Direction"
+msgstr "Direzione"
+
+msgid "Document"
+msgstr "_Documento"
+
+msgid "Edit"
+msgstr "_Modifica"
+
+msgid "Edit selection in a new tab"
+msgstr "Modifica la selezione in una nuova scheda"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "Editor error"
+msgstr "Errore dell'editor"
+
+msgid "Enable Auto Reformat"
+msgstr "Abilita la riformattazione automatica"
+
+msgid "Encoding"
+msgstr "_Codifica"
+
+msgid "Enter line number"
+msgstr "Inserire il numero della riga"
+
+msgid "Evaluate Selection"
+msgstr "_Valuta la selezione"
+
+msgid "Execute"
+msgstr "_Esegui"
+
+msgid "Execute File Into Scilab"
+msgstr "Esegui un _file in Scilab"
+
+msgid "Execute selection into Scilab"
+msgstr "Esegui la selezione in Scilab"
+
+msgid "Exit"
+msgstr "_Esci"
+
+msgid "File"
+msgstr "_File"
+
+msgid "File already exists"
+msgstr "Il file già esiste"
+
+msgid "Find"
+msgstr "Tr_ova"
+
+msgid "Find/Replace"
+msgstr "Trova/Sostit_uisci"
+
+msgid "Find:"
+msgstr "Cerca:"
+
+msgid "Forward"
+msgstr "Avanti"
+
+msgid "Goto line"
+msgstr "_Vai alla linea"
+
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr "Aiuto su un testo selezionato"
+
+msgid "Highlight current line"
+msgstr "_Evidenzia la riga attuale"
+
+msgid "Invalid regular expression : %s"
+msgstr "Espressione regolare non valida : %s"
+
+msgid "Line Endings"
+msgstr "Fine riga"
+
+msgid "Line Numbers"
+msgstr "_Numeri di riga"
+
+msgid "Load Into Scilab"
+msgstr "_Carica in Scilab"
+
+msgid "Loading"
+msgstr "Caricamento in corso"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classico (CR)"
+
+msgid "New"
+msgstr "_Nuovo"
+
+msgid "Next tab"
+msgstr "Scheda s_uccessiva"
+
+msgid "No text selected"
+msgstr "Nessun testo selezionato"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "_Apri"
+
+msgid "Options"
+msgstr "Opzioni"
+
+msgid "Page Setup"
+msgstr "_Imposta pagina"
+
+msgid "Paste"
+msgstr "_Incolla"
+
+msgid "Previous tab"
+msgstr "Scheda pr_ecedente"
+
+msgid "Print"
+msgstr "Stam_pa"
+
+msgid "Print Preview"
+msgstr "Antepri_ma di stampa"
+
+msgid "Recent Files"
+msgstr "File _recenti"
+
+msgid "Redo"
+msgstr "_Ripeti"
+
+msgid "Regular expressions"
+msgstr "Espressioni regolari"
+
+msgid "Replace"
+msgstr "Sostituisci"
+
+msgid "Replace All"
+msgstr "Sostituisci tutto"
+
+msgid "Replace File?"
+msgstr "Sostituire il file?"
+
+msgid "Replace With :"
+msgstr "Sostituisci con:"
+
+msgid "Replace/Find"
+msgstr "Sostituisci/Cerca"
+
+msgid "Reset default font"
+msgstr "_Reimposta il font predefinito"
+
+msgid "Save"
+msgstr "_Salva"
+
+msgid "Save All"
+msgstr "Salva tutto"
+
+msgid "Save as"
+msgstr "Sal_va come"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
+
+msgid "Scilab text editor"
+msgstr "Editor di testo di Scilab"
+
+msgid "Scilab text editor help"
+msgstr "_Aiuto dell'editor di testo di Scilab"
+
+msgid "Scope"
+msgstr "Contesto"
+
+msgid "Search"
+msgstr "_Cerca"
+
+msgid "Select All"
+msgstr "_Seleziona tutto"
+
+msgid "Selected lines"
+msgstr "Righe selezionate"
+
+msgid "Set Colors"
+msgstr "Imposta i co_lori"
+
+msgid "Set Font"
+msgstr "Imposta il tipo di carattere"
+
+msgid "Shift Left"
+msgstr "Sposta a si_nistra"
+
+msgid "Shift Right"
+msgstr "Sposta a _destra"
+
+msgid "Show/Hide ToolBar"
+msgstr "Mostra/Nascondi Barra degli strumenti"
+
+msgid "String %s not found"
+msgstr "La stringa %s non è stata trovata"
+
+msgid "Syntax Type"
+msgstr "Tipo di sintassi"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"Il file %s non esiste\n"
+" Si vuole crearlo?"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"Il file %s è stato modificato da un altro programma !\n"
+" Sovrascriverlo?"
+
+msgid "The file could not be converted."
+msgstr "Il file non può essere convertito."
+
+msgid "The file could not be saved."
+msgstr "Il file non può essere salvato."
+
+msgid "This file"
+msgstr "Questo file"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr ""
+"Questo file è di tipo binario, il suo salvataggio porterà ad un file "
+"corrotto."
+
+msgid "Uncomment Selection"
+msgstr "_Togli il commento alla selezione"
+
+msgid "Undo"
+msgstr "_Annulla"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "Senza nome "
+
+msgid "View"
+msgstr "_Visualizza"
+
+msgid "Whole word"
+msgstr "Parola intera"
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "A capo automatico"
+
+msgid "Wrap search"
+msgstr "Ricerca ciclica"
+
+msgid "You have passed the beginning of the document"
+msgstr "È stato passato l'inizio del documento"
+
+msgid "You have passed the end of the document"
+msgstr "È stato passata la fine del documento"
+
+msgid "You have reached the beginning of the document"
+msgstr "È stato raggiunto l'inizio del documento"
+
+msgid "You have reached the end of the document"
+msgstr "Raggiunta la fine del documento"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+"È necessario salvare le modifiche prima di eseguire questo file in Scilab."
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "Le modifiche saranno perse, cambiare comunque la codifica?"
+
+msgid "close this tab"
+msgstr "chiudi questa scheda"

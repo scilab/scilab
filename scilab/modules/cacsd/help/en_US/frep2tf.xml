@@ -103,8 +103,9 @@ frq=logspace(-3,2,200);
 [frq,rep]=repfreq(Sys,frq);  //Frequency response of Sys
 [Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
-xbasc();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
-[sort(spec(Sys('A'))),sort(roots(Sys2('den')))] //poles
+clf();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
+[gsort(spec(Sys('A'))),gsort(roots(Sys2('den')))] //poles
+
 
 dom=1/1000; // Sampling time 
 z=poly(0,'z');
@@ -112,8 +113,8 @@ h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
 frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
 [Sys2,err]=frep2tf(frq,repf,3,dom);
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
-xbasc();plot2d1("onn",frq',abs([repf;rep2])');
- ]]></programlisting>
+clf();plot2d1("onn",frq',abs([repf;rep2])');
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

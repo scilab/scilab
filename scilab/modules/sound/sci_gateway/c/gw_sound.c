@@ -14,19 +14,27 @@
 #include <string.h>
 #include "gw_sound.h"
 #include "stack-c.h"
+#include "MALLOC.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[] = 
 {
 	{ sci_Playsound,"PlaySound"},
-	{ sci_Beep,"beep"}
+	{ sci_beep,"beep"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_sound(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

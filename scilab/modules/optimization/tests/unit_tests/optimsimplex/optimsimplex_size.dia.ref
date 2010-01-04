@@ -52,8 +52,9 @@ endfunction
 // Test optimsimplex_size with 3 vertices
 //
 simplex = [...
-0.0 1.0 0.0
-0.0 0.0 2.0
+    0.    0.  
+    1.    0.  
+    0.    2.  
 ];
 s1 = optimsimplex_new();
 s1 = optimsimplex_setn ( s1 , 2 );
@@ -81,11 +82,19 @@ simplex = [...
 s1 = optimsimplex_new();
 s1 = optimsimplex_setall ( s1 , simplex );
 ssize = optimsimplex_size ( s1 , "Nash" );
-assert_close ( ssize , 8.0644951022459796519115 , %eps );
+assert_close ( ssize , 10.0 , %eps );
 ssize = optimsimplex_size ( s1 , "diameter" );
 assert_close ( ssize , 2.8284271247461902909492 , %eps );
 ssize = optimsimplex_size ( s1 , "sigmaplus" );
 assert_close ( ssize , 2.8284271247461902909492 , %eps );
 ssize = optimsimplex_size ( s1 , "sigmaminus" );
 assert_close ( ssize , 1.0 , %eps );
+s1 = optimsimplex_destroy(s1);
+// Test unknown size method
+s1 = optimsimplex_new();
+cmd = "optimsimplex_size ( s1 , ''foo'' )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_size: Unknown simplex size method foo";
+assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);

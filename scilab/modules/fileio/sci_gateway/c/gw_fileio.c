@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "callFunctionFromGateway.h"
+#include "MALLOC.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
@@ -57,12 +58,22 @@ static gw_generic_table Tab[]={
 	{sci_copyfile,"copyfile"},
 	{sci_isfile,"isfile"},
 	{sci_fileparts,"fileparts"},
-	{sci_movefile,"movefile"}
+	{sci_movefile,"movefile"},
+	{sci_basename,"basename"},
+	{sci_pathconvert,"pathconvert"},
+	{sci_chdir,"cd"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)
 {
 	Rhs = Max(0,Rhs);
+
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

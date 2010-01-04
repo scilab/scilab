@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,13 +36,13 @@ int set_current_entity_property( sciPointObj * pobj, size_t stackPointer, int va
 	if (pobj != NULL)
 	{
 		/* This property should not be called on an handle */
-		Scierror(999, _("%s property does not exist for this handle.\n"), "current_entity");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_entity");
 		return -1;
 	}
 
   if ( !isParameterHandle( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"current_entity") ;
+    Scierror(999, _("Wrong type for '%s' property: Handle expected.\n"), "current_entity");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -49,7 +50,7 @@ int set_current_entity_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( curEntity == NULL )
   {
-    Scierror(999, "Object is not valid.\n") ;
+    Scierror(999, _("Wrong value for '%s' property: Must be a valid handle.\n"), "current_entity");
     return SET_PROPERTY_ERROR ;
   }
   sciSetCurrentObj( curEntity ) ;

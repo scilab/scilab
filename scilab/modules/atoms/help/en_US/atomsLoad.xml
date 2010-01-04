@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsLoad">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsLoad</refname>
     <refpurpose>Install one or several external modules</refpurpose>
@@ -76,10 +73,10 @@
     <programlisting role="example"><![CDATA[ 
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsInstall("toolbox_2 1.0");
-atomsInstall("toolbox_2 2.0");
+atomsInstall(["toolbox_2" "1.0"]);
+atomsInstall(["toolbox_2" "2.0"]);
 
-atomsLoad("toolbox_2","1.0");
+atomsLoad(["toolbox_2" "1.0"]);
 t2_version()
 t2_function1()
 

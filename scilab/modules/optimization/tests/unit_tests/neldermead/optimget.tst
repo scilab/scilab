@@ -7,6 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -103,4 +106,11 @@ op = optimset ();
 op = optimset ( op , 'MaxFunEvals' , 1000 );
 val = optimget ( op , 'MaxF' );
 assert_equal ( val , 1000 );
+// 
+// val = optimget ( options , key , default )
+//
+default = optimset ( 'fminsearch' );
+op = optimset ();
+value = optimget(op,'TolX',default.TolX);
+assert_equal ( value , 1.e-4 );
 

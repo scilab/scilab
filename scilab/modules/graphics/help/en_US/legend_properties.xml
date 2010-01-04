@@ -79,6 +79,7 @@
         <listitem>
           <para>This field is the character string vector which contains the
           legends for each annotated objects.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -337,6 +338,8 @@ l.visible="off"; // invisible
 l.font_size = 2;
 l.font_style = 5;
 l.visible='on';
+// Starting from Scilab 5.2, Latex:
+l.text=["$\sin(x)$";"$\sin(2*x)$";"$\sin(3*x)$"];
  ]]></programlisting>
   </refsection>
 

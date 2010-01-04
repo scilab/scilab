@@ -12,6 +12,9 @@ function addmenu(varargin)
 // Add menus in Scilab Windows
 // See comments in the code for different implementations
 
+if getscilabmode() == "NWNI" then
+  error(msprintf(_("%s: can not add a menu in this mode: %s.\n"), "addmenu", getscilabmode()));
+end
 
 rhs=argn(2);
 
@@ -24,7 +27,7 @@ case 1
 
     // Error message in not in standard mode (we need a figure index)
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 2));
+      error(msprintf(_("%s: can not add a menu in console in this mode: %s.\n"), "addmenu", getscilabmode()));
     end
 
     if size(varargin(1),"*") <> 1
@@ -49,7 +52,7 @@ case 2
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 3));
+      error(msprintf(_("%s: can not add a menu in console in this mode: %s.\n"), "addmenu", getscilabmode()));
     end
 
     if size(varargin(1),"*") <> 1
@@ -67,7 +70,7 @@ case 2
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 3));
+      error(msprintf(_("%s: can not add a menu in console in this mode: %s.\n"), "addmenu", getscilabmode()));
     end
 
     if size(varargin(1),"*") <> 1
@@ -116,7 +119,7 @@ case 3
 
     // Error message in not in standard mode
     if getscilabmode() <> "STD" then
-      error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"addmenu", 4));
+      error(msprintf(_("%s: can not add a menu in console in this mode: %s.\n"), "addmenu", getscilabmode()));
     end
 
     if size(varargin(1),"*") <> 1

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,13 +33,7 @@ int set_clip_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"clip_state") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"axes_visible") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "clip_state");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -63,7 +58,7 @@ int set_clip_state_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
+    Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "clip_state", "on, off, clipgrf");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

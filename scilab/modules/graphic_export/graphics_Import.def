@@ -8,3 +8,4 @@ getFigureFromIndex
 sciIsExistingFigure
 sciGetEntityType
 sciGetPointerFromHandle
+getHandleFromStack

@@ -18,11 +18,10 @@
 
 /**
 * expanded variables are: 
-* "SCI/" "sci/" "$SCI" "SCI\\" "sci\\"
-* "HOME/"  "home/"  "~/" "HOME\\"  "home\\"  "~\\" "$HOME"
-* "TMPDIR/" "tmpdir/" "TMPDIR\\" "tmpdir\\"  "$TMPDIR"
-*
-* replace order SCI, HOME , TMPDIR
+* "SCI"
+* "SCIHOME"
+* "HOME"
+* "TMPDIR"
 */
 
 /**

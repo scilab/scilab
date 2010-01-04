@@ -87,7 +87,7 @@ showprofile(asinh)
     <simplelist type="inline">
       <member><link linkend="function">function</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="deff">deff</link></member>
 

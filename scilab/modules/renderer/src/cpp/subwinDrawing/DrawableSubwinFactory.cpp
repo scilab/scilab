@@ -104,7 +104,7 @@ void DrawableSubwinFactory::setStrategies(ConcreteDrawableSubwin * subwin)
   subwin->removeAxesBoxDrawers();
   switch(sciGetBoxType(pSubwin))
   {
-  case BT_HIDDEN_AXIS:
+  case BT_HIDDEN_AXES:
     subwin->addAxesBoxDrawer(new BackTrihedronDrawerJoGL(subwin));
     break;
   case BT_BACK_HALF:

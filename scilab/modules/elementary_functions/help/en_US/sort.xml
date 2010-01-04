@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>stable sorting by "quick sort" algorithm</refpurpose>
+    <refpurpose>stable sorting by "quick sort" algorithm (DEPRECATED see gsort)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -74,6 +74,8 @@
 
     <para>the <literal>sort</literal> implements a "bubble sort algorithm".
     </para>
+    
+    <para> sort will be removed in Scilab 5.3. see gsort </para>
 
     <para><literal>s=sort(v)</literal> sorts <literal>v</literal> in
     decreasing order. If <literal>v</literal> is a matrix, sorting is done

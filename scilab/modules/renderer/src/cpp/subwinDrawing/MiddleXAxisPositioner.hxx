@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * desc : Class specialized in drawing ticks  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -37,13 +38,6 @@ public:
 
 protected:
 
-  /**
-   * Compute the Y coordinate of the X axis segment
-   * Select the one which on the back of the screen
-   * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
-   * @return Y coordinate of the segment to draw
-   */
-  double findMiddleYCoordinate(double zCoordinate);
 
 };
 

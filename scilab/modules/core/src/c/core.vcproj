@@ -44,6 +44,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes;../../../operations/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
@@ -195,6 +196,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -339,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\call_scilab\src\c\call_scilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.c"
 				>
 			</File>
@@ -348,10 +354,6 @@
 			</File>
 			<File
 				RelativePath=".\callinterf.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\call_scilab\src\c\CallScilab.c"
 				>
 			</File>
 			<File

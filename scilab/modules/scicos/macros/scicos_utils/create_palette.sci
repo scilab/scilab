@@ -50,7 +50,7 @@ function [routines,IntFunc] = create_palette(Path)
     lisf = listfiles(Path+'*.sci')
     for i=1:size(lisf,'*')
       fil=lisf(i)
-      ierror=execstr('getf(fil)','errcatch')
+      ierror=execstr('exec(fil)','errcatch')
       if ierror <>0 then
 	to_del=[to_del i];
       end
@@ -237,7 +237,7 @@ function [routines] = build_palette(lisf,path,fname)
   end
 
   file('close',u)
-  mprintf('Wrote '+path+fname+'.cosf \n')
+  mprintf(_('Wrote %s.cosf\n'),path+fname)
 
 endfunction
 

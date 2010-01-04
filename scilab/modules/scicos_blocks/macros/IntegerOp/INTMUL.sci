@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,Datatype,np,exprs]=getvalue('Set INTMUL block parameters',..
+    [ok,Datatype,np,exprs]=scicos_getvalue('Set INTMUL block parameters',..
 			    ['Datatype (3=int32  4=int16 5=int8 ...)';..
                              'Do on Overflow(0=Nothing 1=Saturate 2=Error)'],..
                              list('vec',1,'vec',1),exprs)

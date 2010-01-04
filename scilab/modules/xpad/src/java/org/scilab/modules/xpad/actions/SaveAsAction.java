@@ -12,57 +12,68 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileWriter;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class SaveAsAction extends DefaultAction {
+/**
+ * 
+ * @author Bruno JOFRET
+ *
+ */
+public final class SaveAsAction extends DefaultAction {
 
-	private SaveAsAction(Xpad editor) {
-		super("Save As...", editor);
-	}
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 8327808176820789884L;
 
-	public void doAction() {
-		JFileChooser _fileChooser = new JFileChooser();
-		int retval = _fileChooser.showSaveDialog(getEditor());
-		if (retval == JFileChooser.APPROVE_OPTION) {
-			File f = _fileChooser.getSelectedFile();
-			try {
 
-				String doc = getEditor().getTextPane().getText();
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
+    private SaveAsAction(Xpad editor) {
+	super(XpadMessages.SAVE_AS, editor);
+    }
 
-				FileWriter writer = new FileWriter(f);
-				writer.write(doc);
-				writer.flush();
-				writer.close();
-				
-				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-				
-				getEditor().getTextPane().setName(f.getPath());
-				getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
-				getEditor().updateRecentOpenedFilesMenu();
+    /**
+     * DoAction
+     */
+    public void doAction() {
+    	if (!getEditor().saveAs(getEditor().getTextPane())) {
+    		ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.COULD_NOT_SAVE_FILE,
+    				XpadMessages.XPAD_ERROR, IconType.ERROR_ICON);
+    	}
+    }
 
-			} catch (Exception ioex) {
-			    JOptionPane.showMessageDialog(getEditor(), ioex);
-			}
-		}
-	}
-	
-	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Save As...", null, new SaveAsAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
-	 }
-	 
-	 public static PushButton createButton(Xpad editor) {
-	     return createButton("Save As...", "document-save-as.png", new SaveAsAction(editor));
-	 }
+    /**
+     * CreateMenu
+     * @param editor Xpad
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(Xpad editor) {
+    	return createMenu(XpadMessages.SAVE_AS, null, new SaveAsAction(editor),
+    			KeyStroke.getKeyStroke(KeyEvent.VK_S, 
+    			Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.ALT_MASK));
+    }
+
+    
+    /**
+     * Create Button
+     * @param editor Xpad
+     * @return PushButton
+     */
+    public static PushButton createButton(Xpad editor) {
+    	return createButton(XpadMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(editor));
+    }
 }

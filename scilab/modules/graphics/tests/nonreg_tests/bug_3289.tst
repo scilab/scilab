@@ -27,5 +27,5 @@ if or(c.links<>l([1 3])) then pause,end
 if or(c.text<>["1";"3"]) then pause,end
 
 delete(e.children(2));
-if or(c.links<>l([3]))   then pause,end
-if or(c.text<>["3"])     then pause,end
+if or(c.links<>l([1]))   then pause,end
+if or(c.text<>["1"])     then pause,end

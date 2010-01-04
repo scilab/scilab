@@ -298,10 +298,10 @@ function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 contour(t,t,my_surface,10)
 // changing the format of the printing of the levels
 xset("fpf","%.1f")
-xbasc()
+clf()
 contour(t,t,my_surface,10)
 // 3D
-xbasc()
+clf()
 z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
  ]]></programlisting>

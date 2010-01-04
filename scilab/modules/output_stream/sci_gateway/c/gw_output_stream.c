@@ -13,6 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_output_stream.h"
 #include "stack-c.h"
+#include "MALLOC.h"
+#include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
@@ -29,18 +31,25 @@ int gw_output_stream(void)
 {
 	Rhs = Max(0, Rhs);
 
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+	}
+
 	/* Recursion from disp */
 	if ( isRecursionCallToFunction() )
 	{
 		if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
 		{
 			#define disp_fname "disp"
+			pvApiCtx->pstName = disp_fname;
 			sci_disp(disp_fname,(unsigned long)strlen(disp_fname));
 			return 0;
 		}
 	}
 	else
 	{
+		pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	return 0;

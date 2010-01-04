@@ -13,9 +13,8 @@
 //
 function newobj = nmplot_new ()
   newobj = tlist(["T_NELDERMEADPLOT",...
-    "verbose","simplexfn","fbarfn","foptfn","sigmafn","nmbase",...
+    "simplexfn","fbarfn","foptfn","sigmafn","nmbase",...
     "simplexhandle","fbarhandle","fopthandle","sigmahandle"]);
-  newobj.verbose = 0;
   newobj.simplexfn = "";
   newobj.fbarfn = "";
   newobj.foptfn = "";

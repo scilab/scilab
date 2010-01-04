@@ -38,11 +38,11 @@ function [p]=perctl(x,y)
     end
     lenx=size(x)
     lx=prod(lenx)
-    [val,pos]=sort(x)
+    [val,pos]=gsort(x)
     x1=[matrix(val,lx,1) matrix(pos,lx,1)]
     x1=x1(lx-[0:lx-1],:)
     ly=length(y)
-    y=sort((matrix(y,ly,1)/100)*(lx+1))
+    y=gsort((matrix(y,ly,1)/100)*(lx+1))
     y=y(ly-[0:ly-1])
     
     // Now we test if there is enough sample for each asked fractions.

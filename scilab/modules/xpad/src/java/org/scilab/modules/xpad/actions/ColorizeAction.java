@@ -12,34 +12,55 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
-import javax.swing.KeyStroke;
-
-import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
+/**
+ * Colorization management
+ * @author Bruno JOFRET
+ */
+public final class ColorizeAction extends DefaultCheckAction {
 
-public class ColorizeAction extends DefaultAction {
+	private static final long serialVersionUID = -2486375196709197718L;
 
-	private static Xpad color_editor;
 
+	private ColorizationManager colorizationManager = new ColorizationManager();
+
+	/**
+	 * Constructor
+	 * @param editor associated Xpad instance
+	 */
 	private ColorizeAction(Xpad editor) {
-		super("Colorize", editor);
-		//setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_, ActionEvent.CTRL_MASK));
-		color_editor = editor;
+		super(XpadMessages.COLORIZE, editor);
 	}
 
+	/**
+	 * Colorize action
+	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).colorize();
+		ScilabStyleDocument scilabDocument = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument(); 
+
+		if (!this.getState()) {
+			colorizationManager.resetStyle(scilabDocument);
+		} else {
+			colorizationManager.colorize(scilabDocument, 0, scilabDocument.getLength());
+		}
+		getEditor().setAutoColorize(this.getState());
+		ConfigXpadManager.saveAutoColorize(this.getState());
 	}
 
-	public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Colorize", null, new ColorizeAction(editor), null);
-	}
-
-	public static void getXpadEditor(){
-		((ScilabStyleDocument) color_editor.getTextPane().getStyledDocument()).setEditor(color_editor);
+	/**
+	 * Create a menu to add to Xpad menu bar
+	 * @param editor associated Xpad instance
+	 * @return the menu
+	 */
+	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+		CheckBoxMenuItem colorize = createCheckBoxMenu(XpadMessages.COLORIZE, null, new ColorizeAction(editor), null);
+		colorize.setChecked(ConfigXpadManager.getAutoColorize());
+    	return colorize;
 	}
 }

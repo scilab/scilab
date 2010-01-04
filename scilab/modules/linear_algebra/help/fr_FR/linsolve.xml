@@ -73,6 +73,24 @@ A=rand(5,3)*rand(3,8);
 b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   // b compatible
 b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   // b incompatible
 A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
+
+// Une comparaison des différentes méthode de résolution de systèmes linéaire creux
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntemps nécessaire à la résolution du système avec umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntemps nécessaire à la résolution du système avec l'opérateur backslash: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -89,6 +107,12 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
       </member>
       <member>
         <link linkend="im_inv">im_inv</link>
+      </member>
+      <member>
+        <link linkend="umfpack">umfpack</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
       </member>
     </simplelist>
   </refsection>

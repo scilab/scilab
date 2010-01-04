@@ -13,6 +13,11 @@
 // Arguments
 //
 function this = nmplot_display ( this )
+  mprintf("Nelder-Mead Plot Object\n");
   this.nmbase = neldermead_display ( this.nmbase )
+  mprintf("Simplex data file : %s\n", this.simplexfn);
+  mprintf("Fbar data file : %s\n", this.fbarfn);
+  mprintf("Fopt data file : %s\n", this.foptfn);
+  mprintf("Sigma data file : %s\n", this.sigmafn);
 endfunction
 

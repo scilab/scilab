@@ -16,6 +16,6 @@
 //   fv : the function value
 //
 function this = optimsimplex_setfv ( this , ive , fv )
-  this.fv ( ive ) = fv;
+  this.fv ( ive , 1 ) = fv;
 endfunction
 

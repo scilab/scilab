@@ -12,5 +12,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 
-// genlib("xpadlib","SCI/modules/xpad/macros",%f,%t);
+genlib("xpadlib","SCI/modules/xpad/macros",%f,%t);
 

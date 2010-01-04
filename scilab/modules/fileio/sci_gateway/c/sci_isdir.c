@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,99 +16,143 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include <stdio.h>
-#include <string.h>
 #include "gw_fileio.h"
-#include "isdir.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "expandPathVariable.h"
-#include "Scierror.h"
 #include "localization.h"
-#include "PATH_MAX.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "expandPathVariable.h"
+#include "isdir.h"
+#include "freeArrayOfString.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 int sci_isdir(char *fname,unsigned long fname_len)
 {
-	int l1 = 0,n1 = 0,m1 = 0;
+	SciErr sciErr;
+	int *piAddressVarOne = NULL;
+	wchar_t **pStVarOne = NULL;
+	int iType = 0;
+	int *lenStVarOne = NULL;
+	int m1 = 0, n1 = 0;
 
+	BOOL *results = NULL;
+	int m_out = 0, n_out = 0;
+	int i = 0;
+
+	/* Check Input & Output parameters */
 	CheckRhs(1,1);
 	CheckLhs(1,1);
-	
-	if (! (GetType(1) == sci_strings))
+
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"),fname);
+		printError(&sciErr, 0);
 		return 0;
 	}
-	else
-	{
-		char *path = NULL, *myPath = NULL;
-		char *filename = NULL;
-		BOOL result = FALSE;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		if ( n1==1 )
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if (iType != sci_strings)
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+		return 0;
+	}
+
+	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
+	if (lenStVarOne == NULL)
+	{
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
+
+	results = (BOOL*)MALLOC(sizeof(BOOL) * (m1 * n1));
+	if (results == NULL)
+	{
+		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		freeArrayOfWideString(pStVarOne, m1 * n1);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
+
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
+	if (pStVarOne == NULL)
+	{
+		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		return 0;
+	}
+
+	for (i = 0; i < m1 * n1; i++)
+	{
+		pStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
+		if (pStVarOne[i] == NULL)
 		{
-			path = cstk(l1);
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong size for input argument: A string expected.\n"),fname);
+			freeArrayOfWideString(pStVarOne, m1 * n1);
+			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return 0;
 		}
+	}
 
-		/* make sure the names are not too long */
-		
-		if( strlen(path) > PATH_MAX )
-		{
-		  Scierror(999,_("%s: Wrong size for input argument: Must be less than %d characters.\n"),fname,PATH_MAX);
-		}
-		
-		/* Crappy workaround because a / was added after SCI & ~ into 
-		 * the Scilab macros
-		 * cluni0 waits for SCI/ or ~/. It doesn't detect isdir("SCI")
-		 */
-		if(strcmp(path,"SCI") == 0)
-		{
-			myPath = strdup("SCI/");
-		}
-		if(strcmp(path,"~") == 0)
-		{
-			myPath = strdup("~/");
-		}
-		/* End of the crappy workaround */
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if(sciErr.iErr)
+	{
+		freeArrayOfWideString(pStVarOne, m1 * n1);
+		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-		if(myPath == NULL)
+	for (i = 0; i < m1 * n1; i++)
+	{
+		wchar_t *expandedPath = expandPathVariableW(pStVarOne[i]);
+		if (expandedPath)
 		{
-			/* Replaces SCI, ~, HOME by the real path */
-			filename = expandPathVariable(path);
+			results[i] = isdirW(expandedPath);
+			FREE(expandedPath);
+			expandedPath = NULL;
 		}
 		else
 		{
-			/* Replaces SCI, ~, HOME by the real path */
-			filename = expandPathVariable(myPath);
-			FREE(myPath);
-			myPath = NULL;
+			results[i] = FALSE;
 		}
-
-		if (filename)
-		{
-			result = isdir(filename);
-			FREE(filename);
-			filename = NULL;
-		}
-		m1 = 1;
-		n1 = 1;
-		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1); /* Create the space in the stack for result */
-		*istk(l1) = result; /* Copy result into the stack */
-		
-		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
-		
 	}
+
+	if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+	freeArrayOfWideString(pStVarOne, m1 * n1);
+
+	sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m1, n1, results);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	LhsVar(1) = Rhs + 1;
+
+	if (results) {FREE(results); results = NULL;}
+
+	C2F(putlhsvar)();
 	return 0;
-	
 }
 /*--------------------------------------------------------------------------*/

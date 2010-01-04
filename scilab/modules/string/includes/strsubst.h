@@ -26,16 +26,17 @@
 * @return substituted string matrix
 */
 STRING_IMPEXP char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string);
-STRING_IMPEXP char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string);
+STRING_IMPEXP char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string, int *ierr);
 
 /**
 * substitute a character string by another in a character string
 * @param[in] string 
 * @param[in] string to search in input_string
 * @param[in] replacement_string
+* @param[out] error returned by pcre_private
 * @return substituted string
 */
 STRING_IMPEXP char *strsub(char* input_string, const char* string_to_search, const char* replacement_string);
-STRING_IMPEXP char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string);
+STRING_IMPEXP char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string, int *ierr);
 
 #endif /* __STRSUBST_H__ */

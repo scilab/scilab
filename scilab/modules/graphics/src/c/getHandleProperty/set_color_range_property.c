@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,19 +34,19 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"color_range") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "color_range");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_range") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"color_range",2) ;
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "color_range", 2);
     return SET_PROPERTY_ERROR ;
   }
 
@@ -57,7 +58,7 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 		  || values[1] > nbColors || values[1] < 0)
 	{
 		/* It is possible to set color_range outside the colormap, however it won't be used.*/
-		sciprint(_("WARNING: Wrong value for property %s: indices oustside the colormap will be clamped.\n"), "color_range");
+		sciprint(_("WARNING: Wrong value for '%s' property: indices oustside the colormap will be clamped.\n"), "color_range");
 	}
 
 

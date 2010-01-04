@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Discrete_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Discrete_pal</refname>
+
+    <refpurpose>Discrete time systems palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/Discrete_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Discrete_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Discrete_pal">
+    <title>Description</title>
+
+    <para>The Discrete time systems palette contains blocks for medeling discrete time
+    systems.</para>
+  </refsection>
+
+  <refsection id="Blocks_Discrete_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLR">DLR — Discrete transfer function</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
+          function</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLSS">DLSS — Discrete state-space system</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="REGISTER">REGISTER — Shift Register</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="SAMPHOLD_m">SAMPHOLD_m — Sample and hold</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

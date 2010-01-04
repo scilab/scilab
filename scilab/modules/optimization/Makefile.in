@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscioptimization_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/optimization
@@ -78,7 +76,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -106,8 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioptimization_la_etcdir)" \
 	"$(DESTDIR)$(libscioptimization_la_rootdir)" \
-	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscioptimization_la_includedir)"
+	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioptimization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -131,14 +128,15 @@ am__objects_2 = gcbd.lo qpgen2.lo n1qn2a.lo fuclid.lo fmc11b.lo \
 	icse1.lo ctonb.lo icscof.lo fmlag1.lo fpq2.lo n1fc1.lo \
 	ffinf1.lo ctcab.lo n1gc2b.lo fprf2.lo fremf1.lo icse.lo \
 	rlbd.lo calmaj.lo calbx.lo rednor.lo zgcbd.lo writebuf.lo \
-	qpgen1sci.lo
+	qpgen1sci.lo intreadmps.lo rdmps1.lo rdmpsz.lo
 am__objects_3 = libscioptimization_la-sci_semidef.lo \
 	libscioptimization_la-sci_qld.lo \
 	libscioptimization_la-gw_optimization.lo \
 	libscioptimization_la-sci_optim.lo \
 	libscioptimization_la-sci_fsolv.lo \
 	libscioptimization_la-sci_sqrsolve.lo \
-	libscioptimization_la-sci_qp_solve.lo
+	libscioptimization_la-sci_qp_solve.lo \
+	libscioptimization_la-sci_readmps.lo
 am__objects_4 = sci_f_semidef.lo sci_f_fsolve.lo sci_f_optim.lo \
 	boptim.lo bsolv.lo bjlsqrsolv.lo blsqrsolv.lo bjsolv.lo \
 	intlsqrsolve.lo Ex-optim.lo Ex-fsolve.lo Ex-lsqrsolve.lo
@@ -176,7 +174,6 @@ DIST_SOURCES = $(libscioptimization_la_SOURCES)
 DATA = $(libscioptimization_la_etc_DATA) \
 	$(libscioptimization_la_root_DATA) \
 	$(libscioptimization_la_sci_gateway_DATA)
-HEADERS = $(libscioptimization_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -184,6 +181,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -195,6 +193,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -255,8 +255,10 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -322,12 +324,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -394,7 +396,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -481,7 +482,10 @@ src/fortran/calbx.f \
 src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
-src/fortran/qpgen1sci.f
+src/fortran/qpgen1sci.f \
+src/fortran/intreadmps.f \
+src/fortran/rdmps1.f \
+src/fortran/rdmpsz.f
 
 MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
@@ -507,7 +511,8 @@ sci_gateway/c/gw_optimization.c \
 sci_gateway/c/sci_optim.c \
 sci_gateway/c/sci_fsolv.c \
 sci_gateway/c/sci_sqrsolve.c \
-sci_gateway/c/sci_qp_solve.c
+sci_gateway/c/sci_qp_solve.c \
+sci_gateway/c/sci_readmps.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_semidef.f \
 sci_gateway/fortran/sci_f_fsolve.f \
@@ -553,12 +558,6 @@ libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 ####optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
-####optimization : include files ####
-libscioptimization_la_includedir = $(pkgincludedir)/optimization
-libscioptimization_la_include_HEADERS = includes/gw_optimization.h \
-includes/dynlib_optimization.h \
-includes/spd.h 
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -704,6 +703,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_qld.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sci_sqrsolve.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioptimization_la-sp.Plo@am__quote@
@@ -805,6 +805,13 @@ libscioptimization_la-sci_qp_solve.lo: sci_gateway/c/sci_qp_solve.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_qp_solve.c' object='libscioptimization_la-sci_qp_solve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
+
+libscioptimization_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -MT libscioptimization_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioptimization_la-sci_readmps.Tpo $(DEPDIR)/libscioptimization_la-sci_readmps.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readmps.c' object='libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioptimization_la_CFLAGS) $(CFLAGS) -c -o libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1016,6 +1023,15 @@ writebuf.lo: src/fortran/writebuf.f
 qpgen1sci.lo: src/fortran/qpgen1sci.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qpgen1sci.lo `test -f 'src/fortran/qpgen1sci.f' || echo '$(srcdir)/'`src/fortran/qpgen1sci.f
 
+intreadmps.lo: src/fortran/intreadmps.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intreadmps.lo `test -f 'src/fortran/intreadmps.f' || echo '$(srcdir)/'`src/fortran/intreadmps.f
+
+rdmps1.lo: src/fortran/rdmps1.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmps1.lo `test -f 'src/fortran/rdmps1.f' || echo '$(srcdir)/'`src/fortran/rdmps1.f
+
+rdmpsz.lo: src/fortran/rdmpsz.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmpsz.lo `test -f 'src/fortran/rdmpsz.f' || echo '$(srcdir)/'`src/fortran/rdmpsz.f
+
 sci_f_semidef.lo: sci_gateway/fortran/sci_f_semidef.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_semidef.lo `test -f 'sci_gateway/fortran/sci_f_semidef.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_semidef.f
 
@@ -1168,26 +1184,6 @@ uninstall-libscioptimization_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" && rm -f $$files
-install-libscioptimization_la_includeHEADERS: $(libscioptimization_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscioptimization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscioptimization_la_includedir)"
-	@list='$(libscioptimization_la_include_HEADERS)'; test -n "$(libscioptimization_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscioptimization_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscioptimization_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscioptimization_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscioptimization_la_include_HEADERS)'; test -n "$(libscioptimization_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscioptimization_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscioptimization_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1274,9 +1270,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioptimization_la_etcdir)" "$(DESTDIR)$(libscioptimization_la_rootdir)" "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" "$(DESTDIR)$(libscioptimization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioptimization_la_etcdir)" "$(DESTDIR)$(libscioptimization_la_rootdir)" "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1329,7 +1325,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscioptimization_la_etcDATA \
-	install-libscioptimization_la_includeHEADERS \
 	install-libscioptimization_la_rootDATA \
 	install-libscioptimization_la_sci_gatewayDATA
 
@@ -1378,7 +1373,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscioptimization_la_etcDATA \
-	uninstall-libscioptimization_la_includeHEADERS \
 	uninstall-libscioptimization_la_rootDATA \
 	uninstall-libscioptimization_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1395,7 +1389,6 @@ uninstall-am: uninstall-libscioptimization_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscioptimization_la_etcDATA \
-	install-libscioptimization_la_includeHEADERS \
 	install-libscioptimization_la_rootDATA \
 	install-libscioptimization_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1405,7 +1398,6 @@ uninstall-am: uninstall-libscioptimization_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscioptimization_la_etcDATA \
-	uninstall-libscioptimization_la_includeHEADERS \
 	uninstall-libscioptimization_la_rootDATA \
 	uninstall-libscioptimization_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1417,10 +1409,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1443,7 +1437,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1455,7 +1449,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1561,10 +1555,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

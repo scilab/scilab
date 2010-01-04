@@ -61,20 +61,16 @@ function dir_created = atomsExtract(archive_in,dir_out)
 	// =========================================================================
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
-	end
-	
-	if MSDOS then
-		OSNAME = "windows";
-	elseif LINUX then
-		OSNAME = "linux";
-	elseif MACOSX then
-		OSNAME = "macosx";
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	// Get the list of directories before the extraction
@@ -84,7 +80,7 @@ function dir_created = atomsExtract(archive_in,dir_out)
 	// Build the extract command
 	// =========================================================================
 	
-	if ( LINUX | MACOSX ) & regexp(archive_in,"/(\.tar\.gz|\.tgz)$/","o") <> [] then
+	if ( LINUX | MACOSX | SOLARIS | BSD ) & regexp(archive_in,"/(\.tar\.gz|\.tgz)$/","o") <> [] then
 		
 		extract_cmd = "tar xzf "+ archive_in + " -C """+ dir_out + """";
 		
@@ -103,7 +99,8 @@ function dir_created = atomsExtract(archive_in,dir_out)
 	[rep,stat,err] = unix_g(extract_cmd);
 	
 	if stat ~= 0 then
-		error(msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"),"atomsExtract",archive_in));
+		atomsError("error", ..
+			msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"),"atomsExtract",archive_in));
 	end
 	
 	// Get the list of directories after the extraction

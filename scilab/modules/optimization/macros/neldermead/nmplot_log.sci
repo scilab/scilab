@@ -12,8 +12,6 @@
 //   Prints the given message.
 //
 function this = nmplot_log (this,msg)
-  if this.verbose == 1 then
-     mprintf("%s\n",msg);
-  end
+  this.nmbase = neldermead_log ( this.nmbase , msg )
 endfunction
 

@@ -57,8 +57,9 @@ static gw_generic_table Tab[]=
 	{sci_toprint,"toprint"},
 	{sci_uigetfile,"uigetfile"},
 	{sci_usecanvas,"usecanvas"},
-	{sci_displaytree,"displaytree"},
-	{sci_uiputfile,"uiputfile"}
+	{sci_displaytree,"uiDisplayTree"},
+	{sci_uiputfile,"uiputfile"},
+        {sci_about,"about"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -67,7 +68,7 @@ int gw_gui(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "GUI");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "GUI");
 		return 0;
 	}
 

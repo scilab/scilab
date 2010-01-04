@@ -81,19 +81,23 @@ static int getsizemacroslist(void)
 		int i = 0;
 		for (i = 0;i < sizelibraries; i++)
 		{
-			char **macros = NULL;
-			int sizemacros = 0;
-
-			macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
-			if (macros)
+			if (libraries[i])
 			{
-				sizedictionary = sizedictionary + sizemacros;
+				char **macros = NULL;
+				int sizemacros = 0;
 
-				freeArrayOfString(macros, sizemacros);
+				macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
+				if (macros)
+				{
+					sizedictionary = sizedictionary + sizemacros;
+
+					freeArrayOfString(macros, sizemacros);
+				}
+
+				FREE(libraries[i]);
+				libraries[i] = NULL;
 			}
-
-			FREE(libraries[i]);
-			libraries[i] = NULL;
+			
 		}
 		FREE(libraries);
 		libraries = NULL;

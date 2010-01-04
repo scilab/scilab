@@ -24,7 +24,7 @@ xcli=funptr('xclick');clearfun('xclick');newfun('xclick1',xcli);
 xgetm=funptr('xgetmouse');clearfun('xgetmouse');newfun('xgetmouse1',xgetm)
 x_mdia=funptr('x_mdialog');clearfun('x_mdialog');newfun('x_mdialog1',x_mdia);
 c_cho=funptr('tk_choose');clearfun('tk_choose');newfun('tk_choose1',c_cho);
-xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
+//xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
 //these function are redefined below
 exec('SCI/demos/scicos/dialogs_learn.sci')
 tk_getfile=xgetfile
@@ -62,7 +62,7 @@ names=[
     'x_matrix']
 
 for k=1:size(names,'r')
-  getf(get_function_path(names(k)))
+  exec(get_function_path(names(k)))
 end
 
 global %fig_counter
@@ -140,7 +140,7 @@ end
 // kill the added primitives
 clearfun('x_message1');clearfun('x_dialog1');clearfun('xclick1')
 clearfun('xgetmouse1');clearfun('x_mdialog1');clearfun('tk_choose1');
-clearfun('xgetfile1');
+//clearfun('xgetfile1');
 //retore the primitives
 newfun('x_message',x_mess)
 newfun('x_dialog',x_dia)
@@ -148,6 +148,6 @@ newfun('x_mdialog',x_mdia)
 newfun('tk_choose',c_cho)
 newfun('xclick',xcli)
 newfun('xgetmouse',xgetm)
-newfun('xgetfile',xgetf)
+//newfun('xgetfile',xgetf)
 endfunction
 

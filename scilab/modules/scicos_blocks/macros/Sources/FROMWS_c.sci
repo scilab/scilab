@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,varnam,Method,ZC,OutEnd,exprs]=getvalue('Set From_Workspace block parameters',..
+    [ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue('Set From_Workspace block parameters',..
        ['Variable name';
         'Interpolation Method';
         'Enable zero crossing(0:No, 1:Yes)?';

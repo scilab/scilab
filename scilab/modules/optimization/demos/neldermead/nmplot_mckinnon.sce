@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-//dirname = get_absolute_file_path('nmplot_mckinnon.sce');
+mprintf("Defining McKinnon function...\n");
 //% MCKINNON computes the McKinnon function.
 //
 //  Discussion:
@@ -73,7 +73,7 @@
 //
 // Copyright (C) 2009 - INRIA - Michael Baudin, Scilab port
 
-function f = mckinnon3 ( x )
+function [ f , index ] = mckinnon3 ( x , index )
 
   if ( length ( x ) ~= 2 )
     error ( 'Error: function expects a two dimensional input\n' );
@@ -91,64 +91,72 @@ function f = mckinnon3 ( x )
 endfunction
 
 
-lambda1 = (1.0 + sqrt(33.0))/8.0
-lambda2 = (1.0 - sqrt(33.0))/8.0
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
 coords0 = [
-1.0 0.0 lambda1
-1.0 0.0 lambda2
-]
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
 
 
+x0 = [1.0 1.0]';
+mprintf("x0=%s\n",strcat(string(x0)," "));
+mprintf("Creating object...\n");
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",mckinnon3);
-nm = nmplot_configure(nm,"-x0",[1.0 1.0]');
+nm = nmplot_configure(nm,"-x0",x0);
 nm = nmplot_configure(nm,"-maxiter",200);
 nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","mckinnon.history.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","mckinnon.history.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","mckinnon.history.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
 // Plot
 //
+mprintf("Plot contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
-f = scf();
+f = scf(100001);
 xset("fpf"," ")
-contour ( xdata , ydata , zdata , 40 )
+drawlater();
+contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
-xs2png(0,"mckinnon.history.simplex.png");
-f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.fbar.txt" , ...
+drawnow();
+f = scf(100002);
+nmplot_historyplot ( nm , TMPDIR + "\history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
-xs2png(1,"mckinnon.history.fbar.png");
-f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.fopt.txt" , ...
+f = scf(100003);
+nmplot_historyplot ( nm , TMPDIR + "\history.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
-xs2png(2,"mckinnon.history.fopt.png");
-f = scf();
-nmplot_historyplot ( nm , "mckinnon.history.sigma.txt" , ...
+f = scf(100004);
+nmplot_historyplot ( nm , TMPDIR + "\history.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-xs2png(3,"mckinnon.history.sigma.png");
-deletefile("mckinnon.history.simplex.txt");
-deletefile("mckinnon.history.fbar.txt");
-deletefile("mckinnon.history.fopt.txt");
-deletefile("mckinnon.history.sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

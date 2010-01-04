@@ -41,7 +41,7 @@ int get_bar_layout_property( sciPointObj * pobj )
   }
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"bar_layout") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"bar_layout") ;
     return -1 ;
   }
 }

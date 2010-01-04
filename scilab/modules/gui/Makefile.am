@@ -32,6 +32,8 @@ etc/main_menubar.xml \
 etc/main_toolbar.xml \
 etc/flexdock-themes.xml
 
+#### gui : tree functions ####
+MACROSDIRSEXT = macros/tree
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -194,7 +196,8 @@ sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
-sci_gateway/cpp/sci_uiputfile.cpp
+sci_gateway/cpp/sci_uiputfile.cpp \
+sci_gateway/cpp/sci_about.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -278,95 +281,6 @@ libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 
-#### gui : include files ####
-libscigui_la_includedir=$(pkgincludedir)/gui
-libscigui_la_include_HEADERS = includes/gw_gui.h \
-includes/GraphicWindow.h \
-includes/InitializeGUI.h \
-includes/CallColorChooser.h \
-includes/CallFontChooser.h \
-includes/CallFigure.h \
-includes/CallJxclick.h \
-includes/CallJxgetmouse.h \
-includes/CallMessageBox.h \
-includes/CallHelpBrowser.h \
-includes/CallMainWindow.h \
-includes/CallWaitBar.h \
-includes/CheckBox.h \
-includes/ContextMenu.h \
-includes/DestroyJavaUiobject.h \
-includes/DestroyWaitBar.h \
-includes/EditBox.h \
-includes/Frame.h \
-includes/GetScreenProperty.h \
-includes/GetUicontrolBackgroundColor.h \
-includes/GetUicontrolFontAngle.h \
-includes/GetUicontrolFontName.h \
-includes/GetUicontrolFontSize.h \
-includes/GetUicontrolFontUnits.h \
-includes/GetUicontrolFontWeight.h \
-includes/GetUicontrolHorizontalAlignment.h \
-includes/GetUicontrolListboxTop.h \
-includes/GetUicontrolMax.h \
-includes/GetUicontrolMin.h \
-includes/GetUicontrolPosition.h \
-includes/GetUicontrolRelief.h \
-includes/GetUicontrolSliderStep.h \
-includes/GetUicontrolString.h \
-includes/GetUicontrolStyle.h \
-includes/GetUicontrolUnits.h \
-includes/GetUicontrolValue.h \
-includes/GetUicontrolVerticalAlignment.h \
-includes/GetUimenuLabel.h \
-includes/GetUiobjectCallback.h \
-includes/GetUiobjectForegroundColor.h \
-includes/GetUiobjectTag.h \
-includes/GetUiobjectVisible.h \
-includes/GetUiobjectEnable.h \
-includes/GetUimenuChecked.h \
-includes/InitUIMenu.h \
-includes/Label.h \
-includes/ListBox.h \
-includes/PopupMenu.h \
-includes/PushButton.h \
-includes/RadioButton.h \
-includes/SetUicontrolBackgroundColor.h \
-includes/SetUicontrolFontAngle.h \
-includes/SetUicontrolFontName.h \
-includes/SetUicontrolFontSize.h \
-includes/SetUicontrolFontUnits.h \
-includes/SetUicontrolFontWeight.h \
-includes/SetUicontrolHorizontalAlignment.h \
-includes/SetUicontrolListboxTop.h \
-includes/SetUicontrolMax.h \
-includes/SetUicontrolMin.h \
-includes/SetUicontrolParent.h \
-includes/SetUicontrolPosition.h \
-includes/SetUicontrolRelief.h \
-includes/SetUicontrolSliderStep.h \
-includes/SetUicontrolString.h \
-includes/SetUicontrolUnits.h \
-includes/SetUicontrolValue.h \
-includes/SetUicontrolVerticalAlignment.h \
-includes/SetUimenuLabel.h \
-includes/SetUiobjectCallback.h \
-includes/SetUiobjectForegroundColor.h \
-includes/SetUiobjectTag.h \
-includes/SetUiobjectVisible.h \
-includes/SetUiobjectEnable.h \
-includes/SetUimenuChecked.h \
-includes/Slider.h \
-includes/TerminateGui.h \
-includes/Toolbar.h \
-includes/DestroyUicontrol.h \
-includes/DestroyUimenu.h \
-includes/CallClipboard.h \
-includes/Widget.h \
-includes/exportUserInterface.hxx \
-includes/CallJuigetfile.hxx \
-includes/dynlib_gui.h \
-includes/CallJuigetfile.h
-
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
@@ -399,7 +313,11 @@ images/icons/edit-find-replace.png \
 images/icons/edit-find.png \
 images/icons/edit-redo.png \
 images/icons/edit-undo.png \
-images/icons/media-floppy.png
+images/icons/media-floppy.png \
+images/icons/aboutscilab.png \
+images/icons/package-x-generic.png \
+images/icons/utilities-system-monitor.png \
+images/icons/applications-system.png
 
 
 if GUI

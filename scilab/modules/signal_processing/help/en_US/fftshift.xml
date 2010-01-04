@@ -61,7 +61,7 @@ x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
 y=fft(x,-1);
 
 //display 
-xbasc();
+clf();
 subplot(2,1,1);plot2d(abs(y))
 subplot(2,1,2);plot2d(fftshift(abs(y)))
 
@@ -73,7 +73,7 @@ x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
 y=fft(x,-1);
 
 //display 
-xbasc();
+clf();
 xset('colormap',hotcolormap(256))
 subplot(2,1,1);Matplot(abs(y))
 subplot(2,1,2);Matplot(fftshift(abs(y)))

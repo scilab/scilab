@@ -16,9 +16,7 @@
 #include "gw_core.h"
 #include "BOOL.h"
 #include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "Funtab.h"
 #include "IsAScalar.h"
 #include "hashtable_core.h"
@@ -30,37 +28,69 @@ static BOOL Is_a_correct_function_name(char *functionname);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 {
-
+	SciErr sciErr;
 	int m1 = 0, n1 = 0;
-	int *piAddressVarOne = NULL;
-	char *pStVarOne = NULL;
-	int lenStVarOne = 0;
+	int iType1						= 0;
+	int *piAddressVarOne	= NULL;
+	char *pStVarOne				= NULL;
+	int lenStVarOne				= 0;
 
 	int m2 = 0, n2 = 0;
-	int *piAddressVarTwo = NULL;
-	double *pdVarTwo = NULL;
+	int iType2						= 0;
+	int *piAddressVarTwo	= NULL;
+	double *pdVarTwo			= NULL;
 
 	int ifptr = 0;
 
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-	getVarAddressFromPosition(2, &piAddressVarTwo);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-	if ( getVarType(piAddressVarOne) != sci_strings )
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if ( iType1 != sci_strings )
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
-	if ( getVarType(piAddressVarTwo) != sci_matrix )
+	if ( iType2 != sci_matrix )
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,2);
 		return 0;
 	}
 
-	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
@@ -68,7 +98,12 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
 	if ( (m2 != n2) && (n2 != 1) ) 
 	{
@@ -86,7 +121,12 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	if (pStVarOne)
 	{
-		getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 	else
 	{

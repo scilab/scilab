@@ -168,7 +168,7 @@
     </variablelist>
     <para>
     WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
-    This option is now obsolete and will be removed in Scilab 5.1.
+    This option has been removed in Scilab 5.1.
     </para>
   </refsection>
   <refsection>

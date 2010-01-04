@@ -12,43 +12,87 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+import org.scilab.modules.gui.filechooser.Juigetfile;
+import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class OpenAction extends DefaultAction {
+/**
+ * File opening management
+ * @author Bruno JOFRET
+ */
+public final class OpenAction extends DefaultAction {
 
-    private OpenAction(Xpad editor) {
-	super("Open...", editor);
-    }
+	private static final long serialVersionUID = -8765712033802048782L;
 
-    public void doAction() {
-	JFileChooser _fileChooser = new JFileChooser();
-	int retval = _fileChooser.showOpenDialog(getEditor());
-	if (retval == JFileChooser.APPROVE_OPTION) {
-	    File f = _fileChooser.getSelectedFile();
-	    getEditor().readFile(f);
-
-	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-	    getEditor().updateRecentOpenedFilesMenu();
-	    
-	    
+	/**
+	 * Constructor
+	 * @param editor associated Xpad instance
+	 */
+	private OpenAction(Xpad editor) {
+		super(XpadMessages.OPEN, editor);
 	}
-    }
-    
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Open...", null, new OpenAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-    }
-    
-    public static PushButton createButton(Xpad editor) {
-	return createButton("Open...", "document-open.png", new OpenAction(editor));
-    }
+
+	/**
+	 * Open file action
+	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		
+		String initialDirectoryPath = getEditor().getTextPane().getName();
+		if (initialDirectoryPath == null ){
+			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory() ;
+		}
+
+		String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.sc*"}; 
+
+		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+		fileChooser.setInitialDirectory(initialDirectoryPath);
+		fileChooser .setAcceptAllFileFilterUsed(true);
+		fileChooser .addMask(mask, null);		
+		fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);	 	
+
+		int retval = fileChooser.showOpenDialog(getEditor());
+		if (retval == JFileChooser.APPROVE_OPTION) {
+			File f = fileChooser.getSelectedFile();
+			ConfigManager.saveLastOpenedDirectory(f.getPath());
+			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+
+			getEditor().setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
+			getEditor().updateRecentOpenedFilesMenu();
+			getEditor().readFile(f);
+
+
+		}
+	}
+
+	/**
+	 * Create a menu to add to Xpad menu bar
+	 * @param editor associated Xpad instance
+	 * @return the menu
+	 */
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.OPEN, null, new OpenAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	}
+
+	/**
+	 * Create a button to add to Xpad tool bar
+	 * @param editor associated Xpad instance
+	 * @return the button
+	 */
+	public static PushButton createButton(Xpad editor) {
+		return createButton(XpadMessages.OPEN, "document-open.png", new OpenAction(editor));
+	}
 }

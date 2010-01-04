@@ -29,10 +29,10 @@ function [ this , p ] = optimbase_proj2bnds ( this ,  x )
       xmax = this.boundsmax ( ix )
       pix = p ( ix )
       if (pix > xmax) then
-        optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on max bound %e" , ix , pix , xmax ))
+        this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on max bound %e" , ix , pix , xmax ))
         p ( ix ) = xmax
       elseif ( pix < xmin) then
-        optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on min bound %e" , ix , pix , xmin ))
+        this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on min bound %e" , ix , pix , xmin ))
         p ( ix ) = xmin
       end
     end

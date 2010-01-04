@@ -66,7 +66,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     case 'a' then add = 1,
     case 'x' then modx= 1
     case 'y' then mody= 1
-    else error("[job] parameter is not correct")
+    else error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "edit_curv", 3, "a, x, y"));
     end
   end
   eps = 0.03

@@ -22,8 +22,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>move(h,xy)
-move(h,xy,"alone")</synopsis>
+    <synopsis>move(h,t)
+move(h,t,"alone")</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -35,9 +35,9 @@ move(h,xy,"alone")</synopsis>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xy</term>
+        <term>t</term>
         <listitem>
-          <para>an array <literal>[dx,dy]</literal> which gives the translation
+          <para>an array, either <literal>[dx,dy]</literal> or [dx,dy,dz], which gives the translation
   vector to apply.</para>
         </listitem>
       </varlistentry>
@@ -55,14 +55,19 @@ move(h,xy,"alone")</synopsis>
     This routine can be used to apply a translation to a graphics entity.
     If the entity has children, they will be also translated.</para>
     <para>
-    Given the keyword <literal>"alone"</literal> , only the specified entity needs to be redraw. 
+    Given the keyword <literal>"alone"</literal> , only the specified entity needs to be redrawn. 
      It must specially be used with the <literal>pixel_drawing_mode</literal> 
      property of the figure entity (see draw objects under
     <literal>"xor"</literal> drawing mode).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
+plot3d();
+a=gca();
+p=a.children(1);
+t=[1,0,-1.25];
+move(p,t);
  ]]></programlisting>
   </refsection>
   <refsection>

@@ -37,7 +37,7 @@ end
 // sort rows in lexicographic order
 ind = 1:size(x,1);
 for i=size(sel,'*'):-1:1,
-  [s,k] = sort(x(ind,sel(i)));
+  [s,k] = gsort(x(ind,sel(i)),'g','d');
   ind = ind(k);
 end
 ind=ind(:)

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRemove">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atomsRemove</refname>
+    <refpurpose>Remove one or several modules</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  result = atomsRemove(modules[,section])
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      
+			<varlistentry>
+        <term>modules</term>
+        <listitem>
+          <para>
+						mx1 or mx2 character string matrix:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present, all versions
+								of the module are removed.
+							</td>
+						</tr>
+						
+					</informaltable>
+					
+        </listitem>
+      </varlistentry>
+      
+			<varlistentry>
+        <term>section</term>
+        <listitem>
+          <para>
+						This argument controls the list of sections where search
+						modules to remove.
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"all"</literal>: Modules to remove are searched in both
+								"user" and "allusers" sections.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: Modules to remove are only searched in
+								the "allusers" section.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: Modules to remove are only searched in
+								the "user" section.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						If SCI is write accessible, "all" is the default value.
+						Otherwise, the default value is "user".
+					</para>
+        </listitem>
+			</varlistentry>
+			
+      <varlistentry>
+        <term>result</term>
+        <listitem>
+          <para>5xn character string matrix:</para>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation section</emphasis>
+							</td>
+							<td>
+								this parameter determines whether the module has been installed
+								for all users or only for the	current user.
+							</td>
+						</tr>
+						
+						<!-- Installation path -->
+						
+						<tr>
+							<td>
+								<emphasis>4th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation path</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Status -->
+						
+						<tr>
+							<td>
+								<emphasis>5th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Status</emphasis>
+							</td>
+							<td>
+								"I" stands for "Intentionnaly", "A" stands for "Automatically"
+							</td>
+						</tr>
+						
+					</informaltable>
+					
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+	
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para><literal>atomsRemove</literal> remove one or more modules.
+	</para>
+	
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Display some additionnal informations
+atomsSetConfig("Verbose","True");
+
+// Load the test repository
+atomsRepositoryAdd("http://scene2.test.atoms.scilab.org");
+
+// install toolbox_4 : both 1.0 and 1.1 versions
+
+
+// Remove all versions of a module
+atomsInstall(["toolbox_4" "1.0";"toolbox_4" "1.1"],"user");
+atomsRemove(["toolbox_4"]);
+
+
+// Remove a specific version
+atomsInstall(["toolbox_4" "1.0";"toolbox_4" "1.1"],"user");
+atomsRemove(["toolbox_4" "1.0"]);
+atomsRemove(["toolbox_4" "1.1"]);
+
+
+// Remove several modules
+atomsInstall(["toolbox_4";"toolbox_3"],"user");
+atomsRemove(["toolbox_4";"toolbox_3"]);
+
+
+// Remove a module from a specific section
+// ! This example needs write access on SCI directory
+
+atomsInstall("toolbox_4","user");
+atomsInstall("toolbox_4","allusers");
+
+disp(atomsGetInstalled());
+atomsRemove("toolbox_4","user");
+disp(atomsGetInstalled());
+atomsRemove("toolbox_4","allusers");
+disp(atomsGetInstalled());
+
+// Unload the test repository
+atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
+
+]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsInstall">atomsRemove</link>
+      </member>
+      <member>
+        <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+      </member>
+      <member>
+        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

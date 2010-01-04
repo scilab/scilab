@@ -218,7 +218,7 @@ for i=1:n, s1=roots(la1(i));s1=log(s1)/2/%pi/.1;
 
 //now we get the estimated poles (sorted, positive ones only !)
 
-s1=sort(imag(s1));s1=s1(1:i/2);end;
+s1=gsort(imag(s1));s1=s1(1:i/2);end;
 
 //the last two frequencies are the ones really present in the observed 
 //process ---> the others are "artifacts" coming from the used model size.
@@ -250,7 +250,7 @@ c2=cov;
 [la2,sig2]=levin(n,c2);
 mp=la2(n);determinant=mp(1,1)*mp(2,2)-mp(1,2)*mp(2,1);
 s2=roots(determinant);s2=log(s2)/2/%pi/0.1;//same trick as above for 1D process
-s2=sort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
+s2=gsort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
 
 //There the order estimation problem is seen to be much more difficult !
 //many artifacts ! The 4 frequencies are in the estimated spectrum 

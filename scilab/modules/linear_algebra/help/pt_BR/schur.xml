@@ -376,7 +376,7 @@ mputl(C,TMPDIR+'/mytest.c')
 
 
 //construindo e ligando
-lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytest','mytest.c',[],'c',TMPDIR+'/Makefile');
 link(lp,'mytest','c'); 
 
 //executando
@@ -404,7 +404,7 @@ ftn=['funcao inteira mytestf(ar,ai,b)' //codigo FORTRAN
 mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //construíndo e ligando
-lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytestf','mytestf.f',[],'F',TMPDIR+'/Makefile');
 link(lp,'mytestf','f'); 
 
 //executando

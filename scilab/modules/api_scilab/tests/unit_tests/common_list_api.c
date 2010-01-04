@@ -14,35 +14,30 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 
-            
+             
 int get_list_info(int* _piAddress);
 void insert_indent(void);
 
-int iLocalTab = 0;
+static int iLocalTab = 0;
 
 int common_list(char *fname,unsigned long fname_len)
 {
-    int iRet        = 0;
-    int iItem       = 0;
-
+    SciErr sciErr;
     int *piAddr     = NULL;
 
     CheckRhs(1,1);
 
-
-    iRet = getVarAddressFromPosition(1, &piAddr);
-    if(iRet)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
     {
-        return 1;
+        printError(&sciErr, 0);
+        return 0;
     }
 
-    iRet = get_list_info(piAddr);
-    if(iRet)
-    {
-        return 1;
-    }
+    get_list_info(piAddr);
 
     LhsVar(1) = 0;
     return 0;
@@ -50,16 +45,18 @@ int common_list(char *fname,unsigned long fname_len)
 
 int get_list_info(int* _piAddress)
 {
+    SciErr sciErr;
     int i       = 0;
     int iRet    = 0;
     int iItem   = 0;
-    
+
     //get list item number, failed if variable is not a kind of list
-    iRet = getListItemNumber(_piAddress, &iItem);
-    if(iRet)
+    sciErr = getListItemNumber(pvApiCtx, _piAddress, &iItem);
+    if(sciErr.iErr)
     {
+        printError(&sciErr, 0);
         sciprint("This variable is not a list");
-        return 1;
+        return 0;
     }
 
     sciprint("List (%d items) -> address : 0x%08X) : \n", iItem, _piAddress);
@@ -67,8 +64,19 @@ int get_list_info(int* _piAddress)
     {
         int iType           = 0;
         int* piAddrChild    = NULL;
-        iRet = getListItemAddress(_piAddress, i + 1, &piAddrChild);
-        iType = getVarType(piAddrChild);
+        sciErr = getListItemAddress(pvApiCtx, _piAddress, i + 1, &piAddrChild);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        sciErr = getVarType(pvApiCtx, piAddrChild, &iType);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
         if(iType == sci_list || iType == sci_tlist || iType == sci_mlist)
         {
@@ -79,7 +87,7 @@ int get_list_info(int* _piAddress)
             iLocalTab--;
             if(iRet)
             {
-              return 1;
+                return 1;
             }
         }
         else
@@ -99,5 +107,5 @@ void insert_indent(void)
         sciprint("\t");
     }
 }
-        
+ 
         

@@ -290,8 +290,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer  isearch, isanan
       external isearch, isanan
       double precision tt
-      double precision returnanan
-      external         returnanan 
+      external         returnananfortran
       logical new_call     
       common /INFO_HERMITE/new_call
 
@@ -308,7 +307,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          else   ! t(j) is outside [x(1), x(n)] evaluation depend upon outmode 
 
             if (outmode .eq. BY_NAN  .or.  isanan(tt) .eq. 1) then 
-               st(j) = returnanan()
+               CALL returnananfortran(st(j))
                dst(j) = st(j)
                d2st(j) = st(j)
                d3st(j) = st(j)
@@ -879,8 +878,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer i, j, k
       include 'constinterp.h'
       integer  isanan
-      double precision returnanan, EvalBicubic
-      external isanan, returnanan, EvalBicubic
+      double precision EvalBicubic
+      external isanan, returnananfortran, EvalBicubic
 
       i = 0
       j = 0
@@ -895,7 +894,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
          elseif (outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = returnanan()
+            CALL returnananfortran(z_eval(k))
 
          elseif (outmode .eq. BY_ZERO) then
             z_eval(k) = 0.d0
@@ -943,8 +942,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer k, i, j
       include 'constinterp.h'
       integer  isanan
-      double precision returnanan, EvalBicubic
-      external isanan, returnanan, EvalBicubic
+      double precision EvalBicubic
+      external isanan, returnananfortran, EvalBicubic
       logical change_dzdx, change_dzdy
 
       i = 0
@@ -962,7 +961,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
          elseif ( outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                 .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = returnanan()
+            CALL returnananfortran(z_eval(k))
             dzdx_eval(k) = z_eval(k)
             dzdy_eval(k) = z_eval(k)
 
@@ -1036,8 +1035,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer k, i, j
       include 'constinterp.h'
       integer  isanan
-      double precision returnanan, EvalBicubic
-      external isanan, returnanan, EvalBicubic
+      double precision EvalBicubic
+      external isanan, returnananfortran, EvalBicubic
       logical change_dzdx, change_dzdy
 
       i = 0
@@ -1056,7 +1055,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
          elseif ( outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                 .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = returnanan()
+            CALL returnananfortran(z_eval(k))
             dzdx_eval(k) = z_eval(k)
             dzdy_eval(k) = z_eval(k)
             d2zdx2_eval(k) = z_eval(k)
@@ -1139,8 +1138,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       double precision x, y, z
       include 'constinterp.h'
       integer  isanan
-      double precision returnanan, db3val
-      external isanan, returnanan, db3val
+      double precision db3val
+      external isanan, returnananfortran, db3val
 
       do k = 1, np
          x = xp(k)
@@ -1169,7 +1168,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
-            fp(k) = returnanan()
+            CALL returnananfortran(fp(k))
 
          elseif (outmode .eq. BY_ZERO) then
             fp(k) = 0.d0
@@ -1212,8 +1211,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       double precision x, y, z
       include 'constinterp.h'
       integer  isanan
-      double precision returnanan, db3val
-      external isanan, returnanan, db3val
+      double precision db3val
+      external isanan, returnananfortran, db3val
 
       do k = 1, np
          x = xp(k)
@@ -1248,7 +1247,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
-            fp(k) = returnanan()
+            CALL returnananfortran(fp(k))
             dfpdx(k) = fp(k)
             dfpdy(k) = fp(k)
             dfpdz(k) = fp(k)

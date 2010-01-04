@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositoryAdd">
+  <refnamediv>
+    <refname>atomsRepositoryAdd</refname>
+    <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  nbAdd = atomsRepositoryAdd(url[,section])
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>url</term>
+        <listitem>
+          <para>
+						Matrix of strings : list of the URLs to add
+					</para>
+        </listitem>
+      </varlistentry>
+			<varlistentry>
+        <term>section</term>
+				
+        <listitem>
+          <para>
+						This argument controls where the repository is added.
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: the repository is added to the
+								"allusers" list and all user of scilab are affected.
+							</para>
+            </listitem>
+            <listitem>
+              <para><literal>"user"</literal>: the repository is added to the
+								"user" list and only the current user is affected.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						If SCI/contrib is write accessible, "allusers" is the default value.
+						Otherwise, the default value is "user".
+					</para>
+        </listitem>
+			</varlistentry>
+      <varlistentry>
+        <term>nbAdd</term>
+        <listitem>
+          <para>
+						An integer : the number of repositories successfully added.
+					</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para>
+	  
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+atomsRepositoryList()
+atomsRepositoryAdd(["http://scene1.test.atoms.scilab.org"])
+atomsRepositoryList()
+ ]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsRepositoryDel">atomsRepositoryDel</link>
+      </member>
+      <member>
+        <link linkend="atomsRepositoryList">atomsRepositoryList</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -165,6 +165,9 @@ public class MarkDrawer extends DrawableObjectGL {
 			transform.pushPolygonsBack(gl);
 			double realMarkSize = getMarkPixelSize();
 			gl.glScaled(realMarkSize, realMarkSize, 1.0);
+      //set transparency
+      drawer.setFrontTransparency(markForeground==-1);
+      drawer.setBackTransparency(markBackground==-1);
 			drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
 			transform.endPushPolygonsBack(gl);
 		}

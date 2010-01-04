@@ -33,7 +33,7 @@ function genmoc(path,force,verbose)
     return
   end
 
-  compilerpath = 'modelicac'; //** thanks to automatic detection of MODELICAC
+  compilerpath = getmodelicacpath() + "modelicac"; //** thanks to automatic detection of MODELICAC
 
   // with env subsitution
   path = pathconvert(path, %t, %t);

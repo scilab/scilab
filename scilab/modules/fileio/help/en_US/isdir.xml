@@ -29,7 +29,7 @@
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string, the file pathname</para>
+          <para>a character string or a matrix of strings, the file pathname</para>
         </listitem>
       </varlistentry>
       <varlistentry>

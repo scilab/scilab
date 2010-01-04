@@ -61,9 +61,7 @@
     </para>
     <para>
      For the 2 optional arguments you can use the syntax
-     <literal>keyword=value</literal> which is useful to give the
-     format without giving  <literal>colminmax</literal> (see the
-     last example).
+     <literal>keyword=value</literal> (see the last example).
     </para>
   </refsection>
   <refsection>
@@ -73,7 +71,7 @@
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
 zm = min(z); zM = max(z);
-xbasc()
+clf()
 xset("colormap",jetcolormap(64))
 colorbar(zm,zM)
 Sgrayplot(x,x,z)
@@ -85,7 +83,7 @@ z = cos(2*%pi*x)'*sin(2*%pi*x);
 zm = min(z); zM = max(z);
 zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
 zzm = min(zz); zzM = max(zz);
-xbasc();
+clf();
 xset("colormap",jetcolormap(64))
 
 drawlater() ;
@@ -113,10 +111,10 @@ zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
 zzm = min(zz); zzM = max(zz);
 [xf,yf,zf]=genfac3d(x,x,zz);
 nb_col = 64;
-xbasc()
+clf()
 xset("colormap",hotcolormap(nb_col))
 drawlater() ;
-colorbar(zzm,zzM,fmt="%.1f")
+colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
 nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])

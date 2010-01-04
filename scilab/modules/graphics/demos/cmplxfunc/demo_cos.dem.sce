@@ -17,11 +17,11 @@ function demo_cos()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_cos.dem.sce");
 	
 	PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"cos",theta,alpha,[-R,R]);
 	
 endfunction
 
 demo_cos()
+demo_viewCode("demo_cos.dem.sce");
 clear demo_cos;

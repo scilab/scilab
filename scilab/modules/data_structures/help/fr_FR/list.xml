@@ -28,14 +28,14 @@
       <varlistentry>
         <term>extraction</term>
         <listitem>
-          <para>: <literal>[x,y,z...]=L(v)</literal> où <literal>v</literal> est un vecteur d'indices; 
+          <para> <literal>[x,y,z...]=L(v)</literal> où <literal>v</literal> est un vecteur d'indices; 
 				<literal>[x,y,z]=L(:)</literal>  extrait tous les éléments.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>insertion en position i</term>
         <listitem>
-          <para>:  <literal>L(i)=a</literal> . Remarque : l'opération <literal>L(i)=a</literal>
+          <para>  <literal>L(i)=a</literal> . Remarque : l'opération <literal>L(i)=a</literal>
 				avec <emphasis>i &gt; 1 + size(L)</emphasis> ne génère pas d'erreur les
 				entrées en position  <emphasis>1 + size(L), ..., i-1</emphasis> étant
 				alors <emphasis>indéfinies</emphasis>. Par contre l'extraction d'un élément
@@ -45,13 +45,13 @@
       <varlistentry>
         <term>ajouter un élément en queue de liste</term>
         <listitem>
-          <para>:  <literal>L($+1)=e</literal>.</para>
+          <para>  <literal>L($+1)=e</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ajouter un élément en tête de liste</term>
         <listitem>
-          <para>:  <literal>L(0)=e</literal>. (remarque : après cette opération <literal>e</literal> est
+          <para>  <literal>L(0)=e</literal>. (remarque : après cette opération <literal>e</literal> est
 				en position 1, la position des éléments initiaux de la liste étant 
 				décalée vers la droite).</para>
         </listitem>
@@ -59,13 +59,13 @@
       <varlistentry>
         <term>suppression</term>
         <listitem>
-          <para>: <literal>L(i)=null()</literal> supprime l'élément en position i de la liste <literal>L</literal>.</para>
+          <para> <literal>L(i)=null()</literal> supprime l'élément en position i de la liste <literal>L</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>concaténation de deux listes</term>
         <listitem>
-          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+          <para> <literal>L3 = lstcat(L1,L2)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

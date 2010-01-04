@@ -52,8 +52,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>
-    Creates a dialog window for file selection.</para>
+    <para>WARNING: this function is deprecated (see uigetdir as a replacement of tk_getdir). It will be removed in Scilab 5.3.</para>
+
+    <para>Creates a dialog window for file selection.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -66,6 +67,9 @@ tk_getdir(Title="Choose a directory name")
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
+      <member>
+        <link linkend="uigetdir">uigetdir</link>
+      </member>
       <member>
         <link linkend="uigetfile">uigetfile</link>
       </member>

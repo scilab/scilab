@@ -191,7 +191,7 @@ C----------------------------------------------------------------------
          ELSE
 *          RES = XINF
 * modif Bruno: return Nan (Y is a negative integer)
-            RES = returnanan() ! this one is defined in somespline.f
+            CALL returnananfortran(RES)
             GO TO 900
          END IF
       END IF

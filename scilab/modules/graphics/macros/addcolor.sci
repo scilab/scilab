@@ -7,14 +7,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function new=addcolor(c)
-// add colors to the current colormap
+// addcolor : add colors to the current colormap
+function new=addcolor(varargin)
 
-//Modif. to accept 3x1 column vector
+  // Check number of unput argument
+  if size(varargin)<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "addcolor", 1));
+  end
+  c=varargin(1);
+  
+  //Modif. to accept 3x1 column vector
   if or(size(c)==1) then c=matrix(c,1,-1),end
   
   if size(c,'c')<>3 | max(c)>1 | min(c)<0 then
-    error('addcolor : argument is not a color table')
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"), "addcolor", 1, "color_map"));
   end
   f=gcf();
   cmap=f.color_map;

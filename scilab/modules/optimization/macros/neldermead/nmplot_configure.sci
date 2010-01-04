@@ -13,9 +13,6 @@
 //
 function this = nmplot_configure (this,key,value)
   select key
-  case "-verbose" then
-    this.verbose = value;
-    this.nmbase = neldermead_configure ( this.nmbase , "-verbose" , value )
   case "-simplexfn" then
     this.simplexfn = value;
   case "-fbarfn" then

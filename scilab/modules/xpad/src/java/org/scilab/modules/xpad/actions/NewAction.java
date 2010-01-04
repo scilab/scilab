@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
@@ -20,22 +20,48 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class NewAction extends DefaultAction {
+/**
+ * File creation management
+ * @author Bruno JOFRET
+ */
+public final class NewAction extends DefaultAction {
 
-    private NewAction(Xpad editor) {
-	super("New...", editor);
-    }
+	private static final long serialVersionUID = -6865132453503118587L;
 
-    public void doAction() {
-	getEditor().addEmptyTab();
-    }
-    
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu("New...", null, new NewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-    }
-    
-    public static PushButton createButton(Xpad editor) {
-	return createButton("New...", "document-new.png", new NewAction(editor));
-    }
+	/**
+	 * Constructor
+	 * @param editor associated Xpad instance
+	 */
+	private NewAction(Xpad editor) {
+		super(XpadMessages.NEW, editor);
+	}
+
+	/**
+	 * Create file action
+	 * @see org.scilab.modules.xpad.actions.DefaultAction#doAction()
+	 */
+	public void doAction() {
+		getEditor().addEmptyTab();
+	}
+
+	/**
+	 * Create a menu to add to Xpad menu bar
+	 * @param editor associated Xpad instance
+	 * @return the menu
+	 */
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.NEW, null, new NewAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	}
+
+	/**
+	 * Create a button to add to Xpad tool bar
+	 * @param editor associated Xpad instance
+	 * @return the button
+	 */
+	public static PushButton createButton(Xpad editor) {
+		return createButton(XpadMessages.NEW, "document-new.png", new NewAction(editor));
+	}
 }

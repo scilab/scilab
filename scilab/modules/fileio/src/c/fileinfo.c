@@ -135,13 +135,13 @@ static double *fileinfo_Windows(char *filepathname,int *ierr)
 		return NULL;
 	}
 
-	swprintf(DriveTemp, wcslen(wcpath), L"%s", wcpath);
+	swprintf(DriveTemp, wcslen(wcpath)+1, L"%s", wcpath);
 	if ( (DriveTemp[wcslen(DriveTemp)-1] == L'/') || (DriveTemp[wcslen(DriveTemp)-1] == L'\\') )
 	{
 		DriveTemp[wcslen(DriveTemp)-1] = L'\0';
 	}
 
-	result = _wstat(wcpath, &buf );
+	result = _wstat(DriveTemp, &buf );
 
 	FREE(wcpath); wcpath = NULL;
 

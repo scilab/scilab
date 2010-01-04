@@ -23,8 +23,17 @@
 * @param status "r","w","a" or "rb","wb","ab"
 * @param swap
 * @param[out] res
-* @param[out] error
+* @param[out] error 
 */
+
+typedef enum { 
+	MOPEN_NO_ERROR = 0,
+	MOPEN_NO_MORE_LOGICAL_UNIT = 1,
+	MOPEN_CAN_NOT_OPEN_FILE = 2,
+	MOPEN_NO_MORE_MEMORY = 3,
+	MOPEN_INVALID_FILENAME = 4,
+	MOPEN_INVALID_STATUS = 5
+} mopenError;
 
 FILEIO_IMPEXP void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 

@@ -31,7 +31,7 @@
       <varlistentry>
         <term>sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list : SIMO linear system</para>
+          <para> <literal>syslin</literal> list : SIMO linear system</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -17,7 +17,7 @@
 
 
 // create an acentued text
-xstring(0, 0, "totoééééààààààçççç@@@@@@@");
+xstring(0, 0, "totoÃ©Ã©Ã©Ã©Ã Ã Ã Ã Ã Ã Ã§Ã§Ã§Ã§@@@@@@@");
 
 // the exported file should display the above string with accents.
 xs2eps(0, TMPDIR+"/toto.eps");

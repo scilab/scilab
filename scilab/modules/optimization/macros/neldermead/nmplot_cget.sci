@@ -15,8 +15,6 @@
 //
 function value = nmplot_cget (this,key)
   select key
-  case "-verbose" then
-    value = this.verbose;
   case "-simplexfn" then
     value = this.simplexfn;
   case "-fbarfn" then

@@ -211,8 +211,8 @@ SYS1 = findABCD(S,N,1,R) ;SYS1.dt=0.1;
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -55,7 +55,8 @@ public class ScilabTree implements Tree {
 	} else if (iconPath.equals("")) {
 	    this.icon = null;
 	} else {
-	    Image image = (toolkit.getImage(iconPath)).getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+	    //Image image = (toolkit.getImage(iconPath)).getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+		Image image = (toolkit.getImage(iconPath));
 	    this.icon = new ImageIcon(image);
 	}
 

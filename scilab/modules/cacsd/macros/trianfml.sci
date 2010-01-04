@@ -26,7 +26,7 @@ for nli=1:mf
   [mf_tra,nf_tra]=size(f_tra)
   //recherche du pivot  dans la premiere colonne
   c1=f_tra(:,1);
-  lc=length(c1);[lc,klc]=sort(lc);
+  lc=length(c1);[lc,klc]=gsort(lc);
   pivot='0';l=mf_tra+1;
   while (pivot=='0'&l>1),
   l=l-1; 

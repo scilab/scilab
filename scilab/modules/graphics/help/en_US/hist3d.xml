@@ -33,7 +33,9 @@
     <title>Calling Sequence</title>
 
     <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
-hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
+hist3d(f,&lt;opt_args&gt;)
+hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
+hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -62,10 +64,21 @@ hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
       </varlistentry>
 
       <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1,
+          key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: theta,
+          alpha,leg,flag,ebox. See <link linkend="plot3d">plot3d</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>theta,alpha,leg,flag,ebox</term>
 
         <listitem>
-          <para>see <literal>plot3d</literal>.</para>
+          <para>see <link linkend="plot3d">plot3d</link>.</para>
         </listitem>
       </varlistentry>
     </variablelist>

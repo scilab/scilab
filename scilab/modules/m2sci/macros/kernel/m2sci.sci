@@ -7,13 +7,13 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprint)
+function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
 // This function translates Matlab interpreted code tree of a function to Scilab
 // Input arguments:
 //  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code
 //  - nam: name of Matlb function
 //  - Recmode: boolean flag for recursive conversion if TRUE
-//  - prettyprint: boolean flag for pretty printed output file if TRUE
+//  - prettyprintoutput: boolean flag for pretty printed output file if TRUE
 // Output arguments:
 //  - scitree: Scilab equivalent for mtlbtree
 //  - trad: code of function sci_<nam>
@@ -101,7 +101,7 @@ for k=1:maclhs
 end
 
 // Translation
-[scitree,crp]=mtlbtree2sci(mtlbtree,prettyprint)
+[scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
 
 dcl=[]
 // Add special code

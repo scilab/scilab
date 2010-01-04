@@ -118,8 +118,19 @@ int sci_uigetdir(char *fname,unsigned long l)
       nbCol = 1;
 
       CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
-      freeArrayOfString(userSelection, nbRow);
-
+	  if (userSelection)
+	  {
+		  for(int i = 0; i < nbRow;i++)
+		  {
+			  if (userSelection[i])
+			  {
+				  delete userSelection[i];
+				  userSelection[i] = NULL;
+			  }
+		  }
+		  delete [] userSelection;
+		  userSelection = NULL;
+	  }
     }
   else
     {

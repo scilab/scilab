@@ -13,6 +13,48 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
+// DESCRIPTION
+// |
+// |-- packages                              [1x1 struct]
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories                            [1x1 struct]
+// |   |-- Optimization                      [1x1 struct]
+// |   |   |-- Linear
+// |   |   `-- General
+// |   `-- ..
+// |
+// |-- categories_flat                       [1x1 struct]
+//     |-- Optimization - Linear
+//     |   |-- packages
+//     |   |   `-- ["simplex" "1.0" ; "lolimot" "0.9"]
+//     |   `-- label
+//     |       `-- [ "Optimization" "Linear" ]
+//     |-- Optimization
+//     |   |-- packages
+//     |   |   `-- ["simplex" "1.0" ; "lolimot" "0.9"]
+//     |   `-- label
+//     |       `-- [ "Optimization" "Linear" ]
+//     `-- Education
+//         |-- packages
+//         |   `-- ["module_lycee" "1.0" ; "module_lycee" "1.1"]
+//         `-- label
+//             `-- [ "Education" ]
+
+
+
 function description_out = atomsDESCRIPTIONread(file_in)
 	
 	// Check input parameters
@@ -31,10 +73,17 @@ function description_out = atomsDESCRIPTIONread(file_in)
 	// Init the output argument
 	// =========================================================================
 	
-	description_out = struct();
+	packages         = struct();
+	categories_flat  = struct();
+	categories       = struct();
+	description_out  = struct();
+	
+	description_out("packages")        = packages;
+	description_out("categories")      = categories;
+	description_out("categories_flat") = categories_flat;
 	
 	// Start Read the file
-	// =========================================================================	
+	// =========================================================================
 	
 	lines_in         = mgetl(file_in);
 	current_toolbox  = struct();
@@ -49,21 +98,30 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		// File totally read : register the latest toolbox
 		if i == (size(lines_in,"*")+1) then
 			
-			// Just check if this version is compatible with the current
-			// scilab version
-			
-			if isfield(current_toolbox,"ScilabVersion") then
-				if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-					this_toolbox(current_toolbox("Version")) = current_toolbox;
+			if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+				
+				if  ~ isfield(packages,current_toolbox("Toolbox")) then
+					// This is the first version of the package
+					this_toolbox = struct();
+				else
+					// Get the version list of this package
+					this_toolbox = packages(current_toolbox("Toolbox"));
 				end
-			else
-				error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
-					"atomsDESCRIPTIONread",..
-					file_in,current_toolbox("Toolbox"),..
-					current_toolbox("Version")));
+				
+				if isfield(current_toolbox,"ScilabVersion") then
+					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					end
+				else
+					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+						"atomsDESCRIPTIONread",..
+						file_in,current_toolbox("Toolbox"),..
+						current_toolbox("Version")));
+				end
+				
+				packages(current_toolbox("Toolbox")) = this_toolbox;
 			end
 			
-			description_out(current_toolbox("Toolbox")) = this_toolbox;
 			break;
 		end
 		
@@ -75,12 +133,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 				
 				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 					
-					if  ~ isfield(description_out,current_toolbox("Toolbox")) then
-						// Il s'agit de la première version de la toolbox trouvée
+					if  ~ isfield(packages,current_toolbox("Toolbox")) then
+						// This is the first version of the package
 						this_toolbox = struct();
 					else
-						// On récupère la liste des versions de cette toolbox
-						this_toolbox = description_out(current_toolbox("Toolbox"));
+						// Get the version list of this package
+						this_toolbox = packages(current_toolbox("Toolbox"));
 					end
 					
 					if isfield(current_toolbox,"ScilabVersion") then
@@ -94,7 +152,7 @@ function description_out = atomsDESCRIPTIONread(file_in)
 							current_toolbox("Version")));
 					end
 					
-					description_out(current_toolbox("Toolbox")) = this_toolbox;
+					packages(current_toolbox("Toolbox")) = this_toolbox;
 				end
 				
 				// Reset the current_toolbox struct
@@ -106,6 +164,19 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
 			current_toolbox(current_field) = current_value;
+			
+			// Category management
+			if current_field == "Category" then
+				if ~ isfield(categories_flat,current_value) then
+					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
+				end
+				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+					categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
+				else
+					error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
+				end
+			end
+			
 			continue;
 		end
 		
@@ -113,6 +184,19 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		if regexp(lines_in(i),"/^\s/","o") == 1 then
 			current_value = part(lines_in(i),2:length(lines_in(i)));
 			current_toolbox(current_field) = [ current_toolbox(current_field) ; current_value ];
+			
+			// Category management
+			if current_field == "Category" then
+				if ~ isfield(categories_flat,current_value) then
+					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
+				end
+				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
+					categories_flat = atomsAddPackage2Cat( categories_flat , [current_toolbox("Toolbox") current_toolbox("Version")],current_value);
+				else
+					error(msprintf(gettext("%s: name and version are not both defined\n"),"atomsDESCRIPTIONread"));
+				end
+			end
+			
 			continue;
 		end
 		
@@ -129,6 +213,93 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		// Else Error
 		error(msprintf(gettext("%s: The file ""%s"" is not well formated at line %d\n"),"atomsDESCRIPTIONread",filein,i));
 		
+	end
+	
+	description_out("packages")        = packages;
+	description_out("categories")      = categories;
+	description_out("categories_flat") = categories_flat;
+	
+endfunction
+
+// =============================================================================
+// atomsCreateCategory
+// =============================================================================
+
+function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_id)
+	
+	category_main = "";
+	category_sub  = "";
+	cat_flat_out  = cat_flat_in;
+	cat_out       = cat_in;
+	
+	// Build the skeleton of the category
+	cat_struct             = struct();
+	cat_struct("label")    = [];
+	cat_struct("packages") = [];
+	cat_struct("is_main")  = %T;
+	
+	// Is this category a main category or a sub category
+	
+	pattern_index = regexp(cat_id,"/\s-\s/","o");
+	
+	if pattern_index <> [] then
+		
+		// Sub category
+		category_main         = part(cat_id,1:pattern_index-1);
+		category_sub          = part(cat_id,pattern_index+3:length(cat_id) );
+		cat_struct("label")   = [ category_main ; category_sub ];
+		cat_struct("is_main") = %F;
+		
+	else
+		// Main category
+		category_main = cat_id;
+		cat_struct("label")   = [ category_main ];
+		cat_struct("is_main") = %T;
+		
+	end
+	
+	cat_flat_out(cat_id)  = cat_struct;
+	
+	if isfield(categories,category_main) then
+		if category_sub <> "" then
+			subcategories          = cat_out(category_main);
+			subcategories          = [ subcategories ; category_sub ];
+			cat_out(category_main) = subcategories;
+		end
+	else
+		if category_sub == "" then
+			cat_out(category_main) = [];
+		else
+			cat_out(category_main) = category_sub;
+		end
+	end
+	
+	if cat_struct("is_main") & ~ isfield(cat_flat_out,category_main) then
+		[cat_out , cat_flat_out ] = atomsCreateCategory(cat_out,cat_flat_out,category_main)
+	end
+	
+endfunction
+
+// =============================================================================
+// atomsAddPackage2Cat
+// =============================================================================
+
+function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
+	
+	cat_flat_out  = cat_flat_in;
+	
+	if ~ isfield( cat_flat_out , category ) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a registered category"),"atomsAddPackage2Cat",2,category));
+	end
+	
+	cat_struct             = cat_flat_out(category);
+	package_mat            = [ cat_struct("packages") ; package ];
+	cat_struct("packages") = package_mat;
+	cat_flat_out(category) = cat_struct;
+	
+	if ~ cat_struct("is_main") then
+		label_mat    = cat_struct("label");
+		cat_flat_out = atomsAddPackage2Cat( cat_flat_out , package , label_mat(1))
 	end
 	
 endfunction

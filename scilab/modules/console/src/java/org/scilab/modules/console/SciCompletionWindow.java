@@ -59,6 +59,8 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	private InputParsingManager inputParsingManager;
 	private JComponent focusOutComponent;
 	private SciConsole sciConsole;
+	
+	private int CurrentCaretPosition = 0;
 
 	/**
 	 * Default constructor
@@ -143,6 +145,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	 * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#show(java.util.List, java.awt.Point)
 	 */
 	public void show(List<CompletionItem> list, Point location) {
+		CurrentCaretPosition = inputParsingManager.getCaretPosition();
 		/* Display only in completion items list is not empty */
 		if (list != null) {
 
@@ -220,6 +223,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	public void setVisible(boolean status) {
 		window.setVisible(status);
 		if (!status) {
+			
 			focusOutComponent.grabFocus();
 		}
 	}
@@ -298,7 +302,12 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			/* Add text to the input command view */
 			if (listUI.getModel().getSize() != 0) {
 				
+				int caretPosition = inputParsingManager.getCaretPosition();
+				
 				String currentLine = inputParsingManager.getCommandLine();
+				String lineBeforeCaret = currentLine.substring(0, CurrentCaretPosition);
+				String lineAfterCaret = currentLine.substring(CurrentCaretPosition);
+				
 				String stringToAdd = ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
 				String stringToAddType = ((CompletionItem) listUI.getSelectedValue()).getType();
 				
@@ -307,7 +316,8 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 				if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
 				typeStringIsFile = true;
 				}
-				String newLine = Completion.completelineforjava(currentLine, stringToAdd, typeStringIsFile);
+				
+				String newLine = Completion.completelineforjava(lineBeforeCaret, stringToAdd, typeStringIsFile, lineAfterCaret);
 				
 				inputParsingManager.reset();
 				inputParsingManager.append(newLine);
@@ -423,16 +433,20 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 
 			if (e.getClickCount() >= 2) { /* Double click = the user validates the item */
 				/* Add text to the input command view */
-				String currentLine = inputParsingManager.getCommandLine();
+				int caretPosition =inputParsingManager.getCaretPosition();
 				
+				String currentLine = inputParsingManager.getCommandLine();
+				String lineBeforeCaret = currentLine.substring(0, caretPosition);
+				String lineAfterCaret = currentLine.substring(caretPosition);
 				String stringToAdd = ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
 				String stringToAddType = ((CompletionItem) listUI.getSelectedValue()).getType();
+				
 				boolean typeStringIsFile = false;
 				
 				if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
 				typeStringIsFile = true;
 				}
-				String newLine = Completion.completelineforjava(currentLine, stringToAdd, typeStringIsFile);
+				String newLine = Completion.completelineforjava(lineBeforeCaret, stringToAdd, typeStringIsFile, lineAfterCaret);
 				
 				inputParsingManager.reset();
 				inputParsingManager.append(newLine);

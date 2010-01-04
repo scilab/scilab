@@ -17,7 +17,7 @@
 //
 function [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
   if ( this.nbve <> this.n+1 ) then
-    errmsg = sprintf("The gradient can be applied only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d", this.n , this.nbve)
+    errmsg = msprintf(gettext("%s: The gradient can be applied only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d"), "optimsimplex_gradientfv" , this.n , this.nbve)
     error(errmsg)
   end
   if (~isdef('method','local')) then
@@ -28,12 +28,12 @@ function [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
     g = optimsimplex_gradforward ( this )
   case "centered" then
     if (~isdef('data','local')) then
-      g = optimsimplex_gradcentered ( this , fun )
+      g = optimsimplex_gradcenter ( this , fun )
     else
-      [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
+      [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
     end
   else
-    errmsg = sprintf("Unknown method %s",method)
+    errmsg = msprintf(gettext("%s: Unknown method %s"),"optimsimplex_gradientfv",method)
     error(errmsg)
   end
 endfunction
@@ -46,16 +46,16 @@ endfunction
 function g = optimsimplex_gradforward ( this )
   v = optimsimplex_dirmat ( this )
   d = optimsimplex_deltafv ( this )
-  g = v'\d
+  g = v.'\d
 endfunction
 //
-// optimsimplex_gradcentered --
+// optimsimplex_gradcenter --
 //   Returns the simplex centered gradient of the function.
 // Arguments
 //   fun : name of the function
 //   data : user-defined data
 //
-function [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
+function [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
   g1 = optimsimplex_gradforward ( this )
   if (~isdef('data','local')) then
     r = optimsimplex_reflect ( this , fun )

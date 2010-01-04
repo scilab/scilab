@@ -29,7 +29,7 @@ int get_tics_direction_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType( pobj ) != SCI_AXES )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "tics_direction") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction") ;
     return -1 ;
   }
 
@@ -48,7 +48,7 @@ int get_tics_direction_property( sciPointObj * pobj )
     return sciReturnString( "left" ) ;
     break;
   default : 
-    Scierror(999, _("%s is not correctly defined.\n"), "tics_direction") ;
+    Scierror(999, _("Wrong value for '%s' property.\n"),"tics_direction");
     break;
   }
   return -1;

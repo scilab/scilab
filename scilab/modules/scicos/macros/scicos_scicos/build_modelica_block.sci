@@ -33,12 +33,14 @@ function [model,ok] = build_modelica_block(blklstm, cmmat, NiM, NoM, name, path)
 
 name = "imppart_" + stripblanks(name);
 path = pathconvert(stripblanks(path),%t,%t);
+//++ convert space to _
+name = strsubst(name, ' ', '_');
 
 [txt,rpar,ipar] = create_modelica1(blklstm,cmmat,name);
 
 mputl(txt, path+name+'.mo');
 
-mprintf('   Modelica code generated at '+path+name+'.mo\n'); 
+mprintf(_('   Modelica code generated at ""%s.mo""\n'),path+name); 
 
 [ok,name1,nx,nin,nout,ng,nm,nz] = compile_modelica(path+name+'.mo'); //** here we are 
 

@@ -14,9 +14,13 @@
  package org.scilab.modules.graphic_export;
 
 import java.awt.Font;
+import java.nio.ByteBuffer;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
+import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
+import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
+import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 
 import com.sun.opengl.util.j2d.TextRenderer;
 
@@ -53,9 +57,30 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		
 		GL2PS gl2ps = new GL2PS();
 		gl.glRasterPos3d(x, y, z);
+		/* Modified by Calixte to handle LaTeX and MathML labels */
+		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
+		        SpecialTextObjectGL spe = getSpeRenderer().getContent(str);
+			if (spe == null) {
+			        gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
+						   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
+						   (float) Math.toDegrees(angle));
+			} else {
+			    String SVGcode;
+			    if (str.charAt(0) == '<') {
+				    SVGcode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
+			    } else {
+				    SVGcode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
+			    }
+			    /* the fontsize is set to 0 to include directly the svg code (see gl2ps.c) */
+			    gl2ps.gl2psTextOpt(SVGcode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
+			}
+		    
+			return;
+		}
+		
 		gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
-				           (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
-				           (float) Math.toDegrees(angle));
+				   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
+				   (float) Math.toDegrees(angle));
 	}
 	
 	/**

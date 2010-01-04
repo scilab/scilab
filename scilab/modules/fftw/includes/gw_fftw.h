@@ -14,7 +14,7 @@
 #define __GW_FFTW__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_fftw.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 FTTW_SCILAB_IMPEXP int gw_fftw(void);
 FTTW_SCILAB_IMPEXP int sci_disposefftwlibrary(char *fname,unsigned long fname_len);

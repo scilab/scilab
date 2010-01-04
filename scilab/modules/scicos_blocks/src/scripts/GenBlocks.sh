@@ -23,16 +23,18 @@
 # Fblocknames  contains list of Fortran Blocks 
 # Cblocknames  contains list of C Blocks 
 # Copyright INRIA
-if [ $# -ne 3 ]; then
-	echo "Wrong syntax. Syntax is : $0 Fortran_Block_Names C_Block_Names Outputfile_h"
+if [ $# -ne 4 ]; then
+	echo "Wrong syntax. Syntax is : $0 Fortran_Block_Names C_Block_Names CPP_Block_Names Outputfile_h"
 	exit 1
 fi
 Fin=$1
 Cin=$2
-fout=$3
+CPPin=$3
+fout=$4
 
 echo "#ifndef __SCICOS_BLOCKS__ " > $fout 
 echo "#define __SCICOS_BLOCKS__ " >> $fout 
+echo "#include \"scicos.h\" " >> $fout
 echo "/******* Copyright INRIA *************/" >> $fout 
 echo "/******* Please do not edit (file automatically generated) *************/" >> $fout 
 
@@ -41,6 +43,10 @@ for i in $links
 	do ( echo "extern void F2C($i) (ARGS_scicos);"  >> $fout ;); done
 
 links=`cat $Cin`
+for i in $links
+	do ( echo "extern void $i (ARGS_scicos);"  >> $fout ;); done
+
+links=`cat $CPPin`
 for i in $links
 	do ( echo "extern void $i (ARGS_scicos);"  >> $fout ;); done
 
@@ -56,10 +62,14 @@ links=`cat $Cin`
 for i in $links
 	do  (  echo "{\"$i\",(ScicosF) $i}," >> $fout-temp$$ ;); done ;
 
+links=`cat $CPPin`
+for i in $links
+	do  (  echo "{\"$i\",(ScicosF4) $i}," >> $fout-temp$$ ;); done ;
+
 sort $fout-temp$$ >> $fout; 
 echo "{(char *) 0, (ScicosF) 0}};" >> $fout ;
 
-x=`cat $Fin $Cin| wc -l `;
+x=`cat $Fin $Cin $CPPin | wc -l `;
 echo " " >> $fout 
 echo "int ntabsim=" $x ";" >> $fout ;
 echo "#endif " >> $fout;

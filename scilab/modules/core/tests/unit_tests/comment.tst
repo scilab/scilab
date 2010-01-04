@@ -235,6 +235,7 @@ endfunction
 a=foo();
 if a<>15 then pause,end
 
+warning('off');
 //with  getf
 t=['function a=foo'
   'a=0;k=0;//initialization'
@@ -279,6 +280,7 @@ if a<>15 then pause,end
 getf(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
+warning('on');
 
 //with macr2lst
 

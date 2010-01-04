@@ -7,31 +7,33 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function y = rosenbrock (x)
+mprintf("Defining Rosenbrock function...\n");
+function [ y , index ] = rosenbrock ( x , index )
 y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
+
+x0 = [-1.2 1.0]';
 
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",200);
-nm = neldermead_configure(nm,"-maxfunevals",300);
-nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
-nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
-nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_configure(nm,"-x0",x0);
+
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 
-[nm , xdata , ydata , zdata ] = neldermead_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
-contour ( xdata , ydata , zdata , 20 )
-
-
-
+fx0 = neldermead_get(nm,"-fx0");
+mprintf("f(x0) = %f, x0=[%s]\n" , fx0 , strcat(string(x0)," "));
+xopt = neldermead_get(nm,"-xopt");
+fopt = neldermead_get(nm,"-fopt");
+mprintf("f(xopt) = %f, xopt=[%s]\n" , fopt , strcat(string(xopt)," "));
 nm = neldermead_destroy(nm);
-clear nm;
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'neldermead_rosenbrock.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

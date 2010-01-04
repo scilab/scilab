@@ -12,16 +12,37 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.print.PageFormat;
+import java.awt.print.PrinterJob;
+
+import javax.print.attribute.HashPrintRequestAttributeSet;
+
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class PageSetupAction extends DefaultAction {
 
+	private static PageFormat pageFormat;
+
 	private PageSetupAction(Xpad editor) {
-		super("Page Setup...", editor);
+		super(XpadMessages.PAGE_SETUP, editor);
 	}
 
-	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Page Setup...", null, new PageSetupAction(editor), null);
-	 }
+	public void doAction() {
+		PrinterJob printTask = PrinterJob.getPrinterJob();
+		if (pageFormat == null) {
+			pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
+		} else {
+			pageFormat = printTask.pageDialog(pageFormat);
+		}
+	}
+
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu(XpadMessages.PAGE_SETUP, null, new PageSetupAction(editor), null);
+	}
+
+	public static PageFormat getPageFormat() {
+		return pageFormat;
+	}
 }

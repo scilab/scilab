@@ -78,7 +78,7 @@ function packages_disp = atomsSearch( search , fields )
 		this_package_version = this_package_versions(1);
 		
 		// Get the details of this toolbox
-		this_package_details = atomsToolboxDetails(this_package_name,this_package_version);
+		this_package_details = atomsToolboxDetails([this_package_name,this_package_version]);
 		this_package_summary = this_package_details("Summary");
 		
 		if grep( convstr(this_package_name,"l") , search ) <> [] then

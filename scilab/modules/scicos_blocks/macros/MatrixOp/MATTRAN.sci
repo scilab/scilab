@@ -38,7 +38,7 @@ case 'set' then
  // if size(label,'*')==14 then label(9)=[],end //compatiblity
   if size(label,'*')==1 then label(2)=sci2exp(1),end
   while %t do
-    [ok,typ,rule,exprs]=getvalue('Set MATTRAN Block',..
+    [ok,typ,rule,exprs]=scicos_getvalue('Set MATTRAN Block',..
 	    ['Datatype(1=real double 2=Complex)';'rule (1=.'' 2='')'],list('vec',1,'vec',1),label)
     if ~ok then break,end
     if (typ==1) then

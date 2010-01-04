@@ -18,12 +18,12 @@
 //   value : the value to store
 //
 function this = optimbase_histset ( this , iter , key , value )
-  if this.storehistory == 0 then
-    errmsg = sprintf("History disabled ; turn on -storehistory option.")
+  if ( ~this.storehistory ) then
+    errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option.") , "optimbase_histset" )
     error(errmsg)
   end
   if iter < 1 then
-    errmsg = sprintf("Negative iteration index are not allowed.")
+    errmsg = msprintf(gettext("%s: Negative iteration index are not allowed.") , "optimbase_histset" )
     error(errmsg)
   end
   select key
@@ -32,7 +32,7 @@ function this = optimbase_histset ( this , iter , key , value )
   case "-fopt" then
     this.historyfopt ( iter ) = value;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s" ) , "optimbase_histset" , key )
     error(errmsg)
   end
 endfunction

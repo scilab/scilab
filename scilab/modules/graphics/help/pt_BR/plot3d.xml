@@ -405,14 +405,6 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Mais Informações</title>
-
-    <para>Para obter mais informações sobre a sintaxe antiga de plot3d, veja a
-    documentação de ajuda <link
-    linkend="plot3d_old_version">plot3d_old_version</link>.</para>
-  </refsection>
-
-  <refsection>
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
@@ -486,6 +478,213 @@ TL.color = [c;c+1;c+2;c+3];
 h.data = TL;
 h.color_flag=3; // modo de gradação interpolada
  ]]></programlisting>
+
+    <para>We can use the plot3d function to plot a set of patches (triangular,
+    quadrangular, etc).</para>
+
+    <programlisting role="example"><![CDATA[ 
+// The plot3d function to draw patches:
+// patch(x,y,[z])
+// patch(x,y,[list(z,c)])
+// The size of x : number of points in the patches x number of patches
+// y and z have the same sizes as x
+// c:
+// - a vector of size number of patches: the color of the patches
+// - a matrix of size number of points in the patches x number of 
+//   patches: the color of each points of each patches
+
+// Example 1: a set of triangular patches
+
+x = [0 0;
+     0 1;
+     1 1];
+
+y = [1 1;
+     2 2;
+     2 1];
+
+z = [1 1;
+     1 1;
+     1 1];
+
+tcolor = [2 3]';
+
+subplot(2,2,1);
+plot3d(x,y,list(z,tcolor));
+xtitle('A triangle set of patches');
+
+// Example 2: a mixture of triangular and quadrangular patches
+
+xquad = [5, 0;
+         10,0;
+         15,5;
+         10,5];
+         
+yquad = [15,0;
+         20,10;
+         15,15;
+         10,5];
+         
+zquad = ones(4,2);
+
+xtri = [ 0,10,10, 5, 0;
+        10,20,20, 5, 0;
+        20,20,15,10,10];
+        
+ytri = [ 0,10,20, 5,10;
+        10,20,20,15,20;
+         0, 0,15,10,20];
+         
+ztri = zeros(3,5);
+
+subplot(2,2,3);
+plot3d(xquad,yquad,zquad);
+plot3d(xtri,ytri,ztri);
+xtitle('Mixing triangle and quadrangle set of patches');
+
+// Example 3: some rabbits
+
+rabxtri = [ 5,  5, 2.5,  7.5, 10;
+            5, 15, 5,   10,   10;
+           15, 15, 5,   10,   15];
+           
+rabytri = [10, 10, 9.5,  2.5, 0;
+           20, 10, 12,   5,   5;
+           10   0   7    0    0];
+rabztri = [0,0,0,0,0;
+           0,0,0,0,0;
+           0,0,0,0,0];
+
+rabtricolor_byface = [2 2 2 2 2];
+
+rabtricolor = [2,2,2,2,2;
+               3,3,3,3,3;
+               4,4,4,4,4];
+               
+rabxquad = [0, 1;
+            0, 6;
+            5,11;
+            5, 6];
+            
+rabyquad = [18,23;
+            23,28;
+            23,28;
+            18,23];
+            
+rabzquad = [1,1;
+            1,1;
+            1,1;
+            1,1];
+
+rabquadcolor_byface = [2 2];
+
+rabquadcolor = [2,2;
+                3,3;
+                4,4;
+                5,5];
+
+subplot(2,2,2);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A psychedelic rabbit set of patches');
+
+subplot(2,2,4);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor_byface));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor_byface));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A standard rabbit set of patches');
+ ]]></programlisting>
+
+    <para>The result of the preceding example:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/plot3d_patch.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>We can also use the plot3d function to plot a set of patches using
+    vertex and faces.</para>
+
+    <programlisting role = "example"><![CDATA[ 
+// Vertex / Faces example: 3D example
+
+// The vertex list contains the list of unique points composing each patch
+// The points common to 2 patches are not repeated in the vertex list
+
+vertex = [0 1 1;
+          0 2 2;
+          1 2 3;
+          1 1 4];
+
+// The face list indicates which points are composing the patch.        
+face = [1 2 3;
+        1 3 4];
+
+tcolor = [2 3]';
+         
+// The formula used to translate the vertex / face representation into x, y, z lists
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(vertex(face,3),size(face,1),length(vertex(face,1))/size(face,1))';
+
+scf();
+subplot(2,1,1);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 3d');
+
+// 2D test
+// We use the 3D representation with a 0 Z values and then switch to 2D representation
+
+// Vertex / Faces example: 3D example
+
+// The vertex list contains the list of unique points composing each patch
+// The points common to 2 patches are not repeated in the vertex list
+
+vertex = [0 1;
+          0 2;
+          1 2;
+          1 1];
+
+// The face list indicates which points are composing the patch.        
+face = [1 2 3;
+        1 3 4];
+         
+// The formula used to translate the vertex / face representation into x, y, z lists
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(zeros(vertex(face,2)),size(face,1),length(vertex(face,1))/size(face,1))';
+
+subplot(2,1,2);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 2D');
+a = gca();
+a.view = '2d';
+ ]]></programlisting>
+
+    <para>The result of the preceding example:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/plot3d_patch_vertex.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para> How to set manually some ticks </para>
+
+    <programlisting role = "example"><![CDATA[ 
+plot3d();
+h = gca();
+h.x_ticks = tlist(['ticks','locations','labels'],[-2,-1,0,1,2],['-2','-1','0','1','2']);
+h.y_ticks = tlist(['ticks','locations','labels'],[-4,-3-2,-1,0,1,2,3,4],['-4','-3','-2','-1','0','1','2','3','4']);
+h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','Point 3']);
+ ]]></programlisting>
+    <para></para>
   </refsection>
 
   <refsection>
@@ -511,6 +710,8 @@ h.color_flag=3; // modo de gradação interpolada
       <member><link linkend="xdel">xdel</link></member>
 
       <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
     </simplelist>
   </refsection>
 

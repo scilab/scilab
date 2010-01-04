@@ -1,7 +1,7 @@
 \chapter{Nelder-Mead bibliography}
 
 In this section, we present a brief overview of selected 
-papers, sorted in chronological order, which deals with 
+papers, sorted in chronological order, which deal with 
 the Nelder-Mead algorithm
 
 \section{Spendley, Hext, Himsworth, 1962}
@@ -36,7 +36,7 @@ deviation of the function value on the simplex.
 
 The convergence of the algorithm is better than Spendley's et al. The 
 method is compared against Powell's free-derivative method (1964) with 
-comparable behaviour. The algorithm is "greedy" in the sense that the 
+comparable behavior. The algorithm is "greedy" in the sense that the 
 expansion point is kept if it improves the best function value in the 
 current simplex. Most Nelder-Mead variants which have been analyzed 
 after are keeping the expansion point only if it improves over the 
@@ -98,7 +98,7 @@ The initial simplex is computed axis-by-axis, given the initial guess
 and a vector of step lengths.
 A factorial test is used to check if the computed optimum point is a local minimum.
 
-\subsection{Parkinson and Hutchinson, 1972}
+\section{Parkinson and Hutchinson, 1972}
 
 In \cite{parkinson1972}, "An investigation into the efficiency of variants on the simplex method", 
 Parkinson and Hutchinson explored 
@@ -144,6 +144,131 @@ implemented by Richardson and Kuester produces an infinite loop.
 complex points, and every point on the line segment joining these two points
 all have functional values lower than the functional values at each of the
 remaining complex points.
+
+\section{Routh, Swartz, Denton, 1977}
+
+"Performance of the Super-Modified Simplex",
+M.W. Routh, P.A. Swartz, M.B. Denton,
+Analytical Chemistry,
+1977
+
+In this article \cite{Routh1977}, 
+Routh, Swartz and Denton present a variant
+of the Nelder-Mead algorithm, which is called
+the Modified Simplex Method (SMS) in their
+paper. The algorithm is modified in the following
+way. After determination of the worst response (W), 
+the responses at the centroid (C) and reflected (R)
+vertices are measured and a second-order polynomial
+curve is fitted to the responses at W, C and R.
+Furthermore, the curve is extrapolated beyond W 
+and R by a percentage of the W-R vector resulting
+in two types of curve shapes. In the concave down
+case, a maximum occurs within the interval.
+Assuming a maximization process, evaluation of the
+derivative of the curve reveals the location of the
+predicted optimum whose response is subsequently
+evaluated, the new vertex is located at that position,
+and the optimization process is continued.
+In the concave up case, a response maximum
+does not occur within the interval so the extended
+interval boundary producing the highest predicted
+response is chosen as the new vertex location,
+its response is determined, and the optimization
+is continued. If the response at the predicted
+extended interval boundary location does not
+prove to be greater than the response at R, the 
+vertex R may instead be retained as the new 
+vertex and the process continued.
+The slope at the extended interval boundary
+may additionally be evaluated dictating the 
+magnitude of the expansion coefficient, i.e.
+the greater the slope (indicating rapid approach
+to the optimum location), the smaller the required
+expansion coefficient and, conversely, the smaller
+the slope (indicating remoteness from the 
+optimum location), the larger the required expansion
+coefficient.
+
+Some additional safeguard procedure must be used
+in order to prevent the collapse of the simplex.
+
+\section{Van Der Wiel, 1980}
+
+"Improvement of the Super-Modified Simplex
+Optimization Procedure",
+P.F.A., Van Der Wiel
+Analytica Chimica Acta,
+1980
+
+In this article \cite{VanDerWiel1980}, Van Der Wiel
+tries to improve the SMS method by Routh et al..
+His modifications are based on a Gaussian fit,
+weighted reflection point and estimation of response
+at the reflection point. Van Der Wiel presents 
+a simplified pseudo-code for one algorithm
+The method is tested in 5 cases, where the cost
+function is depending on the exponential function.
+
+\section{Walters, Parker, Morgan and Deming, 1991}
+
+"Sequential Simplex Optimization for Quality and Productivity in Research, Development, and Manufacturing", 
+F. S. Walters, L. R. Parker, Jr., S. L. Morgan, and S. N. Deming, 1991
+
+In this book \cite{WaltersParkerMorganDeming1991}, Walters, Parker, Morgan and Deming
+give a broad view on the simplex methods in chemistry. 
+The Spendley et al. and Nelder-Mead algorithms are particularily deeply analyzed, 
+with many experiments analyzed in great detail.
+Template tables are given, so that an engineer can manually perform the optimization
+and make the necessary calculations.
+Practical advices are given, which allow to make a better use of the algorithms.
+
+In chapter 5, "Comments on Fixed-size and Variable-size Simplexes",
+comparing the path of the two algorithms allows to check that a real optimum
+has been found.
+When the authors analyze the graph produced by the response depending on the number of 
+iteration, the general behavior of the fixed-size algorithm is made of four steps.
+Gains in response are initially rapid, but the rate of return decreases as the 
+simplex probes to find the ridge and then moves along the shallower 
+ridge to find the optimum.
+The behavior from different starting locations is also analyzed.
+Varying the size of the initial simplex is also analyzed for the fixed-size 
+simplex algorithm. The many iterations which are produced when a tiny 
+initial simplex is used with the fixed-size simplex is emphasized.
+
+The chapter 6, "General Considerations", warns that the user may 
+setup an degenerate initial simplex, leading to a false convergence 
+of the algorithm. Various other initial simplices are analyzed.
+Modifications in the algorithm to take into account for bounds 
+contraints are presented.
+The behavior of the fixed-size and variable-size simplex algorithms 
+is analyzed when the simplex converges.
+The "k+1" rule, introduced by Spendley et al. to take into account 
+for noise in the cost function is presented.
+
+The chapter 7, "Additional Concerns and Topics" deals with advanced questions 
+regarding these algorithms. The variable size simplex algorithm is analyzed
+in the situation of a ridge. Partially oscillatory collapse of the 
+Nelder-Mead algorithm is presented. The same behavior is 
+presented in the case of a saddle point. This clearly shows that 
+practionners were aware of the convergence problem of this 
+algorithm well before Mc Kinnon presented a simple counter example (in 1998).
+The "Massive Contraction" step of Nelder and Mead is presented as a 
+solution for this oscillatory behavior. The authors present 
+a method, due to Ernst, which allows to keep the volume of the 
+simplex, instead of shrinking it. This method is based on a 
+translation of the simplex. This modification requires 
+$n+1$ function evaluations. A more efficient method, due to King,
+is based on reflection with respect to the next-to-worst 
+vertex. This modification was first suggested by Spendley et al.
+in their fixed-size simplex algorithm.
+
+In the same chapter, the authors present the behavior of the algorithms 
+in the case of multiple optima. They also present briefly other 
+types of simplex algorithms.
+
+A complete bibliography (from 1962 to 1990) on simplex-based optimization is given in 
+the end of the book.
 
 \section{Subrahmanyam, 1989}
 
@@ -197,7 +322,7 @@ in dimension 1, and various limited convergence results for dimension 2.
 "Convergence of the Nelder--Mead Simplex Method to a Nonstationary Point", 
 SIAM J. on Optimization, K. I. M. McKinnon, 1998
 
-In this article \cite{589109}, Mc Kinnon analyses the behavior of the 
+In this article \cite{589109}, Mc Kinnon analyzes the behavior of the 
 Nelder-Mead simplex method for a family of examples which cause the 
 method to converge to a nonstationnary point. All the examples use 
 continuous functions of two variables. The family of functions contains
@@ -235,9 +360,9 @@ accumulation point of the simplices is a critical point of f.
 
 The same ideas are presented in the book \cite{Kelley1999}.
 
-\subsection{Han, 2000}
+\section{Han, 2000}
 
-In his Phd thesis \cite{Han2000}, Lixing Han analyse the 
+In his Phd thesis \cite{Han2000}, Lixing Han analyzes the 
 properties of the Nelder-Mead algorithm.
 Han present two examples in which the Nelder-Mead 
 simplex method does not converge to a single point. 
@@ -260,7 +385,7 @@ of dimensionnality on the Nelder-Mead method.
 Given all the known failures and inefficiencies of the Nelder-Mead 
 method, a very interesting question is why it is so popular in practice.
 Han present numerical results of the Nelder-Mead method on the standard
-collection of MorÃ©-Garbow-Hillstrom with dimensions $n\leq 6$.
+collection of Mor\'e-Garbow-Hillstrom with dimensions $n\leq 6$.
 Han compare the Nelder-Mead method with a finite difference BFGS 
 method and a finite difference steepest descent method. The numerical
 results show that the Nelder-Mead method is much more efficient 
@@ -269,7 +394,7 @@ tested with dimensions $n\leq 6$. It is also often comparable with the
 finite difference BFGS method, which is believed to be the 
 best derivative-free method.
 Some of these results are reproduced in \cite{HanNeumann2006} by Han and Neumann, 
-"Effect of dimensionality on the Nelderâ€“Mead simplex method"
+"Effect of dimensionality on the Nelder-€“Mead simplex method"
 and in \cite{hanNeumann2003}, "On the roots of certain polynomials arising 
 from the analysis of the Nelder-Mead simplex method".
 
@@ -339,7 +464,7 @@ Johan Andersson, 2001
 This PhD thesis \cite{Andersson01multiobjectiveoptimization} gives a brief overview of the Complex method by Box in 
 section 5.1.
 
-\subsection{Peters, Bolte, Marschner, N\"{u}ssen and Laur, 2002}
+\section{Peters, Bolte, Marschner, N\"{u}ssen and Laur, 2002}
 
 In \cite{590075}, "Enhanced Optimization Algorithms for the Development of Microsystems", 
 the authors combine radial basis function interpolation methods 
@@ -358,7 +483,7 @@ for it belongs to the polyhedron strategies.
 The authors presents a test performed on a pratical application, 
 which leaded them to the following comment :
 "The best result achieved with the ComplInt strategy
-is not only around 10% better than the best result of
+is not only around 10\% better than the best result of
 the Complex strategy due to Box, the ComplInt also
 converges much faster than the Complex does: while
 the Complex strategy needs an average of 7506, the
@@ -395,5 +520,4 @@ Singer and Nelder
 
 This article is a complete review of the Nelder-Mead algorithm.
 Restarting the algorithm is adviced when a premature termination occurs.
-
 

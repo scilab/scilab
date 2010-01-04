@@ -37,17 +37,18 @@ int wcsicmp_others(const wchar_t* s1, const wchar_t* s2)
 #ifdef _MSC_VER
 char *wide_string_to_UTF8(wchar_t *_wide)
 {
-	DWORD size = 0;
 	char *buf = NULL;
+	DWORD size = 0;
+	DWORD dwFlags = 0;
 
 	if ((wchar_t *)NULL == _wide) return (char *)NULL;
-	size = WideCharToMultiByte(CP_UTF8, 0, _wide, -1, NULL, 0, NULL, 0);
+	size = WideCharToMultiByte(CP_UTF8, dwFlags, _wide, -1, NULL, 0, NULL, 0);
 	if (size == 0) return (char *)NULL;
 	size += 1;
 	buf = (char*)MALLOC(sizeof(char)*size);
 	if (buf)
 	{
-		WideCharToMultiByte(CP_UTF8, 0, _wide, -1, buf, size, NULL, 0);
+		WideCharToMultiByte(CP_UTF8, dwFlags, _wide, -1, buf, size, NULL, 0);
 		if (size <= 0)
 		{
 			FREE(buf);
@@ -62,12 +63,23 @@ wchar_t *to_wide_string(char *_UTFStr)
 	int nwide = 0;
 	wchar_t *_buf = NULL;
 
+	/* About MultiByteToWideChar : 
+	Starting with Windows Vista, 
+	the function does not drop illegal code points 
+	if the application does not set this flag. 
+
+	Windows XP: To prevent the security problem of the non-shortest-form
+	versions of UTF-8 characters, MultiByteToWideChar deletes these characters.
+	*/
+
+	DWORD dwFlags = 0;
+
 	if(_UTFStr == NULL) return NULL;
-	nwide = MultiByteToWideChar(CP_UTF8, 0, _UTFStr, -1, NULL, 0);
+	nwide = MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, NULL, 0);
 	if(nwide == 0) return NULL;
 	_buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
 	if(_buf == NULL) return NULL;
-	if(MultiByteToWideChar(CP_UTF8, 0, _UTFStr, -1, _buf, nwide) == 0)
+	if(MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
 	{
 		FREE(_buf);
 		_buf = NULL;
@@ -159,4 +171,71 @@ int wcstat(char* filename, struct stat *st)
 	return stat(filename, st);
 }
 #endif
+/*--------------------------------------------------------------------------*/
+static int ReadUTF8Character(const char* str, int *nBytes)
+{
+	const unsigned char* s = (const unsigned char*)(str);
+	unsigned char c = s[0];
+
+	if (c < 0x80)
+	{
+		*nBytes = 1;
+		return c;
+	}
+	else if (c < 0xC2)
+	{
+		return -1;
+	}
+	else if (c < 0xE0)
+	{
+		if (s[1] == 0 || (s[1] ^ 0x80) >= 0x40) 
+		{
+			return -1;
+		}
+		*nBytes = 2;
+		return ((s[0] & 0x1F) << 6) + (s[1] ^ 0x80);
+	}
+	else if (c < 0xF0)
+	{
+		if (s[1] == 0 || s[2] == 0 || (s[1] ^ 0x80) >= 0x40
+			|| (s[2] ^ 0x80) >= 0x40 || (c == 0xE0 && s[1] < 0xA0))
+		{
+			return -1;
+		}
+		*nBytes = 3;
+		return ((s[0] & 0xF) << 12) + ((s[1] ^ 0x80) << 6) + (s[2] ^ 0x80);
+	}
+	else if (c < 0xF5)
+	{
+		if (s[1] == 0 || s[2] == 0 || s[3] == 0 || (s[1] ^ 0x80) >= 0x40
+			|| (s[2] ^ 0x80) >= 0x40 || (s[3] ^ 0x80) >= 0x40
+			|| (c == 0xF0 && s[1] < 0x90) || (c == 0xF4 && s[1] > 0x8F))
+		{
+			return -1;
+		}
+		*nBytes = 4;
+		return ((s[0] & 0x07) << 18) + ((s[1] ^ 0x80) << 12) + ((s[2] ^ 0x80) << 6)
+			+ (s[3] ^ 0x80);
+	}
+	else
+	{
+		return -1;
+	}
+}
+/*--------------------------------------------------------------------------*/
+BOOL IsValidUTF8(const char*  pStText)
+{
+	const char* s =  pStText;
+	while (*s != 0)
+	{
+		int nBytes = 0;
+		if (ReadUTF8Character(s, &nBytes) < 0)
+		{
+			return FALSE;
+		}
+		s += nBytes;
+	}
+
+	return TRUE;
+}
 /*--------------------------------------------------------------------------*/

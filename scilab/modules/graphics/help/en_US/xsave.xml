@@ -48,13 +48,12 @@
     reloaded with <literal>xload</literal>.</para>
     <para>Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved.
     </para>
-    <para>For new graphics <literal>xsave(file_name,win_num)</literal> use preferabily
+    <para>For graphics <literal>xsave(file_name,win_num)</literal> use preferabily
     <literal>save(file_name,scf(win_num))</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-//new style
 t=0:0.01:10;
 subplot(211),plot2d(t,sin(t))
 subplot(212),plot2d(t,sin(3*t))

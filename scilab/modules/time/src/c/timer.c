@@ -65,8 +65,10 @@ double scilab_timer(void)
 	{
 		init_clock = 0;
 		previousTimerValue = now ;
+		// initialization forced here 0 - 0 > -0 or +0
+		etime = 0.0;
 	}
-	etime =  now - previousTimerValue;
+	else etime =  (double)(now - previousTimerValue);
 	previousTimerValue = now ;
 #else
 	struct rusage rbuff;
@@ -84,8 +86,10 @@ double scilab_timer(void)
 	{
 		init_clock = 0;
 		previousTimerValue = now ;
+		// initialization forced here 0 - 0 > -0 or +0
+		etime = 0.0;
 	}
-	etime =  now - previousTimerValue;
+	else etime =  (double)(now - previousTimerValue);
 	previousTimerValue = now ;
 #endif
 	return etime;

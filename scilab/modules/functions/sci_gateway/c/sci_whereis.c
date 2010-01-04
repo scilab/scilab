@@ -12,9 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "stack-c.h"
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -25,7 +23,9 @@ extern int C2F(whereismacro)();
 /*--------------------------------------------------------------------------*/
 int sci_whereis(char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
+	int iType1 = 0;
 
 	/* Check the number of input argument */
 	CheckRhs(1,1); 
@@ -33,23 +33,47 @@ int sci_whereis(char *fname,unsigned long fname_len)
 	/* Check the number of output argument */
 	CheckLhs(1,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-
-	if ( (getVarType(piAddressVarOne) == sci_u_function) || (getVarType(piAddressVarOne) == sci_c_function) )
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+
+	if ( (iType1 == sci_u_function) || (iType1 == sci_c_function) )
+	{
+		/* bug 5507 */
+		/* getVarDimension does not (yet) manage theses scilab types. */
+		
+		/*
 		int m = 0, n = 0;
 
-		getVarDimension(piAddressVarOne, &m, &n);
+		sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		
 		if ( (m != n) && (n != 1) ) 
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A function-name expected.\n"),fname,1);
 			return 0;
 		}
+		*/
 
 		/* to rewrite with new API when it will be possible */
 		C2F(whereismacro)();
 	}
-	else if (getVarType(piAddressVarOne) == sci_strings)
+	else if (iType1 == sci_strings)
 	{
 		char *pStVarOne = NULL;
 		int lenStVarOne = 0;
@@ -58,7 +82,12 @@ int sci_whereis(char *fname,unsigned long fname_len)
 		char **librariesResult = NULL;
 		int librariesResultSize = 0;
 
-		getMatrixOfString(piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &lenStVarOne, &pStVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 		if ( (m != n) && (n != 1) ) 
 		{
@@ -73,21 +102,36 @@ int sci_whereis(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		getMatrixOfString(piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 		librariesResult = searchmacroinlibraries(pStVarOne, &librariesResultSize);
 
 		if ( (librariesResultSize == 0) || (librariesResult == NULL) )
 		{
 			// return []
-			createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
 		}
 		else
 		{
 			int m_out = librariesResultSize;
 			int n_out = 1;
 
-			createMatrixOfString(Rhs + 1, m_out, n_out, librariesResult);
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, librariesResult);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
 		}
 
 		LhsVar(1) = Rhs + 1;

@@ -22,10 +22,10 @@
   </info>
 
   <refnamediv>
-    <refname>cwritebmat</refname>
+    <refname>cwritebmat (obsolete)</refname>
 
     <refpurpose>Write a single boolean or a matrix of boolean into Scilab
-    memory using call_scilab</refpurpose>
+    memory using call_scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -123,7 +123,7 @@ SendScilabJob("disp(B);"); /* Display B */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>, <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="creadbmat">creadbmat</link>, <link
       linkend="BooleanManagement_callscilab">Boolean

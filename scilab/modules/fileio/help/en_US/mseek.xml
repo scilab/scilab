@@ -29,7 +29,7 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>:a positive scalar: The offset from origin in number of bytes.</para>
+          <para>a positive scalar: The offset from origin in number of bytes.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -249,8 +249,8 @@ SYS1=syslin(1,A,B,C,D);
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -113,7 +113,7 @@ routh_t(P2)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="root">root</link></member>
+      <member><link linkend="roots">roots</link></member>
 
       <member><link linkend="kpure">kpure</link></member>
     </simplelist>

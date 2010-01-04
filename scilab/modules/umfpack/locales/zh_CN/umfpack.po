@@ -14,42 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s：输入参数的数目错误。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为系数矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-msgid "Choose a sparse matrix"
-msgstr "请选择一个系数矩阵"
-
-msgid "   then click on OK   "
-msgstr "   然后点击OK   "
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少%d个。\n"
-
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s：文件包含一个rhs但是它没有被读！"
-
-#, c-format
-msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-msgstr "%s：目前没有读unassembled（elemental）稀疏矩阵。"
-
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr "%s：此矩阵没有值（只有非零模式）：请输入一些1。"
 
 msgid ""
 "\n"
@@ -58,21 +24,6 @@ msgstr ""
 "\n"
 " 使用iterative power方法逼近(lM,vM) \n"
 
-msgid " ----------------------------------------------------- \n"
-msgstr " ----------------------------------------------------- \n"
-
-#, c-format
-msgid " iteration %3d : lM = %e  \n"
-msgstr " 迭代 %3d：IM = %e  \n"
-
-#, c-format
-msgid " Warning : for lM convergence at rtol = %e \n"
-msgstr " 警告：对IM在 rtol = %e 处收敛 \n"
-
-#, c-format
-msgid "           don''t reached after %d iterations (got only %e) \n"
-msgstr "           经过 %d 次迭代后没有达到（只得到 %e） \n"
-
 msgid ""
 "\n"
 " approximate (lm,vm) with the inverse iterative power method \n"
@@ -80,25 +31,124 @@ msgstr ""
 "\n"
 " 使用inverse iterative power方法逼近(lm,vm) \n"
 
+msgid "                                                     "
+msgstr "                                                     "
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        在列%d中存在非正基准点（pivot）\n"
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               点击以继续                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           经过 %d 次迭代后没有达到（只得到 %e） \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           然后重新输入 scisptdemo()                "
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    CC^T 因式分解：矩阵式非正定的。\n"
+
+msgid "   then click on OK   "
+msgstr "   然后点击OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enought "
+msgstr " 目前的栈大小无法满足本demo的需求 "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " 警告：对IM在 rtol = %e 处收敛 \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " 警告：对lm在 rtol =%e 处收敛 \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " 请在Scilab提示窗口中输入下面的内容：          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " 迭代 %3d：IM = %e  \n"
 
 #, c-format
 msgid " iteration %3d : lm = %e  \n"
 msgstr " 迭代 %3d：lm = %e  \n"
 
 #, c-format
-msgid " Warning : for lm convergence at rtol = %e \n"
-msgstr " 警告：对lm在 rtol =%e 处收敛 \n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s：发生一个错误：%s。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s：发生了一个错误：%s：%s\n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s：第二个参数的类型和（或）大小和（或）值不正确。\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s：内存不足（n=%d，nnz=%d）。\n"
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s：此矩阵没有值（只有非零模式）：请输入一些1。"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s：文件包含一个rhs但是它没有被读！"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s：矩阵和LU系数不具有同样的维数！\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为稀疏方阵。\n"
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s：输入参数#%d的大小错误：%s。\n"
 
 #, c-format
 msgid ""
@@ -106,42 +156,10 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为稀疏方阵。\n"
 
 #, c-format
-msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s：矩阵和LU系数不具有同样的维数！\n"
-
-#, c-format
-msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s：第二个参数的类型和（或）大小和（或）值不正确。\n"
-
-msgid " For this demo the current stack size is not enought "
-msgstr " 目前的栈大小无法满足本demo的需求 "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " 请在Scilab提示窗口中输入下面的内容：          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           然后重新输入 scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               点击以继续                    "
-
-msgid "how to use this stuff"
-msgstr "如何使用此内容"
-
-msgid "display a speed comparison test"
-msgstr "显示一个速度比较测试"
-
-msgid "small tests for condestsp"
-msgstr "condestsp的小测试"
-
-msgid "Click to choose a demo"
-msgstr "点击来选择一个demo"
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -149,25 +167,22 @@ msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors.\n"
-msgstr "%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为稀疏方阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为系数矩阵。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symetric positive definite"
-msgstr "%s：输入参数#%d的值错误：必须是对称正定。"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s：出现错误：%s\n"
-
-msgid "factorization"
-msgstr "因式分解"
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
 
 #, c-format
 msgid ""
@@ -177,8 +192,8 @@ msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解�
 
 #, c-format
 msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
+"%s: Wrong value for input argument #%d: Must be symetric positive definite"
+msgstr "%s：输入参数#%d的值错误：必须是对称正定。"
 
 #, c-format
 msgid ""
@@ -187,70 +202,57 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：不是一个正确的Cholesky因子参考（reference）"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr "%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
-msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s：目前没有读unassembled（elemental）稀疏矩阵。"
 
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s：内存不足。\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
-"LU factors.\n"
-msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
+msgid "Choose a sparse matrix"
+msgstr "请选择一个系数矩阵"
 
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s：发生了一个错误：%s：%s\n"
+msgid "Click to choose a demo"
+msgstr "点击来选择一个demo"
 
-msgid "symbolic factorization"
-msgstr "对称因式分解"
-
-msgid "Warning"
-msgstr "警告"
-
-msgid "The (square) matrix appears to be singular."
-msgstr "矩阵（方阵）看上去可能是奇异的。"
-
-msgid "no place to store the LU pointer in ListNumeric."
-msgstr "在ListNumeric中没有空间来存储LU pointer"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s：发生一个错误：%s。\n"
-
-msgid "This is not a factorisation of a square matrix"
-msgstr "这不是一个方阵的因式分解"
-
-msgid "This is a factorisation of a singular matrix"
-msgstr "这是一个奇异阵的因式分解"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s：输入参数#%d的大小错误：%s。\n"
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "GENMMD排序只对对称矩阵有效。\n"
 
 msgid "Matrix is not compatible with the given LU factors"
 msgstr "矩阵跟给定的LU系数不兼容。"
 
-msgid "numeric factorization"
-msgstr "数字因式分解"
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Scilab UMFPACK 模块没有安装。\n"
 
-msgid "singular matrix"
-msgstr "奇异矩阵"
+msgid "The (square) matrix appears to be singular."
+msgstr "矩阵（方阵）看上去可能是奇异的。"
 
-msgid "not enough memory"
-msgstr "内存不足"
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "这个矩阵的低部分必须被描绘。\n"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "这是一个奇异阵的因式分解"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "这不是一个方阵的因式分解"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "display a speed comparison test"
+msgstr "显示一个速度比较测试"
+
+msgid "factorization"
+msgstr "因式分解"
+
+msgid "how to use this stuff"
+msgstr "如何使用此内容"
 
 msgid "internal error"
 msgstr "内部错误"
@@ -258,22 +260,20 @@ msgstr "内部错误"
 msgid "invalid matrix"
 msgstr "不正确的矩阵"
 
-msgid "GENMMD ordering only works on symmetric matrices.\n"
-msgstr "GENMMD排序只对对称矩阵有效。\n"
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "在ListNumeric中没有空间来存储LU pointer"
 
-msgid "The lower part of the matrix must be represented.\n"
-msgstr "这个矩阵的低部分必须被描绘。\n"
+msgid "not enough memory"
+msgstr "内存不足"
 
-#, c-format
-msgid "%s: No more memory (n=%d, nnz=%d).\n"
-msgstr "%s：内存不足（n=%d，nnz=%d）。\n"
+msgid "numeric factorization"
+msgstr "数字因式分解"
 
-msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr "    CC^T 因式分解：矩阵式非正定的。\n"
+msgid "singular matrix"
+msgstr "奇异矩阵"
 
-#, c-format
-msgid "                        nonpositive pivot in column %d\n"
-msgstr "                        在列%d中存在非正基准点（pivot）\n"
+msgid "small tests for condestsp"
+msgstr "condestsp的小测试"
 
-msgid "Scilab UMFPACK module not installed.\n"
-msgstr "Scilab UMFPACK 模块没有安装。\n"
+msgid "symbolic factorization"
+msgstr "对称因式分解"

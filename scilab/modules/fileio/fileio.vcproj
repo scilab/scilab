@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -381,6 +383,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\basename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\cluni0.c"
 				>
 			</File>
@@ -450,6 +456,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getfiletype.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getFullFilename.c"
 				>
 			</File>
 			<File
@@ -533,6 +543,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\pathconvert.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\readline.c"
 				>
 			</File>
@@ -542,6 +556,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\scanf_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_basename.c"
 				>
 			</File>
 			<File
@@ -693,6 +711,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_pathconvert.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
 				>
 			</File>
@@ -728,6 +750,10 @@
 			>
 			<File
 				RelativePath=".\includes\addfile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\basename.h"
 				>
 			</File>
 			<File
@@ -796,6 +822,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\getfiletype.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getFullFilename.h"
 				>
 			</File>
 			<File
@@ -872,6 +902,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\mtell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\pathconvert.h"
 				>
 			</File>
 			<File

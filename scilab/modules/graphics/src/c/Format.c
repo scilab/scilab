@@ -4,6 +4,7 @@
  * Copyright (C) 2001 - INRIA - François Delebecque
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,6 +29,7 @@
  *--------------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <string.h>
 #include "math_graphics.h"
 #include "Format.h"
 #include "MALLOC.h"
@@ -37,6 +39,9 @@
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include <machine.h>
+
+#define MAX(A,B) ((A<B)?B:A)
 
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
@@ -767,8 +772,8 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
   // Correction of bug 4724 and 4432
   if ( SAFE_EQUAL2( *xmaxv, *xminv, 1e-5 ) )
   {
-    xmin = *xminv - 1e-6*(fabs(*xmaxv) + fabs(*xminv));
-    xmax = *xmaxv + 1e-6*(fabs(*xmaxv) + fabs(*xminv));
+    xmin = *xminv - 1e-6*MAX(MAX(fabs(*xmaxv),fabs(*xminv)),1);
+    xmax = *xmaxv + 1e-6*MAX(MAX(fabs(*xmaxv),fabs(*xminv)),1);
     /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
@@ -981,6 +986,12 @@ int GradLog( double   _min   ,
   log_max =  (int) ceil(_max);
   log_min =  (int) floor(_min);
 
+  /* If _min == _max, enlarge the interval*/
+  if(log_max == log_min)
+  {
+    log_max++;
+    log_min--;
+  }
 
   size = log_max - log_min +1;
 

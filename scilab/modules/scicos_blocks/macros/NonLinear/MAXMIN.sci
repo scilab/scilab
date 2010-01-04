@@ -43,7 +43,7 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
     model=arg1.model;
     while %t do
       [ok,mm,nin,zcr,exprs]=..
-	  getvalue('Set Max/Min block parameters',..
+	  scicos_getvalue('Set Max/Min block parameters',..
 		   ['Min (1) or Max (2) ';'Number of input vectors (1 or 2)';'zero-crossing (1: yes, 0;no)'],..
 		    list('vec',1,'vec',1,'vec',1),exprs)
       if ~ok then break,end

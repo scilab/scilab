@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Calixte Denizet
  * desc : TextRender to use with Scilab. Provides text rendering without aliasing
  * 
  * This file must be used under the terms of the CeCILL.
@@ -21,6 +22,7 @@ import javax.media.opengl.GL;
 import java.lang.reflect.Field;
 import com.sun.opengl.util.j2d.TextRenderer;
 
+
 /**
  * Scilab adapted JOGL TextRenderer. Provides text rendering without aliasing.
  * @author Jean-Baptiste Silvy
@@ -36,6 +38,9 @@ public class SciTextRenderer {
 	
 	/** Actual object used for text rendering */
 	private TextRenderer renderer;
+    
+	/**  Object for MathML/LaTex rendering */
+	private SpecialTextRenderer speRenderer;
 	
 	/** font size of the renderer object */
 	private float scaleFactor;
@@ -50,6 +55,8 @@ public class SciTextRenderer {
 	public SciTextRenderer(TextRenderer renderer, float fontSize) {
 		this.fontSize = fontSize;
 		this.renderer = renderer;
+		this.speRenderer = new SpecialTextRenderer(renderer, fontSize);
+
 		setUseFractionalMetrics(true);
 		updateScaleFactor();
 	}
@@ -61,7 +68,10 @@ public class SciTextRenderer {
 		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
 	}
 	
-	
+	public SpecialTextRenderer getSpeRenderer(){
+		return speRenderer;
+	}
+
 	
 	/**
 	 * Display a string at the desired 3D location.
@@ -74,6 +84,12 @@ public class SciTextRenderer {
 	 * @param angle angle of the text to draw
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
+
+	    if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) { /* MathML / LaTeX management */
+		    speRenderer.draw3D(str, (float) x, (float) y, (float) z, useFractionalMetrics ? scaleFactor : 1.0f);
+		    return;
+		}
+
 		// with OpenGL strings, angle is already set
 		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
@@ -105,7 +121,7 @@ public class SciTextRenderer {
 	 */
 	public void begin3DRendering(GL gl) {
 		
-		renderer.begin3DRendering();
+	    renderer.begin3DRendering();
 		
 		// HACK HACK HACK for Intel drivers
 		// When text is rendered using normal texture mapping (no mipmap)
@@ -121,7 +137,7 @@ public class SciTextRenderer {
 	 * @param gl OpenGL pipeline
 	 */
 	public void end3DRendering(GL gl) {
-		renderer.end3DRendering();
+	    renderer.end3DRendering();
 	}
 	
 	/**
@@ -150,6 +166,10 @@ public class SciTextRenderer {
 	 */
 	public void setFontSize(float newFontSize) {
 		this.fontSize = newFontSize;
+		
+		/* Set also for the MathML / LaTeX rendering */
+		speRenderer.setFontSize(newFontSize);
+
 		updateScaleFactor();
 	}
 	
@@ -160,6 +180,9 @@ public class SciTextRenderer {
 	 * @param blue blue channel
 	 */
 	public void setColor(double red, double green, double blue) {
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
+
 		renderer.setColor((float) red, (float) green, (float) blue, 1.0f);
 	}
 	
@@ -168,6 +191,9 @@ public class SciTextRenderer {
 	 * @param color array of size 3 containing the channels
 	 */
 	public void setColor(double[] color) {
+		/* MathML / LaTeX rendering's color property is required to be set to black */
+		speRenderer.setColor(0.0f, 0.0f, 0.0f, 1.0f);
+
 		renderer.setColor((float) color[0], (float) color[1], (float) color[2], 1.0f);
 	}
 	
@@ -177,12 +203,22 @@ public class SciTextRenderer {
 	 * @return rectangle with the position, width and height.
 	 */
 	public Rectangle2D getBounds(String str) {
-		Rectangle2D res = renderer.getBounds(str);
+		Rectangle2D res; 
+		float tmpFactor;
+		
+		/* Set also for the MathML / LaTeX rendering */
+		if (str.length() > 0 && (str.charAt(0) == '<' || str.charAt(0) == '$')) {
+		    res = speRenderer.getBounds(str);
+		    tmpFactor = 1.0f;
+		} else {
+		    res = renderer.getBounds(str);
+		    tmpFactor = scaleFactor;
+		}
 		
 		// apply scale factor to the bounds
 		res.setRect(res.getX(), res.getY(),
-					res.getWidth() * scaleFactor,
-					res.getHeight() * scaleFactor);
+					res.getWidth() * tmpFactor,
+					res.getHeight() * tmpFactor);
 		return res;
 	}
 	
@@ -234,7 +270,7 @@ public class SciTextRenderer {
 		}
 		return areMipmapsAvailable;
 	}
-	
+
 	/**
 	 * HACK function for buggy drivers on Intel graphics.
 	 * Always try to enable mipmaps since they seems less buggy than normal mode

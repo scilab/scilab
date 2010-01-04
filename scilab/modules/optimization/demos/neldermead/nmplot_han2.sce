@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+mprintf("Illustrates the 2nd counter example given by Han et al.\n");
 
 //
 // han2 --
@@ -18,7 +19,7 @@
 //   2000
 //   Ph.D., The University of Connecticut
 //
-function f = han2 ( x )
+function [ f , index ] = han2 ( x , index )
   if abs(x(2)) <= 1.0 then
     rho = 0.0
   elseif x(2) > 1.0 then
@@ -31,11 +32,13 @@ endfunction
 
 
 coords0 = [
-0.0 0.0 1.0
-0.5 -0.5 0.0
+    0.    0.5  
+    0.   -0.5  
+    1.    0.   
 ]
 
 
+mprintf("Creating nmplot object...\n");
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",han2);
@@ -46,28 +49,35 @@ nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","han2-history-simplex.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
 // Plot
 //
+mprintf("Plotting contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.5 , ymax = 1.5 , nx = 50 , ny = 50 );
-f = scf();
+f = scf(100001);
 xset("fpf"," ")
-contour ( xdata , ydata , zdata , 40 )
+drawlater();
+contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
 nmplot_simplexhistory ( nm );
-xs2png(0,"han2-history-simplex.png");
-deletefile("han2-history-simplex.txt");
+drawnow();
+deletefile(TMPDIR + "\history.simplex.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_han2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

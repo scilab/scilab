@@ -11,7 +11,7 @@ thispath = get_absolute_file_path("wheel2.dem.sce");
 my_handle = scf(100001);
 clf(my_handle,"reset");
 
-exec(thispath+"show.sci");
+exec(thispath+"wheel_show.sci");
 
 if ~(haveacompiler()) then
 	messagebox(["Scilab doesn''t find a C compiler","This demo is disabled"],"modal");
@@ -44,7 +44,7 @@ x0=[0;             // theta
 x=ode(x0,tmin,times,"wheel");
 
 clf(my_handle,"reset");
-show(x);
+wheel_show(x);
 
 ystr = [ 'phi';'theta';'psi';'Dpsi';'Dtheta';'Dpsi';'x';'y'];
 flag = 2;
@@ -55,7 +55,7 @@ while flag==2, [n1,n2]=size(x);
 		x0 = evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
 		x  = ode(x0,tmin,times,'wheel');
 		clf(my_handle,"reset");
-		show(x);
+		wheel_show(x);
 	end
 end
 
@@ -64,4 +64,4 @@ end
 // =========================================================================
 
 clear wheelg wheelgf tmin tmax nn times x0 x ystr flag;
-clear show wheeld test_wheel wheel_build_and_load get_wheel_rti;
+clear wheel_show wheeld test_wheel wheel_build_and_load get_wheel_rti;

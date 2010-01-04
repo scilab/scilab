@@ -89,6 +89,7 @@ int joglGL_BLEND_SRC(void);
 int joglGL_BLEND_DST(void);
 int joglGL_3D_COLOR(void);
 int joglGL_FLOAT(void);
+int joglGL_UNSIGNED_BYTE(void);
 int joglGL_POINTS(void);
 int joglGL_POLYGON_OFFSET_FACTOR(void);
 int joglGL_POLYGON_OFFSET_UNITS(void);

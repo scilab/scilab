@@ -16,13 +16,13 @@ end
 
 global LineCount
 
-x_mess=funptr('x_message');clearfun('x_message')
+//x_mess=funptr('x_message');clearfun('x_message')
 x_dia=funptr('x_dialog');clearfun('x_dialog')
 x_mdia=funptr('x_mdialog');clearfun('x_mdialog')
 c_cho=funptr('x_choose');clearfun('x_choose')
 xcli=funptr('xclick');clearfun('xclick')
 xgetm=funptr('xgetmouse');clearfun('xgetmouse')
-xgetf=funptr('xgetfile');clearfun('xgetfile')
+//xgetf=funptr('xgetfile');clearfun('xgetfile')
 
 
 //reload the functions using the redefined primitive functions
@@ -170,13 +170,13 @@ end
 
 
 //retore the primitives
-newfun('x_message',x_mess)
+//newfun('x_message',x_mess)
 newfun('x_dialog',x_dia)
 newfun('x_mdialog',x_mdia)
 newfun('x_choose',c_cho)
 newfun('xclick',xcli)
 newfun('xgetmouse',xgetm)
-newfun('xgetfile',xgetf)
+//newfun('xgetfile',xgetf)
 if ierr<>0 then 
  write(%io(2),'Error had occurred at line '+string(LineCount)+' of file '+fil)
 end

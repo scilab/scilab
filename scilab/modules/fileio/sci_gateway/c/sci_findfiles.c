@@ -37,7 +37,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 	char *filespec = NULL;
 	char **FilesList = NULL;
 	int sizeListReturned = 0;
-	BOOL needtofreefilespec = FALSE;
 
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,2) ;
@@ -50,7 +49,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			int ierr = 0;
 			int lpath = 0;
 
-			scigetcwd(&path,&lpath,&ierr);
+			path = scigetcwd(&ierr);
 
 			if (ierr)
 			{
@@ -60,7 +59,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			else
 			{
 				filespec = strdup(DEFAULT_FILESPEC);
-				needtofreefilespec = TRUE;
 			}
 		}
 		break;
@@ -70,7 +68,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = cstk(l1);
+				path = strdup(cstk(l1));
 				filespec = strdup(DEFAULT_FILESPEC);
 			}
 			else
@@ -87,11 +85,10 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = cstk(l1);
+				path = strdup(cstk(l1));
 
 				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-				filespec = cstk(l1);
-				needtofreefilespec = FALSE;
+				filespec = strdup(cstk(l1));
 			}
 			else
 			{
@@ -103,9 +100,10 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 	}
 
 	pathextented = expandPathVariable(path);
-	FilesList = findfiles(pathextented, filespec, &sizeListReturned);
+	if (path) {FREE(path); path = NULL;}
+	FilesList = findfiles(pathextented, filespec, &sizeListReturned, FALSE);
 	if (pathextented) {FREE(pathextented); pathextented = NULL;}
-	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
+	if (filespec) {FREE(filespec); filespec = NULL;}
 
 	if (FilesList)
 	{

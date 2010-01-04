@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add an URL to the list of repositories, and returns
 
 function atomsRepositorySetOfl(url)

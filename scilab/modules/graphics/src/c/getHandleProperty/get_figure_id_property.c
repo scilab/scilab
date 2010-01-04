@@ -31,7 +31,7 @@ int get_figure_id_property( sciPointObj * pobj )
 {
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s undefined for this object.\n"), "figure_id") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return -1;
   }
 

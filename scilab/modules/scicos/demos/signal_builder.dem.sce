@@ -6,5 +6,8 @@
 //
 
 thispath = get_absolute_file_path("signal_builder.dem.sce");
-scicos_demostration(thispath+"/Signal_Builder.cosf");
+// scicos_demostration(thispath+"/Signal_Builder.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/Signal_Builder.cosf");
 clear thispath;

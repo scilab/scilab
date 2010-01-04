@@ -3,4 +3,5 @@ LIBRARY    scirenderer.dll
 
 EXPORTS
 ; from renderer
-
+endFigureDataReading
+startFigureDataReading

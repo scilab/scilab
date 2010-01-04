@@ -1,0 +1,320 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+function [ y , index ] = rosenbrock ( x , index )
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+//
+// Test basic use without parameters
+//
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] );
+assert_close ( x , [1.0   1.0], 1e-4 );
+assert_close ( fval , 0.0 , 1e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.algorithm , "Nelder-Mead simplex direct search" );
+assert_equal ( output.funcCount , 159 );
+assert_equal ( output.message(1) , "Optimization terminated:");
+if MSDOS then
+assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
+assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
+else
+assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04");
+assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04");
+end
+// 
+// fminsearch with incorrect number of input arguments
+//
+cmd = "fminsearch ( )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "fminsearch: Unexpected number of input arguments : 0 provided while 2 or 3 are expected.";
+assert_equal ( computed , expected );
+//
+// Check that tolerance on X is correctly taken into account
+//
+opt = optimset ( "TolX" , 1.e-2 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-2 );
+assert_close ( fval , 0.0 , 1e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 70 );
+assert_equal ( output.funcCount , 130 );
+//
+// Check that tolerance on F is correctly taken into account
+//
+opt = optimset ( "TolFun" , 1.e-10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1e-2 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 90 );
+assert_equal ( output.funcCount , 168 );
+//
+// Check that maximum number of iterations is correctly taken into account
+//
+opt = optimset ( "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+fminsearch: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
+         Current function value: 4.1355598
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that maximum number of function evaluations is correctly taken into account
+//
+opt = optimset ( "MaxFunEvals" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+fminsearch: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
+         Current function value: 4.3813601
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 5 );
+assert_equal ( output.funcCount , 11 );
+//
+// Check that Display is correctly used in mode "final"
+//
+opt = optimset ( "Display" , "final" );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+Optimization terminated:
+ the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04
+ and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "iter"
+//
+opt = optimset ( "Display" , "iter" );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+ Iteration   Func-count     min f(x)         Procedure
+     0            3             24.2                             
+     1            3            20.05         initial simplex     
+     2            5         5.161796         expand              
+     3            7         4.497796         reflect             
+     4            9         4.497796         contract outside    
+     5           11        4.3813601         contract inside     
+     6           13        4.2452728         contract inside     
+     7           15        4.2176247         reflect             
+     8           17        4.2112906         contract inside     
+     9           19        4.1355598         expand              
+    10           21        4.1355598         contract inside     
+    11           23        4.0127268         expand              
+    12           25        3.9373812         expand              
+    13           27         3.602606         expand              
+    14           28         3.602606         reflect             
+    15           30        3.4662211         reflect             
+    16           32        3.2160547         expand              
+    17           34        3.1649126         reflect             
+    18           36        2.7068692         expand              
+    19           37        2.7068692         reflect             
+    20           39        2.0021824         expand              
+    21           41        2.0021824         contract inside     
+    22           43        2.0021824         contract inside     
+    23           45        1.8154337         expand              
+    24           47        1.7348144         contract outside    
+    25           49        1.3169723         expand              
+    26           50        1.3169723         reflect             
+    27           51        1.3169723         reflect             
+    28           53        1.1595038         reflect             
+    29           55        1.0767387         contract inside     
+    30           57        0.8834921         reflect             
+    31           59        0.8834921         contract inside     
+    32           61        0.6691654         expand              
+    33           63        0.6691654         contract inside     
+    34           64        0.6691654         reflect             
+    35           66        0.5367289         reflect             
+    36           68        0.5367289         contract inside     
+    37           70        0.4232940         expand              
+    38           72        0.4232940         contract outside    
+    39           74        0.3985272         reflect             
+    40           76        0.3144704         expand              
+    41           77        0.3144704         reflect             
+    42           79        0.1903167         expand              
+    43           81        0.1903167         contract inside     
+    44           82        0.1903167         reflect             
+    45           84        0.1369602         reflect             
+    46           86        0.1369602         contract outside    
+    47           88        0.1131281         contract outside    
+    48           90        0.1105304         contract inside     
+    49           92        0.1023402         reflect             
+    50           94        0.1011837         contract inside     
+    51           96        0.0794969         expand              
+    52           97        0.0794969         reflect             
+    53           98        0.0794969         reflect             
+    54          100        0.0569294         expand              
+    55          102        0.0569294         contract inside     
+    56          104        0.0344855         expand              
+    57          106        0.0179534         expand              
+    58          108        0.0169469         contract outside    
+    59          110        0.0040146         reflect             
+    60          112        0.0040146         contract inside     
+    61          113        0.0040146         reflect             
+    62          115        0.0003700         reflect             
+    63          117        0.0003700         contract inside     
+    64          118        0.0003700         reflect             
+    65          120        0.0003700         contract inside     
+    66          122        0.0000590         contract outside    
+    67          124        0.0000337         contract inside     
+    68          126        0.0000337         contract outside    
+    69          128        0.0000189         contract outside    
+    70          130        0.0000085         contract inside     
+    71          132        0.0000029         contract inside     
+    72          133        0.0000029         reflect             
+    73          135        0.0000007         contract inside     
+    74          137        0.0000007         contract inside     
+    75          139        0.0000006         contract inside     
+    76          141        0.0000002         contract outside    
+    77          143        0.0000001         contract inside     
+    78          145        5.235D-08         contract inside     
+    79          147        5.035D-08         contract inside     
+    80          149        2.004D-08         contract inside     
+    81          151        1.123D-09         contract inside     
+    82          153        1.123D-09         contract outside    
+    83          155        1.123D-09         contract inside     
+    84          157        1.108D-09         contract outside    
+    85          159        8.178D-10         contract inside     
+
+Optimization terminated:
+ the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04
+ and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "off" (no message at all)
+//
+opt = optimset ( "Display" , "off" );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "notify" (display only problem messages)
+//
+opt = optimset ( "Display" , "notify" );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e-4 );
+assert_close ( fval , 0.0 , 1.e-4 );
+assert_equal ( exitflag , 1 );
+assert_equal ( output.iterations , 85 );
+assert_equal ( output.funcCount , 159 );
+//
+// Check that Display is correctly used in mode "off" (no message at all), when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "off" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "notify" (display only problem messages), when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "notify" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+fminsearch: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
+         Current function value: 4.1355598
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "iter", when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "iter" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+ Iteration   Func-count     min f(x)         Procedure
+     0            3             24.2                             
+     1            3            20.05         initial simplex     
+     2            5         5.161796         expand              
+     3            7         4.497796         reflect             
+     4            9         4.497796         contract outside    
+     5           11        4.3813601         contract inside     
+     6           13        4.2452728         contract inside     
+     7           15        4.2176247         reflect             
+     8           17        4.2112906         contract inside     
+     9           19        4.1355598         expand              
+    10           21        4.1355598         contract inside     
+
+fminsearch: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
+         Current function value: 4.1355598
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Check that Display is correctly used in mode "final", when there is a maximum number of iterations reached
+//
+opt = optimset ( "Display" , "final" , "MaxIter" , 10 );
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+fminsearch: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
+         Current function value: 4.1355598
+assert_close ( x , [1.0 1.0], 1.e1 );
+assert_close ( fval , 0.0 , 1e1 );
+assert_equal ( exitflag , 0 );
+assert_equal ( output.iterations , 10 );
+assert_equal ( output.funcCount , 21 );
+//
+// Test basic use with column x0
+//
+[x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1].' );
+assert_close ( x , [1.0   1.0], 1e-4 );

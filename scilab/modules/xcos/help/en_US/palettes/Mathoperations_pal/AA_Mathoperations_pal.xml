@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Mathoperations_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Mathoperations_pal</refname>
+
+    <refpurpose>Math operations palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/MathOperations_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Mathoperations_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Mathoperations_pal">
+    <title>Description</title>
+
+    <para>The Math operations palette contains blocks that model general
+    mathematical functions.</para>
+  </refsection>
+
+  <refsection id="Blocks_Mathoperations_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ABS_VALUE">ABS_VALUE — Absolute value</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f — Sum</link>
+        </para>
+      </listitem>
+
+      
+      <listitem>
+        <para>
+          <link linkend="COSBLK_f">COSBLK_f — Cosinus Block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXPBLK_m">EXPBLK_m — Exponential</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f — Gain</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INVBLK">INVBLK — Inverse</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="LOGBLK_f">LOGBLK_f — Common logarithm</link>
+        </para>
+      </listitem>
+
+      
+      <listitem>
+        <para>
+          <link linkend="MATMAGPHI">MATMAGPHI — Complex to Magnitude and Angle
+          Conversion</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATZREIM">MATZREIM — Complex decomposition</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+           <link linkend="MAX_f">MAX_f — MAX</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+           <link linkend="MAXMIN">MAXMIN — Max and Min</link>
+        </para>
+       </listitem>
+          
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f — MIN</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="POWBLK_f">POWBLK_f — Array power</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PROD_f">PROD_f — Multiplication</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT — Product</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SIGNUM">SIGNUM — Signum</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f — Sinus block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SQRT">SQRT — Square root</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUM_f">SUM_f — Addition</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION — Summation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f — Tangent block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TrigFun">TrigFun — Trigonometric function</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

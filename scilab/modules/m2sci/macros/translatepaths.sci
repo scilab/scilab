@@ -138,7 +138,7 @@ for i=1:size(funpath,1)
     end
     
     tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
-    ierr=execstr("getf(tmp_sci_file)","errcatch");errclear();
+    ierr=execstr("exec(tmp_sci_file)","errcatch");errclear();
     if ierr==0 & strindex(mpath,TMPDIR)==[] then
       txt=[]
       txt=mgetl(scipath)

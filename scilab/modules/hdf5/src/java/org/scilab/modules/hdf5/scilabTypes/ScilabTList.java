@@ -14,7 +14,7 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 import java.util.ArrayList;
 
-public class ScilabTList extends ArrayList {
+public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 
     public ScilabTList() {
 	super();
@@ -26,4 +26,40 @@ public class ScilabTList extends ArrayList {
 	typesData[0] = types;
 	add(new ScilabString(typesData));
     }
+    
+	public int getHeight() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return 1;
+	}
+
+	public int getWidth() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return size();
+	}
+	
+
+	public String toString() {
+		
+		StringBuffer result = new StringBuffer();
+		if (isEmpty()) {
+			result.append("tlist()");
+			return result.toString();
+		}
+
+		result.append("tlist(");
+		for (int i = 0 ; i < size() ; i++){
+			result.append(get(i).toString());
+			if (i != size() - 1) {
+				result.append(", ");
+			}
+			
+		}
+		result.append(")");
+	
+		return result.toString();
+	}
 }

@@ -212,72 +212,72 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <programlisting role="example"><![CDATA[ 
 //  besselI functions
 // ==================
-x = linspace(0.01,10,5000)';
-xbasc()
-subplot(2,1,1)
-plot2d(x,besseli(0:4,x), style=2:6)
-legend('I'+string(0:4),2);
-xtitle("Some modified Bessel functions of the first kind")
-subplot(2,1,2)
-plot2d(x,besseli(0:4,x,1), style=2:6)
-legend('I'+string(0:4),1);
-xtitle("Some modified scaled Bessel functions of the first kind")
+   x = linspace(0.01,10,5000)';
+   clf()
+   subplot(2,1,1)
+   plot2d(x,besseli(0:4,x), style=2:6)
+   legend('I'+string(0:4),2);
+   xtitle("Some modified Bessel functions of the first kind")
+   subplot(2,1,2)
+   plot2d(x,besseli(0:4,x,1), style=2:6)
+   legend('I'+string(0:4),1);
+   xtitle("Some modified scaled Bessel functions of the first kind")
 
 // besselJ functions
 // =================
-x = linspace(0,40,5000)';
-xbasc()
-plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
-legend('I'+string(0:4),1);
-xtitle("Some Bessel functions of the first kind")
+   x = linspace(0,40,5000)';
+   clf()
+   plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
+   legend('I'+string(0:4),1);
+   xtitle("Some Bessel functions of the first kind")
 
 // use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 // to compare the algorithm of besselj(0.5,x) with a more direct formula 
-x = linspace(0.1,40,5000)';
-y1 = besselj(0.5, x);
-y2 = sqrt(2 ./(%pi*x)).*sin(x);
-er = abs((y1-y2)./y2);
-ind = find(er > 0 & y2 ~= 0);
-xbasc()
-subplot(2,1,1)
-plot2d(x,y1,style=2)
-xtitle("besselj(0.5,x)")
-subplot(2,1,2)
-plot2d(x(ind), er(ind), style=2, logflag="nl")
-xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+   x = linspace(0.1,40,5000)';
+   y1 = besselj(0.5, x);
+   y2 = sqrt(2 ./(%pi*x)).*sin(x);
+   er = abs((y1-y2)./y2);
+   ind = find(er &gt; 0 &amp; y2 ~= 0);
+   clf()
+   subplot(2,1,1)
+   plot2d(x,y1,style=2)
+   xtitle("besselj(0.5,x)")
+   subplot(2,1,2)
+   plot2d(x(ind), er(ind), style=2, logflag="nl")
+   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
 
 // besselK functions
 // =================
-x = linspace(0.01,10,5000)';
-xbasc()
-subplot(2,1,1)
-plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
-legend('K'+string(0:4),1);
-xtitle("Some modified Bessel functions of the second kind")
-subplot(2,1,2)
-plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
-legend('K'+string(0:4),1);
-xtitle("Some modified scaled Bessel functions of the second kind")
+   x = linspace(0.01,10,5000)';
+   clf()
+   subplot(2,1,1)
+   plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Some modified Bessel functions of the second kind")
+   subplot(2,1,2)
+   plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Some modified scaled Bessel functions of the second kind")
 
 // besselY functions
 // =================
-x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
-xbasc()
-plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
-legend('Y'+string(0:4),4);
-xtitle("Some Bessel functions of the second kind")
+   x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -&gt; 0+
+   clf()
+   plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
+   legend('Y'+string(0:4),4);
+   xtitle("Some Bessel functions of the second kind")
 
 // besselH functions
 // =================
-x=-4:0.025:2; y=-1.5:0.025:1.5;
-[X,Y] = ndgrid(x,y);
-H = besselh(0,1,X+%i*Y); 
-clf();f=gcf();
-xset("fpf"," ")
-f.color_map=jetcolormap(16);
-contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
-legends(string(0.2:0.2:3.2),1:16,"ur")
-xtitle("Level curves of |H1(0,z)|")
+   x=-4:0.025:2; y=-1.5:0.025:1.5;
+   [X,Y] = ndgrid(x,y);
+   H = besselh(0,1,X+%i*Y); 
+   clf();f=gcf();
+   xset("fpf"," ")
+   f.color_map=jetcolormap(16);
+   contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
+   legends(string(0.2:0.2:3.2),1:16,"ur")
+   xtitle("Level curves of |H1(0,z)|")
  ]]></programlisting>
   </refsection>
 

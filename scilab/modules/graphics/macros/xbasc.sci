@@ -8,6 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xbasc(win_num)
+
+warnobsolete('clf', '5.3');
+
+// This function is obsolete.
 //xbasc([win_num])
 // Clear the graphic window win_num and erase the recorded graphics of
 // window win_num

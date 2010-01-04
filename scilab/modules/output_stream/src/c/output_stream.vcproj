@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../jni;../cpp;../../../../libs/MALLOC/includes;../../../core/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../shell/src/c/windows;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS"
@@ -70,7 +71,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -154,7 +155,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -240,7 +242,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -330,7 +332,7 @@
 				AdditionalDependencies="LibScilab.lib fileio.lib sciconsole.lib libshell.lib string.lib scilocalization.lib scilab_windows.lib output_stream_f.lib api_scilab.lib"
 				OutputFile="../../../../bin/output_stream.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="output_stream_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -376,6 +378,22 @@
 			<File
 				RelativePath=".\basout.c"
 				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\cerro.c"
@@ -519,6 +537,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\do_error_number.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\dynlib_output_stream.h"
 				>
 			</File>
@@ -631,6 +653,14 @@
 				</File>
 				<File
 					RelativePath=".\String_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\output_stream_export.def"
 					>
 				</File>
 			</Filter>

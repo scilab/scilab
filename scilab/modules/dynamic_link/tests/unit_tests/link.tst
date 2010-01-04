@@ -36,29 +36,28 @@ if ~isdir(TMP_DIR) then pause,end;
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
-mputl(f1,TMP_DIR+filesep()+'fooc.c');
+mputl(f1, TMP_DIR + filesep() + 'fooc.c');
 
 cur_dir = pwd();
 chdir(TMP_DIR);
 
-
 //creating the shared library: a Makefile and a loader are 
 //generated, the code is compiled and a shared library built.
-ilib_for_link('fooc','fooc.c',[],"c"); 
+ilib_for_link('fooc', 'fooc.c', [], "c"); 
 
 // load the shared library 
-exec loader.sce; 
+exec('loader.sce'); 
 
 link('show');
 
 // call the new linked entry point
-a=linspace(0,%pi,10);b=5;
-y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d');
+a = linspace(0, %pi, 10);
+b = 5;
+y1 = call('fooc', a, 2, 'd', b, 3, 'd', size(a,1), 4, 'i', size(a,2), 5, 'i', 'out', size(a), 1, 'd');
     
 // check
-r = y1-(sin(a)+b);
-if or( r <> zeros(1,10) ) then pause,end
-
+r = y1 - ( sin(a) + b );
+if (or(abs(r - zeros(1,10))> %eps * 10)) then pause,end
 
 // ulink() all libraries
 ulink();

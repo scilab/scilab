@@ -18,11 +18,11 @@ function demo_asinh()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_asinh.dem.sce");
 	
 	PlotCmplxFunc(R,e,"Square","Oy",41,"asinh",theta,alpha,[-R,R]);
 	
 endfunction
 
 demo_asinh()
+demo_viewCode("demo_asinh.dem.sce");
 clear demo_asinh;

@@ -29,6 +29,7 @@
 #include "FileExist.h"
 #include "createdirectory.h"
 #include "PATH_MAX.h"
+#include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
@@ -69,6 +70,9 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
 	char *pStrDest = wide_string_to_UTF8(DestinationFilename);
 	char *pStrSrc = wide_string_to_UTF8(SourceFilename);
 
+	char strDestFullPath[PATH_MAX * 2 + 1]; 
+	char strSrcFullPath[PATH_MAX * 2 + 1]; 
+
 	int sfd = -1;
 	int dfd = -1;
 	struct stat st;
@@ -76,6 +80,15 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
 	char *ptr = NULL;
 	int nread = 0, nwritten = 0;
 	int status = 0;
+
+	get_full_path(strDestFullPath, pStrDest, PATH_MAX * 2);
+	get_full_path(strSrcFullPath, pStrSrc, PATH_MAX * 2);
+
+	if (strcmp(strDestFullPath, strSrcFullPath) == 0)
+	{
+		status = EPERM;
+		goto err;
+	}
 
 	if ((sfd = open (pStrSrc, O_RDONLY, 0)) < 0) 
 	{
@@ -258,6 +271,8 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
 		if (filenameDST) {FREE(filenameDST); filenameDST = NULL;}
 		if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
 	}
+
+	if (dir) closedir(dir);
 
 	return 0;
 }

@@ -33,19 +33,19 @@ int set_outside_colors_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"outise_colors") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "outside_colors");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"outise_colors") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"outside_colors") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"outise_colors",2) ;
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "outside_colors", 2);
     return SET_PROPERTY_ERROR ;
   }
 
@@ -57,7 +57,7 @@ int set_outside_colors_property( sciPointObj * pobj, size_t stackPointer, int va
 		  || values[1] > nbColors || values[1] < -1)
 	{
 		/* It is possible to set color_range outside the colormap, however it won't be used.*/
-		sciprint(_("WARNING: Wrong value for property %s: indices oustside the colormap will be clamped.\n"), "outise_colors");
+		sciprint(_("WARNING: Wrong value for '%s' property: indices oustside the colormap will be clamped.\n"), "outside_colors");
 	}
 
 

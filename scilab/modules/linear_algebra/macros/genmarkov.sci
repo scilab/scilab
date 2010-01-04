@@ -26,7 +26,7 @@ function M=genmarkov(rec,tr,flag)
     n=r+tr;
     MT=rand(tr,n,'u');MT=MT./(sum(MT,'c')*ones(1,n));
     M=[[M,zeros(r,tr)];MT];
-    if flag=='perm' then [p,q]=sort(rand(n,1,'u'));M=M(q,q);end
+    if flag=='perm' then [p,q]=gsort(rand(n,1,'u'));M=M(q,q);end
   else
     // tr=list(n1,[a1,a2,...ar],n2,[b1,...br],...)
     l=size(tr)/2;   //2*size(rec,2)
@@ -49,14 +49,14 @@ function M=genmarkov(rec,tr,flag)
     LQ=LQ./(sum(LQ,'c')*ones(1,size(LQ,2)));
     M=[[M,zeros(size(M,1),size(Q,2))];LQ]; 
   end
-  if flag=='perm' then [p,q]=sort(rand(size(M,1),1,'u'));M=M(q,q);end
+  if flag=='perm' then [p,q]=gsort(rand(size(M,1),1,'u'));M=M(q,q);end
 
-  //n=size(M,1);[p,q]=sort(rand(n,1));M1=M(q,q);M=M1
+  //n=size(M,1);[p,q]=gsort(rand(n,1));M1=M(q,q);M=M1
 
   //Ms=sparse(M);Ms(find(Ms~=0))=1;
   //G=mat_2_graph(Ms,1,'node-node');show_graph(G);
   //[nc,ncomp]=strong_connex(G)
-  //[pp,qq]=sort(ncomp);Mg=M(qq,qq)
+  //[pp,qq]=gsort(ncomp);Mg=M(qq,qq)
   //Mgs=sparse(Mg);
   //Mgs(find(Mgs~=0))=1;Gg=mat_2_graph(Mgs,1,'node-node');show_graph(Gg);
 endfunction

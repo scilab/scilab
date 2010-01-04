@@ -48,7 +48,7 @@ case 'set' then
 
  ss=graphics.exprs(2)(3)
  %scicos_context=struct()
- execstr('[ok,'+tt+',exprs]=getvalue(btitre,bitems,ss,exprs)')
+ execstr('[ok,'+tt+',exprs]=scicos_getvalue(btitre,bitems,ss,exprs)')
  
  if ok then
   x=arg1

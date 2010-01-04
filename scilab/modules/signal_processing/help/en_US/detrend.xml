@@ -75,7 +75,7 @@ y = detrend(x,flag,bp)</synopsis>
 t = linspace(0,16*%pi,1000)';
 x = -20 + t + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
 y = detrend(x);
-xbasc()
+clf()
 plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()
@@ -84,7 +84,7 @@ xgrid()
 t = linspace(0,32*%pi,2000)';
 x = abs(t-16*%pi) + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
 y = detrend(x,"linear",1000);
-xbasc()
+clf()
 plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()

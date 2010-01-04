@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
 int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -32,7 +34,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"box") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "box");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -46,9 +48,14 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     {
       return sciSetBoxType( pobj, BT_ON ) ;
     }
+    else if ( isStringParamEqual( stackPointer, "hidden_axes" ) )
+    {
+      return sciSetBoxType( pobj, BT_HIDDEN_AXES ) ;
+    }
     else if ( isStringParamEqual( stackPointer, "hidden_axis" ) )
     {
-      return sciSetBoxType( pobj, BT_HIDDEN_AXIS ) ;
+      sciprint(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
+      return sciSetBoxType( pobj, BT_HIDDEN_AXES ) ;
     }
     else if ( isStringParamEqual( stackPointer, "back_half" ) )
     {
@@ -56,7 +63,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axis","back_half") ;
+      Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "box", "on, off, hidden_axes, back_half");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -72,13 +79,13 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected."),"set_box_property",2,"on","off") ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "box", "on", "off");
       return SET_PROPERTY_SUCCEED ;
     }
   }
 	
 
-	Scierror(999, _("%s property does not exist for this handle.\n"),"box") ;
+	Scierror(999, _("'%s' property does not exist for this handle.\n"),"box") ;
   return SET_PROPERTY_ERROR ;
 
 }

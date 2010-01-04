@@ -55,14 +55,13 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		{
 			/* current path */
 			int ierr = 0;
-			int lpath = 0;
-			char *currentpath = NULL;
-
-			scigetcwd(&currentpath,&lpath,&ierr);
+			char *currentpath = scigetcwd(&ierr);
 			if (currentpath) 
 			{
 				strcpy(path, currentpath);
 				strcat(path, DIR_SEPARATOR);
+				FREE(currentpath);
+				currentpath = NULL;
 			}
 		}
 		else
@@ -86,7 +85,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		
 		if (pathextended)
 		{
-			dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+			dictionary = findfiles(pathextended, filespec, &sizeListReturned, FALSE);
 			FREE(pathextended);
 			pathextended = NULL;
 		}
@@ -192,6 +191,8 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path)
 			FREE(dictionary[i]);
 			dictionary[i] = newPath;
 		}
+
+		if (pathextended) {FREE(pathextended); pathextended = NULL;}
 	}
 	return dictionary;
 }

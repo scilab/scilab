@@ -29,34 +29,18 @@
 /*------------------------------------------------------------------------*/
 int set_surface_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"surface_mode") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_PLOT3D &&
+		sciGetEntityType(pobj) != SCI_FAC3D  &&
+		sciGetEntityType(pobj) != SCI_SURFACE   )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"surface_mode") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( sciGetEntityType(pobj) != SCI_PLOT3D &&
-       sciGetEntityType(pobj) != SCI_FAC3D  &&
-       sciGetEntityType(pobj) != SCI_SURFACE   )
-  {
-    Scierror(999, _("%s does not exist for this handle.\n"), "surface_mode") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b =  tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "surface_mode");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetIsLine( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetIsLine( pobj, FALSE ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for input argument: '%s' or '%s' expected.\n"),"on","off") ;
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+	return sciSetIsLine(pobj, b);
 }
 /*------------------------------------------------------------------------*/

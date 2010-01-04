@@ -14,7 +14,7 @@
 #define __GW_OPTIM__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_optimization.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 OPTIMIZATION_IMPEXP int gw_optimization(void);
 /*--------------------------------------------------------------------------*/
@@ -24,6 +24,7 @@ OPTIMIZATION_IMPEXP int sci_fsolve(char *fname,unsigned long fname_len);
 OPTIMIZATION_IMPEXP int sci_sqrsolve(char *fname,unsigned long fname_len);
 OPTIMIZATION_IMPEXP int sci_qld(char *fname,unsigned long fname_len);
 OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_readmps(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/

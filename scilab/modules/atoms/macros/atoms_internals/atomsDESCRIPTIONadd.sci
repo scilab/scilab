@@ -12,19 +12,25 @@
 // Add a package description to a DESCRIPTION struct
 // The DESCRIPTION struct looks like that
 
-// tree_in  =
-//  
-//    toolbox_1:                     [1x1 struct]
-//      2.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "2.0"
-//        ...
-//      1.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "1.0"
-//    ...
+// DESCRIPTION
+// |
+// |-- packages
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories
+// |-- categories_flat
 
 function tree_out = atomsDESCRIPTIONadd( tree_in , package_name , package_version , description )
 	
@@ -70,15 +76,22 @@ function tree_out = atomsDESCRIPTIONadd( tree_in , package_name , package_versio
 	// And now ... action
 	// =========================================================================
 	
-	tree_out = tree_in;
+	tree_out     = tree_in;
 	
-	if isfield(tree_out,package_name) then
-		package_name_struct = tree_out(package_name);
+	if isfield(tree_out,"packages") then
+		packages_out = tree_out("packages");
+	else
+		packages_out = struct();
+	end
+	
+	if isfield(packages_out,package_name) then
+		package_name_struct = packages_out(package_name);
 	else
 		package_name_struct = struct();
 	end
 	
 	package_name_struct(package_version) = description;
-	tree_out(package_name)               = package_name_struct;
+	packages_out(package_name)           = package_name_struct;
+	tree_out("packages")                 = packages_out;
 	
 endfunction

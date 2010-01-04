@@ -24,14 +24,12 @@ function optimsimplex_print ( this )
   elseif this.fv == [] then
     mprintf("Empty simplex (zero function values)\n");
   else
-  for k = 1:this.nbve
-    // Compute a string for x
-    ss = sprintf("%f", this.x(1,k));
-    for i = 2:this.n
-      ss = ss + " " + sprintf("%f", this.x(i,k));
+    mprintf("Dimension : %d\n" , this.n );
+    mprintf("Number of vertices : %d\n" , this.nbve );
+    str = optimsimplex_tostring ( this );
+    for k = 1:this.nbve
+      mprintf("%s\n" , str(k) );
     end
-    mprintf("Vertex #%d/%d : fv=%f, x=%s\n" , k , this.n+1 , this.fv(k), ss );
-  end
   end
 endfunction
 

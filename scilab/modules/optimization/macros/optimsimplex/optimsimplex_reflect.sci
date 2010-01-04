@@ -17,22 +17,21 @@
 //   data : user-defined data
 //
 function [ r , data ] = optimsimplex_reflect ( this , fun , data )
-  r = optimsimplex_new ( )
-  r.n = this.n
-  r.nbve = this.nbve
-  r.x = zeros(r.n, r.nbve )
-  r.fv = zeros( r.nbve )
-  r.x(1:r.n,1) = this.x(1:r.n,1)
-  r.fv(1) = this.fv(1)
-  x1 = this.x(1:r.n,1)
-  twox1 = 2*x1
-  for i = 2:r.nbve
-    r.x(1:r.n,i) = twox1 - this.x(1:r.n,i)
-    if (~isdef('data','local')) then
-       r.fv(i)  = fun (r.x(:,i));
-     else
-       [ r.fv(i) , data ]  = fun (r.x(:,i) , data );
-     end
+  nv = this.nbve;
+  n = this.n;
+  r = optimsimplex_new ( );
+  r.n = n
+  r.nbve = nv
+  r.x = zeros ( nv , n )
+  r.fv = zeros( nv , 1 )
+  r.x(1,1:n) = this.x(1,1:n);
+  r.fv(1) = this.fv(1);
+  twox1 = 2*this.x(1,1:n) .*. ones(nv-1,1);
+  r.x(2:nv,1:r.n) = twox1 - this.x(2:nv,1:n)  ;
+  if (~isdef('data','local')) then
+    r = optimsimplex_compsomefv ( r , fun , 2:nv )
+  else
+    [ r , data ] = optimsimplex_compsomefv ( r , fun , 2:nv , data )
   end
 endfunction
 

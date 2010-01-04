@@ -160,7 +160,7 @@ int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int
 /*--------------------------------------------------------------------------*/
 sciEntityType sciGetEntityType (sciPointObj * pobj)
 {
-	return 0;
+	return (sciEntityType)0;
 }
 /*--------------------------------------------------------------------------*/
 int sciStandardDestroyOperations( sciPointObj * pThis ) 
@@ -392,7 +392,7 @@ char sciGetyLocation(sciPointObj * pObj)
 /*--------------------------------------------------------------------------*/
 sciLegendPlace sciGetLegendPlace (sciPointObj * pobj)
 {
-	return 0;
+	return (sciLegendPlace)0;
 }
 /*--------------------------------------------------------------------------*/
 void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
@@ -537,7 +537,7 @@ double sciGetFontOrientation (sciPointObj * pobj)
 /*--------------------------------------------------------------------------*/
 sciTextAlignment sciGetAlignment( sciPointObj * pObj ) 
 {
-	return 0;
+	return (sciTextAlignment)0;
 }
 /*--------------------------------------------------------------------------*/
 StringMatrix * sciGetText (sciPointObj * pobj)
@@ -627,7 +627,7 @@ int sciGetSubwinIndex(sciPointObj * pSubwin)
 /*--------------------------------------------------------------------------*/
 EAxesBoxType sciGetBoxType( sciPointObj * pobj ) 
 {
-	return 0;
+	return (EAxesBoxType)0;
 }
 /*--------------------------------------------------------------------------*/
 void sciGetTextPos(sciPointObj * pObj, double position[3])

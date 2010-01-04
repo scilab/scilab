@@ -15,7 +15,7 @@
 // <-- Short Description -->
 //    plot() plots fullscreen despite the xsetech() restriction.
 
-xbasc();
+clf();
 
 xsetech([0 .5 .5 .5]);
 

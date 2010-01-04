@@ -97,6 +97,24 @@ A=rand(5,3)*rand(3,8);
 b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatível
 b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatível
 A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x é único
+
+// A benchmark of sparse linear solver
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+
+b = 0*ones(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+printf('\ntime needed to solve the system with umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+printf('\ntime needed to solve the system with linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+printf('\ntime needed to solve the system with the backslash operator: %.3f\n',toc());
  ]]></programlisting>
   </refsection>
 
@@ -111,6 +129,10 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x é único
       <member><link linkend="colcomp">colcomp</link></member>
 
       <member><link linkend="im_inv">im_inv</link></member>
+
+      <member><link linkend="backslash">backslash</link></member>
+
+      <member><link linkend="umfpack">umfpack</link></member>
     </simplelist>
   </refsection>
 </refentry>

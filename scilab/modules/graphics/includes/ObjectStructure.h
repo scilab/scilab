@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -617,7 +618,7 @@ typedef enum {FLAT_RELIEF, GROOVE_RELIEF, RAISED_RELIEF, RIDGE_RELIEF, SOLID_REL
 typedef enum {LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT, TOP_ALIGNMENT, MIDDLE_ALIGNMENT, BOTTOM_ALIGNMENT} UicontrolAlignment;
 
 /* the part of the drawn box for 3d axis */
-typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxesBoxType ;
+typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXES, BT_BACK_HALF } EAxesBoxType ;
 
 typedef struct 
 {  

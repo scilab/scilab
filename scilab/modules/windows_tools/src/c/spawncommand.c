@@ -18,6 +18,9 @@
 #include "FileExist.h"
 #include "scilabmode.h"
 #include "spawncommand.h"
+#include "strdup_windows.h"
+#include "charEncoding.h"
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -27,16 +30,16 @@ extern pipeinfo pipeErr;
 int spawncommand(char *command,BOOL DetachProcess)
 {
 	char shellCmd[PATH_MAX];
-	char *CmdLine=NULL;
+	char *CmdLine = NULL;
 
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 	SECURITY_ATTRIBUTES sa;
 	DWORD threadID;
 	DWORD dwCreationFlags;
-	BOOL ok;
-	HANDLE hProcess, h, pipeThreads[2];
-	DWORD ExitCode;
+	BOOL ok = FALSE;
+	HANDLE hProcess = NULL, h = NULL, pipeThreads[2];
+	DWORD ExitCode = 0;
 
 	hProcess = GetCurrentProcess();
 
@@ -68,29 +71,29 @@ int spawncommand(char *command,BOOL DetachProcess)
 
 	if (DetachProcess)
 	{
-		CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
-		sprintf(CmdLine,"%s /A /C %s",shellCmd,command);
+		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
+		sprintf(CmdLine, "%s /A /C %s",shellCmd,command);
 
-		dwCreationFlags=DETACHED_PROCESS;
+		dwCreationFlags = DETACHED_PROCESS;
 	}
 	else
 	{
-		char *TMPDir=NULL;
-		char FileTMPDir[PATH_MAX];
+		char FileTMPDir[PATH_MAX + 16];
+		BOOL bConvert = FALSE;
 
-		TMPDir=getTMPDIR();
-		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
-		if (TMPDir)
-		{
-			FREE(TMPDir);
-			TMPDir=NULL;
-		}
+		char *TMPDirLong = getTMPDIR();
+		char *TMPDirShort = getshortpathname(TMPDirLong, &bConvert);
+		
+		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDirLong);
+		FREE(TMPDirLong); TMPDirLong = NULL;
+		FREE(TMPDirShort); TMPDirShort = NULL;
+
 		if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
-		CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s && echo DOS>%s")+strlen(FileTMPDir)+1)*sizeof(char) );
-		sprintf(CmdLine,"%s /A /C %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s && echo DOS>%s")+strlen(FileTMPDir)+1)*sizeof(char) );
+		sprintf(CmdLine, "%s /A /C %s && echo DOS>%s",shellCmd,command,FileTMPDir);
 
-		dwCreationFlags=0;
+		dwCreationFlags = 0;
 	}
 
 	ok = CreateProcess(
@@ -107,7 +110,7 @@ int spawncommand(char *command,BOOL DetachProcess)
 
 	if (!ok) return 2;
 
-	if (CmdLine) {FREE(CmdLine);CmdLine=NULL;}
+	if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
 
 	/* close our references to the write handles that have now been inherited. */
 	CloseHandle(si.hStdOutput);
@@ -144,8 +147,8 @@ int ClosePipeInfo (pipeinfo pipe)
 	if (pipe.OutputBuffer)
 	{
 		FREE(pipe.OutputBuffer);
-		pipe.OutputBuffer=NULL;
-		pipe.NumberOfLines=0;
+		pipe.OutputBuffer = NULL;
+		pipe.NumberOfLines = 0;
 	}
 	return 0;
 }
@@ -156,9 +159,9 @@ DWORD WINAPI ReadFromPipe (LPVOID args)
 	int readSoFar = 0;
 	DWORD dwRead;
 	BOOL moreOutput = TRUE;
-	char *op=NULL;
+	unsigned char *op = NULL;
 
-	pi->OutputBuffer = (char*) MALLOC(BUFSIZE);
+	pi->OutputBuffer = (unsigned char*) MALLOC(BUFSIZE);
 	op = pi->OutputBuffer;
 
 	while (moreOutput) 
@@ -170,7 +173,7 @@ DWORD WINAPI ReadFromPipe (LPVOID args)
 		if (moreOutput) 
 		{
 			readSoFar += dwRead;
-			pi->OutputBuffer  = (char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
+			pi->OutputBuffer  = (unsigned char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
 			op = pi->OutputBuffer + readSoFar;
 		}
 	} 
@@ -180,64 +183,99 @@ DWORD WINAPI ReadFromPipe (LPVOID args)
 /*--------------------------------------------------------------------------*/
 static int GetNumberOfLines(char *lines)
 {
-	int NumberOfLines=0;
+	int NumberOfLines = 0;
 	if (lines)
 	{
-		int i=0;
-		while(lines[i]!='\0')
+		int i = 0;
+		while(lines[i] != '\0')
 		{
-			if (lines[i]=='\n') NumberOfLines++;
+			if (lines[i] == '\n') NumberOfLines++;
 			i++;
 		}
-		if (NumberOfLines==0) NumberOfLines=1;
+		if (NumberOfLines == 0) NumberOfLines = 1;
 	}
 	return NumberOfLines;
 }
 /*--------------------------------------------------------------------------*/
 char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
 {
-	char **OuputStrings=NULL;
+	char **OuputStrings = NULL;
 
-	pipe->NumberOfLines=GetNumberOfLines(pipe->OutputBuffer);
-
-	if(pipe->NumberOfLines)
+	if (pipe)
 	{
-		char *line=NULL;
-		int i=0;
-
-		OuputStrings=(char**)MALLOC((pipe->NumberOfLines)*sizeof(char**));
-		line=strtok(pipe->OutputBuffer,"\n");
-
-		while(line)
+		if (pipe->OutputBuffer)
 		{
-			OuputStrings[i]=MALLOC((strlen(line)+1)*sizeof(char));
+			int lenbuf = ((int)strlen(pipe->OutputBuffer) + 1) * 2;
+			char *buffer = MALLOC(sizeof(char)*lenbuf);
+			strcpy(buffer, pipe->OutputBuffer);
 
 			if (getScilabMode() == SCILAB_STD)
 			{
 				if (DetachProcess)
 				{
-					strcpy(OuputStrings[i],line);
+					strcpy(buffer, pipe->OutputBuffer);
 				}
 				else
 				{
-					OemToChar(line,OuputStrings[i]);
+					OemToChar(pipe->OutputBuffer, buffer);
 				}
 			}
 			else 
 			{
 				if (DetachProcess)
 				{
-					CharToOem(line,OuputStrings[i]);
+					CharToOem(pipe->OutputBuffer, buffer);
 				}
 				else
 				{
-					strcpy(OuputStrings[i],line);
+					strcpy(buffer, pipe->OutputBuffer);
 				}
 			}
 
-			if (OuputStrings[i][strlen(OuputStrings[i])-1] == '\r') OuputStrings[i][strlen(OuputStrings[i])-1] = 0;
-			line=strtok(NULL,"\n");
-			i++;
+			pipe->NumberOfLines = GetNumberOfLines(buffer);
+
+			if(pipe->NumberOfLines)
+			{
+				char *line = NULL;
+				int i = 0;
+
+				OuputStrings = (char**)MALLOC((pipe->NumberOfLines)*sizeof(char*));
+				line = strtok(buffer, "\n");
+
+				while(line)
+				{
+					int j = 0;
+					int len = 0;
+					OuputStrings[i] = (char*)MALLOC((strlen(line)+1)*sizeof(char));
+					if (OuputStrings[i])
+					{
+						strcpy(OuputStrings[i], line);
+
+						len = (int)strlen(OuputStrings[i]);
+
+						if ( (OuputStrings[i][len - 1] == 10) || (OuputStrings[i][len - 1] == 13) )
+						{
+							OuputStrings[i][len - 1] = 0;
+						}
+
+						len = (int)strlen(OuputStrings[i]);
+						for(j = 0; j < len; j++)
+						{
+							/* remove some no printable characters */
+							if (OuputStrings[i][j] == -96)
+							{
+								OuputStrings[i][j] = ' ';
+							}
+						}
+
+						line = strtok(NULL, "\n");
+						i++;
+						if (i > pipe->NumberOfLines) break;
+					}
+				}
+			}
+
+			if (buffer) {FREE(buffer); buffer = NULL;}
 		}
 	}
 	return OuputStrings;

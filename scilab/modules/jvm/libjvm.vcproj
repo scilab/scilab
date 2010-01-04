@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories="../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../../java/jdk/include;../../java/jdk/include/win32;../../libs/GetWindowsVersion;includes;src/c;../output_stream/includes;../localization/includes;../call_scilab/includes;../../libs/MALLOC/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/dynamiclibrary/includes;../../libs/intl;../api_scilab/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
@@ -71,7 +72,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -155,7 +156,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -241,7 +243,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -332,7 +334,7 @@
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib string.lib call_scilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="libjvm_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -609,6 +611,14 @@
 				</File>
 				<File
 					RelativePath=".\string_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\libjvm_export.def"
 					>
 				</File>
 			</Filter>

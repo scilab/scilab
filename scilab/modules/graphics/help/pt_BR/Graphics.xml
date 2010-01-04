@@ -481,14 +481,6 @@
 
     <variablelist>
       <varlistentry>
-        <term>xaxis</term>
-
-        <listitem>
-          <para>desenha um eixo</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>graduate</term>
 
         <listitem>

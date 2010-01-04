@@ -105,7 +105,7 @@ setdiff(a,b)
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>
 
-      <member><link linkend="sort">sort</link></member>
+      <member><link linkend="gsort">gsort</link></member>
 
       <member><link linkend="union">union</link></member>
     </simplelist>

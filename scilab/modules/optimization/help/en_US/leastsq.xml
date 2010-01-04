@@ -413,7 +413,7 @@ endfunction
 // a small graphic (before showing other calling features)
 tt = linspace(0,1.1*max(tm),100)';
 yy = yth(tt, xopt);
-xbasc()
+clf()
 plot2d(tm, ym, style=-2)
 plot2d(tt, yy, style = 2)
 legend(["measure points", "fitted curve"]);

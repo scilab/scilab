@@ -59,9 +59,6 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,2);
 
-
-
-
 	if (Rhs >= 1)
     {
 		Type=VarType(1);
@@ -104,6 +101,10 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 			case sci_ints:
 				GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
 			break;
+			case sci_sparse:
+				OverLoad(1);
+				return 0;
+				break;
 			default :
 				Scierror(999,_("%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix of strings expected.\n"),fname,2);
 				return 0;

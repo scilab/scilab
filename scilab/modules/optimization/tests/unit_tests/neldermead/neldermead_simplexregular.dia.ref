@@ -27,7 +27,7 @@ function flag = assert_close ( computed, expected, epsilon )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-function y = rosenbrock (x)
+function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 nm = neldermead_new ();
@@ -37,10 +37,13 @@ nm = neldermead_configure(nm,"-simplex0method","spendley");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_search(nm);
-simplex = neldermead_cget(nm,"-simplex0");
+simplex = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx( simplex );
-expected = [1.    1.96592582628907    1.25881904510252
-2.    2.25881904510252    2.96592582628907];
+expected = [
+1.    2.
+1.96592582628907    2.25881904510252
+1.25881904510252  2.96592582628907
+];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);
 clear nm;

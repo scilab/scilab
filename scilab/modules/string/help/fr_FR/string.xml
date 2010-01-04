@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="fr" 
+	  xml:id="string">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>string</refname>
+    <refpurpose>conversion en chaîne de caractères</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>string(x)
+[out,in,text]=string(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Booléen, complexe, réel, entier, polynôme matrice, ou fonction</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Convertit une matrice en matrice de chaînes de caractères.</para>
+    <para>
+    Si <literal>x</literal> est une fonction <literal>[out,in,text]=string(x)</literal> retourne
+    3 vecteurs de chaînes de caractères : <literal>out</literal> est
+    le vecteur des variables de sortie,
+    <literal>in</literal> est le vecteur des variables d'entrée, et <literal>text</literal> est
+    le vecteur colonne du code source de la fonction.</para>
+    <para>
+    Si  <literal>x</literal> est une variable <literal>lib</literal>,
+    text est un vecteur colonne de chaînes de caractères. Le premier
+    élément contient le chemin de la librairie et l'autre élément le
+    nom des fonctions qui sont définies dans cette librairie.</para>
+    <para>
+    Les chaînes de caractères sont définies de la façon
+    suivant, <literal>'string'</literal> (entre quotes) ou
+    <literal>"string"</literal> (entre double quotes);
+    les matrices de chaînes de caractères sont définies comme des
+    matrices constantes normales.</para>
+    <para>
+    La concaténation des chaînes de caractères est effectuée par l'opérateur <literal>+</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 
+disp('Le résultat est '+string(x))
+
+disp('/'+string(~%t)+'/')
+disp('/'+string(%i+1)+'/')
+disp('/'+string(int16(-123))+'/')
+disp('/'+string(1+%s+%s^3)+'/')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="part">part</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="quote">quote</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="strsubst">strsubst</link>
+      </member>
+      <member>
+        <link linkend="strcat">strcat</link>
+      </member>
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+      <member>
+        <link linkend="sci2exp">sci2exp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

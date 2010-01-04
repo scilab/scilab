@@ -6,17 +6,29 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
 //================================================
 // test addinter
 //================================================
+ilib_verbose(0);
 if ~c_link('libintertest') then
   curPath = pwd(); 
-  copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c', TMPDIR+filesep()+'addinter.c');
+  // creates a subdirectory in TMPDIR
+  // dynamic link on linux copy some files in TMPDIR
+  // then to not have some conflict 
+  // we create a subdirectory in TMPDIR with sources
+  // previously we had :
+  // lib_gen_Make: Did not copy libintertest.c: Source and target directories are the same (/tmp/SD_28668_).
+
   chdir(TMPDIR); 
-  files=['addinter.o'];
+  mkdir('addinter');
+  chdir('addinter'); 
+  src_file = SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c';
+  dst_file = TMPDIR + filesep() + 'addinter' + filesep() + 'addinter.c';
+  copyfile(src_file, dst_file);
+
+  files=['addinter.c'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   
   // load the shared library 
@@ -36,3 +48,4 @@ if ~c_link('libintertest') then
   chdir(curPath);
 end
 //================================================
+

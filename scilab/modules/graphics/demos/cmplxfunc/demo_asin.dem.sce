@@ -16,11 +16,11 @@ function demo_asin()
 	
 	my_handle = scf(100001);
 	clf(my_handle,"reset");
-	demo_viewCode("demo_asin.dem.sce");
 	
 	PlotCmplxFunc(2,%eps,"Square","Ox",41,"asin",theta,alpha,[-1,1]);
 	
 endfunction
 
 demo_asin()
+demo_viewCode("demo_asin.dem.sce");
 clear demo_asin;

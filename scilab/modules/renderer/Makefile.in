@@ -44,7 +44,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -65,8 +64,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = libscirenderer.la
-DIST_COMMON = $(libscirenderer_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/renderer
@@ -86,7 +84,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -113,8 +111,7 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_etcdir)" \
-	"$(DESTDIR)$(libscirenderer_la_rootdir)" \
-	"$(DESTDIR)$(libscirenderer_la_includedir)"
+	"$(DESTDIR)$(libscirenderer_la_rootdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscirenderer_disable_la_LIBADD =
 am_libscirenderer_disable_la_OBJECTS =  \
@@ -358,6 +355,8 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-YAxisPositioner.lo \
 	libscirenderer_la-MiddleXAxisPositioner.lo \
 	libscirenderer_la-MiddleYAxisPositioner.lo \
+	libscirenderer_la-OriginXAxisPositioner.lo \
+	libscirenderer_la-OriginYAxisPositioner.lo \
 	libscirenderer_la-AxisPositioner.lo \
 	libscirenderer_la-TopXAxisPositioner.lo \
 	libscirenderer_la-ZAxisPositioner.lo \
@@ -414,7 +413,6 @@ SOURCES = $(libscirenderer_disable_la_SOURCES) \
 DIST_SOURCES = $(libscirenderer_disable_la_SOURCES) \
 	$(libscirenderer_la_SOURCES)
 DATA = $(libscirenderer_la_etc_DATA) $(libscirenderer_la_root_DATA)
-HEADERS = $(libscirenderer_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -422,6 +420,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -433,6 +432,8 @@ BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -493,8 +494,10 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -560,12 +563,12 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
@@ -632,7 +635,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -893,6 +895,8 @@ src/cpp/subwinDrawing/XAxisPositioner.cpp \
 src/cpp/subwinDrawing/YAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
 src/cpp/subwinDrawing/AxisPositioner.cpp \
 src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
 src/cpp/subwinDrawing/ZAxisPositioner.cpp \
@@ -996,7 +1000,6 @@ src/jni/SubwinBackgroundDrawerGL.giws.xml
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
-USEANT = 1
 @GIWS_TRUE@BUILT_SOURCES = giws
 
 # All the sources needed by libscirenderer.la
@@ -1007,25 +1010,8 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscirenderer-disable.la $(am__append_1)
+@GUI_TRUE@USEANT = 1
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-#### renderer : gateway declaration ####
-#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
-
-#### renderer : include files ####
-libscirenderer_la_includedir = $(pkgincludedir)/renderer
-libscirenderer_la_include_HEADERS = includes/gw_renderer.h \
-includes/BuildDrawingObserver.h \
-includes/DrawingBridge.h \
-includes/GetJavaProperty.h \
-includes/GraphicSynchronizerInterface.h \
-includes/SetJavaProperty.h \
-includes/JavaInteraction.h \
-includes/RendererFontManager.h \
-includes/rendererBasicAlgos.h \
-includes/dynlib_renderer.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1337,6 +1323,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MatplotDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Plo@am__quote@
@@ -3095,6 +3083,20 @@ libscirenderer_la-MiddleYAxisPositioner.lo: src/cpp/subwinDrawing/MiddleYAxisPos
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp
 
+libscirenderer_la-OriginXAxisPositioner.lo: src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' object='libscirenderer_la-OriginXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+
+libscirenderer_la-OriginYAxisPositioner.lo: src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' object='libscirenderer_la-OriginYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+
 libscirenderer_la-AxisPositioner.lo: src/cpp/subwinDrawing/AxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo -c -o libscirenderer_la-AxisPositioner.lo `test -f 'src/cpp/subwinDrawing/AxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-AxisPositioner.Plo
@@ -3294,26 +3296,6 @@ uninstall-libscirenderer_la_rootDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscirenderer_la_rootdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscirenderer_la_rootdir)" && rm -f $$files
-install-libscirenderer_la_includeHEADERS: $(libscirenderer_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscirenderer_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscirenderer_la_includedir)"
-	@list='$(libscirenderer_la_include_HEADERS)'; test -n "$(libscirenderer_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscirenderer_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscirenderer_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscirenderer_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscirenderer_la_include_HEADERS)'; test -n "$(libscirenderer_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscirenderer_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscirenderer_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -3401,9 +3383,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirenderer_la_etcdir)" "$(DESTDIR)$(libscirenderer_la_rootdir)" "$(DESTDIR)$(libscirenderer_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirenderer_la_etcdir)" "$(DESTDIR)$(libscirenderer_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -3457,7 +3439,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscirenderer_la_etcDATA \
-	install-libscirenderer_la_includeHEADERS \
 	install-libscirenderer_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -3505,7 +3486,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscirenderer_la_etcDATA \
-	uninstall-libscirenderer_la_includeHEADERS \
 	uninstall-libscirenderer_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -3521,7 +3501,6 @@ uninstall-am: uninstall-libscirenderer_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscirenderer_la_etcDATA \
-	install-libscirenderer_la_includeHEADERS \
 	install-libscirenderer_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -3529,7 +3508,6 @@ uninstall-am: uninstall-libscirenderer_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscirenderer_la_etcDATA \
-	uninstall-libscirenderer_la_includeHEADERS \
 	uninstall-libscirenderer_la_rootDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -3540,10 +3518,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -3566,7 +3546,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -3578,7 +3558,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -3684,10 +3664,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
@@ -3713,6 +3695,10 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
+
+#### renderer : gateway declaration ####
+#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -36,7 +36,7 @@
         <term>handle</term>
         <listitem>
           <para>optional argument. Graphics handle(s) of type Axes to select
-          one or several given Axes. Only available in new graphics mode.</para>
+          one or several given Axes.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,7 +47,7 @@
     graphics window with new boundaries defined by
     <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Under old graphics syntax, it
     works only with the driver <literal>"Rec"</literal>.</para>
-    <para>Under new graphics mode, this transformation can be applied to specific
+    <para>This transformation can be applied to specific
     axes given by Axes graphics handles via the handle argument. If handle is
     not specified, the new boundaries are applied to the current axes of the
     current figure. The transformation changes the <literal>data_bounds</literal>
@@ -78,9 +78,6 @@ replot([-3,-2,8,4],f.children(2))
     <simplelist type="inline">
       <member>
         <link linkend="xbasr">xbasr</link>
-      </member>
-      <member>
-        <link linkend="xbasc">xbasc</link>
       </member>
       <member>
         <link linkend="clf">clf</link>

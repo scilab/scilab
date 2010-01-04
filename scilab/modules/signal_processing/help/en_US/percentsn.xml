@@ -51,7 +51,7 @@ K=%k(m);
 P=4*K; //Real period
 real_val=0:(P/50):P;
 plot(real_val,real(%sn(real_val,m)))
-xbasc();
+clf();
 KK=%k(1-m);
 Ip=2*KK;
 ima_val1=0:(Ip/50):KK-0.001;

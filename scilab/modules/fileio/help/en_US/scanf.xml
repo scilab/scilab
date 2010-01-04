@@ -29,7 +29,7 @@
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>:Specifies the format conversion.</para>
+          <para>Specifies the format conversion.</para>
         </listitem>
       </varlistentry>
     </variablelist>

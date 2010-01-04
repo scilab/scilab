@@ -77,7 +77,7 @@ asec(x)/%pi
 
       <member><link linkend="asecd">asecd</link></member>
 
-      <member><link linkend="csgn">csgn</link></member>
+      <!--<member><link linkend="csgn">csgn</link></member>-->
     </simplelist>
   </refsection>
 

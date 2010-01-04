@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,x0,reinit,satur,maxp,lowp,exprs]=getvalue('Set Integral block parameters',..
+    [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue('Set Integral block parameters',..
 	['Initial Condition';
 	'With re-intialization (1:yes, 0:no)';'With saturation (1:yes, 0:no)';
 	'Upper limit';'Lower limit'],..

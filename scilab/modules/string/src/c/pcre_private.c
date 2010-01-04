@@ -354,7 +354,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 		/* Look for options after final delimiter */
 
-		options = 8192;
+		//options = 8192;
 
 		while (*pp != 0)
 		{

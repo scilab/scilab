@@ -33,19 +33,19 @@ int set_triangles_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"triangles") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "triangles");
     return SET_PROPERTY_ERROR ;
   }
 
   if (sciGetEntityType (pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"triangles") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbCol != 5 )
   {
-    Scierror(999, _("Argument #%d must have %d columns.\n"),2,5) ;
+    Scierror(999, _("Wrong size for '%s' property: Must have %d columns.\n"), "triangles", 5);
     return SET_PROPERTY_ERROR ;
   }
 

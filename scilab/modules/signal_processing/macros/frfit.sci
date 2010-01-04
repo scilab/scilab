@@ -160,7 +160,8 @@ else
   vvv=[fweight;fweight];
   x=(vvv*ones(1,size(A,2)).*A)\(vvv.*y);
   x=[Ac1\(ycons-Ac2*x);x];
-  [s,perm]=sort(-perm);s=-s;
+  [s,perm]=gsort(-perm);
+  s=-s;
   x=x(perm);              
 
   nresp=Aom*x(1:order1); dresp=Aom*x(order1+1:2*order1); 

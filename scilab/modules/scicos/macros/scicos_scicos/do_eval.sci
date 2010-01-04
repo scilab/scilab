@@ -26,12 +26,14 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
   needcompile1 = max(2,needcompile)
   %mprt = funcprot()
   funcprot(0)
-  getvalue = setvalue;
+  scicos_getvalue = setvalue;
   
   function message(txt)
     messagebox(['In block ' + o.gui + ': ';
 		txt;
-	       'current parameter value kept'],'error','modal'); 
+	       'current parameter value kept'],'error','modal');
+    [str,n,line,func]=lasterror();
+    printf('do_eval: error %d - %s in %s at line %d\n', n, str, func, line); 
     %scicos_prob = resume(%t)
   endfunction
 
@@ -46,19 +48,14 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
   %nx = lstsize(scs_m.objs)
   deff('[ok, tt] = MODCOM(funam, tt, vinp, vout, vparam, vparamv, vpprop)',..
        ['[dirF, nameF, extF]=fileparts(funam);'
-	'tarpath = pathconvert(TMPDIR + ''/Modelica/'', %f, %t);'
+	'tarpath = pathconvert(TMPDIR + ''/Modelica/'', %t, %t);'
 	'if (extF == '''')  then'
 	'  funam1 = tarpath + nameF + ''.mo'';'
 	'elseif fileinfo(funam) == [] then'
 	'  funam1 = funam;'
 	'end;'
 	'mputl(tt, funam1);'
-	'compilerpath = pathconvert(SCI + ''/bin/'', %f, %t);'
-	'if MSDOS then'
-	'  compilerpath = compilerpath + ''modelicac.exe'';'
-	'else'
-	'  compilerpath = compilerpath + ''modelicac'';'
-	'end'
+	'compilerpath = getmodelicacpath() + ''modelicac'';'
 	'if execstr(''unix_s(compilerpath + '''' -c '''' + funam1 + '''' -o '''' + tarpath + nameF + ''''.moc'''')'',''errcatch'') <> 0 then'
 	'  ok = %f;'
 	'else'

@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>x_mdialog</refname>
-    <refpurpose>Xwindow dialog</refpurpose>
+    <refpurpose>Dialog for interactive vector/matrix input.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -69,7 +69,7 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>X-window vector/matrix interactive input function</para>
+    <para>Opens a dialog for interactive vector/matrix input.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -97,7 +97,7 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
         <link linkend="x_choose">x_choose</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
       <member>
         <link linkend="getvalue">getvalue</link>

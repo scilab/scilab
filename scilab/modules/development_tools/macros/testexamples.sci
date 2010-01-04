@@ -172,7 +172,7 @@ function r=xbasc_run(w)
       if %CMP(%wins_, %wins_ref) then r=%t,return,end
     end
 
-    xbasc(w)
+    clf(w)
   else
     if get('figure_style')=='old' then return,end
     ids_=xget('window');
@@ -182,7 +182,7 @@ function r=xbasc_run(w)
     load(%U,'%wins_ref');
     %wins_ref.figure_position=%wins_.figure_position
     if %CMP(%wins_, %wins_ref) then r=%t,return,end
-    xbasc()
+    clf()
   end
   if or(winsid()==cur) then xset('window',cur),end
   
@@ -237,7 +237,7 @@ function r=%CMP(%A,%B)
   case 13 then //compiled function
     if %A<>%B then  r=%t,return,end
   case 14 then //library
-    if or(sort(string(%A))<>sort(string(%B))) then  r=%t,return,end
+    if or(gsort(string(%A))<>gsort(string(%B))) then  r=%t,return,end
   case 15 then //list
     if or(lstsize(%A)<>lstsize(%B)) then  r=%t,return,end
     if or(definedfields(%A)<>definedfields(%B)) then r=%t,return,end

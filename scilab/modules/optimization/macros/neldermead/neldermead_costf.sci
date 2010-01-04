@@ -14,10 +14,15 @@
 //   This function is given to the simplex class as 
 //   a callback.
 //   Input/Output arguments are swapped w.r.t. 
-//   neldermead_function, so that it matches
+//   optimbase_function, so that it matches
 //   the requirements of simplex methods.
 //
 function [ f , this ] = neldermead_costf ( x , this )
-  [this.optbase , f] = optimbase_function ( this.optbase , x );
+  [ this.optbase , hascons ] = optimbase_hasnlcons ( this.optbase );
+  if ( hascons ) then
+    [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , 2 );
+  else
+    [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , 2 );
+  end
 endfunction
 

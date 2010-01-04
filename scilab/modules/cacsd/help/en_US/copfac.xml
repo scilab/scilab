@@ -28,7 +28,7 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>: <literal>syslin</literal> list  (continuous-time linear system )</para>
+          <para> <literal>syslin</literal> list  (continuous-time linear system )</para>
         </listitem>
       </varlistentry>
       <varlistentry>

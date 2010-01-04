@@ -8,7 +8,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
+function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
 // This function performs translation of a single M-file
 // - fil: file name
 // - res_path: path to write translated file in (default value is fil path)
@@ -16,7 +16,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
 // Get default arguments
 [lhs,rhs]=argn(0)
-if rhs<6 then prettyprint=%F,end
+if rhs<6 then prettyprintoutput=%F,end
 if rhs<5 then verbose_mode=3,end
 if rhs<4 then only_double=%F,end
 if rhs<3 then Recmode=%F,end
@@ -34,7 +34,7 @@ if exists("m2scikernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),
 if exists("m2scipercentlib")==0 then load("SCI/modules/m2sci/macros/percent/lib"),end
 if exists("m2scisci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
-if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint) then
+if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput) then
   res=1
   return
 end
@@ -67,7 +67,7 @@ margin="  "
 rec=gettext("OFF");
 dble=gettext("NO");
 pretty=gettext("NO");
-if prettyprint then pretty=gettext("YES");end
+if prettyprintoutput then pretty=gettext("YES");end
 if Recmode then rec=gettext("ON");end
 if only_double then dble=gettext("YES");end
 
@@ -108,15 +108,15 @@ fnam=part(base_name,k($)+1:ke) // File name without extension
 
 // logfile initialisation
 if exists("logfile")==0 then
-  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+"logfile.dat","old")
+  [tempfd1,ierr1]=file('open',pathconvert(TMPDIR)+"logfile.dat","new")
   if ierr1==0 then
     load(pathconvert(TMPDIR)+"logfile.dat")
     file('close',tempfd1)
-    file('close',logfile)
     mdelete(pathconvert(TMPDIR)+"logfile.dat")
   end
   logfile=file('open',res_path+"m2sci_"+fnam+".log","unknown")
   save(pathconvert(TMPDIR)+"logfile.dat",logfile)
+  file('close',logfile)
 end
 
 // Output beginning message
@@ -231,21 +231,22 @@ if txt~=[] then
   end
 
   // Perform the translation
-  [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
+  [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprintoutput)
 
   //Creation of fname_resume.log file
- // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
-    //resume_logfile initialisation
+  // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
+  //resume_logfile initialisation
     if exists("resume_logfile")==0 then
-      [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+gettext("resumelogfile.dat"),"old")
+      [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+gettext("resumelogfile.dat"),"new")
       if ierr2==0 then
         load(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
         file('close',tempfd2)
-        file('close',resume_logfile)
         mdelete(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
       end
-      resume_logfile=file('open',res_path+gettext("resume")+"_m2sci_"+fnam+".log",'unknown')
+      // res_path+gettext("resume")+"_m2sci_"+fnam+".log"
+      resume_logfile=file('open',pathconvert(TMPDIR)+gettext("resumelogfile.dat"),"new")
       save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"),resume_logfile)
+      file('close',resume_logfile)
     end
        
     //number of matlab reference functions, matlab toolboxes functions, not matlab functions

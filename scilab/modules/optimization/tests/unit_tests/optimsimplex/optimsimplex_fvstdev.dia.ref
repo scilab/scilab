@@ -42,7 +42,7 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then bugmes();quit;end
 endfunction
-// Test optimsimplex_fvstdev with 3 vertices
+// Test optimsimplex_fvstdev with 3 vertices 
 s1 = optimsimplex_new ();
 simplex = [
 1. -2.0 1.0
@@ -53,7 +53,7 @@ s1 = optimsimplex_setall ( s1 , simplex );
 sd = optimsimplex_fvstdev ( s1 );
 assert_close ( sd , 3.0 , %eps );
 s1 = optimsimplex_destroy ( s1 );
-// Test optimsimplex_fvstdev with 5 vertices
+// Test optimsimplex_fvstdev with 5 vertices 
 s1 = optimsimplex_new ();
 simplex = [
 4. -2.0 1.0

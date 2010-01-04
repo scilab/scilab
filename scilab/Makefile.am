@@ -27,6 +27,8 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
 scilab_bin_LDFLAGS 		= 
+scilab_cli_bin_LDFLAGS		=
+
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
@@ -98,7 +100,8 @@ $(top_srcdir)/etc/scilab.quit \
 $(top_srcdir)/etc/modules.xml \
 $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
-$(top_srcdir)/etc/toolboxes.xml
+$(top_srcdir)/etc/toolboxes.xml \
+$(top_srcdir)/etc/jvm_options.xml
 
 
 infofilesdir=$(pkgdatadir)/
@@ -116,6 +119,7 @@ $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
 $(top_srcdir)/RELEASE_NOTES_5.1.X \
+$(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
@@ -298,7 +302,7 @@ pkgconfig_DATA = scilab.pc
 
 .NOTPARALLEL: macros doc
 
-CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/
+CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/modules/api_scilab/includes/
 CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
 
 # These binaries are built here and not in the call_scilab module because 

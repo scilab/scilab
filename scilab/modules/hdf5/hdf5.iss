@@ -17,7 +17,7 @@
 ;
 #define HDF5 "hdf5"
 ;
-Source: bin\scihdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HDF5}\jar\org.scilab.modules.hdf5.jar;DestDir: {app}\modules\{#HDF5}\jar; Components: {#COMPN_SCILAB}
 ;
@@ -30,7 +30,7 @@ Source: modules\{#HDF5}\version.xml; DestDir: {app}\modules\{#HDF5}; Components:
 ;
 Source: modules\{#HDF5}\sci_gateway\hdf5_gateway.xml; DestDir: {app}\modules\{#HDF5}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HDF5}\includes\*.h; DestDir: {app}\modules\{#HDF5}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#HDF5}\includes\*.h; DestDir: {app}\modules\{#HDF5}\includes; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HDF5}\help\addchapter.sce; DestDir: {app}\modules\{#HDF5}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
@@ -52,4 +52,3 @@ Source: thirdparty\jhdf5.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCIL
 ;
 ;Source: modules\{#HDF5}\tests\*.*; DestDir: {app}\modules\{#HDF5}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;--------------------------------------------------------------------------------------------------------------
-

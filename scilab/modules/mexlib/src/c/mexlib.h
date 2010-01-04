@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -38,7 +37,6 @@ int *Header(const mxArray *ptr);
  */
 mxArray *header2ptr(int *header);
 
-
 /**
  * TODO : comment
  * @param header
@@ -47,14 +45,12 @@ mxArray *header2ptr(int *header);
  */
 int *listentry(int *header, int i);
 
-
 /**
  * TODO : comment
  * @param header
  * @return
  */
 int theMLIST(int *header);
-
 
 /**
  * TODO : comment
@@ -63,14 +59,12 @@ int theMLIST(int *header);
  */
 int *RawHeader(const mxArray *ptr);
 
-
 /**
  * TODO : comment
  * @param ptr
  * @return
  */
 int Is1x1(const mxArray *ptr);
-
 
 /**
  * TODO : comment
@@ -79,14 +73,12 @@ int Is1x1(const mxArray *ptr);
  */
 mxArray *mxCreateData(int m);
 
-
 /**
  * TODO : comment
  * @param expr
  * @param error_message
  */
 void mxAssert(int expr, char *error_message);
-
 
 /**
  * TODO : comment
@@ -95,13 +87,11 @@ void mxAssert(int expr, char *error_message);
  */
 void *mxRealloc(void *ptr, size_t nsize);
 
-
 /**
  * TODO : comment
  * @param ptr
  */
 void mexMakeMemoryPersistent(void *ptr);
-
 
 /**
  * TODO : comment
@@ -109,7 +99,6 @@ void mexMakeMemoryPersistent(void *ptr);
  * @return
  */
 int IsstOrce(mxArray *ptr);
-
 
 /**
  * TODO : comment
@@ -130,7 +119,7 @@ bool mexIsGlobal(const mxArray *ptr);
  * Unreference objects in a struct or cell 
  * @param ptr
  * @return
-*/
+ */
 mxArray *UnrefStruct(mxArray *ptr);
 
 /**
@@ -138,47 +127,43 @@ mxArray *UnrefStruct(mxArray *ptr);
  * @param m
  * @param n
  * @return
-*/
+ */
 mxArray *mxCreateLogicalMatrix(int m, int n);
 
 /**
  * TODO : comment
  * @param value
  * @return
-*/
+ */
 mxArray *mxCreateLogicalScalar(mxLOGICAL *value);
 
 /**
  * TODO : comment
  * @param pa
  * @return
-*/
+ */
 bool mxIsLogicalScalarTrue(mxArray *pa);
-
 
 /**
  * TODO : comment
  * @param pa
  * @return
-*/
+ */
 bool mxIsLogicalScalar(mxArray *pa);
-
 
 /**
  * TODO : comment
  * @return
-*/
+ */
 const char *mexFunctionName(void);
-
 
 /**
  * TODO : comment
  * @param array_ptr
  * @param workspace
  * @return
-*/
+ */
 int mexPutArray(mxArray *array_ptr, char *workspace);
-
 
 /**
  * TODO : comment
@@ -186,17 +171,15 @@ int mexPutArray(mxArray *array_ptr, char *workspace);
  * @param var_name
  * @param array_ptr
  * @return
-*/
+ */
 int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr);
-
 
 /**
  * TODO : comment
  * @param ptr
  * @return
-*/
+ */
 const char *mxGetClassName(const mxArray *ptr);
-
 
 /**
  * TODO : comment
@@ -204,10 +187,9 @@ const char *mxGetClassName(const mxArray *ptr);
  * @param n
  * @param it
  * @return
-*/
+ */
 mxArray *C2F(mxcreatedoublematrix)(int *m, int *n, int *it);
 
-
 /**
  * TODO : comment
  * @param y
@@ -215,10 +197,9 @@ mxArray *C2F(mxcreatedoublematrix)(int *m, int *n, int *it);
  * @param pti
  * @param n
  * @return
-*/
+ */
 int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, int *n);
 
-
 /**
  * TODO : comment
  * @param ptr
@@ -226,8 +207,5 @@ int C2F(mxcopycomplex16toptr)(double *y, mxArray *ptr, mxArray *pti, int *n);
  * @param y
  * @param n
  * @return
-*/
+ */
 int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, int *n);
-
-
-

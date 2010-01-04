@@ -8,6 +8,9 @@
 // Create all needed directories
 //==============================
 
+
+chdir(TMPDIR);
+
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
 else

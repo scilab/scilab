@@ -7,7 +7,13 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
-
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+//
+// Do not check ref, because imp option create a output messages
+// which contains lots of floating point values which may
+// be slightly different across platforms, without being bugs.
+//
 // optim_script.tst --
 //   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.
@@ -54,8 +60,6 @@ endfunction
 //
 // Configure the test so that verbose message do not interrupt the test.
 lines(0);
-// Open up the console for messages which may appear there
-consolebox("on");
 //
 // 1. Test unconstrained BFGS
 // Test without arguments

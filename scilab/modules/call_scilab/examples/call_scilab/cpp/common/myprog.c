@@ -77,7 +77,7 @@ int my_ode_job()
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
   fprintf(stdout,"linking \n");
-  SendScilabJob("ilib_for_link('odeex','my_ode.o',[],'c');");
+  SendScilabJob("ilib_for_link('odeex','my_ode.c',[],'c');");
   fprintf(stdout,"link done  \n");
   SendScilabJob("exec('loader.sce');link('show')");
   WriteMatrix("x", &mx, &nx, x);
