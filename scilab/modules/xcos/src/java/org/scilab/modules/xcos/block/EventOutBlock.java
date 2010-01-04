@@ -23,19 +23,25 @@ public final class EventOutBlock extends ContextUpdate {
 
     private static final long serialVersionUID = 6585655980747217421L;
 
-    public EventOutBlock() {
-	super();
-	setInterfaceFunctionName("CLKOUTV_f");
-	setSimulationFunctionName("output");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	public EventOutBlock() {
+		super();
+	}
 
-    public EventOutBlock(String label) {
-	this();
-    }
+	public EventOutBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("CLKOUTV_f");
+		setSimulationFunctionName("output");
+	}
 
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);

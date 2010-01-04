@@ -168,23 +168,33 @@ public class BasicBlock extends XcosUIDObject {
 	};
 
 	public BasicBlock() {
-	super();
-	setStyle("");
-	setVisible(true);
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0, 0, 40, 40));
-    }
+		super();
+		setVisible(true);
+		setVertex(true);
+	}
 
-    protected BasicBlock(String label) {
-	this();
-	setValue(label);
-    }
+	protected BasicBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
-    protected BasicBlock(String label, String style) {
-	this(label);
-	setStyle(style);
-    }
+	protected BasicBlock(String label, String style) {
+		this(label);
+		setStyle(style);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	protected void setDefaultValues() {
+		setVisible(true);
+		setVertex(true);
+		setConnectable(false);
+		setGeometry(new mxGeometry(0, 0, 40, 40));
+		setValue("");
+		setStyle("");
+	}
 
     public XcosDiagram getParentDiagram() {
         return parentDiagram;

@@ -23,20 +23,26 @@ public final class ExplicitInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = -5872963017904352162L;
 
-    public ExplicitInBlock() {
-	super();
-	setInterfaceFunctionName("IN_f");
-	setSimulationFunctionName("input");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	public ExplicitInBlock() {
+		super();
+	}
 
-    public ExplicitInBlock(String label) {
-	this();
-    }
+	public ExplicitInBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("IN_f");
+		setSimulationFunctionName("input");
+	}
+    
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
     }

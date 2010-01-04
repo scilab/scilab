@@ -34,23 +34,17 @@ public final class SplitBlock extends BasicBlock {
 
 	public SplitBlock() {
 		super();
-		setInterfaceFunctionName("SPLIT_f");
-		setSimulationFunctionName("lsplit");
-		setRealParameters(new ScilabDouble());
-		setIntegerParameters(new ScilabDouble());
-		setObjectsParameters(new ScilabList());
-		setExprs(new ScilabDouble());
 	}
 
 	protected SplitBlock(String label) {
 		this();
+		setDefaultValues();
 		setValue(label);
 	}
 
 	// SPLIT_f <-> lsplit
 	// CLKSPLIT_f <-> split
 	// IMPSPLIT_F <-> limpsplit
-
 	public SplitBlock(String label, BasicPort source, BasicPort target1,
 			BasicPort target2) {
 		this(label);
@@ -84,6 +78,21 @@ public final class SplitBlock extends BasicBlock {
 		getChildAt(2).setVisible(false);
 	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("SPLIT_f");
+		setSimulationFunctionName("lsplit");
+		setRealParameters(new ScilabDouble());
+		setIntegerParameters(new ScilabDouble());
+		setObjectsParameters(new ScilabList());
+		setExprs(new ScilabDouble());
+		setGeometry(new mxGeometry(0, 0, 7, 7));
+	}
+	
 	public void addPort(CommandPort port) {
 		super.addPort(port);
 		port.setVisible(false);

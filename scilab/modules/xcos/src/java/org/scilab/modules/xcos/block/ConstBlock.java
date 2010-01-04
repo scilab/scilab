@@ -15,18 +15,30 @@ package org.scilab.modules.xcos.block;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import com.mxgraph.model.mxGeometry;
+
 public final class ConstBlock extends BasicBlock {
 
     private static final long serialVersionUID = 4234301593972228584L;
 
     public ConstBlock() {
 	super();
-	setInterfaceFunctionName("CONST_m");
-	setValue("1");
     }
     
     protected ConstBlock(String label) {
 	this();
+	setDefaultValues();
+	setValue(label);
+    }
+    
+    /**
+     * Initialize the block with the default values
+     */
+    @Override
+    protected void setDefaultValues() {
+    	super.setDefaultValues();
+    	setInterfaceFunctionName("CONST_m");
+    	setValue("1");
     }
     
     public void setExprs(ScilabType exprs) {
