@@ -4,6 +4,7 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2010 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -142,7 +143,6 @@ detect_type_of_scilab(){
 		DISABLE_JAVA_DETECTION=1
 	fi
 	if echo "$progname"|grep "scilab6$" 2>&1 > /dev/null; then
-		SCILAB_MODE="nwni"
 		SCILABBIN="scilab6-bin"
 #		DISABLE_JAVA_DETECTION=1
 	fi
@@ -672,7 +672,10 @@ if test "$rest" = "yes"; then
 
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
-	      ;;
+	    ;;
+      --parse-trace|--display-tree|--help|--debug|--no-exec|--context-dump|--timed)
+	    #This are Scilab6 dedicated options.
+	    ;;
       -psn_*)
 	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
 	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
