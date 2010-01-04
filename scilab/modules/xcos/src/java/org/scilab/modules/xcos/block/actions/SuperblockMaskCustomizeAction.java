@@ -113,7 +113,8 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        varCustomizeTable.setModel(controler.getModel().customizeTableModel);
 	        customizeScrollPane.setViewportView(varCustomizeTable);
-	        varCustomizeTable.setAutoCreateRowSorter(true);
+//	        setAutoCreateRowSorter is java 1.6
+//	        varCustomizeTable.setAutoCreateRowSorter(true);
 	        
 	        /* Update the default value table */ 
 	        varCustomizeTable.getModel().addTableModelListener(controler.updateValuesTable);
@@ -171,7 +172,8 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        defaultValueTable.setModel(controler.getModel().valuesTableModel);
 	        defaultValuesScrollPane.setViewportView(defaultValueTable);
 
-	        defaultValueTable.setAutoCreateRowSorter(false);
+//	        setAutoCreateRowSorter is java 1.6
+//	        defaultValueTable.setAutoCreateRowSorter(false);
 	        
 	        defaultValues.add(defaultValuesScrollPane);
 
