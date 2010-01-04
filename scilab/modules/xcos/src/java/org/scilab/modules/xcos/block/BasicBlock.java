@@ -95,13 +95,13 @@ public class BasicBlock extends XcosUIDObject {
     // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
     //private List<String> exprs = new ArrayList<String>();
-    private ScilabType exprs = null;
+    private ScilabType exprs;
     //private List<Double> realParameters = new ArrayList<Double>();
-    private ScilabType realParameters = null;
+    private ScilabType realParameters;
     //private List<Integer> integerParameters = new ArrayList<Integer>();
-    private ScilabType integerParameters = null;
+    private ScilabType integerParameters;
     //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters = null;
+    private ScilabType objectsParameters;
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
 
