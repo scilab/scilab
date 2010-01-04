@@ -57,4 +57,21 @@ disp(size(M_own('dims')))
 disp(size(M_own('entries')))
  ]]></programlisting>
   </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="grand">grand</link>
+      </member>
+      <member>
+        <link linkend="matrix">matrix</link>
+      </member>
+    </simplelist>
+  </refsection>
 </refentry>

@@ -48,7 +48,16 @@ Bug fixes:
 * bug 5691 fixed - PDF/EPS exports with LaTeX/MathML failed.
 
 * bug 5696 semi/fixed - There was a lack of feedback when SELinux was 
-                   preventing Scilab to start under Fedora 12
+                   preventing Scilab to start under Fedora 12.
+
+* bug 5700 fixed - Compilation under RHE4 was failing on the includes of
+                   term.h and termcap.h.
+
+* bug 5716 fixed - Some links in the documentation about hypermatrices were 
+                   missing.
+
+* bug 5722 fixed - tand returns an error when called with ieee(0) mode
+
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
