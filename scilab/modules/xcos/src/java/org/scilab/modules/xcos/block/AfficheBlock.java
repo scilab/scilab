@@ -45,7 +45,7 @@ public final class AfficheBlock extends BasicBlock {
 	/**
 	 * @return the instance UID.
 	 */
-	public int getHashCode() {
+	public synchronized int getHashCode() {
 		//generate UID if needed (initialization is 0)
 		if (hashCode == 0) {
 			hashCode = UUID.randomUUID().hashCode();			
@@ -57,6 +57,7 @@ public final class AfficheBlock extends BasicBlock {
 	 * Set the instance UID.
 	 * @param hashcode The new UID.
 	 */
+	@Deprecated
 	public void setHashCode(int hashcode) {
 		this.hashCode = hashcode;
 	}
