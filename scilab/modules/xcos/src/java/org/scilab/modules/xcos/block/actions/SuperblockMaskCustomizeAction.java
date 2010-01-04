@@ -38,23 +38,37 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class SuperblockMaskCustomizeAction extends DefaultAction {
+public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
+	/**
+	 * Private constructor
+	 * @param scilabGraph the associated graph
+	 */
 	private SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.CUSTOMIZE, scilabGraph);
 	}
 
+	/**
+	 * Create the menu associated with this action
+	 * @param scilabGraph the associated graph
+	 * @return the newly created menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.CUSTOMIZE, null,
 				new SuperblockMaskCustomizeAction(scilabGraph), null);
 	}
 
+	/**
+	 * Function to be performed by this action.
+	 * @param e The associated event
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
 
 		CustomizeFrame frame = new CustomizeFrame();
-		CustomizeFrame.CustomizeFrameModel model = frame.getControler().getModel();
+		CustomizeFrame.CustomizeFrameModel model = frame.getController().getModel();
 		model.setBlock(block);
 		model.importFromBlock();
 		frame.setVisible(true);
@@ -62,10 +76,36 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	/**
 	 * Frame used to customize fields and variables default values.
+	 * DAC: this class is tightly coupled to Swing
 	 */
 	private static class CustomizeFrame extends JFrame {
 		private CustomizeFrameControler controler;
+		
+		private javax.swing.JPanel buttonBlob;
+		private javax.swing.JButton cancelButton;
+		private javax.swing.JPanel customizeMainPanel;
+		private javax.swing.JScrollPane customizeScrollPane;
+		private javax.swing.JTabbedPane tabbedPane;
+		private javax.swing.JTable defaultValueTable;
+		private javax.swing.JPanel defaultValues;
+		private javax.swing.JScrollPane defaultValuesScrollPane;
+		private javax.swing.JButton delete;
+		private javax.swing.JButton insert;
+		private javax.swing.JPanel mainPanel;
+		private javax.swing.JButton moveDown;
+		private javax.swing.JButton moveUp;
+		private javax.swing.JButton okButton;
+		private javax.swing.JLabel rowLabel;
+		private javax.swing.JPanel rowManagement;
+		private javax.swing.JSpinner rowSpinner;
+		private javax.swing.JPanel tableManagement;
+		private javax.swing.JPanel validationPanel;
+		private javax.swing.JTable varCustomizeTable;
+		private javax.swing.JPanel varSettings;
 
+		/**
+		 * Constructor
+		 */
 		public CustomizeFrame() {
 			setTitle(XcosMessages.MASK_TITLE);
 			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -73,12 +113,16 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			initComponents();
 		}
 
-		public CustomizeFrameControler getControler() {
+		/**
+		 * @return The associated controller
+		 */
+		public CustomizeFrameControler getController() {
 			return controler;
 		}
 
 		/**
 		 * Construct the UI and install the listeners.
+		 * NCSS: this is the UI constructor
 		 */
 		private void initComponents() {
 
@@ -133,24 +177,24 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        insert.setMnemonic('n');
 	        insert.setText(XcosMessages.MASK_INSERT);
 	        tableManagement.add(insert);
-	        insert.addActionListener(controler.insertActionListener );
+	        insert.addActionListener(controler.insertActionListener);
 
 	        delete.setMnemonic('l');
 	        delete.setText(XcosMessages.MASK_DELETE);
 	        tableManagement.add(delete);
-	        delete.addActionListener(controler.deleteActionListener );
+	        delete.addActionListener(controler.deleteActionListener);
 
 	        tableManagement.add(buttonBlob);
 
 	        moveUp.setMnemonic('u');
 	        moveUp.setText(XcosMessages.MASK_MOVEUP);
 	        tableManagement.add(moveUp);
-	        moveUp.addActionListener(controler.moveUpActionListener );
+	        moveUp.addActionListener(controler.moveUpActionListener);
 
 	        moveDown.setMnemonic('w');
 	        moveDown.setText(XcosMessages.MASK_MOVEDOWN);
 	        tableManagement.add(moveDown);
-	        moveDown.addActionListener(controler.moveDownActionListener );
+	        moveDown.addActionListener(controler.moveDownActionListener);
 
 	        customizeMainPanel.add(tableManagement);
 
@@ -163,7 +207,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        rowSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(rowSpinner, "######0"));
 	        rowSpinner.setValue(varCustomizeTable.getModel().getRowCount());
 	        rowManagement.add(rowSpinner);
-	        rowSpinner.addChangeListener(controler.rowSpinnerChangeListener );
+	        rowSpinner.addChangeListener(controler.rowSpinnerChangeListener);
 
 	        varSettings.add(rowManagement);
 
@@ -183,11 +227,11 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	        okButton.setText(XcosMessages.OK);
 	        validationPanel.add(okButton);
-	        okButton.addActionListener(controler.okActionListener );
+	        okButton.addActionListener(controler.okActionListener);
 
 	        cancelButton.setText(XcosMessages.CANCEL);
 	        validationPanel.add(cancelButton);
-	        cancelButton.addActionListener(controler.cancelActionListener );
+	        cancelButton.addActionListener(controler.cancelActionListener);
 
 	        mainPanel.add(validationPanel, java.awt.BorderLayout.PAGE_END);
 
@@ -198,28 +242,6 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	        cancelButton.requestFocusInWindow();
 	        setResizable(false);
 	    }
-
-		private javax.swing.JPanel buttonBlob;
-		private javax.swing.JButton cancelButton;
-		private javax.swing.JPanel customizeMainPanel;
-		private javax.swing.JScrollPane customizeScrollPane;
-		private javax.swing.JTabbedPane tabbedPane;
-		private javax.swing.JTable defaultValueTable;
-		private javax.swing.JPanel defaultValues;
-		private javax.swing.JScrollPane defaultValuesScrollPane;
-		private javax.swing.JButton delete;
-		private javax.swing.JButton insert;
-		private javax.swing.JPanel mainPanel;
-		private javax.swing.JButton moveDown;
-		private javax.swing.JButton moveUp;
-		private javax.swing.JButton okButton;
-		private javax.swing.JLabel rowLabel;
-		private javax.swing.JPanel rowManagement;
-		private javax.swing.JSpinner rowSpinner;
-		private javax.swing.JPanel tableManagement;
-		private javax.swing.JPanel validationPanel;
-		private javax.swing.JTable varCustomizeTable;
-		private javax.swing.JPanel varSettings;
 		
 		/**
 		 * Implements the models used on the frame.
@@ -230,7 +252,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			/**
 			 * Model used on the customize table.
 			 */
-			public final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
+			private final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
 	            new Object [][] {
 		            	new Object[] {1, XcosMessages.MASK_WINTITLEVAR, XcosMessages.MASK_WINTITLE, false}
 		            },
@@ -238,10 +260,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		                XcosMessages.MASK_ROWS, XcosMessages.MASK_VARNAME, XcosMessages.MASK_VARDESC, XcosMessages.MASK_EDITABLE
 		            }
 		    ) {
-		        Class[] types = new Class [] {
+		        private final Class[] types = new Class [] {
 		            java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
 		        };
-		        boolean[] canEdit = new boolean [] {
+		        private final boolean[] canEdit = new boolean [] {
 		            false, true, true, true
 		        };
 
@@ -250,8 +272,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		        }
 
 		        public boolean isCellEditable(int rowIndex, int columnIndex) {
-		          	if (rowIndex != 0)
+		          	if (rowIndex != 0) {
 		           		return canEdit [columnIndex];
+		          	}
 		           	return false;
 		        }
 		    };
@@ -259,7 +282,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		    /**
 		     * Model used for the values table
 		     */
-			public final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
+			private final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
 	            new Object [][] {
 	            		new Object[] {XcosMessages.MASK_WINTITLE, ""}
 	            },
@@ -267,10 +290,10 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	                XcosMessages.MASK_VARNAME, XcosMessages.MASK_VARVALUES
 	            }
 	        ) {
-	            Class[] types = new Class [] {
+	            private final Class[] types = new Class [] {
 	                java.lang.String.class, java.lang.String.class
 	            };
-	            boolean[] canEdit = new boolean [] {
+	            private final boolean[] canEdit = new boolean [] {
 	                false, true
 	            };
 
@@ -283,10 +306,23 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 	            }
 	        };
 		    
+	        /**
+	         * Default constructor
+	         */
+	        protected CustomizeFrameModel() {
+	        	// Does nothing as the fields are final.
+	        }
+	        
+	        /**
+	         * @param block This model associated block.
+	         */
 			public void setBlock(SuperBlock block) {
 				this.block = block;
 			}
 
+			/**
+			 * @return This model associated block.
+			 */
 			public SuperBlock getBlock() {
 				return block;
 			}
@@ -295,15 +331,16 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Export the table models to the block exprs.
 			 */
 			public void exportToBlock() {
+				/** Data vectors are typed when parsing */
 				final Vector customModel = customizeTableModel.getDataVector();
 				final Vector valuesModel = valuesTableModel.getDataVector();
 				
 				/* We have one content that is not a variable : Window Title*/
-				final int nbOfVar = valuesModel.size()-1;
+				final int nbOfVar = valuesModel.size() - 1;
 				
 				final String[][] values = new String[nbOfVar][1];
 				final String[][] varNames = new String[nbOfVar][1];
-				final String[][] varDesc = new String[nbOfVar+1][1];
+				final String[][] varDesc = new String[nbOfVar + 1][1];
 				final ScilabList polFields = new ScilabList();
 				
 				/* Title */
@@ -311,9 +348,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 				
 				/* Other fields */
 				for (int i = 0; i < nbOfVar; i++) {
-					values[i][0] = (String) ((Vector) valuesModel.get(i+1)).get(1);
-					varNames[i][0] = (String) ((Vector) customModel.get(i+1)).get(1);
-					varDesc[i+1][0] = (String) ((Vector) customModel.get(i+1)).get(2);
+					values[i][0] = (String) ((Vector) valuesModel.get(i + 1)).get(1);
+					varNames[i][0] = (String) ((Vector) customModel.get(i + 1)).get(1);
+					varDesc[i + 1][0] = (String) ((Vector) customModel.get(i + 1)).get(2);
 					
 					/* reconstruct pol fields
 					 * TODO: what are these fields ?  
@@ -369,9 +406,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 						/* Loop all over the data */
 						for (int i = 1; i < varDesc.getHeight(); i++) {
 							customModel.addRow(new Object[] {
-									i+1, varNames.getData()[i-1][0], varDesc.getData()[i][0], true
+									i + 1, varNames.getData()[i - 1][0], varDesc.getData()[i][0], true
 							});
-							valuesModel.setValueAt(values.getData()[i-1][0], i, 1);
+							valuesModel.setValueAt(values.getData()[i - 1][0], i, 1);
 						}
 					} else {
 						/* Title */
@@ -380,9 +417,9 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 						/* Loop all over the data */
 						for (int i = 1; i < varDesc.getHeight(); i++) {
 							customModel.addRow(new Object[] {
-									i+1, varNames.getData()[0][i-1], varDesc.getData()[0][i], true
+									i + 1, varNames.getData()[0][i - 1], varDesc.getData()[0][i], true
 							});
-							valuesModel.setValueAt(values.getData()[0][i-1], i, 1);
+							valuesModel.setValueAt(values.getData()[0][i - 1], i, 1);
 						}
 					}
 				}
@@ -395,21 +432,13 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 		private class CustomizeFrameControler {
 			private CustomizeFrameModel model;
 			
-			public CustomizeFrameControler() {
-				model = new CustomizeFrameModel();
-			}
-			
-			public CustomizeFrameModel getModel() {
-				return model;
-			}
-			
-			public final ActionListener cancelActionListener = new ActionListener() {
+			private final ActionListener cancelActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();					
 				}
 			};
 
-			public final ActionListener okActionListener = new ActionListener() {
+			private final ActionListener okActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					/* TODO: handle ok click when editing a cell. */
 					model.exportToBlock();
@@ -417,7 +446,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 				}
 			};
 
-			public final ChangeListener rowSpinnerChangeListener = new ChangeListener() {
+			private final ChangeListener rowSpinnerChangeListener = new ChangeListener() {
 				public void stateChanged(ChangeEvent e) {
 					int rowCount = varCustomizeTable.getRowCount();
 					int value = (Integer) rowSpinner.getModel().getValue();
@@ -425,63 +454,71 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					
 					for (; rowCount < value; rowCount++) {
 						tableModel.addRow(
-								new Object[] {rowCount+1, "", true}
+								new Object[] {rowCount + 1, "", true}
 						);
 					}
 					
 					for (; rowCount > value; rowCount--) {
-						tableModel.removeRow(rowCount-1);
+						tableModel.removeRow(rowCount - 1);
 					}
 				}
 			};
 
-			public final ActionListener moveDownActionListener = new ActionListener() {
+			private final ActionListener moveDownActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = varCustomizeTable.getSelectedRow();
+					/** doesn't need to be checked as the operation doesn't depend on it */
 					Vector<Vector> data = model.customizeTableModel.getDataVector();
 					
-					if (selectedRow > 0 && selectedRow < varCustomizeTable.getRowCount()-1) {
+					if (selectedRow > 0 && selectedRow < varCustomizeTable.getRowCount() - 1) {
+						/** doesn't need to be checked as the operation doesn't depend on it */
 						Vector current = (Vector) data.get(selectedRow);
-						Vector next = (Vector) data.get(selectedRow +1);
+						Vector next = (Vector) data.get(selectedRow  + 1);
 						
 						/* Inverting data*/
-						data.set(selectedRow +1, current);
+						data.set(selectedRow  + 1, current);
 						data.set(selectedRow, next);
 						
 						/* Update the index field */
-						current.set(0, ((Integer) current.get(0)) +1);
-						next.set(0, ((Integer) next.get(0)) -1);
+						current.set(0, ((Integer) current.get(0))  + 1);
+						next.set(0, ((Integer) next.get(0))  - 1);
 						
 						/* Keep the same row selected */
-						varCustomizeTable.changeSelection(selectedRow +1, varCustomizeTable.getSelectedColumn(), false, false);
+						varCustomizeTable.changeSelection(selectedRow + 1,
+								varCustomizeTable.getSelectedColumn(), false,
+								false);
 					}
 				}
 			};
 
-			public final ActionListener moveUpActionListener = new ActionListener() {
+			private final ActionListener moveUpActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = varCustomizeTable.getSelectedRow();
+					/** doesn't need to be checked as the operation doesn't depend on it */
 					final Vector<Vector> data = model.customizeTableModel.getDataVector();
 					
 					if (selectedRow > 1) {
+						/** doesn't need to be checked as the operation doesn't depend on it */
 						Vector current = (Vector) data.get(selectedRow);
-						Vector next = (Vector) data.get(selectedRow-1);
+						Vector next = (Vector) data.get(selectedRow - 1);
 						
 						/* Inverting data*/
-						data.set(selectedRow-1, current);
+						data.set(selectedRow - 1, current);
 						data.set(selectedRow, next);
 						
 						/* Update the index field */
-						current.set(0, ((Integer) current.get(0)) -1);
-						next.set(0, ((Integer) next.get(0)) +1);
+						current.set(0, ((Integer) current.get(0))  - 1);
+						next.set(0, ((Integer) next.get(0))  + 1);
 						
 						/* Keep the same row selected */
-						varCustomizeTable.changeSelection(selectedRow -1, varCustomizeTable.getSelectedColumn(), false, false);
+						varCustomizeTable.changeSelection(selectedRow - 1,
+								varCustomizeTable.getSelectedColumn(), false,
+								false);
 					}
 				}
 			};
 
-			public final ActionListener deleteActionListener = new ActionListener() {
+			private final ActionListener deleteActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int selected = varCustomizeTable.getSelectedRow();
 					int nbOfRows = varCustomizeTable.getRowCount();
@@ -489,11 +526,11 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					
 					if (selected > 1) {
 						model.customizeTableModel.removeRow(selected);
-						varCustomizeTable.changeSelection(selected-1, 1, false, false);
+						varCustomizeTable.changeSelection(selected - 1, 1, false, false);
 						hasChanged = true;
 					} else if (nbOfRows > 1) {
-						model.customizeTableModel.removeRow(nbOfRows -1);
-						varCustomizeTable.changeSelection(nbOfRows -2, 1 , false, false);
+						model.customizeTableModel.removeRow(nbOfRows  - 1);
+						varCustomizeTable.changeSelection(nbOfRows - 2, 1 , false, false);
 						hasChanged = true;
 					}
 					
@@ -510,19 +547,19 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 				}
 			};
 
-			public final ActionListener insertActionListener = new ActionListener() {
+			private final ActionListener insertActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					model.customizeTableModel.addRow(
-							new Object[] {model.customizeTableModel.getRowCount()+1, "", "", true}
+							new Object[] {model.customizeTableModel.getRowCount() + 1, "", "", true}
 					);
-					varCustomizeTable.changeSelection(model.customizeTableModel.getRowCount()-1, 1, false, false);
+					varCustomizeTable.changeSelection(model.customizeTableModel.getRowCount() - 1, 1, false, false);
 				}
 			};
 
 			/**
 			 * Update the buttons on selection change.  
 			 */
-			public final ListSelectionListener updateButtonsSensibleForSelectionChange = new ListSelectionListener() {
+			private final ListSelectionListener updateButtonsSensibleForSelectionChange = new ListSelectionListener() {
 				public void valueChanged(ListSelectionEvent e) {
 					/* We cannot move up anymore */
 					boolean isFirst = false;
@@ -533,7 +570,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					int rowCount = varCustomizeTable.getRowCount();
 					
 					isFirst = selectedRow <= 1;
-					isLast = selectedRow == rowCount-1;
+					isLast = selectedRow == rowCount - 1;
 					
 					moveUp.setEnabled(!isFirst);
 					moveDown.setEnabled(!isLast);
@@ -543,7 +580,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			/**
 			 * Update the buttons/spinner on modifications  
 			 */
-			public final TableModelListener updateButtonsSensibleForModifications = new TableModelListener() {
+			private final TableModelListener updateButtonsSensibleForModifications = new TableModelListener() {
 	        	public void tableChanged(TableModelEvent e) {
 					/* We cannot delete anymore */
 					boolean canDelete = false;
@@ -560,7 +597,7 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 			/**
 			 * Update the values table on change on the customize table.
 			 */
-			public final TableModelListener updateValuesTable = new TableModelListener() {
+			private final TableModelListener updateValuesTable = new TableModelListener() {
 				public void tableChanged(TableModelEvent e) {
 					final DefaultTableModel valuesModel = model.valuesTableModel;
 					final DefaultTableModel customModel = model.customizeTableModel;
@@ -587,14 +624,28 @@ public class SuperblockMaskCustomizeAction extends DefaultAction {
 					}
 				}
 			};
+			
+			/**
+			 * Cstr
+			 */
+			public CustomizeFrameControler() {
+				model = new CustomizeFrameModel();
+			}
+
+			/**
+			 * @return the model
+			 */
+			public CustomizeFrameModel getModel() {
+				return model;
+			}
 		}
 	}
 	
 	/**
 	 * Ease the development of the UI (debug). 
-	 * @param args
+	 * @param args Unused
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new CustomizeFrame().setVisible(true);
