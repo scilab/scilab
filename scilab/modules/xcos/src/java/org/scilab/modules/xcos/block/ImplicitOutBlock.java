@@ -25,18 +25,16 @@ public final class ImplicitOutBlock extends ContextUpdate {
 
     public ImplicitOutBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
-    }
-
-    public ImplicitOutBlock(String label) {
-	super(label);
 	setInterfaceFunctionName("OUTIMPL_f");
 	setSimulationFunctionName("outimpl");
 	setNbZerosCrossing(new ScilabDouble(0));
 	setNmode(new ScilabDouble(0));
 	setODState(new ScilabList());
 	setValue(1);
+    }
+
+    public ImplicitOutBlock(String label) {
+	this();
     }
 
     public void setExprs(ScilabType exprs) {

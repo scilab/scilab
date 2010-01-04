@@ -19,7 +19,6 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
 import com.mxgraph.swing.mxGraphComponent;

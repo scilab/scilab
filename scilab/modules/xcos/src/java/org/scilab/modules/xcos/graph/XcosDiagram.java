@@ -28,8 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -69,6 +67,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -1606,19 +1605,35 @@ public class XcosDiagram extends ScilabGraph {
 	return context;
     }
 
-    public void updateCellsContext() {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
-	    Object obj = getModel().getChildAt(getDefaultParent(), i);
-	    if ( obj instanceof ContextUpdate) {
-		((ContextUpdate)obj).onContextChange(buildEntireContext());
-	    } else if (obj instanceof SuperBlock) {
-		SuperBlock superBlock = (SuperBlock)obj;
-		if(superBlock.getChild() != null) {
-		    superBlock.getChild().updateCellsContext();
+	public void updateCellsContext() {
+		Object rootParent = getDefaultParent();
+		int child_counts = getModel().getChildCount(rootParent);
+		for (int i = 0; i < child_counts; ++i) {
+			Object obj = getModel().getChildAt(rootParent, i);
+			if (obj instanceof ContextUpdate) {
+				String[] context = buildEntireContext();
+
+				/* Determine if the context is not empty */
+				int nbOfDetectedChar = 0;
+				for (int j = 0; j < context.length; j++) {
+					context[j] = context[j].replaceFirst("\\s", "");
+					nbOfDetectedChar += context[j].length();
+					if (nbOfDetectedChar != 0)
+						break;
+				}
+
+				if (nbOfDetectedChar != 0) {
+					((ContextUpdate) obj).onContextChange(context);
+				}
+
+			} else if (obj instanceof SuperBlock) {
+				SuperBlock superBlock = (SuperBlock) obj;
+				if (superBlock.getChild() != null) {
+					superBlock.getChild().updateCellsContext();
+				}
+			}
 		}
-	    }
 	}
-    }
 
     public String getVersion() {
 	return version;
@@ -1854,7 +1869,7 @@ public class XcosDiagram extends ScilabGraph {
 		BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
 		if(block.getRealParameters() instanceof ScilabMList) {
 		    //we have a hidden SuperBlock, create a real one
-		    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+		    SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
@@ -2106,7 +2121,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		    } else if(block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
-			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 			newSP.setParentDiagram(block.getParentDiagram());
 			newSP.setRealParameters(block.getRealParameters());
 			newSP.createChildDiagram();

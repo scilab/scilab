@@ -25,18 +25,16 @@ public final class ExplicitInBlock extends ContextUpdate {
 
     public ExplicitInBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
-    }
-
-    public ExplicitInBlock(String label) {
-	super(label);
 	setInterfaceFunctionName("IN_f");
 	setSimulationFunctionName("input");
 	setNbZerosCrossing(new ScilabDouble(0));
 	setNmode(new ScilabDouble(0));
 	setODState(new ScilabList());
 	setValue(1);
+    }
+
+    public ExplicitInBlock(String label) {
+	this();
     }
 
     public void setExprs(ScilabType exprs) {
