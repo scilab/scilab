@@ -28,7 +28,7 @@ public final class BlockFactory {
 	 * @checkstyle DAC: As this is the constructor for all the block classes,
 	 *             this class is very coupled with *Block classes
 	 */
-	private enum BlockInterFunction {
+	private static enum BlockInterFunction {
 		TEXT_f(new TextBlock()),
 		SUPER_f(new SuperBlock()),
 		DSUPER(new SuperBlock() { { mask(); } }),
@@ -59,7 +59,6 @@ public final class BlockFactory {
 		 */
 		private BlockInterFunction(BasicBlock block) {
 			this.block = block;
-			block.setValue(this.name());
 		}
 		
 		/**
