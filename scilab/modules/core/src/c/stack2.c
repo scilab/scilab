@@ -131,6 +131,15 @@ int C2F(isopt)(int *k, char *namex,unsigned long name_len)
   return TRUE;
 }
 
+/*--------------------------------------------------------------
+* freeptr : free ip pointer
+*--------------------------------------------------------------*/
+
+void C2F(freeptr)(double *ip[])
+{
+	if (ip) FREE((char *)(*ip));
+}
+
 /*---------------------------------------
  * isoptlw :
  * returns the status of the variable at position lw in the stack
