@@ -291,7 +291,7 @@ taucs_ccs_permute_symmetrically(taucs_ccs_matrix* A, int* perm, int* invperm)
   taucs_ccs_matrix* PAPT;
   int n;
   int nnz;
-  int* colptr;
+  /* int* colptr; */
   int* len;
   int i,j,ip,I,J;
   double AIJ;
