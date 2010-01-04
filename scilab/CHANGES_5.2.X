@@ -5,29 +5,31 @@
 Xcos:
 =====
 
+* bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions were not available.
+
+* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's filename contains space.
+
 * bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
 
 * bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored into /tmp/ instead of TMPDIR
 
 * bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
 
-* bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions were not available.
-
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
-* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's filename contains space.
+
 
 Bug fixes:
 ==========
+
+* bug 5659 fixed - emptystr changed the value of an input variable.
+
+* bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
 
 * bug 5668 fixed - When using Scilab graphic with a LaTeX expression, the
                    message
                    "Jlatexmath: Could not access to createFont. Please update to
                    java 6" was displayed
-
-* bug 5659 fixed - emptystr changed the value of an input variable.
-
-* bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
@@ -38,6 +40,8 @@ Bug fixes:
                    that of xarc and related functions.
 
 * bug 5691 fixed - PDF/EPS exports with LaTeX/MathML failed.
+
+* bug 5695 fixed - 'uigetfile' failed when we used 'multiple selection'.
 
 * bug 5696 semi/fixed - There was a lack of feedback when SELinux was 
                    preventing Scilab to start under Fedora 12.
