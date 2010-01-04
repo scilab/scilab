@@ -471,7 +471,7 @@ endfunction
 //
 function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , boundsmax , nbve  , data )
   newobj = optimsimplex_coords ( )
-  if size(x0,1)<>1 then
+  if ( size(x0,1)<>1 ) then
     errmsg = msprintf(gettext("%s: The x0 vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(x0,1),size(x0,2));
     error(errmsg);
   end
@@ -481,6 +481,14 @@ function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , bo
   end
   if ( size(boundsmax,1)<>1 ) then
     errmsg = msprintf(gettext("%s: The boundsmax vector is expected to be a row matrix, but current shape is %d x %d"),"optimsimplex_randbounds",size(boundsmax,1),size(boundsmax,2));
+    error(errmsg);
+  end
+  if ( size(boundsmin,2)<>size(x0,2) ) then
+    errmsg = msprintf(gettext("%s: The boundsmin vector is expected to have %d columns, but current shape is %d x %d"),"optimsimplex_randbounds",size(x0,2),size(boundsmin,1),size(boundsmin,2));
+    error(errmsg);
+  end
+  if ( size(boundsmax,2)<>size(x0,2) ) then
+    errmsg = msprintf(gettext("%s: The boundsmax vector is expected to have %d columns, but current shape is %d x %d"),"optimsimplex_randbounds",size(x0,2),size(boundsmax,1),size(boundsmax,2));
     error(errmsg);
   end
   assert_typereal ( x0 , "x0", 1 );

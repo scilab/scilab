@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-24 20:35+0000\n"
+"PO-Revision-Date: 2009-12-14 21:12+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:16+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -145,7 +145,7 @@ msgstr "%s: Неверное количество выходных параме�
 
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
-msgstr "%s: Неверный размер %s: ожидалось действительное число.\n"
+msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
@@ -177,7 +177,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
-"действительное число.\n"
+"вещественное число.\n"
 
 #, c-format
 msgid ""
@@ -247,7 +247,7 @@ msgstr "%s: Неверный тип %s: ожидался список.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"
-msgstr "%s: Неверный тип %s: ожидалось действительное число.\n"
+msgstr "%s: Неверный тип %s: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
@@ -726,6 +726,12 @@ msgstr "Благодарности"
 msgid "Add color in listbox"
 msgstr "Добавить цвет в список"
 
+msgid "All %s files"
+msgstr "Все файлы %s"
+
+msgid "All Scilab files"
+msgstr "Все файлы Scilab"
+
 msgid "All files"
 msgstr "Все файлы"
 
@@ -840,7 +846,7 @@ msgid "Do you relly want to quit Scilab?"
 msgstr "Вы действительно желаете выйти из Scilab?"
 
 msgid "Edit in the Scilab Text Editor"
-msgstr "Изменить в текстовом редакторе"
+msgstr "Править в текстовом редакторе"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "Изображение Encapsulated PostScript (EPS)"
@@ -1089,6 +1095,15 @@ msgstr "Сообщение"
 
 msgid "Scilab Multiple Values Request"
 msgstr "Ввод значений"
+
+msgid "Scilab SCE files"
+msgstr "SCE-файлы Scilab"
+
+msgid "Scilab SCI files"
+msgstr "SCI-файлы Scilab"
+
+msgid "Scilab binary files"
+msgstr "Бинарные файлы Scilab"
 
 msgid "Select All"
 msgstr "Выделить всё"
@@ -1387,6 +1402,12 @@ msgid ""
 msgstr ""
 "Неверное значение свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
 "вещественных чисел.\n"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos files"
+msgstr "Файлы Xcos"
 
 msgid "Yes"
 msgstr "Да"

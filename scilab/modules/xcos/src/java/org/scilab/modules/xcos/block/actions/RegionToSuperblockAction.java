@@ -16,6 +16,8 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +28,11 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.EventInBlock;
 import org.scilab.modules.xcos.block.EventOutBlock;
 import org.scilab.modules.xcos.block.ExplicitInBlock;
@@ -46,7 +50,6 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -54,9 +57,9 @@ import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 
 
@@ -117,18 +120,29 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.getModel().beginUpdate();
 
 	/*
-	 * Update selection
+	 * Update selection and return it.
 	 */
-	updateForNotSelectedLinks(graph);
+	List<XcosUIDObject> selectedCells = updateForNotSelectedLinks(graph);
+	
+	/*
+	 * Sort the selected cells to avoid misplacement
+	 */
+	Collections.sort(selectedCells);
 	
 	/*
 	 * Clone cells and generate a translation matrix between old and new mxCells
 	 */
-	Object[] cellsCopy = getGraph(null).cloneCells(getGraph(null).getSelectionCells());
-	Object[] translationMatrix = new Object[cellsCopy.length]; 
+	Object[] cellArrays = getGraph(null).cloneCells(selectedCells.toArray());
+	Collection<Object> cells = Arrays.asList(cellArrays);
+	XcosUIDObject[] typedCells = new XcosUIDObject[cellArrays.length];
+	cells.toArray(typedCells);
+	List<XcosUIDObject> cellsCopy = Arrays.asList(typedCells);
+	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
-	    translationMatrix[i] = getGraph(null).getSelectionCells()[i];
+	    translationMatrix[i] = selectedCells.get(i);
 	}
+	
+	List<BasicBlock> blocksCopyWithoutSplitBlocks = getBlocks(cellsCopy);
 	
 	/*
 	 * Getting selection rectangle
@@ -138,23 +152,21 @@ public class RegionToSuperblockAction extends DefaultAction {
 	double maxX = Double.MIN_VALUE;
 	double maxY = Double.MIN_VALUE;
 
-	for (int i = 0; i < cellsCopy.length; ++i) {
-	    mxCell current = (mxCell) cellsCopy[i];
-	    if (current instanceof BasicBlock) {
+	for (BasicBlock current  : blocksCopyWithoutSplitBlocks) {
 		minX = Math.min(minX, current.getGeometry().getX());
 		minY = Math.min(minY, current.getGeometry().getY());
 		maxX = Math.max(maxX, current.getGeometry().getX());
 		maxY = Math.max(maxY, current.getGeometry().getY());
-	    }
 	}
 
 	/*
 	 * Creating the superblock
 	 */
-	SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
+	SuperBlock superBlock = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 	superBlock.setStyle("SUPER_f");
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
+
 
 
 	/*
@@ -163,15 +175,15 @@ public class RegionToSuperblockAction extends DefaultAction {
 	SuperBlockDiagram diagram = new SuperBlockDiagram(superBlock);
 
 	diagram.getModel().beginUpdate();
-	diagram.addCells(cellsCopy);
+	diagram.addCells(cellsCopy.toArray());
 	diagram.getModel().endUpdate();
 
 	/*
 	 * Find broken links, to insert input/output blocks And update the child
 	 * graph
 	 */
-	List<BrokenLink> breaks = getBrokenLinks(graph.getSelectionCells(), cellsCopy);
-	List<Integer> maxValues = getMaxBlocksValues(graph.getSelectionCells());
+	List<BrokenLink> breaks = getBrokenLinks(selectedCells, cellsCopy);
+	List<Integer> maxValues = getMaxBlocksValues(selectedCells);
 	updateChildGraph(diagram, breaks, maxValues);
 
 	/*
@@ -184,7 +196,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 */
 	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
 	superBlock.createChildDiagram();
-
+	
 	/*
 	 * Update the parent
 	 */
@@ -192,12 +204,41 @@ public class RegionToSuperblockAction extends DefaultAction {
 	graph.addCell(superBlock);
 	graph.setSelectionCell(superBlock);
 	graph.getModel().endUpdate();
+	
+	/*
+	 * Calculate angle/mirrored/flipped statistics
+	 */
+	int angle = 0;
+	int flipped = 0;
+	int mirrored = 0;
+	for (BasicBlock basicBlock : blocksCopyWithoutSplitBlocks) {
+	    angle += basicBlock.getAngle();
+	    flipped += basicBlock.getFlip()?1:0;
+	    mirrored += basicBlock.getMirror()?1:0;
+	}
+	
+	/*
+	 * Apply statistics to the superblock
+	 */
+	int midBlockIndex = blocksCopyWithoutSplitBlocks.size()/2;
+	superBlock.setAngle(BlockPositioning.roundAngle(angle/blocksCopyWithoutSplitBlocks.size()));
+	superBlock.setFlip((flipped > midBlockIndex)?true:false);
+	superBlock.setMirror((mirrored > midBlockIndex)?true:false);
+	
+	/*
+	 * Update the view
+	 */
 	superBlock.updateExportedPort();
 
 	// change source or target of old link
 	createLinks(graph, superBlock, breaks);
 	superBlock.closeBlockSettings();
-
+	
+	/*
+	 * Update the visible attributes
+	 */
+	BlockPositioning.updateBlockView(superBlock);
+	
 	graph.getModel().endUpdate();
 	graph.refresh();
 	diagram.refresh();
@@ -205,14 +246,29 @@ public class RegionToSuperblockAction extends DefaultAction {
     }
 
     /**
+     * Get all the non-SplitBlock blocks in the cellsCopy.
+     */
+    private List<BasicBlock> getBlocks(List<XcosUIDObject> cellsCopy) {
+	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
+	for (XcosUIDObject cell : cellsCopy) {
+	    if (cell instanceof BasicBlock) {
+		if (!(cell instanceof SplitBlock)) {
+		    list.add((BasicBlock) cell);
+		}
+	    }
+	}
+	return list;
+    }
+
+    /**
      * Check for missing links or selected ports, to add or exclude them.
      */
-    private void updateForNotSelectedLinks(XcosDiagram graph) {
+    private List<XcosUIDObject> updateForNotSelectedLinks(XcosDiagram graph) {
 
 	graph.getModel().beginUpdate();
 
 	for (int i = 0; i < graph.getSelectionCells().length; i++) {
-	    mxCell current = (mxCell) graph.getSelectionCells()[i];
+	    XcosUIDObject current = (XcosUIDObject) graph.getSelectionCells()[i];
 	    if (current instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock) current;
 		for (int j = 0; j < block.getChildCount(); j++) {
@@ -254,6 +310,13 @@ public class RegionToSuperblockAction extends DefaultAction {
 	} // for selection
 
 	graph.getModel().endUpdate();
+	
+	Object[] selectedCells = graph.getSelectionCells();
+	Collection<Object> cells = Arrays.asList(selectedCells);
+	XcosUIDObject[] typedCells = new XcosUIDObject[selectedCells.length];
+	cells.toArray(typedCells);
+	
+	return new ArrayList<XcosUIDObject>(Arrays.asList(typedCells));
     }
     
     /**
@@ -334,60 +397,48 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	    if (link.getLink() instanceof ExplicitLink) {
 		if (link.getOutGoing()) { // OUT_f
-		    block = BasicBlock.createBlock("OUT_f");
+		    block = BlockFactory.createBlock("OUT_f");
 		    ExplicitInputPort port = new ExplicitInputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(0) + 1);
 		    maxValues.set(0, maxValues.get(0) + 1);
 		} else { // IN_f
-		    block = BasicBlock.createBlock("IN_f");
+		    block = BlockFactory.createBlock("IN_f");
 		    ExplicitOutputPort port = new ExplicitOutputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(1) + 1);
 		    maxValues.set(1, maxValues.get(1) + 1);
 		}
 	    } else if (link.getLink() instanceof ImplicitLink) {
 		if (link.getOutGoing()) { // OUTIMPL_f
-		    block = BasicBlock.createBlock("OUTIMPL_f");
+		    block = BlockFactory.createBlock("OUTIMPL_f");
 		    ImplicitInputPort port = new ImplicitInputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(2) + 1);
 		    maxValues.set(2, maxValues.get(2) + 1);
 		} else { // INIMPL_f
-		    block = BasicBlock.createBlock("INIMPL_f");
+		    block = BlockFactory.createBlock("INIMPL_f");
 		    ImplicitOutputPort port = new ImplicitOutputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(3) + 1);
 		    maxValues.set(3, maxValues.get(3) + 1);
 		}
 	    } else if (link.getLink() instanceof CommandControlLink) {
 		if (link.getOutGoing()) { // CLKOUTV_f
-		    block = BasicBlock.createBlock("CLKOUTV_f");
+		    block = BlockFactory.createBlock("CLKOUTV_f");
 		    ControlPort port = new ControlPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(4) + 1);
 		    maxValues.set(4, maxValues.get(4) + 1);
 		} else { // CLKINV_f
-		    block = BasicBlock.createBlock("CLKINV_f");
+		    block = BlockFactory.createBlock("CLKINV_f");
 		    CommandPort port = new CommandPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(5) + 1);
 		    maxValues.set(5, maxValues.get(5) + 1);
@@ -431,18 +482,19 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     }
 
-    /**
+	/**
      * Getting the broken links on the diagram and construct a list of these links
      * @param objs The selected cells
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(Object[] objs, Object[] copiedCells) {
+    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<XcosUIDObject> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
-	for (int i = 0; i < objs.length; i++) {
-	    if (objs[i] instanceof BasicBlock) {
-		BasicBlock block = (BasicBlock) objs[i];
+	int objs_length = objs.size();
+	for (int i = 0; i < objs_length; i++) {
+	    if (objs.get(i) instanceof BasicBlock) {
+		BasicBlock block = (BasicBlock) objs.get(i);
 		for (int j = 0; j < block.getChildCount(); j++) {
 		    BasicPort port = (BasicPort) block.getChildAt(j);
 		    if (port.getEdgeCount() != 0) {
@@ -451,14 +503,14 @@ public class RegionToSuperblockAction extends DefaultAction {
 				|| block.getChildAt(j) instanceof ControlPort) {
 			    BasicBlock source = (BasicBlock) (link.getSource()
 				    .getParent());
-			    if (!isInSelection(objs, source)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+			    if (!objs.contains(source)) {
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, source.getGeometry(), false));
 			    }
 			} else { // OutputPort or CommandPort
 			    BasicBlock target = (BasicBlock) (link.getTarget().getParent());
-			    if (!isInSelection(objs, target)) {
-				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells[i]).getChildAt(j);
+			    if (!objs.contains(target)) {
+				BasicPort copiedPort = (BasicPort) ((BasicBlock)copiedCells.get(i)).getChildAt(j);
 				breaks.add(new BrokenLink(link, copiedPort, target.getGeometry(), true));
 			    }
 			}
@@ -489,43 +541,43 @@ public class RegionToSuperblockAction extends DefaultAction {
 	}
     }
 
-    private List<Integer> getMaxBlocksValues(Object[] blocks) {
+    private List<Integer> getMaxBlocksValues(List<XcosUIDObject> blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
-	for (int i = 0; i < blocks.length; i++) {
-	    if (blocks[i] instanceof ContextUpdate) {
-	    if (blocks[i] instanceof ExplicitOutBlock) {
+	for (XcosUIDObject cell : blocks) {
+	    if (cell instanceof ContextUpdate) {
+	    if (cell instanceof ExplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
 		    items.put(IOBlocks.ExplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ExplicitInBlock) {
+		items.get(IOBlocks.ExplicitOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ExplicitInBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {
 		    items.put(IOBlocks.ExplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ImplicitOutBlock) {
+		items.get(IOBlocks.ExplicitInBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ImplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ImplicitOutBlock)) {
 		    items.put(IOBlocks.ImplicitOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof ImplicitInBlock) {
+		items.get(IOBlocks.ImplicitOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof ImplicitInBlock) {
 		if (!items.containsKey(IOBlocks.ImplicitInBlock)) {
 		    items.put(IOBlocks.ImplicitInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof EventOutBlock) {
+		items.get(IOBlocks.ImplicitInBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof EventOutBlock) {
 		if (!items.containsKey(IOBlocks.EventOutBlock)) {
 		    items.put(IOBlocks.EventOutBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.EventOutBlock).add((BasicBlock) blocks[i]);
-	    } else if (blocks[i] instanceof EventInBlock) {
+		items.get(IOBlocks.EventOutBlock).add((BasicBlock) cell);
+	    } else if (cell instanceof EventInBlock) {
 		if (!items.containsKey(IOBlocks.EventInBlock)) {
 		    items.put(IOBlocks.EventInBlock, new ArrayList<BasicBlock>());
 		}
-		items.get(IOBlocks.EventInBlock).add((BasicBlock) blocks[i]);
+		items.get(IOBlocks.EventInBlock).add((BasicBlock) cell);
 	    }
 	    }
 	}

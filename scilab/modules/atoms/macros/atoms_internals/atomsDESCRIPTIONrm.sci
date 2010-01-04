@@ -12,19 +12,25 @@
 // Remove a package defined by its name and version from a DESCRIPTION struct
 // The description struct looks like that :
 
-// tree_in  =
-//  
-//    toolbox_1:                     [1x1 struct]
-//      2.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "2.0"
-//        ...
-//      1.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "1.0"
-//    ...
+// DESCRIPTION
+// |
+// |-- packages
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories
+// |-- categories_flat
 
 function tree_out = atomsDESCRIPTIONrm( tree_in , package_name , package_version )
 	
@@ -66,20 +72,27 @@ function tree_out = atomsDESCRIPTIONrm( tree_in , package_name , package_version
 	// And now ... action
 	// =========================================================================
 	
-	tree_out = struct();
+	tree_out     = struct();
+	packages_out = struct();
 	
-	package_names      = getfield(1,tree_in);
+	if isfield(tree_in,"packages") then
+		packages_in = tree_in("packages");
+	else
+		return;
+	end
+	
+	package_names      = getfield(1,packages_in);
 	package_names(1:2) = [];
 	
 	for i=1:size(package_names,"*")
 		
 		if package_names(i) <> package_name then
-			tree_out(package_names(i)) = tree_in(package_names(i));
+			packages_out(package_names(i)) = packages_in(package_names(i));
 			continue;
 		end
 		
 		package_versions_out  = struct();
-		package_versions_in   = tree_in(package_names(i));
+		package_versions_in   = packages_in(package_names(i));
 		package_versions      = getfield(1,package_versions_in);
 		package_versions(1:2) = [];
 		package_versions_size = size(package_versions,"*");
@@ -96,8 +109,10 @@ function tree_out = atomsDESCRIPTIONrm( tree_in , package_name , package_version
 			end
 		end
 		
-		tree_out(package_names(i)) = package_versions_out;
+		packages_out(package_names(i)) = package_versions_out;
 		
 	end
+	
+	tree_out("packages") = packages_out;
 	
 endfunction

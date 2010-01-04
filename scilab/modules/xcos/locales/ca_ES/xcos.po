@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-29 17:15+0000\n"
+"PO-Revision-Date: 2009-12-12 18:22+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -27,15 +27,22 @@ msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
-msgstr ""
+msgstr "%s: No s'ha pogut importar el fitxer xcos %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -44,7 +51,10 @@ msgstr ""
 "de caràcters.\n"
 
 msgid "?"
-msgstr ""
+msgstr "?"
+
+msgid "A SuperBlock must be selected to generate code"
+msgstr "Heu de seleccionar un SuperBlock per a generar el codi"
 
 msgid "About Xcos"
 msgstr "Quant al Xcos"
@@ -59,10 +69,10 @@ msgid "Align Blocks"
 msgstr "Alinea els blocs"
 
 msgid "Annotations"
-msgstr ""
+msgstr "Anotacions"
 
 msgid "Based on Scicos"
-msgstr ""
+msgstr "Basat en l'Scicos"
 
 msgid "Block Help"
 msgstr "Ajuda de bloc"
@@ -71,19 +81,23 @@ msgid "Block Parameters"
 msgstr "Paràmetres de bloc"
 
 msgid "Border Color"
-msgstr ""
+msgstr "Color de les vores"
 
 msgid "Bottom"
 msgstr "Inferior"
 
 msgid "CVODE"
-msgstr ""
+msgstr "CVODE"
 
 msgid "Cancel"
 msgstr "Cancel·la"
 
 msgid "Center"
 msgstr "Centrat"
+
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
 
 msgid "Close"
 msgstr "Tanca"
@@ -99,19 +113,19 @@ msgstr "Blocs utilitzats habitualment"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr ""
+msgstr "S'està compilant, el resultat es desarà a la variable 'scicos_cpr'"
 
 msgid "Compile"
 msgstr "Compila"
 
-msgid "Continuous"
-msgstr "Continu"
+msgid "Continuous time systems"
+msgstr "Sistemes temporals continus"
 
 msgid "Copy"
 msgstr "Copia"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr ""
+msgstr "Copyright (c) 1989-2009 (INRIA)"
 
 msgid "Could not save diagram."
 msgstr "No s'ha pogut desar el diagrama."
@@ -125,8 +139,11 @@ msgstr "Personalitza"
 msgid "Cut"
 msgstr "Retalla"
 
+msgid "Debug block calls without trace"
+msgstr "Crides a blocs de depuració sense traces"
+
 msgid "Default"
-msgstr ""
+msgstr "Predeterminat"
 
 msgid "Delete"
 msgstr "Suprimeix"
@@ -144,17 +161,16 @@ msgid "Diagram browser"
 msgstr "Explorador de diagrames"
 
 msgid ""
-"Diagram has been modified since last save\n"
-"save it?"
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
-"El diagrama s'ha modificat des de l'últim cop que es va desar\n"
-"El voleu desar?"
+"S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
+"desar?"
 
 msgid "Discontinuities"
-msgstr ""
+msgstr "Discontinuitats"
 
-msgid "Discrete"
-msgstr "Discret"
+msgid "Discrete time systems"
+msgstr "Sistemes temporals discrets"
 
 msgid "Do you want a transparent background image?"
 msgstr "Voleu una imatge de fons transparent?"
@@ -171,8 +187,11 @@ msgstr "Edita"
 msgid "Electrical"
 msgstr "Elèctric"
 
-msgid "Events"
-msgstr "Esdeveniments"
+msgid "Event handling"
+msgstr "Tractaments d'esdeveniments"
+
+msgid "Execution trace and Debug"
+msgstr "Depuració i traces de l'execució"
 
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
@@ -203,10 +222,10 @@ msgid "File"
 msgstr "Fitxer"
 
 msgid "Fill Color"
-msgstr ""
+msgstr "Color d'emplenat"
 
 msgid "Final integration time"
-msgstr ""
+msgstr "Temps total d'integració"
 
 msgid "Fit diagram to view"
 msgstr "Ajusta el diagrama a la vista"
@@ -218,10 +237,10 @@ msgid "Format"
 msgstr "Format"
 
 msgid "Generate SuperBlock, please wait ..."
-msgstr ""
+msgstr "S'està generant el SuperBlock, espereu ..."
 
 msgid "Generating C Code for SuperBlock"
-msgstr ""
+msgstr "S'està generant el codi C per al SuperBlock"
 
 msgid "Get infos"
 msgstr "Informació"
@@ -233,16 +252,16 @@ msgid "Group"
 msgstr "Agrupa"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horitzontal"
 
 msgid "IDA"
-msgstr ""
+msgstr "IDA"
 
 msgid "Image contains no data."
 msgstr "La imatge no conté dades."
 
 msgid "Implicit"
-msgstr ""
+msgstr "Implícit"
 
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
@@ -263,10 +282,10 @@ msgid "Integer"
 msgstr "Enter"
 
 msgid "Integrator absolute tolerance"
-msgstr ""
+msgstr "Tolerància absoluta de l'integrador"
 
 msgid "Integrator relative tolerance"
-msgstr ""
+msgstr "Tolerància relativa de l'integrador"
 
 msgid "Invert selection"
 msgstr "Inverteix la selecció"
@@ -274,26 +293,41 @@ msgstr "Inverteix la selecció"
 msgid "Left"
 msgstr "Esquerra"
 
+msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgstr "Traca de la simulació (interruptors de parts discretes i contínues)"
+
 msgid "Link Style"
-msgstr ""
+msgstr "Estil dels enllaços"
+
+msgid "Load as palette"
+msgstr "Carrega com una paleta"
 
 msgid "Loading diagram"
-msgstr ""
+msgstr "S'està carregant el diagrama"
+
+msgid "Loading palettes"
+msgstr "S'està carregant les paletes"
+
+msgid "Loading user defined palettes"
+msgstr "S'està carregant les paletes d'usuari"
 
 msgid "Lookup Tables"
 msgstr "Taules de cerca"
 
-msgid "Math Operations"
+msgid "Mathematical Operations"
 msgstr "Operacions matemàtiques"
 
 msgid "Matrix"
 msgstr "Matriu"
 
 msgid "Max integration time interval"
-msgstr ""
+msgstr "Intèrval màxim d'integració"
 
 msgid "Middle"
 msgstr "Centre"
+
+msgid "Mirror"
+msgstr "Inverteix"
 
 msgid "New"
 msgstr "Nou"
@@ -306,6 +340,9 @@ msgstr "Nova paleta"
 
 msgid "No block selected"
 msgstr "No heu seleccionat cap bloc"
+
+msgid "No trace nor debug printing"
+msgstr "No hi ha traces ni depuracions"
 
 msgid "Normal 100%"
 msgstr "Normal 100%"
@@ -325,20 +362,29 @@ msgstr "Paletes"
 msgid "Paste"
 msgstr "Enganxa"
 
+msgid "Per block execution trace and Debug block calls"
+msgstr "Crides a traces i depuracions per execucions de blocs"
+
 msgid "Port & Subsystem"
+msgstr "Port i subsistema"
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
 msgstr ""
+"El port ja està connectat. Seleccioneu un port desconnectat o un enllaç "
+"vàlid."
 
 msgid "Print"
 msgstr "Imprimeix"
 
-msgid "Quit"
-msgstr "Surt"
+msgid "Quit Xcos"
+msgstr "Tanca el Xcos"
 
 msgid "Real time scaling"
-msgstr ""
+msgstr "Escalat en temps real"
 
 msgid "Recent Files"
-msgstr ""
+msgstr "Fitxers recents"
 
 msgid "Redo"
 msgstr "Refés"
@@ -371,15 +417,22 @@ msgid "Save block GUI"
 msgstr "Desa el bloc GUI"
 
 msgid "Saving diagram"
-msgstr ""
+msgstr "S'està desant el diagrama"
+
+msgid "Scicos file"
+msgstr "Fitxer d'Scicos"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
+"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
+
+msgid "Scilab file"
+msgstr "Fitxer d'Scilab"
 
 msgid "Select all"
 msgstr "Selecciona-ho tot"
@@ -387,20 +440,18 @@ msgstr "Selecciona-ho tot"
 msgid "Set Context"
 msgstr "Contexte"
 
-msgid "Set Debug Level"
-msgstr ""
-
 msgid "Set Parameters"
-msgstr ""
+msgstr "Indiqueu els paràmetres"
 
-msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
+"Indiqueu el nivell de depuració (0,1,2,3) <br/> Això executa scicos_debug(n)"
 
 msgid "Setup"
 msgstr "Configura"
 
 msgid "Show parent diagram"
-msgstr ""
+msgstr "Mostra el diagrama superior"
 
 msgid "Show/Hide shadow"
 msgstr "Mostra/amaga les ombres"
@@ -415,13 +466,13 @@ msgid "Simulation"
 msgstr "Simulació"
 
 msgid "Simulation in progress"
-msgstr ""
+msgstr "S'està realitzant la simulació"
 
 msgid "Sinks"
 msgstr "Destins"
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
-msgstr ""
+msgstr "Solver 0 (CVODE) - 100 (IDA)"
 
 msgid "Sources"
 msgstr "Fonts"
@@ -433,13 +484,13 @@ msgid "Stop"
 msgstr "Atura"
 
 msgid "Straight"
-msgstr ""
+msgstr "Directe"
 
 msgid "Superblock mask"
 msgstr "Màscara de superbloc"
 
 msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
+msgstr "El Scilab Consortium (DIGITEO)"
 
 msgid ""
 "The file %s doesn't exist\n"
@@ -451,11 +502,8 @@ msgstr ""
 msgid "Thermo-Hydraulics"
 msgstr "Termohidràulica"
 
-msgid "Threshold"
-msgstr "Llindar"
-
 msgid "Tolerance on time"
-msgstr ""
+msgstr "Tolerància temporal"
 
 msgid "Tools"
 msgstr "Eines"
@@ -470,16 +518,19 @@ msgid "Undo"
 msgstr "Desfés"
 
 msgid "Unknow Diagram Version : "
-msgstr ""
+msgstr "Versió de diagrama desconeguda : "
 
 msgid "Untitled"
 msgstr "Sense títol"
+
+msgid "User-Defined"
+msgstr "Definit per l'usuari"
 
 msgid "User-Defined Functions"
 msgstr "Funcions definides per l'usuari"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgid "View"
 msgstr "Visualitza"
@@ -491,13 +542,13 @@ msgid "Viewport"
 msgstr "Finestra de visualització"
 
 msgid "Will try to continue..."
-msgstr ""
+msgstr "S'intenta continuar..."
 
 msgid "Xcos"
 msgstr "Xcos"
 
 msgid "Xcos 1.0"
-msgstr ""
+msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "Mostres de Xcos"
@@ -507,6 +558,9 @@ msgstr "Ajuda de Xcos"
 
 msgid "Xcos error"
 msgstr "Error de Xcos"
+
+msgid "Xcos file"
+msgstr "Fitxer d'Xcos"
 
 msgid "Xcos version 1.0"
 msgstr "Versió de Xcos 1.0"
@@ -523,6 +577,9 @@ msgstr ""
 "exemple, quan feu clic a Accepta, a Eval i cada cop que es carrega el "
 "diagrama)."
 
+msgid "Zero crossing detection"
+msgstr "Detecció d'encreuament pel zero"
+
 msgid "Zoom In"
 msgstr "Apropa"
 
@@ -533,4 +590,4 @@ msgid "control port must be connected to command port"
 msgstr "Un port de control ha d'estar connectat a un port de comanda"
 
 msgid "maximum step size (0 means no limit)"
-msgstr ""
+msgstr "mida màxima del pas (0 indica que no hi ha límit)"

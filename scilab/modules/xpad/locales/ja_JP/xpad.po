@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -49,17 +49,17 @@ msgstr "%s: 引数 %d で不正な型: 文字行列を想定します。\n"
 msgid "?"
 msgstr "?"
 
-msgid "ASCII Encoding"
-msgstr "ASCIIエンコードィング"
-
 msgid "About"
 msgstr "バージョン情報"
 
 msgid "All"
 msgstr "全て"
 
-msgid "Auto Reformat Selection"
-msgstr "自動再フォーマット選択"
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr ""
+
+msgid "Auto (Default)"
+msgstr ""
 
 msgid "Backward"
 msgstr "戻る"
@@ -73,8 +73,20 @@ msgstr "\"xpadConfiguration.xm\" をロードできません"
 msgid "Case sensitive"
 msgstr "大/小文字の区別"
 
+msgid "Change Color"
+msgstr ""
+
+msgid "Change Colors"
+msgstr ""
+
 msgid "Close"
 msgstr "閉じる"
+
+msgid "Close All"
+msgstr ""
+
+msgid "Close All But This"
+msgstr ""
 
 msgid "Colorization canceled"
 msgstr "色付けは取り消されました"
@@ -91,11 +103,17 @@ msgstr "続けますか?"
 msgid "Copy"
 msgstr "コピー"
 
-msgid "Copyright (c) 2009 (INRIA)"
-msgstr "Copyright (c) 2009 (INRIA)"
+msgid "Copyright (c)"
+msgstr ""
 
 msgid "Correct Indentation"
 msgstr "正しい刻み"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
+
+msgid "Could not find the temporary file."
+msgstr ""
 
 msgid "Cut"
 msgstr "切り取り"
@@ -115,11 +133,17 @@ msgstr "ドキュメント"
 msgid "Edit"
 msgstr "編集"
 
-msgid "Editor 1.0"
-msgstr "エディタ 1.0"
+msgid "Edit selection in a new tab"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
 
 msgid "Editor error"
 msgstr "エディッタ エラー"
+
+msgid "Enable Auto Reformat"
+msgstr ""
 
 msgid "Encoding"
 msgstr "エンコーディング"
@@ -135,6 +159,9 @@ msgstr "実行"
 
 msgid "Execute File Into Scilab"
 msgstr "Scilabへ取り込んで実行"
+
+msgid "Execute selection into Scilab"
+msgstr ""
 
 msgid "Exit"
 msgstr "終了"
@@ -160,11 +187,20 @@ msgstr "進む"
 msgid "Goto line"
 msgstr "行へ移動"
 
+msgid "Help about '"
+msgstr ""
+
+msgid "Help about a selected text"
+msgstr ""
+
 msgid "Highlight current line"
 msgstr "現在の行をハイライト"
 
 msgid "Invalid regular expression : %s"
 msgstr "正規表現の不正 : %s"
+
+msgid "Line Endings"
+msgstr ""
 
 msgid "Line Numbers"
 msgstr "行番号"
@@ -172,14 +208,20 @@ msgstr "行番号"
 msgid "Load Into Scilab"
 msgstr "Scilabへロード"
 
-msgid "Loading..."
-msgstr "ローディング..."
+msgid "Loading"
+msgstr ""
+
+msgid "Mac Classic (CR)"
+msgstr ""
 
 msgid "New"
 msgstr "新規"
 
 msgid "Next tab"
 msgstr "次のタブ"
+
+msgid "No text selected"
+msgstr ""
 
 msgid "Ok"
 msgstr "OK"
@@ -195,9 +237,6 @@ msgstr "ページ設定"
 
 msgid "Paste"
 msgstr "貼り付け"
-
-msgid "Plain Text"
-msgstr "プレイン・テキスト"
 
 msgid "Previous tab"
 msgstr "前のタブ"
@@ -237,6 +276,9 @@ msgstr "初期値フォントのリセット"
 
 msgid "Save"
 msgstr "保存"
+
+msgid "Save All"
+msgstr ""
 
 msgid "Save as"
 msgstr "保存"
@@ -291,9 +333,6 @@ msgstr "文字列 %s は見つかりません"
 msgid "Syntax Type"
 msgstr "文法型"
 
-msgid "The Scilab Consortium (DIGITEO)"
-msgstr "Scilab コンソーシアム (DIGITEO)"
-
 msgid ""
 "The file %s doesn't exist\n"
 " Do you want to create it?"
@@ -320,14 +359,14 @@ msgstr "ファイル"
 msgid "This file is a binary, saving it will result in a corrupt file."
 msgstr "ファイルはバイナリです、保存は正しい結果にならないかもしれません。"
 
-msgid "UTF-8 Encoding"
-msgstr "UTF-8エンコーディング"
-
 msgid "Uncomment Selection"
 msgstr "コメントなし選択"
 
 msgid "Undo"
 msgstr "元に戻す"
+
+msgid "Unix (LF)"
+msgstr ""
 
 msgid "Untitled "
 msgstr "無題 "
@@ -338,14 +377,14 @@ msgstr "ビュー"
 msgid "Whole word"
 msgstr "全体の語"
 
+msgid "Windows/DOS (CR + LF)"
+msgstr ""
+
 msgid "Word Wrap"
 msgstr "ワードラップ"
 
 msgid "Wrap search"
 msgstr "ラップ検索"
-
-msgid "XML"
-msgstr "XML"
 
 msgid "You have passed the beginning of the document"
 msgstr "ドキュメントの始まりを通り過ぎました"

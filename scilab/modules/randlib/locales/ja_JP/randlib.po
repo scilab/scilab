@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-08 16:54+0000\n"
+"PO-Revision-Date: 2009-11-29 07:10+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-11-26 13:17+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -29,7 +29,7 @@ msgid ""
 "                                             s4 in [1, 2147483322]"
 msgstr ""
 "\n"
-" clcg4の悪い種です、s1 の [1, 2147483646]　は整数でなくてはなりません\n"
+" clcg4の悪い組み合わせです、s1 の [1, 2147483646]　は整数でなくてはなりません\n"
 "                                             s2 の [1, 2147483542]\n"
 "                                             s3 の [1, 2147483422]\n"
 "                                             s4 の [1, 2147483322]"
@@ -44,9 +44,9 @@ msgid ""
 "    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
 "\n"
-"=>気づいてください、それは同期性を失うかも知れません\n"
-"    仮想の間で、%d そして、その他を得ます!\n"
-"    もし望めば、grand(\"setall\", s1, s2, s3, s4)を利用してください。"
+"=>注意!, それは同期性を失うかも知れません\n"
+"    仮想の %d か、その他のいずれかの生成です!\n"
+"    回復には、grand(\"setall\", s1, s2, s3, s4)を利用してください。"
 
 #
 # File: src/c/fsultra.c, line: 165
@@ -55,7 +55,7 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"fsultraの悪い根源、[0, 2^32-1]の整数でなければなりません\n"
+"fsultraの悪い組み合わせです、[0, 2^32-1]の整数でなければなりません\n"
 
 #
 # File: src/c/urand.c, line: 47
@@ -64,7 +64,7 @@ msgid ""
 "Bad seed for urand, must be an int in [0,  2147483647]\n"
 msgstr ""
 "\n"
-"urand の悪い根源、[0,  2147483647]の整数でなければなりません\n"
+"urand の悪い組み合わせです、[0,  2147483647]の整数でなければなりません\n"
 
 #
 # File: src/c/clcg2.c, line: 82
@@ -74,7 +74,7 @@ msgid ""
 "                                        and  s2 in [1, 2147483398]\n"
 msgstr ""
 "\n"
-"clcg2の悪い種です、s1 の [1, 2147483562] は整数でなくてはなりません\n"
+"clcg2の悪い組み合わせです、s1 の [1, 2147483562] は整数でなくてはなりません\n"
 "                                        また  s2 の [1, 2147483398]\n"
 
 #
@@ -109,7 +109,7 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 472
 #, c-format
 msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s: 入力引数 %s で不正な値です。\n"
+msgstr "%s: 最初の入力引数 %s で不正な値です。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 836
@@ -127,7 +127,7 @@ msgstr "%s:  %s オプションは、単に %s 生成に影響します\n"
 # File: sci_gateway/c/sci_grand.c, line: 916
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: 入力引数で不正な数です。\n"
+msgstr "%s: 入力引数の数が不正です。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 147
@@ -136,7 +136,7 @@ msgstr "%s: 入力引数で不正な数です。\n"
 # File: sci_gateway/c/sci_grand.c, line: 699
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
-msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: オプション '%3$s' で %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 296
@@ -145,7 +145,7 @@ msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を�
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
 "generator.\n"
-msgstr "%1$s: 入力引数で不正な数: %4$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: %4$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 224
@@ -153,7 +153,7 @@ msgstr "%1$s: 入力引数で不正な数: %4$s 生成を持つ '%3$s' オプシ
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
 "generator.\n"
-msgstr "%1$s: 入力引数で不正な数: %4$s 生成 '%3$s' の %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: %4$s 生成 '%3$s' の %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 193
@@ -164,7 +164,7 @@ msgstr "%1$s: 入力引数で不正な数: %4$s 生成 '%3$s' の %2$d を想定
 # File: sci_gateway/c/sci_grand.c, line: 432
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
-msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: オプション '%3$s' で %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 262
@@ -172,7 +172,7 @@ msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' で %2$d を�
 msgid ""
 "%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
 "the %s generator.\n"
-msgstr "%1$s: 入力引数で不正な数: %5$s 生成を持つ '%4$s' オプションの %2$d または %3$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: %5$s 生成を持つ '%4$s' オプションの %2$d または %3$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 271
@@ -180,19 +180,19 @@ msgstr "%1$s: 入力引数で不正な数: %5$s 生成を持つ '%4$s' オプシ
 msgid ""
 "%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
 "or %s generator.\n"
-msgstr "%1$s: 入力引数で不正な数: %4$s または %5$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です。: %4$s または %5$s 生成を持つ '%3$s' オプションの %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 152
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
-msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' の %2$d を想定します。\n"
+msgstr "%1$s: 出力引数の数が不正です。: オプション '%3$s' の %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 335
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
-msgstr "%1$s: 入力引数で不正な数: オプション '%3$s' の %2$d を想定します。\n"
+msgstr "%1$s: 出力引数の数が不正です: オプション '%3$s' の %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 841
@@ -225,7 +225,7 @@ msgstr "%s: 入力引数で不正なサイズ: %s のスカラーを想定しま
 # File: sci_gateway/c/sci_grand.c, line: 812
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
-msgstr "%s: 入力引数でサイズが不正: 平均 と Cov は、NULLのサイズです。\n"
+msgstr "%s: 入力引数でサイズが不正: 平均(Mean) と 分散(Cov) は、NULLのサイズです。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 245
@@ -238,13 +238,13 @@ msgstr "%s: 2番目の入力引数で不正なサイズ: %dx%d を想定しま�
 # File: sci_gateway/c/sci_grand.c, line: 285
 #, c-format
 msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr "%s: 5番目の入力引数で不正な型: 素カーを想定します。\n"
+msgstr "%s: 5番目の入力引数で不正な型: スカラーを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 483
 #, c-format
 msgid "%s: Wrong type for first input argument: Scalar expected.\n"
-msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+msgstr "%s: 最初の入力引数で不正な型: スカラーを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 203
@@ -294,7 +294,7 @@ msgstr "%s: 入力引数で不正な型: 正方行列を想定します。\n"
 msgid ""
 "%s: Wrong type for input arguments: Mean and Cov have incompatible "
 "dimensions\n"
-msgstr "%s: 入力引数で不正な型: 平均 と Cov は、互換性がない次元を持っています\n"
+msgstr "%s: 入力引数で不正な型: 平均(Mean) と 分散(Cov) は、次元が一致しません\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 197
@@ -406,12 +406,12 @@ msgstr "Av < 0.0\n"
 #
 # File: src/c/mt.c, line: 138
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
-msgstr "mtの悪い根源、[0, 2^32-1]の整数でなければなりません\n"
+msgstr "mtの悪い組み合わせです、[0, 2^32-1]の整数でなければなりません\n"
 
 #
 # File: src/c/kiss.c, line: 64
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
-msgstr "kissの悪い根源、[0,2^32-1]の整数でなければなりません\n"
+msgstr "kissの悪い組み合わせです、[0,2^32-1]の整数でなければなりません\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 938
@@ -476,7 +476,7 @@ msgstr "確率分布規定の Dfn, Dfd と Xnonc がありません\n"
 #
 # File: sci_gateway/c/sci_grand.c, line: 655
 msgid "Missing Low and High for Uniform Real law\n"
-msgstr "同型の実数規定の低と高が不明です\n"
+msgstr "同型の実規定の低と高が不明です\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 677
@@ -486,7 +486,7 @@ msgstr "同型のint規定の低と高が不明です\n"
 #
 # File: sci_gateway/c/sci_grand.c, line: 799
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
-msgstr "平均とCovは多変量の標準規定に見当たりません\n"
+msgstr "平均(Mean) と 分散(Cov) は多変量規定の間違いです。\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 766
@@ -516,7 +516,7 @@ msgstr "ガンマ規定の形と記数法が不明です\n"
 #
 # File: sci_gateway/c/sci_grand.c, line: 720
 msgid "Missing vect for random permutation\n"
-msgstr "ランダム順列の vect  が不明です\n"
+msgstr "ランダム順列の vect が不明です\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 566
@@ -612,12 +612,12 @@ msgstr "%s オプションは、単に clcg４ 生成に影響します\n"
 #
 # File: src/c/mt.c, line: 165
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr "mt状態 mtの最初の構成要素、[1, 624]の整数でなければなりません\n"
+msgstr "mt状態 mtの最初の構成要素は、[1, 624]の整数でなければなりません\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 420
 msgid "This information concerns only the clcg4 generator\n"
-msgstr "この情報は、単に clcg4 生成に関わります\n"
+msgstr "この情報は、単に clcg4 生成に影響します\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 844

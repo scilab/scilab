@@ -20,18 +20,25 @@ import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.XcosPaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 
 public final class Xcos {
 
+    /**
+     * The current Xcos version and name
+     */
+    public static final String VERSION = "1.0";
+    public static final String TRADENAME = "Xcos";
+    
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
     /* Static class */
@@ -41,7 +48,7 @@ public final class Xcos {
     /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
-	InterpreterManagement.requestScilabExec("loadScicosLibs();");
+	XcosInterpreterManagement.requestScilabExec("loadScicosLibs();");
     }
 
     /**
@@ -197,13 +204,15 @@ public final class Xcos {
 
 			block = diagram.getChildById(UID);
 			if (block != null) {
-			    SuperBlock newSP = (SuperBlock) BasicBlock
-				    .createBlock("SUPER_f");
+			    SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 			    newSP.setRealParameters(block.getRealParameters());
 			    newSP.setParentDiagram(block.getParentDiagram());
 			    if (show == true) {
-				newSP.openBlockSettings(null);
-				newSP.getChild().setReadOnly(true);
+				if(newSP.createChildDiagram() == true) {
+				    XcosTab.createTabFromDiagram(newSP.getChild());
+				    XcosTab.showTabFromDiagram(newSP.getChild());
+				    newSP.getChild().setReadOnly(true);
+				}
 			    }
 			    openedSuperBlock.put(UID, newSP);
 			    break;

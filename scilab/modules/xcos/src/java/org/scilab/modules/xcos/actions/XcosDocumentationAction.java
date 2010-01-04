@@ -14,11 +14,11 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -61,7 +61,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		InterpreterManagement.requestScilabExec("help xcos");
+		XcosInterpreterManagement.requestScilabExec("help xcos");
 	}
 
 }

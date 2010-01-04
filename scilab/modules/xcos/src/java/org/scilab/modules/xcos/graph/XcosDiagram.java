@@ -28,10 +28,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -65,6 +67,7 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -94,6 +97,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
@@ -286,21 +290,23 @@ public class XcosDiagram extends ScilabGraph {
 
     	
     	if(source != null && target == null) {
-    	    drawLink = null;
-    	    if(source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
-    		drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof ControlPort || source instanceof CommandPort) {
-    		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
-    	    } else if(source instanceof BasicLink) {
-    		SplitBlock split = (SplitBlock) addSplitEdge((BasicLink)source, (BasicPort)target);
-    		drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
+    		drawLink = null;
+    		if(source instanceof ExplicitInputPort || source instanceof ExplicitOutputPort) {
+    			drawLink = (BasicLink) super.addEdge(new ExplicitLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof ImplicitInputPort || source instanceof ImplicitOutputPort) {
+    			drawLink = (BasicLink) super.addEdge(new ImplicitLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof ControlPort || source instanceof CommandPort) {
+    			drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
+    		} else if(source instanceof BasicLink) {
+    			SplitBlock split = (SplitBlock) addSplitEdge((BasicLink)source, (BasicPort)target);
+    			drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
     	    }
-    	    info(XcosMessages.DRAW_LINK);
-    	    if(drawLink != null) {
-    		waitPathRelease = true;
+
+    		if(drawLink != null) {
+    	    	waitPathRelease = true;
     	    }
+    	    
+    		info(XcosMessages.DRAW_LINK);
     	    return drawLink;
     	}
     	return null;
@@ -953,210 +959,211 @@ public class XcosDiagram extends ScilabGraph {
      * MouseListener inner class
      */
     private class XcosMouseListener implements MouseListener {
-	private XcosDiagram diagram = null;
+    	private XcosDiagram diagram = null;
 
-	public XcosMouseListener(XcosDiagram diagram) {
-	    this.diagram = diagram;
-	}
+    	public XcosMouseListener(XcosDiagram diagram) {
+    		this.diagram = diagram;
+    	}
 
-	public void mouseClicked(MouseEvent e) {
-	    Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    	public void mouseClicked(MouseEvent e) {
+    		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
 
-	    // Double Click within empty diagram Area
-	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
-		TextBlock textBlock = new TextBlock("Edit me !!!");
-		textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
-		textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
-		addCell(textBlock);
-		return;
-	    }
+    		// Double Click within empty diagram Area
+    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
+    			TextBlock textBlock = new TextBlock("Edit me !!!");
+    			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
+    			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
+    			addCell(textBlock);
+    			return;
+    		}
 
-	    // Double Click within some component
-	    if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
-	    {
-		getModel().beginUpdate();
-		if (cell instanceof BasicBlock) {
-		    BasicBlock block = (BasicBlock) cell;
-		    e.consume();
-		    block.openBlockSettings(buildEntireContext());
-		}
-		if (cell instanceof BasicLink) {
-		    ((BasicLink) cell).insertPoint(e.getX(), e.getY());
-		}
-		getModel().endUpdate();
-		refresh();
-	    }
+    		// Double Click within some component
+    		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell != null)
+    		{
+    			getModel().beginUpdate();
+    			if (cell instanceof BasicBlock) {
+    				BasicBlock block = (BasicBlock) cell;
+    				e.consume();
+    				block.openBlockSettings(buildEntireContext());
+    			}
+    			if (cell instanceof BasicLink) {
+    				((BasicLink) cell).insertPoint(e.getX(), e.getY());
+    			}
+    			getModel().endUpdate();
+    			refresh();
+    		}
 
-	    // Ctrl + Shift + Right Middle Click : for debug !!
-	    if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
-	    		&& e.isShiftDown() && e.isControlDown())
-	    {
-	    	System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
-	    	if (cell == null) {
-	    	    System.err.println("[DEBUG] Click on diagram");
-	    	    System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
-	    	    System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
-	    	    System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
-	    	} else {
-	    	    System.err.println("[DEBUG] Click on : " + cell);
-	    	    System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
-	    	    System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
-	    	    System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
-	    	    for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
-	    		System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
-	    	    }
-	    	    
-	    	    if(cell instanceof BasicLink) {
-	    		System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
-	    	    }
-	    	}
-	    	
-	    }
+    		// Ctrl + Shift + Right Middle Click : for debug !!
+    		if (e.getClickCount() >= 2 && SwingUtilities.isMiddleMouseButton(e)
+    				&& e.isShiftDown() && e.isControlDown())
+    		{
+    			System.err.println("[DEBUG] Click at position : " + e.getX() + " , " + e.getY());
+    			if (cell == null) {
+    				System.err.println("[DEBUG] Click on diagram");
+    				System.err.println("Default Parent ID : " + ((mxCell) getDefaultParent()).getId());
+    				System.err.println("Model root ID : " + ((mxCell) getModel().getRoot()).getId());
+    				System.err.println("getParentWindow : " + (getParentTab() == null ? null : getParentTab().getParentWindow()));
+    			} else {
+    				System.err.println("[DEBUG] Click on : " + cell);
+    				System.err.println("[DEBUG] Style : " + ((mxCell) cell).getStyle());
+    				System.err.println("[DEBUG] NbEdges : " + ((mxCell) cell).getEdgeCount());
+    				System.err.println("[DEBUG] NbChildren : " + ((mxCell) cell).getChildCount());
+    				for (int i = 0; i < ((mxCell) cell).getChildCount(); i++) {
+    					System.err.println("[DEBUG] Child NbEdges : " + ((mxCell) cell).getChildAt(i).getEdgeCount());
+    				}
 
-	    // Context menu
-	    if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-	    		|| e.isPopupTrigger()
-	    		|| XcosMessages.isMacOsPopupTrigger(e)) {
+    				if(cell instanceof BasicLink) {
+    					System.err.println("[DEBUG] Link Points : " + ((BasicLink) cell).getPointCount());
+    				}
+    			}
 
-		if (cell == null) {
-		    // Display diagram context menu
-		    ContextMenu menu = ScilabContextMenu.createContextMenu();
+    		}
 
-		    menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    
-		    if(diagram instanceof SuperBlockDiagram) {
-			/*---*/
-			menu.getAsSimpleContextMenu().addSeparator();
-			/*---*/
-			menu.add(ShowParentAction.createMenu(diagram));
-		    }
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
-		    menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
-		    /*---*/
-		    menu.getAsSimpleContextMenu().addSeparator();
-		    /*---*/
-		    menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    		// Context menu
+    		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+    				|| e.isPopupTrigger()
+    				|| XcosMessages.isMacOsPopupTrigger(e)) {
 
-		    ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-		    
-		    menu.setVisible(true);
+    			if (cell == null) {
+    				// Display diagram context menu
+    				ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-		} else {
-		    // Display object context menu
-		    if (cell instanceof BasicBlock) {
-			BasicBlock block = (BasicBlock) cell;
-			block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-		    }
-		    if (cell instanceof BasicLink) {
-			BasicLink link = (BasicLink) cell;
-			link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
-		    }
-		}
-	    }
-	}
+    				menu.add(UndoAction.undoMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(RedoAction.redoMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(PasteAction.pasteMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(SelectAllAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(SetContextAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(SetupAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
-	public void mouseEntered(MouseEvent e) {
-	}
+    				if(diagram instanceof SuperBlockDiagram) {
+    					/*---*/
+    					menu.getAsSimpleContextMenu().addSeparator();
+    					/*---*/
+    					menu.add(ShowParentAction.createMenu(diagram));
+    				}
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(ZoomInAction.zoominMenu((ScilabGraph) getAsComponent().getGraph()));
+    				menu.add(ZoomOutAction.zoomoutMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(DiagramBackgroundAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
+    				/*---*/
+    				menu.getAsSimpleContextMenu().addSeparator();
+    				/*---*/
+    				menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getAsComponent().getGraph()));
 
-	public void mouseExited(MouseEvent e) {
-	}
+    				((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 
-	public void mousePressed(MouseEvent e) {
-	}
+    				menu.setVisible(true);
 
-	public void mouseReleased(MouseEvent e) {
-	    Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    			} else {
+    				// Display object context menu
+    				if (cell instanceof BasicBlock) {
+    					BasicBlock block = (BasicBlock) cell;
+    					block.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+    				}
+    				if (cell instanceof BasicLink) {
+    					BasicLink link = (BasicLink) cell;
+    					link.openContextMenu((ScilabGraph) getAsComponent().getGraph());
+    				}
+    			}
+    		}
+    	}
 
-	    if(e.getClickCount() == 1 && SwingUtilities.isLeftMouseButton(e)) {
-		if (waitSplitRelease) {
-		    dragSplitPos = new mxPoint(e.getX(), e.getY());
-		    waitSplitRelease = false;
-		    addSplitEdge(splitLink, splitPort);
-		} else if(waitPathRelease){
-		    //Tips for ignore first mouse release after drag
-		    waitPathRelease = false;
-		    waitPathAddEdge = true;
-		    
-		    if(!e.isControlDown()) {
-			//adjust final point
-			mxGeometry geoPort = drawLink.getSource().getGeometry();
-			mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
-			mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
-			mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+    	public void mouseEntered(MouseEvent e) {
+    	}
 
-			getModel().beginUpdate();
-			drawLink.getGeometry().setTargetPoint(point);
-			getModel().endUpdate();
-			refresh();
-		    }
-		} else if(waitPathAddEdge){
-		    if(drawLink != null) {
-			getModel().beginUpdate();
-			//move end of link and add point at old position
-			mxGeometry geo = drawLink.getGeometry();
-			drawLink.addPoint(geo.getTargetPoint().getX(), geo.getTargetPoint().getY());
-			setSelectionCell(drawLink);
+    	public void mouseExited(MouseEvent e) {
+    	}
 
-			if(cell != null) {
-			    mxICell source = drawLink.getSource();
+    	public void mousePressed(MouseEvent e) {
+    	}
 
-			    StringBuffer error = checkMultiplicities(drawLink, source, cell);
-			    if(error == null) {
-				if(cell instanceof BasicLink && cell != drawLink) { //no loop
-				    //draw link with a SplitBlock
-				    dragSplitPos = new mxPoint(e.getX(), e.getY());
-				    addSplitEdge((BasicLink)cell, drawLink);
-				} else {
-				    getModel().setTerminal(drawLink, cell, false);
-				}
+    	public void mouseReleased(MouseEvent e) {
+    		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
 
-				//invert source and target if needed
-				if(checkEdgeDirection(source, cell) == false) {
-				    getModel().beginUpdate();
-				    drawLink.invertDirection();
-				    getModel().endUpdate();
-				}
+    		if(SwingUtilities.isLeftMouseButton(e)) {
+    			if (waitSplitRelease) {
+    				dragSplitPos = new mxPoint(e.getX(), e.getY());
+    				waitSplitRelease = false;
+    				addSplitEdge(splitLink, splitPort);
+    			} else if(waitPathRelease){
+    				//Tips for ignore first mouse release after drag
+    				waitPathRelease = false;
+    				waitPathAddEdge = true;
 
-				//reset info, flags and object
-				cancelDrawLinkAction();
-			    } else {
-				if(cell != drawLink) {
-				    JOptionPane.showMessageDialog(getAsComponent(), error);
-				}
-				setSelectionCell(drawLink);
-			    }
-			} else {
-			    if(!e.isControlDown()) {
-				geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
-			    } else {
-				geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
-			    }
-			}
-			getModel().endUpdate();
-			refresh();
-		    } else {
-			cancelDrawLinkAction();
-		    }
-		} else {
-		    dragSplitPos = null;
-		}
-	    }
-	}
+    				if(!e.isControlDown()) {
+    					//adjust final point
+    					mxGeometry geoPort = drawLink.getSource().getGeometry();
+    					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+    					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(), geoBlock.getY() + geoPort.getCenterY());
+    					mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+
+    					getModel().beginUpdate();
+    					drawLink.getGeometry().setTargetPoint(point);
+    					getModel().endUpdate();
+    					refresh();
+    				}
+    			} else if(waitPathAddEdge){
+    				System.err.println("mouseReleased : waitPathAddEdge");
+    				if(drawLink != null) {
+    					getModel().beginUpdate();
+    					//move end of link and add point at old position
+    					mxGeometry geo = drawLink.getGeometry();
+    					drawLink.addPoint(geo.getTargetPoint().getX(), geo.getTargetPoint().getY());
+    					setSelectionCell(drawLink);
+
+    					if(cell != null) {
+    						mxICell source = drawLink.getSource();
+
+    						StringBuffer error = checkMultiplicities(drawLink, source, cell);
+    						if(error == null) {
+    							if(cell instanceof BasicLink && cell != drawLink) { //no loop
+    								//draw link with a SplitBlock
+    								dragSplitPos = new mxPoint(e.getX(), e.getY());
+    								addSplitEdge((BasicLink)cell, drawLink);
+    							} else {
+    								getModel().setTerminal(drawLink, cell, false);
+    							}
+
+    							//invert source and target if needed
+    							if(checkEdgeDirection(source, cell) == false) {
+    								getModel().beginUpdate();
+    								drawLink.invertDirection();
+    								getModel().endUpdate();
+    							}
+
+    							//reset info, flags and object
+    							cancelDrawLinkAction();
+    						} else {
+    							if(cell != drawLink) {
+    								JOptionPane.showMessageDialog(getAsComponent(), error);
+    							}
+    							setSelectionCell(drawLink);
+    						}
+    					} else {
+    						if(!e.isControlDown()) {
+    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+    						} else {
+    							geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+    						}
+    					}
+    					getModel().endUpdate();
+    					refresh();
+    				} else {
+    					cancelDrawLinkAction();
+    				}
+    			} else {
+    				dragSplitPos = null;
+    			}
+    		}
+    	}
     }
 
     static mxPoint getPointPosition(mxPoint origin, mxPoint click) {
@@ -1520,10 +1527,14 @@ public class XcosDiagram extends ScilabGraph {
 	    if (this.getSavedFile() != null) {
 		fc.setSelectedFile(new File(this.getSavedFile()));
 	    }
-	    XcosFileType defaultFileType = XcosFileType.getDefault();
-	    SciFileFilter xcosFilter = new SciFileFilter("*." + defaultFileType.getExtension(), defaultFileType.getDescription(), 0);
+
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
 	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(allFilter);
 	    fc.setFileFilter(xcosFilter);
+
+	    fc.setAcceptAllFileFilterUsed(false);
 	    fc.displayAndWait();
 
 	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
@@ -1594,19 +1605,35 @@ public class XcosDiagram extends ScilabGraph {
 	return context;
     }
 
-    public void updateCellsContext() {
-	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
-	    Object obj = getModel().getChildAt(getDefaultParent(), i);
-	    if ( obj instanceof ContextUpdate) {
-		((ContextUpdate)obj).onContextChange(buildEntireContext());
-	    } else if (obj instanceof SuperBlock) {
-		SuperBlock superBlock = (SuperBlock)obj;
-		if(superBlock.getChild() != null) {
-		    superBlock.getChild().updateCellsContext();
+	public void updateCellsContext() {
+		Object rootParent = getDefaultParent();
+		int child_counts = getModel().getChildCount(rootParent);
+		for (int i = 0; i < child_counts; ++i) {
+			Object obj = getModel().getChildAt(rootParent, i);
+			if (obj instanceof ContextUpdate) {
+				String[] context = buildEntireContext();
+
+				/* Determine if the context is not empty */
+				int nbOfDetectedChar = 0;
+				for (int j = 0; j < context.length; j++) {
+					context[j] = context[j].replaceFirst("\\s", "");
+					nbOfDetectedChar += context[j].length();
+					if (nbOfDetectedChar != 0)
+						break;
+				}
+
+				if (nbOfDetectedChar != 0) {
+					((ContextUpdate) obj).onContextChange(context);
+				}
+
+			} else if (obj instanceof SuperBlock) {
+				SuperBlock superBlock = (SuperBlock) obj;
+				if (superBlock.getChild() != null) {
+					superBlock.getChild().updateCellsContext();
+				}
+			}
 		}
-	    }
 	}
-    }
 
     public String getVersion() {
 	return version;
@@ -1713,7 +1740,9 @@ public class XcosDiagram extends ScilabGraph {
 	if (XcosTab.focusOnExistingFile(diagramFileName) == false) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
-	    ((XcosTab) getParentTab()).setActionsEnabled(false);
+	    
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(false);
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile, false);
@@ -1738,7 +1767,8 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    info(XcosMessages.EMPTY_INFO);
-	    ((XcosTab) getParentTab()).setActionsEnabled(true);
+	    if (getParentTab() != null)
+	    	((XcosTab) getParentTab()).setActionsEnabled(true);
 	    this.resetUndoManager();
 	}
     }
@@ -1748,10 +1778,10 @@ public class XcosDiagram extends ScilabGraph {
      * Load a file with different method depending on it extension 
      * @param theFile File to load
      */
-    protected void transformAndLoadFile(File theFile, boolean wait) {
+    protected boolean transformAndLoadFile(File theFile, boolean wait) {
 	final File fileToLoad = theFile;
 	final XcosFileType filetype = XcosFileType.findFileType(fileToLoad);
-
+	boolean result = false;
 
 	switch (filetype) {
 	case COSF:
@@ -1759,7 +1789,7 @@ public class XcosDiagram extends ScilabGraph {
 	    if(wait) {
 		File newFile;
 		newFile = filetype.exportToHdf5(fileToLoad);
-		transformAndLoadFile(newFile, wait);
+		result = transformAndLoadFile(newFile, wait);
 	    } else {
 		Thread transformAction = new Thread() {
 		    public void run() {
@@ -1768,16 +1798,16 @@ public class XcosDiagram extends ScilabGraph {
 			transformAndLoadFile(newFile, false);
 		    }
 		};
-		transformAction.start();	
+		transformAction.start();
+		result = true;
 	    }
 	    break;
 
 	case XCOS:
-	    Document document = null;
-	    try {
-		document = mxUtils.parse(mxUtils.readFile(theFile.getAbsolutePath()));
-	    } catch (IOException e1) {
-		e1.printStackTrace();
+	    Document document = loadXcosDocument(theFile.getAbsolutePath());
+	    if(document == null) {
+		XcosDialogs.couldNotLoadFile(this);
+		return false;
 	    }
 
 	    XcosCodec codec = new XcosCodec(document);
@@ -1800,27 +1830,46 @@ public class XcosDiagram extends ScilabGraph {
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
 	    }
+	    
+	    result = true;
 	    break;
 
 	case HDF5:
 	    openDiagram(BlockReader.readDiagramFromFile(fileToLoad.getAbsolutePath()));
 	    generateUID();
 	    setModified(false);
+	    result = true;
 	    break;
 
 	default:
 	    XcosDialogs.couldNotLoadFile(this);
 	    break;
 	}
+	return result;
     }
 
+    static Document loadXcosDocument(String xcosFile) {
+	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder docBuilder;
+	try {
+	    docBuilder = docBuilderFactory.newDocumentBuilder();
+	    return docBuilder.parse(xcosFile);
+	} catch (ParserConfigurationException e) {
+	    return null;
+	} catch (SAXException e) {
+	    return null;
+	} catch (IOException e) {
+	    return null;
+	}
+    }
+    
     public void generateUID() {
 	for (int i = 0; i < getModel().getChildCount(getDefaultParent()); ++i) {
 	    if (getModel().getChildAt(getDefaultParent(), i) instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
 		if(block.getRealParameters() instanceof ScilabMList) {
 		    //we have a hidden SuperBlock, create a real one
-		    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+		    SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
@@ -2072,7 +2121,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		    } else if(block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
-			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 			newSP.setParentDiagram(block.getParentDiagram());
 			newSP.setRealParameters(block.getRealParameters());
 			newSP.createChildDiagram();

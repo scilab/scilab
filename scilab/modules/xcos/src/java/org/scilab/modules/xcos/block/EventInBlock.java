@@ -25,18 +25,16 @@ public final class EventInBlock extends ContextUpdate {
 
     public EventInBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
-    }
-
-    public EventInBlock(String label) {
-	super(label);
 	setInterfaceFunctionName("CLKINV_f");
 	setSimulationFunctionName("input");
 	setNbZerosCrossing(new ScilabDouble(0));
 	setNmode(new ScilabDouble(0));
 	setODState(new ScilabList());
 	setValue(1);
+    }
+
+    public EventInBlock(String label) {
+    	this();
     }
 
     public void setExprs(ScilabType exprs) {

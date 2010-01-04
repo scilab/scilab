@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>Events_pal</refname>
 
-    <refpurpose>Events palette</refpurpose>
+    <refpurpose>Event handling palette</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -61,7 +61,7 @@
   <refsection id="Description_Events_pal">
     <title>Description</title>
 
-    <para>The events palette is used to handle events in the diagram. It
+    <para>The Event handling palette is used to handle events in the diagram. It
     contains several activation clocks, synchronous blocks and blocks to
     gather events in a single link.</para>
   </refsection>
@@ -126,6 +126,24 @@
           <link linkend="CLOCK_c">CLOCK_c — Activation clock</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="EDGE_TRIGGER">EDGE_TRIGGER —  EDGE_TRIGGER block</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="ENDBLK">ENDBLK —  END block</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="END_c">END_c —  END_c block</link>
+        </para>
+      </listitem>
 
       <listitem>
         <para>
@@ -151,10 +169,10 @@
           <link linkend="EVTVARDLY">EVTVARDLY — Event variable delay</link>
         </para>
       </listitem>
-
-      <listitem>
+	  
+	  <listitem>
         <para>
-          <link linkend="freq_div">freq_div — Frequency division</link>
+          <link linkend="Extract_Activation">Extract_Activation — Extract_Activation block</link>
         </para>
       </listitem>
 
@@ -176,12 +194,37 @@
           <link linkend="M_freq">M_freq — Multiple Frequencies</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="MCLOCK_f">MCLOCK_f — Clock Frequency division</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="MFCLCK_f">MFCLCK_f — Clock Multiple Frequencies</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="REGISTER">REGISTER — Shift Register</link>
+        </para>
+      </listitem>
 
       <listitem>
         <para>
           <link linkend="SampleCLK">SampleCLK — Sample Time Clock</link>
         </para>
       </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="freq_div">freq_div — Frequency division</link>
+        </para>
+      </listitem>
+	  
     </itemizedlist>
   </refsection>
 </refentry>

@@ -15,10 +15,10 @@ package org.scilab.modules.graph;
 import java.awt.Color;
 import java.util.List;
 
+import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -47,7 +47,7 @@ public class ScilabGraph extends mxGraph {
     protected XcosComponent component = null;
     //    protected mxGraphComponent component = null;
 
-    private String title = Messages.gettext("Untitled");
+    private String title = ScilabGraphMessages.UNTITLED;
     private String savedFile = null;
     private boolean modified = false;
     private Tab parentTab;

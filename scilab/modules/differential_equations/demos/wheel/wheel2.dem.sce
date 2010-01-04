@@ -55,7 +55,7 @@ while flag==2, [n1,n2]=size(x);
 		x0 = evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
 		x  = ode(x0,tmin,times,'wheel');
 		clf(my_handle,"reset");
-		show(x);
+		wheel_show(x);
 	end
 end
 

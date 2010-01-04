@@ -16,14 +16,12 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.model.mxICell;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
@@ -56,31 +54,8 @@ public class BasicPortCodec extends XcosObjectCodec {
 	    ((BasicPort) obj).setDataType(BasicPort.DataType.valueOf(attr));
 	}
 
-
 	//update style to replace direction by rotation
 	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicPort) obj));
-	
-	// SplitBlock specific: a splitbloc must have 4 children even if only 
-	// the first tree are used. In the old format the splitblock had only
-	// 3 children.
-	/* FIXME: This doesn't work in a non-contiguous blocks. 
-	 */
-	BasicPort local = ((BasicPort) obj);
-	if (local.getParent() != previousBlock) {
-	    if (previousBlock instanceof SplitBlock) {
-		SplitBlock block = (SplitBlock) previousBlock;
-		if (previousBlock.getChildCount() != 4) {
-		    try {
-			block.insert((mxICell) block.getChildAt(1).clone());
-		    } catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		    }
-		}
-	    }
-
-	    previousBlock = (BasicBlock) local.getParent();
-	}
 	
 	return super.afterDecode(dec, node, obj);
     }

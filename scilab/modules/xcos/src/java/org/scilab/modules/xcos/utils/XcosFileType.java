@@ -13,9 +13,11 @@
 package org.scilab.modules.xcos.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * All the filetype recognized by Xcos.
@@ -23,34 +25,12 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 public enum XcosFileType {
 	COSF("cosf", XcosMessages.FILE_COSF) {
 		public File exportToHdf5(File arg0) {
-			File tempOutput = null;
-			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "exec(\"" + arg0.getAbsolutePath() + "\", -1);";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			Signal.wait(tempOutput.getAbsolutePath());
-			return tempOutput;
+			return loadScicosDiagram(arg0);
 		}
 	},
 	COS("cos", XcosMessages.FILE_COS) {
 		public File exportToHdf5(File arg0) {
-			File tempOutput = null;
-			try {
-				tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
-				String cmd = "load(\"" + arg0.getAbsolutePath() + "\");";
-				cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-				cmd += "xcosNotify(\"" + tempOutput.getAbsolutePath() + "\");";
-				InterpreterManagement.requestScilabExec(cmd);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			Signal.wait(tempOutput.getAbsolutePath());
-			return tempOutput;
+			return loadScicosDiagram(arg0);
 		}
 	},
 	HDF5("h5", XcosMessages.FILE_HDF5) {
@@ -111,6 +91,7 @@ public enum XcosFileType {
 	public static XcosFileType findFileType(File theFile) {
 		int dotPos = theFile.getName().lastIndexOf('.');
 		String extension = "";
+		XcosFileType retValue = XcosFileType.UNKNOW;
 
 		if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
 			extension = theFile.getName().substring(dotPos + 1);
@@ -118,11 +99,31 @@ public enum XcosFileType {
 		
 		for (XcosFileType currentFileType : XcosFileType.values()) {
 			if (extension.compareToIgnoreCase(currentFileType.extension) == 0) {
-				return currentFileType;
+				retValue = currentFileType;
+				break;
 			}
 		}
 		
-		return XcosFileType.UNKNOW;
+		/* Validate xml header */
+		if (retValue == XcosFileType.XCOS) {
+			byte[] xmlMagic = (new String("<?xml")).getBytes();
+			byte[] readMagic = new byte[xmlMagic.length];
+
+			FileInputStream stream;
+			try {
+				stream = new FileInputStream(theFile);
+				int length;
+				length = stream.read(readMagic);
+				if (length != xmlMagic.length
+						|| !Arrays.equals(xmlMagic, readMagic)) {
+					retValue = XcosFileType.UNKNOW;
+				}
+			} catch (Exception e) {
+				retValue = XcosFileType.UNKNOW;
+			}
+		}
+		
+		return retValue;
 	}
 	
 	/** 
@@ -174,5 +175,22 @@ public enum XcosFileType {
 	    }
 	    
 	    return result;
+	}
+	
+	public static File loadScicosDiagram(File filename) {
+	    File tempOutput = null;
+	    try {
+		tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
+		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
+		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
+		try {
+			XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	    return tempOutput;
 	}
 }

@@ -207,14 +207,15 @@ function result = atomsInstall(packages,section)
 			end
 			
 			this_package_description = atomsDESCRIPTIONread(tmp_dir + "DESCRIPTION");
+			this_package_packages    = this_package_description("packages");
 			
 			// Get package name and version
 			// -----------------------------------------------------------------
 			
-			this_package_name    = getfield(1,this_package_description);
+			this_package_name    = getfield(1,this_package_packages);
 			this_package_name    = this_package_name(3);
 			
-			this_package_version = getfield(1,this_package_description(this_package_name));
+			this_package_version = getfield(1,this_package_packages(this_package_name));
 			this_package_version = this_package_version(3);
 			
 			// Save the extracted directory
@@ -349,6 +350,24 @@ function result = atomsInstall(packages,section)
 		if stat <> 0 then
 			atomsError("error", ..
 				msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+		end
+		
+		// Move the created directory
+		// → Only under windows
+		// → Only if it's a local package
+		// =====================================================================
+		
+		if MSDOS & (this_package_details("fromRepository") == "0") then
+			
+			move_cmd = "move """+atoms_tmp_directory+this_package_version+""" """+pathconvert(this_package_directory,%F)+"""";
+			
+			[rep,stat]=unix_g(move_cmd)
+			
+			if stat <> 0 then
+				atomsError("error", ..
+					msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+			end
+			
 		end
 		
 		// Register the successfully installed package

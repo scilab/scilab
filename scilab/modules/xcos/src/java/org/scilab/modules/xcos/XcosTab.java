@@ -444,7 +444,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     public MenuBar createMenuBar(ScilabGraph scilabGraph) {
-	ConfigXcosManager.createUserCopy();
 	ArrayList<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
 

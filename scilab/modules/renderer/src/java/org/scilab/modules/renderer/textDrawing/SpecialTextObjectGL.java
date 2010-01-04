@@ -14,12 +14,14 @@ package org.scilab.modules.renderer.textDrawing;
 import java.nio.Buffer;
 import java.awt.Color;
 
+import com.sun.opengl.util.texture.Texture;
+
 public abstract class SpecialTextObjectGL {
     
     protected Buffer buffer;
     protected float height;
     protected float width;
-    protected int idTexture;
+    protected Texture texture;
 
     protected boolean isColored;
 
@@ -54,16 +56,16 @@ public abstract class SpecialTextObjectGL {
     /**
      * Return the texture's name associated to this label
      */
-    public int getIdTexture() {
-		return idTexture;
+    public Texture getTexture() {
+		return texture;
     }
 
     /**
      * Set the texture's name associated to this label
      * @param id of the texture got with GL
      */
-    public void setIdTexture(int id) {
-		idTexture = id;
+    public void setTexture(Texture t) {
+		texture = t;
 		/* The buffer is set to null since GL put it into the buffer of the video card */
 		this.buffer = null;
     }	

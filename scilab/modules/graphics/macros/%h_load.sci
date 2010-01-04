@@ -140,7 +140,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     load_user_data(fd); // user_data
   case "Axes"
-    newaxes();
+    // Hack to determine whether %h_load has been called by the %h_copy macro
+    // in which case a new Axes object is created
+    [lnums, fnames]=where();
+    ind=grep(fnames, '%h_copy');
+
+    if(ind<>[]) then
+    	newaxes();
+    end;
+
     a=gca() ;
     titl=a.title ;
     x_label=a.x_label ;

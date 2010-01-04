@@ -310,10 +310,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 			 * Action callback on Exit menu
 			 */
 			public void callBack() {
+			    if(getEditor().getTabPane().getTabCount() != 1) {
 				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXIT_CONFIRM, XpadMessages.EXIT, 
-		    			IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
-						ExitAction.doExit(Xpad.getEditor());						
+					IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+					ExitAction.doExit(Xpad.getEditor());						
 				}
+			    } else {
+				ExitAction.doExit(Xpad.getEditor());						
+			    }
 			}
 			
 			/**
@@ -495,10 +499,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
-		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 3);
-		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 0);
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
+		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -513,6 +517,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(allFilter);
 
+		//select default file type
+		fileChooser.setFileFilter(sceFilter);
 		int retval = fileChooser.showSaveDialog(this);
 
 		if (retval == JFileChooser.APPROVE_OPTION) {
@@ -582,10 +588,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
-		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 3);
-		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 2);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 0);
+		
+		//prefer to use chooseFileToSave function !
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
+		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
 		
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
@@ -594,11 +602,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setInitialDirectory(initialDirectoryPath);
 		fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
+		
 		// order is also important here
 		fileChooser.addChoosableFileFilter(sceFilter);
 		fileChooser.addChoosableFileFilter(sciFilter);
 		fileChooser.addChoosableFileFilter(scxFilter);
 		fileChooser.addChoosableFileFilter(allFilter);
+		
+		//select default file type
+		fileChooser.setFileFilter(sceFilter);
 		fileChooser.setTitle(XpadMessages.SAVE_AS); /* Bug 4869 */
 		
 		if (textPane.getName() != null) { /* Bug 5319 */
@@ -699,7 +711,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
 		        	}
 		        	doc.setContentModified(true);
-		        	Xpad.this.updateTabTitle();
+		        	// tab title updating must be deferred after UndoManager processes the related UndoableEvent
+		        	// (and updates nbEdit accordingly)
+		        	SwingUtilities.invokeLater(new TabTitleUpdater(Xpad.this));
 		        } 
 		   }
 	});
@@ -1228,4 +1242,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    }
 	}
 
+}
+
+class TabTitleUpdater implements Runnable {
+	Xpad editor;
+	TabTitleUpdater( Xpad e ) {
+		editor = e;
+	}
+	 public void run() {
+		 editor.updateTabTitle();
+	}
 }

@@ -35,7 +35,7 @@ public final class XcosMessages {
 
     public static final String DOTS = "...";
 
-    public static final String UNTITLED = "Untitled";
+    public static final String UNTITLED = Messages.gettext("Untitled");
 
     /** File menu */
     public static final String FILE = Messages.gettext("File");
@@ -109,7 +109,6 @@ public final class XcosMessages {
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
-    public static final String XCOS_VERSION = Messages.gettext("Xcos version 1.0");
 
     /** PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -203,7 +202,6 @@ public final class XcosMessages {
     public static final String SETUP_TITLE =  Messages.gettext("Set Parameters");
     
     /* About box */
-    public static final String VERSION = Messages.gettext("Xcos 1.0");
     public static final String DIGITEO = Messages.gettext("The Scilab Consortium (DIGITEO)");
     public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
     public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
@@ -234,7 +232,22 @@ public final class XcosMessages {
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_HDF5 = Messages.gettext("Scilab file");
 
-
+    /** Superblock mask editor */
+    public static final String MASK_TITLE = Messages.gettext("Masked SuperBlock editor");
+    public static final String MASK_INSERT = Messages.gettext("Insert");
+    public static final String MASK_DELETE = Messages.gettext("Delete");
+    public static final String MASK_MOVEUP = Messages.gettext("Move Up");
+    public static final String MASK_MOVEDOWN = Messages.gettext("Move Down");
+    public static final String MASK_ROWS = Messages.gettext("Rows");
+    public static final String MASK_VARSETTINGS = Messages.gettext("Variable settings");
+    public static final String MASK_DEFAULTVALUES = Messages.gettext("Default values");
+    public static final String MASK_WINTITLEVAR = Messages.gettext("WinTitle");
+    public static final String MASK_WINTITLE = Messages.gettext("Window title");
+    public static final String MASK_VARNAME = Messages.gettext("Variable names");
+    public static final String MASK_VARDESC = Messages.gettext("Variable descriptions");
+    public static final String MASK_EDITABLE = Messages.gettext("Editable");
+    public static final String MASK_VARVALUES = Messages.gettext("Values");
+    
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
      * Related to Scilab bug #5190
