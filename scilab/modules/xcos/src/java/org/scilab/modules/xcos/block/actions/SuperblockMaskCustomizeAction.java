@@ -394,22 +394,41 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Import the model exprs to the table models.
 			 */
 			public void importFromBlock() {
+				ScilabString values;
+				ScilabString varNames;
+				ScilabString varDesc;
+				
 				ScilabType rawExprs = getBlock().getExprs();
 				DefaultTableModel customModel = customizeTableModel;
 				DefaultTableModel valuesModel = valuesTableModel;
 
 				/*
-				 * rawExprs can be instance of ScilabList when value has been
-				 * previously set or instance of ScilabDouble if expression is
-				 * empty. Only import expression when non empty.
+				 * rawExprs have to be typed as
+				 *     list([],list([],"Set block parameters",list())) or as
+				 *     list([""],list([""],"Set block parameters",list([""])))
 				 */
-				if (rawExprs instanceof ScilabList) {
-					ScilabList exprs = (ScilabList) getBlock().getExprs();
-					ScilabString values = (ScilabString) exprs.get(0);
-					ScilabString varNames = (ScilabString) ((ScilabList) exprs
-							.get(1)).get(0);
-					ScilabString varDesc = (ScilabString) ((ScilabList) exprs
-							.get(1)).get(1);
+				assert rawExprs instanceof ScilabList;
+				ScilabList exprs = (ScilabList) rawExprs;
+				
+				assert (exprs.get(0) instanceof ScilabDouble) || (exprs.get(0) instanceof ScilabString);
+				if(exprs.get(0) instanceof ScilabDouble) {
+					values = new ScilabString("");
+				} else { /* exprs.get(0) instanceof ScilabString) */
+					values = (ScilabString) exprs.get(0); 
+				}
+				
+				assert exprs.get(1) instanceof ScilabList;
+				ScilabList lvalues = (ScilabList) exprs.get(1);
+				
+				assert (lvalues.get(0) instanceof ScilabDouble) || (lvalues.get(0) instanceof ScilabString);
+				if (lvalues.get(0) instanceof ScilabDouble) {
+					varNames = new ScilabString();
+				} else { /* exprs.get(0) instanceof ScilabString) */
+					varNames = (ScilabString) lvalues.get(0);
+				}
+				
+				assert lvalues.get(1) instanceof ScilabString;
+				varDesc = (ScilabString) lvalues.get(1);
 
 					/*
 					 * Check if the data are stored as columns or as row.
@@ -440,7 +459,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 									i, 1);
 						}
 					}
-				}
+				
 			}
 		}
 
