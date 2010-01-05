@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -247,6 +248,7 @@ public final class XcosMessages {
     public static final String MASK_VARDESC = Messages.gettext("Variable descriptions");
     public static final String MASK_EDITABLE = Messages.gettext("Editable");
     public static final String MASK_VARVALUES = Messages.gettext("Values");
+    public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
     
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
