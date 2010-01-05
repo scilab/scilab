@@ -1,53 +1,64 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 
-int floor_poly(int* _piAddress);
-int floor_double(int* _piAddress);
+SciErr floor_poly(int* _piAddress);
+SciErr floor_double(int* _piAddress);
 
 int C2F(sci_floor) (char *fname,unsigned long fname_len)
 {
-	int iRet			= 0;
+	SciErr sciErr;
+
+	int iType			= 0;
 	int* piAddr		= NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_matrix :
-		iRet = floor_double(piAddr);
+		sciErr = floor_double(piAddr);
 		break;
 	case sci_poly :
-		iRet = floor_poly(piAddr);
+		sciErr = floor_poly(piAddr);
 		break;
 	default:
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;
@@ -55,10 +66,10 @@ int C2F(sci_floor) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int floor_double(int* _piAddress)
+SciErr floor_double(int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
 
@@ -67,18 +78,18 @@ int floor_double(int* _piAddress)
 	double *pdblRealRet		= NULL;
 	double *pdblImgRet		= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -89,16 +100,16 @@ int floor_double(int* _piAddress)
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -106,13 +117,13 @@ int floor_double(int* _piAddress)
 			pdblRealRet[i] = dfloors(pdblReal[i]);
 		}
 	}
-	return 0;
+	return sciErr;
 }
 
-int floor_poly(int* _piAddress)
+SciErr floor_poly(int* _piAddress)
 {
+	SciErr sciErr;
 	int i,j;
-	int iRet							= 0;
 
 	int iRows							= 0;
 	int iCols							= 0;
@@ -127,25 +138,25 @@ int floor_poly(int* _piAddress)
 
 	char pstVarName[16];
 
-	iRet = getPolyVariableName(_piAddress, pstVarName, &iLen);
-	if(iRet)
+	sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
@@ -161,10 +172,10 @@ int floor_poly(int* _piAddress)
 			pdblImgRet[i]		= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -178,17 +189,17 @@ int floor_poly(int* _piAddress)
 	}
 	else
 	{
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
@@ -200,10 +211,10 @@ int floor_poly(int* _piAddress)
 			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -214,6 +225,7 @@ int floor_poly(int* _piAddress)
 			}
 		}
 	}
-	return 0;
+
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

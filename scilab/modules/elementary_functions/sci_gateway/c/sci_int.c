@@ -1,53 +1,62 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 
-int int_double(int* _piAddress);
-int int_poly(int* _piAddress);
+SciErr int_double(int* _piAddress);
+SciErr int_poly(int* _piAddress);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_int) (char *fname,unsigned long fname_len)
 {
-	int iRet						= 0;
-
-	int* piAddr					= NULL;
+	SciErr sciErr;
+	int iType			= 0;
+	int* piAddr		= NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_matrix :
-		iRet = int_double(piAddr);
+		sciErr = int_double(piAddr);
 		break;
 	case sci_poly :
-		iRet = int_poly(piAddr);
+		sciErr = int_poly(piAddr);
 	default :
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;
@@ -55,10 +64,10 @@ int C2F(sci_int) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int int_double(int* _piAddress)
+SciErr int_double(int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
 
@@ -67,18 +76,18 @@ int int_double(int* _piAddress)
 	double *pdblRealRet = NULL;
 	double *pdblImgRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iCols * iRows ; i++)
@@ -89,16 +98,16 @@ int int_double(int* _piAddress)
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iCols * iRows ; i++)
@@ -106,13 +115,13 @@ int int_double(int* _piAddress)
 			pdblRealRet[i]	= (double)(int)pdblReal[i];
 		}
 	}
-	return 0;
+	return sciErr;
 }
 
-int int_poly(int* _piAddress)
+SciErr int_poly(int* _piAddress)
 {
+	SciErr sciErr;
 	int i,j;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
 	int iLen							= 0;
@@ -125,25 +134,25 @@ int int_poly(int* _piAddress)
 	double** pdblRealRet	= NULL;
 	double** pdblImgRet		= NULL;
 
-	iRet = getPolyVariableName(_piAddress, pstVarName, &iLen);
-	if(iRet)
+	sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
@@ -159,10 +168,10 @@ int int_poly(int* _piAddress)
 			pdblImgRet[i]		= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -174,25 +183,25 @@ int int_poly(int* _piAddress)
 			}
 		}
 
-		iRet = createComplexMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
-		if(iRet)
+		sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
 	else
 	{
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
@@ -204,10 +213,10 @@ int int_poly(int* _piAddress)
 			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -218,10 +227,10 @@ int int_poly(int* _piAddress)
 			}
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
-		if(iRet)
+		sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
 
@@ -234,7 +243,7 @@ int int_poly(int* _piAddress)
 	free(pdblReal);
 	free(pdblRealRet);
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
@@ -244,6 +253,6 @@ int int_poly(int* _piAddress)
 		free(pdblImg);
 		free(pdblImgRet);
 	}
-	return 0;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

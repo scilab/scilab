@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,29 +26,29 @@
 /*--------------------------------------------------------------------------*/
 int sci_xpause(char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
   int m1 = 0,n1 = 0,sec = 0;
   int * p1_in_address = NULL;
-  int res = 0;
   double * pDblReal = NULL;
-  
+
   CheckLhs(0,1);
   CheckRhs(1,1);
-  
+
   if (Rhs == 1)
     {
-      getVarAddressFromPosition(1, &p1_in_address);
-      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+      sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+      sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
       CheckScalar(1,m1,n1);
 
       sec = (int)  *pDblReal;
-      
+
       if (sec <= 0)
 	{
 	  Scierror(999,_("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"),fname,1);
 	  return 0;
 	}
-      
+
 #ifdef _MSC_VER
       {
 	int ms = (sec)/1000; /** time is specified in milliseconds in scilab**/

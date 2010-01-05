@@ -11,7 +11,7 @@
  */
 
 #include "CdfBase.h"
- 
+
 #include "api_scilab.h"
 #include "stack-c.h" /* TODO: remove as soon as Rhs is linked in api_scilab.h */
 #include "Scierror.h"
@@ -27,9 +27,9 @@ void cdf_error(char const * const fname, int status, double bound);
 int CdfBase(char const * const fname, int inarg, int oarg, int shift, int which,
 	    int (*fun)(int *, ...));
 
-int   
-cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf)   
-{   
+int
+cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf)
+{
   struct cdf_item const * it;
   char *option;
 
@@ -37,12 +37,12 @@ cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf)
   CheckLhs(cdf->minlhs, cdf->maxlhs);
   option = create_string(1);
   for (it = cdf->items; it != cdf->end_item; ++it)
-    if (strcmp(option, it->option) == 0) {  
+    if (strcmp(option, it->option) == 0) {
       /* "which" argument (5th) inferred from position in item list */
       CdfBase(fname, it->inarg, it->oarg, it->shift, it - cdf->items + 1, cdf->fun);
-      break;  
-    }  
-  destroy_string(option); 
+      break;
+    }
+  destroy_string(option);
   if (it == cdf->end_item) { /* no target found */
     char *optlist;
     optlist = cdf_options(cdf);
@@ -50,8 +50,8 @@ cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf)
     FREE(optlist);
     return 1;
   }
-  return 0;   
-}  
+  return 0;
+}
 
 /**
  * Remainder r > 0 of a div b.
@@ -88,7 +88,7 @@ cdf_options(struct cdf_descriptor const * const cdf)
   size_t len = 0;
   char const * const spc = ", ";
   struct cdf_item const * it;
-  
+
   for (it = cdf->items; it != cdf->end_item; ++it)
     len += strlen(spc) + strlen(it->option);
   ret = (char *) MALLOC(len * sizeof(char));
@@ -167,8 +167,8 @@ CdfBase(char const * const fname, int inarg, int oarg, int shift, int which,
     return 1;
   }
   for (i = 0; i < inarg; ++i) {
-    getVarAddressFromPosition(i + 2, &p);
-    getMatrixOfDouble(p, &rows[i], &cols[i], &data[i]);
+    getVarAddressFromPosition(pvApiCtx, i + 2, &p);
+    getMatrixOfDouble(pvApiCtx, p, &rows[i], &cols[i], &data[i]);
   }
   for (i = 1; i < inarg ; ++i)
     if (rows[i] != rows[i-1] || cols[i] != cols[i-1]) {
@@ -176,7 +176,7 @@ CdfBase(char const * const fname, int inarg, int oarg, int shift, int which,
       return 1;
     }
   for (i = 0; i < oarg; ++i)
-    allocMatrixOfDouble(Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
+    allocMatrixOfDouble(pvApiCtx, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
 #define callpos(i) rotate(i, shift, inarg + oarg)
   for (i = 0; i < rows[0] * cols[0]; ++i) {
     switch (inarg + oarg) {

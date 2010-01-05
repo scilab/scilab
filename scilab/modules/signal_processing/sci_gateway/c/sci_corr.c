@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
@@ -28,12 +28,14 @@ int corr_fft(char *fname, unsigned long fname_len);
 int sci_corr(char *fname, unsigned long fname_len)
 {
   char *name;
+  int type;
   int *arg;
 
   CheckRhs(2,5);
   CheckLhs(1,2);
-  getVarAddressFromPosition(1, &arg);
-    if (getVarType(arg) == sci_strings) {
+  getVarAddressFromPosition(pvApiCtx, 1, &arg);
+  getVarType(pvApiCtx, arg, &type);
+	if (type == sci_strings) {
     name = create_string(1);
     switch (name[0]) {
     case 'f': /* fft */
@@ -58,26 +60,30 @@ int sci_corr(char *fname, unsigned long fname_len)
 }
 
 int corr_default(char *fname, unsigned long fname_len) {
+
   extern void C2F(tscccf)(double *x, double *y, int *length,
 			  double *cxy, double *xymean, int *lag, int *error);
+
   int length, lags_number, error, rows1, cols1, rows2, cols2, rows3, cols3;
   double *x, *y, *xvar /* crossvariance */, *mean, *data;
   int *arg;
+  int type;
 
-  getVarAddressFromPosition(1, &arg);
-  getVarDimension(arg, &rows1, &cols1);
+  getVarAddressFromPosition(pvApiCtx, 1, &arg);
+  getVarDimension(pvApiCtx, arg, &rows1, &cols1);
   length = rows1 * cols1;
-  if ((getVarType(arg) != sci_matrix) ||
+  getVarType(pvApiCtx, arg, &type);
+  if ((type != sci_matrix) ||
       (rows1 != 1 && cols1 != 1)) {
     Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
     return 1;
   }
-  getMatrixOfDouble(arg, &rows1, &cols1, &x);
+  getMatrixOfDouble(pvApiCtx, arg, &rows1, &cols1, &x);
 
   /* interpret 2nd argument according to number of arguments */
-  getVarAddressFromPosition(2, &arg);
-  getMatrixOfDouble(arg, &rows2, &cols2, &data);
-  if (Rhs == 2) { 
+  getVarAddressFromPosition(pvApiCtx, 2, &arg);
+  getMatrixOfDouble(pvApiCtx, arg, &rows2, &cols2, &data);
+  if (Rhs == 2) {
     if (rows2 != 1 || cols2 != 1) {
       Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
       return 1;
@@ -91,12 +97,12 @@ int corr_default(char *fname, unsigned long fname_len) {
       return 1;
     }
     y = data;
-    getVarAddressFromPosition(3, &arg);
-    getMatrixOfDouble(arg, &rows3, &cols3, &data);
+    getVarAddressFromPosition(pvApiCtx, 3, &arg);
+    getMatrixOfDouble(pvApiCtx, arg, &rows3, &cols3, &data);
     lags_number = (int)data[0];
   }
-  allocMatrixOfDouble(Rhs + 1, 1, lags_number, &xvar);
-  allocMatrixOfDouble(Rhs + 2, 1, (x == y) ? 1 : 2, &mean);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, lags_number, &xvar);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, (x == y) ? 1 : 2, &mean);
   C2F(tscccf)(x, y, &length, xvar, mean, &lags_number, &error);
   LhsVar(1) = Rhs + 1;
   LhsVar(2) = Rhs + 2;
@@ -105,6 +111,7 @@ int corr_default(char *fname, unsigned long fname_len) {
 }
 
 int corr_fft(char *fname, unsigned long fname_len) {
+
   extern void C2F(cmpse2)(int *m, int *n, int *mode,
 			  void (*bgetx)(double *, int *, int *),
 			  void (*bgety)(double *, int *, int *),
@@ -124,16 +131,16 @@ int corr_fft(char *fname, unsigned long fname_len) {
 
   /* taken from DllmainSignal_processing.c */
   /* the very f*** global referred to underneath */
-  extern struct { 
+  extern struct {
     int kgxtop, kgytop, ksec, kisc;
   } C2F(corradr);
-  
-  getVarAddressFromPosition(Rhs, &arg);
-  getMatrixOfDouble(arg, &rows, &cols, &data);
+
+  getVarAddressFromPosition(pvApiCtx, Rhs, &arg);
+  getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &data);
   lag = (int)(*data);
   mm = 2 * lag;
-  getVarAddressFromPosition(Rhs - 1, &arg);
-  getMatrixOfDouble(arg, &rows, &cols, &data);
+  getVarAddressFromPosition(pvApiCtx, Rhs - 1, &arg);
+  getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &data);
   n = (int)(*data);
   mode = (Rhs == 4 ? self : cross);
 
@@ -156,12 +163,12 @@ int corr_fft(char *fname, unsigned long fname_len) {
 		C2F(bgetx), C2F(bgety),
 		xa, xr, xi, zr, zi, &error);
   }
-  allocMatrixOfDouble(Rhs + 1, 1, lag, &r);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 1, 1, lag, &r);
   C2F(dcopy)(&lag, xa, &one, r, &one);
 
   LhsVar(1) = Rhs + 1;
   return2_length = Rhs - 3;
-  allocMatrixOfDouble(Rhs + 2, 1, return2_length, &r);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, return2_length, &r);
   C2F(dcopy)(&return2_length, xr, &one, r, &one);
   FREE(zi);
   FREE(zr);
@@ -175,16 +182,17 @@ int corr_fft(char *fname, unsigned long fname_len) {
 
 /* assert: RhsVar must have been checked to hold 4 to 5 elements */
 int corr_updates(char *fname, unsigned long fname_len) {
+
   extern void C2F(cmpse3)(int *m, int *n, int *mode, double *x, double *y,
 			  double *xr, double *xi,
 			  double *zr, double *zi,
 			  int *error, int *ichaud, int *nbx);
 
   enum {self = 0, cross = 1} mode = self;
-  int update = 0; 
+  int update = 0;
   int mfft, wpos;
   int length, error, rows, cols;
-  double *x, *y, 
+  double *x, *y,
     *zr, *zi, *wr, *wi, *x_real,
     *rr, *ri, y_value;
   int *arg;
@@ -192,12 +200,12 @@ int corr_updates(char *fname, unsigned long fname_len) {
   double zero = 0L;
 
   /* x */
-  getVarAddressFromPosition(2, &arg);
-  getMatrixOfDouble(arg, &rows, &cols, &x);
+  getVarAddressFromPosition(pvApiCtx, 2, &arg);
+  getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &x);
   length = rows * cols;
-  getVarAddressFromPosition(3, &arg);
-  getVarDimension(arg, &rows, &cols);
-  if (length == rows * cols) { 
+  getVarAddressFromPosition(pvApiCtx, 3, &arg);
+  getVarDimension(pvApiCtx, arg, &rows, &cols);
+  if (length == rows * cols) {
     mode = cross;
   }
   if ((mode == cross && Rhs == 5) ||
@@ -208,28 +216,28 @@ int corr_updates(char *fname, unsigned long fname_len) {
   /* y */
   if (mode == cross) {
     CheckRhs(4,5);
-    if (isVarComplex(arg)) {
+    if (isVarComplex(pvApiCtx, arg)) {
       Scierror(999, _("%s: Input argument #%d must be real.\n"), fname, 3);
       return 1;
     }
-    getMatrixOfDouble(arg, &rows, &cols, &y);
+    getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &y);
   }
   else {
     y_value = 0;
     y = &y_value;
   }
-  
+
   /* w */
   wpos = (mode == self) ? 3 : 4;
   /* dimension ought to be a power of 2 (could be checked here) */
   /* GetVarDimension(wpos, &rows, &cols); */
-  getVarAddressFromPosition(wpos, &arg);
-  if (isVarComplex(arg)) {
-    getComplexMatrixOfDouble(arg, &rows, &cols, &zr, &zi);
+  getVarAddressFromPosition(pvApiCtx, wpos, &arg);
+  if (isVarComplex(pvApiCtx, arg)) {
+    getComplexMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &zr, &zi);
     mfft = rows * cols;
   }
   else {
-    getMatrixOfDouble(arg, &rows, &cols, &zr);
+    getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &zr);
     mfft = rows * cols;
     zi = (double *)MALLOC(mfft * sizeof(double));
     C2F(dset)(&mfft, &zero, zi, &one);
@@ -241,8 +249,8 @@ int corr_updates(char *fname, unsigned long fname_len) {
   C2F(dset)(&mfft, &zero, wr, &one);
   C2F(dset)(&mfft, &zero, wi, &one);
   if (update) { /* if xu provided, update it */
-    getVarAddressFromPosition(wpos + 1, &arg);
-    getMatrixOfDouble(arg, &rows, &cols, &x_real);
+    getVarAddressFromPosition(pvApiCtx, wpos + 1, &arg);
+    getMatrixOfDouble(pvApiCtx, arg, &rows, &cols, &x_real);
     nbx = rows * cols;
     if (nbx > mfft) {
       /* TODO: make error msg more accurate (2nd dim >= dim(arg)) */
@@ -266,12 +274,12 @@ int corr_updates(char *fname, unsigned long fname_len) {
   /** @warning x built of data on the stack that's reaffected by matrix allocation
      -> copied to keep it safe for lhs2 output */
   C2F(dcopy)(&nbx, &(x[length-nbx]), &one, wr, &one);
-  allocComplexMatrixOfDouble(Rhs + 1, 1, mfft, &rr, &ri);
+  allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, 1, mfft, &rr, &ri);
   C2F(dcopy)(&mfft, zr, &one, rr, &one);
   C2F(dcopy)(&mfft, zi, &one, ri, &one);
   LhsVar(1) = Rhs + 1;
   if (Lhs == 2) {
-    allocMatrixOfDouble(Rhs + 2, 1, nbx, &rr);
+    allocMatrixOfDouble(pvApiCtx, Rhs + 2, 1, nbx, &rr);
     C2F(dcopy)(&nbx, wr, &one, rr, &one);
     LhsVar(2) = Rhs + 2;
   }

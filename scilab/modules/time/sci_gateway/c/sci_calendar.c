@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,16 +34,16 @@ int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
 int sci_calendar(char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
   int n1 = 0, m1 = 0;
   int * p1_in_address = NULL;
-  int res = 0;
   double * pDblReal = NULL;
-  
+
   int month = 0;
   int year = 0;
   int day, day_1, numdays, i;
   int a = 0;
-  
+
   double *CALMONTH  = NULL;
   double *tmpMatrix = NULL;
 
@@ -51,15 +51,15 @@ int sci_calendar(char *fname,unsigned long fname_len)
 
   CheckRhs(2,2);
   CheckLhs(1,1);
-  
+
   if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
     {
-      getVarAddressFromPosition(1, &p1_in_address);
-      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+      sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+      sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
       year = (int)*pDblReal;
-      
-      getVarAddressFromPosition(2, &p1_in_address);
-      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+
+      sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p1_in_address);
+      sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
       month = (int)*pDblReal;
 
@@ -68,7 +68,7 @@ int sci_calendar(char *fname,unsigned long fname_len)
 	  Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,2,1800,3000);
 	  return 0;
 	}
-      
+
       if ( (month<1) || (month>12) )
 	{
 	  Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,1,1,12);
@@ -83,16 +83,16 @@ int sci_calendar(char *fname,unsigned long fname_len)
 
   CALMONTH=(double *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(double) );
   for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
-  
+
   /* check if the month of feb is 28 or 29 days */
   numdays = days[month - 1];
   if (2 == month && isBissextile(year)) ++numdays;
-  
+
   /* Starts the calendar on monday */
   day_1 = (int)((ymd_to_scalar(year, month, 1) - (long)1) % 7L);
-  
+
   for (day = 0; day < day_1; ++day) a++;
-  
+
   /* Browse all the days */
   for (day = 1; day <= numdays; ++day, ++day_1, day_1 %= 7)
     {
@@ -103,15 +103,15 @@ int sci_calendar(char *fname,unsigned long fname_len)
   m1=NBRWEEK;
   n1=NBRDAY;
   tmpMatrix=CALMONTH;
-  
+
   CALMONTH = transposeMatrixDouble(NBRDAY,NBRWEEK,CALMONTH);
   if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
-  
-  res = createMatrixOfDouble(Rhs+1, m1, n1, CALMONTH);
+
+  sciErr = createMatrixOfDouble(pvApiCtx, Rhs+1, m1, n1, CALMONTH);
 
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();
-  
+
   if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 
   return 0;

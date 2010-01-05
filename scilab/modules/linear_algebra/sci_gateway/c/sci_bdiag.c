@@ -33,10 +33,11 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
   int ret= 0;
 
   int* arg[2]= {NULL, NULL};
+  int type;
 
   double* pDataReal[2]={NULL, NULL};
   double* pDataImg[2]={NULL, NULL};
- 
+
   int iCols[2]={0, 0}, iRows[2]= {0, 0};
   int i;
 
@@ -45,13 +46,14 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
   CheckLhs(1,3);
   for(i=0; i != Rhs; ++i)
     {
-      getVarAddressFromPosition(i+1, &arg[i]);
-      if(getVarType(arg[i])!= sci_matrix)
+      getVarAddressFromPosition(pvApiCtx, i+1, &arg[i]);
+      getVarType(pvApiCtx, arg[i], &type);
+      if(type != sci_matrix)
 	{
 	  Scierror(201,_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),fname, i +1);
 	  ret= 201;
 	}
-      if(isVarComplex(arg[i] ))
+      if(isVarComplex(pvApiCtx, arg[i] ))
 	{
 	  GetRhsVarMatrixComplex(i+1, &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i ]);
 	}
@@ -75,16 +77,16 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
       if (iCols[0] == 0) /* && iRows[0] == 0 because  we checked that the matrix is square */
 	{
 	  double* dummy;
-	  allocMatrixOfDouble(Rhs+1, 0, 0, &dummy);
-	  allocMatrixOfDouble(Rhs+2, 0, 0, &dummy);
+	  allocMatrixOfDouble(pvApiCtx, Rhs+1, 0, 0, &dummy);
+	  allocMatrixOfDouble(pvApiCtx, Rhs+2, 0, 0, &dummy);
 	  LhsVar(1)= 1; /* original C code does not check for Lhs, so neither do I */
 	  LhsVar(2)= Rhs+1;
 	  LhsVar(3)= Rhs+2;
 	}
       else
-	{	
+	{
 	  int const totalSize= iRows[0] * iCols[0];
-	  if (  ! (C2F(vfinite)(&totalSize, pDataReal[0]) &&(!isVarComplex(arg[0]) || (C2F(vfinite)(&totalSize, pDataImg[0])))))
+	  if (  ! (C2F(vfinite)(&totalSize, pDataReal[0]) &&(!isVarComplex(pvApiCtx, arg[0]) || (C2F(vfinite)(&totalSize, pDataImg[0])))))
 	    {
 	      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),1);
 	      ret= 264;;
@@ -99,10 +101,10 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 	      else
 		{
 		  int j;
-		  for (j = 0; j != iCols[0]; ++j) 
+		  for (j = 0; j != iCols[0]; ++j)
 		    {
 		      double t = 0.;
-		      for (i = 0; i != iCols[0]; ++i) 
+		      for (i = 0; i != iCols[0]; ++i)
 			{
 			  t += Abs(pDataReal[0][i+j*iCols[0] ]);
 			}
@@ -126,14 +128,14 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 		    lxi=lxr+iCols[0]*iCols[0];
 		  }
 	      /* allocating the two memory buffers in one place as the original code did */
-	      le= (double*) MALLOC( 2*iCols[0] * sizeof(double) ); 
+	      le= (double*) MALLOC( 2*iCols[0] * sizeof(double) );
 	      lib= (int*) MALLOC(iCols[0] * sizeof(int));
 	      lw= (double*)MALLOC(iCols[0] * sizeof(double));
 	      if(le && lib && lw && !stackAllocError)
 		{
 		  int fail;
 		  int const job=0;
-		  if(isVarComplex(arg[0]))
+		  if(isVarComplex(pvApiCtx, arg[0]))
 		    {
 		      double dummy;
 		      C2F(wbdiag)(&iCols[0], &iCols[0], pDataReal[0], pDataImg[0], &rMax, le, le + iCols[0], lib, lxr , lxi,  &dummy, &dummy
@@ -145,7 +147,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 		      double const epsshr= 0.;
 		      C2F(bdiag)(&iCols[0], &iCols[0], pDataReal[0], &epsshr, &rMax, le, le + iCols[0], lib, lxr, lxi, lw, &job, &fail);
 		    }
-		  if (fail) 
+		  if (fail)
 		    {
 		      Scierror(24,_("%s: Non convergence in QR steps.\n"),fname);
 		      ret= 24;
@@ -154,7 +156,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 		    {
 		      LhsVar(1) = 1;
 		      LhsVar(2) = Rhs+1;
-		      if (Lhs == 3) 
+		      if (Lhs == 3)
 			{
 			  double* lbs;
 			  int k, nbloc = 0;
@@ -162,8 +164,8 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 			    {
 			      nbloc+= (lib[k]>=0) ? 1: 0 ;
 			    }
-			  allocMatrixOfDouble(Rhs + 2, nbloc, 1, &lbs);
-			  for (i = k = 0; k != iCols[0]; ++k) 
+			  allocMatrixOfDouble(pvApiCtx, Rhs + 2, nbloc, 1, &lbs);
+			  for (i = k = 0; k != iCols[0]; ++k)
 			    {
 			      if(lib[k] >= 0)
 				{

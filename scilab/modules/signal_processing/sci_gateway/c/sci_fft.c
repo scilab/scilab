@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -74,18 +74,18 @@ sci_fft(char *fname, unsigned long fname_len)
   switch (Rhs) {   /* no breaks to collect all arguments */
   case 4:
     // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
-    getVarAddressFromPosition(4, &p);
-    getMatrixOfDouble(p, &rows, &cols, &argument);
+    getVarAddressFromPosition(pvApiCtx, 4, &p);
+    getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
     dimension_stride = (int)argument[0];
     // GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
-    getVarAddressFromPosition(3, &p);
-    getMatrixOfDouble(p, &rows, &cols, &argument);
+    getVarAddressFromPosition(pvApiCtx, 3, &p);
+    getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
     dimensions_length = (int)argument[0];
     dimension_count = 3; /* any value > 2 (used as a flag) */
   case 2: /* FALLTHROUGH */
     // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
-    getVarAddressFromPosition(2, &p);
-    getMatrixOfDouble(p, &rows, &cols, &argument);
+    getVarAddressFromPosition(pvApiCtx, 2, &p);
+    getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
     inverse = argument[0];
     if (rows != 1 || cols != 1) {
       Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
@@ -97,33 +97,33 @@ sci_fft(char *fname, unsigned long fname_len)
     }
   case 1: /* FALLTHROUGH */
     // GetVarDimension(1, &signal_rows, &signal_cols);
-    getVarAddressFromPosition(1, &p);
-    getVarDimension(p, &signal_rows, &signal_cols);
+    getVarAddressFromPosition(pvApiCtx, 1, &p);
+    getVarDimension(pvApiCtx, p, &signal_rows, &signal_cols);
     dimension_count = Max(dimension_count,
 			  (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
-    signal_length = signal_rows * signal_cols;    
+    signal_length = signal_rows * signal_cols;
     if (signal_length <= 1) {
       Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
       return 1;
     }
     // iAllocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
-    allocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
-    createComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, frequencies_real, frequencies_imaginary);
+    allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
+    createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, signal_rows, signal_cols, frequencies_real, frequencies_imaginary);
     // if (iIsComplex(1)) {
-    if (isVarComplex(p)) {
+    if (isVarComplex(pvApiCtx, p)) {
       // GetRhsVarMatrixComplex(1, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
-      getComplexMatrixOfDouble(p, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
+      getComplexMatrixOfDouble(pvApiCtx, p, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
       C2F(dcopy)(&signal_length, signal_real,
-		 &one, frequencies_real, &one);
+				&one, frequencies_real, &one);
       C2F(dcopy)(&signal_length, signal_imaginary,
-		 &one, frequencies_imaginary, &one);
+				&one, frequencies_imaginary, &one);
     }
     else {
       double zero = 0L;
       // GetRhsVarMatrixDouble(1, &signal_rows, &signal_cols, &signal_real);
-      getMatrixOfDouble(p, &signal_rows, &signal_cols, &signal_real);
+      getMatrixOfDouble(pvApiCtx, p, &signal_rows, &signal_cols, &signal_real);
       C2F(dcopy)(&signal_length, signal_real,
-		 &one, frequencies_real, &one);
+				&one, frequencies_real, &one);
       C2F(dset)(&signal_length, &zero, frequencies_imaginary, &one);
     }
     break;

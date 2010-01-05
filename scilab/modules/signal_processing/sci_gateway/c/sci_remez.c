@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
@@ -35,46 +35,46 @@ int sci_remez(char *fname, unsigned long fname_len)
    * -> sementic of the fortran gw preserved      *
    * -> watch the curious nc's cooking            *
    ************************************************/
-  
+
   int rows, cols, length, ngrid = 0, nc = 0, error = 0;
   double *output = NULL, *argument = NULL;
   float *des = NULL, *grid = NULL, *wt = NULL;
   int *iext;
   int *p;
-  
+
   CheckRhs(4,4);
   CheckLhs(1,1);
-  
+
   // GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
-  getVarAddressFromPosition(1, &p);
-  getMatrixOfDouble(p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 1, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   iext = (int *)argument;
   nc = cols * rows;
   C2F(entier)(&nc, argument, iext);
 
   // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
-  getVarAddressFromPosition(2, &p);
-  getMatrixOfDouble(p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 2, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   des = (float *)argument;
   ngrid = cols * rows;
   length = rows;
   C2F(simple)(&ngrid, argument, des);
 
   // GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
-  getVarAddressFromPosition(3, &p);
-  getMatrixOfDouble(p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 3, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   grid = (float *)argument;
   C2F(simple)(&ngrid, argument, grid);
 
   // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
-  getVarAddressFromPosition(4, &p);
-  getMatrixOfDouble(p, &rows, &cols, &argument);
+  getVarAddressFromPosition(pvApiCtx, 4, &p);
+  getMatrixOfDouble(pvApiCtx, p, &rows, &cols, &argument);
   wt = (float *)argument;
   C2F(simple)(&ngrid, argument, wt);
 
   // iAllocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
-  allocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
-  createMatrixOfDouble(Rhs + 1, rows, nc - 1, output);
+  allocMatrixOfDouble(pvApiCtx, Rhs + 1, rows, nc - 1, &output);
+  //createMatrixOfDouble(pvApiCtx, Rhs + 1, rows, nc - 1, output);
 
   error = remez_buffered(ngrid, nc - 2, iext, des, grid, wt, output);
   if (error) {

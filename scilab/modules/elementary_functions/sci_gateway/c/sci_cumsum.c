@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -19,11 +19,11 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
 	int i;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
-
+	int iType							= 0;
 	int* piAddr1					= NULL;
 
 	double *pdblReal		 = NULL;
@@ -36,9 +36,21 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-	if(getVarType(piAddr1) != sci_matrix)
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iType != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -46,22 +58,29 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		iRet = getProcessMode(2, piAddr1, &iMode);
-		if(iRet)
+		sciErr = getProcessMode(pvApiCtx, 2, piAddr1, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	if(isVarComplex(piAddr1))
+	if(isVarComplex(pvApiCtx, piAddr1))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr1, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr1, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 		/*Set the first column of returned matrix at the same value of the input matrix*/
 		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
@@ -99,20 +118,28 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr1, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
 
 		if(iMode == BY_ROWS)
 		{
 			for(i = 0 ; i < iCols ; i++)
+			{
 				vCusum(iRows, pdblReal + iRows * i, pdblRealRet + iRows * i);
+			}
 		}
 		else if(iMode == BY_COLS)
 		{

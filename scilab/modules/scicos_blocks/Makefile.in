@@ -1317,7 +1317,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/operations/includes
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/operations/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes
 
 @SCICOS_TRUE@libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 @SCICOS_TRUE@			-I$(srcdir)/includes/ \
@@ -1328,7 +1330,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/localization/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes
 
 @SCICOS_FALSE@libsciscicos_blocks_la_SOURCES = 
 @SCICOS_TRUE@libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
@@ -4874,8 +4877,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes
 
 @SCICOS_TRUE@build/Cblocknames:Makefile.am
 @SCICOS_TRUE@	@echo "-- Generates build/Cblocknames --"

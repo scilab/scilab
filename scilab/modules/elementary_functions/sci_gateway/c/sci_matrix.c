@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -20,19 +20,19 @@
 
 #define MAX_INTERGER	2147483647
 
-int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet);
-int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet);
-int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet);
+SciErr matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 {
-	int iRet				= 0;
+	SciErr sciErr;
 	int iRows1			= 0;
 	int iCols1			= 0;
 	int iRows2			= 0;
@@ -72,14 +72,24 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getVarAddressFromPosition(1, &piAddr1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-	iType = getVarType(piAddr1);
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-	if(	iType != sci_matrix && 
-		iType != sci_boolean && 
-		iType != sci_sparse && 
-		iType != sci_boolean_sparse && 
+	if(	iType != sci_matrix &&
+		iType != sci_boolean &&
+		iType != sci_sparse &&
+		iType != sci_boolean_sparse &&
 		iType != sci_poly &&
 		iType != sci_strings &&
 		iType != sci_ints)
@@ -90,14 +100,25 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		getVarAddressFromPosition(2, &piAddr2);
-		if(isVarComplex(piAddr2))
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if(isVarComplex(pvApiCtx, piAddr2))
 		{
 			Error(32);
 			return 0;
 		}
 
-		getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblRealData2);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblRealData2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 		if(iRows2 * iCols2 == 1)
 		{
@@ -116,16 +137,39 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		getVarAddressFromPosition(2, &piAddr2);
-		getVarAddressFromPosition(3, &piAddr3);
-		if(isVarComplex(piAddr3) || isVarComplex(piAddr2))
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if(isVarComplex(pvApiCtx, piAddr3) || isVarComplex(pvApiCtx, piAddr2))
 		{
 			Error(32);
 			return 0;
 		}
 
-		getMatrixOfDouble(piAddr3, &iRows3, &iCols3, &pdblRealData3);
-		getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblRealData2);
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, &pdblRealData3);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblRealData2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
 
 		if(iRows3 * iCols3 != 1 || iRows2 * iCols2 != 1)
@@ -151,13 +195,22 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getVarDimension(piAddr1, &iRows1, &iCols1);
+	sciErr = getVarDimension(pvApiCtx, piAddr1, &iRows1, &iCols1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
 	if(iRowsRet == -1)
+	{
 		iRowsRet = (iRows1 * iCols1) / iColsRet;
+	}
 
 	if(iColsRet == -1)
+	{
 		iColsRet = (iRows1 * iCols1) / iRowsRet;
+	}
 
 	if(iRowsRet * iColsRet != iRows1 * iCols1)
 	{
@@ -173,30 +226,36 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 
 	switch(iType)
 	{
-	case sci_matrix : 
-		iRet = matrix_double(piAddr1, iRowsRet, iColsRet);
+	case sci_matrix :
+		sciErr = matrix_double(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_poly:
-		matrix_poly(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_poly(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_boolean :
-		matrix_bool(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_bool(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_sparse :
-		matrix_sparse(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_sparse(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_boolean_sparse :
-		matrix_bsparse(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_bsparse(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_ints:
-		matrix_int(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_int(piAddr1, iRowsRet, iColsRet);
 		break;
 	case sci_strings:
-		matrix_string(piAddr1, iRowsRet, iColsRet);
+		sciErr = matrix_string(piAddr1, iRowsRet, iColsRet);
 		break;
 	default :
 		return 1;
 		break;
+	}
+
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;
@@ -205,9 +264,9 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
-	int iRet						= 0;
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
 	int iNbItem					= 0;
@@ -226,23 +285,23 @@ int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 	double *pdblRealRet	= NULL;
 	double *pdblImgRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
 		double *pOrder[3];
-		iRet = getComplexSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pOrder[0] = (double*)malloc(iNbItem * sizeof(double));
 		pOrder[1] = (double*)malloc(iNbItem * sizeof(double));
 		pOrder[2] = (double*)malloc(iNbItem * sizeof(double));
 
-		iRet = allocComplexSparseMatrix(Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet, &pdblRealRet, &pdblImgRet);
-		if(iRet)
+		sciErr = allocComplexSparseMatrix(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		memset(piNbItemRowRet, 0x00, _iRowsRet * sizeof(int));
@@ -305,21 +364,22 @@ int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 	else
 	{//void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piRowsElem, int* _piColsElem, int* _piReal);
 		double *pOrder[3];
-		iRet = getSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
-		if(iRet)
+		sciErr = getSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pOrder[0] = (double*)malloc(iNbItem * sizeof(double));
 		pOrder[1] = (double*)malloc(iNbItem * sizeof(double));
 		pOrder[2] = (double*)malloc(iNbItem * sizeof(double));
 
-		iRet = allocSparseMatrix(Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet, &pdblRealRet);
-		if(iRet)
+		sciErr = allocSparseMatrix(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
+
 		memset(piNbItemRowRet, 0x00, _iRowsRet * sizeof(int));
 
 		iSum = 0;
@@ -376,12 +436,12 @@ int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 		free(pOrder[1]);
 		free(pOrder[2]);
 	}
-	return 0;
+	return sciErr;
 }
 
-int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
-	int iRet						= 0;
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
 	int iNbItem					= 0;
@@ -397,19 +457,19 @@ int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 
 
 	int *pOrder[3];
-	iRet = getBooleanSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
-	if(iRet)
+	sciErr = getBooleanSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	pOrder[0] = (int*)malloc(iNbItem * sizeof(int));
 	pOrder[2] = (int*)malloc(iNbItem * sizeof(int));
 
-	iRet = allocBooleanSparseMatrix(Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet);
-	if(iRet)
+	sciErr = allocBooleanSparseMatrix(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, iNbItem, &piNbItemRowRet, &piColPosRet);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	memset(piNbItemRowRet, 0x00, _iRowsRet * sizeof(int));
@@ -460,12 +520,12 @@ int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 
 	free(pOrder[0]);
 	free(pOrder[2]);
-	return 0;
+	return sciErr;
 }
 
-int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
-	int iRet					= 0;
+	SciErr sciErr;
 	int iIndex				= 0;
 	int iRows					= 0;
 	int iCols					= 0;
@@ -473,41 +533,41 @@ int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = createComplexMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal, pdblImg);
-		if(iRet)
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pdblReal, pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet = createMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal);
-		if(iRet)
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
-	return 0;
+	return sciErr;
 }
 
-int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
+	SciErr sciErr;
 	int i;
-	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
 	int iMaxData			= 0;
@@ -517,25 +577,25 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 	double **pdblImg	= NULL;
 	char pstVarName[16];
 
-	iRet = getPolyVariableName(_piAddress, pstVarName, &iLen);
-	if(iRet)
+	sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet		= getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(sizeof(int) * iRows * iCols);
-		iRet		= getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
-		if(iRet)
+		sciErr	= getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal	= malloc(sizeof(double*) * iRows * iCols);
@@ -546,27 +606,31 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 			pdblImg[i]	= malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet			= getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet			= createComplexMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal, pdblImg);
+		sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal, pdblImg);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 	else
 	{
-		iRet		= getMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		piCoeff	= (int*)malloc(sizeof(int) * iRows * iCols);
-		iRet		= getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		pdblReal	= malloc(sizeof(double*) * iRows * iCols);
@@ -575,18 +639,17 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 			pdblReal[i] = malloc(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet			= getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		iRet			= createMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal);
-	}
-
-	if(iRet)
-	{
-		return 1;
+		sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 
 	//delete
@@ -598,7 +661,7 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 	}
 	free(pdblReal);
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
@@ -607,29 +670,29 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 		free(pdblImg);
 	}
 
-	return 0;
+	return sciErr;
 }
 
-int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
+	SciErr sciErr;
 	int i;
-	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int *piLen			= NULL;
 	char **pstData	= NULL;
 
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, NULL, NULL);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	piLen = malloc(sizeof(int) * iRows * iCols);
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, _piAddress, &iRows, &iCols, piLen, NULL);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
@@ -638,16 +701,16 @@ int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
 		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+1 for null termination
 	}
 
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, pstData);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, _piAddress, &iRows, &iCols, piLen, pstData);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	iRet = createMatrixOfString(Rhs + 1, _iRowsRet, _iColsRet, pstData);
-	if(iRet)
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pstData);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	free(piLen);
@@ -656,12 +719,12 @@ int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
 		free(pstData[i]);
 	}
 	free(pstData);
-	return 0;
+	return sciErr;
 }
 
-int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
-	int iRet								= 0;
+	SciErr sciErr;
 	int iPrec								= 0;
 	int iRows								= 0;
 	int iCols								= 0;
@@ -673,91 +736,103 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet)
 	unsigned short* pusData	= NULL;
 	unsigned int* puiData		= NULL;
 
-	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
-	if(iRet)
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddress, &iPrec);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	switch(iPrec)
 	{
 	case SCI_INT8 :
-		iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcData);
-		if(iRet)
+		sciErr = getMatrixOfInteger8(pvApiCtx, _piAddress, &iRows, &iCols, &pcData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfInteger8(Rhs + 1, _iRowsRet, _iColsRet, pcData);
+
+		sciErr = createMatrixOfInteger8(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pcData);
 		break;
 	case SCI_UINT8 :
-		iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucData);
-		if(iRet)
+		sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddress, &iRows, &iCols, &pucData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfUnsignedInteger8(Rhs + 1, _iRowsRet, _iColsRet, pucData);
+
+		sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pucData);
 		break;
 	case SCI_INT16 :
-		iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psData);
-		if(iRet)
+		sciErr = getMatrixOfInteger16(pvApiCtx, _piAddress, &iRows, &iCols, &psData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfInteger16(Rhs + 1, _iRowsRet, _iColsRet, psData);
+
+		sciErr = createMatrixOfInteger16(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, psData);
 		break;
 	case SCI_UINT16 :
-		iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusData);
-		if(iRet)
+		sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddress, &iRows, &iCols, &pusData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfUnsignedInteger16(Rhs + 1, _iRowsRet, _iColsRet, pusData);
+
+		sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, pusData);
 		break;
 	case SCI_INT32 :
-		iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piData);
-		if(iRet)
+		sciErr = getMatrixOfInteger32(pvApiCtx, _piAddress, &iRows, &iCols, &piData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfInteger32(Rhs + 1, _iRowsRet, _iColsRet, piData);
+
+		sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, piData);
 		break;
 	case SCI_UINT32 :
-		iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiData);
-		if(iRet)
+		sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddress, &iRows, &iCols, &puiData);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
-		iRet = createMatrixOfUnsignedInteger32(Rhs + 1, _iRowsRet, _iColsRet, puiData);
+
+		sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, puiData);
 		break;
 	default :
-		return 1;
+		return sciErr;
 		break;
 	}
 
-	return 0;
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	return sciErr;
 }
 
-int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet)
+SciErr matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet)
 {
-	int iRet					= 0;
+	SciErr sciErr;
 	int iIndex				= 0;
 	int iRows					= 0;
 	int iCols					= 0;
 
 	int* piBool				= NULL;
 
-	iRet = getMatrixOfBoolean(_piAddress, &iRows, &iCols, &piBool);
-	if(iRet)
+	sciErr = getMatrixOfBoolean(pvApiCtx, _piAddress, &iRows, &iCols, &piBool);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	iRet = createMatrixOfBoolean(Rhs + 1, _iRowsRet, _iColsRet, piBool);
-	if(iRet)
+	sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, _iRowsRet, _iColsRet, piBool);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
-	return 0;
+
+	return sciErr;
 }
 
 /*--------------------------------------------------------------------------*/

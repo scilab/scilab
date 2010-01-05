@@ -100,6 +100,7 @@ libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.
 
 libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
 	-I$(srcdir)/includes/ 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

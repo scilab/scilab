@@ -59,6 +59,7 @@ libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes	
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -71,6 +72,7 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 # Without the xcos module 

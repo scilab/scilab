@@ -500,6 +500,7 @@ SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
 	-I$(srcdir)/includes/ 
 
 

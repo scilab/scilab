@@ -31,35 +31,38 @@ int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {
   int ret=0;
   int* arg[2]= {NULL, NULL};
+  int type;
 
   doublecomplex* pData[2]= {NULL, NULL};
   double* pDataReal[2]= {NULL, NULL};
   double* pDataImg[2]= {NULL, NULL};
   int iCols[2], iRows[2];
-  
+
   CheckRhs(1,2);
   CheckLhs(2*Rhs, 2*Rhs);
-  
+
   if(Rhs >=1)
     {
-      getVarAddressFromPosition(1, &arg[0]);
-      if(getVarType(arg[0])!=sci_matrix)
+      getVarAddressFromPosition(pvApiCtx, 1, &arg[0]);
+      getVarType(pvApiCtx, arg[0], &type);
+      if(type !=sci_matrix)
 	{
 	  OverLoad(1);
 	  return 0;
 	}
       { /* Getting Rhs, either in pDataReal[] or pData[] in 'z' format */
 	int i;
-	int complexArgs= isVarComplex(arg[0]);
+	int complexArgs= isVarComplex(pvApiCtx, arg[0]);
 	if(Rhs==2)
 	  {
-	    getVarAddressFromPosition(2, &arg[1]);
-	    if (getVarType(arg[1])!=sci_matrix) 
+	    getVarAddressFromPosition(pvApiCtx, 2, &arg[1]);
+	    getVarType(pvApiCtx, arg[1], &type);
+	    if (type != sci_matrix)
 	      {
 		OverLoad(2);
 		return 0;
 	      }
-	    complexArgs = complexArgs || isVarComplex(arg[1]);
+	    complexArgs = complexArgs || isVarComplex(pvApiCtx, arg[1]);
 	  }
 	for( i =0; i!=Rhs; ++i)
 	  {
@@ -67,7 +70,7 @@ int C2F(intbalanc)(char *fname,unsigned long fname_len)
 	    if(complexArgs)
 	      {
 		C2F(complexify)(&iPlus1);
-		getComplexMatrixOfDouble(arg[i], &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i]);
+		getComplexMatrixOfDouble(pvApiCtx, arg[i], &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i]);
 		if( !(pData[i]= oGetDoubleComplexFromPointer( pDataReal[i], pDataImg[i], iRows[i] * iCols[i])) )
 		  {
 		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
@@ -76,7 +79,7 @@ int C2F(intbalanc)(char *fname,unsigned long fname_len)
 	      }
 	    else
 	      {
-	    	getMatrixOfDouble(arg[i],  &iRows[i], &iCols[i], &pDataReal[i]);
+	    	getMatrixOfDouble(pvApiCtx, arg[i],  &iRows[i], &iCols[i], &pDataReal[i]);
 	      }
 	    if(iCols[i] != iRows[i])
 	      {
@@ -96,7 +99,7 @@ int C2F(intbalanc)(char *fname,unsigned long fname_len)
 	      double* lhsData[2]= {NULL, NULL};
 	      for(i=0; i!=Rhs; ++i)
 		{
-		  allocMatrixOfDouble(Rhs+i+1, iCols[0], iCols[0], &lhsData[i]) ;
+		  allocMatrixOfDouble(pvApiCtx, Rhs+i+1, iCols[0], iCols[0], &lhsData[i]) ;
 		}
 	      if(iCols[0] != 0)
 		{

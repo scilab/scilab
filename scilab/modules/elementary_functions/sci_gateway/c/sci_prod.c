@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -19,8 +19,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_prod) (char *fname,unsigned long fname_len)
 {
-	int iRet						= 0;
-
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
 	int*piAddr					= NULL;
@@ -36,25 +35,28 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(Rhs == 2)
 	{
-		iRet = getProcessMode(2, piAddr, &iMode);
-		if(iRet)
+		sciErr = getProcessMode(pvApiCtx, 2, piAddr, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(iRows * iCols == 0)
@@ -71,10 +73,12 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 			iRows = 0;
 			iCols = 0;
 		}
-		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblVal);
-		if(iRet)
+
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dblVal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		LhsVar(1) = Rhs + 1;
@@ -97,36 +101,40 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 		iColsRet = 1;
 		break;
 	}
-	
-	
-	if(isVarComplex(piAddr))
+
+
+	if(isVarComplex(pvApiCtx, piAddr))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		vWDmProd(iMode, pdblReal, pdblImg, iRows, iRows, iCols, pdblRealRet, pdblImgRet, 1);
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		vDmProd(iMode, pdblReal, iRows, iRows, iCols, pdblRealRet, 1);

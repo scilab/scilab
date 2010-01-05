@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -17,14 +17,15 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 
-int size_matrix(int* _piAddress, int _iMode);
-int size_list(int* _piAddress);
+SciErr size_matrix(int* _piAddress, int _iMode);
+SciErr size_list(int* _piAddress);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_size) (char *fname,unsigned long fname_len)
 {
-	int iRet		= 0;
+	SciErr sciErr;
+	int iType 	= 0;
 	int iMode		= 0;
 	int* piAddr	= NULL;
 
@@ -35,10 +36,11 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,2);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(Rhs == 2)
@@ -48,13 +50,23 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 			Error(41);
 			return 0;
 		}
-		iRet = getProcessMode(2, piAddr, &iMode);
-		if(iRet)
+		sciErr = getProcessMode(pvApiCtx, 2, piAddr, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
-	switch(getVarType(piAddr))
+
+
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_list  :
 	case sci_tlist :
@@ -64,7 +76,7 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 			Error(39);
 			return 0;
 		}
-		iRet = size_list(piAddr);
+		sciErr = size_list(piAddr);
 		break;
 	case sci_matrix :
 	case sci_poly :
@@ -75,18 +87,25 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 	case sci_ints :
 	case sci_handles :
 	case sci_strings :
-		iRet = size_matrix(piAddr, iMode);
+		sciErr = size_matrix(piAddr, iMode);
 		break;
 	default:
 		OverLoad(1);
+	}
+
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	PutLhsVar();
 	return 0;
 }
 
-int size_list(int* _piAddress)
+SciErr size_list(int* _piAddress)
 {
+	SciErr sciErr;
 	//int iIndex			= 0;
 	//int iItemNumber		= 0;
 	//int *piItemType		= NULL;
@@ -125,11 +144,12 @@ int size_list(int* _piAddress)
 	//pReturnData[0] = iItemNumber;
 	//LhsVar(1) = Rhs + 1;
 	//PutLhsVar();
-	return 0;
+	return sciErr;
 }
 
-int size_matrix(int* _piAddress, int _iMode)
+SciErr size_matrix(int* _piAddress, int _iMode)
 {
+	SciErr sciErr;
 	//int iRet		= 0;
 	//int iRows		= 0;
 	//int iCols		= 0;
@@ -168,7 +188,7 @@ int size_matrix(int* _piAddress, int _iMode)
 	//	else
 	//	{
 	//		double* pdblVal		= NULL;
-	//		
+	//
 	//		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblVal);
 	//		if(iRet)
 	//		{
@@ -189,6 +209,6 @@ int size_matrix(int* _piAddress, int _iMode)
 	//		}
 	//	}
 	//}
-	return 0;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

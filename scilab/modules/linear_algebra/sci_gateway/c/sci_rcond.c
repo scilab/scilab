@@ -28,17 +28,19 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
   int ret= 0;
   /*   rcond(A)  */
   int* adr1;
+  int type;
   if(Rhs >=1)
     {
-      getVarAddressFromPosition(1, &adr1);
-      if(getVarType(adr1) != sci_matrix)
+      getVarAddressFromPosition(pvApiCtx, 1, &adr1);
+      getVarType(pvApiCtx, adr1, &type);
+      if(type != sci_matrix)
 	{
 	  OverLoad(1);
 	  return 0;
 	}
       else
 	{
-	  
+
 	  CheckRhs(1,1);
 	  CheckLhs(1,1);
 	  {
@@ -48,10 +50,10 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	    int iRows, iCols;
 	    int complexArg;
 
-	    if( (complexArg= isVarComplex(adr1)) )
+	    if( (complexArg= isVarComplex(pvApiCtx, adr1)) )
 	      {
 
-		getComplexZMatrixOfDouble(adr1, &iRows, &iCols, ((doublecomplex**)&pData));
+		getComplexZMatrixOfDouble(pvApiCtx, adr1, &iRows, &iCols, ((doublecomplex**)&pData));
 		if(!pData)
 		  {
 		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
@@ -60,7 +62,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	      }
 	    else
 	      {
-		getMatrixOfDouble(adr1, &iRows, &iCols, &pData);
+		getMatrixOfDouble(pvApiCtx, adr1, &iRows, &iCols, &pData);
 	      }
 	    if( iRows != iCols)
 	      {
@@ -71,7 +73,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	      {
 		double* pRcond;
 		int dim= iRows ? 1 : 0 ;
-		allocMatrixOfDouble(2, dim, dim, &pRcond);
+		allocMatrixOfDouble(pvApiCtx, 2, dim, dim, &pRcond);
 		if(iRows)
 		  {
 		    if( iRows == -1 )

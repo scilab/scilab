@@ -56,6 +56,7 @@ libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/core/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/functions/includes
 
 libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -67,6 +68,7 @@ libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 # Without the xpad module 

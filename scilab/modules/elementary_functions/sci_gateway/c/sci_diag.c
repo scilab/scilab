@@ -1,35 +1,36 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 
-int getStartPosition(int _iPos, int* _piStartPos);
+SciErr getStartPosition(int _iPos, int* _piStartPos);
 
-int diag_double(int* _piAddress, int _iStartPos);
+SciErr diag_double(int* _piAddress, int _iStartPos);
 int diag_poly(int* _piAddress, int _iStartPos);
 
 extern int sci_pdiag(char *fname,unsigned long fname_len);
 
 int C2F(sci_diag) (char *fname,unsigned long fname_len)
 {
-	int iRet						= 0;
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
+	int iType						= 0;
 
-	int _iStartPos				= 0;
+	int iStartPos			= 0;
 	int iMatrixSize			= 0;
 
 	int* piAddr					= NULL;
@@ -39,35 +40,47 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		iRet = getStartPosition(2, &_iStartPos);
-		if(iRet)
+		sciErr = getStartPosition(2, &iStartPos);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_matrix :
-		iRet = diag_double(piAddr, _iStartPos);
+		sciErr = diag_double(piAddr, iStartPos);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 		break;
 	case sci_poly :
-		iRet = diag_poly(piAddr, _iStartPos);
+		if(diag_poly(piAddr, iStartPos))
+		{
+			return 1;
+		}
 		break;
 	default :
 		OverLoad(1);
 		return 0;
-	}
-
-	if(iRet)
-	{
-		return 1;
 	}
 
 	LhsVar(1) = Rhs + 1;
@@ -75,9 +88,9 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int diag_double(int* _piAddress, int _iStartPos)
+SciErr diag_double(int* _piAddress, int _iStartPos)
 {
-	int iRet						= 0;
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
 	int iMatrixSize			= 0;
@@ -87,20 +100,20 @@ int diag_double(int* _piAddress, int _iStartPos)
 	double *pdblRealRet = NULL;
 	double *pdblImgRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(pvApiCtx, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 	}
 
@@ -116,29 +129,25 @@ int diag_double(int* _piAddress, int _iStartPos)
 			iRows = 0;
 			iCols = 0;
 
-			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
-			if(iRet)
-			{
-				return 1;
-			}
-			return 0;
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+			return sciErr;
 		}
 		else
 		{
 			int iIncIn	= iRows + 1;
 			int iIncOut = 1;
-			if(isVarComplex(_piAddress))
+			if(isVarComplex(pvApiCtx, _piAddress))
 			{
-				iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet, &pdblImgRet);
+				sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iMatrixSize, 1, &pdblRealRet, &pdblImgRet);
 			}
 			else
 			{
-				iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet);
+				sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iMatrixSize, 1, &pdblRealRet);
 			}
 
-			if(iRet)
+			if(sciErr.iErr)
 			{
-				return 1;
+				return sciErr;
 			}
 
 			if(_iStartPos >= 0)
@@ -146,7 +155,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 				double *pdblStartAddr = pdblReal + _iStartPos * iRows;
 				C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblRealRet, &iIncOut);
 
-				if(isVarComplex(_piAddress))
+				if(isVarComplex(pvApiCtx, _piAddress))
 				{
 					pdblStartAddr = pdblImg + _iStartPos * iRows;
 					C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblImgRet, &iIncOut);
@@ -157,7 +166,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 				double *pdblStartAddr = pdblReal - _iStartPos;
 				C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblRealRet, &iIncOut);
 
-				if(isVarComplex(_piAddress))
+				if(isVarComplex(pvApiCtx, _piAddress))
 				{
 					pdblStartAddr = pdblImg - _iStartPos;
 					C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblImgRet, &iIncOut);
@@ -165,7 +174,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 				iRows = iMatrixSize;
 				iCols = 1;
 			}
-			return 0;
+			return sciErr;
 		}
 	}
 	else
@@ -177,22 +186,22 @@ int diag_double(int* _piAddress, int _iStartPos)
 		iMatrixSize = Max(iRows, iCols) + (int)dabss(_iStartPos);
 		iIncOut = iMatrixSize + 1;
 
-		if(isVarComplex(_piAddress))
+		if(isVarComplex(pvApiCtx, _piAddress))
 		{
-			iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, &pdblImgRet);
-			if(iRet)
+			sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, &pdblImgRet);
+			if(sciErr.iErr)
 			{
-				return 1;
+				return sciErr;
 			}
 
 			memset(pdblImgRet, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
 		}
 		else
 		{
-			iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet);
-			if(iRet)
+			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet);
+			if(sciErr.iErr)
 			{
-				return 1;
+				return sciErr;
 			}
 		}
 
@@ -203,7 +212,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 			double *pdblStartAddr = pdblRealRet + iMatrixSize * _iStartPos;
 			C2F(unsfdcopy)(&iOriginalSize, pdblReal, &iIncIn, pdblStartAddr, &iIncOut);
 
-			if(isVarComplex(_piAddress))
+			if(isVarComplex(pvApiCtx, _piAddress))
 			{
 				pdblStartAddr = pdblImgRet + iMatrixSize * _iStartPos;
 				C2F(unsfdcopy)(&iOriginalSize, pdblImg, &iIncIn, pdblStartAddr, &iIncOut);
@@ -214,14 +223,14 @@ int diag_double(int* _piAddress, int _iStartPos)
 			double *pdblStartAddr = pdblRealRet - _iStartPos;
 			C2F(unsfdcopy)(&iOriginalSize, pdblReal, &iIncIn, pdblStartAddr, &iIncOut);
 
-			if(isVarComplex(_piAddress))
+			if(isVarComplex(pvApiCtx, _piAddress))
 			{
 				pdblStartAddr = pdblImgRet - _iStartPos;
 				C2F(unsfdcopy)(&iOriginalSize, pdblImg, &iIncIn, pdblStartAddr, &iIncOut);
 			}
 		}
 	}
-	return 0;
+	return sciErr;
 }
 
 int diag_poly(int* _piAddress, int _iStartPos)
@@ -230,38 +239,32 @@ int diag_poly(int* _piAddress, int _iStartPos)
 	return 0;
 }
 
-int getStartPosition(int _iPos, int* _piStartPos)
+SciErr getStartPosition(int _iPos, int* _piStartPos)
 {
-	int iRet					= 0;
+	SciErr sciErr;
 	int iRows					= 0;
 	int iCols					= 0;
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, _iPos, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	if(isVarComplex(piAddr))
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+	if(sciErr.iErr)
 	{
-		Error(52);
-		return 0;
-	}
-
-	iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-	if(iRet)
-	{
-		return 1;
+		return sciErr;
 	}
 
 	if(iRows != 1 || iCols != 1)
 	{
 		Error(89);
-		return 0;
 	}
+
 	*_piStartPos = (int)pdblReal[0];
-	return 0;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

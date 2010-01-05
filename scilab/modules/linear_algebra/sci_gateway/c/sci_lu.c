@@ -31,31 +31,33 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
   int complexArg;
   int ret;
   int iRows, iCols;
+  int type;
   double* pData;
   double* pDataReal;
   double* pDataImg;
 
   ret= 0;
-  
+
   /*   lu(A)  */
   if ( Rhs >=1 )
     {
-      getVarAddressFromPosition(1,&arg);
-      if(getVarType(arg)!=sci_matrix) 
+      getVarAddressFromPosition(pvApiCtx, 1,&arg);
+      getVarType(pvApiCtx, arg, &type);
+      if(type!=sci_matrix)
 	{
 	  OverLoad(1);
 	  return 0;
 	}
-    
+
       CheckRhs(1,1); /* one and only one arg */
       CheckLhs(2,3); /* [L,U,[E]] = lu(A) */
-      complexArg=isVarComplex(arg);
+      complexArg=isVarComplex(pvApiCtx, arg);
       if(complexArg)
 	{
 #ifdef STACK3
 	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
 #else
-	  getComplexMatrixOfDouble(arg, &iRows, &iCols, &pDataReal, &pDataImg);
+	  getComplexMatrixOfDouble(pvApiCtx, arg, &iRows, &iCols, &pDataReal, &pDataImg);
 #endif
 	  /* c -> z */
 	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
@@ -70,7 +72,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 #ifdef STACK3
 	  GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
 #else
-	  getMatrixOfDouble(arg, &iRows, &iCols, &pData);
+	  getMatrixOfDouble(pvApiCtx, arg, &iRows, &iCols, &pData);
 #endif
 
 	}
@@ -78,25 +80,13 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	{
 	  double* pdblL= NULL;
 	  LhsVar(1)= 1;
-	  if((ret = allocMatrixOfDouble(2, 0, 0, &pdblL)))
-	    {
-	      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-	    }
-	  else
-	    {
-	      LhsVar(2)= 2;
-	    }
+	  allocMatrixOfDouble(pvApiCtx, 2, 0, 0, &pdblL);
+    LhsVar(2)= 2;
 	  if(Lhs == 3)
 	    {
 	      double* pdblE= NULL;
-	      if((ret = allocMatrixOfDouble(3, 0, 0, &pdblE)))
-		{
-		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		}
-	      else
-		{
+	      allocMatrixOfDouble(pvApiCtx, 3, 0, 0, &pdblE);
 		  LhsVar(3)= 3;
-		}
 	    }
 	}
       else
@@ -108,30 +98,18 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		{
 		  double* pdblLReal;
 		  double* pdblLImg;
-		  if((ret = allocComplexMatrixOfDouble(2, -1, -1, &pdblLReal, &pdblLImg)))
-		    {
-		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		    }
-		  else
-		    {
-		      *pdblLReal= *pDataReal;
-		      *pdblLImg= *pDataImg;
-		      *pDataReal= 1.;
-		      *pDataImg= 0.;
-		    }
+		  allocComplexMatrixOfDouble(pvApiCtx, 2, -1, -1, &pdblLReal, &pdblLImg);
+			*pdblLReal= *pDataReal;
+			*pdblLImg= *pDataImg;
+			*pDataReal= 1.;
+			*pDataImg= 0.;
 		}
 	      else
 		{
 		  double* pdblLData;
-		  if((ret = allocMatrixOfDouble(2, -1, -1, &pdblLData)))
-		    {
-		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		    }
-		  else
-		    {
+		  allocMatrixOfDouble(pvApiCtx, 2, -1, -1, &pdblLData);
 		      *pdblLData= *pData;
 		      *pData= 1.;
-		    }
 		}
 	      LhsVar(2)= 2;
 	      if(Lhs == 3)
@@ -140,27 +118,15 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		    {
 		      double* pdblEReal;
 		      double* pdblEImg;
-		      if((ret= allocComplexMatrixOfDouble(3, -1, -1, &pdblEReal, &pdblEImg)))
-			{
-			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-			}
-		      else
-			{
+		      allocComplexMatrixOfDouble(pvApiCtx, 3, -1, -1, &pdblEReal, &pdblEImg);
 			  *pdblEReal= 1.;
 			  *pdblEImg= 0.;
-			}
 		    }
 		  else
 		    {
 		      double* pdblEData;
-		      if((ret=  allocMatrixOfDouble(3, -1, -1, &pdblEData)))
-			{
-			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-			}
-		      else
-			{
+		      allocMatrixOfDouble(pvApiCtx, 3, -1, -1, &pdblEData);
 			  *pdblEData= 1.;
-			}
 		    }
 		}
 	      LhsVar(3)= 3;
@@ -175,18 +141,15 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	      double *pdblUImg= NULL;
 	      double *pdblEData= NULL;
 	      int iMinRowsCols;
-	      
+
 	      pdblEData= NULL;
 	      iMinRowsCols= Min(iRows, iCols);
-	  
+
 	      if(complexArg)
 		{
-		  if(allocComplexMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg)
-		     || allocComplexMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg))
-		    {
-		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		      ret= 1;
-		    }
+
+		  allocComplexMatrixOfDouble(pvApiCtx, 2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg);
+			allocComplexMatrixOfDouble(pvApiCtx, 3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg);
 		  /*
 		    we can allocate matrix of 'z' instead of calling oGetDoubleComplexFromPointer because the freshly allocated
 		    complex matrix does not contain any useful data.
@@ -209,20 +172,13 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		}
 	      else
 		{
-		  if(allocMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLData)
-		     ||allocMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUData))
-		    {
-		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		      ret= 1;
-		    }
+
+		allocMatrixOfDouble(pvApiCtx, 2, iRows, iMinRowsCols, &pdblLData);
+		allocMatrixOfDouble(pvApiCtx, 3, iMinRowsCols, iCols, &pdblUData);
 		}
 	      if(Lhs == 3)
 		{
-		  if(allocMatrixOfDouble(4, iRows, iRows, &pdblEData))
-		    {
-		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		      ret=1;
-		    }
+		  allocMatrixOfDouble(pvApiCtx, 4, iRows, iRows, &pdblEData);
 		}
 	      /* using ?: short circuit to avoid calling function if an alloc went wrong */
 	      ret = ret ? ret : iLuM(pData, iRows, iCols, complexArg, pdblLData, pdblUData, pdblEData );

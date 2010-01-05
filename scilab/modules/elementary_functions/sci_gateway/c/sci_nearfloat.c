@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -19,70 +19,90 @@
 
 int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 {
+	SciErr sciErr;
 	int i;
-	int iRet						= 0;
 
 	int* piAddr1				= NULL;
 	int iRows1					= 0;
 	int iCols1					= 0;
+	int iType1					= 0;
 	int* piLen					= NULL;
 	char **pstData			= NULL;
 
 	int* piAddr2				= NULL;
 	int iRows2					= 0;
 	int iCols2					= 0;
+	int iType2					= 0;
 	double *pdblReal		= NULL;
 
 	double dblMode			= 0;
 
 	double *pdblRealRet	= NULL;
-	
+
 
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr1) != sci_strings)
+	sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iType1 != sci_strings)
 	{
 		Err = 1;
 		Error(55);
 		return 0;
 	}
 
-	if(getVarType(piAddr2) != sci_matrix)
+	if(iType2 != sci_matrix)
 	{
 		Err = 2;
 		Error(53);
 		return 0;
 	}
 
-	iRet = getMatrixOfString(piAddr1, &iRows1, &iCols1, NULL, NULL);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, NULL, NULL);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(iRows1 != 1 || iCols1 != 1)
 	{
 		return 1;
 	}
-	
+
 	piLen = (int*)malloc(sizeof(int) * iRows1 * iCols1);
-	iRet = getMatrixOfString(piAddr1, &iRows1, &iCols1, piLen, NULL);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, piLen, NULL);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	pstData	= (char**)malloc(sizeof(char*) * iRows1 * iCols1);
@@ -91,16 +111,18 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+1 for null termination
 	}
 
-	iRet = getMatrixOfString(piAddr1, &iRows1, &iCols1, piLen, pstData);
-	if(iRet)
+	sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, piLen, pstData);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal);
-	if(iRet)
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(strcmp(pstData[0], "succ") == 0)
@@ -117,10 +139,11 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pdblRealRet);
-	if(iRet)
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, &pdblRealRet);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	for(i = 0 ; i < iRows2 * iCols2 ; i++)
