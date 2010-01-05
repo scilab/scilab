@@ -25,7 +25,6 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-
 public class SuperblockMaskCreateAction extends DefaultAction {
 
 	private SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
@@ -33,25 +32,28 @@ public class SuperblockMaskCreateAction extends DefaultAction {
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CREATE, null, new SuperblockMaskCreateAction(scilabGraph), null);
+		return createMenu(XcosMessages.CREATE, null,
+				new SuperblockMaskCreateAction(scilabGraph), null);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
-	    /*
-	     * FIXME: this action doesn't handle variable settings
-	     */
-	    block.mask();
-	    
-	    /* Set default values */
+		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
+				.getSelectionCell();
+		/*
+		 * FIXME: this action doesn't handle variable settings
+		 */
+		block.mask();
+
+		/* Set default values */
 		ScilabList exprs = new ScilabList() {
 			{
 				add(new ScilabDouble());
 				add(new ScilabList() {
 					{
 						add(new ScilabDouble());
-						add(new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME));
+						add(new ScilabString(
+								XcosMessages.MASK_DEFAULTWINDOWNAME));
 						add(new ScilabList() {
 							{
 								add(new ScilabDouble());

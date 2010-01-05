@@ -271,17 +271,17 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Model used on the customize table.
 			 */
 			private final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
-					new Object[][] { new Object[] { 1,
+					new Object[][] {new Object[] { 1,
 							XcosMessages.MASK_WINTITLEVAR,
 							XcosMessages.MASK_WINTITLE, false } },
-					new String[] { XcosMessages.MASK_ROWS,
+					new String[] {XcosMessages.MASK_ROWS,
 							XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARDESC,
 							XcosMessages.MASK_EDITABLE }) {
 				private final Class[] types = new Class[] {
 						java.lang.Integer.class, java.lang.String.class,
 						java.lang.String.class, java.lang.Boolean.class };
-				private final boolean[] canEdit = new boolean[] { false, true,
+				private final boolean[] canEdit = new boolean[] {false, true,
 						true, true };
 
 				public Class getColumnClass(int columnIndex) {
@@ -300,12 +300,12 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 * Model used for the values table
 			 */
 			private final DefaultTableModel valuesTableModel = new javax.swing.table.DefaultTableModel(
-					new Object[][] { new Object[] { XcosMessages.MASK_WINTITLE,
-							"" } }, new String[] { XcosMessages.MASK_VARNAME,
+					new Object[][] {new Object[] {XcosMessages.MASK_WINTITLE,
+							"" } }, new String[] {XcosMessages.MASK_VARNAME,
 							XcosMessages.MASK_VARVALUES }) {
 				private final Class[] types = new Class[] {
 						java.lang.String.class, java.lang.String.class };
-				private final boolean[] canEdit = new boolean[] { false, true };
+				private final boolean[] canEdit = new boolean[] {false, true};
 
 				public Class getColumnClass(int columnIndex) {
 					return types[columnIndex];
@@ -411,7 +411,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				ScilabList exprs = (ScilabList) rawExprs;
 				
 				assert (exprs.get(0) instanceof ScilabDouble) || (exprs.get(0) instanceof ScilabString);
-				if(exprs.get(0) instanceof ScilabDouble) {
+				if (exprs.get(0) instanceof ScilabDouble) {
 					values = new ScilabString("");
 				} else { /* exprs.get(0) instanceof ScilabString) */
 					values = (ScilabString) exprs.get(0); 
@@ -430,36 +430,35 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				assert lvalues.get(1) instanceof ScilabString;
 				varDesc = (ScilabString) lvalues.get(1);
 
-					/*
-					 * Check if the data are stored as columns or as row.
-					 */
-					if (varDesc.getHeight() >= varDesc.getWidth()) {
+				/*
+				 * Check if the data are stored as columns or as row.
+				 */
+				if (varDesc.getHeight() >= varDesc.getWidth()) {
 
-						/* Title */
-						valuesModel.setValueAt(varDesc.getData()[0][0], 0, 1);
+					/* Title */
+					valuesModel.setValueAt(varDesc.getData()[0][0], 0, 1);
 
-						/* Loop all over the data */
-						for (int i = 1; i < varDesc.getHeight(); i++) {
-							customModel.addRow(new Object[] { i + 1,
-									varNames.getData()[i - 1][0],
-									varDesc.getData()[i][0], true });
-							valuesModel.setValueAt(values.getData()[i - 1][0],
-									i, 1);
-						}
-					} else {
-						/* Title */
-						valuesModel.setValueAt(varDesc.getData()[0][0], 0, 1);
-
-						/* Loop all over the data */
-						for (int i = 1; i < varDesc.getHeight(); i++) {
-							customModel.addRow(new Object[] { i + 1,
-									varNames.getData()[0][i - 1],
-									varDesc.getData()[0][i], true });
-							valuesModel.setValueAt(values.getData()[0][i - 1],
-									i, 1);
-						}
+					/* Loop all over the data */
+					for (int i = 1; i < varDesc.getHeight(); i++) {
+						customModel.addRow(new Object[] {i + 1,
+								varNames.getData()[i - 1][0],
+								varDesc.getData()[i][0], true });
+						valuesModel
+								.setValueAt(values.getData()[i - 1][0], i, 1);
 					}
-				
+				} else {
+					/* Title */
+					valuesModel.setValueAt(varDesc.getData()[0][0], 0, 1);
+
+					/* Loop all over the data */
+					for (int i = 1; i < varDesc.getHeight(); i++) {
+						customModel.addRow(new Object[] {i + 1,
+								varNames.getData()[0][i - 1],
+								varDesc.getData()[0][i], true });
+						valuesModel
+								.setValueAt(values.getData()[0][i - 1], i, 1);
+					}
+				}
 			}
 		}
 
