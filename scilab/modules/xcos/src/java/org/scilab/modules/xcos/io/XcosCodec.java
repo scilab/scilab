@@ -122,7 +122,7 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(superBlockCodec);
 	XcosObjectCodec gainBlockCodec = new BasicBlockCodec(BlockInterFunction.GAIN_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(gainBlockCodec);
-	XcosObjectCodec splitBlockCodec = new BasicBlockCodec(BlockInterFunction.SPLIT.getSharedInstance(), ignore, refs, null);
+	XcosObjectCodec splitBlockCodec = new BasicBlockCodec(BlockInterFunction.SPLIT_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(splitBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);

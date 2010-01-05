@@ -49,9 +49,9 @@ public final class BlockFactory {
 		/* TODO: What about CLKIN_F ? */
 		CLKOUTV_f(new EventOutBlock()),
 		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
-		SPLIT(new SplitBlock()),
-		IMPSPLIT_f(SPLIT.getSharedInstance()),
-		CLKSPLIT_f(SPLIT.getSharedInstance());
+		SPLIT_f(new SplitBlock()),
+		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
+		CLKSPLIT_f(SPLIT_f.getSharedInstance());
 		
 		private BasicBlock block;
 		/**
