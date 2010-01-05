@@ -91,7 +91,7 @@ public final class BlockFactory {
 	}
 
 	/**
-	 * Instanciate a new block with the specified interface function name.
+	 * Instantiate a new block with the specified interface function name.
 	 * @param label The interface function name.
 	 * @return A new instance of a block.
 	 */
@@ -114,7 +114,7 @@ public final class BlockFactory {
 	}
 	
 	/**
-	 * Instanciate a new block with the specified interface function.
+	 * Instantiate a new block with the specified interface function.
 	 * @param func the interface function
 	 * @return A new instance of a block. 
 	 */
