@@ -27,7 +27,7 @@ public final class EventInBlock extends ContextUpdate {
 		super();
 	}
 
-	public EventInBlock(String label) {
+	protected EventInBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);

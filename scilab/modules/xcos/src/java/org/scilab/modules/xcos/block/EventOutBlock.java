@@ -27,7 +27,7 @@ public final class EventOutBlock extends ContextUpdate {
 		super();
 	}
 
-	public EventOutBlock(String label) {
+	protected EventOutBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);

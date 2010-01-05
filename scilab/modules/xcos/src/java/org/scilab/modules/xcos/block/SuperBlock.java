@@ -56,13 +56,20 @@ public class SuperBlock extends BasicBlock {
 		super();
 	}
 
-	public SuperBlock(String label) {
+	protected SuperBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
 	}
 
-	public SuperBlock(String label, boolean masked) {
+	protected SuperBlock(boolean masked) {
+		this();
+		if (masked) {
+			mask();
+		}
+	}
+	
+	protected SuperBlock(String label, boolean masked) {
 		this(label);
 		if (masked) {
 			mask();

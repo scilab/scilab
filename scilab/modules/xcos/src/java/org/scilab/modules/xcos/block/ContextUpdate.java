@@ -43,7 +43,7 @@ public abstract class ContextUpdate extends BasicBlock{
 		super();
 	}
 
-	public ContextUpdate(String label) {
+	protected ContextUpdate(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);

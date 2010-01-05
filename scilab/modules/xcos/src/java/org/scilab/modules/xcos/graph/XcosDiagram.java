@@ -72,6 +72,7 @@ import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -970,7 +971,7 @@ public class XcosDiagram extends ScilabGraph {
 
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
-    			TextBlock textBlock = new TextBlock("Edit me !!!");
+    			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
     			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
     			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
     			addCell(textBlock);

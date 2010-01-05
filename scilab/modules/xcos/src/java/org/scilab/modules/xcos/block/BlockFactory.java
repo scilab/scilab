@@ -16,6 +16,7 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Ease the creation of blocks
@@ -29,7 +30,7 @@ public final class BlockFactory {
 	 *             this class is very coupled with *Block classes
 	 */
 	public static enum BlockInterFunction {
-		TEXT_f(new TextBlock()),
+		TEXT_f(new TextBlock(XcosMessages.DOTS)),
 		SUPER_f(new SuperBlock()),
 		DSUPER(new SuperBlock() { { mask(); } }),
 		CONST_m(new ConstBlock()),
@@ -66,7 +67,7 @@ public final class BlockFactory {
 		 * Create a block instance
 		 * @return The new block instance
 		 */
-		public BasicBlock createInstance() {
+		private BasicBlock createInstance() {
 			BasicBlock clone = null;
 			
 			if (block != null) {
@@ -110,6 +111,15 @@ public final class BlockFactory {
 		}
 		
 		return block;
+	}
+	
+	/**
+	 * Instanciate a new block with the specified interface function.
+	 * @param func the interface function
+	 * @return A new instance of a block. 
+	 */
+	public static BasicBlock createBlock(BlockInterFunction func) {
+		return func.createInstance();
 	}
 
 	/**

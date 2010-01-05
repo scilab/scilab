@@ -27,7 +27,7 @@ public final class ExplicitInBlock extends ContextUpdate {
 		super();
 	}
 
-	public ExplicitInBlock(String label) {
+	protected ExplicitInBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);

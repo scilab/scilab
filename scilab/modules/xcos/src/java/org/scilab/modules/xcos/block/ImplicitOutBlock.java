@@ -27,7 +27,7 @@ public final class ImplicitOutBlock extends ContextUpdate {
 		super();
 	}
 
-	public ImplicitOutBlock(String label) {
+	protected ImplicitOutBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);

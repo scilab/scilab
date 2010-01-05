@@ -56,7 +56,7 @@ public final class TextBlock extends BasicBlock {
 		super();
 	}
 
-	public TextBlock(String label) {
+	protected TextBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
