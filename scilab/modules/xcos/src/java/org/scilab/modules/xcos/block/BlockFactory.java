@@ -32,7 +32,7 @@ public final class BlockFactory {
 	public static enum BlockInterFunction {
 		TEXT_f(new TextBlock(XcosMessages.DOTS)),
 		SUPER_f(new SuperBlock()),
-		DSUPER(new SuperBlock() { { mask(); } }),
+		DSUPER(new SuperBlock(true)),
 		CONST_m(new ConstBlock()),
 		CONST(new ConstBlock()),
 		CONST_f(new ConstBlock()),
