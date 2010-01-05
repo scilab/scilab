@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Signal {
 
-	private static final int DELAY_EXEC = 250; // milliseconds
+	private static final int DELAY_EXEC = 100; // milliseconds
 	
 	private static Map<String, Object> waiters = 
 		Collections.synchronizedMap(new HashMap<String, Object>());
