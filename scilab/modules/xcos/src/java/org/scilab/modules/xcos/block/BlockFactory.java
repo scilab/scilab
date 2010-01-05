@@ -34,13 +34,13 @@ public final class BlockFactory {
 		SUPER_f(new SuperBlock()),
 		DSUPER(new SuperBlock(true)),
 		CONST_m(new ConstBlock()),
-		CONST(new ConstBlock()),
-		CONST_f(new ConstBlock()),
+		CONST(CONST_m.getSharedInstance()),
+		CONST_f(CONST_m.getSharedInstance()),
 		AFFICH_m(new AfficheBlock()),
-		AFFICH_f(new AfficheBlock()),
+		AFFICH_f(AFFICH_m.getSharedInstance()),
 		GAINBLK_f(new GainBlock()),
-		GAINBLK(new GainBlock()),
-		GAIN_f(new GainBlock()),
+		GAINBLK(GAINBLK_f.getSharedInstance()),
+		GAIN_f(GAINBLK_f.getSharedInstance()),
 		IN_f(new ExplicitInBlock()),
 		OUT_f(new ExplicitOutBlock()),
 		INIMPL_f(new ImplicitInBlock()),
@@ -48,10 +48,10 @@ public final class BlockFactory {
 		CLKINV_f(new EventInBlock()),
 		/* TODO: What about CLKIN_F ? */
 		CLKOUTV_f(new EventOutBlock()),
-		CLKOUT_f(new EventOutBlock()),
+		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
 		SPLIT(new SplitBlock()),
-		IMPSPLIT_f(new SplitBlock()),
-		CLKSPLIT_f(new SplitBlock());
+		IMPSPLIT_f(SPLIT.getSharedInstance()),
+		CLKSPLIT_f(SPLIT.getSharedInstance());
 		
 		private BasicBlock block;
 		/**
