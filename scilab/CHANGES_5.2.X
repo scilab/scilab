@@ -70,7 +70,8 @@ Bug fixes:
 
 * bug 5722 fixed - tand returns an error when called with ieee(0) mode
 
-
+* bug 6383 fixed - A message displayed by atomsRemove() (when the module to
+                   remove is loaded) wasn't correct.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================

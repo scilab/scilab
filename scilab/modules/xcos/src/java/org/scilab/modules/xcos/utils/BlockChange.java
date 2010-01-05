@@ -22,33 +22,33 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
  */
 public class BlockChange implements mxUndoableChange {
 
-    private BasicBlock updated;
-    private BasicBlock old;
+	private BasicBlock updated;
+	private BasicBlock old;
 
-    /**
-     * Construct a new undoable edit with the given source
-     * 
-     * @param updated
-     *            The new state
-     * @param old
-     *            The old state
-     */
-    public BlockChange(BasicBlock updated, BasicBlock old) {
-	this.updated = updated;
-	this.old = old;
-    }
+	/**
+	 * Construct a new undoable edit with the given source
+	 * 
+	 * @param updated
+	 *            The new state
+	 * @param old
+	 *            The old state
+	 */
+	public BlockChange(BasicBlock updated, BasicBlock old) {
+		this.updated = updated;
+		this.old = old;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
-     */
-    public void execute() {
-	BasicBlock var;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
+	 */
+	public void execute() {
+		BasicBlock var;
 
-	var = (BasicBlock) BlockFactory.createClone(updated);
-	updated.doUpdateBlockSettings(old);
-	old = var;
+		var = (BasicBlock) BlockFactory.createClone(updated);
+		updated.doUpdateBlockSettings(old);
+		old = var;
 
-    }
+	}
 }
