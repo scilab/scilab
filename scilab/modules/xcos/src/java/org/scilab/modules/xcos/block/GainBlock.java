@@ -21,13 +21,15 @@ public final class GainBlock extends BasicBlock {
 
     public GainBlock() {
 	super();
-	setInterfaceFunctionName("GAINBLK_f");
-	setValue("1.0");
     }
     
-    protected GainBlock(String label) {
-	this();
-	setValue(label);
+    /**
+	 * Initialize the block with the default values
+	 */
+	@Override
+    protected void setDefaultValues() {
+    	setInterfaceFunctionName("GAINBLK_f");
+    	setValue("1.0");
     }
     
     public void setExprs(ScilabType exprs) {

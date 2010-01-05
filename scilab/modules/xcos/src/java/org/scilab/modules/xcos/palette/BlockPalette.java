@@ -39,6 +39,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -203,7 +204,7 @@ public class BlockPalette extends JLabel {
 					block.setValue(block.getInterfaceFunctionName());
 				}
 			} else {
-				block = new TextBlock("Edit me!!!");
+				block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
 			}
 		}
 		return block;

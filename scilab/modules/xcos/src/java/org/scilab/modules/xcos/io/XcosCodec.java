@@ -20,6 +20,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.*;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.*;
@@ -46,6 +47,8 @@ public class XcosCodec extends mxCodec {
      */
     static {
 	// Add all xcos packages
+    mxCodecRegistry.addPackage("org.scilab.modules.graph");
+    mxCodecRegistry.addPackage("org.scilab.modules.xcos");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
@@ -107,19 +110,19 @@ public class XcosCodec extends mxCodec {
 
 	
 	// Blocks
-	XcosObjectCodec textBlockCodec = new BasicBlockCodec(new TextBlock(), ignore, refs, null);
+	XcosObjectCodec textBlockCodec = new BasicBlockCodec(BlockInterFunction.TEXT_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(textBlockCodec);
 	XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(), ignore, refs, null);
 	mxCodecRegistry.register(basicBlockCodec);
-	XcosObjectCodec constBlockCodec = new  BasicBlockCodec(new ConstBlock(), ignore, refs, null);
+	XcosObjectCodec constBlockCodec = new  BasicBlockCodec(BlockInterFunction.CONST.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(constBlockCodec);
-	XcosObjectCodec afficheBlockCodec = new BasicBlockCodec(new AfficheBlock(), ignore, refs, null);
+	XcosObjectCodec afficheBlockCodec = new BasicBlockCodec(BlockInterFunction.AFFICH_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(afficheBlockCodec);
-	XcosObjectCodec superBlockCodec = new BasicBlockCodec(new SuperBlock(), ignore, refs, null);
+	XcosObjectCodec superBlockCodec = new BasicBlockCodec(BlockInterFunction.SUPER_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(superBlockCodec);
-	XcosObjectCodec gainBlockCodec = new BasicBlockCodec(new GainBlock(), ignore, refs, null);
+	XcosObjectCodec gainBlockCodec = new BasicBlockCodec(BlockInterFunction.GAIN_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(gainBlockCodec);
-	XcosObjectCodec splitBlockCodec = new BasicBlockCodec(new SplitBlock(), ignore, refs, null);
+	XcosObjectCodec splitBlockCodec = new BasicBlockCodec(BlockInterFunction.SPLIT_f.getSharedInstance(), ignore, refs, null);
 	mxCodecRegistry.register(splitBlockCodec);
 	XcosObjectCodec cellCodec = new XcosObjectCodec(new mxCell(), null, refs, null);
 	mxCodecRegistry.register(cellCodec);

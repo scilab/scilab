@@ -44,15 +44,44 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEventObject;
 
-public class SuperBlock extends BasicBlock {
+public final class SuperBlock extends BasicBlock {
 
 	private static final long serialVersionUID = 3005281208417373333L;
 	private SuperBlockDiagram child = null;
 
 	public SuperBlock() {
 		super();
+	}
+
+	protected SuperBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
+
+	protected SuperBlock(boolean masked) {
+		this();
+		if (masked) {
+			mask();
+		}
+	}
+	
+	protected SuperBlock(String label, boolean masked) {
+		this(label);
+		if (masked) {
+			mask();
+		}
+	}
+	
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
 		setInterfaceFunctionName("SUPER_f");
 		setSimulationFunctionName("super");
 		setRealParameters(new ScilabDouble());
@@ -62,18 +91,6 @@ public class SuperBlock extends BasicBlock {
 		setBlockType("h");
 		setNbZerosCrossing(new ScilabDouble(0));
 		setNmode(new ScilabDouble(0));
-	}
-
-	public SuperBlock(String label) {
-		this();
-		setValue(label);
-	}
-
-	public SuperBlock(String label, boolean masked) {
-		this(label);
-		if (masked) {
-			mask();
-		}
 	}
 
 	/**

@@ -95,13 +95,13 @@ public class BasicBlock extends XcosUIDObject {
     // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
     //private List<String> exprs = new ArrayList<String>();
-    private ScilabType exprs = null;
+    private ScilabType exprs;
     //private List<Double> realParameters = new ArrayList<Double>();
-    private ScilabType realParameters = null;
+    private ScilabType realParameters;
     //private List<Integer> integerParameters = new ArrayList<Integer>();
-    private ScilabType integerParameters = null;
+    private ScilabType integerParameters;
     //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters = null;
+    private ScilabType objectsParameters;
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
 
@@ -168,23 +168,33 @@ public class BasicBlock extends XcosUIDObject {
 	};
 
 	public BasicBlock() {
-	super();
-	setStyle("");
-	setVisible(true);
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0, 0, 40, 40));
-    }
+		super();
+		setVisible(true);
+		setVertex(true);
+	}
 
-    protected BasicBlock(String label) {
-	this();
-	setValue(label);
-    }
+	protected BasicBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
-    protected BasicBlock(String label, String style) {
-	this(label);
-	setStyle(style);
-    }
+	protected BasicBlock(String label, String style) {
+		this(label);
+		setStyle(style);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	protected void setDefaultValues() {
+		setVisible(true);
+		setVertex(true);
+		setConnectable(false);
+		setGeometry(new mxGeometry(0, 0, 40, 40));
+		setValue("");
+		setStyle("");
+	}
 
     public XcosDiagram getParentDiagram() {
         return parentDiagram;

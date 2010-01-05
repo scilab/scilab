@@ -25,17 +25,23 @@ public final class ImplicitInBlock extends ContextUpdate {
 
 	public ImplicitInBlock() {
 		super();
-		setInterfaceFunctionName("INIMPL_f");
-		setSimulationFunctionName("inimpl");
-		setNbZerosCrossing(new ScilabDouble(0));
-		setNmode(new ScilabDouble(0));
-		setODState(new ScilabList());
-		setValue(1);
 	}
 
-	public ImplicitInBlock(String label) {
+	protected ImplicitInBlock(String label) {
 		this();
-	    }
+		setDefaultValues();
+		setValue(label);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("INIMPL_f");
+		setSimulationFunctionName("inimpl");
+	}
 
 	    public void setExprs(ScilabType exprs) {
 		super.setExprs(exprs);

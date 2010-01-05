@@ -3,6 +3,8 @@ package org.scilab.modules.xcos.block;
 import java.io.File;
 import java.io.IOException;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
@@ -37,14 +39,28 @@ public abstract class ContextUpdate extends BasicBlock{
 	}
     }
     
-    public ContextUpdate() {
-	super();
-    }
+	public ContextUpdate() {
+		super();
+	}
 
-    public ContextUpdate(String label) {
-	this();
-    }
+	protected ContextUpdate(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setNbZerosCrossing(new ScilabDouble(0));
+		setNmode(new ScilabDouble(0));
+		setODState(new ScilabList());
+		setValue(1);
+	}
+    
     public void onContextChange(String[] context) {
 	//prevent to open twice
 	if(isLocked()) {

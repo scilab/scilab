@@ -23,19 +23,25 @@ public final class ImplicitOutBlock extends ContextUpdate {
 
      private static final long serialVersionUID = 3573293528173540817L;
 
-    public ImplicitOutBlock() {
-	super();
-	setInterfaceFunctionName("OUTIMPL_f");
-	setSimulationFunctionName("outimpl");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	public ImplicitOutBlock() {
+		super();
+	}
 
-    public ImplicitOutBlock(String label) {
-	this();
-    }
+	protected ImplicitOutBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("OUTIMPL_f");
+		setSimulationFunctionName("outimpl");
+	}
 
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);

@@ -17,6 +17,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import com.mxgraph.model.mxGeometry;
+
 /**
  * Implement the AFFICH_m block
  */
@@ -29,17 +31,18 @@ public final class AfficheBlock extends BasicBlock {
 	/** Default constructor */
 	public AfficheBlock() {
 		super();
-		setInterfaceFunctionName("AFFICH_m");
-		setValue("0.00");
 	}
-	
+
 	/**
 	 * Constructor with label
-	 * @param label the default label.
+	 * 
+	 * @param value
+	 *            the default value.
 	 */
-	@Deprecated
-	protected AfficheBlock(String label) {
+	protected AfficheBlock(String value) {
 		this();
+		setDefaultValues();
+		setValue(value);
 	}
 
 	/**
