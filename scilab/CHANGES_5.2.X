@@ -39,6 +39,9 @@ Bug fixes:
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.
 
+* bug 5687 fixed - When setting "figure_name" the window title was not set until
+                   the window is "touched" with the mouse.
+
 * bug 5688 fixed - The xrpoly macro's rotation direction was inconsistent with
                    that of xarc and related functions.
 
