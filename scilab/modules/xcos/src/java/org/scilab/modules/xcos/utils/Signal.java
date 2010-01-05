@@ -12,34 +12,44 @@
 
 package org.scilab.modules.xcos.utils;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Signal {
 
-    private static Map<String, Object> waiters = new HashMap<String, Object>();
+	private static final int DELAY_EXEC = 100; // milliseconds
+	
+	private static Map<String, Object> waiters = 
+		Collections.synchronizedMap(new HashMap<String, Object>());
 
-    public static void wait(String index) {
-	Object data = new Object();
-	waiters.put(index, data);
+	public static void wait(String index) {
+		Object data = new Object();
+		waiters.put(index, data);
 
-	synchronized (data) {
-	    try {
-		data.wait();
-	    } catch (InterruptedException e) {
-		e.printStackTrace();
-	    }
+		synchronized (data) {
+			try {
+				data.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
-    }
 
-    public static void notify(String index) {
-	Object data = waiters.get(index);
-	if (data != null) {
-	    synchronized (data) {
-		data.notify();   
-	    }
-	    waiters.remove(index);
+	public static void notify(String index) {
+		Object data = waiters.get(index);
+		while(data == null) {
+			try {
+				Thread.sleep(DELAY_EXEC);
+				data = waiters.get(index);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		synchronized (data) {
+			data.notify();
+		}
+		waiters.remove(index);
 	}
-    }
-
 }

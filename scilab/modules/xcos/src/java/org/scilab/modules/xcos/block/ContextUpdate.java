@@ -12,7 +12,6 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 public abstract class ContextUpdate extends BasicBlock{
 
     private static final long serialVersionUID = 6076826729067963560L;
-    private static Object _mutex_ = new Object();
     
     /**
      * This enum represent all the subclasses of ContextUpdate .
@@ -86,7 +85,6 @@ public abstract class ContextUpdate extends BasicBlock{
 	    cmd += ", "+getInterfaceFunctionName();
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 
-	    synchronized (_mutex_) {
 		try {
 			XcosInterpreterManagement.SynchronousScilabExec(cmd);
 		} catch (InterpreterException e) {
@@ -94,7 +92,6 @@ public abstract class ContextUpdate extends BasicBlock{
 		}
 		BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		updateBlockSettings(modifiedBlock);
-	    }
 	    
 	} catch (IOException e) {
 	    e.printStackTrace();
