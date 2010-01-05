@@ -39,6 +39,9 @@ Bug fixes:
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.
 
+* bug 5687 fixed - When setting "figure_name" the window title was not set until
+                   the window is "touched" with the mouse.
+
 * bug 5688 fixed - The xrpoly macro's rotation direction was inconsistent with
                    that of xarc and related functions.
 
@@ -62,7 +65,8 @@ Bug fixes:
 
 * bug 5722 fixed - tand returns an error when called with ieee(0) mode
 
-
+* bug 6383 fixed - A message displayed by atomsRemove() (when the module to
+                   remove is loaded) wasn't correct.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
