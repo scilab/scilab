@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-function ThermoCarre 
+class ThermoCarre 
   input Real x;
   
   input Real dx;

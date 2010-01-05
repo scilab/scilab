@@ -19,6 +19,6 @@
  * See the file ../license.txt
 */
 
-model OutPort
+class OutPort
   output Real v;
 end OutPort;

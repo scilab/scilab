@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Resistor
+class Resistor
 	Pin p, n;
 	parameter Real R "Resistance";
 

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model CVS "controlled voltage source" 
+class CVS "controlled voltage source" 
   Pin p, n;
   Real vin;
 equation 

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model PotentialSensor 
+class PotentialSensor 
   Pin p;
   Real v;
  equation

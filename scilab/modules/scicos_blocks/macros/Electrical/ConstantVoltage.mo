@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model ConstantVoltage "Source for constant voltage"
+class ConstantVoltage "Source for constant voltage"
    Pin p, n;
    parameter Real V = 1 "Volts";
 equation

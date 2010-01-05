@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model SineVoltage "Sine voltage source" 
+class SineVoltage "Sine voltage source" 
   parameter Real V=1 "Amplitude of sine wave";
   parameter Real phase=0 "Phase of sine wave";
   parameter Real freqHz=1 "Frequency of sine wave";

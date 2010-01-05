@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Puits
+class Puits
   parameter Real P0=100000 "Pression du puits";
   parameter Real T0=290"Température du puits";
   parameter Real H0=100000 "Enthalpie spécifique du puits";

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model VoltageSensor 
+class VoltageSensor 
   Pin p;
   Pin n;
   Real v;

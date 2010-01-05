@@ -20,7 +20,7 @@
 */
 
 
-  model OutPutPort
+  class OutPutPort
     output Real vo;
     Real vi;
    equation

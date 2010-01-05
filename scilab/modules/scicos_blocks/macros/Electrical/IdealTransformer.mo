@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model IdealTransformer "Transformer with two ports" 
+class IdealTransformer "Transformer with two ports" 
   parameter Real N=1 "Transformer turn ration N1/N2";  
   Pin p1, n1, p2, n2;    
   Real v2,v1,i1,i2;

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model VsourceAC "Sin-wave voltage source"
+class VsourceAC "Sin-wave voltage source"
 	Pin p, n;
 	Real v;
 	parameter Real VA = 220 "Amplitude";

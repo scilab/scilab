@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model VsourceDC "Constant voltage source"
+class VsourceDC "Constant voltage source"
 	Pin p, n;
 	Real v;
 	parameter Real A = 220 "Amplitude";

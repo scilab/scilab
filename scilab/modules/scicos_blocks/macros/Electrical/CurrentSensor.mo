@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model CurrentSensor 
+class CurrentSensor 
   Pin p;
   Pin n;
   Real i;

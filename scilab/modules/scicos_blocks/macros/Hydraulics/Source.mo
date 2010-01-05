@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Source
+class Source
   parameter Real P0=300000 "Pression de la source";
   parameter Real T0=290 "Température de la source";
   parameter Real H0=100000 "Enthalpie spécifique de la source";

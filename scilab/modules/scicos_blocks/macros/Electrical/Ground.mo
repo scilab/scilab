@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Ground "Ground"
+class Ground "Ground"
 	Pin p;
 equation
 	p.v = 0;

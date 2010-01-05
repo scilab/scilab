@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-connector PortPHQ2 
+class PortPHQ2 
 //  extends ThermoLib.Connecteurs.PortPHQ;
   Real P "Pression du fluide";
   Real H "Enthalpie spécifique du fluide";

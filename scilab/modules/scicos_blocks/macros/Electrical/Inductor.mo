@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Inductor "Ideal electrical inductor"
+class Inductor "Ideal electrical inductor"
 	Pin p, n;
 	Real v;
 	Real i;

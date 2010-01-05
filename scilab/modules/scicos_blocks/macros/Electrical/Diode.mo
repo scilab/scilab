@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Diode "Simple diode" 
+class Diode "Simple diode" 
    Pin p, n;
     parameter Real Ids=1.e-6 "Saturation current";
     parameter Real Vt=0.04   "Voltage equivalent of temperature (kT/qn)";

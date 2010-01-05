@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model CCS "controlled voltage source" 
+class CCS "controlled voltage source" 
   Pin p, n;
   Real Iin;
 equation 

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model Capacitor
+class Capacitor
 	Pin p, n;
 	Real v;
 	parameter Real C "Capacitance";

@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-model VVsourceAC "Sin-wave voltage source"
+class VVsourceAC "Sin-wave voltage source"
 	Pin p, n;
 	Real v;
 	Real VA "voltage";
