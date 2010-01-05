@@ -34,11 +34,18 @@ public class Signal {
 
 	public static void notify(String index) {
 		Object data = waiters.get(index);
-		if (data != null) {
-			synchronized (data) {
-				data.notify();
+		
+		while(data != null) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			waiters.remove(index);
 		}
+		
+		synchronized (data) {
+			data.notify();
+		}
+		waiters.remove(index);
 	}
 }
