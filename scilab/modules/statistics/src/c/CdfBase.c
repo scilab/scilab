@@ -28,7 +28,7 @@ int CdfBase(char const * const fname, int inarg, int oarg, int shift, int which,
 	    int (*fun)(int *, ...));
 
 int
-cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf)
+cdf_generic(char *fname, struct cdf_descriptor *cdf)
 {
   struct cdf_item const * it;
   char *option;

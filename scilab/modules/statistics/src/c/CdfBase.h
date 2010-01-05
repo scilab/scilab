@@ -18,7 +18,7 @@
  * @see cdf_descriptor
  */
 struct cdf_item {
-  const char const *option;
+  const char *option;
   const int inarg; /* number of inputs taken */
   const int oarg;  /* number of outputs expected */
   const int shift; /* how much arglist has to be shifted in DCDFLIB funcall @see CdfBase */
@@ -40,8 +40,8 @@ struct cdf_descriptor {
   const int minlhs;
   const int maxlhs;
   cdf_fptr fun;				 /* actual DCDFLIB's function */
-  const struct cdf_item const *items;	 /* ways of calling this function */
-  const struct cdf_item const *end_item; /* last item, 1 passed */
+  const struct cdf_item *items;	 /* ways of calling this function */
+  const struct cdf_item *end_item; /* last item, 1 passed */
 };
 
 /**
@@ -49,7 +49,7 @@ struct cdf_descriptor {
  * @param[in] fname scilab caller function name
  * @param[in] cdf's description, @see struct cdf_descriptor
  */
-extern int cdf_generic(const char const *fname, const struct cdf_descriptor const *cdf);
+extern int cdf_generic(char *fname, struct cdf_descriptor *cdf);
 
 
 /**

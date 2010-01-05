@@ -175,51 +175,53 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 					}
 				}
 
-				double* pdblQ= NULL;
-				double* pdblQReal= NULL;
-				double* pdblQImg= NULL;
-				double* pdblR= NULL;
-				double* pdblRReal= NULL;
-				double* pdblRImg= NULL;
-				double* pdblE= NULL;
-				double* pdblRk= NULL;
+				{
+					double* pdblQ= NULL;
+					double* pdblQReal= NULL;
+					double* pdblQImg= NULL;
+					double* pdblR= NULL;
+					double* pdblRReal= NULL;
+					double* pdblRImg= NULL;
+					double* pdblE= NULL;
+					double* pdblRk= NULL;
 
-				if(complexArg)
-				{
-					allocComplexMatrixOfDouble(pvApiCtx, Rhs+1, iRows, iRowsToCompute, &pdblQReal, &pdblQImg);
-					allocComplexMatrixOfDouble(pvApiCtx, Rhs+2, iRowsToCompute, iCols, &pdblRReal, &pdblRImg);
-					pdblQ= (double*) MALLOC(iRows * iRowsToCompute * sizeof(doublecomplex) );
-					pdblR= (double*) MALLOC( iRowsToCompute * iCols * sizeof(doublecomplex) );
-				}
-				else
-				{
-					allocMatrixOfDouble(pvApiCtx, Rhs+1, iRows, iRowsToCompute, &pdblQ);
-					allocMatrixOfDouble(pvApiCtx, Rhs+2, iRowsToCompute, iCols, &pdblR);
-				}
-
-				if(Lhs >= 3) /* next alloc for E needed only for lhs>=3 */
-				{
-					allocMatrixOfDouble(pvApiCtx, Rhs+3, iCols, iCols, &pdblE);
-				}
-
-				if(Lhs >=4) /* next alloc for Rk needed only for lhs>=4 */
-				{
-					allocMatrixOfDouble(pvApiCtx, Rhs+4, 1, 1, &pdblRk);
-				}
-
-				ret = ret ? ret : iQrM(pData, iRows, iCols, complexArg, iRowsToCompute, dblTol, pdblQ, pdblR, pdblE, pdblRk);
-				if( complexArg )
-				{
-					if(pdblQ)
+					if(complexArg)
 					{
-						vGetPointerFromDoubleComplex((doublecomplex*)pdblQ, iRows * iRowsToCompute, pdblQReal, pdblQImg);
-						FREE(pdblQ);
+						allocComplexMatrixOfDouble(pvApiCtx, Rhs+1, iRows, iRowsToCompute, &pdblQReal, &pdblQImg);
+						allocComplexMatrixOfDouble(pvApiCtx, Rhs+2, iRowsToCompute, iCols, &pdblRReal, &pdblRImg);
+						pdblQ= (double*) MALLOC(iRows * iRowsToCompute * sizeof(doublecomplex) );
+						pdblR= (double*) MALLOC( iRowsToCompute * iCols * sizeof(doublecomplex) );
+					}
+					else
+					{
+						allocMatrixOfDouble(pvApiCtx, Rhs+1, iRows, iRowsToCompute, &pdblQ);
+						allocMatrixOfDouble(pvApiCtx, Rhs+2, iRowsToCompute, iCols, &pdblR);
 					}
 
-					if(pdblR)
+					if(Lhs >= 3) /* next alloc for E needed only for lhs>=3 */
 					{
-						vGetPointerFromDoubleComplex((doublecomplex*)pdblR, iRowsToCompute * iCols, pdblRReal, pdblRImg);
-						FREE(pdblR);
+						allocMatrixOfDouble(pvApiCtx, Rhs+3, iCols, iCols, &pdblE);
+					}
+
+					if(Lhs >=4) /* next alloc for Rk needed only for lhs>=4 */
+					{
+						allocMatrixOfDouble(pvApiCtx, Rhs+4, 1, 1, &pdblRk);
+					}
+
+					ret = ret ? ret : iQrM(pData, iRows, iCols, complexArg, iRowsToCompute, dblTol, pdblQ, pdblR, pdblE, pdblRk);
+					if( complexArg )
+					{
+						if(pdblQ)
+						{
+							vGetPointerFromDoubleComplex((doublecomplex*)pdblQ, iRows * iRowsToCompute, pdblQReal, pdblQImg);
+							FREE(pdblQ);
+						}
+
+						if(pdblR)
+						{
+							vGetPointerFromDoubleComplex((doublecomplex*)pdblR, iRowsToCompute * iCols, pdblRReal, pdblRImg);
+							FREE(pdblR);
+						}
 					}
 				}
 				LhsVar(1)= Rhs+1;

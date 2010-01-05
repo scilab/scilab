@@ -246,8 +246,8 @@ SciErr isreal_sparse(int* _piAddress, double _dblRef, int* _piIsReal)
 
 SciErr isreal_common(double *_pdblData, int _iSize, double _dblRef, int* _piIsReal)
 {
-	SciErr sciErr;sciErr.iErr = 0;
 	int i;
+	SciErr sciErr;sciErr.iErr = 0;
 
 	*_piIsReal = 1;
 	for(i = 0 ; i < _iSize ; i++)

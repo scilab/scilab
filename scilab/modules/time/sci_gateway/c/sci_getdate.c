@@ -36,7 +36,7 @@
 int sci_getdate(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
-  int n1 = 0,m1 = 0, type = 0;;
+  int n1 = 0,m1 = 0, type = 0;
   int * p1_in_address = NULL;
   int i=0;
   double *DATEMATRIX=NULL;

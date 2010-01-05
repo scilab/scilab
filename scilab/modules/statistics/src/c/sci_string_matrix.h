@@ -12,6 +12,7 @@
 #ifndef _STRING_MATRIX_
 #define _STRING_MATRIX_
 
+#include "dynlib_statistics.h" 
 /**
  * End-developer oriented string matrix
  */
@@ -41,12 +42,12 @@ void destroy_string_matrix(struct string_matrix *mat);
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-char *create_string(int arg);
+STATISTICS_IMPEXP char *create_string(int arg);
 
 /**
  * Free string
  * @param[in] str string to be freed
  */
-void destroy_string(char *str);
+STATISTICS_IMPEXP void destroy_string(char *str);
 
 #endif /* _STRING_MATRIX_ */

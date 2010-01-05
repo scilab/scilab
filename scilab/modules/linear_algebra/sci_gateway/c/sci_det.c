@@ -74,6 +74,8 @@ int C2F(intdet)(char *fname,unsigned long fname_len)
 		double* pMantissaReal= NULL;
 		double* pMantissaImg= NULL;
 		double* pExponent= NULL;
+		int intExponent;
+
 		if(complexArg)
 		{
 			allocComplexMatrixOfDouble(pvApiCtx, 2, 1, 1, &pMantissaReal, &pMantissaImg);
@@ -88,7 +90,6 @@ int C2F(intdet)(char *fname,unsigned long fname_len)
 			allocMatrixOfDouble(pvApiCtx, 3, 1, 1, &pExponent);
 		}
 
-		int intExponent;
 		ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
 		if(pExponent)
 		{
