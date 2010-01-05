@@ -5,6 +5,8 @@
 Xcos:
 =====
 
+* bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
+
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions were not available.
 
 * bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's filename contains space.
