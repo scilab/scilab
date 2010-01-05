@@ -55,6 +55,8 @@ Bug fixes:
 * bug 5700 fixed - Compilation under RHE4 was failing on the includes of
                    term.h and termcap.h.
 
+* bug 5702 fixed - Calling legend disabled any previous call to drawlater.
+
 * bug 5716 fixed - Some links in the documentation about hypermatrices were 
                    missing.
 
