@@ -31,7 +31,7 @@ import com.mxgraph.model.mxGeometry;
 public final class SplitBlock extends BasicBlock {
 
     private static final long serialVersionUID = 5817243367840540106L;
-    private static final int DEFAULT_SIZE = 7;
+    public static final int DEFAULT_SIZE = 7;
 
 	public SplitBlock() {
 		super();
@@ -91,7 +91,6 @@ public final class SplitBlock extends BasicBlock {
 		setIntegerParameters(new ScilabDouble());
 		setObjectsParameters(new ScilabList());
 		setExprs(new ScilabDouble());
-		setGeometry(new mxGeometry(0, 0, DEFAULT_SIZE, DEFAULT_SIZE));
 	}
 	
 	public void addPort(CommandPort port) {
@@ -141,8 +140,8 @@ public final class SplitBlock extends BasicBlock {
 
 	public void setGeometry(mxGeometry geometry) {
 		if(geometry != null){
-			geometry.setWidth(7);
-			geometry.setHeight(7);
+			geometry.setWidth(DEFAULT_SIZE);
+			geometry.setHeight(DEFAULT_SIZE);
 		}
 		super.setGeometry(geometry);
 	}

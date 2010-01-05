@@ -343,8 +343,8 @@ public class XcosDiagram extends ScilabGraph {
     	
     	splitBlock.setStyle("SPLIT_f");
     	mxGeometry geom = new mxGeometry();
-    	geom.setX(dragSplitPos.getX() - 3); //-3 for splitBlock size
-    	geom.setY(dragSplitPos.getY() - 3); //-3 for splitBlock size
+    	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE/2));
+    	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE/2));
     	splitBlock.setGeometry(geom);
     	addCell(splitBlock);
     	
