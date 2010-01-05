@@ -23,20 +23,26 @@ public final class EventInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = 2799781225262685322L;
 
-    public EventInBlock() {
-	super();
-	setInterfaceFunctionName("CLKINV_f");
-	setSimulationFunctionName("input");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	public EventInBlock() {
+		super();
+	}
 
-    public EventInBlock(String label) {
-    	this();
-    }
+	public EventInBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("CLKINV_f");
+		setSimulationFunctionName("input");
+	}
+    
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
 	//setValue(((ScilabString) getExprs()).getData()[0][0]);
