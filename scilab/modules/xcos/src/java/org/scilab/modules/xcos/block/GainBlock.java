@@ -28,6 +28,7 @@ public final class GainBlock extends BasicBlock {
 	 */
 	@Override
     protected void setDefaultValues() {
+		super.setDefaultValues();
     	setInterfaceFunctionName("GAINBLK_f");
     	setValue("1.0");
     }
