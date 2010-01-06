@@ -16,13 +16,25 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Signal {
+/**
+ * Perform the communication between java code and scilab code trough an UID.
+ */
+public final class Signal {
 
 	private static final int DELAY_EXEC = 100; // milliseconds
-	
-	private static Map<String, Object> waiters = 
-		Collections.synchronizedMap(new HashMap<String, Object>());
 
+	private static Map<String, Object> waiters = Collections
+			.synchronizedMap(new HashMap<String, Object>());
+
+	/** This class is a static singleton, thus is must not be instantiated */
+	private Signal() { }
+
+	/**
+	 * Add a waiter with the corresponding uid.
+	 * 
+	 * @param index
+	 *            The uid we are waiting for.
+	 */
 	public static void wait(String index) {
 		Object data = new Object();
 		waiters.put(index, data);
@@ -36,9 +48,18 @@ public class Signal {
 		}
 	}
 
+	/**
+	 * Notify a waiter.
+	 * 
+	 * The associated scilab call is xcosNotify.
+	 * 
+	 * @param index
+	 *            The uid to be notified. No one is waiting for the uid at time
+	 *            N, this method wait and retry each 100 milliseconds.
+	 */
 	public static void notify(String index) {
 		Object data = waiters.get(index);
-		while(data == null) {
+		while (data == null) {
 			try {
 				Thread.sleep(DELAY_EXEC);
 				data = waiters.get(index);
@@ -46,7 +67,7 @@ public class Signal {
 				e.printStackTrace();
 			}
 		}
-		
+
 		synchronized (data) {
 			data.notify();
 		}
