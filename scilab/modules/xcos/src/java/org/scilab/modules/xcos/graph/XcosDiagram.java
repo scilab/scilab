@@ -333,19 +333,16 @@ public class XcosDiagram extends ScilabGraph {
             dragSplitPos.setY(srcY + offsetY);
     	}
    	
-    	SplitBlock splitBlock = null;
-    	
+    	SplitBlock splitBlock = (SplitBlock) BlockFactory.createBlock(BlockInterFunction.SPLIT_f);
     	if (target instanceof BasicLink) {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
+    	    splitBlock.setConnection(linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
     	} else {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) target);
+    		splitBlock.setConnection(linkSource, linkTarget, (BasicPort) target);
     	}
     	
-    	splitBlock.setStyle("SPLIT_f");
-    	mxGeometry geom = new mxGeometry();
+    	mxGeometry geom = splitBlock.getGeometry();
     	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE/2));
     	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE/2));
-    	splitBlock.setGeometry(geom);
     	addCell(splitBlock);
     	
     	
