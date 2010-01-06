@@ -1,0 +1,4 @@
+instantiation.cmo: ../compilation/types.cmo ../parsing/syntax.cmo \
+    ../parsing/parser.cmo ../compilation/nameResolve.cmo 
+instantiation.cmx: ../compilation/types.cmx ../parsing/syntax.cmx \
+    ../parsing/parser.cmx ../compilation/nameResolve.cmx 

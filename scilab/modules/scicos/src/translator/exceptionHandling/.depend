@@ -1,0 +1,12 @@
+errorDico.cmo: ../parsing/parser.cmo ../compilation/nameResolve.cmo \
+    ../instantiation/instantiation.cmo 
+errorDico.cmx: ../parsing/parser.cmx ../compilation/nameResolve.cmx \
+    ../instantiation/instantiation.cmx 
+msgDico.cmo: 
+msgDico.cmx: 
+exceptHandler.cmo: ../parsing/parser.cmo ../compilation/nameResolve.cmo \
+    msgDico.cmo ../parsing/linenum.cmo ../instantiation/instantiation.cmo \
+    errorDico.cmo 
+exceptHandler.cmx: ../parsing/parser.cmx ../compilation/nameResolve.cmx \
+    msgDico.cmx ../parsing/linenum.cmx ../instantiation/instantiation.cmx \
+    errorDico.cmx 

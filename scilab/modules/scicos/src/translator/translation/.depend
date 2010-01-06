@@ -1,0 +1,10 @@
+codeGeneration.cmo: ../compilation/types.cmo ../compilation/nameResolve.cmo \
+    ../instantiation/instantiation.cmo ../exceptionHandling/errorDico.cmo 
+codeGeneration.cmx: ../compilation/types.cmx ../compilation/nameResolve.cmx \
+    ../instantiation/instantiation.cmx ../exceptionHandling/errorDico.cmx 
+libraryManager.cmo: ../parsing/parser.cmo ../parsing/lexer.cmo \
+    ../exceptionHandling/exceptHandler.cmo 
+libraryManager.cmx: ../parsing/parser.cmx ../parsing/lexer.cmx \
+    ../exceptionHandling/exceptHandler.cmx 
+versiondate.cmo: 
+versiondate.cmx: 

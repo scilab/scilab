@@ -1,0 +1,4 @@
+types.cmo: 
+types.cmx: 
+nameResolve.cmo: types.cmo ../parsing/syntax.cmo ../parsing/parser.cmo 
+nameResolve.cmx: types.cmx ../parsing/syntax.cmx ../parsing/parser.cmx 

@@ -12,6 +12,34 @@ src/modelica_compiler/doc
 src/modelica_compiler/modelicac.exe
 src/modelica_compiler/*.obj
 
+
+#XML2Modelica
+XML2Modelica
+src/xml2modelica/*.cmi
+src/xml2modelica/*.cmo
+
+#translator
+src/translator/compilation/compilation.a
+src/translator/compilation/*.cmxa
+src/translator/compilation/*.cmi
+src/translator/compilation/*.cmx
+src/translator/exceptionHandling/*.cmi
+src/translator/exceptionHandling/*.cmx
+src/translator/exceptionHandling/exceptionHandling.a
+src/translator/exceptionHandling/*.cmxa
+src/translator/instantiation/instantiation.a
+src/translator/instantiation/*.cmi
+src/translator/instantiation/*.cmx
+src/translator/instantiation/*.cmxa
+src/translator/parsing/*.cmi
+src/translator/parsing/*.cmo
+src/translator/parsing/*.cma
+src/translator/parsing/*.cmx
+src/translator/parsing/parsing.a
+src/translator/parsing/*.cmxa
+src/translator/translation/*.cmi
+src/translator/translation/*.cmx
+
 #
 #generated .def files (windows)
 #
