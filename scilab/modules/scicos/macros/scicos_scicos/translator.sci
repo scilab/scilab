@@ -84,7 +84,7 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 
   instr=exe+translator_libs+out+' -with-init -command ""'+name+' '+namef+';"" >""'+Errfile
 
- if MSDOS then,   mputl(instr,tmpdir+'gent.bat'), instr=tmpdir+'gent.bat';end
+ if MSDOS then,   mputl(instr,outpath+'/gent.bat'), instr=outpath+'/gent.bat';end
  
 
  if execstr('unix_s(instr)','errcatch')<>0 then
