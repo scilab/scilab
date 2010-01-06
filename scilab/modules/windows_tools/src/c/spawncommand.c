@@ -71,8 +71,8 @@ int spawncommand(char *command,BOOL DetachProcess)
 
 	if (DetachProcess)
 	{
-		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s")+1)*sizeof(char) );
-		sprintf(CmdLine, "%s /A /C %s",shellCmd,command);
+		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C \"%s\"")+1)*sizeof(char) );
+		sprintf(CmdLine, "%s /A /C \"%s\"",shellCmd,command);
 
 		dwCreationFlags = DETACHED_PROCESS;
 	}
@@ -90,8 +90,8 @@ int spawncommand(char *command,BOOL DetachProcess)
 
 		if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
-		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C %s && echo DOS>%s")+strlen(FileTMPDir)+1)*sizeof(char) );
-		sprintf(CmdLine, "%s /A /C %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+		CmdLine = (char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen("%s /A /C \"%s && echo DOS > %s\"")+strlen(FileTMPDir)+1)*sizeof(char) );
+		sprintf(CmdLine, "%s /A /C \"%s && echo DOS > %s\"",shellCmd,command,FileTMPDir);
 
 		dwCreationFlags = 0;
 	}

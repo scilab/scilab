@@ -83,6 +83,9 @@ Bug fixes:
 * bug 6383 fixed - A message displayed by atomsRemove() (when the module to
                    remove is loaded) wasn't correct.
 
+* bug 6387 fixed - 'dos' failed to execute very long command line and 
+                   returns an msg error : line too long
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
