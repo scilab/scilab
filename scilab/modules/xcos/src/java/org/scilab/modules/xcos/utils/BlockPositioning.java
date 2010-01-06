@@ -326,9 +326,9 @@ public final class BlockPositioning {
     public static int getNextAntiClockwiseAngle(BasicBlock block) {
     	int angle = 0;
 	if (block.getAngle() == 0) { angle = 270; }
-	if (block.getAngle() == 90) { angle = 0; }
-	if (block.getAngle() == 180) { angle = 90; }
-	if (block.getAngle() == 270) { angle = 180; }
+	else if (block.getAngle() == 90) { angle = 0; }
+	else if (block.getAngle() == 180) { angle = 90; }
+	else if (block.getAngle() == 270) { angle = 180; }
 	return angle;
     }
 
@@ -340,9 +340,9 @@ public final class BlockPositioning {
     public static int getNextClockwiseAngle(BasicBlock block) {
     	int angle = 0;
 	if (block.getAngle() == 0) { angle = 90; }
-	if (block.getAngle() == 90) { angle = 180; }
-	if (block.getAngle() == 180) { angle = 270; }
-	if (block.getAngle() == 270) { angle = 0; }
+	else if (block.getAngle() == 90) { angle = 180; }
+	else if (block.getAngle() == 180) { angle = 270; }
+	else if (block.getAngle() == 270) { angle = 0; }
 	return angle;
     }
     
@@ -353,13 +353,14 @@ public final class BlockPositioning {
      */
     public static int roundAngle(int angle) {
     	int ret = 0;
-	if (angle < 0 || angle > 360)
+	if (angle < 0 || angle > 360) {
 	    angle = angle + 360 % 360;
+	}
 	
 	if (angle < (0 + 90)/2) { ret = 0; }
-	if (angle < (90 + 180)/2) { ret = 90; }
-	if (angle < (180 + 270)/2) { ret = 180; }
-	if (angle < (270 + 360)/2) { ret = 270; }
+	else if (angle < (90 + 180)/2) { ret = 90; }
+	else if (angle < (180 + 270)/2) { ret = 180; }
+	else if (angle < (270 + 360)/2) { ret = 270; }
 	return ret;
     }
    
