@@ -19,6 +19,8 @@ Xcos:
 
 * bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
 
+* bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting its parameters.
+
 * bug 5674 fixed - The Signal.notify didn't check is we are waiting for it (thus the next wait will block).
 
 * bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
