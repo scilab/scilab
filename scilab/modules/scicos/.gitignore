@@ -19,6 +19,7 @@ src/xml2modelica/*.cmi
 src/xml2modelica/*.cmo
 
 #translator
+translator
 src/translator/compilation/compilation.a
 src/translator/compilation/*.cmxa
 src/translator/compilation/*.cmi

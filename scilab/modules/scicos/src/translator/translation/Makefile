@@ -20,7 +20,7 @@
 # 
 #
 
-EXE=../../translator
+EXE=translator
 OCAMLDEP=ocamldep
 OCAMLC=ocamlc
 OCAMLOPT=ocamlopt
@@ -83,6 +83,8 @@ all: bytecode
 
 opt: $(OBJSOPT)
 	$(OCAMLOPT) -verbose $(OCAMLOPTFLAGS) -o $(EXE) $(LFLAGS) $(LIBSOPT) $(OBJSOPT)  translator.ml
+	cp $(EXE) ../../../
+	rm -f $(EXE)
 
 bytecode: $(OBJS)
 	$(OCAMLC) $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(OBJS)	translator.ml
