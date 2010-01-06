@@ -15,11 +15,13 @@ src/modelica_compiler/*.obj
 
 #XML2Modelica
 XML2Modelica
+xml2modelica.exe
 src/xml2modelica/*.cmi
 src/xml2modelica/*.cmo
 
 #translator
 translator
+translator.exe
 src/translator/compilation/compilation.a
 src/translator/compilation/*.cmxa
 src/translator/compilation/*.cmi
