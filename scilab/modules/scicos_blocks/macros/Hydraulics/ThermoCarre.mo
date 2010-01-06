@@ -20,10 +20,16 @@
 */
 
 class ThermoCarre 
-  input Real x;
+  // input Real x;
   
-  input Real dx;
-  output Real y;
+  // input Real dx;
+  // output Real y; 
+
+// The key words input and ouput are not recognized by the last version of translator
+  Real x;
+  
+  Real dx;
+  Real y;
 
 external;
 end ThermoCarre;
