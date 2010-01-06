@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 (** This module contains functions that perform symbolic and topologic
 simplifications over an instantiated Modelica model. *)
@@ -25,10 +26,13 @@ simplifications over an instantiated Modelica model. *)
 (** The type of the records used to store information about parameters. *)
 type parameter_description = {
   mutable main : bool; (** If a parameter is a "main" one, it is not inlined. *)
+  mutable p_type : parameter_type; (** The parameter's type *)
   mutable p_name : string; (** The parameter's user name *)
   mutable p_comment : string; (** The comment associated to the parameter. *)
   mutable value : SymbolicExpression.t;
 }
+
+and parameter_type = IntegerType | StringType | RealType
 
 (** The type of the records used to store information about discrete variables.
 *)
@@ -49,6 +53,9 @@ type variable_description = {
   mutable state : bool; (** [true] = state variable, [false] = algebraic
     variable *)
   mutable v_name : string; (** The variable's user name *)
+  mutable depth_in_hierarchy : int; (** The number of dots in the variable
+    name that is used as a criterion to choose the variables to eliminate
+    (deepest-defined variables are eliminated when possible). *)
   mutable v_comment : string; (** The comment associated to the variable. *)
   mutable start_value : SymbolicExpression.t option;
 }
@@ -90,10 +97,14 @@ type model = {
       reinitializations. *)
   mutable io_dependency : bool; (** [true] = there is a direct dependency
     between inputs and outputs in the model. *)
-  mutable external_functions : (string list * int) list; (** The list of the paths
-    where to find external function bodies and their respective arity. *)
-  trace: string option (** The file where optional tracing information of
+  mutable external_functions :
+    (string list *
+    Instantiation.expression_type list *
+    Instantiation.expression_type list) list; (** The list of the paths
+    where to find external function bodies and their respective signatures. *)
+  trace: string option; (** The file where optional tracing information of
     external function calls is generated *)
+  variables_infos: (string * Compilation.variable_infos) list
 }
 
 and when_expression =
@@ -127,10 +138,6 @@ val perform_simplifications: int -> model -> unit
 appropriate substitutions in order to eliminate at most [max_simplifs] auxiliary
 variables from the model. *)
 
-val compute_structural_index: model -> int
-(** [compute_structural_index model] computes the structural index of the DAE
-system. *)
-
 val find_submodels: model -> int list list
 (** [find_submodels model] splits [model] in dependent submodels such that there
 is no cyclic dependency between them. The result is given as a list of index
@@ -139,8 +146,3 @@ lists (each index corresponding to a variable index). *)
 val print_model: out_channel -> model -> unit
 (** [print_model oc model] prints [model] in an implementation-dependent format
 to [oc]. *)
-
-val is_greater_equal: SymbolicExpression.t -> bool
-(** [is_greater_equal expr] returns [true] if [expr] denotes a greater or equal
-construct, regardless "noEvents" encapsulations. This function is exported by
-Optimization as a utility for convenience. *)

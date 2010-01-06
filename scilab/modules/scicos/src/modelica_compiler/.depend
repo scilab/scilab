@@ -39,8 +39,8 @@ optimizingCompiler.cmx: xMLCodeGeneration.cmx precompilation.cmx parser.cmx \
     optimization.cmx lexer.cmx instantiation.cmx compilation.cmx \
     optimizingCompiler.cmi 
 scicosCodeGeneration.cmo: symbolicExpression.cmi optimization.cmi \
-    scicosCodeGeneration.cmi 
+    instantiation.cmi scicosCodeGeneration.cmi 
 scicosCodeGeneration.cmx: symbolicExpression.cmx optimization.cmx \
-    scicosCodeGeneration.cmi 
+    instantiation.cmx scicosCodeGeneration.cmi 
 scicosOptimizingCompiler.cmo: scicosCodeGeneration.cmi optimizingCompiler.cmi 
 scicosOptimizingCompiler.cmx: scicosCodeGeneration.cmx optimizingCompiler.cmx 
