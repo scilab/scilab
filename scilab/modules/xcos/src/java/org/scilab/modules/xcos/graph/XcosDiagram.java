@@ -1828,6 +1828,7 @@ public class XcosDiagram extends ScilabGraph {
 		setChildrenParentDiagram(xcosDiagram);
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
+		xcosDiagram.info(XcosMessages.EMPTY_INFO);
 	    }
 	    
 	    result = true;
