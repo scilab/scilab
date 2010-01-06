@@ -16,22 +16,34 @@ import org.scilab.modules.xcos.XcosUIDObject;
 
 import com.mxgraph.model.mxGeometry;
 
+/**
+ * Common implementation of any Port.
+ */
 public abstract class BasicPort extends XcosUIDObject {
 
     private static final long serialVersionUID = -5022701071026919015L;
-    private int ordering = 0;
-    private int connectedLinkId = 0;
-    private int dataLines = 0;
-    private int dataColumns = 0;
+    private static final int DEFAULT_DATALINES = -1;
+    private static final int DEFAULT_DATACOLUMNS = -2;
+    
+    private static final int DEFAULT_PORTSIZE = 8;
+    
+    private int ordering;
+    private int connectedLinkId;
+    private int dataLines;
+    private int dataColumns;
     private DataType dataType = DataType.REAL_MATRIX;
-    private int initialAngle = 0;
-    private int angle = 0;
+    private int initialAngle;
+    private int angle;
     private transient String typeName;
 
+    /** Type of any dataport */
     public enum Type { 
 	IMPLICIT,
 	EXPLICIT;
 
+	/**
+	 * @return A scicos compatible representation 
+	 */
 	public String getAsString() {
 	    switch (this) {
 	    case IMPLICIT:
@@ -44,6 +56,7 @@ public abstract class BasicPort extends XcosUIDObject {
 	}
     };
 
+    /** Type of any data on any dataport */
     public enum DataType {
     	UNKNOW_TYPE,
     	REAL_MATRIX,
@@ -55,6 +68,9 @@ public abstract class BasicPort extends XcosUIDObject {
     	UINT16_MATRIX,
     	UINT8_MATRIX;
 
+    	/**
+    	 * @return A scicos compatible representation 
+    	 */
     	public double getAsDouble() {
     		switch (this) {
     		case UNKNOW_TYPE:
@@ -68,6 +84,10 @@ public abstract class BasicPort extends XcosUIDObject {
     		}
     	}
 
+    	/**
+    	 * @param val A scicos representation
+    	 * @return The java compatible representation 
+    	 */
     	public static DataType convertScilabValue(double val) {
     		if (val == -1) {
     			return DataType.UNKNOW_TYPE;
@@ -81,26 +101,42 @@ public abstract class BasicPort extends XcosUIDObject {
     	}
 }
 
+    /**
+     * Instantiate a port with a style (or typename). 
+     * @param style Value to be set as a Style and as TypeName 
+     */
     public BasicPort(String style) {
 	super();
 	setVertex(true);
 	setStyle(style);
 	setTypeName(style);
-	setGeometry(new mxGeometry(0, 0, 8, 8));
+	setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
     }
 
+    /**
+     * @return The number of data lines that can pass trough this port.
+     */
     public int getDataLines() {
 	return dataLines;
     }
 
+    /**
+     * @param dataLines The number of data lines that can pass trough this port.
+     */
     public void setDataLines(int dataLines) {
 	this.dataLines = dataLines;
     }
 
+    /**
+     * @return The number of data columns that can pass trough this port.
+     */
     public int getDataColumns() {
 	return dataColumns;
     }
 
+    /**
+     * @param dataColumns The number of data columns that can pass trough this port.
+     */
     public void setDataColumns(int dataColumns) {
 	this.dataColumns = dataColumns;
     }
@@ -178,8 +214,8 @@ public abstract class BasicPort extends XcosUIDObject {
      * Set the default values for newly created port.
      */
 	public void setDefaultValues() {
-		setDataLines(-1);
-		setDataColumns(-2);
+		setDataLines(DEFAULT_DATALINES);
+		setDataColumns(DEFAULT_DATACOLUMNS);
 		setDataType(DataType.UNKNOW_TYPE);
 	}
 }

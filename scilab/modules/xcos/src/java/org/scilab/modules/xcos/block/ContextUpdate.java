@@ -86,7 +86,7 @@ public abstract class ContextUpdate extends BasicBlock{
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 
 		try {
-			XcosInterpreterManagement.SynchronousScilabExec(cmd);
+			XcosInterpreterManagement.synchronousScilabExec(cmd);
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}

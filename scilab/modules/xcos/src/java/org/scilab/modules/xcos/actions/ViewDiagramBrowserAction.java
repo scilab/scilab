@@ -41,7 +41,7 @@ public class ViewDiagramBrowserAction extends DefaultAction {
 		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 		    try {
-				XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
+				XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
 				    +"tree_show(scs_m);"
 				    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
 			} catch (InterpreterException e) {
