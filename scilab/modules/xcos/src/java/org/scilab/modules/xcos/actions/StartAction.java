@@ -59,7 +59,7 @@ public class StartAction  extends DefaultAction {
 	    				+"xcos_simulate(scs_m);"
 	    				+"deletefile(\"" + temp.getAbsolutePath()+"\");";
 	    try {
-			XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				    XcosTab.setStartEnabled(true);

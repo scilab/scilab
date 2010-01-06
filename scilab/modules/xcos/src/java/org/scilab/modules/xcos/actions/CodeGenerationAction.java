@@ -72,7 +72,7 @@ public class CodeGenerationAction extends DefaultAction {
 					+ tempOutput.getAbsolutePath() + "\"" + ", \""
 					+ tempInput.getAbsolutePath() + "\");";
 	    
-			XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
