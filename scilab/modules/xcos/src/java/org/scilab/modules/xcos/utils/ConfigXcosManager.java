@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,7 +30,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class ConfigXcosManager {
+/**
+ * Implement configuration management for Xcos.
+ */
+public final class ConfigXcosManager {
     private static final int BUFSIZE = 1024;
 
     private static final int MARGIN = 20;
@@ -144,9 +148,9 @@ public class ConfigXcosManager {
 	    Element root = document.getDocumentElement();
 
 	    NodeList profiles = root.getElementsByTagName(PROFILE);
-	    Element XCOSProfile = (Element) profiles.item(0);
+	    Element xcosProfile = (Element) profiles.item(0);
 
-	    NodeList allPositionElements = XCOSProfile
+	    NodeList allPositionElements = xcosProfile
 		    .getElementsByTagName(MAINWINPOSITION);
 	    Element mainWindowPosition = (Element) allPositionElements.item(0);
 	    if (mainWindowPosition != null) {
@@ -180,9 +184,9 @@ public class ConfigXcosManager {
 	    Element root = document.getDocumentElement();
 
 	    NodeList profiles = root.getElementsByTagName(PROFILE);
-	    Element XCOSProfile = (Element) profiles.item(0);
+	    Element xcosProfile = (Element) profiles.item(0);
 
-	    NodeList allPositionElements = XCOSProfile
+	    NodeList allPositionElements = xcosProfile
 		    .getElementsByTagName(MAINWINPOSITION);
 	    Element mainWindowPosition = (Element) allPositionElements.item(0);
 
@@ -210,9 +214,9 @@ public class ConfigXcosManager {
 	    Element root = document.getDocumentElement();
 
 	    NodeList profiles = root.getElementsByTagName(PROFILE);
-	    Element XCOSProfile = (Element) profiles.item(0);
+	    Element xcosProfile = (Element) profiles.item(0);
 
-	    NodeList allPositionElements = XCOSProfile
+	    NodeList allPositionElements = xcosProfile
 		    .getElementsByTagName(MAINWINSIZE);
 	    Element mainWindowSize = (Element) allPositionElements.item(0);
 
@@ -241,9 +245,9 @@ public class ConfigXcosManager {
 	    Element root = document.getDocumentElement();
 
 	    NodeList profiles = root.getElementsByTagName(PROFILE);
-	    Element XCOSProfile = (Element) profiles.item(0);
+	    Element xcosProfile = (Element) profiles.item(0);
 
-	    NodeList allSizeElements = XCOSProfile
+	    NodeList allSizeElements = xcosProfile
 		    .getElementsByTagName(MAINWINSIZE);
 	    Element mainWindowSize = (Element) allSizeElements.item(0);
 	    if (mainWindowSize != null) {
@@ -260,9 +264,8 @@ public class ConfigXcosManager {
      * 
      * @return a array of uri
      */
-
-    public static ArrayList<File> getAllRecentOpenedFiles() {
-	ArrayList<File> files = new ArrayList<File>();
+    public static List<File> getAllRecentOpenedFiles() {
+	List<File> files = new ArrayList<File>();
 
 	readDocument();
 
@@ -300,29 +303,29 @@ public class ConfigXcosManager {
     public static void saveToRecentOpenedFiles(String filePath) {
 
 	Node root = getXcosRoot();
-	if(root == null) {
+	if (root == null) {
 	    return;
 	}
 	
 	Node recentFiles = getNodeChild(root, RECENT_FILES);
-	if(recentFiles == null) {
+	if (recentFiles == null) {
 	    recentFiles = document.createElement(RECENT_FILES);
 	    root.appendChild(recentFiles);
 	}
 
-	ArrayList<Node> recentFile = getNodeChildren(recentFiles, DOCUMENT);
+	List<Node> recentFile = getNodeChildren(recentFiles, DOCUMENT);
 
 	//if file already in file no need to add it
-	for(Node item : recentFile) {
-	    if (filePath.compareTo(((Element)item).getAttribute(PATH)) == 0) {
+	for (Node item : recentFile) {
+	    if (filePath.compareTo(((Element) item).getAttribute(PATH)) == 0) {
 		return;
 	    }
 	}
 
 	//limit number of recent files
-	if(recentFile.size() >= MAX_RECENT_FILES) {
+	if (recentFile.size() >= MAX_RECENT_FILES) {
 	    int itemCount = recentFile.size() - (MAX_RECENT_FILES - 1);
-	    for(int i = 0 ; i < itemCount ; i++) {
+	    for (int i = 0; i < itemCount; i++) {
 		recentFiles.removeChild(recentFiles.getFirstChild());
 	    }
 	}
@@ -400,21 +403,21 @@ public class ConfigXcosManager {
     public static void saveUserDefinedPalettes(String filePath) {
 
 	Node root = getXcosRoot();
-	if(root == null) {
+	if (root == null) {
 	    return;
 	}
 	
 	Node palettes = getNodeChild(root, PALETTES);
-	if(palettes == null) {
+	if (palettes == null) {
 	    palettes = document.createElement(PALETTES);
 	    root.appendChild(palettes);
 	}
 
-	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
+	List<Node> palette = getNodeChildren(palettes, PALETTE);
 
 	//if path already in file no need to add it
-	for(Node item : palette) {
-	    if (filePath.compareTo(((Element)item).getAttribute(PATH)) == 0) {
+	for (Node item : palette) {
+	    if (filePath.compareTo(((Element) item).getAttribute(PATH)) == 0) {
 		return;
 	    }
 	}
@@ -429,19 +432,23 @@ public class ConfigXcosManager {
 	writeDocument();
     }
 
+    /**
+     * Remove a previously saved user palette from the configuration.
+     * @param filePath The file which contains the user palette.
+     */
     public static void removeUserDefinedPalettes(String filePath) {
 
 	Node root = getXcosRoot();
-	if(root == null) {
+	if (root == null) {
 	    return;
 	}
 	
 	Node palettes = getNodeChild(root, PALETTES);
-	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
+	List<Node> palette = getNodeChildren(palettes, PALETTE);
 
 	// remove node if exists
-	for(Node file : palette) {
-	    if (filePath.compareTo(((Element)file).getAttribute(PATH)) == 0) {
+	for (Node file : palette) {
+	    if (filePath.compareTo(((Element) file).getAttribute(PATH)) == 0) {
 		palettes.removeChild(file);
 		break;
 	    }
@@ -452,19 +459,22 @@ public class ConfigXcosManager {
 
     }
 
-    public static ArrayList<String> getUserDefinedPalettes() {
-	ArrayList<String> files = new ArrayList<String>();
+    /**
+     * @return All the user palettes from the configuration
+     */
+    public static List<String> getUserDefinedPalettes() {
+	List<String> files = new ArrayList<String>();
 
 	Node root = getXcosRoot();
-	if(root == null) {
+	if (root == null) {
 	    return files;
 	}
 
 	Node palettes = getNodeChild(root, PALETTES);
-	ArrayList<Node> palette = getNodeChildren(palettes, PALETTE);
-	for(Node file : palette) {
-	    String path = ((Element)file).getAttribute(PATH);
-	    if(path != null && path.compareTo("") != 0) {
+	List<Node> palette = getNodeChildren(palettes, PALETTE);
+	for (Node file : palette) {
+	    String path = ((Element) file).getAttribute(PATH);
+	    if (path != null && path.compareTo("") != 0) {
 		files.add(path);
 	    }
 	}
@@ -472,21 +482,28 @@ public class ConfigXcosManager {
 	return files;
     }
     
+    /**
+     * Implement a trivial DOM parser for getting a unique value.
+     * @param parent The root node or null if for the whole document need to be parsed.
+     * @param nodeName The node name to search for
+     * @return The Node corresponding to the nodeName.
+     */
     private static Node getNodeChild(Node parent, String nodeName) {
-	
-	if(parent == null) {
-	    if(document == null) {
+    	Node root = null;
+    	
+	if (parent == null) {
+	    if (document == null) {
 		readDocument();
-		if(document == null) {
+		if (document == null) {
 		    return null;
 		}
 	    }
-	    parent = document;
+	    root = document;
 	}
 
-	Node currentNode = parent.getFirstChild();
-	while(currentNode != null) {
-	    if(currentNode.getNodeName().compareTo(nodeName) == 0){
+	Node currentNode = root.getFirstChild();
+	while (currentNode != null) {
+	    if (currentNode.getNodeName().compareTo(nodeName) == 0) {
 		return currentNode;
 	    }
 	    currentNode = currentNode.getNextSibling();
@@ -494,22 +511,29 @@ public class ConfigXcosManager {
 	return currentNode;
     }
     
-    private static ArrayList<Node> getNodeChildren(Node parent, String childName) {
-	ArrayList<Node> nodes = new ArrayList<Node>();
+    /**
+     * Implement a trivial DOM parser for getting multiple values.
+     * @param parent The root node or null if for the whole document need to be parsed.
+     * @param childName The node name to search for
+     * @return All the child nodes of the childName
+     */
+    private static List<Node> getNodeChildren(Node parent, String childName) {
+	List<Node> nodes = new ArrayList<Node>();
+	Node root = null;
 	
-	if(parent == null) {
-	    if(document == null) {
+	if (parent == null) {
+	    if (document == null) {
 		readDocument();
-		if(document == null) {
+		if (document == null) {
 		    return nodes;
 		}
 	    }
-	    parent = document;
+	    root = document;
 	}
 	
-	Node currentNode = parent.getFirstChild();
-	while(currentNode != null) {
-	    if(currentNode.getNodeName().compareTo(childName) == 0){
+	Node currentNode = root.getFirstChild();
+	while (currentNode != null) {
+	    if (currentNode.getNodeName().compareTo(childName) == 0) {
 		nodes.add(currentNode);
 	    }
 	    currentNode = currentNode.getNextSibling();
@@ -518,21 +542,25 @@ public class ConfigXcosManager {
 	
     }
     
+    /**
+     * Get the root node for the xcos configuration.
+     * @return The root Node of the Xcos configuration.
+     */
     private static Node getXcosRoot() {
 
-	if(document == null) {
+	if (document == null) {
 	    readDocument();
-	    if(document == null) {
+	    if (document == null) {
 		return null;
 	    }
 	}
 
 	Node setting = getNodeChild(null, SETTING);
 	
-	if(setting != null) {
-	    ArrayList<Node> nodes = getNodeChildren(setting, PROFILE);
-	    for(Node node : nodes) {
-		if(((Element)node).getAttribute(NAME).compareTo(XCOS) == 0) {
+	if (setting != null) {
+	    List<Node> nodes = getNodeChildren(setting, PROFILE);
+	    for (Node node : nodes) {
+		if (((Element) node).getAttribute(NAME).compareTo(XCOS) == 0) {
 		    return node;
 		}
 	    }
