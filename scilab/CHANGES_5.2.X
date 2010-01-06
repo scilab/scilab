@@ -33,6 +33,7 @@ Xcos:
 
 * bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
 
+* bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams properly.
 
 Bug fixes:
 ==========

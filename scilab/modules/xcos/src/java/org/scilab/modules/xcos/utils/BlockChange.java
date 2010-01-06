@@ -38,8 +38,8 @@ public class BlockChange implements mxUndoableChange {
 		this.old = old;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Execute the current change.
 	 * 
 	 * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
 	 */

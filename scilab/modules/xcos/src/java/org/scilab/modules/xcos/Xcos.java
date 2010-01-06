@@ -106,10 +106,19 @@ public final class Xcos {
 
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-
-	while (diagrams.size() > 0) {
-	    diagrams.get(0).closeDiagram();
+	
+	/*
+	 * We are looping in the inverted order because we have to close latest
+	 * add diagrams (eg SuperBlockDiagrams) before any others.
+	 * 
+	 * Furthermore the closeDiagram operation modify the diagram list.
+	 */
+	int i = diagrams.size()-1;
+	while (i >= 0) {
+		diagrams.get(i).closeDiagram();
+		i = diagrams.size()-1;
 	}
+
 	ViewPaletteBrowserAction.setPalettesVisible(false);
     }
 
