@@ -700,6 +700,7 @@ public class XcosDiagram extends ScilabGraph {
      *  ForceCellReshapeTracker
      *  Called when we want a Block to reshape for it's ports positions.
      */
+    @Deprecated
     private class ForceCellReshapeTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    Object[] cells =  (Object[]) evt.getArgs()[0];
