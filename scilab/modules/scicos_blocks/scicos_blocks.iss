@@ -41,6 +41,8 @@ Source: modules\{#SCICOS_BLOCKS}\macros\*.mo; DestDir: {app}\modules\{#SCICOS_BL
 Source: modules\{#SCICOS_BLOCKS}\macros\*.moc; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCICOS}
 ;
 Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\translator.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\xml2modelica.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 #endif
 ;
 Source: modules\{#SCICOS_BLOCKS}\src\scripts\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\src\scripts; Components: {#COMPN_SCICOS}
