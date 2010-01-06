@@ -32,24 +32,29 @@ public final class SplitBlock extends BasicBlock {
 
     private static final long serialVersionUID = 5817243367840540106L;
     public static final int DEFAULT_SIZE = 7;
+    public static final int DEFAULT_COLOR = 7;
 
 	public SplitBlock() {
 		super();
 	}
 
+	// SPLIT_f <-> lsplit
+	// CLKSPLIT_f <-> split
+	// IMPSPLIT_F <-> limpsplit
 	protected SplitBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
 	}
 
-	// SPLIT_f <-> lsplit
-	// CLKSPLIT_f <-> split
-	// IMPSPLIT_F <-> limpsplit
-	public SplitBlock(String label, BasicPort source, BasicPort target1,
-			BasicPort target2) {
-		this(label);
-
+	/**
+	 * Connect the splitblock to a source and 2 targets.
+	 * @param source source to be connected with
+	 * @param target1 first target to be connected with
+	 * @param target2 second target to be connected with
+	 */
+	public void setConnection(BasicPort source, BasicPort target1, BasicPort target2) {
+		
 		//source
 		if(source instanceof ExplicitOutputPort){
 			addPort(new ExplicitInputPort());

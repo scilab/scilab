@@ -333,19 +333,16 @@ public class XcosDiagram extends ScilabGraph {
             dragSplitPos.setY(srcY + offsetY);
     	}
    	
-    	SplitBlock splitBlock = null;
-    	
+    	SplitBlock splitBlock = (SplitBlock) BlockFactory.createBlock(BlockInterFunction.SPLIT_f);
     	if (target instanceof BasicLink) {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
+    	    splitBlock.setConnection(linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
     	} else {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) target);
+    		splitBlock.setConnection(linkSource, linkTarget, (BasicPort) target);
     	}
     	
-    	splitBlock.setStyle("SPLIT_f");
-    	mxGeometry geom = new mxGeometry();
+    	mxGeometry geom = splitBlock.getGeometry();
     	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE/2));
     	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE/2));
-    	splitBlock.setGeometry(geom);
     	addCell(splitBlock);
     	
     	
@@ -703,6 +700,7 @@ public class XcosDiagram extends ScilabGraph {
      *  ForceCellReshapeTracker
      *  Called when we want a Block to reshape for it's ports positions.
      */
+    @Deprecated
     private class ForceCellReshapeTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
 	    Object[] cells =  (Object[]) evt.getArgs()[0];
@@ -1830,6 +1828,7 @@ public class XcosDiagram extends ScilabGraph {
 		setChildrenParentDiagram(xcosDiagram);
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
+		xcosDiagram.info(XcosMessages.EMPTY_INFO);
 	    }
 	    
 	    result = true;
