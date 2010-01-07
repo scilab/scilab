@@ -17,24 +17,27 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.block.*;
+
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.codec.*;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
+import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
+import org.scilab.modules.xcos.io.codec.BasicPortCodec;
+import org.scilab.modules.xcos.io.codec.ScilabBooleanCodec;
+import org.scilab.modules.xcos.io.codec.ScilabDoubleCodec;
+import org.scilab.modules.xcos.io.codec.ScilabIntegerCodec;
+import org.scilab.modules.xcos.io.codec.ScilabListCodec;
+import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
+
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;

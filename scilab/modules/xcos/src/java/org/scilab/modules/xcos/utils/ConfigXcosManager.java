@@ -489,7 +489,7 @@ public final class ConfigXcosManager {
      * @return The Node corresponding to the nodeName.
      */
     private static Node getNodeChild(Node parent, String nodeName) {
-    	Node root = null;
+    	Node root = parent;
     	
 	if (parent == null) {
 	    if (document == null) {
@@ -519,7 +519,7 @@ public final class ConfigXcosManager {
      */
     private static List<Node> getNodeChildren(Node parent, String childName) {
 	List<Node> nodes = new ArrayList<Node>();
-	Node root = null;
+	Node root = parent;
 	
 	if (parent == null) {
 	    if (document == null) {
