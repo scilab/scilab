@@ -67,6 +67,7 @@
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -139,6 +140,7 @@
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="true"
 				TargetMachine="17"
 			/>
 			<Tool

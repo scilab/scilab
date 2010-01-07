@@ -136,6 +136,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
 			<Tool
@@ -213,6 +214,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="0"
 				CompileAs="0"
 			/>
 			<Tool
@@ -292,6 +294,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="0"
 				CompileAs="0"
 			/>
 			<Tool

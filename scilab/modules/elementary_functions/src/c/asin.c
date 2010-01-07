@@ -110,14 +110,14 @@ void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
 		}
 		else if((dblEpsm * dblAbsImg - 1 >= dblAbsReal))
 		{
-			*_pdblReal	= dblAbsReal * dblAbsImg;
-			*_pdblImg	= sdblLn2 + log(dblAbsReal);
+			*_pdblReal	= dblAbsReal / dblAbsImg;
+			*_pdblImg	= sdblLn2 + log(dblAbsImg);
 		}
 		else if(dblAbsReal > 1)
 		{
 			*_pdblReal	= atan(dblAbsReal / dblAbsImg);
 			dblTemp		= pow((dblAbsReal / dblAbsImg), 2);
-			*_pdblImg	= sdblLn2 + log(dblAbsReal) + 0.5 * F2C(logp1)(&dblTemp);
+			*_pdblImg	= sdblLn2 + log(dblAbsImg) + 0.5 * F2C(logp1)(&dblTemp);
 		}
 		else
 		{
