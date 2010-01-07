@@ -94,7 +94,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="dbasin.f"/>
 		<File RelativePath="defmat.f"/>
 		<File RelativePath="dtosci.f"/>
-		<File RelativePath="eqid.f"/>
 		<File RelativePath="errmgr.f"/>
 		<File RelativePath="error.f"/>
 		<File RelativePath="expsum.f"/>
