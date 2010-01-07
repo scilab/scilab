@@ -156,6 +156,35 @@ SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* 
  */
 SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
+/*shortcut functions*/
+
+
+/**
+ * check if the variable type is double
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @return 1 for true and 0 for false
+ */
+int isDoubleMatrix(void* _pvCtx, int* _piAddress);
+
+/**
+ * Get scalar double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarDouble(void* _pvCtx, int* _piAddress, double* _pdblReal);
+
+/**
+ * Get scalar complex double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @param[out] _pdblImg return pointer on imgagianry data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, double* _pdblImg);
+
+
 #ifdef __cplusplus
 }
 #endif

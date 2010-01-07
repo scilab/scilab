@@ -367,4 +367,58 @@ SciErr readCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iComplex
 
 	return sciErr;
 }
+
+/*shortcut functions*/
+
+int isDoubleMatrix(void* _pvCtx, int* _piAddress)
+{
+	return checkVarType(_pvCtx, _piAddress, sci_matrix);
+}
+/*--------------------------------------------------------------------------*/
+int getScalarDouble(void* _pvCtx, int* _piAddress, double* _pdblReal)
+{
+	return getCommomScalarDouble(_pvCtx, _piAddress, 0, _pdblReal, NULL);
+}
+/*--------------------------------------------------------------------------*/
+int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, double* _pdblImg)
+{
+	return getCommomScalarDouble(_pvCtx, _piAddress, 1, _pdblReal, _pdblImg);
+}
+/*--------------------------------------------------------------------------*/
+static int getCommomScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg)
+{
+	SciErr sciErr;
+	int iRows	= 0;
+	int iCols	= 0;
+
+	double* pdblReal = NULL;
+	double* pdblImg	 = NULL;
+
+	sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, _iComplex, &iRows, &iCols, &pdblReal, &pdblImg);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_DOUBLE, _("%s: Unable to get argument #%d"), _iComplex ? "getScalarComplexDouble" : "getScalarDouble", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if(isScalar(_pvCtx, _piAddress) == 0)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_DOUBLE, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _iComplex ? "getScalarComplexDouble" : "getScalarDouble", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+		if(_pdblReal != NULL)
+	{
+		_pdblReal[0]	= pdblReal[0];
+	}
+
+	if(_pdblImg != NULL)
+	{
+		_pdblImg[0]		= pdblImg[0];
+	}
+
+	return 0;
+}
 /*--------------------------------------------------------------------------*/
