@@ -619,11 +619,9 @@ public final class FindAction extends DefaultAction {
 		buttonClose.addActionListener(new ActionListener() {
 
 
-			public void actionPerformed(ActionEvent e) {
-				FindAction.windowAlreadyExist = false;
-
-				frame.dispose();
-			}
+		    public void actionPerformed(ActionEvent e) {
+			closeFindReplaceWindow();
+		    }
 		});
 
 				
@@ -642,8 +640,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					FindAction.windowAlreadyExist = false;
-					frame.dispose();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -697,8 +694,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					FindAction.windowAlreadyExist = false;
-					frame.dispose();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1065,11 +1061,11 @@ public final class FindAction extends DefaultAction {
 	 * closeFindReplaceWindow
 	 */
 	public static void closeFindReplaceWindow() {
-		if (FindAction.windowAlreadyExist) {
-			Xpad.getEditor().getTextPane().getHighlighter().removeAllHighlights();
-			frame.dispose();
-			FindAction.windowAlreadyExist = false;
+	    if (FindAction.windowAlreadyExist) {
+		Xpad.getEditor().getTextPane().getHighlighter().removeAllHighlights();
+		FindAction.windowAlreadyExist = false;
+		frame.dispose();
 
-		}
+	    }
 	}
 }
