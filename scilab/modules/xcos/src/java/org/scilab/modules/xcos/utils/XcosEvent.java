@@ -20,9 +20,6 @@ import com.mxgraph.util.mxEvent;
 public final class XcosEvent extends mxEvent {
 	
 	public static final String ADD_PORTS 			= "addPorts";
-	
-    @Deprecated
-    public static final String FORCE_CELL_RESHAPE 		= "ForceCellReshape";
 
     public static final String FORCE_CELL_VALUE_UPDATE 		= "ForceCellValueUpdate";
     
