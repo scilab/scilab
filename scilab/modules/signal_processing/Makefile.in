@@ -487,6 +487,7 @@ libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
 					-I$(top_srcdir)/modules/output_stream/includes \
 					-I$(top_srcdir)/modules/dynamic_link/includes \
 					-I$(top_srcdir)/modules/api_scilab/includes \
+					-I$(top_srcdir)/modules/statistics/includes \
 					-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
