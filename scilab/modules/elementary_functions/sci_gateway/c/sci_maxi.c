@@ -18,21 +18,26 @@
 #include "../../../sparse/includes/gw_sparse.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "localization.h"
+#include "MALLOC.h"
 
 
-SciErr compare_list(int* _piAddress, int _iIsMini);
-SciErr compare_double(int _iIsMini);
+SciErr compare_list(char* _pstName, int* _piAddress, int _iIsMini);
+SciErr compare_multiple_double(char* _pstName, int _iIsMini);
 SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode);
+
+static SciErr compare_double(int _iIsMini, int** _piAddr, int _iNbItem);
 
 /*--------------------------------------------------------------------------*/
 int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
 	int i;
-	int iMode			= 0;
-	int iMini			= 0;
+	int iMode				= 0;
+	int iMini				= 0;
 	int iType1			= 0;
-	int *piAddr1	= NULL;
+	int iModeActive = 0;
+	int *piAddr1		= NULL;
 
 	CheckLhs(1,2);
 
@@ -60,7 +65,14 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 	if(Rhs == 2)
 	{
 		int *piAddr2	= NULL;
-		int iType2 		= 0;
+		int iType2		= 0;
+
+		if(iType1 != sci_matrix) 
+		{
+			Scierror(999, _("%s: More than one argument can be use only with double matrix in first argument.\n"), fname);
+			return 0;
+		}
+
 		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
 		if(sciErr.iErr)
 		{
@@ -83,13 +95,14 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 				printError(&sciErr, 0);
 				return 0;
 			}
+			iModeActive = 1;
 		}
 	}
 
 	switch(iType1)
 	{
 	case sci_matrix :
-		if(Rhs == 1)
+		if(Rhs == 1 || (Rhs == 2 && iModeActive))
 		{
 			sciErr = compare_double_inside(piAddr1, iMini, iMode);
 			if(sciErr.iErr)
@@ -124,7 +137,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 					return 0;
 				}
 			}
-			sciErr = compare_double(iMini);
+			sciErr = compare_multiple_double(fname, iMini);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -133,7 +146,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 		}
 		break;
 	case sci_list :
-		sciErr = compare_list(piAddr1, iMini);
+		sciErr = compare_list(fname, piAddr1, iMini);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -158,177 +171,38 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-SciErr compare_double(int _iIsMini)
+SciErr compare_multiple_double(char* _pstName, int _iIsMini)
 {
 	SciErr sciErr;
-	int i,j;
-	int iRows							= 0;
-	int iCols							= 0;
-	int iRefRows					= 0;
-	int iRefCols					= 0;
+	int i;
+	char* fname			= _pstName;
+	int iNbItem			= Rhs;
+	int **piItem		= NULL;
 
-	int* piAddr						= NULL;
-
-	double *pdblReal			= NULL;
-	double *pdblRealRet1	= NULL;
-	double *pdblRealRet2	= NULL;
-
-	for(i = 1 ; i <= Rhs ; i++)
+	piItem = (int**)MALLOC(sizeof(int*) * iNbItem);
+	for(i = 0 ; i < Rhs ; i++)
 	{
-		int iVar			= i;
-		int iRhsRows	= 0;
-		int iRhsCols	= 0;
-
-		sciErr = getVarAddressFromPosition(pvApiCtx, iVar, &piAddr);
+		int iType = 0;
+		sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piItem[i]);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		if(isVarComplex(pvApiCtx, piAddr))
-		{
-			Err = i;
-			Error(202);
-			return sciErr;
-		}
-
-		sciErr = getVarDimension(pvApiCtx, piAddr, &iRhsRows, &iRhsCols);
+		sciErr = getVarType(pvApiCtx, piItem[i], &iType);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		if(iRhsRows * iRhsCols == 0)
+		if(iType != sci_matrix)
 		{
-			Err = iVar;
-			Error(45);
+			OverLoad(1);
 			return sciErr;
 		}
-
-		if(iVar == 1)
-		{
-			iRows = iRhsRows;
-			iCols = iRhsCols;
-		}
-		else
-		{
-			if(iRhsRows != 1 || iRhsCols != 1)
-			{
-				if(iRhsRows != iRows || iRhsCols != iCols)
-				{
-					if(iRows * iCols != 1)
-					{
-						Err = iVar;
-						Error(42);
-						return sciErr;
-					}
-					else
-					{
-						iRows = iRhsRows;
-						iCols = iRhsCols;
-					}
-				}
-			}
-		}
-	}//for
-
-	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet1);
-	if(sciErr.iErr)
-	{
-		return sciErr;
 	}
-
-	if(Lhs == 2)
-	{
-		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblRealRet2);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
-
-		vDset(iRows * iCols, 1, pdblRealRet2, 1);
-	}
-
-	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRefRows, &iRefCols, &pdblReal);
-	if(sciErr.iErr)
-	{
-		return sciErr;
-	}
-
-	if(iRefRows * iRefCols == 1)
-	{
-		vDset(iRows * iCols, pdblReal[0], pdblRealRet1, 1);
-	}
-	else
-	{
-		memcpy(pdblRealRet1, pdblReal, iRows * iCols * sizeof(double));
-	}
-
-	for(i = 1 ; i < Rhs ; i++)
-	{
-		int iVar				= i + 1;
-		int iCurRows		= 0;
-		int iCurCols		= 0;
-		int iCurData		= 0;
-		double *pdblCur	= NULL;
-		int iInc				= 0;
-		int iIndex2			= 0;
-		int iIndex3			= 0;
-
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iCurRows, &iCurCols, &pdblCur);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
-
-		if(iCurRows == 1 && iCurCols == 1)
-		{
-			iInc = 0;
-		}
-		else
-		{
-			iInc = 1;
-		}
-
-		if(_iIsMini == 0)
-		{
-			int k = 0;
-			for(j = 0 ; j < iRows * iCols; j++)
-			{
-				if(pdblCur[k] < pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
-				{
-					pdblRealRet1[j] = pdblCur[k];
-					if(Lhs == 2)
-					{
-						pdblRealRet2[j] = (double)iVar;
-					}
-				}
-				k += iInc;
-			}
-		}
-		else//maxi
-		{
-			int k = 0;
-			for(j = 0 ; j < iRows * iCols; j++)
-			{
-				if(pdblCur[k] > pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
-				{
-					pdblRealRet1[j] = pdblCur[k];
-					if(Lhs == 2)
-						pdblRealRet2[j] = (double)iVar;
-				}
-				k += iInc;
-			}
-		}
-	}//for
-
-	LhsVar(1) = Rhs + 1;
-
-	if(Lhs == 2)
-	{
-		LhsVar(2) = Rhs + 2;
-	}
-	return sciErr;
+	
+	return compare_double(_iIsMini, piItem, iNbItem);
 }
 
 SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
@@ -343,6 +217,8 @@ SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 	double *pdblReal			= NULL;
 	double *pdblRealRet1	= NULL;
 	double *pdblRealRet2	= NULL;
+
+	sciErr.iErr						= 0;
 
 	if(isVarComplex(pvApiCtx, _piAddress))
 	{
@@ -493,7 +369,7 @@ SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 			}
 		}
 
-		if(_iIsMini == 0)
+		if(_iIsMini)
 		{
 			for(i = 0 ; i < iRows ; i++)
 			{
@@ -530,9 +406,211 @@ SciErr compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 	return sciErr;
 }
 
-SciErr compare_list(int* _piAddress, int _iIsMini)
+SciErr compare_list(char* _pstName, int* _piAddress, int _iIsMini)
 {
 	SciErr sciErr;
+	int i;
+	char* fname		= _pstName;
+	int iNbItem		= 0;
+	int **piItem	= NULL;
+
+	sciErr = getListItemNumber(pvApiCtx, _piAddress, &iNbItem);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+
+	piItem = (int**)MALLOC(sizeof(int*) * iNbItem);
+	for(i = 0 ; i < iNbItem ; i++)
+	{
+		int iType = 0;
+		sciErr = getListItemAddress(pvApiCtx, _piAddress, i+1, &piItem[i]);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
+		sciErr = getVarType(pvApiCtx, piItem[i], &iType);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
+		if(iType != sci_matrix)
+		{
+			OverLoad(1);
+			return sciErr;
+		}
+	}
+
+	return compare_double(_iIsMini, piItem, iNbItem);
+}
+
+static SciErr compare_double(int _iIsMini, int** _piAddr, int _iNbItem)
+{
+	SciErr sciErr;
+	int i,j;
+	int iRows							= 0;
+	int iCols							= 0;
+	int iRefRows					= 0;
+	int iRefCols					= 0;
+
+	double *pdblReal			= NULL;
+	double *pdblRealRet1	= NULL;
+	double *pdblRealRet2	= NULL;
+
+	for(i = 0 ; i < _iNbItem ; i++)
+	{
+		int iRhsRows	= 0;
+		int iRhsCols	= 0;
+
+		if(isVarComplex(pvApiCtx, _piAddr[i]))
+		{
+			Err = i;
+			Error(202);
+			return sciErr;
+		}
+
+		sciErr = getVarDimension(pvApiCtx, _piAddr[i], &iRhsRows, &iRhsCols);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
+		if(iRhsRows * iRhsCols == 0)
+		{
+			Err = i + 1;
+			Error(45);
+			return sciErr;
+		}
+
+		if(i == 0)
+		{
+			iRows = iRhsRows;
+			iCols = iRhsCols;
+		}
+		else
+		{
+			if(iRhsRows != 1 || iRhsCols != 1)
+			{
+				if(iRhsRows != iRows || iRhsCols != iCols)
+				{
+					if(iRows * iCols != 1)
+					{
+						Err = i + 1;
+						Error(42);
+						return sciErr;
+					}
+					else
+					{
+						iRows = iRhsRows;
+						iCols = iRhsCols;
+					}
+				}
+			}
+		}
+	}//for
+
+	sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet1);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	if(Lhs == 2)
+	{
+		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iRows, iCols, &pdblRealRet2);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
+		vDset(iRows * iCols, 1, pdblRealRet2, 1);
+	}
+
+	sciErr = getMatrixOfDouble(pvApiCtx, _piAddr[0], &iRefRows, &iRefCols, &pdblReal);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	if(iRefRows * iRefCols == 1)
+	{
+		vDset(iRows * iCols, pdblReal[0], pdblRealRet1, 1);
+	}
+	else
+	{
+		memcpy(pdblRealRet1, pdblReal, iRows * iCols * sizeof(double));
+	}
+
+	for(i = 1 ; i < _iNbItem ; i++)
+	{
+		int iVar				= i + 1;
+		int iCurRows		= 0;
+		int iCurCols		= 0;
+		int iCurData		= 0;
+		double *pdblCur	= NULL;
+		int iInc				= 0;
+		int iIndex2			= 0;
+		int iIndex3			= 0;
+
+		sciErr = getMatrixOfDouble(pvApiCtx, _piAddr[i], &iCurRows, &iCurCols, &pdblCur);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
+		if(iCurRows == 1 && iCurCols == 1)
+		{
+			iInc = 0;
+		}
+		else
+		{
+			iInc = 1;
+		}
+
+		if(_iIsMini)
+		{
+			int k = 0;
+			for(j = 0 ; j < iRows * iCols; j++)
+			{
+				if(pdblCur[k] < pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
+				{
+					pdblRealRet1[j] = pdblCur[k];
+					if(Lhs == 2)
+					{
+						pdblRealRet2[j] = (double)(i + 1);
+					}
+				}
+				k += iInc;
+			}
+		}
+		else//maxi
+		{
+			int k = 0;
+			for(j = 0 ; j < iRows * iCols; j++)
+			{
+				if(pdblCur[k] > pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
+				{
+					pdblRealRet1[j] = pdblCur[k];
+					if(Lhs == 2)
+					{
+						pdblRealRet2[j] = (double)(i + 1);
+					}
+				}
+				k += iInc;
+			}
+		}
+	}//for
+
+	LhsVar(1) = Rhs + 1;
+
+	if(Lhs == 2)
+	{
+		LhsVar(2) = Rhs + 2;
+	}
 	return sciErr;
 }
+
 /*--------------------------------------------------------------------------*/

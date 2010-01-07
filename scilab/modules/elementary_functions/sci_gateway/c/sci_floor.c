@@ -17,6 +17,7 @@
 
 SciErr floor_poly(int* _piAddress);
 SciErr floor_double(int* _piAddress);
+SciErr floor_int(int* _piAddress);
 
 int C2F(sci_floor) (char *fname,unsigned long fname_len)
 {
@@ -49,6 +50,9 @@ int C2F(sci_floor) (char *fname,unsigned long fname_len)
 		break;
 	case sci_poly :
 		sciErr = floor_poly(piAddr);
+		break;
+	case sci_ints :
+		sciErr = floor_int(piAddr);
 		break;
 	default:
 		OverLoad(1);
@@ -223,6 +227,123 @@ SciErr floor_poly(int* _piAddress)
 			{
 				pdblRealRet[i][j] = dfloors(pdblReal[i][j]);
 			}
+		}
+	}
+
+	return sciErr;
+}
+
+SciErr floor_int(int* _piAddress)
+{
+	SciErr sciErr;
+
+	int iRows = 0;
+	int iCols = 0;
+	int iPrec = 0;
+
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, _piAddress, &iPrec);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	switch(iPrec)
+	{
+	case SCI_INT8 :
+		{
+			char* pcData = NULL;
+			sciErr = getMatrixOfInteger8(pvApiCtx, _piAddress, &iRows, &iCols, &pcData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfInteger8(pvApiCtx, Rhs + 1, iRows, iCols, pcData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
+		}
+	case SCI_UINT8 :
+		{
+			unsigned char* pucData = NULL;
+			sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, _piAddress, &iRows, &iCols, &pucData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, Rhs + 1, iRows, iCols, pucData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
+		}
+	case SCI_INT16 :
+		{
+			short* psData = NULL;
+			sciErr = getMatrixOfInteger16(pvApiCtx, _piAddress, &iRows, &iCols, &psData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfInteger16(pvApiCtx, Rhs + 1, iRows, iCols, psData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
+		}
+	case SCI_UINT16 :
+		{
+			unsigned short* pusData = NULL;
+			sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, _piAddress, &iRows, &iCols, &pusData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, Rhs + 1, iRows, iCols, pusData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
+		}
+	case SCI_INT32 :
+		{
+			int* piData = NULL;
+			sciErr = getMatrixOfInteger32(pvApiCtx, _piAddress, &iRows, &iCols, &piData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1, iRows, iCols, piData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
+		}
+	case SCI_UINT32 :
+		{
+			unsigned int* puiData = NULL;
+			sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, _piAddress, &iRows, &iCols, &puiData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+
+			sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, Rhs + 1, iRows, iCols, puiData);
+			if(sciErr.iErr)
+			{
+				return sciErr;
+			}
+			break;
 		}
 	}
 

@@ -45,7 +45,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	sciErr = getVarType(pvApiCtx, piAddr, iType);
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

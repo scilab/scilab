@@ -381,7 +381,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 			return sciErr;
 		}
 
-		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
+		pstMode[0] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
 		sciErr = getMatrixOfString(_pvCtx, piAddr2, &iRows2, &iCols2, &iLen, pstMode);
 		if(sciErr.iErr)
 		{

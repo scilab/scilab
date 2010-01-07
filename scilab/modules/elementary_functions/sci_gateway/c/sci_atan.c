@@ -90,10 +90,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 					else if(C2F(errgst).ieee==1)
 						Msgs(64,0);
 				}
-				else
-				{
-					watan(pdblReal1[i], pdblImg1[i], &pdblRealRet[i], &pdblImgRet[i]);
-				}
+				watan(pdblReal1[i], pdblImg1[i], &pdblRealRet[i], &pdblImgRet[i]);
 			}
 		}
 		else
