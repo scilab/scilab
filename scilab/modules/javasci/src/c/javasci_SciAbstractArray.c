@@ -62,9 +62,11 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfRowsFromScilab(J
 	sciErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(sciErr));
+		// bug 6388
+		// fprintf(stderr,"%s", getErrorMessage(sciErr));
+		// fprintf(stderr,"Error in Java_javasci_SciAbstractArray_Get (1).\n");
 		(*env)->ReleaseStringUTFChars(env, name , cname);
-		fprintf(stderr,"Error in Java_javasci_SciAbstractArray_Get (1).\n");
+		
 		return -1;
 	}
 
@@ -92,9 +94,10 @@ JNIEXPORT jint JNICALL Java_javasci_SciAbstractArray_getNumberOfColsFromScilab(J
 	sciErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
 	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(sciErr));
+		// bug 6388
+		// fprintf(stderr,"%s", getErrorMessage(sciErr));
+		// fprintf(stderr,"Error in Java_javasci_SciAbstractArray_Get (1).\n");
 		(*env)->ReleaseStringUTFChars(env, name , cname);
-		fprintf(stderr,"Error in Java_javasci_SciAbstractArray_Get (1).\n");
 		return -1;
 	}
 

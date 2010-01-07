@@ -152,7 +152,7 @@ public class DebugLevelAction extends DefaultAction {
 				int value = ((DebugLevel)debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
 				try {
-					XcosInterpreterManagement.SynchronousScilabExec("scicos_debug("+value+");");
+					XcosInterpreterManagement.synchronousScilabExec("scicos_debug("+value+");");
 				} catch (InterpreterException e1) {
 					e1.printStackTrace();
 				}

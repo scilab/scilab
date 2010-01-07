@@ -26,7 +26,7 @@ public final class Signal {
 	private static Map<String, Object> waiters = Collections
 			.synchronizedMap(new HashMap<String, Object>());
 
-	/** This class is a static singleton, thus is must not be instantiated */
+	/** This class is a static singleton, thus it must not be instantiated */
 	private Signal() { }
 
 	/**

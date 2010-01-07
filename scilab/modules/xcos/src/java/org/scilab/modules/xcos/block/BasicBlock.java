@@ -554,7 +554,7 @@ public class BasicBlock extends XcosUIDObject {
 	    
 	    final BasicBlock currentBlock = this;
 	    try {
-			XcosInterpreterManagement.AsynchronousScilabExec(cmd, new ActionListener() {
+			XcosInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
