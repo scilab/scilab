@@ -604,9 +604,6 @@ public class XcosDiagram extends ScilabGraph {
 		
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
-
-	// Track when we have to force a Block to reshape
-	addListener(XcosEvent.FORCE_CELL_RESHAPE, new ForceCellReshapeTracker());
 	
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
@@ -693,25 +690,6 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	    getModel().endUpdate();
 	    refresh();
-	}
-    }
-    
-    /**
-     *  ForceCellReshapeTracker
-     *  Called when we want a Block to reshape for it's ports positions.
-     */
-    @Deprecated
-    private class ForceCellReshapeTracker implements mxIEventListener {
-	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells =  (Object[]) evt.getArgs()[0];
-	    getModel().beginUpdate();
-	    for (int i = 0; i <  cells.length; ++i) {
-		Object cell = cells[i];
-		if (cell instanceof BasicBlock) {
-		    BlockPositioning.updateBlockView((BasicBlock) cell);
-		}
-	    }
-	    getModel().endUpdate();
 	}
     }
     
