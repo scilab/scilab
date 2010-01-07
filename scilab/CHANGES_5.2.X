@@ -10,6 +10,8 @@ Bug fixes:
 
 
 
+
+
 Xcos:
 =====
 
@@ -34,6 +36,15 @@ Xcos:
 * bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
 
 * bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams properly.
+
+Atoms:
+======
+
+* bug 6383 fixed - A message displayed by atomsRemove() (when the module to
+                   remove is loaded) wasn't correct.
+
+* bug 6389 fixed - Atoms GUI : "Update" button just removed the selected module
+                   but didn't update it.
 
 Bug fixes:
 ==========
@@ -80,8 +91,7 @@ Bug fixes:
 
 * bug 5722 fixed - tand returns an error when called with ieee(0) mode
 
-* bug 6383 fixed - A message displayed by atomsRemove() (when the module to
-                   remove is loaded) wasn't correct.
+
 
 * bug 6387 fixed - 'dos' failed to execute very long command line and 
                    returns an msg error : line too long
