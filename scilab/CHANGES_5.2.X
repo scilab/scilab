@@ -77,6 +77,12 @@ Bug fixes:
 
 * bug 6387 fixed - 'dos' failed to execute very long command line and 
                    returns an msg error : line too long
+                   
+* bug 6388 fixed - javasci: methods getNumberOfColsFromScilab and 
+                   getNumberOfRowsFromScilab (SciAbstractArray) 
+                   returned a error message on stderr previously 
+                   (5.1) there was no message.
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
