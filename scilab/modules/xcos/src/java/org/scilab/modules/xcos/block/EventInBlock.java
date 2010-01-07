@@ -13,8 +13,8 @@
 package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
@@ -23,22 +23,26 @@ public final class EventInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = 2799781225262685322L;
 
-    public EventInBlock() {
-	super();
-	setVertex(false);
-	setVisible(false);
-    }
+	public EventInBlock() {
+		super();
+	}
 
-    public EventInBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("CLKINV_f");
-	setSimulationFunctionName("input");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	protected EventInBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("CLKINV_f");
+		setSimulationFunctionName("input");
+	}
+    
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
 	//setValue(((ScilabString) getExprs()).getData()[0][0]);

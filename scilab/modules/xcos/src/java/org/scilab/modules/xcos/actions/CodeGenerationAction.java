@@ -59,8 +59,8 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile("xcos",".h5");;
-	    final File tempInput = File.createTempFile("xcos",".h5");;
+	    final File tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
+	    final File tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
@@ -72,7 +72,7 @@ public class CodeGenerationAction extends DefaultAction {
 					+ tempOutput.getAbsolutePath() + "\"" + ", \""
 					+ tempInput.getAbsolutePath() + "\");";
 	    
-			XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());

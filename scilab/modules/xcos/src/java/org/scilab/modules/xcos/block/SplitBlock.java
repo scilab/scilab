@@ -31,31 +31,30 @@ import com.mxgraph.model.mxGeometry;
 public final class SplitBlock extends BasicBlock {
 
     private static final long serialVersionUID = 5817243367840540106L;
+    public static final int DEFAULT_SIZE = 7;
+    public static final int DEFAULT_COLOR = 7;
 
 	public SplitBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
-	}
-
-	protected SplitBlock(String label) {
-		super(label);
-		setInterfaceFunctionName("SPLIT_f");
-		setSimulationFunctionName("lsplit");
-		setRealParameters(new ScilabDouble());
-		setIntegerParameters(new ScilabDouble());
-		setObjectsParameters(new ScilabList());
-		setExprs(new ScilabDouble());
 	}
 
 	// SPLIT_f <-> lsplit
 	// CLKSPLIT_f <-> split
 	// IMPSPLIT_F <-> limpsplit
+	protected SplitBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
-	public SplitBlock(String label, BasicPort source, BasicPort target1,
-			BasicPort target2) {
-		this(label);
-
+	/**
+	 * Connect the splitblock to a source and 2 targets.
+	 * @param source source to be connected with
+	 * @param target1 first target to be connected with
+	 * @param target2 second target to be connected with
+	 */
+	public void setConnection(BasicPort source, BasicPort target1, BasicPort target2) {
+		
 		//source
 		if(source instanceof ExplicitOutputPort){
 			addPort(new ExplicitInputPort());
@@ -85,6 +84,20 @@ public final class SplitBlock extends BasicBlock {
 		getChildAt(2).setVisible(false);
 	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("SPLIT_f");
+		setSimulationFunctionName("lsplit");
+		setRealParameters(new ScilabDouble());
+		setIntegerParameters(new ScilabDouble());
+		setObjectsParameters(new ScilabList());
+		setExprs(new ScilabDouble());
+	}
+	
 	public void addPort(CommandPort port) {
 		super.addPort(port);
 		port.setVisible(false);
@@ -132,8 +145,8 @@ public final class SplitBlock extends BasicBlock {
 
 	public void setGeometry(mxGeometry geometry) {
 		if(geometry != null){
-			geometry.setWidth(7);
-			geometry.setHeight(7);
+			geometry.setWidth(DEFAULT_SIZE);
+			geometry.setHeight(DEFAULT_SIZE);
 		}
 		super.setGeometry(geometry);
 	}

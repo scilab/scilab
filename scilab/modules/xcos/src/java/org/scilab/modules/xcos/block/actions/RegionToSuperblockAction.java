@@ -32,6 +32,7 @@ import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.ContextUpdate.IOBlocks;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.EventInBlock;
 import org.scilab.modules.xcos.block.EventOutBlock;
 import org.scilab.modules.xcos.block.ExplicitInBlock;
@@ -49,7 +50,6 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -162,7 +162,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Creating the superblock
 	 */
-	SuperBlock superBlock = (SuperBlock) BasicBlock.createBlock("SUPER_f");
+	SuperBlock superBlock = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 	superBlock.setStyle("SUPER_f");
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
@@ -397,60 +397,48 @@ public class RegionToSuperblockAction extends DefaultAction {
 
 	    if (link.getLink() instanceof ExplicitLink) {
 		if (link.getOutGoing()) { // OUT_f
-		    block = BasicBlock.createBlock("OUT_f");
+		    block = BlockFactory.createBlock("OUT_f");
 		    ExplicitInputPort port = new ExplicitInputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(0) + 1);
 		    maxValues.set(0, maxValues.get(0) + 1);
 		} else { // IN_f
-		    block = BasicBlock.createBlock("IN_f");
+		    block = BlockFactory.createBlock("IN_f");
 		    ExplicitOutputPort port = new ExplicitOutputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(1) + 1);
 		    maxValues.set(1, maxValues.get(1) + 1);
 		}
 	    } else if (link.getLink() instanceof ImplicitLink) {
 		if (link.getOutGoing()) { // OUTIMPL_f
-		    block = BasicBlock.createBlock("OUTIMPL_f");
+		    block = BlockFactory.createBlock("OUTIMPL_f");
 		    ImplicitInputPort port = new ImplicitInputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(2) + 1);
 		    maxValues.set(2, maxValues.get(2) + 1);
 		} else { // INIMPL_f
-		    block = BasicBlock.createBlock("INIMPL_f");
+		    block = BlockFactory.createBlock("INIMPL_f");
 		    ImplicitOutputPort port = new ImplicitOutputPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(3) + 1);
 		    maxValues.set(3, maxValues.get(3) + 1);
 		}
 	    } else if (link.getLink() instanceof CommandControlLink) {
 		if (link.getOutGoing()) { // CLKOUTV_f
-		    block = BasicBlock.createBlock("CLKOUTV_f");
+		    block = BlockFactory.createBlock("CLKOUTV_f");
 		    ControlPort port = new ControlPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(4) + 1);
 		    maxValues.set(4, maxValues.get(4) + 1);
 		} else { // CLKINV_f
-		    block = BasicBlock.createBlock("CLKINV_f");
+		    block = BlockFactory.createBlock("CLKINV_f");
 		    CommandPort port = new CommandPort();
-		    port.setDataLines(-1);
-		    port.setDataColumns(-2);
-		    port.setDataType(DataType.UNKNOW_TYPE);
+		    port.setDefaultValues();
 		    block.addPort(port);
 		    link.setPortNumber(maxValues.get(5) + 1);
 		    maxValues.set(5, maxValues.get(5) + 1);
@@ -494,7 +482,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 
     }
 
-    /**
+	/**
      * Getting the broken links on the diagram and construct a list of these links
      * @param objs The selected cells
      * @param copiedCells The copy of the selected cells

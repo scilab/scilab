@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nomatio"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "nomatio"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "nomatio.dll"
             VALUE "ProductName", " nomatio"
             VALUE "ProductVersion", "5, 2, 0, 0"

@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "norandlib module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "norandlib module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "norandlib.dll"
             VALUE "ProductName", " norandlib"
             VALUE "ProductVersion", "5, 2, 0, 0"

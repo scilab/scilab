@@ -69,6 +69,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
@@ -94,13 +95,13 @@ public class BasicBlock extends XcosUIDObject {
     // exprs = [] ; rpar = [] ; ipar = [] ; opar = list()
 
     //private List<String> exprs = new ArrayList<String>();
-    private ScilabType exprs = null;
+    private ScilabType exprs;
     //private List<Double> realParameters = new ArrayList<Double>();
-    private ScilabType realParameters = null;
+    private ScilabType realParameters;
     //private List<Integer> integerParameters = new ArrayList<Integer>();
-    private ScilabType integerParameters = null;
+    private ScilabType integerParameters;
     //private List objectsParameters = new ArrayList();
-    private ScilabType objectsParameters = null;
+    private ScilabType objectsParameters;
 
     private ScilabType nbZerosCrossing = new ScilabDouble();
 
@@ -120,138 +121,80 @@ public class BasicBlock extends XcosUIDObject {
     private int ordering = 0;
     private boolean locked = false;
 
-    public enum SimulationFunctionType {
-    ESELECT,
-    IFTHENELSE,	
-	DEFAULT,
-	TYPE_1,
-	TYPE_2,
-	TYPE_3,
-	C_OR_FORTRAN,
-	SCILAB,
-	UNKNOWN;
+	/**
+	 * Represent a simulation function type compatible with Scilab/Scicos
+	 * function type descriptors.
+	 */
+	public enum SimulationFunctionType {
+		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
+		TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), UNKNOWN(5.0);
 
-	public static SimulationFunctionType convertScilabValue(int scilabValue) {
-	    switch (scilabValue) {
-	    case -2:
-	    return ESELECT;
-	    case -1:
-	    return IFTHENELSE;
-	    case 0:
-		return DEFAULT;
-	    case 1:
-		return TYPE_1;
-	    case 2:
-		return TYPE_2;
-	    case 3:
-		return TYPE_3;
-	    case 4:
-		return C_OR_FORTRAN;
-	    case 5:
-		return SCILAB;
-	    default:
-		return UNKNOWN;
-	    }
+		private double value;
+
+		/**
+		 * Default constructor
+		 * 
+		 * @param scilabValue
+		 *            Scilab/Scicos function type descriptor
+		 */
+		private SimulationFunctionType(double scilabValue) {
+			value = scilabValue;
+		}
+
+		/**
+		 * Get the Java descriptor from the Scilab descriptor.
+		 * 
+		 * @param scilabValue
+		 *            Scilab/Scicos function type descriptor
+		 * @return The corresponding java descriptor
+		 */
+		public static SimulationFunctionType convertScilabValue(int scilabValue) {
+			for (SimulationFunctionType iter : SimulationFunctionType.values()) {
+				if (iter.getAsDouble() == scilabValue) {
+					return iter;
+				}
+			}
+			return UNKNOWN;
+		}
+
+		/**
+		 * Get the Scilab Descriptor from the Java Descriptor
+		 * 
+		 * @return The corresponding Scilab/Scicos descriptor
+		 */
+		public double getAsDouble() {
+			return this.value;
+		}
+	};
+
+	public BasicBlock() {
+		super();
+		setVisible(true);
+		setVertex(true);
 	}
 
-	public double getAsDouble() {
-	    switch (this) {
-	    case ESELECT:
-	    return -2.0;
-	    case IFTHENELSE:
-	    return -1.0;
-	    case DEFAULT:
-		return 0.0;
-	    case TYPE_1:
-		return 1.0;
-	    case TYPE_2 :
-		return 2.0;
-	    case TYPE_3 :
-		return 3.0;
-	    case C_OR_FORTRAN:
-		return 4.0;
-	    case SCILAB:
-		return 5.0;
-	    default:
-		return Double.NaN;
-	    }
+	protected BasicBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
 	}
-    };
 
-    public static BasicBlock createBlock(String label) {
-	if (label.compareTo("TEXT_f") == 0) {
-	    return new TextBlock(label);
+	protected BasicBlock(String label, String style) {
+		this(label);
+		setStyle(style);
 	}
-	if (label.compareTo("SUPER_f") == 0) {
-	    return new SuperBlock(label);
-	}
-	if (label.compareTo("DSUPER") == 0) {
-	    return new SuperBlock(label, true);
-	}
-	if (label.compareTo("CONST_m") == 0 || label.compareTo("CONST") == 0
-		|| label.compareTo("CONST_f") == 0) {
-	    return new ConstBlock(label);
-	}
-	if (label.compareTo("AFFICH_m") == 0
-		|| label.compareTo("AFFICH_f") == 0) {
-	    return new AfficheBlock(label);
-	}
-	if (label.compareTo("GAINBLK_f") == 0
-		|| label.compareTo("GAINBLK") == 0
-		|| label.compareTo("GAIN_f") == 0) {
-	    return new GainBlock(label);
-	}
-	if (label.compareTo("IN_f") == 0) {
-	    return new ExplicitInBlock(label);
-	}
-	if (label.compareTo("OUT_f") == 0) {
-	    return new ExplicitOutBlock(label);
-	}
-	if (label.compareTo("INIMPL_f") == 0) {
-	    return new ImplicitInBlock(label);
-	}
-	if (label.compareTo("OUTIMPL_f") == 0) {
-	    return new ImplicitOutBlock(label);
-	}
-	if (label.compareTo("CLKINV_f") == 0) {
-	    return new EventInBlock(label);
-	}
-	if (label.compareTo("CLKOUTV_f") == 0
-		|| label.compareTo("CLKOUT_f") == 0) {
-	    return new EventOutBlock(label);
-	}
-	if (label.compareTo("SPLIT_f") == 0
-		|| label.compareTo("IMPSPLIT_f") == 0
-		|| label.compareTo("CLKSPLIT_f") == 0) {
-	    return new SplitBlock(label);
-	} else {
-	    return new BasicBlock(label);
-	}
-    }
 
-    public BasicBlock() {
-	super();
-	setVertex(false);
-	setVisible(false);
-    }
-
-    protected BasicBlock(String label) {
-	super();
-	setValue(label);
-	setStyle("");
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,40,40));
-    }
-
-    protected BasicBlock(String label, String style) {
-	super();
-	setValue(label);
-	setStyle(style);
-	setVertex(true);
-	setConnectable(false);
-	setGeometry(new mxGeometry(0,0,40,40));
-    }
+	/**
+	 * Initialize the block with the default values
+	 */
+	protected void setDefaultValues() {
+		setVisible(true);
+		setVertex(true);
+		setConnectable(false);
+		setGeometry(new mxGeometry(0, 0, 40, 40));
+		setValue("");
+		setStyle("");
+	}
 
     public XcosDiagram getParentDiagram() {
         return parentDiagram;
@@ -593,7 +536,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos",".h5");
+	    tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -610,15 +553,19 @@ public class BasicBlock extends XcosUIDObject {
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 	    
 	    final BasicBlock currentBlock = this;
-	    XcosInterpreterManagement.AsynchronousScilabExec(cmd, new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Now read new Block
-			    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-			    updateBlockSettings(modifiedBlock);
-			    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
-			    setLocked(false);
-			}
-		});
+	    try {
+			XcosInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					// Now read new Block
+				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+				    updateBlockSettings(modifiedBlock);
+				    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
+				    setLocked(false);
+				}
+			});
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
 	    setLocked(true);
 
 	} catch (IOException e) {
@@ -631,7 +578,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos",".h5");
+	    tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
 	    tempOutput.deleteOnExit();
 	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -725,7 +672,7 @@ public class BasicBlock extends XcosUIDObject {
 
 		public void callBack() {
 		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
-		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -747,7 +694,7 @@ public class BasicBlock extends XcosUIDObject {
 		private static final long serialVersionUID = -99601763227525686L;
 
 		public void callBack() {
-		    BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -774,7 +721,7 @@ public class BasicBlock extends XcosUIDObject {
 		    private static final long serialVersionUID = 3345416658377835057L;
 
 		    public void callBack() {
-			BasicBlock block = (BasicBlock)BasicBlock.this.createClone();
+			BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 			mxGeometry geom = BasicBlock.this.getGeometry();
 			geom.setX(10);
@@ -945,35 +892,8 @@ public class BasicBlock extends XcosUIDObject {
 	BlockPositioning.toggleAntiClockwiseRotation(this);
 
     }
-    /**
-     * Create a clone for block added by context menu in palette
-     * @return the clone
-     */
-    public Object createClone() {
-	try {
-	    BasicBlock clone = (BasicBlock) clone();
 
-	    /* Clone children */
-	    for (int i = 0; i < getChildCount(); i++) {
-		if (getChildAt(i) instanceof InputPort) {
-		    clone.addPort((InputPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof OutputPort) {
-		    clone.addPort((OutputPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof CommandPort) {
-		    clone.addPort((CommandPort) getChildAt(i).clone());
-		} else if (getChildAt(i) instanceof ControlPort) {
-		    clone.addPort((ControlPort) getChildAt(i).clone());
-		}
-	    }
-
-	    return clone;
-	} catch (CloneNotSupportedException e) {
-	    e.printStackTrace();
-	    return null;
-	}
-    }
-
-    public int getAngle() {
+	public int getAngle() {
 	return angle;
     }
 

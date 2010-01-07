@@ -14,7 +14,11 @@ package org.scilab.modules.xcos.utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Executor;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.SwingUtilities;
@@ -24,12 +28,25 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 /**
  * Implements useful methods to communicate with the Scilab interpreter.
  */
-public class XcosInterpreterManagement extends InterpreterManagement {
+public final class XcosInterpreterManagement extends InterpreterManagement {
 
-	private static Executor executor = Executors.newSingleThreadExecutor();
+	private static ExecutorService executor = Executors.newSingleThreadExecutor();
+	private static Set<String> runningTasks = Collections.synchronizedSet(new HashSet<String>());
 
-	private XcosInterpreterManagement() {
-		// full static class so private constructor
+	/** This class is a static singleton, thus it must not be instantiated */
+	private XcosInterpreterManagement() { }
+	
+	/**
+	 * Throw when there is a problem to communicate with the scilab interpreter.
+	 */
+	public static class InterpreterException extends Exception {
+		/**
+		 * Default constructor
+		 * @param string Useful message 
+		 */
+		public InterpreterException(String string) {
+			super(string);
+		}
 	}
 
 	/**
@@ -37,15 +54,23 @@ public class XcosInterpreterManagement extends InterpreterManagement {
 	 * 
 	 * @param command
 	 *            The scilab command
-	 * @return Status of the execution
+	 * @throws InterpreterException when the command cannot be executed on the interpreter.
 	 */
-	public static int SynchronousScilabExec(String command) {
-		final String uid = Integer.toString(command.hashCode());
+	public static void synchronousScilabExec(String command) throws InterpreterException {
+		final String uidDesc = Integer.toString(command.hashCode());
+		final String fullCommand = command + ";xcosNotify(\"" + uidDesc + "\");";
 		
-		command += ";xcosNotify(\"" + uid + "\");";
-		int ret = InterpreterManagement.requestScilabExec(command);
-		Signal.wait(uid);
-		return ret;
+		if (runningTasks.contains(uidDesc)) {
+			throw new InterpreterException("Same command executed again");
+		}
+		
+		int ret = InterpreterManagement.requestScilabExec(fullCommand);
+		if (ret != 0) {
+			throw new InterpreterException("Unable to communicate with the interpreter");
+		}
+		runningTasks.add(uidDesc);
+		Signal.wait(uidDesc);
+		runningTasks.remove(uidDesc);
 	}
 
 	/**
@@ -67,25 +92,66 @@ public class XcosInterpreterManagement extends InterpreterManagement {
 	 *            The command to execute
 	 * @param callback
 	 *            The callback which is called at the end of the execution.
+	 * @throws InterpreterException when the command cannot be executed on the interpreter.
 	 */
-	public static void AsynchronousScilabExec(final String command,
-			final ActionListener callback) {
+	public static void asynchronousScilabExec(String command,
+			final ActionListener callback) throws InterpreterException {
 		final int uid = command.hashCode();
 		final String uidDesc = Integer.toString(uid);
 		final String fullCommand = command + ";xcosNotify(\"" + uidDesc + "\");";
 		final ActionEvent event = new ActionEvent(
 				XcosInterpreterManagement.class, uid, command);
 
-		executor.execute(new Runnable() {
-			public void run() {
-				InterpreterManagement.putCommandInScilabQueue(fullCommand);
-				Signal.wait(Integer.toString(uid));
+		if (runningTasks.contains(uidDesc)) {
+			throw new InterpreterException("Same command executed again");
+		}
+		
+		executor.submit(new Callable<Void>() {
+			public Void call() throws Exception {
+				int ret = InterpreterManagement.putCommandInScilabQueue(fullCommand);
+				if (ret != 0) {
+					throw new InterpreterException("Unable to communicate with the interpreter");
+				}
+				runningTasks.add(uidDesc);
+				Signal.wait(uidDesc);
+				runningTasks.remove(uidDesc);
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						callback.actionPerformed(event);
 					}
 				});
+				return null;
 			}
 		});
+	}
+	
+	/**
+	 * This method halt a command performed asynchronously.
+	 * @param hashcode The command.getHashcode() uid.
+	 * 
+	 * TODO: this method doesn't remove the command from the scilab
+	 * execution queue.
+	 */
+	public static void stopScilabExec(int hashcode) {
+		String uidDesc = Integer.toString(hashcode);
+		
+		synchronized (runningTasks) {
+			if (runningTasks.contains(uidDesc)) {
+				Signal.notify(uidDesc);
+				runningTasks.remove(uidDesc);
+			}
+		}
+	}
+	
+	/** 
+	 * This method stop all the running scilab execution (sync or async).
+	 */
+	public static void stopAllScilabExec() {
+		synchronized (runningTasks) {
+			interruptScilab();
+			for (String uidDesc : runningTasks) {
+				Signal.notify(uidDesc);
+			}
+		}
 	}
 }

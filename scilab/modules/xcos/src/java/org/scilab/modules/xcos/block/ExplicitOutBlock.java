@@ -13,8 +13,8 @@
 package org.scilab.modules.xcos.block;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
@@ -23,21 +23,25 @@ public final class ExplicitOutBlock extends ContextUpdate {
 
     private static final long serialVersionUID = -3423053321045811400L;
 
-    public ExplicitOutBlock() {
-	super();
-	setVertex(false);
-	setVisible(false);
-    }
+	public ExplicitOutBlock() {
+		super();
+	}
 
-    public ExplicitOutBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("OUT_f");
-	setSimulationFunctionName("output");
-	setNbZerosCrossing(new ScilabDouble(0));
-	setNmode(new ScilabDouble(0));
-	setODState(new ScilabList());
-	setValue(1);
-    }
+	protected ExplicitOutBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("OUT_f");
+		setSimulationFunctionName("output");
+	}
 
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);

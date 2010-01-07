@@ -39,6 +39,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 public class DebugLevelAction extends DefaultAction {
 	private static final long serialVersionUID = 1L;
@@ -150,7 +151,11 @@ public class DebugLevelAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 				int value = ((DebugLevel)debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
-				XcosInterpreterManagement.SynchronousScilabExec("scicos_debug("+value+");");
+				try {
+					XcosInterpreterManagement.synchronousScilabExec("scicos_debug("+value+");");
+				} catch (InterpreterException e1) {
+					e1.printStackTrace();
+				}
 		
 				mainFrame.dispose();
 			}

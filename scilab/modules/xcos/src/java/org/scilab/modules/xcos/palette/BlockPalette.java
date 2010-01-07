@@ -37,7 +37,8 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -89,7 +90,7 @@ public class BlockPalette extends JLabel {
 							private static final long serialVersionUID = 1185879440137756636L;
 
 							public void callBack() {
-								BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+								BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
 								block.getGeometry().setX(10);
 								block.getGeometry().setY(10);
 								Xcos.createEmptyDiagram().addCell(block);
@@ -108,7 +109,7 @@ public class BlockPalette extends JLabel {
 							private static final long serialVersionUID = 1185879440137756636L;
 
 							public void callBack() {
-								BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+								BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
 								block.getGeometry().setX(10);
 								block.getGeometry().setY(10);
 								theDiagram.addCell(block);
@@ -131,7 +132,7 @@ public class BlockPalette extends JLabel {
 								private static final long serialVersionUID = -3138430622029406470L;
 
 								public void callBack() {
-									BasicBlock block = (BasicBlock) BlockPalette.this.getBlock().createClone();
+									BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
 									block.getGeometry().setX(10);
 									block.getGeometry().setY(10);
 									theDiagram.addCell(block);
@@ -202,7 +203,7 @@ public class BlockPalette extends JLabel {
 					block.setValue(block.getInterfaceFunctionName());
 				}
 			} else {
-				block = new TextBlock("Edit me!!!");
+				block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
 			}
 		}
 		return block;

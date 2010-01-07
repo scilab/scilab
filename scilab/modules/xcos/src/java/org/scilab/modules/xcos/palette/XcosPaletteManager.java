@@ -17,7 +17,7 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -409,7 +409,7 @@ public final class XcosPaletteManager {
 		}
 
 		//load user defined palette
-		ArrayList<String> files = ConfigXcosManager.getUserDefinedPalettes();
+		List<String> files = ConfigXcosManager.getUserDefinedPalettes();
 		for(String file : files) {
 		    loadUserPalette(file);
 		}

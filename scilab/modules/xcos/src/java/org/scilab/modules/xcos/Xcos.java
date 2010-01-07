@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -105,10 +106,19 @@ public final class Xcos {
 
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-
-	while (diagrams.size() > 0) {
-	    diagrams.get(0).closeDiagram();
+	
+	/*
+	 * We are looping in the inverted order because we have to close latest
+	 * add diagrams (eg SuperBlockDiagrams) before any others.
+	 * 
+	 * Furthermore the closeDiagram operation modify the diagram list.
+	 */
+	int i = diagrams.size()-1;
+	while (i >= 0) {
+		diagrams.get(i).closeDiagram();
+		i = diagrams.size()-1;
 	}
+
 	ViewPaletteBrowserAction.setPalettesVisible(false);
     }
 
@@ -203,7 +213,7 @@ public final class Xcos {
 
 			block = diagram.getChildById(UID);
 			if (block != null) {
-			    SuperBlock newSP = (SuperBlock) BasicBlock.createBlock("SUPER_f");
+			    SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 			    newSP.setRealParameters(block.getRealParameters());
 			    newSP.setParentDiagram(block.getParentDiagram());
 			    if (show == true) {

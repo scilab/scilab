@@ -17,21 +17,41 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
+
 /**
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
 	COSF("cosf", XcosMessages.FILE_COSF) {
+		/**
+		 * Export the typed file to the HDF5 format.
+		 * @param arg0 The COSF formatted file
+		 * @return The HDF5 formatted file
+		 */
+		@Override
 		public File exportToHdf5(File arg0) {
 			return loadScicosDiagram(arg0);
 		}
 	},
 	COS("cos", XcosMessages.FILE_COS) {
+		/**
+		 * Export the typed file to the HDF5 format.
+		 * @param arg0 The COS formatted file
+		 * @return The HDF5 formatted file
+		 */
+		@Override
 		public File exportToHdf5(File arg0) {
 			return loadScicosDiagram(arg0);
 		}
 	},
 	HDF5("h5", XcosMessages.FILE_HDF5) {
+		/**
+		 * Export the typed file to the HDF5 format. (does nothing there)
+		 * @param arg0 The HDF5 formatted file
+		 * @return The HDF5 formatted file
+		 */
+		@Override
 		public File exportToHdf5(File arg0) {
 			return arg0;
 		}
@@ -48,7 +68,7 @@ public enum XcosFileType {
 	 * @param extension file extension (without the dot)
 	 * @param description file description
 	 */
-	XcosFileType (String extension, String description) {
+	XcosFileType(String extension, String description) {
 		this.extension = extension;
 		this.description = description;
 	}
@@ -116,7 +136,7 @@ public enum XcosFileType {
 						|| !Arrays.equals(xmlMagic, readMagic)) {
 					retValue = XcosFileType.UNKNOW;
 				}
-			} catch (Exception e) {
+			} catch (IOException e) {
 				retValue = XcosFileType.UNKNOW;
 			}
 		}
@@ -152,7 +172,7 @@ public enum XcosFileType {
 	 * @return A valid file mask
 	 */
 	public static String[] getValidFileMask() {
-	    String[] result = new String[XcosFileType.values().length-1];
+	    String[] result = new String[XcosFileType.values().length - 1];
 	    
 	    for (int i = 0; i < result.length; i++) {
 		result[i] = XcosFileType.values()[i].getFileMask();
@@ -166,7 +186,7 @@ public enum XcosFileType {
 	 * @return A valid file mask
 	 */
 	public static String[] getValidFileDescription() {
-	    String[] result = new String[XcosFileType.values().length-1];
+	    String[] result = new String[XcosFileType.values().length - 1];
 	    
 	    for (int i = 0; i < result.length; i++) {
 		result[i] = XcosFileType.values()[i].getDescription() + " (*." + XcosFileType.values()[i].getExtension() + ")";
@@ -175,13 +195,22 @@ public enum XcosFileType {
 	    return result;
 	}
 	
+	/**
+	 * Convert a Scicos diagram (scs_m scilab script) to an hdf5 file
+	 * @param filename The file to execute in scilab.
+	 * @return The exported data in hdf5.
+	 */
 	public static File loadScicosDiagram(File filename) {
 	    File tempOutput = null;
 	    try {
 		tempOutput = File.createTempFile("xcos", XcosFileType.HDF5.getDottedExtension());
 		String cmd = "scs_m = importScicosDiagram(\"" + filename.getAbsolutePath() + "\");";
 		cmd += "export_to_hdf5(\"" + tempOutput.getAbsolutePath() + "\", \"scs_m\");";
-		XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		try {
+			XcosInterpreterManagement.synchronousScilabExec(cmd);
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }

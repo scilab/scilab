@@ -113,8 +113,8 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     public void setModified(boolean modified) {
         super.setModified(modified);
 
-        if (getContainer() != null &&
-        	getContainer().getParentDiagram() != null) {
+        if (getContainer() != null
+        		&& getContainer().getParentDiagram() != null) {
             getContainer().getParentDiagram().setModified(modified);
         }
     }

@@ -31,6 +31,7 @@ public final class XcosDialogs {
 	
 	/**
 	 * Dialog displayed when no  block is selected and one is needed for action
+	 * @param diagram The associated diagram
 	 */
 	public static void noBlockSelected(XcosDiagram diagram) {
 	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
@@ -38,6 +39,7 @@ public final class XcosDialogs {
 
 	/**
 	 * Dialog displayed when saving failed
+	 * @param diagram The associated diagram
 	 */
 	public static void couldNotSaveFile(XcosDiagram diagram) {
 	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
@@ -45,6 +47,7 @@ public final class XcosDialogs {
 	
 	/**
 	 * Dialog displayed when loading failed
+	 * @param diagram The associated diagram
 	 */
 	public static void couldNotLoadFile(XcosDiagram diagram) {
 	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);

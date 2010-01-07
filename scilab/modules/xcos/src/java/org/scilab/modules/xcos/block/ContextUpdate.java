@@ -3,13 +3,15 @@ package org.scilab.modules.xcos.block;
 import java.io.File;
 import java.io.IOException;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 public abstract class ContextUpdate extends BasicBlock{
 
     private static final long serialVersionUID = 6076826729067963560L;
-    private static Object _mutex_ = new Object();
     
     /**
      * This enum represent all the subclasses of ContextUpdate .
@@ -36,14 +38,28 @@ public abstract class ContextUpdate extends BasicBlock{
 	}
     }
     
-    public ContextUpdate() {
-	super();
-    }
+	public ContextUpdate() {
+		super();
+	}
 
-    public ContextUpdate(String label) {
-	super(label);
-    }
+	protected ContextUpdate(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setNbZerosCrossing(new ScilabDouble(0));
+		setNmode(new ScilabDouble(0));
+		setODState(new ScilabList());
+		setValue(1);
+	}
+    
     public void onContextChange(String[] context) {
 	//prevent to open twice
 	if(isLocked()) {
@@ -69,11 +85,13 @@ public abstract class ContextUpdate extends BasicBlock{
 	    cmd += ", "+getInterfaceFunctionName();
 	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
 
-	    synchronized (_mutex_) {
-		XcosInterpreterManagement.SynchronousScilabExec(cmd);
+		try {
+			XcosInterpreterManagement.synchronousScilabExec(cmd);
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		}
 		BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		updateBlockSettings(modifiedBlock);
-	    }
 	    
 	} catch (IOException e) {
 	    e.printStackTrace();

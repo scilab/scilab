@@ -67,10 +67,12 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
@@ -331,19 +333,16 @@ public class XcosDiagram extends ScilabGraph {
             dragSplitPos.setY(srcY + offsetY);
     	}
    	
-    	SplitBlock splitBlock = null;
-    	
+    	SplitBlock splitBlock = (SplitBlock) BlockFactory.createBlock(BlockInterFunction.SPLIT_f);
     	if (target instanceof BasicLink) {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
+    	    splitBlock.setConnection(linkSource, linkTarget, (BasicPort) ((BasicLink)target).getSource());
     	} else {
-    	    splitBlock = new SplitBlock("SPLIT_f", linkSource, linkTarget, (BasicPort) target);
+    		splitBlock.setConnection(linkSource, linkTarget, (BasicPort) target);
     	}
     	
-    	splitBlock.setStyle("SPLIT_f");
-    	mxGeometry geom = new mxGeometry();
-    	geom.setX(dragSplitPos.getX() - 3); //-3 for splitBlock size
-    	geom.setY(dragSplitPos.getY() - 3); //-3 for splitBlock size
-    	splitBlock.setGeometry(geom);
+    	mxGeometry geom = splitBlock.getGeometry();
+    	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE/2));
+    	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE/2));
     	addCell(splitBlock);
     	
     	
@@ -605,9 +604,6 @@ public class XcosDiagram extends ScilabGraph {
 		
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
-
-	// Track when we have to force a Block to reshape
-	addListener(XcosEvent.FORCE_CELL_RESHAPE, new ForceCellReshapeTracker());
 	
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
@@ -694,24 +690,6 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	    getModel().endUpdate();
 	    refresh();
-	}
-    }
-    
-    /**
-     *  ForceCellReshapeTracker
-     *  Called when we want a Block to reshape for it's ports positions.
-     */
-    private class ForceCellReshapeTracker implements mxIEventListener {
-	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells =  (Object[]) evt.getArgs()[0];
-	    getModel().beginUpdate();
-	    for (int i = 0; i <  cells.length; ++i) {
-		Object cell = cells[i];
-		if (cell instanceof BasicBlock) {
-		    BlockPositioning.updateBlockView((BasicBlock) cell);
-		}
-	    }
-	    getModel().endUpdate();
 	}
     }
     
@@ -969,7 +947,7 @@ public class XcosDiagram extends ScilabGraph {
 
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
-    			TextBlock textBlock = new TextBlock("Edit me !!!");
+    			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
     			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
     			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
     			addCell(textBlock);
@@ -1828,6 +1806,7 @@ public class XcosDiagram extends ScilabGraph {
 		setChildrenParentDiagram(xcosDiagram);
 		XcosTab.showTabFromDiagram(xcosDiagram);
 		xcosDiagram.generateUID();
+		xcosDiagram.info(XcosMessages.EMPTY_INFO);
 	    }
 	    
 	    result = true;
@@ -1868,7 +1847,7 @@ public class XcosDiagram extends ScilabGraph {
 		BasicBlock block = (BasicBlock)getModel().getChildAt(getDefaultParent(), i);
 		if(block.getRealParameters() instanceof ScilabMList) {
 		    //we have a hidden SuperBlock, create a real one
-		    SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+		    SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 		    newSP.setRealParameters(block.getRealParameters());
 		    newSP.createChildDiagram(true);
 		    newSP.setParentDiagram(this);
@@ -2120,7 +2099,7 @@ public class XcosDiagram extends ScilabGraph {
 			}
 		    } else if(block.getRealParameters() instanceof ScilabMList) { 
 			//we have a hidden SuperBlock, create a real one
-			SuperBlock newSP = (SuperBlock)BasicBlock.createBlock("SUPER_f");
+			SuperBlock newSP = (SuperBlock)BlockFactory.createBlock("SUPER_f");
 			newSP.setParentDiagram(block.getParentDiagram());
 			newSP.setRealParameters(block.getRealParameters());
 			newSP.createChildDiagram();

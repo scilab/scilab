@@ -26,11 +26,11 @@ import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 public class StartAction  extends DefaultAction {
 
     private static final long serialVersionUID = -7548486977403506053L;
-    private static String simulationEnd = "__simulationEnd__";
 
     public StartAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.START, scilabGraph);
@@ -48,6 +48,7 @@ public class StartAction  extends DefaultAction {
 	File temp;
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
 	XcosTab.setStartEnabled(false);
+	((XcosDiagram) getGraph(null)).setReadOnly(true);
 	
 	try {
 	    temp = File.createTempFile("xcos",".h5");
@@ -57,12 +58,17 @@ public class StartAction  extends DefaultAction {
 	    				+"scicos_debug("+((XcosDiagram) getGraph(e)).getDebugLevel()+");"
 	    				+"xcos_simulate(scs_m);"
 	    				+"deletefile(\"" + temp.getAbsolutePath()+"\");";
-	    XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-			    XcosTab.setStartEnabled(true);
-			}
-		});
+	    try {
+			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+				    XcosTab.setStartEnabled(true);
+				    ((XcosDiagram) getGraph(null)).setReadOnly(false);
+				}
+			});
+		} catch (InterpreterException e1) {
+			e1.printStackTrace();
+		}
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	    XcosTab.setStartEnabled(true);

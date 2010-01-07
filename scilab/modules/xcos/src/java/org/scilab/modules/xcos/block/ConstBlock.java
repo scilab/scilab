@@ -21,14 +21,22 @@ public final class ConstBlock extends BasicBlock {
 
     public ConstBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
     
     protected ConstBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("CONST_m");
-	setValue("1");
+	this();
+	setDefaultValues();
+	setValue(label);
+    }
+    
+    /**
+     * Initialize the block with the default values
+     */
+    @Override
+    protected void setDefaultValues() {
+    	super.setDefaultValues();
+    	setInterfaceFunctionName("CONST_m");
+    	setValue("1");
     }
     
     public void setExprs(ScilabType exprs) {

@@ -32,6 +32,8 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   ng    = 0
   fil   = pathconvert(fil, %f, %t)
+  //++ convert space to _
+  fil   = strsubst(fil, ' ', '_')
   // MODELICAC on windows does not support '\' at the end of path
   // TO DO: Fix MODELICAC
   if MSDOS then

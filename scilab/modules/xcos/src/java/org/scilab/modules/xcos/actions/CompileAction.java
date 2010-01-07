@@ -23,6 +23,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Diagram compilation management
@@ -31,7 +32,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 public class CompileAction extends DefaultAction {
 
 	private static final long serialVersionUID = 1L;
-	private static String compilationEnd = "__compilationEnd__";
 
 	/**
 	 * Constructor
@@ -65,13 +65,17 @@ public class CompileAction extends DefaultAction {
 						temp.deleteOnExit();
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						
-						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
-										 "xcos_compile(scs_m);";
-						XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-								((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
-							}
-						});
+						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+						               + "xcos_compile(scs_m);";
+						try {
+							XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+								public void actionPerformed(ActionEvent arg0) {
+									((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
+								}
+							});
+						} catch (InterpreterException e) {
+							e.printStackTrace();
+						}
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
