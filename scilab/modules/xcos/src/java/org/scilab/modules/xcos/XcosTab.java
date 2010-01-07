@@ -264,7 +264,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
      * Update menu displaying recent opened files
      */
     public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
-	ArrayList<File> recentFiles = ConfigXcosManager
+	List<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
 
 	for (int j = 0; j < recentsMenus.size(); j++) {
@@ -444,7 +444,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     }
 
     public MenuBar createMenuBar(ScilabGraph scilabGraph) {
-	ArrayList<File> recentFiles = ConfigXcosManager
+	List<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
 
 	menuBar = ScilabMenuBar.createMenuBar();

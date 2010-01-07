@@ -21,6 +21,7 @@ public class ExplicitOutputPort extends OutputPort {
 	super("ExplicitOutputPort");
     }
 
+    @Override
     public Type getType() {
 	return Type.EXPLICIT;
     }

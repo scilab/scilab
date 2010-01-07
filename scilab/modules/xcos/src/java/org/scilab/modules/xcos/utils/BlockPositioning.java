@@ -29,7 +29,7 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
-	/** This class is a static singleton, thus is must not be instantiated */
+	/** This class is a static singleton, thus it must not be instantiated */
     private BlockPositioning() { }
     
     /**
