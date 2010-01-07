@@ -149,8 +149,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
 	src/c/predef.c src/c/transposeMatrix.c \
 	src/c/recursionFunction.c src/c/typename.c \
-	src/c/inittypenames.c src/c/funcprot.c src/c/scimem64.c \
-	src/fortran/clunit.f src/fortran/getlin.f \
+	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
+	src/c/scimem64.c src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
@@ -184,8 +184,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
 	src/fortran/basin.f src/fortran/clause.f src/fortran/compcl.f \
-	src/fortran/termf.f src/fortran/expsum.f src/fortran/eqid.f \
-	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/termf.f src/fortran/expsum.f src/fortran/copyvar.f \
+	src/fortran/putid.f src/fortran/itosci.f \
 	src/fortran/stackr2d.f src/fortran/stacki2d.f \
 	src/fortran/stackc2i.f src/fortran/isinstring.f \
 	src/fortran/relocstack.f sci_gateway/c/sci_stacksize.c \
@@ -281,7 +281,7 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-transposeMatrix.lo \
 	libscicore_la-recursionFunction.lo libscicore_la-typename.lo \
 	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
-	$(am__objects_1)
+	libscicore_la-eqid.lo $(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
@@ -298,8 +298,8 @@ am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	getfunction.lo stackp.lo dbasin.lo macro.lo extlarg.lo \
 	getstr.lo cvwm.lo storeglobal.lo lst2vars.lo basnms.lo matc.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
-	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
-	itosci.lo stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
+	compcl.lo termf.lo expsum.lo copyvar.lo putid.lo itosci.lo \
+	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
 	$(am__objects_3)
 am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
@@ -634,7 +634,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
 	src/c/predef.c src/c/transposeMatrix.c \
 	src/c/recursionFunction.c src/c/typename.c \
-	src/c/inittypenames.c src/c/funcprot.c $(am__append_1)
+	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
+	$(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -669,8 +670,8 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
 	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
 	src/fortran/basin.f src/fortran/clause.f src/fortran/compcl.f \
-	src/fortran/termf.f src/fortran/expsum.f src/fortran/eqid.f \
-	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/termf.f src/fortran/expsum.f src/fortran/copyvar.f \
+	src/fortran/putid.f src/fortran/itosci.f \
 	src/fortran/stackr2d.f src/fortran/stacki2d.f \
 	src/fortran/stackc2i.f src/fortran/isinstring.f \
 	$(am__append_2)
@@ -989,6 +990,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-cs2st.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-eqid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-funcprot.Plo@am__quote@
@@ -1640,6 +1642,13 @@ libscicore_la-funcprot.lo: src/c/funcprot.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/funcprot.c' object='libscicore_la-funcprot.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-funcprot.lo `test -f 'src/c/funcprot.c' || echo '$(srcdir)/'`src/c/funcprot.c
+
+libscicore_la-eqid.lo: src/c/eqid.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-eqid.lo -MD -MP -MF $(DEPDIR)/libscicore_la-eqid.Tpo -c -o libscicore_la-eqid.lo `test -f 'src/c/eqid.c' || echo '$(srcdir)/'`src/c/eqid.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-eqid.Tpo $(DEPDIR)/libscicore_la-eqid.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/eqid.c' object='libscicore_la-eqid.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-eqid.lo `test -f 'src/c/eqid.c' || echo '$(srcdir)/'`src/c/eqid.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
@@ -2325,9 +2334,6 @@ termf.lo: src/fortran/termf.f
 
 expsum.lo: src/fortran/expsum.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o expsum.lo `test -f 'src/fortran/expsum.f' || echo '$(srcdir)/'`src/fortran/expsum.f
-
-eqid.lo: src/fortran/eqid.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o eqid.lo `test -f 'src/fortran/eqid.f' || echo '$(srcdir)/'`src/fortran/eqid.f
 
 copyvar.lo: src/fortran/copyvar.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o copyvar.lo `test -f 'src/fortran/copyvar.f' || echo '$(srcdir)/'`src/fortran/copyvar.f

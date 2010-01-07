@@ -1,17 +1,19 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Allan CORNET
+* Copyright (C) 2010 - DIGITEO - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
+#include <search.h>
 #include "MALLOC.h"
 #include "stack-def.h"
 #include "hashtable_core.h"
@@ -19,215 +21,181 @@
 #include "existfunction.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
+#define lfind _lfind
 #endif
 /*--------------------------------------------------------------------------*/
-#define MAXLENGHTFUNCTIONNAME 256 /* 24 in fact in scilab */
-typedef struct entry 
+#define MAXLENGHTFUNCTIONNAME nlgh+1 /* 24 in scilab */
+typedef struct primitive_table 
 {
-	int key[nsiz];
-	int data;
+	unsigned int used;
+	int keyIdentity[nsiz];
+	int primitivePointer;
 	char namefunction[MAXLENGHTFUNCTIONNAME];
-} ENTRY;
-
-typedef struct 
-{ 
-	unsigned int   used;
-	ENTRY entry;
-} _ENTRY;
+} PRIMITIVES_TABLE;
 /*--------------------------------------------------------------------------*/
-static _ENTRY   *htable = NULL;
-static unsigned hashtableSize = 0;
-static unsigned filled = 0;
+static PRIMITIVES_TABLE *primitiveTableByName = NULL;
+static PRIMITIVES_TABLE *primitiveTableByPrimitivePointer = NULL;
+static PRIMITIVES_TABLE *primitiveTableByKeyIdentity = NULL;
+static PRIMITIVES_TABLE *primitiveTableByUsed = NULL;
+static unsigned int primitiveTableSize = 0;
+static unsigned int primitiveTableFilled = 0;
 /*--------------------------------------------------------------------------*/
 extern int C2F(cvname)(int *,char *,int *, unsigned long int);
 /*--------------------------------------------------------------------------*/
-static BOOL Equal_id(int *x, int *y);
-static BOOL realloc_hashtable_scilab_functions(void);
+static BOOL realloc_table_scilab_functions(void);
+static BOOL doFindFunction(int *key,char *name, int *scilab_funptr);
+static BOOL doBackSearchFunction(int *key, int *scilab_funptr);
+static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr);
+static BOOL doDeleteFunction(int *key, int *scilab_funptr);
+static void deleteEntryInTable(PRIMITIVES_TABLE *table, int index,
+							   int (*_PtFuncCompare)(const void *, const void *));
+/*--------------------------------------------------------------------------*/
+static int compareByName(const void *x, const void *y);
+static int compareByPrimitivepointer(const void *x, const void *y);
+static int compareByKeyIdentity(const void *x, const void *y);
+static int compareByUsed(const void *x, const void *y);
 /*--------------------------------------------------------------------------*/
 BOOL create_hashtable_scilab_functions(void)
 {
-	if (htable == NULL)
+	if ((primitiveTableByName) &&
+		(primitiveTableByPrimitivePointer) &&
+		(primitiveTableByKeyIdentity) &&
+		(primitiveTableByUsed)) return FALSE;
+
+	primitiveTableSize = DEFAULT_ELEMENTFUNCTIONLIST;
+	primitiveTableFilled = 0;
+
+	/* Default allocation */
+	primitiveTableByName = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
+	primitiveTableByPrimitivePointer = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
+	primitiveTableByKeyIdentity = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
+	primitiveTableByUsed = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
+
+	/* initialization to a empty struct */
+	if ((primitiveTableByName) &&
+		(primitiveTableByPrimitivePointer) &&
+		(primitiveTableByKeyIdentity) &&
+		(primitiveTableByUsed))
 	{
-		hashtableSize  = DEFAULT_ELEMENTFUNCTIONLIST;
-		filled = 0;
+		unsigned int i = 0;
 
-		htable = (_ENTRY *) CALLOC((hashtableSize + 1), sizeof(_ENTRY));
+		PRIMITIVES_TABLE emptyPRIMITIVES_TABLE;
+		emptyPRIMITIVES_TABLE.primitivePointer = 0;
+		emptyPRIMITIVES_TABLE.used = 0;
+		memset(emptyPRIMITIVES_TABLE.keyIdentity, 0, sizeof(int) * nsiz);
+		strcpy(emptyPRIMITIVES_TABLE.namefunction, "");
 
-		if (htable)	
+		for(i = 0; i < primitiveTableSize; i++)
 		{
-			unsigned int i = 0;
-			htable[0].used = 0;
-			strcpy(htable[0].entry.namefunction, "");
-			for (i = 0; i < nsiz; i++)
-			{
-				htable[0].entry.key[i] = 0;
-			}
-			htable[0].entry.data = 0;
-
-			for(i = 1; i < hashtableSize; i++)
-			{
-				memcpy(&htable[i], &htable[0], sizeof(htable[0]));
-			}
-			return TRUE;
+			memcpy(&primitiveTableByName[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
 		}
+		/* copy struct to others tables */
+		memcpy(primitiveTableByPrimitivePointer, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
+		memcpy(primitiveTableByKeyIdentity, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
+		memcpy(primitiveTableByUsed, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
+
+		return TRUE;
+	}
+	else
+	{
+		destroy_hashtable_scilab_functions();
 	}
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 void destroy_hashtable_scilab_functions()
 {
-	if (htable)
-	{
-		FREE(htable);
-		htable = NULL;
-	}
+	if (primitiveTableByName) {FREE(primitiveTableByName); primitiveTableByName = NULL;}
+	if (primitiveTableByPrimitivePointer) {FREE(primitiveTableByPrimitivePointer); primitiveTableByPrimitivePointer = NULL;}
+	if (primitiveTableByKeyIdentity) {FREE(primitiveTableByKeyIdentity); primitiveTableByKeyIdentity = NULL;}
+	if (primitiveTableByUsed) {FREE(primitiveTableByUsed); primitiveTableByUsed = NULL;}
+	primitiveTableSize = 0;
+	primitiveTableFilled = 0;
 }
 /*--------------------------------------------------------------------------*/
-BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action)
+BOOL realloc_table_scilab_functions(void)
+{
+	if (primitiveTableFilled >= primitiveTableSize)
+	{
+		unsigned int newPrimitiveTableSize = primitiveTableFilled * 2;
+
+		if (newPrimitiveTableSize > MAXELEMENTFUNCTIONLIST) 
+		{
+			newPrimitiveTableSize = MAXELEMENTFUNCTIONLIST;
+		}
+
+		if ((primitiveTableSize != newPrimitiveTableSize) &&
+			(primitiveTableSize != MAXELEMENTFUNCTIONLIST))
+		{
+			primitiveTableByName = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByName, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
+			primitiveTableByPrimitivePointer = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByPrimitivePointer, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
+			primitiveTableByKeyIdentity = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByKeyIdentity, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
+			primitiveTableByUsed = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByUsed, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
+
+			if (primitiveTableByName && 
+				primitiveTableByPrimitivePointer && 
+				primitiveTableByKeyIdentity && 
+				primitiveTableByUsed)
+			{
+				unsigned int i = 0;
+
+				PRIMITIVES_TABLE emptyPRIMITIVES_TABLE;
+				emptyPRIMITIVES_TABLE.primitivePointer = 0;
+				emptyPRIMITIVES_TABLE.used = 0;
+				memset(emptyPRIMITIVES_TABLE.keyIdentity, 0, sizeof(int) * nsiz);
+				strcpy(emptyPRIMITIVES_TABLE.namefunction, "");
+
+				for (i = primitiveTableSize; i < newPrimitiveTableSize; i++)
+				{
+					memcpy(&primitiveTableByName[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
+					memcpy(&primitiveTableByPrimitivePointer[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
+					memcpy(&primitiveTableByKeyIdentity[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
+					memcpy(&primitiveTableByUsed[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
+				}
+
+				primitiveTableSize = newPrimitiveTableSize;
+				return TRUE;
+			}
+			return FALSE;
+		}
+	}
+	return TRUE;
+}
+/*--------------------------------------------------------------------------*/ 
+BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr,
+									   SCI_HFUNCTIONS_ACTION action)
 {
 	switch(action)
 	{
 	case SCI_HFUNCTIONS_FIND:
-		{
-			/* linear search algorithm */
-			unsigned int idx = 0;
-			int keyToSearch[nsiz];
+		return doFindFunction(key, name, scilab_funptr);
 
-			if (name)
-			{
-				/* faster than a strcmp */
-				int job = 0; /* convert name to id */
-				C2F(cvname)(keyToSearch, name, &job, (unsigned long)strlen(name));
-			}
-			else
-			{
-				unsigned int i = 0;
-				for(i = 0; i < nsiz; i++)
-				{
-					keyToSearch[i] = key[i];
-				}
-			}
-
-			/* linear search algorithm */
-			for ( idx = 0 ; idx < filled + 1; idx++ ) 
-			{
-				if ( htable[idx].used)
-				{
-					if (Equal_id(keyToSearch, htable[idx].entry.key) == TRUE)
-					{
-						*scilab_funptr = htable[idx].entry.data;
-						return TRUE;
-					}
-				}
-			}
-			return FALSE;
-		}
-		break;
 	case SCI_HFUNCTIONS_BACKSEARCH:
-		{
-			/* linear search algorithm */
-			unsigned int idx = 0;
-			for ( idx = 0 ; idx < filled + 1; idx++ ) 
-			{
-				if ( (htable[idx].used) && (htable[idx].entry.data == *scilab_funptr) ) 
-				{
-					int j = 0;
-					for (j = 0; j < nsiz ; j++ ) key[j] = htable[idx].entry.key[j];
-					return TRUE;
-				}
-			}
-			return FALSE;
-		}
-		break;
+		return doBackSearchFunction(key, scilab_funptr);
+
 	case SCI_HFUNCTIONS_ENTER:
-		{
-			unsigned int idx = 0;
+		return doEnterFunction(key, name, scilab_funptr);
 
-			realloc_hashtable_scilab_functions();
-
-			if (filled ==  hashtableSize) return FALSE;
-
-			for (idx = 0; idx < hashtableSize; idx++)
-			{
-				if (htable[idx].used == 0)
-				{
-					int zero = 0;
-
-					htable[idx].entry.data = *scilab_funptr;
-
-					if (name)
-					{
-						strcpy(htable[idx].entry.namefunction, name);
-						C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
-					}
-					else
-					{
-						unsigned int i = 0;
-						strcpy(htable[idx].entry.namefunction, "");
-						for(i = 0; i < nsiz; i++)
-						{
-							htable[idx].entry.key[i] = key[i];
-						}
-					}
-					htable[idx].used = 1;
-					filled++;
-					return TRUE;
-				}
-			}
-			return FALSE;
-		}
-		break;
 	case SCI_HFUNCTIONS_DELETE:
-		{
-			unsigned int idx = 0;
-			for (idx = 0; idx < filled + 1; idx++)
-			{
-				if ( (htable[idx].used) &&
-					 (htable[idx].entry.data == *scilab_funptr) &&
-					 (Equal_id(key, htable[idx].entry.key) == TRUE) )
-				{
-					int i = 0;
-					htable[idx].used = 0;
-					htable[idx].entry.data = 0;
-					strcpy(htable[idx].entry.namefunction, "");
-					for (i = 0; i < nsiz; i++)
-					{
-						htable[idx].entry.key[i] = 0;
-					}
-					filled--;
-					return TRUE;
-				}
-			}
-			return FALSE;
-		}
-		break;
+		return doDeleteFunction(key, scilab_funptr);
 	}
 	return FALSE;
-}
-/*--------------------------------------------------------------------------*/  
-static BOOL Equal_id(int *x, int *y)
-{
-	int i = 0;
-	for (i = 0; i < nsiz ; i++ )
-	{
-		if ( x[i] != y[i] ) return FALSE;
-	}
-	return TRUE;
 }
 /*--------------------------------------------------------------------------*/  
 char **GetFunctionsList(int *sizeList)
 {
 	char **ListFunctions = NULL;
 	unsigned int i = 0;
-	int j = 0;
+	unsigned int j = 0;
 
 	*sizeList = 0;
 
-	for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
+	/* get numbers of named functions */
+	for ( i = 0 ; i < primitiveTableFilled; i++ ) 
 	{
-		if (htable[i].entry.namefunction) 
+		if (primitiveTableByName[i].namefunction) 
 		{
-			if (strlen(htable[i].entry.namefunction) > 0) j++;
+			if (strlen(primitiveTableByName[i].namefunction) > 0) j++;
 		}
 	}
 	*sizeList = j;
@@ -236,13 +204,13 @@ char **GetFunctionsList(int *sizeList)
 	j = 0;
 	if (ListFunctions)
 	{
-		for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
+		for ( i = 0 ; i < primitiveTableFilled; i++ ) 
 		{
-			if (htable[i].entry.namefunction)
+			if (primitiveTableByName[i].namefunction)
 			{
-				if (strlen(htable[i].entry.namefunction) > 0)
+				if (strlen(primitiveTableByName[i].namefunction) > 0)
 				{
-					ListFunctions[j] = strdup(htable[i].entry.namefunction);
+					ListFunctions[j] = strdup(primitiveTableByName[i].namefunction);
 					j++;
 				}
 			}
@@ -253,56 +221,208 @@ char **GetFunctionsList(int *sizeList)
 /*--------------------------------------------------------------------------*/  
 BOOL ExistFunction(char *name)
 {
-	int i = 0;
-
-	for ( i = 0 ; i < (int)filled + 1; i++ ) 
+	PRIMITIVES_TABLE searched;
+	PRIMITIVES_TABLE *found = NULL;
+	if (name)
 	{
-		if (htable[i].used) 
+		strcpy(searched.namefunction, name);
+		found = bsearch(&searched, primitiveTableByName, 
+			primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByName);
+
+		if (found)
 		{
-			if (strcmp(htable[i].entry.namefunction, name) == 0)
-			{
-				return TRUE;
-			}
+			return TRUE;
 		}
 	}
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/  
-BOOL realloc_hashtable_scilab_functions(void)
+static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 {
-	if ( (filled) >= hashtableSize)
+	PRIMITIVES_TABLE searched;
+	PRIMITIVES_TABLE *found = NULL;
+
+	if (name)
 	{
-		unsigned int newhashtableSize = filled * 2;
-
-		if (newhashtableSize > MAXELEMENTFUNCTIONLIST) newhashtableSize = MAXELEMENTFUNCTIONLIST;
-
-		if ( (hashtableSize != newhashtableSize) && (hashtableSize != MAXELEMENTFUNCTIONLIST) )
-		{
-
-			htable = (_ENTRY *) REALLOC(htable, (newhashtableSize + 1) * sizeof(_ENTRY));
-			if (htable)	
-			{
-				_ENTRY emptyEntry;
-				unsigned int i = 0;
-
-				emptyEntry.used = 0;
-				strcpy(emptyEntry.entry.namefunction, "");
-				for (i = 0; i < nsiz; i++)
-				{
-					emptyEntry.entry.key[i] = 0;
-				}
-				emptyEntry.entry.data = 0;
-
-				for (i = hashtableSize; i < newhashtableSize; i++)
-				{
-					memcpy(&htable[i], &emptyEntry, sizeof(emptyEntry));
-				}
-				hashtableSize = newhashtableSize;
-				return TRUE;
-			}
-			return FALSE;
-		}
+		strcpy(searched.namefunction, name);
+		found = bsearch(&searched, primitiveTableByName, 
+			primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByName);
 	}
+	else
+	{
+		memcpy(searched.keyIdentity, key, sizeof(int) * nsiz);
+		found = bsearch(&searched, primitiveTableByKeyIdentity, 
+			primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	}
+
+	if (found)
+	{
+		*scilab_funptr = found->primitivePointer;
+		return TRUE;
+	}
+
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/  
+static BOOL doBackSearchFunction(int *key, int *scilab_funptr)
+{
+	PRIMITIVES_TABLE searched;            
+	PRIMITIVES_TABLE *found = NULL;
+
+	searched.primitivePointer = *scilab_funptr;
+
+	found = bsearch(&searched, primitiveTableByPrimitivePointer, 
+		primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByPrimitivepointer);
+
+	if (found)
+	{
+		memcpy(key, found->keyIdentity, sizeof(int)* nsiz);
+		return TRUE;
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/  
+static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
+{
+	PRIMITIVES_TABLE newPRIMITIVES_TABLE;
+
+	realloc_table_scilab_functions();
+
+	if (primitiveTableFilled == primitiveTableSize) return FALSE;
+
+	/* add function name by name */
+	if (name)
+	{
+		int zero = 0;
+		strcpy(newPRIMITIVES_TABLE.namefunction, name);
+		C2F(cvname)(newPRIMITIVES_TABLE.keyIdentity, name, &zero,(unsigned long)strlen(name));
+		memcpy(key, newPRIMITIVES_TABLE.keyIdentity, sizeof(int) * nsiz);
+	}
+	else /* add function by key identity eq. to name */
+	{
+		strcpy(newPRIMITIVES_TABLE.namefunction, "");
+		memcpy(newPRIMITIVES_TABLE.keyIdentity, key, sizeof(int) * nsiz);
+	}
+	newPRIMITIVES_TABLE.primitivePointer = *scilab_funptr;
+	newPRIMITIVES_TABLE.used = 1;
+
+	/* copy in others tables */
+	memcpy(&primitiveTableByName[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
+	memcpy(&primitiveTableByPrimitivePointer[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
+	memcpy(&primitiveTableByKeyIdentity[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
+	memcpy(&primitiveTableByUsed[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
+	primitiveTableFilled++;
+
+	/* sort tables with new entry */
+	qsort(primitiveTableByName, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByName);
+	qsort(primitiveTableByPrimitivePointer, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByPrimitivepointer);
+	qsort(primitiveTableByKeyIdentity, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	qsort(primitiveTableByUsed, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByUsed);
+
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/  
+static BOOL doDeleteFunction(int *key, int *scilab_funptr)
+{
+	unsigned int idxMax = 0;
+
+	int idxName = -1;
+	int idxPrimitivePointer = -1;
+	int idxKeyIdendity = -1;
+	int idxUsed = -1;
+
+	PRIMITIVES_TABLE *found = NULL;
+	PRIMITIVES_TABLE searched;
+	searched.primitivePointer = *scilab_funptr;
+	searched.used = 1;
+
+	// delete by KeyIdentity
+	memcpy(searched.keyIdentity, key,sizeof(int) * nsiz);
+
+	/* search in tables and get index position in each table */
+	idxMax = primitiveTableFilled;
+	found = lfind(&searched, primitiveTableByPrimitivePointer, 
+		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	if (found)
+	{
+		if (idxPrimitivePointer == -1) idxPrimitivePointer = abs(found - primitiveTableByPrimitivePointer);
+		found = NULL;
+	}
+
+	idxMax = primitiveTableFilled;
+	found = lfind(&searched, primitiveTableByKeyIdentity, 
+		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	if (found)
+	{
+		if (idxKeyIdendity == -1) idxKeyIdendity = abs(found - primitiveTableByKeyIdentity);
+		found = NULL;
+	}
+
+	idxMax = primitiveTableFilled;
+	found = lfind(&searched, primitiveTableByName, 
+		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	if (found)
+	{
+		if (idxName == -1) idxName = abs(found - primitiveTableByName);
+		found = NULL;
+	}
+
+	idxMax = primitiveTableFilled;
+	found = lfind(&searched, primitiveTableByUsed, 
+		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+	if (found)
+	{
+		if (idxUsed == -1) idxUsed = abs(found - primitiveTableByUsed);
+		found = NULL;
+	}
+
+	if ((idxName >= 0) && (idxPrimitivePointer >= 0) && (idxKeyIdendity >= 0) && (idxUsed >= 0))
+	{
+		/* delete entry in each table */
+		deleteEntryInTable(primitiveTableByName, idxName, compareByName);
+		deleteEntryInTable(primitiveTableByPrimitivePointer, idxPrimitivePointer, compareByPrimitivepointer);
+		deleteEntryInTable(primitiveTableByKeyIdentity, idxKeyIdendity, compareByKeyIdentity);
+		deleteEntryInTable(primitiveTableByUsed, idxUsed, compareByUsed);
+
+		primitiveTableFilled--;
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/  
+static int compareByName(const void *x, const void *y)
+{
+	return strcmp(((PRIMITIVES_TABLE*)x)->namefunction, 
+		((PRIMITIVES_TABLE*)y)->namefunction);
+}
+/*--------------------------------------------------------------------------*/  
+static int compareByPrimitivepointer(const void *x, const void *y)
+{
+	return (((PRIMITIVES_TABLE*)x)->primitivePointer - 
+		((PRIMITIVES_TABLE*)y)->primitivePointer);
+}
+/*--------------------------------------------------------------------------*/  
+static int compareByKeyIdentity(const void *x, const void *y)
+{
+	return memcmp(((PRIMITIVES_TABLE*)x)->keyIdentity, 
+		((PRIMITIVES_TABLE*)y)->keyIdentity, sizeof(int)*nsiz);
+}
+/*--------------------------------------------------------------------------*/  
+static int compareByUsed(const void *x, const void *y)
+{
+	return ((PRIMITIVES_TABLE*)x)->used - ((PRIMITIVES_TABLE*)y)->used;
+}
+/*--------------------------------------------------------------------------*/  
+static void deleteEntryInTable(PRIMITIVES_TABLE *table, int index,
+							   int (*_PtFuncCompare)(const void *, const void *))
+{
+	memset(table[index].keyIdentity, 0, sizeof(int)*nsiz);
+	strcpy(table[index].namefunction, "");
+	table[index].primitivePointer = 0;
+	table[index].used = 0;
+	qsort(table, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), *_PtFuncCompare);
+}
+/*--------------------------------------------------------------------------*/  
+
