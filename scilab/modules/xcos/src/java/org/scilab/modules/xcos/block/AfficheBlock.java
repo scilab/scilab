@@ -17,8 +17,6 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
-import com.mxgraph.model.mxGeometry;
-
 /**
  * Implement the AFFICH_m block
  */

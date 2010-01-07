@@ -15,7 +15,6 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
@@ -26,7 +25,6 @@ import com.mxgraph.io.mxCodec;
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-    private BasicBlock previousBlock;
 
     public BasicPortCodec(Object template) {
 	super(template);

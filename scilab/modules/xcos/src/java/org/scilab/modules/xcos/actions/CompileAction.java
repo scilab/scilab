@@ -32,7 +32,6 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 public class CompileAction extends DefaultAction {
 
 	private static final long serialVersionUID = 1L;
-	private static String compilationEnd = "__compilationEnd__";
 
 	/**
 	 * Constructor
