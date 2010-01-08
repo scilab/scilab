@@ -264,10 +264,6 @@ public final class BlockPositioning {
 
 			/* Apply angle */
 			port.setAngle(orientation.getAngle(angle, flipped, mirrored));
-			int newAngle2 = port.getAngle();
-			mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-					new Object[] {port }, XcosConstants.STYLE_ROTATION,
-					new Integer(newAngle2).toString());
 
 			endUpdate(block);
 		}
