@@ -377,15 +377,15 @@ int isDoubleMatrix(void* _pvCtx, int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int getScalarDouble(void* _pvCtx, int* _piAddress, double* _pdblReal)
 {
-	return getCommomScalarDouble(_pvCtx, _piAddress, 0, _pdblReal, NULL);
+	return getCommonScalarDouble(_pvCtx, _piAddress, 0, _pdblReal, NULL);
 }
 /*--------------------------------------------------------------------------*/
 int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, double* _pdblImg)
 {
-	return getCommomScalarDouble(_pvCtx, _piAddress, 1, _pdblReal, _pdblImg);
+	return getCommonScalarDouble(_pvCtx, _piAddress, 1, _pdblReal, _pdblImg);
 }
 /*--------------------------------------------------------------------------*/
-static int getCommomScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg)
+static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, double* _pdblReal, double* _pdblImg)
 {
 	SciErr sciErr;
 	int iRows	= 0;
