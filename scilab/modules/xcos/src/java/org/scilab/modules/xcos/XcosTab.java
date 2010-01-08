@@ -316,6 +316,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
 	public void keyPressed(KeyEvent arg0) {
 	    double realMove;
+	    boolean mustMove = true;
 	    
 	    mxGraphComponent diagram = (mxGraphComponent) arg0.getSource();
 	    graph = diagram.getGraph();
@@ -344,9 +345,14 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		break;
 
 	    default:
+	    	mustMove = false;
 		break;
 	    }
 
+	    if (!mustMove) {
+	    	return;
+	    }
+	    
 	    if (graph.isGridEnabled() != true) {
 		xIncrement *= diagram.getZoomFactor();
 		yIncrement *= diagram.getZoomFactor();
