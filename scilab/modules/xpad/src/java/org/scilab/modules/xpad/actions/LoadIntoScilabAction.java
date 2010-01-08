@@ -73,7 +73,7 @@ public final class LoadIntoScilabAction extends DefaultAction {
 			}
 			
 			if (bDoExec && f.exists()) {
-				String cmdToExec = "exec('" + tmpFullFilename + "')";
+				String cmdToExec = "exec('" + tmpFullFilename + "', 2)";
 				InterpreterManagement.requestScilabExec(cmdToExec);
 			} else {
 				ScilabModalDialog.show(getEditor(), XpadMessages.COULD_NOT_FIND_TMPFILE);	
