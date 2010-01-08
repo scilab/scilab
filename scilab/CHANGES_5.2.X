@@ -11,6 +11,10 @@ Bug fixes:
 
 
 
+Text editor:
+============
+
+* bug 5651 fixed - closing find/replace box, remove highlights.
 
 Xcos:
 =====

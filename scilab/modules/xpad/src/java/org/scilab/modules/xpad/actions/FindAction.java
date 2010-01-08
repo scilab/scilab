@@ -626,11 +626,9 @@ public final class FindAction extends DefaultAction {
 		buttonClose.addActionListener(new ActionListener() {
 
 
-			public void actionPerformed(ActionEvent e) {
-				FindAction.windowAlreadyExist = false;
-				saveFindReplaceConfiguration();
-				frame.dispose();
-			}
+		    public void actionPerformed(ActionEvent e) {
+			closeFindReplaceWindow();
+		    }
 		});
 
 				
@@ -649,7 +647,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					closeFindReplaceWindow();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -703,7 +701,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					closeFindReplaceWindow();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -768,7 +766,7 @@ public final class FindAction extends DefaultAction {
 		comboReplace.getEditor().setItem(old);
 	}
 
-	private void saveFindReplaceConfiguration() {
+	public void saveFindReplaceConfiguration() {
 	
 		ConfigXpadManager.saveRecentSearch((String)comboFind.getEditor().getItem());
 		ConfigXpadManager.saveRecentReplace((String)comboReplace.getEditor().getItem());
@@ -1091,13 +1089,12 @@ public final class FindAction extends DefaultAction {
 	 * closeFindReplaceWindow
 	 */
 	public static void closeFindReplaceWindow() {
-		if (FindAction.windowAlreadyExist) {
-			Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
-			highlight.removeAllHighlights();
-			frame.dispose();
-			FindAction.windowAlreadyExist = false;
-
-		}
+	    if (FindAction.windowAlreadyExist) {
+		Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
+		highlight.removeAllHighlights();
+		frame.dispose();
+		FindAction.windowAlreadyExist = false;
+	    }
 	}
 
 	public static String getPreviousSearch() {
