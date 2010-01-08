@@ -10,6 +10,8 @@
 *
 */
 
+#include <cstdio>
+
 #include "execvisitor.hxx"
 #include "shortcutvisitor.hxx"
 #include "timer.hxx"

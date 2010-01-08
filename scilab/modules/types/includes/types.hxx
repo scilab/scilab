@@ -25,64 +25,33 @@ namespace types
   /*
   ** Type
   */
-	class GenericType : public InternalType
+  class GenericType : public InternalType
   {
 
-	protected :
-		int m_iRows;
-		int m_iCols;
-		int m_iSize;
-
-  public :
-
   protected :
-    GenericType() {}
-		virtual ~GenericType() {}
+    int m_iRows;
+    int m_iCols;
+    int m_iSize;
+
+    GenericType() : InternalType() {}
+    virtual ~GenericType() {}
+
   public :
     void whoAmI(void) { std::cout << "types::GenericType"; }
+    
+    /*commun functions*/
+    int cols_get();
+    int rows_get();
+    int size_get();
 
-		/*sub Type management*/
-    /* String */
-    bool isString(void) { return (getType() == RealString); }
+    std::string DimToString();
 
-    /* Double */
-    bool isDouble(void) { return (getType() == RealDouble); }
-
-    /* Float */
-    bool isFloat(void) { return (getType() == RealFloat); }
-
-    /* Int */
-    bool isInt(void) { return (getType() == RealInt); }
-
-    /* Int */
-    bool isInt2(void) { return (getType() == RealInt2); }
-
-    /* Bool */
-    bool isBool(void) { return (getType() == RealBool); }
-
-    /* Function */
-    bool isFunction(void) { return (getType() == RealFunction); }
-
-    /* Macro */
-    bool isMacro(void) { return (getType() == RealMacro); }
-
-    /* MacroFile */
-		bool isMacroFile(void) { return (getType() == RealMacroFile); }
-
-		/*commun functions*/
-		int cols_get();
-		int rows_get();
-		int size_get();
-
-		std::string DimToString();
-
-		virtual GenericType*	get(int _iPos){return NULL;};
+    virtual GenericType*	get(int _iPos) { return NULL; }
 
     bool isIdentity(void);
     virtual bool isAssignable(void) { return true; }
 
-		virtual RealType getType(void) { return RealGeneric; }
-  protected :
+    virtual RealType getType(void) { return RealGeneric; }
   };
 
 

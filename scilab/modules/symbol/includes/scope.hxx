@@ -176,7 +176,7 @@ namespace symbol
 				{
 					Function *pF = (*it_scope).second->getAsFunction();
 					ostr << std::endl;
-					ostr << "Module : " << pF->m_szModule << " Function : " << pF->m_szName << std::endl;
+					ostr << "Module : " << pF->getModule() << " Function : " << pF->getName() << std::endl;
 				}
 				else if((*it_scope).second->isPoly())
 				{
