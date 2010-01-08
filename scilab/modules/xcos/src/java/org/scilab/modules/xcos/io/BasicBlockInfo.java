@@ -462,7 +462,7 @@ public final class BasicBlockInfo {
 		final int childrenCount = block.getChildCount();
 		for (int i = 0; i < childrenCount; ++i) {
 			BasicPort port = (BasicPort) block.getChildAt(i);
-			switch (port.getDefaultOrientation()) {
+			switch (port.getOrientation()) {
 			case NORTH:
 				northPorts.add(port);
 				break;

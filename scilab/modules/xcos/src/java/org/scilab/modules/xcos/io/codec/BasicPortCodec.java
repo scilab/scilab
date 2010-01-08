@@ -106,7 +106,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 			int rotation = Integer.parseInt(value);
 			
 			// Update angle value
-			rotation = obj.getDefaultOrientation().getAngle(rotation, false, false);
+			rotation = obj.getOrientation().getAngle(rotation, false, false);
 			obj.setAngle(rotation);
 			
 			// Update the field

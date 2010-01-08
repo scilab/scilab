@@ -258,7 +258,7 @@ public final class BlockPositioning {
 		final int childrenCount = block.getChildCount();
 		for (int i = 0; i < childrenCount; ++i) {
 			final BasicPort port = (BasicPort) block.getChildAt(i);
-			final Orientation orientation = port.getDefaultOrientation();
+			final Orientation orientation = port.getOrientation();
 
 			beginUpdate(block);
 

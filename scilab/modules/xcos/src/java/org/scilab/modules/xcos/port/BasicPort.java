@@ -91,7 +91,7 @@ public abstract class BasicPort extends XcosUIDObject {
     private int dataColumns;
     private DataType dataType = DataType.REAL_MATRIX;
     private int angle;
-    private Orientation defaultOrientation;
+    private Orientation orientation;
     private transient String typeName;
 
     /** Type of any dataport */
@@ -239,16 +239,16 @@ public abstract class BasicPort extends XcosUIDObject {
     }
 
 	/** @return The default orientation of this port */
-	public final Orientation getDefaultOrientation() {
-		return defaultOrientation;
+	public final Orientation getOrientation() {
+		return orientation;
 	}
 
 	/**
 	 * @param defaultOrientation
 	 *            The default orientation of this port
 	 */
-	public final void setDefaultOrientation(Orientation defaultOrientation) {
-		this.defaultOrientation = defaultOrientation;
+	public final void setOrientation(Orientation defaultOrientation) {
+		this.orientation = defaultOrientation;
 	}
     
     public String getToolTipText() {
