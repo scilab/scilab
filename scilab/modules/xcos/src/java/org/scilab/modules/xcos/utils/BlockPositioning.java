@@ -273,19 +273,12 @@ public final class BlockPositioning {
      * Update the geometry of the block's ports.
      * @param block The block to work on
      */
-    public static void updateBlockView(BasicBlock block) {
-
-	if (block != null 
-		&& block.getParentDiagram() != null 
-		&& block.getParentDiagram().getView() != null 
-		&& block.getParentDiagram().getView().getState(block) != null) {
-	    block.getParentDiagram().getModel().beginUpdate();
-	    updatePortsPosition(block);
-	    rotateAllPorts(block);
-	    block.getParentDiagram().getModel().endUpdate();
-	    block.getParentDiagram().refresh();
+	public static void updateBlockView(BasicBlock block) {
+		beginUpdate(block);
+			updatePortsPosition(block);
+			rotateAllPorts(block);
+		endUpdate(block);
 	}
-    }
 
     /**
      * Flip a block (horizontal inversion).
