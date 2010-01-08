@@ -24,12 +24,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>return in <literal>s</literal> all libraries on scilab stack. </para>
+    <para>return in <literal>s</literal> all libraries on scilab stack.</para>
+    <para>libraries are scanned from the lastest loaded to the first one.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-librarieslist() 
+librarieslist()
+// to sort list
+l =  gsort(librarieslist(),'r','i')
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -37,6 +40,7 @@ librarieslist()
     <simplelist type="inline">
       <member>
         <link linkend="libraryinfo">libraryinfo</link>
+        <link linkend="gsort">gsort</link>
       </member>
     </simplelist>
   </refsection>
