@@ -261,7 +261,11 @@ static void banner()
 	YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
 	YaspWrite(line);
 	YaspWrite("\n");
-
+	YaspWrite("\n");
+	YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
+	YaspWrite("\n");
+	YaspWrite(line);
+	YaspWrite("\n");
 
 #if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
 	YaspWritesciprint("\n\n");
