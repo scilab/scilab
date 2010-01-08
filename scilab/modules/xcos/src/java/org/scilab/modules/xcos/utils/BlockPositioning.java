@@ -264,10 +264,6 @@ public final class BlockPositioning {
 
 			/* Apply angle */
 			port.setAngle(orientation.getAngle(angle, flipped, mirrored));
-			int newAngle2 = port.getAngle();
-			mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-					new Object[] {port }, XcosConstants.STYLE_ROTATION,
-					new Integer(newAngle2).toString());
 
 			endUpdate(block);
 		}
@@ -277,19 +273,12 @@ public final class BlockPositioning {
      * Update the geometry of the block's ports.
      * @param block The block to work on
      */
-    public static void updateBlockView(BasicBlock block) {
-
-	if (block != null 
-		&& block.getParentDiagram() != null 
-		&& block.getParentDiagram().getView() != null 
-		&& block.getParentDiagram().getView().getState(block) != null) {
-	    block.getParentDiagram().getModel().beginUpdate();
-	    updatePortsPosition(block);
-	    rotateAllPorts(block);
-	    block.getParentDiagram().getModel().endUpdate();
-	    block.getParentDiagram().refresh();
+	public static void updateBlockView(BasicBlock block) {
+		beginUpdate(block);
+			updatePortsPosition(block);
+			rotateAllPorts(block);
+		endUpdate(block);
 	}
-    }
 
     /**
      * Flip a block (horizontal inversion).
