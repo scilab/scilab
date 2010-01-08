@@ -369,25 +369,25 @@ public class BasicBlock extends XcosUIDObject {
     
     public void addPort(InputPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
     }
 
     public void addPort(OutputPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
     }
 
     public void addPort(CommandPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
     }
 
     public void addPort(ControlPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
     }
 

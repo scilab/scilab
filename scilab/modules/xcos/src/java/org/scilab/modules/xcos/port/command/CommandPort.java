@@ -21,7 +21,7 @@ public class CommandPort extends BasicPort {
     
     public CommandPort() {
 	super("CommandPort");
-	setInitialAngle(90);
+	setDefaultOrientation(Orientation.SOUTH);
     }
 
     public Type getType() {

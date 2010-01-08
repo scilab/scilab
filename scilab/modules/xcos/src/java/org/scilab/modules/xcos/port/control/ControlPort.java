@@ -20,7 +20,7 @@ public class ControlPort extends BasicPort {
 
     public ControlPort() {
 	super("ControlPort");
-	setInitialAngle(90);
+	setDefaultOrientation(Orientation.NORTH);
     }
 
     public Type getType() {

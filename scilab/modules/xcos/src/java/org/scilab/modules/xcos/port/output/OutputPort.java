@@ -20,6 +20,6 @@ public abstract class OutputPort extends BasicPort {
 
     public OutputPort(String type) {
 	super(type);
-	setInitialAngle(0);
+	setDefaultOrientation(Orientation.EAST);
     }
 }
