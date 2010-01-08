@@ -25,6 +25,7 @@ import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Orientation;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -263,7 +264,11 @@ public final class BlockPositioning {
 			beginUpdate(block);
 
 			/* Apply angle */
-			port.setAngle(orientation.getAngle(angle, flipped, mirrored));
+			if (block.getParentDiagram() != null) {
+				final mxIGraphModel model = block.getParentDiagram().getModel();
+				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, Integer.toString(orientation.getAngle(
+						angle, flipped, mirrored)));
+			}
 
 			endUpdate(block);
 		}

@@ -16,7 +16,11 @@ import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxGraph;
 
@@ -81,6 +85,53 @@ public abstract class BasicPort extends XcosUIDObject {
 			/* Calculate angle */
 			return (angle + blockAngle) % 360;
 		}
+		
+		/**
+		 * Check the style values with this position
+		 * @param rotationValue Rotation value to check
+		 * @param flipped Flip informations
+		 * @param mirrored Mirror informations
+		 * @return true is the rotation is correct, false otherwise.
+		 */
+		public boolean isDefaultRotation(int rotationValue, boolean flipped, boolean mirrored) {
+			int angle = getBlockRotationValue(rotationValue, flipped, mirrored);
+			return angle == 0;
+		}
+
+		/**
+		 * Get the block rotation value from the style of the port.
+		 * @param angle Rotation value of the port.
+		 * @param flipped Flip state of the port
+		 * @param mirrored Mirror state of the port.
+		 * @return The parent block angle value (calculated).
+		 */
+		public int getBlockRotationValue(int angle, boolean flipped, boolean mirrored) {
+			int rotation = angle;
+			
+			switch (this) {
+			case WEST:
+			case EAST:
+				rotation -= 0;
+				if (flipped) {
+					rotation -= 180;
+				}
+				break;
+
+			case NORTH:
+			case SOUTH:
+				rotation -= 90;
+				if (mirrored) {
+					rotation -= 180;
+				}
+				break;
+
+			default:
+				break;
+			}
+			
+			rotation %= 360;
+			return rotation;
+		}
 	}
 	
     private static final long serialVersionUID = -5022701071026919015L;
@@ -94,7 +145,6 @@ public abstract class BasicPort extends XcosUIDObject {
     private int dataLines;
     private int dataColumns;
     private DataType dataType = DataType.REAL_MATRIX;
-    private int angle;
     private Orientation orientation;
     private transient String typeName;
 
@@ -230,28 +280,6 @@ public abstract class BasicPort extends XcosUIDObject {
 
     public abstract Type getType();
 
-    public void setStyle(String style){
-	super.setStyle(style);
-    }
-
-    /**
-     * @param angle the rotation value.
-     */
-	public void setAngle(int angle) {
-		this.angle = angle % 360;
-
-		final mxGraph graph = ((BasicBlock) getParent()).getParentDiagram();
-		if (graph != null) {
-			mxUtils.setCellStyles(graph.getModel(), new Object[] {this},
-					XcosConstants.STYLE_ROTATION, new Integer(this.angle)
-							.toString());
-		}
-	}
-
-    public int getAngle() {
-	return angle;
-    }
-
 	/** @return The default orientation of this port */
 	public final Orientation getOrientation() {
 		return orientation;
@@ -269,6 +297,8 @@ public abstract class BasicPort extends XcosUIDObject {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
 	result.append("Port number : " + getOrdering() + "<br>");
+	result.append("Style : " + getStyle() + "<br>");
+	result.append("Orientation : " + getOrientation() + "<br>");
 	result.append("</html>");
 	return result.toString();
     }
