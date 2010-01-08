@@ -47,6 +47,8 @@ Bug fixes:
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 
+* bug 5140 fixed - 'Load into Scilab' did not work as expected.
+
 * bug 5659 fixed - emptystr changed the value of an input variable.
 
 * bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
