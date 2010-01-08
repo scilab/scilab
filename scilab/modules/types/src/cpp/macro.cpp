@@ -10,6 +10,8 @@
 * 
 */
 
+#include <cstdio>
+
 #include "macro.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
@@ -24,12 +26,12 @@ namespace types
 	/*--------------*/
 	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule):
 		Callable(),
-		m_stName(_stName),
 		m_inputArgs(&_inputArgs),
 		m_outputArgs(&_outputArgs),
-		m_stModule(_stModule),
 		m_body(&_body)
 	{
+	  setName(_stName);
+	  setModule(_stModule);
 	}
 
 	Macro::~Macro()
