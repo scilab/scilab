@@ -14,14 +14,17 @@ package org.scilab.modules.xcos.utils;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Orientation;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -38,16 +41,16 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateWestPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	mxGeometry blockGeom = block.getGeometry();
-	if (blockGeom == null) {
-	    return;
-	}
+	final mxGeometry blockGeom = block.getGeometry();
+	final int portsSize = ports.size();
+	
+	assert blockGeom != null;
 	
 	beginUpdate(block);
-	for (int i = 0; i < ports.size(); ++i) {
+	for (int i = 0; i < portsSize; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX(-portGeom.getWidth());
-	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
+	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (portsSize + 1.0))
 		    - (portGeom.getHeight() / 2.0));
 	}
 	endUpdate(block);
@@ -59,15 +62,15 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateNorthPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	mxGeometry blockGeom = block.getGeometry();
-	if (blockGeom == null) {
-	    return;
-	}
+	final mxGeometry blockGeom = block.getGeometry();
+	final int portsSize = ports.size();
+	
+	assert blockGeom != null;
 	
 	beginUpdate(block);
-	for (int i = 0; i < ports.size(); ++i) {
+	for (int i = 0; i < portsSize; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
+	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (portsSize + 1.0))
 		    - (portGeom.getWidth() / 2.0));
 	    portGeom.setY(-portGeom.getHeight());
 	}
@@ -80,16 +83,16 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateEastPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	mxGeometry blockGeom = block.getGeometry();
-	if (blockGeom == null) {
-	    return;
-	}
+	final mxGeometry blockGeom = block.getGeometry();
+	final int portsSize = ports.size();
+	
+	assert blockGeom != null;
 	
 	beginUpdate(block);
-	for (int i = 0; i < ports.size(); ++i) {
+	for (int i = 0; i < portsSize; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
 	    portGeom.setX(blockGeom.getWidth());
-	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (ports.size() + 1.0))
+	    portGeom.setY((i + 1.0) * (blockGeom.getHeight() / (portsSize + 1.0))
 		    - (portGeom.getHeight() / 2.0));
 	}
 	endUpdate(block);
@@ -101,15 +104,15 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
     public static void updateSouthPortsPosition(BasicBlock block, List< ? extends BasicPort> ports) {
-	mxGeometry blockGeom = block.getGeometry();
-	if (blockGeom == null) {
-	    return;
-	}
+	final mxGeometry blockGeom = block.getGeometry();
+	final int portsSize = ports.size();
+	
+	assert blockGeom != null;
 	
 	beginUpdate(block);
-	for (int i = 0; i < ports.size(); ++i) {
+	for (int i = 0; i < portsSize; ++i) {
 	    mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
-	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (ports.size() + 1.0))
+	    portGeom.setX((i + 1.0) * (blockGeom.getWidth() / (portsSize + 1.0))
 		    - (portGeom.getWidth() / 2.0));
 	    portGeom.setY(blockGeom.getHeight());
 	}
@@ -121,173 +124,161 @@ public final class BlockPositioning {
      * @param block The block we have to work on.
      */
     public static void updatePortsPosition(BasicBlock block) {
-	// Block -> EAST
-	// East <=> Out / North <=> Control / West <=> In / South <=> Command
-	if (block.getAngle() == 0) {
-	    if (block.getMirror()) {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
-	    } else {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
-	    }
-	    
-	    if (block.getFlip()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
-	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
-	    }
-	}
-	// Block -> NORTH
-	// East <=> Command / North <=> Out / West <=> Control / South <=> In
-	if (block.getAngle() == 270) {
-	    if (block.getMirror()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
-	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
-	    }
-	    
-	    if (block.getFlip()) {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
-	    } else {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, block.getMirror()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, block.getMirror()));
-	    }
-	}
-	// Block -> WEST
-	// East <=> In / North <=> Command / West <=> Out / South <=> Control
-	if (block.getAngle() == 180) {
-	    if (block.getMirror()) {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
-	    } else {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, !block.getFlip()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, !block.getFlip()));
-	    }
-	
-	    if (block.getFlip()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
-	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
-	    }
-	}
-	// Block -> SOUTH
-	// East <=> Control / North <=> In / West <=> Command / South <=> Out
-	if (block.getAngle() == 90) {
-	    if (block.getMirror()) {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
-	    } else {
-		updateEastPortsPosition(block, BasicBlockInfo.getAllControlPorts(block, block.getFlip()));
-		updateWestPortsPosition(block, BasicBlockInfo.getAllCommandPorts(block, block.getFlip()));
-	    }
+		final Map<BasicPort.Orientation, List<BasicPort>> ports = BasicBlockInfo
+				.getAllOrientedPorts(block);
 
-	    if (block.getFlip()) {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
-	    } else {
-		updateSouthPortsPosition(block, BasicBlockInfo.getAllOutputPorts(block, !block.getMirror()));
-		updateNorthPortsPosition(block, BasicBlockInfo.getAllInputPorts(block, !block.getMirror()));
-	    }
-	}
-    }    
-
-    /**
-     * Rotate the ports associated to the block.
-     * @param block The parent block
-     * @param ports The port we have to rotate
-     * @param angle The rotation angle.
-     */
-    public static void rotatePorts(BasicBlock block, List< ? extends BasicPort> ports , int angle) {
-
-	int newAngle = angle;
-	if (block.getFlip()) {
-	    newAngle += 180;
-	    newAngle %= 360;
-	}
-
-	if (block.getMirror()) {
-	    newAngle += 180;
-	    newAngle %= 360;
-	}
-	
-	beginUpdate(block);
-	for (Object obj : ports) {
-
-	    if (obj instanceof BasicPort) {
-		BasicPort port = (BasicPort) obj;
-		if (port.getAngle() != newAngle)  {
-		    port.setAngle(newAngle);
-		    int newAngle2 = port.getAngle();
-					mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-							new Object[] {port }, mxConstants.STYLE_ROTATION,
-							new Integer(newAngle2).toString());
+		beginUpdate(block);
+		for (Orientation iter : Orientation.values()) {
+			List<BasicPort> orientedPorts = ports.get(iter);
+			if (orientedPorts != null && !orientedPorts.isEmpty()) {
+				updatePortsPositions(block, orientedPorts, iter);
+			}
 		}
-	    }
+		endUpdate(block);
 	}
-	endUpdate(block);
-    }
 
-    /**
-     * Get the block rotation angle for the data typed ports.
-     * @param block The bloc to work on
-     * @return The angle value.
-     */
-    public static int getDataPortsAngle(BasicBlock block) {
-	if (block.getMirror()) {
-	    return (block.getAngle() + 180) % 360;
-	} else {
-	    return block.getAngle();   
-	}
-    }
+	/**
+	 * Update the port position for the specified orientation. This function
+	 * manage the flip and mirror properties.
+	 * 
+	 * @param block
+	 *            The block we are working on
+	 * @param ports
+	 *            The ports at with the specified orientation
+	 * @param iter
+	 *            The orientation.
+	 */
+	private static void updatePortsPositions(BasicBlock block,
+			List<BasicPort> ports, Orientation iter) {
+		final List<BasicPort> invertedPorts = new ArrayList<BasicPort>(ports) {
+			{
+				Collections.reverse(this);
+			}
+		};
+		final boolean mirrored = block.getMirror();
+		final boolean flipped = block.getFlip();
+		final int angle = block.getAngle();
+		List<BasicPort> working = ports;
+		
+		/* List order modification with the flip flag */
+		if (flipped) {
+			if (iter == Orientation.NORTH || iter == Orientation.SOUTH) {
+				working = invertedPorts;
+			}
+		}
 
-    /**
-     * Get the block rotation angle for the event typed ports.
-     * @param block The bloc to work on
-     * @return The angle value.
-     */
-    public static int getEventPortsAngle(BasicBlock block) {
-	if (block.getFlip()) {
-	    return (block.getAngle() + 90) % 360;
-	} else {
-	    return (block.getAngle() + 270) % 360;
+		/* List order modification with the mirror flag */
+		if (mirrored) {
+			if (iter == Orientation.EAST || iter == Orientation.WEST) {
+				working = invertedPorts;
+			}
+		}
+		
+		/*
+		 * Ugly modification of the iter to update at the right position
+		 * Works only for 0 - 90 - 180 - 270 angles.
+		 */
+		final int nbOfOrientations = Orientation.values().length; // 4
+		Orientation rotated = iter;
+		
+		/* Flip & Mirror management */
+		if (flipped) {
+			if (rotated == Orientation.EAST || rotated == Orientation.WEST) {
+				rotated = Orientation.values()[(rotated.ordinal() + 2)
+						% nbOfOrientations];
+			}
+		}
+		if (mirrored) {
+			if (rotated == Orientation.NORTH || rotated == Orientation.SOUTH) {
+				rotated = Orientation.values()[(rotated.ordinal() + 2)
+						% nbOfOrientations];
+			}
+		}
+		
+		updatePortsPosition(block, rotated, angle, working);
 	}
-    }
+
+	/**
+	 * Update the ports positions according to the angle. This function doesn't handle order inversion. 
+	 * @param block The block we are working on
+	 * @param iter The current port orientation
+	 * @param angle The angle we have to rotate
+	 * @param working The ordered ports we are working on.
+	 */
+	private static void updatePortsPosition(BasicBlock block, Orientation iter,
+			final int angle, List<BasicPort> working) {
+		/*
+		 * Ugly modification of the iter to update at the right position
+		 * Works only for 0 - 90 - 180 - 270 angles.
+		 */
+		final int nbOfOrientations = Orientation.values().length; // 4
+		Orientation rotated = iter;
+		
+		/* Angle management */
+		if (angle == 90) {
+			rotated = Orientation.values()[(rotated.ordinal() + 1)
+					% nbOfOrientations];
+		} else if (angle == 180) {
+			rotated = Orientation.values()[(rotated.ordinal() + 2)
+					% nbOfOrientations];
+		} else if (angle == 270) {
+			rotated = Orientation.values()[(rotated.ordinal() + 3)
+					% nbOfOrientations];
+		}
+
+		/* Call the associated function */
+		switch (rotated) {
+		case NORTH:
+			updateNorthPortsPosition(block, working);
+			break;
+		case SOUTH:
+			updateSouthPortsPosition(block, working);
+			break;
+		case EAST:
+			updateEastPortsPosition(block, working);
+			break;
+		case WEST:
+			updateWestPortsPosition(block, working);
+			break;
+
+		default:
+			break;
+		}
+	}
     
     /**
      * Rotate all the port of the block.
      * @param block The block to work on.
      */
-    public static void rotateAllPorts(BasicBlock block) {
-	rotatePorts(block, BasicBlockInfo.getAllInputPorts(block, false), getDataPortsAngle(block));
-	rotatePorts(block, BasicBlockInfo.getAllOutputPorts(block, false), getDataPortsAngle(block));
-	rotatePorts(block, BasicBlockInfo.getAllCommandPorts(block, false), getEventPortsAngle(block));
-	rotatePorts(block, BasicBlockInfo.getAllControlPorts(block, false), getEventPortsAngle(block));
-    }
+	public static void rotateAllPorts(BasicBlock block) {
+		final int angle = block.getAngle();
+		final boolean flipped = block.getFlip();
+		final boolean mirrored = block.getMirror();
+
+		final int childrenCount = block.getChildCount();
+		for (int i = 0; i < childrenCount; ++i) {
+			final BasicPort port = (BasicPort) block.getChildAt(i);
+			final Orientation orientation = port.getOrientation();
+
+			beginUpdate(block);
+
+			/* Apply angle */
+			port.setAngle(orientation.getAngle(angle, flipped, mirrored));
+
+			endUpdate(block);
+		}
+	}
 
     /**
      * Update the geometry of the block's ports.
      * @param block The block to work on
      */
-    public static void updateBlockView(BasicBlock block) {
-
-	if (block != null 
-		&& block.getParentDiagram() != null 
-		&& block.getParentDiagram().getView() != null 
-		&& block.getParentDiagram().getView().getState(block) != null) {
-	    block.getParentDiagram().getModel().beginUpdate();
-	    updatePortsPosition(block);
-	    rotateAllPorts(block);
-	    block.getParentDiagram().getModel().endUpdate();
+	public static void updateBlockView(BasicBlock block) {
+		beginUpdate(block);
+			updatePortsPosition(block);
+			rotateAllPorts(block);
+		endUpdate(block);
 	}
-    }
 
     /**
      * Flip a block (horizontal inversion).

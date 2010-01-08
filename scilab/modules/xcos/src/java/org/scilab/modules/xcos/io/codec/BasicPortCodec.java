@@ -14,9 +14,18 @@
 package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Orientation;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -25,7 +34,12 @@ import com.mxgraph.io.mxCodec;
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-
+    
+    private static final Pattern ROTATION_STYLE = Pattern.compile("(.*)(;rotation=(0|90|180|270))(.*)");
+    private static final int ROTATION_STYLE_BEFORE_GROUP = 1;
+    private static final int ROTATION_STYLE_VALUE_GROUP = 3;
+    private static final int ROTATION_STYLE_AFTER_GROUP = 4;
+    
     public BasicPortCodec(Object template) {
 	super(template);
     }
@@ -52,19 +66,54 @@ public class BasicPortCodec extends XcosObjectCodec {
 	    ((BasicPort) obj).setDataType(BasicPort.DataType.valueOf(attr));
 	}
 
-	//update style to replace direction by rotation
+	//update style from version to version.
 	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicPort) obj));
 	
 	return super.afterDecode(dec, node, obj);
     }
 
     private String formatStyle(String style, BasicPort obj) {
-	formatStyle(style);
+    String result;
+    	
+    // Replace direction by rotation
+	result = formatStyle(style);
 	
-	if (style.compareTo("") == 0) {
-	    style = obj.getTypeName();
+	// Replace rotation by defaultOrientation and the new rotation value.
+	result = updateDefaultOrientation(result, obj);
+	
+	if (result.compareTo("") == 0) {
+		result = obj.getTypeName();
 	}
-	return style;
+	return result;
     }
 
+    /**
+     * Replace the style rotation field by setting the obj defaultOrientation property.
+     * @param style The style applied to the element.
+     * @param obj The port we are working on.
+     * @return The new style value
+     * 
+     * @since 5.2.0+ 
+     */
+	private String updateDefaultOrientation(String style, BasicPort obj) {
+		String result = style;
+		
+		Matcher m = ROTATION_STYLE.matcher(style);
+		if (m.matches()) {
+			
+			// Parse the rotation field value
+			String value = m.group(ROTATION_STYLE_VALUE_GROUP);
+			int rotation = Integer.parseInt(value);
+			
+			// Update angle value
+			rotation = obj.getOrientation().getAngle(rotation, false, false);
+			obj.setAngle(rotation);
+			
+			// Update the field
+			result = m.replaceAll(m.group(ROTATION_STYLE_BEFORE_GROUP)
+					+ ";rotation=" + rotation
+					+ m.group(ROTATION_STYLE_AFTER_GROUP));
+		}
+		return result;
+	}
 }

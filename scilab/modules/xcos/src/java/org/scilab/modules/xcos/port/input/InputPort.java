@@ -20,6 +20,6 @@ public abstract class InputPort extends BasicPort {
 
     protected InputPort(String type) {
 	super(type);
-	setInitialAngle(0);
+	setOrientation(Orientation.WEST);
     }
 }
