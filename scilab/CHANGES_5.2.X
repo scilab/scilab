@@ -53,6 +53,8 @@ Atoms:
 Bug fixes:
 ==========
 
+* bug 4543 fixed - Waitbar command seemed not to work properly with message define by a string.
+
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
