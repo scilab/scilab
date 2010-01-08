@@ -13,8 +13,12 @@
 package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.xcos.XcosUIDObject;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxUtils;
+import com.mxgraph.view.mxGraph;
 
 /**
  * Common implementation of any Port.
@@ -230,9 +234,19 @@ public abstract class BasicPort extends XcosUIDObject {
 	super.setStyle(style);
     }
 
-    public void setAngle(int angle) {
-	this.angle = angle % 360;
-    }
+    /**
+     * @param angle the rotation value.
+     */
+	public void setAngle(int angle) {
+		this.angle = angle % 360;
+
+		final mxGraph graph = ((BasicBlock) getParent()).getParentDiagram();
+		if (graph != null) {
+			mxUtils.setCellStyles(graph.getModel(), new Object[] {this},
+					XcosConstants.STYLE_ROTATION, new Integer(this.angle)
+							.toString());
+		}
+	}
 
     public int getAngle() {
 	return angle;
