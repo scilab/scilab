@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Orientation;
@@ -30,6 +31,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.util.mxUtils;
+import com.mxgraph.view.mxGraph;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
@@ -39,6 +43,16 @@ public class BasicPortCodec extends XcosObjectCodec {
     private static final int ROTATION_STYLE_BEFORE_GROUP = 1;
     private static final int ROTATION_STYLE_VALUE_GROUP = 3;
     private static final int ROTATION_STYLE_AFTER_GROUP = 4;
+    
+    private static final Pattern MIRROR_STYLE = Pattern.compile("(.*)(;mirror=(true|false))(.*)");
+    private static final int MIRROR_STYLE_BEFORE_GROUP = 1;
+    private static final int MIRROR_STYLE_VALUE_GROUP = 3;
+    private static final int MIRROR_STYLE_AFTER_GROUP = 4;
+    
+    private static final Pattern FLIP_STYLE = Pattern.compile("(.*)(;flip=(true|false))(.*)");
+    private static final int FLIP_STYLE_BEFORE_GROUP = 1;
+    private static final int FLIP_STYLE_VALUE_GROUP = 3;
+    private static final int FLIP_STYLE_AFTER_GROUP = 4;
     
     public BasicPortCodec(Object template) {
 	super(template);
@@ -78,8 +92,8 @@ public class BasicPortCodec extends XcosObjectCodec {
     // Replace direction by rotation
 	result = formatStyle(style);
 	
-	// Replace rotation by defaultOrientation and the new rotation value.
-	result = updateDefaultOrientation(result, obj);
+	// Update the rotation value according to the Orientation
+	result = updateRotationFromOrientation(style, obj);
 	
 	if (result.compareTo("") == 0) {
 		result = obj.getTypeName();
@@ -87,33 +101,46 @@ public class BasicPortCodec extends XcosObjectCodec {
 	return result;
     }
 
-    /**
-     * Replace the style rotation field by setting the obj defaultOrientation property.
-     * @param style The style applied to the element.
-     * @param obj The port we are working on.
-     * @return The new style value
-     * 
-     * @since 5.2.0+ 
-     */
-	private String updateDefaultOrientation(String style, BasicPort obj) {
-		String result = style;
-		
-		Matcher m = ROTATION_STYLE.matcher(style);
+	/**
+	 * Update the rotation value when the block has been rotated on 5.2.0
+	 * format. Update it according to the Orientation field added 2010/01/08
+	 * between 5.2.0 and 5.2.1.
+	 * 
+	 * @param style The previous style value
+	 * @param obj The port we are working on
+	 * @return The new style value
+	 */
+	private String updateRotationFromOrientation(String style, BasicPort obj) {
+		final Orientation orientation = obj.getOrientation();
+		Matcher m;
+		int rotation = 0;
+		boolean flipped = false;
+		boolean mirrored = false;
+
+		// Parse rotation value
+		m = ROTATION_STYLE.matcher(style);
 		if (m.matches()) {
-			
-			// Parse the rotation field value
-			String value = m.group(ROTATION_STYLE_VALUE_GROUP);
-			int rotation = Integer.parseInt(value);
-			
-			// Update angle value
-			rotation = obj.getOrientation().getAngle(rotation, false, false);
-			obj.setAngle(rotation);
-			
-			// Update the field
-			result = m.replaceAll(m.group(ROTATION_STYLE_BEFORE_GROUP)
-					+ ";rotation=" + rotation
-					+ m.group(ROTATION_STYLE_AFTER_GROUP));
+			rotation = Integer.parseInt(m.group(ROTATION_STYLE_VALUE_GROUP));
 		}
-		return result;
+
+		// Parse flip value
+		m = FLIP_STYLE.matcher(style);
+		if (m.matches()) {
+			flipped = Boolean.parseBoolean(m.group(FLIP_STYLE_VALUE_GROUP));
+		}
+
+		// Parse mirror value
+		m = MIRROR_STYLE.matcher(style);
+		if (m.matches()) {
+			mirrored = Boolean.parseBoolean(m.group(MIRROR_STYLE_VALUE_GROUP));
+		}
+
+		// First calculate the block angle then calculate the current rotation
+		// from it.
+		rotation = orientation.getAngle(orientation.getBlockRotationValue(
+				rotation, flipped, mirrored), flipped, mirrored);
+
+		return mxUtils.setStyle(style, XcosConstants.STYLE_ROTATION, Integer
+				.toString(rotation));
 	}
 }
