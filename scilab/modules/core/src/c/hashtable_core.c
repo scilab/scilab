@@ -19,6 +19,7 @@
 #include "hashtable_core.h"
 #include "getfunctionslist.h"
 #include "existfunction.h"
+#include "BOOL.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #define lfind _lfind
@@ -27,7 +28,6 @@
 #define MAXLENGHTFUNCTIONNAME nlgh+1 /* 24 in scilab */
 typedef struct primitive_table 
 {
-	unsigned int used;
 	int keyIdentity[nsiz];
 	int primitivePointer;
 	char namefunction[MAXLENGHTFUNCTIONNAME];
@@ -36,9 +36,9 @@ typedef struct primitive_table
 static PRIMITIVES_TABLE *primitiveTableByName = NULL;
 static PRIMITIVES_TABLE *primitiveTableByPrimitivePointer = NULL;
 static PRIMITIVES_TABLE *primitiveTableByKeyIdentity = NULL;
-static PRIMITIVES_TABLE *primitiveTableByUsed = NULL;
 static unsigned int primitiveTableSize = 0;
 static unsigned int primitiveTableFilled = 0;
+static BOOL sortprimitiveTable = FALSE;
 /*--------------------------------------------------------------------------*/
 extern int C2F(cvname)(int *,char *,int *, unsigned long int);
 /*--------------------------------------------------------------------------*/
@@ -49,18 +49,17 @@ static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr);
 static BOOL doDeleteFunction(int *key, int *scilab_funptr);
 static void deleteEntryInTable(PRIMITIVES_TABLE *table, int index,
 							   int (*_PtFuncCompare)(const void *, const void *));
+static void sort_hashtable_scilab_functions(void);
 /*--------------------------------------------------------------------------*/
 static int compareByName(const void *x, const void *y);
 static int compareByPrimitivepointer(const void *x, const void *y);
 static int compareByKeyIdentity(const void *x, const void *y);
-static int compareByUsed(const void *x, const void *y);
 /*--------------------------------------------------------------------------*/
 BOOL create_hashtable_scilab_functions(void)
 {
 	if ((primitiveTableByName) &&
 		(primitiveTableByPrimitivePointer) &&
-		(primitiveTableByKeyIdentity) &&
-		(primitiveTableByUsed)) return FALSE;
+		(primitiveTableByKeyIdentity)) return FALSE;
 
 	primitiveTableSize = DEFAULT_ELEMENTFUNCTIONLIST;
 	primitiveTableFilled = 0;
@@ -69,19 +68,16 @@ BOOL create_hashtable_scilab_functions(void)
 	primitiveTableByName = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
 	primitiveTableByPrimitivePointer = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
 	primitiveTableByKeyIdentity = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
-	primitiveTableByUsed = (PRIMITIVES_TABLE *) CALLOC((primitiveTableSize + 1), sizeof(PRIMITIVES_TABLE));
 
 	/* initialization to a empty struct */
 	if ((primitiveTableByName) &&
 		(primitiveTableByPrimitivePointer) &&
-		(primitiveTableByKeyIdentity) &&
-		(primitiveTableByUsed))
+		(primitiveTableByKeyIdentity))
 	{
 		unsigned int i = 0;
 
 		PRIMITIVES_TABLE emptyPRIMITIVES_TABLE;
 		emptyPRIMITIVES_TABLE.primitivePointer = 0;
-		emptyPRIMITIVES_TABLE.used = 0;
 		memset(emptyPRIMITIVES_TABLE.keyIdentity, 0, sizeof(int) * nsiz);
 		strcpy(emptyPRIMITIVES_TABLE.namefunction, "");
 
@@ -92,7 +88,6 @@ BOOL create_hashtable_scilab_functions(void)
 		/* copy struct to others tables */
 		memcpy(primitiveTableByPrimitivePointer, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
 		memcpy(primitiveTableByKeyIdentity, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
-		memcpy(primitiveTableByUsed, primitiveTableByName, sizeof(PRIMITIVES_TABLE)*primitiveTableSize);
 
 		return TRUE;
 	}
@@ -108,7 +103,6 @@ void destroy_hashtable_scilab_functions()
 	if (primitiveTableByName) {FREE(primitiveTableByName); primitiveTableByName = NULL;}
 	if (primitiveTableByPrimitivePointer) {FREE(primitiveTableByPrimitivePointer); primitiveTableByPrimitivePointer = NULL;}
 	if (primitiveTableByKeyIdentity) {FREE(primitiveTableByKeyIdentity); primitiveTableByKeyIdentity = NULL;}
-	if (primitiveTableByUsed) {FREE(primitiveTableByUsed); primitiveTableByUsed = NULL;}
 	primitiveTableSize = 0;
 	primitiveTableFilled = 0;
 }
@@ -130,18 +124,15 @@ BOOL realloc_table_scilab_functions(void)
 			primitiveTableByName = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByName, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
 			primitiveTableByPrimitivePointer = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByPrimitivePointer, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
 			primitiveTableByKeyIdentity = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByKeyIdentity, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
-			primitiveTableByUsed = (PRIMITIVES_TABLE *) REALLOC(primitiveTableByUsed, (newPrimitiveTableSize + 1) * sizeof(PRIMITIVES_TABLE));
 
 			if (primitiveTableByName && 
 				primitiveTableByPrimitivePointer && 
-				primitiveTableByKeyIdentity && 
-				primitiveTableByUsed)
+				primitiveTableByKeyIdentity)
 			{
 				unsigned int i = 0;
 
 				PRIMITIVES_TABLE emptyPRIMITIVES_TABLE;
 				emptyPRIMITIVES_TABLE.primitivePointer = 0;
-				emptyPRIMITIVES_TABLE.used = 0;
 				memset(emptyPRIMITIVES_TABLE.keyIdentity, 0, sizeof(int) * nsiz);
 				strcpy(emptyPRIMITIVES_TABLE.namefunction, "");
 
@@ -150,7 +141,6 @@ BOOL realloc_table_scilab_functions(void)
 					memcpy(&primitiveTableByName[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
 					memcpy(&primitiveTableByPrimitivePointer[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
 					memcpy(&primitiveTableByKeyIdentity[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
-					memcpy(&primitiveTableByUsed[i], &emptyPRIMITIVES_TABLE, sizeof(emptyPRIMITIVES_TABLE));
 				}
 
 				primitiveTableSize = newPrimitiveTableSize;
@@ -304,20 +294,17 @@ static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
 		memcpy(newPRIMITIVES_TABLE.keyIdentity, key, sizeof(int) * nsiz);
 	}
 	newPRIMITIVES_TABLE.primitivePointer = *scilab_funptr;
-	newPRIMITIVES_TABLE.used = 1;
 
 	/* copy in others tables */
 	memcpy(&primitiveTableByName[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
 	memcpy(&primitiveTableByPrimitivePointer[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
 	memcpy(&primitiveTableByKeyIdentity[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
-	memcpy(&primitiveTableByUsed[primitiveTableFilled], &newPRIMITIVES_TABLE, sizeof(PRIMITIVES_TABLE));
 	primitiveTableFilled++;
 
-	/* sort tables with new entry */
-	qsort(primitiveTableByName, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByName);
-	qsort(primitiveTableByPrimitivePointer, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByPrimitivepointer);
-	qsort(primitiveTableByKeyIdentity, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
-	qsort(primitiveTableByUsed, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByUsed);
+	if (sortprimitiveTable)
+	{
+		sort_hashtable_scilab_functions();
+	}
 
 	return TRUE;
 }
@@ -334,10 +321,9 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 	PRIMITIVES_TABLE *found = NULL;
 	PRIMITIVES_TABLE searched;
 	searched.primitivePointer = *scilab_funptr;
-	searched.used = 1;
 
 	// delete by KeyIdentity
-	memcpy(searched.keyIdentity, key,sizeof(int) * nsiz);
+	memcpy(&searched.keyIdentity, key,sizeof(int) * nsiz);
 
 	/* search in tables and get index position in each table */
 	idxMax = primitiveTableFilled;
@@ -345,7 +331,7 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
 	if (found)
 	{
-		if (idxPrimitivePointer == -1) idxPrimitivePointer = abs(found - primitiveTableByPrimitivePointer);
+		idxPrimitivePointer = found - primitiveTableByPrimitivePointer;
 		found = NULL;
 	}
 
@@ -354,7 +340,7 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
 	if (found)
 	{
-		if (idxKeyIdendity == -1) idxKeyIdendity = abs(found - primitiveTableByKeyIdentity);
+		idxKeyIdendity = found - primitiveTableByKeyIdentity;
 		found = NULL;
 	}
 
@@ -363,27 +349,16 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
 	if (found)
 	{
-		if (idxName == -1) idxName = abs(found - primitiveTableByName);
+		idxName = found - primitiveTableByName;
 		found = NULL;
 	}
 
-	idxMax = primitiveTableFilled;
-	found = lfind(&searched, primitiveTableByUsed, 
-		&idxMax, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
-	if (found)
-	{
-		if (idxUsed == -1) idxUsed = abs(found - primitiveTableByUsed);
-		found = NULL;
-	}
-
-	if ((idxName >= 0) && (idxPrimitivePointer >= 0) && (idxKeyIdendity >= 0) && (idxUsed >= 0))
+	if ((idxName >= 0) && (idxPrimitivePointer >= 0) && (idxKeyIdendity >= 0))
 	{
 		/* delete entry in each table */
 		deleteEntryInTable(primitiveTableByName, idxName, compareByName);
 		deleteEntryInTable(primitiveTableByPrimitivePointer, idxPrimitivePointer, compareByPrimitivepointer);
 		deleteEntryInTable(primitiveTableByKeyIdentity, idxKeyIdendity, compareByKeyIdentity);
-		deleteEntryInTable(primitiveTableByUsed, idxUsed, compareByUsed);
-
 		primitiveTableFilled--;
 
 		return TRUE;
@@ -410,19 +385,25 @@ static int compareByKeyIdentity(const void *x, const void *y)
 		((PRIMITIVES_TABLE*)y)->keyIdentity, sizeof(int)*nsiz);
 }
 /*--------------------------------------------------------------------------*/  
-static int compareByUsed(const void *x, const void *y)
-{
-	return ((PRIMITIVES_TABLE*)x)->used - ((PRIMITIVES_TABLE*)y)->used;
-}
-/*--------------------------------------------------------------------------*/  
 static void deleteEntryInTable(PRIMITIVES_TABLE *table, int index,
 							   int (*_PtFuncCompare)(const void *, const void *))
 {
-	memset(table[index].keyIdentity, 0, sizeof(int)*nsiz);
-	strcpy(table[index].namefunction, "");
-	table[index].primitivePointer = 0;
-	table[index].used = 0;
-	qsort(table, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), *_PtFuncCompare);
+	memcpy(&table[index],
+		&table[index+1],
+		sizeof(PRIMITIVES_TABLE) * (primitiveTableFilled - index));
 }
 /*--------------------------------------------------------------------------*/  
-
+static void sort_hashtable_scilab_functions(void)
+{
+	/* sort tables with new entry */
+	qsort(primitiveTableByName, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByName);
+	qsort(primitiveTableByPrimitivePointer, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByPrimitivepointer);
+	qsort(primitiveTableByKeyIdentity, primitiveTableFilled, sizeof(PRIMITIVES_TABLE), compareByKeyIdentity);
+}
+/*--------------------------------------------------------------------------*/  
+void enable_sort_hashtable_scilab_functions(void)
+{
+	sortprimitiveTable = TRUE;
+	sort_hashtable_scilab_functions();
+}
+/*--------------------------------------------------------------------------*/  
