@@ -151,5 +151,11 @@ namespace types
     int m_iRef;
     bool m_bAllowDelete; //use to know if we can delete this variables or if it's link to a scilab variable.
   };
+  
+  /*
+  ** List of types
+  */
+  typedef std::vector<InternalType *> typed_list;
+
 }
 #endif /* !__INTERNAL_HXX__ */

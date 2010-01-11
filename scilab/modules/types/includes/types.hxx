@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __TYPES_HH__
-#define __TYPES_HH__
+#ifndef __TYPES_HXX__
+#define __TYPES_HXX__
 
 #include <vector>
 #include <iostream>
@@ -53,12 +53,5 @@ namespace types
 
     virtual RealType getType(void) { return RealGeneric; }
   };
-
-
-  /*
-  ** List of types
-  */
-  typedef std::vector<InternalType *> typed_list;
-
 }
-#endif /* !__TYPES_HH__ */
+#endif /* !__TYPES_HXX__ */
