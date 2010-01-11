@@ -5,18 +5,21 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 5494 -->
+// <-- Non-regression test for bug 5035 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=5494
+// http://bugzilla.scilab.org/show_bug.cgi?id=5035
+//
+// <-- INTERACTIVE TEST -->
 //
 // <-- Short Description -->
-// On Windows 2000, stacksize with the argument 'max' set stack to minimun size if it fails.
-// install scilab on windows 2000 with 256 Mo RAM
+// Demos --> tcl/tk --> Scroll Information printed on terminal
+//was not displayed on Windows.
+//
 
-m = stacksize();
-stacksize('max')
-ma = stacksize();
-if m(1) > ma(1) then pause,end
+// launch demo on Windows
+// ? --> Demos --> tcl/tk --> Scroll
+// terminal should be opened
+// see result of scroll in this console
+// when you quit demo console get previous state
 
-  

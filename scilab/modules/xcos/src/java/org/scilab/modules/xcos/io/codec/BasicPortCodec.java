@@ -17,15 +17,19 @@ import java.util.Map;
 
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Orientation;
+import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.util.mxUtils;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-
+    
     public BasicPortCodec(Object template) {
 	super(template);
     }
@@ -52,19 +56,54 @@ public class BasicPortCodec extends XcosObjectCodec {
 	    ((BasicPort) obj).setDataType(BasicPort.DataType.valueOf(attr));
 	}
 
-	//update style to replace direction by rotation
+	//update style from version to version.
 	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicPort) obj));
 	
 	return super.afterDecode(dec, node, obj);
     }
 
     private String formatStyle(String style, BasicPort obj) {
-	formatStyle(style);
+    String result;
+    	
+    // Replace direction by rotation
+	result = formatStyle(style);
 	
-	if (style.compareTo("") == 0) {
-	    style = obj.getTypeName();
+	// Update the rotation value according to the Orientation
+	result = updateRotationFromOrientation(style, obj);
+	
+	if (result.compareTo("") == 0) {
+		result = obj.getTypeName();
 	}
-	return style;
+	return result;
     }
 
+	/**
+	 * Update the rotation value when the block has been rotated on 5.2.0
+	 * format. Update it according to the Orientation field added 2010/01/08
+	 * between 5.2.0 and 5.2.1.
+	 * 
+	 * @param style The previous style value
+	 * @param obj The port we are working on
+	 * @return The new style value
+	 */
+	private String updateRotationFromOrientation(String style, BasicPort obj) {
+		final Orientation orientation = obj.getOrientation();
+		int rotation = 0;
+		boolean flipped = false;
+		boolean mirrored = false;
+
+		StyleMap map = new StyleMap(style);
+		
+		rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+
+		// First calculate the block angle then calculate the current rotation
+		// from it.
+		rotation = orientation.getAngle(orientation.getBlockRotationValue(
+				rotation, flipped, mirrored), flipped, mirrored);
+
+		return mxUtils.setStyle(style, XcosConstants.STYLE_ROTATION, Integer
+				.toString(rotation));
+	}
 }

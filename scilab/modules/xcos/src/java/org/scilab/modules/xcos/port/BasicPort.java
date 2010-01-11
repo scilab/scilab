@@ -21,6 +21,111 @@ import com.mxgraph.model.mxGeometry;
  */
 public abstract class BasicPort extends XcosUIDObject {
 
+	/**
+	 * Represent a port orientation related to the associated block. These
+	 * orientation semantics are valid when there is no rotation/mirror/flip
+	 * applied to the block.
+	 */
+	public static enum Orientation {
+		/** The port is on the left (west) side of the block */
+		WEST,
+		/** The port is on the top (north) side of the block */
+		NORTH,
+		/** The port is on the right (east) side of the block */
+		EAST,
+		/** The port is on the bottom (south) side of the block */
+		SOUTH;
+
+		/**
+		 * Get the orientation angle where the associated block angle is
+		 * blockAngle.
+		 * 
+		 * @param blockAngle
+		 *            The value of the block angle
+		 * @param flipped
+		 *            The block flip state
+		 * @param mirrored
+		 *            The block mirror state
+		 * @return The value of the angle.
+		 */
+		public int getAngle(int blockAngle, boolean flipped, boolean mirrored) {
+			int angle;
+
+			/* Specific settings */
+			switch (this) {
+			case WEST:
+			case EAST:
+				angle = 0;
+				if (flipped) {
+					angle = angle + 180;
+				}
+				break;
+
+			case NORTH:
+			case SOUTH:
+				angle = 90;
+				if (mirrored) {
+					angle = angle + 180;
+				}
+				break;
+
+			default:
+				angle = 0;
+				break;
+			}
+
+			/* Calculate angle */
+			return (angle + blockAngle) % 360;
+		}
+		
+		/**
+		 * Check the style values with this position
+		 * @param rotationValue Rotation value to check
+		 * @param flipped Flip informations
+		 * @param mirrored Mirror informations
+		 * @return true is the rotation is correct, false otherwise.
+		 */
+		public boolean isDefaultRotation(int rotationValue, boolean flipped, boolean mirrored) {
+			int angle = getBlockRotationValue(rotationValue, flipped, mirrored);
+			return angle == 0;
+		}
+
+		/**
+		 * Get the block rotation value from the style of the port.
+		 * @param angle Rotation value of the port.
+		 * @param flipped Flip state of the port
+		 * @param mirrored Mirror state of the port.
+		 * @return The parent block angle value (calculated).
+		 */
+		public int getBlockRotationValue(int angle, boolean flipped, boolean mirrored) {
+			int rotation = angle;
+			
+			switch (this) {
+			case WEST:
+			case EAST:
+				rotation -= 0;
+				if (flipped) {
+					rotation -= 180;
+				}
+				break;
+
+			case NORTH:
+			case SOUTH:
+				rotation -= 90;
+				if (mirrored) {
+					rotation -= 180;
+				}
+				break;
+
+			default:
+				break;
+			}
+			
+			rotation %= 360;
+			return rotation;
+		}
+	}
+	
     private static final long serialVersionUID = -5022701071026919015L;
     private static final int DEFAULT_DATALINES = -1;
     private static final int DEFAULT_DATACOLUMNS = -2;
@@ -32,8 +137,7 @@ public abstract class BasicPort extends XcosUIDObject {
     private int dataLines;
     private int dataColumns;
     private DataType dataType = DataType.REAL_MATRIX;
-    private int initialAngle;
-    private int angle;
+    private Orientation orientation;
     private transient String typeName;
 
     /** Type of any dataport */
@@ -168,30 +272,25 @@ public abstract class BasicPort extends XcosUIDObject {
 
     public abstract Type getType();
 
-    public void setStyle(String style){
-	super.setStyle(style);
-    }
+	/** @return The default orientation of this port */
+	public final Orientation getOrientation() {
+		return orientation;
+	}
 
-    public void setInitialAngle(int initialAngle) {
-	this.initialAngle = initialAngle;
-    }
-
-    public int getInitialAngle() {
-	return initialAngle;
-    }
-
-    public void setAngle(int angle) {
-	this.angle = (initialAngle + angle) % 360;
-    }
-
-    public int getAngle() {
-	return angle;
-    }
-
+	/**
+	 * @param defaultOrientation
+	 *            The default orientation of this port
+	 */
+	public final void setOrientation(Orientation defaultOrientation) {
+		this.orientation = defaultOrientation;
+	}
+    
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
 	result.append("Port number : " + getOrdering() + "<br>");
+	result.append("Style : " + getStyle() + "<br>");
+	result.append("Orientation : " + getOrientation() + "<br>");
 	result.append("</html>");
 	return result.toString();
     }

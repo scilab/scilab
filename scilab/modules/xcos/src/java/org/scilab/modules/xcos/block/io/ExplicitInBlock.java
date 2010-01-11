@@ -10,24 +10,25 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.io;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public final class ExplicitOutBlock extends ContextUpdate {
+public final class ExplicitInBlock extends ContextUpdate {
 
-    private static final long serialVersionUID = -3423053321045811400L;
+    private static final long serialVersionUID = -5872963017904352162L;
 
-	public ExplicitOutBlock() {
+	public ExplicitInBlock() {
 		super();
 	}
 
-	protected ExplicitOutBlock(String label) {
+	protected ExplicitInBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
@@ -39,13 +40,12 @@ public final class ExplicitOutBlock extends ContextUpdate {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
-		setInterfaceFunctionName("OUT_f");
-		setSimulationFunctionName("output");
+		setInterfaceFunctionName("IN_f");
+		setSimulationFunctionName("input");
 	}
-
+    
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
-	//setValue(((ScilabString) getExprs()).getData()[0][0]);
     }
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
@@ -55,12 +55,16 @@ public final class ExplicitOutBlock extends ContextUpdate {
 	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
 
 	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+	    getParentDiagram().fireEvent(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 	}
     }
 
     public void setIntegerParameters(ScilabType integerParameters) {
 	super.setIntegerParameters(integerParameters);
 	setValue((int)((ScilabDouble)getIntegerParameters()).getRealPart()[0][0]);
+	if(getParentDiagram() != null) {
+	    getParentDiagram().refresh();
+	}
     }
+
 }

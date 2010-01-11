@@ -12,6 +12,14 @@
 
 package org.scilab.modules.xcos.block;
 
+import org.scilab.modules.xcos.block.io.EventInBlock;
+import org.scilab.modules.xcos.block.io.EventOutBlock;
+import org.scilab.modules.xcos.block.io.ExplicitInBlock;
+import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
+import org.scilab.modules.xcos.block.io.ImplicitInBlock;
+import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -51,7 +59,9 @@ public final class BlockFactory {
 		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
 		SPLIT_f(new SplitBlock()),
 		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
-		CLKSPLIT_f(SPLIT_f.getSharedInstance());
+		CLKSPLIT_f(SPLIT_f.getSharedInstance()),
+		Ground(new GroundBlock()),
+		VoltageSensor(new VoltageSensorBlock());
 		
 		private BasicBlock block;
 		/**
