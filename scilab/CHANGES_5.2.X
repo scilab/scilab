@@ -11,6 +11,19 @@ Text editor:
 Xcos:
 =====
 
+* The xml header of an xcos file is checked before any other parsing.
+
+* Superblock masks can now be used and a new window is created when user wants to configure the variable settings.
+
+* A rework to pass checkstyle metrics has been started.
+
+* Refactoring:
+    - The port position algorithm has been reworked to take in account default position and calculate placement according to it's default associated side.
+    - The communication with the scilab interpreter is now easier to use and can be synchronous or asynchronous (with callback).
+    - The simulation function identifier is now mapped to an enum to better follow java semantics.
+    - Blocks instanciations are performed through a Factory and reference instances are shared.
+    - Java package (eg namespace) has been added to reduce the number of classes per package and improve readability. 
+
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
