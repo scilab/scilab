@@ -1,14 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+* Copyright (C) DIGITEO - 2010
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #include <stdio.h>
 #include <string.h>
 #include "prompt.h"
@@ -44,10 +45,16 @@ void C2F(setprlev)( int *pause)
 			}
 		}
 		sprintf(Sci_Prompt,SCIPROMPT_INTERRUPT,*pause);
+		// bug 5513
+		// when we change prompt to a pause level, we change also temp. prompt
+		SetTemporaryPrompt(Sci_Prompt);
 	}
 	else 
 	{
 		sprintf(Sci_Prompt,SCIPROMPT_PAUSE);
+		// bug 5513
+		// when we change prompt to halt level, we change also temp. prompt
+		SetTemporaryPrompt(Sci_Prompt);
 	}
 }
 /*------------------------------------------------------------------------*/
@@ -71,7 +78,7 @@ void SetTemporaryPrompt(char *tempPrompt)
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)
 {
-  return temporaryPrompt;
+	return temporaryPrompt;
 }
 /*------------------------------------------------------------------------*/
 void ClearTemporaryPrompt(void)
