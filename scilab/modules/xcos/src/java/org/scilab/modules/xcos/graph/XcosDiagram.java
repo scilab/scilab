@@ -93,6 +93,7 @@ import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
@@ -622,7 +623,7 @@ public class XcosDiagram extends ScilabGraph {
 	    public void invoke(Object source, mxEventObject evt) {
 		getModel().beginUpdate();
 		refresh();
-		BasicBlock updatedBlock = (BasicBlock) evt.getProperty("block");
+		BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
 		BlockPositioning.updateBlockView(updatedBlock);
 		getModel().endUpdate();
 	    }
@@ -723,14 +724,14 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class SuperBlockUpdateTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    assert evt.getProperty("block") instanceof SuperBlock;
-	    SuperBlock updatedBlock = (SuperBlock) evt.getProperty("block");
+	    assert evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED) instanceof SuperBlock;
+	    SuperBlock updatedBlock = (SuperBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
 	    updatedBlock.setRealParameters(BlockWriter
 		    .convertDiagramToMList(updatedBlock.getChild()));
 	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
 		SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
 			.getParentDiagram()).getContainer();
-		parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, "block", parentBlock));
+		parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 	    }
 	    BlockPositioning.updateBlockView(updatedBlock);
 	    refresh();
@@ -914,7 +915,7 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty("edit")).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(XcosConstants.EVENT_CHANGE_EDIT)).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {

@@ -60,6 +60,8 @@ Xcos:
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
 
+* bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
+
 * bug 5674 fixed - The Signal.notify didn't check is we are waiting for it
                    (thus the next wait will block).
 
@@ -67,6 +69,8 @@ Xcos:
 
 * bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams
                    properly.
+
+* bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
 
 Atoms:
 ======
@@ -83,6 +87,8 @@ Compilation:
 * Under GNU/Linux, Mac OS X & Unix, a m4 macro called 
   AC_JAVA_CHECK_VERSION_PACKAGE has been added to check the version of Java
   packages used
+
+* Check of the version of jgraphx added (1.2.0.X)
 
 Bug fixes:
 ==========

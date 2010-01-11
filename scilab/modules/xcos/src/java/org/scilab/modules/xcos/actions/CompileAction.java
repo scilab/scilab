@@ -56,7 +56,6 @@ public class CompileAction extends DefaultAction {
 	 */
 	public void doAction() {
 		((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
-		try {
 			Thread launchMe = new Thread() {
 				public void run() {
 					File temp;
@@ -82,9 +81,5 @@ public class CompileAction extends DefaultAction {
 				}
 			};
 			launchMe.start();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

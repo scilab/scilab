@@ -516,7 +516,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	if (getParentDiagram() instanceof SuperBlockDiagram) {
 	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, "block", parentBlock));
+	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 	}
 	
     }
@@ -559,7 +559,7 @@ public class BasicBlock extends XcosUIDObject {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
-				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, "block", currentBlock));
+				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, currentBlock));
 				    setLocked(false);
 				}
 			});
@@ -911,7 +911,12 @@ public class BasicBlock extends XcosUIDObject {
 	public void updateFieldsFromStyle() {
 		StyleMap map = new StyleMap(getStyle());
 
-		angle = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
+			angle = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		} else {
+			angle = 0;
+		}
+		
 		isFlipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		isMirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 	}

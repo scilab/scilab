@@ -21,6 +21,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.utils.XcosComponent;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
@@ -74,7 +75,7 @@ public class ScilabGraph extends mxGraph {
 
 			if (!redoInAction) {
 				undoManager.undoableEditHappened((mxUndoableEdit) evt
-						.getProperty("edit"));
+						.getProperty(XcosConstants.EVENT_CHANGE_EDIT));
 				incrementUndoCounter();
 			}
 		}
@@ -85,7 +86,7 @@ public class ScilabGraph extends mxGraph {
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty("edit")).getChanges();
+			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(XcosConstants.EVENT_CHANGE_EDIT)).getChanges();
 			setSelectionCells(getSelectionCellsForChanges(changes));
 		}
 	};
