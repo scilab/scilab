@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,7 +14,10 @@ package org.scilab.modules.graph.utils;
 
 import org.scilab.modules.localization.Messages;
 
-public class ScilabGraphMessages {
+/**
+ * Internationalized messages for this graph
+ */
+public final class ScilabGraphMessages {
     
 	public static final String COPY = Messages.gettext("Copy");
 	public static final String CUT = Messages.gettext("Cut");
@@ -29,4 +33,6 @@ public class ScilabGraphMessages {
     public static final String INVERT_SELECTION = Messages.gettext("Invert selection");
     public static final String UNTITLED = Messages.gettext("Untitled");
 	
+	/** This class is a static singleton, thus it must not be instantiated */
+	private ScilabGraphMessages() { }
 }
