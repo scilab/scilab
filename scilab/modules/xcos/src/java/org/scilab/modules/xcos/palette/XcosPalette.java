@@ -187,8 +187,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	    selectedEntry.setOpaque(true);
 	}
 
-	eventSource.fireEvent(mxEvent.SELECT, new mxEventObject(new Object[] {
-		selectedEntry, t, last }));
+	eventSource.fireEvent(new mxEventObject(mxEvent.SELECT, "entry",
+			selectedEntry, "transferable", t, "previous", last));
     }
 
 

@@ -107,6 +107,7 @@ import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
+import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
@@ -621,7 +622,7 @@ public class XcosDiagram extends ScilabGraph {
 	    public void invoke(Object source, mxEventObject evt) {
 		getModel().beginUpdate();
 		refresh();
-		BasicBlock updatedBlock = (BasicBlock) evt.getArgAt(0);
+		BasicBlock updatedBlock = (BasicBlock) evt.getProperty("block");
 		BlockPositioning.updateBlockView(updatedBlock);
 		getModel().endUpdate();
 	    }
@@ -635,7 +636,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ModelTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    List<mxUndoableChange> changes = (List<mxUndoableChange>) evt.getArgAt(0);
+	    List<mxAtomicGraphModelChange> changes = (List<mxAtomicGraphModelChange>) (evt.getProperty("changes"));
 	    List<Object> objects = new ArrayList<Object>();
 	    getModel().beginUpdate();
 	    for (int i = 0; i < changes.size(); ++i) {
@@ -656,7 +657,7 @@ public class XcosDiagram extends ScilabGraph {
 		    firedCells[j] = objects.get(j);
 		}
 		//fireEvent(XcosEvent.FORCE_CELL_RESHAPE, new mxEventObject(new Object[] {firedCells}));
-		fireEvent(XcosEvent.FORCE_CELL_VALUE_UPDATE, new mxEventObject(new Object[] {firedCells}));
+		fireEvent(new mxEventObject(XcosEvent.FORCE_CELL_VALUE_UPDATE, "cells", firedCells));
 	    }
 	    getModel().endUpdate();
 	}
@@ -667,7 +668,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class ForceCellValueUpdate implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells = (Object[]) evt.getArgs()[0];
+	    Object[] cells = (Object[]) evt.getProperty("cells");
 
 	    getModel().beginUpdate();
 
@@ -695,22 +696,41 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     /**
+<<<<<<< HEAD:scilab/modules/xcos/src/java/org/scilab/modules/xcos/graph/XcosDiagram.java
+=======
+     *  ForceCellReshapeTracker
+     *  Called when we want a Block to reshape for it's ports positions.
+     */
+    private class ForceCellReshapeTracker implements mxIEventListener {
+	public void invoke(Object source, mxEventObject evt) {
+	    Object[] cells =  (Object[]) evt.getProperty("cells");
+	    getModel().beginUpdate();
+	    for (int i = 0; i <  cells.length; ++i) {
+		Object cell = cells[i];
+		if (cell instanceof BasicBlock) {
+		    BlockPositioning.updateBlockView((BasicBlock) cell);
+		}
+	    }
+	    getModel().endUpdate();
+	}
+    }
+    
+    /**
+>>>>>>> e48febf... API compatibility with jgraphx-1.2.0.5:scilab/modules/xcos/src/java/org/scilab/modules/xcos/graph/XcosDiagram.java
      *  SuperBlockUpdateTracker
      *  Called when adding some port in a SuperBlock diagram
      *  to update current sub-diagram (i.e SuperBlock) representation.
      */
     private class SuperBlockUpdateTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    assert evt.getArgs()[0] instanceof SuperBlock;
-	    SuperBlock updatedBlock = (SuperBlock) evt.getArgs()[0];
+	    assert evt.getProperty("block") instanceof SuperBlock;
+	    SuperBlock updatedBlock = (SuperBlock) evt.getProperty("block");
 	    updatedBlock.setRealParameters(BlockWriter
 		    .convertDiagramToMList(updatedBlock.getChild()));
 	    if (updatedBlock.getParentDiagram() instanceof SuperBlockDiagram) {
 		SuperBlock parentBlock = ((SuperBlockDiagram) updatedBlock
 			.getParentDiagram()).getContainer();
-		parentBlock.getParentDiagram().fireEvent(
-			XcosEvent.SUPER_BLOCK_UPDATED,
-			new mxEventObject(new Object[] { parentBlock }));
+		parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, "block", parentBlock));
 	    }
 	    BlockPositioning.updateBlockView(updatedBlock);
 	    refresh();
@@ -729,7 +749,7 @@ public class XcosDiagram extends ScilabGraph {
     	}
 
     	public void invoke(Object source, mxEventObject evt) {
-    		Object[] cells = (Object[]) evt.getArgs()[0];
+    		Object[] cells = (Object[]) evt.getProperty("cells");
     		
     		diagram.getModel().beginUpdate();
     		for (int i = 0; i < cells.length; ++i) {
@@ -760,7 +780,7 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells = (Object[]) evt.getArgs()[0];
+	    Object[] cells = (Object[]) evt.getProperty("cells");
 	    for (int i = 0; i < cells.length; i++) {
 		if (cells[i] instanceof BasicLink) {
 		    BasicLink link = (BasicLink) cells[i];
@@ -878,7 +898,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private class CellResizedTracker implements mxIEventListener {
 	public void invoke(Object source, mxEventObject evt) {
-	    Object[] cells = (Object[]) evt.getArgs()[0];
+	    Object[] cells = (Object[]) evt.getProperty("cells");
 	    getModel().beginUpdate();
 	    for (int i = 0; i < cells.length; ++i) {
 		if (cells[i] instanceof BasicBlock) {
@@ -894,7 +914,7 @@ public class XcosDiagram extends ScilabGraph {
      */
    private class UndoUpdateTracker implements mxIEventListener {
         public void invoke(Object source, mxEventObject evt) {
-            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
+            List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty("edit")).getChanges();
             Object[] changedCells = getSelectionCellsForChanges(changes);
             getModel().beginUpdate();
             for (Object object : changedCells) {
@@ -1706,7 +1726,7 @@ public class XcosDiagram extends ScilabGraph {
 	//getParentTab().setName((String) properties.get("title"));
 
 	// Clear all undo events in Undo Manager
-	getUndoManager().reset();
+	getUndoManager().clear();
 	setModified(false);
     }
 
@@ -2048,7 +2068,7 @@ public class XcosDiagram extends ScilabGraph {
      * This function will reset the UndoManager in a stable state.
      */
     public void resetUndoManager() {
-	getUndoManager().reset();
+	getUndoManager().clear();
 
 	resetUndoCounter();
 

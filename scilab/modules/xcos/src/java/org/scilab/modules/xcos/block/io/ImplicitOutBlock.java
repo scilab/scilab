@@ -56,7 +56,7 @@ public final class ImplicitOutBlock extends ContextUpdate {
 	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
 
 	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, "old", oldValue, "new", newValue));
 	}
     }
 
