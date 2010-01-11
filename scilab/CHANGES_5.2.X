@@ -19,6 +19,19 @@ Text editor:
 Xcos:
 =====
 
+* The xml header of an xcos file is checked before any other parsing.
+
+* Superblock masks can now be used and a new window is created when user wants to configure the variable settings.
+
+* A rework to pass checkstyle metrics has been started.
+
+* Refactoring:
+    - The port position algorithm has been reworked to take in account default position and calculate placement according to it's default associated side.
+    - The communication with the scilab interpreter is now easier to use and can be synchronous or asynchronous (with callback).
+    - The simulation function identifier is now mapped to an enum to better follow java semantics.
+    - Blocks instanciations are performed through a Factory and reference instances are shared.
+    - Java package (eg namespace) has been added to reduce the number of classes per package and improve readability. 
+
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
@@ -34,6 +47,12 @@ Xcos:
                    into /tmp/ instead of TMPDIR
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
+
+* bug 5625 fixed - The Ground block port position was not right.
+
+* bug 5626 fixed - The VoltageSensor port positions were not right.
+
+* bug 5627 fixed - It was not possible to place a port in a non-conventionnal side.
 
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
@@ -70,6 +89,8 @@ Bug fixes:
                    was not displayed on Windows.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
+
+* bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
 * bug 5659 fixed - emptystr changed the value of an input variable.
 
