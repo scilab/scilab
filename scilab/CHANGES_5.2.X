@@ -50,6 +50,13 @@ Atoms:
 * bug 6389 fixed - Atoms GUI : "Update" button just removed the selected module
                    but didn't update it.
 
+Compilation:
+============
+
+* Under GNU/Linux, Mac OS X & Unix, a m4 macro called 
+  AC_JAVA_CHECK_VERSION_PACKAGE has been added to check the version of Java
+  packages used
+
 Bug fixes:
 ==========
 
