@@ -56,7 +56,7 @@ public class ScilabGraph extends mxGraph {
     /**
      * Manage the modification state on change
      */
-    protected mxIEventListener changeTracker = new mxIEventListener() {
+    private mxIEventListener changeTracker = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
 	    setModified(true);
 	}
@@ -65,7 +65,7 @@ public class ScilabGraph extends mxGraph {
     /**
      * Manage the undo/redo on change
      */
-    protected mxIEventListener undoHandler = new mxIEventListener() {
+    private mxIEventListener undoHandler = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
 
 	    if (!redoInAction) {
@@ -78,7 +78,7 @@ public class ScilabGraph extends mxGraph {
     /**
      * Manage the selection on change
      */
-    mxIEventListener selectionHandler = new mxIEventListener() {
+    private mxIEventListener selectionHandler = new mxIEventListener() {
 	public void invoke(Object source, mxEventObject evt) {
 	    List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0)).getChanges();
 	    setSelectionCells(getSelectionCellsForChanges(changes));
