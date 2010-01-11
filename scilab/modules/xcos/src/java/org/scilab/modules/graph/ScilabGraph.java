@@ -53,6 +53,7 @@ public class ScilabGraph extends mxGraph {
     private int undoCounter;
     private boolean readOnly;
     private Color originalColor;
+    
     private transient mxRubberband rubberBand;
 
     /**
@@ -96,9 +97,7 @@ public class ScilabGraph extends mxGraph {
     public ScilabGraph() {
 	super();
 
-	/*
-	 * Disabling the default connected action and event listeners.
-	 */
+	// Disabling the default connected action and event listeners.
 	mxGraphActions.getSelectNextAction().setEnabled(false);
 	mxGraphActions.getSelectPreviousAction().setEnabled(false);
 	mxGraphActions.getSelectChildAction().setEnabled(false);
@@ -109,30 +108,16 @@ public class ScilabGraph extends mxGraph {
 	getView().addListener(mxEvent.UNDO, undoHandler);
 
 	// Keeps the selection in sync with the command history
-
 	undoManager.addListener(mxEvent.UNDO, selectionHandler);
 	undoManager.addListener(mxEvent.REDO, selectionHandler);
 
 	component = new XcosComponent(this);
-	//	component = new mxGraphComponent(this);
 
 	// Adds rubberband selection
 	rubberBand = new mxRubberband(component);
 
 	// Modified property change
 	getModel().addListener(mxEvent.CHANGE, changeTracker);
-
-	// addKeyListener(new XcosShortCut());
-	// setMarqueeHandler(new XcosPortAction());
-	// getGraphLayoutCache().setFactory(new DiagrammFactory());
-	// setPortsScaled(true);
-	// setVisible(true);
-	// Control-drag should clone selection
-	// this.setCloneable(true);
-	// this.setPortsVisible(true);
-
-	// Enable edit without final RETURN keystroke
-	// this.setInvokesStopCellEditing(true);
     }
 
     /**
