@@ -45,14 +45,14 @@ public class ScilabGraph extends mxGraph {
     private final XcosComponent component;
 
     private String title = ScilabGraphMessages.UNTITLED;
-    private String savedFile = null;
-    private boolean modified = false;
+    private String savedFile;
+    private boolean modified;
     private Tab parentTab;
-    private boolean opened = false;
-    private boolean redoInAction = false;
-    private int undoCounter = 0;
-    private boolean readOnly = false;
-    private Color originalColor = null;
+    private boolean opened;
+    private boolean redoInAction;
+    private int undoCounter;
+    private boolean readOnly;
+    private Color originalColor;
     private transient mxRubberband rubberBand;
 
     /**
