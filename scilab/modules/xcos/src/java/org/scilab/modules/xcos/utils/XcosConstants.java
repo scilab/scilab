@@ -29,6 +29,9 @@ public class XcosConstants extends mxConstants {
     public static final String EVENT_CHANGE_OLD = "old";
     public static final String EVENT_CHANGE_NEW = "new";
     
+    /* Scilab */
+    public static final String TMPDIR = "TMPDIR";
+    
     /** This class is a static singleton, thus it must not be instantiated */
     public XcosConstants() { }
 }

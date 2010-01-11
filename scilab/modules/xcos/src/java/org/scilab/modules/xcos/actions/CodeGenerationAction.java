@@ -15,6 +15,9 @@ package org.scilab.modules.xcos.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -25,29 +28,52 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
+import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
-
+/**
+ * Generate code for the current graph.
+ */
 public class CodeGenerationAction extends DefaultAction {
 
     private static final long serialVersionUID = -7756467773530338202L;
 
+    /**
+	 * Constructor
+	 * @param scilabGraph associated Scilab graph
+	 */
     public CodeGenerationAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.CODE_GENERATION,scilabGraph);
+	super(XcosMessages.CODE_GENERATION, scilabGraph);
     }
 
+    /**
+	 * Create a button to add in Scilab Graph tool bar
+	 * @param scilabGraph associated Scilab Graph
+	 * @return the button
+	 */
     public static PushButton createButton(ScilabGraph scilabGraph) {
 	return createButton(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph));
     }
 
+    /**
+	 * Menu for diagram menubar
+	 * @param scilabGraph associated diagram
+	 * @return the menu
+	 */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph), null);
     }
 
+    /**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
     public void doAction() {
 	Object selectedObj = getGraph(null).getSelectionCell();
 		if (!(selectedObj instanceof SuperBlock)) {
@@ -59,19 +85,20 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
-	    final File tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
+	    final File tempOutput = File.createTempFile(XcosFileType.XCOS.getExtension(), XcosFileType.HDF5.getExtension(), new File(System.getenv(XcosConstants.TMPDIR)));
+	    final File tempInput = File.createTempFile(XcosFileType.XCOS.getExtension(), XcosFileType.HDF5.getExtension(), new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
-	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
-	    H5Write.closeFile(file_id);
+	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(fileId, "scs_m", block.getAsScilabObj());
+	    H5Write.closeFile(fileId);
 	    
 			String command = "xcosCodeGeneration(\""
 					+ tempOutput.getAbsolutePath() + "\"" + ", \""
 					+ tempInput.getAbsolutePath() + "\");";
 	    
+		try {
 			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					// Now read new Block
@@ -88,11 +115,16 @@ public class CodeGenerationAction extends DefaultAction {
 				    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				}
 			});
-	}
-	
-	catch (Exception e) {
+		} catch (InterpreterException e) {
+			e.printStackTrace();
+		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+		}
+	} catch (IOException e) {
 	    e.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+	} catch (HDF5Exception e) {
+		e.printStackTrace();
+		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}
     }
 }
