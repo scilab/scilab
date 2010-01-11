@@ -13,25 +13,33 @@ Xcos:
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
-* bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions were not available.
+* bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
+                   were not available.
 
-* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's filename contains space.
+* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's 
+                   filename contains space.
 
-* bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some blocks were not updated to the lastest Xcos/Scicos version.
+* bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some 
+                   blocks were not updated to the lastest Xcos/Scicos version.
 
-* bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored into /tmp/ instead of TMPDIR
+* bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored
+                   into /tmp/ instead of TMPDIR
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
-* bug 5660 fixed - An scicos block with negative simulation function type was not working (espacially the ESELECT_f block).
+* bug 5660 fixed - An scicos block with negative simulation function type was 
+                   not working (espacially the ESELECT_f block).
 
-* bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting its parameters.
+* bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
+                   its parameters.
 
-* bug 5674 fixed - The Signal.notify didn't check is we are waiting for it (thus the next wait will block).
+* bug 5674 fixed - The Signal.notify didn't check is we are waiting for it
+                   (thus the next wait will block).
 
 * bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
 
-* bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams properly.
+* bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams
+                   properly.
 
 Atoms:
 ======
@@ -45,9 +53,13 @@ Atoms:
 Bug fixes:
 ==========
 
-* bug 4543 fixed - Waitbar command seemed not to work properly with message define by a string.
+* bug 4543 fixed - Waitbar command seemed not to work properly with message
+                   define by a string.
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
+
+* bug 5035 fixed - Demos --> tcl/tk --> Scroll Information printed on terminal
+                   was not displayed on Windows.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
 
