@@ -911,7 +911,12 @@ public class BasicBlock extends XcosUIDObject {
 	public void updateFieldsFromStyle() {
 		StyleMap map = new StyleMap(getStyle());
 
-		angle = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
+			angle = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		} else {
+			angle = 0;
+		}
+		
 		isFlipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		isMirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 	}
