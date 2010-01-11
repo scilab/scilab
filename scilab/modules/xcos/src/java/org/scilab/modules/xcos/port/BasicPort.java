@@ -13,16 +13,8 @@
 package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.XcosConstants;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxGraph;
 
 /**
  * Common implementation of any Port.

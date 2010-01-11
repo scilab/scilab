@@ -14,45 +14,21 @@
 package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Orientation;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxGraph;
 
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-    
-    private static final Pattern ROTATION_STYLE = Pattern.compile("(.*)(;rotation=(0|90|180|270))(.*)");
-    private static final int ROTATION_STYLE_BEFORE_GROUP = 1;
-    private static final int ROTATION_STYLE_VALUE_GROUP = 3;
-    private static final int ROTATION_STYLE_AFTER_GROUP = 4;
-    
-    private static final Pattern MIRROR_STYLE = Pattern.compile("(.*)(;mirror=(true|false))(.*)");
-    private static final int MIRROR_STYLE_BEFORE_GROUP = 1;
-    private static final int MIRROR_STYLE_VALUE_GROUP = 3;
-    private static final int MIRROR_STYLE_AFTER_GROUP = 4;
-    
-    private static final Pattern FLIP_STYLE = Pattern.compile("(.*)(;flip=(true|false))(.*)");
-    private static final int FLIP_STYLE_BEFORE_GROUP = 1;
-    private static final int FLIP_STYLE_VALUE_GROUP = 3;
-    private static final int FLIP_STYLE_AFTER_GROUP = 4;
     
     public BasicPortCodec(Object template) {
 	super(template);
@@ -112,28 +88,15 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 */
 	private String updateRotationFromOrientation(String style, BasicPort obj) {
 		final Orientation orientation = obj.getOrientation();
-		Matcher m;
 		int rotation = 0;
 		boolean flipped = false;
 		boolean mirrored = false;
 
-		// Parse rotation value
-		m = ROTATION_STYLE.matcher(style);
-		if (m.matches()) {
-			rotation = Integer.parseInt(m.group(ROTATION_STYLE_VALUE_GROUP));
-		}
-
-		// Parse flip value
-		m = FLIP_STYLE.matcher(style);
-		if (m.matches()) {
-			flipped = Boolean.parseBoolean(m.group(FLIP_STYLE_VALUE_GROUP));
-		}
-
-		// Parse mirror value
-		m = MIRROR_STYLE.matcher(style);
-		if (m.matches()) {
-			mirrored = Boolean.parseBoolean(m.group(MIRROR_STYLE_VALUE_GROUP));
-		}
+		StyleMap map = new StyleMap(style);
+		
+		rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 
 		// First calculate the block angle then calculate the current rotation
 		// from it.
