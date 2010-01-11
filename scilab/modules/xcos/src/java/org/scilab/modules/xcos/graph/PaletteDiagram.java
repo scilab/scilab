@@ -41,7 +41,7 @@ public class PaletteDiagram extends XcosDiagram {
 	setCellsDeletable(false);
 	setCellsEditable(false);
 	
-	undoManager.setEventsEnabled(false);
+	getUndoManager().setEventsEnabled(false);
     }
 
     public boolean openDiagramAsPal(String diagramFileName) {
