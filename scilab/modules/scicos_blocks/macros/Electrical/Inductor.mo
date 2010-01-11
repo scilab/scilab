@@ -19,11 +19,11 @@
  * See the file ../license.txt
 */
 
-class Inductor "Ideal electrical inductor"
+model Inductor "Ideal electrical inductor"
 	Pin p, n;
 	Real v;
 	Real i;
-	parameter Real L "Inductance";
+	parameter Real L=1e-6 "Inductance";
 equation
 	v = L*der(i);
 	v = p.v - n.v;

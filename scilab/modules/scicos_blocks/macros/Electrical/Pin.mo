@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class Pin
+connector Pin
 	Real v;
 	flow Real i;
 end Pin;

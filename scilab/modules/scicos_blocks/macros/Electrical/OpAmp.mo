@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class OpAmp 
+model OpAmp 
 //  parameter Real OLGain=1000 "Open Loop gain";
 //  parameter Real SatH=10  "Positive saturation voltage";
 //  parameter Real SatL=-10 "Negative Saturation voltage";

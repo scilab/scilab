@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class PNP "Simple BJT according to Ebers-Moll" 
+model PNP "Simple BJT according to Ebers-Moll" 
   parameter Real Bf=50 "Forward beta";
   parameter Real Br=0.1 "Reverse beta";
   parameter Real Is=1.e-16 "Transport saturation current";
@@ -57,31 +57,29 @@ class PNP "Simple BJT according to Ebers-Moll"
 equation 
   EMax=EMinMax;
   EMin=-2*EMinMax;
-  ExMin = Modelica.Math.exp(EMin);
-  ExMax = Modelica.Math.exp(EMax);
+  ExMin = exp(EMin);
+  ExMax = exp(EMax);
   vbc = C.v - B.v;
   vbe = E.v - B.v;
   qbk = 1 - vbc*Vak;
   
   ibc = if noEvent(vbc/Vt < EMin) then Is*(ExMin*(vbc/Vt - EMin + 1) - 1) + vbc*
     Gbc else if noEvent(vbc/Vt > EMax) then Is*(ExMax*(vbc/Vt - EMax + 1) - 1) + 
-    vbc*Gbc else Is*(Modelica.Math.exp(vbc/Vt) - 1) + vbc*Gbc;
+    vbc*Gbc else Is*(exp(vbc/Vt) - 1) + vbc*Gbc;
   
   ibe = if noEvent(vbe/Vt < EMin) then Is*(ExMin*(vbe/Vt - EMin + 1) - 1) + vbe*
     Gbe else if noEvent(vbe/Vt > EMax) then Is*(ExMax*(vbe/Vt - EMax + 1) - 1) + 
-    vbe*Gbe else Is*(Modelica.Math.exp(vbe/Vt) - 1) + vbe*Gbe;
+    vbe*Gbe else Is*(exp(vbe/Vt) - 1) + vbe*Gbe;
   
-  Capcjc = if (vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*pow(1 - 
-    vbc/Phic, -Mc);
-  Capcje = if (vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*pow(1 - 
-    vbe/Phie, -Me);
+  Capcjc = if (vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*(1 - vbc/Phic)^(-Mc);
+  Capcje = if (vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*(1 - vbe/Phie)^(-Me);
 
   cbc = if noEvent(vbc/Vt < EMin) then Taur*Is/Vt*ExMin*(vbc/Vt - EMin + 1) + 
     Capcjc else if noEvent(vbc/Vt > EMax) then Taur*Is/Vt*ExMax*(vbc/Vt - EMax + 1)
-     + Capcjc else Taur*Is/Vt*Modelica.Math.exp(vbc/Vt) + Capcjc;
+     + Capcjc else Taur*Is/Vt*exp(vbc/Vt) + Capcjc;
   cbe = if noEvent(vbe/Vt < EMin) then Tauf*Is/Vt*ExMin*(vbe/Vt - EMin + 1) + 
     Capcje else if noEvent(vbe/Vt > EMax) then Tauf*Is/Vt*ExMax*(vbe/Vt - EMax + 1)
-     + Capcje else Tauf*Is/Vt*Modelica.Math.exp(vbe/Vt) + Capcje;
+     + Capcje else Tauf*Is/Vt*exp(vbe/Vt) + Capcje;
 
   C.i = -((ibe - ibc)*qbk - ibc/Br - cbc*der(vbc) + Ccs*der(C.v));
   B.i = -(ibe/Bf + ibc/Br + cbe*der(vbe) + cbc*der(vbc));

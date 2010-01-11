@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class NMOS "Simple MOS Transistor" 
+model NMOS "Simple MOS Transistor" 
   parameter Real W=20.e-6 "Width";
   parameter Real L=6.e-6 "Length";
   parameter Real Beta=0.041e-3    "Transconductance parameter";

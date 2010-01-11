@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class PMOS "Simple MOS Transistor" 
+model PMOS "Simple MOS Transistor" 
   parameter Real W=50.0e-6 "Width";
   parameter Real L=6.0e-6 "Length";
   parameter Real Beta=0.0105e-3 "Transconductance parameter";

@@ -19,10 +19,10 @@
  * See the file ../license.txt
 */
 
-class Capacitor
+model Capacitor
 	Pin p, n;
 	Real v;
-	parameter Real C "Capacitance";
+	parameter Real C(fixed=true)=1e-5 "Capacitance";
 equation
 	C*der(v) = p.i;
 	v = p.v - n.v;

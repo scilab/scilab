@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class Gyrator "Gyrator" 
+model Gyrator "Gyrator" 
   parameter Real G1=1 "Gyration conductance";
   parameter Real G2=1 "Gyration conductance";
 

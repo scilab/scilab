@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class SineVoltage "Sine voltage source" 
+model SineVoltage "Sine voltage source" 
   parameter Real V=1 "Amplitude of sine wave";
   parameter Real phase=0 "Phase of sine wave";
   parameter Real freqHz=1 "Frequency of sine wave";
@@ -31,7 +31,7 @@ class SineVoltage "Sine voltage source"
   
 equation
 
-  v = offset + (if time < startTime then 0 else V*Modelica.Math.sin(2*PI*freqHz*(time - startTime) +phase));
+  v = offset + (if time < startTime then 0 else V*sin(2*PI*freqHz*(time - startTime) +phase));
   v= p.v - n.v;	
   0 = p.i + n.i;
 end SineVoltage;

@@ -19,9 +19,9 @@
  * See the file ../license.txt
 */
 
-class Resistor
+model Resistor
 	Pin p, n;
-	parameter Real R "Resistance";
+	parameter Real R=1 "Resistance";
 
 equation
 	R*p.i = p.v - n.v;

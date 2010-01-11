@@ -20,10 +20,11 @@
 */
 
 
-  class OutPutPort
-    output Real vo;
+model OutPutPort
+//    output Real vo;
+    Real vo; 
     Real vi;
-   equation
+equation
     vi = vo;
-  end OutPutPort;
+end OutPutPort;
 

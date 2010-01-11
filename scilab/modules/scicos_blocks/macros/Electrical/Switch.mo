@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class Switch
+model Switch
   parameter Real Ron=0.01 "Resistance when the Switch is closed";
   parameter Real Roff=1e5  "Resistance when the switch is open";
   Pin p,n;

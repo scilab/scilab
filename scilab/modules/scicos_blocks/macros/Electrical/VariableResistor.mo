@@ -19,7 +19,7 @@
  * See the file ../license.txt
 */
 
-class VariableResistor
+model VariableResistor
 	Pin p, n;
 	Real R "Resistance";
 equation

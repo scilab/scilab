@@ -19,9 +19,10 @@
  * See the file ../license.txt
 */
 
-class InPutPort
+model InPutPort
   Real vo;
-  input Real vi;
+  // input Real vi;
+  Real vi;
  equation
     vi=vo;
 end InPutPort;
