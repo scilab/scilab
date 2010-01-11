@@ -41,11 +41,8 @@ import com.mxgraph.view.mxGraph;
  */
 public class ScilabGraph extends mxGraph {
 
-    protected mxUndoManager undoManager = new mxUndoManager();
-    protected mxGraphOutline graphOutline = null;
-    protected mxKeyboardHandler keyboardHandler = null;
-    protected XcosComponent component = null;
-    //    protected mxGraphComponent component = null;
+    private final mxUndoManager undoManager = new mxUndoManager();
+    private final XcosComponent component;
 
     private String title = ScilabGraphMessages.UNTITLED;
     private String savedFile = null;
@@ -365,4 +362,11 @@ public class ScilabGraph extends mxGraph {
     public mxRubberband getRubberBand() {
         return rubberBand;
     }
+
+    /**
+     * @return The undo manager associated with this graph
+     */
+	protected final mxUndoManager getUndoManager() {
+		return undoManager;
+	}
 }
