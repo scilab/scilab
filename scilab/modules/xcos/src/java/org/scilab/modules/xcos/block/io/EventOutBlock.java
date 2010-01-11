@@ -10,11 +10,12 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.io;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;

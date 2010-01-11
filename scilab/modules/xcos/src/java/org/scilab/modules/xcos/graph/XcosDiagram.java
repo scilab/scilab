@@ -68,7 +68,7 @@ import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.ContextUpdate;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -409,7 +409,8 @@ public class XcosDiagram extends ScilabGraph {
 	super();
 	getModel().addListener(mxEvent.UNDO, undoEnabler);
 	getView().addListener(mxEvent.UNDO, undoEnabler);
-	keyboardHandler = new XcosShortCut(this);
+	// The association is inverted there (by the parameter)
+	new XcosShortCut(this);
 	mxCodec codec = new mxCodec();
 
 	try {
@@ -609,8 +610,8 @@ public class XcosDiagram extends ScilabGraph {
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
 	
 	// Update the blocks view on undo/redo
-	undoManager.addListener(mxEvent.UNDO, new UndoUpdateTracker());
-	undoManager.addListener(mxEvent.REDO, new UndoUpdateTracker());
+	getUndoManager().addListener(mxEvent.UNDO, new UndoUpdateTracker());
+	getUndoManager().addListener(mxEvent.REDO, new UndoUpdateTracker());
 	
 	getAsComponent().getGraphControl().addMouseListener(new XcosMouseListener(this));
 
@@ -1705,7 +1706,7 @@ public class XcosDiagram extends ScilabGraph {
 	//getParentTab().setName((String) properties.get("title"));
 
 	// Clear all undo events in Undo Manager
-	undoManager.reset();
+	getUndoManager().reset();
 	setModified(false);
     }
 
@@ -1996,7 +1997,7 @@ public class XcosDiagram extends ScilabGraph {
 	super.undo();
 
 	if (getParentTab() != null) {
-	    if (undoManager.canUndo()) {
+	    if (getUndoManager().canUndo()) {
 		((XcosTab) getParentTab()).setEnabledUndo(true);
 	    } else {
 		((XcosTab) getParentTab()).setEnabledUndo(false);
@@ -2030,12 +2031,12 @@ public class XcosDiagram extends ScilabGraph {
 	updateUndoModifiedState();
 
 	if (getParentTab() != null) {
-	    if (undoManager.canUndo()) {
+	    if (getUndoManager().canUndo()) {
 		((XcosTab) getParentTab()).setEnabledUndo(true);
 	    } else {
 		((XcosTab) getParentTab()).setEnabledUndo(false);
 	    }
-	    if (undoManager.canRedo()) {
+	    if (getUndoManager().canRedo()) {
 		((XcosTab) getParentTab()).setEnabledRedo(true);
 	    } else {
 		((XcosTab) getParentTab()).setEnabledRedo(false);
@@ -2047,7 +2048,7 @@ public class XcosDiagram extends ScilabGraph {
      * This function will reset the UndoManager in a stable state.
      */
     public void resetUndoManager() {
-	undoManager.reset();
+	getUndoManager().reset();
 
 	resetUndoCounter();
 
