@@ -34,6 +34,6 @@
 #include "matrixpoly.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
-
+#include "list.hxx"
 
 #endif /* !ALL_TYPES_HH */

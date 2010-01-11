@@ -10,28 +10,30 @@
  * 
  */
 
-#ifndef __CONTAINER_HXX__
-#define __CONTAINER_HXX__
-
-#include "internal.hxx"
+#include <list>
+#include "container.hxx"
 
 namespace types
 {
-  class Container : public InternalType
+  class List : public Container
   {
-
   public :
-    Container() : InternalType() {}
-    virtual ~Container() {}
+    List() : Container() 
+    {
+      m_plData = new std::list<InternalType *>();
+    }
 
-    void whoAmI(void) { std::cout << "types::Container"; }
+    ~List() 
+    {
+      delete m_plData;
+    }
 
-    virtual int size_get() = 0 ;
+    int size_get() 
+    {
+      return m_plData->size();
+    }
 
-    virtual bool isAssignable(void) { return true; }
-    
-    virtual RealType getType(void) { return RealContainer; }
+  private :
+    std::list<InternalType *> *m_plData;
   };
 }
-
-#endif /* !__CONTAINER_HXX__ */

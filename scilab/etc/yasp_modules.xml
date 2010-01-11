@@ -13,6 +13,7 @@
 <!-- =================== -->
 <modules>
     <module name="core" activate="yes"/>
+    <module name="types" activate="yes"/>
     <module name="double" activate="no"/>
     <module name="elementary_functions" activate="yes"/>
     <module name="boolean" activate="yes"/>

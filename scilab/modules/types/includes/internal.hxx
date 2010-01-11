@@ -44,6 +44,8 @@ namespace types
       RealMacroFile,
       /* Implicit List */
       RealImplicitList,
+      /* Container */
+      RealContainer,
       /* User */
       RealUserType
     };

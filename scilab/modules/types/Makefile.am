@@ -24,9 +24,12 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/macrofile.cpp \
 			src/cpp/macro.cpp
 
+GATEWAY_CPP_SOURCES	= src/cpp/types_gw.cpp \
+			sci_gateway/cpp/sci_list.cpp
+
 pkglib_LTLIBRARIES 	= libscitypes.la
 
-libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
+libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../elementary_functions/includes \
@@ -36,7 +39,8 @@ libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../output_stream/includes \
 				-I../parse/includes \
 				-I../system_env/includes \
-				-Isrc/cpp
+				-I ../functions_manager/includes \
+				-I src/cpp
 
 libscitypes_la_includedir=$(pkgincludedir)/Types
 
