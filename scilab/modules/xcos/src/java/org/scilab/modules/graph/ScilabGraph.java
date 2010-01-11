@@ -39,6 +39,8 @@ import com.mxgraph.view.mxGraph;
  */
 public class ScilabGraph extends mxGraph {
 
+	private static final int DEFAULTCOLOR = 240;
+	
     private final mxUndoManager undoManager = new mxUndoManager();
     private final XcosComponent component;
 
@@ -227,9 +229,12 @@ public class ScilabGraph extends mxGraph {
 	}
     }
 
-    /**
-     * Used internally to manage the modified state on undo/redo
-     */
+	/**
+	 * Used internally to manage the modified state on undo/redo
+	 * 
+	 * @return true if the document is in a previous saved state, false
+	 *         otherwise
+	 */
     protected boolean isZeroUndoCounter() {
 	return (undoCounter == 0);
     }
@@ -321,9 +326,9 @@ public class ScilabGraph extends mxGraph {
 	this.readOnly = readOnly;
 	
 	setCellsLocked(readOnly);
-	if(isReadonly()) {
+	if (isReadonly()) {
 	    setOriginalColor(getAsComponent().getBackground());
-	    getAsComponent().setBackground(new Color(240, 240, 240));
+	    getAsComponent().setBackground(new Color(DEFAULTCOLOR, DEFAULTCOLOR, DEFAULTCOLOR));
 	} else {
 	    getAsComponent().setBackground(getOriginalColor());
 	}
@@ -338,6 +343,7 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Useful function for the read-only property
+     * @param originalColor The default color to apply
      */
     private void setOriginalColor(Color originalColor) {
 	this.originalColor = originalColor;
@@ -345,9 +351,10 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Useful function for the read-only property
+     * @return The default color
      */
     private Color getOriginalColor() {
-	if(originalColor != null){
+	if (originalColor != null) {
 	    return originalColor;
 	}
 	return Color.WHITE;
