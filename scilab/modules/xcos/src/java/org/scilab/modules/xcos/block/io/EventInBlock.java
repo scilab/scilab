@@ -16,6 +16,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
@@ -56,7 +57,7 @@ public final class EventInBlock extends ContextUpdate {
 	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
 
 	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.IN_EVENT_VALUE_UPDATED, "old", oldValue, "new", newValue));
+	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.IN_EVENT_VALUE_UPDATED, XcosConstants.EVENT_CHANGE_OLD, oldValue, XcosConstants.EVENT_CHANGE_NEW, newValue));
 	}
     }
 

@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.utils;
 
 import java.awt.AlphaComposite;
@@ -12,8 +24,25 @@ import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
+/**
+ * Painter for each vertex and edge
+ */
 public class XcosCanvas extends mxInteractiveCanvas {
 
+	/** Default constructor */
+	public XcosCanvas() { }
+	
+	/**
+	 * Draw the vertex
+	 * 
+	 * @param x horizontal coordinate
+	 * @param y vertical coordinate
+	 * @param w width
+	 * @param h height
+	 * @param style All the style of the associated vertex
+	 * @return always null
+	 */
+	@Override
 	public Object drawVertex(int x, int y, int w, int h,
 			Hashtable<String, Object> style) {
 
@@ -117,6 +146,19 @@ public class XcosCanvas extends mxInteractiveCanvas {
 		return null;
 	}
 
+	/**
+	 * Draws a rectangle for the given parameters.
+	 * 
+	 * @param x X-coordinate of the shape.
+	 * @param y Y-coordinate of the shape.
+	 * @param w Width of the shape.
+	 * @param h Height of the shape.
+	 * @param fillColor Optional fill color of the shape.
+	 * @param fillPaint Optional paint of the shape.
+	 * @param penColor Optional stroke color.
+	 * @param shadow Boolean indicating if a shadow should be painted.
+	 * @param rounded Boolean indicating if the rectangle is rounded.
+	 */
 	public void drawRect(int x, int y, int w, int h, Color fillColor,
 			Paint fillPaint, Color penColor, boolean shadow, boolean rounded) {
 		super.drawRect(x, y, w, h, fillColor, fillPaint, penColor, shadow,
