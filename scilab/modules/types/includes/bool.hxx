@@ -25,8 +25,7 @@ namespace types
 										Bool(bool _bReal);
 										Bool(int _iRows, int _iCols);
 										Bool(int _iRows, int _iCols, bool **_pbData);
-		void						CreateBool(int _iRows, int _iCols, bool **_pbData);
-		virtual					~Bool();
+										~Bool();
 
 		/*data management*/
 		bool*						bool_get() const;
@@ -57,8 +56,10 @@ namespace types
   protected :
 		RealType				getType(void);
 
+  private :
 		/*clean values array*/
 		void						all_delete();
+		void						CreateBool(int _iRows, int _iCols, bool **_pbData);
 
   private :
     bool*						m_pbData;
