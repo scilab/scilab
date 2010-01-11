@@ -22,8 +22,6 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.swing.mxGraphOutline;
-import com.mxgraph.swing.handler.mxKeyboardHandler;
 import com.mxgraph.swing.handler.mxRubberband;
 import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.util.mxEvent;
