@@ -246,23 +246,6 @@ public class ScilabGraph extends mxGraph {
 	undoCounter = 0;
     }
 
-    @Deprecated
-    public void zoom() {
-	// this.setScale(2 * this.getScale());
-    }
-
-    @Deprecated
-    public void unzoom() {
-	// this.setScale(this.getScale() / 2);
-    }
-
-    @Deprecated
-    public void delete() {
-	// if (!isSelectionEmpty()) {
-	// getModel().remove(getDescendants(getSelectionCells()));
-	// }
-    }
-
     /**
      * @return The associated Tab
      */
