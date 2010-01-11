@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __ANY_TYPES_HH__
-#define __ANY_TYPES_HH__
+#ifndef __ANY_TYPES_HXX__
+#define __ANY_TYPES_HXX__
 
 namespace types
 {
@@ -20,16 +20,17 @@ namespace types
   class Float;
   class Int;
   class Bool;
-	class MatrixType;
-	class GenericType;
-	class ImplicitList;
-	class Callable;
-	class Function;
-	class Macro;
-	class MacroFile;
-	class Dollar;
-	class Poly;
-	class MatrixPoly;
+  class MatrixType;
+  class GenericType;
+  class ImplicitList;
+  class Callable;
+  class Function;
+  class Macro;
+  class MacroFile;
+  class Dollar;
+  class Poly;
+  class MatrixPoly;
+  class Container;
 }
 
-#endif /* !__ANY_TYPES_HH__ */
+#endif /* !__ANY_TYPES_HXX__ */
