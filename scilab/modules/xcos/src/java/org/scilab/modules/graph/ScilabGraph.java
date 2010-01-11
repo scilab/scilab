@@ -74,7 +74,7 @@ public class ScilabGraph extends mxGraph {
 
 			if (!redoInAction) {
 				undoManager.undoableEditHappened((mxUndoableEdit) evt
-						.getArgAt(0));
+						.getProperty("edit"));
 				incrementUndoCounter();
 			}
 		}
@@ -85,8 +85,7 @@ public class ScilabGraph extends mxGraph {
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getArgAt(0))
-					.getChanges();
+			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty("edit")).getChanges();
 			setSelectionCells(getSelectionCellsForChanges(changes));
 		}
 	};
@@ -195,10 +194,13 @@ public class ScilabGraph extends mxGraph {
 	 * Redo the last action com.mxgraph.util.mxUndoManager
 	 */
 	public void redo() {
+	    if (!redoInAction) {
+
 		incrementUndoCounter();
 		redoInAction = true;
 		undoManager.redo();
 		redoInAction = false;
+	    }
 	}
 
 	/**

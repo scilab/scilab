@@ -516,7 +516,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	if (getParentDiagram() instanceof SuperBlockDiagram) {
 	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED,new mxEventObject(new Object[] { parentBlock }));
+	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, "block", parentBlock));
 	}
 	
     }
@@ -559,7 +559,7 @@ public class BasicBlock extends XcosUIDObject {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
-				    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
+				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, "block", currentBlock));
 				    setLocked(false);
 				}
 			});
