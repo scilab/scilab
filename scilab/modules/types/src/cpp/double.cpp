@@ -300,7 +300,7 @@ namespace types
 	}
 
 	/*--------------*/
-	/*	getAsUInt		*/
+	/*	getAsDouble		*/
 	/*--------------*/
 	Double* Double::getAsDouble(void)
 	{
