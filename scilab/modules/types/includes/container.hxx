@@ -24,7 +24,7 @@ namespace types
     Container() : InternalType() {}
     virtual ~Container() {}
 
-    void whoAmI(void) { std::cout << "types::Container"; }
+    virtual void whoAmI(void) { std::cout << "types::Container"; }
 
     virtual int size_get() = 0 ;
 

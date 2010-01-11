@@ -22,7 +22,8 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/tostring_common.cpp \
 			src/cpp/function.cpp \
 			src/cpp/macrofile.cpp \
-			src/cpp/macro.cpp
+			src/cpp/macro.cpp \
+			src/cpp/list.cpp
 
 GATEWAY_CPP_SOURCES	= src/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp

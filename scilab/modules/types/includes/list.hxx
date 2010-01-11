@@ -18,20 +18,35 @@ namespace types
   class List : public Container
   {
   public :
-    List() : Container() 
-    {
-      m_plData = new std::list<InternalType *>();
-    }
+    List();
+    ~List(); 
 
-    ~List() 
-    {
-      delete m_plData;
-    }
+  private :
+    List(List *_oListCopyMe);
+    std::list<InternalType *> *getData();
 
-    int size_get() 
-    {
-      return m_plData->size();
-    }
+  public :
+    int size_get(); 
+
+    void whoAmI(void) { std::cout << "types::List"; };
+
+    RealType getType(void) { return RealList; } 
+
+  /**
+   ** append(InternalType *_typedValue)
+   ** Append the given value to the end of the List
+   */
+    void append(InternalType *_typedValue);
+
+  /**
+   ** Clone
+   ** Create a new List and Copy all values.
+   */
+    List *clone();
+
+    std::string toString(int _iPrecision, int _iLineLen);
+
+    List *getAsList(void) { return this; }
 
   private :
     std::list<InternalType *> *m_plData;

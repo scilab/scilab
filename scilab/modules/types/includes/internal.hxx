@@ -46,6 +46,7 @@ namespace types
       RealImplicitList,
       /* Container */
       RealContainer,
+      RealList,
       /* User */
       RealUserType
     };
@@ -63,7 +64,9 @@ namespace types
     virtual bool isAssignable(void) { return false; }
     virtual RealType getType(void) { return RealInternal; }
 
+    /* FIXME : Should Be virtual [...] = 0; */
     virtual std::string	toString(int _iPrecison, int _iLineLen) { return "Internal"; }
+    /* FIXME : Should Be virtual [...] = 0; */
     virtual InternalType* clone(void) { return NULL; }
     
     void	IncreaseRef()
@@ -141,6 +144,21 @@ namespace types
     bool isMacroFile(void) { return (getType() == RealMacroFile); }
     virtual MacroFile* getAsMacroFile(void) { return NULL; }
     
+    /**
+     ** \}
+     */
+
+    /**
+     ** Container
+     ** \{
+     */
+    virtual bool isContainer(void) { return false; }
+    virtual Container* getAsContainer(void) { return NULL; }
+
+    /* List */
+    bool isList(void) { return (getType() == RealList); }
+    virtual List* getAsList(void) { return NULL; }
+
     /**
      ** \}
      */
