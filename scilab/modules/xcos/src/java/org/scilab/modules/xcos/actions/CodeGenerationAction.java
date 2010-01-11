@@ -85,8 +85,12 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile(XcosFileType.XCOS.getExtension(), XcosFileType.HDF5.getExtension(), new File(System.getenv(XcosConstants.TMPDIR)));
-	    final File tempInput = File.createTempFile(XcosFileType.XCOS.getExtension(), XcosFileType.HDF5.getExtension(), new File(System.getenv(XcosConstants.TMPDIR)));
+			final File tempOutput = File.createTempFile(XcosFileType.XCOS
+					.getExtension(), XcosFileType.HDF5.getExtension(),
+					new File(System.getenv(XcosConstants.TMPDIR)));
+			final File tempInput = File.createTempFile(XcosFileType.XCOS
+					.getExtension(), XcosFileType.HDF5.getExtension(),
+					new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
@@ -98,33 +102,45 @@ public class CodeGenerationAction extends DefaultAction {
 					+ tempOutput.getAbsolutePath() + "\"" + ", \""
 					+ tempInput.getAbsolutePath() + "\");";
 	    
-		try {
-			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+			final ActionListener callback = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					// Now read new Block
-				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
-				    block.updateBlockSettings(modifiedBlock);
-				    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-				    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-				    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-				    block.setStyle("blockWithLabel");
-				    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
-					    new Object[] {block}, mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-				    block.setValue(block.getSimulationFunctionName());
-				    block.setChild(null);
-				    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+					doAction(block, tempInput);
+					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				}
-			});
-		} catch (InterpreterException e) {
-			e.printStackTrace();
-		    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-		}
+			};
+			
+			XcosInterpreterManagement.asynchronousScilabExec(command, callback);
 	} catch (IOException e) {
 	    e.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	} catch (HDF5Exception e) {
 		e.printStackTrace();
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+	} catch (InterpreterException e) {
+		e.printStackTrace();
+		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}
     }
+    
+    /**
+     * Callback function
+     * 
+     * Read the block from the scilab 
+     * 
+     * @param block The block we are working on
+     * @param tempInput Input file
+     */
+    private static void doAction(final SuperBlock block,
+			final File tempInput) {
+	    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
+	    block.updateBlockSettings(modifiedBlock);
+	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+	    block.setStyle("blockWithLabel");
+	    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
+		    new Object[] {block} , mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+	    block.setValue(block.getSimulationFunctionName());
+	    block.setChild(null);
+	}
 }
