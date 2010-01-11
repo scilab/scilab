@@ -46,13 +46,16 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
     end
   end
 
-  for k=1:size(mlibs,'*')
-    modelica_file=listfiles(mlibs(k)+'/*.mo'); 
-    if modelica_file<> [] then 
-      molibs=[molibs;""""+modelica_file+""""];
+  // directories for translator libraries
+  for k=1:(size(mlibs,'*')-1)
+    modelica_directories=mlibs(k); 
+    if modelica_directories<> [] then 
+      molibs=[molibs;""""+modelica_directories+""""];
     end
   end
+  
   translator_libs=strcat(' -lib '+ molibs);
+  
   // build the sequence of -lib arguments for translator
   if MSDOS then, Limit=1000;else, Limit=3500;end
   if (length(translator_libs)>Limit) then 
@@ -86,7 +89,6 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 
  if MSDOS then,   mputl(instr,outpath+'/gent.bat'), instr=outpath+'/gent.bat';end
  
-
  if execstr('unix_s(instr)','errcatch')<>0 then
     messagebox([_('-------Modelica translator error message:-----');
 		mgetl(outpath+'S_translator.err')],'error','modal');
