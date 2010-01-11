@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.block;
 
+import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;

@@ -10,8 +10,9 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.positionning;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort.Orientation;
 import org.scilab.modules.xcos.port.input.InputPort;
 
