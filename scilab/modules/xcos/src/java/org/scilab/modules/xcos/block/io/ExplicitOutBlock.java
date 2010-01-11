@@ -10,24 +10,25 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.io;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public final class ImplicitOutBlock extends ContextUpdate {
+public final class ExplicitOutBlock extends ContextUpdate {
 
-     private static final long serialVersionUID = 3573293528173540817L;
+    private static final long serialVersionUID = -3423053321045811400L;
 
-	public ImplicitOutBlock() {
+	public ExplicitOutBlock() {
 		super();
 	}
 
-	protected ImplicitOutBlock(String label) {
+	protected ExplicitOutBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
@@ -39,8 +40,8 @@ public final class ImplicitOutBlock extends ContextUpdate {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
-		setInterfaceFunctionName("OUTIMPL_f");
-		setSimulationFunctionName("outimpl");
+		setInterfaceFunctionName("OUT_f");
+		setSimulationFunctionName("output");
 	}
 
     public void setExprs(ScilabType exprs) {
@@ -55,7 +56,7 @@ public final class ImplicitOutBlock extends ContextUpdate {
 	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
 
 	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(XcosEvent.OUT_IMPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+	    getParentDiagram().fireEvent(XcosEvent.OUT_EXPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 	}
     }
 

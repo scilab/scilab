@@ -10,24 +10,25 @@
  *
  */
 
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.io;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
-public final class ExplicitInBlock extends ContextUpdate {
+public final class EventInBlock extends ContextUpdate {
 
-    private static final long serialVersionUID = -5872963017904352162L;
+    private static final long serialVersionUID = 2799781225262685322L;
 
-	public ExplicitInBlock() {
+	public EventInBlock() {
 		super();
 	}
 
-	protected ExplicitInBlock(String label) {
+	protected EventInBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
@@ -39,12 +40,13 @@ public final class ExplicitInBlock extends ContextUpdate {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
-		setInterfaceFunctionName("IN_f");
+		setInterfaceFunctionName("CLKINV_f");
 		setSimulationFunctionName("input");
 	}
     
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
+	//setValue(((ScilabString) getExprs()).getData()[0][0]);
     }
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
@@ -54,16 +56,12 @@ public final class ExplicitInBlock extends ContextUpdate {
 	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
 
 	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
+	    getParentDiagram().fireEvent(XcosEvent.IN_EVENT_VALUE_UPDATED, new mxEventObject(new Object[]{oldValue,newValue}));
 	}
     }
 
     public void setIntegerParameters(ScilabType integerParameters) {
 	super.setIntegerParameters(integerParameters);
 	setValue((int)((ScilabDouble)getIntegerParameters()).getRealPart()[0][0]);
-	if(getParentDiagram() != null) {
-	    getParentDiagram().refresh();
-	}
     }
-
 }
