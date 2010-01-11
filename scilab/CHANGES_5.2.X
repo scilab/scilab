@@ -27,6 +27,12 @@ Xcos:
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
+* bug 5625 fixed - The Ground block port position was not right.
+
+* bug 5626 fixed - The VoltageSensor port positions were not right.
+
+* bug 5627 fixed - It was not possible to place a port in a non-conventionnal side.
+
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
 

@@ -51,7 +51,9 @@ public final class BlockFactory {
 		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
 		SPLIT_f(new SplitBlock()),
 		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
-		CLKSPLIT_f(SPLIT_f.getSharedInstance());
+		CLKSPLIT_f(SPLIT_f.getSharedInstance()),
+		Ground(new GroundBlock()),
+		VoltageSensor(new VoltageSensorBlock());
 		
 		private BasicBlock block;
 		/**
