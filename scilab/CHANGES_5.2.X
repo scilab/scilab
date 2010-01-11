@@ -97,6 +97,8 @@ Bug fixes:
                    returned a error message on stderr previously 
                    (5.1) there was no message.
 
+* bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
