@@ -94,9 +94,9 @@ public class BasicPortCodec extends XcosObjectCodec {
 
 		StyleMap map = new StyleMap(style);
 		
-		rotation = Integer.parseInt(map.get("rotation"));
-		flipped = Boolean.parseBoolean(map.get("flip"));
-		mirrored = Boolean.parseBoolean(map.get("mirror"));
+		rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 
 		// First calculate the block angle then calculate the current rotation
 		// from it.
