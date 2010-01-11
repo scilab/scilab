@@ -63,6 +63,8 @@ Bug fixes:
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
 
+* bug 5513 fixed - 'input' failed after Ctrl+C was typed.
+
 * bug 5659 fixed - emptystr changed the value of an input variable.
 
 * bug 5664 fixed - Demo Simulation > Wheel simulation > Simulation with ode failed.
