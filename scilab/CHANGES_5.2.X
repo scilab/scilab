@@ -62,6 +62,8 @@ Xcos:
 * bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams
                    properly.
 
+* bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
+
 Atoms:
 ======
 
