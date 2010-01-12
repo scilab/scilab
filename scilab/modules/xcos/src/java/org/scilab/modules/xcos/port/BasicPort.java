@@ -35,7 +35,10 @@ public abstract class BasicPort extends XcosUIDObject {
 		EAST,
 		/** The port is on the bottom (south) side of the block */
 		SOUTH;
-
+		
+		private static final int MAX_ROTATION = 360;
+		private static final int PERPENDICULAR_ROTATION = 90;
+		
 		/**
 		 * Get the orientation angle where the associated block angle is
 		 * blockAngle.
@@ -57,15 +60,15 @@ public abstract class BasicPort extends XcosUIDObject {
 			case EAST:
 				angle = 0;
 				if (flipped) {
-					angle = angle + 180;
+					angle = angle + (MAX_ROTATION / 2);
 				}
 				break;
 
 			case NORTH:
 			case SOUTH:
-				angle = 90;
+				angle = PERPENDICULAR_ROTATION;
 				if (mirrored) {
-					angle = angle + 180;
+					angle = angle + (MAX_ROTATION / 2);
 				}
 				break;
 
@@ -75,7 +78,7 @@ public abstract class BasicPort extends XcosUIDObject {
 			}
 
 			/* Calculate angle */
-			return (angle + blockAngle) % 360;
+			return (angle + blockAngle) % MAX_ROTATION;
 		}
 		
 		/**
@@ -105,15 +108,15 @@ public abstract class BasicPort extends XcosUIDObject {
 			case EAST:
 				rotation -= 0;
 				if (flipped) {
-					rotation -= 180;
+					rotation -= (MAX_ROTATION / 2);
 				}
 				break;
 
 			case NORTH:
 			case SOUTH:
-				rotation -= 90;
+				rotation -= PERPENDICULAR_ROTATION;
 				if (mirrored) {
-					rotation -= 180;
+					rotation -= (MAX_ROTATION / 2);
 				}
 				break;
 
@@ -121,7 +124,7 @@ public abstract class BasicPort extends XcosUIDObject {
 				break;
 			}
 			
-			rotation %= 360;
+			rotation = (rotation + MAX_ROTATION) % MAX_ROTATION;
 			return rotation;
 		}
 	}
@@ -245,31 +248,43 @@ public abstract class BasicPort extends XcosUIDObject {
 	this.dataColumns = dataColumns;
     }
 
+    /** @param dataType the port data type */
     public void setDataType(DataType dataType) {
 	this.dataType = dataType;
     }
 
+    /** @return the port data type */
     public DataType getDataType() {
 	return dataType;
     }
 
+    /**
+     * @param portOrdering a unique order number per type
+     */
     public void setOrdering(int portOrdering) {
 	this.ordering = portOrdering;
     }
 
+    /**
+     * @return the unique order number per type
+     */
     public int getOrdering() {
 	return ordering;
     }
     
+    /** @param connectedLinkId the connected link id */
     public void setConnectedLinkId(int connectedLinkId) {
-//    	this.connectedLinkId = Math.max(connectedLinkId, this.connectedLinkId);
     	this.connectedLinkId = connectedLinkId;
     }
 
+    /** @return the connected link id */
     public int getConnectedLinkId() {
 	return connectedLinkId;
     }
 
+    /**
+     * @return the type of the port (Explicit or Implicit)
+     */
     public abstract Type getType();
 
 	/** @return The default orientation of this port */
@@ -285,12 +300,13 @@ public abstract class BasicPort extends XcosUIDObject {
 		this.orientation = defaultOrientation;
 	}
     
+	/**
+	 * @return An html formatted documentation string
+	 */
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
 	result.append("Port number : " + getOrdering() + "<br>");
-	result.append("Style : " + getStyle() + "<br>");
-	result.append("Orientation : " + getOrientation() + "<br>");
 	result.append("</html>");
 	return result.toString();
     }
