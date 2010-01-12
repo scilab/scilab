@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.net.URI;
 import java.util.Iterator;
 import java.util.Vector;
 /*--------------------------------------------------------------------------*/
@@ -37,15 +36,17 @@ public class ClassPath {
 	/**
 	 * add a filename to java classpath.
 	 * @param s a filename
+	 * @param i a int
 	 * @throws IOException if an error occurs
 	 */
-	public static void addFile(final String s,int i) throws IOException {
+	public static void addFile(final String s, int i) throws IOException {
 		addFile(new File(s), i);
 	}
 	/*-----------------------------------------------------------------------*/
 	/**
 	 * add a file to java classpath.
 	 * @param  f a file
+	 * @param  i a int
 	 * @throws IOException if an error occurs
 	 */
 	public static void addFile(final File f, int i) throws IOException {
@@ -69,7 +70,7 @@ public class ClassPath {
 			method.setAccessible(true);
 			switch (i) {
 				case 0: /* Load now */
-					method.invoke(sysloader , new Object[] { u });
+					method.invoke(sysloader , new Object[] {u});
 					break;
 				case 1: /* Load later (background) */
 					queued.add(u);
@@ -105,7 +106,7 @@ public class ClassPath {
     /**
      * Load all the classpath in dedicated threads in background
      */
-	public static void loadBackGroundClassPath(){
+	public static void loadBackGroundClassPath() {
 		Thread backgroundLoader = new Thread() {
 				public void run() { 
 					try {
@@ -113,11 +114,11 @@ public class ClassPath {
 						Iterator<URL> urlIt = queued.iterator();
 
 						while (urlIt.hasNext()) {
-							ClassPath.addURL(urlIt.next(),0);
+							ClassPath.addURL(urlIt.next(), 0);
 						}
 
-					}catch (Exception e){
-						System.err.println("Error : "+e.getLocalizedMessage());
+					} catch (Exception e) {
+						System.err.println("Error : " + e.getLocalizedMessage());
 					}
 				}
 			};

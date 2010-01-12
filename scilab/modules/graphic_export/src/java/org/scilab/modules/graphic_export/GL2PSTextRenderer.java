@@ -14,7 +14,6 @@
  package org.scilab.modules.graphic_export;
 
 import java.awt.Font;
-import java.nio.ByteBuffer;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;

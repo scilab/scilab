@@ -60,7 +60,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	private JComponent focusOutComponent;
 	private SciConsole sciConsole;
 	
-	private int CurrentCaretPosition = 0;
+	private int currentCaretPosition;
 
 	/**
 	 * Default constructor
@@ -145,7 +145,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	 * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#show(java.util.List, java.awt.Point)
 	 */
 	public void show(List<CompletionItem> list, Point location) {
-		CurrentCaretPosition = inputParsingManager.getCaretPosition();
+		currentCaretPosition = inputParsingManager.getCaretPosition();
 		/* Display only in completion items list is not empty */
 		if (list != null) {
 
@@ -305,8 +305,8 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 				int caretPosition = inputParsingManager.getCaretPosition();
 				
 				String currentLine = inputParsingManager.getCommandLine();
-				String lineBeforeCaret = currentLine.substring(0, CurrentCaretPosition);
-				String lineAfterCaret = currentLine.substring(CurrentCaretPosition);
+				String lineBeforeCaret = currentLine.substring(0, currentCaretPosition);
+				String lineAfterCaret = currentLine.substring(currentCaretPosition);
 				
 				String stringToAdd = ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
 				String stringToAddType = ((CompletionItem) listUI.getSelectedValue()).getType();
@@ -433,7 +433,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 
 			if (e.getClickCount() >= 2) { /* Double click = the user validates the item */
 				/* Add text to the input command view */
-				int caretPosition =inputParsingManager.getCaretPosition();
+				int caretPosition = inputParsingManager.getCaretPosition();
 				
 				String currentLine = inputParsingManager.getCommandLine();
 				String lineBeforeCaret = currentLine.substring(0, caretPosition);
