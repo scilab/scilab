@@ -661,15 +661,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	help.addSeparator();
 	help.add(AboutXcosAction.createMenu(scilabGraph));
 
-	/** Debug menu */
-	// DEBUG / RELEASE option
-//	Menu debug = ScilabMenu.createMenu();
-//	debug.setText("DEBUG");
-//	menuBar.add(debug);
-//	debug.add(DumpAction.dumpMenu(scilabGraph));
-//	debug.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
-//	debug.add(ExportToXMLAction.createMenu(scilabGraph));
-//	debug.add(ImportFromXMLAction.createMenu(scilabGraph));
 	return menuBar;
     }
 
