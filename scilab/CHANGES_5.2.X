@@ -149,8 +149,7 @@ Bug fixes:
 
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
-* bug 6420 fixed - Due to a bad merge, it was not possible to use ax.x_ticks
-                   with LaTex commands.
+* bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab

@@ -16,7 +16,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.util.HashMap;
 import java.nio.Buffer;
-import java.nio.ByteBuffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
@@ -45,6 +44,7 @@ public class SpecialTextRenderer {
 
     private Color color = Color.black;
     private float fontSize;
+    private final static int NB_COMP = 4;
     
     private static GL gl = null;
 
@@ -79,8 +79,9 @@ public class SpecialTextRenderer {
 		if (!table.containsKey(content)) {
 			try {
 				spe = getSpecialTextObjectGL(content);
-				if (gl != null)
+				if (gl != null) {
 				        createTexture(spe);
+				}
 				table.put(content, spe);
 				return spe;
 			} catch (SpecialTextException e) {
@@ -90,8 +91,9 @@ public class SpecialTextRenderer {
 		}
     
 		spe = table.get(content);
-		if (spe != null && spe.setFontSize(fontSize))
+		if (spe != null && spe.setFontSize(fontSize)) {
 		        replaceTexture(spe);
+		}
 		
 		return spe;
     }
@@ -133,7 +135,9 @@ public class SpecialTextRenderer {
 	        /* If the buffer is null, it must be regenerated before getting width and height */
 		Buffer buf = spe.getBuffer();
 		
-		Texture t = TextureIO.newTexture(new TextureData(GL.GL_RGBA, (int) spe.getWidth(), (int) spe.getHeight(), 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, false, false, false, buf, null));
+		Texture t = TextureIO.newTexture(new TextureData(GL.GL_RGBA, (int) spe.getWidth(), (int) spe.getHeight(),
+								 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, false, false, false,
+								 buf, null));
 		
 		spe.setTexture(t);
     }
@@ -176,7 +180,7 @@ public class SpecialTextRenderer {
 		}
 		
 		/* the following lines fix a strange behaviour of GL_ADD on Windows */
-		float[] f = new float[4];
+		float[] f = new float[NB_COMP];
 		gl.glGetFloatv(GL.GL_CURRENT_COLOR, f, 0);
 		f[0] = 1 - f[0];
 		f[1] = 1 - f[1];
@@ -191,10 +195,10 @@ public class SpecialTextRenderer {
 		t.bind();
 
 		gl.glBegin(gl.GL_QUADS);
-		gl.glTexCoord2f(tc.left(),tc.bottom()); gl.glVertex2d(0, 0);
-		gl.glTexCoord2f(tc.right(),tc.bottom()); gl.glVertex2d(width, 0);
-		gl.glTexCoord2f(tc.right(),tc.top()); gl.glVertex2d(width, height);
-		gl.glTexCoord2f(tc.left(),tc.top()); gl.glVertex2d(0, height);
+		gl.glTexCoord2f(tc.left(), tc.bottom()); gl.glVertex2d(0, 0);
+		gl.glTexCoord2f(tc.right(), tc.bottom()); gl.glVertex2d(width, 0);
+		gl.glTexCoord2f(tc.right(), tc.top()); gl.glVertex2d(width, height);
+		gl.glTexCoord2f(tc.left(), tc.top()); gl.glVertex2d(0, height);
 		gl.glEnd();
 		t.disable();
 		gl.glPopMatrix();

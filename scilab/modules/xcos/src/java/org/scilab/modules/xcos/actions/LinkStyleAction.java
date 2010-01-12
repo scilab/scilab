@@ -26,15 +26,30 @@ import org.scilab.modules.xcos.link.BasicLink;
 import com.mxgraph.util.mxConstants;
 
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public class LinkStyleAction extends DefaultAction {
 
-    private String value = null;
+    private String value;
     
+    /**
+     * @param scilabGraph graph
+     * @param title menu title
+     * @param value associated value
+     */
     private LinkStyleAction(ScilabGraph scilabGraph, String title, String value) {
 	super(title, scilabGraph);
 	this.value = value;
     }
 
+    /**
+     * @param scilabGraph graph
+     * @param title menu title
+     * @param value associated value
+     * @return menu item
+     */
     public static MenuItem createMenu(ScilabGraph scilabGraph, String title, String value) {
 	char mnemonic = ' ';
 	if (value.compareTo(mxConstants.SHAPE_CONNECTOR) == 0) {
@@ -53,8 +68,8 @@ public class LinkStyleAction extends DefaultAction {
 	List<Object> links = new ArrayList<Object>();
 	Object[] selectedCells = graph.getSelectionCells();
 	
-	for (int i = 0 ; i < selectedCells.length ; ++i) {
-	    if(selectedCells[i] instanceof BasicLink) {
+	for (int i = 0; i < selectedCells.length; ++i) {
+	    if (selectedCells[i] instanceof BasicLink) {
 		links.add(selectedCells[i]);
 	    }
 	}
@@ -73,10 +88,10 @@ public class LinkStyleAction extends DefaultAction {
 	if (value.compareToIgnoreCase(mxConstants.SHAPE_CONNECTOR) == 0) {
 	    graph.setCellStyles(mxConstants.STYLE_EDGE, "", links.toArray());
 	    
-	    for (int i = 0 ; i < links.size() ; i++){
-	    	BasicLink currentLink = ((BasicLink)links.get(i));
+	    for (int i = 0; i < links.size(); i++) {
+	    	BasicLink currentLink = ((BasicLink) links.get(i));
 	    	int numberOfPoints = currentLink.getPointCount();
-	    	for(int j = 0 ; j < numberOfPoints ; j++){
+	    	for (int j = 0; j < numberOfPoints; j++) {
 	    		currentLink.removePoint(0);
 	    	}
 	    }
