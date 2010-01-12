@@ -62,11 +62,8 @@ import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
-import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
-import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
-import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -83,7 +80,6 @@ import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
-import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
@@ -665,15 +661,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	help.addSeparator();
 	help.add(AboutXcosAction.createMenu(scilabGraph));
 
-	/** Debug menu */
-	// DEBUG / RELEASE option
-//	Menu debug = ScilabMenu.createMenu();
-//	debug.setText("DEBUG");
-//	menuBar.add(debug);
-//	debug.add(DumpAction.dumpMenu(scilabGraph));
-//	debug.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
-//	debug.add(ExportToXMLAction.createMenu(scilabGraph));
-//	debug.add(ImportFromXMLAction.createMenu(scilabGraph));
 	return menuBar;
     }
 
