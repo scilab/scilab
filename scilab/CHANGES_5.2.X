@@ -108,6 +108,8 @@ Bug fixes:
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
+* bug 5673 fixed - Under Linux, dependency on GLIBC_2.7 removed
+
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.
 
