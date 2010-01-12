@@ -66,20 +66,26 @@ public class GotoLineAction extends DefaultAction {
 	    	}
 	}
 	
+	 /**
+	  * check if it is Windows
+	  * @return true or false
+	  */
 	private boolean isWindows() {
 			return System.getProperty("os.name").toLowerCase().contains("windows");
 		}
 	 
 	public void gotoLineBox () {
-
+			final int dimX = 305;
+			final int dimY = 105;
+			
 	        mainFrame = new JFrame();
 	        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 	        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        mainFrame.setLayout(new GridBagLayout());
 	        
-	        mainFrame.setPreferredSize(new Dimension(305, 105));
-	        mainFrame.setMinimumSize(new Dimension(305, 105));
-	        mainFrame.setMaximumSize(new Dimension(305, 105));
+	        mainFrame.setPreferredSize(new Dimension(dimX, dimY));
+	        mainFrame.setMinimumSize(new Dimension(dimX, dimY));
+	        mainFrame.setMaximumSize(new Dimension(dimX, dimY));
 
 	        JLabel label = new JLabel(XpadMessages.ENTER_LINE_NUMBER);
 
@@ -125,8 +131,7 @@ public class GotoLineAction extends DefaultAction {
 		        gbc.weightx = 0.;
 		        gbc.insets = new Insets(5, 0, 10, 5);
 		        mainFrame.add(cancelButton, gbc);
-	        }
-	        else {
+	        } else {
 		        gbc.gridx = 1;
 		        gbc.gridy = 5;
 		        gbc.gridheight = 1;
