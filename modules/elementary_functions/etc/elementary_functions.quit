@@ -1,8 +1,0 @@
-// ====================================================================
-// This file contains command to be executed at the end 
-// of a scilab session for elementary_functions module
-// Copyright INRIA 2006
-// ====================================================================
-// delete help chapter
-del_help_chapter('elementary_functions',%T);
-// ====================================================================
