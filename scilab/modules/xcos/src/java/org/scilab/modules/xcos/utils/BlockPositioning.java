@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.utils;
 
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -182,6 +180,21 @@ public final class BlockPositioning {
 		 * Ugly modification of the iter to update at the right position
 		 * Works only for 0 - 90 - 180 - 270 angles.
 		 */
+		Orientation rotated = rotateOrientation(iter, mirrored, flipped);
+		
+		updatePortsPosition(block, rotated, angle, working);
+	}
+
+	/**
+	 * Ugly modification of the iter to update at the right position.
+	 * Works only for 0 - 90 - 180 - 270 angles.
+	 * @param iter the real orientation
+	 * @param mirrored is the block mirrored
+	 * @param flipped is the block flipped
+	 * @return The modified orientation
+	 */
+	private static Orientation rotateOrientation(final Orientation iter,
+			final boolean mirrored, final boolean flipped) {
 		final int nbOfOrientations = Orientation.values().length; // 4
 		Orientation rotated = iter;
 		
@@ -198,8 +211,7 @@ public final class BlockPositioning {
 						% nbOfOrientations];
 			}
 		}
-		
-		updatePortsPosition(block, rotated, angle, working);
+		return rotated;
 	}
 
 	/**
