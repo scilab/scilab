@@ -13,9 +13,7 @@
 package org.scilab.modules.xcos.utils;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Composite;
-import java.awt.Paint;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Hashtable;
@@ -29,6 +27,8 @@ import com.mxgraph.util.mxUtils;
  */
 public class XcosCanvas extends mxInteractiveCanvas {
 
+	private static final int OPACITY_MAX = 100;
+	
 	/** Default constructor */
 	public XcosCanvas() { }
 	
@@ -46,9 +46,14 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	public Object drawVertex(int x, int y, int w, int h,
 			Hashtable<String, Object> style) {
 
+		int xx = x;
+		int yy = y;
+		int hh = h;
+		int ww = w;
+		
 		if (g != null) {
-			x += translate.x;
-			y += translate.y;
+			xx += translate.x;
+			yy += translate.y;
 
 			// Applies the rotation on the graphics object and stores
 			// the previous transform so that it can be restored
@@ -60,36 +65,36 @@ public class XcosCanvas extends mxInteractiveCanvas {
 
 			if (rotation != 0) {
 				g.rotate(Math.toRadians(rotation));
-				if (rotation == 90 || rotation == 270) {
+				if (BlockPositioning.isNearHorizontalSide(rotation)) {
 					// x - h / 2, y - w / 2, h, w
-					x = x + (w / 2) - (h / 2);
-					y = y + (h / 2) - (w / 2);
-					int hh = h;
-					h = w;
-					w = hh;
+					xx = xx + (w / 2) - (h / 2);
+					yy = yy + (h / 2) - (w / 2);
+					
+					ww = h;
+					hh = w;
 				}
 			}
 
 			applyFlipAndMirror(style);
 
-			g.translate(-(x + (w / 2.0)), -(y + (h / 2.0)));
+			g.translate(-(xx + (ww / 2.0)), -(yy + (hh / 2.0)));
 
 			Composite composite = null;
 			float opacity = mxUtils.getFloat(style, mxConstants.STYLE_OPACITY,
-					100);
+					OPACITY_MAX);
 
 			// Applies the opacity to the graphics object
-			if (opacity != 100) {
+			if (opacity != OPACITY_MAX) {
 				composite = g.getComposite();
 				g.setComposite(AlphaComposite.getInstance(
-						AlphaComposite.SRC_OVER, opacity / 100));
+						AlphaComposite.SRC_OVER, opacity / OPACITY_MAX));
 			}
 
 			// Saves the stroke
 			Stroke stroke = g.getStroke();
 
 			// Draws a swimlane if start is > 0
-			drawSwimline(x, y, w, h, style);
+			drawSwimline(xx, yy, ww, hh, style);
 
 			// Restores the stroke
 			g.setStroke(stroke);
@@ -114,19 +119,19 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 */
 	private void applyFlipAndMirror(Hashtable<String, Object> style) {
 		String flip = mxUtils.getString(style, XcosConstants.STYLE_FLIP,
-				"false");
+				Boolean.toString(false));
 		String mirror = mxUtils.getString(style, XcosConstants.STYLE_MIRROR,
-				"false");
+				Boolean.toString(false));
 
 		// scale, 1st flip, 2nd mirror
-		if (flip.compareTo("true") == 0) {
-			if (mirror.compareTo("true") == 0) {
+		if (Boolean.parseBoolean(flip)) {
+			if (Boolean.parseBoolean(mirror)) {
 				g.scale(-1, -1); // T / T
 			} else {
 				g.scale(-1, 1); // T / F
 			}
 		} else {
-			if (mirror.compareTo("true") == 0) {
+			if (Boolean.parseBoolean(mirror)) {
 				g.scale(1, -1); // F / T
 			} else {
 				g.scale(1, 1); // F / F
@@ -166,24 +171,5 @@ public class XcosCanvas extends mxInteractiveCanvas {
 				drawShape(x + start, y, w - start, h, cloned);
 			}
 		}
-	}
-
-	/**
-	 * Draws a rectangle for the given parameters.
-	 * 
-	 * @param x X-coordinate of the shape.
-	 * @param y Y-coordinate of the shape.
-	 * @param w Width of the shape.
-	 * @param h Height of the shape.
-	 * @param fillColor Optional fill color of the shape.
-	 * @param fillPaint Optional paint of the shape.
-	 * @param penColor Optional stroke color.
-	 * @param shadow Boolean indicating if a shadow should be painted.
-	 * @param rounded Boolean indicating if the rectangle is rounded.
-	 */
-	public void drawRect(int x, int y, int w, int h, Color fillColor,
-			Paint fillPaint, Color penColor, boolean shadow, boolean rounded) {
-		super.drawRect(x, y, w, h, fillColor, fillPaint, penColor, shadow,
-				rounded);
 	}
 }
