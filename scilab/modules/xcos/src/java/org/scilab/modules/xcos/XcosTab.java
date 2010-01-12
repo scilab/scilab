@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.Timer;
@@ -115,11 +116,13 @@ import com.mxgraph.view.mxGraph;
 public class XcosTab extends SwingScilabTab implements Tab {
 
     private static final long serialVersionUID = -290453474673387812L;
+    private static final Size WIN_SIZE = new Size(600, 500);
+    
     /*
      * Static fields
      */
     private static List<XcosDiagram> diagrams = new Vector<XcosDiagram>();
-    private static HashMap<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
+    private static Map<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
 
     private static List<Menu> recentsMenus = new ArrayList<Menu>();
     private static List<MenuItem> startMenuItems = new ArrayList<MenuItem>();
@@ -128,6 +131,41 @@ public class XcosTab extends SwingScilabTab implements Tab {
     private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
 
     private static boolean startEnabled = true;
+    
+    /*
+     * Instance fields
+     */
+    private XcosDiagram diagram;
+    
+    private MenuBar menuBar;
+    private Menu fileMenu;
+    private Menu recentsMenu;
+    private Menu edit;
+    private Menu view;
+    private Menu simulate;
+    private Menu format;
+    private Menu alignMenu;
+    private Menu linkStyle;
+    private Menu tools;
+    private Menu help;
+    
+    private PushButton openAction;
+    private PushButton saveAction;
+    private PushButton saveAsAction;
+    private PushButton printAction;
+    private PushButton newDiagramAction;
+    private PushButton deleteAction;
+    private PushButton undoAction;
+    private PushButton redoAction;
+    private PushButton fitDiagramToViewAction;
+    private PushButton startAction;
+    private PushButton stopAction;
+    private PushButton zoomInAction;
+    private PushButton zoomOutAction;
+    private PushButton xcosDemonstrationAction;
+    private PushButton xcosDocumentationAction;
+    
+    private boolean actionsEnabled;
 
     /**
      * @param diag diagram
@@ -168,7 +206,10 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return false;
     }
 
-    public static HashMap<Integer, AfficheBlock> getAfficheBlocks() {
+    /**
+     * @return All the AffichBlock and their corresponding UID.
+     */
+    public static Map<Integer, AfficheBlock> getAfficheBlocks() {
 	return afficheBlocks;
     }
 
@@ -200,7 +241,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
-	main.setDims(new Size(600, 500));
+	main.setDims(WIN_SIZE);
 	
 	// Get the palettes position
 	if (XcosPaletteManager.isVisible()) { // If at Xcos startup
@@ -291,12 +332,9 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	}
     }
     
-    /*
-     * Internal class
-     */
+
     /**
-     * @author Clement DAVID
-     *
+     * Move cells with the arrow keys.
      */
     private class ArrowKeysListener implements KeyListener {
 
@@ -326,13 +364,17 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	};
 
 	/**
-	 * Contructor
+	 * Constructor
 	 */
 	public ArrowKeysListener() {
 	    repetitionTimer = new Timer(DEFAULT_DELAY, doMove);
 	    repetitionTimer.setInitialDelay(0);
 	}
 
+	/** 
+	 * Get the action parameters and start the action timer.
+	 * @param e key event
+	 */
 	public void keyPressed(KeyEvent e) {
 	    double realMove;
 	    boolean mustMove = true;
@@ -380,6 +422,10 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    repetitionTimer.start();
 	}
 
+	/** 
+	 * Stop the action timer and clear parameters 
+	 * @param e key event
+	 */
 	public void keyReleased(KeyEvent e) {
 	    repetitionTimer.stop();
 	    yIncrement = 0;
@@ -387,45 +433,12 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    graph = null;
 	}
 
-	public void keyTyped(KeyEvent e) {
-
-	}
+	/**
+	 * Not used there
+	 * @param e Not used
+	 */
+	public void keyTyped(KeyEvent e) { }
     }
-
-    /*
-     * Instance fields
-     */
-    private XcosDiagram diagram;
-    
-    private MenuBar menuBar;
-    private Menu fileMenu;
-    private Menu recentsMenu;
-    private Menu edit;
-    private Menu view;
-    private Menu simulate;
-    private Menu format;
-    private Menu alignMenu;
-    private Menu linkStyle;
-    private Menu tools;
-    private Menu help;
-    
-    private PushButton openAction;
-    private PushButton saveAction;
-    private PushButton saveAsAction;
-    private PushButton printAction;
-    private PushButton newDiagramAction;
-    private PushButton deleteAction;
-    private PushButton undoAction;
-    private PushButton redoAction;
-    private PushButton fitDiagramToViewAction;
-    private PushButton startAction;
-    private PushButton stopAction;
-    private PushButton zoomInAction;
-    private PushButton zoomOutAction;
-    private PushButton xcosDemonstrationAction;
-    private PushButton xcosDocumentationAction;
-    
-    private boolean actionsEnabled;
 
     public XcosTab(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
