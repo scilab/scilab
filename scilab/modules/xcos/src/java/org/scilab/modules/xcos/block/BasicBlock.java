@@ -83,11 +83,11 @@ public class BasicBlock extends XcosUIDObject {
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
-    private transient XcosDiagram parentDiagram = null;
+    private transient XcosDiagram parentDiagram;
     
-    private transient int angle = 0;
-    private transient boolean isFlipped = false;
-    private transient boolean isMirrored = false;
+    private transient int angle;
+    private transient boolean isFlipped;
+    private transient boolean isMirrored;
     
 
     // TODO : Must make this types evolve, but for now keep a strong link to Scilab
@@ -111,15 +111,15 @@ public class BasicBlock extends XcosUIDObject {
     private ScilabType dState = new ScilabDouble();
     private ScilabType oDState = new ScilabDouble();
 
-    private ScilabType equations = null;
+    private ScilabType equations;
 
-    private boolean dependsOnU = false;
-    private boolean dependsOnT = false;
+    private boolean dependsOnU;
+    private boolean dependsOnT;
 
     private String blockType = "c";
 
-    private int ordering = 0;
-    private boolean locked = false;
+    private int ordering;
+    private boolean locked;
 
 	/**
 	 * Represent a simulation function type compatible with Scilab/Scicos
@@ -167,18 +167,28 @@ public class BasicBlock extends XcosUIDObject {
 		}
 	};
 
+	/**
+	 * 
+	 */
 	public BasicBlock() {
 		super();
 		setVisible(true);
 		setVertex(true);
 	}
 
+	/**
+	 * @param label block label
+	 */
 	protected BasicBlock(String label) {
 		this();
 		setDefaultValues();
 		setValue(label);
 	}
 
+	/**
+	 * @param label block label
+	 * @param style initial style
+	 */
 	protected BasicBlock(String label, String style) {
 		this(label);
 		setStyle(style);
@@ -196,214 +206,345 @@ public class BasicBlock extends XcosUIDObject {
 		setStyle("");
 	}
 
+    /**
+     * @return parent diagram
+     */
     public XcosDiagram getParentDiagram() {
         return parentDiagram;
     }
 
+    /**
+     * @param parentDiagram parent diagram
+     */
     public void setParentDiagram(XcosDiagram parentDiagram) {
         this.parentDiagram = parentDiagram;
     }
 
     
+    /**
+     * @return interface function name
+     */
     public String getInterfaceFunctionName() {
 	return interfaceFunctionName;
     }
 
+    /**
+     * @param interfaceFunctionName interface function name
+     */
     public void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
     }
 
+    /**
+     * @param simulationFunctionName sumulation function name
+     */
     public void setSimulationFunctionName(String simulationFunctionName) {
 	this.simulationFunctionName = simulationFunctionName;
     }
 
+    /**
+     * @return sumulation function name
+     */
     public String getSimulationFunctionName() {
 	return simulationFunctionName;
     }
 
+    /**
+     * @param scilabValue simulation function type
+     */
     public void setSimulationFunctionType(int scilabValue) {
 	this.simulationFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
     }
 
+    /**
+     * @param simulationFunctionType simulation function type
+     */
     public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
 	this.simulationFunctionType = simulationFunctionType;
     }
 
+    /**
+     * @return simulation function type
+     */
     public SimulationFunctionType getSimulationFunctionType() {
 	return simulationFunctionType;
     }
 
+    /**
+     * @return real parameter ( rpar )
+     */
     public ScilabType getRealParameters() {
 	return realParameters;
     }
 
+    /**
+     * @param realParameters reaL parameter ( rpar )
+     */
     public void setRealParameters(ScilabType realParameters) {
 	this.realParameters = realParameters;
     } 
 
+    /**
+     * @return integer parameter ( ipar )
+     */
     public ScilabType getIntegerParameters() {
 	return integerParameters;
     }
 
+    /**
+     * @param integerParameters integer parameter ( ipar )
+     */
     public void setIntegerParameters(ScilabType integerParameters) {
 	this.integerParameters = integerParameters;
     }
 
+    /**
+     * @return object parameter ( opar )
+     */
     public ScilabType getObjectsParameters() {
 	return objectsParameters;
     }
 
+    /**
+     * @param objectsParameters object parameter ( opar )
+     */
     public void setObjectsParameters(ScilabType objectsParameters) {
 	this.objectsParameters = objectsParameters;
     }
 
+    /**
+     * @param dependsOnU ?
+     */
     public void setDependsOnU(boolean dependsOnU) {
 	this.dependsOnU = dependsOnU;
     }
 
-    public boolean isDependsOnU() {
-    	return this.dependsOnU;
-       }
-    
+    /**
+     * @return ?
+     */
     public boolean dependsOnU() {
 	return dependsOnU;
     }
 
+    /**
+     * @param dependsOnT ?
+     */
     public void setDependsOnT(boolean dependsOnT) {
 	this.dependsOnT = dependsOnT;
     }
 
-    public boolean isDependsOnT() {
-    	return this.dependsOnT;
-       }
+    /**
+     * @return ?
+     */
     public boolean dependsOnT() {
 	return dependsOnT;
     }
 
+    /**
+     * @param blockType block type
+     */
     public void setBlockType(String blockType) {
 	this.blockType = blockType;
     }
 
+    /**
+     * @return block type
+     */
     public String getBlockType() {
 	return blockType;
     }
 
+    /**
+     * @param ordering order value
+     */
     public void setOrdering(int ordering) {
 	this.ordering = ordering;
     }
 
+    /**
+     * @return order value
+     */
     public int getOrdering() {
 	return ordering;
     }
 
+    /**
+     * @param exprs expression
+     */
     public void setExprs(ScilabType exprs) {
 	this.exprs = exprs;
     }
 
+    /**
+     * @return expression
+     */
     public ScilabType getExprs() {
 	return exprs;
     }
 
+    /**
+     * @return zero crossing value
+     */
     public ScilabType getNbZerosCrossing() {
 	return nbZerosCrossing;
     }
 
+    /**
+     * @param nbZerosCrossing zero crossing value
+     */
     public void setNbZerosCrossing(ScilabType nbZerosCrossing) {
 	this.nbZerosCrossing = nbZerosCrossing;
     }
 
+    /**
+     * @return nmode
+     */
     public ScilabType getNmode() {
 	return nmode;
     }
 
+    /**
+     * @param nmode nmode
+     */
     public void setNmode(ScilabType nmode) {
 	this.nmode = nmode;
     }
 
+    /**
+     * @return current state
+     */
     public ScilabType getState() {
 	return state;
     }
 
+    /**
+     * @param state new state
+     */
     public void setState(ScilabType state) {
 	this.state = state;
     }
 
+    /**
+     * @return current dstate
+     */
     public ScilabType getDState() {
 	return dState;
     }
 
+    /**
+     * @param state new dstate
+     */
     public void setDState(ScilabType state) {
 	dState = state;
     }
 
+    /**
+     * @return current ostate
+     */
     public ScilabType getODState() {
 	return oDState;
     }
 
+    /**
+     * @param state new ostate
+     */
     public void setODState(ScilabType state) {
 	oDState = state;
     }
 
+    /**
+     * @return equations
+     */
     public ScilabType getEquations() {
 	return equations;
     }
 
+    /**
+     * @param equations equations
+     */
     public void setEquations(ScilabType equations) {
 	this.equations = equations;
     }
 
+    /**
+     * @return locked status
+     */
     public synchronized boolean isLocked() {
         return locked;
     }
 
+    /**
+     * @param locked change locked status
+     */
     public synchronized void setLocked(boolean locked) {
         this.locked = locked;
     }
 
-    public void removePort(BasicPort port){
-	if(port.getEdgeCount() != 0) {
+    /**
+     * @param port to remove
+     */
+    public void removePort(BasicPort port) {
+	if (port.getEdgeCount() != 0) {
 	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
 	remove(port);
     }
     
+    /**
+     * @param port input port to add
+     */
     public void addPort(InputPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
     }
 
+    /**
+     * @param port output port to add
+     */
     public void addPort(OutputPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
     }
 
+    /**
+     * @param port command port to add
+     */
     public void addPort(CommandPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
     }
 
+    /**
+     * @param port control port to add
+     */
     public void addPort(ControlPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
     }
 
+    /**
+     * @return command ports initial state
+     */
     public ScilabDouble getAllCommandPortsInitialStates() {
 	if (BasicBlockInfo.getAllCommandPorts(this, false).isEmpty()) {
 	    return new ScilabDouble();
 	}
 
 	double[][] data = new double[BasicBlockInfo.getAllCommandPorts(this, false).size()][1];
-	for (int i = 0 ; i < BasicBlockInfo.getAllCommandPorts(this, false).size() ; ++i) {
+	for (int i = 0; i < BasicBlockInfo.getAllCommandPorts(this, false).size(); ++i) {
 	    data[i][0] = BasicBlockInfo.getAllCommandPorts(this, false).get(i).getInitialState();
 	}
 
 	return new ScilabDouble(data);
     }
 
+    /**
+     * @return name and type of the simulation function
+     */
     public ScilabType getSimulationFunctionNameAndType() {
 	if (getSimulationFunctionType() == SimulationFunctionType.DEFAULT) {
 	    return new ScilabString(getSimulationFunctionName());
@@ -421,17 +562,6 @@ public class BasicBlock extends XcosUIDObject {
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
-	
-	/* TODO: emit changes on update */
-//	mxUndoableEdit edit = new mxUndoableEdit(getParentDiagram().getModel()) {
-//	    public void dispatch()
-//		{
-//			((mxGraphModel) source).fireEvent(mxEvent.CHANGE,
-//					new mxEventObject(new Object[] { changes }));
-//		}
-//	};
-//	edit.add(new BlockChange(modifiedBlock, this));
-	
 	doUpdateBlockSettings(modifiedBlock);
     }
 
@@ -455,59 +585,83 @@ public class BasicBlock extends XcosUIDObject {
 	setEquations(modifiedBlock.getEquations());
 
 
-	List<? extends BasicPort> modifiedPorts = null;
-	List<? extends BasicPort> ports = null;
+	List< ? extends BasicPort> modifiedPorts = null;
+	List< ? extends BasicPort> ports = null;
 	
 	// Check if new input port have been added
-	if ((modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false)).size() > (ports = BasicBlockInfo.getAllInputPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllInputPorts(this, false)).size() < modifiedPorts.size()) {
-		addPort((InputPort)modifiedPorts.get(ports.size()));
+	modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
+	ports = BasicBlockInfo.getAllInputPorts(this, false);
+	if (modifiedPorts.size() > ports.size()) {
+	    while (ports.size() < modifiedPorts.size()) {
+		addPort((InputPort) modifiedPorts.get(ports.size()));
+		ports = BasicBlockInfo.getAllInputPorts(this, false);
 	    }
-	}
-	// Check if input ports have been removed
-	else if ((modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false)).size() < (ports = BasicBlockInfo.getAllInputPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllInputPorts(this, false)).size() > modifiedPorts.size()) {
-		removePort((BasicPort)ports.get(ports.size() - 1));
+	} else { // Check if input ports have been removed
+	    modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
+	    ports = BasicBlockInfo.getAllInputPorts(this, false);
+	    if (modifiedPorts.size() < ports.size()) {
+		while (ports.size() > modifiedPorts.size()) {
+		    removePort((BasicPort) ports.get(ports.size() - 1));
+		    ports = BasicBlockInfo.getAllInputPorts(this, false);
+		}
 	    }
 	}
 
 	// Check if new output port have been added
-	if ((modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false)).size() > (ports = BasicBlockInfo.getAllOutputPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllOutputPorts(this, false)).size() < modifiedPorts.size()) {
-		addPort((OutputPort)modifiedPorts.get(ports.size()));
+	modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
+	ports = BasicBlockInfo.getAllOutputPorts(this, false);
+	if (modifiedPorts.size() > ports.size()) {
+	    while (ports.size() < modifiedPorts.size()) {
+		addPort((OutputPort) modifiedPorts.get(ports.size()));
+		ports = BasicBlockInfo.getAllOutputPorts(this, false);
 	    }
-	}
-	// Check if output ports have been removed
-	else if ((modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false)).size() < (ports = BasicBlockInfo.getAllOutputPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllOutputPorts(this, false)).size() > modifiedPorts.size()) {
-		removePort((BasicPort)ports.get(ports.size() - 1));
+	} else { // Check if output ports have been removed
+	    modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
+	    ports = BasicBlockInfo.getAllOutputPorts(this, false);
+	    if (modifiedPorts.size() < ports.size()) {
+		while (ports.size() > modifiedPorts.size()) {
+		    removePort((BasicPort) ports.get(ports.size() - 1));
+		    ports = BasicBlockInfo.getAllOutputPorts(this, false);
+		}
 	    }
 	}
 
 
 	// Check if new command port have been added
-	if ((modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false)).size() > (ports = BasicBlockInfo.getAllCommandPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllCommandPorts(this, false)).size() < modifiedPorts.size()) {
-		addPort((CommandPort)modifiedPorts.get(ports.size()));
+	modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
+	ports = BasicBlockInfo.getAllCommandPorts(this, false);
+	if (modifiedPorts.size() > ports.size()) {
+	    while (ports.size() < modifiedPorts.size()) {
+		addPort((CommandPort) modifiedPorts.get(ports.size()));
+		ports = BasicBlockInfo.getAllCommandPorts(this, false);
 	    }
-	}
-	// Check if command ports have been removed
-	else if ((modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false)).size() < (ports = BasicBlockInfo.getAllCommandPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllCommandPorts(this, false)).size() > modifiedPorts.size()) {
-		removePort((BasicPort)ports.get(ports.size() - 1));
+	} else { // Check if command ports have been removed
+	    modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
+	    ports = BasicBlockInfo.getAllCommandPorts(this, false);
+	    if (modifiedPorts.size() < ports.size()) {
+		while (ports.size() > modifiedPorts.size()) {
+		    removePort((BasicPort) ports.get(ports.size() - 1));
+		    ports = BasicBlockInfo.getAllCommandPorts(this, false);
+		}
 	    }
 	}
 
 	// Check if new control port have been added
-	if ((modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false)).size() > (ports = BasicBlockInfo.getAllControlPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllControlPorts(this, false)).size() < modifiedPorts.size()) {
-		addPort((ControlPort)modifiedPorts.get(ports.size()));
+	modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
+	ports = BasicBlockInfo.getAllControlPorts(this, false);
+	if (modifiedPorts.size() > ports.size()) {
+	    while (ports.size() < modifiedPorts.size()) {
+		addPort((ControlPort) modifiedPorts.get(ports.size()));
+		ports = BasicBlockInfo.getAllControlPorts(this, false);
 	    }
-	}
-	// Check if control ports have been removed
-	else if ((modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false)).size() < (ports = BasicBlockInfo.getAllControlPorts(this, false)).size()) {
-	    while((ports = BasicBlockInfo.getAllControlPorts(this, false)).size() > modifiedPorts.size()) {
-		removePort((BasicPort)ports.get(ports.size() - 1));
+	} else { // Check if control ports have been removed
+	    modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
+	    ports = BasicBlockInfo.getAllControlPorts(this, false);
+	    if (modifiedPorts.size() < ports.size()) {
+		while (ports.size() > modifiedPorts.size()) {
+		    removePort((BasicPort) ports.get(ports.size() - 1));
+		    ports = BasicBlockInfo.getAllControlPorts(this, false);
+		}
 	    }
 	}
 
@@ -516,19 +670,23 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	if (getParentDiagram() instanceof SuperBlockDiagram) {
 	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, 
+		    XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 	}
 	
     }
 
-    public void openBlockSettings(String context[]) {
+    /**
+     * @param context parent diagram context
+     */
+    public void openBlockSettings(String[] context) {
 	
-	if(getParentDiagram() instanceof PaletteDiagram) {
+	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;
 	}
 	
 	//prevent to open twice
-	if(isLocked()) {
+	if (isLocked()) {
 	    return;
 	}
 	
@@ -536,7 +694,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
+	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -546,11 +704,11 @@ public class BasicBlock extends XcosUIDObject {
 
 	    String cmd;
 	    
-	    cmd = "xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\"";
-	    cmd += ", \""+tempInput.getAbsolutePath()+"\"";
-	    cmd += ", "+getInterfaceFunctionName();
+	    cmd = "xcosBlockInterface(\"" + tempOutput.getAbsolutePath() + "\"";
+	    cmd += ", \"" + tempInput.getAbsolutePath() + "\"";
+	    cmd += ", " + getInterfaceFunctionName();
 	    cmd += ", \"set\"";
-	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
+	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
 	    
 	    final BasicBlock currentBlock = this;
 	    try {
@@ -559,7 +717,8 @@ public class BasicBlock extends XcosUIDObject {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
-				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, currentBlock));
+				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+					    currentBlock));
 				    setLocked(false);
 				}
 			});
@@ -573,16 +732,19 @@ public class BasicBlock extends XcosUIDObject {
 	}
     }
 
+    /**
+     * @return exported file
+     */
     protected File exportBlockStruct() {
 
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));
+	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
 	    tempOutput.deleteOnExit();
-	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj(this));
-	    H5Write.closeFile(file_id);
+	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj(this));
+	    H5Write.closeFile(fileId);
 	    return tempOutput;
 	} catch (IOException e) {
 	    e.printStackTrace();
@@ -592,15 +754,19 @@ public class BasicBlock extends XcosUIDObject {
 	return null;
     }
     
+    /**
+     * @param context parent diagram context
+     * @return exported file
+     */
     protected File exportContext(String[] context) {
 
 	// Write context
 	try {
-	    File tempContext = File.createTempFile("xcos",".h5");
+	    File tempContext = File.createTempFile("xcos", ".h5");
 	    tempContext.deleteOnExit();
-	    int context_file_id = H5Write.createFile(tempContext.getAbsolutePath());
-	    H5Write.writeInDataSet(context_file_id, "context", new ScilabString(context));
-	    H5Write.closeFile(context_file_id);
+	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
+	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
+	    H5Write.closeFile(contextFileId);
 	    return tempContext;
 	} catch (IOException e) {
 	    e.printStackTrace();
@@ -610,26 +776,29 @@ public class BasicBlock extends XcosUIDObject {
 	return null;
     }
     
+    /**
+     * @return tooltip text
+     */
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
-	result.append("Block Name : "+ getInterfaceFunctionName() + "<br>");
-	result.append("Simulation : "+ getSimulationFunctionName() + "<br>");
+	result.append("Block Name : " + getInterfaceFunctionName() + "<br>");
+	result.append("Simulation : " + getSimulationFunctionName() + "<br>");
 
-	if(getParentDiagram() instanceof PaletteDiagram) {
-	    if(getIntegerParameters() != null) {
-		result.append("Integer parameters : "+ getIntegerParameters() + "<br>");
+	if (getParentDiagram() instanceof PaletteDiagram) {
+	    if (getIntegerParameters() != null) {
+		result.append("Integer parameters : " + getIntegerParameters() + "<br>");
 	    }
 	    
-	    if(getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
-		result.append("Real parameters : "+ getRealParameters() + "<br>");
+	    if (getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
+		result.append("Real parameters : " + getRealParameters() + "<br>");
 	    }
 	    
-	    if(getObjectsParameters() != null) {
-		result.append("Object parameters : "+ getObjectsParameters() + "<br>");
+	    if (getObjectsParameters() != null) {
+		result.append("Object parameters : " + getObjectsParameters() + "<br>");
 	    }
 	} else {
-	    result.append("UID : "+ getId() + "<br>");
+	    result.append("UID : " + getId() + "<br>");
 	    result.append("Block Style : " + getStyle() + "<br>");
 	    result.append("Flip : " + getFlip() + "<br>");
 	    result.append("Mirror : " + getMirror() + "<br>");
@@ -647,9 +816,12 @@ public class BasicBlock extends XcosUIDObject {
 	return result.toString();
     }
 
+    /**
+     * @param graph parent graph
+     */
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = null;
-	if(getParentDiagram() instanceof PaletteDiagram) {
+	if (getParentDiagram() instanceof PaletteDiagram) {
 	    menu = createPaletteContextMenu(graph);
 	} else {
 	    menu = createContextMenu(graph);
@@ -657,6 +829,10 @@ public class BasicBlock extends XcosUIDObject {
 	menu.setVisible(true);
     }
 
+    /**
+     * @param graph parent graph
+     * @return context menu
+     */
     public ContextMenu createPaletteContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 
@@ -672,7 +848,7 @@ public class BasicBlock extends XcosUIDObject {
 
 		public void callBack() {
 		    XcosDiagram theDiagram = Xcos.createEmptyDiagram();
-		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
+		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -694,7 +870,7 @@ public class BasicBlock extends XcosUIDObject {
 		private static final long serialVersionUID = -99601763227525686L;
 
 		public void callBack() {
-		    BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
+		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
 		    geom.setX(10);
@@ -721,7 +897,7 @@ public class BasicBlock extends XcosUIDObject {
 		    private static final long serialVersionUID = 3345416658377835057L;
 
 		    public void callBack() {
-			BasicBlock block = (BasicBlock)BlockFactory.createClone(BasicBlock.this);
+			BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 			mxGeometry geom = BasicBlock.this.getGeometry();
 			geom.setX(10);
@@ -758,9 +934,13 @@ public class BasicBlock extends XcosUIDObject {
 	return menu;
     }
 
+    /**
+     * @param graph parent graph
+     * @return context menu
+     */
     public ContextMenu createContextMenu(ScilabGraph graph) {
 		ContextMenu menu = ScilabContextMenu.createContextMenu();
-		Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
+		Map<Class< ? extends DefaultAction>, Menu> menuList = new HashMap<Class< ? extends DefaultAction>, Menu>();
 		
 		MenuItem value = BlockParametersAction.createMenu(graph);
 		menuList.put(BlockParametersAction.class, value);
@@ -834,17 +1014,21 @@ public class BasicBlock extends XcosUIDObject {
 		/*--- */
 		menu.add(BlockDocumentationAction.createMenu(graph));
 
-		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, 
+			MouseInfo.getPointerInfo().getLocation().y);
 		
 		customizeMenu(menuList);
 		
 		return menu;
     }
     
+    /**
+     * @param flip value
+     */
     public void setFlip(boolean flip) {
-	if(getParentDiagram() != null) {
+	if (getParentDiagram() != null) {
 	    isFlipped = flip;
-	    if(flip == true) {
+	    if (flip) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
 	    } else {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "false");
@@ -854,21 +1038,27 @@ public class BasicBlock extends XcosUIDObject {
 
     /**
      * Override this to customize contextual menu
-     * @param menuList
+     * @param menuList list of menu
      */
-    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
+    protected void customizeMenu(Map<Class< ? extends DefaultAction>, Menu> menuList) {
 	// To be overridden by sub-classes
     }
     
 
+    /**
+     * @return mirror value
+     */
     public boolean getMirror(){
 	return isMirrored;
     }
     
+    /**
+     * @param mirror new mirror value
+     */
     public void setMirror(boolean mirror) {
-	if(getParentDiagram() != null) {
+	if (getParentDiagram() != null) {
 	    isMirrored = mirror;
-	    if(mirror == true) {
+	    if (mirror) {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "true");
 	    } else {
 		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_MIRROR, "false");
@@ -876,31 +1066,49 @@ public class BasicBlock extends XcosUIDObject {
 	}
     }
 
-    public boolean getFlip(){
+    /**
+     * @return flip status
+     */
+    public boolean getFlip() {
 	return isFlipped;
     }
 
+    /**
+     * invert flip status
+     */
     public void toggleFlip() {
 	BlockPositioning.toggleFlip(this);
     }
 
+    /**
+     * invert mirror value
+     */
     public void toggleMirror() {
 	BlockPositioning.toggleMirror(this);
     }
 
+    /**
+     * 
+     */
     public void toggleAntiClockwiseRotation() {
 	BlockPositioning.toggleAntiClockwiseRotation(this);
 
     }
 
-	public int getAngle() {
+    /**
+     * @return current angle
+     */
+    public int getAngle() {
 	return angle;
     }
 
+    /**
+     * @param angle new block angle
+     */
     public void setAngle(int angle) {
 	this.angle = angle;
 	
-	if(getParentDiagram() != null) {
+	if (getParentDiagram() != null) {
 	    mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_ROTATION, new Integer(angle).toString());
 	}
     }
