@@ -73,7 +73,7 @@ public final class ConfigXcosManager {
     private static final int MAX_RECENT_FILES = 10;
 
     private static Document document;
-
+    
     /**
      * Constructor
      */
@@ -136,13 +136,21 @@ public final class ConfigXcosManager {
     }
 
     /**
+     * Manage the configuration values for the MainWindow
+     */
+    private static final class MainWindowManagement {
+    	
+    	/** This class is a static singleton, thus it must not be instantiated */
+        private MainWindowManagement() { }
+    	
+    /**
      * Get the position of XCOS Main Window
      * 
      * @return the position
      */
-    public static Position getMainWindowPosition() {
+    public static Position getPosition() {
 	/* Load file */
-	readDocument();
+	IOManagement.readDocument();
 
 	if (document != null) {
 	    Element root = document.getDocumentElement();
@@ -176,9 +184,9 @@ public final class ConfigXcosManager {
      * @param position
      *            the position of XCOS main Window
      */
-    public static void saveMainWindowPosition(Position position) {
+    public static void savePosition(Position position) {
 	/* Load file */
-	readDocument();
+	IOManagement.readDocument();
 
 	if (document != null) {
 	    Element root = document.getDocumentElement();
@@ -196,19 +204,19 @@ public final class ConfigXcosManager {
 		    .getY()));
 
 	    /* Save changes */
-	    writeDocument();
+	    IOManagement.writeDocument();
 	}
     }
-
+    
     /**
      * Save the size of XCOS Main Window
      * 
      * @param size
      *            the size of XCOS main Window
      */
-    public static void saveMainWindowSize(Size size) {
+    public static void saveSize(Size size) {
 	/* Load file */
-	readDocument();
+	IOManagement.readDocument();
 
 	if (document != null) {
 	    Element root = document.getDocumentElement();
@@ -226,7 +234,7 @@ public final class ConfigXcosManager {
 		    .getHeight()));
 
 	    /* Save changes */
-	    writeDocument();
+	    IOManagement.writeDocument();
 	}
     }
 
@@ -235,10 +243,10 @@ public final class ConfigXcosManager {
      * 
      * @return the size
      */
-    public static Size getMainWindowSize() {
+    public static Size getSize() {
 
 	/* Load file */
-	readDocument();
+	IOManagement.readDocument();
 
 	if (document != null) {
 
@@ -258,7 +266,46 @@ public final class ConfigXcosManager {
 	}
 	return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
+    }
+    
+	/**
+	 * Get the position of XCOS Main Window
+	 * 
+	 * @return the position
+	 */
+	public static Position getMainWindowPosition() {
+		return MainWindowManagement.getPosition();
+	}
 
+	/**
+	 * Save the position of XCOS Main Window
+	 * 
+	 * @param position
+	 *            the position of XCOS main Window
+	 */
+	public static void saveMainWindowPosition(Position position) {
+		MainWindowManagement.savePosition(position);
+	}
+
+	/**
+	 * Get the size of XCOS Main Window
+	 * 
+	 * @return the size
+	 */
+	public static Size getMainWindowSize() {
+		return MainWindowManagement.getSize();
+	}
+
+	/**
+	 * Save the size of XCOS Main Window
+	 * 
+	 * @param size
+	 *            the size of XCOS main Window
+	 */
+	public static void saveMainWindowSize(Size size) {
+		MainWindowManagement.saveSize(size);
+	}
+    
     /**
      * Get all the recent opened files
      * 
@@ -267,7 +314,7 @@ public final class ConfigXcosManager {
     public static List<File> getAllRecentOpenedFiles() {
 	List<File> files = new ArrayList<File>();
 
-	readDocument();
+	IOManagement.readDocument();
 
 	if (document != null) {
 	    Element root = (Element) document.getDocumentElement()
@@ -288,7 +335,7 @@ public final class ConfigXcosManager {
 
 		}
 		/* Save changes */
-		writeDocument();
+		IOManagement.writeDocument();
 	    }
 	}
 	return files;
@@ -302,18 +349,18 @@ public final class ConfigXcosManager {
      */
     public static void saveToRecentOpenedFiles(String filePath) {
 
-	Node root = getXcosRoot();
+	Node root = XmlManagement.getXcosRoot();
 	if (root == null) {
 	    return;
 	}
 	
-	Node recentFiles = getNodeChild(root, RECENT_FILES);
+	Node recentFiles = XmlManagement.getNodeChild(root, RECENT_FILES);
 	if (recentFiles == null) {
 	    recentFiles = document.createElement(RECENT_FILES);
 	    root.appendChild(recentFiles);
 	}
 
-	List<Node> recentFile = getNodeChildren(recentFiles, DOCUMENT);
+	List<Node> recentFile = XmlManagement.getNodeChildren(recentFiles, DOCUMENT);
 
 	//if file already in file no need to add it
 	for (Node item : recentFile) {
@@ -337,9 +384,17 @@ public final class ConfigXcosManager {
 	recentFiles.appendChild((Node) newFile);
 
 	/* Save changes */
-	writeDocument();
+	IOManagement.writeDocument();
     }
 
+    /**
+     * Implements the I/O specific operations
+     */
+    public static final class IOManagement {
+    
+    	/** This class is a static singleton, thus it must not be instantiated */
+    	private IOManagement() { }
+    	
     /**
      * Read the file to modify
      */
@@ -393,6 +448,7 @@ public final class ConfigXcosManager {
 	}
 
     }
+    }
 
     /**
      * Add a file to recent Opened Files
@@ -402,18 +458,18 @@ public final class ConfigXcosManager {
      */
     public static void saveUserDefinedPalettes(String filePath) {
 
-	Node root = getXcosRoot();
+	Node root = XmlManagement.getXcosRoot();
 	if (root == null) {
 	    return;
 	}
 	
-	Node palettes = getNodeChild(root, PALETTES);
+	Node palettes = XmlManagement.getNodeChild(root, PALETTES);
 	if (palettes == null) {
 	    palettes = document.createElement(PALETTES);
 	    root.appendChild(palettes);
 	}
 
-	List<Node> palette = getNodeChildren(palettes, PALETTE);
+	List<Node> palette = XmlManagement.getNodeChildren(palettes, PALETTE);
 
 	//if path already in file no need to add it
 	for (Node item : palette) {
@@ -429,7 +485,7 @@ public final class ConfigXcosManager {
 	palettes.appendChild((Node) newFile);
 
 	/* Save changes */
-	writeDocument();
+	IOManagement.writeDocument();
     }
 
     /**
@@ -438,13 +494,13 @@ public final class ConfigXcosManager {
      */
     public static void removeUserDefinedPalettes(String filePath) {
 
-	Node root = getXcosRoot();
+	Node root = XmlManagement.getXcosRoot();
 	if (root == null) {
 	    return;
 	}
 	
-	Node palettes = getNodeChild(root, PALETTES);
-	List<Node> palette = getNodeChildren(palettes, PALETTE);
+	Node palettes = XmlManagement.getNodeChild(root, PALETTES);
+	List<Node> palette = XmlManagement.getNodeChildren(palettes, PALETTE);
 
 	// remove node if exists
 	for (Node file : palette) {
@@ -455,7 +511,7 @@ public final class ConfigXcosManager {
 
 	}
 	/* Save changes */
-	writeDocument();
+	IOManagement.writeDocument();
 
     }
 
@@ -465,13 +521,13 @@ public final class ConfigXcosManager {
     public static List<String> getUserDefinedPalettes() {
 	List<String> files = new ArrayList<String>();
 
-	Node root = getXcosRoot();
+	Node root = XmlManagement.getXcosRoot();
 	if (root == null) {
 	    return files;
 	}
 
-	Node palettes = getNodeChild(root, PALETTES);
-	List<Node> palette = getNodeChildren(palettes, PALETTE);
+	Node palettes = XmlManagement.getNodeChild(root, PALETTES);
+	List<Node> palette = XmlManagement.getNodeChildren(palettes, PALETTE);
 	for (Node file : palette) {
 	    String path = ((Element) file).getAttribute(PATH);
 	    if (path != null && path.compareTo("") != 0) {
@@ -483,6 +539,14 @@ public final class ConfigXcosManager {
     }
     
     /**
+     * Implements the XML specific operations
+     */
+    private static final class XmlManagement { 
+    
+    	/** This class is a static singleton, thus it must not be instantiated */
+        private XmlManagement() { }
+    	
+    /**
      * Implement a trivial DOM parser for getting a unique value.
      * @param parent The root node or null if for the whole document need to be parsed.
      * @param nodeName The node name to search for
@@ -493,7 +557,7 @@ public final class ConfigXcosManager {
     	
 	if (parent == null) {
 	    if (document == null) {
-		readDocument();
+		IOManagement.readDocument();
 		if (document == null) {
 		    return null;
 		}
@@ -523,7 +587,7 @@ public final class ConfigXcosManager {
 	
 	if (parent == null) {
 	    if (document == null) {
-		readDocument();
+		IOManagement.readDocument();
 		if (document == null) {
 		    return nodes;
 		}
@@ -549,7 +613,7 @@ public final class ConfigXcosManager {
     private static Node getXcosRoot() {
 
 	if (document == null) {
-	    readDocument();
+	    IOManagement.readDocument();
 	    if (document == null) {
 		return null;
 	    }
@@ -566,5 +630,6 @@ public final class ConfigXcosManager {
 	    }
 	}
 	return null;
+    }
     }
 }
