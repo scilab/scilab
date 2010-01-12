@@ -131,9 +131,6 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 	/**
 	 * This method halt a command performed asynchronously.
 	 * @param hashcode The command.getHashcode() uid.
-	 * 
-	 * TODO: this method doesn't remove the command from the scilab
-	 * execution queue.
 	 */
 	public static void stopScilabExec(int hashcode) {
 		String uidDesc = Integer.toString(hashcode);

@@ -12,15 +12,20 @@
 
 package org.scilab.modules.xcos.port.output;
 
-
+/**
+ * An implicit output port is a port where ... 
+ * TODO: document with Serge answer. 
+ */
 public class ImplicitOutputPort extends OutputPort {
 
     private static final long serialVersionUID = 4210196486062437007L;
 
+    /** Default constructor */
     public ImplicitOutputPort() {
 	super("ImplicitOutputPort");
     }
 
+    /** @return always Type.IMPLICIT */
     public Type getType() {
 	return Type.IMPLICIT;
     }

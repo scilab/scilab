@@ -14,24 +14,40 @@ package org.scilab.modules.xcos.port.command;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
+/**
+ * A command port acts generate execution ticks to another block.
+ * 
+ * The connected block is executed only when a rising edge occurs on this port.
+ * As we are writing 'edge', this port can only be connected to a
+ * {@link ControlPort}. To specify initial conditions, this block offers a
+ * {@link #setInitialState(double)} method. The port default orientation is the
+ * SOUTH.
+ */
 public class CommandPort extends BasicPort {
 
     private static final long serialVersionUID = 8098231554414576405L;
     private double initialState = -1.0;
     
+    /** Default constructor */
     public CommandPort() {
 	super("CommandPort");
 	setOrientation(Orientation.SOUTH);
     }
 
+    /**
+     * This port is untyped
+     * @return always null
+     */
     public Type getType() {
 	return null;
     }
 
+    /** @param initialState Initial state value */
     public void setInitialState(double initialState) {
 	this.initialState = initialState;
     }
 
+    /** @return Initial state value */
     public double getInitialState() {
 	return initialState;
     }
