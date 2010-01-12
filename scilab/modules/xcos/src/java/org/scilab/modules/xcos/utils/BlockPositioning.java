@@ -33,6 +33,9 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
+	public static final int ROTATION_STEP = 90;
+	public static final int MAX_ROTATION = 360;
+	
 	/** This class is a static singleton, thus it must not be instantiated */
     private BlockPositioning() { }
     
@@ -216,7 +219,7 @@ public final class BlockPositioning {
 		Orientation rotated = iter;
 		
 		/* Angle management */
-		int rotationIndex = angle / 90;
+		int rotationIndex = angle / ROTATION_STEP;
 		rotated = Orientation.values()[(rotated.ordinal() + rotationIndex)
 		           					% nbOfOrientations];
 
@@ -313,7 +316,7 @@ public final class BlockPositioning {
      * @return The angle value
      */
     public static int getNextAntiClockwiseAngle(BasicBlock block) {
-    	int angle = (block.getAngle() - 90 + 360) % 360;
+    	int angle = (block.getAngle() - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
 	return angle;
     }
 
@@ -323,7 +326,7 @@ public final class BlockPositioning {
      * @return The angle value
      */
     public static int getNextClockwiseAngle(BasicBlock block) {
-    	int angle = (block.getAngle() + 90) % 360;
+    	int angle = (block.getAngle() + ROTATION_STEP) % MAX_ROTATION;
 	return angle;
     }
     
@@ -333,16 +336,16 @@ public final class BlockPositioning {
      * @return the nearest graph valid value
      */
     public static int roundAngle(int angle) {
-    	int ret = 0;
-	if (angle < 0 || angle > 360) {
-	    angle = (angle + 360) % 360;
+    	int ret = angle;
+	if (angle < 0 || angle > MAX_ROTATION) {
+	    ret = (angle + MAX_ROTATION) % MAX_ROTATION;
 	}
 	
-	for (int i = 0; i < (360 / 90); i++) {
-		int min = i * 90;
-		int max = (i + 1) * 90;
+	for (int i = 0; i < (MAX_ROTATION / ROTATION_STEP); i++) {
+		int min = i * ROTATION_STEP;
+		int max = (i + 1) * ROTATION_STEP;
 		
-		if (angle < (min + max) / 2) {
+		if (ret < (min + max) / 2) {
 			ret = min;
 			break;
 		}
@@ -374,7 +377,7 @@ public final class BlockPositioning {
     @Deprecated
     private static Point rotatePoint(Point point, int angle) {
     
-	double angleRad = (angle * Math.PI) / (360 / 2);
+	double angleRad = (angle * Math.PI) / (MAX_ROTATION / 2);
 	int x = 0;
 	int y = 0;
 	
@@ -410,6 +413,6 @@ public final class BlockPositioning {
      * @return true if the angle is NORTH or SOUTH side value, false otherwise.
      */
     public static boolean isNearHorizontalSide(double angle) {
-    	return ((angle - 90) % (360 / 2)) == 0;
+    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
 }
