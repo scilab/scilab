@@ -113,7 +113,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
     dnl Test out the Java compiler with an empty class
     AC_MSG_CHECKING([to see if the java compiler works])
-    AC_JAVA_TRY_COMPILE(,,works=yes)
+    AC_JAVA_TRY_COMPILE(,,"no",works=yes)
     if test "$works" = "yes" ; then
         AC_MSG_RESULT($works)
     else
@@ -125,7 +125,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
 
 #------------------------------------------------------------------------
-# AC_JAVA_TRY_COMPILE(imports, main-body, action-if-worked, [action-if-failed])
+# AC_JAVA_TRY_COMPILE(imports, main-body, try-to-run, action-if-worked, [action-if-failed])
 #
 #	Try to compile a Java program. This works a lot like AC_TRY_COMPILE
 #	except is supports Java instead of C or C++. This macro will create
@@ -231,7 +231,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
     AC_MSG_CHECKING([type of jvm]) 
 
     if test "x$ac_java_jvm_name" = "x" ; then
-        AC_JAVA_TRY_COMPILE([import gnu.java.io.EncodingManager;],,ac_java_jvm_name=gcj)
+        AC_JAVA_TRY_COMPILE([import gnu.java.io.EncodingManager;],,"no",ac_java_jvm_name=gcj)
     fi
 
     if test "x$ac_java_jvm_name" = "x" ; then
@@ -252,11 +252,11 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 
     # The class java.nio.charset.Charset is new to 1.4
 
-    AC_JAVA_TRY_COMPILE([import java.nio.charset.Charset;], , ac_java_jvm_version=1.4)
+    AC_JAVA_TRY_COMPILE([import java.nio.charset.Charset;], , "no", ac_java_jvm_version=1.4)
 
     # The class java.lang.StringBuilder is new to 1.5
 
-    AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , ac_java_jvm_version=1.5)
+    AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , "no", ac_java_jvm_version=1.5)
 
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
@@ -803,7 +803,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 	jar_resolved=`ls $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-          AC_JAVA_TRY_COMPILE([import $2;], , [
+          AC_JAVA_TRY_COMPILE([import $2;], , "no", [
             AC_MSG_RESULT([$jar_resolved])
             found_jar=yes
             PACKAGE_JAR_FILE=$jar_resolved

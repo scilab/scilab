@@ -35,6 +35,6 @@ AC_DEFUN([AC_JAVA_CHECK_VERSION_PACKAGE], [
    						   	if (minVersion.compareTo($5) > 0) {
 							   	System.exit(-1); 
 								}
-							], echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $4]))
+							], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $4]))
    ac_java_classpath=$saved_ac_java_classpath
 ])
