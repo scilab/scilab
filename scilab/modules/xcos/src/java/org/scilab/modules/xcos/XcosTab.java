@@ -440,6 +440,10 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	public void keyTyped(KeyEvent e) { }
     }
 
+    /**
+     * Default constructor
+     * @param diagram The associated diagram model
+     */
     public XcosTab(XcosDiagram diagram) {
 	super(XcosMessages.XCOS);
 
@@ -452,40 +456,46 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	diagram.getAsComponent().addKeyListener(new ArrowKeysListener());
     }
 
+    /**
+     * Nothing to be done on this hook
+     * @param infoBarToAdd Not used
+     */
     public void addInfoBar(TextBox infoBarToAdd) {
     }
 
+    /**
+     * Add the default menu bar
+     * @param menuBarToAdd passed to SwingScilabTab#setMenuBar
+     */
     public void addMenuBar(MenuBar menuBarToAdd) {
 	((SwingScilabTab) this).setMenuBar(menuBarToAdd);
     }
 
+    /**
+     * Add the default tool bar
+     * @param toolBarToAdd passed to SwingScilabTab#setToolBar
+     */
     public void addToolBar(ToolBar toolBarToAdd) {
 	((SwingScilabTab) this).setToolBar(toolBarToAdd);
     }
 
     /**
-     * 
+     * Close the current diagram 
      */
     public void closeDiagram() {
-
-	// System.err.println("Xcos::closeDiagram : " + diagram);
 
 	diagram.closeChildren();
 	diagrams.remove(diagram);
 
-	// for(int i = 0 ; i < diagrams.size(); i++){
-	// System.err.println("diagrams[" + i + "] : " +
-	// diagrams.get(i).getClass());
-	// }
 	if (diagrams.size() == 0) {
-	    // System.err.println("close session");
 	    Xcos.closeSession();
 	}
 
     }
 
     /**
-     * @param scilabGraph graph
+     * Create the windows menu bar
+     * @param scilabGraph graph the associated graph
      * @return menu bar
      */
     public MenuBar createMenuBar(ScilabGraph scilabGraph) {
@@ -499,11 +509,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	fileMenu.setText(XcosMessages.FILE);
 	fileMenu.setMnemonic('F');
 
-	// Menu newMenu = ScilabMenu.createMenu();
-	// newMenu.setText(XcosMessages.NEW);
-	// newMenu.add(NewDiagramAction.createMenu(scilabGraph));
-	// newMenu.add(NewPaletteAction.createMenu(scilabGraph));
-	// fileMenu.add(newMenu);
 	fileMenu.add(NewDiagramAction.createMenu(scilabGraph));
 
 	fileMenu.add(OpenAction.createMenu(scilabGraph));
@@ -521,8 +526,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	recentsMenus.add(recentsMenu);
 	fileMenu.add(recentsMenu);
 
-	// fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
-	// fileMenu.addSeparator();
 	fileMenu.add(PrintAction.createMenu(scilabGraph));
 	fileMenu.addSeparator();
 	fileMenu.add(CloseAction.createMenu(scilabGraph));
@@ -551,13 +554,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	edit.add(BlockParametersAction.createMenu(scilabGraph));
 	edit.addSeparator();
 	edit.add(RegionToSuperblockAction.createMenu(scilabGraph));
-	// Menu superblockMask = ScilabMenu.createMenu();
-	// superblockMask.setText(XcosMessages.SUPERBLOCK_MASK);
-	// superblockMask.add(SuperblockMaskCreateAction.createMenu(scilabGraph));
-	// superblockMask.add(SuperblockMaskRemoveAction.createMenu(scilabGraph));
-	// superblockMask.add(SuperblockMaskCustomizeAction.createMenu(scilabGraph));
-	// superblockMask.add(SuperblockMaskSaveBlockGUIAction.createMenu(scilabGraph));
-	// edit.add(superblockMask);
 
 	/** View menu */
 	view = ScilabMenu.createMenu();
@@ -576,7 +572,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		.createCheckBoxMenu(scilabGraph);
 	view.add(menu);
 	((XcosDiagram) scilabGraph).setViewPortMenuItem(menu);
-	// view.add(ViewGetinfosAction.createMenu(scilabGraph));
 	view.add(ViewDetailsAction.createMenu(scilabGraph));
 
 	/** Simulation menu */
@@ -787,19 +782,15 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	outlineTab.setVisible(false);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.scilab.modules.gui.tab.Tab#getAsSimpleTab()
+    /**
+     * @return the associated Tab
      */
     public SimpleTab getAsSimpleTab() {
 	return this;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
+    /**
+     * @return the associated parent window
      */
     public Window getParentWindow() {
 	return null;
