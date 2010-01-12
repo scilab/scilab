@@ -29,6 +29,12 @@ import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.block.io.EventInBlock;
+import org.scilab.modules.xcos.block.io.EventOutBlock;
+import org.scilab.modules.xcos.block.io.ExplicitInBlock;
+import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
+import org.scilab.modules.xcos.block.io.ImplicitInBlock;
+import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
@@ -40,6 +46,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -425,8 +432,7 @@ public final class SuperBlock extends BasicBlock {
 		updateExportedExplicitOutputPort();
 		updateExportedImplicitOutputPort();
 		updateExportedEventOutputPort();
-		getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED,
-				new mxEventObject(new Object[] { this }));
+		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
 	}
 
 	private void updateExportedExplicitInputPort() {

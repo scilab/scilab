@@ -18,6 +18,7 @@
 @sa http://netbsd.gw.com/cgi-bin/man-cgi?sysctl+3+NetBSD-4.0
 @sa http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/math/scilab/patches/patch-aj?annotate=1.9
 */
+#define _GNU_SOURCE
 #include "getmemory.h"
 
 #if defined(__NetBSD__) || defined(__DragonFly__)

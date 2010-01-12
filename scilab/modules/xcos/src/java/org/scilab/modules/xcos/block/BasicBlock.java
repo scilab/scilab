@@ -65,6 +65,7 @@ import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -75,7 +76,6 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxCellState;
 
 public class BasicBlock extends XcosUIDObject {
 
@@ -369,25 +369,25 @@ public class BasicBlock extends XcosUIDObject {
     
     public void addPort(InputPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
     }
 
     public void addPort(OutputPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
     }
 
     public void addPort(CommandPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
     }
 
     public void addPort(ControlPort port) {
     	insert(port);
-    	BlockPositioning.updatePortsPosition(this);
+    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
     }
 
@@ -516,7 +516,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	if (getParentDiagram() instanceof SuperBlockDiagram) {
 	    SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram()).getContainer();
-	    parentBlock.getParentDiagram().fireEvent(XcosEvent.SUPER_BLOCK_UPDATED,new mxEventObject(new Object[] { parentBlock }));
+	    parentBlock.getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
 	}
 	
     }
@@ -559,7 +559,7 @@ public class BasicBlock extends XcosUIDObject {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
-				    getParentDiagram().fireEvent(XcosEvent.ADD_PORTS, new mxEventObject(new Object[] {currentBlock}));
+				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, currentBlock));
 				    setLocked(false);
 				}
 			});
@@ -906,34 +906,18 @@ public class BasicBlock extends XcosUIDObject {
     }
 
     /**
-     * Usefull when we need to update local properties with mxCell style properties 
+     * Useful when we need to update local properties with mxCell style properties 
      */
-    public void updateFieldsFromStyle() {
-	if (getParentDiagram() != null) {
-	    mxCellState state = getParentDiagram().getView().getState(this);
-	    if(state != null) {
-		// Angle field
-		String  currentAngle = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_ROTATION, "0");
-		this.angle = Integer.parseInt(currentAngle);
-	    
-		// Flip field
-		String  currentFlip = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_FLIP, "false");
-		if (currentFlip.compareTo("true") == 0) {
-		    isFlipped = true;
+	public void updateFieldsFromStyle() {
+		StyleMap map = new StyleMap(getStyle());
+
+		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
+			angle = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
 		} else {
-		    isFlipped = false;
+			angle = 0;
 		}
 		
-		// Mirror field
-		String  currentMirror = mxUtils.getString(state.getStyle(), XcosConstants.STYLE_MIRROR, "false");
-		if (currentMirror.compareTo("true") == 0) {
-		    isMirrored = true;
-		} else {
-		    isMirrored = false;
-		}
-	    }
-	    
+		isFlipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
+		isMirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
 	}
-	
-    }
 }

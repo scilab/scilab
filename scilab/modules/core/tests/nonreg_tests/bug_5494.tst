@@ -14,7 +14,7 @@
 // On Windows 2000, stacksize with the argument 'max' set stack to minimun size if it fails.
 // install scilab on windows 2000 with 256 Mo RAM
 
-m = stacksize()
+m = stacksize();
 stacksize('max')
 ma = stacksize();
 if m(1) > ma(1) then pause,end

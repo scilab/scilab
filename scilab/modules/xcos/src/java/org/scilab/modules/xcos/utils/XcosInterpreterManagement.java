@@ -32,6 +32,9 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 
 	private static ExecutorService executor = Executors.newSingleThreadExecutor();
 	private static Set<String> runningTasks = Collections.synchronizedSet(new HashSet<String>());
+	
+	private static final String NOTIFY = ";xcosNotify(\"";
+	private static final String CLOSE = "\");";
 
 	/** This class is a static singleton, thus it must not be instantiated */
 	private XcosInterpreterManagement() { }
@@ -58,15 +61,15 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 	 */
 	public static void synchronousScilabExec(String command) throws InterpreterException {
 		final String uidDesc = Integer.toString(command.hashCode());
-		final String fullCommand = command + ";xcosNotify(\"" + uidDesc + "\");";
+		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
 		
 		if (runningTasks.contains(uidDesc)) {
-			throw new InterpreterException("Same command executed again");
+			throw new InterpreterException(XcosMessages.SCILAB_SAMECOMMAND);
 		}
 		
 		int ret = InterpreterManagement.requestScilabExec(fullCommand);
 		if (ret != 0) {
-			throw new InterpreterException("Unable to communicate with the interpreter");
+			throw new InterpreterException(XcosMessages.SCILAB_UNABLE);
 		}
 		runningTasks.add(uidDesc);
 		Signal.wait(uidDesc);
@@ -98,19 +101,19 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 			final ActionListener callback) throws InterpreterException {
 		final int uid = command.hashCode();
 		final String uidDesc = Integer.toString(uid);
-		final String fullCommand = command + ";xcosNotify(\"" + uidDesc + "\");";
+		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
 		final ActionEvent event = new ActionEvent(
 				XcosInterpreterManagement.class, uid, command);
 
 		if (runningTasks.contains(uidDesc)) {
-			throw new InterpreterException("Same command executed again");
+			throw new InterpreterException(XcosMessages.SCILAB_SAMECOMMAND);
 		}
 		
 		executor.submit(new Callable<Void>() {
 			public Void call() throws Exception {
 				int ret = InterpreterManagement.putCommandInScilabQueue(fullCommand);
 				if (ret != 0) {
-					throw new InterpreterException("Unable to communicate with the interpreter");
+					throw new InterpreterException(XcosMessages.SCILAB_UNABLE);
 				}
 				runningTasks.add(uidDesc);
 				Signal.wait(uidDesc);

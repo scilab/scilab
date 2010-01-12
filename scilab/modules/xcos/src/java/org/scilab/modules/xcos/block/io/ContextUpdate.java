@@ -1,10 +1,11 @@
-package org.scilab.modules.xcos.block;
+package org.scilab.modules.xcos.block.io;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
