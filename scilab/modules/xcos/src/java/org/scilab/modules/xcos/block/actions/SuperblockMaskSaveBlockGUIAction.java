@@ -18,12 +18,23 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskSaveBlockGUIAction extends DefaultAction {
+/**
+ * @author Vincent COUVERT
+ *
+ */
+public final class SuperblockMaskSaveBlockGUIAction extends DefaultAction {
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	private SuperblockMaskSaveBlockGUIAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.SAVE_BLOCK_GUI, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph grpah
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SAVE_BLOCK_GUI, null, new SuperblockMaskSaveBlockGUIAction(scilabGraph), null);
 	}

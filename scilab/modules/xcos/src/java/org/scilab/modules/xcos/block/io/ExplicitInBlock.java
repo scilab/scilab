@@ -21,14 +21,24 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 
 import com.mxgraph.util.mxEventObject;
 
+/**
+ * @author Antoine ELIAS
+ *
+ */
 public final class ExplicitInBlock extends ContextUpdate {
 
     private static final long serialVersionUID = -5872963017904352162L;
 
+	/**
+	 * Constructor
+	 */
 	public ExplicitInBlock() {
 		super();
 	}
 
+	/**
+	 * @param label block label
+	 */
 	protected ExplicitInBlock(String label) {
 		this();
 		setDefaultValues();
@@ -51,19 +61,20 @@ public final class ExplicitInBlock extends ContextUpdate {
 
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 
-	double oldValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+	double oldValue = ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0];
 	super.updateBlockSettings(modifiedBlock);
-	double newValue = ((ScilabDouble)getIntegerParameters()).getRealPart()[0][0];
+	double newValue = ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0];
 
-	if(oldValue != newValue){
-	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, XcosConstants.EVENT_CHANGE_OLD, oldValue, XcosConstants.EVENT_CHANGE_NEW, newValue));
+	if (oldValue != newValue) {
+	    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.IN_EXPLICIT_VALUE_UPDATED, XcosConstants.EVENT_CHANGE_OLD,
+		    oldValue, XcosConstants.EVENT_CHANGE_NEW, newValue));
 	}
     }
 
     public void setIntegerParameters(ScilabType integerParameters) {
 	super.setIntegerParameters(integerParameters);
-	setValue((int)((ScilabDouble)getIntegerParameters()).getRealPart()[0][0]);
-	if(getParentDiagram() != null) {
+	setValue((int) ((ScilabDouble) getIntegerParameters()).getRealPart()[0][0]);
+	if (getParentDiagram() != null) {
 	    getParentDiagram().refresh();
 	}
     }
