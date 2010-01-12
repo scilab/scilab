@@ -17,23 +17,12 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-/**
- * @author Vincent COUVERT
- *
- */
 public class ViewGetinfosAction extends DefaultAction {
 
-	/**
-	 * @param scilabGraph graph
-	 */
 	private ViewGetinfosAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.GET_INFOS, scilabGraph);
 	}
 
-	/**
-	 * @param scilabGraph graph
-	 * @return menu item
-	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.GET_INFOS, null, new ViewGetinfosAction(scilabGraph), null);
 	}

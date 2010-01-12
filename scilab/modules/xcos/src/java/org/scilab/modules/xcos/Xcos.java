@@ -31,10 +31,6 @@ import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 
-/**
- * @author Bruno JOFRET
- *
- */
 public final class Xcos {
 
     /**
@@ -46,9 +42,6 @@ public final class Xcos {
     private static Map<String, SuperBlock> openedSuperBlock = new HashMap<String, SuperBlock>();
 
     /* Static class */
-    /**
-     * 
-     */
     private Xcos() {
     }
 
@@ -59,7 +52,7 @@ public final class Xcos {
     }
 
     /**
-     * @param args command line arguments
+     * @param args
      */
     public static void main(String[] args) {
 	SwingUtilities.invokeLater(new Runnable() {
@@ -69,9 +62,6 @@ public final class Xcos {
 	});
     }
 
-    /**
-     * 
-     */
     public static void xcos() {
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
@@ -82,15 +72,12 @@ public final class Xcos {
 	});
     }
 
-    /**
-     * @param fileName .xcos, .hdf5, .cos* file
-     */
     public static void xcos(String fileName) {
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		ConfigXcosManager.saveToRecentOpenedFiles(filename);
-		if (!XcosTab.focusOnExistingFile(filename)) {
+		if (XcosTab.focusOnExistingFile(filename) == false) {
 		    XcosDiagram diagram = createEmptyDiagram();
 		    diagram.openDiagramFromFile(filename);
 		}
@@ -98,18 +85,12 @@ public final class Xcos {
 	});
     }
 
-    /**
-     * @return diagram
-     */
     public static XcosDiagram createEmptyDiagram() {
 	XcosDiagram xcosDiagramm = createANotShownDiagram();
 	XcosTab.showTabFromDiagram(xcosDiagramm);
 	return xcosDiagramm;
     }
 
-    /**
-     * @return diagram
-     */
     public static XcosDiagram createANotShownDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
@@ -117,18 +98,12 @@ public final class Xcos {
 	return xcosDiagramm;
     }
 
-    /**
-     * @return diagram
-     */
     public static XcosDiagram createHiddenDiagram() {
 	XcosDiagram xcosDiagramm = new XcosDiagram();
 	xcosDiagramm.installListeners();
 	return xcosDiagramm;
     }
 
-    /**
-     * 
-     */
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
 	
@@ -138,25 +113,19 @@ public final class Xcos {
 	 * 
 	 * Furthermore the closeDiagram operation modify the diagram list.
 	 */
-	int i = diagrams.size() - 1;
+	int i = diagrams.size()-1;
 	while (i >= 0) {
 		diagrams.get(i).closeDiagram();
-		i = diagrams.size() - 1;
+		i = diagrams.size()-1;
 	}
 
 	ViewPaletteBrowserAction.setPalettesVisible(false);
     }
 
-    /**
-     * @return palette component
-     */
     public static Tab getPalettes() {
 	return XcosPaletteManager.getPalettes();
     }
 
-    /**
-     * @return diagram list
-     */
     public static List<XcosDiagram> getDiagrams() {
 	return XcosTab.getAllDiagrams();
     }
@@ -165,16 +134,16 @@ public final class Xcos {
      * Look in each diagram to find the block corresponding to the given uid and
      * display a warning message.
      * 
-     * @param uID
+     * @param UID
      *            - A String as UID.
      * @param message
      *            - The message to display.
      */
-    public static void warnCellByUID(String uID, String message) {
+    public static void warnCellByUID(String UID, String message) {
 	// Try to find a block with given index (UID)
 	List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
 	for (int i = 0; i < allDiagrams.size(); ++i) {
-	    allDiagrams.get(i).warnCellByUID(uID, message);
+	    allDiagrams.get(i).warnCellByUID(UID, message);
 	}
     }
 
@@ -196,12 +165,6 @@ public final class Xcos {
     /**
      * This function convert a Xcos diagram to Scilab variable
      */
-    /**
-     * @param xcosFile source file
-     * @param h5File destination file
-     * @param forceOverwrite replace file
-     * @return status
-     */
     public static int xcosDiagramToHDF5(String xcosFile, String h5File,
 	    boolean forceOverwrite) {
 	final String file = xcosFile;
@@ -209,7 +172,7 @@ public final class Xcos {
 	final boolean overwrite = forceOverwrite;
 
 	if (temp.exists()) {
-	    if (!overwrite) {
+	    if (overwrite == false) {
 		return 1;
 	    } else {
 		temp.delete();
@@ -233,11 +196,8 @@ public final class Xcos {
 	return 0;
     }
 
-    /**
-     * @param uid block id
-     * @param showed does show diagram
-     */
-    public static void xcosDiagramOpen(final String uid, boolean showed) {
+    public static void xcosDiagramOpen(String uid, boolean showed) {
+	final String UID = uid;
 	final boolean show = showed;
 
 	try {
@@ -251,19 +211,19 @@ public final class Xcos {
 			    continue;
 			}
 
-			block = diagram.getChildById(uid);
+			block = diagram.getChildById(UID);
 			if (block != null) {
 			    SuperBlock newSP = (SuperBlock) BlockFactory.createBlock("SUPER_f");
 			    newSP.setRealParameters(block.getRealParameters());
 			    newSP.setParentDiagram(block.getParentDiagram());
-			    if (!show) {
-				if (newSP.createChildDiagram()) {
+			    if (show == true) {
+				if(newSP.createChildDiagram() == true) {
 				    XcosTab.createTabFromDiagram(newSP.getChild());
 				    XcosTab.showTabFromDiagram(newSP.getChild());
 				    newSP.getChild().setReadOnly(true);
 				}
 			    }
-			    openedSuperBlock.put(uid, newSP);
+			    openedSuperBlock.put(UID, newSP);
 			    break;
 			}
 		    }
@@ -276,19 +236,17 @@ public final class Xcos {
 	}
     }
 
-    /**
-     * @param uid block id
-     */
-    public static void xcosDiagramClose(final String uid) {
+    public static void xcosDiagramClose(String uid) {
+	final String UID = uid;
 
 	try {
 	    SwingUtilities.invokeAndWait(new Runnable() {
 		public void run() {
-		    SuperBlock sp = openedSuperBlock.get(uid);
-		    if (sp != null) {
-			openedSuperBlock.remove(uid);
-			sp.closeBlockSettings();
-			sp = null;
+		    SuperBlock SP = openedSuperBlock.get(UID);
+		    if (SP != null) {
+			openedSuperBlock.remove(UID);
+			SP.closeBlockSettings();
+			SP = null;
 		    }
 		}
 	    });

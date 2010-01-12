@@ -57,8 +57,7 @@ public final class PasteAction extends DefaultAction {
 	 */
 	public static MenuItem pasteMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.PASTE, null,
-				new PasteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_V, 
-				Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				new PasteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
 	/**

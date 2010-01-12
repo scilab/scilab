@@ -41,21 +41,21 @@ import com.mxgraph.view.mxGraph;
  */
 public class ScilabGraph extends mxGraph {
 
-    private static final Color COLOR_GRAY = new Color(240, 240, 240);;
-    
-    private mxUndoManager undoManager = new mxUndoManager();
-    private XcosComponent component;
+    protected mxUndoManager undoManager = new mxUndoManager();
+    protected mxGraphOutline graphOutline = null;
+    protected mxKeyboardHandler keyboardHandler = null;
+    protected XcosComponent component = null;
     //    protected mxGraphComponent component = null;
 
     private String title = ScilabGraphMessages.UNTITLED;
-    private String savedFile;
-    private boolean modified;
+    private String savedFile = null;
+    private boolean modified = false;
     private Tab parentTab;
-    private boolean opened;
-    private boolean redoInAction;
-    private int undoCounter;
-    private boolean readOnly;
-    private Color originalColor;
+    private boolean opened = false;
+    private boolean redoInAction = false;
+    private int undoCounter = 0;
+    private boolean readOnly = false;
+    private Color originalColor = null;
     private transient mxRubberband rubberBand;
 
     /**
@@ -234,7 +234,6 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Used internally to manage the modified state on undo/redo
-     * @return boolean
      */
     protected boolean isZeroUndoCounter() {
 	return (undoCounter == 0);
@@ -245,6 +244,23 @@ public class ScilabGraph extends mxGraph {
      */
     protected void resetUndoCounter() {
 	undoCounter = 0;
+    }
+
+    @Deprecated
+    public void zoom() {
+	// this.setScale(2 * this.getScale());
+    }
+
+    @Deprecated
+    public void unzoom() {
+	// this.setScale(this.getScale() / 2);
+    }
+
+    @Deprecated
+    public void delete() {
+	// if (!isSelectionEmpty()) {
+	// getModel().remove(getDescendants(getSelectionCells()));
+	// }
     }
 
     /**
@@ -310,9 +326,9 @@ public class ScilabGraph extends mxGraph {
 	this.readOnly = readOnly;
 	
 	setCellsLocked(readOnly);
-	if (isReadonly()) {
+	if(isReadonly()) {
 	    setOriginalColor(getAsComponent().getBackground());
-	    getAsComponent().setBackground(COLOR_GRAY);
+	    getAsComponent().setBackground(new Color(240, 240, 240));
 	} else {
 	    getAsComponent().setBackground(getOriginalColor());
 	}
@@ -327,7 +343,6 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Useful function for the read-only property
-     * @param originalColor color
      */
     private void setOriginalColor(Color originalColor) {
 	this.originalColor = originalColor;
@@ -335,10 +350,9 @@ public class ScilabGraph extends mxGraph {
 
     /**
      * Useful function for the read-only property
-     * @return color
      */
     private Color getOriginalColor() {
-	if (originalColor != null) {
+	if(originalColor != null){
 	    return originalColor;
 	}
 	return Color.WHITE;

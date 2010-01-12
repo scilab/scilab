@@ -78,7 +78,7 @@ public final class ExportAction extends DefaultAction {
 	 */
 	public void doAction() {
 
-	    XcosDiagram graph = (XcosDiagram) getGraph(null);
+	    XcosDiagram graph = (XcosDiagram)getGraph(null);
 		mxGraphComponent graphComponent = graph.getAsComponent();
 		String filename = null;
 
@@ -91,7 +91,7 @@ public final class ExportAction extends DefaultAction {
 		Set<String> mask = new TreeSet<String>();
 		Set<String> maskDesc = new TreeSet<String>();
 
-		/* TODO : why hardcoded ? */
+		/* TODO: why hardcoded ? */
 		mask.add(".svg");
 		mask.add(".html");
 		mask.add(".vml");
@@ -110,8 +110,7 @@ public final class ExportAction extends DefaultAction {
 		// Adds filter that accepts all supported image formats
 		//fc.addChoosableFileFilter(new DefaultFileFilter.ImageFileFilter(mxResources.get("allImages")));
 				
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask.toArray(new String[mask.size()]) , 
-			maskDesc.toArray(new String[maskDesc.size()]));
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask.toArray(new String[mask.size()]) , maskDesc.toArray(new String[maskDesc.size()]));
 		fc.setTitle(XcosMessages.EXPORT);
 		fc.displayAndWait();
 		
@@ -132,19 +131,16 @@ public final class ExportAction extends DefaultAction {
 
 			if (extension.equalsIgnoreCase("svg")) {
 			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
-			    if (doc != null) {
+			    if (doc != null)
 				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
 			} else if (extension.equalsIgnoreCase("vml")) {
 			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
-			    if (doc != null) {
+			    if (doc != null)
 				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
 			} else if (extension.equalsIgnoreCase("html")) {
 			    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
-			    if (doc != null) {
+			    if (doc != null)
 				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
 			} else 	{
 				Color bg = null;
 

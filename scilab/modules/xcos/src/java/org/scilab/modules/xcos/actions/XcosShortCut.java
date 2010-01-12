@@ -24,17 +24,10 @@ import org.scilab.modules.graph.actions.UnGroupAction;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
 
 
-/**
- * @author Bruno JOFRET
- *
- */
 public class XcosShortCut extends mxKeyboardHandler {
 
 	private ScilabGraph component;
 
-	/**
-	 * @param component component
-	 */
 	public XcosShortCut(ScilabGraph component) {
 		super(component.getAsComponent());
 		this.component = component;
@@ -42,8 +35,6 @@ public class XcosShortCut extends mxKeyboardHandler {
 
 	/**
 	 * Return JTree's input map.
-	 * @param condition event
-	 * @return input map
 	 */
 	protected InputMap getInputMap(int condition) {
 		InputMap map = super.getInputMap(condition);
@@ -58,7 +49,6 @@ public class XcosShortCut extends mxKeyboardHandler {
 
 	/**
 	 * Return the mapping between JTree's input map and JGraph's actions.
-	 *  @return action map
 	 */
 	protected ActionMap createActionMap() {
 		ActionMap map = super.createActionMap();
