@@ -82,6 +82,9 @@ Compilation:
 
 * Check of the version of jgraphx added (1.2.0.X)
 
+* bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
+                   libraries
+
 Bug fixes:
 ==========
 
