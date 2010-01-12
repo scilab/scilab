@@ -25,7 +25,6 @@ import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -73,15 +72,17 @@ public class SetColorsAction extends DefaultAction {
     }
     
     private void changeColorsBox () {
+    	final int dimX = 250;
+    	final int dimY = 470;
     	
 		jframe = new JFrame();
 		jframe.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		
 		JPanel panel = new JPanel(new GridBagLayout());
 		jframe.setContentPane(panel);
-		jframe.setPreferredSize(new Dimension(250, 470));
-		jframe.setMinimumSize(new Dimension(250, 470));
-		jframe.setMaximumSize(new Dimension(250, 470));
+		jframe.setPreferredSize(new Dimension(dimX, dimY));
+		jframe.setMinimumSize(new Dimension(dimX, dimY));
+		jframe.setMaximumSize(new Dimension(dimX, dimY));
 		
 		JPanel changePanel = new JPanel(new GridBagLayout());
 		JPanel validationPanel = new JPanel(new GridBagLayout());
