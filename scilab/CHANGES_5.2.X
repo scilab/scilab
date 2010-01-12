@@ -82,6 +82,9 @@ Compilation:
 
 * Check of the version of jgraphx added (1.2.0.X)
 
+* bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
+                   libraries
+
 Bug fixes:
 ==========
 
@@ -107,6 +110,8 @@ Bug fixes:
                    java 6" was displayed
 
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
+
+* bug 5673 fixed - Under Linux, dependency on GLIBC_2.7 removed
 
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.

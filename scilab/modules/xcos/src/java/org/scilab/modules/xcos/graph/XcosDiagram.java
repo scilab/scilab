@@ -2184,7 +2184,7 @@ public class XcosDiagram extends ScilabGraph {
 		int sourceOut = mxGraphModel.getDirectedEdgeCount(getModel(), source, true);
 		int targetIn = mxGraphModel.getDirectedEdgeCount(getModel(), target, false);
 		
-		String str = ((PortCheck)current).checkDrawLink(this, edge, source, target, sourceOut, targetIn);
+		String str = ((PortCheck)current).checkDrawLink(source, target, sourceOut, targetIn);
 		if(str != null) {
 		    error.append(str);
 		}

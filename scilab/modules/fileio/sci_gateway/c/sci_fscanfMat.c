@@ -10,6 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
