@@ -100,9 +100,9 @@ int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   // P.Lando
   if( nbTicsCol * nbTicsRow )
   {
-	  /* Check if we should load LaTex / MathML Java libraries */
-	  loadTextRenderingAPI(labels, nbTicsCol, nbTicsRow);
-	  ppSubWin->axes.u_xlabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+    ppSubWin->axes.u_xlabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+    /* Check if we should load LaTex / MathML Java libraries */
+    loadTextRenderingAPI(ppSubWin->axes.u_xlabels, nbTicsCol, nbTicsRow);
   }
   else
   {
