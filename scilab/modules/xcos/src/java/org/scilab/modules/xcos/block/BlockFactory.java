@@ -54,7 +54,6 @@ public final class BlockFactory {
 		INIMPL_f(new ImplicitInBlock()),
 		OUTIMPL_f(new ImplicitOutBlock()),
 		CLKINV_f(new EventInBlock()),
-		/* TODO: What about CLKIN_F ? */
 		CLKOUTV_f(new EventOutBlock()),
 		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
 		SPLIT_f(new SplitBlock()),
