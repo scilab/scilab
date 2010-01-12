@@ -37,22 +37,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private String encoding = "UTF-8";
 	private boolean updater = true;
 	private boolean autoIndent;
-	private boolean autoColorize ;
+	private boolean autoColorize;
 	private volatile boolean shouldMergeEdits = false;
 	private boolean undoManagerEnabled;
 	
 	private String eolStyle = System.getProperty("line.separator");
 
+	/**
+	 * get Encoding
+	 * @return String encoding
+	 */
 	public String getEncoding() {
 		return encoding;
 	}
+	
+	/**
+	 * set Encoding 
+	 * @param encoding encoding
+	 */
 	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
 
 	/**
 	 * set end of line value
-	 * @param eol
+	 * @param eol String
 	 */
 	public void setEOL(String eol) {
 		this.eolStyle = eol;
@@ -66,6 +75,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		return this.eolStyle;
 	}
 	
+	/**
+	 * getAutoColorize
+	 * @return true or false
+	 */
 	public boolean getAutoColorize() {
 		return autoColorize;
 	}

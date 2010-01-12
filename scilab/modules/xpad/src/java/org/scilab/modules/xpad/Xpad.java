@@ -457,7 +457,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		File newSavedFile = new File(fileToSave);
 		
-		if (SaveFile.doSave(textPaneAt, newSavedFile, editorKit) == false) return false;
+		if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+			return false;
+		}
 
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
 		styledDocument.setContentModified(false);
@@ -649,7 +651,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 			/*if no extension , we add it */
 			if (hasNoExtension) {
-
 				if (fileChooser.getFileFilter() == sciFilter) {
 					extension = SCI_EXTENSION;
 				} else if (fileChooser.getFileFilter() == sceFilter) {
@@ -664,7 +665,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
-			if (SaveFile.doSave(textPane, f, editorKit) == false) return false;
+			if (!SaveFile.doSave(textPane, f, editorKit)) { 
+				return false;
+			}
 
 			ConfigManager.saveLastOpenedDirectory(f.getPath());
 			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
@@ -1102,6 +1105,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		private File fileToRead;
 
+		/**
+		 * ReadFileThread
+		 * @param f File
+		 */
 		public ReadFileThread(File f) {
 			this.fileToRead = f;
 			setFileToEncode(f);
@@ -1113,10 +1120,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 			this.stop();
 		}
 
+		/**
+		 * readFile
+		 * @param f File
+		 */
 		public void readFile(File f) {
 			getInfoBar().setText(XpadMessages.LOADING);
-
-			boolean colorStatus = false;
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
 

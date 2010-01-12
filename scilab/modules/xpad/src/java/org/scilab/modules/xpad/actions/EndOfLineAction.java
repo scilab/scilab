@@ -21,11 +21,17 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * Class  EndOfLineAction
+ * @author Allan CORNET
+ *
+ */
 public class EndOfLineAction  extends DefaultCheckAction {
 	
-	private static final String eolLinux = "\n";
-	private static final String eolMacOs = "\r";
-	private static final String eolWindows = "\r\n";
+	private static final String EOL_LINUX = "\n";
+	private static final String EOL_MACOS = "\r";
+	private static final String EOL_WINDOWS = "\r\n";
+	private static final String LINE_SEPARATOR = "line.separator";
 
 	/**
 	 * generated serialVersionUID
@@ -35,11 +41,21 @@ public class EndOfLineAction  extends DefaultCheckAction {
 	/* default */
 	private String eolMenuLabel = XpadMessages.EOL_AUT0;
 
+	/**
+	 * Constructor
+	 * @param eolName String
+	 * @param editor Xpad
+	 */
 	public EndOfLineAction(String eolName, Xpad editor) {
 		super(eolName, editor);
 		eolMenuLabel = eolName;
     }
 	
+	/**
+	 * createRadioButtonMenuItem
+	 * @param editor Xpad
+	 * @return JRadioButtonMenuItem
+	 */
 	public JRadioButtonMenuItem createRadioButtonMenuItem(Xpad editor) {
 		JRadioButtonMenuItem radio = new JRadioButtonMenuItem(eolMenuLabel);
 		radio.addActionListener(new ActionListener() {
@@ -50,21 +66,23 @@ public class EndOfLineAction  extends DefaultCheckAction {
 		return radio;
 	    }
 
+	/**
+	 * doAction
+	 */
     public void doAction() {
-    	
     	ScilabStyleDocument styleDocument = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument());
 
     	// default
-    	String newOel = System.getProperty("line.separator"); 
+    	String newOel = System.getProperty(LINE_SEPARATOR); 
     	
     	if (eolMenuLabel.compareToIgnoreCase(XpadMessages.EOL_AUT0) == 0) {
-    		newOel = System.getProperty("line.separator"); 
+    		newOel = System.getProperty(LINE_SEPARATOR); 
     	} else if (eolMenuLabel.compareToIgnoreCase(XpadMessages.EOL_LINUX) == 0) {
-    		newOel = eolLinux;     
+    		newOel = EOL_LINUX;     
     	} else if (eolMenuLabel.compareToIgnoreCase(XpadMessages.EOL_MACOS) == 0) {
-    		newOel = eolMacOs; 
+    		newOel = EOL_MACOS; 
     	} else if (eolMenuLabel.compareToIgnoreCase(XpadMessages.EOL_WINDOWS) == 0) {
-    		newOel = eolWindows;
+    		newOel = EOL_WINDOWS;
     	}
     	
     	if (styleDocument.getEOL().compareTo(newOel) != 0) {
