@@ -30,6 +30,8 @@ public final class BuildJavaHelp {
 	private static final String COULD_NOT_FIND = "buildDoc: Could not find/access to ";
 	private static final String LEFT_PAR = " ( ";
 	private static final String RIGHT_PAR = " )";
+	private static final String JAR_EXT = ".jar";
+	private static final String SLASH = "/";
 	private static Indexer indexer = new Indexer();
 	
 	/**
@@ -42,10 +44,11 @@ public final class BuildJavaHelp {
 	/**
 	 * Get the list of the files in a directory
 	 * @param directory the directory where files have to be searched
+	 * @param language String 'fr_FR'
 	 * @return the list of the files found
 	 */
 	private static ArrayList<File> buildFileList(File directory,  String language) {
-	    String baseNameJar = Helpers.getBaseName(language) + ".jar";
+	    String baseNameJar = Helpers.getBaseName(language) + JAR_EXT;
 		ArrayList<File> listFile = new ArrayList<File>();
 		
 		File [] files = directory.listFiles();
@@ -76,7 +79,7 @@ public final class BuildJavaHelp {
 		FileOutputStream fileOutputStream = null;
 		final int compressionLevel = 5;
 		/* Stored into SCI/modules/helptools/jar */
-		String fileName = outputDirectory + "/" + baseName + ".jar";
+		String fileName = outputDirectory + SLASH + baseName + JAR_EXT;
 		
 		/* bug 4407 */
 		/* we do list of files before to create scilab_xx_XX_help.jar */
@@ -110,7 +113,7 @@ public final class BuildJavaHelp {
 				}
 				String relativeFileName = null;
 				if (workingFile.getPath().indexOf("JavaHelpSearch") == -1) {
-					relativeFileName = baseName + "/" + workingFile.getName();
+					relativeFileName = baseName + SLASH + workingFile.getName();
 				} else {
  					relativeFileName = baseName + JAVAHELPSEARCH_DIR + workingFile.getName();
 				}
@@ -151,7 +154,7 @@ public final class BuildJavaHelp {
 			File directory = new File(outputJavaHelp);
 			directory.mkdirs();
 
-			String[] args = new String[] {"-nostopwords","."};
+			String[] args = new String[] {"-nostopwords", "."};
 
 			indexer.compile(args);
 		} catch (Exception e) {

@@ -62,11 +62,8 @@ import org.scilab.modules.xcos.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
-import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
-import org.scilab.modules.xcos.actions.ExportToXMLAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
-import org.scilab.modules.xcos.actions.ImportFromXMLAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
@@ -83,7 +80,6 @@ import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
-import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
@@ -133,6 +129,9 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     private static boolean startEnabled = true;
 
+    /**
+     * @param diag diagram
+     */
     public static void closeDiagram(XcosDiagram diag) {
 
 	// System.err.println("Xcos::closeDiagram : " + diagram);
@@ -154,7 +153,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     /**
      * Try to focus to an already openned file
      * 
-     * @param filename
+     * @param filename filename
      * @return True when found and focused, False otherwise
      */
     public static boolean focusOnExistingFile(String filename) {
@@ -173,10 +172,16 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return afficheBlocks;
     }
 
+    /**
+     * @return diagram list
+     */
     public static List<XcosDiagram> getAllDiagrams() {
 	return diagrams;
     }
 
+    /**
+     * @param status new status
+     */
     public static void setStartEnabled(boolean status) {
 	for (int i = 0; i < startMenuItems.size(); i++) {
 	    startMenuItems.get(i).setEnabled(status);
@@ -189,6 +194,9 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     }
 
+    /**
+     * @param xcosDiagram diagram
+     */
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
 	Window main = ScilabWindow.createWindow();
 	main.setTitle(XcosMessages.XCOS);
@@ -237,8 +245,11 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	main.setVisible(true);
     }
     
+    /**
+     * @param xcosDiagram diagram
+     */
     public static void showTabFromDiagram(XcosDiagram xcosDiagram) {
-	assert xcosDiagram.isOpened() == true;
+	assert xcosDiagram.isOpened();
 	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
 	
 	xcosDiagram.setVisible(true);
@@ -262,6 +273,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
     
     /**
      * Update menu displaying recent opened files
+     * @param scilabGraph graph
      */
     public static void updateRecentOpenedFilesMenu(ScilabGraph scilabGraph) {
 	List<File> recentFiles = ConfigXcosManager
@@ -282,13 +294,17 @@ public class XcosTab extends SwingScilabTab implements Tab {
     /*
      * Internal class
      */
+    /**
+     * @author Clement DAVID
+     *
+     */
     private class ArrowKeysListener implements KeyListener {
 
 	private static final double DEFAULT_PIXEL_MOVE = 5;
 	private static final int DEFAULT_DELAY = 800; // milliseconds
 
-	private double xIncrement = 0;
-	private double yIncrement = 0;
+	private double xIncrement;
+	private double yIncrement;
 	private mxGraph graph;
 
 	private Timer repetitionTimer;
@@ -309,17 +325,20 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    }
 	};
 
+	/**
+	 * Contructor
+	 */
 	public ArrowKeysListener() {
 	    repetitionTimer = new Timer(DEFAULT_DELAY, doMove);
 	    repetitionTimer.setInitialDelay(0);
 	}
 
-	public void keyPressed(KeyEvent arg0) {
+	public void keyPressed(KeyEvent e) {
 	    double realMove;
 	    boolean mustMove = true;
 	    
-	    mxGraphComponent diagram = (mxGraphComponent) arg0.getSource();
-	    graph = diagram.getGraph();
+	    mxGraphComponent sourceDiagram = (mxGraphComponent) e.getSource();
+	    graph = sourceDiagram.getGraph();
 	    
 	    if (graph.isGridEnabled()) {
 		realMove = graph.getGridSize();
@@ -327,7 +346,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 		realMove = DEFAULT_PIXEL_MOVE;
 	    }
 
-	    switch (arg0.getKeyCode()) {
+	    switch (e.getKeyCode()) {
 	    case KeyEvent.VK_UP:
 		yIncrement = -realMove;
 		break;
@@ -353,22 +372,22 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    	return;
 	    }
 	    
-	    if (graph.isGridEnabled() != true) {
-		xIncrement *= diagram.getZoomFactor();
-		yIncrement *= diagram.getZoomFactor();
+	    if (!graph.isGridEnabled()) {
+		xIncrement *= sourceDiagram.getZoomFactor();
+		yIncrement *= sourceDiagram.getZoomFactor();
 	    }
 
 	    repetitionTimer.start();
 	}
 
-	public void keyReleased(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
 	    repetitionTimer.stop();
 	    yIncrement = 0;
 	    xIncrement = 0;
 	    graph = null;
 	}
 
-	public void keyTyped(KeyEvent arg0) {
+	public void keyTyped(KeyEvent e) {
 
 	}
     }
@@ -431,6 +450,9 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	((SwingScilabTab) this).setToolBar(toolBarToAdd);
     }
 
+    /**
+     * 
+     */
     public void closeDiagram() {
 
 	// System.err.println("Xcos::closeDiagram : " + diagram);
@@ -449,6 +471,10 @@ public class XcosTab extends SwingScilabTab implements Tab {
 
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return menu bar
+     */
     public MenuBar createMenuBar(ScilabGraph scilabGraph) {
 	List<File> recentFiles = ConfigXcosManager
 		.getAllRecentOpenedFiles();
@@ -635,20 +661,13 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	help.addSeparator();
 	help.add(AboutXcosAction.createMenu(scilabGraph));
 
-	/** Debug menu */
-	// DEBUG / RELEASE option
-	if (false) {
-	    Menu debug = ScilabMenu.createMenu();
-	    debug.setText("DEBUG");
-	    menuBar.add(debug);
-	    debug.add(DumpAction.dumpMenu(scilabGraph));
-	    debug.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
-	    debug.add(ExportToXMLAction.createMenu(scilabGraph));
-	    debug.add(ImportFromXMLAction.createMenu(scilabGraph));
-	}
 	return menuBar;
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return tool bar
+     */
     public ToolBar createToolBar(ScilabGraph scilabGraph) {
 	ToolBar toolBar = ScilabToolBar.createToolBar();
 
@@ -719,6 +738,9 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return toolBar;
     }
 
+    /**
+     * @param xcosDiagramm diagram
+     */
     public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab(XcosMessages.VIEWPORT);
@@ -770,12 +792,18 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	return null;
     }
 
+    /**
+     * @param status new status
+     */
     public void setEnabledRedo(boolean status) {
 	if (actionsEnabled) {
 	redoAction.setEnabled(status);
 	}
     }
 
+    /**
+     * @param status new status
+     */
     public void setEnabledUndo(boolean status) {
 	if (actionsEnabled) {
 	undoAction.setEnabled(status);

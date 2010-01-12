@@ -241,17 +241,17 @@ public class XpadGUI {
 		String defaultEolLabel = XpadMessages.EOL_LINUX;
 		
 		// selected by default O.S
-		String SystemEolValue = System.getProperty("line.separator");
+		String systemEolValue = System.getProperty("line.separator");
 		
-		if (SystemEolValue.compareTo(eolLinux) == 0) {
+		if (systemEolValue.compareTo(eolLinux) == 0) {
 			defaultEolLabel = XpadMessages.EOL_LINUX;
 		}
 		
-		if (SystemEolValue.compareTo(eolWindows) == 0) {
+		if (systemEolValue.compareTo(eolWindows) == 0) {
 			defaultEolLabel = XpadMessages.EOL_WINDOWS;
 		}
 		
-		if (SystemEolValue.compareTo(eolMacOs) == 0) {
+		if (systemEolValue.compareTo(eolMacOs) == 0) {
 			defaultEolLabel = XpadMessages.EOL_MACOS;
 		}
 		
@@ -284,7 +284,7 @@ public class XpadGUI {
 
 	/**
 	 * Create TOOLBAR
-	 * @param editorInstance
+	 * @param editorInstance Xpad
 	 */
 	private void createToolBar(Xpad editorInstance) {
 		
@@ -309,6 +309,11 @@ public class XpadGUI {
 		editorInstance.setToolBar(toolBar);
 	}
 	
+	/**
+	 * createEditMenu
+	 * @param editMenu Menu
+	 * @param editorInstance Xpad
+	 */
 	private void createEditMenu(Menu editMenu, Xpad editorInstance) {
 		editMenu.setText(XpadMessages.EDIT); 
 		editMenu.setMnemonic('E');
@@ -331,6 +336,11 @@ public class XpadGUI {
 		editMenu.add(IndentAction.createMenu(editorInstance));
 	}
 
+	/**
+	 * createFileMenu
+	 * @param fileMenu Menu
+	 * @param editorInstance Xpad
+	 */
 	private void createFileMenu(Menu fileMenu, Xpad editorInstance) {
 		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles();
 		
@@ -364,8 +374,8 @@ public class XpadGUI {
 	
 	/**
 	 * createEncodingSubMenu 
-	 * @param documentMenu
-	 * @param editorInstance
+	 * @param documentMenu Menu
+	 * @param editorInstance Xpad
 	 */
 	private void createEncodingSubMenu(Menu documentMenu, Xpad editorInstance) {
 	

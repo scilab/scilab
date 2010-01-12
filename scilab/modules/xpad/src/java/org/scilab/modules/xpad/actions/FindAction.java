@@ -484,7 +484,10 @@ public final class FindAction extends DefaultAction {
 		
 		/*behaviour of buttons*/
 		radioSelection.addActionListener(new ActionListener() {
-
+			private static final int R_VALUE = 205;
+			private static final int G_VALUE = 183; 
+			private static final int B_VALUE = 158;
+			
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();		
 				startSelectedLines = xpadTextPane.getSelectionStart();
@@ -499,7 +502,7 @@ public final class FindAction extends DefaultAction {
 				hl.removeAllHighlights();
 				try {
 					hl.addHighlight(startSelectedLines, endSelectedLines, 
-							new DefaultHighlighter.DefaultHighlightPainter(new Color(205,183,158)));
+							new DefaultHighlighter.DefaultHighlightPainter(new Color(R_VALUE, G_VALUE, B_VALUE)));
 				} catch (BadLocationException exc) {
 					exc.printStackTrace();
 				}

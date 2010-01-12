@@ -295,11 +295,11 @@ public class FontManager {
 
  /**
   * Add a new font from its filename.
-  * @param FontFilename  filename of the font to add.
+  * @param fontFilename  filename of the font to add.
   * @return index of the added font.
   */
-  public final int addFontFromFilename(String FontFilename) {
-   return addFont(loadFont(FontFilename));
+  public final int addFontFromFilename(String fontFilename) {
+   return addFont(loadFont(fontFilename));
   }
  
  /**
@@ -316,11 +316,11 @@ public class FontManager {
   /**
   * Replace a font in the font list by a new one loaded from a file.
   * @param index index of the font to replace
-   * @param FontFilename  filename of the font
+  * @param fontFilename  filename of the font
   * @return index of the added font or -1 if an error occured.
   */
-  public final int changeFontFromFilename(int index, String FontFilename) {
-  	return changeFont(index, loadFont(FontFilename));
+  public final int changeFontFromFilename(int index, String fontFilename) {
+  	return changeFont(index, loadFont(fontFilename));
   }
   
  /**
@@ -391,6 +391,9 @@ public class FontManager {
         return sciFonts.size();
     }
 
+    /**
+     * initializeFontManager
+     */
     public final void initializeFontManager() {
      sciFonts = new FontList();
      // set default font

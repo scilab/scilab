@@ -413,4 +413,13 @@ public final class BlockPositioning {
 	    block.getParentDiagram().getModel().endUpdate();
 	}
     }
+    
+    /**
+     * test if the angle correspond to the NORTH or SOUTH sides.
+     * @param angle The rotation value
+     * @return true if the angle is NORTH or SOUTH side value, false otherwise.
+     */
+    public static boolean isNearHorizontalSide(double angle) {
+    	return ((angle -90) % 180) == 0;
+    }
 }
