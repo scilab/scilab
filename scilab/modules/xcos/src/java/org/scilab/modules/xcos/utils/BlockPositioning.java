@@ -352,40 +352,6 @@ public final class BlockPositioning {
 	}
 	return ret;
     }
-   
-    @Deprecated
-    public static Rectangle rotateRectangle(Rectangle rect, int angle) {
-	Point tl = new Point(-rect.width / 2, -rect.height / 2); //top left
-	Point tr = new Point(tl.x + rect.width, tl.y); //top right
-	Point br = new Point(tr.x, tr.y + rect.height); //bottom right
-	Point bl = new Point(tl.x, br.y); //bottom left 
-
-	Point tl2 = rotatePoint(tl, angle);
-	Point tr2 = rotatePoint(tr, angle);
-	Point bl2 = rotatePoint(bl, angle);
-	Point br2 = rotatePoint(br, angle);
-	
-	int x = Math.min(tl2.x, Math.min(tr2.x, Math.min(br2.x, bl2.x)));
-	int y = Math.min(tl2.y, Math.min(tr2.y, Math.min(br2.y, bl2.y)));
-	int width = Math.max(tl2.x, Math.max(tr2.x, Math.max(br2.x, bl2.x))) - x;
-	int height = Math.max(tl2.y, Math.max(tr2.y, Math.max(br2.y, bl2.y))) - y;
-
-	Rectangle result = new Rectangle(x, y, width, height);
-	return result;
-    }
-    
-    @Deprecated
-    private static Point rotatePoint(Point point, int angle) {
-    
-	double angleRad = (angle * Math.PI) / (MAX_ROTATION / 2);
-	int x = 0;
-	int y = 0;
-	
-	x = (int) (point.getX() * Math.cos(angleRad) - point.getY() * Math.sin(angleRad));
-	y = (int) (point.getX() * Math.sin(angleRad) + point.getY() * Math.cos(angleRad));
-	Point result = new Point(x, y);
-	return result;
-    }
     
     /**
      * Helper function that protect the block model.
