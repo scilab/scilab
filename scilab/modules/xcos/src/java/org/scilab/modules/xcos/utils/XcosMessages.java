@@ -134,7 +134,7 @@ public final class XcosMessages {
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define "
 	    + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
-	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
+	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)") + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
     public static final String FAIL_SAVING_DIAGRAM = Messages.gettext("Could not save diagram.");
