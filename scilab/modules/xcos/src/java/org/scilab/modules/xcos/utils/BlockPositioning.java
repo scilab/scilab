@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.utils;
 
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +31,9 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
+	public static final int ROTATION_STEP = 90;
+	public static final int MAX_ROTATION = 360;
+	
 	/** This class is a static singleton, thus it must not be instantiated */
     private BlockPositioning() { }
     
@@ -179,6 +180,21 @@ public final class BlockPositioning {
 		 * Ugly modification of the iter to update at the right position
 		 * Works only for 0 - 90 - 180 - 270 angles.
 		 */
+		Orientation rotated = rotateOrientation(iter, mirrored, flipped);
+		
+		updatePortsPosition(block, rotated, angle, working);
+	}
+
+	/**
+	 * Ugly modification of the iter to update at the right position.
+	 * Works only for 0 - 90 - 180 - 270 angles.
+	 * @param iter the real orientation
+	 * @param mirrored is the block mirrored
+	 * @param flipped is the block flipped
+	 * @return The modified orientation
+	 */
+	private static Orientation rotateOrientation(final Orientation iter,
+			final boolean mirrored, final boolean flipped) {
 		final int nbOfOrientations = Orientation.values().length; // 4
 		Orientation rotated = iter;
 		
@@ -195,8 +211,7 @@ public final class BlockPositioning {
 						% nbOfOrientations];
 			}
 		}
-		
-		updatePortsPosition(block, rotated, angle, working);
+		return rotated;
 	}
 
 	/**
@@ -216,16 +231,9 @@ public final class BlockPositioning {
 		Orientation rotated = iter;
 		
 		/* Angle management */
-		if (angle == 90) {
-			rotated = Orientation.values()[(rotated.ordinal() + 1)
-					% nbOfOrientations];
-		} else if (angle == 180) {
-			rotated = Orientation.values()[(rotated.ordinal() + 2)
-					% nbOfOrientations];
-		} else if (angle == 270) {
-			rotated = Orientation.values()[(rotated.ordinal() + 3)
-					% nbOfOrientations];
-		}
+		int rotationIndex = angle / ROTATION_STEP;
+		rotated = Orientation.values()[(rotated.ordinal() + rotationIndex)
+		           					% nbOfOrientations];
 
 		/* Call the associated function */
 		switch (rotated) {
@@ -320,11 +328,7 @@ public final class BlockPositioning {
      * @return The angle value
      */
     public static int getNextAntiClockwiseAngle(BasicBlock block) {
-    	int angle = 0;
-	if (block.getAngle() == 0) { angle = 270; }
-	else if (block.getAngle() == 90) { angle = 0; }
-	else if (block.getAngle() == 180) { angle = 90; }
-	else if (block.getAngle() == 270) { angle = 180; }
+    	int angle = (block.getAngle() - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
 	return angle;
     }
 
@@ -334,11 +338,7 @@ public final class BlockPositioning {
      * @return The angle value
      */
     public static int getNextClockwiseAngle(BasicBlock block) {
-    	int angle = 0;
-	if (block.getAngle() == 0) { angle = 90; }
-	else if (block.getAngle() == 90) { angle = 180; }
-	else if (block.getAngle() == 180) { angle = 270; }
-	else if (block.getAngle() == 270) { angle = 0; }
+    	int angle = (block.getAngle() + ROTATION_STEP) % MAX_ROTATION;
 	return angle;
     }
     
@@ -348,50 +348,21 @@ public final class BlockPositioning {
      * @return the nearest graph valid value
      */
     public static int roundAngle(int angle) {
-    	int ret = 0;
-	if (angle < 0 || angle > 360) {
-	    angle = angle + 360 % 360;
+    	int ret = angle;
+	if (angle < 0 || angle > MAX_ROTATION) {
+	    ret = (angle + MAX_ROTATION) % MAX_ROTATION;
 	}
 	
-	if (angle < (0 + 90)/2) { ret = 0; }
-	else if (angle < (90 + 180)/2) { ret = 90; }
-	else if (angle < (180 + 270)/2) { ret = 180; }
-	else if (angle < (270 + 360)/2) { ret = 270; }
+	for (int i = 0; i < (MAX_ROTATION / ROTATION_STEP); i++) {
+		int min = i * ROTATION_STEP;
+		int max = (i + 1) * ROTATION_STEP;
+		
+		if (ret < (min + max) / 2) {
+			ret = min;
+			break;
+		}
+	}
 	return ret;
-    }
-   
-    @Deprecated
-    public static Rectangle rotateRectangle(Rectangle rect, int angle) {
-	Point tl = new Point(-rect.width / 2, -rect.height / 2); //top left
-	Point tr = new Point(tl.x + rect.width, tl.y); //top right
-	Point br = new Point(tr.x, tr.y + rect.height); //bottom right
-	Point bl = new Point(tl.x, br.y); //bottom left 
-
-	Point tl2 = rotatePoint(tl, angle);
-	Point tr2 = rotatePoint(tr, angle);
-	Point bl2 = rotatePoint(bl, angle);
-	Point br2 = rotatePoint(br, angle);
-	
-	int x = Math.min(tl2.x, Math.min(tr2.x, Math.min(br2.x, bl2.x)));
-	int y = Math.min(tl2.y, Math.min(tr2.y, Math.min(br2.y, bl2.y)));
-	int width = Math.max(tl2.x, Math.max(tr2.x, Math.max(br2.x, bl2.x))) - x;
-	int height = Math.max(tl2.y, Math.max(tr2.y, Math.max(br2.y, bl2.y))) - y;
-
-	Rectangle result = new Rectangle(x,y,width, height);
-	return result;
-    }
-    
-    @Deprecated
-    private static Point rotatePoint(Point point, int angle) {
-    
-	double angleRad = (angle * Math.PI ) / 180;
-	int x = 0;
-	int y = 0;
-	
-	x = (int)(point.getX() * Math.cos(angleRad) - point.getY() * Math.sin(angleRad));
-	y = (int)(point.getX() * Math.sin(angleRad) + point.getY() * Math.cos(angleRad));
-	Point result = new Point(x,y);
-	return result;
     }
     
     /**
@@ -420,6 +391,6 @@ public final class BlockPositioning {
      * @return true if the angle is NORTH or SOUTH side value, false otherwise.
      */
     public static boolean isNearHorizontalSide(double angle) {
-    	return ((angle -90) % 180) == 0;
+    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
 }
