@@ -22,20 +22,38 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public class UnGroupAction extends DefaultAction {
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	public UnGroupAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.UNGROUP, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return push button
+	 */
 	public static PushButton ungroupButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph));
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return push button
+	 */
 	public static MenuItem ungroupMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph), null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		mxGraphActions.getUngroupAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));

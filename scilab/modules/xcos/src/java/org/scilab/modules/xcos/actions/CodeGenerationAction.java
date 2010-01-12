@@ -32,22 +32,43 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
 
+/**
+ * @author Allan SIMON
+ *
+ */
 public class CodeGenerationAction extends DefaultAction {
 
     private static final long serialVersionUID = -7756467773530338202L;
+    private static final String H5EXT = ".h5";
+    private static final String XCOS = "xcos";
+    private static final String TMPDIR = "TMPDIR";
 
+    /**
+     * @param scilabGraph graph
+     */
     public CodeGenerationAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.CODE_GENERATION,scilabGraph);
+	super(XcosMessages.CODE_GENERATION, scilabGraph);
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return push button
+     */
     public static PushButton createButton(ScilabGraph scilabGraph) {
 	return createButton(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph));
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return menu item
+     */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph), null);
     }
 
+    /**
+     * 
+     */
     public void doAction() {
 	Object selectedObj = getGraph(null).getSelectionCell();
 		if (!(selectedObj instanceof SuperBlock)) {
@@ -59,14 +80,14 @@ public class CodeGenerationAction extends DefaultAction {
 	
 	final SuperBlock block = (SuperBlock) selectedObj;
 	try {
-	    final File tempOutput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
-	    final File tempInput = File.createTempFile("xcos",".h5",new File(System.getenv("TMPDIR")));;
+	    final File tempOutput = File.createTempFile(XCOS, H5EXT, new File(System.getenv(TMPDIR)));
+	    final File tempInput = File.createTempFile(XCOS, H5EXT, new File(System.getenv(TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
-	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
-	    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
-	    H5Write.closeFile(file_id);
+	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(fileId, "scs_m", block.getAsScilabObj());
+	    H5Write.closeFile(fileId);
 	    
 			String command = "xcosCodeGeneration(\""
 					+ tempOutput.getAbsolutePath() + "\"" + ", \""
@@ -88,9 +109,7 @@ public class CodeGenerationAction extends DefaultAction {
 				    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 				}
 			});
-	}
-	
-	catch (Exception e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}

@@ -80,10 +80,9 @@ public class SetupAction extends DefaultAction {
         		    ret = true;
         		}
 		} catch (NumberFormatException e) {
-		    // ret is false so does nothing
+		    return ret;
 		}
 		return ret;
-		
 	    };
 	};
 	
@@ -298,7 +297,7 @@ public class SetupAction extends DefaultAction {
 		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				integration.setValue(new BigDecimal(100000.0));//TODO thou shall not let value hardcoded!
+				integration.setValue(new BigDecimal(100000.0)); //TODO thou shall not let value hardcoded!
 				rts.setValue(new BigDecimal(0.0));
 				integrator.setValue(new BigDecimal(1e-4));
 				integratorRel.setValue(new BigDecimal(1e-6));
@@ -320,7 +319,7 @@ public class SetupAction extends DefaultAction {
 
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if(((JButton)e.getSource()).hasFocus()) {
+			    if (((JButton) e.getSource()).hasFocus()) {
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
 					if (diagram.getSolver() != 0) {
 						diagram.setSolver(0);
@@ -333,7 +332,7 @@ public class SetupAction extends DefaultAction {
 					}
 				}
 
-				if (diagram.getFinalIntegrationTime() != ((BigDecimal)integration.getValue()).doubleValue()) {
+				if (diagram.getFinalIntegrationTime() != ((BigDecimal) integration.getValue()).doubleValue()) {
 					diagram.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
@@ -377,18 +376,18 @@ public class SetupAction extends DefaultAction {
 		//display the frame and set some properties
 
 		mainFrame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent arg0) {}
-			public void windowDeiconified(WindowEvent arg0) {}
-			public void windowActivated(WindowEvent arg0) {}
+			public void windowClosed(WindowEvent e) { }
+			public void windowDeiconified(WindowEvent e) { }
+			public void windowActivated(WindowEvent e) { }
 			
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(WindowEvent e) {
 				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 			
-			public void windowDeactivated(WindowEvent arg0) {}
-			public void windowIconified(WindowEvent arg0) {};
-			public void windowOpened(WindowEvent arg0) {}
+			public void windowDeactivated(WindowEvent e) { }
+			public void windowIconified(WindowEvent e) { }
+			public void windowOpened(WindowEvent e) { }
 		});
 
 		mainFrame.setTitle(XcosMessages.SETUP_TITLE);

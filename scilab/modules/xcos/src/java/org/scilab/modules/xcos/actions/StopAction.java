@@ -24,18 +24,34 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public class StopAction extends DefaultAction {
 	
     private static final long serialVersionUID = -4815506453604602272L;
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	public StopAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.STOP, scilabGraph);
 	}
 
+	
+	/**
+	 * @param scilabGraph graph
+	 * @return push button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.STOP, "process-stop.png", new StopAction(scilabGraph));
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.STOP, null, new StopAction(scilabGraph), null);
 	}

@@ -22,20 +22,38 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public class GroupAction extends DefaultAction {
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	public GroupAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.GROUP, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return push button
+	 */
 	public static PushButton groupButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.GROUP, null, new GroupAction(scilabGraph));
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem groupMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.GROUP, null, new GroupAction(scilabGraph), null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		mxGraphActions.getGroupAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));

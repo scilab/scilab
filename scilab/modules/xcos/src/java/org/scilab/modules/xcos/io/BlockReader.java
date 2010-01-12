@@ -48,34 +48,36 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
+/**
+ * @author Scilab Team
+ *
+ */
 public class BlockReader {
 
-    private static void INFO(String msg) {
-	// System.err.println("[INFO] BlockReader : "+msg);
-    }
+    private static final int OFFSET_X = 20;
+    private static final int OFFSET_Y = 20;
 
-    private static void WARNING(String msg) {
-	// System.err.println("[WARNING] BlockReader : "+msg);
-    }
-
-    private static void DEBUG(String msg) {
-	// System.err.println("[DEBUG] BlockReader : "+msg);
-    }
-
+     /**
+     * @param data
+     * @return Diagram structure
+     */
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data) {
 	return convertMListToDiagram(data, true);
     }
     
+    /**
+     * @param data
+     * @param checkVersion
+     * @return Diagram structure
+     */
     public static HashMap<String, Object> convertMListToDiagram(ScilabMList data, boolean checkVersion) {
 
 	try {
 	    isAValidScs_mStructure(data, checkVersion);
 	} catch (WrongTypeException e2) {
-	    WARNING("Invalid data structure !!");
 	    e2.printStackTrace();
 	    return null;
 	} catch (WrongStructureException e) {
-	    WARNING("Invalid data structure !!");
 	    e.printStackTrace();
 	    return null;
 	} catch (VersionMismatchException e) {
@@ -115,7 +117,6 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isBlock(data, i)) {
-		    INFO("Reading Block " + i);
 		    BasicBlock currentBlock = fillBlockStructure(getBlockAt(data, i));
 		    currentBlock.setOrdering(i);
 		    indexedBlock.put(i + 1, currentBlock);
@@ -130,7 +131,6 @@ public class BlockReader {
 		    minY = Math.min(minY, currentBlock.getGeometry().getY());
 		}
 	    } catch (BlockReaderException e) {
-		WARNING(" Fail reading Block " + (i + 1));
 		e.printStackTrace();
 		return null;
 	    }
@@ -143,21 +143,18 @@ public class BlockReader {
 	    if (isLink(data, i)) {
 		try {
 
-		    INFO("Reading Link " + (i + 1));
 		    ScilabMList link = getLinkAt(data, i);
 		    BasicPort startingPort = null;
 		    BasicPort endingPort = null;
 
-		    int startBlockIndex = getStartBlockIndex(link);// 6.0
-		    int startPortIndex = getStartPortIndex(link);// 6.1
-		    PortType startPortType = getStartPortType(link);// 5.1
+		    int startBlockIndex = getStartBlockIndex(link); // 6.0
+		    int startPortIndex = getStartPortIndex(link); // 6.1
+		    PortType startPortType = getStartPortType(link); // 5.1
 
 		    int endBlockIndex = getEndBlockIndex(link); // 7.0
-		    int endPortIndex = getEndPortIndex(link);// 7.1
-		    PortType endPortType = getEndPortType(link);// 5.1
+		    int endPortIndex = getEndPortIndex(link); // 7.1
+		    PortType endPortType = getEndPortType(link); // 5.1
 
-		    DEBUG("Start : [" + startBlockIndex + ", " + startPortIndex + ", " + startPortType + "]");
-		    DEBUG("End : [" + endBlockIndex + ", " + endPortIndex + ", " + endPortType + "]");
 		    switch (startPortType) {
 		    case INPUT:
 			startingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
@@ -170,6 +167,8 @@ public class BlockReader {
 			break;
 		    case CONTROL:
 			startingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
+			break;
+		    default:
 			break;
 		    }
 
@@ -186,9 +185,11 @@ public class BlockReader {
 		    case CONTROL:
 			endingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
 			break;
+		    default:
+			break;
 		    }
 
-		    BasicPort[] startAndEnd = { startingPort, endingPort };
+		    BasicPort[] startAndEnd = {startingPort, endingPort };
 		    linkPorts.add(startAndEnd);
 
 		    // First and last value -> start and end point
@@ -205,7 +206,6 @@ public class BlockReader {
 			linkPoints.add(null);
 		    }
 		} catch (BlockReaderException e) {
-		    WARNING(" Fail reading Link " + (i + 1));
 		    e.printStackTrace();
 		    return null;
 		}
@@ -216,7 +216,6 @@ public class BlockReader {
 	for (int i = 0; i < nbObjs; ++i) {
 	    try {
 		if (isLabel(data, i)) {
-		    INFO("Reading Label " + i);
 		    TextBlock currentText = fillTextStructure(getBlockAt(data, i));
 		    currentText.setOrdering(i);
 
@@ -233,19 +232,16 @@ public class BlockReader {
 		    textBlocks.add(currentText);
 		    minX = Math.min(minX, currentText.getGeometry().getX());
 		    minY = Math.min(minY, currentText.getGeometry().getY());
-		} else {
-		    // for minX and minY
 		}
 	    } catch (BlockReaderException e) {
-		WARNING(" Fail reading Label " + (i + 1));
 		e.printStackTrace();
 		return null;
 	    }
 
 	}
 
-	double offsetX = -minX + 20;
-	double offsetY = -minY + 20;
+	double offsetX = -minX + OFFSET_X;
+	double offsetY = -minY + OFFSET_Y;
 
 	for (int i = 0; i < blocks.size(); ++i) {
 	    blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + offsetX);
@@ -276,6 +272,14 @@ public class BlockReader {
 	return result;
     }
 
+    /**
+     * @param hdf5File
+     * @return
+     */
+    /**
+     * @param hdf5File
+     * @return Diagram Structure
+     */
     public static HashMap<String, Object> readDiagramFromFile(String hdf5File) {
 	ScilabMList data = new ScilabMList();
 
@@ -289,17 +293,22 @@ public class BlockReader {
 
 	    return convertMListToDiagram(data);
 	} catch (HDF5LibraryException e) {
-	    System.err.println("An error occurred while working with the HDF5 library "+e.getLocalizedMessage());
+	    System.err.println("An error occurred while working with the HDF5 library " + e.getLocalizedMessage());
 	} catch (WrongStructureException e) {
-	    System.err.println("A HDF5 loading error occurred: Wrong Structure: "+e.getLocalizedMessage());
+	    System.err.println("A HDF5 loading error occurred: Wrong Structure: " + e.getLocalizedMessage());
 	} catch (HDF5JavaException e) {
-	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
+	    System.err.println("A HDF5 loading error occurred: Error: " + e.getLocalizedMessage());
 	} catch (HDF5Exception e) {
-	    System.err.println("A HDF5 loading error occurred: Error: "+e.getLocalizedMessage());
+	    System.err.println("A HDF5 loading error occurred: Error: " + e.getLocalizedMessage());
 	}
 	return null;
     }
 
+    /**
+     * @param link link
+     * @return start block index
+     * @throws WrongTypeException wrong type
+     */
     private static int getStartBlockIndex(ScilabMList link)
 	    throws WrongTypeException {
 	if (!(link.get(6) instanceof ScilabDouble)) {
@@ -444,7 +453,6 @@ public class BlockReader {
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
 	} catch (Exception e) {
-	    DEBUG("FAIL importing " + hdf5file);
 	    e.printStackTrace();
 	    newBlock = null;
 	}
