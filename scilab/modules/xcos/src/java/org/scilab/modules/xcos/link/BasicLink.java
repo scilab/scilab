@@ -36,13 +36,9 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -362,39 +358,27 @@ public abstract class BasicLink extends XcosUIDObject {
 	 * @return The new link
 	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
-	
     	// Pre-conditions
     	assert from != null;
     	assert to != null;
     	
-	//from and to are clearly identify
-	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	} else if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitOutputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitInputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitInputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof CommandPort && to instanceof ControlPort) {
-	    return new CommandControlLink();
-	} else if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	} else if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitOutputPort && from instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitInputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitInputPort && from instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof CommandPort && from instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
+    	BasicLink instance;
+    	
+    	boolean isFromImplicit = (from.getType() == Type.IMPLICIT);
+    	boolean isToImplicit = (to.getType() == Type.IMPLICIT);
+    	
+    	boolean isFromExplicit = (from.getType() == Type.EXPLICIT);
+    	boolean isToExplicit = (to.getType() == Type.EXPLICIT);
+    	
+    	if (isFromImplicit && isToImplicit) {
+    		instance = new ImplicitLink();
+    	} else if (isFromExplicit && isToExplicit) {
+    		instance = new ExplicitLink();
+    	} else {
+    		instance = new CommandControlLink();
+    	}
 	
-	return new ExplicitLink();
+		return instance;
     }
 
     /** Invert the source and target of the link */
