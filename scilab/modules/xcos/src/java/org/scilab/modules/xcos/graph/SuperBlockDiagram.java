@@ -81,7 +81,7 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
      * @author Antoine ELIAS
      *
      */
-    private static class GenericSuperBlockListener implements mxIEventListener {
+    private static final class GenericSuperBlockListener implements mxIEventListener {
 	private static GenericSuperBlockListener instance;
 	
 	/**

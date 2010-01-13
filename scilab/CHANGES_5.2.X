@@ -67,6 +67,9 @@ Xcos:
 Atoms:
 ======
 
+* atomsSetConfig("offLine","True"/"False") automatically calls atomsSystemUpdate()
+  if its value has changed.
+
 * bug 6383 fixed - A message displayed by atomsRemove() (when the module to
                    remove is loaded) wasn't correct.
 
