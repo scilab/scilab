@@ -236,6 +236,11 @@ public class XcosPalette extends JScrollPane {
 	setSelectionEntry(null, null);
     }
 
+    /** @return The selected entry */
+    public BlockPalette getSelectedEntry() {
+	return selectedEntry;
+    }
+    
     /**
      * Select a block (perform UI and control update)
      * @param entry The selected block entry
@@ -299,10 +304,5 @@ public class XcosPalette extends JScrollPane {
     @Override
     public String toString() {
 	return this.name;
-    }
-
-    /** @return The selected entry */
-    public BlockPalette getSelectedEntry() {
-	return selectedEntry;
     }
 }
