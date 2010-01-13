@@ -44,7 +44,6 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends JScrollPane {
 
@@ -233,7 +232,7 @@ public class XcosPalette extends JScrollPane {
     /**
      * Clear the selection.
      */
-    public void clearSelection() {
+    private void clearSelection() {
 	setSelectionEntry(null, null);
     }
 
@@ -242,7 +241,7 @@ public class XcosPalette extends JScrollPane {
      * @param entry The selected block entry
      * @param t The associated transferable state
      */
-    public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
+    private void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
 	BlockPalette last = selectedEntry;
 	selectedEntry = entry;
 
@@ -295,48 +294,6 @@ public class XcosPalette extends JScrollPane {
     }
 
     /**
-     * @param eventName The associated event name
-     * @param listener The new listener
-     * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void addListener(String eventName, mxIEventListener listener) {
-	eventSource.addListener(eventName, listener);
-    }
-
-    /**
-     * @return True when event are enable, false otherwise
-     * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
-     */
-    public boolean isEventsEnabled() {
-	return eventSource.isEventsEnabled();
-    }
-
-    /**
-     * @param listener The listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener) {
-	eventSource.removeListener(listener);
-    }
-
-    /**
-     * @param eventName The associated event name
-     * @param listener The listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener, String eventName) {
-	eventSource.removeListener(listener, eventName);
-    }
-
-    /**
-     * @param eventsEnabled True when event must be enable, false otherwise
-     * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
-     */
-    public void setEventsEnabled(boolean eventsEnabled) {
-	eventSource.setEventsEnabled(eventsEnabled);
-    }
-
-    /**
      * @return the name of the palette
      */
     @Override
@@ -348,10 +305,4 @@ public class XcosPalette extends JScrollPane {
     public BlockPalette getSelectedEntry() {
 	return selectedEntry;
     }
-
-    /** @param selectedEntry The new selected entry */
-    public void setSelectedEntry(BlockPalette selectedEntry) {
-	this.selectedEntry = selectedEntry;
-    }
-
 }
