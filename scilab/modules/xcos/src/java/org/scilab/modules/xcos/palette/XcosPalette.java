@@ -47,7 +47,7 @@ import com.mxgraph.util.mxEventSource;
 
 public class XcosPalette extends JScrollPane {
 
-	/** Heplper to manage the entry selection */
+	/** Helper to manage the entry selection */
 	public final class EntryManager {
 		private BlockPalette selectedEntry;
 
@@ -270,15 +270,34 @@ public class XcosPalette extends JScrollPane {
 		super(new JPanel());
 		panel = (JPanel) getViewport().getComponent(0);
 		this.name = name;
+		initComponents();
+
+		addComponentListener(CONTROLLER.getComponentListener());
+		// Clears the current selection when the background is clicked
+		addMouseListener(CONTROLLER.getMouseListener());
+
+		// Shows a nice icon for drag and drop but doesn't import anything
+		setTransferHandler(new TransferHandler() {
+			private static final long serialVersionUID = 1L;
+
+			public boolean canImport(JComponent comp, DataFlavor[] flavors) {
+				return true;
+			}
+		});
+	}
+
+	/**
+	 * Setup the graphical components
+	 */
+	private void initComponents() {
 		setBackground(Color.WHITE);
 
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING,
 				XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
-		panel
-				.setPreferredSize(new Dimension(
-						(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-						0));
+		panel.setPreferredSize(new Dimension(
+				(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
+				0));
 
 		getVerticalScrollBar().setBlockIncrement(
 				XcosConstants.PALETTE_BLOCK_HEIGHT
@@ -294,19 +313,6 @@ public class XcosPalette extends JScrollPane {
 		getHorizontalScrollBar().setUnitIncrement(
 				XcosConstants.PALETTE_BLOCK_WIDTH
 						+ XcosConstants.PALETTE_HMARGIN);
-
-		addComponentListener(CONTROLLER.getComponentListener());
-		// Clears the current selection when the background is clicked
-		addMouseListener(CONTROLLER.getMouseListener());
-
-		// Shows a nice icon for drag and drop but doesn't import anything
-		setTransferHandler(new TransferHandler() {
-			private static final long serialVersionUID = 1L;
-
-			public boolean canImport(JComponent comp, DataFlavor[] flavors) {
-				return true;
-			}
-		});
 	}
 
 	/**
@@ -327,9 +333,6 @@ public class XcosPalette extends JScrollPane {
 
 		// Install the handler for dragging nodes into a graph
 		DragGestureListener dragGestureListener = new DragGestureListener() {
-			/**
-	     * 
-	     */
 			public void dragGestureRecognized(DragGestureEvent e) {
 				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(), entry
 						.getTransferable(), null);
