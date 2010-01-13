@@ -46,12 +46,15 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosPalette extends JScrollPane implements ComponentListener {
+public class XcosPalette extends JScrollPane {
 
 	private static final long serialVersionUID = 5693635134906513755L;
 
     private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
     private static final int BORDER_WIDTH = 3;
+    
+    private static ComponentListener componentListener;
+    private static MouseListener mouseListener;
     
     private JPanel panel;
     private String name;
@@ -80,9 +83,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 
-	addComponentListener(this);
+	addComponentListener(componentListener);
 	// Clears the current selection when the background is clicked
-	addMouseListener(new MouseListener()
+	mouseListener = new MouseListener()
 	{
 
 	    /*
@@ -121,7 +124,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	    public void mouseReleased(MouseEvent e) {
 	    }
 
-	});
+	};
+	addMouseListener(mouseListener);
 
 	// Shows a nice icon for drag and drop but doesn't import anything
 	setTransferHandler(new TransferHandler() {
@@ -258,6 +262,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	eventSource.setEventsEnabled(eventsEnabled);
     }
 
+    {
+    	componentListener = new ComponentListener() {
+    
     /**
      * Not used
      * @param arg0 Not used
@@ -303,6 +310,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
      * @see ComponentListener
      */
     public void componentShown(ComponentEvent arg0) {
+    }
+    
+    	};
     }
 
     /**
