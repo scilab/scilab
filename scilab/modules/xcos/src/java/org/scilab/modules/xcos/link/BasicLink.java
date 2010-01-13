@@ -53,7 +53,9 @@ import com.mxgraph.util.mxRectangle;
 
 public abstract class BasicLink extends XcosUIDObject {
 
-    private static final long serialVersionUID = 8557979393361216098L;
+	private static final long serialVersionUID = 8557979393361216098L;
+	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
+	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
 
     public BasicLink(String style) {
 	super();
@@ -135,13 +137,19 @@ public abstract class BasicLink extends XcosUIDObject {
 	    if (i == 0) { //first block
 		point1 = new Point2D.Double(startX, startY);
 	    } else {
-		point1 = new Point2D.Double((int) ((mxPoint)getGeometry().getPoints().get(i-1)).getX(), (int) ((mxPoint)getGeometry().getPoints().get(i-1)).getY());
+				point1 = new Point2D.Double((int) ((mxPoint) getGeometry()
+						.getPoints().get(i - 1)).getX(),
+						(int) ((mxPoint) getGeometry().getPoints().get(i - 1))
+								.getY());
 	    }
 
 	    if (i == getGeometry().getPoints().size()) { 
 		point2 = new Point2D.Double(endX, endY);
 	    } else {
-		point2 = new Point2D.Double((int)((mxPoint)getGeometry().getPoints().get(i)).getX(), (int)((mxPoint)getGeometry().getPoints().get(i)).getY());
+				point2 = new Point2D.Double((int) ((mxPoint) getGeometry()
+						.getPoints().get(i)).getX(),
+						(int) ((mxPoint) getGeometry().getPoints().get(i))
+								.getY());
 	    }
 
 	    Point2D.Double addPoint = new Point2D.Double(point.getX(), point.getY());
@@ -150,8 +158,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	    if (saveDist == -1) { 
 		saveDist = line.ptSegDist(addPoint);
 		findPos = i;
-	    }
-	    else{
+	    } else {
 		double dist = line.ptSegDist(addPoint);
 		if (dist < saveDist) { 
 		    saveDist = dist;
@@ -174,14 +181,14 @@ public abstract class BasicLink extends XcosUIDObject {
 
 	//if it is a loop link, change coordinate origin to block instead of diagram
 	mxPoint point = new mxPoint(x, y);
-	if(isLoopLink() == true) {
+	if (isLoopLink()) {
 	    mxGeometry geo = getSource().getParent().getGeometry();
 	    point.setX(x - geo.getX());
 	    point.setY(y - geo.getY());
 	}
 
-	if(getGeometry() == null) {
-	    setGeometry(new mxGeometry(0, 0, 80, 80));
+	if (getGeometry() == null) {
+	    setGeometry(DEFAULT_GEOMETRY);
 	}
 
 	if (getGeometry().getPoints() == null) {
@@ -191,7 +198,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	    //check to delete an old point before try to insert
 	    for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
 		mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
-		mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
+				mxRectangle rect = new mxRectangle(oldPoint.getX()
+						- (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
+						- (DETECTION_RECTANGLE_DIMENSION / 2),
+						DETECTION_RECTANGLE_DIMENSION,
+						DETECTION_RECTANGLE_DIMENSION);
 		if (rect.contains(point.getX(), point.getY())) { 
 		    getGeometry().getPoints().remove(i);
 		    return;
@@ -204,8 +215,8 @@ public abstract class BasicLink extends XcosUIDObject {
     }
 
     private boolean isLoopLink() {
-	if(getSource() != null && getTarget() != null) {
-	    if(getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
+	if (getSource() != null && getTarget() != null) {
+	    if (getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
 		return true;
 	    }
 	}
@@ -228,11 +239,15 @@ public abstract class BasicLink extends XcosUIDObject {
 
 	// yy
 	double[][] yy = new double[1][2 + getPointCount()];
-	yy[0][0] = -(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		yy[0][0] = -(getSource().getGeometry().getCenterY()
+				+ getSource().getParent().getGeometry().getY() - getSource()
+				.getParent().getGeometry().getHeight());
 	for (int i = 0; i < getPointCount(); i++) { 
-	    yy[0][i+1] = - (((mxPoint) getGeometry().getPoints().get(i)).getY());
+			yy[0][i + 1] = -(((mxPoint) getGeometry().getPoints().get(i)).getY());
 	}
-	yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY()
+				+ getTarget().getParent().getGeometry().getY() - getSource()
+				.getParent().getGeometry().getHeight());
 	data.add(new ScilabDouble(yy));
 
 	data.add(new ScilabString("drawlink")); // id
@@ -288,7 +303,9 @@ public abstract class BasicLink extends XcosUIDObject {
 
 	menu.add(linkStyle);
 
-	((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);		
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+				MouseInfo.getPointerInfo().getLocation().x, MouseInfo
+						.getPointerInfo().getLocation().y);		
 
 	menu.setVisible(true);
     }
@@ -323,20 +340,20 @@ public abstract class BasicLink extends XcosUIDObject {
 	}
 	
 	//from is null, never happen
-	if(from == null) {
-	    if(to instanceof ExplicitInputPort) {
+	if (from == null) {
+	    if (to instanceof ExplicitInputPort) {
 		return new ExplicitLink();
-	    } else if(to instanceof ImplicitInputPort) {
+	    } else if (to instanceof ImplicitInputPort) {
 		return new ImplicitLink();
-	    } else if(to instanceof ControlPort) {
+	    } else if (to instanceof ControlPort) {
 		return new CommandControlLink();
 	    }
-	} else if(to == null) {
-	    if(from instanceof ExplicitOutputPort) {
+	} else if (to == null) {
+	    if (from instanceof ExplicitOutputPort) {
 		return new ExplicitLink();
-	    } else if(from instanceof ImplicitOutputPort) {
+	    } else if (from instanceof ImplicitOutputPort) {
 		return new ImplicitLink();
-	    } else if(from instanceof CommandPort) {
+	    } else if (from instanceof CommandPort) {
 		return new CommandControlLink();
 	    }
 	}
@@ -353,7 +370,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	    setTarget(linkSource);
 
 	    removePoints();
-	    for(int i = points.size() - 1 ; i >= 0; i--) {
+	    for (int i = points.size() - 1; i >= 0; i--) {
 		addPoint(points.get(i).getX(), points.get(i).getY());
 	    }
 	    

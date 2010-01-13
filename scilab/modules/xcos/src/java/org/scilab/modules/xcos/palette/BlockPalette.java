@@ -67,7 +67,7 @@ public class BlockPalette extends JLabel {
 	private final MouseListener mouseListener = new MouseListener() {
 
 		public void mousePressed(MouseEvent e) {
-			getPalette().setSelectionEntry(BlockPalette.this, getTransferable());
+			getPalette().getEntryManager().setSelectionEntry(BlockPalette.this, getTransferable());
 		}
 
 		/**
@@ -198,7 +198,7 @@ public class BlockPalette extends JLabel {
 		Color bg = getBackground();
 		Border br = getBorder();
 
-		if (getPalette().getSelectedEntry() == this) {
+		if (getPalette().getEntryManager().isSelectedEntry(this)) {
 			setBackground(getPalette().getBackground().brighter());
 			setBorder(new ShadowBorder());
 			setOpaque(true);

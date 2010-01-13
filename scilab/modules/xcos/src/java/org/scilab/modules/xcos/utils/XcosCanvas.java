@@ -24,7 +24,13 @@ import com.mxgraph.util.mxUtils;
 
 /**
  * Painter for each vertex and edge
+ * 
+ * This is tightly coupled to jgraphx internals thus it use an Hashtable on the
+ * API which is forbidden by checkstyle rules. In the future, the API will use
+ * the Map interface instead of the Hashtable implementation (see
+ * http://www.jgraphsupport.co.uk/bugzilla/show_bug.cgi?id=8).
  */
+// CSOFF: IllegalType
 public class XcosCanvas extends mxInteractiveCanvas {
 
 	private static final int OPACITY_MAX = 100;
@@ -173,3 +179,5 @@ public class XcosCanvas extends mxInteractiveCanvas {
 		}
 	}
 }
+//CSON: IllegalType
+
