@@ -52,6 +52,12 @@ public class XcosPalette extends JScrollPane {
 
     private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
     private static final int BORDER_WIDTH = 3;
+    private static final XcosPaletteController CONTROLLER = new XcosPaletteController();
+    
+    /**
+     * Contains all the controllers used by this class.
+     */
+    private static final class XcosPaletteController {
     
     private ComponentListener componentListener = new ComponentListener() {
         
@@ -82,15 +88,15 @@ public class XcosPalette extends JScrollPane {
     	    int panelWidth = (int) palette.getSize().getWidth() - BORDER_WIDTH;
 
     	    //take care if VerticalScrollBar is visible to compute visible area
-    	    if (getVerticalScrollBar().isVisible()) {
-    		panelWidth -=  getVerticalScrollBar().getWidth();
+    	    if (palette.getVerticalScrollBar().isVisible()) {
+    		panelWidth -=  palette.getVerticalScrollBar().getWidth();
     	    }
 
     	    int numberOfCols = panelWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-    	    double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
+    	    double numberOfRows = (double) palette.panel.getComponentCount() / (double) numberOfCols;
     	    int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math.ceil(numberOfRows));
 
-    	    panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
+    	    palette.panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
     	}
         }
 
@@ -111,7 +117,10 @@ public class XcosPalette extends JScrollPane {
 	     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	     */
 	    public void mousePressed(MouseEvent e) {
-		clearSelection();
+	    	if (e.getSource() instanceof XcosPalette) {
+	    	    XcosPalette palette = ((XcosPalette) e.getSource());
+	    	    palette.clearSelection();
+	    	}
 	    }
 
 	    /*
@@ -142,6 +151,24 @@ public class XcosPalette extends JScrollPane {
 	    public void mouseReleased(MouseEvent e) {
 	    }
 	};
+	
+	/** Default constructor */
+	private XcosPaletteController() { }
+
+	/**
+	 * @return the componentListener
+	 */
+	private ComponentListener getComponentListener() {
+		return componentListener;
+	}
+
+	/**
+	 * @return the mouseListener
+	 */
+	private MouseListener getMouseListener() {
+		return mouseListener;
+	}
+    }
     
     private JPanel panel;
     private String name;
@@ -170,9 +197,9 @@ public class XcosPalette extends JScrollPane {
 	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
 
-	addComponentListener(componentListener);
+	addComponentListener(CONTROLLER.getComponentListener());
 	// Clears the current selection when the background is clicked
-	addMouseListener(mouseListener);
+	addMouseListener(CONTROLLER.getMouseListener());
 
 	// Shows a nice icon for drag and drop but doesn't import anything
 	setTransferHandler(new TransferHandler() {
