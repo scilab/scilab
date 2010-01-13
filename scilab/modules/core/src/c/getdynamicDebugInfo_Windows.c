@@ -312,6 +312,7 @@ static char * GetNumberMonitors(void)
 static char * GetRegKeyVideoCard(void)
 {
 	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
 	#define LenLine 255
 
 	HKEY key;
@@ -319,7 +320,12 @@ static char * GetRegKeyVideoCard(void)
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 
@@ -340,15 +346,21 @@ static char * GetRegKeyVideoCard(void)
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyVideoCardVersion(void)
 {
-#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
-#define LenLine 255
+	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define LenLine 255
 
 	HKEY key;
 	DWORD result;
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 
