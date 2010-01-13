@@ -45,6 +45,9 @@ import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource;
 
+/**
+ * The grid panel implementation for the BlockPalettes (main block view).
+ */
 public class XcosPalette extends JScrollPane {
 
 	/** Helper to manage the entry selection */
