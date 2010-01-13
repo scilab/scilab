@@ -363,6 +363,10 @@ public abstract class BasicLink extends XcosUIDObject {
 	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
 	
+    	// Pre-conditions
+    	assert from != null;
+    	assert to != null;
+    	
 	//from and to are clearly identify
 	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
 	    return new ExplicitLink();
@@ -390,24 +394,6 @@ public abstract class BasicLink extends XcosUIDObject {
 	    return new CommandControlLink();
 	}
 	
-	//from is null, never happen
-	if (from == null) {
-	    if (to instanceof ExplicitInputPort) {
-		return new ExplicitLink();
-	    } else if (to instanceof ImplicitInputPort) {
-		return new ImplicitLink();
-	    } else if (to instanceof ControlPort) {
-		return new CommandControlLink();
-	    }
-	} else if (to == null) {
-	    if (from instanceof ExplicitOutputPort) {
-		return new ExplicitLink();
-	    } else if (from instanceof ImplicitOutputPort) {
-		return new ImplicitLink();
-	    } else if (from instanceof CommandPort) {
-		return new CommandControlLink();
-	    }
-	}
 	return new ExplicitLink();
     }
 
