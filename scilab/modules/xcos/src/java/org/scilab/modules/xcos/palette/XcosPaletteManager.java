@@ -53,6 +53,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
+import org.scilab.modules.xcos.palette.config.Category;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -70,144 +71,6 @@ public final class XcosPaletteManager {
     private static DefaultMutableTreeNode rootNode; 
     private static DefaultMutableTreeNode userDefinedNode; 
     private static DefaultTreeModel paletteTreeModel;
-	/**
-     * Instantiate all the known names (default configuration)
-     */
-    private static final PaletteStringDescriptor[] PAL_STRING_DESCRIPTOR = {
-	    /** COMMONLY USED BLOCKS palette */
-	    new PaletteStringDescriptor(XcosMessages.COMMONUSED_PAL,
-		    new String[] {"ANDBLK", "BIGSOM_f", "CMSCOPE", "CONST_m",
-			    "CONVERT", "CSCOPXY", "DEMUX", "DOLLAR_f",
-			    "INTEGRAL_f", "IN_f", "LOGICAL_OP", "MUX",
-			    "NRMSOM_f", "OUT_f", "PRODUCT", "RELATIONALOP",
-			    "SATURATION", "SWITCH2_m", "TEXT_f"}),
-
-	    /** CONTINUOUS palette */
-	    new PaletteStringDescriptor(XcosMessages.CONTINUOUS_PAL,
-		    new String[] {"CLINDUMMY_f", "CLR", "CLSS", "DERIV",
-			    "INTEGRAL_f", "INTEGRAL_m", "PID", "TCLSS",
-			    "TIME_DELAY", "VARIABLE_DELAY", "PDE"}),
-
-	    /** DISCONTINUOUS palette */
-	    new PaletteStringDescriptor(XcosMessages.DISCONTINUOUS_PAL,
-		    new String[] {"BACKLASH", "DEADBAND", "DELAYV_f",
-			    "HYSTHERESIS", "RATELIMITER", "QUANT_f",
-			    "SATURATION"}),
-
-	    /** DISCRETE palette */
-	    new PaletteStringDescriptor(XcosMessages.DISCRETE_PAL,
-		    new String[] {"AUTOMAT", "DELAYV_f", "DELAY_f", "DLR",
-			    "DLRADAPT_f", "DLSS", "DOLLAR_f", "SAMPHOLD_m",
-			    "TCLSS"}),
-
-	    /** LOOKUP TABLES palette */
-	    new PaletteStringDescriptor(XcosMessages.LOOKUPTABLES_PAL,
-		    new String[] {"INTRP2BLK_f", "INTRPLBLK_f", "LOOKUP_f"}),
-
-	    /** EVENTS palette */
-	    new PaletteStringDescriptor(XcosMessages.EVENTS_PAL, new String[] {
-		    "ANDBLK", "ANDLOG_f", "CEVENTSCOPE", "CLKFROM", "CLKGOTO",
-		    "CLKGotoTagVisibility", "CLKOUTV_f", "CLKSOMV_f",
-		    "CLOCK_c", "EDGE_TRIGGER", "ENDBLK", "END_c", "ESELECT_f",
-		    "EVTDLY_c", "EVTGEN_f", "EVTVARDLY", "Extract_Activation",
-		    "HALT_f", "IFTHEL_f", "M_freq", "MCLOCK_f", "MFCLCK_f",
-		    "REGISTER", "SampleCLK", "freq_div"}),
-
-	    /** MATH OPERATIONS palette */
-	    new PaletteStringDescriptor(XcosMessages.MATHSOPS_PAL,
-		    new String[] {"ABS_VALUE", "BIGSOM_f", "COSBLK_f",
-			    "EXPBLK_m", "GAINBLK_f", "INVBLK", "LOGBLK_f",
-			    "MATMAGPHI", "MATZREIM", "MAXMIN", "MAX_f",
-			    "MIN_f", "POWBLK_f", "PRODUCT", "PROD_f", "SIGNUM",
-			    "SINBLK_f", "SQRT", "SUMMATION", "SUM_f",
-			    "TANBLK_f", "TrigFun"}),
-
-	    /** MATRIX palette */
-	    new PaletteStringDescriptor(XcosMessages.MATRIX_PAL, new String[] {
-		    "CUMSUM", "EXTRACT", "EXTTRI", "MATBKSL", "MATCATH",
-		    "MATCATV", "MATDET", "MATDIAG", "MATDIV", "MATEIG",
-		    "MATEXPM", "MATINV", "MATLU", "MATMAGPHI", "MATMUL",
-		    "MATPINV", "MATRESH", "MATSING", "MATSUM", "MATTRAN",
-		    "MATZCONJ", "MATZREIM", "RICC", "ROOTCOEF", "SQRT",
-		    "SUBMAT"}),
-
-	    /** ELECTRICAL palette */
-	    new PaletteStringDescriptor(XcosMessages.ELECTRICAL_PAL,
-		    new String[] {"CCS", "CVS", "Capacitor",
-			    "ConstantVoltage", "CurrentSensor", "Diode",
-			    "Ground", "Gyrator", "IdealTransformer",
-			    "Inductor", "NMOS", "NPN", "OpAmp", "PMOS", "PNP",
-			    "PotentialSensor", "Resistor", "SineVoltage",
-			    "Switch", "VVsourceAC", "VariableResistor",
-			    "VoltageSensor", "VsourceAC"}),
-
-	    /** INTEGER palette */
-	    new PaletteStringDescriptor(XcosMessages.INTEGER_PAL, new String[] {
-		    "BITCLEAR", "BITSET", "CONVERT", "DFLIPFLOP", "DLATCH",
-		    "EXTRACTBITS", "INTMUL", "JKFLIPFLOP", "LOGIC", "SHIFT",
-		    "SRFLIPFLOP"}),
-
-	    /** PORT ACTION palette */
-	    new PaletteStringDescriptor(XcosMessages.PORTACTION_PAL,
-		    new String[] {"CLKINV_f", "CLKOUTV_f", "IN_f", "INIMPL_f",
-			    "OUTIMPL_f", "OUT_f", "SUPER_f"}),
-
-	    /** THRESHOLD palette */
-	    new PaletteStringDescriptor(XcosMessages.THRESHOLD_PAL,
-		    new String[] {"GENERAL_f", "NEGTOPOS_f", "POSTONEG_f",
-			    "ZCROSS_f"}),
-
-	    /** Signal Routing palette */
-	    new PaletteStringDescriptor(XcosMessages.SIGNALROUTING_PAL,
-		    new String[] {"DEMUX", "EXTRACTOR", "FROM", "FROMMO",
-			    "GOTO", "GOTOMO", "GotoTagVisibility",
-			    "GotoTagVisibilityMO", "ISELECT_m", "MUX",
-			    "M_SWITCH", "NRMSOM_f", "RELAY_f", "SELECT_m",
-			    "SWITCH2_m", "SWITCH_f"}),
-
-	    /** SIGNAL PROCESSING palette */
-	    new PaletteStringDescriptor(XcosMessages.SIGNALPROCESSING_PAL,
-		    new String[] {"QUANT_f", "SAMPHOLD_m"}),
-
-	    /** IMPLICIT palette */
-	    new PaletteStringDescriptor(XcosMessages.IMPLICIT_PAL,
-		    new String[] {"CONSTRAINT_f", "DIFF_f"}),
-
-	    /** ANNOTATIONS palette */
-	    new PaletteStringDescriptor(XcosMessages.ANNOTATIONS_PAL,
-		    new String[] {"TEXT_f"}),
-
-	    /** SINKS palette */
-	    new PaletteStringDescriptor(XcosMessages.SINKS_PAL, new String[] {
-		    "AFFICH_m", "CANIMXY", "CANIMXY3D", "CFSCOPE", "CLKOUTV_f",
-		    "CMAT3D", "CMATVIEW", "CMSCOPE", "CSCOPE", "CSCOPXY",
-		    "CSCOPXY3D", "ENDBLK", "END_c", "HALT_f", "OUTIMPL_f",
-		    "OUT_f", "TOWS_c", "TRASH_f", "WFILE_f", "WRITEAU_f",
-		    "WRITEC_f" }),
-
-	    /** SOURCES palette */
-	    new PaletteStringDescriptor(XcosMessages.SOURCES_PAL, new String[] {
-		    "CLKINV_f", "CLOCK_c", "CONST_m", "CURV_f", "Counter",
-		    "FROMWSB", "GENSIN_f", "GENSQR_f", "INIMPL_f", "IN_f",
-		    "Modulo_Count", "RAMP", "RAND_m", "READAU_f", "READC_f",
-		    "RFILE_f", "SAWTOOTH_f", "STEP_FUNCTION", "SampleCLK",
-		    "Sigbuilder", "TIME_f", "TKSCALE" }),
-
-	    /** THERMO-HYDRAULICS palette */
-	    new PaletteStringDescriptor(XcosMessages.THERMOHYDRAULICS_PAL,
-		    new String[] {"Bache", "PerteDP", "PuitsP", "SourceP",
-			    "VanneReglante"}),
-
-	    /** DEMO-BLOCKS palette */
-	    new PaletteStringDescriptor(XcosMessages.DEMOBLOCKS_PAL,
-		    new String[] {"BOUNCE", "BOUNCEXY", "BPLATFORM"}),
-
-	    /** USER-DEFINED FUNCTIONS palette */
-	    new PaletteStringDescriptor(XcosMessages.USERDEFINEDFUNCTIONS_PAL,
-		    new String[] {"CBLOCK", "DEBUG_SCICOS", "EXPRESSION",
-			    "MBLOCK", "PDE", "SUPER_f", "c_block",
-			    "fortran_block", "generic_block3",
-			    "scifunc_block_m"}) };
 
     /**
      * Represent a palette configuration values
@@ -424,13 +287,13 @@ public final class XcosPaletteManager {
 		allpalettes.setVisible(false);
 		palettes.setVisible(true);
 
-		for (PaletteStringDescriptor paletteStringDescriptor : PAL_STRING_DESCRIPTOR) {
+		for (Category cat : Category.values()) {
 		    /* Doesn't perform UI update */
-		    PaletteDescriptor currentDescriptor = new PaletteDescriptor(createPaletteData(paletteStringDescriptor.getComponents()));
+		    PaletteDescriptor currentDescriptor = new PaletteDescriptor(createPaletteData(cat.getBlockNames()));
 
 		    /* Perform UI update */
 		    XcosPalette xcosPalette = new XcosPalette(
-			    paletteStringDescriptor.getName());
+			    cat.toString());
 		    for (PaletteData iter : currentDescriptor.getComponents()) {
 			xcosPalette.addTemplate(iter.getName(), iter.getIcon());
 		    }
