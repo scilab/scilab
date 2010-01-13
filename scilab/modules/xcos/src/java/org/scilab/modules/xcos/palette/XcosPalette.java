@@ -53,7 +53,55 @@ public class XcosPalette extends JScrollPane {
     private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
     private static final int BORDER_WIDTH = 3;
     
-    private static ComponentListener componentListener;
+    private ComponentListener componentListener = new ComponentListener() {
+        
+        /**
+         * Not used
+         * @param arg0 Not used
+         * @see ComponentListener
+         */
+        public void componentHidden(ComponentEvent arg0) {
+        }
+
+        /**
+         * Not used
+         * @param arg0 Not used
+         * @see ComponentListener
+         */
+        public void componentMoved(ComponentEvent arg0) {
+        }
+
+        /**
+         * Do the layout of the blocks representations
+         * @param arg0 Event data
+         * @see ComponentListener
+         */
+        public void componentResized(ComponentEvent arg0) {
+    	if (arg0.getSource() instanceof XcosPalette) {
+    	    XcosPalette palette = ((XcosPalette) arg0.getSource());
+    	    int panelWidth = (int) palette.getSize().getWidth() - BORDER_WIDTH;
+
+    	    //take care if VerticalScrollBar is visible to compute visible area
+    	    if (getVerticalScrollBar().isVisible()) {
+    		panelWidth -=  getVerticalScrollBar().getWidth();
+    	    }
+
+    	    int numberOfCols = panelWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+    	    double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
+    	    int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math.ceil(numberOfRows));
+
+    	    panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
+    	}
+        }
+
+        /**
+         * Not used
+         * @param arg0 Not used
+         * @see ComponentListener
+         */
+        public void componentShown(ComponentEvent arg0) { }
+        
+    };
     private static MouseListener mouseListener;
     
     private JPanel panel;
@@ -260,59 +308,6 @@ public class XcosPalette extends JScrollPane {
      */
     public void setEventsEnabled(boolean eventsEnabled) {
 	eventSource.setEventsEnabled(eventsEnabled);
-    }
-
-    {
-    	componentListener = new ComponentListener() {
-    
-    /**
-     * Not used
-     * @param arg0 Not used
-     * @see ComponentListener
-     */
-    public void componentHidden(ComponentEvent arg0) {
-    }
-
-    /**
-     * Not used
-     * @param arg0 Not used
-     * @see ComponentListener
-     */
-    public void componentMoved(ComponentEvent arg0) {
-    }
-
-    /**
-     * Do the layout of the blocks representations
-     * @param arg0 Event data
-     * @see ComponentListener
-     */
-    public void componentResized(ComponentEvent arg0) {
-	if (arg0.getSource() instanceof XcosPalette) {
-	    XcosPalette palette = ((XcosPalette) arg0.getSource());
-	    int panelWidth = (int) palette.getSize().getWidth() - BORDER_WIDTH;
-
-	    //take care if VerticalScrollBar is visible to compute visible area
-	    if (getVerticalScrollBar().isVisible()) {
-		panelWidth -=  getVerticalScrollBar().getWidth();
-	    }
-
-	    int numberOfCols = panelWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-	    double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
-	    int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math.ceil(numberOfRows));
-
-	    panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
-	}
-    }
-
-    /**
-     * Not used
-     * @param arg0 Not used
-     * @see ComponentListener
-     */
-    public void componentShown(ComponentEvent arg0) {
-    }
-    
-    	};
     }
 
     /**
