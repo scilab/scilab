@@ -53,7 +53,7 @@ public class PaletteDiagram extends XcosDiagram {
 
     /**
      * @param diagramFileName palette file
-     * @return
+     * @return status
      */
     public boolean openDiagramAsPal(String diagramFileName) {
 	File theFile = new File(diagramFileName);
