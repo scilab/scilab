@@ -47,11 +47,59 @@ import com.mxgraph.util.mxEventSource;
 
 public class XcosPalette extends JScrollPane {
 
-	private static final long serialVersionUID = 5693635134906513755L;
+	/** Heplper to manage the entry selection */
+	public final class EntryManager {
+		private BlockPalette selectedEntry;
 
-	private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
-	private static final int BORDER_WIDTH = 3;
-	private static final XcosPaletteController CONTROLLER = new XcosPaletteController();
+		/** Default Constructor */
+		private EntryManager() {
+		}
+
+		/**
+		 * Clear the selection.
+		 */
+		public void clearSelection() {
+			setSelectionEntry(null, null);
+		}
+
+		/**
+		 * Does the block palette is selected ?
+		 * 
+		 * @param blockPalette
+		 *            The tested block palette
+		 * @return true if it is selected, false otherwise
+		 */
+		public boolean isSelectedEntry(BlockPalette blockPalette) {
+			return blockPalette == selectedEntry;
+		}
+
+		/**
+		 * Select a block (perform UI and control update)
+		 * 
+		 * @param entry
+		 *            The selected block entry
+		 * @param t
+		 *            The associated transferable state
+		 */
+		public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
+			BlockPalette last = selectedEntry;
+			selectedEntry = entry;
+
+			if (last != null) {
+				last.setBorder(null);
+				last.setOpaque(false);
+			}
+
+			if (selectedEntry != null) {
+				selectedEntry.setBorder(new ShadowBorder());
+				selectedEntry.setOpaque(true);
+			}
+
+			eventSource.fireEvent(new mxEventObject(mxEvent.SELECT, "entry",
+					selectedEntry, "transferable", t, "previous", last));
+		}
+
+	}
 
 	/**
 	 * Contains all the controllers used by this class.
@@ -130,20 +178,6 @@ public class XcosPalette extends JScrollPane {
 			 * (non-Javadoc)
 			 * 
 			 * @see
-			 * java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent
-			 * )
-			 */
-			public void mousePressed(MouseEvent e) {
-				if (e.getSource() instanceof XcosPalette) {
-					XcosPalette palette = ((XcosPalette) e.getSource());
-					palette.getEntryManager().clearSelection();
-				}
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
 			 * java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent
 			 * )
 			 */
@@ -168,6 +202,20 @@ public class XcosPalette extends JScrollPane {
 			 * )
 			 */
 			public void mouseExited(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mousePressed(MouseEvent e) {
+				if (e.getSource() instanceof XcosPalette) {
+					XcosPalette palette = ((XcosPalette) e.getSource());
+					palette.getEntryManager().clearSelection();
+				}
 			}
 
 			/*
@@ -199,12 +247,18 @@ public class XcosPalette extends JScrollPane {
 			return mouseListener;
 		}
 	}
+	private static final int BORDER_WIDTH = 3;
+	private static final XcosPaletteController CONTROLLER = new XcosPaletteController();
 
-	private JPanel panel;
-	private String name;
+	private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
 
+	private static final long serialVersionUID = 5693635134906513755L;
+	
 	private EntryManager entryManager = new EntryManager();
 	private mxEventSource eventSource = new mxEventSource(this);
+
+	private String name;
+	private JPanel panel;
 
 	/**
 	 * Default constructor
@@ -256,82 +310,6 @@ public class XcosPalette extends JScrollPane {
 	}
 
 	/**
-	 * Call the UI Paint method with a {@link GradientPaint} customized by the
-	 * {@link #GRADIENT_COLOR}.
-	 * 
-	 * @param g
-	 *            Global graphical context
-	 */
-	@Override
-	public void paintComponent(Graphics g) {
-		Rectangle rect = getVisibleRect();
-
-		if (g.getClipBounds() != null) {
-			rect = rect.intersection(g.getClipBounds());
-		}
-
-		Graphics2D g2 = (Graphics2D) g;
-
-		g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-				GRADIENT_COLOR));
-		g2.fill(rect);
-	}
-
-	/** Heplper to manage the entry selection */
-	public final class EntryManager {
-		private BlockPalette selectedEntry;
-
-		/** Default Constructor */
-		private EntryManager() {
-		}
-
-		/**
-		 * Clear the selection.
-		 */
-		public void clearSelection() {
-			setSelectionEntry(null, null);
-		}
-
-		/**
-		 * Select a block (perform UI and control update)
-		 * 
-		 * @param entry
-		 *            The selected block entry
-		 * @param t
-		 *            The associated transferable state
-		 */
-		public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
-			BlockPalette last = selectedEntry;
-			selectedEntry = entry;
-
-			if (last != null) {
-				last.setBorder(null);
-				last.setOpaque(false);
-			}
-
-			if (selectedEntry != null) {
-				selectedEntry.setBorder(new ShadowBorder());
-				selectedEntry.setOpaque(true);
-			}
-
-			eventSource.fireEvent(new mxEventObject(mxEvent.SELECT, "entry",
-					selectedEntry, "transferable", t, "previous", last));
-		}
-
-		/**
-		 * Does the block palette is selected ?
-		 * 
-		 * @param blockPalette
-		 *            The tested block palette
-		 * @return true if it is selected, false otherwise
-		 */
-		public boolean isSelectedEntry(BlockPalette blockPalette) {
-			return blockPalette == selectedEntry;
-		}
-
-	}
-
-	/**
 	 * Add a block representative data
 	 * 
 	 * @param name
@@ -369,6 +347,28 @@ public class XcosPalette extends JScrollPane {
 	/** @return the entry manager */
 	public EntryManager getEntryManager() {
 		return entryManager;
+	}
+
+	/**
+	 * Call the UI Paint method with a {@link GradientPaint} customized by the
+	 * {@link #GRADIENT_COLOR}.
+	 * 
+	 * @param g
+	 *            Global graphical context
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		Rectangle rect = getVisibleRect();
+
+		if (g.getClipBounds() != null) {
+			rect = rect.intersection(g.getClipBounds());
+		}
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
+				GRADIENT_COLOR));
+		g2.fill(rect);
 	}
 
 	/**
