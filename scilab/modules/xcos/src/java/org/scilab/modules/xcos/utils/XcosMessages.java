@@ -22,6 +22,9 @@ import org.scilab.modules.localization.Messages;
 /**
  * All localized messages/menus labels used in Xcos
  */
+// CSOFF: JavadocVariable
+// CSOFF: LineLength
+// CSOFF: MultipleStringLiterals
 public final class XcosMessages {
 
     public static final String XCOS = Messages.gettext("Xcos");
@@ -245,6 +248,10 @@ public final class XcosMessages {
     /* Interpreter errors */
     public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
     public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
+    
+// CSON: JavadocVariable
+// CSON: LineLength
+// CSON: MultipleStringLiterals
     
     /** This class is a static singleton, thus it must not be instantiated */
     private XcosMessages() { }
