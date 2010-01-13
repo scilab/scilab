@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.block.io;
 
 import java.io.File;
@@ -10,7 +22,11 @@ import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
-public abstract class ContextUpdate extends BasicBlock{
+/**
+ * @author Clement DAVID
+ *
+ */
+public abstract class ContextUpdate extends BasicBlock {
 
     private static final long serialVersionUID = 6076826729067963560L;
     
@@ -28,21 +44,33 @@ public abstract class ContextUpdate extends BasicBlock{
 	ImplicitOutBlock(ImplicitOutBlock.class),
 	Unknow(ContextUpdate.class);
 	
-	private Class<? extends ContextUpdate> klass;
+	private Class< ? extends ContextUpdate> ioBlock;
 	
-	private IOBlocks(Class<? extends ContextUpdate> klass) {
-	    this.klass = klass;
+	/**
+	 * @param ioBlock input/output block
+	 */
+	private IOBlocks(Class< ? extends ContextUpdate> ioBlock) {
+	    this.ioBlock = ioBlock;
 	}
 	
-	public Class<? extends ContextUpdate> getReferencedClass() {
-	    return klass;
+	/**
+	 * @return referenced class
+	 */
+	public Class< ? extends ContextUpdate> getReferencedClass() {
+	    return ioBlock;
 	}
     }
     
+	/**
+	 * Constructor
+	 */
 	public ContextUpdate() {
 		super();
 	}
 
+	/**
+	 * @param label block labek
+	 */
 	protected ContextUpdate(String label) {
 		this();
 		setDefaultValues();
@@ -61,9 +89,12 @@ public abstract class ContextUpdate extends BasicBlock{
 		setValue(1);
 	}
     
+    /**
+     * @param context new context
+     */
     public void onContextChange(String[] context) {
 	//prevent to open twice
-	if(isLocked()) {
+	if (isLocked()) {
 	    return;
 	}
 	
@@ -71,7 +102,7 @@ public abstract class ContextUpdate extends BasicBlock{
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos",".h5");
+	    tempInput = File.createTempFile("xcos", ".h5");
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -81,10 +112,10 @@ public abstract class ContextUpdate extends BasicBlock{
 
 	    String cmd;
 	    
-	    cmd = "xcosBlockEval(\""+tempOutput.getAbsolutePath()+"\"";
-	    cmd += ", \""+tempInput.getAbsolutePath()+"\"";
-	    cmd += ", "+getInterfaceFunctionName();
-	    cmd += ", \""+tempContext.getAbsolutePath()+"\");";
+	    cmd = "xcosBlockEval(\"" + tempOutput.getAbsolutePath() + "\"";
+	    cmd += ", \"" + tempInput.getAbsolutePath() + "\"";
+	    cmd += ", " + getInterfaceFunctionName();
+	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
 
 		try {
 			XcosInterpreterManagement.synchronousScilabExec(cmd);

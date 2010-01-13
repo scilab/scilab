@@ -58,7 +58,7 @@ public class BlockParametersAction extends DefaultAction {
 	public void doAction() {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
 		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
-		((BasicBlock)diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
+		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
 	    }
 	}
 

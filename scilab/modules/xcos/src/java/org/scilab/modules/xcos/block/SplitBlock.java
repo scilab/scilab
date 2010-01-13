@@ -28,12 +28,20 @@ import com.mxgraph.model.mxGeometry;
 
 
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public final class SplitBlock extends BasicBlock {
 
-    private static final long serialVersionUID = 5817243367840540106L;
     public static final int DEFAULT_SIZE = 7;
     public static final int DEFAULT_COLOR = 7;
 
+    private static final long serialVersionUID = 5817243367840540106L;
+
+	/**
+	 * Constructor
+	 */
 	public SplitBlock() {
 		super();
 	}
@@ -41,6 +49,9 @@ public final class SplitBlock extends BasicBlock {
 	// SPLIT_f <-> lsplit
 	// CLKSPLIT_f <-> split
 	// IMPSPLIT_F <-> limpsplit
+	/**
+	 * @param label block label
+	 */
 	protected SplitBlock(String label) {
 		this();
 		setDefaultValues();
@@ -56,24 +67,24 @@ public final class SplitBlock extends BasicBlock {
 	public void setConnection(BasicPort source, BasicPort target1, BasicPort target2) {
 		
 		//source
-		if(source instanceof ExplicitOutputPort){
+		if (source instanceof ExplicitOutputPort) {
 			addPort(new ExplicitInputPort());
-		}else if(source instanceof ImplicitOutputPort || source instanceof ImplicitInputPort){
+		} else if (source instanceof ImplicitOutputPort || source instanceof ImplicitInputPort) {
 			addPort(new ImplicitInputPort());
-		}else if(source instanceof CommandPort){
+		} else if (source instanceof CommandPort) {
 			addPort(new ControlPort());
 		}
 
 		//target1 -> add 3 output ports
-		if(target1 instanceof ExplicitInputPort){
+		if (target1 instanceof ExplicitInputPort) {
 			addPort(new ExplicitOutputPort());
 			addPort(new ExplicitOutputPort());
 			addPort(new ExplicitOutputPort());
-		}else if(target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort){
+		} else if (target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort) {
 			addPort(new ImplicitOutputPort());
 			addPort(new ImplicitOutputPort());
 			addPort(new ImplicitOutputPort());
-		}else if(target1 instanceof ControlPort){
+		} else if (target1 instanceof ControlPort) {
 			addPort(new CommandPort());
 			addPort(new CommandPort());
 			addPort(new CommandPort());
@@ -98,53 +109,80 @@ public final class SplitBlock extends BasicBlock {
 		setExprs(new ScilabDouble());
 	}
 	
+	/**
+	 * @param port command port to add
+	 */
 	public void addPort(CommandPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port control port to add
+	 */
 	public void addPort(ControlPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port input port to add
+	 */
 	public void addPort(InputPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port output port to add
+	 */
 	public void addPort(OutputPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
-	public BasicPort getIn(){
-		return (BasicPort)getChildAt(0);
+	/**
+	 * @return input port
+	 */
+	public BasicPort getIn() {
+		return (BasicPort) getChildAt(0);
 	}
 
-	public BasicPort getOut1(){
-		return (BasicPort)getChildAt(1);
+	/**
+	 * @return first output port
+	 */
+	public BasicPort getOut1() {
+		return (BasicPort) getChildAt(1);
 	}
 
-	public BasicPort getOut2(){
-		return (BasicPort)getChildAt(2);
+	/**
+	 * @return second ouput port
+	 */
+	public BasicPort getOut2() {
+		return (BasicPort) getChildAt(2);
 	}
 
+	/**
+	 * delete split block child before delete 
+	 */
 	public void unlinkAndClean() {
 	
-		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2)});
+		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0), getChildAt(1), getChildAt(2)});
 		getParentDiagram().getModel().beginUpdate();
-		for(int i = 0 ; i < objs.length ; i++){
-			if(objs[i] instanceof BasicLink){
-				BasicLink link = (BasicLink)objs[i];
+		for (int i = 0; i < objs.length; i++) {
+			if (objs[i] instanceof BasicLink) {
+				BasicLink link = (BasicLink) objs[i];
 					getParentDiagram().getModel().remove(link);
 			}
 		}
 		getParentDiagram().getModel().endUpdate();
 	}
 
+	/**
+	 * @param geometry change split block geometry
+	 */
 	public void setGeometry(mxGeometry geometry) {
-		if(geometry != null){
+		if (geometry != null) {
 			geometry.setWidth(DEFAULT_SIZE);
 			geometry.setHeight(DEFAULT_SIZE);
 		}

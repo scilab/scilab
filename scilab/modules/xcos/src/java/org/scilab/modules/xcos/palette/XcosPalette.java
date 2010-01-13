@@ -49,13 +49,11 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 public class XcosPalette extends JScrollPane implements ComponentListener {
     private static final long serialVersionUID = 5693635134906513755L;
 
-    private JPanel panel = null;
+    private JPanel panel;
     private String name;
 
     protected BlockPalette selectedEntry;
-
     protected mxEventSource eventSource = new mxEventSource(this);
-
     protected Color gradientColor = Color.LIGHT_GRAY;
 
     public XcosPalette(String name) {

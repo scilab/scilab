@@ -38,6 +38,10 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+/**
+ * @author Vincent COUVERT
+ *
+ */
 public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 	/**
@@ -270,8 +274,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			/**
 			 * Model used on the customize table.
 			 */
-			private final DefaultTableModel customizeTableModel = new javax.swing.table.DefaultTableModel(
-					new Object[][] {new Object[] { 1,
+			private final DefaultTableModel customizeTableModel = new DefaultTableModel(
+					new Object[][] {new Object[] {1,
 							XcosMessages.MASK_WINTITLEVAR,
 							XcosMessages.MASK_WINTITLE, false } },
 					new String[] {XcosMessages.MASK_ROWS,
@@ -367,7 +371,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 							.get(i + 1)).get(2);
 
 					/*
-					 * reconstruct pol fields TODO: what are these fields ?
+					 * reconstruct pol fields TODO : what are these fields ?
 					 */
 					polFields.add(new ScilabString("pol"));
 					polFields.add(new ScilabDouble(-1.0));
@@ -476,7 +480,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			private final ActionListener okActionListener = new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					/* TODO: handle ok click when editing a cell. */
+					/* TODO : handle ok click when editing a cell. */
 					model.exportToBlock();
 					dispose();
 				}
@@ -490,7 +494,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 					for (; rowCount < value; rowCount++) {
 						tableModel
-								.addRow(new Object[] { rowCount + 1, "", true });
+								.addRow(new Object[] {rowCount + 1, "", true });
 					}
 
 					for (; rowCount > value; rowCount--) {

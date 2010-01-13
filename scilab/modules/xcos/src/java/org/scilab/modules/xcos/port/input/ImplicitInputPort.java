@@ -12,15 +12,20 @@
 
 package org.scilab.modules.xcos.port.input;
 
-
+/**
+ * An implicit input port is a port where ... 
+ * TODO: document with Serge answer. 
+ */
 public class ImplicitInputPort extends InputPort {
 
     private static final long serialVersionUID = 8711291857895989304L;
 
+    /** Default constructor */
     public ImplicitInputPort() {
 	super("ImplicitInputPort");
     }
 
+    /** @return always Type.IMPLICIT */
     public Type getType() {
 	return Type.IMPLICIT;
     }
