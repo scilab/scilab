@@ -49,13 +49,18 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 public class XcosPalette extends JScrollPane implements ComponentListener {
     private static final long serialVersionUID = 5693635134906513755L;
 
+    private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
+    
     private JPanel panel;
     private String name;
 
     protected BlockPalette selectedEntry;
     protected mxEventSource eventSource = new mxEventSource(this);
-    protected Color gradientColor = Color.LIGHT_GRAY;
 
+    /**
+     * Default constructor
+     * @param name The palette name
+     */
     public XcosPalette(String name) {
 	super(new JPanel());
 	panel = (JPanel) getViewport().getComponent(0);
@@ -129,24 +134,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     /**
      * 
      */
-    public void setGradientColor(Color c) {
-	gradientColor = c;
-    }
-
-    /**
-     * 
-     */
-    public Color getGradientColor() {
-	return gradientColor;
-    }
-
-    /**
-     * 
-     */
     public void paintComponent(Graphics g) {
-	if (gradientColor == null) {
-	    super.paintComponent(g);
-	} else {
 	    Rectangle rect = getVisibleRect();
 
 	    if (g.getClipBounds() != null) {
@@ -156,9 +144,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	    Graphics2D g2 = (Graphics2D) g;
 
 	    g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-		    gradientColor));
+		    GRADIENT_COLOR));
 	    g2.fill(rect);
-	}
     }
 
     /**
@@ -296,6 +283,10 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     public void componentShown(ComponentEvent arg0) {
     }
 
+    /**
+     * @return the name of the palette
+     */
+    @Override
     public String toString() {
 	return this.name;
     }
