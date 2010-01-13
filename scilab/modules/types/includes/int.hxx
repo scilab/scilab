@@ -1,3 +1,4 @@
+
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
@@ -32,13 +33,17 @@ namespace types
       TypeUnsigned64 = 18
 		};
 
+		  /* constructor & destructor */
 		Int(int _iRows, int _iCols);
 		Int(long long _llData);
+		~Int(){};
+
 		static Int* createInt(int _iRows, int _iCols, IntType _iIntType);
+		static Int* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Int* _poSource, bool _bAsVector);
 
 		Int*									getAsInt(void){return this;}
 		IntType								getIntType(){return m_iIntType;}
-		~Int(){};
+		RealType							getType(void);
 
 		virtual bool					data_set(Int* _pData) = 0;
 		virtual bool					data_set(int _iRows, int _iCols, long long _llData) = 0;
@@ -49,13 +54,14 @@ namespace types
 		virtual bool					resize(int _iNewRows, int _iNewCols) = 0;
 		virtual GenericType*	get(int _iPos) = 0;
 		virtual Int*					extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) = 0;
-		bool									extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols);
 		virtual bool					insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
-		static Int*						insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Int* _poSource, bool _bAsVector);
 	
-		RealType							getType(void);
 
 		virtual string				toString(int _iPrecision, int _iLineLen) = 0;
+
+	protected :
+	  /* Only used by Int8,16, ... */
+	  bool									extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols);
 
 	protected : 
 		IntType								m_iIntType;

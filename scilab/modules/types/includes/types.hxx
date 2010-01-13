@@ -33,7 +33,7 @@ namespace types
     int m_iCols;
     int m_iSize;
 
-    GenericType() : InternalType() {}
+    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
     virtual ~GenericType() {}
 
   public :
@@ -46,6 +46,7 @@ namespace types
 
     std::string DimToString();
 
+    /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
     virtual GenericType*	get(int _iPos) { return NULL; }
 
     bool isIdentity(void);

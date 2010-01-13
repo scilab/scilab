@@ -304,6 +304,16 @@ namespace types
 		}
 	}
 
+	std::string Poly::toString(int _iPrecision, int _iLineLen)
+	{
+	  std::ostringstream ostr;
+	 
+	  // FIXME : implement this.
+	  ostr << "FIXME : implement Poly::toString" << std::endl;
+
+	  return ostr.str();
+	}
+
 	void Poly::toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
 	{
 		toStringInternal(m_pdblCoef->real_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);

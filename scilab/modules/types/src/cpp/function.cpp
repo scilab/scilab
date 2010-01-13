@@ -11,7 +11,7 @@
  *
  */
 
-
+#include <sstream>
 #include "function.hxx"
 
 namespace types
@@ -85,4 +85,15 @@ namespace types
     delete pStr;
     return RetVal;
   }
+
+  std::string Function::toString(int _iPrecision, int _iLineLen)
+  {
+    std::ostringstream ostr;
+
+    // FIXME : Implement me.
+    ostr << "FIXME : Implement Function::toString" << std::endl;
+
+    return ostr.str();
+  }
+
 }

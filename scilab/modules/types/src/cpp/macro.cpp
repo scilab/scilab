@@ -10,6 +10,7 @@
 * 
 */
 
+#include <sstream>
 #include <cstdio>
 
 #include "macro.hxx"
@@ -54,6 +55,16 @@ namespace types
 	InternalType::RealType Macro::getType(void)
 	{ 
 		return RealMacro; 
+	}
+
+	std::string Macro::toString(int _iPrecision, int _iLineLen)
+	{
+	  std::ostringstream ostr;
+
+	  //FIXME : Implement me.
+	  ostr << "FIXME : Implement Macro::toString" << std::endl;
+
+	  return ostr.str();
 	}
 	
 	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out)

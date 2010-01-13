@@ -51,6 +51,8 @@ namespace types
 		void					toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 		void					toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 
+		std::string			toString(int _iPrecision, int _iLineLen);
+
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);
   protected :

@@ -32,6 +32,8 @@ namespace types
     RealType getType(void);
     
     void whoAmI();
+
+    std::string toString(int _iPrecision, int _iLineLen);
     
     Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
     

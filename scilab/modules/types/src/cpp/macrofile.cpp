@@ -11,6 +11,7 @@
 * 
 */
 
+#include <sstream>
 #include "macrofile.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
@@ -53,6 +54,16 @@ namespace types
 		return RealMacroFile; 
 	}
 	
+	std::string MacroFile::toString(int _iPrecision, int _iLineLen)
+	{
+	  std::ostringstream ostr;
+
+	  // FIXME : Implement me.
+	  ostr << "FIXME : Implement MacroFile::toString" << std::endl;
+
+	  return ostr.str();
+	}
+
 	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out)
 	{
 		ReturnValue RetVal = Callable::OK;

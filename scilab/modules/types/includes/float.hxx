@@ -63,6 +63,7 @@ namespace types
 
 		/*Internal "constructor*/
 		void					CreateFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
+		std::string		toString(int _iPrecision, int _iLineLen);
 
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);

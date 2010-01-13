@@ -11,7 +11,7 @@
 */
 
 #ifndef __MATRIXPOLY_HH__
-#define __MATRIXPOLY_HH____MATRIXPOLY_HH__
+#define __MATRIXPOLY_HH__
 
 #include "types.hxx"
 

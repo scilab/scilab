@@ -52,10 +52,7 @@ namespace types
     };
     
   protected :
-    InternalType() {
-      m_iRef = 0;
-      m_bAllowDelete = true;
-    }
+    InternalType() : m_iRef(0), m_bAllowDelete(true) {}
 
   public :
     virtual ~InternalType(){};
@@ -64,8 +61,8 @@ namespace types
     virtual bool isAssignable(void) { return false; }
     virtual RealType getType(void) { return RealInternal; }
 
-    /* FIXME : Should Be virtual [...] = 0; */
-    virtual std::string	toString(int _iPrecison, int _iLineLen) { return "Internal"; }
+
+    virtual std::string	toString(int _iPrecison, int _iLineLen) = 0;
     /* FIXME : Should Be virtual [...] = 0; */
     virtual InternalType* clone(void) { return NULL; }
     
@@ -85,7 +82,7 @@ namespace types
     bool	isDeletable() { return m_iRef == 0; }
     bool	isRef(int _iRef = 0) { return m_iRef > _iRef; }
 
-    virtual bool operator==(const InternalType& it) { return (getType() == ((InternalType*)&it)->getType()); }
+    virtual bool operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
     virtual bool operator!=(const InternalType& it) { return !(*this == it); }
 
     /**

@@ -10,6 +10,7 @@
 *
 */
 
+#include <sstream>
 #include "float.hxx"
 
 namespace types
@@ -416,6 +417,15 @@ namespace types
 			return false;
 		}
 		return true;
+	}
+
+	std::string Float::toString(int _iPrecision, int _iLineLen) 
+	{
+	  std::ostringstream ostr;
+	  // FIXME : Implement display method.
+	  ostr << "Float Values" << std::endl;
+
+	  return ostr.str();
 	}
 
 }

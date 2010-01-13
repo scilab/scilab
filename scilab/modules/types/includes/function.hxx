@@ -31,15 +31,18 @@ namespace types
     
     Function():Callable() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    virtual ~Function();
+    ~Function();
   
     static Function *createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    static Function *createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);  public :
+    static Function *createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 
     Function * 	getAsFunction(void);
     RealType getType(void) { return RealFunction; }
 
     void					whoAmI();
+
+    std::string toString(int _iPrecision, int _iLineLen);
+
     virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
 
 
