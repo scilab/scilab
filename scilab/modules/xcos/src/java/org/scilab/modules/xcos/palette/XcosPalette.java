@@ -102,38 +102,8 @@ public class XcosPalette extends JScrollPane {
         public void componentShown(ComponentEvent arg0) { }
         
     };
-    private static MouseListener mouseListener;
     
-    private JPanel panel;
-    private String name;
-
-    private BlockPalette selectedEntry;
-    private mxEventSource eventSource = new mxEventSource(this);
-
-    /**
-     * Default constructor
-     * @param name The palette name
-     */
-    public XcosPalette(String name) {
-	super(new JPanel());
-	panel = (JPanel) getViewport().getComponent(0);
-	this.name = name;
-	setBackground(Color.WHITE);
-
-	panel.setBackground(Color.WHITE);
-	panel.setLayout(new FlowLayout(FlowLayout.LEADING, XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
-	panel.setPreferredSize(new Dimension((XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN), 0));
-
-	getVerticalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
-	getVerticalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
-
-	//getHorizontalScrollBar().setVisible(false);
-	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-
-	addComponentListener(componentListener);
-	// Clears the current selection when the background is clicked
-	mouseListener = new MouseListener()
+    private MouseListener mouseListener = new MouseListener()
 	{
 
 	    /*
@@ -171,8 +141,37 @@ public class XcosPalette extends JScrollPane {
 	     */
 	    public void mouseReleased(MouseEvent e) {
 	    }
-
 	};
+    
+    private JPanel panel;
+    private String name;
+
+    private BlockPalette selectedEntry;
+    private mxEventSource eventSource = new mxEventSource(this);
+
+    /**
+     * Default constructor
+     * @param name The palette name
+     */
+    public XcosPalette(String name) {
+	super(new JPanel());
+	panel = (JPanel) getViewport().getComponent(0);
+	this.name = name;
+	setBackground(Color.WHITE);
+
+	panel.setBackground(Color.WHITE);
+	panel.setLayout(new FlowLayout(FlowLayout.LEADING, XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+	panel.setPreferredSize(new Dimension((XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN), 0));
+
+	getVerticalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
+	getVerticalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
+
+	//getHorizontalScrollBar().setVisible(false);
+	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+
+	addComponentListener(componentListener);
+	// Clears the current selection when the background is clicked
 	addMouseListener(mouseListener);
 
 	// Shows a nice icon for drag and drop but doesn't import anything
