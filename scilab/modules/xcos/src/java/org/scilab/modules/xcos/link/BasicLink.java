@@ -57,6 +57,10 @@ public abstract class BasicLink extends XcosUIDObject {
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
 	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
 
+	/**
+	 * Default constructor
+	 * @param style The style to use for this link
+	 */
     public BasicLink(String style) {
 	super();
 	setVertex(false);
@@ -64,11 +68,16 @@ public abstract class BasicLink extends XcosUIDObject {
 	setStyle(style);
     }
 
+    /**
+     * Set the order number of this link (will be applied to source and target)
+     * @param ordering The order number
+     */
     public void setOrdering(int ordering) {
 	((BasicPort) this.getSource()).setConnectedLinkId(ordering);
 	((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
     }
 
+    /** @param index the point index to be removed */
     public void removePoint(int index) { 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
 	    return;
@@ -78,10 +87,21 @@ public abstract class BasicLink extends XcosUIDObject {
 	}
     }
 
+    /** Remove all the points */
     private void removePoints() {
 	getGeometry().setPoints(new ArrayList<mxPoint>());
     }
 
+	/**
+	 * Get all the points
+	 * 
+	 * @param index
+	 *            the start index
+	 * @param fromStart
+	 *            if true, get the 0 - index range; get the index - max range
+	 *            otherwise
+	 * @return The points
+	 */
     public mxPoint[] getPoints(int index, boolean fromStart) { 
 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
@@ -108,6 +128,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	return null;
     }
 
+    /** @return the number of points in this link */
     public int getPointCount() { 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
 	    return 0;
@@ -115,6 +136,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	return getGeometry().getPoints().size();
     }
 
+    /**
+     * Find the nearest link point of the point
+     * @param point The base point
+     * @return the nearest point index in the point list.
+     */
     public int findNearestSegment(mxPoint point) { 
 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
@@ -169,6 +195,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	return findPos;
     }
 
+    /**
+     * Add a point at the position
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
     public void addPoint(double x, double y) {
 	mxPoint point = new mxPoint(x, y);
 	if (getGeometry().getPoints() == null) {
@@ -177,6 +208,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	getGeometry().getPoints().add(point);
     }
 
+    /**
+     * Insert point on the nearest link
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
     public void insertPoint(double x, double y) {
 
 	//if it is a loop link, change coordinate origin to block instead of diagram
@@ -214,6 +250,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	}
     }
 
+    /** @return True if the link is on the same block, false otherwise */
     private boolean isLoopLink() {
 	if (getSource() != null && getTarget() != null) {
 	    if (getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
@@ -223,6 +260,9 @@ public abstract class BasicLink extends XcosUIDObject {
 	return false;
     }
 
+    /**
+     * @return A scicos representation of this link
+     */
     public ScilabMList getAsScilabObj() {
 	String[] fields = {"Link", "xx", "yy", "id", "thick", "ct", "from", "to"};
 	ScilabMList data = new ScilabMList(fields);
@@ -279,8 +319,13 @@ public abstract class BasicLink extends XcosUIDObject {
 	return data;
     }
 
+    /** @return The scicos color and type values */
     public abstract double[][] getColorAndType();
 
+    /**
+     * Open the contextual menu of the link
+     * @param graph The associated graph
+     */
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 	menu.add(DeleteAction.createMenu(graph));
@@ -310,6 +355,12 @@ public abstract class BasicLink extends XcosUIDObject {
 	menu.setVisible(true);
     }
 
+	/**
+	 * Create a typed link 
+	 * @param from The source
+	 * @param to The target
+	 * @return The new link
+	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
 	
 	//from and to are clearly identify
@@ -360,6 +411,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	return new ExplicitLink();
     }
 
+    /** Invert the source and target of the link */
     public void invertDirection() {
 	    //invert source and destination and all points.
 	    mxICell linkSource = getSource();
