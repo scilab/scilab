@@ -54,8 +54,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     private JPanel panel;
     private String name;
 
-    protected BlockPalette selectedEntry;
-    protected mxEventSource eventSource = new mxEventSource(this);
+    private BlockPalette selectedEntry;
+    private mxEventSource eventSource = new mxEventSource(this);
 
     /**
      * Default constructor
@@ -132,8 +132,10 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * 
+     * Call the UI Paint method with a {@link GradientPaint} customized by the {@link #GRADIENT_COLOR}.
+     * @param g Global graphical context
      */
+    @Override
     public void paintComponent(Graphics g) {
 	    Rectangle rect = getVisibleRect();
 
@@ -149,14 +151,16 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * 
+     * Clear the selection.
      */
     public void clearSelection() {
 	setSelectionEntry(null, null);
     }
 
     /**
-     * 
+     * Select a block (perform UI and control update)
+     * @param entry The selected block entry
+     * @param t The associated transferable state
      */
     public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
 	BlockPalette last = selectedEntry;
