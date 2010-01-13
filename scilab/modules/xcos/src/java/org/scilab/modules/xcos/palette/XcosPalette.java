@@ -47,15 +47,22 @@ import com.mxgraph.util.mxEventSource;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends JScrollPane implements ComponentListener {
-    private static final long serialVersionUID = 5693635134906513755L;
 
+	private static final long serialVersionUID = 5693635134906513755L;
+
+    private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
+    private static final int BORDER_WIDTH = 3;
+    
     private JPanel panel;
     private String name;
 
-    protected BlockPalette selectedEntry;
-    protected mxEventSource eventSource = new mxEventSource(this);
-    protected Color gradientColor = Color.LIGHT_GRAY;
+    private BlockPalette selectedEntry;
+    private mxEventSource eventSource = new mxEventSource(this);
 
+    /**
+     * Default constructor
+     * @param name The palette name
+     */
     public XcosPalette(String name) {
 	super(new JPanel());
 	panel = (JPanel) getViewport().getComponent(0);
@@ -127,26 +134,11 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * 
+     * Call the UI Paint method with a {@link GradientPaint} customized by the {@link #GRADIENT_COLOR}.
+     * @param g Global graphical context
      */
-    public void setGradientColor(Color c) {
-	gradientColor = c;
-    }
-
-    /**
-     * 
-     */
-    public Color getGradientColor() {
-	return gradientColor;
-    }
-
-    /**
-     * 
-     */
+    @Override
     public void paintComponent(Graphics g) {
-	if (gradientColor == null) {
-	    super.paintComponent(g);
-	} else {
 	    Rectangle rect = getVisibleRect();
 
 	    if (g.getClipBounds() != null) {
@@ -156,20 +148,21 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	    Graphics2D g2 = (Graphics2D) g;
 
 	    g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-		    gradientColor));
+		    GRADIENT_COLOR));
 	    g2.fill(rect);
-	}
     }
 
     /**
-     * 
+     * Clear the selection.
      */
     public void clearSelection() {
 	setSelectionEntry(null, null);
     }
 
     /**
-     * 
+     * Select a block (perform UI and control update)
+     * @param entry The selected block entry
+     * @param t The associated transferable state
      */
     public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
 	BlockPalette last = selectedEntry;
@@ -192,13 +185,9 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 
 
     /**
-     * 
-     * @param name
-     * @param icon
-     * @param style
-     * @param width
-     * @param height
-     * @param value
+     * Add a block representative data
+     * @param name The block name
+     * @param icon The associated icon
      */
     public void addTemplate(final String name, ImageIcon icon) {
 
@@ -228,8 +217,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * @param eventName
-     * @param listener
+     * @param eventName The associated event name
+     * @param listener The new listener
      * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
      */
     public void addListener(String eventName, mxIEventListener listener) {
@@ -237,7 +226,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * @return
+     * @return True when event are enable, false otherwise
      * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
      */
     public boolean isEventsEnabled() {
@@ -245,7 +234,7 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * @param listener
+     * @param listener The listener
      * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
      */
     public void removeListener(mxIEventListener listener) {
@@ -253,8 +242,8 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * @param eventName
-     * @param listener
+     * @param eventName The associated event name
+     * @param listener The listener
      * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
      */
     public void removeListener(mxIEventListener listener, String eventName) {
@@ -262,23 +251,38 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
     }
 
     /**
-     * @param eventsEnabled
+     * @param eventsEnabled True when event must be enable, false otherwise
      * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
      */
     public void setEventsEnabled(boolean eventsEnabled) {
 	eventSource.setEventsEnabled(eventsEnabled);
     }
 
+    /**
+     * Not used
+     * @param arg0 Not used
+     * @see ComponentListener
+     */
     public void componentHidden(ComponentEvent arg0) {
     }
 
+    /**
+     * Not used
+     * @param arg0 Not used
+     * @see ComponentListener
+     */
     public void componentMoved(ComponentEvent arg0) {
     }
 
+    /**
+     * Do the layout of the blocks representations
+     * @param arg0 Event data
+     * @see ComponentListener
+     */
     public void componentResized(ComponentEvent arg0) {
 	if (arg0.getSource() instanceof XcosPalette) {
 	    XcosPalette palette = ((XcosPalette) arg0.getSource());
-	    int panelWidth = (int) palette.getSize().getWidth() - 3;
+	    int panelWidth = (int) palette.getSize().getWidth() - BORDER_WIDTH;
 
 	    //take care if VerticalScrollBar is visible to compute visible area
 	    if (getVerticalScrollBar().isVisible()) {
@@ -293,17 +297,28 @@ public class XcosPalette extends JScrollPane implements ComponentListener {
 	}
     }
 
+    /**
+     * Not used
+     * @param arg0 Not used
+     * @see ComponentListener
+     */
     public void componentShown(ComponentEvent arg0) {
     }
 
+    /**
+     * @return the name of the palette
+     */
+    @Override
     public String toString() {
 	return this.name;
     }
 
+    /** @return The selected entry */
     public BlockPalette getSelectedEntry() {
 	return selectedEntry;
     }
 
+    /** @param selectedEntry The new selected entry */
     public void setSelectedEntry(BlockPalette selectedEntry) {
 	this.selectedEntry = selectedEntry;
     }
