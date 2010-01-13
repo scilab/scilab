@@ -118,7 +118,7 @@ public class XcosPalette extends JScrollPane {
 	    public void mousePressed(MouseEvent e) {
 	    	if (e.getSource() instanceof XcosPalette) {
 	    	    XcosPalette palette = ((XcosPalette) e.getSource());
-	    	    palette.clearSelection();
+	    	    palette.getEntryManager().clearSelection();
 	    	}
 	    }
 
@@ -172,7 +172,7 @@ public class XcosPalette extends JScrollPane {
     private JPanel panel;
     private String name;
 
-    private BlockPalette selectedEntry;
+    private EntryManager entryManager = new EntryManager();
     private mxEventSource eventSource = new mxEventSource(this);
 
     /**
@@ -229,16 +229,18 @@ public class XcosPalette extends JScrollPane {
 	    g2.fill(rect);
     }
 
+    /** Heplper to manage the entry selection */
+    public final class EntryManager {
+    	private BlockPalette selectedEntry;
+    	
+    	/** Default Constructor */
+        private EntryManager() { }
+        
     /**
      * Clear the selection.
      */
-    private void clearSelection() {
+    public void clearSelection() {
 	setSelectionEntry(null, null);
-    }
-
-    /** @return The selected entry */
-    public BlockPalette getSelectedEntry() {
-	return selectedEntry;
     }
     
     /**
@@ -246,7 +248,7 @@ public class XcosPalette extends JScrollPane {
      * @param entry The selected block entry
      * @param t The associated transferable state
      */
-    private void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
+    public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
 	BlockPalette last = selectedEntry;
 	selectedEntry = entry;
 
@@ -264,7 +266,16 @@ public class XcosPalette extends JScrollPane {
 			selectedEntry, "transferable", t, "previous", last));
     }
 
-
+    /** 
+     * Does the block palette is selected ?
+     * @param blockPalette The tested block palette
+     * @return  true if it is selected, false otherwise
+     */
+	public boolean isSelectedEntry(BlockPalette blockPalette) {
+		return blockPalette == selectedEntry;
+	}
+    
+    }
 
     /**
      * Add a block representative data
@@ -298,6 +309,11 @@ public class XcosPalette extends JScrollPane {
 	panel.add(entry);
     }
 
+    /** @return the entry manager */
+    public EntryManager getEntryManager() {
+    	return entryManager;
+    }
+    
     /**
      * @return the name of the palette
      */
