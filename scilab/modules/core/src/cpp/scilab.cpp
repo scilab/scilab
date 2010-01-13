@@ -291,8 +291,8 @@ static int interactiveMain (void)
 	{
 		C2F(setprlev)(&pause);
 
-		//	  std::cout << "[" << Parser::getInstance()->getControlStatus()
-		//		    << "]" << std::endl;
+		//std::cout << "[" << Parser::getInstance()->getControlStatus()
+		//	  << "]" << std::endl;
 		if (pParser->getControlStatus() == Parser::AllControlClosed) 
 		{
 			if(command)
@@ -311,16 +311,16 @@ static int interactiveMain (void)
 #ifdef _MSC_VER
 			sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-			sprintf(pstNewCommand, "%s\n%s", command, YaspRead());
+			sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
 			FREE(pstRead);
 			FREE(command);
 			command = pstNewCommand;
 		}
 
-		//	  std::cout << "---" << std::endl << "Command = " << std::endl;
-		//	  std::cout << command << std::endl;
-		//	  std::cout << "---" << std::endl;
+		//std::cout << "---" << std::endl << "Command = " << std::endl;
+		//std::cout << command << std::endl;
+		//std::cout << "---" << std::endl;
 		if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
 		{
 			exit = true;
@@ -359,7 +359,7 @@ static int interactiveMain (void)
 			else if(parseResult == Parser::Failed && pParser->getControlStatus() == Parser::AllControlClosed)
 			{
 				YaspWrite(pParser->getErrorMessage());
-				std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
+				//std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
 			}
 		}
 	}
