@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.palette.config;
+package org.scilab.modules.xcos.palette;
 
 import org.scilab.modules.xcos.utils.XcosMessages;
 

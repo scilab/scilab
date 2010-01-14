@@ -53,7 +53,6 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
-import org.scilab.modules.xcos.palette.config.Category;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -71,34 +70,6 @@ public final class XcosPaletteManager {
     private static DefaultMutableTreeNode rootNode; 
     private static DefaultMutableTreeNode userDefinedNode; 
     private static DefaultTreeModel paletteTreeModel;
-
-    /**
-     * Represent a palette configuration values
-     */
-    private static final class PaletteStringDescriptor {
-	private final String name;
-	private final String[] components;
-
-	/**
-	 * Default constructor
-	 * @param name The palette name
-	 * @param components The palette associated block names
-	 */
-	private PaletteStringDescriptor(String name, String[] components) {
-	    this.name = name;
-	    this.components = components;
-	}
-
-	/** @return the palette name */
-	public String getName() {
-		return name;
-	}
-	
-	/** @return the block names */
-	public String[] getComponents() {
-		return components;
-	}
-    }
 
     /**
      * Represent the instantiation of the configurations values
