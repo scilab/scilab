@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "output_stream module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "output_stream"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "output_stream.dll"
             VALUE "ProductName", "output_stream"
             VALUE "ProductVersion", "5, 3, 0, 0"

@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -40,14 +40,31 @@ function [x] = input(msg, flag)
     prompt(msg);
     x = mscanf(fmt);
     
+    currentpromptAfter = prompt();
+    // bug 5513
+    // we had change prompt during exec of input
+    // we recall input
+    if (currentpromptAfter <> currentprompt) then
+    	x = input(msg, flag);
+    end
+    
   else
     while %t
       prompt(msg);
       x = mscanf(fmt);
-      if length(x) == 0 then 
+      
+      currentpromptAfter = prompt();
+      // bug 5513
+      // we had change prompt during exec of input
+      // we recall input
+      if (currentpromptAfter <> currentprompt) then
+    	  x = string(input(msg));
+      end
+      
+      if (length(x) == 0) | (x == ' ') then 
         x = "[]";
       end
-      ierr = execstr("x=" + x,"errcatch");
+       ierr = execstr("x=" + x,"errcatch");
       if ierr == 0 then 
         break;
       end

@@ -57,10 +57,10 @@ if or( t5_version() <> ["Toolbox 5 -> version = 1.0"; ..
                         "Toolbox 2 -> version = 1.0"; ..
                         "Toolbox 1 -> version = 1.0" ] ) then bugmes();quit;end
 atomsRemove("toolbox_5");
-	the package toolbox_5 (1.0) is currently loaded, It will removed at next Scilab restart
-	the package toolbox_4 (1.0) is currently loaded, It will removed at next Scilab restart
-	the package toolbox_2 (1.0) is currently loaded, It will removed at next Scilab restart
-	the package toolbox_1 (1.0) is currently loaded, It will removed at next Scilab restart
+	the package toolbox_5 (1.0) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_4 (1.0) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_2 (1.0) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_1 (1.0) is currently loaded, It will be removed at next Scilab start
 // Restore original values
 // =============================================================================
 atomsSetConfig("autoloadAddAfterInstall",config_autoload);

@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.port;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -21,21 +20,27 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
+/**
+ * Validate the connection between ports for a rule.
+ * 
+ * The {@link #check(mxGraph, Object, Object, Object, int, int)} method will
+ * return an error message if the link cannot be created. Otherwise it will
+ * return an empty string.
+ */
 public class PortCheck extends mxMultiplicity {
 
-    private Class<? extends mxCell> sourceTemplate = null;
-    private List<Class<? extends mxCell>> targetTemplateList = null;
-    private String errorMessage = null;
+    private Class< ? extends mxCell> sourceTemplate;
+    private List<Class< ? extends mxCell>> targetTemplateList;
+    private String errorMessage;
 
-    public PortCheck(boolean source, String type, String attr, String value,
-	    int min, String max, Collection<String> validNeighbors, String countError,
-	    String typeError, boolean validNeighborsAllowed) {
-	super(source, type, attr, value, min, max, validNeighbors, countError,
-		typeError, validNeighborsAllowed); 
-    }
-    
-    public PortCheck(Class<? extends mxCell> sourceTemplate, List<Class<? extends mxCell>> targetTemplate, String errorMessage) {
-	// We complitely override mxMultiplicity
+    /**
+     * Construct a new connection rule.
+     * @param sourceTemplate The source ports
+     * @param targetTemplate The target ports
+     * @param errorMessage The associated error message.
+     */
+    public PortCheck(Class< ? extends mxCell> sourceTemplate, List<Class< ? extends mxCell>> targetTemplate, String errorMessage) {
+	// We completely override mxMultiplicity
 	super(true, null, null, null, 0, null, null, null, null, false);
 	this.sourceTemplate = sourceTemplate;
 	this.targetTemplateList = targetTemplate;
@@ -44,12 +49,20 @@ public class PortCheck extends mxMultiplicity {
 
     }
 
-    //Special case for drawLink 
-    //In this case, source are already connected.
-    public String checkDrawLink(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn) {
+	/**
+	 * Special case used in {@link XcosDiagram#checkMultiplicities}. In this
+	 * case, source is already connected.
+	 * 
+	 * @param source The source port
+	 * @param target The target port
+	 * @param sourceOut Number of connections at the source port
+	 * @param targetIn Number of connections at the target port
+	 * @return An error message or null when the link is valid
+	 */
+    public String checkDrawLink(Object source, Object target, int sourceOut, int targetIn) {
 	// maybe there is a better way to check this
-	if(sourceOut > 1 || targetIn > 0) {
-	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+	if (sourceOut > 1 || targetIn > 0) {
+	    if (errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
 		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
 	    }
 	    return null;
@@ -60,11 +73,25 @@ public class PortCheck extends mxMultiplicity {
 	return errorMessage;
     }
     
+    
+    /**
+     * Check for the rule.
+     * @param graph the graph
+     * @param edge the edge
+     * @param source the start
+     * @param target the end
+     * @param sourceOut number of connections at source.
+     * @param targetIn number of connections at target
+     * @return An error message or null if the link is valid
+     * 
+     * @see com.mxgraph.view.mxMultiplicity#check(com.mxgraph.view.mxGraph, java.lang.Object, java.lang.Object, java.lang.Object, int, int)
+     */
+    @Override
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
     {
 	// maybe there is a better way to check this
-	if(sourceOut > 0 || targetIn > 0) {
-	    if(errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
+	if (sourceOut > 0 || targetIn > 0) {
+	    if (errorMessage.compareTo(XcosMessages.LINK_ERROR_ALREADY_CONNECTED) == 0) {
 		return XcosMessages.LINK_ERROR_ALREADY_CONNECTED;
 	    }
 	    return null;
@@ -75,11 +102,27 @@ public class PortCheck extends mxMultiplicity {
 	return errorMessage;
     }
 
+    
+    /**
+     * Check for port compatibility.
+     * 
+     * @param firstPort the first port to check
+     * @param secondPort the second port to check
+     * @return true when compatible, false otherwise
+     */
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
-
+		/* if the rule is applicable for the event
+		 *     if the connection is valid
+		 *         return true
+		 *     else
+		 *         return false
+		 * else
+		 *     return true
+		 */
+    	
 	if (sourceTemplate.getSimpleName().compareTo(firstPort.getClass().getSimpleName()) == 0) {
-	    for (Class<? extends mxCell> iterable_element : targetTemplateList) {
-		if (iterable_element.getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
+	    for (Class< ? extends mxCell> iterableElement : targetTemplateList) {
+		if (iterableElement.getSimpleName().compareTo(secondPort.getClass().getSimpleName()) == 0) {
 		    return true;
 		}
 	    }

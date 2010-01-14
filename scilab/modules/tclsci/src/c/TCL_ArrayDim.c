@@ -11,6 +11,9 @@
  *
  */
 
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
 
 #include <string.h>
 #include "MALLOC.h"

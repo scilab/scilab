@@ -66,7 +66,7 @@ public final class SaveAsAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		if ( ((XcosDiagram) getGraph(null)).saveDiagramAs(null) ){
+		if (((XcosDiagram) getGraph(null)).saveDiagramAs(null)) {
 			((XcosDiagram) getGraph(null)).setModified(false);
 			XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 		}

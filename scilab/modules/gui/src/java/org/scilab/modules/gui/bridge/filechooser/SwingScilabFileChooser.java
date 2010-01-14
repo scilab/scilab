@@ -62,7 +62,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		 * No need to use 'putClientProperty' anymore (bug 3231)
 		 */
 		/* Bug 5111 : The Current directory have to be set before */
-		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory() ));
+		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory()));
 	}	
 
 	/**

@@ -164,6 +164,57 @@ SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal);
 */
 int getRhsFromAddress(void* _pvCtx, int* _piAddress);
 
+/**
+* check if a variable is a row vector
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isRowVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a column vector
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isColumnVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a vector ( row or column )
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a scalar
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isScalar(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a square matrix
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isSquareMatrix(void* _pvCtx, int* _piAddress);
+
+/**
+* check matrix dimension
+* @param[in] _piAddress variable address
+* @param[in] _iRows excepted row number ( if -1, don't check )
+* @param[in] _iCols excepted column number ( if -1, don't check )
+* @return 1 for true and 0 for false
+*/
+int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols);
+
+/**
+* check if it is a empty matrix
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isEmptyMatrix(void* _pvCtx, int* _piAddress);
+
 #ifdef __cplusplus
 }
 #endif

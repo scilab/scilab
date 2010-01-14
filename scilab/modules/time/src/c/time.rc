@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "time module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "time module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "time.dll"
             VALUE "ProductName", " time module"
             VALUE "ProductVersion", "5, 3, 0, 0"

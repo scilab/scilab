@@ -98,8 +98,7 @@ public final class OpenAction extends DefaultAction {
 	    if (getGraph(null) == null) { // Called from palettes
 		//save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
 		Xcos.xcos(fc.getSelection()[0]);
-	    }
-	    else {
+	    } else {
 		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
 	    }
 	    XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));

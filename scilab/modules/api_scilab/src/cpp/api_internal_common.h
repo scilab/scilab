@@ -45,5 +45,12 @@ int updateLstk(int _iNewPos, int _iSCIDataAddress, int _iVarSize);
 */
 int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress);
 
+/**
+* @param[in] _piAddress variable address
+* @param[in] _iType type to check
+* @return 1 for true and 0 for false
+*/
+int checkVarType(void* _pvCtx, int* _piAddress, int _iType);
+
 #endif /* __INTERNAL_COMMON_API__ */
 

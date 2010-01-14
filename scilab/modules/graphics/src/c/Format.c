@@ -28,6 +28,10 @@
  *                : change [xmi,xmax] for pretty graduation 
  *--------------------------------------------------------------------------*/
 
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include "math_graphics.h"

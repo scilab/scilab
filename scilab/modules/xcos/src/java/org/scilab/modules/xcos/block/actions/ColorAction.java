@@ -23,18 +23,33 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 
 import com.mxgraph.util.mxUtils;
 
-public class ColorAction extends DefaultAction {
+/**
+ * @author Bruno JOFRET
+ *
+ */
+public final class ColorAction extends DefaultAction {
 
     private static final long serialVersionUID = -1253470374053230723L;
-    private String key = null;
-    private String title = null;
+    private String key;
+    private String title;
     
+    /**
+     * @param scilabGraph graph
+     * @param title title
+     * @param key key
+     */
     private ColorAction(ScilabGraph scilabGraph, String title, String key) {
 	super(title, scilabGraph);
 	this.key = key;
 	this.title = title;
     }
 
+    /**
+     * @param scilabGraph graph
+     * @param title title
+     * @param key key
+     * @return menu item
+     */
     public static MenuItem createMenu(ScilabGraph scilabGraph, String title, String key) {
 	return createMenu(title, null, new ColorAction(scilabGraph, title, key), null);
     }
@@ -48,8 +63,7 @@ public class ColorAction extends DefaultAction {
 
 	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), title, null);
 
-	if (newColor != null)
-	{
+	if (newColor != null) {
 	    graph.setCellStyles(key, mxUtils.hexString(newColor));
     	}
     }

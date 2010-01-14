@@ -95,7 +95,7 @@ case 'set' then
        end
        model.opar=list(tag)
        model.ipar=tagvis
-       model.evtout=1
+       model.evtin=1
        model.firing=-1//compatibility
        graphics.exprs=exprs
        x.graphics=graphics

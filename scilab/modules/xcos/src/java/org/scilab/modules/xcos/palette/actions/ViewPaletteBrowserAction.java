@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette.actions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -34,7 +35,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 
     private static final long serialVersionUID = 1L;
 
-    private static ArrayList<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
+    private static List<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
 
     /**
      * Constructor
@@ -85,7 +86,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 	}
 
 	// If palette has no more parent, create a new one.
-	if (status == true && palette.getParentWindow() == null) {
+	if (status && palette.getParentWindow() == null) {
 	    Window paletteWindow = ScilabWindow.createWindow();
 	    paletteWindow.setVisible(true);
 	    palette.setVisible(true);

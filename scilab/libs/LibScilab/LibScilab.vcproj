@@ -90,7 +90,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/FORCE:MULTIPLE "
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremt.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmt.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\ia32\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\ia32\svml_disp.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -196,7 +196,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/FORCE:MULTIPLE "
-				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremt.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmt.lib&quot;"
+				AdditionalDependencies="&quot;$(IFORT_COMPILER11)lib\intel64\ifconsol.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libifcoremdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libmmdd.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\libirc.lib&quot; &quot;$(IFORT_COMPILER11)lib\intel64\svml_disp.lib&quot;"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

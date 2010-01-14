@@ -38,7 +38,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -48,150 +48,130 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxRectangle;
 
+/**
+ * Component of the XcosPalette view
+ */
 public class BlockPalette extends JLabel {
 
 	private static final long serialVersionUID = 2045511112700166300L;
+	
+	private static final int DEFAULT_ICON_TEXT_GAP = 5;
+	private static final int DEFAULT_FONT_SIZE = 12;
+	private static final Dimension PREFERRED_SIZE = new Dimension(XcosConstants.PALETTE_BLOCK_WIDTH, XcosConstants.PALETTE_BLOCK_HEIGHT);
+	private static final int DEFAULT_POSITION = 10;
+	
 	private BasicBlock block;
 	private XcosPalette palette;
 	private mxGraphTransferable transferable;
+	
+	private final MouseListener mouseListener = new MouseListener() {
 
-	public BlockPalette(ImageIcon icon) {
-		super(icon);
+		public void mousePressed(MouseEvent e) {
+			getPalette().getEntryManager().setSelectionEntry(BlockPalette.this, getTransferable());
+		}
 
-		addMouseListener(new MouseListener()
-		{
-			/*
-			 * (non-Javadoc)
-			 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-			 */
-			public void mousePressed(MouseEvent e) {
-				getPalette().setSelectionEntry(BlockPalette.this, getTransferable());
-			}
+		/**
+		 * Select the current block
+		 * @param e click parameters
+		 */
+		public void mouseClicked(MouseEvent e) {
+			if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
+					|| e.isPopupTrigger()
+					|| XcosMessages.isMacOsPopupTrigger(e)) {
 
-			/*
-			 * (non-Javadoc)
-			 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-			 */
-			public void mouseClicked(MouseEvent e) {
-				if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-						|| e.isPopupTrigger()
-						|| XcosMessages.isMacOsPopupTrigger(e)) {
+				ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-					ContextMenu menu = ScilabContextMenu.createContextMenu();
+				final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
+				
+				// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
+				assert allDiagrams.size() != 0;
+				
+				if (allDiagrams.size() == 1) {
+					// A single diagram opened: add to this diagram
+					MenuItem addTo = ScilabMenuItem.createMenuItem();
 
-					final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-
-					if (allDiagrams.size() == 0) {
-						// No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
-						MenuItem addTo = ScilabMenuItem.createMenuItem();
-
-						addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
-						addTo.setCallback(new CallBack(BlockPalette.this.getText()) {
-							private static final long serialVersionUID = 1185879440137756636L;
-
-							public void callBack() {
-								BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
-								block.getGeometry().setX(10);
-								block.getGeometry().setY(10);
-								Xcos.createEmptyDiagram().addCell(block);
-							}
-						});
-
-						menu.add(addTo);
-
-					} else if (allDiagrams.size() == 1) {
-						// A single diagram opened: add to this diagram
-						MenuItem addTo = ScilabMenuItem.createMenuItem();
-
-						addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
-						final XcosDiagram theDiagram = allDiagrams.get(0);
-						addTo.setCallback(new CallBack(BlockPalette.this.getText()) {
-							private static final long serialVersionUID = 1185879440137756636L;
-
-							public void callBack() {
-								BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
-								block.getGeometry().setX(10);
-								block.getGeometry().setY(10);
-								theDiagram.addCell(block);
-							}
-						});
-
-						menu.add(addTo);
-
-					} else {
-						// The user has to choose
-						Menu addTo = ScilabMenu.createMenu();
-
-						addTo.setText(XcosMessages.ADDTO);
-
-						for (int i = 0; i < allDiagrams.size(); i++) {
-							MenuItem diagram = ScilabMenuItem.createMenuItem();
-							final XcosDiagram theDiagram = allDiagrams.get(i);
-							diagram.setText(allDiagrams.get(i).getParentTab().getName());
-							diagram.setCallback(new CallBack(BlockPalette.this.getText()) {
-								private static final long serialVersionUID = -3138430622029406470L;
-
-								public void callBack() {
-									BasicBlock block = (BasicBlock) BlockFactory.createClone(getBlock());
-									block.getGeometry().setX(10);
-									block.getGeometry().setY(10);
-									theDiagram.addCell(block);
-								}
-							});
-							addTo.add(diagram);
-						}
-
-						menu.add(addTo);
-					}
-
-
-					menu.getAsSimpleContextMenu().addSeparator();
-
-					MenuItem help = ScilabMenuItem.createMenuItem();
-					help.setText("Block help");
-					help.setCallback(new CallBack(BlockPalette.this.getText()) {
-						private static final long serialVersionUID = -8720228686621887887L;
+					addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
+					final XcosDiagram theDiagram = allDiagrams.get(0);
+					addTo.setCallback(new CallBack(BlockPalette.this.getText()) {
+						private static final long serialVersionUID = 1185879440137756636L;
 
 						public void callBack() {
-							XcosInterpreterManagement.requestScilabExec("help " + BlockPalette.this.getText());
+							BasicBlock current = (BasicBlock) BlockFactory.createClone(getBlock());
+							current.getGeometry().setX(DEFAULT_POSITION);
+							current.getGeometry().setY(DEFAULT_POSITION);
+							theDiagram.addCell(current);
 						}
 					});
-					menu.add(help);
 
-					menu.setVisible(true);
+					menu.add(addTo);
 
-					((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-							MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+				} else {
+					// The user has to choose
+					Menu addTo = ScilabMenu.createMenu();
+
+					addTo.setText(XcosMessages.ADDTO);
+
+					for (int i = 0; i < allDiagrams.size(); i++) {
+						MenuItem diagram = ScilabMenuItem.createMenuItem();
+						final XcosDiagram theDiagram = allDiagrams.get(i);
+						diagram.setText(allDiagrams.get(i).getParentTab().getName());
+						diagram.setCallback(new CallBack(BlockPalette.this.getText()) {
+							private static final long serialVersionUID = -3138430622029406470L;
+
+							public void callBack() {
+								BasicBlock current = (BasicBlock) BlockFactory.createClone(getBlock());
+								current.getGeometry().setX(DEFAULT_POSITION);
+								current.getGeometry().setY(DEFAULT_POSITION);
+								theDiagram.addCell(current);
+							}
+						});
+						addTo.add(diagram);
+					}
+
+					menu.add(addTo);
 				}
-			}
 
-			/*
-			 * (non-Javadoc)
-			 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-			 */
-			public void mouseEntered(MouseEvent e) {
-			}
 
-			/*
-			 * (non-Javadoc)
-			 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-			 */
-			public void mouseExited(MouseEvent e) {
-			}
+				menu.getAsSimpleContextMenu().addSeparator();
 
-			/*
-			 * (non-Javadoc)
-			 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-			 */
-			public void mouseReleased(MouseEvent e) {
-			}
+				MenuItem help = ScilabMenuItem.createMenuItem();
+				help.setText("Block help");
+				help.setCallback(new CallBack(BlockPalette.this.getText()) {
+					private static final long serialVersionUID = -8720228686621887887L;
 
-		});
+					public void callBack() {
+						XcosInterpreterManagement.requestScilabExec("help " + BlockPalette.this.getText());
+					}
+				});
+				menu.add(help);
+
+				menu.setVisible(true);
+
+				((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+						MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+			}
+		}
+
+		public void mouseEntered(MouseEvent e) { }
+		public void mouseExited(MouseEvent e) { }
+		public void mouseReleased(MouseEvent e) { }
+	}; 
+
+	/**
+	 * Default constructor
+	 * @param icon The block icon
+	 */
+	public BlockPalette(ImageIcon icon) {
+		super(icon);
+		addMouseListener(mouseListener);
 	}
 
+	/**
+	 * @return the block associated with the palette component
+	 */
 	public BasicBlock getBlock() {
 
-		if(block == null) {
+		if (block == null) {
 			if (getText().compareTo("TEXT_f") != 0) {
 				String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
@@ -203,22 +183,22 @@ public class BlockPalette extends JLabel {
 					block.setValue(block.getInterfaceFunctionName());
 				}
 			} else {
-				block = new TextBlock("Edit me!!!");
+				block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
 			}
 		}
 		return block;
 	}
-
-	public void setBlock(BasicBlock block) {
-		this.block = block;
-	}
 	
+	/**
+	 * Paint the component
+	 * @param g the graphical context
+	 */
 	public void paint2(Graphics g) {
 		boolean opaque = isOpaque();
 		Color bg = getBackground();
 		Border br = getBorder();
 
-		if (getPalette().getSelectedEntry() == this) {
+		if (getPalette().getEntryManager().isSelectedEntry(this)) {
 			setBackground(getPalette().getBackground().brighter());
 			setBorder(new ShadowBorder());
 			setOpaque(true);
@@ -231,21 +211,30 @@ public class BlockPalette extends JLabel {
 		setOpaque(opaque);
 	}
 
-	public XcosPalette getPalette() {
+	/**
+	 * @return the associated palette
+	 */
+	private XcosPalette getPalette() {
 		return palette;
 	}
 
+	/**
+	 * @param palette the palette parent
+	 */
 	public void setPalette(XcosPalette palette) {
 		this.palette = palette;
-		setPreferredSize(new Dimension(XcosConstants.PALETTE_BLOCK_WIDTH, XcosConstants.PALETTE_BLOCK_HEIGHT));
+		setPreferredSize(PREFERRED_SIZE);
 		setBackground(palette.getBackground().brighter());
-		setFont(new Font(getFont().getFamily(), 0, 12));
+		setFont(new Font(getFont().getFamily(), 0, DEFAULT_FONT_SIZE));
 
 		setVerticalTextPosition(JLabel.BOTTOM);
 		setHorizontalTextPosition(JLabel.CENTER);
-		setIconTextGap(5);
+		setIconTextGap(DEFAULT_ICON_TEXT_GAP);
 	}
 
+	/**
+	 * @return the block transferable
+	 */
 	public mxGraphTransferable getTransferable() {
 		if (transferable == null) {
 			transferable = new mxGraphTransferable(new Object[] {BlockPalette.this.getBlock()},
@@ -253,9 +242,4 @@ public class BlockPalette extends JLabel {
 		}
 		return transferable;
 	}
-
-	public void setTransferable(mxGraphTransferable transferable) {
-		this.transferable = transferable;
-	}
-
 }
