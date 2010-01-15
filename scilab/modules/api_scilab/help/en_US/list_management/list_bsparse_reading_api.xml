@@ -224,7 +224,7 @@ int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 		break;
 	default :
 		insert_indent();
-		sciprint("Unknow type\n");
+		sciprint("Unknown type\n");
 		return 1;
 	}
 	return iRet;
