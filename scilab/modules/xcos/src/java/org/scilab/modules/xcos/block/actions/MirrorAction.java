@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
@@ -12,6 +23,10 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+/**
+ * @author Antoine ELIAS
+ *
+ */
 public class MirrorAction extends DefaultAction {
 
     private static final long serialVersionUID = -6228416497044111945L;
@@ -44,7 +59,7 @@ public class MirrorAction extends DefaultAction {
 	    Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
 	    getGraph(null).getModel().beginUpdate();
-	    for (int i = 0 ; i < allCells.length ; ++i) {
+	    for (int i = 0; i < allCells.length; ++i) {
 		if (allCells[i] instanceof BasicBlock) {
 		    ((BasicBlock) allCells[i]).toggleMirror();
 		}

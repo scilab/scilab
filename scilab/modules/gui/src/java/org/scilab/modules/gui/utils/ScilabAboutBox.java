@@ -114,19 +114,17 @@ public class ScilabAboutBox {
 								
 				StringBuilder contents = new StringBuilder();
 			    try {
-			      BufferedReader input = new BufferedReader( new InputStreamReader(new FileInputStream(filename), "UTF8"));
+			      BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF8"));
 			      try {
 			        String line = null;
-			        while (( line = input.readLine()) != null){
+			        while ((line = input.readLine()) != null) {
 			          contents.append(line);
 			          contents.append(System.getProperty("line.separator"));
 			        }
-			      }
-			      finally {
+			      } finally {
 			        input.close();
 			      }
-			    }
-			    catch (IOException ex){
+			    } catch (IOException ex) {
 			      ex.printStackTrace();
 			    }
 			    

@@ -82,7 +82,8 @@ src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
 src/c/typename.c \
 src/c/inittypenames.c \
-src/c/funcprot.c
+src/c/funcprot.c \
+src/c/eqid.c
 
 
 if USE_DYNAMIC_STACK
@@ -180,7 +181,6 @@ src/fortran/clause.f \
 src/fortran/compcl.f \
 src/fortran/termf.f \
 src/fortran/expsum.f \
-src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \

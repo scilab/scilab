@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "windows_tools module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "windows_tools module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "windows_tools.dll"
             VALUE "ProductName", " windows_tools"
             VALUE "ProductVersion", "5, 3, 0, 0"

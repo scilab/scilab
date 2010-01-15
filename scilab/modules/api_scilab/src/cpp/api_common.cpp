@@ -596,4 +596,203 @@ int getRhsFromAddress(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 
+/*short cut functions*/
+
+/*--------------------------------------------------------------------------*/
+int isRowVector(void* _pvCtx, int* _piAddress)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	if(isVarMatrixType(_pvCtx, _piAddress) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_ROW_VECTOR, _("%s: Unable to get argument dimension"), "isRowVector");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if(iRows == 1 && iCols > 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isColumnVector(void* _pvCtx, int* _piAddress)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	if(isVarMatrixType(_pvCtx, _piAddress) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_COLUMN_VECTOR, _("%s: Unable to get argument dimension"), "isColumnVector");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iCols == 1 && iRows > 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isVector(void* _pvCtx, int* _piAddress)
+{
+	return isRowVector(_pvCtx, _piAddress) || isColumnVector(_pvCtx, _piAddress);
+}
+/*--------------------------------------------------------------------------*/
+int isScalar(void* _pvCtx, int* _piAddress)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	if(isVarMatrixType(_pvCtx, _piAddress) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_SCALAR, _("%s: Unable to get argument dimension"), "isScalar");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iCols == 1 && iRows == 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isSquareMatrix(void* _pvCtx, int* _piAddress)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	if(isVarMatrixType(_pvCtx, _piAddress) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_SQUARE, _("%s: Unable to get argument dimension"), "isSquareMatrix");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iRows > 1 && iCols == iRows)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	if(isVarMatrixType(_pvCtx, _piAddress) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CHECK_VAR_DIMENSION, _("%s: Unable to get argument dimension"), "isSquareMatrix");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if((_iRows == iRows || _iRows == -1) && (_iCols == iCols || _iCols == -1))
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int checkVarType(void* _pvCtx, int* _piAddress, int _iType)
+{
+	SciErr sciErr;
+	int iType = 0;
+	if(_piAddress == NULL)
+	{
+		return 0;
+	}
+
+	sciErr = getVarType(_pvCtx, _piAddress, &iType);
+	if(sciErr.iErr)
+	{
+		return 0;
+	}
+
+	if(iType == _iType)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+
+int isEmptyMatrix(void* _pvCtx, int* _piAddress)
+{
+	if(checkVarType(_pvCtx, _piAddress, sci_matrix))
+	{
+		return checkVarDimension(_pvCtx, _piAddress, 0, 0);
+	}
+	return 0;
+}
 /*--------------------------------------------------------------------------*/

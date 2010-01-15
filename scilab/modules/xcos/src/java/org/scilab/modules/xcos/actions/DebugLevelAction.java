@@ -41,6 +41,10 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
+/**
+ * @author Allan SIMON
+ *
+ */
 public class DebugLevelAction extends DefaultAction {
 	private static final long serialVersionUID = 1L;
 
@@ -48,6 +52,10 @@ public class DebugLevelAction extends DefaultAction {
 	private static JFrame mainFrame;
 	private static JList debugList;
 
+	/**
+	 * @author Allan SIMON
+	 *
+	 */
 	private enum DebugLevel {
 		ZERO (0, XcosMessages.DEBUGLEVEL_0),
 		ONE (1, XcosMessages.DEBUGLEVEL_1),
@@ -57,11 +65,18 @@ public class DebugLevelAction extends DefaultAction {
 		private int level;
 		private String debugName;
 		
+		/**
+		 * @param realNumber level
+		 * @param name debug name
+		 */
 		private DebugLevel(int realNumber, String name) {
 			level = realNumber;
 			debugName = name;
 		}
 		
+		/**
+		 * @return value
+		 */
 		public int getValue() {
 			return level;
 		}
@@ -80,14 +95,21 @@ public class DebugLevelAction extends DefaultAction {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		diagram = (XcosDiagram)getGraph(e);
+		diagram = (XcosDiagram) getGraph(e);
 		debugLevel(diagram);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SET_DEBUG, null, new DebugLevelAction(scilabGraph), null);
 	}
 
+	/**
+	 * @param diagramArgu diagram
+	 */
 	public static void debugLevel(XcosDiagram diagramArgu){
 
 		diagram = diagramArgu;
@@ -149,10 +171,10 @@ public class DebugLevelAction extends DefaultAction {
 		okButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				int value = ((DebugLevel)debugList.getSelectedValue()).getValue();
+				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
 				try {
-					XcosInterpreterManagement.SynchronousScilabExec("scicos_debug("+value+");");
+					XcosInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
 				} catch (InterpreterException e1) {
 					e1.printStackTrace();
 				}

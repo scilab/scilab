@@ -15,6 +15,10 @@
 /* Desc   : C functions to manage ged (only destroy for now)                      */
 /*--------------------------------------------------------------------------------*/
 
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include "GedManagement.h"
 #include "TCL_Global.h"
 #include "GlobalTclInterp.h"

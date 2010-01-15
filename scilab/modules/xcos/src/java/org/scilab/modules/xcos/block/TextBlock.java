@@ -14,10 +14,12 @@ package org.scilab.modules.xcos.block;
 
 import java.util.Map;
 
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menu.Menu;
+
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+
+import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 
@@ -50,16 +52,25 @@ public final class TextBlock extends BasicBlock {
 	}
     }
 
-    public TextBlock() {
-	super();
-	setInterfaceFunctionName("TEXT_f");
-    }
+	public TextBlock() {
+		super();
+	}
 
-    public TextBlock(String label) {
-	this();
-	setValue(label);
-    }
+	protected TextBlock(String label) {
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
 
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
+		setInterfaceFunctionName("TEXT_f");
+	}
+    
     /**
      * @return the text
      */

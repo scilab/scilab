@@ -29,6 +29,9 @@ public class XpadMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    /**
+     * "Save All" message
+     */
     public static final String SAVE_ALL = Messages.gettext("Save All");
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
@@ -163,8 +166,18 @@ public class XpadMessages {
     public static final String COULD_NOT_FIND_CONSOLE = Messages.gettext("Could not find the console nor the InterpreterManagement.");
     public static final String COULD_NOT_FIND_TMPFILE = Messages.gettext("Could not find the temporary file.");
     
+    /**
+     * "Change Colors" message
+     */
     public static final String CHANGE_COLORS =  Messages.gettext("Change Colors");
+    
+    /**
+     * "Change Color" message
+     */
     public static final String CHANGE_COLOR =  Messages.gettext("Change Color");
     
+    /**
+     * Exit confirm message
+     */
     public static final String EXIT_CONFIRM = Messages.gettext("Are you sure that you want to close Text Editor ?");
 }

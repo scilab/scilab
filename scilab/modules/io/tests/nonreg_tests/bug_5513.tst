@@ -21,3 +21,27 @@ a = rand(2,2)
 // check that you have good prompt
 
 b = input("Give a string : ","string")
+
+
+c = input("Give a string : ","string")
+// press ctrl+C to put Scilab in pause
+// type resume
+// and put a value
+// c must be correct
+
+d = input("Give a value : ")
+// press ctrl+C to put Scilab in pause
+// type resume
+// and put a value
+// d must be correct
+
+e = input("Give a string : ","string")
+// and press enter
+// e must be equal to ' '
+
+f = input("Give a value : ")
+// and press enter
+// f must be equal to []
+
+
+

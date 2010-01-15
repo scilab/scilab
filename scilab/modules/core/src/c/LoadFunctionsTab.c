@@ -46,6 +46,10 @@ void LoadFunctionsTab(void)
 	{
 		Load_primitives_from_gateway_xml_file(Modules->ModuleList[j]);
 	}
+	/**
+	* we sort table when we have all functions added
+	*/
+	enable_sort_hashtable_scilab_functions();
 	firstentry = 1;
 
 }

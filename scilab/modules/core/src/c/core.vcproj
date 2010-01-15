@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\eqid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -963,6 +967,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\eqid.h"
 				>
 			</File>
 			<File

@@ -24,6 +24,7 @@ import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxUtils;
 
 public class BasicBlockCodec extends XcosObjectCodec {
 

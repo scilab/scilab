@@ -31,6 +31,12 @@ extern "C" {
 #define API_ERROR_NAMED_TYPE															51
 #define API_ERROR_NAMED_VARDIM														55
 #define API_ERROR_GET_NAMED_DIMFROMVAR										59
+#define API_ERROR_IS_ROW_VECTOR														60
+#define API_ERROR_IS_COLUMN_VECTOR												61
+#define API_ERROR_IS_VECTOR																62
+#define API_ERROR_IS_SCALAR																63
+#define API_ERROR_IS_SQUARE																64
+#define API_ERROR_CHECK_VAR_DIMENSION											65
 
 	/*double errors						101 - 199*/
 #define API_ERROR_GET_DOUBLE															101
@@ -41,6 +47,7 @@ extern "C" {
 #define API_ERROR_CREATE_COMPLEX_DOUBLE										106
 #define API_ERROR_CREATE_ZDOUBLE													107
 #define API_ERROR_READ_NAMED_DOUBLE												108
+#define API_ERROR_GET_SCALAR_DOUBLE												109
 
 	/*poly errors							201 - 299*/
 #define API_ERROR_GET_POLY_VARNAME												201
