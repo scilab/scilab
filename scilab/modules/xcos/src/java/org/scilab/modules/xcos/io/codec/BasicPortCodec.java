@@ -63,13 +63,21 @@ public class BasicPortCodec extends XcosObjectCodec {
     }
 
     private String formatStyle(String style, BasicPort obj) {
-    String result;
-    	
+    String result = style;
+    
+    // Append the bloc style if not present.
+    String name = obj.getClass().getSimpleName();
+    StyleMap map = new StyleMap(result);
+    if (!map.containsKey(name)) {
+    	map.put(name, null);
+    }
+    result = map.toString();
+    
     // Replace direction by rotation
-	result = formatStyle(style);
+	result = formatStyle(result);
 	
 	// Update the rotation value according to the Orientation
-	result = updateRotationFromOrientation(style, obj);
+	result = updateRotationFromOrientation(result, obj);
 	
 	if (result.compareTo("") == 0) {
 		result = obj.getTypeName();
