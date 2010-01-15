@@ -98,7 +98,7 @@ import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -244,11 +244,10 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	main.setDims(WIN_SIZE);
 	
 	// Get the palettes position
-	if (XcosPaletteManager.isVisible()) { // If at Xcos startup
-	    Position palPosition = XcosPaletteManager.getPalettes()
-		    .getParentWindow().getPosition();
-	    Size palSize = XcosPaletteManager.getPalettes().getParentWindow()
-		    .getDims();
+	if (PaletteManager.isVisible()) { // If at Xcos startup
+		Window win = PaletteManager.getInstance().getView().getParentWindow();
+	    Position palPosition = win.getPosition();
+	    Size palSize = win.getDims();
 	    Position mainPosition = new Position(palPosition.getX()
 		    + palSize.getWidth(), palPosition.getY());
 	    main.setPosition(mainPosition);

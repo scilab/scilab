@@ -21,13 +21,12 @@ import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -72,7 +71,7 @@ public final class Xcos {
     public static void xcos() {
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
-		XcosPaletteManager.loadPalette();
+	    PaletteManager.setVisible(true);
 		createEmptyDiagram();
 		ViewPaletteBrowserAction.setPalettesVisible(true);
 	    }
@@ -146,14 +145,6 @@ public final class Xcos {
 	}
 
 	ViewPaletteBrowserAction.setPalettesVisible(false);
-    }
-
-    /**
-     * Get the session palette.
-     * @return The Tab palette
-     */
-    public static Tab getPalettes() {
-	return XcosPaletteManager.getPalettes();
     }
 
     /**
