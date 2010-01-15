@@ -167,6 +167,9 @@ Bug fixes:
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
+* bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
+                   when the menu is clicked.
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
