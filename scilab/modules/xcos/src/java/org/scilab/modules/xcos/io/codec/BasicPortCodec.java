@@ -57,50 +57,47 @@ public class BasicPortCodec extends XcosObjectCodec {
 	}
 
 	//update style from version to version.
-	((BasicPort)obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicPort) obj));
+	StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));
+	formatStyle(map, (BasicPort) obj);
+	((BasicPort) obj).setStyle(map.toString());
 	
 	return super.afterDecode(dec, node, obj);
     }
 
-    private String formatStyle(String style, BasicPort obj) {
-    String result = style;
-    
-    // Append the bloc style if not present.
-    String name = obj.getClass().getSimpleName();
-    StyleMap map = new StyleMap(result);
-    if (!map.containsKey(name)) {
-    	map.put(name, null);
-    }
-    result = map.toString();
-    
-    // Replace direction by rotation
-	result = formatStyle(result);
-	
-	// Update the rotation value according to the Orientation
-	result = updateRotationFromOrientation(result, obj);
-	
-	if (result.compareTo("") == 0) {
-		result = obj.getTypeName();
+    /**
+     * Format the style value
+     * @param map The style as a map
+     * @param obj the associated obj
+     */
+	private void formatStyle(StyleMap map, BasicPort obj) {
+
+		// Append the bloc style if not present.
+		String name = obj.getClass().getSimpleName();
+		if (!map.containsKey(name)) {
+			map.put(name, null);
+		}
+
+		// Replace direction by rotation
+		formatStyle(map);
+
+		// Update the rotation value according to the Orientation
+		updateRotationFromOrientation(map, obj);
 	}
-	return result;
-    }
 
 	/**
 	 * Update the rotation value when the block has been rotated on 5.2.0
 	 * format. Update it according to the Orientation field added 2010/01/08
 	 * between 5.2.0 and 5.2.1.
 	 * 
-	 * @param style The previous style value
+	 * @param map The previous style value
 	 * @param obj The port we are working on
-	 * @return The new style value
 	 */
-	private String updateRotationFromOrientation(String style, BasicPort obj) {
+	private void updateRotationFromOrientation(StyleMap map, BasicPort obj) {
 		final Orientation orientation = obj.getOrientation();
 		int rotation = 0;
 		boolean flipped = false;
 		boolean mirrored = false;
 
-		StyleMap map = new StyleMap(style);
 		
 		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
 			rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
@@ -116,7 +113,6 @@ public class BasicPortCodec extends XcosObjectCodec {
 		rotation = orientation.getAngle(orientation.getBlockRotationValue(
 				rotation, flipped, mirrored), flipped, mirrored);
 
-		return mxUtils.setStyle(style, XcosConstants.STYLE_ROTATION, Integer
-				.toString(rotation));
+		map.put(XcosConstants.STYLE_ROTATION, Integer.toString(rotation));
 	}
 }
