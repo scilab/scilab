@@ -58,7 +58,7 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.addMouseListener(new PaletteManagerMouseListener());
-		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener());
+		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
 		
 		setLeftComponent(tree);
 		panel.setContent(rootPalette);

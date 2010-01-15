@@ -22,6 +22,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.view.PaletteManagerScrollPane;
 import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.utils.XcosComponent;
 
 /**
  * Implement the tree selection listener 
@@ -29,10 +30,15 @@ import org.scilab.modules.xcos.palette.view.PaletteView;
 public class PaletteManagerTreeSelectionListener implements
 		TreeSelectionListener {
 
+	private PaletteManagerScrollPane panel;
+	
 	/**
 	 * Default constructor
+	 * @param panel The default scrollpane to modify
 	 */
-	public PaletteManagerTreeSelectionListener() { }
+	public PaletteManagerTreeSelectionListener(PaletteManagerScrollPane panel) {
+		this.panel = panel;
+	}
 	
 	/**
 	 * Selection handler
@@ -41,7 +47,7 @@ public class PaletteManagerTreeSelectionListener implements
 	 */
 	public void valueChanged(TreeSelectionEvent tree) {
 		JTree component = (JTree) tree.getSource();
-		JSplitPane panel = (JSplitPane) component.getParent();
+		JSplitPane splitPanel = (JSplitPane) component.getParent();
 
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) component
 				.getLastSelectedPathComponent();
@@ -51,28 +57,22 @@ public class PaletteManagerTreeSelectionListener implements
 			return;
 		}
 
-		// Manual Layout 
-//		Dimension size = panel.getLeftComponent().getSize();
-//		panel.getLeftComponent().setPreferredSize(size);
-
 		JScrollPane nodeView;
 		if (node.getUserObject() instanceof Palette) {
 			// This is a statically configured Palette case
-			PaletteManagerScrollPane scrollPanel =
-				(PaletteManagerScrollPane) panel.getRightComponent();
-			
 			PaletteView view = ((Palette) node.getUserObject()).loadView();
 			view.setVisible(true);
-			scrollPanel.setContent(view);
+			panel.setContent(view);
 			
-			nodeView = scrollPanel;
-		} else { // node.getUserObject() instanceof XcosComponent
+			nodeView = panel;
+		} else {
+			// node.getUserObject() instanceof XcosComponent
 			// This is a loaded diagram as Palette
-			nodeView = (JScrollPane) node.getUserObject();
+			nodeView = (XcosComponent) node.getUserObject();
 		}
 		
 		// update
-		panel.setRightComponent(nodeView);
+		splitPanel.setRightComponent(nodeView);
 		nodeView.validate();
 	}
 

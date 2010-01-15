@@ -12,11 +12,15 @@
 
 package org.scilab.modules.xcos.palette;
 
+import javax.swing.JTree;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Main class for the palette management.
@@ -28,6 +32,8 @@ import org.scilab.modules.xcos.palette.view.PaletteManagerView;
  * diagram representation implemented on {@link PaletteDiagram}.
  */
 public final class PaletteManager {
+	private static final int USER_DEFINED_ROW = 2;
+
 	private static PaletteManager instance;
 	
 	private PaletteManagerView view;
@@ -75,7 +81,20 @@ public final class PaletteManager {
 	 * @param fileName File name and path to the diagram
 	 */
 	public static void loadUserPalette(String fileName) {
-		
+		PaletteManager manager = PaletteManager.getInstance();
+		manager.getView().setInfo(XcosMessages.LOADING_USER_DEFINE);
+		PaletteDiagram diagram = new PaletteDiagram();
+		diagram.installListeners();
+		if (diagram.openDiagramAsPal(fileName)) {
+			manager.getModel().addUserDefinedNode(diagram);
+			
+			JTree tree = manager.getView().getTree();
+			tree.revalidate();
+			tree.expandRow(USER_DEFINED_ROW);
+			tree.setSelectionPath(
+					new TreePath(manager.getModel().getUserNode(diagram).getPath()));
+		}
+		manager.getView().setInfo(XcosMessages.EMPTY_INFO);
 	}
 	
 	/**

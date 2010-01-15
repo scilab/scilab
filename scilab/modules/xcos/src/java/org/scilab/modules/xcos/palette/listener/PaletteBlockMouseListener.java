@@ -28,6 +28,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -37,7 +38,8 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 
 /** Implement the default mouse listener for the block */
 public final class PaletteBlockMouseListener implements MouseListener {
-
+	private static final double BLOCK_DEFAULT_POSITION = 10.0;
+	
 	/** Default constructor */
 	public PaletteBlockMouseListener() { }
 
@@ -66,7 +68,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 				final XcosDiagram theDiagram = allDiagrams.get(0);
 				addTo.setCallback(new CallBack(e.toString()) {
 					public void callBack() {
-						Object current = control.getTransferable().getCells()[0];
+						BasicBlock current = loadAndSetupBlock(control);
 						theDiagram.addCell(current);
 					}
 				});
@@ -85,7 +87,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 					diagram.setText(allDiagrams.get(i).getParentTab().getName());
 					diagram.setCallback(new CallBack(e.toString()) {
 						public void callBack() {
-							Object current = control.getTransferable().getCells()[0];
+							BasicBlock current = loadAndSetupBlock(control);
 							theDiagram.addCell(current);
 						}
 					});
@@ -116,6 +118,18 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
 					MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
 		}
+	}
+	
+	/**
+	 * @param control The controller
+	 * @return the loaded block
+	 */
+	private BasicBlock loadAndSetupBlock(
+			final PaletteBlock control) {
+		BasicBlock current = control.loadBlock();
+		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
+		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);
+		return current;
 	}
 
 	/**

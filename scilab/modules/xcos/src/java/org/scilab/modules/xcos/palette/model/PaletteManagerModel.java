@@ -12,11 +12,18 @@
 
 package org.scilab.modules.xcos.palette.model;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
+import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.Palette;
+import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -27,13 +34,15 @@ public final class PaletteManagerModel {
 	private MutableTreeNode mainRoot;
 	private MutableTreeNode userDefinedRoot;
 	
+	private Map<PaletteDiagram, DefaultMutableTreeNode> userDiagrams; 
+	
 	/**
 	 * Default constructor
 	 */
 	public PaletteManagerModel() {
 		mainRoot = new DefaultMutableTreeNode(XcosMessages.PALETTES);
 		treeModel = new DefaultTreeModel(mainRoot);
-		userDefinedRoot = new DefaultMutableTreeNode(XcosMessages.USER_DEFINED);
+		userDiagrams = new HashMap<PaletteDiagram, DefaultMutableTreeNode>();
 	}
 	
 	/**
@@ -50,12 +59,66 @@ public final class PaletteManagerModel {
 		return userDefinedRoot;
 	}
 
+	/**
+	 * @param diagram a user diagram to append on the tree 
+	 */
+	public void addUserDefinedNode(PaletteDiagram diagram) {
+		if (userDefinedRoot == null) {
+			int nextRootIndex = mainRoot.getChildCount();
+			userDefinedRoot = new DefaultMutableTreeNode(XcosMessages.USER_DEFINED);
+			treeModel.insertNodeInto(userDefinedRoot, mainRoot, nextRootIndex);
+		}
+		int nextUserIndex = userDefinedRoot.getChildCount();
+		DefaultMutableTreeNode node = new DefaultMutableTreeNode(diagram.getAsComponent());
+		userDiagrams.put(diagram, node);
+		treeModel.insertNodeInto(node, userDefinedRoot, nextUserIndex);
+	}
+
+	/**
+	 * @param diagram
+	 *            A user diagram to remove from the tree. if null, all the user
+	 *            diagrams will be removed
+	 */
+	public void removeUserDefinedNode(PaletteDiagram diagram) {
+		assert userDefinedRoot != null;
+		
+		if (diagram == null) {
+			// Clean up
+			userDefinedRoot.removeFromParent();
+			userDefinedRoot = null;
+		} else {
+			MutableTreeNode node = userDiagrams.get(diagram);
+			userDefinedRoot.remove(node);
+			userDiagrams.remove(diagram);
+			
+			// Clean up if needed
+			if (userDefinedRoot.getChildCount() == 0) {
+				userDefinedRoot.removeFromParent();
+				userDefinedRoot = null;
+			}
+		}
+	}
+	
+	/**
+	 * @param diagram The key value
+	 * @return The associated TreeNode
+	 */
+	public DefaultMutableTreeNode getUserNode(PaletteDiagram diagram) {
+		return userDiagrams.get(diagram);
+	}
+	
 	/** Load the tree descriptor on the model*/
 	public void loadTree() {
 		/* Add the categories */
 		final int length = Palette.getDatas().length;
 		for (int i = 0; i < length; i++) {
 			mainRoot.insert(new DefaultMutableTreeNode(Palette.getDatas()[i]), i);
+		}
+		
+		/* Add the user defined palette */
+		List<String> files = ConfigXcosManager.getUserDefinedPalettes();
+		for (String file : files) {
+		    PaletteManager.loadUserPalette(file);
 		}
 	}
 }

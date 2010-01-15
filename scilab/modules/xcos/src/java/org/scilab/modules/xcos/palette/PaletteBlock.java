@@ -38,7 +38,6 @@ import com.mxgraph.util.mxRectangle;
  */
 public final class PaletteBlock {
 
-	private static final double DEFAULT_POSITION = 10.0;
 	private static final String BLOCK_PATH = System.getenv("SCI")
 			+ "/modules/scicos_blocks/blocks/";
 	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
@@ -88,8 +87,6 @@ public final class PaletteBlock {
 	public mxGraphTransferable getTransferable() {
 		if (transferable == null) {
 			BasicBlock block = loadBlock();
-			block.getGeometry().setX(DEFAULT_POSITION);
-			block.getGeometry().setY(DEFAULT_POSITION);
 			BlockPositioning.updateBlockView(block);
 			transferable = new mxGraphTransferable(new Object[] {block},
 					(mxRectangle) block.getGeometry().clone());
@@ -100,7 +97,7 @@ public final class PaletteBlock {
 	/**
 	 * @return the loaded block.
 	 */
-	private BasicBlock loadBlock() {
+	public BasicBlock loadBlock() {
 		BasicBlock block;
 		if (getModel().getName().compareTo("TEXT_f") != 0) {
 			// Load the block from the file
