@@ -37,109 +37,100 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public class PaletteView extends JPanel implements Scrollable {
 
-// CHECKSTYLE:OFF
+	// CHECKSTYLE:OFF
 	/**
-	 * A modified version of FlowLayout that allows containers using this
-	 * Layout to behave in a reasonable manner when placed inside a
-	 * JScrollPane
-	   
+	 * A modified version of FlowLayout that allows containers using this Layout
+	 * to behave in a reasonable manner when placed inside a JScrollPane
+	 * 
 	 * @author Babu Kalakrishnan
-	 * @see http://www.javakb.com/Uwe/Forum.aspx/java-gui/1904/Flowlayout-JPanel-and-JScrollPane-Scrolling-vertically-impossible
+	 * @see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5082531
+	 * @see http
+	 *      ://www.javakb.com/Uwe/Forum.aspx/java-gui/1904/Flowlayout-JPanel-
+	 *      and-JScrollPane-Scrolling-vertically-impossible
 	 */
-	public class ModifiedFlowLayout extends FlowLayout
-	{
-	    public ModifiedFlowLayout()
-	    {
-	        super();
-	    }
+	public class ModifiedFlowLayout extends FlowLayout {
+		public ModifiedFlowLayout() {
+			super();
+		}
 
-	    public ModifiedFlowLayout(int align)
-	    {
-	        super(align);
-	    }
+		public ModifiedFlowLayout(int align) {
+			super(align);
+		}
 
-	    public ModifiedFlowLayout(int align, int hgap, int vgap)
-	    {
-	        super(align, hgap, vgap);
-	    }
+		public ModifiedFlowLayout(int align, int hgap, int vgap) {
+			super(align, hgap, vgap);
+		}
 
-	    public Dimension minimumLayoutSize(Container target)
-	    {
-	        return computeSize(target, false);
-	    }
+		public Dimension minimumLayoutSize(Container target) {
+			return computeSize(target, false);
+		}
 
-	    public Dimension preferredLayoutSize(Container target)
-	    {
-	        return computeSize(target, true);
-	    }
+		public Dimension preferredLayoutSize(Container target) {
+			return computeSize(target, true);
+		}
 
-	    private Dimension computeSize(Container target, boolean minimum)
-	    {
-	        synchronized (target.getTreeLock())
-	        {
-	            int hgap = getHgap();
-	            int vgap = getVgap();
-	            int w = target.getWidth();
+		private Dimension computeSize(Container target, boolean minimum) {
+			synchronized (target.getTreeLock()) {
+				int hgap = getHgap();
+				int vgap = getVgap();
+				int w = target.getWidth();
 
-	       // Let this behave like a regular FlowLayout (single row)
-	       // if the container hasn't been assigned any size yet   
-	            if (w == 0)
-	                w = Integer.MAX_VALUE;
+				// Let this behave like a regular FlowLayout (single row)
+				// if the container hasn't been assigned any size yet
+				if (w == 0)
+					w = Integer.MAX_VALUE;
 
-	            Insets insets = target.getInsets();
-	            if (insets == null)
-	                insets = new Insets(0, 0, 0, 0);
-	            int reqdWidth = 0;
+				Insets insets = target.getInsets();
+				if (insets == null)
+					insets = new Insets(0, 0, 0, 0);
+				int reqdWidth = 0;
 
-	            int maxwidth = w - (insets.left + insets.right + hgap * 2);
-	            int n = target.getComponentCount();
-	            int x = 0;
-	            int y = insets.top;
-	            int rowHeight = 0;
+				int maxwidth = w - (insets.left + insets.right + hgap * 2);
+				int n = target.getComponentCount();
+				int x = 0;
+				int y = insets.top;
+				int rowHeight = 0;
 
-	            for (int i = 0; i < n; i++)
-	            {
-	                Component c = target.getComponent(i);
-	                if (c.isVisible())
-	                {
-	                    Dimension d =
-	                        minimum ? c.getMinimumSize() : c.getPreferredSize();
-	                    if ((x == 0) || ((x + d.width) <= maxwidth))
-	                    {
-	                        if (x > 0)
-	                        {
-	                            x += hgap;
-	                        }
-	                        x += d.width;
-	                        rowHeight = Math.max(rowHeight, d.height);
-	                    } else
-	                    {
-	                        x = d.width;
-	                        y += vgap + rowHeight;
-	                        rowHeight = d.height;
-	                    }
-	                    reqdWidth = Math.max(reqdWidth, x);
-	                }
-	            }
-	            y += rowHeight;
-	            return new Dimension(reqdWidth+insets.left+insets.right, y);
-	        }
-	    }
+				for (int i = 0; i < n; i++) {
+					Component c = target.getComponent(i);
+					if (c.isVisible()) {
+						Dimension d = minimum ? c.getMinimumSize() : c
+								.getPreferredSize();
+						if ((x == 0) || ((x + d.width) <= maxwidth)) {
+							if (x > 0) {
+								x += hgap;
+							}
+							x += d.width;
+							rowHeight = Math.max(rowHeight, d.height);
+						} else {
+							x = d.width;
+							y += vgap + rowHeight;
+							rowHeight = d.height;
+						}
+						reqdWidth = Math.max(reqdWidth, x);
+					}
+				}
+				y += rowHeight;
+				return new Dimension(reqdWidth + insets.left + insets.right, y);
+			}
+		}
 	}
-// CHECKSTYLE:ON
-	
+	// CHECKSTYLE:ON
+
 	private Palette controller;
 	private boolean isLoaded;
-	
+
 	/**
 	 * Default constructor
-	 * @param controller The associated controller
+	 * 
+	 * @param controller
+	 *            The associated controller
 	 */
 	public PaletteView(Palette controller) {
 		this.controller = controller;
 		initComponents();
 	}
-	
+
 	/** Setup component */
 	private void initComponents() {
 		setBackground(Color.WHITE);
@@ -147,7 +138,8 @@ public class PaletteView extends JPanel implements Scrollable {
 				XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
 		setMinimumSize(new Dimension(
 				(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-				XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN));
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN));
 	}
 
 	/**
@@ -161,16 +153,17 @@ public class PaletteView extends JPanel implements Scrollable {
 	 * This class update the status of the view. If you want to save memory,
 	 * unload the view when hidden.
 	 * 
-	 * @param b the load status
+	 * @param b
+	 *            the load status
 	 */
 	public void setLoaded(boolean b) {
 		if (!b) {
 			removeAll();
-		} 
-		
+		}
+
 		isLoaded = b;
 	}
-	
+
 	/**
 	 * @return the localized message
 	 * @see java.awt.Component#toString()
@@ -180,19 +173,6 @@ public class PaletteView extends JPanel implements Scrollable {
 		return controller.getModel().toString();
 	}
 
-//	/**
-//	 * @return This component preferred size
-//	 * @see javax.swing.JComponent#getPreferredSize()
-//	 */
-//	@Override
-//	public Dimension getPreferredSize() {
-//		int numberOfCOmponents = controller.getModel().getBlockNames().length;
-//		int blockWidth = XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN;
-//		int blockHeight = XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN;
-//		
-//		return new Dimension(blockWidth, (numberOfCOmponents * blockHeight) - XcosConstants.PALETTE_VMARGIN);
-//	}
-	
 	/**
 	 * @return The prefered Scrollable dimension
 	 * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
@@ -202,19 +182,26 @@ public class PaletteView extends JPanel implements Scrollable {
 	}
 
 	/**
-     * @param visibleRect The view area visible within the viewport
-     * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-     * @param direction Less than zero to scroll up/left, greater than zero for down/right.
-     * @return The "block" increment for scrolling in the specified direction.
-     *         This value should always be positive.
-	 * @see javax.swing.Scrollable#getScrollableBlockIncrement(java.awt.Rectangle, int, int)
+	 * @param visibleRect
+	 *            The view area visible within the viewport
+	 * @param orientation
+	 *            Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
+	 * @param direction
+	 *            Less than zero to scroll up/left, greater than zero for
+	 *            down/right.
+	 * @return The "block" increment for scrolling in the specified direction.
+	 *         This value should always be positive.
+	 * @see javax.swing.Scrollable#getScrollableBlockIncrement(java.awt.Rectangle,
+	 *      int, int)
 	 */
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		if (orientation == SwingConstants.VERTICAL) {
-			return XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN;
+			return XcosConstants.PALETTE_BLOCK_HEIGHT
+					+ XcosConstants.PALETTE_VMARGIN;
 		} else {
-			return XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN;
+			return XcosConstants.PALETTE_BLOCK_WIDTH
+					+ XcosConstants.PALETTE_HMARGIN;
 		}
 	}
 
@@ -235,11 +222,17 @@ public class PaletteView extends JPanel implements Scrollable {
 	}
 
 	/**
-     * @param visibleRect The view area visible within the viewport
-     * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-     * @param direction Less than zero to scroll up/left, greater than zero for down/right.
-     * @return PALETTE_BLOCK_HEIGHT or PALETTE_BLOCK_WIDTH depending on direction.
-	 * @see javax.swing.Scrollable#getScrollableUnitIncrement(java.awt.Rectangle, int, int)
+	 * @param visibleRect
+	 *            The view area visible within the viewport
+	 * @param orientation
+	 *            Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
+	 * @param direction
+	 *            Less than zero to scroll up/left, greater than zero for
+	 *            down/right.
+	 * @return PALETTE_BLOCK_HEIGHT or PALETTE_BLOCK_WIDTH depending on
+	 *         direction.
+	 * @see javax.swing.Scrollable#getScrollableUnitIncrement(java.awt.Rectangle,
+	 *      int, int)
 	 */
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
