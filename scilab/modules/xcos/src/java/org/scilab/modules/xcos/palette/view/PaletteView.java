@@ -37,7 +37,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public class PaletteView extends JPanel implements Scrollable {
 
-	// CHECKSTYLE:OFF
+// CHECKSTYLE:OFF
 	/**
 	 * A modified version of FlowLayout that allows containers using this Layout
 	 * to behave in a reasonable manner when placed inside a JScrollPane
@@ -111,11 +111,11 @@ public class PaletteView extends JPanel implements Scrollable {
 					}
 				}
 				y += rowHeight;
-				return new Dimension(reqdWidth + insets.left + insets.right, y);
+				return new Dimension(reqdWidth + insets.left + insets.right, y + vgap);
 			}
 		}
 	}
-	// CHECKSTYLE:ON
+// CHECKSTYLE:ON
 
 	private Palette controller;
 	private boolean isLoaded;
