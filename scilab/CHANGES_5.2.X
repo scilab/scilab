@@ -153,8 +153,6 @@ Bug fixes:
 
 * bug 5722 fixed - tand returns an error when called with ieee(0) mode
 
-
-
 * bug 6387 fixed - 'dos' failed to execute very long command line and 
                    returns an msg error : line too long
                    
@@ -167,6 +165,7 @@ Bug fixes:
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
+* bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
