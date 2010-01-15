@@ -91,8 +91,8 @@ public final class PaletteBlock {
 			block.getGeometry().setX(DEFAULT_POSITION);
 			block.getGeometry().setY(DEFAULT_POSITION);
 			BlockPositioning.updateBlockView(block);
-			new mxGraphTransferable(new Object[] {block}, (mxRectangle) block
-					.getGeometry().clone());
+			transferable = new mxGraphTransferable(new Object[] {block},
+					(mxRectangle) block.getGeometry().clone());
 		}
 		return transferable;
 	}
