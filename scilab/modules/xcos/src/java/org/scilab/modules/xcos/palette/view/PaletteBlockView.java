@@ -29,17 +29,18 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public final class PaletteBlockView extends JLabel {
 
-	static final Dimension PREFERRED_SIZE = new Dimension(
+	private static final Dimension PREFERRED_SIZE = new Dimension(
 			XcosConstants.PALETTE_BLOCK_WIDTH,
 			XcosConstants.PALETTE_BLOCK_HEIGHT);
-	private static final Border NON_SELECTED_BORDER = BorderFactory
-			.createEmptyBorder();
 	private static final int DEFAULT_FONT_SIZE = 12;
 	private static final int DEFAULT_ICON_TEXT_GAP = 5;
 	
 	private static final Border SELECTED_BORDER = BorderFactory
 			.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),
 					BorderFactory.createLineBorder(Color.BLACK));
+	
+	private static final Border NON_SELECTED_BORDER = BorderFactory
+			.createEmptyBorder();
 	
 	private PaletteBlock controller;
 
@@ -86,7 +87,7 @@ public final class PaletteBlockView extends JLabel {
 	}
 	
 	/**
-	 * @return {@link #getPreferredSize()}
+	 * @return {@link javax.swing.JComponent#getPreferredSize()}
 	 * @see javax.swing.JComponent#getMinimumSize()
 	 */
 	@Override
