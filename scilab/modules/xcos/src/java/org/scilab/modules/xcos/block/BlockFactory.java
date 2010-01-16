@@ -31,11 +31,11 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 public final class BlockFactory {
 
+	// DAC: As this is the constructor for all the block classes, this class is
+	// very coupled with *Block classes
+	// CSOFF: ClassDataAbstractionCoupling
 	/**
 	 * List the specific block interface function name.
-	 * 
-	 * @checkstyle DAC: As this is the constructor for all the block classes,
-	 *             this class is very coupled with *Block classes
 	 */
 	public static enum BlockInterFunction {
 		TEXT_f(new TextBlock(XcosMessages.DOTS)),
@@ -70,6 +70,9 @@ public final class BlockFactory {
 		private BlockInterFunction(BasicBlock block) {
 			this.block = block;
 			block.setDefaultValues();
+			if (block.getStyle().isEmpty()) {
+				block.setStyle(name());
+			}
 		}
 		
 		/**
@@ -93,6 +96,7 @@ public final class BlockFactory {
 			return block;
 		}
 	}
+	// CSON: ClassDataAbstractionCoupling
 	
 	/** Default singleton constructor */
 	private BlockFactory() {

@@ -31,7 +31,9 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
+	/** The rotation step of the clockwise and anticlockwise rotation */
 	public static final int ROTATION_STEP = 90;
+	/** The max valid rotation value (always 360°) */
 	public static final int MAX_ROTATION = 360;
 	
 	/** This class is a static singleton, thus it must not be instantiated */
