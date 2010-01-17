@@ -23,7 +23,7 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
       if(nbCol != 1 || nbRow != 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "Max");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "Max");
           return SET_PROPERTY_ERROR;
         }
 
@@ -76,7 +76,7 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
             {
               if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
                 {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
+					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "Checkbox", "Min", "Max");
                 }
 
               CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
@@ -96,7 +96,7 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
             {
               if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
                 {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Radiobutton", "Min", "Max");
+					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "Radiobutton", "Min", "Max");
                 }
 
               CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 
@@ -115,7 +115,7 @@ int SetUicontrolMax(sciPointObj* sciObj, size_t stackPointer, int valueType, int
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: A real expected.\n"), "Max");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "Max");
       return SET_PROPERTY_ERROR;
     }
 
