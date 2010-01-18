@@ -51,7 +51,6 @@ public class PaletteManagerPanel extends JSplitPane {
 		JPanel rootPalette = new JPanel();
 		
 		PaletteManagerModel model = controller.getModel();
-		model.loadTree();
 		JTree tree = new JTree(model.getTreeModel());
 		
 		/** Setup tree */

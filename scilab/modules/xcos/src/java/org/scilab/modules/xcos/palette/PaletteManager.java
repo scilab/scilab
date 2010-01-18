@@ -40,9 +40,20 @@ public final class PaletteManager {
 	private PaletteManagerModel model;
 	
 	/** Default constructor */
-	private PaletteManager() {
-		model = new PaletteManagerModel();
-		view = new PaletteManagerView(this);
+	private PaletteManager() {}
+	
+	/**
+	 * @param view the view to set
+	 */
+	public void setView(PaletteManagerView view) {
+		this.view = view;
+	}
+
+	/**
+	 * @param model the model to set
+	 */
+	public void setModel(PaletteManagerModel model) {
+		this.model = model;
 	}
 
 	/** @return the view */
@@ -59,6 +70,9 @@ public final class PaletteManager {
 	public static PaletteManager getInstance() {
 		if (instance == null) {
 			instance = new PaletteManager();
+			instance.setModel(new PaletteManagerModel(instance));
+			instance.setView(new PaletteManagerView(instance));
+			instance.getModel().loadTree();
 		}
 		return instance;
 	}
@@ -80,21 +94,18 @@ public final class PaletteManager {
 	 * Load a user diagram on the palette
 	 * @param fileName File name and path to the diagram
 	 */
-	public static void loadUserPalette(String fileName) {
-		PaletteManager manager = PaletteManager.getInstance();
-		manager.getView().setInfo(XcosMessages.LOADING_USER_DEFINE);
+	public void loadUserPalette(String fileName) {
 		PaletteDiagram diagram = new PaletteDiagram();
 		diagram.installListeners();
 		if (diagram.openDiagramAsPal(fileName)) {
-			manager.getModel().addUserDefinedNode(diagram);
+			getModel().addUserDefinedNode(diagram);
 			
-			JTree tree = manager.getView().getTree();
+			JTree tree = getView().getTree();
 			tree.revalidate();
 			tree.expandRow(USER_DEFINED_ROW);
 			tree.setSelectionPath(
-					new TreePath(manager.getModel().getUserNode(diagram).getPath()));
+					new TreePath(getModel().getUserNode(diagram).getPath()));
 		}
-		manager.getView().setInfo(XcosMessages.EMPTY_INFO);
 	}
 	
 	/**

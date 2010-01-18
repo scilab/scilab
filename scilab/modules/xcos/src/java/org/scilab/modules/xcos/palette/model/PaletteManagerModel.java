@@ -30,6 +30,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default model the PaletteManager
  */
 public final class PaletteManagerModel {
+	private PaletteManager controller;
+	
 	private DefaultTreeModel treeModel;
 	private MutableTreeNode mainRoot;
 	private MutableTreeNode userDefinedRoot;
@@ -39,7 +41,8 @@ public final class PaletteManagerModel {
 	/**
 	 * Default constructor
 	 */
-	public PaletteManagerModel() {
+	public PaletteManagerModel(PaletteManager controller) {
+		this.controller = controller;
 		mainRoot = new DefaultMutableTreeNode(XcosMessages.PALETTES);
 		treeModel = new DefaultTreeModel(mainRoot);
 		userDiagrams = new HashMap<PaletteDiagram, DefaultMutableTreeNode>();
@@ -118,7 +121,7 @@ public final class PaletteManagerModel {
 		/* Add the user defined palette */
 		List<String> files = ConfigXcosManager.getUserDefinedPalettes();
 		for (String file : files) {
-		    PaletteManager.loadUserPalette(file);
+		    controller.loadUserPalette(file);
 		}
 	}
 }

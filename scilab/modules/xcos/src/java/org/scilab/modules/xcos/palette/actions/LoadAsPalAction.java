@@ -94,6 +94,6 @@ public final class LoadAsPalAction extends DefaultAction {
 	    return;
 	}
 
-	PaletteManager.loadUserPalette(fc.getSelection()[0]);
+	PaletteManager.getInstance().loadUserPalette(fc.getSelection()[0]);
     }
 }
