@@ -164,6 +164,8 @@ Bug fixes:
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
                    when the menu is clicked.
 
+* bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
