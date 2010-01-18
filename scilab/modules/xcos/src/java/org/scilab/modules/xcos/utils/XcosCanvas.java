@@ -58,7 +58,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 			// Applies the rotation on the graphics object and stores
 			// the previous transform so that it can be restored
 			AffineTransform saveTransform = g.getTransform();
-			g.translate(x + (w / 2.0), y + (h / 2.0));
+			g.translate(xx + (ww / 2.0), yy + (hh / 2.0));
 
 			double rotation = mxUtils.getDouble(style,
 					mxConstants.STYLE_ROTATION, 0);
@@ -67,8 +67,8 @@ public class XcosCanvas extends mxInteractiveCanvas {
 				g.rotate(Math.toRadians(rotation));
 				if (BlockPositioning.isNearHorizontalSide(rotation)) {
 					// x - h / 2, y - w / 2, h, w
-					xx = xx + (w / 2) - (h / 2);
-					yy = yy + (h / 2) - (w / 2);
+					xx = xx + (ww / 2) - (hh / 2);
+					yy = yy + (hh / 2) - (ww / 2);
 					
 					ww = h;
 					hh = w;
@@ -119,9 +119,9 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 */
 	private void applyFlipAndMirror(Hashtable<String, Object> style) {
 		String flip = mxUtils.getString(style, XcosConstants.STYLE_FLIP,
-				Boolean.toString(false));
+				Boolean.FALSE.toString());
 		String mirror = mxUtils.getString(style, XcosConstants.STYLE_MIRROR,
-				Boolean.toString(false));
+				Boolean.FALSE.toString());
 
 		// scale, 1st flip, 2nd mirror
 		if (Boolean.parseBoolean(flip)) {
