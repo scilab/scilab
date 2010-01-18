@@ -49,6 +49,8 @@
 
     <para>A C gateway function which specifies which variables created inside
     the C interface will be returned as an output argumen into Scilab.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

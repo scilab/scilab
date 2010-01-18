@@ -48,6 +48,8 @@
     overloading process of Scilab works only on Scilab primitives (Scilab
     function wrote in C) which must have a Scilab name which is maximum 8 char
     wide.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>
