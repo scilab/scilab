@@ -88,6 +88,9 @@ Compilation:
 * bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
                    libraries
 
+* bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
+                   Ubuntu check tools
+
 Bug fixes:
 ==========
 
