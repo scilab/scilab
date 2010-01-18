@@ -99,6 +99,8 @@
 
     <para>If this function is used, it is probable that <link
     linkend="GetType">GetType</link> will also be used.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

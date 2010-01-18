@@ -58,6 +58,8 @@
     parameter to the C function. You must include stack-c.h to benefit from
     this function. If the test fails, we return from the C interface and an
     adequate error message is printed in the Scilab console.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

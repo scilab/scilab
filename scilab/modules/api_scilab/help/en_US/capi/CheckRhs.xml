@@ -58,6 +58,8 @@
     0;</literal> within the gateway function, it is important to call this
     macro before any memory allocation in order to avoid any memory
     leak.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>
