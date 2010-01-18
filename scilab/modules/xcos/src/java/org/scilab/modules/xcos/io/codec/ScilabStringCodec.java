@@ -33,11 +33,6 @@ public class ScilabStringCodec extends XcosObjectCodec {
     private static final String DATA = "data";
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
-    
-    public ScilabStringCodec(Object template) {
-	super(template);
-    }
-
 
     public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
