@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -90,11 +91,11 @@ public class XcosObjectCodec extends mxObjectCodec {
 		}
 
 		if (!style.containsKey(FLIP)) {
-			style.put(FLIP, Boolean.FALSE.toString());
+			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
 		}
 
 		if (!style.containsKey(MIRROR)) {
-			style.put(MIRROR, Boolean.FALSE.toString());
+			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
 		}
 	}
 }
