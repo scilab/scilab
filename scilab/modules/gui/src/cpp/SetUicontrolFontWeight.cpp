@@ -23,7 +23,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueTy
 
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "FontWeight");
+		Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontWeight");
       return SET_PROPERTY_ERROR;
     }
 
@@ -32,7 +32,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueTy
       if(nbCol != 1)
         {
           /* Wrong string size */
-          Scierror(999, _("Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s' or '%s' expected.\n")), "FontWeight", "light", "normal", "demi", "bold");
           return SET_PROPERTY_ERROR;
         }
       
@@ -57,7 +57,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueTy
       else
         {
           /* Wrong string format */
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n")), "FontWeight", "light", "normal", "demi", "bold");
           return SET_PROPERTY_ERROR;
         }
       
@@ -78,7 +78,7 @@ int SetUicontrolFontWeight(sciPointObj* sciObj, size_t stackPointer, int valueTy
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"), "FontWeight", "light", "normal", "demi", "bold");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s' or '%s' expected.\n")), "FontWeight", "light", "normal", "demi", "bold");
       return SET_PROPERTY_ERROR;
     }
 

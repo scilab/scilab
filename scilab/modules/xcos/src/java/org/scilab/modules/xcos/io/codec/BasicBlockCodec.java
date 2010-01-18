@@ -18,13 +18,14 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.utils.StyleMap;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
-import com.mxgraph.util.mxUtils;
 
 public class BasicBlockCodec extends XcosObjectCodec {
 
@@ -73,19 +74,27 @@ public class BasicBlockCodec extends XcosObjectCodec {
 
 	    // update style to replace direction by rotation and add the 
 	    // default style if absent
-	    ((BasicBlock) obj).setStyle(formatStyle(((Element) node).getAttribute(STYLE), (BasicBlock) obj));
+	    StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));
+	    formatStyle(map, (BasicBlock) obj);
+		((BasicBlock) obj).setStyle(map.toString());
 	    ((BasicBlock) obj).updateFieldsFromStyle();
 	    
 	    return super.afterDecode(dec, node, obj);
 	}
 
+	/**
+	 * Format the style value
+	 * @param map the read style value
+	 * @param obj the block instance
+	 */
+	private void formatStyle(StyleMap map, BasicBlock obj) {
 
-	private String formatStyle(String style, BasicBlock obj) {
-	    formatStyle(style);
-	    
-	    if (style.compareTo("") == 0) {
-		style = obj.getInterfaceFunctionName();
-	    }
-	    return style;
+		// Append the bloc style if not present.
+		String name = obj.getInterfaceFunctionName();
+		if (!map.containsKey(name)) {
+			map.put(name, null);
+		}
+
+		formatStyle(map);
 	}
 }

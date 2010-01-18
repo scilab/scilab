@@ -56,7 +56,7 @@ void FecFacetDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
   }
   catch (const std::exception & e)
   {
-     sciprint(_("%s: No more memory.\n"), "FecFacetDrawerJoGL::drawFec");
+     sciprint(const_cast<char*>(_("%s: No more memory.\n")), "FecFacetDrawerJoGL::drawFec");
   }
 
   endDrawing();

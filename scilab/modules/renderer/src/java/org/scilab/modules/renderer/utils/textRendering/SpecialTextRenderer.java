@@ -15,6 +15,7 @@ package org.scilab.modules.renderer.utils.textRendering;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.Map;
 import java.nio.Buffer;
 
 import javax.media.opengl.GL;
@@ -36,18 +37,17 @@ import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
  */
 public class SpecialTextRenderer {
 
-    private static HashMap<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
-        
+    private static final int NB_COMP = 4;
+    private static Map<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
+    private static GL gl;
+    
     /* I use the TextRenderer to render a string which isn't in MathML or LaTeX format
        although it starts with a '<' or '$'*/
     private TextRenderer textrenderer;
 
     private Color color = Color.black;
     private float fontSize;
-    private final static int NB_COMP = 4;
     
-    private static GL gl = null;
-
     /**
      * Default constructor.
      * @param textrenderer a TextRenderer to display bad MathML code
@@ -56,12 +56,14 @@ public class SpecialTextRenderer {
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
 		this.textrenderer = textrenderer;
 		this.fontSize = fontSize;
+                
+		GL currentGL;
 
-		GL currentGL = null;
-
-		try{
+		try {
 			currentGL = GLU.getCurrentGL();
-		} catch (GLException e) {}
+		} catch (GLException e) {
+                        currentGL = null;
+                }
 
 		if (gl != currentGL) {
 		    gl = currentGL;
@@ -130,7 +132,11 @@ public class SpecialTextRenderer {
     public void setFontSize(float fontSize) {
 	        this.fontSize = fontSize;
     }
-
+    
+    /**
+     * Create a new texture with the buffer got from the image of a label
+     * @param spe the label to render
+     */
     private static void createTexture(SpecialTextObjectGL spe) {
 	        /* If the buffer is null, it must be regenerated before getting width and height */
 		Buffer buf = spe.getBuffer();
@@ -142,6 +148,10 @@ public class SpecialTextRenderer {
 		spe.setTexture(t);
     }
     
+    /**
+     * Replace an existing texture
+     * @param spe the label to replace
+     */
     private static void replaceTexture(SpecialTextObjectGL spe) {
 	        spe.getTexture().dispose();
 	        createTexture(spe);
@@ -210,6 +220,7 @@ public class SpecialTextRenderer {
      *
      * @param content the message itself
      * @return The specialTextObjectGL
+     * @throws SpecialTextException if the string isn't in MathML or in LaTeX
      */
     private SpecialTextObjectGL getSpecialTextObjectGL(String content) throws SpecialTextException {
 		switch (content.charAt(0)) {

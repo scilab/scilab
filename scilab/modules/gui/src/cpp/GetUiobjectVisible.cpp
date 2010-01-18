@@ -56,10 +56,11 @@ int GetUiobjectVisible(sciPointObj* sciObj)
               return sciReturnString(strdup("off"));
             }
         }
+
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Visible");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Visible");
       return FALSE;
     }
 }

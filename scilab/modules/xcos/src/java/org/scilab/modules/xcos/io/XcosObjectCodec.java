@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
+import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -33,6 +35,9 @@ public class XcosObjectCodec extends mxObjectCodec {
     protected static final String MIRROR = "mirror=";
     protected static final String COMMAND = "ControlPort";
     protected static final String CONTROL = "CommandPort";
+    
+    private static final int DIRECTION_STEP = 90;
+    private static final int MAX_ROTATION = 360;
 
     public XcosObjectCodec(Object template) {
 	super(template);
@@ -58,33 +63,39 @@ public class XcosObjectCodec extends mxObjectCodec {
 	return obj;
     }
 
-    public String formatStyle(String style) {
-	if(style.compareTo("") == 0) {
-	    return style;
-	}
-	
-	String result = style;
-	result = result.replaceAll(DIRECTION, ROTATION);
-	if(result.indexOf(CONTROL) < 0 && result.indexOf(COMMAND) < 0) {
-	    result = result.replaceAll(EAST, "0");
-	    result = result.replaceAll(NORTH, "270");
-	    result = result.replaceAll(WEST, "180");
-	    result = result.replaceAll(SOUTH, "90");
-	} else {
-	    result = result.replaceAll(EAST, "270");
-	    result = result.replaceAll(NORTH, "180");
-	    result = result.replaceAll(WEST, "90");
-	    result = result.replaceAll(SOUTH, "0");
-	}
+    /**
+     * @param style the style to be formatted
+     */
+	public void formatStyle(StyleMap style) {
+		if (style.containsKey(DIRECTION)) {
+			String direction = style.get(DIRECTION);
 
-	if(result.indexOf(FLIP) < 0) {
-	    result += ";flip=false";
-	}
+			int step = DIRECTION_STEP;
+			int angle = 0;
+			if (style.containsKey(COMMAND) || style.containsKey(CONTROL)) {
+				step = -DIRECTION_STEP;
+				angle = DIRECTION_STEP;
+			}
 
-	if(result.indexOf(MIRROR) < 0) {
-	    result += ";mirror=false";
-	}
+			if (direction.compareTo(SOUTH) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			} else if (direction.compareTo(WEST) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			} else if (direction.compareTo(NORTH) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			}
 
-	return result;
-    }
+			style.remove(DIRECTION);
+			style.put(ROTATION, Integer.toString(angle));
+
+		}
+
+		if (!style.containsKey(FLIP)) {
+			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
+		}
+
+		if (!style.containsKey(MIRROR)) {
+			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
+		}
+	}
 }

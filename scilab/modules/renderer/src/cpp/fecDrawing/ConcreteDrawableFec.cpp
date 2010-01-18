@@ -76,7 +76,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableFec::drawFec(void)
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableFec::drawFec");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")), "ConcreteDrawableFec::drawFec");
     if(xCoords != NULL) { delete[] xCoords; }
     if(yCoords != NULL) { delete[] yCoords; }
     if(firstPoints != NULL) { delete[] firstPoints; }
