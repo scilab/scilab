@@ -8,6 +8,8 @@ Text editor:
 
 * bug 5651 fixed - closing find/replace box, remove highlights.
 
+* bug 5707 fixed - cmd-e executed the wrong editor file.
+
 Xcos:
 =====
 
@@ -164,6 +166,10 @@ Bug fixes:
 
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
                    when the menu is clicked.
+
+* bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
+
+* bug 6461 fixed - Scilab External function executed by scifunction may make Scilab crash when they produce an error.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================

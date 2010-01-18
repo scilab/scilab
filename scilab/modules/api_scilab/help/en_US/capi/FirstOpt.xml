@@ -40,6 +40,8 @@
     <para>A C gateway function which returns the position of the first
     optional parameter. You must include stack-c.h to benefit from this
     function.</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
   </refsection>
 
   <refsection>

@@ -147,7 +147,7 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	atoms_system_directory  = atomsPath("system" ,section);
 	atoms_install_directory = atomsPath("install",section);
-	atoms_tmp_directory     = atomsPath("system" ,"session");
+	atoms_tmp_directory     = pathconvert( atomsPath("system" ,section) + "tmp_" + sprintf("%d\n",getdate("s")) );
 	
 	if ~ isdir( atoms_system_directory ) & (mkdir( atoms_system_directory ) <> 1) then
 		error(msprintf( ..
@@ -479,6 +479,13 @@ function result = atomsInstall(packages,section)
 	
 	if ~ isempty(fileinfo(atoms_tmp_directory + "DESCRIPTION_archives")) then
 		mdelete(atoms_tmp_directory + "DESCRIPTION_archives");
+	end
+	
+	// The atoms_tmp_directory is no more needed
+	// =========================================================================
+	
+	if ~ isempty(fileinfo(atoms_tmp_directory)) then
+		rmdir(atoms_tmp_directory,"s");
 	end
 	
 	// Update the dependencies of packages that use another version of packages
