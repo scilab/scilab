@@ -307,6 +307,7 @@ public abstract class BasicPort extends XcosUIDObject {
 	StringBuffer result = new StringBuffer();
 	result.append("<html>");
 	result.append("Port number : " + getOrdering() + "<br>");
+	result.append("Style : " + getStyle() + "<br>");
 	result.append("</html>");
 	return result.toString();
     }
