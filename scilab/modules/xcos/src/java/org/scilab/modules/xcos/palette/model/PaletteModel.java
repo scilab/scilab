@@ -10,14 +10,21 @@
  *
  */
 
-package org.scilab.modules.xcos.palette;
+package org.scilab.modules.xcos.palette.model;
 
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * The palette is organized trough multiple categories.
+ * The palette is organized trough multiples categories. As these categories are
+ * fixed at compile time, the preferred implementation is an Enum.
+ * 
+ * We implement lazy loading of the bloc representation, thus the model just use
+ * String reference and not raw instance of the icons. The icon loading is
+ * performed when a category is selected (and cached after the first selection).
+ * The BasicBlock loading is performed on each block selection or Drag'n'Drop
+ * (not cached).
  */
-public enum Category {
+public enum PaletteModel {
 // As each block can be in a different panel it is multiple times referenced
 // CSOFF: MultipleStringLiterals
 	/** COMMONLY USED BLOCKS palette */
@@ -143,7 +150,7 @@ public enum Category {
 	 * @param message The associated localized message
 	 * @param blocks Block contained in this  category
 	 */
-	private Category(String message, String[] blocks) {
+	private PaletteModel(String message, String[] blocks) {
 		this.message = message;
 		this.blocks = blocks;
 	}
