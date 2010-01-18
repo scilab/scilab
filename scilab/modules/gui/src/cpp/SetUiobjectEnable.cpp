@@ -23,7 +23,7 @@ int SetUiobjectEnable(sciPointObj* sciObj, size_t stackPointer, int valueType, i
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Enable", "on", "off");
+		  Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Enable", "on", "off");
         return SET_PROPERTY_ERROR;
       }
 
@@ -31,14 +31,14 @@ int SetUiobjectEnable(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       
       if (stricmp(status, "on")!=0 && stricmp(status, "off")!=0)
         {
-        Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Enable", "on", "off");
+			Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Enable", "on", "off");
         return SET_PROPERTY_ERROR;
 
         }
     }
   else
     {
-      Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Enable", "on", "off");
+		Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Enable", "on", "off");
       return SET_PROPERTY_ERROR;
     }
   
@@ -69,7 +69,7 @@ int SetUiobjectEnable(sciPointObj* sciObj, size_t stackPointer, int valueType, i
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Enable");
+		Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Enable");
       return SET_PROPERTY_ERROR;
     }
 }
