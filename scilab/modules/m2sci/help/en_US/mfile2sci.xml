@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])</synopsis>
+    <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -83,7 +83,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>prettyprint</term>
+        <term>prettyprintoutput</term>
         <listitem>
           <para>Boolean flag, if %T generated code is beautified. Default value: %F</para>
         </listitem>

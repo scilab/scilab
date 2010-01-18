@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-08-10 18:33+0100\n"
-"PO-Revision-Date: 2008-08-16 07:33+0000\n"
+"PO-Revision-Date: 2009-10-29 05:46+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -65,6 +65,7 @@ msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
+"%s：输入参数的数目错误：Function has no input argument with ''%s'' or ''%s'' drivers.\n"
 
 #, c-format
 msgid ""
@@ -95,7 +96,7 @@ msgstr "%s: EMF格式只可在微软Windows操作系统中可用。\n"
 
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
-msgstr ""
+msgstr "%s：不能执行pstoedit。\n"
 
 msgid ""
 "xbasimp has been replaced by toprint for printing and by xs2ps for the file "

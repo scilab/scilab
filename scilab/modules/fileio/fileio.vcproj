@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -454,6 +456,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getfiletype.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getFullFilename.c"
 				>
 			</File>
 			<File
@@ -816,6 +822,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\getfiletype.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\getFullFilename.h"
 				>
 			</File>
 			<File

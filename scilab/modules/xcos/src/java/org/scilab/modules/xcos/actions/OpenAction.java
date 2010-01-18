@@ -15,17 +15,20 @@ package org.scilab.modules.xcos.actions;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -68,22 +71,36 @@ public final class OpenAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		FileChooser fc = ScilabFileChooser.createFileChooser();
+	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 		/* Standard files */
-		String[] mask = new String[]{"*.cos*", "*.xcos"};
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
-		
-		fc.setMultipleSelection(false);
-		fc.displayAndWait();
+	    fc.setTitle(XcosMessages.OPEN);
+	    fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
+	    fc.setMultipleSelection(false);
+	    
 
-		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-			return;
-		}
-		if (getGraph(null) == null) { // Called from palettes 
-			Xcos.xcos(fc.getSelection()[0]);
-		} else {
-			((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
-		}
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
+	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
+	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(cosFilter);
+	    fc.addChoosableFileFilter(allFilter);
+	    fc.setFileFilter(xcosFilter);
+
+	    fc.setAcceptAllFileFilterUsed(false);
+	    fc.displayAndWait();
+
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
+		return;
+	    }
+	    ConfigXcosManager.saveToRecentOpenedFiles(fc.getSelection()[0]);
+
+	    if (getGraph(null) == null) { // Called from palettes
+		//save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
+		Xcos.xcos(fc.getSelection()[0]);
+	    } else {
+		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
+	    }
+	    XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 	}
 }

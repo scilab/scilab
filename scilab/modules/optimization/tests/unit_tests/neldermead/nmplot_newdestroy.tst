@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 //
 // assert_close --
@@ -62,8 +63,6 @@ nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","axes");
 nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",0);
 nm = nmplot_configure(nm,"-simplexfn","rosenbrock.history.simplex.txt");
 nm = nmplot_configure(nm,"-fbarfn","rosenbrock.history.fbar.txt");
 nm = nmplot_configure(nm,"-foptfn","rosenbrock.history.fopt.txt");

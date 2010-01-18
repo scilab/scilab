@@ -152,6 +152,9 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 		FREE(pathtmp);
 		pathtmp = NULL;
 	}
+
+	if (SCIHOME) {FREE(SCIHOME);SCIHOME=NULL;}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

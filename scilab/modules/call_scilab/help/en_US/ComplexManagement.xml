@@ -103,8 +103,8 @@ for(j = 0 ; j < rowB_ ; j++)
       linkend="ComplexManagement_callscilab">Call_Scilab: Complex Management</link>, <link
       linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>, <link
       linkend="StringManagement_callscilab">Call_Scilab: String Management</link>, <link
-      linkend="Boolean_management_reading_API">API_Scilab: Boolean Reading</link>, <link
-      linkend="Boolean_management_writing_API">API_Scilab: Boolean Writing</link>, <link
+      linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>, <link
+      linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>, <link
       linkend="String_management_reading_API">API_Scilab: String Reading</link>, <link
       linkend="String_management_writing_API">API_Scilab: String Writing</link>
 	  </member>

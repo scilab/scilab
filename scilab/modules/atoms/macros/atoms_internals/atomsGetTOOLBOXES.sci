@@ -22,12 +22,16 @@ function packages = atomsGetTOOLBOXES(update)
 	// Operating system
 	
 	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+		OSNAME  = unix_g("uname");
+		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
+		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
+		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
 	else
-		MACOSX = %F;
-		LINUX  = %F;
+		MACOSX  = %F;
+		LINUX   = %F;
+		SOLARIS = %F;
+		BSD     = %F;
 	end
 	
 	if MSDOS then
@@ -36,6 +40,10 @@ function packages = atomsGetTOOLBOXES(update)
 		OSNAME = "linux";
 	elseif MACOSX then
 		OSNAME = "macosx";
+	elseif SOLARIS then
+		OSNAME = "solaris";
+	elseif BSD then
+		OSNAME = "bsd";
 	end
 	
 	// Architecture
@@ -71,7 +79,7 @@ function packages = atomsGetTOOLBOXES(update)
 	// =========================================================================
 	
 	if (packages_path_info == []) ..
-		| (getdate("s") - packages_path_info(7) > 3600) ..
+		| (getdate("s") - packages_path_info(6) > 3600) ..
 		| (rhs == 1 & update) then
 		
 		// loop on available repositories
@@ -106,7 +114,7 @@ function packages = atomsGetTOOLBOXES(update)
 			// Extract It
 			// ----------------------------------------
 			
-			if LINUX | MACOSX then
+			if LINUX | MACOSX | SOLARIS | BSD then
 				extract_cmd = "gunzip "+ file_out;
 				
 			else

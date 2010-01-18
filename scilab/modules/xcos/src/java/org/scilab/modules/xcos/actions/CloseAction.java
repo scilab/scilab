@@ -12,15 +12,16 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -54,7 +55,11 @@ public class CloseAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((XcosDiagram) getGraph(null)).closeDiagram();
+		if (getGraph(null) instanceof SuperBlockDiagram) {
+			((SuperBlockDiagram) getGraph(null)).getContainer().closeBlockSettings();
+		} else {
+			((XcosDiagram) getGraph(null)).closeDiagram();
+		}
 	}
 
 }

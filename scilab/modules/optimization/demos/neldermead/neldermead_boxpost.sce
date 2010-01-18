@@ -112,7 +112,8 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "postoffice.txt" );
+logfile = TMPDIR + "\postoffice.txt";
+nm = neldermead_configure(nm,"-logfile" , logfile );
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
 nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
@@ -147,7 +148,9 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-deletefile ( "postoffice.txt" )
+deletefile ( logfile )
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //

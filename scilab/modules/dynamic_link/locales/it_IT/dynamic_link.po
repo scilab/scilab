@@ -1,0 +1,401 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-26 14:40+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: comando: %s\n"
+
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: Copiare %s in TMPDIR\n"
+
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr ""
+"   %s: Copiare i file di compilazione (Makefile*, libtool...) in TMPDIR\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: %s non è stato copiato: la directory di origine e quella di "
+"destinazione coincidono (%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: Il file %s è stato ignorato.\n"
+
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: Modifica del Makefile in TMPDIR.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr ""
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: sostituisce il riferimento con il file attuale.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: usa il compilatore trovato in precedenza.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configurare : generare il Makefile.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   Creazione in corso della libreria condivisa (attendere)\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   Comando: %s\n"
+
+msgid "   Compilation of "
+msgstr "   Compilazione di "
+
+msgid "   Generate a Makefile\n"
+msgstr "   Genera un makefile\n"
+
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Genera un makefile: %s\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   Genera un file del pulitore\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   Genera un file di gateway\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   Genera un file del loader\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   Risultato: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Esecuzione del makefile in corso\n"
+
+msgid "   Running the makefile\n"
+msgstr "   esegue il makefile\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   stderr: %s\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s: il secondo argomento deve essere un id unico di una libreria condivisa.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
+"\"%s\".\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s non è un punto di ingresso.\n"
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: È richiesto un compilatore per il Fortran o per il C.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: È già caricato dalla libreria %s\n"
+
+#, c-format
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s: Si è verificato un errore durante la compilazione:\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: Comando di creazione: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Non è possibile aprire il file %s.\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr ""
+"%s: Non è possibile aprire i file condivisi. È stato raggiunto il massimo "
+"dell'ingresso %d.\n"
+
+#, c-format
+msgid "%s: Error while modifing the reference Makefile:\n"
+msgstr "%s: Errore durante la modifica del Makefile di rirerimento:\n"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: Caratteristica non disponibile sotto Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: La libreria condivisa %s non esiste.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: Il comando era:\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Il file %s non esiste.\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: Il seg. archivio condiviso non era caricato: %s\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: Questa caratteristica è stata realizzata per Windows.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+"%s: Questa caratteristica richiede il compilatore Microsoft visual studio C\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: Attenzione: la compilazione non ha restituito alcun errore, ma il "
+"registro d'uscita degli errori non è vuoto:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: Attenzione: Scilab non è riuscito a localizzare i propri sorgenti. "
+"Inviare un resoconto del bug su http://bugzilla.scilab.org/\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d, "
+"%d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice di stringhe < 999.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"scalare.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore stringa < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore di tipo stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un int.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato. Erano attese delle "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato. Era atteso un vettore di "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attese delle "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'insieme {%s}.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: c'è un problema con uno dei punti di ingresso.\n"
+
+msgid "A Fortran or C compiler is required."
+msgstr "È richiesto un compilatore per il Fortran o per il C."
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"Non è possibile aprire i file condivisi, è stato raggiunto il massimo "
+"dell'ingresso %d.\n"
+
+msgid "Dynamic link"
+msgstr "Collegamento dinamico"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Nome di ingresso %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Punto di ingresso %s nella libreria condivisa %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Errore: %d non è un numero di routine interna valido.\n"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C non può creare codice fortran 90"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "L'interfaccia %s non è collegata.\n"
+
+msgid "Link done.\n"
+msgstr "Il collegamento è stato effettuato.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "Il collegamento per la libreria dinamica \"%s\" è fallito.\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "Collegamento di %s in corso.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Numero di punti di ingresso %d.\n"
+"Librerie condivise :\n"
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "Risultato: %s\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "L'archivio condiviso è stato caricato.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Era atteso il nome di una unica libreria dinamica."
+
+msgid "Unique id of a shared library expected."
+msgstr "Era atteso un id unico di una libreria condivisa."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d librerie.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : libreria %d.\n"
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "stderr: %s\n"

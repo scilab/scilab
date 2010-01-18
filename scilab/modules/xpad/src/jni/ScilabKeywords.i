@@ -23,8 +23,7 @@
 /* JavaDoc for ScilabKeywordsJNI class */
 %pragma(java) jniclassclassmodifiers=%{
  /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class%}
 
@@ -39,21 +38,17 @@ public class%}
 
 /* static load of library */
 %pragma(java) jniclasscode=%{
-  private static final String OSNAME = System.getProperty("os.name").toLowerCase();
   static {
     try {
-        if (OSNAME.indexOf("windows") != -1) {
-        System.loadLibrary("xpad");
-        }
-        else {
         System.loadLibrary("scixpad");
-        }
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library xpad does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+	} catch (UnsatisfiedLinkError e) {
+	  	if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
+		   System.err.println("The native library xpad does not exist or cannot be found.");
+		   e.printStackTrace(System.err);
+		}
     }
   }
 %}
@@ -61,8 +56,7 @@ public class%}
 /* JavaDoc for ScilabKeywords class */
 %pragma(java) moduleclassmodifiers="
  /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2009
+   * @author Allan CORNET - DIGITEO 2009
    */
 public class";
 

@@ -8,6 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function %r_p(h)
+
+if with_texmacs() then
+  texout(h);
+else
+
 //used to display rational fraction with complex coefficients
 //The real case is hard coded
 if size(size(h),'*')>2 then
@@ -71,7 +76,10 @@ while %t
   if width==[] then break,end
 end
 
+end
+
 endfunction
+
 function txt=p2str(p)
 //form display of a single polynomial with complex coefficients
 lparen='('

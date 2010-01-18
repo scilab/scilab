@@ -158,7 +158,7 @@ function [x,y,typ]=GAINBLK(job,arg1,arg2)
     model=arg1.model;
     if size(exprs,'*')==1 then exprs=[exprs;sci2exp(0)];end // compatibility
     while %t do
-      [ok,gain,over,exprs]=getvalue('Set gain block parameters',..
+      [ok,gain,over,exprs]=scicos_getvalue('Set gain block parameters',..
 			       ['Gain';..
 				'Do On Overflow(0=Nothing 1=Saturate 2=Error)'],..
 				list('mat',[-1,-1],'vec',1),exprs)

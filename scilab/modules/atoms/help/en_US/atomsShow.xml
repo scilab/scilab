@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsShow(name[,version])
+	  atomsShow(module)
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -30,24 +30,54 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
-        <term>name</term>
+			<varlistentry>
+        <term>module</term>
         <listitem>
+					
           <para>
-						Character string : External module's technical name
+						1x1 or 1x2 Matrix of strings:
 					</para>
-        </listitem>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								the most recent	version is used
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
-          <para>
-						Character string : External module's version. This is an
-						optional parameter. If not defined, the most recent version
-						of the module is used.
-					</para>
-        </listitem>
-      </varlistentry>
+			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -403,8 +404,6 @@ nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-nbineqconst",3);
-//nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-method","mine");
 nm = neldermead_configure(nm,"-mymethod",neldermead_constraints);
 nm = neldermead_search(nm);
@@ -418,3 +417,4 @@ assert_close ( fopt , -44.0 , 1e-5 );
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
+

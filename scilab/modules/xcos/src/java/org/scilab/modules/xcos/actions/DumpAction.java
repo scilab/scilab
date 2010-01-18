@@ -17,36 +17,58 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
+/**
+ * @author Bruno JOFRET
+ *
+ */
 public class DumpAction extends DefaultAction {
 
+    private static final long serialVersionUID = 3912361255175611532L;
+
+    /**
+     * @param scilabGraph graph
+     */
     public DumpAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.DUMP, scilabGraph);
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return push button
+     */
     public static PushButton dumpButton(ScilabGraph scilabGraph) {
 	return createButton(XcosMessages.DUMP, null, new DumpAction(scilabGraph));
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return menu item
+     */
     public static MenuItem dumpMenu(ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.DUMP, null, new DumpAction(scilabGraph), null);
     }
 
     public void actionPerformed(ActionEvent e) {
 	try {
-	    File temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
+	    File temp = File.createTempFile("xcos",".h5");
+	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");");
+	    try {
+			XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+				+ "deletefile(\"" + temp.getAbsolutePath() + "\");");
+		} catch (InterpreterException e1) {
+			e1.printStackTrace();
+		}
 	} catch (IOException e1) {
-	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
     }

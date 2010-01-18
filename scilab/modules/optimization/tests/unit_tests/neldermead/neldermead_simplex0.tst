@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -149,8 +150,6 @@ nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-x0",[0.0 0.0]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-method","box");
-//nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0length",20.0);

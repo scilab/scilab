@@ -42,46 +42,74 @@ public class H5ReadScilabInteger {
 	}
 
 	private static byte[][] getIntegerMatrix8(int dataSetId, boolean bUnsigned) throws NullPointerException, HDF5Exception {
-		long[] nbElems = H5Read.getAllDims(dataSetId); 
-		byte[][] data = new byte[(int)nbElems[0]][(int)nbElems[1]];
+		int[] nbElems = H5Read.getAllDims(dataSetId); 
+		byte[] data = new byte[nbElems[0] * nbElems[1]];
+		byte[][] result = new byte[nbElems[0]][nbElems[1]];
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT8 : HDF5Constants.H5T_NATIVE_INT8; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
-		return data;
+		for(int i = 0 ; i < nbElems[0] ; ++i) {
+		    for (int j = 0 ; j < nbElems[1] ; ++j) {
+			result[i][j] = data[i + j * nbElems[0]];
+		    }
+		}
+		
+		H5.H5Dclose(dataSetId);
+		return result;
 	}
 	
 	private static short[][] getIntegerMatrix16(int dataSetId, boolean bUnsigned) throws NullPointerException, HDF5Exception {
-		long[] nbElems = H5Read.getAllDims(dataSetId); 
-		short[][] data = new short[(int)nbElems[0]][(int)nbElems[1]];
+		int[] nbElems = H5Read.getAllDims(dataSetId); 
+		short[] data = new short[nbElems[0] * nbElems[1]];
+		short[][] result = new short[nbElems[0]][nbElems[1]];
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT16 : HDF5Constants.H5T_NATIVE_INT16; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
-		return data;
+		for(int i = 0 ; i < nbElems[0] ; ++i) {
+		    for (int j = 0 ; j < nbElems[1] ; ++j) {
+			result[i][j] = data[i + j * nbElems[0]];
+		    }
+		}
+
+		H5.H5Dclose(dataSetId);
+		return result;
 	}
 	
 	private static int[][] getIntegerMatrix32(int dataSetId, boolean bUnsigned) throws NullPointerException, HDF5Exception {
-		long[] nbElems = H5Read.getAllDims(dataSetId); 
-		int[][] data = new int[(int)nbElems[0]][(int)nbElems[1]];
+		int[] nbElems = H5Read.getAllDims(dataSetId); 
+		int[] data = new int[nbElems[0] * nbElems[1]];
+		int[][] result = new int[nbElems[0]][nbElems[1]];
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT32 : HDF5Constants.H5T_NATIVE_INT32; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
-		return data;
+		for(int i = 0 ; i < nbElems[0] ; ++i) {
+		    for (int j = 0 ; j < nbElems[1] ; ++j) {
+			result[i][j] = data[i + j * nbElems[0]];
+		    }
+		}
+
+		H5.H5Dclose(dataSetId);
+		return result;
 	}
 	
 	private static long[][] getIntegerMatrix64(int dataSetId, boolean bUnsigned) throws NullPointerException, HDF5Exception {
-		long[] nbElems = H5Read.getAllDims(dataSetId); 
-		long[][] data = new long[(int)nbElems[0]][(int)nbElems[1]];
+		int[] nbElems = H5Read.getAllDims(dataSetId); 
+		long[] data = new long[nbElems[0] * nbElems[1]];
+		long[][] result = new long[nbElems[0]][nbElems[1]];
 		int prec = bUnsigned ? HDF5Constants.H5T_NATIVE_UINT64 : HDF5Constants.H5T_NATIVE_INT64; 
 
 		H5.H5Dread(dataSetId, prec, H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-		H5.H5Dclose(dataSetId);
 
-		return data;
+		for(int i = 0 ; i < nbElems[0] ; ++i) {
+		    for (int j = 0 ; j < nbElems[1] ; ++j) {
+			result[i][j] = data[i + j * nbElems[0]];
+		    }
+		}
+
+		H5.H5Dclose(dataSetId);
+		return result;
 	}
 }

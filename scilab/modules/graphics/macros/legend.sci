@@ -22,6 +22,7 @@ options_codes=[1;2;3;
 	       -5;-6];
   f        = gcf();
   vis      = f.immediate_drawing;
+  vis_on   = vis == "on"; // current figure draw status (to decide if drawnow or standby)
   narg     = size(varargin);
   k0       = 1;
   H        = [];
@@ -78,7 +79,8 @@ options_codes=[1;2;3;
   
   // the number of labels might be lower than the number of polylines
   nbLeg = min(size(H, '*'), size(leg, '*'));
-  H = H(1:nbLeg);
+  first_handle=size(H, '*')-nbLeg+1;
+  H = H(first_handle:size(H, '*'));
   leg = leg(1:nbLeg);
   
   
@@ -90,7 +92,7 @@ options_codes=[1;2;3;
     if pos<>[] then
       c.position=pos;
     else
-      drawnow()
+      if vis_on then drawnow(); end    // draw if figure status allows it (otherwise standbye)
       bnds=get(gca(),'axes_bounds');
       as=get(gcf(),'axes_size');
       while %t
@@ -104,7 +106,7 @@ options_codes=[1;2;3;
       end
     end
   end
-  drawnow()
+  if vis_on then drawnow(); end       // draw if figure status allows it (otherwise standbye)
 endfunction
 
 function h=getvalidchildren(A)
@@ -116,9 +118,9 @@ function h=getvalidchildren(A)
       h=[h;a]
      case 'Axes'
       ax=a.children
-      h=[h;getvalidchildren(ax($:-1:1))]
+      h=[h;getvalidchildren(ax)]
     case 'Compound'
-      for k=size(a.children,'*'):-1:1
+     for k=1:1:size(a.children,'*')
 	h=[h;getvalidchildren(a.children(k))]
 
       end

@@ -28,16 +28,79 @@ import com.mxgraph.model.mxGeometry;
 
 
 
-public class SplitBlock extends BasicBlock {
+/**
+ * @author Bruno JOFRET
+ *
+ */
+public final class SplitBlock extends BasicBlock {
 
+    public static final int DEFAULT_SIZE = 7;
+    public static final int DEFAULT_COLOR = 7;
+
+    private static final long serialVersionUID = 5817243367840540106L;
+
+	/**
+	 * Constructor
+	 */
 	public SplitBlock() {
 		super();
-		setVertex(false);
-		setVisible(false);
 	}
 
+	// SPLIT_f <-> lsplit
+	// CLKSPLIT_f <-> split
+	// IMPSPLIT_F <-> limpsplit
+	/**
+	 * @param label block label
+	 */
 	protected SplitBlock(String label) {
-		super(label);
+		this();
+		setDefaultValues();
+		setValue(label);
+	}
+
+	/**
+	 * Connect the splitblock to a source and 2 targets.
+	 * @param source source to be connected with
+	 * @param target1 first target to be connected with
+	 * @param target2 second target to be connected with
+	 */
+	public void setConnection(BasicPort source, BasicPort target1, BasicPort target2) {
+		
+		//source
+		if (source instanceof ExplicitOutputPort) {
+			addPort(new ExplicitInputPort());
+		} else if (source instanceof ImplicitOutputPort || source instanceof ImplicitInputPort) {
+			addPort(new ImplicitInputPort());
+		} else if (source instanceof CommandPort) {
+			addPort(new ControlPort());
+		}
+
+		//target1 -> add 3 output ports
+		if (target1 instanceof ExplicitInputPort) {
+			addPort(new ExplicitOutputPort());
+			addPort(new ExplicitOutputPort());
+			addPort(new ExplicitOutputPort());
+		} else if (target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort) {
+			addPort(new ImplicitOutputPort());
+			addPort(new ImplicitOutputPort());
+			addPort(new ImplicitOutputPort());
+		} else if (target1 instanceof ControlPort) {
+			addPort(new CommandPort());
+			addPort(new CommandPort());
+			addPort(new CommandPort());
+		}
+		
+		getChildAt(0).setVisible(false);
+		getChildAt(1).setVisible(false);
+		getChildAt(2).setVisible(false);
+	}
+
+	/**
+	 * Initialize the block with the default values
+	 */
+	@Override
+	protected void setDefaultValues() {
+		super.setDefaultValues();
 		setInterfaceFunctionName("SPLIT_f");
 		setSimulationFunctionName("lsplit");
 		setRealParameters(new ScilabDouble());
@@ -45,112 +108,83 @@ public class SplitBlock extends BasicBlock {
 		setObjectsParameters(new ScilabList());
 		setExprs(new ScilabDouble());
 	}
-
-	// SPLIT_f <-> lsplit
-	// CLKSPLIT_f <-> split
-	// IMPSPLIT_F <-> limpsplit
-
-	public SplitBlock(String label, BasicPort source, BasicPort target1,
-			BasicPort target2) {
-		this(label);
-
-		//source
-		if(source instanceof ExplicitOutputPort){
-			ExplicitInputPort tmp = new ExplicitInputPort();
-			addPort(tmp);
-		}else if(source instanceof ImplicitOutputPort || source instanceof ImplicitInputPort){
-			ImplicitInputPort tmp = new ImplicitInputPort();
-			addPort(tmp);
-		}else if(source instanceof CommandPort){
-			ControlPort tmp = new ControlPort();
-			addPort(tmp);
-		}
-
-		//target1
-		if(target1 instanceof ExplicitInputPort){
-			ExplicitOutputPort tmp = new ExplicitOutputPort();
-			addPort(tmp);
-		}else if(target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort){
-			ImplicitOutputPort tmp = new ImplicitOutputPort();
-			addPort(tmp);
-		}else if(target1 instanceof ControlPort){
-			CommandPort tmp = new CommandPort();
-			addPort(tmp);
-		}
-
-		//target2
-		if(target2 instanceof ExplicitInputPort){
-			ExplicitOutputPort tmp = new ExplicitOutputPort();
-			addPort(tmp);
-			addPort(new ExplicitOutputPort());
-		}else if(target2 instanceof ImplicitOutputPort || target2 instanceof ImplicitInputPort){
-			ImplicitOutputPort tmp = new ImplicitOutputPort();
-			addPort(tmp);
-			addPort(new ImplicitOutputPort());
-		}else if(target2 instanceof ControlPort){
-			CommandPort tmp = new CommandPort();
-			addPort(tmp);
-			addPort(new CommandPort());
-		}
-
-		getChildAt(0).setVisible(false);
-		getChildAt(1).setVisible(false);
-		getChildAt(2).setVisible(false);
-	}
-
+	
+	/**
+	 * @param port command port to add
+	 */
 	public void addPort(CommandPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port control port to add
+	 */
 	public void addPort(ControlPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port input port to add
+	 */
 	public void addPort(InputPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
+	/**
+	 * @param port output port to add
+	 */
 	public void addPort(OutputPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}
 
-	public BasicPort getIn(){
-		return (BasicPort)getChildAt(0);
+	/**
+	 * @return input port
+	 */
+	public BasicPort getIn() {
+		return (BasicPort) getChildAt(0);
 	}
 
-	public BasicPort getOut1(){
-		return (BasicPort)getChildAt(1);
+	/**
+	 * @return first output port
+	 */
+	public BasicPort getOut1() {
+		return (BasicPort) getChildAt(1);
 	}
 
-	public BasicPort getOut2(){
-		return (BasicPort)getChildAt(2);
+	/**
+	 * @return second ouput port
+	 */
+	public BasicPort getOut2() {
+		return (BasicPort) getChildAt(2);
 	}
 
+	/**
+	 * delete split block child before delete 
+	 */
 	public void unlinkAndClean() {
 	
-		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0),getChildAt(1),getChildAt(2),getChildAt(3)});
-		for(int i = 0 ; i < objs.length ; i++){
-			if(objs[i] instanceof BasicLink){
-				((BasicLink)objs[i]).setSource(null);
-				((BasicLink)objs[i]).setTarget(null);
+		Object[] objs = getParentDiagram().getAllEdges(new Object[]{getChildAt(0), getChildAt(1), getChildAt(2)});
+		getParentDiagram().getModel().beginUpdate();
+		for (int i = 0; i < objs.length; i++) {
+			if (objs[i] instanceof BasicLink) {
+				BasicLink link = (BasicLink) objs[i];
+					getParentDiagram().getModel().remove(link);
 			}
 		}
-		getParentDiagram().removeCells(objs);
-		
-		//delete all children
-		while(getChildCount() > 0){
-			remove(0);
-		}
+		getParentDiagram().getModel().endUpdate();
 	}
 
+	/**
+	 * @param geometry change split block geometry
+	 */
 	public void setGeometry(mxGeometry geometry) {
-		if(geometry != null){
-			geometry.setWidth(7);
-			geometry.setHeight(7);
+		if (geometry != null) {
+			geometry.setWidth(DEFAULT_SIZE);
+			geometry.setHeight(DEFAULT_SIZE);
 		}
 		super.setGeometry(geometry);
 	}

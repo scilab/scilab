@@ -16,7 +16,6 @@ package org.scilab.modules.renderer.utils.MarkDrawing;
 
 import org.scilab.modules.renderer.DrawableObjectGL;
 import org.scilab.modules.renderer.utils.CoordinateTransformation;
-import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 import javax.media.opengl.GL;
 
@@ -108,7 +107,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	
 	
 	/**
-	 * Get the size of marks in pixel wether it is tabulated or not.
+	 * Get the size of marks in pixel whether it is tabulated or not.
 	 * @return size in pixels
 	 */
 	protected int getMarkPixelSize() {
@@ -128,7 +127,7 @@ public class MarkDrawer extends DrawableObjectGL {
 			}
 		}
 		
-		// devide by 2, becaus marks are drawn in interval [-1,1]x[1,1]
+		// Divide by 2, because marks are drawn in interval [-1,1]x[1,1]
 		// so a 2x2 square
 		return (res / 2 + 1);
 		
@@ -165,9 +164,11 @@ public class MarkDrawer extends DrawableObjectGL {
 			transform.pushPolygonsBack(gl);
 			double realMarkSize = getMarkPixelSize();
 			gl.glScaled(realMarkSize, realMarkSize, 1.0);
-      //set transparency
-      drawer.setFrontTransparency(markForeground==-1);
-      drawer.setBackTransparency(markBackground==-1);
+			
+			//set transparency
+			drawer.setFrontTransparency(markForeground == -1);
+      		drawer.setBackTransparency(markBackground == -1);
+      		
 			drawer.drawMark(gl, getColorMap().getColor(markBackground), getColorMap().getColor(markForeground));
 			transform.endPushPolygonsBack(gl);
 		}
@@ -176,7 +177,7 @@ public class MarkDrawer extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Draw a mark at the specified postion
+	 * Draw a mark at the specified position
 	 * @param posX X coordinate of the mark
 	 * @param posY Y coordinate of the mark
 	 * @param posZ Z coordinate of the mark

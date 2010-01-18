@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
+function bval=multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
 // This function converts M-Files containing more than one functio
 // Inputs are the same as mfile2sci()
 // Outputs :
@@ -102,7 +102,7 @@ else
 
   for k=1:size(tmpfiles,"*")
     txt=mgetl(pathconvert(TMPDIR)+base_name+sep+tmpfiles(k)+".m")
-    //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprint)
+    //mfile2sci(pathconvert(TMPDIR)+tmpfiles(k)+".m",res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
   end
   
   translatepaths(pathconvert(TMPDIR)+base_name,pathconvert(TMPDIR)+base_name)

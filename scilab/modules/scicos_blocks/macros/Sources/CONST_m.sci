@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
 while %t do
-    [ok,C,exprs]=getvalue('Set Contant Block',..
+    [ok,C,exprs]=scicos_getvalue('Set Contant Block',..
 	    ['Constant'],list('vec',-1),exprs)
     if ~ok then break,end
     nout=size(C)

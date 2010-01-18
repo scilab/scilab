@@ -34,7 +34,7 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
-  [ok,dt,nn,exprs]=getvalue('Set Multifrequency clock parameters',..
+  [ok,dt,nn,exprs]=scicos_getvalue('Set Multifrequency clock parameters',..
       ['basic period (1/f)';'multiply by (n)'],list('vec',1,'vec',1),exprs)
   if ok then
     model.ipar=nn

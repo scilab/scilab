@@ -43,7 +43,7 @@ int gw_io(void)
 	/* Recursion from a function */
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
 	}
 
 	if ( isRecursionCallToFunction() )

@@ -54,7 +54,7 @@ void FecLineDrawerJoGL::drawFec(const double xCoords[], const double yCoords[],
   }
   catch (const std::exception & e)
   {
-     sciprint(_("%s: No more memory.\n"), "FecLineDrawerJoGL::drawFec");
+     sciprint(const_cast<char*>(_("%s: No more memory.\n")), "FecLineDrawerJoGL::drawFec");
   }
   endDrawing();
 }

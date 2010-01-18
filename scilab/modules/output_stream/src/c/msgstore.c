@@ -13,6 +13,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "msgstore.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2

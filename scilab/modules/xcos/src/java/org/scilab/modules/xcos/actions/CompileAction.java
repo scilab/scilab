@@ -12,15 +12,18 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Diagram compilation management
@@ -52,15 +55,31 @@ public class CompileAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		File temp;
-		try {
-			temp = File.createTempFile("xcos", ".hdf5");
-			temp.delete();
-			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");xcos_compile(scs_m);");
-			temp.deleteOnExit();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
+			Thread launchMe = new Thread() {
+				public void run() {
+					File temp;
+					try {
+						temp = File.createTempFile("xcos", ".h5");
+						temp.deleteOnExit();
+						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
+						
+						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+						               + "xcos_compile(scs_m);";
+						try {
+							XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+								public void actionPerformed(ActionEvent arg0) {
+									((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
+								}
+							});
+						} catch (InterpreterException e) {
+							e.printStackTrace();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+			launchMe.start();
 	}
 }

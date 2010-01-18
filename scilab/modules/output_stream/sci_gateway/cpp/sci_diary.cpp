@@ -92,16 +92,16 @@ static int sci_diary_no_rhs(char *fname)
 {
 	// [ids, filenames] = diary()
 	// [ids, filenames] = diary([],"list")
-	StrErr strErr;
+	SciErr sciErr;
 	int nb_diary_ids = 0;
 	double *diary_ids  = getDiaryIDsAsDouble(&nb_diary_ids);
 
 	if ( (diary_ids) && (nb_diary_ids > 0) )
 	{
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, nb_diary_ids, 1, diary_ids);
-		if(strErr.iErr)
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, nb_diary_ids, 1, diary_ids);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -115,10 +115,10 @@ static int sci_diary_no_rhs(char *fname)
 	{
 		if (nb_diary_ids == 0)
 		{
-			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
-			if(strErr.iErr)
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 			LhsVar(1) = Rhs + 1;
@@ -144,10 +144,10 @@ static int sci_diary_no_rhs(char *fname)
 
 		if ( (wcdiary_filenames) && (nb_diary_filenames > 0) )
 		{
-			strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, nb_diary_filenames, 1, wcdiary_filenames);
-			if(strErr.iErr)
+			sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, nb_diary_filenames, 1, wcdiary_filenames);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -160,10 +160,10 @@ static int sci_diary_no_rhs(char *fname)
 		{
 			if (nb_diary_filenames == 0)
 			{
-				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, 0, 0, NULL);
-				if(strErr.iErr)
+				sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, 0, 0, NULL);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -189,21 +189,21 @@ static int sci_diary_no_rhs(char *fname)
 /*--------------------------------------------------------------------------*/
 static int sci_diary_one_rhs(char *fname)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int iType	= 0;
 	int *piAddressVarOne = NULL;
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
 	{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 	}
 
@@ -255,10 +255,10 @@ static int sci_diary_one_rhs(char *fname)
 					return 0;
 				}
 
-				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
-				if(strErr.iErr)
+				sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
+				if(sciErr.iErr)
 				{
-						printError(&strErr, 0);
+						printError(&sciErr, 0);
 						return 0;
 				}
 
@@ -268,10 +268,10 @@ static int sci_diary_one_rhs(char *fname)
 				{
 					wchar_t **wfilenameUsed = new wchar_t*[1];
 					wfilenameUsed[0] = getDiaryFilename((int)dID);
-					strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
-					if(strErr.iErr)
+					sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+					if(sciErr.iErr)
 					{
-							printError(&strErr, 0);
+							printError(&sciErr, 0);
 							return 0;
 					}
 
@@ -286,8 +286,7 @@ static int sci_diary_one_rhs(char *fname)
 				{
 					if (wcFilenames)
 					{
-						if (wcFilenames[0]) {FREE(wcFilenames[0]); wcFilenames[0] = NULL;}
-						FREE(wcFilenames); wcFilenames = NULL;
+						freeArrayOfWideString(wcFilenames, 1);
 						Scierror(999,_("%s: error can not close diary.\n"),fname);
 						return 0;
 					}
@@ -315,13 +314,13 @@ static int sci_diary_two_rhs(char *fname)
 {
 	int ierr = 0;
 	wchar_t *wcArgumentTwo = getInputArgumentTwo(fname, &ierr);
-	StrErr strErr;
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 	}
 
@@ -332,10 +331,10 @@ static int sci_diary_two_rhs(char *fname)
 		if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_LIST) == 0)
 		{
 			int m1 = 0, n1 = 0;
-			strErr = getVarDimension(pvApiCtx, piAddressVarOne,&m1,&n1);
-			if(strErr.iErr)
+			sciErr = getVarDimension(pvApiCtx, piAddressVarOne,&m1,&n1);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -352,10 +351,10 @@ static int sci_diary_two_rhs(char *fname)
 		else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_CLOSE) == 0)
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -377,10 +376,10 @@ static int sci_diary_two_rhs(char *fname)
 				  (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_OFF) == 0) )
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -402,10 +401,10 @@ static int sci_diary_two_rhs(char *fname)
 				  (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_ON) == 0) )
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -426,10 +425,10 @@ static int sci_diary_two_rhs(char *fname)
 		else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_NEW) == 0)
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -448,10 +447,10 @@ static int sci_diary_two_rhs(char *fname)
 		else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -470,10 +469,10 @@ static int sci_diary_two_rhs(char *fname)
 		else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_EXISTS) == 0)
 		{
 			int iType = 0;
-			strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -565,20 +564,20 @@ static int sci_diary_three_rhs(char *fname)
 		if (wcArgumentTwo)
 		{
 			int *piAddressVarOne = NULL;
-			StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-			if(strErr.iErr)
+			SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
 			if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_NEW) == 0)
 			{
 				int iType = 0;
-				strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-				if(strErr.iErr)
+				sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -596,10 +595,10 @@ static int sci_diary_three_rhs(char *fname)
 			else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
 			{
 				int iType = 0;
-				strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-				if(strErr.iErr)
+				sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -642,27 +641,27 @@ static double *getInputArgumentOneIDs(char *fname,int *sizeReturnedArray, int *i
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	int iType = 0;
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	if (iType == sci_matrix)
 	{
-		strErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&IDs);
-		if(strErr.iErr)
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&IDs);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -700,18 +699,18 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	int iType = 0;
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -719,10 +718,10 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 	{
 		int *lenStVarOne = NULL;
 
-		strErr = getVarDimension(pvApiCtx, piAddressVarOne,&m1,&n1);
-		if(strErr.iErr)
+		sciErr = getVarDimension(pvApiCtx, piAddressVarOne,&m1,&n1);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -741,10 +740,10 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 			}
 			else
 			{
-				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
-				if(strErr.iErr)
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -756,10 +755,20 @@ static wchar_t **getInputArgumentOneFilenames(char *fname,int *sizeReturnedArray
 				}
 				else
 				{
-					strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
-					if(strErr.iErr)
+					for (int i = 0; i < m1 * n1;i++)
 					{
-						printError(&strErr, 0);
+						wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t)* (lenStVarOne[i] + 1));
+						if (wcFilenames[i] == NULL)
+						{
+							Scierror(999,_("%s : Memory allocation error.\n"),fname);
+							*ierror = 1;
+						}
+					}
+
+					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+					if(sciErr.iErr)
+					{
+						printError(&sciErr, 0);
 						return 0;
 					}
 
@@ -789,18 +798,18 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 	int m2 = 0, n2 = 0;
 	int *piAddressVarTwo = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-	if(strErr.iErr)
+	SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	int iType = 0;
-	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -808,10 +817,10 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 	{
 		int lenStVarTwo = 0;
 
-		strErr = getVarDimension(pvApiCtx, piAddressVarTwo,&m2,&n2);
-		if(strErr.iErr)
+		sciErr = getVarDimension(pvApiCtx, piAddressVarTwo,&m2,&n2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -822,17 +831,27 @@ static wchar_t *getInputArgumentTwo(char *fname, int *ierror)
 		}
 		else
 		{
-			strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
-			if(strErr.iErr)
+			// get length lenStVarTwo
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
+
+			wcInputArgumentTwo = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo + 1));
 
 			if (wcInputArgumentTwo == NULL)
 			{
 				Scierror(999,_("%s : Memory allocation error.\n"),fname);
 				*ierror = 1;
+			}
+
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&wcInputArgumentTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
 			}
 		}
 	}
@@ -853,18 +872,18 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 	int m3 = 0, n3 = 0;
 	int *piAddressVarThree = NULL;
 
-	StrErr strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
-	if(strErr.iErr)
+	SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	int iType = 0;
-	strErr = getVarType(pvApiCtx, piAddressVarThree, &iType);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -872,10 +891,10 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 	{
 		int *lenStVarThree = NULL;
 
-		strErr = getVarDimension(pvApiCtx, piAddressVarThree,&m3,&n3);
-		if(strErr.iErr)
+		sciErr = getVarDimension(pvApiCtx, piAddressVarThree,&m3,&n3);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -894,10 +913,10 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 			}
 			else
 			{
-				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
-				if(strErr.iErr)
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -909,10 +928,15 @@ static wchar_t** getInputArgumentThree(char *fname,int *sizeReturnedArray, int *
 				}
 				else
 				{
-					strErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
-					if(strErr.iErr)
+					for (int i = 0; i < m3 * n3; i++)
 					{
-						printError(&strErr, 0);
+						wcInputArgumentThree[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarThree[i] + 1));
+					}
+
+					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+					if(sciErr.iErr)
+					{
+						printError(&sciErr, 0);
 						return 0;
 					}
 
@@ -1177,10 +1201,10 @@ static int ExistByFilenames(char *fname)
 	}
 	freeArrayOfWideString(wcFilenames,dIDs_size);
 
-	StrErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
-	if(strErr.iErr)
+	SciErr sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -1219,10 +1243,10 @@ static int ExistByIds(char *fname)
 		}
 	}
 
-	StrErr strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
-	if(strErr.iErr)
+	SciErr sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, dIDs_size, resultExist);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -1238,7 +1262,7 @@ static int AppendByFilenames(char *fname,
 							 diary_prefix_time_filter prefixModeFilter,
 							 bool suspended)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	wchar_t **wcFilenames = NULL;
 	int dIDs_size = 0;
 	int ierr = 0;
@@ -1272,10 +1296,10 @@ static int AppendByFilenames(char *fname,
 		diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
 		if (suspended) diaryPause((int)dID);
 
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
-		if(strErr.iErr)
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -1285,10 +1309,10 @@ static int AppendByFilenames(char *fname,
 		{
 			wchar_t **wfilenameUsed = new wchar_t*[1];
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
-			strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
-			if(strErr.iErr)
+			sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -1345,17 +1369,17 @@ static int NewByFilenames(char *fname,
 		diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
 		if (suspended) diaryPause((int)dID);
 
-		StrErr strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
+		SciErr sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
 		LhsVar(1) = Rhs + 1;
 
 		if (Lhs == 2)
 		{
 			wchar_t **wfilenameUsed = new wchar_t*[1];
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
-			strErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
-			if(strErr.iErr)
+			sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 2, 1, 1, wfilenameUsed);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Portaction_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Portaction_pal</refname>
+
+    <refpurpose>Port &amp; Subsystem palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/PortAction_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Portaction_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Portaction_pal">
+    <title>Description</title>
+
+    <para>The Port &amp; Subsystem palette includes blocks for creating
+    subsystems.</para>
+  </refsection>
+
+  <refsection id="Blocks_Portaction_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLKINV_f">CLKINV_f — Input activation port
+          Event-Select</link>
+        </para>
+      </listitem>
+	  
+     <listitem>
+        <para>
+          <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port
+          Event-Select</link>
+        </para>
+      </listitem>      
+
+      <listitem>
+        <para>
+          <link linkend="IN_f">IN_f - Input Port</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="INIMPL_f">INIMPL_f — Input implicit port</link>
+        </para>
+      </listitem> 
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
+        </para>
+      </listitem>
+	  
+      <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Output Port</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="SUPER_f">SUPER_f — Super block</link>
+        </para>
+      </listitem>
+	  
+    </itemizedlist>
+  </refsection>
+</refentry>

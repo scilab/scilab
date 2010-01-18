@@ -1,0 +1,792 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2009-12-12 17:22+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "\t - ''%s - %s''\n"
+msgstr "\t - ''%s - %s''\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is already loaded\n"
+msgstr "\t - El ''%s - %s'' ja està carregat\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
+msgstr "\t - ''%s - %s'' és necessari per a ''%s - %s''\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s''\n"
+msgstr "\t - ''%s - %s'' és necessari per a ''%s''\n"
+
+#, c-format
+msgid "\t - Local location : ''%s''\n"
+msgstr "\t - Ubicació local: ''%s''\n"
+
+#, c-format
+msgid "\t - MD5SUM expected : ''%s''\n"
+msgstr "\t - MD5SUM esperat : ''%s''\n"
+
+#, c-format
+msgid "\t - MD5SUM watched  : ''%s''\n"
+msgstr "\t - MD5SUM obtingut : ''%s''\n"
+
+#, c-format
+msgid "\t - URL            : ''%s''\n"
+msgstr "\t - URL            : ''%s''\n"
+
+#, c-format
+msgid "\t - You''ve asked ''%s - %s''\n"
+msgstr "\t - Heu demanat ''%s - %s''\n"
+
+#, c-format
+msgid "\t - destination : ''%s''\n"
+msgstr "\t - destí : ''%s''\n"
+
+#, c-format
+msgid "\t - file            : ''%s''\n"
+msgstr "\t - fitxer          : ''%s''\n"
+
+#, c-format
+msgid "\t - source      : ''%s''\n"
+msgstr "\t - font      : ''%s''\n"
+
+#, c-format
+msgid "%s: %s (%s) isn''t installed.\n"
+msgstr "%s: %s (%s) no està instal·lat.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
+msgstr "%s: El ''%s - %s'' (secció ''%s'') no està instal·lat.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' is not installed.\n"
+msgstr "%s: El ''%s - %s'' no està instal·lat.\n"
+
+#, c-format
+msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
+msgstr "%s: El ''%s'' (''%s'' section) no està instal·lat.\n"
+
+#, c-format
+msgid "%s: ''%s'' isn''t installed.\n"
+msgstr "%s: ''%s'' no està instal·lat.\n"
+
+#, c-format
+msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgstr "%s: S'ha produït un error en carregar el ''%s-%s''.\n"
+
+#, c-format
+msgid "%s: Another version of the package %s is already loaded : %s\n"
+msgstr "%s: Ja s'ha carregat una altra versió del paquet %s: %s\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
+msgstr "%s: No s'ha trobat el fitxer DESCRIPTION al paquet ''%s''\n"
+
+#, c-format
+msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+msgstr "%s: Error en la còpia del fitxer ''%s'' al directori ''%s''.\n"
+
+#, c-format
+msgid "%s: Error while creating the directory ''%s''.\n"
+msgstr "%s: Error en crear el directori ''%s''.\n"
+
+#, c-format
+msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
+msgstr "%s: L'extracció del fitxer DESCRIPTION (''%s'') ha fallat.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Module ''%s - %s'' is not installed.\n"
+msgstr "%s: El mòdul ''%s - %s'' no està instal·lat.\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgstr "%s: El mòdul ''%s'' no està instal·lat (secció ''%s'').\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed.\n"
+msgstr "%s: El mòdul ''%s'' no està instal·lat.\n"
+
+#, c-format
+msgid "%s: Neither Wget or Curl found: Please install one of them\n"
+msgstr ""
+"%s: No s'ha trobat el Wget ni el Curl: Instal·leu-ne algun dels dos\n"
+
+#, c-format
+msgid ""
+"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
+"session :\n"
+msgstr ""
+"%s: No es poden carregar diverses versions d'un paquet (%s) en una mateixa "
+"sessió d'Scilab:\n"
+
+#, c-format
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr ""
+"%s: El fitxer de configuració (''%s'') té un error de format a la línia %d\n"
+
+#, c-format
+msgid "%s: The dependency tree cannot be resolved.\n"
+msgstr "%s: No es pot resoldre l'arbre de dependències.\n"
+
+#, c-format
+msgid "%s: The description is not well formated at line %d\n"
+msgstr "%s: La descripció té un format incorrecte a la línia %d\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: No es pot crear el directori %s. Comproveu si hi teniu accés "
+"d'escriptura.\n"
+
+#, c-format
+msgid "%s: The directory %s doesn''t exist.\n"
+msgstr "%s: No existeix el directori %s.\n"
+
+#, c-format
+msgid ""
+"%s: The directory ''%s'' cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: No s'ha pogut crear el directori ''%s''. Comproveu que teniu accés "
+"d'escriptura en aquest directori.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) cannot been deleted, please check "
+"if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: No es pot eliminar el directori d'aquest paquet (%s-%s). Comproveu que "
+"teniu accés d'escriptura a aquest directori: %s.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
+"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+msgstr ""
+"%s: El directori d'aquest paquet (%s-%s) nés és a SCI ni a SCIHOME. Per "
+"seguretat, ATOMS no eliminarà el directori.\n"
+
+#, c-format
+msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
+msgstr "%s: El fitxer descarregat no coincideix amb el MD5SUM:\n"
+
+#, c-format
+msgid "%s: The extraction of the archive ''%s'' has failed.\n"
+msgstr "%s: Ha fallat l'extracció del fitxer ''%s''.\n"
+
+#, c-format
+msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
+msgstr "%s: No existeix el ftixer %s, o no hi teniu accés de lectura.\n"
+
+#, c-format
+msgid "%s: The file %s is not well formated at line %d\n"
+msgstr "%s: El fitxer %s té un format incorrecte a la línia %d\n"
+
+#, c-format
+msgid ""
+"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+"the ScilabVersion field\n"
+msgstr ""
+"%s: El fitxer %s té un format incorrecte. La caixa d'eines %s - %s no conté "
+"el camp ScilabVersion\n"
+
+#, c-format
+msgid "%s: The file ''%s'' cannot be written.\n"
+msgstr "%s: No es pot escriure el fitxer ''%s''.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
+msgstr "%s: El fitxer ''%s'' no existeix, o no hi teniu accés de lectura\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr "%s: El fitxer ''%s'' no existeix o no hi teniu accés de lectura.\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been copied:\n"
+msgstr "%s: No s'ha copiat aquest fitxer:\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been downloaded:\n"
+msgstr "%s: No s'ha descarregat aquest fitxer:\n"
+
+#, c-format
+msgid ""
+"%s: The following module is installed in the user section, you cannot add it "
+"to the autoload list for all users:\n"
+msgstr ""
+"%s: Aquest mòdul està instal·lat a la secció d'usuari, no el podeu afegir a "
+"la llista automàtica per a tots els usuaris:\n"
+
+#, c-format
+msgid "%s: The following module is not installed:\n"
+msgstr "%s: Aquest mòdul no està instal·lat:\n"
+
+#, c-format
+msgid "%s: The following modules are not installed:\n"
+msgstr "%s: Aquests mòduls no estan instal·lats:\n"
+
+#, c-format
+msgid "%s: The package %s is not available.\n"
+msgstr "%s: El paquet %s no està disponible.\n"
+
+#, c-format
+msgid "%s: The package ''%s'' is not present in the struct.\n"
+msgstr "%s: El paquet ''%s'' no està present a l'estructura.\n"
+
+#, c-format
+msgid ""
+"%s: The root directory of this package (%s-%s) cannot been deleted, please "
+"check if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: No es pot eliminar el directori arrel d'aquest paquet (%s-%s) comproveu "
+"que teniu accés d'escriptura a aquest directori: %s.\n"
+
+#, c-format
+msgid ""
+"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+msgstr ""
+"%s: La versió ''%s'' del paquet ''%s'' no està present a l'estructura.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong length for input argument #%d: A string which has 32-characters "
+"length expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una longitud incorrecta: Ha de ser una "
+"cadena de 32 caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: at most %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Com a màxim, poden ser "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Hi pot haver %d com a "
+"màxim.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"cadenes de caràcters de 1x1 o 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un sol text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx1 o de mx2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx1, mx2 o mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx1, mx2 o mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx2 o mx3.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"mx3.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sol "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A boolean or a single string "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà o "
+"una cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"estructura.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+"cadena de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text simple.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"estructura.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"orientada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una mlist.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: ''%s'' no és un URL "
+"vàlid.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
+"''session'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''all'', "
+"''allusers'', ''user'' o ''session''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
+"''official'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''all'', "
+"''user'', ''allusers'' o ''official''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''system'' o "
+"''install''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''user'' o "
+"''allusers''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''user'', "
+"''allusers'' o ''all''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''user'', "
+"''allusers'' o ''all''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''user'', "
+"''allusers'' o ''all''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un text que "
+"contingui ''TOOLBOXES'' o ''DESCRIPTION''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un text que "
+"acabi amb DESCRIPTION.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"caràcters que comenci per ''http://'', ''ftp://'' o ''file://''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ASC o DESC.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Cal identificar les "
+"versions de tots els mòduls.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''A'' o "
+"''I''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un nom de "
+"paquet d'Atoms.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+".tgz or .zip expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sol text "
+"que acabi amb .tar.gz, .tgz o .zip.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The matrix oriented typed list is "
+"not well formatted.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: La llista de matrius "
+"orientades no té un format correcte.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: This ("
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Aquest ("
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: No és una versió "
+"vàlida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: No és una "
+"versió/dependència vàlida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''error'' o "
+"''warning''.\n"
+
+#, c-format
+msgid ""
+"%s: You have not enought rights to remove any version of the package %s.\n"
+msgstr "%s: No teniu permisos per a eliminar cap versió del paquet %s.\n"
+
+#, c-format
+msgid "%s: You have not enought rights to remove the package %s (%s).\n"
+msgstr "%s: No teniu permisos per a eliminar el paquet %s (%s).\n"
+
+#, c-format
+msgid "%s: You haven''t write access on this directory : %s.\n"
+msgstr "%s: No teniu accés d'escriptura a aquest directori: %s.\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgstr "%s: El paquet ''%s'' no conté el camp ''%s''.\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t exist.\n"
+msgstr "%s: El paquet ''%s'' no existeix.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Edita"
+
+msgid "&File"
+msgstr "&Fitxer"
+
+msgid "&Tools"
+msgstr "Ei&nes"
+
+msgid "?"
+msgstr "?"
+
+msgid "Atoms"
+msgstr "Atoms"
+
+msgid "Atoms Help..."
+msgstr "Ajuda d'Atoms..."
+
+msgid "Atoms error"
+msgstr "Instal·lació d'Atoms"
+
+msgid "Author(s)"
+msgstr "Autor(s)"
+
+msgid "Automaticaly Installed"
+msgstr "Instal·lat automàticament"
+
+msgid "Bytes"
+msgstr "Bytes"
+
+msgid "Category(ies)"
+msgstr "Categoria(es)"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Depend"
+msgstr "Depèn"
+
+msgid "Description"
+msgstr "Descripció"
+
+msgid "Download size"
+msgstr "Mida de la descàrrega"
+
+msgid "Entity"
+msgstr "Entitat"
+
+msgid "File"
+msgstr "Fitxer"
+
+msgid "Install"
+msgstr "Instal·la"
+
+msgid "Install Directory"
+msgstr "Directori d'instal·lació"
+
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"S'ha acabat la instal·lació. Reinicieu l'Scilab perquè els canvis tinguin "
+"efecte."
+
+msgid "Installation failed!"
+msgstr "La instal·lació ha anat malament."
+
+msgid "Installing..."
+msgstr "S'està instal·lant..."
+
+msgid "KB"
+msgstr "KB"
+
+msgid "License"
+msgstr "Llicència"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "Maintainer(s)"
+msgstr "Mantenidor(s)"
+
+msgid "Modules"
+msgstr "Mòduls"
+
+msgid "No Atoms module available. Check your Internet connection."
+msgstr ""
+"El mòdul Atoms no està disponible. Comproveu la vostra connexió a Internet."
+
+msgid "No module selected"
+msgstr "No heu seleccionat cap mòdul"
+
+msgid "Package"
+msgstr "Paquet"
+
+msgid "Remove"
+msgstr "Elimina"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "S'ha eliminat. Reinicieu l'Scilab perquè els canvis tinguin efecte. "
+
+msgid "Remove failed!"
+msgstr "L'eliminació ha anat malament."
+
+msgid "Removing..."
+msgstr "S'està eliminant..."
+
+msgid "Scilab Version"
+msgstr "Versió d'Scilab"
+
+msgid "Status"
+msgstr "Estat"
+
+msgid "Summary"
+msgstr "Resum"
+
+msgid "Title"
+msgstr "Títol"
+
+msgid "Update"
+msgstr "Actualitza"
+
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"S'ha realitzat l'actualització. Reinicieu l'Scilab perquè els canvis tinguin "
+"efecte."
+
+msgid "Update failed!"
+msgstr "L'actualització ha anat malament."
+
+msgid "Updating..."
+msgstr "S'està actualitzant..."
+
+msgid "Version"
+msgstr "Versió"
+
+msgid "WebSite"
+msgstr "Lloc web"

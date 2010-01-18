@@ -28,9 +28,9 @@
     <refsynopsisdiv>
       <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>StrErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)</synopsis>
+        <synopsis>SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>StrErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)</synopsis>
+        <synopsis>SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _piCols)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -75,6 +75,14 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -82,38 +90,39 @@
       <para>This help describes how to get the dimensions of a variable in a gateway.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
-        <!--Lib_name: commom_function-->
-        <!--Func_list: commom_function-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        <!--Lib_name: common_function-->
+        <!--Func_list: common_function-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
             <![CDATA[ 
-StrErr printf_info(int _iVar);
+SciErr printf_info(int _iVar);
 
-int commom_function(char *fname,unsigned long fname_len)
+int common_function(char *fname,unsigned long fname_len)
 {
-    StrErr strErr;
+    SciErr sciErr;
     int i;
-    int *piAddr1 = NULL;
+    int *piAddr1    = NULL;
+    int iBool       = 0;
 
     for(i = 0 ; i < Rhs ; i++)
     {
-        strErr = printf_info(i + 1);
-        if(strErr.iErr)
+        sciErr = printf_info(i + 1);
+        if(sciErr.iErr)
         {
-            printError(&strErr, 0);
+            printError(&sciErr, 0);
             break;
         }
         sciprint("\n\n");
     }
 
     //1 for true, 0 for false
-    int iBool = strErr.iErr == 0 ? 1 : 0;
-    strErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
-    if(strErr.iErr)
+    iBool = sciErr.iErr == 0 ? 1 : 0;
+    sciErr = createMatrixOfBoolean(pvApiCtx, 1, 1, 1, &iBool);
+    if(sciErr.iErr)
     {
-        printError(&strErr, 0);
+        printError(&sciErr, 0);
         return 0;
     }
     //assign allocated variables to Lhs position
@@ -122,9 +131,9 @@ int commom_function(char *fname,unsigned long fname_len)
     return 0;
 }
 
-StrErr printf_info(int _iVar)
+SciErr printf_info(int _iVar)
 {
-    StrErr strErr;
+    SciErr sciErr;
     int* piAddr     = NULL;
     int iType       = 0;
     int iRows       = 0;
@@ -132,18 +141,18 @@ StrErr printf_info(int _iVar)
     int iItem       = 0;
     int iComplex    = 0;
 
-    strErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
-    if(strErr.iErr)
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddr);
+    if(sciErr.iErr)
     {
-        return strErr;
+        return sciErr;
     }
 
     sciprint("Variable %d information:\n", _iVar);
 
-    strErr = getVarType(pvApiCtx, piAddr, &iType);
-    if(strErr.iErr)
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
     {
-        return strErr;
+        return sciErr;
     }
 
     sciprint("\tType: ");
@@ -171,10 +180,10 @@ StrErr printf_info(int _iVar)
             char* pstSign       = pstSigned;
 
             int iPrec           = 0;
-            strErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
-            if(strErr.iErr)
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &iPrec);
+            if(sciErr.iErr)
             {
-                return strErr;
+                return sciErr;
             }
 
             if(iPrec > 10)
@@ -199,7 +208,7 @@ StrErr printf_info(int _iVar)
             break;
         default :
             sciprint("Not manage by this function\n");
-            return strErr;
+            return sciErr;
     }
 
     if(isVarComplex(pvApiCtx, piAddr))
@@ -210,24 +219,24 @@ StrErr printf_info(int _iVar)
     sciprint("\tDimensions: ");
     if(isVarMatrixType(pvApiCtx, piAddr))
     {
-        strErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-        if(strErr.iErr)
+        sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+        if(sciErr.iErr)
         {
-            return strErr;
+            return sciErr;
         }
 
         sciprint("%d x %d", iRows, iCols);
     }
     else
     {
-        strErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
-        if(strErr.iErr)
+        sciErr = getListItemNumber(pvApiCtx, piAddr, &iItem);
+        if(sciErr.iErr)
         {
-            return strErr;
+            return sciErr;
         }
         sciprint("%d", iItem);
     }
-    return strErr;
+    return sciErr;
 }
  ]]></programlisting>
     </refsection>
@@ -241,7 +250,7 @@ l3 = int8([1,2,3]);
 l4 = uint16([1000,2000,3000]);
 l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
-commom_function(l(1:$))
+common_function(l(1:$))
  ]]></programlisting>
     </refsection>
 </refentry>

@@ -84,7 +84,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   else
     //** ---------- Linux/MacOS/Unix section ---------------------  
 	
-	ScilabTreeFound=%f
+	ScilabTreeFound=%f;
 
     // Source tree version
 	// Headers are dispatched in the source tree
@@ -104,14 +104,14 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	end
 
 	// Binary version
-	if isdir(SCI+"/../../include/scilab/") & ScilabTreeFound then
+	if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
   	  cflags="-I"+SCI+"/../../include/scilab/ " + cflags
   	  fflags="-I"+SCI+"/../../include/scilab/ " + fflags
 	  ScilabTreeFound=%t
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/include/scilab/") & ScilabTreeFound then
+	if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
 	   cflags="-I/usr/include/scilab/ "+cflags
 	   fflags="-I/usr/include/scilab/ "+fflags
 	   ScilabTreeFound=%t

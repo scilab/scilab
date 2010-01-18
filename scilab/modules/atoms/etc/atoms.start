@@ -9,7 +9,14 @@
 
 // Load  functions libraries
 // =============================================================================
+
+// Command lines functions
 load("SCI/modules/atoms/macros/lib");
+
+// GUI functions
+if or(getscilabmode() == ["NW";"STD"]) then
+  load("SCI/modules/atoms/macros/atoms_gui/lib");
+end
 
 // Add help chapter
 // =============================================================================

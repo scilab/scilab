@@ -87,7 +87,7 @@ function [model, ok] = build_block(o)
       compilerpath = getmodelicacpath() + "modelicac"; //** thanks to automatic detection
 
       // build compilation command line, execute it and test for result
-      strCmd = compilerpath + ' -c ' + funam + ' -o ' + fullfile(tarpath, nameF + '.moc')
+      strCmd = compilerpath + ' -c ' + funam + ' -o ""' + fullfile(tarpath, nameF + '.moc'+'""')
       if execstr('unix_s(''' + strCmd + ''')', 'errcatch') <> 0 then
         error(sprintf(gettext("%s: Error : the following command line failed to execute: %s.\n"), "build_block", strCmd))
         ok = %f

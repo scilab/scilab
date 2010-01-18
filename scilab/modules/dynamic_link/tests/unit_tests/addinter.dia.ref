@@ -24,7 +24,7 @@ if ~c_link('libintertest') then
   src_file = SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c';
   dst_file = TMPDIR + filesep() + 'addinter' + filesep() + 'addinter.c';
   copyfile(src_file, dst_file);
-  files=['addinter.o'];
+  files=['addinter.c'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   // load the shared library 
   exec loader.sce ;

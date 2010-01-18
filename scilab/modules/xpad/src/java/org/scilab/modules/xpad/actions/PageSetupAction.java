@@ -31,7 +31,11 @@ public class PageSetupAction extends DefaultAction {
 
 	public void doAction() {
 		PrinterJob printTask = PrinterJob.getPrinterJob();
-		pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
+		if (pageFormat == null) {
+			pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
+		} else {
+			pageFormat = printTask.pageDialog(pageFormat);
+		}
 	}
 
 	public static MenuItem createMenu(Xpad editor) {

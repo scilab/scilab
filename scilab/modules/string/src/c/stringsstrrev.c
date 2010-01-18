@@ -55,7 +55,6 @@ char* scistrrev(char* str)
 #ifdef _MSC_VER
 		wchar_t *wcrevstr = _wcsrev(wcstr);
 		revstr = wide_string_to_UTF8(wcrevstr);
-		if (wcrevstr) {FREE(wcrevstr);wcrevstr = NULL;}
 #else
 		int i = 0;
 		int t = 0;
@@ -76,6 +75,7 @@ char* scistrrev(char* str)
 		}
 		revstr = wide_string_to_UTF8(wcstr);
 #endif
+		if (wcstr) {FREE(wcstr); wcstr = NULL;}
 	}
 	return revstr;
 }

@@ -121,28 +121,33 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
         //** update spec_err
         spec_err='The hilited '+spec_err+' returns the error :';
         //**
-        scf(curwin)
+        //scf(curwin)
         //** call bad_connection
         bad_connection(path,...
                       [title_err;spec_err;mess_err],0,1,0,-1,0,1)
         //** create cmd
         cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
              'Select=['+string(blk)+',curwin];'+...
-             'hilite_obj('+string(blk)+');'+...
-             'unhilite_obj('+string(blk)+');']
+             'xcosShowBlockWarning('+string(blk)+');'+...
+             'xcosClearBlockWarning('+string(blk)+');']
     else
       //** update spec_err
       spec_err='The hilited '+spec_err+' returns the error :';
       //** create cmd
       cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
            'Select=['+string(blk)+',curwin];'+...
-           'hilite_obj('+string(blk)+');'+...
+           'xcosShowBlockWarning('+string(blk)+');'+...
            'message(['''+title_err+''';'+...
               ''''+spec_err+''';'+...
               strcat(''''+mess_err+'''',";")+']);'+...
-           'unhilite_obj('+string(blk)+');']
+           'xcosClearBlockWarning('+string(blk)+');']
     end
 
   end
 
+ //execude cmd error ( bug 5437 )
+  for i = 1 : size(cmd, "*")
+      execstr(cmd(i))
+  end
+  cmd = [];
 endfunction

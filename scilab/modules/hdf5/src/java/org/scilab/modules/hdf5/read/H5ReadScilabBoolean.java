@@ -25,21 +25,20 @@ public class H5ReadScilabBoolean {
     }
 
     private static boolean[][] getBooleanMatrix(int dataSetId) throws NullPointerException, HDF5Exception {
-	long[] nbElems = H5Read.getAllDims(dataSetId); 
-	int[][] data = new int[(int) nbElems[0]][(int) nbElems[1]];
+	int[] nbElems = H5Read.getAllDims(dataSetId); 
+	int[] data = new int[nbElems[0]* nbElems[1]];
 	boolean[][] result = new boolean[(int) nbElems[0]][(int) nbElems[1]];
 	
-	H5.H5Dread(dataSetId, HDF5Constants.H5T_NATIVE_INT,
-		H5.H5Dget_space(dataSetId), HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
-	H5.H5Dclose(dataSetId);
+	H5.H5Dread_int(dataSetId, HDF5Constants.H5T_NATIVE_INT, H5.H5Dget_space(dataSetId), 
+		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, data);
 	
 	for(int i = 0 ; i < nbElems[0] ; ++i) {
 	    for (int j = 0 ; j < nbElems[1] ; ++j) {
-		result[i][j] = data[i][j] == 0 ? false : true;
+		result[i][j] = data[i + j * nbElems[0]] == 0 ? false : true;
 	    }
 	}
 	
+	H5.H5Dclose(dataSetId);
 	return result;
     }
-    
 }

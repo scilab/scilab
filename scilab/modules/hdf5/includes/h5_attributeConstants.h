@@ -25,8 +25,9 @@ static const char g_SCILAB_CLASS_EMPTY[]		=	"SCILAB_empty";
 static const char g_SCILAB_CLASS_VARNAME[]	=	"SCILAB_varname";
 static const char g_SCILAB_CLASS_COMPLEX[]	=	"SCILAB_complex";
 static const char g_SCILAB_CLASS_PREC[]			=	"SCILAB_precision";
-static const char g_SCILAB_CLASS_ROWS[]			=	"SCILAB_sparse_rows";
-static const char g_SCILAB_CLASS_COLS[]			=	"SCILAB_sparse_cols";
+static const char g_SCILAB_CLASS_ROWS[]			=	"SCILAB_rows";
+static const char g_SCILAB_CLASS_COLS[]			=	"SCILAB_cols";
+static const char g_SCILAB_CLASS_ITEMS[]		=	"SCILAB_items";
 
 
 static const char g_SCILAB_CLASS_DOUBLE[]		=	"double";

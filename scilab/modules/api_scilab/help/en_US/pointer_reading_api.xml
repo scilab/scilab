@@ -26,12 +26,23 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>int getPointer(int* _piAddress, void** _pvPtr)</synopsis>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
-            <varlistentry>
+			<varlistentry>
+				<term>_pvCtx</term>
+				<listitem>
+					<para>
+						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_piAddress</term>
                 <listitem>
                     <para>
@@ -47,7 +58,15 @@
                     </para>
                 </listitem>
             </varlistentry>
-        </variablelist>
+			<varlistentry>
+				<term>SciErr</term>
+				<listitem>
+					<para>
+						Error structure where is stored errors messages history and first error number.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -59,59 +78,62 @@
         <!--Lib_name: pointer_reading-->
         <!--Func_list: read_pointer-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+	<![CDATA[ 
 int read_pointer(char *fname,unsigned long fname_len)
 {
-    int iRet    = 0;
+	SciErr sciErr;
+	CheckRhs(0,1);
+	CheckLhs(1,1);
 
-    CheckRhs(0,1);
-    CheckLhs(1,1);
+	if(Rhs == 0)
+	{//create mode
+		double* pdblData	= (double*)malloc(sizeof(double) * 2 * 2);
+		pdblData[0]			= 1;
+		pdblData[1]			= 3;
+		pdblData[2]			= 2;
+		pdblData[3]			= 4;
 
-    if(Rhs == 0)
-    {//create mode
-        double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
-        pdblData[0]         = 1;
-        pdblData[1]         = 3;
-        pdblData[2]         = 2;
-        pdblData[3]         = 4;
+		sciErr = createPointer(pvApiCtx, Rhs + 1, (void*)pdblData);
+	}
+	else if(Rhs == 1)
+	{//read mode
+		int iType			= 0;
+		int* piAddr			= NULL;
+		void* pvPtr			= NULL;
+		double* pdblData	= NULL;
 
-        iRet = createPointer(Rhs + 1, (void*)pdblData);
-    }
-    else
-    {//read mode
-        int* piAddr         = NULL;
-        void* pvPtr         = NULL;
-        double* pdblData    = NULL;
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
-        iRet = getVarAddressFromPosition(1, &piAddr);
-        if(iRet)
-        {
-            return 1;
-        }
+		sciErr = getPointer(pvApiCtx, piAddr, &pvPtr);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 
-        if(getVarType(piAddr) != sci_pointer)
-        {
-            return 1;
-        }
+		pdblData = (double*)pvPtr;
 
-        iRet = getPointer(piAddr, &pvPtr);
-        if(iRet)
-        {
-            return 1;
-        }
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 2, 2, pdblData);
+	}
+	else
+	{
+		return 0;
+	}
 
-        pdblData = (double *) ((unsigned long int)((double*)pvPtr)[0]);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-        iRet = createMatrixOfDouble(Rhs + 1, 2, 2, pdblData);
-    }
-
-    if(iRet)
-    {
-        return 1;
-    }
-
-    LhsVar(1) = Rhs + 1;
-    return 0;
+	LhsVar(1) = Rhs + 1;
+	return 0;
 }
  ]]></programlisting>
     </refsection>

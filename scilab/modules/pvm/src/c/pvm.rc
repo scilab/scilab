@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "PVM module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "PVM module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "PVM.dll"
             VALUE "ProductName", "PVM"
             VALUE "ProductVersion", "5, 2, 0, 0"

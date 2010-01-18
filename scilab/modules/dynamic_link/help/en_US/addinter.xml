@@ -88,22 +88,28 @@
     <para>Number of 'addinter' in a scilab session can be limited by the
     operating system. On Windows, you cannot load more than 80 dynamic
     libraries at the same time.</para>
-    
-    <para>Number of functions implemented in a interface is limited to 1000.</para>
+
+    <para>Number of functions implemented in a interface is limited to
+    1000.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role = "example"><![CDATA[ 
-if haveacompiler() then
+    <programlisting role="example">if haveacompiler() then
 
-chdir(TMPDIR)
-src = ['#include <math.h>'
-'#include ""stack-c.h""'
+chdir(TMPDIR);
+mkdir('example_addinter');
+chdir('example_addinter');
+
+src = ['#include &lt;math.h&gt;'
+'#include &lt;stack-c.h&gt;'
+'#include &lt;api_scilab.h&gt;'
+'#include &lt;Scierror.h&gt;'
+'#include &lt;localization.h&gt;'
 ''
 'static double fun2(double x);'
-''     
+''  
 'void fun1(double *x,double *y) '
 '{'
 '  *y=fun2(*x)/(*x); '
@@ -114,17 +120,51 @@ src = ['#include <math.h>'
 '  return( sin(x+1));'
 '}'
 ''
-'int sci_fun1(char *fname) '
+'int sci_fun1(char *fname)' 
 '{'
-'  int m1,n1,l1;'
+'  int iType1 = 0;'
+'  SciErr sciErr;'
+'  int m1 = 0, n1 = 0;'
+'  double *pdVarOne = NULL;'
+'  int *piAddressVarOne = NULL;'
+''
 '  CheckRhs(1,1);'
 '  CheckLhs(1,1);'
-'  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);'
-'  fun1(stk(l1),stk(l1));'
+''
+'  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+'  if(sciErr.iErr)'
+'  {'
+' printError(&amp;sciErr, 0);'
+' return 0;'
+'  }' 
+''
+'  sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+'  if(sciErr.iErr)'
+'  {'
+' printError(&amp;sciErr, 0);'
+' return 0;'
+'  }'
+''
+'  if (iType1 != sci_matrix)'
+'  {'
+'  Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+'  return 0;'
+'  }'
+''
+'  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;pdVarOne);'
+'  if(sciErr.iErr)'
+'  {'
+' printError(&amp;sciErr, 0);'
+' return 0;'
+'  }'
+''
+'  fun1(pdVarOne, pdVarOne);'
 '  LhsVar(1) = 1;'
 '  return 0;'
 '}'];
-mputl(src,'example_addinter.c');
+
+
+mputl(src,TMPDIR + '/example_addinter/example_addinter.c');
 files=['example_addinter.c'];
 ilib_build('addinter',['fun1_in_scilab','sci_fun1'],files,[]);
 disp(mgetl('loader.sce'));
@@ -132,7 +172,7 @@ exec loader.sce;
 fun1_in_scilab(%pi)
 
 end // if haveacompiler()
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -148,4 +188,10 @@ end // if haveacompiler()
       <member><link linkend="clearfun">clearfun</link></member>
     </simplelist>
   </refsection>
+  
+  <refsection>
+    <title>Authors</title>
+
+    <para>Allan CORNET</para>
+  </refsection>  
 </refentry>

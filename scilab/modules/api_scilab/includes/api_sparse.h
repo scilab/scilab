@@ -33,7 +33,7 @@ extern "C" {
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+SciErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * Get sparse variable data
@@ -48,7 +48,7 @@ StrErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+SciErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * alloc sparse variable data
@@ -62,7 +62,7 @@ StrErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr allocSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+SciErr allocSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * alloc sparse variable data
@@ -77,7 +77,7 @@ StrErr allocSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create sparse variable
@@ -91,7 +91,7 @@ StrErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create sparse variable
@@ -106,7 +106,7 @@ StrErr createSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Create named sparse variable
@@ -120,7 +120,7 @@ StrErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create named sparse variable
@@ -135,7 +135,7 @@ StrErr createNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iC
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Read named sparse variable
@@ -149,7 +149,7 @@ StrErr createNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Read named sparse variable
@@ -164,7 +164,7 @@ StrErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
 
-StrErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+SciErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 #ifdef __cplusplus
 }

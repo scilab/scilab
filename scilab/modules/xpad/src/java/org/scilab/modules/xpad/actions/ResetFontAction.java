@@ -10,6 +10,7 @@ import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ColorizationManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.utils.XpadMessages;
@@ -36,17 +37,16 @@ public class ResetFontAction extends DefaultAction {
 		for (int j = 0; j < numberOfTab; j++) {
 
 			JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
-
+			ScilabStyleDocument styleDocument = (ScilabStyleDocument)textPane.getStyledDocument();
 			for (int i = 0; i < listStylesName.size(); i++) {
-				Style tempStyle =  textPane.getStyledDocument().getStyle(listStylesName.get(i));
+				Style tempStyle =  styleDocument.getStyle(listStylesName.get(i));
 
 				StyleConstants.setFontFamily(tempStyle, oldFont.getFamily());
 				StyleConstants.setFontSize(tempStyle, oldFont.getSize());
 				StyleConstants.setBold(tempStyle, oldFont.isBold());
 				//StyleConstants.setItalic(tempStyle, newFont.isItalic());  			
 			}
-			/*insert update refresh the styles without needing to type text*/
-			((ScilabStyleDocument)  textPane.getStyledDocument()).insertUpdate(null);
+			new ColorizationManager().colorize(styleDocument, 0, styleDocument.getLength());
 		}
 
 

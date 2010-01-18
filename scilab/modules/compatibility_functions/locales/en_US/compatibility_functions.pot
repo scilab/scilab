@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: macros/mtlb_fprintf.sci, line: 57
 # File: macros/mtlb_fprintf.sci, line: 114
@@ -114,10 +114,10 @@ msgstr ""
 msgid "%s: No minor grid in Scilab.\n"
 msgstr ""
 #
-# File: macros/mtlb_hold.sci, line: 27
+# File: macros/mtlb_realmax.sci, line: 21
 # File: macros/mtlb_echo.sci, line: 23
 # File: macros/mtlb_echo.sci, line: 26
-# File: macros/mtlb_realmax.sci, line: 21
+# File: macros/mtlb_hold.sci, line: 27
 # File: macros/mtlb_num2str.sci, line: 25
 # File: macros/mtlb_realmin.sci, line: 21
 #, c-format
@@ -146,12 +146,12 @@ msgstr ""
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr ""
 #
-# File: macros/mtlb_box.sci, line: 36
 # File: macros/mtlb_axes.sci, line: 33
-# File: macros/char.sci, line: 101
+# File: macros/asciimat.sci, line: 60
 # File: macros/mtlb_close.sci, line: 48
 # File: macros/mtlb_delete.sci, line: 18
-# File: macros/asciimat.sci, line: 60
+# File: macros/char.sci, line: 101
+# File: macros/mtlb_box.sci, line: 36
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
 msgstr ""

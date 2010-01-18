@@ -43,8 +43,8 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAutoloadAdd",1));
 	end
 	
-	if (size(packages(1,:),"*") > 3) | (size(packages(1,:),"*") < 2) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"),"atomsAutoloadAdd",1));
+	if (size(packages(1,:),"*") < 1) | (size(packages(1,:),"*") > 3) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix expected.\n"),"atomsAutoloadAdd",1));
 	end
 	
 	// Allusers/user management
@@ -89,34 +89,68 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 		
 	end
 	
-	// Define the path of the file that will record the change according to
-	// the "section" value
-	// =========================================================================
-	atoms_directory = atomsPath("system",section);
-	
-	// Does the atoms_directory exist, if not create it
-	// =========================================================================
-	
-	if ~ isdir(atoms_directory) then
-		mkdir(atoms_directory);
-	end
-	
 	// Does the SCIHOME/atoms/autoloaded exist, if yes load it
 	// =========================================================================
+	autoloaded = atomsAutoloadLoad(section);
 	
-	if fileinfo(atoms_directory+"autoloaded") <> [] then
-		autoloaded = mgetl(atoms_directory+"autoloaded");
-	end
-	
-	// If packages no specify the installed section, find it
+	// Complete packages matrix with empty columns
 	// =========================================================================
 	
-	if size(packages(1,:),"*") == 2 then
-		
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
 		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
+	end
+	
+	// Loop on input parameter
+	// =========================================================================
+	
+	for i=1:size(packages(:,1),"*")
 		
-		for i=1:size(packages(:,1),"*")
+		// The module's installed version hasn't been specified or is empty
+		// → Set the MRV available
+		// =====================================================================
+		
+		if isempty(packages(i,2)) then
 			
+			if ~ isempty(packages(i,3)) then
+				searched_section = packages(i,3);
+			
+			elseif section=="user" then
+				// User can add a module to its "user" autoload list even if it's
+				// installed in the "allusers" section
+				searched_section = "all";
+			
+			else
+				// A module installed in the user section cannot be add in the 
+				// "autoload" list of all users
+				searched_section = "allusers";
+			
+			end
+			
+			this_module_versions = atomsGetInstalledVers(packages(i,1),searched_section);
+			
+			if isempty(this_module_versions) then
+				error(msprintf(gettext("%s: Module ''%s'' is not installed (''%s'' section).\n"),"atomsLoad",packages(i,1),searched_section));
+			else
+				packages(i,2) = this_module_versions(1);
+			end
+		
+		else
+			
+			if ~atomsIsInstalled([packages(i,1) packages(i,2)]) then
+				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+			end
+			
+		end
+		
+		// The module's installed section hasn't been specified or is empty
+		// =====================================================================
+		
+		if isempty(packages(i,3)) then
+		
 			if atomsIsInstalled([packages(i,1) packages(i,2)],section) then
 				packages(i,3) = section;
 			
@@ -134,15 +168,11 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 			
 			end
 			
-		end
+		else
 		
-	else
-		
-		for i=1:size(packages(:,1),"*")
-			
 			// Check if modules are installed
 			if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
-				mprintf(gettext("%s: The following modules is not installed:\n"),"atomsAutoloadAdd");
+				mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
 				mprintf("\t - ''%s - %s'' (''%s'' section)\n",packages(i,1),packages(i,2),packages(i,3));
 				error("");
 			end
@@ -158,18 +188,12 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 			
 		end
 		
-	end
-	
-	// Loop on each module specified as input argument
-	// =========================================================================
-	
-	for i=1:size(packages(:,1),"*")
+		// Now we can really add it if it doesn't already exist in the list
+		// =====================================================================
 		
-		// Add the package only if it doesn't already exist
-		
-		if find(autoloaded == packages(:,1)+" - "+packages(:,2)+" - "+packages(:,3)) == [] then
+		if ~ atomsAutoloadCheck(packages(i,:),section) then
 			nbAdd      = nbAdd + 1;
-			autoloaded = [ autoloaded ; packages(:,1)+" - "+packages(:,2)+" - "+packages(:,3) ];
+			autoloaded = [ autoloaded ; packages(i,:) ];
 		end
 		
 	end
@@ -178,7 +202,7 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 	// =========================================================================
 	
 	if nbAdd > 0 then
-		mputl(autoloaded,atoms_directory+"autoloaded");
+		atomsAutoloadSave(autoloaded,section);
 	end
 	
 endfunction

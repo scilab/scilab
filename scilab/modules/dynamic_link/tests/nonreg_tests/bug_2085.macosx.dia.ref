@@ -23,7 +23,7 @@ mkdir(OS_TMP_DIR,'bug_2085');
 TEST_DIR = OS_TMP_DIR + filesep() + 'bug_2085';
 copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_2085.c' , TEST_DIR + filesep() + 'bug_2085.c');
 chdir(TEST_DIR);
-files=['bug_2085.o'];
+files=['bug_2085.c'];
 ilib_build('bug',['ex2c_1','intex2c'],files,[]);
    Generate a gateway file
    Generate a loader file

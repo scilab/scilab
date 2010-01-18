@@ -23,11 +23,11 @@ DWIN=-DWIN32
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 DIR_OBJ=Debug
 LINKER_OPTIMISATION_MODE=/DEBUG -PDB:"$(DIR_OBJ)\$(LIBRARY).pdb"
-CC__OPTIMISATION_MODE=-Zi -Od -MDd
+CC__OPTIMISATION_MODE=-Zi -Od -MTd
 !ELSE
 DIR_OBJ=Release
 LINKER_OPTIMISATION_MODE=/RELEASE 
-CC__OPTIMISATION_MODE=-Z7 -O2 -MD
+CC__OPTIMISATION_MODE=-Z7 -O2 -MT
 !ENDIF
 
 CC_COMMON=-D__MSC__ -DFORDLL $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
@@ -73,7 +73,7 @@ USE_F2C=NO
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
 FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
-/noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
+/noaltparam /f77rtl /arch:IA32 /fpscomp:nolibs /names:lowercase \
 /iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"

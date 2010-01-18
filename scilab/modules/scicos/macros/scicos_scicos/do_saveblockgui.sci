@@ -62,7 +62,7 @@ function fname=do_saveblockgui(o)
           '  Ss=..'
           '    '+sci2exp(ss)
           '  %scicos_context=struct()'
-          '  [ok,'+tt+',exprs]=getvalue(Btitre,Exprs0,Ss,exprs)'
+          '  [ok,'+tt+',exprs]=scicos_getvalue(Btitre,Exprs0,Ss,exprs)'
           '  if ok then'
           '     x=arg1'
           '     sblock=x.model.rpar'

@@ -25,13 +25,26 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-      <title>Calling Sequence</title>
-        <synopsis>int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
-    </refsynopsisdiv>
+		<title>Calling Sequence</title>
+		<para>Input argument profile:</para>
+		<synopsis>SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
+		<synopsis>SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings)</synopsis>
+		<para>Named variable profile:</para>
+		<synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
-            <varlistentry>
+			<varlistentry>
+				<term>_pvCtx</term>
+				<listitem>
+					<para>
+						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_piAddress</term>
                 <listitem>
                     <para>
@@ -39,7 +52,15 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
+			<varlistentry>
+				<term>_pstName</term>
+				<listitem>
+					<para>
+						Name of the variable for "named" functions.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_piRows</term>
                 <listitem>
                     <para>
@@ -63,15 +84,31 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>_pstStrings</term>
-                <listitem>
-                    <para>
-                        Address of array of char* (must be allocated size: _piRows * _piCols)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+			<varlistentry>
+				<term>_pstStrings</term>
+				<listitem>
+					<para>
+						Address of array of char* (must be allocated size: _piRows * _piCols)
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>_pwstStrings</term>
+				<listitem>
+					<para>
+						Address of array of wchar_t* (must be allocated size: _piRows * _piCols)
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SciErr</term>
+				<listitem>
+					<para>
+						Error structure where is stored errors messages history and first error number.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -83,40 +120,36 @@
         <!--Lib_name: string_reading-->
         <!--Func_list: read_string-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+	<![CDATA[ 
 int read_string(char *fname,unsigned long fname_len)
 {
-    int i,j;
-    int iLen        = 0;
-    int iRet        = 0;
-    //variable info
-    int iRows       = 0;
-    int iCols       = 0;
-    int* piAddr     = NULL;
-    int* piLen      = NULL;
-    char** pstData  = NULL;
+	SciErr sciErr;
+	int i,j;
+	int iLen		= 0;
+	//variable info
+	int iRows		= 0;
+	int iCols		= 0;
+	int* piAddr		= NULL;
+	int* piLen		= NULL;
+	char** pstData	= NULL;
 
-    //output variable
-    int iRowsOut    = 1;
-    int iColsOut    = 1;
-    char* pstOut    = NULL;
+	//output variable
+	int iRowsOut	= 1;
+	int iColsOut	= 1;
+	char* pstOut	= NULL;
 
-    //check input and output arguments
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+	//check input and output arguments
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-    //get variable address
-    iRet = getVarAddressFromPosition(1, &piAddr);
-    if(iRet)
-    {
-        return 1;
-    }
-
-    //check variable type
-    if(getVarType(piAddr) != sci_strings)
-    {
-        return 1;
-    }
+	//get variable address
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
     //first call to retrieve dimensions
     iRet = getMatrixOfString(piAddr, &iRows, &iCols, NULL, NULL);
@@ -125,69 +158,72 @@ int read_string(char *fname,unsigned long fname_len)
         return 1;
     }
 
-    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-    //second call to retrieve length of each string
-    iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, NULL);
-    if(iRet)
-    {
-        return 1;
-    }
+	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+	//second call to retrieve length of each string
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
-    for(i = 0 ; i < iRows * iCols ; i++)
-    {
-        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
-    }
-    //third call to retrieve data
-    iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, pstData);
-    if(iRet)
-    {
-        return 1;
-    }
+	pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+	}
+	//third call to retrieve data
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    //computer length of all strings
-    for(i = 0 ; i < iRows * iCols ; i++)
-    {
-        iLen += piLen[i];
-    }
+	//computer length of all strings
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		iLen += piLen[i];
+	}
 
-    //alloc output variable
-    pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
-    //initialize string to 0x00
-    memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
+	//alloc output variable
+	pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+	//initialize string to 0x00
+	memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
 
-    //concat input strings in output string
-    for(i = 0 ; i < iRows ; i++)
-    {
-        for(j = 0 ; j < iCols ; j++)
-        {
-            int iCurLen = strlen(pstOut);
-            if(iCurLen)
-            {
-                strcat(pstOut, " ");
-            }
-            strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
-        }
-    }
+	//concat input strings in output string
+	for(i = 0 ; i < iRows ; i++)
+	{
+		for(j = 0 ; j < iCols ; j++)
+		{
+			int iCurLen = strlen(pstOut);
+			if(iCurLen)
+			{
+				strcat(pstOut, " ");
+			}
+			strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
+		}
+	}
 
-    //create new variable
-    iRet = createMatrixOfString(Rhs + 1, iRowsOut, iColsOut, &pstOut);
-    if(iRet)
-    {
-        return 1;
-    }
+	//create new variable
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRowsOut, iColsOut, &pstOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    //free memory
-    free(piLen);
-    for(i = 0 ; i < iRows * iCols ; i++)
-    {
-        free(pstData[i]);
-    }
-    free(pstData);
-    free(pstOut);
+	//free memory
+	free(piLen);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pstData[i]);
+	}
+	free(pstData);
+	free(pstOut);
 
-    LhsVar(1) = Rhs + 1;
-    return 0;
+	LhsVar(1) = Rhs + 1;
+	return 0;
 }
  ]]></programlisting>
     </refsection>
@@ -196,7 +232,6 @@ int read_string(char *fname,unsigned long fname_len)
         <title>Scilab test script</title>
         <programlisting role="code_scilab"><![CDATA[ 
 a_ref = ["may the puffin be with you"];
-a_ref = ["sample strings manipulation with gateway API"];
 a = ["may", "the", "puffin"; "be","with","you"];
 b = read_string(a);
 if a_ref <> b then error("failed"), end

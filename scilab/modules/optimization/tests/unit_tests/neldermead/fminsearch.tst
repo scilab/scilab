@@ -7,6 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
+
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -57,8 +61,13 @@ assert_equal ( output.iterations , 85 );
 assert_equal ( output.algorithm , "Nelder-Mead simplex direct search" );
 assert_equal ( output.funcCount , 159 );
 assert_equal ( output.message(1) , "Optimization terminated:");
+if MSDOS then
 assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-004");
 assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-004");
+else
+assert_equal ( output.message(2) , " the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04");
+assert_equal ( output.message(3) , " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04");
+end
 // 
 // fminsearch with incorrect number of input arguments
 //
@@ -187,146 +196,6 @@ assert_close ( fval , 0.0 , 1e1 );
 assert_equal ( exitflag , 0 );
 assert_equal ( output.iterations , 10 );
 assert_equal ( output.funcCount , 21 );
-
-//
-// Use output function
-//
-// outfun --
-//   A sample output function
-// Arguments, input
-//   x : the current point
-//   optimValues : a tlist which contains the following fields
-//     funccount : the number of function evaluations
-//     fval : the current function value
-//     iteration : the current iteration
-//     procedure : a string containing the current type of step
-//  state : the current state of the algorithm
-//    "init", "iter", "done"
-//
-function outfun ( x , optimValues , state )
-  plot( x(1),x(2),'.');
-  // Unload all fields and check consistent values
-  fc = optimValues.funccount;
-  fv = optimValues.fval;
-  it = optimValues.iteration;
-  pr = optimValues.procedure;
-  select pr
-  case "initial simplex"
-    // OK
-  case "expand"
-    // OK
-  case "reflect"
-    // OK
-  case "shrink"
-    // OK
-  case "contract inside"
-    // OK
-  case "contract outside"
-    // OK
-  case ""
-    // OK
-  else
-    error ( sprintf ( "Unknown procedure %s." , pr ) )
-  end
-  select state
-  case "init"
-    // OK
-  case "iter"
-    // OK
-  case "done"
-    // OK
-  else
-    error ( sprintf ( "Unknown state %s." , state ) )
-  end
-  mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
-endfunction
-opt = optimset ( "OutputFcn" , outfun);
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
-//
-// Use several output functions
-//
-function outfun2 ( x , optimValues , state )
-  scf ( fig1 );
-  plot( x(1),x(2),'.');
-endfunction
-function outfun3 ( x , optimValues , state )
-  scf ( fig2 );
-  plot( x(1),x(2),'o');
-endfunction
-myfunctions = list ( outfun2 , outfun3 );
-fig1 = scf(1000);
-fig2 = scf(1001);
-opt = optimset ( "OutputFcn" , myfunctions );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close(fig1);
-close(fig2);
-//
-// Use plot function
-//
-//
-// plotfun --
-//   A sample plot function
-// Arguments, input
-//   x : the current point
-//   optimValues : a tlist which contains the following fields
-//     funcCount" : the number of function evaluations
-//     fval : the current function value
-//     iteration : the current iteration
-//     procedure : a string containing the current type of step
-//  state : the current state of the algorithm
-//    "init", "iter", "done"
-//
-function plotfun ( x , optimValues , state )
-  plot(x(1),x(2),'.');
-endfunction
-opt = optimset ( "PlotFcns" , plotfun);
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
-//
-// Use several plot functions
-//
-function plotfun2 ( x , optimValues , state )
-  scf ( fig1 );
-  plot( x(1),x(2),'.');
-endfunction
-function plotfun3 ( x , optimValues , state )
-  scf ( fig2 );
-  plot( x(1),x(2),'o');
-endfunction
-myfunctions = list ( plotfun2 , plotfun3 );
-fig1 = scf(1000);
-fig2 = scf(1001);
-opt = optimset ( "PlotFcns" , myfunctions );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close(fig1);
-close(fig2);
-//
-// Use optimplotfval plot function
-//
-opt = optimset ( "PlotFcns" , optimplotfval );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
-//
-// Use optimplotx plot function
-//
-opt = optimset ( "PlotFcns" , optimplotx );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
-//
-// Use optimplotfunccount plot function
-//
-opt = optimset ( "PlotFcns" , optimplotfunccount );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
-
-//
-// Use all 3 plot functions
-//
-myfunctions = list ( optimplotfval , optimplotx , optimplotfunccount );
-opt = optimset ( "PlotFcns" , myfunctions );
-[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
 
 //
 // Test basic use with column x0

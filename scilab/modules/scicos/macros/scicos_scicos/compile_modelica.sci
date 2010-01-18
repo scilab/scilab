@@ -32,6 +32,8 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
 
   ng    = 0
   fil   = pathconvert(fil, %f, %t)
+  //++ convert space to _
+  fil   = strsubst(fil, ' ', '_')
   // MODELICAC on windows does not support '\' at the end of path
   // TO DO: Fix MODELICAC
   if MSDOS then
@@ -83,7 +85,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
       modelicac = modelicac + strcat(' -L '+ mlibs)
     end
 
-    instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + modelicac_err
+    instr = modelicac + ' ""' + FlatName + '"" -o ""' + path + name + '.c"" ' + JAC + ' > ""' + TMPDIR + filesep() + modelicac_err + '""';
     if MSDOS
       //++ WINDOWS PLATFORMS: Put the instruction in a batch file instead of
       //++ executing it directly
@@ -144,19 +146,17 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
                      'Please read the error message in the Scilab window'],"modal","error");
           ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
         else
-          mprintf('   Flat modelica code generated at ' + FlatName + '\n')
+          mprintf(_('   Flat modelica code generated at %s\n'), FlatName )
         end
       else // if_translator_exists
         messagebox(['-------Modelica compiler error (without the translator):-------'; ..
                    MSG1; ..
-                   'Please read the error message in the Scilab window'; ..
-                   ' '; ..
-                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again'],"modal","error");
+                   'Please read the error message in the Scilab window.'],"modal","error");
         ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
       end // if_translator_exists
     end // if_modelicac_fails_then_use_translator
 
-    mprintf('   C code generated at ' + path + name + '.c\n')
+    mprintf(_('   C code generated at ""%s.c""\n'), path + name);
   end
 
   Cfile = path + name + '.c'

@@ -12,10 +12,9 @@
 
 package org.scilab.modules.graph.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
@@ -46,7 +45,9 @@ public final class SelectAllAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.SELECT_ALL, null,
-				new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_A,Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(
+						KeyEvent.VK_A, Toolkit.getDefaultToolkit()
+								.getMenuShortcutKeyMask()));
 	}
 	
 	/**

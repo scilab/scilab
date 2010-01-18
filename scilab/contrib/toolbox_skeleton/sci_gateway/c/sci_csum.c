@@ -12,7 +12,7 @@
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
-  StrErr strErr;
+  SciErr sciErr;
   
   int m1 = 0, n1 = 0;
   int *piAddressVarOne = NULL;
@@ -34,26 +34,26 @@ int sci_csum(char *fname)
   CheckLhs(1,1) ;   
   
   /* get Address of inputs */
-  strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-  if(strErr.iErr)
+  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   }
   
-  strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-  if(strErr.iErr)
+  sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   }
   
   
   /* check input type */
-  strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-  if(strErr.iErr)
+  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   } 
    
@@ -63,10 +63,10 @@ int sci_csum(char *fname)
     return 0;
   }
 
-  strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-  if(strErr.iErr)
+  sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   }   
   
@@ -77,17 +77,17 @@ int sci_csum(char *fname)
   }
 
   /* get matrix */
-  strErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
-  if(strErr.iErr)
+  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   }
   
-  strErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
-  if(strErr.iErr)
+  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
+  if(sciErr.iErr)
   {
-    printError(&strErr, 0);
+    printError(&sciErr, 0);
     return 0;
   }
   

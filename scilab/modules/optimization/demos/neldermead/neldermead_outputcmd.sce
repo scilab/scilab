@@ -56,14 +56,10 @@ nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
 nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
-nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 nm = neldermead_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor

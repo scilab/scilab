@@ -103,6 +103,8 @@
 #define GL2PS_IMAGEMAP_WRITTEN 8
 #define GL2PS_IMAGEMAP_VISIBLE 9
 #define GL2PS_SPECIAL          10
+/* Added by Calixte */
+#define GL2PS_SPECIAL_TEXT     11
 
 /* BSP tree primitive comparison */
 
@@ -5159,8 +5161,9 @@ static void gl2psPrintSVGPrimitive(void *data)
     gl2ps->lastfactor = prim->factor;
     if(newline){
       gl2psSVGGetColorString(rgba[0], col);
+      /* Calixte Added a 0.5* because the lines are better with this factor */
       gl2psPrintf("<polyline fill=\"none\" stroke=\"%s\" stroke-width=\"%g\" ", 
-                  col, prim->width);
+                  col, 0.5 * prim->width);
       if(rgba[0][3] < 1.0F) gl2psPrintf("stroke-opacity=\"%g\" ", rgba[0][3]);
       gl2psPrintSVGDash(prim->pattern, prim->factor);
       gl2psPrintf("points=\"%g,%g ", xyz[0][0], xyz[0][1]);
@@ -5212,6 +5215,13 @@ static void gl2psPrintSVGPrimitive(void *data)
        is intended */
     if(prim->data.text->alignment == GL2PS_SVG)
       gl2psPrintf("%s\n", prim->data.text->str);
+    break;
+    /* Added by Calixte to add LaTeX labels converted in SVG */
+  case GL2PS_SPECIAL_TEXT :
+    if(prim->data.text->alignment == GL2PS_SVG) {
+      gl2psSVGGetColorString(prim->verts[0].rgba, col);
+      gl2psPrintf("<g fill=\"%s\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
+    }
     break;
   default :
     break;
@@ -5854,10 +5864,12 @@ GL2PSDLL_API int gl2psEndViewport(void)
   return res;
 }
 
+/* Modified by Calixte
+   When fontSize==0, the text is considered as SVG code (it should contain the fontsize)*/
 GL2PSDLL_API int gl2psTextOpt(const char *str, const char *fontname, 
                                 short fontsize, int alignment, float angle)
 {
-  return gl2psAddText(GL2PS_TEXT, str, fontname, fontsize, alignment, angle);
+  return gl2psAddText(fontsize != 0 ? GL2PS_TEXT : GL2PS_SPECIAL_TEXT, str, fontname, fontsize, alignment, angle);
 }
 
 GL2PSDLL_API int gl2psText(const char *str, const char *fontname, short fontsize)

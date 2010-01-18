@@ -13,8 +13,9 @@ function replot(rect,handl)
 
 [lhs,rhs]=argn(0);
 
-win=xget("window");
-
+if rhs < 1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "replot", 1, 2));
+end
   
 if rhs == 1
   a=gca();
@@ -23,10 +24,10 @@ else
     if (handl.type == 'Axes')
       a = handl;
     else
-      error("Error : handle must be of type Axes");
+      error(msprintf(gettext("%s: Input argument #%d must be a handle on a axes.\n"), "replot", 2));
     end
   else
-    error("Error : Incorrect input, second argument must be of type graphic Axes handle");
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Graphic handle expected.\n"), "replot", 2));
   end
 end
 a.data_bounds = [rect(1) rect(2) ; rect(3) rect(4)]

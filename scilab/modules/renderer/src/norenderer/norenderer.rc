@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "norender"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "norenderer"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "noscirenderer.dll"
             VALUE "ProductName", " norenderer"
             VALUE "ProductVersion", "5, 2, 0, 0"

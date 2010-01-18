@@ -20,26 +20,32 @@ import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 
 public class H5WriteScilabBoolean {
-	public static void writeInDataSet(int file_id, String dataSetName,ScilabBoolean data) throws NullPointerException, HDF5Exception {
-		boolean[][] realData = data.getData();	
-		int[][] dataToWrite = new int[realData.length][realData[0].length];
-		long[] dims = {realData.length, realData[0].length};
+    public static void writeInDataSet(int file_id, String dataSetName,ScilabBoolean data) throws NullPointerException, HDF5Exception {
+	boolean[][] realData = data.getData();	
+	int rows = realData.length;
+	int cols = realData[0].length;
+	int[] dataOut = new int[rows * cols];
+	long[] dims = {rows * cols};
 
-		for (int i = 0 ; i < realData.length ; ++i) {
-			for (int j = 0 ; j < realData[0].length ; ++j) {
-				dataToWrite[i][j] = realData[i][j] ? 1 : 0;
-			}
-		}
-
-		int dataspaceId = H5.H5Screate_simple(2, dims, null);
-		int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName,
-				HDF5Constants.H5T_NATIVE_INT, dataspaceId,
-				HDF5Constants.H5P_DEFAULT);
-		H5.H5Dwrite(datasetId, HDF5Constants.H5T_NATIVE_INT,
-				HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
-				HDF5Constants.H5P_DEFAULT, dataToWrite);
-		H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
-		H5.H5Dclose(datasetId);
-		H5.H5Sclose(dataspaceId);
+	for (int i = 0 ; i < rows ; ++i) { //rows
+	    for (int j = 0 ; j < cols ; ++j) { //cols
+		dataOut[i + j * rows] = realData[i][j] ? 1 : 0;
+	    }
 	}
+
+	int dataspaceId = H5.H5Screate_simple(1, dims, null);
+	int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName,
+		HDF5Constants.H5T_NATIVE_INT, dataspaceId,
+		HDF5Constants.H5P_DEFAULT);
+	H5.H5Dwrite(datasetId, HDF5Constants.H5T_NATIVE_INT,
+		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
+		HDF5Constants.H5P_DEFAULT, dataOut);
+
+	H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
+	H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, rows);
+	H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, cols);
+
+	H5.H5Dclose(datasetId);
+	H5.H5Sclose(dataspaceId);
+    }
 }

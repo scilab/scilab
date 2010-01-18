@@ -418,6 +418,7 @@ scs_m_1.objs(1)=scicos_block(..
                          orig=[60.518363,178.33333],..
                          sz=[60,40],..
                          flip=%t,..
+                         theta=0,..
                          exprs=["0";"3"],..
                          pin=[],..
                          pout=7,..

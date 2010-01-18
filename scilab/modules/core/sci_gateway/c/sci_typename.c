@@ -43,7 +43,7 @@ int C2F(sci_typename)(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	int iType1			= 0;
 	int *piAddressVarOne = NULL;
@@ -55,33 +55,33 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -97,10 +97,10 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
-	if(strErr.iErr)
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -110,10 +110,10 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -124,10 +124,10 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	}
 	
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -135,10 +135,10 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	if (pStVarOne)
 	{
 		int ierr = 0;
-		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-		if(strErr.iErr)
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -180,7 +180,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int numberOfTypes = 0;
 	int *TypesNumbers = NULL;
 	
@@ -190,10 +190,10 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	m_out1 = numberOfTypes;
 	n_out1 = 1;
 
-	strErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1,m_out1,n_out1,TypesNumbers);
-	if(strErr.iErr)
+	sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1,m_out1,n_out1,TypesNumbers);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -209,10 +209,10 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 		m_out2 = numberOfTypes;
 		n_out2 = 1;
 		
-		strErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out2, n_out2, TypesNames);
-		if(strErr.iErr)
+		sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out2, n_out2, TypesNames);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 

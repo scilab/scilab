@@ -39,17 +39,15 @@ public class StarMarkDrawer extends CircleMarkDrawer {
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
 		super.drawMark(gl, backColor, frontColor);
-    // plus
-    if(!isFrontTransparent)
-    {
-		  gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		  gl.glBegin(GL.GL_LINES);
-		  gl.glVertex3d(-1.0,  0.0, 0.0);
-		  gl.glVertex3d(1.0 ,  0.0, 0.0);
-		  gl.glVertex3d(0.0 , -1.0, 0.0);
-		  gl.glVertex3d(0.0 ,  1.0, 0.0);
-		  gl.glEnd();
+		// plus
+		if (!isFrontTransparent) {
+			gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+			gl.glBegin(GL.GL_LINES);
+			gl.glVertex3d(-1.0,  0.0, 0.0);
+			gl.glVertex3d(1.0 ,  0.0, 0.0);
+			gl.glVertex3d(0.0 , -1.0, 0.0);
+			gl.glVertex3d(0.0 ,  1.0, 0.0);
+			gl.glEnd();
 		}
 	}
-
 }

@@ -18,9 +18,12 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.3.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.6.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+
+; To build the export through the Java
+avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar

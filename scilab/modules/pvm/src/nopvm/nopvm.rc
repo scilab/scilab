@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nopvm module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "nopvm module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "nopvm.dll"
             VALUE "ProductName", " nopvm"
             VALUE "ProductVersion", "5, 2, 0, 0"

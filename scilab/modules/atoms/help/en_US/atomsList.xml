@@ -40,7 +40,7 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsList();
+atomsList()
  ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->

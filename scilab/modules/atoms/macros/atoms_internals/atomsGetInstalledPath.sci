@@ -28,11 +28,17 @@ function res = atomsGetInstalledPath(packages,section)
 	// =========================================================================
 	
 	if type(packages) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetInstalledPath",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledPath",1));
 	end
 	
-	if size(packages(1,:),"*") <> 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsGetInstalledPath",1));
+	if and(size(packages(1,:),"*") <> [2 3]) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"),"atomsGetInstalledPath",1));
+	end
+	
+	packages = stripblanks(packages);
+	
+	if or(packages(:,2)=="")  then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: All modules version should be set.\n"),"atomsGetInstalledPath",1));
 	end
 	
 	packages = stripblanks(packages);
@@ -58,6 +64,13 @@ function res = atomsGetInstalledPath(packages,section)
 		
 	end
 	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
+	
 	// Get the list of installed packages
 	// =========================================================================
 	installedpackages = atomsGetInstalled(section);
@@ -68,22 +81,32 @@ function res = atomsGetInstalledPath(packages,section)
 	for i=1:size(packages(:,1),"*")
 		
 		// Filter on names
-		this_packages = installedpackages( find(installedpackages(:,1) == packages(i,1))     ,:);
+		packages_filtered = installedpackages( find(installedpackages(:,1) == packages(i,1)) , : );
 		
-		if this_packages == [] then
+		if packages_filtered == [] then
 			res(i) = "";
 			continue;
 		end
 		
 		// Filter on versions
-		this_packages = this_packages( find(this_packages(:,2) == packages(i,2)) ,:);
+		packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
 		
-		if this_packages == [] then
+		if packages_filtered == [] then
 			res(i) = "";
 			continue;
 		end
 		
-		res(i) = this_packages(1,4);
+		// Filter on section
+		if ~isempty(packages(i,3)) & packages(i,3)<>"all" then
+			packages_filtered = packages_filtered( find(packages_filtered(:,3) == packages(i,3)) , : );
+		end
+		
+		if ~ isempty(packages_filtered) then
+			res(i) = packages_filtered(1,4);
+		else
+			res(i) = "";
+		end
+		
 	end
 	
 endfunction

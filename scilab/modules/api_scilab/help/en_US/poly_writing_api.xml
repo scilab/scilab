@@ -26,14 +26,24 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>
-int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
-int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
-        </synopsis>
-    </refsynopsisdiv>
+		<para>Input argument profile:</para>
+		<synopsis>SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+		<synopsis>SciErr createMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+		<para>Named variable profile:</para>
+		<synopsis>SciErr createNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+		<synopsis>SciErr createNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
+	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>_iVar</term>
                 <listitem>
@@ -42,7 +52,15 @@ int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCo
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
+			<varlistentry>
+				<term>_pstName</term>
+				<listitem>
+					<para>
+						Name of the variable for "named" functions.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_pstVarName</term>
                 <listitem>
                     <para>
@@ -90,7 +108,15 @@ int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCo
                     </para>
                 </listitem>
             </varlistentry>
-        </variablelist>
+			<varlistentry>
+				<term>SciErr</term>
+				<listitem>
+					<para>
+						Error structure where is stored errors messages history and first error number.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -102,11 +128,11 @@ int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCo
         <!--Lib_name: poly_writing-->
         <!--Func_list: write_poly-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+    <![CDATA[ 
 int write_poly(char *fname,unsigned long fname_len)
 {
-    int iRet                = 0;
-
+    SciErr sciErr;
     //output variable info : polinomial matrix 2 x 4
     //[ x + 2                   x^2 - 4x + 5    4x^3 - 14x^2 + 18 ;
     //  2x^3 - 12x^2 + 64       1               8x^5 + 32x^3]
@@ -135,7 +161,12 @@ int write_poly(char *fname,unsigned long fname_len)
     pdblReal[4]             = pdblPoly4;
     pdblReal[5]             = pdblPoly5;
 
-    createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+    sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
     //assign allocated variables to Lhs position
     LhsVar(1) = Rhs + 1;

@@ -21,29 +21,28 @@ function res = atomsAUWriteAccess()
 		return;
 	end
 	
+	atoms_system_directory  = atomsPath("system" ,"allusers");
+	atoms_install_directory = atomsPath("install","allusers");
+	
 	// Physical test
-	try
-		atoms_system_directory  = atomsPath("system" ,"allusers");
-		atoms_install_directory = atomsPath("install","allusers");
-		
-		
-		if isdir(atoms_system_directory) then
-			mputl("dummy",atoms_system_directory+"dummy");
-			mdelete(atoms_system_directory+"dummy");
-		else
-			if mkdir(atoms_system_directory)<>1 then
-				return;
-			end
-			mputl("dummy",atoms_system_directory+"dummy");
-			mdelete(atoms_system_directory+"dummy");
+	
+	if ~ isdir(atoms_system_directory) then
+		if mkdir(atoms_system_directory) <> 1 then
+			return;
 		end
-		
-		mputl("dummy",atoms_install_directory+"dummy");
-		mdelete(atoms_install_directory+"dummy");
-		
+	end
+	
+	if execstr("mputl(""dummy"",atoms_system_directory+""dummy"");","errcatch") == 0 then
 		res = %T;
-		
-	catch
+		mdelete(atoms_system_directory+"dummy");
+	else
+		return;
+	end
+	
+	if execstr("mputl(""dummy"",atoms_install_directory+""dummy"");","errcatch") <> 0 then
+		res = %F;
+	else
+		mdelete(atoms_install_directory+"dummy");
 	end
 	
 endfunction

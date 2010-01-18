@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: src/c/JVM.c, line: 118
 #, c-format
@@ -160,7 +160,7 @@ msgstr ""
 msgid "Error: Could not parse file %s.\n"
 msgstr ""
 #
-# File: src/c/getJvmOptions.c, line: 145
+# File: src/c/getJvmOptions.c, line: 146
 #, c-format
 msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
@@ -168,8 +168,8 @@ msgid ""
 msgstr ""
 #
 # File: src/c/loadLibrarypath.c, line: 61
-# File: src/c/loadClasspath.c, line: 89
 # File: src/c/loadOnUseClassPath.c, line: 63
+# File: src/c/loadClasspath.c, line: 89
 #, c-format
 msgid "Error: could not parse file %s\n"
 msgstr ""
@@ -223,15 +223,15 @@ msgstr ""
 msgid "Warning: Could not find Java package '%s'.\n"
 msgstr ""
 #
+# File: src/c/loadOnUseClassPath.c, line: 121
 # File: src/c/loadClasspath.c, line: 192
-# File: src/c/loadOnUseClassPath.c, line: 120
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"
 msgstr ""
 #
 # File: src/c/loadLibrarypath.c, line: 124
-# File: src/c/loadClasspath.c, line: 177
 # File: src/c/loadOnUseClassPath.c, line: 112
+# File: src/c/loadClasspath.c, line: 177
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr ""

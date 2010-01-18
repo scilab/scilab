@@ -76,7 +76,7 @@ k=mode()</synopsis>
     </variablelist>
 
     <para>A exibição de linha é desabilitada para funções do Scilab compiladas
-    (ver getf ou comp). Por padrão, funções do Scilab são executadas no modo
+    (ver comp). Por padrão, funções do Scilab são executadas no modo
     "silencioso" ("-1").</para>
   </refsection>
 
@@ -85,8 +85,6 @@ k=mode()</synopsis>
 
     <simplelist type="inline">
       <member><link linkend="exec">exec</link></member>
-
-      <member><link linkend="getf">getf</link></member>
 
       <member><link linkend="semicolon">semicolon</link></member>
 

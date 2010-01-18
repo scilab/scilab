@@ -1,523 +1,387 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.palette;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 import javax.swing.TransferHandler;
-import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
-import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
-import org.scilab.modules.gui.contextmenu.ContextMenu;
-import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
-import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGeometry;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource;
-import com.mxgraph.util.mxPoint;
-import com.mxgraph.util.mxRectangle;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
+/**
+ * The grid panel implementation for the BlockPalettes (main block view).
+ */
 public class XcosPalette extends JScrollPane {
 
-	private static final int BLOCK_WIDTH = 100;
-	private static final int BLOCK_HEIGHT = 100;
-	private static final int HMARGIN = 5;
-	private static final int VMARGIN = 5;
-	private static final int DEFAULT_NB_COLS = 1; /* Updated dynamically at creation */
-	
-	private JPanel panel;
+	/** Helper to manage the entry selection */
+	public final class EntryManager {
+		private BlockPalette selectedEntry;
 
-	protected JLabel selectedEntry;
-
-	protected mxEventSource eventSource = new mxEventSource(this);
-
-	protected Color gradientColor = Color.LIGHT_GRAY;
-
-	public XcosPalette() {
-			super(new JPanel());
-			panel = (JPanel) getViewport().getComponent(0);
-			setBackground(Color.WHITE);
-			
-			panel.setBackground(Color.WHITE);
-			panel.setLayout(new FlowLayout(FlowLayout.LEADING, HMARGIN, VMARGIN));
-			panel.setPreferredSize(new Dimension(DEFAULT_NB_COLS * (BLOCK_WIDTH + HMARGIN), 0));
-
-			getVerticalScrollBar().setBlockIncrement(BLOCK_HEIGHT + VMARGIN);
-			getHorizontalScrollBar().setBlockIncrement(BLOCK_WIDTH + HMARGIN);
-			getVerticalScrollBar().setUnitIncrement(BLOCK_HEIGHT + VMARGIN);
-			getHorizontalScrollBar().setUnitIncrement(BLOCK_WIDTH + HMARGIN);
-
-			// Clears the current selection when the background is clicked
-			addMouseListener(new MouseListener()
-			{
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-				 */
-				public void mousePressed(MouseEvent e)
-				{
-					clearSelection();
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-				 */
-				public void mouseClicked(MouseEvent e)
-				{
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-				 */
-				public void mouseEntered(MouseEvent e)
-				{
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-				 */
-				public void mouseExited(MouseEvent e)
-				{
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-				 */
-				public void mouseReleased(MouseEvent e)
-				{
-				}
-
-			});
-
-			// Shows a nice icon for drag and drop but doesn't import anything
-			setTransferHandler(new TransferHandler()
-			{
-				public boolean canImport(JComponent comp, DataFlavor[] flavors)
-				{
-					return true;
-				}
-			});
+		/** Default Constructor */
+		private EntryManager() {
 		}
 
 		/**
-		 * 
+		 * Clear the selection.
 		 */
-		public void setGradientColor(Color c)
-		{
-			gradientColor = c;
-		}
-
-		/**
-		 * 
-		 */
-		public Color getGradientColor()
-		{
-			return gradientColor;
-		}
-
-		/**
-		 * 
-		 */
-		public void paintComponent(Graphics g)
-		{
-			if (gradientColor == null)
-			{
-				super.paintComponent(g);
-			}
-			else
-			{
-				Rectangle rect = getVisibleRect();
-
-				if (g.getClipBounds() != null)
-				{
-					rect = rect.intersection(g.getClipBounds());
-				}
-
-				Graphics2D g2 = (Graphics2D) g;
-
-				g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-						gradientColor));
-				g2.fill(rect);
-			}
-		}
-
-		/**
-		 * 
-		 */
-		public void clearSelection()
-		{
+		public void clearSelection() {
 			setSelectionEntry(null, null);
 		}
 
 		/**
+		 * Does the block palette is selected ?
 		 * 
+		 * @param blockPalette
+		 *            The tested block palette
+		 * @return true if it is selected, false otherwise
 		 */
-		public void setSelectionEntry(JLabel entry, mxGraphTransferable t)
-		{
-			JLabel last = selectedEntry;
+		public boolean isSelectedEntry(BlockPalette blockPalette) {
+			return blockPalette == selectedEntry;
+		}
+
+		/**
+		 * Select a block (perform UI and control update)
+		 * 
+		 * @param entry
+		 *            The selected block entry
+		 * @param t
+		 *            The associated transferable state
+		 */
+		public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
+			BlockPalette last = selectedEntry;
 			selectedEntry = entry;
 
-			if (last != null)
-			{
+			if (last != null) {
 				last.setBorder(null);
 				last.setOpaque(false);
 			}
 
-			if (selectedEntry != null)
-			{
+			if (selectedEntry != null) {
 				selectedEntry.setBorder(new ShadowBorder());
 				selectedEntry.setOpaque(true);
 			}
 
-			eventSource.fireEvent(mxEvent.SELECT, new mxEventObject(new Object[] {
-					selectedEntry, t, last }));
+			eventSource.fireEvent(new mxEventObject(mxEvent.SELECT, "entry",
+					selectedEntry, "transferable", t, "previous", last));
 		}
 
-		/**
-		 * 
-		 * @param name
-		 * @param icon
-		 * @param style
-		 * @param width
-		 * @param height
-		 * @param value
-		 */
-		public void addEdgeTemplate(final String name, ImageIcon icon,
-				String style, int width, int height, Object value)
-		{
-			mxGeometry geometry = new mxGeometry(0, 0, width, height);
-			geometry.setTerminalPoint(new mxPoint(0, height), true);
-			geometry.setTerminalPoint(new mxPoint(width, 0), false);
-			geometry.setRelative(true);
+	}
 
-			mxCell cell = new mxCell(value, geometry, style);
-			cell.setEdge(true);
+	/**
+	 * Contains all the controllers used by this class.
+	 */
+	private static final class XcosPaletteController {
 
-			addTemplate(name, icon, cell);
-		}
+		private ComponentListener componentListener = new ComponentListener() {
 
-		/**
-		 * 
-		 * @param name
-		 * @param icon
-		 * @param style
-		 * @param width
-		 * @param height
-		 * @param value
-		 */
-		public void addTemplate(final String name, ImageIcon icon, String style,
-				int width, int height, Object value)
-		{
-			mxCell cell = new mxCell(value, new mxGeometry(0, 0, width, height),
-					style);
-			cell.setVertex(true);
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentHidden(ComponentEvent arg0) {
+			}
 
-			addTemplate(name, icon, cell);
-		}
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentMoved(ComponentEvent arg0) {
+			}
 
-		/**
-		 * 
-		 * @param name
-		 * @param icon
-		 * @param style
-		 * @param width
-		 * @param height
-		 * @param value
-		 */
-		public void addTemplate(final String name, ImageIcon icon, mxCell cell)
-		{
-			mxRectangle bounds = (mxGeometry) cell.getGeometry().clone();
-			final mxGraphTransferable t = new mxGraphTransferable(
-					new Object[] { cell }, bounds);
-			
-			final BasicBlock cloneMe = (BasicBlock) cell;
-			
-			// Scales the image if it's too large for the library
-			//if (icon != null)
-			//{
-			//	if (icon.getIconWidth() > 128) {
-			//		icon.setImage(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
-			//	}
-			//	if (icon.getIconHeight() > 128) {
-			//		icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
-			//	}
-			//}
+			/**
+			 * Do the layout of the blocks representations
+			 * 
+			 * @param arg0
+			 *            Event data
+			 * @see ComponentListener
+			 */
+			public void componentResized(ComponentEvent arg0) {
+				if (arg0.getSource() instanceof XcosPalette) {
+					XcosPalette palette = ((XcosPalette) arg0.getSource());
+					int panelWidth = (int) palette.getSize().getWidth()
+							- BORDER_WIDTH;
 
-			final JLabel entry = new JLabel(icon)
-			{
-				/**
-				 * 
-				 */
-				public void paint2(Graphics g)
-				{
-					boolean opaque = isOpaque();
-					Color bg = getBackground();
-					Border br = getBorder();
-
-					if (selectedEntry == this)
-					{
-						setBackground(XcosPalette.this.getBackground().brighter());
-						setBorder(new ShadowBorder());
-						setOpaque(true);
+					// take care if VerticalScrollBar is visible to compute
+					// visible area
+					if (palette.getVerticalScrollBar().isVisible()) {
+						panelWidth -= palette.getVerticalScrollBar().getWidth();
 					}
 
-					super.paint(g);
+					int numberOfCols = panelWidth
+							/ (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+					double numberOfRows = (double) palette.panel
+							.getComponentCount()
+							/ (double) numberOfCols;
+					int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math
+							.ceil(numberOfRows));
 
-					setBorder(br);
-					setBackground(bg);
-					setOpaque(opaque);
+					palette.panel.setPreferredSize(new Dimension(panelWidth,
+							preferedHeight));
 				}
-			};
+			}
 
-			entry.setPreferredSize(new Dimension(BLOCK_WIDTH, BLOCK_HEIGHT));
-			entry.setBackground(XcosPalette.this.getBackground().brighter());
-			entry.setFont(new Font(entry.getFont().getFamily(), 0, 12));
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentShown(ComponentEvent arg0) {
+			}
 
-			entry.setVerticalTextPosition(JLabel.BOTTOM);
-			entry.setHorizontalTextPosition(JLabel.CENTER);
-			entry.setIconTextGap(5);
+		};
 
-			entry.setToolTipText(name);
-			entry.setText(name);
+		private MouseListener mouseListener = new MouseListener() {
 
-			entry.addMouseListener(new MouseListener()
-			{
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseClicked(MouseEvent e) {
+			}
 
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-				 */
-				public void mousePressed(MouseEvent e)
-				{
-					setSelectionEntry(entry, t);
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseExited(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mousePressed(MouseEvent e) {
+				if (e.getSource() instanceof XcosPalette) {
+					XcosPalette palette = ((XcosPalette) e.getSource());
+					palette.getEntryManager().clearSelection();
 				}
+			}
 
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-				 */
-				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) {
-						
-						ContextMenu menu = ScilabContextMenu.createContextMenu();
-						
-						final ArrayList<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-						
-						if (allDiagrams.size() == 0) {
-							// No diagram opened: should never happen if Xcos opens an empty diagram when it is launched
-							MenuItem addTo = ScilabMenuItem.createMenuItem();
-							
-							addTo.setText(XcosMessages.ADDTO_NEW_DIAGRAM);
-							addTo.setCallback(new CallBack(name) {
-								private static final long serialVersionUID = 1185879440137756636L;
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseReleased(MouseEvent e) {
+			}
+		};
 
-								public void callBack() {
-									Xcos.createEmptyDiagram().addCell(cloneMe.createClone());
-								}
-							});
-							
-							menu.add(addTo);
-							
-						} else if (allDiagrams.size() == 1) {
-							// A single diagram opened: add to this diagram
-							MenuItem addTo = ScilabMenuItem.createMenuItem();
-
-							addTo.setText(XcosMessages.ADDTO + " " + allDiagrams.get(0).getParentTab().getName());
-							final XcosDiagram theDiagram = allDiagrams.get(0);
-							addTo.setCallback(new CallBack(name) {
-								private static final long serialVersionUID = 1185879440137756636L;
-
-								public void callBack() {
-									theDiagram.addCell(cloneMe.createClone());
-								}
-							});
-							
-							menu.add(addTo);
-
-						} else {
-							// The user has to choose
-							Menu addTo = ScilabMenu.createMenu();
-
-							addTo.setText(XcosMessages.ADDTO);
-							
-							for (int i = 0; i < allDiagrams.size(); i++) {
-								MenuItem diagram = ScilabMenuItem.createMenuItem();
-								final XcosDiagram theDiagram = allDiagrams.get(i);
-								diagram.setText(allDiagrams.get(i).getParentTab().getName());
-								diagram.setCallback(new CallBack(name) {
-									private static final long serialVersionUID = -3138430622029406470L;
-
-									public void callBack() {
-										theDiagram.addCell(cloneMe.createClone());
-									}
-								});
-								addTo.add(diagram);
-							}
-
-							menu.add(addTo);
-						}
-						
-						
-						menu.getAsSimpleContextMenu().addSeparator();
-						
-						MenuItem help = ScilabMenuItem.createMenuItem();
-						help.setText("Block help");
-						help.setCallback(new CallBack(name) {
-							private static final long serialVersionUID = -8720228686621887887L;
-
-							public void callBack() {
-								InterpreterManagement.requestScilabExec("help " + name);
-							}
-						});
-						menu.add(help);
-					    
-						menu.setVisible(true);
-
-					    ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-					    		MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
-					}
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-				 */
-				public void mouseEntered(MouseEvent e)
-				{
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-				 */
-				public void mouseExited(MouseEvent e)
-				{
-				}
-
-				/*
-				 * (non-Javadoc)
-				 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-				 */
-				public void mouseReleased(MouseEvent e)
-				{
-				}
-
-			});
-
-			// Install the handler for dragging nodes into a graph
-			DragGestureListener dragGestureListener = new DragGestureListener()
-			{
-				/**
-				 * 
-				 */
-				public void dragGestureRecognized(DragGestureEvent e)
-				{
-					e
-					.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
-							t, null);
-				}
-
-			};
-
-			DragSource dragSource = new DragSource();
-			DragGestureRecognizer dgr = dragSource
-			.createDefaultDragGestureRecognizer(entry,
-					DnDConstants.ACTION_COPY, dragGestureListener);
-
-			panel.add(entry);
-
-			int panelWidth = (int) panel.getPreferredSize().getWidth();
-			int numberOfCols = panelWidth / (BLOCK_WIDTH + HMARGIN);
-			panel.setPreferredSize(new Dimension(panelWidth, (BLOCK_WIDTH + HMARGIN) * (panel.getComponentCount() / numberOfCols + 1)));
+		/** Default constructor */
+		private XcosPaletteController() {
 		}
 
 		/**
-		 * @param eventName
-		 * @param listener
-		 * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
+		 * @return the componentListener
 		 */
-		public void addListener(String eventName, mxIEventListener listener)
-		{
-			eventSource.addListener(eventName, listener);
+		private ComponentListener getComponentListener() {
+			return componentListener;
 		}
 
 		/**
-		 * @return
-		 * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
+		 * @return the mouseListener
 		 */
-		public boolean isEventsEnabled()
-		{
-			return eventSource.isEventsEnabled();
-		}
-
-		/**
-		 * @param listener
-		 * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
-		 */
-		public void removeListener(mxIEventListener listener)
-		{
-			eventSource.removeListener(listener);
-		}
-
-		/**
-		 * @param eventName
-		 * @param listener
-		 * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-		 */
-		public void removeListener(mxIEventListener listener, String eventName)
-		{
-			eventSource.removeListener(listener, eventName);
-		}
-
-		/**
-		 * @param eventsEnabled
-		 * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
-		 */
-		public void setEventsEnabled(boolean eventsEnabled)
-		{
-			eventSource.setEventsEnabled(eventsEnabled);
+		private MouseListener getMouseListener() {
+			return mouseListener;
 		}
 	}
+	private static final int BORDER_WIDTH = 3;
+	private static final XcosPaletteController CONTROLLER = new XcosPaletteController();
+
+	private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
+
+	private static final long serialVersionUID = 5693635134906513755L;
+	
+	private EntryManager entryManager = new EntryManager();
+	private mxEventSource eventSource = new mxEventSource(this);
+
+	private String name;
+	private JPanel panel;
+
+	/**
+	 * Default constructor
+	 * 
+	 * @param name
+	 *            The palette name
+	 */
+	public XcosPalette(String name) {
+		super(new JPanel());
+		panel = (JPanel) getViewport().getComponent(0);
+		this.name = name;
+		initComponents();
+
+		addComponentListener(CONTROLLER.getComponentListener());
+		// Clears the current selection when the background is clicked
+		addMouseListener(CONTROLLER.getMouseListener());
+
+		// Shows a nice icon for drag and drop but doesn't import anything
+		setTransferHandler(new TransferHandler() {
+			private static final long serialVersionUID = 1L;
+
+			public boolean canImport(JComponent comp, DataFlavor[] flavors) {
+				return true;
+			}
+		});
+	}
+
+	/**
+	 * Setup the graphical components
+	 */
+	private void initComponents() {
+		setBackground(Color.WHITE);
+
+		panel.setBackground(Color.WHITE);
+		panel.setLayout(new FlowLayout(FlowLayout.LEADING,
+				XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+		panel.setPreferredSize(new Dimension(
+				(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
+				0));
+
+		getVerticalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
+		getVerticalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
+
+		// getHorizontalScrollBar().setVisible(false);
+		getHorizontalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
+		getHorizontalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
+	}
+
+	/**
+	 * Add a block representative data
+	 * 
+	 * @param name
+	 *            The block name
+	 * @param icon
+	 *            The associated icon
+	 */
+	public void addTemplate(final String name, ImageIcon icon) {
+
+		final BlockPalette entry = new BlockPalette(icon);
+
+		entry.setPalette(this);
+		entry.setToolTipText(name);
+		entry.setText(name);
+
+		// Install the handler for dragging nodes into a graph
+		DragGestureListener dragGestureListener = new DragGestureListener() {
+			public void dragGestureRecognized(DragGestureEvent e) {
+				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(), entry
+						.getTransferable(), null);
+			}
+
+		};
+
+		DragSource dragSource = new DragSource();
+		dragSource.createDefaultDragGestureRecognizer(entry,
+				DnDConstants.ACTION_COPY, dragGestureListener);
+
+		panel.add(entry);
+	}
+
+	/** @return the entry manager */
+	public EntryManager getEntryManager() {
+		return entryManager;
+	}
+
+	/**
+	 * Call the UI Paint method with a {@link GradientPaint} customized by the
+	 * {@link #GRADIENT_COLOR}.
+	 * 
+	 * @param g
+	 *            Global graphical context
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		Rectangle rect = getVisibleRect();
+
+		if (g.getClipBounds() != null) {
+			rect = rect.intersection(g.getClipBounds());
+		}
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
+				GRADIENT_COLOR));
+		g2.fill(rect);
+	}
+
+	/**
+	 * @return the name of the palette
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
+}

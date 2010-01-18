@@ -27,7 +27,7 @@ extern "C"
 
 extern "C" double C2F(sciround)(double* x);
 /*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_xcos;
+using namespace org_scilab_modules_xcos_graph;
 /*--------------------------------------------------------------------------*/
 extern "C" void affich2(scicos_block *block,int flag)
 {

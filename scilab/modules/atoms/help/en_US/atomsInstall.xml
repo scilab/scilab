@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(module[,section]])
+	  result = atomsInstall(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -35,29 +35,51 @@
     <variablelist>
       
 			<varlistentry>
-        <term>module</term>
+        <term>modules</term>
         <listitem>
+					
           <para>
-						mx1 or mx2 Matrix of strings:
+						mx1, mx2 Matrix of strings:
 					</para>
 					
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is installed.
-							</para>
-            </listitem>
-          </itemizedlist>
-					
-        </listitem>
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								the most recent	version is used
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
       
 			<varlistentry>
@@ -95,33 +117,78 @@
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>5xn String matrix :</para>
-          <itemizedlist>
-            <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-							</para>
-						</listitem>
-						<listitem>
-							<para><literal>2nd column</literal> : External module's version
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
-								the external module has been installed for all users or only for the
-								current user.
-								</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>4th column</literal> : External module's installation path
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>5th column</literal> : I/A, this parameter tell if
-								the external module has been automatically or intentionnaly installed.
-							</para>
-            </listitem>
-          </itemizedlist>
+          <para>5xn character string matrix:</para>
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation section</emphasis>
+							</td>
+							<td>
+								this parameter determines whether the module has been installed
+								for all users or only for the	current user.
+							</td>
+						</tr>
+						
+						<!-- Installation path -->
+						
+						<tr>
+							<td>
+								<emphasis>4th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation path</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Status -->
+						
+						<tr>
+							<td>
+								<emphasis>5th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Status</emphasis>
+							</td>
+							<td>
+								"I" stands for "Intentionnaly", "A" stands for "Automatically"
+							</td>
+						</tr>
+						
+					</informaltable>
         </listitem>
       </varlistentry>
     </variablelist>

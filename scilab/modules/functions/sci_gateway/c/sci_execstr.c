@@ -34,7 +34,7 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		StrErr strErr;
+		SciErr sciErr;
 
 		int *piAddressVarOne = NULL;
 		int iType1 = 0;
@@ -42,17 +42,17 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 		CheckRhs(1,3);
 		CheckLhs(0,1);
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -61,19 +61,19 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 		{
 			int m1 = 0, n1 = 0;
 
-			strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-			if(strErr.iErr)
+			sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
 			if ((m1 == n1) && (m1 == 0)) /* [] */
 			{
-				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
-				if(strErr.iErr)
+				sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -103,17 +103,17 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			int lenStVarTwo = 0;
 			int iType2 = 0;
 
-			strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-			if(strErr.iErr)
+			sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
-			strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -123,10 +123,10 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -139,10 +139,10 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 			if (pStVarTwo)
 			{
-				strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-				if(strErr.iErr)
+				sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -172,17 +172,17 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			int lenStVarThree = 0;
 			int iType3 = 0;
 
-			strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
-			if(strErr.iErr)
+			sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
-			strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-			if(strErr.iErr)
+			sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -192,10 +192,10 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -208,10 +208,10 @@ int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 			pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
 			if (pStVarThree)
 			{
-				strErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
-				if(strErr.iErr)
+				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree,&m3,&n3,&lenStVarThree,&pStVarThree);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 

@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -53,11 +55,19 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 str = optimsimplex_tostring ( s1 );
+if MSDOS then
 expected = [
 "Vertex #1/3 : fv=2.400000e+001, x=-2.000000e+000 1.000000e+000"
 "Vertex #2/3 : fv=9.300000e+001, x=-1.000000e+000 3.000000e+000"
 "Vertex #3/3 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000"
-]
+];
+else
+expected = [
+"Vertex #1/3 : fv=2.400000e+01, x=-2.000000e+00 1.000000e+00"
+"Vertex #2/3 : fv=9.300000e+01, x=-1.000000e+00 3.000000e+00"
+"Vertex #3/3 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00"
+];
+end
 assert_equal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 
@@ -71,12 +81,21 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 str = optimsimplex_tostring ( s1 );
+if MSDOS then
 expected = [
 "Vertex #1/4 : fv=2.400000e+001, x=-2.000000e+000 1.000000e+000" 
 "Vertex #2/4 : fv=9.300000e+001, x=-1.000000e+000 3.000000e+000" 
 "Vertex #3/4 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000" 
 "Vertex #4/4 : fv=3.600000e+001, x=-3.000000e+000 2.000000e+000" 
-]
+];
+else
+expected = [
+"Vertex #1/4 : fv=2.400000e+01, x=-2.000000e+00 1.000000e+00" 
+"Vertex #2/4 : fv=9.300000e+01, x=-1.000000e+00 3.000000e+00" 
+"Vertex #3/4 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00" 
+"Vertex #4/4 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00" 
+];
+end
 assert_equal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 

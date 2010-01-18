@@ -14,50 +14,54 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
-# File: sci_gateway/c/sci_chdir.c, line: 86
-# File: sci_gateway/c/sci_chdir.c, line: 205
-# File: sci_gateway/c/sci_isdir.c, line: 78
+# File: sci_gateway/c/sci_isdir.c, line: 77
 # File: sci_gateway/c/sci_isdir.c, line: 86
-# File: sci_gateway/c/sci_isdir.c, line: 95
-# File: sci_gateway/c/sci_movefile.c, line: 87
-# File: sci_gateway/c/sci_movefile.c, line: 138
-# File: sci_gateway/c/sci_movefile.c, line: 193
-# File: sci_gateway/c/sci_movefile.c, line: 258
-# File: sci_gateway/c/sci_movefile.c, line: 282
-# File: sci_gateway/c/sci_movefile.c, line: 294
-# File: sci_gateway/c/sci_movefile.c, line: 309
-# File: sci_gateway/c/sci_movefile.c, line: 319
-# File: sci_gateway/c/sci_pathconvert.c, line: 96
-# File: sci_gateway/c/sci_pathconvert.c, line: 281
-# File: sci_gateway/c/sci_pathconvert.c, line: 289
-# File: sci_gateway/c/sci_pathconvert.c, line: 299
-# File: sci_gateway/c/sci_basename.c, line: 190
-# File: sci_gateway/c/sci_basename.c, line: 198
-# File: sci_gateway/c/sci_basename.c, line: 214
+# File: sci_gateway/c/sci_isdir.c, line: 101
+# File: sci_gateway/c/sci_isdir.c, line: 112
+# File: sci_gateway/c/sci_pathconvert.c, line: 95
+# File: sci_gateway/c/sci_pathconvert.c, line: 280
+# File: sci_gateway/c/sci_pathconvert.c, line: 290
+# File: sci_gateway/c/sci_pathconvert.c, line: 305
+# File: sci_gateway/c/sci_pathconvert.c, line: 316
+# File: sci_gateway/c/sci_fileparts.c, line: 93
+# File: sci_gateway/c/sci_fileparts.c, line: 149
+# File: sci_gateway/c/sci_fileparts.c, line: 180
+# File: sci_gateway/c/sci_copyfile.c, line: 89
+# File: sci_gateway/c/sci_copyfile.c, line: 148
+# File: sci_gateway/c/sci_copyfile.c, line: 205
+# File: sci_gateway/c/sci_copyfile.c, line: 278
+# File: sci_gateway/c/sci_copyfile.c, line: 302
+# File: sci_gateway/c/sci_copyfile.c, line: 314
+# File: sci_gateway/c/sci_copyfile.c, line: 328
+# File: sci_gateway/c/sci_copyfile.c, line: 338
 # File: sci_gateway/c/sci_isfile.c, line: 73
-# File: sci_gateway/c/sci_isfile.c, line: 81
-# File: sci_gateway/c/sci_isfile.c, line: 90
-# File: sci_gateway/c/sci_fileparts.c, line: 92
-# File: sci_gateway/c/sci_fileparts.c, line: 141
-# File: sci_gateway/c/sci_fileparts.c, line: 169
-# File: sci_gateway/c/sci_copyfile.c, line: 81
-# File: sci_gateway/c/sci_copyfile.c, line: 132
-# File: sci_gateway/c/sci_copyfile.c, line: 189
-# File: sci_gateway/c/sci_copyfile.c, line: 262
-# File: sci_gateway/c/sci_copyfile.c, line: 286
-# File: sci_gateway/c/sci_copyfile.c, line: 298
-# File: sci_gateway/c/sci_copyfile.c, line: 312
-# File: sci_gateway/c/sci_copyfile.c, line: 322
+# File: sci_gateway/c/sci_isfile.c, line: 82
+# File: sci_gateway/c/sci_isfile.c, line: 97
+# File: sci_gateway/c/sci_isfile.c, line: 108
+# File: sci_gateway/c/sci_movefile.c, line: 95
+# File: sci_gateway/c/sci_movefile.c, line: 153
+# File: sci_gateway/c/sci_movefile.c, line: 208
+# File: sci_gateway/c/sci_movefile.c, line: 273
+# File: sci_gateway/c/sci_movefile.c, line: 297
+# File: sci_gateway/c/sci_movefile.c, line: 309
+# File: sci_gateway/c/sci_movefile.c, line: 324
+# File: sci_gateway/c/sci_movefile.c, line: 334
+# File: sci_gateway/c/sci_basename.c, line: 191
+# File: sci_gateway/c/sci_basename.c, line: 209
+# File: sci_gateway/c/sci_basename.c, line: 220
+# File: sci_gateway/c/sci_basename.c, line: 240
+# File: sci_gateway/c/sci_chdir.c, line: 87
+# File: sci_gateway/c/sci_chdir.c, line: 207
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
-# File: src/c/mgeti.c, line: 179
-# File: src/c/mgeti.c, line: 185
 # File: src/c/mputi.c, line: 171
 # File: src/c/mputi.c, line: 177
+# File: src/c/mgeti.c, line: 179
+# File: src/c/mgeti.c, line: 185
 #, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr ""
@@ -124,12 +128,12 @@ msgstr ""
 msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_chdir.c, line: 190
+# File: sci_gateway/c/sci_chdir.c, line: 192
 #, c-format
 msgid "%s: Cannot go to directory %s\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_chdir.c, line: 196
+# File: sci_gateway/c/sci_chdir.c, line: 198
 #, c-format
 msgid "%s: Cannot go to directory.\n"
 msgstr ""
@@ -162,30 +166,30 @@ msgid ""
 "%s: Could not extend the number of files simultaneously open in Scilab.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msscanf.c, line: 94
 # File: sci_gateway/c/sci_mscanf.c, line: 81
 # File: sci_gateway/c/sci_mscanf.c, line: 104
 # File: sci_gateway/c/sci_mfscanf.c, line: 112
+# File: sci_gateway/c/sci_msscanf.c, line: 94
 #, c-format
 msgid "%s: Data mismatch.\n"
 msgstr ""
 #
 # File: src/c/mput.c, line: 224
-# File: src/c/mputstr.c, line: 29
 # File: src/c/mseek.c, line: 45
+# File: src/c/mputstr.c, line: 29
 # File: src/c/mtell.c, line: 28
 #, c-format
 msgid "%s: Error while opening, reading or writing '%s'.\n"
 msgstr ""
 #
-# File: src/c/mputstr.c, line: 33
 # File: src/c/mseek.c, line: 49
+# File: src/c/mputstr.c, line: 33
 # File: src/c/mtell.c, line: 32
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_findfiles.c, line: 57
+# File: sci_gateway/c/sci_findfiles.c, line: 56
 #, c-format
 msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr ""
@@ -219,20 +223,20 @@ msgstr ""
 msgid "%s: No input file.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msscanf.c, line: 101
-# File: sci_gateway/c/sci_msscanf.c, line: 113
+# File: sci_gateway/c/sci_fileext.c, line: 64
+# File: sci_gateway/c/sci_mopen.c, line: 121
 # File: sci_gateway/c/sci_mscanf.c, line: 111
 # File: sci_gateway/c/sci_mscanf.c, line: 121
-# File: sci_gateway/c/sci_mopen.c, line: 121
+# File: sci_gateway/c/sci_mfscanf.c, line: 120
+# File: sci_gateway/c/sci_mfscanf.c, line: 131
+# File: sci_gateway/c/sci_msscanf.c, line: 101
+# File: sci_gateway/c/sci_msscanf.c, line: 113
 # File: sci_gateway/c/sci_fscanfMat.c, line: 54
 # File: sci_gateway/c/sci_fscanfMat.c, line: 113
 # File: sci_gateway/c/sci_fscanfMat.c, line: 138
 # File: sci_gateway/c/sci_fscanfMat.c, line: 161
 # File: sci_gateway/c/sci_fscanfMat.c, line: 176
 # File: sci_gateway/c/sci_fscanfMat.c, line: 187
-# File: sci_gateway/c/sci_fileext.c, line: 64
-# File: sci_gateway/c/sci_mfscanf.c, line: 120
-# File: sci_gateway/c/sci_mfscanf.c, line: 131
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -252,7 +256,7 @@ msgstr ""
 msgid "%s: Specified format cannot include any '\\n'\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 100
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 105
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr ""
@@ -281,8 +285,8 @@ msgid ""
 "number of files allowed (%d).\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_mfprintf.c, line: 88
 # File: sci_gateway/c/sci_mfscanf.c, line: 83
+# File: sci_gateway/c/sci_mfprintf.c, line: 88
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
 msgstr ""
@@ -292,11 +296,11 @@ msgstr ""
 msgid "%s: Wrong file mode: READ only.\n"
 msgstr ""
 #
+# File: macros/mputl.sci, line: 21
 # File: macros/mkdir.sci, line: 25
 # File: macros/mkdir.sci, line: 47
 # File: macros/rmdir.sci, line: 22
 # File: macros/rmdir.sci, line: 37
-# File: macros/mputl.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
@@ -311,9 +315,9 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
-# File: macros/sscanf.sci, line: 19
-# File: macros/fscanf.sci, line: 21
 # File: macros/mputl.sci, line: 16
+# File: macros/fscanf.sci, line: 21
+# File: macros/sscanf.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
@@ -335,23 +339,23 @@ msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
 #
+# File: macros/fprintf.sci, line: 21
 # File: macros/sscanf.sci, line: 34
 # File: macros/sscanf.sci, line: 42
-# File: macros/fprintf.sci, line: 21
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pathconvert.c, line: 165
-# File: sci_gateway/c/sci_pathconvert.c, line: 215
+# File: sci_gateway/c/sci_pathconvert.c, line: 164
+# File: sci_gateway/c/sci_pathconvert.c, line: 214
 # File: sci_gateway/c/sci_basename.c, line: 85
 # File: sci_gateway/c/sci_basename.c, line: 123
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: macros/fprintf.sci, line: 27
 # File: macros/fscanf.sci, line: 29
+# File: macros/fprintf.sci, line: 27
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
 msgstr ""
@@ -361,41 +365,41 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_merror.c, line: 125
+# File: sci_gateway/c/sci_mclearerr.c, line: 56
+# File: sci_gateway/c/sci_mtell.c, line: 46
+# File: sci_gateway/c/sci_mput.c, line: 78
+# File: sci_gateway/c/sci_mputstr.c, line: 58
+# File: sci_gateway/c/sci_mopen.c, line: 77
+# File: sci_gateway/c/sci_mclose.c, line: 63
+# File: sci_gateway/c/sci_mgetstr.c, line: 48
+# File: sci_gateway/c/sci_mgetstr.c, line: 70
 # File: sci_gateway/c/sci_moef.c, line: 45
+# File: sci_gateway/c/sci_merror.c, line: 125
 # File: sci_gateway/c/sci_mseek.c, line: 42
 # File: sci_gateway/c/sci_mseek.c, line: 63
 # File: sci_gateway/c/sci_mget.c, line: 51
 # File: sci_gateway/c/sci_mget.c, line: 91
-# File: sci_gateway/c/sci_mtell.c, line: 46
-# File: sci_gateway/c/sci_mopen.c, line: 77
-# File: sci_gateway/c/sci_mput.c, line: 78
-# File: sci_gateway/c/sci_mclose.c, line: 63
-# File: sci_gateway/c/sci_mputstr.c, line: 58
-# File: sci_gateway/c/sci_mgetstr.c, line: 48
-# File: sci_gateway/c/sci_mgetstr.c, line: 70
-# File: sci_gateway/c/sci_mclearerr.c, line: 56
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_fileinfo.c, line: 143
+# File: sci_gateway/c/sci_fileinfo.c, line: 144
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
 msgstr ""
 #
 # File: macros/fscanf.sci, line: 37
-# File: sci_gateway/c/sci_chdir.c, line: 79
-# File: sci_gateway/c/sci_movefile.c, line: 79
-# File: sci_gateway/c/sci_movefile.c, line: 129
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
 # File: sci_gateway/c/sci_pathconvert.c, line: 81
-# File: sci_gateway/c/sci_fileparts.c, line: 85
-# File: sci_gateway/c/sci_fileparts.c, line: 134
+# File: sci_gateway/c/sci_fileparts.c, line: 86
+# File: sci_gateway/c/sci_fileparts.c, line: 141
 # File: sci_gateway/c/sci_mclose.c, line: 104
 # File: sci_gateway/c/sci_copyfile.c, line: 73
-# File: sci_gateway/c/sci_copyfile.c, line: 123
+# File: sci_gateway/c/sci_copyfile.c, line: 131
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
+# File: sci_gateway/c/sci_movefile.c, line: 79
+# File: sci_gateway/c/sci_movefile.c, line: 137
+# File: sci_gateway/c/sci_chdir.c, line: 80
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -412,9 +416,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_msscanf.c, line: 45
 # File: sci_gateway/c/sci_mscanf.c, line: 46
 # File: sci_gateway/c/sci_mfscanf.c, line: 45
+# File: sci_gateway/c/sci_msscanf.c, line: 45
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
@@ -424,15 +428,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
 msgstr ""
 #
+# File: macros/fprintf.sci, line: 17
 # File: macros/sscanf.sci, line: 30
 # File: macros/sscanf.sci, line: 38
-# File: macros/fprintf.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pathconvert.c, line: 151
-# File: sci_gateway/c/sci_pathconvert.c, line: 202
+# File: sci_gateway/c/sci_pathconvert.c, line: 150
+# File: sci_gateway/c/sci_pathconvert.c, line: 201
 # File: sci_gateway/c/sci_basename.c, line: 65
 # File: sci_gateway/c/sci_basename.c, line: 115
 #, c-format
@@ -451,20 +455,20 @@ msgid ""
 "nexpected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_merror.c, line: 131
+# File: sci_gateway/c/sci_mclearerr.c, line: 61
+# File: sci_gateway/c/sci_mtell.c, line: 52
+# File: sci_gateway/c/sci_mput.c, line: 43
+# File: sci_gateway/c/sci_mput.c, line: 84
+# File: sci_gateway/c/sci_mputstr.c, line: 64
+# File: sci_gateway/c/sci_mopen.c, line: 83
+# File: sci_gateway/c/sci_mgetstr.c, line: 54
+# File: sci_gateway/c/sci_mgetstr.c, line: 76
 # File: sci_gateway/c/sci_moef.c, line: 51
+# File: sci_gateway/c/sci_merror.c, line: 131
 # File: sci_gateway/c/sci_mseek.c, line: 48
 # File: sci_gateway/c/sci_mseek.c, line: 68
 # File: sci_gateway/c/sci_mget.c, line: 57
 # File: sci_gateway/c/sci_mget.c, line: 97
-# File: sci_gateway/c/sci_mtell.c, line: 52
-# File: sci_gateway/c/sci_mopen.c, line: 83
-# File: sci_gateway/c/sci_mput.c, line: 43
-# File: sci_gateway/c/sci_mput.c, line: 84
-# File: sci_gateway/c/sci_mputstr.c, line: 64
-# File: sci_gateway/c/sci_mgetstr.c, line: 54
-# File: sci_gateway/c/sci_mgetstr.c, line: 76
-# File: sci_gateway/c/sci_mclearerr.c, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
@@ -476,27 +480,27 @@ msgstr ""
 #
 # File: macros/dir.sci, line: 18
 # File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_chdir.c, line: 66
-# File: sci_gateway/c/sci_fprintfMat.c, line: 45
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 123
 # File: sci_gateway/c/sci_isdir.c, line: 63
-# File: sci_gateway/c/sci_movefile.c, line: 66
-# File: sci_gateway/c/sci_movefile.c, line: 115
-# File: sci_gateway/c/sci_fullpath.c, line: 62
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 84
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 88
+# File: sci_gateway/c/sci_fprintfMat.c, line: 45
 # File: sci_gateway/c/sci_pathconvert.c, line: 68
-# File: sci_gateway/c/sci_pathconvert.c, line: 330
-# File: sci_gateway/c/sci_mget.c, line: 71
-# File: sci_gateway/c/sci_isfile.c, line: 58
-# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 118
+# File: sci_gateway/c/sci_pathconvert.c, line: 349
+# File: sci_gateway/c/sci_fullpath.c, line: 62
+# File: sci_gateway/c/sci_mput.c, line: 58
+# File: sci_gateway/c/sci_mputstr.c, line: 43
+# File: sci_gateway/c/sci_fileparts.c, line: 72
+# File: sci_gateway/c/sci_fileparts.c, line: 125
 # File: sci_gateway/c/sci_mopen.c, line: 43
 # File: sci_gateway/c/sci_mopen.c, line: 54
-# File: sci_gateway/c/sci_mput.c, line: 58
-# File: sci_gateway/c/sci_fileparts.c, line: 72
-# File: sci_gateway/c/sci_fileparts.c, line: 121
 # File: sci_gateway/c/sci_copyfile.c, line: 60
-# File: sci_gateway/c/sci_copyfile.c, line: 109
-# File: sci_gateway/c/sci_mputstr.c, line: 43
+# File: sci_gateway/c/sci_copyfile.c, line: 117
+# File: sci_gateway/c/sci_isfile.c, line: 58
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 84
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 88
+# File: sci_gateway/c/sci_movefile.c, line: 66
+# File: sci_gateway/c/sci_movefile.c, line: 123
+# File: sci_gateway/c/sci_mget.c, line: 71
+# File: sci_gateway/c/sci_chdir.c, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -518,15 +522,15 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pathconvert.c, line: 266
+# File: sci_gateway/c/sci_pathconvert.c, line: 265
 # File: sci_gateway/c/sci_basename.c, line: 174
-# File: sci_gateway/c/sci_basename.c, line: 238
+# File: sci_gateway/c/sci_basename.c, line: 265
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 #
 # File: macros/fscanf.sci, line: 33
-# File: sci_gateway/c/sci_findfiles.c, line: 78
+# File: sci_gateway/c/sci_findfiles.c, line: 76
 # File: sci_gateway/c/sci_newest.c, line: 64
 # File: sci_gateway/c/sci_newest.c, line: 80
 # File: sci_gateway/c/sci_newest.c, line: 96
@@ -535,13 +539,13 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
 # File: macros/mputl.sci, line: 26
-# File: sci_gateway/c/sci_deletefile.c, line: 52
+# File: sci_gateway/c/sci_fileext.c, line: 69
+# File: sci_gateway/c/sci_getlongpathname.c, line: 75
+# File: sci_gateway/c/sci_getshortpathname.c, line: 75
 # File: sci_gateway/c/sci_removedir.c, line: 61
 # File: sci_gateway/c/sci_createdir.c, line: 68
-# File: sci_gateway/c/sci_getlongpathname.c, line: 75
-# File: sci_gateway/c/sci_fileinfo.c, line: 149
-# File: sci_gateway/c/sci_getshortpathname.c, line: 75
-# File: sci_gateway/c/sci_fileext.c, line: 69
+# File: sci_gateway/c/sci_deletefile.c, line: 52
+# File: sci_gateway/c/sci_fileinfo.c, line: 150
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
 msgstr ""
@@ -556,7 +560,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_findfiles.c, line: 98
+# File: sci_gateway/c/sci_findfiles.c, line: 95
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
@@ -573,7 +577,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_fileparts.c, line: 204
+# File: sci_gateway/c/sci_fileparts.c, line: 215
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
@@ -594,23 +598,23 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pathconvert.c, line: 123
+# File: sci_gateway/c/sci_pathconvert.c, line: 122
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
 msgstr ""
 #
-# File: macros/fprintf.sci, line: 33
 # File: macros/fscanf.sci, line: 44
+# File: macros/fprintf.sci, line: 33
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_movefile.c, line: 207
-# File: sci_gateway/c/sci_movefile.c, line: 215
-# File: sci_gateway/c/sci_copyfile.c, line: 203
 # File: sci_gateway/c/sci_copyfile.c, line: 219
+# File: sci_gateway/c/sci_copyfile.c, line: 235
+# File: sci_gateway/c/sci_movefile.c, line: 222
+# File: sci_gateway/c/sci_movefile.c, line: 230
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid filename or directory "
@@ -632,7 +636,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument: no empty string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_copyfile.c, line: 211
+# File: sci_gateway/c/sci_copyfile.c, line: 227
 #, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr ""
@@ -649,8 +653,8 @@ msgstr ""
 msgid "%s: end of input reached before final conversion.\n"
 msgstr ""
 #
-# File: src/c/mgeti.c, line: 72
 # File: src/c/mputi.c, line: 69
+# File: src/c/mgeti.c, line: 72
 #, c-format
 msgid "%s: format is of 0 length.\n"
 msgstr ""
@@ -710,12 +714,12 @@ msgstr ""
 msgid "Warning: Could not open directory %s: %s\n"
 msgstr ""
 #
-# File: src/c/removedir.c, line: 204
+# File: src/c/removedir.c, line: 205
 #, c-format
 msgid "Warning: Could not remove directory %s: %s\n"
 msgstr ""
 #
-# File: src/c/removedir.c, line: 198
+# File: src/c/removedir.c, line: 199
 #, c-format
 msgid "Warning: Could not remove file %s: %s\n"
 msgstr ""

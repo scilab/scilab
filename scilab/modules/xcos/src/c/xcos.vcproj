@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../cpp;../jni"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;XCOS_EXPORTS"
@@ -209,6 +210,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/arch:IA32"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -386,7 +388,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_closeXcosFromScilab.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_warnBlockByUID.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\cpp\sci_Xcos.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosDiagramClose.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosDiagramOpen.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosDiagramToHDF5.cpp"
 				>
 			</File>
 			<File

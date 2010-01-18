@@ -38,7 +38,7 @@ case 'set' then
 //  if size(label,'*')==14 then label(9)=[],end 
   if size(label,'*')==5 then label(6)=sci2exp([1 1]),end //compatiblity
   while %t do
-    [ok,typ,a,b,c,d,inp,exprs]=getvalue('Set SUBMAT Block',..
+    [ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue('Set SUBMAT Block',..
 	    ['Datatype (1=real double  2=Complex)';'Starting Row Index';'Ending Row Index';'Starting Column Index';'Ending Column Index';'Input Dimensions'],list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',2),label)
     if ~ok then break,end
     if (typ==1) then

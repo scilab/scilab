@@ -23,7 +23,7 @@ extern "C" {
  * @param[out] _pvPtr return pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
+SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
 
 /**
  * Alloc pointer variable
@@ -31,7 +31,7 @@ StrErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
  * @param[out] _pvPtr return pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr);
+SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr);
 
 /**
  * Create pointer variable
@@ -39,7 +39,23 @@ StrErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr);
  * @param[in] _pvPtr pointer on pointer
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr);
+SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr);
+
+/**
+ * Create named pointer variable
+ * @param[in] _pstName variable name
+ * @param[in] _pvPtr pointer on pointer
+ * @return if the operation successed (0) or not ( !0 )
+ */
+SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr);
+
+/**
+ * Read pointer named variable
+ * @param[in] _pstName variable name
+ * @param[in] _pvPtr pointer on pointer
+ * @return if the operation successed (0) or not ( !0 )
+ */
+SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr);
 
 #ifdef __cplusplus
 }

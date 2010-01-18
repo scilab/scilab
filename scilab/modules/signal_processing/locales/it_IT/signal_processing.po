@@ -1,0 +1,232 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2009-11-26 18:20+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
+msgstr "%s: Gli argomenti #%d e #%d devono avere le stesse dimensioni.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
+"less than argument #%d.\n"
+msgstr ""
+"%s: Gli 'argomenti in ingresso #%d e #%d sono incompatibili: era atteso che "
+"l'argomento #%d fosse minore dell'argomento #%d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
+"stesso grado.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
+"stesso numero di elementi.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: L'argomento in ingresso #%d deve essere reale.\n"
+
+#, c-format
+msgid "%s: Too abrupt change near end of frequency range.\n"
+msgstr ""
+"%s: C'è un cambio troppo brusco vicino alla fine della gamma di frequenze.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"aray con %d elementi.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"polinomio.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"scalare.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"sistema con input e output singoli.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice alta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  Linear dynamical system or row "
+"vector of floats expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un sistema "
+"dinamico lineare o un vettore riga di numeri con la virgola.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"numeri a virgola mobile.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"tipo frazionario razionale.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'intervallo [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'insieme {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Distance between Max and Min "
+"elements must be greater than %g.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: la distanza tra gli "
+"elementi Max e Min deve essere maggiore di %g.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
+"essere in ordine crescente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
+"essere nell'intervallo [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
+"essere positivi.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attesi degli "
+"interi non-negativi.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d a dei valori sbagliati: non è stato "
+"campionato alto a sufficienza.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: The first element must be %s and "
+"the last %s.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: il primo elemento "
+"deve essere %s e l'ultimo %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: il grado deve "
+"essere nell'insieme {%s}.\n"
+
+msgid "Arma identifcation"
+msgstr "Identificazione dello ARMA"
+
+msgid "Signal Processing"
+msgstr "Elaborazione dei segnali"
+
+msgid "Spectral power"
+msgstr "Energia spettrale"
+
+msgid "Theoritical value"
+msgstr "Valore teorico"
+
+msgid "Using macro mese"
+msgstr "Usando la macro MESE"
+
+msgid "estimates xf"
+msgstr "stime xf"
+
+msgid "estimates xs"
+msgstr "stima xs"
+
+msgid "frequency"
+msgstr "frequenza"
+
+msgid "real state"
+msgstr "stato reale"
+
+msgid "spectral estimate"
+msgstr "valutazione spettrale"

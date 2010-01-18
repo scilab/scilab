@@ -1,215 +1,112 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.io;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Collection;
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.w3c.dom.Element;
+import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxObjectCodec;
+import com.mxgraph.model.mxCell;
 
+/**
+ * Codec for any xcos object
+ */
 public class XcosObjectCodec extends mxObjectCodec {
-	
-	public XcosObjectCodec(Object template) {
-		super(template);
-	}
-	
-	
-	public XcosObjectCodec(Object template, String[] exclude, String[] idrefs,
-			Map mapping)
-	{
-		super(template, exclude, idrefs, mapping);
-		
-	}
+    protected static final String STYLE = "style";
+    private static final String ROTATION = "rotation";
+    private static final String DIRECTION = "direction";
+    private static final String NORTH = "north";
+    private static final String WEST = "west";
+    private static final String SOUTH = "south";
+    private static final String COMMAND = "ControlPort";
+    private static final String CONTROL = "CommandPort";
+    
+    private static final int DIRECTION_STEP = 90;
+    private static final int MAX_ROTATION = 360;
 
 	/**
-	 * Sets the value of the field with the specified name
-	 * in the specified object instance.
+	 * The constructor used on for configuration
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
 	 */
-	public void setFieldValue(Object obj, String fieldname, Object value)
-	{
-		Field field = null;
+    public XcosObjectCodec(Object template, String[] exclude, String[] idrefs,
+	    Map<String, String> mapping) {
+	super(template, exclude, idrefs, mapping);
 
-		try
-		{
-			field = getField(obj, fieldname);
-
-			if (field.getType() == Boolean.class)
-			{
-				value = new Boolean(value.equals("1")
-						|| String.valueOf(value).equalsIgnoreCase("true"));
-			}
-
-			field.set(obj, value);
-		}
-		catch (IllegalAccessException e1)
-		{
-			if (field != null)
-			{
-				try
-				{
-					Method method = getAccessor(obj, field, false);
-					Class type = method.getParameterTypes()[0];
-					value = convertValueFromXml(type, value);
-					
-					// Converts collection to a typed array before setting
-					if (type.isArray() &&
-						value instanceof Collection)
-					{
-						Collection coll = (Collection) value;
-						value = coll.toArray((Object[]) Array.newInstance(
-							type.getComponentType(), coll.size()));
-					}
-
-					method.invoke(obj, new Object[] { value });
-				}
-				catch (Exception e2)
-				{
-					System.err.println("(" +
-							"setFieldValue: " + e2 + " on "
-							+ obj.getClass().getSimpleName() + "." + fieldname
-							+ " (" + field.getType().getSimpleName() + ") = "
-							+ value + " (" + value.getClass().getSimpleName()
-							+ ")");
-					e2.printStackTrace();
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		    // ignore
-		}
-	}
-	
-	/**
-	 * Returns the value of the field with the specified name in the specified
-	 * object instance.
-	 */
-	public Object getFieldValue(Object obj, String fieldname)
-	{
-		Object value = null;
-
-		if (obj != null && fieldname != null)
-		{
-			Field field = getField(obj, fieldname);
-
-			try
-			{
-				if (field != null)
-				{
-					value = field.get(obj);
-				}
-			}
-			catch (IllegalAccessException e1)
-			{
-				if (field != null)
-				{
-					try
-					{
-						Method method = getAccessor(obj, field, true);
-						value = method.invoke(obj, (Object[]) null);
-					}
-					catch (Exception e2)
-					{
-						// ignore
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				// ignore
-			}
-		}
-
-		return value;
-	}
-	
-	
-	/**
-	 * Reads the specified child into the given object.
-	 */
-	public void decodeChild(mxCodec dec, Node child, Object obj)
-	{
-		String fieldname = getFieldName(((Element) child).getAttribute("as"));
-
-		if (fieldname == null || !isExcluded(obj, fieldname, child, false))
-		{
-			Object value = null;
-			
-
-			
-			Object template = getFieldValue(obj, fieldname);
-
-			if (child.getNodeName().equals("add"))
-			{
-				value = ((Element) child).getAttribute("value");
-
-				if (value == null)
-				{
-					value = child.getTextContent();
-				}
-			}
-			else
-			{
-				// Arrays are replaced completely
-				if (template != null &&
-					template.getClass().isArray())
-				{
-					template = null;
-				}
-				// Collections are cleared
-				if (template instanceof Collection)
-				{
-					((Collection) template).clear();
-				}
-				
-				value = dec.decode(child, template);
-			}
-			
-			if (value != null && !value.equals(template))
-			{
-				if (fieldname != null && obj instanceof Map)
-				{
-					((Map) obj).put(fieldname, value);
-				}
-				// Arrays are treated as collections and
-				// converted in setFieldValue
-				else if (obj instanceof Collection)
-				{
-					((Collection) obj).add(value);
-				}
-				else if (fieldname != null && fieldname.length() > 0)
-				{
-					setFieldValue(obj, fieldname, value);
-				}			
-			}
-		}
-	}
+    }
 
 	/**
-	 * Decodec all children of the given node using decodeChild.
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed 
+	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
-	public void decodeChildren(mxCodec dec, Node node, Object obj)
-	{
-		Node child = node.getFirstChild();
-		while (child != null)
-		{
-		    
-		    if (child.getNodeType() == Node.ELEMENT_NODE
-					&& !this.processInclude(dec, child, obj))
-			{
-				decodeChild(dec, child, obj);
+    public Object afterDecode(mxCodec dec, Node node, Object obj) {
+	if (node.getNodeName().equals("mxCell")) {
+	    NamedNodeMap attrs = node.getAttributes();
+	    for (int i = 0; i < attrs.getLength(); i++) {
+		Node attr = attrs.item(i);
+		if (attr.getNodeName().compareToIgnoreCase("id") == 0) {
+		    ((mxCell) obj).setId(attr.getNodeValue());
+		}
+	    }
+	}
+	return obj;
+    }
+
+    /**
+     * @param style the style to be formatted
+     */
+	public void formatStyle(StyleMap style) {
+		if (style.containsKey(DIRECTION)) {
+			String direction = style.get(DIRECTION);
+
+			int step = DIRECTION_STEP;
+			int angle = 0;
+			if (style.containsKey(COMMAND) || style.containsKey(CONTROL)) {
+				step = -DIRECTION_STEP;
+				angle = DIRECTION_STEP;
 			}
 
-			child = child.getNextSibling();
+			// default is EAST (angle == 0)
+			if (direction.compareTo(SOUTH) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			} else if (direction.compareTo(WEST) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			} else if (direction.compareTo(NORTH) == 0) {
+				angle = (angle + step) % MAX_ROTATION;
+			}
+
+			style.remove(DIRECTION);
+			style.put(ROTATION, Integer.toString(angle));
+
 		}
-	}	
-	
-	
+
+		if (!style.containsKey(XcosConstants.STYLE_FLIP)) {
+			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
+		}
+
+		if (!style.containsKey(XcosConstants.STYLE_MIRROR)) {
+			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
+		}
+	}
 }

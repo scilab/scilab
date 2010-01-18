@@ -20,6 +20,6 @@ libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 
 #### atoms : internal functions ####
 
-MACROSDIRSEXT = macros/atoms_internals
+MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 
 include $(top_srcdir)/Makefile.incl.am

@@ -25,7 +25,7 @@ void disp_scilab_version(void);
 /* for compatibility */
 /* Deprecated */
 #define SCI_VERSION SCI_VERSION_STRING
-#define DEFAULT_SCI_VERSION_MESSAGE "scilab-trunk-SVN (INRIA,ENPC)"
+#define DEFAULT_SCI_VERSION_MESSAGE "scilab-branch-5.2"
 
 
 #endif

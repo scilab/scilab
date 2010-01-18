@@ -13,9 +13,9 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
 
 // Do not use the autoload system
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // Install the toolbox 5
@@ -120,6 +120,6 @@ atomsRemove("toolbox_5","allusers");
 
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");

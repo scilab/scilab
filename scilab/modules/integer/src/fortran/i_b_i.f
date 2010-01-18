@@ -10,7 +10,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine i_b_i
 c     implicit vector
       include 'stack.h'
+
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
       common /mtlbc/ mmode
+      
       external memused
       integer memused
       integer iadr,sadr

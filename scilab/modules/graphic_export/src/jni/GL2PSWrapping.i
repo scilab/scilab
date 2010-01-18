@@ -266,7 +266,29 @@ char * sci_gl2psGetFileExtension(int format);
   */
 public";
 char * sci_gl2psGetFormatDescription(int format);
- 
- 
- 
- 
+
+
+%typemap(jni) void* buffer "jobject"
+%typemap(jtype) void* buffer "java.nio.Buffer"
+%typemap(jstype) void* buffer "java.nio.Buffer"
+%typemap(javain) void* buffer "$javainput"
+%typemap(in) void* buffer {
+  $1 = (*jenv)->GetDirectBufferAddress(jenv, $input);
+  if ($1 == NULL) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
+  }
+}
+
+/* JavaDoc */
+%javamethodmodifiers sci_gl2psDrawPixels(int w, int h, int format, int type, void* buffer) "
+ /**
+  *Draw a pixel buffer
+  * @param w width of image
+  * @param h height of image
+  * @param format specifies the format of the pixel data. GL_RGB and GL_RGBA are the only values accepted at the moment.
+  * @param type specifies the data type for pixels
+  * @param buffer is a direct java.nio.Buffer containing pixmap
+  * @return GL2PSWrappingJNI.sci_gl2psGetFormatDescription
+  */
+public";
+int sci_gl2psDrawPixels(int w, int h, int format, int type, void* buffer);

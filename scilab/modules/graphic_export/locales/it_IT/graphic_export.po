@@ -1,0 +1,144 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-08-10 18:33+0100\n"
+"PO-Revision-Date: 2009-12-11 15:34+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr ""
+"Il modulo grafico di Scilab ha disabilitato la modalità -nogui o -nwni.\n"
+
+msgid "Scilab Graphic export module not installed.\n"
+msgstr "Il modulo di esportazione Scilab Graphic non è installato.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
+"\"%s\".\n"
+
+#, c-format
+msgid "%s: OpenGL error during export.\n"
+msgstr "%s: C'è stato un errore delle OpenGl durante l'esportazione.\n"
+
+#, c-format
+msgid "%s: Unable to create export file, permission denied.\n"
+msgstr ""
+"%s: Non è possibile creare un file di esportazione,non si dispone del "
+"permesso necessario.\n"
+
+#, c-format
+msgid "%s: GL2PS error during export.\n"
+msgstr ""
+"%s: C'è stato un errore dovuto alla libreria GL2PS durante l'esportazione.\n"
+
+#, c-format
+msgid "%s: Unable to create export file, figure is too complex.\n"
+msgstr ""
+"%s: Non è possibile creare il file di esportazione,la figura è troppo "
+"complessa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero "
+"positivo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single character string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
+"di caratteri singoli.\n"
+
+#, c-format
+msgid "%s has been replaced by %s"
+msgstr "%s è stato rimpiazzato da %s"
+
+#, c-format
+msgid "%s: %s must be called before any action.\n"
+msgstr "%s: %s deve essere chiamato prima di ogni operazione.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: Function has no input argument with "
+"''%s'' or ''%s'' drivers.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: Function non ha "
+"argomenti in ingresso con i driver \"%s\" o \"%s\".\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
+"''%s'' or ''%s'' drivers.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso: era attesa una stringa con i "
+"driver \"%s\",\"%s\",\"%s\" o \"%s\".\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
+"\"%s\".\n"
+
+#, c-format
+msgid "%s: EMF format only available under Microsoft Windows OS.\n"
+msgstr ""
+"%s: Il formato EMF è disponibile solo se si usa un SO Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Unable to execute pstoedit.\n"
+msgstr "%s: Non è possibile eseguire pstoedit.\n"
+
+msgid ""
+"xbasimp has been replaced by toprint for printing and by xs2ps for the file "
+"export"
+msgstr ""
+"xbasimp è stato sostituito da toprint per stampare e da xs2ps per "
+"l'esportazione dei file."
+
+#, c-format
+msgid ""
+"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
+"to be able to use this feature.\n"
+msgstr ""
+"%s: Non è possibile trovare pstoedit. Si prega di installare pstoedit o di "
+"aggiungerlo in PATH per poterlo usare in futuro.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso "
+"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\" o \"%s\".\n"

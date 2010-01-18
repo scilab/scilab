@@ -14,17 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
-# File: sci_gateway/c/sci_strsplit.c, line: 206
-# File: sci_gateway/c/sci_strsplit.c, line: 265
-# File: sci_gateway/c/sci_strsplit.c, line: 309
-# File: sci_gateway/c/sci_strsplit.c, line: 324
-# File: sci_gateway/c/sci_isascii.c, line: 126
-# File: sci_gateway/c/sci_isascii.c, line: 198
-# File: sci_gateway/c/sci_isascii.c, line: 277
-# File: sci_gateway/c/sci_isascii.c, line: 282
+# File: sci_gateway/c/sci_isdigit.c, line: 74
 # File: sci_gateway/c/sci_tokens.c, line: 99
+# File: sci_gateway/c/sci_isascii.c, line: 126
+# File: sci_gateway/c/sci_isascii.c, line: 200
+# File: sci_gateway/c/sci_isascii.c, line: 279
+# File: sci_gateway/c/sci_isascii.c, line: 284
+# File: sci_gateway/c/sci_strsplit.c, line: 213
+# File: sci_gateway/c/sci_strsplit.c, line: 272
+# File: sci_gateway/c/sci_strsplit.c, line: 316
+# File: sci_gateway/c/sci_strsplit.c, line: 332
+# File: sci_gateway/c/sci_strsplit.c, line: 342
+# File: sci_gateway/c/sci_isalphanum.c, line: 74
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
@@ -41,7 +44,7 @@ msgstr ""
 msgid "%s : Wrong size for input argument #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strcat.c, line: 387
+# File: sci_gateway/c/sci_strcat.c, line: 415
 #, c-format
 msgid "%s : Wrong size for input argument(s).\n"
 msgstr ""
@@ -76,7 +79,7 @@ msgstr ""
 msgid "%s: Duplicate name status changes.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 260
+# File: sci_gateway/c/sci_strsplit.c, line: 267
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr ""
@@ -96,7 +99,27 @@ msgstr ""
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strchr.c, line: 77
+# File: sci_gateway/c/sci_grep.c, line: 274
+# File: sci_gateway/c/sci_part.c, line: 115
+# File: sci_gateway/c/sci_strncpy.c, line: 62
+# File: sci_gateway/c/sci_strncpy.c, line: 102
+# File: sci_gateway/c/sci_strncpy.c, line: 142
+# File: sci_gateway/c/sci_strsubst.c, line: 145
+# File: sci_gateway/c/sci_strsubst.c, line: 306
+# File: sci_gateway/c/sci_strsubst.c, line: 359
+# File: sci_gateway/c/sci_strsubst.c, line: 367
+# File: sci_gateway/c/sci_strsubst.c, line: 374
+# File: sci_gateway/c/sci_strsubst.c, line: 380
+# File: sci_gateway/c/sci_strcat.c, line: 160
+# File: sci_gateway/c/sci_strcat.c, line: 177
+# File: sci_gateway/c/sci_strcat.c, line: 207
+# File: sci_gateway/c/sci_strcat.c, line: 247
+# File: sci_gateway/c/sci_code2str.c, line: 60
+# File: sci_gateway/c/sci_code2str.c, line: 74
+# File: sci_gateway/c/sci_strstr.c, line: 68
+# File: sci_gateway/c/sci_strstr.c, line: 104
+# File: sci_gateway/c/sci_strstr.c, line: 116
+# File: sci_gateway/c/sci_convstr.c, line: 117
 # File: sci_gateway/c/sci_length.c, line: 137
 # File: sci_gateway/c/sci_length.c, line: 153
 # File: sci_gateway/c/sci_length.c, line: 164
@@ -104,35 +127,15 @@ msgstr ""
 # File: sci_gateway/c/sci_length.c, line: 280
 # File: sci_gateway/c/sci_length.c, line: 318
 # File: sci_gateway/c/sci_length.c, line: 356
+# File: sci_gateway/c/sci_strrev.c, line: 55
 # File: sci_gateway/c/sci_regexp.c, line: 256
 # File: sci_gateway/c/sci_regexp.c, line: 294
-# File: sci_gateway/c/sci_strcat.c, line: 160
-# File: sci_gateway/c/sci_strcat.c, line: 177
-# File: sci_gateway/c/sci_strcat.c, line: 208
-# File: sci_gateway/c/sci_strcat.c, line: 228
-# File: sci_gateway/c/sci_strsubst.c, line: 144
-# File: sci_gateway/c/sci_strsubst.c, line: 305
-# File: sci_gateway/c/sci_strsubst.c, line: 356
-# File: sci_gateway/c/sci_strsubst.c, line: 364
-# File: sci_gateway/c/sci_strsubst.c, line: 371
-# File: sci_gateway/c/sci_strsubst.c, line: 377
-# File: sci_gateway/c/sci_grep.c, line: 274
 # File: sci_gateway/c/sci_strrchr.c, line: 78
-# File: sci_gateway/c/sci_convstr.c, line: 117
-# File: sci_gateway/c/sci_str2code.c, line: 84
-# File: sci_gateway/c/sci_strstr.c, line: 68
-# File: sci_gateway/c/sci_strstr.c, line: 104
-# File: sci_gateway/c/sci_strstr.c, line: 116
-# File: sci_gateway/c/sci_part.c, line: 115
-# File: sci_gateway/c/sci_strncpy.c, line: 62
-# File: sci_gateway/c/sci_strncpy.c, line: 102
-# File: sci_gateway/c/sci_strncpy.c, line: 142
 # File: sci_gateway/c/sci_strtod.c, line: 51
 # File: sci_gateway/c/sci_strtod.c, line: 60
 # File: sci_gateway/c/sci_strtod.c, line: 77
-# File: sci_gateway/c/sci_code2str.c, line: 59
-# File: sci_gateway/c/sci_code2str.c, line: 73
-# File: sci_gateway/c/sci_strrev.c, line: 55
+# File: sci_gateway/c/sci_strchr.c, line: 77
+# File: sci_gateway/c/sci_str2code.c, line: 84
 # File: src/c/pcre_error.c, line: 28
 #, c-format
 msgid "%s: No more memory.\n"
@@ -169,20 +172,20 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 198
+# File: sci_gateway/c/sci_strsplit.c, line: 197
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strcspn.c, line: 72
-# File: sci_gateway/c/sci_strsplit.c, line: 255
-# File: sci_gateway/c/sci_strsplit.c, line: 277
-# File: sci_gateway/c/sci_strsplit.c, line: 286
-# File: sci_gateway/c/sci_strspn.c, line: 71
-# File: sci_gateway/c/sci_strstr.c, line: 90
-# File: sci_gateway/c/sci_strstr.c, line: 135
+# File: sci_gateway/c/sci_strcspn.c, line: 90
 # File: sci_gateway/c/sci_part.c, line: 91
 # File: sci_gateway/c/sci_strncpy.c, line: 161
+# File: sci_gateway/c/sci_strstr.c, line: 90
+# File: sci_gateway/c/sci_strstr.c, line: 135
+# File: sci_gateway/c/sci_strsplit.c, line: 262
+# File: sci_gateway/c/sci_strsplit.c, line: 284
+# File: sci_gateway/c/sci_strsplit.c, line: 293
+# File: sci_gateway/c/sci_strspn.c, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -205,20 +208,22 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 78
+# File: sci_gateway/c/sci_strsplit.c, line: 77
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 169
+# File: sci_gateway/c/sci_strsubst.c, line: 110
+# File: sci_gateway/c/sci_strsubst.c, line: 181
+# File: sci_gateway/c/sci_strsubst.c, line: 217
 # File: sci_gateway/c/sci_strtok.c, line: 53
 # File: sci_gateway/c/sci_strtok.c, line: 73
-# File: sci_gateway/c/sci_strsubst.c, line: 110
-# File: sci_gateway/c/sci_strsubst.c, line: 180
-# File: sci_gateway/c/sci_strsubst.c, line: 216
-# File: sci_gateway/c/sci_strindex.c, line: 148
-# File: sci_gateway/c/sci_convstr.c, line: 71
+# File: sci_gateway/c/sci_isdigit.c, line: 67
 # File: sci_gateway/c/sci_tokens.c, line: 151
+# File: sci_gateway/c/sci_convstr.c, line: 71
+# File: sci_gateway/c/sci_strindex.c, line: 148
+# File: sci_gateway/c/sci_strsplit.c, line: 168
+# File: sci_gateway/c/sci_isalphanum.c, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -247,14 +252,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_regexp.c, line: 83
 # File: sci_gateway/c/sci_regexp.c, line: 103
-# File: sci_gateway/c/sci_isdigit.c, line: 47
-# File: sci_gateway/c/sci_isalphanum.c, line: 47
-# File: sci_gateway/c/sci_isletter.c, line: 47
+# File: sci_gateway/c/sci_isletter.c, line: 50
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strcat.c, line: 462
+# File: sci_gateway/c/sci_strcat.c, line: 490
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
@@ -296,10 +299,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strchr.c, line: 96
 # File: sci_gateway/c/sci_strrchr.c, line: 58
 # File: sci_gateway/c/sci_strrchr.c, line: 85
 # File: sci_gateway/c/sci_strrchr.c, line: 97
+# File: sci_gateway/c/sci_strchr.c, line: 96
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character expected.\n"
 msgstr ""
@@ -312,26 +315,26 @@ msgid ""
 "characters expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 65
+# File: sci_gateway/c/sci_strsplit.c, line: 64
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_length.c, line: 122
-# File: sci_gateway/c/sci_strsplit.c, line: 113
-# File: sci_gateway/c/sci_strsplit.c, line: 143
-# File: sci_gateway/c/sci_strsplit.c, line: 163
-# File: sci_gateway/c/sci_strtok.c, line: 59
-# File: sci_gateway/c/sci_strtok.c, line: 80
 # File: sci_gateway/c/sci_strcmp.c, line: 64
 # File: sci_gateway/c/sci_strsubst.c, line: 97
-# File: sci_gateway/c/sci_strsubst.c, line: 166
-# File: sci_gateway/c/sci_strsubst.c, line: 202
-# File: sci_gateway/c/sci_strsubst.c, line: 231
-# File: sci_gateway/c/sci_strsubst.c, line: 411
-# File: sci_gateway/c/sci_strindex.c, line: 306
-# File: sci_gateway/c/sci_convstr.c, line: 77
+# File: sci_gateway/c/sci_strsubst.c, line: 167
+# File: sci_gateway/c/sci_strsubst.c, line: 203
+# File: sci_gateway/c/sci_strsubst.c, line: 232
+# File: sci_gateway/c/sci_strsubst.c, line: 414
+# File: sci_gateway/c/sci_strtok.c, line: 59
+# File: sci_gateway/c/sci_strtok.c, line: 80
 # File: sci_gateway/c/sci_tokens.c, line: 156
+# File: sci_gateway/c/sci_convstr.c, line: 77
+# File: sci_gateway/c/sci_length.c, line: 122
+# File: sci_gateway/c/sci_strindex.c, line: 301
+# File: sci_gateway/c/sci_strsplit.c, line: 112
+# File: sci_gateway/c/sci_strsplit.c, line: 142
+# File: sci_gateway/c/sci_strsplit.c, line: 162
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -359,28 +362,28 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strchr.c, line: 92
-# File: sci_gateway/c/sci_strcspn.c, line: 83
-# File: sci_gateway/c/sci_strcspn.c, line: 87
+# File: sci_gateway/c/sci_strcspn.c, line: 101
+# File: sci_gateway/c/sci_strcspn.c, line: 105
 # File: sci_gateway/c/sci_strcmp.c, line: 126
 # File: sci_gateway/c/sci_strcmp.c, line: 130
-# File: sci_gateway/c/sci_strspn.c, line: 82
-# File: sci_gateway/c/sci_strspn.c, line: 86
-# File: sci_gateway/c/sci_strrchr.c, line: 93
-# File: sci_gateway/c/sci_convstr.c, line: 103
-# File: sci_gateway/c/sci_convstr.c, line: 109
-# File: sci_gateway/c/sci_str2code.c, line: 90
+# File: sci_gateway/c/sci_strncpy.c, line: 171
 # File: sci_gateway/c/sci_strstr.c, line: 144
 # File: sci_gateway/c/sci_strstr.c, line: 148
-# File: sci_gateway/c/sci_strncpy.c, line: 171
+# File: sci_gateway/c/sci_convstr.c, line: 103
+# File: sci_gateway/c/sci_convstr.c, line: 109
 # File: sci_gateway/c/sci_strrev.c, line: 61
+# File: sci_gateway/c/sci_strrchr.c, line: 93
+# File: sci_gateway/c/sci_strchr.c, line: 92
+# File: sci_gateway/c/sci_str2code.c, line: 90
+# File: sci_gateway/c/sci_strspn.c, line: 99
+# File: sci_gateway/c/sci_strspn.c, line: 103
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_strsubst.c, line: 408
 # File: sci_gateway/c/sci_stripblanks.c, line: 76
 # File: sci_gateway/c/sci_stripblanks.c, line: 88
-# File: sci_gateway/c/sci_strsubst.c, line: 405
 # File: sci_gateway/c/sci_strindex.c, line: 118
 # File: sci_gateway/c/sci_strtod.c, line: 111
 #, c-format
@@ -389,14 +392,14 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strcat.c, line: 495
+# File: sci_gateway/c/sci_strcat.c, line: 523
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of strings or empty real "
 "matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_code2str.c, line: 48
+# File: sci_gateway/c/sci_code2str.c, line: 49
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -416,24 +419,24 @@ msgid ""
 msgstr ""
 #
 # File: sci_gateway/c/sci_strindex.c, line: 169
-# File: sci_gateway/c/sci_strindex.c, line: 310
+# File: sci_gateway/c/sci_strindex.c, line: 305
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Row vector of strings or column "
 "vector of strings expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_strcat.c, line: 296
 # File: sci_gateway/c/sci_regexp.c, line: 76
 # File: sci_gateway/c/sci_regexp.c, line: 96
-# File: sci_gateway/c/sci_strcat.c, line: 268
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_grep.c, line: 94
-# File: sci_gateway/c/sci_isdigit.c, line: 79
-# File: sci_gateway/c/sci_isalphanum.c, line: 79
-# File: sci_gateway/c/sci_isletter.c, line: 79
+# File: sci_gateway/c/sci_isdigit.c, line: 123
+# File: sci_gateway/c/sci_isalphanum.c, line: 123
+# File: sci_gateway/c/sci_isletter.c, line: 92
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -468,12 +471,12 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strcat.c, line: 248
+# File: sci_gateway/c/sci_strcat.c, line: 276
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsubst.c, line: 138
+# File: sci_gateway/c/sci_strsubst.c, line: 139
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
 msgstr ""
@@ -492,7 +495,7 @@ msgid ""
 "Encoding problem).\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 93
+# File: sci_gateway/c/sci_strsplit.c, line: 92
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
 msgstr ""
@@ -502,7 +505,7 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 347
+# File: sci_gateway/c/sci_strsplit.c, line: 366
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
@@ -531,8 +534,8 @@ msgstr ""
 msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 270
-# File: sci_gateway/c/sci_strcat.c, line: 427
+# File: sci_gateway/c/sci_strcat.c, line: 455
+# File: sci_gateway/c/sci_strsplit.c, line: 277
 #, c-format
 msgid "%s: error.\n"
 msgstr ""

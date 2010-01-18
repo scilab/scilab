@@ -12,13 +12,23 @@
 
 package org.scilab.modules.xcos.port.output;
 
-
+/**
+ * An explicit output port is a port where the transfer of information has a
+ * 'OUT' direction.
+ */
 public class ExplicitOutputPort extends OutputPort {
 
+    private static final long serialVersionUID = -8199491929829046860L;
+
+    /** Default constructor */
     public ExplicitOutputPort() {
 	super("ExplicitOutputPort");
     }
 
+    /**
+     * @return always Type.EXPLICIT
+     */
+    @Override
     public Type getType() {
 	return Type.EXPLICIT;
     }

@@ -19,6 +19,9 @@
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
 #include "getos.h"
+#include "api_scilab.h"
+#include "stack-c.h"
+#include "charEncoding.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
@@ -30,14 +33,16 @@ static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str
 /*--------------------------------------------------------------------------*/
 char **getDynamicDebugInfo_Windows(int *sizeArray)
 {
-#define DIV 1024
-#define WIDTH 7
+	#define DIV 1024
+	#define WIDTH 7
+	#define BUFFER_LEN 255
 
-#define BUFFER_LEN 255
+	SciErr sciErr;
 	int nb_info = 0;
 	char *str_info = NULL;
-	char **outputDynamicList=NULL;
+	char **outputDynamicList = NULL;
 	char *fromGetenv = NULL;
+	int iType = 0;
 
 
 	MEMORYSTATUSEX statex;
@@ -215,13 +220,69 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	#define SCIHOME_var "SCIHOME"
-	fromGetenv = getenv(SCIHOME_var);
-	if (fromGetenv)
+
+	sciErr = getNamedVarType(pvApiCtx, "WSCI", &iType);
+	if ((sciErr.iErr == 0) && (iType == sci_strings))
 	{
-		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
-		sprintf(str_info,"%s: %s", SCIHOME_var,fromGetenv);
-		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+		wchar_t * WSCI_value = NULL;
+		int WSCI_length = 0;
+		int m = 0, n = 0;
+
+		sciErr = readNamedMatrixOfWideString(pvApiCtx, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
+		if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+		{
+			WSCI_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(WSCI_length + 1));
+			if (WSCI_value)
+			{
+				sciErr = readNamedMatrixOfWideString(pvApiCtx, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
+				if(sciErr.iErr == 0)
+				{
+					char *utfstr = wide_string_to_UTF8(WSCI_value);
+					if (utfstr)
+					{
+						str_info = (char*)MALLOC( sizeof(char)*(strlen("WSCI") + strlen("%s : %s") + strlen(utfstr) + 1) );
+						sprintf(str_info,"%s: %s", "WSCI", utfstr);
+						outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+						FREE(utfstr);
+						utfstr = NULL;
+					}
+				}
+				FREE(WSCI_value);
+				WSCI_value = NULL;
+			}
+		}
+	}
+
+	sciErr = getNamedVarType(pvApiCtx, "SCIHOME", &iType);
+	if ((sciErr.iErr == 0) && (iType == sci_strings))
+	{
+		wchar_t * SCIHOME_value = NULL;
+		int SCIHOME_length = 0;
+		int m = 0, n = 0;
+
+		sciErr = readNamedMatrixOfWideString(pvApiCtx, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
+		if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+		{
+			SCIHOME_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(SCIHOME_length + 1));
+			if (SCIHOME_value)
+			{
+				sciErr = readNamedMatrixOfWideString(pvApiCtx, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
+				if(sciErr.iErr == 0)
+				{
+					char *utfstr = wide_string_to_UTF8(SCIHOME_value);
+					if (utfstr)
+					{
+						str_info = (char*)MALLOC( sizeof(char)*(strlen("SCIHOME") + strlen("%s : %s") + strlen(utfstr) + 1) );
+						sprintf(str_info,"%s: %s", "SCIHOME", utfstr);
+						outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+						FREE(utfstr);
+						utfstr = NULL;
+					}
+				}
+				FREE(SCIHOME_value);
+				SCIHOME_value = NULL;
+			}
+		}
 	}
 
 	*sizeArray = nb_info;
@@ -312,6 +373,7 @@ static char * GetNumberMonitors(void)
 static char * GetRegKeyVideoCard(void)
 {
 	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
 	#define LenLine 255
 
 	HKEY key;
@@ -319,7 +381,12 @@ static char * GetRegKeyVideoCard(void)
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 
@@ -340,15 +407,21 @@ static char * GetRegKeyVideoCard(void)
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyVideoCardVersion(void)
 {
-#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
-#define LenLine 255
+	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define LenLine 255
 
 	HKEY key;
 	DWORD result;
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 

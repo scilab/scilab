@@ -12,8 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 

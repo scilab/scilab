@@ -18,16 +18,32 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class SaveAsInterfaceFunctionAction extends DefaultAction {
 
+/**
+ * @author Vincent COUVERT
+ *
+ */
+public final class SaveAsInterfaceFunctionAction extends DefaultAction {
+    
+	/**
+	 * @param scilabGraph graph
+	 */
 	private SaveAsInterfaceFunctionAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.SAVE_AS_INTERFACE_FUNCTION, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SAVE_AS_INTERFACE_FUNCTION, null, new SaveAsInterfaceFunctionAction(scilabGraph), null);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return push button
+	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.SAVE_AS_INTERFACE_FUNCTION, null, new SaveAsInterfaceFunctionAction(scilabGraph));
 	}

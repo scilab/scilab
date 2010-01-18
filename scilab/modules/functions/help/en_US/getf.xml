@@ -86,8 +86,8 @@
 
   <refsection>
     <title>Description</title>
-    
-    <para> This function is obsolete. see 'exec' </para>
+
+    <para> WARNING: this function has been deprecated (see exec as a replacement of getf). getf will be removed in Scilab 5.3 </para>
 
     <para>loads one or several functions (see <literal>functions</literal>)
     defined in the file <literal>'file-name'</literal>. The string
@@ -99,11 +99,9 @@
     <para>In the file a function must begin by a "syntax definition" line as
     follows:</para>
 
-    <programlisting>
-
+    <programlisting><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>The following lines contain a sequence of scilab
     instructions.</para>

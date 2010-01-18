@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@
 #ifndef __ISLETTER_H__
 #define __ISLETTER_H__
 
+#include <wchar.h>
 #include "BOOL.h"
 
 /**
@@ -22,7 +24,14 @@
 * @param[in] a string
 * @return BOOL array 
 */
-BOOL *isletter(char *input_string);
+BOOL *isletter(char *input_string, int *sizeArray);
+
+/**
+* array elements that are alphabetic letters
+* @param[in] a string
+* @return BOOL array 
+*/
+BOOL *isletterW(wchar_t *wcInput_string, int *sizeArray);
 
 #endif /* __ISLETTER_H__ */
 /*--------------------------------------------------------------------------*/

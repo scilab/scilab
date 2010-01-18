@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,128 +13,54 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.ScilabAboutBox;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
+/**
+ * Display about box for Xcos
+ * @author Allan SIMON
+ * @author Vincent COUVERT
+ */
 public class AboutXcosAction extends DefaultAction {
 
-	private static boolean windowAlreadyExist;
-	private static JFrame mainFrame;
-	
+	private static final long serialVersionUID = -7307118101829056965L;
+
+	/**
+	 * Constructor
+	 * @param scilabGraph associated Scilab graph
+	 */
 	public AboutXcosAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.ABOUT_XCOS,scilabGraph);
+		super(XcosMessages.ABOUT_XCOS, scilabGraph);
 	}
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.ABOUT_XCOS, null, new AboutXcosAction(scilabGraph));
-	}
-
+	/**
+	 * Menu created for "Help menu"
+	 * @param scilabGraph associated Scilab graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.ABOUT_XCOS, null, new AboutXcosAction(scilabGraph), null);
 	}
 	
+	/**
+	 * Action !!
+	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 */
 	public void doAction() {
-    	if (!AboutXcosAction.windowAlreadyExist) {
-    		aboutXcosBox();
-    		AboutXcosAction.windowAlreadyExist = true;
-    	}
-	}
-    	
-    public void aboutXcosBox(){
-        mainFrame = new JFrame();
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setLayout(new GridBagLayout());
-
-
-        JLabel aboutLabel  = new JLabel(XcosMessages.XCOS_VERSION);
-        
-        JButton okButton = new JButton(XcosMessages.OK);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 3;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.weightx = 0.0;
-        mainFrame.add( aboutLabel, gbc);
-
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.PAGE_END;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.NONE;
-        mainFrame.add(okButton, gbc);
-        
-		okButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				AboutXcosAction.windowAlreadyExist = false;
-				mainFrame.dispose();
-			}
-		});
+		String[] contents = {
+				Xcos.TRADENAME + " - " + Xcos.VERSION,
+				"",
+				XcosMessages.DIGITEO,
+				XcosMessages.COPYRIGHT_INRIA,
+				"",
+				XcosMessages.SCICOS_BASED};
 		
-		
-        
-	//display the frame and set some properties
-		
-		mainFrame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowClosing(WindowEvent arg0) {
-				AboutXcosAction.windowAlreadyExist = false;
-				mainFrame.dispose();
-				
-			}
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			public void windowIconified(WindowEvent arg0) {
-				
-			};
-			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		
-		
-        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        mainFrame.setTitle(XcosMessages.ABOUT_XCOS);
-        mainFrame.setSize(250, 80);
-        //mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
-        mainFrame.setVisible(true);		
+		ScilabAboutBox.createAboutBox(XcosMessages.ABOUT_XCOS, contents, null, null);
     	
     }
 }

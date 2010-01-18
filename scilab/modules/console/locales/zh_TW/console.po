@@ -14,26 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Could not change the Console Font."
+msgstr "無法改變控制台之字型"
+
+msgid "Could not change the Console Foreground."
+msgstr "無法改變控制台之背景"
 
 msgid "File or Directory"
 msgstr "檔案或目錄"
 
-msgid "Scilab Command"
-msgstr "Scilab  指令"
-
-msgid "Scilab Function"
-msgstr "Scilab 函數"
-
 msgid "Graphics handle field"
 msgstr "圖形代碼 (handle) 欄"
-
-msgid "Scilab Macro"
-msgstr "Scilab  巨集"
-
-msgid "Scilab Variable"
-msgstr "Scilab 巨集"
 
 msgid "No help"
 msgstr "沒有輔助文件"
@@ -41,8 +35,14 @@ msgstr "沒有輔助文件"
 msgid "Out of Screen"
 msgstr "超出螢幕"
 
-msgid "Could not change the Console Font."
-msgstr "無法改變控制台之字型"
+msgid "Scilab Command"
+msgstr "Scilab  指令"
 
-msgid "Could not change the Console Foreground."
-msgstr "無法改變控制台之背景"
+msgid "Scilab Function"
+msgstr "Scilab 函數"
+
+msgid "Scilab Macro"
+msgstr "Scilab  巨集"
+
+msgid "Scilab Variable"
+msgstr "Scilab 巨集"

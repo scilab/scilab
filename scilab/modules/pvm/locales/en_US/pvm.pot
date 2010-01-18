@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
-# File: sci_gateway/c/sci_pvm_tasks.c, line: 45
 # File: sci_gateway/c/sci_pvm_config.c, line: 39
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 45
 # File: src/c/pvm_info.c, line: 52
 # File: src/c/pvm_info.c, line: 115
 #, c-format
@@ -29,9 +29,9 @@ msgstr ""
 msgid "%s: Error while creating processes: %s.\n"
 msgstr ""
 #
+# File: src/c/pvm_proc_ctrl.c, line: 315
 # File: src/c/sci_tools.c, line: 94
 # File: src/c/sci_tools.c, line: 118
-# File: src/c/pvm_proc_ctrl.c, line: 315
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -41,8 +41,8 @@ msgstr ""
 msgid "%s: No such file or directory.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pvm_send.c, line: 53
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 52
+# File: sci_gateway/c/sci_pvm_send.c, line: 53
 #, c-format
 msgid "%s: Unknow type or not yet implemented\n"
 msgstr ""
@@ -52,8 +52,8 @@ msgstr ""
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_pvm_send.c, line: 51
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 50
+# File: sci_gateway/c/sci_pvm_send.c, line: 51
 #, c-format
 msgid "%s: work space (stacksize) is too small d\n"
 msgstr ""

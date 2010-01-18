@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	CheckLhs(1,1);
 	CheckRhs(0,1);
 
@@ -31,10 +31,10 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
-		if(strErr.iErr)
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -50,17 +50,17 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double *pdVarOne			= NULL;
 
 		/* get Address of inputs */
-		strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -71,10 +71,10 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
-		if(strErr.iErr)
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 

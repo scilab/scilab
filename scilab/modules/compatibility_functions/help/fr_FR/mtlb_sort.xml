@@ -44,7 +44,7 @@ P = mtlb_sort(X,dim[,mode])</synopsis>
       <varlistentry>
         <term>mode</term>
         <listitem>
-          <para>:une chaine de caracteres (<literal>"ascend"</literal> or
+          <para>une chaine de caracteres (<literal>"ascend"</literal> or
           <literal>"descend"</literal>) </para>
         </listitem>
       </varlistentry>

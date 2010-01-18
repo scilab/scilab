@@ -5,9 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
-stacksize('max');
-N = 100000;
-A = sprand(N, N, 0.0001);
+stacksize(300000);
+N = 1000;
+A = sprand(N, N, 0.01);
 IDO   = 0;
 BMAT  = 'I'; //standard eigenvalue problem
 WHICH = "LM";
@@ -45,7 +45,7 @@ while (IDO <> 99) & (IDO <> 3)
 end;
 t1 = toc();
 printf("loop %d",i);
-loop 80b = rand(N,1);
+loop 72b = rand(N,1);
 tic();
 for j = 1:i
   b = A * b;

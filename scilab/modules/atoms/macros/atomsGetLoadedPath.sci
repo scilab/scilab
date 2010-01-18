@@ -9,25 +9,10 @@
 
 // End user function
 
-// Output argument :
-
-//   path : . If the toolbox is loaded, path is the path of the loaded toolbox
-//            otherwise, path = ""
-//          . Matrix of string (n x 1)
-//          . mandatory
-
-function path = atomsGetLoadedPath(packages)
+function res = atomsGetLoadedPath(packages)
 	
-	// Load Atoms Internals lib if it's not already loaded
-	// =========================================================================
-	if ~ exists("atomsinternalslib") then
-		load("SCI/modules/atoms/macros/atoms_internals/lib");
-	end
-	
-	rhs         = argn(2);
-	lhs         = argn(1);
-	res         = [];
-	path        = [];
+	rhs           = argn(2);
+	res           = [];
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -43,15 +28,21 @@ function path = atomsGetLoadedPath(packages)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
-	if size(packages(1,:),"*") > 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsGetLoadedPath",1));
+	if size(packages(1,:),"*") > 3 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
-	// If packages is mx1 matrix, add a 2nd column with empty versions
+	packages = stripblanks(packages);
+	
+	// Complete packages matrix with empty columns to have a mx3 matrix
 	// =========================================================================
 	
 	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+	
+	elseif size(packages(1,:),"*") == 2 then
 		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	
 	end
 	
 	// Get the list of installed packages
@@ -63,27 +54,15 @@ function path = atomsGetLoadedPath(packages)
 	
 	for i=1:size(packages(:,1),"*")
 		
-		name    = packages(i,1);
-		version = packages(i,2);
-		
-		if isempty(version) then
-			// Just check the name
-			res(i) = or(loadedpackages(:,1) == name);
+		if ~ atomsIsLoaded(packages(i,:)) then
+			res(i) = "";
 			
 		else
 			// Filter on names
-			packages_version = loadedpackages( find(loadedpackages(:,1) == name) , 2 );
+			packages_filtered = loadedpackages( find(loadedpackages(:,1) == packages(i,1)),:);
 			
-			// Check if the wanted version is present
-			res(i) = or(packages_version == version);
+			res(i) = packages_filtered(1,4);
 		end
-		
-		if res(i) then
-			path(i) = loadedpackages( find(loadedpackages(:,1) == name) , 4 )
-		else
-			path(i) = "";
-		end
-		
 	end
 	
 endfunction

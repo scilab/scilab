@@ -19,8 +19,8 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Locale;
-
 import javax.help.BadIDException;
+import javax.help.DefaultHelpHistoryModel;
 import javax.help.DefaultHelpModel;
 import javax.help.HelpSet;
 import javax.help.HelpSetException;
@@ -28,11 +28,14 @@ import javax.help.JHelp;
 import javax.help.JHelpIndexNavigator;
 import javax.help.JHelpSearchNavigator;
 import javax.help.JHelpTOCNavigator;
+import javax.help.SwingHelpUtilities;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
 import javax.help.search.SearchQuery;
 
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -48,6 +51,23 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	private String defaultLanguage = "en_US";
 	private String currentLanguage = "";
     private HelpSet helpSet;
+    /* We are storing the HelpHistory model to be able to 
+     * use the back/forward feature from the jpopupmenu
+     */
+    private static DefaultHelpHistoryModel helpHistory;
+		
+	static {
+        SwingHelpUtilities.setContentViewerUI("org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowserViewer");    
+    }
+	
+	/**
+	 * Return the History model
+	 * @return The DefaultHelpHistoryModel which is called
+	 * from the popup menu
+	 */
+    public static DefaultHelpHistoryModel getHelpHistory() {
+		return helpHistory;
+	}
 
     /**
 	 * Constructor
@@ -76,6 +96,21 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    if (!mainJar.exists()) {
 	    	mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
 	    	currentLanguage = defaultLanguage;
+	    }
+	    
+	    if (!mainJar.exists()) {
+	    	String message = "'" + mainJarPath + defaultLanguage + jarExtension + "' has not been found on the system. " 
+	    		+ "" + "Are you sure you built it? The help will not be available.";
+	    	if (ScilabConsole.isExistingConsole()) {
+	    		MessageBox messageBox = ScilabMessageBox.createMessageBox();
+	    		messageBox.setMessage(message);
+	    		messageBox.setModal(true);
+	    		messageBox.setIcon("error");
+	    		messageBox.displayAndWait();
+	    	} else {
+	    		System.out.println(message);
+	    	}
+	    	return;
 	    }
 	    
 	    int nbFilesToLoad = 0;
@@ -160,7 +195,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			this.getModel().getHelpSet().add(helpSet);
         }
 	    
-	    /** Disable Index navigator beacause no index in Scilab help files */
+	    /** Disable Index navigator because no index in Scilab help files */
 	    Enumeration navigators = getHelpNavigators();
 	    navigators.nextElement(); /* TOC */
 	    removeHelpNavigator((JHelpIndexNavigator) navigators.nextElement());
@@ -170,6 +205,7 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 			ScilabConsole.getConsole().getInfoBar().setText("");
 			ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
+		helpHistory = new DefaultHelpHistoryModel(this);
 	}
 	
 	/**

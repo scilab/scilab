@@ -237,7 +237,7 @@ function [routines] = build_palette(lisf,path,fname)
   end
 
   file('close',u)
-  mprintf('Wrote '+path+fname+'.cosf \n')
+  mprintf(_('Wrote %s.cosf\n'),path+fname)
 
 endfunction
 

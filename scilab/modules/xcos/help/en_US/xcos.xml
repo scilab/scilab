@@ -39,17 +39,17 @@
 xcos(scs_m_list)</synopsis>
   </refsynopsisdiv>
 
-  <refsection id="Module_scicos">
+  <refsection id="Module_xcos">
     <title>Module</title>
 
     <itemizedlist>
       <listitem>
-        <para><link linkend="xcos_manual">xcos</link></para>
+        <para><link linkend="xcos">xcos</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
 
-  <refsection id="Description_scicos">
+  <refsection id="Description_xcos">
     <title>Description</title>
 
     <para>Xcos is a visual editor for constructing models of hybrid dynamical
@@ -65,7 +65,7 @@ xcos('mydiagram.xcos')
  </programlisting>
   </refsection>
 
-  <refsection id="Parameters_scicos">
+  <refsection id="Parameters_xcos">
     <title>Parameters</title>
 
     <itemizedlist>
@@ -83,7 +83,7 @@ xcos('mydiagram.xcos')
     </itemizedlist>
   </refsection>
 
-  <refsection id="Example_scicos">
+  <refsection id="Example_xcos">
     <title>Example</title>
 
     <programlisting role="example"> 
@@ -100,7 +100,7 @@ xcos(scs_m);
  </programlisting>
   </refsection>
 
-  <refsection id="SeeAlso_scicos">
+  <refsection id="SeeAlso_xcos">
     <title>See Also</title>
 
     <itemizedlist>
@@ -111,7 +111,7 @@ xcos(scs_m);
 
       <listitem>
         <para><link linkend="scicos_simulate">scicos_simulate - Function for
-        running scicos simulation in batch mode (Scilab
+        running xcos simulation in batch mode (Scilab
         Function)</link></para>
       </listitem>
 

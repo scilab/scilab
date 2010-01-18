@@ -21,7 +21,7 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -56,7 +56,7 @@ public final class SaveAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.SAVE, "document-save.png", new SaveAction(scilabGraph));
+		return createButton(XcosMessages.SAVE, "media-floppy.png", new SaveAction(scilabGraph));
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public final class SaveAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-		((XcosDiagram) getGraph(null)).saveDiagram();
+	    ((XcosDiagram) getGraph(null)).getRootDiagram().saveDiagram();
 	}
 
 }

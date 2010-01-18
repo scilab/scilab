@@ -92,7 +92,7 @@
     recortado em várias partes, cada parte precedida por algumas explicações
     associadas. O arquivo XML inteiro <literal>foo.xml</literal> está no
     diretório <literal>&lt;SCIDIR&gt;/man/eng/utility</literal> e o resultado
-    pode ser exibido clicando-se em <link linkend="foo">foo</link> (você pode
+    pode ser exibido clicando-se em foo (você pode
     encontrar outros exemplos no diretório
     <literal>&lt;SCIDIR&gt;/examples/man-examples-xml</literal>). <emphasis
     role="bold">Finalmente</emphasis> note que alguns pares de tags

@@ -524,7 +524,7 @@ scale       x          e          /  gamma(shape)
             <varlistentry>
               <term>for fsultra</term>
               <listitem>
-                <para>:  <literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component 
+                <para>  <literal>S</literal> is a vector of integers of dim <literal>40</literal> (the first component 
        is an index and must be in <literal>[0,37]</literal>, the 2d component is a flag (0 or 1), the 3d
        an integer in [1,2^32[ and the 37 others integers in [0,2^32[) ; a simpler (and recommanded) 
        initialisation may be done with two integers <literal>s1</literal> and <literal>s2</literal> in 

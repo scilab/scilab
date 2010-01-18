@@ -1,0 +1,1939 @@
+\chapter{Nelder-Mead method}
+
+\index{Nelder, John}
+\index{Mead, Roger}
+
+In this chapter, we present Nelder and Mead's \cite{citeulike:3009487} algorithm.
+We begin by the analysis of the algorithm, which is based on a variable shape simplex.
+Then, we present geometric situations where the various steps of the algorithm 
+are used. In the third part, we present the rate of convergence toward the optimum of 
+the Nelder-Mead algorithm. This part is mainly based on Han and Neumann's paper \cite{HanNeumann2006}, 
+which makes use of a class of quadratic functions with a special initial 
+simplex. The core of this chapter is the analysis of several numerical 
+experiments which have been performed with the neldermead component.
+We analyze the behavior of the algorithm on quadratic functions and 
+present several counter examples where the Nelder-Mead algorithm is 
+known to fail.
+
+\section{Introduction}
+
+In this section, we present the Nelder-Mead algorithm for unconstrained optimization.
+This algorithm is based on the iterative update of a simplex. 
+Then we present various geometric situations which might occur
+during the algorithm. 
+
+\subsection{Overview}
+
+The goal of the Nelder and Mead algorithm is to solve the 
+following unconstrained optimization problem
+\begin{eqnarray}
+\min f(\bx)
+\end{eqnarray}
+where $\bx\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+function $f:\RR^n\rightarrow \RR$.
+
+The Nelder-Mead method is an improvement over the Spendley's et al.
+method with the goal of allowing the simplex to vary in \emph{shape}, 
+and not only in \emph{size}, as in Spendley's et al. algorithm.
+
+This algorithms is based on the iterative update of 
+a \emph{simplex} made of $n+1$ points $S=\{\bv_i\}_{i=1,n+1}$. Each point 
+in the simplex is called a \emph{vertex} and is associated with 
+a function value $f_i=f(\bv_i)$ for $i=1,n+1$.
+
+The vertices are sorted by increasing function values so that the 
+\emph{best} vertex has index 1 and the \emph{worst} vertex 
+has index $n+1$
+\begin{eqnarray}
+\label{nm-sorted-vertices-fv}
+f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
+\end{eqnarray}
+
+The $\bv_1$ vertex (resp. the $\bv_{n+1}$ vertex) is called the \emph{best} 
+vertex (resp. \emph{worst}), because it is associated with the lowest (resp. highest)
+function value. 
+
+The centroid of the simplex $\overline{\bx} (j)$ is the center of the vertices
+where the vertex $\bv_j$ has been 
+excluded. This centroid is 
+\begin{eqnarray}
+\label{nm-centroid-generalized}
+\overline{\bx} (j) = 
+\frac{1}{n} \sum_{i=1,n+1, i\neq j} \bv_i.
+\end{eqnarray}
+The algorithm makes use
+of one coefficient $\rho>0$, called the reflection factor. The standard
+value of this coefficient is $\rho=1$.
+The algorithm attempts to replace some vertex 
+$\bv_j$ by a new vertex $\bx(\rho,j)$ on the line from the vertex $\bv_j$
+to the centroid  $\overline{\bx}(j)$. The new vertex $\bx(\rho,j)$ is defined by 
+\begin{eqnarray}
+\label{nm-interpolate-generalized}
+\bx(\rho,j) = (1+\rho)\overline{\bx}(j) - \rho \bv_j.
+\end{eqnarray}
+
+\subsection{Algorithm}
+
+In this section, we analyze the Nelder-Mead algorithm, which
+is presented in figure \ref{algo-neldermead}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE Compute an initial simplex $S_0$
+\STATE Sorts the vertices $S_0$ with increasing function values
+\STATE $S\gets S_0$
+\WHILE{$\sigma(S)>tol$}
+  \STATE $\overline{x}\gets \overline{x}(n+1)$
+  \STATE $x_r \gets x(\rho,n+1)$ \COMMENT{Reflect}
+  \STATE $f_r \gets f(x_r)$ 
+  \IF {$f_r<f_1$}
+    \STATE $x_e \gets x(\rho\chi,n+1)$ \COMMENT{Expand}
+    \STATE $f_e \gets f(x_e)$ 
+    \IF {$f_e<f_r$}
+      \STATE Accept $x_e$
+    \ELSE
+      \STATE Accept $x_r$
+    \ENDIF
+  \ELSIF {$f_1 \leq f_r < f_n$}
+    \STATE Accept $x_r$
+  \ELSIF {$f_n \leq f_r < f_{n+1}$}
+    \STATE $x_c \gets x(\rho\gamma,n+1)$ \COMMENT{Outside contraction}
+    \STATE $f_c \gets f(x_c)$ 
+    \IF {$f_c<f_r$}
+      \STATE Accept $x_c$
+    \ELSE
+      \STATE Compute the points $x_i=x_1 + \sigma (x_i - x_1)$, $i=2,n+1$ \COMMENT{Shrink}
+      \STATE Compute $f_i = f(\bv_i)$ for $i=2,n+1$
+    \ENDIF
+  \ELSE
+    \STATE $x_c \gets x(-\gamma,n+1)$ \COMMENT{Inside contraction}
+    \STATE $f_c \gets f(x_c)$ 
+    \IF {$f_c<f_{n+1}$}
+      \STATE Accept $x_c$
+    \ELSE
+      \STATE Compute the points $x_i=x_1 + \sigma (x_i - x_1)$, $i=2,n+1$ \COMMENT{Shrink}
+      \STATE Compute $f_i = f(\bv_i)$ for $i=2,n+1$
+    \ENDIF
+  \ENDIF
+  \STATE Sort the vertices of $S$ with increasing function values
+\ENDWHILE
+\end{algorithmic}
+\caption{Nelder-Mead algorithm -- Standard version}
+\label{algo-neldermead}
+\end{figure}
+
+The Nelder-Mead algorithm makes use of four parameters: the 
+coefficient of reflection $\rho$, expansion $\chi$, 
+contraction $\gamma$ and shrinkage $\sigma$.
+When the expansion or contraction steps are performed, the shape 
+of the simplex is changed, thus "adapting itself to the 
+local landscape" \cite{citeulike:3009487}.
+
+These parameters should satisfy the following inequalities \cite{citeulike:3009487,lagarias:112}
+\begin{eqnarray}
+\label{condition-coeffs}
+\rho>0, \qquad \chi > 1, \qquad \chi > \rho, \qquad 0<\gamma<1 \qquad \textrm{and} \qquad 0<\sigma<1.
+\end{eqnarray}
+The standard values for these coefficients are 
+\begin{eqnarray}
+\label{standard-coeffs}
+\rho=1, \qquad \chi =2, \qquad \gamma=\frac{1}{2} \qquad \textrm{and} \qquad \sigma=\frac{1}{2}.
+\end{eqnarray}
+
+In \cite{Kelley1999}, the Nelder-Mead algorithm is presented with 
+other parameter names, that is $\mu_r = \rho$, $\mu_e = \rho\chi$, $\mu_{ic} = -\gamma$
+and $\mu_{oc} = \rho\gamma$. These coefficients must satisfy the following 
+inequality 
+\begin{eqnarray}
+-1 < \mu_{ic} < 0 < \mu_{oc} < \mu_r < \mu_e.
+\end{eqnarray}
+
+At each iteration, we compute the centroid 
+$\overline{\bx} (n+1)$ where the worst vertex $\bv_{n+1}$ 
+has been excluded. This centroid is 
+\begin{eqnarray}
+\label{nm-centroid-worst}
+\overline{\bx} (n+1) = \frac{1}{n} \sum_{i=1,n} \bv_i.
+\end{eqnarray}
+We perform a reflection with respect to the worst vertex $\bv_{n+1}$,
+which creates the reflected point $\bx_r$ defined by 
+\begin{eqnarray}
+\label{nm-interpolate-worst}
+\bx_r = \bx(\rho,n+1) = (1+\rho)\overline{\bx}(n+1) - \rho \bv_{n+1}
+\end{eqnarray}
+We then compute the function value of the reflected
+point as $f_r=f(\bx_r)$. 
+
+From that point, there are several possibilities, which 
+are listed below. Most steps try to replace the 
+worst vertex $\bv_{n+1}$ by a better point, which is computed 
+depending on the context.
+\begin{itemize}
+\item In the case where $f_r<f_1$, the reflected point $\bx_r$
+were able to improve (i.e. reduce) the function value. In that case, the algorithm
+tries to expand the simplex so that the function value is improved 
+even more. The expansion point is computed by 
+\begin{eqnarray}
+\bx_e = \bx(\rho\chi,n+1) = (1+\rho\chi)\overline{\bx}(n+1) - \rho\chi \bv_{n+1}
+\end{eqnarray}
+and the function is computed at this point, i.e. we compute 
+$f_e = f(\bx_e)$.
+If the expansion point allows to improve the function 
+value, the worst vertex 
+$\bv_{n+1}$ is rejected from the simplex and the expansion point $\bx_e$
+is accepted. If not, the reflection point $\bx_r$ is accepted.
+\item In the case where $f_1\leq f_r<f_n$, the worst vertex 
+$\bv_{n+1}$ is rejected from the simplex and the reflected point $\bx_r$
+is accepted.
+\item In the case where $f_n\leq f_r<f_{n+1}$, we consider the point 
+\begin{eqnarray}
+\bx_c = \bx(\rho\gamma,n+1) = (1+\rho\gamma)\overline{\bx}(n+1) - \rho\gamma \bv_{n+1}
+\end{eqnarray}
+is considered. If the point $\bx_c$ is better than the reflection point $\bx_r$,
+then it is accepted. If not, a shrink step is performed, where 
+all vertices are moved toward the best vertex $\bv_1$.
+\item In other cases, we consider the point 
+\begin{eqnarray}
+\bx_c = \bx(-\gamma,n+1) = (1-\gamma)\overline{\bx}(n+1) + \gamma \bv_{n+1}.
+\end{eqnarray}
+If the point $\bx_c$ is better than the worst vertex $\bx_{n+1}$,
+then it is accepted. If not, a shrink step is performed.
+\end{itemize}
+
+The algorithm from figure \ref{algo-neldermead} is the most 
+popular variant of the Nelder-Mead algorithm.
+But the original paper is based on a "greedy" expansion, where 
+the expansion point is accepted if it is better than the 
+best point (and not if it is better than the reflection point).
+This "greedy" version is implemented in AS47 by O'Neill in \cite{O'Neill1971AAF}
+and the corresponding algorithm is presented in figure \ref{algo-neldermead-greedy}.
+
+\begin{figure}[htbp]
+\begin{verbatim}
+[...]
+\end{verbatim}
+\begin{algorithmic}
+    \STATE $\bx_e \gets \bx(\rho\chi,n+1)$ \COMMENT{Expand}
+    \STATE $f_e \gets f(\bx_e)$ 
+    \IF {$f_e<f_1$}
+      \STATE Accept $\bx_e$
+    \ELSE
+      \STATE Accept $\bx_r$
+    \ENDIF
+\end{algorithmic}
+\begin{verbatim}
+[...]
+\end{verbatim}
+\caption{Nelder-Mead algorithm -- Greedy version}
+\label{algo-neldermead-greedy}
+\end{figure}
+
+
+\section{Geometric analysis}
+
+The figure \ref{fig-nm-moves} presents the various moves of the 
+simplex in the Nelder-Mead algorithm.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=6cm]{neldermeadmethod/nelder-mead-steps.pdf}
+\end{center}
+\caption{Nelder-Mead simplex steps}
+\label{fig-nm-moves}
+\end{figure}
+
+The figures \ref{fig-nm-moves-reflection} 
+to \ref{fig-nm-moves-shrinkafterco} present the 
+detailed situations when each type of step occur.
+We emphasize that these figures are not the result of 
+numerical experiments. These figures been created in order 
+to illustrate the following specific points of the algorithm.
+
+\begin{itemize}
+\item Obviously, the expansion step is performed when the 
+simplex is far away from the optimum. The direction of 
+descent is then followed and the worst vertex is moved 
+into that direction.
+\item When the reflection step is performed, the simplex is 
+getting close to an valley, since the expansion point 
+does not improve the function value.
+\item When the simplex is near the optimum, 
+the inside and outside contraction steps may be performed, which 
+allows to decrease the size of the simplex.
+The figure \ref{fig-nm-moves-insidecontraction}, which illustrates 
+the inside contraction step, happens in "good" situations.
+As presented in section \ref{section-mcKinnon}, applying 
+repeatedly the inside contraction step can transform 
+the simplex into a degenerate simplex, which may let the algorithm
+converge to a non stationnary point.
+\item The shrink steps (be it after an outside contraction or an inside 
+contraction) occurs only in very special situations. In practical experiments,
+shrink steps are rare.
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-reflection.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves -- Reflection}
+\label{fig-nm-moves-reflection}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-extension.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves -- Expansion}
+\label{fig-nm-moves-expansion}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-contract-inside.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves - Inside contraction}
+\label{fig-nm-moves-insidecontraction}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-contract-outside.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves -- Outside contraction}
+\label{fig-nm-moves-outsidecontraction}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=6cm]{neldermeadmethod/nelder-mead-shrink-afterci.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves -- Shrink after inside contraction.}
+\label{fig-nm-moves-shrinkafterci}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/nelder-mead-shrink-afterco.pdf}
+\end{center}
+\caption{Nelder-Mead simplex moves -- Shrink after outside contraction}
+\label{fig-nm-moves-shrinkafterco}
+\end{figure}
+
+
+%\subsection{Termination criteria}
+
+%TODO...
+
+\section{Convergence properties on a quadratic}
+
+\index{Han, Lixing}
+\index{Neumann, Michael}
+
+In this section, we reproduce one result 
+presented by Han and Neumann \cite{HanNeumann2006}, which states 
+the rate of convergence toward the optimum on a class of quadratic 
+functions with a special initial simplex.
+Some additional results are also presented in the Phd thesis by Lixing Han \cite{Han2000}.
+We study a generalized quadratic and use a particular 
+initial simplex. We show that the vertices follow 
+a recurrence equation, which is associated with a characteristic 
+equation. The study of the roots of these characteristic equations 
+give an insight of the behavior of the Nelder-Mead algorithm
+when the dimension $n$ increases.
+
+Let us suppose than we want to minimize the function 
+\begin{eqnarray}
+\label{hanneumman-quadratic}
+f(\bx) = x_1^2+\ldots+x_n^2
+\end{eqnarray}
+with the initial simplex 
+\begin{eqnarray}
+S_0 = \left[\bold{0},\bv^{(0)}_1,\ldots,\bv^{(0)}_n\right]
+\end{eqnarray}
+With this choice of the initial simplex, the best vertex remains fixed 
+at $\bold{0}=(0,0,\ldots,0)^T\in\RR^n$. As the cost function \ref{hanneumman-quadratic}
+is strictly convex, the Nelder-Mead method never performs
+the \emph{shrink} step. Therefore, at each iteration, a new simplex 
+is formed by replacing the worst vertex $\bv^{(k)}_n$, by a 
+new, better vertex. Assume that the Nelder-Mead method 
+generates a sequence of simplices $\{S_k\}_{k\geq 0}$ in $\RR^n$,
+where 
+\begin{eqnarray}
+S_k = \left[\bold{0},\bv^{(k)}_1,\ldots,\bv^{(n)}_n\right]
+\end{eqnarray}
+We wish that the sequence of simplices $S_k\rightarrow \bold{0}\in\RR^n$
+as $k\rightarrow \infty$. To measure the progress of convergence,
+Han and Neumann use the oriented length $\sigma_+(S_k)$ of the simplex $S_k$,
+defined by 
+\begin{eqnarray}
+\sigma_+(S) = \max_{i=2,m} \|\bv_i - \bv_1\|_2.
+\end{eqnarray}
+We say that a sequence of simplices $\{S_k\}_{k\geq 0}$ converges to the minimizer $\bold{0}\in\RR^n$
+of the function in equation \ref{hanneumman-quadratic} if 
+$\lim_{k\rightarrow \infty} \sigma_+(S_k) = 0$.
+
+We measure the rate of convergence defined by 
+\begin{eqnarray}
+\label{rho-rate-convergence}
+\rho(S_0,n) = \textrm{lim sup}_{k\rightarrow \infty} 
+\left(\sum_{i=0,k-1} \frac{\sigma(S_{i+1})}{\sigma(S_i)}\right)^{1/k}.
+\end{eqnarray}
+That definition can be viewed as the geometric mean of the ratio of the 
+oriented lengths between successive simplices and the minimizer 0.
+This definition implies 
+\begin{eqnarray}
+\label{rho-rate-convergence2}
+\rho(S_0,n) = \textrm{lim sup}_{k\rightarrow \infty} 
+\left( \frac{\sigma(S_{k+1})}{\sigma(S_0)}\right)^{1/k}.
+\end{eqnarray}
+
+According to the definition, the algorithm is convergent if $\rho(S_0,n) < 1$.
+The larger the $\rho(S_0,n)$, the slower the convergence. In particular, the convergence 
+is very slow when $\rho(S_0,n)$ is close to 1. 
+The analysis is based on the fact that the Nelder-Mead method generates a sequence of simplices
+in $\RR^n$ satisfying 
+\begin{eqnarray}
+S_k = \left[\bold{0},\bv^{(k+n-1)},\ldots,\bv^{(k+1)},\bv^{(k)}\right],
+\end{eqnarray}
+where $\bold{0},\bv^{(k+n-1)},\ldots,\bv^{(k+1)},\bv^{(k)}\in\RR^n$ are the vertices
+of the $k-th$ simplex, with
+\begin{eqnarray}
+f(\bold{0}) < f\left(\bv^{(k+n-1)}\right) < f\left(\bv^{(k+1)}\right) < f\left(\bv^{(k)}\right),
+\end{eqnarray}
+for $k\geq 0$. 
+
+To simplify the analysis, we consider that only one type of step of the Nelder-Mead 
+method is applied repeatedly. This allows to establish recurrence equations for the 
+successive simplex vertices. As the shrink step is never used, and the expansion steps is 
+never used neither (since the best vertex is already at 0), the analysis focuses
+on the outside contraction, inside contraction and reflection steps.
+
+The centroid of the $n$ best vertices of $S_k$ is given by 
+\begin{eqnarray}
+\overline{\bold{v}}^{(k)} 
+&=&\frac{1}{n} \left( \bv^{(k+1)} + \ldots + \bv^{(k+n-1)} + \bold{0} \right)\\
+&=&\frac{1}{n} \left( \bv^{(k+1)} + \ldots + \bv^{(k+n-1)} \right)\\
+&=& \frac{1}{n} \sum_{i=1,n-1} \bv^{(k+i)} \label{eq-nm-centroid}
+\end{eqnarray}
+
+\subsection{With default parameters}
+
+In this section, we analyze the roots of the characteristic 
+equation with \emph{fixed}, standard inside and outside contraction
+coefficients.
+
+\emph{Outside contraction} \\
+If the outside contraction step is repeatedly performed
+with $\mu_{oc} = \rho\gamma = \frac{1}{2}$, then 
+\begin{eqnarray}
+\bv^{(k+n)} = \overline{\bold{v}}^{(k)} 
++ \frac{1}{2} \left( \overline{\bold{v}}^{(k)} - \bv^{(k)}\right) .
+\end{eqnarray}
+By plugging the definition of the centroid \ref{eq-nm-centroid} into the previous equality, we 
+find the recurrence formula
+\begin{eqnarray}
+2n \bv^{(k+n)} - 3 \bv^{(k+1)} - \ldots - 3 \bv^{(k+n-1)} + n\bv^{(k)} = 0.
+\end{eqnarray}
+The associated characteristic equation is 
+\begin{eqnarray}
+\label{recurrence-oc}
+2n \mu^n - 3 \mu^{n-1} - \ldots - 3 \mu + n = 0.
+\end{eqnarray}
+
+\emph{Inside contraction} \\
+If the inside contraction step is repeatedly performed
+with $\mu_{ic} = -\gamma = -\frac{1}{2}$, then 
+\begin{eqnarray}
+\bv^{(k+n)} = \overline{\bold{v}}^{(k)} 
+- \frac{1}{2} \left( \overline{\bold{v}}^{(k)} - \bv^{(k)}\right).
+\end{eqnarray}
+By plugging the definition of the centroid \ref{eq-nm-centroid} into the previous equality, we 
+find the recurrence formula
+\begin{eqnarray}
+2n \bv^{(k+n)} - \bv^{(k+1)} - \ldots - \bv^{(k+n-1)} - n\bv^{(k)} = 0.
+\end{eqnarray}
+The associated characteristic equation is 
+\begin{eqnarray}
+\label{recurrence-ic}
+2n \mu^n - \mu^{n-1} - \ldots - \mu - n = 0.
+\end{eqnarray}
+
+\emph{Reflection}  \\
+If the reflection step is repeatedly performed
+with $\mu_r = \rho = 1$, then 
+\begin{eqnarray}
+\bv^{(k+n)} = \overline{\bold{v}}^{(k)} 
++ \left( \overline{\bold{v}}^{(k)} - \bv^{(k)}\right).
+\end{eqnarray}
+By plugging the definition of the centroid \ref{eq-nm-centroid} into the previous equality, we 
+find the recurrence formula
+\begin{eqnarray}
+n \bv^{(k+n)} - 2 \bv^{(k+1)} - \ldots - 2 \bv^{(k+n-1)} + n\bv^{(k)} = 0.
+\end{eqnarray}
+The associated characteristic equation is 
+\begin{eqnarray}
+\label{recurrence-reflection}
+n \mu^n - 2 \mu^{n-1} - \ldots - 2 \mu + n = 0.
+\end{eqnarray}
+
+The recurrence equations \ref{recurrence-oc}, \ref{recurrence-ic} and \ref{recurrence-reflection}
+are linear. Their general solutions are of the form 
+\begin{eqnarray}
+\bv^{(k)} = \mu_1^k \bold{a}_1 + \ldots + \mu_n^k \bold{a}_n,
+\end{eqnarray}
+where $\{\mu_i\}_{i=1,n}$ are the roots of the characteristic equations and 
+$\{\bold{a}_i\}_{i=1,n} \in \CC^n$ are independent vectors such that $\bv^{(k)} \in \RR^n$
+for all $k\geq 0$.
+
+The analysis by Han and Neumann \cite{HanNeumann2006} gives a 
+deep understanding of the convergence rate for this particular 
+situation. For $n=1$, they show that the convergence rate is $\frac{1}{2}$.
+For $n=2$, the convergence rate is $\frac{\sqrt{2}}{2}\approx 0.7$ with
+a particular choice for the initial simplex. For $n\geq 3$, Han and Neumann \cite{HanNeumann2006}
+perform a numerical analysis of the roots.
+
+In the following Scilab script, we compute the roots of these 3 characteristic 
+equations. 
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+//
+// computeroots1 --
+//   Compute the roots of the characteristic equations of 
+//   usual Nelder-Mead method.
+//
+function computeroots1 ( n )
+  // Polynomial for outside contraction :
+  // n - 3x - ... - 3x^(n-1) + 2n x^(n) = 0
+  mprintf("Polynomial for outside contraction :\n");
+  coeffs = zeros(1,n+1);
+  coeffs(1) = n
+  coeffs(2:n) = -3
+  coeffs(n+1) = 2 * n
+  p=poly(coeffs,"x","coeff")
+  disp(p)
+  mprintf("Roots :\n");
+  r = roots(p)
+  for i=1:n
+    mprintf("Root #%d/%d |%s|=%f\n", i, length(r),string(r(i)),abs(r(i)))
+  end
+  // Polynomial for inside contraction :
+  // - n - x - ... - x^(n-1) + 2n x^(n)= 0
+  mprintf("Polynomial for inside contraction :\n");
+  coeffs = zeros(1,n+1);
+  coeffs(1) = -n
+  coeffs(2:n) = -1
+  coeffs(n+1) = 2 * n
+  p=poly(coeffs,"x","coeff")
+  disp(p)
+  mprintf("Roots :\n");
+  r = roots(p)
+  for i=1:n
+    mprintf("Root #%d/%d |%s|=%f\n", i, length(r),string(r(i)),abs(r(i)))
+  end
+  // Polynomial for reflection :
+  // n - 2x - ... - 2x^(n-1) + n x^(n) = 0
+  mprintf("Polynomial for reflection :\n");
+  coeffs = zeros(1,n+1);
+  coeffs(1) = n
+  coeffs(2:n) = -2
+  coeffs(n+1) = n
+  p=poly(coeffs,"x","coeff")
+  disp(p)
+  r = roots(p)
+  mprintf("Roots :\n");
+  for i=1:n
+    mprintf("Root #%d/%d |%s|=%f\n", i, length(r),string(r(i)),abs(r(i)))
+  end
+endfunction
+\end{lstlisting}
+
+If we execute the previous script with $n=10$, the following 
+output is produced.
+
+\begin{small}
+\begin{verbatim}
+-->computeroots1 ( 10 )
+Polynomial for outside contraction :
+ 
+                2    3    4    5    6    7    8     9    10  
+    10 - 3x - 3x - 3x - 3x - 3x - 3x - 3x - 3x - 3x + 20x    
+Roots :
+Root #1/10 |0.5822700+%i*0.7362568|=0.938676
+Root #2/10 |0.5822700-%i*0.7362568|=0.938676
+Root #3/10 |-0.5439060+%i*0.7651230|=0.938747
+Root #4/10 |-0.5439060-%i*0.7651230|=0.938747
+Root #5/10 |0.9093766+%i*0.0471756|=0.910599
+Root #6/10 |0.9093766-%i*0.0471756|=0.910599
+Root #7/10 |0.0191306+%i*0.9385387|=0.938734
+Root #8/10 |0.0191306-%i*0.9385387|=0.938734
+Root #9/10 |-0.8918713+%i*0.2929516|=0.938752
+Root #10/10 |-0.8918713-%i*0.2929516|=0.938752
+Polynomial for inside contraction :
+ 
+              2   3   4   5   6   7   8    9    10  
+  - 10 - x - x - x - x - x - x - x - x - x + 20x    
+Roots :
+Root #1/10 |0.7461586+%i*0.5514088|=0.927795
+Root #2/10 |0.7461586-%i*0.5514088|=0.927795
+Root #3/10 |-0.2879931+%i*0.8802612|=0.926175
+Root #4/10 |-0.2879931-%i*0.8802612|=0.926175
+Root #5/10 |-0.9260704|=0.926070
+Root #6/10 |0.9933286|=0.993329
+Root #7/10 |0.2829249+%i*0.8821821|=0.926440
+Root #8/10 |0.2829249-%i*0.8821821|=0.926440
+Root #9/10 |-0.7497195+%i*0.5436596|=0.926091
+Root #10/10 |-0.7497195-%i*0.5436596|=0.926091
+Polynomial for reflection :
+ 
+                2    3    4    5    6    7    8     9    10  
+    10 - 2x - 2x - 2x - 2x - 2x - 2x - 2x - 2x - 2x + 10x    
+Roots :
+Root #1/10 |0.6172695+%i*0.7867517|=1.000000
+Root #2/10 |0.6172695-%i*0.7867517|=1.000000
+Root #3/10 |-0.5801834+%i*0.8144859|=1.000000
+Root #4/10 |-0.5801834-%i*0.8144859|=1.000000
+Root #5/10 |0.9946011+%i*0.1037722|=1.000000
+Root #6/10 |0.9946011-%i*0.1037722|=1.000000
+Root #7/10 |0.0184670+%i*0.9998295|=1.000000
+Root #8/10 |0.0184670-%i*0.9998295|=1.000000
+Root #9/10 |-0.9501543+%i*0.3117800|=1.000000
+Root #10/10 |-0.9501543-%i*0.3117800|=1.000000
+\end{verbatim}
+\end{small}
+
+The following Scilab script allows to compute the minimum and 
+the maximum of the modulus of the roots. 
+The "e" option of the "roots" command has been used to force the 
+use of the eigenvalues of the companion matrix as the computational 
+method. The default algorithm, based on the Jenkins-Traub Rpoly
+method is generating a convergence error and cannot be used 
+in this case.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [rminoc , rmaxoc , rminic , rmaxic] = computeroots1_abstract ( n )
+  // Polynomial for outside contraction :
+  // n - 3x - ... - 3x^(n-1) + 2n x^(n) = 0
+  coeffs = zeros(1,n+1);
+  coeffs(1) = n
+  coeffs(2:n) = -3
+  coeffs(n+1) = 2 * n
+  p=poly(coeffs,"x","coeff")
+  r = roots(p , "e")
+  rminoc = min(abs(r))
+  rmaxoc = max(abs(r))
+  // Polynomial for inside contraction :
+  // - n - x - ... - x^(n-1) + 2n x^(n)= 0
+  coeffs = zeros(1,n+1);
+  coeffs(1) = -n
+  coeffs(2:n) = -1
+  coeffs(n+1) = 2 * n
+  p=poly(coeffs,"x","coeff")
+  r = roots(p , "e")
+  rminic = min(abs(r))
+  rmaxic = max(abs(r))
+  mprintf("%d & %f & %f & %f & %f\\\\\n", n, rminoc, rmaxoc, rminic, rmaxic)
+endfunction
+
+function drawfigure1 ( nbmax )
+  rminoctable = zeros(1,nbmax)
+  rmaxoctable = zeros(1,nbmax)
+  rminictable = zeros(1,nbmax)
+  rmaxictable = zeros(1,nbmax)
+  for n = 1 : nbmax
+    [rminoc , rmaxoc , rminic , rmaxic] = computeroots1_abstract ( n )
+    rminoctable ( n ) = rminoc
+    rmaxoctable ( n ) = rmaxoc
+    rminictable ( n ) = rminic
+    rmaxictable ( n ) = rmaxic
+  end
+  plot2d ( 1:nbmax , [ rminoctable' , rmaxoctable' , rminictable' , rmaxictable' ] )
+  f = gcf();
+  f.children.title.text = "Nelder-Mead characteristic equation roots";
+  f.children.x_label.text = "Number of variables (n)";
+  f.children.y_label.text = "Roots of the characteristic equation";
+  captions(f.children.children.children,["R-max-IC","R-min-IC","R-max-OC","R-min-OC"]);
+  f.children.children(1).legend_location="in_lower_right";
+  for i = 1:4
+  mypoly = f.children.children(2).children(i);
+  mypoly.foreground=i;
+  mypoly.line_style=i;
+  end
+  xs2png(0,"neldermead-roots.png");
+endfunction
+\end{lstlisting}
+
+For the reflection characteristic equation, the roots all have 
+a unity modulus.
+The minimum and maximum roots of the inside contraction ("ic" in the table) and 
+outside contraction ("oc" in the table) steps are 
+presented in table \ref{table-nm-roots-table}. These 
+roots are presented graphically in figure \ref{fig-nm-roots}.
+We see that the roots start from 0.5 when $n=1$ and 
+converge rapidly toward 1 when $n\rightarrow \infty$.
+
+\begin{figure}[htbp]
+\begin{center}
+\begin{tiny}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+$n$ & $\min_{i=1,n}\mu_i^{oc}$ & $\max_{i=1,n}\mu_i^{oc}$ & $\min_{i=1,n}\mu_i^{ic}$ & $\max_{i=1,n}\mu_i^{ic}$ \\
+\hline
+1 & 0.500000 & 0.500000 & 0.500000 & 0.500000\\
+2 & 0.707107 & 0.707107 & 0.593070 & 0.843070\\
+3 & 0.776392 & 0.829484 & 0.734210 & 0.927534\\
+4 & 0.817185 & 0.865296 & 0.802877 & 0.958740\\
+5 & 0.844788 & 0.888347 & 0.845192 & 0.973459\\
+6 & 0.864910 & 0.904300 & 0.872620 & 0.981522\\
+7 & 0.880302 & 0.916187 & 0.892043 & 0.986406\\
+8 & 0.892487 & 0.925383 & 0.906346 & 0.989584\\
+9 & 0.902388 & 0.932736 & 0.917365 & 0.991766\\
+10 & 0.910599 & 0.938752 & 0.926070 & 0.993329\\
+11 & 0.917524 & 0.943771 & 0.933138 & 0.994485\\
+12 & 0.923446 & 0.948022 & 0.938975 & 0.995366\\
+13 & 0.917250 & 0.951672 & 0.943883 & 0.996051\\
+14 & 0.912414 & 0.954840 & 0.948062 & 0.996595\\
+15 & 0.912203 & 0.962451 & 0.951666 & 0.997034\\
+16 & 0.913435 & 0.968356 & 0.954803 & 0.997393\\
+17 & 0.915298 & 0.972835 & 0.957559 & 0.997691\\
+18 & 0.917450 & 0.976361 & 0.959999 & 0.997940\\
+19 & 0.919720 & 0.979207 & 0.962175 & 0.998151\\
+20 & 0.922013 & 0.981547 & 0.964127 & 0.998331\\
+21 & 0.924279 & 0.983500 & 0.965888 & 0.998487\\
+22 & 0.926487 & 0.985150 & 0.967484 & 0.998621\\
+23 & 0.928621 & 0.986559 & 0.968938 & 0.998738\\
+24 & 0.930674 & 0.987773 & 0.970268 & 0.998841\\
+25 & 0.932640 & 0.988826 & 0.971488 & 0.998932\\
+26 & 0.934520 & 0.989747 & 0.972613 & 0.999013\\
+27 & 0.936316 & 0.990557 & 0.973652 & 0.999085\\
+28 & 0.938030 & 0.991274 & 0.974616 & 0.999149\\
+29 & 0.939666 & 0.991911 & 0.975511 & 0.999207\\
+30 & 0.941226 & 0.992480 & 0.976346 & 0.999259\\
+31 & 0.942715 & 0.992991 & 0.977126 & 0.999306\\
+32 & 0.944137 & 0.993451 & 0.977856 & 0.999348\\
+33 & 0.945495 & 0.993867 & 0.978540 & 0.999387\\
+34 & 0.946793 & 0.994244 & 0.979184 & 0.999423\\
+35 & 0.948034 & 0.994587 & 0.979791 & 0.999455\\
+36 & 0.949222 & 0.994900 & 0.980363 & 0.999485\\
+37 & 0.950359 & 0.995187 & 0.980903 & 0.999513\\
+38 & 0.951449 & 0.995450 & 0.981415 & 0.999538\\
+39 & 0.952494 & 0.995692 & 0.981900 & 0.999561\\
+40 & 0.953496 & 0.995915 & 0.982360 & 0.999583\\
+45 & 0.957952 & 0.996807 & 0.984350 & 0.999671\\
+50 & 0.961645 & 0.997435 & 0.985937 & 0.999733\\
+55 & 0.964752 & 0.997894 & 0.987232 & 0.999779\\
+60 & 0.967399 & 0.998240 & 0.988308 & 0.999815\\
+65 & 0.969679 & 0.998507 & 0.989217 & 0.999842\\
+70 & 0.971665 & 0.998718 & 0.989995 & 0.999864\\
+75 & 0.973407 & 0.998887 & 0.990669 & 0.999881\\
+80 & 0.974949 & 0.999024 & 0.991257 & 0.999896\\
+85 & 0.976323 & 0.999138 & 0.991776 & 0.999908\\
+90 & 0.977555 & 0.999233 & 0.992236 & 0.999918\\
+95 & 0.978665 & 0.999313 & 0.992648 & 0.999926\\
+100 & 0.979671 & 0.999381 & 0.993018 & 0.999933\\
+\hline
+\end{tabular}
+\end{tiny}
+\end{center}
+\caption{Roots of the characteristic equations of the Nelder-Mead method with standard 
+coefficients. (Some results are not displayed to make the table fit the page).}
+\label{table-nm-roots-table}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-roots.png}
+\end{center}
+\caption{Modulus of the roots of the characteristic equations of the Nelder-Mead method with standard 
+coefficients -- R-max-IC is the maximum of the modulus of the root of the Inside Contraction steps}
+\label{fig-nm-roots}
+\end{figure}
+
+\subsection{With variable parameters}
+
+In this section, we analyze the roots of the characteristic 
+equation with \emph{variable} inside and outside contraction
+coefficients.
+
+\emph{Outside contraction} \\
+If the outside contraction step is repeatedly performed
+with variable $\mu_{oc} \in [0,\mu_r[$, then 
+\begin{eqnarray}
+\bv^{(k+n)} &=& \overline{\bold{v}}^{(k)} 
++ \mu_{oc} \left( \overline{\bold{v}}^{(k)} - \bv^{(k)}\right) \\
+&=& (1 + \mu_{oc} ) \overline{\bold{v}}^{(k)} - \mu_{oc} \bv^{(k)}
+\end{eqnarray}
+By plugging the definition of the centroid into the previous equality, we 
+find the recurrence formula
+\begin{eqnarray}
+n \bv^{(k+n)} - (1 + \mu_{oc} ) \bv^{(k+1)} - \ldots - (1 + \mu_{oc} ) \bv^{(k+n-1)} + n\mu_{oc}\bv^{(k)} = 0
+\end{eqnarray}
+
+The associated characteristic equation is 
+\begin{eqnarray}
+\label{recurrence-variable}
+n \mu^n - (1 + \mu_{oc} ) \mu^{n-1} - \ldots - (1 + \mu_{oc} ) \mu + n \mu_{oc} = 0.
+\end{eqnarray}
+
+\emph{Inside contraction} \\
+We suppose that the inside contraction step is repeatedly performed
+with $-1 < \mu_{ic} < 0$. The characteristic equation is the same as \ref{recurrence-variable},
+but it is here studied in the range $\mu_{ic}\in]-1, 0[$.
+
+To study the convergence of the method, we simply have 
+to study the roots of equation \ref{recurrence-variable}, where 
+the range $]-1,0[$ corresponds to the inside contraction (with $-1/2$ 
+as the standard value) and where the range $]0,\mu_r[$ corresponds to the outside contraction (with $1/2$ 
+as the standard value).
+
+In the following Scilab script, we compute the minimum and 
+maximum root of the characteristic equation, with $n$ fixed.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+//
+// rootsvariable --
+//   Compute roots of the characteristic equation 
+//   of Nelder-Mead with variable coefficient mu.
+// Polynomial for outside/inside contraction :
+// n mu - (1+mu)x - ... - (1+mu)x^(n-1) + n x^(n) = 0
+//
+function [rmin , rmax] = rootsvariable ( n , mu )
+  coeffs = zeros(1,n+1);
+  coeffs(1) = n * mu
+  coeffs(2:n) = -(1+mu)
+  coeffs(n+1) = n
+  p=poly(coeffs,"x","coeff")
+  r = roots(p , "e")
+  rmin = min(abs(r))
+  rmax = max(abs(r))
+  mprintf("%f & %f & %f\\\\\n", mu, rmin, rmax)
+endfunction
+
+function drawfigure_variable ( n , nmumax )
+  rmintable = zeros(1,nmumax)
+  rmaxtable = zeros(1,nmumax)
+  mutable = linspace ( -1 , 1 , nmumax ) 
+  for index = 1 : nmumax
+    mu = mutable ( index )
+    [rmin , rmax ] = rootsvariable ( n , mu )
+    rmintable ( index ) = rmin
+    rmaxtable ( index ) = rmax
+  end
+  plot2d ( mutable , [ rmintable' , rmaxtable' ] )
+  f = gcf();
+  pause
+  f.children.title.text = "Nelder-Mead characteristic equation roots";
+  f.children.x_label.text = "Contraction coefficient";
+  f.children.y_label.text = "Roots of the characteristic equation";
+  captions(f.children.children.children,["R-max","R-min"]);
+  f.children.children(1).legend_location="in_lower_right";
+  for i = 1:2
+  mypoly = f.children.children(2).children(i);
+  mypoly.foreground=i;
+  mypoly.line_style=i;
+  end
+  xs2png(0,"neldermead-roots-variable.png");
+endfunction
+
+\end{lstlisting}
+
+The figure \ref{fig-nm-roots-variable} presents the minimum
+and maximum modulus of the roots of the characteristic equation
+with $n=10$. The result is that when $\mu_{oc}$ is close to 0, the 
+minimum root has a modulus close to 0. The maximum root remains close to 
+1, whatever the value of the contraction coefficient.
+This result would mean that either modifying the contraction
+coefficient has no effect (because the maximum modulus of the roots 
+is close to 1) or diminishing the contraction coefficient should 
+improve the convergence speed (because the minimum modulus of the 
+roots gets closer to 0). This is the expected result because
+the more the contraction coefficient is close to 0, the more the new 
+vertex is close to 0, which is, in our particular situation, the 
+global minimizer. No general conclusion can be drawn from this single 
+experiment.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-roots-variable.png}
+\end{center}
+\caption{Modulus of the roots of the characteristic equations of the Nelder-Mead method with variable 
+contraction coefficient and $n=10$ -- R-max is the maximum of the modulus of the root of the 
+characteristic equation}
+\label{fig-nm-roots-variable}
+\end{figure}
+
+\section{Numerical experiments}
+
+In this section, we present some numerical experiments 
+with the Nelder-Mead algorithm.
+The two first numerical experiments involve simple quadratic functions.
+These experiments allows to see the difference between
+Spendley's et al. algorithm and the Nelder-Mead algorithm.
+We then present several experiments taken from the bibliography.
+The O'Neill experiments \cite{O'Neill1971AAF} are performed in order 
+to check that our algorithm is a correct implementation.
+We then present several numerical experiments where the Nelder-Mead
+does not converge properly.
+We analyze the Mc Kinnon counter example 
+from \cite{589109}. We show the behavior of the 
+Nelder-Mead simplex method for a family of examples which cause the 
+method to converge to a non stationnary point.
+We analyze the counter examples presented by Han in his Phd thesis \cite{Han2000}.
+In these experiments, the Nelder-Mead algorithm degenerates by applying repeatedly
+the inside contraction step.
+We also reproduce numerical experiments extracted from Torczon's Phd Thesis 
+\cite{Torczon89multi-directionalsearch}, where Virginia Torczon 
+presents the multi-directional direct search algorithm. 
+
+\subsection{Quadratic function}
+
+The function we try to minimize is the following quadratic 
+in 2 dimensions 
+\begin{eqnarray}
+f(x_1,x_2) = x_1^2 + x_2^2 - x_1 x_2.
+\end{eqnarray}
+
+The stopping criteria is based on the relative size of the simplex 
+with respect to the size of the initial simplex 
+\begin{eqnarray}
+\sigma_+(S) < tol \times \sigma_+(S_0),
+\end{eqnarray}
+where the tolerance is set to $tol=10^{-8}$.
+
+The initial simplex is a regular simplex with unit length.
+
+The following Scilab script allows to perform the optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ y , index ] = quadratic ( x , index )
+  y = x(1)^2 + x(2)^2 - x(1) * x(2);
+endfunction
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",quadratic);
+nm = neldermead_configure(nm,"-x0",[2.0 2.0]');
+nm = neldermead_configure(nm,"-maxiter",100);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolxmethod",%f);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = neldermead_configure(nm,"-simplex0method","spendley");
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
+The numerical results are presented in table \ref{fig-nm-numexp1-table}.
+
+\begin{figure}[htbp]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|}
+\hline
+Iterations & 65 \\
+Function Evaluations & 130 \\
+$x_0$ & $(2.0,2.0)$ \\
+Relative tolerance on simplex size & $10^{-8}$ \\
+Exact $x^\star$ & $(0.,0.)$\\
+Computed $x^\star$ & $(-2.519D-09 , 7.332D-10)$\\
+Computed $f(x^\star)$ & $8.728930e-018$\\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on the quadratic function
+$f(x_1,x_2) = x_1^2 + x_2^2 - x_1 x_2$}
+\label{fig-nm-numexp1-table}
+\end{figure}
+
+The various simplices generated during the iterations are 
+presented in figure \ref{fig-nm-numexp1-historysimplex}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-simplexcontours.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- history of simplex}
+\label{fig-nm-numexp1-historysimplex}
+\end{figure}
+
+The figure \ref{fig-nm-numexp1-sigma} presents the history of the oriented
+length of the simplex. The length is updated at each iteration, which 
+generates a continuous evolution of the length, compared to the 
+step-by-step evolution of the simplex with the Spendley et al. algorithm.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-history-sigma.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- History of logarithm of length of simplex}
+\label{fig-nm-numexp1-sigma}
+\end{figure}
+
+The convergence is quite fast in this case, since less than 70 iterations
+allow to get a function value lower than $10^{-15}$, as shown in 
+figure \ref{fig-nm-numexp1-logfopt}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/quad2bis-nm-history-logfopt.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- History of logarithm of function}
+\label{fig-nm-numexp1-logfopt}
+\end{figure}
+
+\subsubsection{Badly scaled quadratic function}
+
+The function we try to minimize is the following quadratic 
+in 2 dimensions 
+\begin{eqnarray}
+\label{quadratic-nm-function2}
+f(x_1,x_2) = a x_1^2 + x_2^2,
+\end{eqnarray}
+where $a>0$ is a chosen scaling parameter. 
+The more $a$ is large, the more difficult the problem is 
+to solve with the simplex algorithm.
+
+We set the maximum number of function evaluations to 400.
+The initial simplex is a regular simplex with unit length.
+The stopping criteria is based on the relative size of the simplex 
+with respect to the size of the initial simplex 
+\begin{eqnarray}
+\sigma_+(S) < tol \times \sigma_+(S_0),
+\end{eqnarray}
+where the tolerance is set to $tol=10^{-8}$.
+
+The following Scilab script allows to perform the optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+a = 100.0;
+function [ y , index ] = quadratic ( x , index )
+  y = a * x(1)^2 + x(2)^2;
+endfunction
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",quadratic);
+nm = neldermead_configure(nm,"-x0",[10.0 10.0]');
+nm = neldermead_configure(nm,"-maxiter",400);
+nm = neldermead_configure(nm,"-maxfunevals",400);
+nm = neldermead_configure(nm,"-tolxmethod",%f);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = neldermead_configure(nm,"-simplex0method","spendley");
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
+The numerical results are presented in table \ref{fig-nm-numexp2-table},
+where the experiment is presented for $a=100$. We can check that the 
+number of function evaluation (161 function evaluations) is much lower than the number 
+for the fixed shape Spendley et al. method (400 function evaluations)
+and that the function value at optimum is very accurate ($f(x^\star)\approx 10^{-17}$
+compared to Spendley's et al. $f(x^\star) \approx 0.08$).
+
+\begin{figure}[h]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|}
+\hline
+& Nelder-Mead & Spendley et al.\\
+\hline
+Iterations & 82  & 340 \\
+Function Evaluations & 164 & Max=400 \\
+$a$ & $100.0$ & $100.0$ \\
+$x_0$ & $(10.0,10.0)$ & $(10.0,10.0)$ \\
+Initial simplex & regular & regular \\
+Initial simplex length & 1.0 & 1.0 \\
+Relative tolerance on simplex size & $10^{-8}$ & $10^{-8}$ \\
+Exact $x^\star$ & $(0.,0.)$ & $(0.,0.)$ \\
+Computed $x^\star$ & $(-2.D-10 -1.D-09)$ & $(0.001,0.2)$\\
+Computed $f(x^\star)$ & $1.D-017$ & $0.08$\\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on a badly scaled quadratic function.
+The variable shape Nelder-Mead algorithm improves the accuracy of the result compared
+to the fixed shaped Spendley et al. method.}
+\label{fig-nm-numexp2-table}
+\end{figure}
+
+In figure \ref{fig-nm-numexp2-scaling}, we analyze the 
+behavior of the method with respect to scaling.
+We check that the method behaves very smoothly, with a very 
+small number of additional function evaluations when the 
+scaling deteriorates. This shows how much the Nelder-Mead algorithms 
+improves over Spendley's et al. method.
+
+\begin{figure}[htbp]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|l|}
+\hline
+$a$ & Function  & Computed $f(x^\star)$ & Computed $x^\star$\\
+& Evaluations & & \\
+\hline
+$1.0$ & 147 & $1.856133e-017$ & $(1.920D-09 , -3.857D-09)$\\
+$10.0$ & 156 & $6.299459e-017$ & $(2.482D-09 , 1.188D-09)$\\
+$100.0$ & 164 & $1.140383e-017$ & $(-2.859D-10 , -1.797D-09)$ \\
+$1000.0$ & 173 & $2.189830e-018$ & $(-2.356D-12 , 1.478D-09)$\\
+$10000.0$ & 189 & $1.128684e-017$ & $(2.409D-11 , -2.341D-09)$ \\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on a badly scaled quadratic function}
+\label{fig-nm-numexp2-scaling}
+\end{figure}
+
+\subsection{Sensitivity to dimension}
+\index{Han, Lixing}
+\index{Neumann, Michael}
+
+In this section, we try to reproduce the result 
+presented by Han and Neumann \cite{HanNeumann2006}, which shows that the 
+convergence rate of the Nelder-Mead algorithms rapidly 
+deteriorates when the number of variables increases.
+The function we try to minimize is the following quadratic 
+in n-dimensions 
+\begin{eqnarray}
+\label{quadratic-function3}
+f(\bold{x}) = \sum_{i=1,n} x_i^2.
+\end{eqnarray}
+
+The initial simplex is given to the solver.
+The first vertex is the origin ; this vertex is never updated during the iterations.
+The other vertices are based on uniform random numbers in the interval $[-1,1]$.
+The vertices $i=2,n+1$ are computed from 
+\begin{eqnarray}
+\bv_i^{(0)} = 2 rand(n,1) - 1,
+\end{eqnarray}
+as prescribed by \cite{HanNeumann2006}.
+In Scilab, the \scifunction{rand} function returns a matrix of 
+uniform random numbers in the interval $[0,1)$.
+
+The stopping criteria is based on the absolute size of the simplex, i.e.
+the simulation is stopped when 
+\begin{eqnarray}
+\sigma_+(S) < tol,
+\end{eqnarray}
+where the tolerance is set to $tol=10^{-8}$.
+
+We perform the experiment for $n=1,\ldots,19$. 
+For each experiment, we compute the convergence rate from
+\begin{eqnarray}
+\rho(S_0,n) = \left( \frac{\sigma(S_{k})}{\sigma(S_0)}\right)^{1/k},
+\end{eqnarray}
+where $k$ is the number of iterations.
+
+The following Scilab script allows to perform the optimization.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = quadracticn ( x , index )
+  f = sum(x.^2);
+endfunction
+//
+// solvepb --
+//   Find the solution for the given number of dimensions
+//
+function [nbfevals , niter , rho] = solvepb ( n )
+  rand("seed",0)
+  nm = neldermead_new ();
+  nm = neldermead_configure(nm,"-numberofvariables",n);
+  nm = neldermead_configure(nm,"-function",quadracticn);
+  nm = neldermead_configure(nm,"-x0",zeros(n,1));
+  nm = neldermead_configure(nm,"-maxiter",2000);
+  nm = neldermead_configure(nm,"-maxfunevals",2000);
+  nm = neldermead_configure(nm,"-tolxmethod",%f);
+  nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
+  nm = neldermead_configure(nm,"-tolsimplexizeabsolute",1.e-8);
+  nm = neldermead_configure(nm,"-simplex0method","given");
+  coords (1,1:n) = zeros(1,n);
+  for i = 2:n+1
+    coords (i,1:n) = 2.0 * rand(1,n) - 1.0;
+  end
+  nm = neldermead_configure(nm,"-coords0",coords);
+  nm = neldermead_configure(nm,"-method","variable");
+  nm = neldermead_search(nm);
+  si0 = neldermead_get ( nm , "-simplex0" );
+  sigma0 = optimsimplex_size ( si0 , "sigmaplus" );
+  siopt = neldermead_get ( nm , "-simplexopt" );
+  sigmaopt = optimsimplex_size ( siopt , "sigmaplus" );
+  niter = neldermead_get ( nm , "-iterations" );
+  rho = (sigmaopt/sigma0)^(1.0/niter);
+  nbfevals = neldermead_get ( nm , "-funevals" );
+  mprintf ( "%d %d %d %f\n", n , nbfevals , niter , rho );
+  nm = neldermead_destroy(nm);
+endfunction
+// Perform the 20 experiments
+for n = 1:20
+  [nbfevals niter rho] = solvepb ( n );
+  array_rho(n) = rho;
+  array_nbfevals(n) = nbfevals;
+  array_niter(n) = niter;
+end
+\end{lstlisting}
+
+The figure \ref{fig-nm-numexp3-dimension} presents the results of this 
+experiment. The rate of convergence, as measured by $\rho(S_0,n)$
+converges rapidly toward 1.
+
+\begin{figure}[htbp]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|l|}
+\hline
+$n$ & Function evaluations & Iterations & $\rho(S_0,n)$\\
+\hline
+1 & 56 & 27 & 0.513002 \\
+2 & 113 & 55 & 0.712168 \\
+3 & 224 & 139 & 0.874043 \\
+4 & 300 & 187 & 0.904293 \\
+5 & 388 & 249 & 0.927305 \\
+6 & 484 & 314 & 0.941782 \\
+7 & 583 & 383 & 0.951880 \\
+8 & 657 & 430 & 0.956872 \\
+9 & 716 & 462 & 0.959721 \\
+10 & 853 & 565 & 0.966588 \\
+11 & 910 & 596 & 0.968266 \\
+12 & 1033 & 685 & 0.972288 \\
+13 & 1025 & 653 & 0.970857 \\
+14 & 1216 & 806 & 0.976268 \\
+15 & 1303 & 864 & 0.977778 \\
+16 & 1399 & 929 & 0.979316 \\
+17 & 1440 & 943 & 0.979596 \\
+18 & 1730 & 1193 & 0.983774 \\
+19 & 1695 & 1131 & 0.982881 \\
+20 & 1775 & 1185 & 0.983603 \\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on a generalized quadratic function}
+\label{fig-nm-numexp3-dimension}
+\end{figure}
+
+We check that the number of function evaluations 
+increases approximately linearly with the dimension of the problem in
+figure \ref{fig-nm-numexp3-fvn}. A rough rule of thumb is that, for $n=1,19$, 
+the number of function evaluations is equal to $100n$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-dimension-nfevals.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Number of function evaluations 
+depending on the number of variables}
+\label{fig-nm-numexp3-fvn}
+\end{figure}
+
+The figure \ref{fig-nm-numexp3-rho} presents the rate of convergence 
+depending on the number of variables. The figure shows that 
+the rate of convergence rapidly gets close to 1 when the number 
+of variables increases. That shows that the rate of convergence 
+is slower and slower as the number of variables increases, as 
+explained by Han \& Neumann.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/neldermead-dimension-rho.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Rate of convergence 
+depending on the number of variables}
+\label{fig-nm-numexp3-rho}
+\end{figure}
+
+\subsection{O'Neill test cases}
+\index{O'Neill, R.}
+
+In this section, we present the results by O'Neill, who 
+implemented a fortran 77 version of the Nelder-Mead algorithm
+\cite{O'Neill1971AAF}.
+
+The O'Neill implementation of the Nelder-Mead algorithm has the following 
+particularities 
+\begin{itemize}
+\item the initial simplex is computed from the axes and a (single) length,
+\item the stopping rule is based on variance (not standard deviation) of function value,
+\item the expansion is greedy, i.e. the expansion point is accepted if it is better than the lower point,
+\item an automatic restart is performed if a factorial test shows that the 
+computed optimum is greater than a local point computed with a relative 
+epsilon equal to 1.e-3 and a step equal to the length of the initial simplex.
+\end{itemize}
+
+In order to get an accurate view on O'Neill's factorial test,
+we must describe explicitely the algorithm.
+This algorithm is given a vector of lengths, stored in the 
+$step$ variable. It is also given a small value $\epsilon$.
+The algorithm is presented in figure \ref{algo-factorialtest}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $\bx \gets \bx^\star$
+\STATE $istorestart = FALSE$
+\FOR{$i = 1$ to $n$} 
+  \STATE $\delta = step ( i ) * \epsilon$
+  \IF { $\delta == 0.0$ }
+    \STATE $\delta = \epsilon$
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) - \delta - \delta $
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+\ENDFOR
+\end{algorithmic}
+\caption{O'Neill's factorial test}
+\label{algo-factorialtest}
+\end{figure}
+
+O'Neill's factorial test requires a large number of function evaluations, namely 
+$2^n$ function evaluations. In O'Neill's implementation, the parameter
+$\epsilon$ is set to the constant value $1.e-3$.
+In Scilab's implementation, this parameter can be customized, 
+thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},
+the machine epsilon. In O'Neill's implementation, the parameter \scivar{step}
+is equal to the vector of length used in order to compute the initial 
+simplex. In Scilab's implementation, the two parameters are different,
+and the \scivar{step} used in the factorial test can be customized 
+with the \scivar{-restartstep} option. Its default value is 1.0, which is 
+expanded into a vector with size $n$.
+
+
+The following tests are presented by O'Neill :
+\begin{itemize}
+\item Rosenbrock's parabolic valley \cite{citeulike:1903787}
+\begin{eqnarray}
+\label{nm-oneill-rosenbrock}
+f(x_1,x_2) = 100(x_2 - x_1^2)^2 + (1-x_1)^2
+\end{eqnarray}
+with starting point $\bx_0=(x_1,x_2) = (-1.2,1)^T$. The function value at initial guess
+is $f(\bx_0)=24.2$. The solution is $\bx^\star=(1,1)^T$ where the function 
+value is $f(\bx^\star)=0$.
+\item Powell's quartic function \cite{Powell08011962}
+\begin{eqnarray}
+\label{nm-oneill-powell}
+f(x_1,x_2,x_3,x_4) = (x_1 + 10x_2)^2 + 5 ( x_3 - x_4)^2 + (x_2 - 2x_3)^4 + 10 (x_1 - x_4)^4
+\end{eqnarray}
+with starting point $\bx_0=(x_1,x_2,x_3,x_4) = (3,-1,0,1)^T$. The function value at initial guess
+is $f(\bx_0)=215.$. The solution is $\bx^\star=(0,0,0,0)^T$ where the function 
+value is $f(\bx^\star)=0.$.
+\item Fletcher and Powell's helical valley \cite{R.Fletcher08011963}
+\begin{eqnarray}
+\label{nm-oneill-fletcherpowell}
+f(x_1,x_2,x_3) = 100\left(x_3 + 10\theta(x_1,x_2)\right)^2 
++ \left(\sqrt{x_1^2 + x_2^2} - 1\right)^2  + x_3^2
+\end{eqnarray}
+where 
+\begin{eqnarray}
+\label{nm-oneill-fletcherpowelltheta}
+2\pi \theta(x_1,x_2) &=& 
+\left\{
+\begin{array}{ll} 
+\arctan(x_2,x_1), & \textrm{ if } x_1>0\\
+\pi + \arctan(x_2,x_1), & \textrm{ if } x_1<0
+\end{array}
+\right.
+\end{eqnarray}
+with starting point $\bx_0 = (x_1,x_2,x_3) = (-1,0,0)$. The function value at initial guess
+is $f(\bx_0)=2500$. The solution is $\bx^\star=(1,0,0)^T$ where the function 
+value is $f(\bx^\star)=0.$. Note
+that since $\arctan(0/0)$ is not defined neither 
+the function $f$ on the line $(0,0,x_3)$. This line is excluded 
+by assigning a very large value to the function.
+\item the sum of powers 
+\begin{eqnarray}
+\label{nm-oneill-powers}
+f(x_1,\ldots,x_{10}) = \sum_{i=1,10} x_i^4
+\end{eqnarray}
+with starting point $\bx_0 = (x_1,\ldots,x_{10}) = (1,\ldots,1)$. The function value at initial guess
+is $f(\bx_0)=10$. The solution is $\bx^\star=(0,\ldots,0)^T$ where the function 
+value is $f(\bx^\star)=0.$. 
+\end{itemize}
+
+The parameters are set to (following O'Neill's notations) 
+\begin{itemize}
+\item $REQMIN=10^{-16}$, the absolute tolerance on the variance of the function 
+values in the simplex,
+\item $STEP = 1.0$, the absolute side length of the initial simplex,
+\item $ICOUNT=1000$, the maximum number of function evaluations.
+\end{itemize}
+
+The following Scilab script allows to define the objective functions.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+// Rosenbrock's "banana" function
+// initialguess [-1.2 1.0]
+// xoptimum [1.0 1.0}
+// foptimum 0.0
+function [ y , index ] = rosenbrock ( x , index )
+y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
+endfunction
+// Powell's quartic valley
+// initialguess [3.0 -1.0 0.0 1.0]
+// xoptimum [0.0 0.0 0.0 0.0]
+// foptimum 0.0
+function [ f , index ] = powellquartic ( x , index )
+  f = (x(1)+10.0*x(2))^2 + 5.0 * (x(3)-x(4))^2 + (x(2)-2.0*x(3))^4 + 10.0 * (x(1) - x(4))^4
+endfunction
+// Fletcher and Powell helical valley
+// initialguess [-1.0 0.0 0.0]
+// xoptimum [1.0 0.0 0.0]
+// foptimum 0.0
+function [ f , index ] = fletcherpowellhelical ( x , index )
+  rho = sqrt(x(1) * x(1) + x(2) * x(2))
+  twopi = 2 * %pi
+  if ( x(1)==0.0 ) then
+    f = 1.e154
+  else
+    if ( x(1)>0 ) then
+      theta = atan(x(2)/x(1)) / twopi
+    elseif ( x(1)<0 ) then
+      theta = (%pi + atan(x(2)/x(1))) / twopi
+    end
+    f =  100.0 * (x(3)-10.0*theta)^2 + (rho - 1.0)^2 + x(3)*x(3)
+  end
+endfunction
+// Sum of powers
+// initialguess ones(10,1)
+// xoptimum zeros(10,1)
+// foptimum 0.0
+function [ f , index ] = sumpowers ( x , index )
+  f = sum(x(1:10).^4);
+endfunction
+\end{lstlisting}
+
+The following Scilab function solves an optimization problem,
+given the number of parameters, the cost function and the 
+initial guess.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+//
+// solvepb --
+//   Find the solution for the given problem.
+// Arguments
+//   n : number of variables
+//   cfun : cost function 
+//   x0 : initial guess
+//
+function [nbfevals , niter , nbrestart , fopt , cputime ] = solvepb ( n , cfun , x0 )
+  tic();
+  nm = neldermead_new ();
+  nm = neldermead_configure(nm,"-numberofvariables",n);
+  nm = neldermead_configure(nm,"-function",cfun);
+  nm = neldermead_configure(nm,"-x0",x0);
+  nm = neldermead_configure(nm,"-maxiter",1000);
+  nm = neldermead_configure(nm,"-maxfunevals",1000);
+  nm = neldermead_configure(nm,"-tolxmethod",%f);
+  nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
+  // Turn ON the tolerance on variance
+  nm = neldermead_configure(nm,"-tolvarianceflag",%t);
+  nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-16);
+  nm = neldermead_configure(nm,"-tolrelativevariance",0.0);
+  // Turn ON automatic restart
+  nm = neldermead_configure(nm,"-restartflag",%t);
+  nm = neldermead_configure(nm,"-restarteps",1.e-3);
+  nm = neldermead_configure(nm,"-restartstep",1.0);
+  // Turn ON greedy expansion
+  nm = neldermead_configure(nm,"-greedy",%t);
+  // Set initial simplex to axis-by-axis (this is already the default anyway)
+  nm = neldermead_configure(nm,"-simplex0method","axes");
+  nm = neldermead_configure(nm,"-simplex0length",1.0);
+  nm = neldermead_configure(nm,"-method","variable");
+  //nm = neldermead_configure(nm,"-verbose",1);
+  //nm = neldermead_configure(nm,"-verbosetermination",1);
+  //
+  // Perform optimization
+  //
+  nm = neldermead_search(nm);
+  //neldermead_display(nm);
+  niter = neldermead_get ( nm , "-iterations" );
+  nbfevals = neldermead_get ( nm , "-funevals" );
+  fopt = neldermead_get ( nm , "-fopt" );
+  xopt = neldermead_get ( nm , "-xopt" );
+  nbrestart = neldermead_get ( nm , "-restartnb" );
+  status = neldermead_get ( nm , "-status" );
+  nm = neldermead_destroy(nm);
+  cputime = toc();
+  mprintf ( "=============================\n")
+  mprintf ( "status = %s\n" , status )
+  mprintf ( "xopt = [%s]\n" , strcat(string(xopt)," ") )
+  mprintf ( "fopt = %e\n" , fopt )
+  mprintf ( "niter = %d\n" , niter )
+  mprintf ( "nbfevals = %d\n" , nbfevals )
+  mprintf ( "nbrestart = %d\n" , nbrestart )
+  mprintf ( "cputime = %f\n" , cputime )
+  //mprintf ( "%d %d %e %d %f\n", nbfevals , nbrestart , fopt , niter , cputime );
+endfunction
+\end{lstlisting}
+
+The following Scilab script solves the 4 cases.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+// Solve Rosenbrock's
+x0 = [-1.2 1.0].';
+[nbfevals , niter , nbrestart , fopt , cputime ] = solvepb ( 2 , rosenbrock , x0 );
+
+// Solve Powell's quartic valley
+x0 = [3.0 -1.0 0.0 1.0].';
+[nbfevals , niter , nbrestart , fopt , cputime ] = solvepb ( 4 , powellquartic , x0 );
+
+// Solve Fletcher and Powell helical valley
+x0 = [-1.0 0.0 0.0].';
+[nbfevals , niter , nbrestart , fopt , cputime ] = solvepb ( 3 , fletcherpowellhelical , x0 );
+
+// Solve Sum of powers
+x0 = ones(10,1);
+[nbfevals , niter , nbrestart , fopt , cputime ] = solvepb ( 10 , sumpowers , x0 );
+\end{lstlisting}
+
+The table \ref{fig-nm-oneill-table} presents the results which were 
+computed by O'Neill compared with Scilab's.
+For most experiments, the results are very close in terms of 
+number of function evaluations. 
+The problem \#4 exhibits a different behavior than the 
+results presented by O'Neill. For Scilab, the tolerance on variance 
+of function values is reach after 3 restarts, whereas for O'Neill, the algorithm 
+is restarted once and gives the result with 474 function evaluations. 
+We did not find any explanation for this behavior. A possible cause of 
+difference may be the floating point system which are different and may 
+generate different simplices in the algorithms.
+Although the CPU times cannot be 
+compared (the article is dated 1972 !), let's mention 
+that the numerical experiment were performed by O'Neill
+on a ICL 4-50 where the two problem 1 and 2 were solved in 3.34 seconds
+and the problems 3 and 4 were solved in 22.25 seconds.
+
+\begin{figure}[htbp]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Author & Problem & Function    & Number Of & Function  & Iterations & CPU\\
+       &         & Evaluations & Restarts  & Value     &            & Time \\
+\hline
+O'Neill & 1 & 148 & 0 & 3.19e-9       & ?  & ? \\
+Scilab  & 1 & 155 & 0 & 1.158612e-007 & 80 & 0.625000 \\
+\hline
+O'Neill & 2 & 209 & 0 & 7.35e-8        & ?   & ?  \\
+Scilab  & 2 & 234 & 0 & 1.072588e-008  & 126 & 0.938000 \\
+\hline
+O'Neill & 3 & 250 & 0 & 5.29e-9       & ?   & ? \\
+Scilab  & 3 & 263 & 0 & 4.560288e-008 & 137 & 1.037000 \\
+\hline
+O'Neill & 4 & 474 & 1 & 3.80e-7       & ?   & ? \\
+Scilab  & 4 & 616 & 3 & 3.370756e-008 & 402 & 2.949000 \\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on O'Neill test cases - O'Neill results and Scilab's results}
+\label{fig-nm-oneill-table}
+\end{figure}
+
+\subsection{Convergence to a non stationnary point}
+\label{section-mcKinnon}
+\index{Mc Kinnon, K. I. M.}
+
+In this section, we analyze the Mc Kinnon counter example 
+from \cite{589109}. We show the behavior of the 
+Nelder-Mead simplex method for a family of examples which cause the 
+method to converge to a non stationnary point.
+
+Consider a simplex in two dimensions with vertices at 0 (i.e. the origin),
+$\bv^{(n+1)}$ and $\bv^{(n)}$. Assume that 
+\begin{eqnarray}
+\label{mckinnon-sortedfv}
+f(0) < f(\bv^{(n+1)}) < f(\bv^{(n)}).
+\end{eqnarray}
+
+The centroid of the simplex is $\overline{\bv} = \bv^{(n+1)}/2$, the midpoint
+of the line joining the best and second vertex. The reflected 
+point is then computed as 
+\begin{eqnarray}
+\label{mckinnon-reflection}
+\br^{(n)} = \overline{\bv} + \rho ( \overline{\bv} - \bv^{(n)} ) 
+= \bv^{(n+1)} - \bv^{(n)}
+\end{eqnarray}
+
+Assume that the reflection point $\br^{(n)}$ is rejected, i.e. that 
+$f(\bv^{(n)}) < f(\br^{(n)})$. In this case, the inside contraction 
+step is taken and the point $\bv^{(n+2)}$ is computed using the 
+reflection factor $-\gamma = -1/2$ so that 
+\begin{eqnarray}
+\label{mckinnon-insidecontraction}
+\bv^{(n+2)} = \overline{\bv} - 
+\gamma ( \overline{\bv} - \bv^{(n)} ) 
+= \frac{1}{4} \bv^{(n+1)} - \frac{1}{2} \bv^{(n)}
+\end{eqnarray}
+
+Assume then that the inside contraction point is accepted, i.e. $f(\bv^{(n+2)}) < f(\bv^{(n+1)})$.
+If this sequence of steps repeats, the simplices are subject to the 
+following linear recurrence formula
+\begin{eqnarray}
+\label{mckinnon-reccurence}
+4 \bv^{(n+2)} - \bv^{(n+1)} + 2 \bv^{(n)} = 0
+\end{eqnarray}
+
+Their general solutions are of the form 
+\begin{eqnarray}
+\bv^{(n)} = \lambda_1^k a_1 + \lambda_2^k a_2
+\end{eqnarray}
+where ${\lambda_i}_{i=1,2}$ are the roots of the characteristic equation and 
+${a_i}_{i=1,2} \in \RR^n$. 
+The characteristic equation is 
+\begin{eqnarray}
+\label{mckinnon-caracequation}
+4 \lambda^2 - \lambda + 2 \lambda = 0
+\end{eqnarray}
+and has the roots 
+\begin{eqnarray}
+\label{mckinnon-roots}
+\lambda_1 = \frac{1 + \sqrt{33}}{8}\approx 0.84307, 
+\qquad \lambda_2 = \frac{1 - \sqrt{33}}{8} \approx -0.59307
+\end{eqnarray}
+
+After Mc Kinnon has presented the computation of the roots of the 
+characteristic equation, he presents a special initial simplex 
+for which the simplices degenerates because of repeated failure by inside 
+contraction (RFIC in his article). Consider the initial simplex with
+vertices $\bv^{(0)} = (1,1)$ and $\bv^{(1)} = (\lambda_1,\lambda_2)$ and 
+$0$. If follows that the particular solution for these initial 
+conditions is $\bv^{(n)} = (\lambda_1^n,\lambda_2^n)$.
+
+Consider the function $f(x_1,x_2)$ given by 
+\begin{eqnarray}
+\label{mckinnon-function}
+f(x_1,x_2) &=& \theta \phi |x_1|^\tau + x_2 + x_2^2, \qquad x_1\leq 0,\\
+&=&\theta x_1^\tau + x_2 + x_2^2, \qquad x_1\geq 0.
+\end{eqnarray}
+where $\theta$ and $\phi$ are positive constants. Note that $(0,-1)$
+is a descent direction from the origin $(0,0)$ and that f is stricly convex 
+provided $\tau>1$. $f$ has continuous first derivatives if $\tau>1$, continuous second 
+derivatives if $\tau>2$ and continuous third derivatives if $\tau>3$.
+
+Mc Kinnon computed the conditions on $\theta,\phi$ and $\tau$
+so that the function values are ordered as expected, i.e. so that the 
+reflection step is rejected and the inside contraction is accepted.
+Examples of values which makes these equations hold are as follows :
+for $\tau=1$, $\theta=15$ and $\phi = 10$, 
+for $\tau=2$, $\theta=6$ and $\phi = 60$ and
+for $\tau=3$, $\theta=6$ and $\phi = 400$.
+
+We consider here the more regular case $\tau=3$, $\theta=6$
+and $\phi = 400$, i.e. the function is defined by 
+\begin{eqnarray}
+\label{mckinnon-function3}
+f(x_1,x_2) &=& 
+\left\{
+\begin{array}{ll}
+- 2400 x_1^3 + x_2 + x_2^2, & \textrm{ if } x_1\leq 0, \\
+6 x_1^3 + x_2 + x_2^2, & \textrm{ if } x_1\geq 0.
+\end{array}
+\right.
+\end{eqnarray}
+The solution is $\bx^\star = (0 , -0.5 )^T$.
+
+The following Scilab script solves the optimization problem.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = mckinnon3 ( x , index )
+  if ( length ( x ) ~= 2 )
+    error ( 'Error: function expects a two dimensional input\n' );
+  end
+  tau = 3.0;
+  theta = 6.0;
+  phi = 400.0;
+  if ( x(1) <= 0.0 )
+    f = theta * phi * abs ( x(1) ).^tau + x(2) * ( 1.0 + x(2) );
+  else
+    f = theta       *       x(1).^tau   + x(2) * ( 1.0 + x(2) );
+  end
+endfunction
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
+coords0 = [
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
+x0 = [1.0 1.0]';
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",mckinnon3);
+nm = nmplot_configure(nm,"-x0",x0);
+nm = nmplot_configure(nm,"-maxiter",200);
+nm = nmplot_configure(nm,"-maxfunevals",300);
+nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
+nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
+nm = nmplot_configure(nm,"-simplex0method","given");
+nm = nmplot_configure(nm,"-coords0",coords0);
+nm = nmplot_configure(nm,"-simplex0length",1.0);
+nm = nmplot_configure(nm,"-method","variable");
+nm = nmplot_search(nm);
+nmplot_display(nm);
+nm = nmplot_destroy(nm);
+\end{lstlisting}
+
+
+The figure \ref{fig-nm-numexp-mckinnon} shows the contour plot of this function and the first 
+steps of the Nelder-Mead method.
+The global minimum is located at $(0,-1/2)$.
+Notice that the simplex degenerates to the
+point $(0,0)$, which is a non stationnary point.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/mckinnon-history-simplex.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Mc Kinnon example for convergence toward
+a non stationnary point}
+\label{fig-nm-numexp-mckinnon}
+\end{figure}
+
+The figure \ref{fig-nm-numexp-mckinnon-detail} presents the first steps 
+of the algorithm in this numerical experiment. Because of the 
+particular shape of the contours of the function, the reflected 
+point is always worse that the worst vertex $\bx_{n+1}$. This 
+leads to the inside contraction step. The vertices constructed 
+by Mc Kinnon are so that the situation loops without end.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/mcKinnon-insidecontraction.pdf}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Detail of the first steps.
+The simplex converges to a non stationnary point, after repeated 
+inside contractions.}
+\label{fig-nm-numexp-mckinnon-detail}
+\end{figure}
+
+\subsection{Han counter examples}
+
+In his Phd thesis \cite{Han2000}, Han presents two counter examples
+in which the Nelder-Mead algorithm degenerates by applying repeatedly
+the inside contraction step.
+
+\subsubsection{First counter example}
+
+The first counter example is based on the function 
+\begin{eqnarray}
+\label{han-function1}
+f(x_1,x_2) &=& x_1^2 + x_2 ( x_2 + 2 ) ( x_2 - 0.5 ) ( x_2 - 2 )
+\end{eqnarray}
+
+This function is nonconvex, bounded below and has bounded level 
+sets. The initial simplex is chosen as $S_0 = [(0.,-1),(0,1),(1,0)]$.
+Han proves that the Nelder-Mead algorithm generates a sequence of simplices
+$S_k = [(0.,-1),(0,1),(\frac{1}{2^k},0)]$.
+
+The figure \ref{fig-nm-numexp-han1} presents the isovalues and the 
+simplices during the steps of the Nelder-Mead algorithm.
+Note that the limit simplex contains no minimizer of the function.
+The failure is caused by repeated inside contractions.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/han1-history-simplex.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Han example \#1 for convergence toward
+a non stationnary point}
+\label{fig-nm-numexp-han1}
+\end{figure}
+
+\subsubsection{Second counter example}
+
+The second counter example is based on the function 
+\begin{eqnarray}
+\label{han-function2}
+f(x_1,x_2) &=& x_1^2 + \rho(x_2)
+\end{eqnarray}
+where $\rho$ is a continuous convex function with bounded level
+sets defined by
+\begin{eqnarray}
+\label{han-function2-rho}
+\left\{
+\begin{array}{ll}
+\rho(x_2) =0, &\qquad \textrm{if} \qquad |x_2|\leq 1, \\
+\rho(x_2)\geq 0, &\qquad \textrm{if} \qquad |x_2|> 1.
+\end{array}
+\right.
+\end{eqnarray}
+The example given by Han for such a $\rho$ function is 
+\begin{eqnarray}
+\label{han-function2-rho2}
+\rho(x_2) =
+\left\{
+\begin{array}{ll}
+0, &\qquad \textrm{if} \qquad |x_2|\leq 1, \\
+x_2 - 1, &\qquad \textrm{if} \qquad x_2> 1, \\
+-x_2 - 1, &\qquad \textrm{if} \qquad x_2 < -1.
+\end{array}
+\right.
+\end{eqnarray}
+
+The initial simplex is chosen as $S_0 = [(0.,1/2),(0,-1/2),(1,0)]$.
+Han prooves that the Nelder-Mead algorithm generates a sequence of simplices
+$S_k = [(0.,1/2),(0,-1/2),(\frac{1}{2^k},0)]$.
+
+The figure \ref{fig-nm-numexp-han2} presents the isovalues and the 
+simplices during the steps of the Nelder-Mead algorithm.
+The failure is caused by repeated inside contractions.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/han2-history-simplex.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Han example \#2 for convergence toward
+a non stationnary point}
+\label{fig-nm-numexp-han2}
+\end{figure}
+
+These two examples of non convergence show that the Nelder-Mead method may unreliable.
+They also reveal that the Nelder-Mead method can generate simplices which collapse 
+into a degenerate simplex, by applying repeated inside contractions.
+
+\subsection{Torczon's numerical experiments}
+\index{Torczon, Virginia}
+
+In her Phd Thesis \cite{Torczon89multi-directionalsearch}, Virginia Torczon 
+presents the multi-directional direct search algorithm. In order to analyze the 
+performances of her new algorithm, she presents some interesting numerical 
+experiments with the Nelder-Mead algorithm. 
+These numerical experiments are based on the collection of test problems \cite{355943},
+published in the ACM by Mor\'e, Garbow and Hillstrom in 1981. 
+These test problems are associated with varying number of variables.
+In her Phd, Torczon presents numerical experiments with $n$ from 8 
+to 40.
+The stopping rule is based on the relative size of the simplex. 
+The angle between the descent direction (given by the worst point and the centroid), and the
+gradient of the function is computed when the algorithm is stopped.
+Torczon shows that, when the tolerance on the relative simplex size is decreased, the 
+angle converges toward 90 \degre. This fact is observed even for moderate 
+number of dimensions.
+
+In this section, we try to reproduce Torczon numerical experiments.
+
+All experiments are associated with the following sum of squares cost function 
+\begin{eqnarray}
+\label{torzcon-sumofsquares}
+f(\bx) &=& \sum_{i=1,m} f_i(\bx)^2,
+\end{eqnarray}
+where $m\geq 1$ is the number of functions $f_i$ in the problem.
+
+The stopping criteria is based on the relative size of the 
+simplex and is the following 
+
+\begin{eqnarray}
+\label{torzcon-stopping}
+\frac{1}{\Delta} \max_{i=2,n+1} \|\bv_i - \bv_1\| \leq \epsilon,
+\end{eqnarray}
+where $\Delta = \max( 1 , \|\bv_1\| )$. Decreasing the value of 
+$\epsilon$ allows to get smaller simplex sizes.
+
+\subsubsection{Penalty \#1}
+The first test function is the \emph{Penalty \#1} function :
+
+\begin{eqnarray}
+\label{torzcon-sumofsquares-case1}
+f_i(\bx) &=& \sqrt{1.e-5}(x_i - 1), \qquad i=1,n\\
+f_{n+1} & = & -\frac{1}{4} + \sum_{j=1,n} x_j^2.
+\end{eqnarray}
+
+The initial guess is given by $\bx_0 = ((\bx_0)_1 , (\bx_0)_2, \ldots , (\bx_0)_n)^T$ and 
+$(\bx_0)_j = j$ for $j=1,n$. 
+
+The problem given by 
+Mor\'e, Garbow and Hillstrom in \cite{355943} is associated with 
+the size $n=4$. The value of the cost function at the initial guess 
+$\bx_0 = (1,2,3,4)^T$ is $f(\bx_0) = 885.063$. The value of the function
+at the optimum is given in \cite{355943} as $f(\bx^\star) = 2.24997d-5$.
+% TODO : what is the optimum ?
+
+Torzcon shows an experiment with the Penalty \#1 test case and $n=8$.
+For this particular case, the initial function value is $f(\bx_0) = 4.151406.10^4$.
+The figure \ref{fig-nm-torczon-table} presents the results of these
+experiments. The number of function evaluations is not the same
+so that we can conclude that the algorithm may be different 
+variants of the Nelder-Mead algorithms. We were not able to 
+explain why the number of function evaluations is so different.
+
+\begin{figure}[htbp]
+\begin{center}
+%\begin{tiny}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Author & Step & $f(\bv_1^\star)$ & Function & Angle (\degre)\\
+& Tolerance & & Evaluations & \\
+\hline
+Torzcon & 1.e-1 & 7.0355e-5 & 1605 & 89.396677792198 \\
+Scilab  & 1.e-1 & 8.2272e-5 & 530  & 87.7654 \\
+\hline
+Torzcon & 1.e-2 & 6.2912e-5 & 1605 & 89.935373548613 \\
+Scilab  & 1.e-2 & 7.4854e-5 & 1873 & 89.9253 \\
+\hline
+Torzcon & 1.e-3 & 6.2912e-5 & 3600 & 89.994626919197 \\
+Scilab  & 1.e-3 & 7.4815e-5 & 2135 & 90.0001 \\
+\hline
+Torzcon & 1.e-4 & 6.2912e-5 & 3670 & 89.999288284747 \\
+Scilab  & 1.e-4 & 7.481546e-5 & 2196 & 89.9991 \\
+\hline
+Torzcon & 1.e-5 & 6.2912e-5 & 3750 & 89.999931862232 \\
+Scilab  & 1.e-5 & 7.427212e-5 & 4626 & 89.999990 \\
+\hline
+\end{tabular}
+%\end{tiny}
+\end{center}
+\caption{Numerical experiment with Nelder-Mead method on Torczon test cases - 
+Torczon results and our results}
+\label{fig-nm-torczon-table}
+\end{figure}
+
+The figure \ref{fig-nm-numexp-torczon1} presents the 
+angle between the gradient of the function $-\bg_k$ and the search 
+direction $\bx_c - \bx_h$, where $\bx_c$ is the centroid of the best 
+vertices and $\bx_h$ is the worst (or high) vertex.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/torczon_test1_angle.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Penalty \#1 function --
+We see that the angle between the gradient and the search direction
+is very close to $90^{\circ}$, especially for large number of iterations.}
+\label{fig-nm-numexp-torczon1}
+\end{figure}
+
+The numerical experiment shows that the conditioning of the matrix 
+of simplex direction has an increasing condition number. This corresponds to the 
+fact that the simplex is increasingly distorted.
+
+\section{Conclusion}
+
+The main advantage of the Nelder-Mead algorithm over Spendley et al.
+algorithm is that the shape of the simplex is dynamically updated.
+That allows to get a reasonably fast convergence rate on badly scaled
+quadratics, or more generally when the cost function is made 
+of a sharp valley. Nevertheless, the behavior of the algorithm when the 
+dimension of the problem increases is disappointing : the more there are 
+variables, the more the algorithm is slow. In general, it is expected 
+that the number of function evaluations is roughly equal to $100n$.
+

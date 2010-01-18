@@ -36,7 +36,7 @@ case 'set' then
   exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,colormap,cmin,cmax,exprs]=getvalue(..
+    [ok,colormap,cmin,cmax,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['ColorMap';
 	'Minimum level range';

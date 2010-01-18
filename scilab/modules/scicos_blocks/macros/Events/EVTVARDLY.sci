@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,fir,exprs]=getvalue('Set parameter of variable event delay',..
+    [ok,fir,exprs]=scicos_getvalue('Set parameter of variable event delay',..
 			    'Initial event firing time (<0 if absent)',..
 			    list('vec',1),exprs)
     if ~ok then break,end

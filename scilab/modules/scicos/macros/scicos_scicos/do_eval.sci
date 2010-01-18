@@ -26,12 +26,14 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
   needcompile1 = max(2,needcompile)
   %mprt = funcprot()
   funcprot(0)
-  getvalue = setvalue;
+  scicos_getvalue = setvalue;
   
   function message(txt)
     messagebox(['In block ' + o.gui + ': ';
 		txt;
-	       'current parameter value kept'],'error','modal'); 
+	       'current parameter value kept'],'error','modal');
+    [str,n,line,func]=lasterror();
+    printf('do_eval: error %d - %s in %s at line %d\n', n, str, func, line); 
     %scicos_prob = resume(%t)
   endfunction
 

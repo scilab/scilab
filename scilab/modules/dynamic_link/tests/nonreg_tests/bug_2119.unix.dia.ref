@@ -14,7 +14,7 @@
 // <-- Short Description -->
 // There is problem in the scilab fortran interface provided by
 //  the "call" function. The bug have been found by Mark (coding a "call"
-//  interface for the lapack routine dgesv) and exposed in the
+//  interface for the lapack routine dgesv) and exposed in the 
 //  newsgroup. See the newsgroup thread for some details, I write
 //  here only a (complicated) way to get the bug.
 //create fortran code a copy of the lapack dgesv routine
@@ -50,14 +50,14 @@ function [X, LU, IPIV, INFO] = msolve(A,B)
 				[1,1],8, "i");
 endfunction
 chdir(TMPDIR);
-libn=ilib_for_link('dgesvtst','dgesvtst.o',[],'f');
+libn=ilib_for_link('dgesvtst','dgesvtst.f',[],'f');
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy dgesvtst.f to TMPDIR
+   ilib_gen_Make: Did not copy dgesvtst.f: Source and target directories are the same (TMPDIR).
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
-   Generate a cleaner file   
+   Generate a cleaner file
 exec loader.sce;
 Shared archive loaded.
 Link done.
@@ -67,5 +67,5 @@ chdir(curdir),
   T  
 n=44;
 A=eye(n,n);B=(1:n)';
-[X, LU, IPIV, INFO] = msolve(A,B);
+[X, LU, IPIV, INFO] = msolve(A,B); 
 if norm(A*X-B)>1d-15 then bugmes();quit;end

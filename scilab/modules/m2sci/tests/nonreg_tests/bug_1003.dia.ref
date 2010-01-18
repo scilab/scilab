@@ -5,6 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 1003 -->
 //
 // <-- Bugzilla URL -->
@@ -13,21 +15,21 @@
 // <-- Short Description -->
 //    Matlab fgets translation is wrong
 //
-//    The Matlab function fgets is close to mgetl but not
+//    The Matlab function fgets is close to mgetl but not 
 //    identical.
 //    fgets(fd) should be translated into mgetl(fd,1).
-//    The current CVS translates fgets(fd) into mgetl(fd) but
-//    this is wrong since fgets(fd) in Matlab reads one line of
-//    the file while mgetl(fd) in Scilab reads the full file (if
+//    The current CVS translates fgets(fd) into mgetl(fd) but 
+//    this is wrong since fgets(fd) in Matlab reads one line of 
+//    the file while mgetl(fd) in Scilab reads the full file (if 
 //    I understand the Matlab and Scilab docs correctly).
 //
-//    The solution I propose to correct this consists simply in
+//    The solution I propose to correct this consists simply in 
 //    adding:
 //      tree.rhs(2)=Cste(1)
 //    in the else part of sci_fgets.sci
 //
 //
-//    Example of wrong conversion: Try to convert the following
+//    Example of wrong conversion: Try to convert the following 
 //    file ct1.m:
 //
 //    function ct1()
@@ -92,6 +94,10 @@ mfile2sci(MFILE,TMPDIR);
   Syntax modification: Done
   Macro to tree conversion...
   Conversion of M-tree...
+ 
+ fp,1   
+ 
+ fp,1   
   Conversion of M-tree: Done
   Macro to tree conversion: Done
   ****** End of mfile2sci() session ******

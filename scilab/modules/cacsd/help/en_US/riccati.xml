@@ -35,7 +35,7 @@
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>: <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
+          <para> <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

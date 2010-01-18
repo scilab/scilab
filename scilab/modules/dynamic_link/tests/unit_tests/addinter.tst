@@ -28,7 +28,7 @@ if ~c_link('libintertest') then
   dst_file = TMPDIR + filesep() + 'addinter' + filesep() + 'addinter.c';
   copyfile(src_file, dst_file);
 
-  files=['addinter.o'];
+  files=['addinter.c'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   
   // load the shared library 

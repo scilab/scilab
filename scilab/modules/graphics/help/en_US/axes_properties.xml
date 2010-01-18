@@ -131,7 +131,7 @@
                   </listitem>
                   <listitem>
                     <para><literal>"origin"</literal>. In this case the x axis is drawn
-                at the position nearest to the 0 y coordinates.</para>
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -156,7 +156,7 @@
                   </listitem>
                   <listitem>
                     <para><literal>"origin"</literal>. In this case the y axis is drawn
-                at the position nearest to the 0 x coordinates.</para>
+                at the origin.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -250,10 +250,7 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> x_ticks.locations</literal> real vector too.</para>
-          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
-          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
-          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
-          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
 
               </listitem>
             </varlistentry>
@@ -265,10 +262,7 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> y_ticks.locations</literal> real vector too.</para>
-          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
-          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
-          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
-          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
 
               </listitem>
             </varlistentry>
@@ -280,11 +274,7 @@
             (of the same size). To specify greater or lesser graduations, man
             can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
             corresponding<literal> z_ticks.locations</literal> real vector too.</para>
-          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
-          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
-          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
-          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
-
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
               </listitem>
             </varlistentry>
             <varlistentry>

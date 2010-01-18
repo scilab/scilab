@@ -88,6 +88,13 @@ if GIWS
 BUILT_SOURCES=giws
 endif
 
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
+
+if SWIG
+BUILT_SOURCES=swig
+endif
+
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 

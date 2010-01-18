@@ -45,7 +45,7 @@ nyquist(frq, repf [,comments])</synopsis>
         <term>sl</term>
 
         <listitem>
-          <para>: <literal>syslin</literal> list (SIMO linear system in
+          <para> <literal>syslin</literal> list (SIMO linear system in
           continuous or discrete time )</para>
         </listitem>
       </varlistentry>

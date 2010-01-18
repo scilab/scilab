@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="read_csv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>read_csv</refname>
+
+    <refpurpose>Read comma-separated value file</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>M = read_csv(fname [,sep])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fname</term>
+
+        <listitem>
+          <para>a character string. The file path.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sep</term>
+
+        <listitem>
+          <para>a character string. Field separator used, default value is
+          ","</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>a matrix of strings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Given an ascii file with delimited fields, for instance created by a
+    spreadsheet using "Text and comma" format, read_csv(fname) returns the
+    corresponding Scilab matrix of strings. Use read_csv(fname,sep) for
+    another choice of separator.</para>
+
+    <para>Note: You may eval all or part of M using function evstr in order to
+    convert string variables into numeric variables.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// create a file with some data separated with tab    
+A = 1:50;
+mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
+
+// read csv file
+B = read_csv(TMPDIR + '/foo.csv');
+
+// eval B
+C = evstr(B);
+
+// compares original data and result
+and(A == C)</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="write_csv">write_csv</link></member>
+
+      <member><link linkend="evstr">evstr</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Allan CORNET</term>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

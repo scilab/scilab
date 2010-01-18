@@ -76,7 +76,7 @@ L=msscanf([niter,] str,format)</synopsis>
         <term>fd</term>
 
         <listitem>
-          <para>:The fd parameter returned by the function
+          <para>The fd parameter returned by the function
           <literal>mopen</literal> is used as a file descriptor (it's a
           positive integer). The value -1 refers to the last opened
           file.</para>

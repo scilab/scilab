@@ -210,7 +210,7 @@ mputl(f1,'fooc.c')
 //criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
 //gerados.)  
 
-ilib_for_link('fooc','fooc.o',[],"c") 
+ilib_for_link('fooc','fooc.c',[],"c") 
 
 // carregando a biblioteca compartilhada  
 
@@ -242,7 +242,7 @@ mputl(f1,'foof.f')
 //criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
 //gerados.)  
 
-ilib_for_link('foof','foof.o',[],"f") 
+ilib_for_link('foof','foof.f',[],"f") 
 
 // carrega a biblioteca compartilhada 
 

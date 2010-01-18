@@ -30,7 +30,7 @@ int gw_sound(void)
 
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

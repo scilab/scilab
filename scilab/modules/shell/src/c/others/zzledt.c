@@ -32,12 +32,12 @@
 #  include <ncurses.h>
 #endif
 
-#ifdef HAVE_TERMCAP_H
-#include <termcap.h>
-#endif
-
 #ifdef HAVE_TERM_H
 #include <term.h>
+#endif
+
+#ifdef HAVE_TERMCAP_H
+#include <termcap.h>
 #endif
 
 #include "MALLOC.h"
@@ -852,9 +852,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 						FREE(new_line); new_line = NULL;
 					}
 				}
-				FREE(common);
-				common = NULL;
 			}
+			if (common) {FREE(common); common = NULL;}
 		}
 	}
 }

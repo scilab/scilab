@@ -20,7 +20,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 /*! public native boolean GetElement(int indr, int indc); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr sciErr;
   jboolean Value = JNI_FALSE;
   int *CX = NULL;
 
@@ -43,10 +43,10 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
   int i = 0;
   int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
-	if(strErr.iErr)
+	sciErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
+	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(strErr));
+		fprintf(stderr,"%s", getErrorMessage(sciErr));
 	  (*env)->ReleaseStringUTFChars(env, jname , cname);
 	  fprintf(stderr,"Error in Java_javasci_SciBooleanArray_GetElement (1).\n");
 	  return Value;
@@ -79,10 +79,10 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 	  return 1;
   }
 
-	strErr = readNamedMatrixOfBoolean(pvApiCtx, (char*)cname, &cm, &cn, CX);
-	if(strErr.iErr)
+	sciErr = readNamedMatrixOfBoolean(pvApiCtx, (char*)cname, &cm, &cn, CX);
+	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(strErr));
+		fprintf(stderr,"%s", getErrorMessage(sciErr));
 	  fprintf(stderr,"Error in Java_javasci_SciBooleanArray_GetElement (5).\n");
 	  (*env)->ReleaseBooleanArrayElements(env, jx, cx, 0);
 	  return 1;

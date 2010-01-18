@@ -38,7 +38,7 @@ case 'set' then
   dstate=model.dstate
   lunit=dstate(2)
   while %t do
-    [ok,N,swap,exprs]=getvalue(..
+    [ok,N,swap,exprs]=scicos_getvalue(..
 	'Set WRITEAU block parameters',..
 	['Buffer size';
 	'Swap mode 0/1'],..

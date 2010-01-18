@@ -33,7 +33,7 @@ static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int retCode = -1;
 	int lencommand = 0;
 	char *command = NULL;
@@ -55,10 +55,10 @@ int SendScilabJob(char *job)
 		SetLastJob(command);
 
 		/* Creation of a temp variable in Scilab which contains the command */
-		strErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
-		if(strErr.iErr)
+		sciErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			/* Problem */
 			fprintf(stderr, "Error : SendScilabJob (1) 'TMP_EXEC_STRING'.\n");
 			retCode = -1;
@@ -73,10 +73,10 @@ int SendScilabJob(char *job)
 
 		/* Run the command within an execstr */
 		C2F(scirun)(COMMAND_EXECSTR,(long int)strlen(COMMAND_EXECSTR));
-		strErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
-		if(strErr.iErr)
+		sciErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (2) 'Err_Job'.\n");	
 			retCode = -2;
 
@@ -97,10 +97,10 @@ int SendScilabJob(char *job)
 			return retCode;
 		}
 
-		strErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
-		if(strErr.iErr)
+		sciErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			fprintf(stderr,"Error : SendScilabJob (4) 'Err_Job'.\n");	
 			retCode = -4;
 

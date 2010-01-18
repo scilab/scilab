@@ -10,87 +10,220 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_build">
+<refentry version="5.0-subset Scilab" xml:id="ilib_build" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>ilib_build</refname>
-    <refpurpose> utility for shared library management</refpurpose>
+
+    <refpurpose>utility for shared library management</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,ismex, cc])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>lib_name</term>
+
         <listitem>
-          <para>a character string, the generic name of the library without path and extension.</para>
+          <para>a character string, the generic name of the library without
+          path and extension.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>table</term>
+
         <listitem>
-          <para>2 column string matrix giving the table of pairs 'scilab-name', 'interface name'</para>
+          <para>2 column string matrix giving the table of pairs
+          'scilab-name', 'interface name'</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>files</term>
+
         <listitem>
-          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
+          <para>string matrix giving source (from Scilab 5.0) or object files
+          needed for shared library creation</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>libs</term>
+
         <listitem>
-          <para>string matrix giving extra libraries needed for shared library creation</para>
+          <para>string matrix giving extra libraries needed for shared library
+          creation</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>makename</term>
+
         <listitem>
-          <para>character string. The path of the Makefile file without extension.</para>
+          <para>character string. The path of the Makefile file without
+          extension.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ldflags,cflags,fflags</term>
+
         <listitem>
-          <para>character strings to provide options for the loader, the C compiler and the Fortran compiler.</para>
+          <para>character strings to provide options for the loader, the C
+          compiler and the Fortran compiler.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ismex</term>
+
         <listitem>
-          <para>Internal variable to specify if we are working with mex or not.</para>
+          <para>Internal variable to specify if we are working with mex or
+          not.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>cc</term>
+
         <listitem>
           <para>Provide the name of the C compiler.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    This tool is used to create shared libraries and to generate a 
-    loader file which can be used to dynamically load the shared library 
-    into Scilab with <literal>addinter</literal></para>
-    <para>
-    Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
-    directory. They are all released into the public domain.</para>
-	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
-	<para><emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis></para>
+
+    <para>This tool is used to create shared libraries and to generate a
+    loader file which can be used to dynamically load the shared library into
+    Scilab with <literal>addinter</literal></para>
+
+    <para>Many examples are provided in
+    <literal>SCI/modules/dynamic_link/examples</literal> directory. They are
+    all released into the public domain.</para>
+
+    <para><emphasis role="bold">Note that a compiler must be available on the
+    system to use this function.</emphasis></para>
+
+    <para><emphasis role="bold">Languages handle by this function are: C, C++,
+    Fortran and Fortran 90.</emphasis></para>
   </refsection>
 
   <refsection>
     <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[ 
+
+    <programlisting role="example">//Here with give a complete example on adding new primitive to Scilab
+//create the procedure files
+
+cd TMPDIR;
+mkdir('example_ilib_build_c');
+cd('example_ilib_build_c'); 
+
+f1=['extern double fun2();'
+    'void fun1(double *x, double *y)'
+    '{*y=fun2(*x)/(*x);}'];
+
+mputl(f1,TMPDIR + '/example_ilib_build_c/fun1.c');
+
+f2=['#include &lt;math.h&gt;'
+    'double fun2(double x)'
+    '{ return( sin(x+1.));}'];
+mputl(f2,TMPDIR + '/example_ilib_build_c/fun2.c');
+
+//creating the interface file
+i=['#include &lt;stdlib.h&gt;'
+   '#include &lt;stack-c.h&gt;'
+   '#include &lt;api_scilab.h&gt;'
+   '#include &lt;Scierror.h&gt;'
+   '#include &lt;localization.h&gt;'
+   ''
+   'extern int fun1 ( double *x, double *y);'
+   ''
+   'int sci_fun1(char *fname)' 
+   '{'
+   '  int iType1 = 0;'
+   '  SciErr sciErr;'
+   '  int m1 = 0, n1 = 0;'
+   '  double *pdVarOne = NULL;'
+   '  int *piAddressVarOne = NULL;'
+   ''
+   '  CheckRhs(1,1);'
+   '  CheckLhs(1,1);'
+   ''
+   '  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+   '  if(sciErr.iErr)'
+   '  {'
+   '    printError(&amp;sciErr, 0);'
+   '    return 0;'
+   '  }' 
+   ''
+   '  sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+   '  if(sciErr.iErr)'
+   '  {'
+   '    printError(&amp;sciErr, 0);'
+   '    return 0;'
+   '  }'
+   ''
+   '  if (iType1 != sci_matrix)'
+   '  {'
+   '     Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+   '     return 0;'
+   '  }'
+   ''
+   '  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;pdVarOne);'
+   '  if(sciErr.iErr)'
+   '  {'
+   '    printError(&amp;sciErr, 0);'
+   '    return 0;'
+   '  }'
+   ''
+   '  fun1(pdVarOne, pdVarOne);'
+   '  LhsVar(1) = 1;'
+   '  return 0;'
+   '}'];
+mputl(i,TMPDIR + '/example_ilib_build_c/sci_fun1.c');
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated. 
+
+files=['fun1.c','fun2.c','sci_fun1.c'];
+ilib_build('build_c',['fun1','sci_fun1'],files,[]);
+
+// load the shared library 
+
+exec loader.sce; 
+
+//using the new primitive
+fun1(33) </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Examples (C code - previous Scilab API &lt; 5.2)</title>
+
+    <programlisting role="example">cd TMPDIR;
+mkdir('example_ilib_build_c_old');
+cd('example_ilib_build_c_old'); 
+
 //Here with give a complete example on adding new primitive to Scilab
 //create the procedure files
 f1=['extern double fun2();'
@@ -99,7 +232,7 @@ f1=['extern double fun2();'
 
 mputl(f1,'fun1.c')
 
-f2=['#include <math.h>'
+f2=['#include &lt;math.h&gt;'
     'double fun2(double x)'
     '{ return( sin(x+1.));}'];
 mputl(f2,'fun2.c');
@@ -107,13 +240,20 @@ mputl(f2,'fun2.c');
 //creating the interface file
 i=['#include ""stack-c.h""'
    '#include ""stackTypeVariable.h""'
+   '#include ""version.h""'
+   '#if SCI_VERSION_MAJOR &lt;= 5'
+   '#if SCI_VERSION_MINOR &lt;  2'
+   '   #error ""This example is obsolete see help ilib_buid""'
+   '#endif'
+   '#endif'
+   ''
    'extern int fun1 ( double *x, double *y);'
    'int intfun1(char *fname)' 
    '{'
    '  int m1,n1,l1;'
    '  CheckRhs(1,1);'
    '  CheckLhs(1,1);'
-   '  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);'
+   '  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m1, &amp;n1, &amp;l1);'
    '  fun1(stk(l1),stk(l1));'
    '  LhsVar(1) = 1;'
    '  return 0;'
@@ -124,7 +264,7 @@ mputl(i,'intfun1.c')
 //generated. 
 
 files=['fun1.c','fun2.c','intfun1.c'];
-ilib_build('foo',['scifun1','intfun1'],files,[]);
+ilib_build('ilib_c_old',['scifun1','intfun1'],files,[]);
 
 // load the shared library 
 
@@ -132,15 +272,189 @@ exec loader.sce
 
 //using the new primitive
 scifun1(33)
- ]]></programlisting>
+</programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (C++ code)</title>
-    <programlisting role="example"><![CDATA[ 
-i=['#include <string>'
+
+    <programlisting role="example">cd TMPDIR;
+mkdir('example_ilib_build_cpp');
+cd('example_ilib_build_cpp');
+ 
+i=['#include &lt;string&gt;'
+   'extern ""C"" {'
+   '#include &lt;stdlib.h&gt;'   
+   '#include &lt;stack-c.h&gt;'
+   '#include &lt;api_scilab.h&gt;'
+   '#include &lt;localization.h&gt;'
+   '#include &lt;Scierror.h&gt;'
+   ''
+   'int sci_cppfind(char *fname)'
+   '{'
+   ''
+   ' SciErr sciErr;'
+   ' int *piAddressVarOne = NULL;'
+   ' char *pStVarOne = NULL;'
+   ' int iType1 = 0;'
+   ' int lenStVarOne = 0;'
+   ' int m1 = 0, n1 = 0;'
+   ''
+   ' int *piAddressVarTwo = NULL;'
+   ' char *pStVarTwo = NULL;'
+   ' int iType2 = 0;'
+   ' int lenStVarTwo = 0;'
+   ' int m2 = 0, n2 = 0;'
+   ''
+   ' int m_out = 0;'
+   ' int n_out = 0;'
+   ''
+   ' sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' if (iType1 != sci_strings)'
+   ' {'
+   '   Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 1);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getVarAddressFromPosition(pvApiCtx, 2, &amp;piAddressVarTwo);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '  printError(&amp;sciErr, 0);'
+   '  return 0;'
+   ' }'
+   ''
+   ' sciErr = getVarType(pvApiCtx, piAddressVarTwo, &amp;iType2);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' if (iType2 != sci_strings)'
+   ' {'
+   '   Scierror(999,_(""%s: Wrong type for input argument #%d: A string expected.\n""), fname, 2);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;lenStVarOne, &amp;pStVarOne);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' pStVarOne = new char[lenStVarOne + 1];'
+   ' if (pStVarOne == NULL)'
+   ' {'
+   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &amp;m2, &amp;n2, &amp;lenStVarTwo, &amp;pStVarTwo);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' pStVarTwo = new char[lenStVarTwo + 1];'
+   ' if (pStVarTwo == NULL)'
+   ' {'
+   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;lenStVarOne, &amp;pStVarOne);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &amp;m2, &amp;n2, &amp;lenStVarTwo, &amp;pStVarTwo);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' std::string myMessage(pStVarOne);'
+   ' std::string search(pStVarTwo);'
+   
+   ' delete pStVarTwo;'
+   ' delete pStVarOne;'
+   
+   ' double dOut = 0.0;'
+   ''
+   ' if (myMessage.find(search) != std::string::npos) {'
+   '     dOut = myMessage.find(search); /* The actual operation */'
+   ' } else {'
+   '     dOut = -1; /* Substring not found */' 
+   ' }'
+
+   ' m_out = 1;'
+   ' n_out = 1;'
+   ' sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &amp;dOut);'
+   ' if(sciErr.iErr)'
+   ' {'
+   '   printError(&amp;sciErr, 0);'
+   '   return 0;'
+   ' }'
+   ''
+   ' LhsVar(1) = Rhs + 1;'
+   ' return 0;'
+   '} /* extern ""C"" */'
+   '}'];
+
+mputl(i,TMPDIR + '/example_ilib_build_cpp/sci_cppfind.cxx');
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated. 
+
+files = ['sci_cppfind.cxx'];
+ilib_build('ilib_build_cpp',['cppfind','sci_cppfind'],files,[]);
+
+// load the shared library 
+
+exec loader.sce;
+
+// Small test to see if the function is actually working.
+if cppfind("my very long string","long") &lt;&gt; 8 pause, end
+if cppfind("my very long string","very") &lt;&gt; 3 pause, end
+if cppfind("my very long string","short") &lt;&gt; -1 pause, end
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Examples (C++ code - previous Scilab API &lt; 5.2)</title>
+
+    <programlisting role="example">cd TMPDIR;
+mkdir('example_ilib_build_cpp_old');
+cd('example_ilib_build_cpp_old');
+
+i=['#include &lt;string&gt;'
    'extern ""C"" {'
    '#include ""stack-c.h""'
+   '#include ""version.h""'
+   '#if SCI_VERSION_MAJOR &lt;= 5'
+   '#if SCI_VERSION_MINOR &lt;  2'
+   '   #error ""This example is obsolete see help ilib_buid""'
+   '#endif'
+   '#endif'
+   ''
    'int sci_cppfind(char *fname) {'
    '  int m1 = 0, n1 = 0, l1;'
    '  char *inputString1, *inputString2;'
@@ -149,9 +463,9 @@ i=['#include <string>'
    '  double *position = NULL; /* Where we will store the position */'
    '  CheckRhs(2,2); /* Check the number of input argument */'
    '  CheckLhs(1,1); /* Check the number of output argument */'
-   '  GetRhsVar(1, ""c"", &m1, &n1, &l1); /* Retrieve the first input argument */'
+   '  GetRhsVar(1, ""c"", &amp;m1, &amp;n1, &amp;l1); /* Retrieve the first input argument */'
    '  inputString1=cstk(l1);'
-   '  GetRhsVar(2, ""c"", &m2, &n2, &l2); /* Retrieve the second input argument */'
+   '  GetRhsVar(2, ""c"", &amp;m2, &amp;n2, &amp;l2); /* Retrieve the second input argument */'
    '  inputString2=cstk(l2);'
    '  std::string myMessage (inputString1);'
    '  std::string search (inputString2);'
@@ -162,7 +476,7 @@ i=['#include <string>'
    '  } else {'
    '    position[0] = -1; /* Substring not found */' 
    '  }'
-   '  CreateVarFromPtr(Rhs+1,""d"",&m3,&n3,&position); /* Create the output argument */'
+   '  CreateVarFromPtr(Rhs+1,""d"",&amp;m3,&amp;n3,&amp;position); /* Create the output argument */'
    '  LhsVar(1) = Rhs+1;'
    '  delete[] position;'
    '  return 0;'
@@ -175,22 +489,25 @@ mputl(i,'sci_cppfind.cxx');
 //generated. 
 
 files=['sci_cppfind.cxx'];
-ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
+ilib_build('foo_old',['cppfind','sci_cppfind'],files,[]);
 
 // load the shared library 
 
 exec loader.sce 
 
 // Small test to see if the function is actually working.
-if cppfind("my very long string","long") <> 8 pause, end
-if cppfind("my very long string","very") <> 3 pause, end
-if cppfind("my very long string","short") <> -1 pause, end
- ]]></programlisting>
+if cppfind("my very long string","long") &lt;&gt; 8 pause, end
+if cppfind("my very long string","very") &lt;&gt; 3 pause, end
+if cppfind("my very long string","short") &lt;&gt; -1 pause, end</programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (Fortran 90 code)</title>
-    <programlisting role="example"><![CDATA[ 
+
+    <programlisting role="example">cd TMPDIR;
+mkdir('example_ilib_build_f90');
+cd('example_ilib_build_f90');
+
 sourcecode=['subroutine incrdoublef90(x,y)'
             '  implicit none'
             '  double precision, intent(in) :: x'
@@ -202,37 +519,37 @@ libpath=ilib_for_link('incrdoublef90','incrdoublef90.f90',[],'f');
 exec loader.sce 
 n=1.;
 m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
-if abs(m-2.)>%eps then pause,end
+if abs(m-2.)&gt;%eps then pause,end
 n=2.;
 m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
-if abs(m-3.)>%eps then pause,end
- ]]></programlisting>
+if abs(m-3.)&gt;%eps then pause,end
+ </programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
+      <member><link linkend="addinter">addinter</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="ilib_compile">ilib_compile</link></member>
+
+      <member><link linkend="ilib_gen_Make">ilib_gen_Make</link></member>
+
+      <member><link
+      linkend="ilib_gen_gateway">ilib_gen_gateway</link></member>
+
+      <member><link linkend="ilib_gen_loader">ilib_gen_loader</link></member>
+
+      <member><link linkend="ilib_for_link">ilib_for_link</link></member>
     </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Author</title>
+
+    <para>Allan CORNET</para>
   </refsection>
 </refentry>

@@ -89,7 +89,7 @@ case 'set' then
   end // compatibility
   
   while %t do
-    [ok,txt,font,siz,exprs] = getvalue('Set Text block parameters',..
+    [ok,txt,font,siz,exprs] = scicos_getvalue('Set Text block parameters',..
 	['Text';'Font number';'Font size'], list('str',-1,'vec',1,'vec',1),exprs)
     
     if ~ok then break,end //** 

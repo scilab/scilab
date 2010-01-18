@@ -45,7 +45,7 @@
         <para><emphasis role="bold">File:New</emphasis></para>
 
         <para>Clicking on the New menu item loads an empty diagram in the
-        active editor Scicos window. If the previous content of the window is
+        active editor xcos window. If the previous content of the window is
         not saved, it will be lost. With this menu, you can open a new diagram
         or a new palette.</para>
       </listitem>
@@ -85,20 +85,17 @@
       <listitem>
         <para><emphasis role="bold">File:Export (Ctrl+e)</emphasis></para>
 
-        <para>This menu is used to export a figure of the current Scicos
+        <para>This menu is used to export a figure of the current xcos
         diagram. The export can be done directly in postscript format or done
         first in a graphic window to export in a second step in all the format
         that scilab can provide.</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">File:Save as Interface
-        function</emphasis></para>
+        <para><emphasis role="bold">File:Recent Files</emphasis></para>
 
-        <para>Select "the Save as Interf. Func." menu item to save the diagram
-        as a new Scicos block. A Scilab function is generated and saved in a
-        file with ".sci" extension. File name and path are to be set in a
-        "File menu" dialog.</para>
+        <para>Via this menu, you have a quick access to the recent opened
+        files.</para>
       </listitem>
 
       <listitem>
@@ -123,31 +120,6 @@
         and closes the viewport and palettes windows if these windows are
         opened. It will close all the opened diagram.</para>
       </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Dump</emphasis></para>
-
-        <para>Dump the scs_m structure corresponding to the current diagram
-        into Scilab.</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:View in Scicos</emphasis></para>
-
-        <para>Open Scicos and display the current diagram</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Export to XML</emphasis></para>
-
-        <para>Export the current diagram to a .xcos XML file.</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">File:Import from XML</emphasis></para>
-
-        <para>Import a diagram from a .xcos XML file.</para>
-      </listitem>
     </itemizedlist>
   </refsection>
 
@@ -164,8 +136,8 @@
       <listitem>
         <para><emphasis role="bold">Edit:Undo (Ctrl+z)</emphasis></para>
 
-        <para>Select the Undo menu item to undo the last edit operation.
-        </para>
+        <para>Select the Undo menu item to undo the last edit
+        operation.</para>
       </listitem>
 
       <listitem>
@@ -281,7 +253,9 @@
       <listitem>
         <para><emphasis role="bold">View:Diagram browser</emphasis></para>
 
-        <para>TODO</para>
+        <para>Displays a window which lists all the blocks of a diagram and
+        print some informations related to the scs_m structure of the
+        blocks.</para>
       </listitem>
 
       <listitem>
@@ -304,21 +278,11 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">View:Get infos</emphasis></para>
-
-        <para>TODO</para>
-      </listitem>
-
-      <listitem>
         <para><emphasis role="bold">View:Details</emphasis></para>
 
-        <para>TODO</para>
-      </listitem>
-
-      <listitem>
-        <para><emphasis role="bold">View:Browser</emphasis></para>
-
-        <para>TODO</para>
+        <para>Displays a window which lists all the selected blocks of a
+        diagram and print some informations related to the scs_m structure of
+        these blocks.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -337,7 +301,7 @@
         <para><emphasis role="bold">Simulation:Setup</emphasis></para>
 
         <para>In the main Xcos window, clicking on the Setup menu item invokes
-        a dialog box that allows you to change integration parameters: </para>
+        a dialog box that allows you to change integration parameters:</para>
 
         <itemizedlist>
           <listitem>
@@ -347,7 +311,7 @@
 
           <listitem>
             <para>Real time scaling (forces real time simulation by setting
-            Scicos unit of time to 1 second)</para>
+            xcos unit of time to 1 second)</para>
           </listitem>
 
           <listitem>
@@ -371,6 +335,13 @@
             size (max time step taken by solver)</para>
           </listitem>
         </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Execution trace and
+        Debug</emphasis></para>
+
+        <para>Set Xcos in debug mode. Allows diagram debugging.</para>
       </listitem>
 
       <listitem>
@@ -402,7 +373,7 @@
 
         <para>Select the Run menu item to start the simulation. If the system
         has already been simulated, a dialog box appears where you can choose
-        to Continue, Restart or End the simulation. </para>
+        to Continue, Restart or End the simulation.</para>
       </listitem>
 
       <listitem>
@@ -461,15 +432,48 @@
         <mediaobject>
           <imageobject>
             <imagedata align="center"
-                       fileref="../images/xcos_menu_fromat_align_blocks.png" />
+                       fileref="../images/xcos_menu_format_align.png" />
           </imageobject>
         </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format: Border Color</emphasis></para>
+
+        <para>This menu allows to change the border color.</para>
       </listitem>
 
       <listitem>
         <para><emphasis role="bold">Format:Line Color</emphasis></para>
 
         <para>This menu allows to change the line color.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Link Style</emphasis></para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../images/xcos_menu_format_link_style.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>This menu allows to the the style of the link:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Horizontal</para>
+          </listitem>
+
+          <listitem>
+            <para>Straight</para>
+          </listitem>
+
+          <listitem>
+            <para>Vertical</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
 
       <listitem>
@@ -549,7 +553,7 @@
       <listitem>
         <para><emphasis role="bold">Help:About Xcos</emphasis></para>
 
-        <para>About Scicos item display the current version of Xcos and gives
+        <para>About xcos item display the current version of Xcos and gives
         some useful informations.</para>
       </listitem>
     </itemizedlist>

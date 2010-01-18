@@ -62,17 +62,20 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c
-@IS_MACOSX_TRUE@am__append_2 = -lintl -lintl
+@IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
+@IS_MACOSX_TRUE@am__append_3 = -lintl -framework Cocoa
+@IS_MACOSX_TRUE@am__append_4 = -lintl -framework Cocoa
 DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_5 = java
 subdir = modules/localization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -123,24 +126,28 @@ libscilocalization_la_DEPENDENCIES =  \
 am__libscilocalization_la_SOURCES_DIST =  \
 	src/c/InitializeLocalization.c src/c/setgetlanguage.c \
 	src/c/charEncoding.c src/jni/Messages_wrap.c \
-	sci_gateway/c/gw_localization.c sci_gateway/c/sci_gettext.c \
-	sci_gateway/c/sci_dgettext.c sci_gateway/c/sci_setlanguage.c \
+	src/c/getLocaleInfo_Apple.c sci_gateway/c/gw_localization.c \
+	sci_gateway/c/sci_gettext.c sci_gateway/c/sci_dgettext.c \
+	sci_gateway/c/sci_setlanguage.c \
 	sci_gateway/c/sci_getdefaultlanguage.c \
 	sci_gateway/c/sci_getlanguage.c \
 	sci_gateway/c/sci_setdefaultlanguage.c
 @NEED_JAVA_TRUE@am__objects_1 =  \
 @NEED_JAVA_TRUE@	libscilocalization_la-Messages_wrap.lo
-am__objects_2 = libscilocalization_la-InitializeLocalization.lo \
+@IS_MACOSX_TRUE@am__objects_2 =  \
+@IS_MACOSX_TRUE@	libscilocalization_la-getLocaleInfo_Apple.lo
+am__objects_3 = libscilocalization_la-InitializeLocalization.lo \
 	libscilocalization_la-setgetlanguage.lo \
-	libscilocalization_la-charEncoding.lo $(am__objects_1)
-am__objects_3 = libscilocalization_la-gw_localization.lo \
+	libscilocalization_la-charEncoding.lo $(am__objects_1) \
+	$(am__objects_2)
+am__objects_4 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_gettext.lo \
 	libscilocalization_la-sci_dgettext.lo \
 	libscilocalization_la-sci_setlanguage.lo \
 	libscilocalization_la-sci_getdefaultlanguage.lo \
 	libscilocalization_la-sci_getlanguage.lo \
 	libscilocalization_la-sci_setdefaultlanguage.lo
-am_libscilocalization_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+am_libscilocalization_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscilocalization_la_OBJECTS = $(am_libscilocalization_la_OBJECTS)
 libscilocalization_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
@@ -407,7 +414,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
-	src/c/setgetlanguage.c src/c/charEncoding.c $(am__append_1)
+	src/c/setgetlanguage.c src/c/charEncoding.c $(am__append_1) \
+	$(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
@@ -416,19 +424,16 @@ sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c \
 sci_gateway/c/sci_setdefaultlanguage.c
 
-libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-				-I/sw/include \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/fileio/includes \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
-
+libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I/sw/include \
+	-I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
 pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_LDFLAGS = -version-info \
-	$(SCILAB_LIBRARY_VERSION) $(am__append_2)
+	$(SCILAB_LIBRARY_VERSION) $(am__append_3)
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
@@ -474,7 +479,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -603,6 +608,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-InitializeLocalization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-Messages_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-charEncoding.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_dgettext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_getdefaultlanguage.Plo@am__quote@
@@ -660,6 +666,13 @@ libscilocalization_la-Messages_wrap.lo: src/jni/Messages_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/Messages_wrap.c' object='libscilocalization_la-Messages_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-Messages_wrap.lo `test -f 'src/jni/Messages_wrap.c' || echo '$(srcdir)/'`src/jni/Messages_wrap.c
+
+libscilocalization_la-getLocaleInfo_Apple.lo: src/c/getLocaleInfo_Apple.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-getLocaleInfo_Apple.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Tpo -c -o libscilocalization_la-getLocaleInfo_Apple.lo `test -f 'src/c/getLocaleInfo_Apple.c' || echo '$(srcdir)/'`src/c/getLocaleInfo_Apple.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Tpo $(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getLocaleInfo_Apple.c' object='libscilocalization_la-getLocaleInfo_Apple.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-getLocaleInfo_Apple.lo `test -f 'src/c/getLocaleInfo_Apple.c' || echo '$(srcdir)/'`src/c/getLocaleInfo_Apple.c
 
 libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-gw_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c

@@ -10,8 +10,8 @@
 ' *
 '//=============================================================================
 
-' See SCI/modules/call_scilab/examples/NET/C# about scilab COM object
-' You need to add Scilab (C#) COM object as reference
+' See SCI/modules/call_scilab/examples/NET/C# about scilab .NET Component
+' You need to add Scilab (C#) .NET Component as reference
 ' easier way to test is to launch SCI/bin/VB.NET.exe
 ' or VB.NET.exe must known libscilab.dll library path
 

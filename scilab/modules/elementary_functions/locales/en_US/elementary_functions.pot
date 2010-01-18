@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2009-12-09 16:34+0100\n"
 
 # File: macros/logm.sci, line: 34
 # File: macros/logm.sci, line: 59
@@ -51,65 +51,65 @@ msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr ""
 #
 # File: macros/bitcmp.sci, line: 56
+# File: macros/bitand.sci, line: 55
+# File: macros/bitand.sci, line: 62
 # File: macros/bitget.sci, line: 63
 # File: macros/bitget.sci, line: 70
 # File: macros/bitor.sci, line: 56
 # File: macros/bitor.sci, line: 63
-# File: macros/bitand.sci, line: 55
-# File: macros/bitand.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
 "expected.\n"
 msgstr ""
 #
-# File: macros/tanhm.sci, line: 16
-# File: macros/atanh.sci, line: 22
-# File: macros/atanm.sci, line: 21
-# File: macros/bitxor.sci, line: 33
-# File: macros/coshm.sci, line: 16
-# File: macros/sinhm.sci, line: 16
-# File: macros/factorial.sci, line: 19
-# File: macros/atanhm.sci, line: 16
-# File: macros/cothm.sci, line: 16
-# File: macros/cosh.sci, line: 33
-# File: macros/bitcmp.sci, line: 45
-# File: macros/sinh.sci, line: 22
-# File: macros/tanm.sci, line: 16
-# File: macros/bitget.sci, line: 37
-# File: macros/asinh.sci, line: 23
-# File: macros/erfcx.sci, line: 29
-# File: macros/asinm.sci, line: 16
-# File: macros/cellstr.sci, line: 21
-# File: macros/sinm.sci, line: 21
-# File: macros/dec2hex.sci, line: 23
 # File: macros/coth.sci, line: 18
-# File: macros/dec2oct.sci, line: 21
-# File: macros/cotg.sci, line: 19
-# File: macros/bitor.sci, line: 36
-# File: macros/acoshm.sci, line: 17
-# File: macros/cosm.sci, line: 21
-# File: macros/bitand.sci, line: 35
-# File: macros/acosm.sci, line: 16
-# File: macros/erf.sci, line: 32
-# File: macros/erfc.sci, line: 33
-# File: macros/asinhm.sci, line: 19
-# File: macros/tanh.sci, line: 22
-# File: macros/cell2mat.sci, line: 21
-# File: macros/acosh.sci, line: 30
+# File: macros/atanhm.sci, line: 16
 # File: macros/isinf.sci, line: 15
+# File: macros/asinm.sci, line: 16
+# File: macros/sinh.sci, line: 22
+# File: macros/erfc.sci, line: 33
+# File: macros/atanm.sci, line: 21
+# File: macros/acoshm.sci, line: 17
+# File: macros/cothm.sci, line: 16
+# File: macros/cotg.sci, line: 19
+# File: macros/dec2oct.sci, line: 21
+# File: macros/erf.sci, line: 32
+# File: macros/coshm.sci, line: 16
+# File: macros/acosm.sci, line: 16
+# File: macros/cellstr.sci, line: 21
+# File: macros/bitcmp.sci, line: 45
+# File: macros/tanhm.sci, line: 16
+# File: macros/tanm.sci, line: 16
+# File: macros/tanh.sci, line: 22
+# File: macros/bitxor.sci, line: 33
+# File: macros/erfcx.sci, line: 29
+# File: macros/asinhm.sci, line: 19
+# File: macros/bitand.sci, line: 35
+# File: macros/bitget.sci, line: 37
+# File: macros/dec2hex.sci, line: 23
+# File: macros/sinhm.sci, line: 16
+# File: macros/acosh.sci, line: 30
+# File: macros/cosm.sci, line: 21
+# File: macros/sinm.sci, line: 21
+# File: macros/atanh.sci, line: 22
+# File: macros/bitor.sci, line: 36
+# File: macros/asinh.sci, line: 23
+# File: macros/cell2mat.sci, line: 21
+# File: macros/cosh.sci, line: 33
+# File: macros/factorial.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 #
-# File: macros/dec2bin.sci, line: 34
 # File: macros/complex.sci, line: 39
+# File: macros/dec2bin.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 #
-# File: macros/bitcmp.sci, line: 47
 # File: macros/bitset.sci, line: 25
+# File: macros/bitcmp.sci, line: 47
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -124,8 +124,8 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected."
 msgstr ""
 #
-# File: macros/ndgrid.sci, line: 40
 # File: macros/num2cell.sci, line: 33
+# File: macros/ndgrid.sci, line: 40
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -162,15 +162,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 #
-# File: macros/primes.sci, line: 24
 # File: macros/binomial.sci, line: 35
+# File: macros/primes.sci, line: 24
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 #
-# File: macros/atanm.sci, line: 32
 # File: macros/atanhm.sci, line: 28
 # File: macros/asinm.sci, line: 26
+# File: macros/atanm.sci, line: 32
 # File: macros/acoshm.sci, line: 27
 # File: macros/acosm.sci, line: 26
 # File: macros/asinhm.sci, line: 29
@@ -184,8 +184,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/binomial.sci, line: 39
 # File: macros/factor.sci, line: 23
+# File: macros/binomial.sci, line: 39
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
@@ -213,10 +213,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 #
-# File: macros/tanhm.sci, line: 23
-# File: macros/tanm.sci, line: 23
 # File: macros/signm.sci, line: 24
 # File: macros/logm.sci, line: 23
+# File: macros/tanhm.sci, line: 23
+# File: macros/tanm.sci, line: 23
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
@@ -238,16 +238,16 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 #
-# File: macros/bitxor.sci, line: 41
 # File: macros/intsplin.sci, line: 27
+# File: macros/inttrap.sci, line: 23
 # File: macros/cat.sci, line: 66
+# File: macros/bitxor.sci, line: 41
+# File: macros/bitand.sci, line: 43
 # File: macros/bitget.sci, line: 44
 # File: macros/bitget.sci, line: 54
-# File: macros/modulo.sci, line: 26
 # File: macros/pmodulo.sci, line: 29
-# File: macros/inttrap.sci, line: 23
+# File: macros/modulo.sci, line: 26
 # File: macros/bitor.sci, line: 44
-# File: macros/bitand.sci, line: 43
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
@@ -263,8 +263,8 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 #
-# File: macros/lex_sort.sci, line: 33
 # File: macros/isempty.sci, line: 15
+# File: macros/lex_sort.sci, line: 33
 # File: sci_gateway/c/sci_gsort.c, line: 326
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -285,8 +285,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 #
-# File: macros/primes.sci, line: 20
 # File: macros/binomial.sci, line: 27
+# File: macros/primes.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
@@ -297,23 +297,23 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/binomial.sci, line: 31
 # File: macros/factor.sci, line: 26
+# File: macros/binomial.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 #
-# File: macros/cotd.sci, line: 12
-# File: macros/secd.sci, line: 12
-# File: macros/asecd.sci, line: 12
-# File: macros/acscd.sci, line: 12
-# File: macros/tand.sci, line: 12
-# File: macros/asind.sci, line: 12
+# File: macros/cosd.sci, line: 12
 # File: macros/atand.sci, line: 12
 # File: macros/atand.sci, line: 16
+# File: macros/asind.sci, line: 12
+# File: macros/cotd.sci, line: 12
+# File: macros/asecd.sci, line: 12
 # File: macros/cscd.sci, line: 12
-# File: macros/cosd.sci, line: 12
+# File: macros/secd.sci, line: 12
 # File: macros/sind.sci, line: 12
+# File: macros/tand.sci, line: 12
+# File: macros/acscd.sci, line: 12
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
 msgstr ""
@@ -328,10 +328,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
 #
-# File: macros/base2dec.sci, line: 28
 # File: macros/oct2dec.sci, line: 27
-# File: macros/bin2dec.sci, line: 34
 # File: macros/hex2dec.sci, line: 27
+# File: macros/bin2dec.sci, line: 34
+# File: macros/base2dec.sci, line: 28
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -343,25 +343,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 #
-# File: macros/atanh.sci, line: 26
-# File: macros/atanm.sci, line: 25
-# File: macros/coshm.sci, line: 20
-# File: macros/sinhm.sci, line: 20
-# File: macros/atanhm.sci, line: 20
-# File: macros/cothm.sci, line: 20
-# File: macros/cosh.sci, line: 37
-# File: macros/sinh.sci, line: 26
-# File: macros/asinh.sci, line: 27
-# File: macros/asinm.sci, line: 20
-# File: macros/sinm.sci, line: 25
 # File: macros/coth.sci, line: 22
-# File: macros/cotg.sci, line: 23
+# File: macros/atanhm.sci, line: 20
+# File: macros/asinm.sci, line: 20
+# File: macros/sinh.sci, line: 26
+# File: macros/atanm.sci, line: 25
 # File: macros/acoshm.sci, line: 21
-# File: macros/cosm.sci, line: 25
+# File: macros/cothm.sci, line: 20
+# File: macros/cotg.sci, line: 23
+# File: macros/coshm.sci, line: 20
 # File: macros/acosm.sci, line: 20
-# File: macros/asinhm.sci, line: 23
 # File: macros/tanh.sci, line: 26
+# File: macros/asinhm.sci, line: 23
+# File: macros/sinhm.sci, line: 20
 # File: macros/acosh.sci, line: 34
+# File: macros/cosm.sci, line: 25
+# File: macros/sinm.sci, line: 25
+# File: macros/atanh.sci, line: 26
+# File: macros/asinh.sci, line: 27
+# File: macros/cosh.sci, line: 37
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
@@ -381,10 +381,10 @@ msgid ""
 "contents"
 msgstr ""
 #
-# File: macros/bitxor.sci, line: 54
-# File: macros/bitxor.sci, line: 62
 # File: macros/bitset.sci, line: 51
 # File: macros/bitset.sci, line: 58
+# File: macros/bitxor.sci, line: 54
+# File: macros/bitxor.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
@@ -401,11 +401,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: integer expected.\n"
 msgstr ""
 #
-# File: macros/bitxor.sci, line: 37
 # File: macros/cat.sci, line: 88
 # File: macros/cat.sci, line: 93
-# File: macros/bitor.sci, line: 40
+# File: macros/bitxor.sci, line: 37
 # File: macros/bitand.sci, line: 39
+# File: macros/bitor.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr ""
@@ -416,8 +416,8 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 #
 # File: macros/unique.sci, line: 55
-# File: macros/intersect.sci, line: 133
 # File: macros/union.sci, line: 48
+# File: macros/intersect.sci, line: 133
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
@@ -458,8 +458,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 #
-# File: macros/tanhm.sci, line: 29
 # File: macros/cothm.sci, line: 28
+# File: macros/tanhm.sci, line: 29
 # File: macros/tanm.sci, line: 30
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
@@ -477,10 +477,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr ""
 #
+# File: macros/binomial.sci, line: 43
+# File: macros/bitset.sci, line: 71
 # File: macros/bitcmp.sci, line: 80
 # File: macros/bitget.sci, line: 83
-# File: macros/bitset.sci, line: 71
-# File: macros/binomial.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
@@ -509,8 +509,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 #
-# File: macros/dec2bin.sci, line: 39
 # File: macros/dec2oct.sci, line: 25
+# File: macros/dec2bin.sci, line: 39
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "

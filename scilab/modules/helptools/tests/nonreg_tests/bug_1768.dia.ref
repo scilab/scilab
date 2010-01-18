@@ -28,9 +28,9 @@ mkdir(TMPDIR+"/bug_1768/help/en_US");
 mputl(T,TMPDIR+"/bug_1768/help/en_US/foo1.xml");
 index_file = xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
 
-Buildingthemasterdocument:
+Building the master document:
 	TMPDIR/bug_1768/help/en_US
 
-Buildingthemanualfile[html]inTMPDIR/bug_1768/help/en_US.(Pleasewaitbuilding...thiscantakeawhile)
+Building the manual file [html] in TMPDIR/bug_1768/help/en_US. (Please wait building ... this can take a while)
 if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then bugmes();quit;end
 if fileinfo(index_file) == [] then bugmes();quit;end

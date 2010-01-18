@@ -280,6 +280,13 @@ static char* gatewayname_xpad = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_xpad(void)
 {
+#ifdef _MSC_VER
+	if (dynlibname_xpad == NULL)
+	{
+		dynlibname_xpad = buildModuleDynLibraryName(XPAD_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	
 	return gw_dynamic_generic(XPAD_MODULE_NAME,
 		&dynlibname_xpad,
 		&gatewayname_xpad,
@@ -310,4 +317,27 @@ int gw_dynamic_hdf5(void)
 	return r;
 }
 /*--------------------------------------------------------------------------*/
+/* graphic_exports module */
+#define GRAPHIC_EXPORT_MODULE_NAME "graphic_export"
+static DynLibHandle hGraphic_exportLib = NULL;
+static PROC_GATEWAY ptr_gw_graphic_export = NULL;
+static char* dynlibname_graphic_export = NULL;
+static char* gatewayname_graphic_export = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_graphic_export(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_graphic_export == NULL)
+	{
+		dynlibname_graphic_export = buildModuleDynLibraryName(GRAPHIC_EXPORT_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	return gw_dynamic_generic(GRAPHIC_EXPORT_MODULE_NAME,
+		&dynlibname_graphic_export,
+		&gatewayname_graphic_export,
+		&hGraphic_exportLib ,
+		&ptr_gw_graphic_export);
+}
+/*--------------------------------------------------------------------------*/
+
 

@@ -28,24 +28,40 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>StrErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
-        <synopsis>StrErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <synopsis>SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
+        <synopsis>SciErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>StrErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)</synopsis>
-        <synopsis>StrErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)</synopsis>
+        <synopsis>SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
-            <varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the Scilab variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
+			<varlistentry>
+				<term>_pvCtx</term>
+				<listitem>
+					<para>
+						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>_piAddress</term>
+				<listitem>
+					<para>
+						Address of the Scilab variable.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>_pstName</term>
+				<listitem>
+					<para>
+						Name of the variable for "named" functions.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_piRows</term>
                 <listitem>
                     <para>
@@ -65,7 +81,7 @@
                 <term>_pdblReal</term>
                 <listitem>
                     <para>
-                        Return address of real data array (size: _iCols * _iRows)
+                        Return address of real data array (size: _iCols * _iRows).
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,10 +89,18 @@
                 <term>_pdblImg</term>
                 <listitem>
                     <para>Return address of imaginary data array (size: _iCols * _iRows).</para>
-                    <para>This argument does not exist with getMatrixOfDouble.</para>
+                    <para>This argument does not exist with getMatrixOfDouble and readNamedMatrixOfDouble.</para>
                 </listitem>
             </varlistentry>
-        </variablelist>
+			<varlistentry>
+				<term>SciErr</term>
+				<listitem>
+					<para>
+						Error structure where is stored errors messages history and first error number.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -88,81 +112,91 @@
         <!--Lib_name: double_reading-->
         <!--Func_list: read_double-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+	<![CDATA[ 
 int read_double(char *fname,unsigned long fname_len)
 {
-    int i;
-    int iRet            = 0;
-    //first variable info : real matrix of double
-    int iRows           = 0;
-    int iCols           = 0;
-    int iComplex        = 0;
-    int *piAddr         = NULL;
-    double* pdblReal    = NULL;
-    double* pdblImg     = NULL;
+	int i;
+	//first variable info : real matrix of double
+	int iType			= 0;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iComplex		= 0;
+	int *piAddr			= NULL;
+	double* pdblReal	= NULL;
+	double* pdblImg		= NULL;
 
-    //check input and output arguments
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+	SciErr sciErr;
+	//check input and output arguments
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-    /************************
-    *    First variable    *
-    ************************/
 
-    //get variable address of the first input argument
-    getVarAddressFromPosition(1, &piAddr);
+	/************************
+	*    First variable    *
+	************************/
 
-    //check type
-    if(getVarType(piAddr) != sci_matrix)
-    {
-        //Error
-        return 1;
-    }
-    
-    //get complexity
-    iComplex	= isVarComplex(piAddr);
+	//get variable address of the first input argument
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    //check complexity
-    if(iComplex)
-    {
-        //get size and data from Scilab memory
-        iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-    }
-    else
-    {
-        //get size and data from Scilab memory
-        iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-    }
+	//check type
+	sciErr = getVarType(pvApiCtx, piAddr, &iType);
+	if(sciErr.iErr || iType != sci_matrix)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    if(iRet)
-    {
-        //Error
-        return 1;
-    }
+	//get complexity
+	iComplex	= isVarComplex(pvApiCtx, piAddr);
 
-    //Do something with data
-    //if variable is complex, switch real part and imaginary part otherwise multiply by -1
+	//check complexity
+	if(iComplex)
+	{
+		//get size and data from Scilab memory
+		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+	}
+	else
+	{
+		//get size and data from Scilab memory
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+	}
 
-    if(iComplex)
-    {
-        createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg, pdblReal);
-    }
-    else
-    {
-        for(i = 0 ; i < iRows * iCols ; i++)
-        {
-            pdblReal[i] = pdblReal[i] * -1;
-        }
-        createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal);
-    }
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    if(iRet)
-    {
-        //Error
-        return 1;
-    }
-    LhsVar(1) = Rhs + 1;
-    return 0;
+	//Do something with data
+	//if variable is complex, switch real part and imaginary part otherwise multiply by -1
+
+	if(iComplex)
+	{
+		sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblImg, pdblReal);
+	}
+	else
+	{
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblReal[i] = pdblReal[i] * -1;
+		}
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
+	}
+
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	LhsVar(1) = Rhs + 1;
+	return 0;
 }
  ]]></programlisting>
     </refsection>

@@ -70,7 +70,7 @@
         <term>flag=[type,box]</term>
 
         <listitem>
-          <para>: <literal>type</literal> e <literal>box</literal> possuem o
+          <para> <literal>type</literal> e <literal>box</literal> possuem o
           mesmo significado que em <literal>plot3d</literal>:</para>
 
           <variablelist>

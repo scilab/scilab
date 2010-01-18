@@ -33,9 +33,6 @@ function [nbfevals , niter , rho] = solvepb ( n )
     coords (i,1:n) = 2.0 * rand(1,n) - 1.0;
   end
   nm = neldermead_configure(nm,"-coords0",coords);
-  nm = neldermead_configure(nm,"-method","variable");
-  //nm = neldermead_configure(nm,"-verbose",1);
-  //nm = neldermead_configure(nm,"-verbosetermination",1);
   //
   // Perform optimization
   //
@@ -76,6 +73,8 @@ hh.children.y_label.text = "Number of function evaluations"
 hh.children.children.children.mark_mode = "on";
 hh.children.children.children.mark_style = 9;
 hh.children.children.children.mark_size = 10;
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //

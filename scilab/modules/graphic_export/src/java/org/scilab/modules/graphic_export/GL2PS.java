@@ -13,9 +13,9 @@
  
 package org.scilab.modules.graphic_export;
 
-import org.scilab.modules.graphic_export.jni.GL2PSConstant;
-import org.scilab.modules.graphic_export.jni.GL2PSWrapping;
-import org.scilab.modules.graphic_export.jni.GL2PSWrappingJNI;
+import org.scilab.modules.graphic_export.GL2PSConstant;
+import org.scilab.modules.graphic_export.GL2PSWrapping;
+import org.scilab.modules.graphic_export.GL2PSWrappingJNI;
 
 /**
  * GL2PS Class
@@ -294,6 +294,7 @@ public class GL2PS {
 	 * @param h height of image
 	 * @param format specifies the format of the pixel data. GL_RGB and GL_RGBA are the only values accepted at the moment.
 	 * @param type specifies the data type for pixels
+	 * @param buffer is the byte buffer to be drawn
 	 * @return GL2PSWrappingJNI.sci_gl2psGetFormatDescription
 	 */
         public static int gl2psDrawPixels(int w, int h, int format, int type, java.nio.Buffer buffer) {

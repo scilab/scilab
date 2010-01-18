@@ -24,8 +24,9 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
@@ -59,7 +60,6 @@ public final class BlockWriter {
 	try {
 	    H5Write.writeInDataSet(fileId, "scs_m", data);
 	} catch (HDF5Exception e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	H5Write.closeFile(fileId);
@@ -165,7 +165,9 @@ public final class BlockWriter {
     	List<BasicLink> linkList = new ArrayList<BasicLink>();
     	for (int i = 0; i < nbObjs; ++i) {
     		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
-    		if (currentObject instanceof BasicBlock) {
+    		
+    		
+    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock) ) {
     			blockList.add((BasicBlock) currentObject);
     			//
     			// Look inside a Block to see if there is no "AutoLink"
@@ -178,8 +180,6 @@ public final class BlockWriter {
     			}
     		} else if (currentObject instanceof BasicLink) {
     			linkList.add((BasicLink) currentObject);
-    		} else {
-    			System.out.println("Not a BasicBlock nor BasicLink");
     		}
     	}
 
@@ -191,7 +191,7 @@ public final class BlockWriter {
     	// Go over all blocks to dump it inside Scilab Structure
     	for (int i = 0; i < blockList.size(); ++i) {
     		blockList.get(i).setOrdering(i + 1);
-    		data.add(blockList.get(i).getAsScilabObj());
+    		data.add(BasicBlockInfo.getAsScilabObj(blockList.get(i)));
     	}
 
     	// Go over all link to dump it inside Scilab Structure

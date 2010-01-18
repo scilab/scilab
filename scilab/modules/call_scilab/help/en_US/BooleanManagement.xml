@@ -107,8 +107,8 @@ for(j = 0 ; j < rowB_ ; j++)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Boolean_management_reading_API">API_Scilab: Boolean reading</link>,
-      <link linkend="Boolean_management_writing_API">API_Scilab: Boolean writing</link>, <link
+      <member><link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>,
+      <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>, <link

@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  res = atomsIsInstalled(name[,version,section])
+	  res = atomsIsInstalled(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -30,22 +30,76 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
-        <term>name</term>
+			
+			<!-- 1st input parameter -->
+			
+			<varlistentry>
+        <term>modules</term>
         <listitem>
+					
           <para>
-						Matrix of strings : External module's technical name
+						mx1, mx2 Matrix of strings:
 					</para>
-        </listitem>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's version is ignored.
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's section is ignored.
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
-          <para>
-						Matrix of strings : External module's version
-					</para>
-        </listitem>
-      </varlistentry>
+			
+			<!-- 2nd input parameter -->
 			
 			<varlistentry>
         <term>section</term>
@@ -109,11 +163,26 @@
 <![CDATA[
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsInstall("toolbox_5");
-atomsIsInstalled(["toolbox_5" "toolbox_4"])
-atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0"])
+
+// Install the needed module for the purpose of the example
+atomsInstall("toolbox_5","user");
+
+// simplest way
 atomsIsInstalled("toolbox_5");
-atomsRemove("toolbox_5");
+
+// Check several modules ...
+atomsIsInstalled(["toolbox_5" "toolbox_4"])
+
+// ... with a specific version
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"])
+
+// ... installed in a specific section
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"],"user")
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"],"allusers")
+
+// Some cleaning ...
+atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
+atomsRemove("toolbox_2");
 ]]>
 		</programlisting>
   </refsection>

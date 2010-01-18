@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xpad;
 
 import java.awt.BorderLayout;
@@ -15,6 +27,7 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -25,219 +38,275 @@ import javax.swing.border.MatteBorder;
 
 import org.scilab.modules.xpad.actions.PageSetupAction;
 import org.scilab.modules.xpad.actions.PrintAction;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * XpadPrintPreviewWindow Class
+ * @author Sylvestre Koumar
+ *
+ */
 public class XpadPrintPreviewWindow extends JDialog {
-	private int preview_widht;
-	private int preview_height;
-	private Printable componentToPrint;
-	private JComboBox scales_comboBox;
-	private PreviewContainer preview_container;
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 7083356779238081674L;
+	private static final int ONE_HUNDRED = 100;
+	private int previewWidht;
+	private int previewHeight;
+	private JComboBox scalesComboBox;
+	private PreviewContainer previewContainer;
 
 
+	/**
+	 * Construtor
+	 * @param printableComponent Printable
+	 * @param editor Xpad
+	 */
 	public XpadPrintPreviewWindow(Printable printableComponent, Xpad editor) {
 		this(printableComponent, "Print Preview", editor);
 	}
 
+	/**
+	 * Construtor
+	 * @param printableComponent Printable
+	 * @param title String
+	 * @param editor Xpad
+	 */
 	public XpadPrintPreviewWindow(Printable printableComponent, String title, final Xpad editor) {
 
 		// Preview JDialog
 		setModal(true); // set focus priority on the JDialog
 		setTitle(title);
+		// Java 1.5
+		((java.awt.Frame) this.getOwner()).setIconImage(
+				new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		//setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		setSize(640, 940);
 
-		// Component which we want the preview
-		componentToPrint = printableComponent;
-
 		// Tool bar of the preview window 
-		JToolBar tool_bar = new JToolBar();
-		JButton button_print = new JButton("Print");
+		JToolBar toolbar = new JToolBar();
+		JButton printButton = new JButton("Print");
 
 		// Launch the print action
-		ActionListener action_listener = new ActionListener() { 
+		ActionListener actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				PrintAction.printXpadDocument(editor);
 			}
 		};
-		button_print.addActionListener(action_listener);
-		button_print.setAlignmentY(0.5f);
-		button_print.setMargin(new Insets(4,6,4,6));
-		tool_bar.add(button_print);
+		printButton.addActionListener(actionListener);
+		printButton.setAlignmentY(0.5f);
+		printButton.setMargin(new Insets(4,6,4,6));
+		toolbar.add(printButton);
 
 		// Close the preview window
-		button_print = new JButton("Close");
-		action_listener = new ActionListener() { 
+		printButton = new JButton(XpadMessages.CLOSE);
+		actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				dispose();
 			}
 		};
-		button_print.addActionListener(action_listener);
-		button_print.setAlignmentY(0.5f);
-		button_print.setMargin(new Insets(2,6,2,6));
-		tool_bar.add(button_print);
+		printButton.addActionListener(actionListener);
+		printButton.setAlignmentY(0.5f);
+		printButton.setMargin(new Insets(2,6,2,6));
+		toolbar.add(printButton);
 
 		// Scale of the preview
 		String[] scales = {"10 %", "25 %", "50 %", "100 %", "150 %", "200 %"};
-		scales_comboBox = new JComboBox(scales);
+		scalesComboBox = new JComboBox(scales);
 		// Default scale is 100% (index 3 of scales)
-		scales_comboBox.setSelectedItem(scales[3]);
-		action_listener = new ActionListener() { 
+		scalesComboBox.setSelectedItem(scales[3]);
+		actionListener = new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
 				Thread runner = new Thread() {
 					public void run() {
-						String selected_scale = scales_comboBox.getSelectedItem().
+						String selectedScale = scalesComboBox.getSelectedItem().
 						toString();
 
-						if (selected_scale.endsWith("%")) {
-							selected_scale = selected_scale.substring(0, selected_scale.length()-1);
+						if (selectedScale.endsWith("%")) {
+							selectedScale = selectedScale.substring(0, selectedScale.length() - 1);
 						}
-						selected_scale = selected_scale.trim();
+						selectedScale = selectedScale.trim();
 
 						int scale = 0;
 						try { 
-							scale = Integer.parseInt(selected_scale); 
+							scale = Integer.parseInt(selectedScale); 
 						} catch (NumberFormatException e) {
 							e.printStackTrace();
 							return; 
 						}
 
-						int w = (int)(preview_widht * scale/100);
-						int h = (int)(preview_height * scale/100);
+						int w = (int) (previewWidht * scale / ONE_HUNDRED);
+						int h = (int) (previewHeight * scale / ONE_HUNDRED);
 
-						Component[] comps = preview_container.getComponents();
+						Component[] comps = previewContainer.getComponents();
 						for (int i = 0; i < comps.length; i++) {
 							if (!(comps[i] instanceof ElementPreview)) {
 								continue;
 							}
-							ElementPreview elements_to_preview = (ElementPreview)comps[i];
-							elements_to_preview.setScaledSize(w, h);
+							ElementPreview elementsToPreview = (ElementPreview) comps[i];
+							elementsToPreview.setScaledSize(w, h);
 						}
 
-						preview_container.doLayout();
-						preview_container.getParent().getParent().validate();
+						previewContainer.doLayout();
+						previewContainer.getParent().getParent().validate();
 					}
 				};
 				runner.start();
 			}
 		};
 
-		scales_comboBox.addActionListener(action_listener);
-		scales_comboBox.setMaximumSize(scales_comboBox.getPreferredSize());
-		scales_comboBox.setEditable(true);
-		tool_bar.addSeparator();
-		tool_bar.add(scales_comboBox);
-		getContentPane().add(tool_bar, BorderLayout.NORTH);
+		scalesComboBox.addActionListener(actionListener);
+		scalesComboBox.setMaximumSize(scalesComboBox.getPreferredSize());
+		scalesComboBox.setEditable(true);
+		toolbar.addSeparator();
+		toolbar.add(scalesComboBox);
+		getContentPane().add(toolbar, BorderLayout.NORTH);
 
-		preview_container = new PreviewContainer();
+		previewContainer = new PreviewContainer();
 
 		// Get page setup, if user has define a setup
 		// else get the default setup page
-		PageFormat page_format = PageSetupAction.getPageFormat();
-		if (page_format == null) {
-			PrinterJob printer_job = PrinterJob.getPrinterJob();
-			page_format = printer_job.defaultPage();
-			if (page_format.getHeight() == 0 || page_format.getWidth() == 0) {
+		PageFormat pageFormat = PageSetupAction.getPageFormat();
+		if (pageFormat == null) {
+			PrinterJob printerJob = PrinterJob.getPrinterJob();
+			pageFormat = printerJob.defaultPage();
+			if (pageFormat.getHeight() == 0 || pageFormat.getWidth() == 0) {
 				return;
 			}
 		}
 
-		preview_widht = (int)(page_format.getWidth());
-		preview_height = (int)(page_format.getHeight());
+		previewWidht = (int) (pageFormat.getWidth());
+		previewHeight = (int) (pageFormat.getHeight());
 
 		// Default scale is 100%
-		int scale = 100;
-		int w = (int)(preview_widht * scale/100);
-		int h = (int)(preview_height * scale/100);
+		int scale = ONE_HUNDRED;
+		int w = (int) (previewWidht * scale / ONE_HUNDRED); /* @TODO 100/100 ? */
+		int h = (int) (previewHeight * scale / ONE_HUNDRED); /* @TODO 100/100 ? */
 
-		int page_index = 0;
+		int pageIndex = 0;
 		// Creating the preview image
 		try {
 			while (true) {
-				BufferedImage img = new BufferedImage(preview_widht, preview_height, BufferedImage.TYPE_INT_RGB);
+				BufferedImage img = new BufferedImage(previewWidht, previewHeight, BufferedImage.TYPE_INT_RGB);
 				Graphics g = img.getGraphics();
 				g.setColor(Color.white);
-				g.fillRect(0, 0, preview_widht, preview_height);
-				if (printableComponent.print(g, page_format, page_index) != Printable.PAGE_EXISTS) {
+				g.fillRect(0, 0, previewWidht, previewHeight);
+				if (printableComponent.print(g, pageFormat, pageIndex) != Printable.PAGE_EXISTS) {
 					break;
 				}
-				ElementPreview element_to_preview = new ElementPreview(w, h, img);
-				preview_container.add(element_to_preview);
-				page_index++;
+				ElementPreview elementToPreview = new ElementPreview(w, h, img);
+				previewContainer.add(elementToPreview);
+				pageIndex++;
 			}
 		} catch (PrinterException e) {
 			e.printStackTrace();
 		}
 
-		JScrollPane scroll_pane = new JScrollPane(preview_container);
-		getContentPane().add(scroll_pane, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(previewContainer);
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
-	private class PreviewContainer extends JPanel {
+	/**
+	 * PreviewContainer Class
+	 * @author Sylvestre Koumar
+	 *
+	 */
+	private final class PreviewContainer extends JPanel {
+		
+		/**
+		 * serialVersionUID
+		 */
+		private static final long serialVersionUID = 8827199538436951675L;
+
+		/**
+		 * Constructor
+		 */
+		private PreviewContainer() {
+			
+		}
 		// Gap beetwen previews, a preview is an image of the JTextpane
 		protected int LEFT_RIGHT_GAP = 16;
 		protected int UP_DOWN_GAP = 10;
 
+		/**
+		 * getPreferredSize
+		 * @return Dimension
+		 */
 		public Dimension getPreferredSize() {
-			int number_of_components = getComponentCount();
-			if (number_of_components == 0) {
+			int numberOfComponents = getComponentCount();
+			if (numberOfComponents == 0) {
 				return new Dimension(LEFT_RIGHT_GAP, UP_DOWN_GAP);
 			}
 
 			Component comp = getComponent(0);
-			Dimension component_dimension = comp.getPreferredSize();
-			int w = component_dimension.width;
-			int h = component_dimension.height;
+			Dimension componentDimension = comp.getPreferredSize();
+			int w = componentDimension.width;
+			int h = componentDimension.height;
 
-			Dimension parent_component_dimension = getParent().getSize();
-			int columns = Math.max((parent_component_dimension.width - LEFT_RIGHT_GAP) / (w + LEFT_RIGHT_GAP), 1);
-			int rows = number_of_components / columns;
-			if (rows * columns < number_of_components) {
+			Dimension parentComponentDimension = getParent().getSize();
+			int columns = Math.max((parentComponentDimension.width - LEFT_RIGHT_GAP) / (w + LEFT_RIGHT_GAP), 1);
+			int rows = numberOfComponents / columns;
+			if (rows * columns < numberOfComponents) {
 				rows++;
 			}
 
-			int container_width = columns * (w + LEFT_RIGHT_GAP) + LEFT_RIGHT_GAP;
-			int container_height = rows * (h + UP_DOWN_GAP) + UP_DOWN_GAP;
+			int containerWidth = columns * (w + LEFT_RIGHT_GAP) + LEFT_RIGHT_GAP;
+			int containerHeight = rows * (h + UP_DOWN_GAP) + UP_DOWN_GAP;
 			Insets insets = getInsets();
-			return new Dimension(container_width + insets.left + insets.right, container_height + insets.top + insets.bottom);
+			return new Dimension(containerWidth + insets.left + insets.right, containerHeight + insets.top + insets.bottom);
 		}
 
 		// Get dimensions for PreviewContainer
+		/**
+		 * getMaximumSize
+		 * @return Dimension
+		 */
 		public Dimension getMaximumSize() {
 			return getPreferredSize();
 		}
+
+		/**
+		 * getMinimumSize
+		 * @return Dimension
+		 */
 
 		public Dimension getMinimumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * doLayout
+		 */
 		public void doLayout() {
 			Insets insets = getInsets();
 			int x = insets.left + LEFT_RIGHT_GAP;
 			int y = insets.top + UP_DOWN_GAP;
 
-			int number_of_components = getComponentCount();
-			if (number_of_components == 0) {
+			int numberOfComponents = getComponentCount();
+			if (numberOfComponents == 0) {
 				return;
 			}
 			Component comp = getComponent(0);
-			Dimension component_dimension = comp.getPreferredSize();
-			int w = component_dimension.width;
-			int h = component_dimension.height;
+			Dimension componentDimension = comp.getPreferredSize();
+			int w = componentDimension.width;
+			int h = componentDimension.height;
 
-			Dimension parent_component_dimension = getParent().getSize();
-			int columns = Math.max((parent_component_dimension.width - LEFT_RIGHT_GAP) / (w + LEFT_RIGHT_GAP), 1);
-			int rows = number_of_components / columns;
-			if (rows * columns < number_of_components) {
+			Dimension parentComponentDimension = getParent().getSize();
+			int columns = Math.max((parentComponentDimension.width - LEFT_RIGHT_GAP) / (w + LEFT_RIGHT_GAP), 1);
+			int rows = numberOfComponents / columns;
+			if (rows * columns < numberOfComponents) {
 				rows++;
 			}
 
 			int max = 0;
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < columns; j++) {
-					if (max >= number_of_components) {
-						return;
+					if (max >= numberOfComponents) {
+						return; /* @TODO add comment */
 					}
 
 					comp = getComponent(max++);
@@ -250,48 +319,85 @@ public class XpadPrintPreviewWindow extends JDialog {
 		}
 	}
 
-	private class ElementPreview extends JPanel {
-		// Dimensions of element to preview
-		protected int element_width;
-		protected int element_height;
-		protected Image element_image;
-		protected Image print_of_component;
 
+	/**
+	 * ElementPreview
+	 * @author  Sylvestre Koumar
+	 *
+	 */
+	private class ElementPreview extends JPanel {
+		/**
+		 * serialVersionUID
+		 */
+		private static final long serialVersionUID = -6070895261774446253L;
+		// Dimensions of element to preview
+		private int elementWidth;
+		private int elementHeight;
+		private Image elementImage;
+		private Image printOfComponent;
+
+		/**
+		 * ElementPreview
+		 * @param w w 
+		 * @param h h 
+		 * @param img Image
+		 */
 		public ElementPreview(int w, int h, Image img) {
-			element_width = w;
-			element_height = h;
-			print_of_component= img;
-			element_image = print_of_component.getScaledInstance(element_width, element_height, Image.SCALE_SMOOTH);
-			element_image.flush();
+			elementWidth = w;
+			elementHeight = h;
+			printOfComponent = img;
+			elementImage = printOfComponent.getScaledInstance(elementWidth, elementHeight, Image.SCALE_SMOOTH);
+			elementImage.flush();
 			setBackground(Color.white);
 			setBorder(new MatteBorder(1, 1, 2, 2, Color.black));
 		}
 
+		/**
+		 * setScaledSize
+		 * @param w int 
+		 * @param h int 
+		 */
 		public void setScaledSize(int w, int h) {
-			element_width = w;
-			element_height = h;
-			element_image = print_of_component.getScaledInstance(element_width, element_height, Image.SCALE_SMOOTH);
+			elementWidth = w;
+			elementHeight = h;
+			elementImage = printOfComponent.getScaledInstance(elementWidth, elementHeight, Image.SCALE_SMOOTH);
 			repaint();
 		}
 
+		/**
+		 * getPreferredSize
+		 * @return Dimension
+		 */
 		public Dimension getPreferredSize() {
 			Insets insets = getInsets();
-			return new Dimension((element_width + insets.left + insets.right), (element_height + insets.top + insets.bottom));
+			return new Dimension((elementWidth + insets.left + insets.right), (elementHeight + insets.top + insets.bottom));
 		}
 
-		// Get dimensions for ElementPreview	
+		// Get dimensions for ElementPreview
+		/**
+		 * getMaximumSize
+		 * @return Dimension
+		 */
 		public Dimension getMaximumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * getMinimumSize
+		 * @return Dimension
+		 */
 		public Dimension getMinimumSize() {
 			return getPreferredSize();
 		}
 
+		/**
+		 * paint
+		 * @param g Graphics
+		 */
 		public void paint(Graphics g) {
 			g.setColor(getBackground());
 			g.fillRect(0, 0, getWidth(), getHeight());
-			g.drawImage(element_image, 0, 0, this);
+			g.drawImage(elementImage, 0, 0, this);
 			paintBorder(g);
 		}
 	}

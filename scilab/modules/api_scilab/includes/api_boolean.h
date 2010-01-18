@@ -24,7 +24,7 @@ extern "C" {
  * @param[out] _piBool return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
+SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -35,7 +35,7 @@ StrErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool);
+SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -46,7 +46,7 @@ StrErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool);
+SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Create boolean named variable
@@ -56,7 +56,7 @@ StrErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, in
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool);
+SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read boolean named variable
@@ -66,7 +66,7 @@ StrErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
  * @param[out] _piBool return data
  * @return if the operation successed (0) or not ( !0 )
  */
-StrErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool);
+SciErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
 #ifdef __cplusplus
 }

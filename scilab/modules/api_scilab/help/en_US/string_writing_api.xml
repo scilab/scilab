@@ -25,13 +25,26 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-      <title>Calling Sequence</title>
-        <synopsis>int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)</synopsis>
-    </refsynopsisdiv>
+		<title>Calling Sequence</title>
+		<para>Input argument profile:</para>
+		<synopsis>SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+		<synopsis>SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+		<para>Named variable profile:</para>
+		<synopsis>SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+		<synopsis>SciErr createNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int _iRows, int _iCols, wchar_t** _pwstStrings)</synopsis>
+	</refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
-            <varlistentry>
+			<varlistentry>
+				<term>_pvCtx</term>
+				<listitem>
+					<para>
+						Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_iVar</term>
                 <listitem>
                     <para>
@@ -39,7 +52,15 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
+			<varlistentry>
+				<term>_pstName</term>
+				<listitem>
+					<para>
+						Name of the variable for "named" functions.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
                 <term>_iRows</term>
                 <listitem>
                     <para>
@@ -55,7 +76,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pstStrings</term>
                 <listitem>
@@ -64,7 +84,15 @@
                     </para>
                 </listitem>
             </varlistentry>
-        </variablelist>
+			<varlistentry>
+				<term>SciErr</term>
+				<listitem>
+					<para>
+						Error structure where is stored errors messages history and first error number.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
@@ -76,44 +104,49 @@
         <!--Lib_name: string_writing-->
         <!--Func_list: write_string-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+	<![CDATA[ 
 int write_string(char *fname,unsigned long fname_len)
 {
-    int iRet        = 0;
+	SciErr sciErr;
+	//variable info : matrix of string 2 x 3
+	int iRows		= 2;
+	int iCols		= 3;
+	char** pstData	= NULL;
 
-    //variable info : matrix of string 2 x 3
-    int iRows       = 2;
-    int iCols       = 3;
-    char** pstData  = NULL;
+	//data to put in the new variable
+	char string11[]	= "may";
+	char string21[]	= "be";
+	char string12[]	= "the";
+	char string22[]	= "with";
+	char string13[]	= "puffin";
+	char string23[]	= "you";
 
-    //data to put in the new variable
-    char string0[]  = "may";
-    char string1[]  = "be";
-    char string2[]  = "the";
-    char string3[]  = "with";
-    char string4[]  = "puffin";
-    char string5[]  = "you";
+	//alloc new array
+	pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
 
-    //alloc new array
-    pstData         = (char**)malloc(sizeof(char*) * iRows * iCols);
+	//copy data address to the "main" array
+	pstData[0]		= string11;
+	pstData[1]		= string21;
+	pstData[2]		= string12;
+	pstData[3]		= string22;
+	pstData[4]		= string13;
+	pstData[5]		= string23;
 
-    //copy data address to the "main" array
-    pstData[0]      = string0;
-    pstData[1]      = string1;
-    pstData[2]      = string2;
-    pstData[3]      = string3;
-    pstData[4]      = string4;
-    pstData[5]      = string5;
+	//create the variable
+	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    //create the variable
-    createMatrixOfString(Rhs + 1, iRows, iCols, pstData);
+	//free container
+	free(pstData);
 
-    //free container
-    free(pstData);
-    
-    //assign allocated variables to Lhs position
-    LhsVar(1)       = Rhs + 1;
-    return 0;
+	//assign allocated variables to Lhs position
+	LhsVar(1) = Rhs + 1;
+	return 0;
 }
  ]]></programlisting>
     </refsection>

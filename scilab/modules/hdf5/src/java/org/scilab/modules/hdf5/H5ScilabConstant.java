@@ -20,6 +20,10 @@ public class H5ScilabConstant {
     public static final String SCILAB_CLASS_MLIST = "mlist";
     public static final String SCILAB_CLASS_STRING = "string";
     public static final String SCILAB_CLASS_INT = "integer";
+
+    public static final String SCILAB_CLASS_ROWS = "SCILAB_rows";
+    public static final String SCILAB_CLASS_COLS = "SCILAB_cols";
+    public static final String SCILAB_CLASS_ITEMS = "SCILAB_items";
     
     public static final String SCILAB_EMPTY = "SCILAB_empty";
     public static final String SCILAB_EMPTY_TRUE = "true";

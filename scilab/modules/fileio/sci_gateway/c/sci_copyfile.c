@@ -30,7 +30,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
 int sci_copyfile(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
 	int iType1 = 0;
@@ -47,30 +47,38 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,2);
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
 	if (iType1 != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
 		return 0;
 	}
 
-	strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-	if(strErr.iErr)
+	sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+		return 0;
+	}
+
+	// get value of lenStVarOne
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -82,24 +90,24 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -110,10 +118,10 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
-	if(strErr.iErr)
+	sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -121,6 +129,14 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	{
 		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+		return 0;
+	}
+
+	// get value of lenStVarTwo
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -133,10 +149,10 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 		return 0;
 	}
 	
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -253,11 +269,11 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
 static void returnCopyFileResultOnStack(int ierr, char *fname)
 {
 	double dError = 0.;
-	wchar_t **strError = NULL;
+	wchar_t **sciError = NULL;
 	int m_out = 1, n_out = 1;
 
-	strError = (wchar_t**)MALLOC(sizeof(wchar_t*)* 1);
-	if (strError == NULL)
+	sciError = (wchar_t**)MALLOC(sizeof(wchar_t*)* 1);
+	if (sciError == NULL)
 	{
 		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return;
@@ -280,25 +296,25 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		//dError = (double) dw;
 		dError = (double) 0.;
 
-		strError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
-		if (strError[0] == NULL)
+		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
+		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return;
 		}
 
-		wcscpy(strError[0], buffer);
+		wcscpy(sciError[0], buffer);
 	}
 	else
 	{
 		dError = 1.;
-		strError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
-		if (strError[0] == NULL)
+		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
+		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return;
 		}
-		wcscpy(strError[0], L"");
+		wcscpy(sciError[0], L"");
 	}
 #else
 	if (ierr)
@@ -306,8 +322,8 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 		// Compatibility with previous version , we return 0
 		//dError = (double) ierr;
 		//dError = (double) 0.;
-		strError[0] = to_wide_string(strerror(errno));
-		if (strError[0] == NULL)
+		sciError[0] = to_wide_string(strerror(errno));
+		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return;
@@ -316,13 +332,13 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 	else
 	{
 		dError = 1.;
-		strError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
-		if (strError[0] == NULL)
+		sciError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* 1);
+		if (sciError[0] == NULL)
 		{
 			Scierror(999,_("%s : Memory allocation error.\n"),fname);
 			return;
 		}
-		wcscpy(strError[0], L"");
+		wcscpy(sciError[0], L"");
 	}
 #endif
 
@@ -332,11 +348,11 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 
 	if (Lhs == 2)
 	{
-		createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, strError);
+		createMatrixOfWideString(pvApiCtx, Rhs + 2, m_out, n_out, sciError);
 		LhsVar(2) = Rhs + 2;
 	}
 
-	freeArrayOfWideString(strError, 1);
+	freeArrayOfWideString(sciError, 1);
 
 	C2F(putlhsvar)();
 }

@@ -14,27 +14,23 @@ package org.scilab.modules.xcos.port.output;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
+/**
+ * An output port acts as a protection barrier between the internal functions of
+ * the block and a link.
+ * 
+ * It's default orientation is on the block's EAST side and it <b>must</b> be
+ * connected to an {@link InputPort} .
+ */
 public abstract class OutputPort extends BasicPort {
 
+    private static final long serialVersionUID = -8098437925667788997L;
+
+    /**
+     * Default constructor
+     * @param type The string port name ("ExplicitOutputPort" or "ImplicitOutputPort")
+     */
     public OutputPort(String type) {
 	super(type);
+	setOrientation(Orientation.EAST);
     }
-    
-	public void updateStyle(int angle){
-		
-		switch(angle){
-		case 0 :
-			super.setStyle("ExplicitOutputPort");
-			break;
-		case 90 :
-			super.setStyle("ExplicitOutputPort90");
-			break;
-		case 180 :
-			super.setStyle("ExplicitOutputPort180");
-			break;
-		case 270 :
-			super.setStyle("ExplicitOutputPort270");
-			break;
-		}
-	}    
 }

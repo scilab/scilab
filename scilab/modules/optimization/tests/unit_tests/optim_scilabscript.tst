@@ -60,8 +60,6 @@ endfunction
 //
 // Configure the test so that verbose message do not interrupt the test.
 lines(0);
-// Open up the console for messages which may appear there
-consolebox("on");
 //
 // 1. Test unconstrained BFGS
 // Test without arguments

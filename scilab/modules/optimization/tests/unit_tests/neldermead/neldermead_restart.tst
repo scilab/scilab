@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -84,7 +85,6 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",objfun);
 nm = neldermead_configure(nm,"-x0",[-1 1].');
-//nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_search(nm);
 nm = neldermead_configure(nm,"-maxfunevals",200);
 nm = neldermead_restart(nm);

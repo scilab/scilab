@@ -46,7 +46,7 @@ mtlb_axis(axeshandle, ...)
       <varlistentry>
         <term>axeshandle</term>
         <listitem>
-          <para>:handle sur l'axe courant</para>
+          <para>handle sur l'axe courant</para>
         </listitem>
       </varlistentry>
     </variablelist>
