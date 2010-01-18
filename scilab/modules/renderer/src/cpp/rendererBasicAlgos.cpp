@@ -40,7 +40,7 @@ void callFunctionFromGatewayWithExceptions(gw_generic_table * tab, int sizetab)
 	catch (std::exception & e)
 	{
 		// Tell the user that somthing wrong occured
-		sciprint(_("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n"), "Unknow exception");
+		sciprint(const_cast<char*>(_("Warning !!!\nScilab has found a critical error (%s).\nSave your data and restart Scilab.\n")), "Unknow exception");
 		// print the exception in the error output
 		std::cerr << e.what() << std::endl;
 	}
