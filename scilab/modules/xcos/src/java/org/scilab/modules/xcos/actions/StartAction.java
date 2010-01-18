@@ -45,7 +45,7 @@ public class StartAction  extends DefaultAction {
 
     /**
      * @param scilabGraph graph
-     * @return ûsh button
+     * @return push button
      */
     public static PushButton createButton(ScilabGraph scilabGraph) {
 	return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
