@@ -16,7 +16,6 @@ package org.scilab.modules.xpad.actions;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -42,9 +41,6 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	 */
 	private static final long serialVersionUID = -8625083632641564277L;
 	
-	private static int CANCEL = 1;
-	private static int SAVE_AND_EXECUTE = 2;
-
 	/**
 	 * Constructor
 	 * @param editor Xpad
