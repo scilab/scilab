@@ -166,6 +166,8 @@ Bug fixes:
 
 * bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
 
+* bug 6461 fixed - Scilab External function executed by scifunction may make Scilab crash when they produce an error.
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 

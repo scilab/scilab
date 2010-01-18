@@ -2000,7 +2000,7 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   C2F(recu).krec = -1;
   if (C2F(com).fun >= 0) {
     if (Top - Lhs + 1 > 0) {
-      C2F(iset)(&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
+      C2F(iset)(&Rhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
     }
     if(C2F(recu).paus > 0) goto L91;
     if (C2F(errgst).err1 > 0) Top=ireftop;
@@ -2009,7 +2009,9 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   /*    called interface ask for a scilab function to perform the function (fun=-1)
    *     the function name is given in ids(1,pt+1)
    */
-  C2F(ref2val)();
+  /*     call ref2val removed here because if forces overloading function to
+   *     be called by value
+   C2F(ref2val)();*/
   C2F(com).fun = 0;
   C2F(funs)(&C2F(recu).ids[(C2F(recu).pt + 1)* nsiz - nsiz]);
   if (Err > 0) goto L97;
@@ -2060,6 +2062,12 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
  L9999:
   Top = intop;
   --C2F(recu).niv;
+  if(C2F(errgst).err1>0) {
+    Lhs = C2F(recu).ids[C2F(recu).pt * nsiz -nsiz ];
+    Rhs = C2F(recu).ids[C2F(recu).pt * nsiz -(nsiz-1)];
+    --C2F(recu).pt;
+    C2F(com).fun = 0;
+  }
   intersci_pop();
   return FALSE;
 }
