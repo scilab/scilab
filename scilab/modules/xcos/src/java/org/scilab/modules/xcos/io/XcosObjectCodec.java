@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -22,34 +23,44 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Codec for any xcos object
+ */
 public class XcosObjectCodec extends mxObjectCodec {
     protected static final String STYLE = "style";
-    protected static final String ROTATION = "rotation";
-    protected static final String DIRECTION = "direction";
-    protected static final String EAST = "east";
-    protected static final String NORTH = "north";
-    protected static final String WEST = "west";
-    protected static final String SOUTH = "south";
-    protected static final String FLIP = "flip=";
-    protected static final String MIRROR = "mirror=";
-    protected static final String COMMAND = "ControlPort";
-    protected static final String CONTROL = "CommandPort";
+    private static final String ROTATION = "rotation";
+    private static final String DIRECTION = "direction";
+    private static final String NORTH = "north";
+    private static final String WEST = "west";
+    private static final String SOUTH = "south";
+    private static final String COMMAND = "ControlPort";
+    private static final String CONTROL = "CommandPort";
     
     private static final int DIRECTION_STEP = 90;
     private static final int MAX_ROTATION = 360;
 
-    public XcosObjectCodec(Object template) {
-	super(template);
-    }
-
-
+	/**
+	 * The constructor used on for configuration
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+	 */
     public XcosObjectCodec(Object template, String[] exclude, String[] idrefs,
 	    Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
 
-    public Object afterDecode(mxCodec dec, Node node, Object obj){
+	/**
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed 
+	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+	 */
+    public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	if (node.getNodeName().equals("mxCell")) {
 	    NamedNodeMap attrs = node.getAttributes();
 	    for (int i = 0; i < attrs.getLength(); i++) {
@@ -76,6 +87,7 @@ public class XcosObjectCodec extends mxObjectCodec {
 				angle = DIRECTION_STEP;
 			}
 
+			// default is EAST (angle == 0)
 			if (direction.compareTo(SOUTH) == 0) {
 				angle = (angle + step) % MAX_ROTATION;
 			} else if (direction.compareTo(WEST) == 0) {
@@ -89,12 +101,12 @@ public class XcosObjectCodec extends mxObjectCodec {
 
 		}
 
-		if (!style.containsKey(FLIP)) {
-			style.put(FLIP, Boolean.FALSE.toString());
+		if (!style.containsKey(XcosConstants.STYLE_FLIP)) {
+			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
 		}
 
-		if (!style.containsKey(MIRROR)) {
-			style.put(MIRROR, Boolean.FALSE.toString());
+		if (!style.containsKey(XcosConstants.STYLE_MIRROR)) {
+			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
 		}
 	}
 }

@@ -22,10 +22,6 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 	private static final String HEIGHT = "height";
 	private static final String WIDTH = "width";
 
-	public ScilabDoubleCodec(Object template) {
-		super(template);
-	}
-
 	public ScilabDoubleCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);

@@ -24,32 +24,53 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.util.mxUtils;
 
+/**
+ * Codec for any Port
+ */
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
-    
-    public BasicPortCodec(Object template) {
-	super(template);
-    }
 
+	/**
+	 * The constructor used on for configuration
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+	 */
     public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 
     }
 
+	/**
+	 * Things to do before encoding
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @param node XML node to encode the object into.
+	 * @return Returns the object to be encoded by the default encoding.
+	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
+	 */
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 	((Element) node).setAttribute(DATA_TYPE,
 		String.valueOf(((BasicPort) obj).getDataType()));
 	return super.beforeEncode(enc, obj, node);
     }
 
+	/**
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed 
+	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+	 */
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
-	if(attr == null || attr.equals("")) {
+	if (attr == null || attr.equals("")) {
 	    ((BasicPort) obj).setDataType(BasicPort.DataType.REAL_MATRIX);
 
 	} else {
