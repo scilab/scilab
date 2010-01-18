@@ -8,6 +8,8 @@ Text editor:
 
 * bug 5651 fixed - closing find/replace box, remove highlights.
 
+* bug 5707 fixed - cmd-e executed the wrong editor file.
+
 Xcos:
 =====
 

@@ -16,6 +16,7 @@ package org.scilab.modules.xpad.actions;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -57,7 +58,8 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	 * @param editor the Scilab editor
 	 */
 	private void executeFile(Xpad editor) {
-		String filePath = editor.getFileFullPath();
+		
+		String filePath = editor.getTextPane().getName();
 		
 		if (filePath.compareTo("") != 0) {
 			String cmdToExec = "exec('" + filePath + "', -1)";
