@@ -37,7 +37,7 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
 
 	/**
 	 * @param scilabGraph graph
-	 * @return ùenu item
+	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
