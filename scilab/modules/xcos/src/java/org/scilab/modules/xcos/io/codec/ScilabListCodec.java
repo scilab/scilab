@@ -27,11 +27,6 @@ public class ScilabListCodec  extends XcosObjectCodec {
 
     
     private static final String SCILAB_CLASS = "scilabClass";
-    
-    public ScilabListCodec(Object template) {
-	super(template);
-    }
-
 
     public ScilabListCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
