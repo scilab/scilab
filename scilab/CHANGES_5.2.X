@@ -98,6 +98,9 @@ Compilation:
 * bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
                    libraries
 
+* bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
+                   Ubuntu check tools
+
 Bug fixes:
 ==========
 
@@ -173,6 +176,8 @@ Bug fixes:
                    when the menu is clicked.
 
 * bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
+
+* bug 6461 fixed - Scilab External function executed by scifunction may make Scilab crash when they produce an error.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
