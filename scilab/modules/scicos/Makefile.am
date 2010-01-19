@@ -242,24 +242,17 @@ modelicac_SOURCES = $(MLS)
 
 OCAMLLIBS=nums.cma
 
-MLS = $(srcdir)/src/modelica_compiler/parseTree.ml $(srcdir)/src/modelica_compiler/linenum.ml $(srcdir)/src/modelica_compiler/parser.ml $(srcdir)/src/modelica_compiler/lexer.ml\
+MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
 	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
 	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
 	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
 	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml 
 
-MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
-	$(srcdir)/src/modelica_compiler/precompilation.mli $(srcdir)/src/modelica_compiler/compilation.mli $(srcdir)/src/modelica_compiler/instantiation.mli\
-	$(srcdir)/src/modelica_compiler/graphNodeSet.mli $(srcdir)/src/modelica_compiler/symbolicExpression.mli \
-	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli $(srcdir)/src/modelica_compiler/bipartiteGraph.mli $(srcdir)/src/modelica_compiler/hungarianMethod.mli \
-	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
-	$(srcdir)/src/modelica_compiler/optimization.mli \
-	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
-	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
+MLS_SPECIFIC_PRE = $(srcdir)/src/modelica_compiler/linenum.ml  $(srcdir)/src/modelica_compiler/parser.ml   $(srcdir)/src/modelica_compiler/lexer.ml 
 
+MLS_SPECIFIC_POST = $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
@@ -295,8 +288,8 @@ generate-lexer: $(LEXER_SRC)
 	$(OCAMLLEX) $(<)
 
 # Build the binary
-$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+$(TARGET): generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
+	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
 
 
 CLEANFILES = $(BASE_PATH)/*.cmi \
