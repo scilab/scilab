@@ -27,6 +27,8 @@ Xcos:
 
 * A rework to pass checkstyle metrics has been started.
 
+* An update of the jgraphx-1.2.0.7 version has been performed.
+
 * Refactoring:
     - The port position algorithm has been reworked to take in account default position and calculate placement according to it's default associated side.
     - The communication with the scilab interpreter is now easier to use and can be synchronous or asynchronous (with callback).
@@ -73,6 +75,8 @@ Xcos:
                    properly.
 
 * bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
+
+* bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
 Atoms:
 ======
