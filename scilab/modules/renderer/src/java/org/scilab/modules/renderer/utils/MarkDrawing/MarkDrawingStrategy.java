@@ -43,7 +43,7 @@ public abstract class MarkDrawingStrategy {
 								   UNDEFINED };
 			
 	/**
-	 * Mathching between indices and mark styles. 
+	 * Matching between indices and mark styles. 
 	 */
 	private static final MarkStyle[] MARK_STYLE = {MarkStyle.DOT,
 												   MarkStyle.PLUS,
@@ -64,35 +64,51 @@ public abstract class MarkDrawingStrategy {
   /**
    * Transparency variables
    */
-  protected boolean isFrontTransparent = false;
-  protected boolean isBackTransparent = false;
+  private boolean isFrontTransparent;
+  private boolean isBackTransparent;
 
   /**
-   * Set front transparency methode
+   * Default constructor
+   */
+  public MarkDrawingStrategy() {
+  }
+	
+	
+  /**
+   * Getter on the front transparency
+   * @return the front transparency
+   */
+  public boolean getIsFrontTransparent() {
+	  return isFrontTransparent;
+  }
+  
+  /**
+   * Getter on the back transparency
+   * @return the back transparency
+   */
+  public boolean getIsBackTransparent() {
+	  return isBackTransparent;
+  } 
+  
+  /**
+   * Set front transparency method
    * @param value is the new value of isFrontTransparent
    */
-  public void setFrontTransparency(boolean value)
-  {
+  public void setFrontTransparency(boolean value) {
     isFrontTransparent = value;
   }
 
   /**
-   * Set back transparency methode
+   * Set back transparency method
    * @param value is the new value of isBackTransparent
    */
-  public void setBackTransparency(boolean value)
-  {
+  public void setBackTransparency(boolean value) {
     isBackTransparent = value;
   }
 
 	/**
-	 * Default constructor
-	 */
-	public MarkDrawingStrategy() { }
-	
-	/**
-	 * Create a new instance of markdrawing strategy given its markStyle
-	 * @param markStyleIndex index of the kinf of mark
+	 * Create a new instance of markDrawing strategy given its markStyle
+	 * @param markStyleIndex index of the kind of mark
 	 * @return new instance of MarkDrawingStrategy
 	 */
 	public static MarkDrawingStrategy create(int markStyleIndex) {
