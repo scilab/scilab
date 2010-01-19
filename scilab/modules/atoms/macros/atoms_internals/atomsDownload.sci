@@ -77,20 +77,23 @@ function atomsDownload(url_in,file_out,md5sum)
 		error(msprintf(gettext("%s: Wrong length for input argument #%d: A string which has 32-characters length expected.\n"),"atomsDownload",3));
 	end
 	
-	// curl or wget ?
+	// curl, wget or httpdownload
 	// =========================================================================
 	
-	CURL = %F;
-	WGET = %F;
-	
+	CURL         = %F;
+	WGET         = %F;
+	HTTPDOWNLOAD = %F;
 	
 	// Maybe the detection has already been done
 	
-	if atomsGetConfig("downloadTool") == "wget" then
+	if     atomsGetConfig("downloadTool") == "wget" then
 		WGET=%T;
 	
 	elseif atomsGetConfig("downloadTool") == "curl" then
 		CURL=%T;
+	
+	elseif atomsGetConfig("downloadTool") == "httpdownload" then
+		HTTPDOWNLOAD=%T;
 	
 	else
 		
@@ -112,7 +115,7 @@ function atomsDownload(url_in,file_out,md5sum)
 					error(msprintf(gettext("%s: Neither Wget or Curl found: Please install one of them\n"),"atomsDownload"));
 				end
 			end
-		
+			
 		elseif MACOSX | MSDOS then
 			CURL = %T;
 		end
@@ -182,8 +185,9 @@ function atomsDownload(url_in,file_out,md5sum)
 			
 		end
 		
-		if MSDOS then
+		if MSDOS & CURL then
 			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
+		
 		elseif CURL then
 			// curl
 			download_cmd = "curl "+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
@@ -193,6 +197,24 @@ function atomsDownload(url_in,file_out,md5sum)
 		end
 		
 		[rep,stat,err] = unix_g(download_cmd);
+		
+		// Second try with httpdownload
+		
+		if HTTPDOWNLOAD | stat<>0 then
+			
+			imode = ilib_verbose();
+			ilib_verbose(0) ;
+			id    = link(SCI+"/bin/windows_tools.dll","httpdownload","c");
+			stats = call("httpdownload", url_in, 1, "c", file_out, 2, "c", "out", [1,1], 3, "d");
+			ulink(id);
+			ilib_verbose(imode);
+			
+			// Save the parameter to always download with httpdownload
+			if stat == 0 then
+				atomsSetConfig("downloadTool","httpdownload");
+			end
+			
+		end
 		
 		if stat <> 0 then
 			mprintf(gettext("%s: The following file hasn''t been downloaded:\n"),"atomsDownload");
