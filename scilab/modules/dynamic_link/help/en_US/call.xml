@@ -196,11 +196,11 @@
 
     <programlisting role="example"><![CDATA[ 
 //Example 1 with  a simple C code
-f1=['#include &lt;math.h&gt;'
+f1=['#include <math.h>'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
     '{'
     '   int i;'
-    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
