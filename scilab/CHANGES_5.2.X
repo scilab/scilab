@@ -118,6 +118,8 @@ Bug fixes:
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
 
+* bug 5362 fixed - help type pointed to "Type" online help
+
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
 * bug 5659 fixed - emptystr changed the value of an input variable.
