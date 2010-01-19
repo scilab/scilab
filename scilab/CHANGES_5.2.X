@@ -110,6 +110,9 @@ Bug fixes:
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
 
+* bug 5413 fixed - help_from_sci was replacing the < > in the examples by
+                   &gt; and &lt; causing issues in the build of documentation.
+
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
 * bug 5659 fixed - emptystr changed the value of an input variable.
