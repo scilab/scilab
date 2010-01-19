@@ -118,12 +118,12 @@ public class FileMask extends FileFilter {
 	}
 	
 	/**
-	 * Get the extension from the filter
+	 * Get the extension from the filter, if exists.
+	 * @return the actual extension in the filter
 	 */
 	public String getExtensionFromFilter() {
-		if(filters != null && filters.size()>0) {
-			/* If exists, retrieve the actual extension from the filter */
-			return (String)filters.elementAt(0);
+		if (filters != null && filters.size() > 0) {
+			return (String) filters.elementAt(0);
 		}
 		return null;
 	}
