@@ -156,9 +156,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 				FileMask ft = (FileMask)super.getFileFilter();
 				//get the extension from the Filter
 				extensionCombo = ft.getExtensionFromFilter();
-				if (extensionCombo == null) {
-					extensionCombo = allFiles;
-				}
+				if(extensionCombo==null) extensionCombo = allFiles;
 			}catch(java.lang.ClassCastException e){
 				extensionCombo = allFiles;
 			}
