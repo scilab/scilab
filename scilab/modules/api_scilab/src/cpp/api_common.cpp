@@ -159,6 +159,8 @@ int getVarType(int* _piAddress)
 		return sci_ints;
 	case InternalType::RealString : 
 		return sci_strings;
+	case InternalType::RealList :
+	  return sci_list;
 	default :
 		return 0;
 	}
