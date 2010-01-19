@@ -1,5 +1,8 @@
 /* GuiManagement.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i */
+/** 
+ * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 %module GuiManagement
 %{
 #include "MALLOC.h"
