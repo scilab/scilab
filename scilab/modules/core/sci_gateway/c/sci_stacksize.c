@@ -29,7 +29,6 @@ static int sci_stacksizeNoRhs(char *fname);
 static int sci_stacksizeOneRhs(char *fname);
 static int sci_stacksizeMax(char *fname);
 static int sci_stacksizeMin(char *fname);
-static int sci_stacksize(unsigned long  newsize, char *fname);
 static int setStacksizeMin(char *fname);
 static int setStacksizeMax(char *fname);
 static int setStacksize(unsigned long newsize);
