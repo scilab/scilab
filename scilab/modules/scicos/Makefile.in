@@ -289,8 +289,21 @@ libscisundials_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscisundials_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
 @SCICOS_TRUE@am_libscisundials_la_rpath = -rpath $(pkglibdir)
-@OCAML_TRUE@@SCICOS_TRUE@am__EXEEXT_1 = modelicac$(EXEEXT)
+@OCAML_TRUE@@SCICOS_TRUE@am__EXEEXT_1 = modelicac$(EXEEXT) \
+@OCAML_TRUE@@SCICOS_TRUE@	XML2Modelica$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS)
+am__XML2Modelica_SOURCES_DIST = $(srcdir)/src/xml2modelica/xMLTree.ml \
+	$(srcdir)/src/xml2modelica/linenum.ml \
+	$(srcdir)/src/xml2modelica/stringParser.ml \
+	$(srcdir)/src/xml2modelica/stringLexer.ml \
+	$(srcdir)/src/xml2modelica/xMLParser.ml \
+	$(srcdir)/src/xml2modelica/xMLLexer.ml \
+	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml \
+	$(srcdir)/src/xml2modelica/xML2Modelica.ml
+am__objects_7 =
+@OCAML_TRUE@@SCICOS_TRUE@am_XML2Modelica_OBJECTS = $(am__objects_7)
+XML2Modelica_OBJECTS = $(am_XML2Modelica_OBJECTS)
+XML2Modelica_LDADD = $(LDADD)
 am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/precompilation.ml \
@@ -306,7 +319,6 @@ am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
 	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
 	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml
-am__objects_7 =
 @OCAML_TRUE@@SCICOS_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
 modelicac_LDADD = $(LDADD)
@@ -331,10 +343,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciscicos_la_SOURCES) $(libscisundials_la_SOURCES) \
-	$(modelicac_SOURCES)
+	$(XML2Modelica_SOURCES) $(modelicac_SOURCES)
 DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__libscisundials_la_SOURCES_DIST) \
-	$(am__modelicac_SOURCES_DIST)
+	$(am__XML2Modelica_SOURCES_DIST) $(am__modelicac_SOURCES_DIST)
 DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
 	$(libsciscicos_la_help_fr_FR_DATA) \
 	$(libsciscicos_la_root_DATA) \
@@ -864,9 +876,13 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 
 ######### Modelica #############
-@OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
+@OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac XML2Modelica
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
+@OCAML_TRUE@@SCICOS_TRUE@XML2Modelica_SOURCES = $(MLS_XML2Modelica)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
+@OCAML_TRUE@@SCICOS_TRUE@MLS_XML2Modelica = $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
+
 @OCAML_TRUE@@SCICOS_TRUE@MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 @OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
 @OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
@@ -879,8 +895,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@@SCICOS_TRUE@MLS_SPECIFIC_POST = $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 @OCAML_TRUE@@SCICOS_TRUE@PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 @OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
-@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = $(srcdir)/src/modelica_compiler
-@OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH)
+@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
+@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
+@OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 @OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi \
 @OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.o \
 @OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cmo \
@@ -1004,9 +1021,18 @@ clean-binPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
-modelicac$(EXEEXT): $(modelicac_OBJECTS) $(modelicac_DEPENDENCIES) 
-	@rm -f modelicac$(EXEEXT)
-	$(LINK) $(modelicac_OBJECTS) $(modelicac_LDADD) $(LIBS)
+@OCAML_FALSE@XML2Modelica$(EXEEXT): $(XML2Modelica_OBJECTS) $(XML2Modelica_DEPENDENCIES) 
+@OCAML_FALSE@	@rm -f XML2Modelica$(EXEEXT)
+@OCAML_FALSE@	$(LINK) $(XML2Modelica_OBJECTS) $(XML2Modelica_LDADD) $(LIBS)
+@SCICOS_FALSE@XML2Modelica$(EXEEXT): $(XML2Modelica_OBJECTS) $(XML2Modelica_DEPENDENCIES) 
+@SCICOS_FALSE@	@rm -f XML2Modelica$(EXEEXT)
+@SCICOS_FALSE@	$(LINK) $(XML2Modelica_OBJECTS) $(XML2Modelica_LDADD) $(LIBS)
+@OCAML_FALSE@modelicac$(EXEEXT): $(modelicac_OBJECTS) $(modelicac_DEPENDENCIES) 
+@OCAML_FALSE@	@rm -f modelicac$(EXEEXT)
+@OCAML_FALSE@	$(LINK) $(modelicac_OBJECTS) $(modelicac_LDADD) $(LIBS)
+@SCICOS_FALSE@modelicac$(EXEEXT): $(modelicac_OBJECTS) $(modelicac_DEPENDENCIES) 
+@SCICOS_FALSE@	@rm -f modelicac$(EXEEXT)
+@SCICOS_FALSE@	$(LINK) $(modelicac_OBJECTS) $(modelicac_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -2244,9 +2270,13 @@ distclean-local:
 @OCAML_TRUE@@SCICOS_TRUE@generate-lexer: $(LEXER_SRC)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLLEX) $(<)
 
-# Build the binary
-@OCAML_TRUE@@SCICOS_TRUE@$(TARGET): generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
-@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+# Build the binaries
+@OCAML_TRUE@@SCICOS_TRUE@modelicac: generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
+@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+
+@OCAML_TRUE@@SCICOS_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
+@OCAML_TRUE@@SCICOS_TRUE@	echo "plop"
+@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 

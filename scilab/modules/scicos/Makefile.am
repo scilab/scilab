@@ -235,12 +235,16 @@ libsciscicos_la_help_fr_FR_DATA =
 ######### Modelica #############
 
 if OCAML
-TARGET = modelicac
+TARGET = modelicac XML2Modelica
 
 bin_PROGRAMS = $(TARGET)
 modelicac_SOURCES = $(MLS)
+XML2Modelica_SOURCES = $(MLS_XML2Modelica)
 
 OCAMLLIBS=nums.cma
+
+MLS_XML2Modelica= $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
+	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
 
 MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
@@ -256,8 +260,9 @@ MLS_SPECIFIC_POST = $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
-BASE_PATH = $(srcdir)/src/modelica_compiler
-INCLUDE = -I $(BASE_PATH)
+BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
+BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
+INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 
 SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
@@ -287,9 +292,12 @@ generate-parser: $(PARSER_SRC)
 generate-lexer: $(LEXER_SRC)
 	$(OCAMLLEX) $(<)
 
-# Build the binary
-$(TARGET): generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
-	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+# Build the binaries
+modelicac: generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
+	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+
+XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
+	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
 
 CLEANFILES = $(BASE_PATH)/*.cmi \
