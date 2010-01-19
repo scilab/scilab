@@ -12,7 +12,10 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreeSelectionModel;
@@ -21,12 +24,14 @@ import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
 import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * The content pane for the block view
  */
 public class PaletteManagerPanel extends JSplitPane {
 
+	private static final double DEFAULT_WEIGHT = 0;
 	private PaletteManager controller;
 	
 	/**
@@ -37,7 +42,6 @@ public class PaletteManagerPanel extends JSplitPane {
 		super(JSplitPane.HORIZONTAL_SPLIT);
 		this.controller = controller;
 		fillUpContentPane();
-		performStartUpLayout();
 	}
 	
 	/**
@@ -45,7 +49,8 @@ public class PaletteManagerPanel extends JSplitPane {
 	 */
 	private void fillUpContentPane() {
 		/** Default instances */
-		PaletteManagerScrollPane panel = new PaletteManagerScrollPane();
+		JScrollPane panel = new JScrollPane();
+		initJScrollPane(panel);
 		
 		// Set default left component
 		JPanel rootPalette = new JPanel();
@@ -60,14 +65,35 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
 		
 		setLeftComponent(tree);
-		panel.setContent(rootPalette);
+		panel.setViewportView(rootPalette);
 		setRightComponent(panel);
+	}
+
+	/**
+	 * Init the ScrollPane component
+	 * @param panel the component
+	 */
+	private void initJScrollPane(JScrollPane panel) {
+		panel.setBackground(Color.WHITE);
+		panel.getVerticalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
+		panel.getVerticalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
+
+		panel.getHorizontalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
+		panel.getHorizontalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
 	}
 
 	/**
 	 * Setup the default layout 
 	 */
-	private void performStartUpLayout() {
+	public void performStartUpLayout() {
 		JTree tree = (JTree) getLeftComponent();
 		
 		/* Tree layout*/
@@ -77,6 +103,7 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.setRootVisible(false);
 		
 		/* Global layout */
+		setResizeWeight(DEFAULT_WEIGHT);
 		setContinuousLayout(true);
 	}
 }

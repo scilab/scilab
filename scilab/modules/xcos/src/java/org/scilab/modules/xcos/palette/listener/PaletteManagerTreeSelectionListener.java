@@ -20,7 +20,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.scilab.modules.xcos.palette.Palette;
-import org.scilab.modules.xcos.palette.view.PaletteManagerScrollPane;
 import org.scilab.modules.xcos.palette.view.PaletteView;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
@@ -30,13 +29,13 @@ import org.scilab.modules.xcos.utils.XcosComponent;
 public class PaletteManagerTreeSelectionListener implements
 		TreeSelectionListener {
 
-	private PaletteManagerScrollPane panel;
+	private JScrollPane panel;
 	
 	/**
 	 * Default constructor
 	 * @param panel The default scrollpane to modify
 	 */
-	public PaletteManagerTreeSelectionListener(PaletteManagerScrollPane panel) {
+	public PaletteManagerTreeSelectionListener(JScrollPane panel) {
 		this.panel = panel;
 	}
 	
@@ -62,7 +61,7 @@ public class PaletteManagerTreeSelectionListener implements
 			// This is a statically configured Palette case
 			PaletteView view = ((Palette) node.getUserObject()).loadView();
 			view.setVisible(true);
-			panel.setContent(view);
+			panel.setViewportView(view);
 			
 			nodeView = panel;
 		} else {
