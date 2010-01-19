@@ -40,6 +40,7 @@ public final class PaletteManagerModel {
 	
 	/**
 	 * Default constructor
+	 * @param controller the associated controller
 	 */
 	public PaletteManagerModel(PaletteManager controller) {
 		this.controller = controller;

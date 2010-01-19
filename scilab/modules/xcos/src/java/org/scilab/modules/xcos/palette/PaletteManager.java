@@ -20,7 +20,6 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Main class for the palette management.
@@ -40,7 +39,7 @@ public final class PaletteManager {
 	private PaletteManagerModel model;
 	
 	/** Default constructor */
-	private PaletteManager() {}
+	private PaletteManager() { }
 	
 	/**
 	 * @param view the view to set
