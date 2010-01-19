@@ -205,7 +205,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			imode = ilib_verbose();
 			ilib_verbose(0) ;
 			id    = link(SCI+"/bin/windows_tools.dll","httpdownload","c");
-			stats = call("httpdownload", url_in, 1, "c", file_out, 2, "c", "out", [1,1], 3, "d");
+			stat  = call("httpdownload", url_in, 1, "c", file_out, 2, "c", "out", [1,1], 3, "d");
 			ulink(id);
 			ilib_verbose(imode);
 			
