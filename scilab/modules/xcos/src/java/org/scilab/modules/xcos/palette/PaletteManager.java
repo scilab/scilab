@@ -72,6 +72,8 @@ public final class PaletteManager {
 			instance.setModel(new PaletteManagerModel(instance));
 			instance.setView(new PaletteManagerView(instance));
 			instance.getModel().loadTree();
+			instance.getView().getTree().revalidate();
+			instance.getView().getPanel().performStartUpLayout();
 		}
 		return instance;
 	}
