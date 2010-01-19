@@ -1,5 +1,5 @@
                 Changes between version 5.2.0 and 5.2.1 of Scilab
-               =================================================
+                =================================================
 
 
 
@@ -15,18 +15,25 @@ Xcos:
 
 * The xml header of an xcos file is checked before any other parsing.
 
-* Superblock masks can now be used and a new window is created when user wants to configure the variable settings.
+* Superblock masks can now be used and a new window is created when user wants 
+  to configure the variable settings.
 
 * A rework to pass checkstyle metrics has been started.
 
 * An update of the jgraphx-1.2.0.7 version has been performed.
 
 * Refactoring:
-    - The port position algorithm has been reworked to take in account default position and calculate placement according to it's default associated side.
-    - The communication with the scilab interpreter is now easier to use and can be synchronous or asynchronous (with callback).
-    - The simulation function identifier is now mapped to an enum to better follow java semantics.
-    - Blocks instanciations are performed through a Factory and reference instances are shared.
-    - Java package (eg namespace) has been added to reduce the number of classes per package and improve readability. 
+    - The port position algorithm has been reworked to take in account default
+       position and calculate placement according to it's default associated
+       side.
+    - The communication with the scilab interpreter is now easier to use and can
+      be synchronous or asynchronous (with callback).
+    - The simulation function identifier is now mapped to an enum to better 
+      follow java semantics.
+    - Blocks instanciations are performed through a Factory and reference
+      instances are shared.
+    - Java package (eg namespace) has been added to reduce the number of classes
+      per package and improve readability.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -48,7 +55,8 @@ Xcos:
 
 * bug 5626 fixed - The VoltageSensor port positions were not right.
 
-* bug 5627 fixed - It was not possible to place a port in a non-conventionnal side.
+* bug 5627 fixed - It was not possible to place a port in a non-conventionnal
+                   side.
 
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
@@ -173,7 +181,10 @@ Bug fixes:
 
 * bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
 
-* bug 6461 fixed - Scilab External function executed by scifunction may make Scilab crash when they produce an error.
+* bug 6461 fixed - Scilab External function executed by scifunction may make
+                   Scilab crash when they produce an error.
+
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
