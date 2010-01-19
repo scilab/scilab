@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2010 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -23,6 +24,11 @@
 #define MO 0x100000 /* Read 1 Mo by 1Mo. */
 static BOOL isValidURL(char * szURL);
 /*--------------------------------------------------------------------------*/
+void httpdownload(char * szURL,char * szSaveFilePath, double *ierr)
+{
+	*ierr = httpDownloadFile(szURL, szSaveFilePath);
+}
+/*--------------------------------------------------------------------------*/
 httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 {
 	if (isValidURL(szURL))
@@ -31,8 +37,8 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 		/* * / * : /*rfc 2616 protocole http.  all files type accepted*/
 		char szHeader[]="Accept: */*\r\n\r\n"; 
 		HINTERNET hiDownload;
-		
-		hiConnex = InternetOpen("Scilab_Download",INTERNET_OPEN_TYPE_DIRECT,NULL,NULL,0);
+
+		hiConnex = InternetOpen("Scilab_Download",INTERNET_OPEN_TYPE_PRECONFIG,NULL,NULL,0);
 		if(hiConnex == NULL) return HTTP_DOWNLOAD_ERROR_INTERNET_OPEN;
 
 		if(!(hiDownload = InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
@@ -152,7 +158,7 @@ static BOOL isValidURL(char *szURL)
 	/* * / * : /*rfc 2616 protocole http.  all files type accepted*/
 	char szHeader[]="Accept: */*\r\n\r\n"; 
 	HINTERNET hiDownload;
-	
+
 	DWORD dwStatus = 0;
 	DWORD dwStatusSize = sizeof(dwStatus);
 	DWORD dwIndex = 0;
@@ -170,7 +176,7 @@ static BOOL isValidURL(char *szURL)
 		InternetCloseHandle(hiConnex);
 		return FALSE;
 	}
-	
+
 	HttpQueryInfo(hiDownload, HTTP_QUERY_STATUS_CODE|HTTP_QUERY_FLAG_NUMBER, &dwStatus, &dwStatusSize, &dwIndex);
 	InternetCloseHandle(hiConnex);
 	InternetCloseHandle(hiDownload);
