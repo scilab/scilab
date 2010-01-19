@@ -19,7 +19,7 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.FigureMapper;
-import org.scilab.modules.renderer.jni.FigureScilabCall;
+import org.scilab.modules.renderer.FigureScilabCall;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
