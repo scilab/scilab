@@ -84,14 +84,11 @@ src/c/inittypenames.c \
 src/c/funcprot.c \
 src/c/eqid.c
 
-CORE_CPP_SOURCES = 
-src/cpp/hashtable_core.cpp
-
+CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
 endif
-
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
@@ -298,6 +295,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/libs/MALLOC/includes/ 
 
 # Used by sci_getdebuginfo:
