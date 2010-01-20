@@ -177,6 +177,8 @@ Bug fixes:
                    returned a error message on stderr previously 
                    (5.1) there was no message.
 
+* bug 6399 fixed - m2sci failed and returs error 240.
+
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
