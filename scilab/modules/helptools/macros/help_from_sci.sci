@@ -262,9 +262,9 @@ while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(lin
     code=in;  // store original line for the demos.
 	if (doing~='Examples') then // Replacing characters like <, > or & should not be done in the Examples
 	  in=strsubst(in,'&','&amp;'); // remove elements that make xml crash.
-	  in=strsubst(in,'< ','&lt;'); 
+	  in=strsubst(in,'< ','&lt; ');
 	  if strindex(in,'<') then if isempty(regexp(in,'/\<*[a-z]\>/')) then in=strsubst(in,'<','&lt;'); end; end    
-	  in=strsubst(in,' >','&gt;');    
+	  in=strsubst(in,' >',' &gt;');
 	  if strindex(in,'>') then if isempty(regexp(in,'/\<*[a-z]\>/')) then in=strsubst(in,'>','&gt;'); end; end    
     end
   end
