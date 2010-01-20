@@ -1,8 +1,0 @@
-syntax.cmo: 
-syntax.cmx: 
-linenum.cmo: 
-linenum.cmx: 
-parser.cmo: syntax.cmo 
-parser.cmx: syntax.cmx 
-lexer.cmo: parser.cmo 
-lexer.cmx: parser.cmx 

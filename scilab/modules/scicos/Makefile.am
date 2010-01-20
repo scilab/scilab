@@ -7,8 +7,6 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-# SUBDIRS = src/ocaml/
-
 #### Target ######
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
@@ -17,6 +15,9 @@ libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 
 include $(top_srcdir)/Makefile.incl.am
+
+# Build modelica stuff
+include $(srcdir)/Makefile.modelica.am
 
 
 if SCICOS
@@ -231,85 +232,6 @@ libsciscicos_la_help_en_US_DATA =
 
 libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
 libsciscicos_la_help_fr_FR_DATA = 
-
-######### Modelica #############
-
-if OCAML
-TARGET = modelicac
-
-bin_PROGRAMS = $(TARGET)
-modelicac_SOURCES = $(MLS)
-
-OCAMLLIBS=nums.cma
-
-MLS = $(srcdir)/src/modelica_compiler/parseTree.ml $(srcdir)/src/modelica_compiler/linenum.ml $(srcdir)/src/modelica_compiler/parser.ml $(srcdir)/src/modelica_compiler/lexer.ml\
-	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
-	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
-	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
-	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
-	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
-
-MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
-	$(srcdir)/src/modelica_compiler/precompilation.mli $(srcdir)/src/modelica_compiler/compilation.mli $(srcdir)/src/modelica_compiler/instantiation.mli\
-	$(srcdir)/src/modelica_compiler/graphNodeSet.mli $(srcdir)/src/modelica_compiler/symbolicExpression.mli \
-	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli $(srcdir)/src/modelica_compiler/bipartiteGraph.mli $(srcdir)/src/modelica_compiler/hungarianMethod.mli \
-	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
-	$(srcdir)/src/modelica_compiler/optimization.mli \
-	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
-	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
-
-
-PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
-LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
-BASE_PATH = $(srcdir)/src/modelica_compiler
-INCLUDE = -I $(BASE_PATH)
-
-SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
-
-# @TODO check how to avoid the rebuild of the parser/lexer
-
-.ml.cmo:
-	$(OCAMLC) $(INCLUDE)  -c $<
-
-.ml.cmx:
-	$(OCAMLOPT) $(INCLUDE) -c $<
-
-.mli.cmi:
-	$(OCAMLC) $(INCLUDE) -c $<
-
-.mll.ml:
-	$(OCAMLLEX) $<
-
-.mly.ml:
-	$(OCAMLYACC) $<
-
-# call the ocaml/Yacc
-generate-parser: $(PARSER_SRC)
-	$(OCAMLYACC) $(<)
-	$(RM) -f $(<:.mly=.mli)
-
-# Call the lexer
-generate-lexer: $(LEXER_SRC)
-	$(OCAMLLEX) $(<)
-
-# Build the binary
-$(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
-
-
-CLEANFILES = $(BASE_PATH)/*.cmi \
-	$(BASE_PATH)/*.o \
-	$(BASE_PATH)/*.cmo \
-	$(BASE_PATH)/*.cm[aiox] \
-	$(BASE_PATH)/parser.mli \
-	$(BASE_PATH)/lexer.mli \
-	$(BASE_PATH)/parser.ml \
-	$(BASE_PATH)/lexer.ml \
-	$(TARGET)
-
-endif # OCAML
 
 else
 
