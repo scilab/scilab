@@ -1953,3 +1953,5 @@ Bug fixes:
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
+
+* bug 6468 fixed - wrong check in dnaupd.
