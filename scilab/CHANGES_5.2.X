@@ -97,10 +97,10 @@ Compilation:
   AC_JAVA_CHECK_VERSION_PACKAGE has been added to check the version of Java
   packages used
 
-* Check of the version of jgraphx added (1.2.0.X)
+* Check of the version of jgraphx added (Min: 1.2.0.7)
 
-* bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
-                   libraries
+* bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
+                   looking for Java libraries (Fedora 12 for example)
 
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
