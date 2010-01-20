@@ -38,12 +38,6 @@ extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
 /*-----------------------------------------------------------------------------------*/
 using namespace scilab::core;
 /*-----------------------------------------------------------------------------------*/
-extern "C"{
-	void enable_sort_hashtable_scilab_functions(void)
-	{
-	}
-}
-/*-----------------------------------------------------------------------------------*/
 namespace {
 	struct entry
 	{
