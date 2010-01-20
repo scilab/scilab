@@ -216,20 +216,43 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 
 					if (!FileExistW(pStVarTwo))
 					{
-						char *filename = wide_string_to_UTF8(pStVarTwo);
-						if (filename)
+						if (Lhs == 2)
 						{
-							Scierror(999,_("%s: The file \"%s\" does not exist.\n"),fname, filename);
-							FREE(filename);
-							filename = NULL;
+							double dOutErrCode = 240.;
+							int m_out = 1,  n_out = 1;
+
+							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+							if(sciErr.iErr)
+							{
+								printError(&sciErr, 0);
+								return 0;
+							}
+
+							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, m_out, n_out, &dOutErrCode);
+							if(sciErr.iErr)
+							{
+								printError(&sciErr, 0);
+								return 0;
+							}
+
+							LhsVar(2) = Rhs + 2;
+							LhsVar(1) = Rhs + 1;
+							C2F(putlhsvar)();
 						}
 						else
 						{
-							Scierror(999,_("%s: The file does not exist.\n"),fname);
+							char *filename = wide_string_to_UTF8(pStVarTwo);
+							if (filename)
+							{
+								Scierror(240, _("%s: The file \"%s\" does not exist.\n"),fname, filename);
+								FREE(filename);
+								filename = NULL;
+							}
+							else
+							{
+								Scierror(240, _("%s: The file does not exist.\n"),fname);
+							}
 						}
-
-						FREE(pStVarTwo); pStVarTwo = NULL;
-
 						return 0;
 					}
 
