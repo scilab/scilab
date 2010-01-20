@@ -24,8 +24,6 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-# SUBDIRS = src/ocaml/
-
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
@@ -69,6 +67,8 @@ DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 @OCAML_TRUE@@SCICOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
+
+########## COMMON
 @OCAML_TRUE@@SCICOS_TRUE@am__append_2 = .ml .mli .mll .mly .cmo .cmi .cmx
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -290,7 +290,8 @@ libscisundials_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	-o $@
 @SCICOS_TRUE@am_libscisundials_la_rpath = -rpath $(pkglibdir)
 @OCAML_TRUE@@SCICOS_TRUE@am__EXEEXT_1 = modelicac$(EXEEXT) \
-@OCAML_TRUE@@SCICOS_TRUE@	XML2Modelica$(EXEEXT)
+@OCAML_TRUE@@SCICOS_TRUE@	XML2Modelica$(EXEEXT) \
+@OCAML_TRUE@@SCICOS_TRUE@	translator$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS)
 am__XML2Modelica_SOURCES_DIST = $(srcdir)/src/xml2modelica/xMLTree.ml \
 	$(srcdir)/src/xml2modelica/linenum.ml \
@@ -306,6 +307,9 @@ XML2Modelica_OBJECTS = $(am_XML2Modelica_OBJECTS)
 XML2Modelica_LDADD = $(LDADD)
 am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/parseTree.ml \
+	$(srcdir)/src/modelica_compiler/linenum.ml \
+	$(srcdir)/src/modelica_compiler/parser.ml \
+	$(srcdir)/src/modelica_compiler/lexer.ml \
 	$(srcdir)/src/modelica_compiler/precompilation.ml \
 	$(srcdir)/src/modelica_compiler/compilation.ml \
 	$(srcdir)/src/modelica_compiler/instantiation.ml \
@@ -322,6 +326,20 @@ am__modelicac_SOURCES_DIST =  \
 @OCAML_TRUE@@SCICOS_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
 modelicac_LDADD = $(LDADD)
+am__translator_SOURCES_DIST =  \
+	$(srcdir)/src/translator/compilation/types.ml \
+	$(srcdir)/src/translator/compilation/nameResolve.ml \
+	$(srcdir)/src/translator/instantiation/instantiation.ml \
+	$(srcdir)/src/translator/exceptionHandling/msgDico.ml \
+	$(srcdir)/src/translator/exceptionHandling/errorDico.ml \
+	$(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
+	$(srcdir)/src/translator/translation/libraryManager.ml \
+	$(srcdir)/src/translator/translation/codeGeneration.ml \
+	$(srcdir)/src/translator/translation/versiondate.ml \
+	$(srcdir)/src/translator/translation/translator.ml
+@OCAML_TRUE@@SCICOS_TRUE@am_translator_OBJECTS = $(am__objects_7)
+translator_OBJECTS = $(am_translator_OBJECTS)
+translator_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -343,10 +361,12 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciscicos_la_SOURCES) $(libscisundials_la_SOURCES) \
-	$(XML2Modelica_SOURCES) $(modelicac_SOURCES)
+	$(XML2Modelica_SOURCES) $(modelicac_SOURCES) \
+	$(translator_SOURCES)
 DIST_SOURCES = $(am__libsciscicos_la_SOURCES_DIST) \
 	$(am__libscisundials_la_SOURCES_DIST) \
-	$(am__XML2Modelica_SOURCES_DIST) $(am__modelicac_SOURCES_DIST)
+	$(am__XML2Modelica_SOURCES_DIST) $(am__modelicac_SOURCES_DIST) \
+	$(am__translator_SOURCES_DIST)
 DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
 	$(libsciscicos_la_help_fr_FR_DATA) \
 	$(libsciscicos_la_root_DATA) \
@@ -593,6 +613,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
+# TODO:
+# * see if we can do more factorisation (on the lexer for example)
+# * translator must be renamed
+#
 #### Target ######
 modulename = scicos
 DISABLE_HELP_CLEAN = yes
@@ -876,36 +900,103 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 
 ######### Modelica #############
-@OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac XML2Modelica
+@OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac XML2Modelica translator
+@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = $(srcdir)/src/
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
-@OCAML_TRUE@@SCICOS_TRUE@XML2Modelica_SOURCES = $(MLS_XML2Modelica)
+@OCAML_TRUE@@SCICOS_TRUE@translator_SOURCES = $(MLS_translator)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
+
+### XML2Modelica
+@OCAML_TRUE@@SCICOS_TRUE@XML2Modelica_SOURCES = $(MLS_XML2Modelica)
 @OCAML_TRUE@@SCICOS_TRUE@MLS_XML2Modelica = $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
 @OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
 
+@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
+
+### Translator 
+@OCAML_TRUE@@SCICOS_TRUE@MLS_translator = $(srcdir)/src/translator/compilation/types.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/compilation/nameResolve.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/instantiation/instantiation.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/errorDico.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/translation/libraryManager.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/translation/codeGeneration.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/translation/versiondate.ml \
+@OCAML_TRUE@@SCICOS_TRUE@ $(srcdir)/src/translator/translation/translator.ml
+
+@OCAML_TRUE@@SCICOS_TRUE@MLS_SPECIFIC_PRE_translator = $(srcdir)/src/translator/parsing/syntax.ml \
+@OCAML_TRUE@@SCICOS_TRUE@$(srcdir)/src/translator/parsing/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@$(srcdir)/src/translator/parsing/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@$(srcdir)/src/translator/parsing/linenum.ml
+
+@OCAML_TRUE@@SCICOS_TRUE@PARSER_SRC_translator = $(srcdir)/src/translator/parsing/parser.mly
+@OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC_translator = $(srcdir)/src/translator/parsing/lexer.mll
+@OCAML_TRUE@@SCICOS_TRUE@INCLUDE_translator = -I $(srcdir)/src/translator/compilation \
+@OCAML_TRUE@@SCICOS_TRUE@-I $(srcdir)/src/translator/exceptionHandling \
+@OCAML_TRUE@@SCICOS_TRUE@-I $(srcdir)/src/translator/parsing \
+@OCAML_TRUE@@SCICOS_TRUE@-I $(srcdir)/src/translator/instantiation \
+@OCAML_TRUE@@SCICOS_TRUE@-I $(srcdir)/src/translator/translation
+
+
+### Modelicac
 @OCAML_TRUE@@SCICOS_TRUE@MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
-@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
-@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/linenum.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/compilation.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/instantiation.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/symbolicExpression.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/bipartiteGraph.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/hungarianMethod.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
 @OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml 
 
-@OCAML_TRUE@@SCICOS_TRUE@MLS_SPECIFIC_PRE = $(srcdir)/src/modelica_compiler/linenum.ml  $(srcdir)/src/modelica_compiler/parser.ml   $(srcdir)/src/modelica_compiler/lexer.ml 
-@OCAML_TRUE@@SCICOS_TRUE@MLS_SPECIFIC_POST = $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
+
+# This is a basic copy of MLS with some elements removed
+@OCAML_TRUE@@SCICOS_TRUE@MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/precompilation.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/compilation.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/instantiation.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/graphNodeSet.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/symbolicExpression.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/bipartiteGraph.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/hungarianMethod.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimization.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
+
 @OCAML_TRUE@@SCICOS_TRUE@PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 @OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
 @OCAML_TRUE@@SCICOS_TRUE@BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
-@OCAML_TRUE@@SCICOS_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 @OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
-@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.o \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cmo \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cm[aiox] \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.mli \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.ml \
-@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*/*.cmi \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/*.o \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/*.cmo \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/*.cm[aiox] \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/parser.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/lexer.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.cmi \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.o \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.a \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.cmo \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.cmxa \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/*.cm[aiox] \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/parser.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/lexer.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/translator/*/lexer.ml \
 @OCAML_TRUE@@SCICOS_TRUE@	$(TARGET)
 
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
@@ -1033,6 +1124,12 @@ clean-binPROGRAMS:
 @SCICOS_FALSE@modelicac$(EXEEXT): $(modelicac_OBJECTS) $(modelicac_DEPENDENCIES) 
 @SCICOS_FALSE@	@rm -f modelicac$(EXEEXT)
 @SCICOS_FALSE@	$(LINK) $(modelicac_OBJECTS) $(modelicac_LDADD) $(LIBS)
+@OCAML_FALSE@translator$(EXEEXT): $(translator_OBJECTS) $(translator_DEPENDENCIES) 
+@OCAML_FALSE@	@rm -f translator$(EXEEXT)
+@OCAML_FALSE@	$(LINK) $(translator_OBJECTS) $(translator_LDADD) $(LIBS)
+@SCICOS_FALSE@translator$(EXEEXT): $(translator_OBJECTS) $(translator_DEPENDENCIES) 
+@SCICOS_FALSE@	@rm -f translator$(EXEEXT)
+@SCICOS_FALSE@	$(LINK) $(translator_OBJECTS) $(translator_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -2247,13 +2344,40 @@ distclean-local:
 # @TODO check how to avoid the rebuild of the parser/lexer
 
 @OCAML_TRUE@@SCICOS_TRUE@.ml.cmo:
-@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLC) $(INCLUDE)  -c $<
+@OCAML_TRUE@@SCICOS_TRUE@	@if echo "$<"|grep src/translator; then \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE_translator)  -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE_translator)  -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	else \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE)  -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE)  -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	fi
 
 @OCAML_TRUE@@SCICOS_TRUE@.ml.cmx:
-@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) $(INCLUDE) -c $<
+@OCAML_TRUE@@SCICOS_TRUE@	@if echo "$<"|grep src/translator; then \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	else \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLOPT) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	fi
 
 @OCAML_TRUE@@SCICOS_TRUE@.mli.cmi:
-@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLC) $(INCLUDE) -c $<
+@OCAML_TRUE@@SCICOS_TRUE@	@if echo "$<"|grep src/translator; then \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	else \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	fi
+
+@OCAML_TRUE@@SCICOS_TRUE@.ml.mli:
+@OCAML_TRUE@@SCICOS_TRUE@	@if echo "$<"|grep src/translator; then \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	else \
+@OCAML_TRUE@@SCICOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@SCICOS_TRUE@	fi
 
 @OCAML_TRUE@@SCICOS_TRUE@.mll.ml:
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLLEX) $<
@@ -2271,12 +2395,24 @@ distclean-local:
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLLEX) $(<)
 
 # Build the binaries
-@OCAML_TRUE@@SCICOS_TRUE@modelicac: generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
+
+@OCAML_TRUE@@SCICOS_TRUE@modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
 
 @OCAML_TRUE@@SCICOS_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
-@OCAML_TRUE@@SCICOS_TRUE@	echo "plop"
 @OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
+
+# call the ocaml/Yacc
+@OCAML_TRUE@@SCICOS_TRUE@generate-parser_translator: $(PARSER_SRC_translator)
+@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLYACC) $(<)
+@OCAML_TRUE@@SCICOS_TRUE@	$(RM) -f $(<:.mly=.mli)
+
+# Call the lexer
+@OCAML_TRUE@@SCICOS_TRUE@generate-lexer_translator: $(LEXER_SRC_translator)
+@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLLEX) $(<)
+
+@OCAML_TRUE@@SCICOS_TRUE@translator: generate-parser_translator generate-lexer_translator $(MLS_SPECIFIC_PRE_translator:.ml=.cmo)  $(MLS_translator:.ml=.mli) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmo)  $(MLS_translator:.ml=.cmx) 
+@OCAML_TRUE@@SCICOS_TRUE@	$(OCAMLOPT) -o translator $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
 
 .NOTPARALLEL: libscisundials.la libsciscicos.la
 

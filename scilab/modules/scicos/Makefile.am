@@ -7,8 +7,10 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-# SUBDIRS = src/ocaml/
-
+# TODO:
+# * see if we can do more factorisation (on the lexer for example)
+# * translator must be renamed
+#
 #### Target ######
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
@@ -235,47 +237,137 @@ libsciscicos_la_help_fr_FR_DATA =
 ######### Modelica #############
 
 if OCAML
-TARGET = modelicac XML2Modelica
-
+TARGET = modelicac XML2Modelica translator
+BASE_PATH = $(srcdir)/src/
 bin_PROGRAMS = $(TARGET)
 modelicac_SOURCES = $(MLS)
-XML2Modelica_SOURCES = $(MLS_XML2Modelica)
+translator_SOURCES = $(MLS_translator)
 
 OCAMLLIBS=nums.cma
 
+
+### XML2Modelica
+
+XML2Modelica_SOURCES = $(MLS_XML2Modelica)
 MLS_XML2Modelica= $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
 	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
 
+BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
+
+
+### Translator 
+MLS_translator =  $(srcdir)/src/translator/compilation/types.ml \
+ $(srcdir)/src/translator/compilation/nameResolve.ml \
+ $(srcdir)/src/translator/instantiation/instantiation.ml \
+ $(srcdir)/src/translator/exceptionHandling/msgDico.ml \
+ $(srcdir)/src/translator/exceptionHandling/errorDico.ml \
+ $(srcdir)/src/translator/exceptionHandling/exceptHandler.ml \
+ $(srcdir)/src/translator/translation/libraryManager.ml \
+ $(srcdir)/src/translator/translation/codeGeneration.ml \
+ $(srcdir)/src/translator/translation/versiondate.ml \
+ $(srcdir)/src/translator/translation/translator.ml
+
+
+MLS_SPECIFIC_PRE_translator = $(srcdir)/src/translator/parsing/syntax.ml \
+$(srcdir)/src/translator/parsing/parser.ml \
+$(srcdir)/src/translator/parsing/lexer.ml \
+$(srcdir)/src/translator/parsing/linenum.ml
+
+PARSER_SRC_translator = $(srcdir)/src/translator/parsing/parser.mly
+LEXER_SRC_translator = $(srcdir)/src/translator/parsing/lexer.mll
+
+
+INCLUDE_translator = -I $(srcdir)/src/translator/compilation \
+-I $(srcdir)/src/translator/exceptionHandling \
+-I $(srcdir)/src/translator/parsing \
+-I $(srcdir)/src/translator/instantiation \
+-I $(srcdir)/src/translator/translation
+
+### Modelicac
 MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
-	$(srcdir)/src/modelica_compiler/precompilation.ml $(srcdir)/src/modelica_compiler/compilation.ml $(srcdir)/src/modelica_compiler/instantiation.ml\
-	$(srcdir)/src/modelica_compiler/graphNodeSet.ml $(srcdir)/src/modelica_compiler/symbolicExpression.ml\
-	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml $(srcdir)/src/modelica_compiler/bipartiteGraph.ml $(srcdir)/src/modelica_compiler/hungarianMethod.ml\
-	$(srcdir)/src/modelica_compiler/causalityGraph.ml\
-	$(srcdir)/src/modelica_compiler/optimization.ml  $(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml $(srcdir)/src/modelica_compiler/optimizingCompiler.ml\
+	$(srcdir)/src/modelica_compiler/linenum.ml \
+	$(srcdir)/src/modelica_compiler/parser.ml \
+	$(srcdir)/src/modelica_compiler/lexer.ml \
+	$(srcdir)/src/modelica_compiler/precompilation.ml \
+	$(srcdir)/src/modelica_compiler/compilation.ml \
+	$(srcdir)/src/modelica_compiler/instantiation.ml \
+	$(srcdir)/src/modelica_compiler/graphNodeSet.ml \
+	$(srcdir)/src/modelica_compiler/symbolicExpression.ml \
+	$(srcdir)/src/modelica_compiler/squareSparseMatrix.ml \
+	$(srcdir)/src/modelica_compiler/bipartiteGraph.ml \
+	$(srcdir)/src/modelica_compiler/hungarianMethod.ml \
+	$(srcdir)/src/modelica_compiler/causalityGraph.ml \
+	$(srcdir)/src/modelica_compiler/optimization.ml \
+	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
+	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
 	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml 
 
-MLS_SPECIFIC_PRE = $(srcdir)/src/modelica_compiler/linenum.ml  $(srcdir)/src/modelica_compiler/parser.ml   $(srcdir)/src/modelica_compiler/lexer.ml 
+# This is a basic copy of MLS with some elements removed
+MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
+	$(srcdir)/src/modelica_compiler/precompilation.mli \
+	$(srcdir)/src/modelica_compiler/compilation.mli \
+	$(srcdir)/src/modelica_compiler/instantiation.mli \
+	$(srcdir)/src/modelica_compiler/graphNodeSet.mli \
+	$(srcdir)/src/modelica_compiler/symbolicExpression.mli \
+	$(srcdir)/src/modelica_compiler/squareSparseMatrix.mli \
+	$(srcdir)/src/modelica_compiler/bipartiteGraph.mli \
+	$(srcdir)/src/modelica_compiler/hungarianMethod.mli \
+	$(srcdir)/src/modelica_compiler/causalityGraph.mli \
+	$(srcdir)/src/modelica_compiler/optimization.mli \
+	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
+	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
 
-MLS_SPECIFIC_POST = $(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
 BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
-BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
+
 INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 
+########## COMMON
 SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
+
 
 # @TODO check how to avoid the rebuild of the parser/lexer
 
 .ml.cmo:
-	$(OCAMLC) $(INCLUDE)  -c $<
+	@if echo "$<"|grep src/translator; then \
+		echo $(OCAMLC) $(INCLUDE_translator)  -c $<; \
+		$(OCAMLC) $(INCLUDE_translator)  -c $<; \
+	else \
+		echo $(OCAMLC) $(INCLUDE)  -c $<; \
+		$(OCAMLC) $(INCLUDE)  -c $<; \
+	fi
 
 .ml.cmx:
-	$(OCAMLOPT) $(INCLUDE) -c $<
+	@if echo "$<"|grep src/translator; then \
+		echo $(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+		$(OCAMLOPT) $(INCLUDE_translator) -c $<; \
+	else \
+		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
+		$(OCAMLOPT) $(INCLUDE) -c $<; \
+	fi
+
 
 .mli.cmi:
-	$(OCAMLC) $(INCLUDE) -c $<
+	@if echo "$<"|grep src/translator; then \
+		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+	else \
+		echo $(OCAMLC) $(INCLUDE) -c $<; \
+		$(OCAMLC) $(INCLUDE) -c $<; \
+	fi
+
+.ml.mli:
+	@if echo "$<"|grep src/translator; then \
+		echo $(OCAMLC) $(INCLUDE_translator) -c $<; \
+		$(OCAMLC) $(INCLUDE_translator) -c $<; \
+	else \
+		echo $(OCAMLC) $(INCLUDE) -c $<; \
+		$(OCAMLC) $(INCLUDE) -c $<; \
+	fi
+
 
 .mll.ml:
 	$(OCAMLLEX) $<
@@ -293,21 +385,46 @@ generate-lexer: $(LEXER_SRC)
 	$(OCAMLLEX) $(<)
 
 # Build the binaries
-modelicac: generate-parser generate-lexer $(MLS:.ml=.cmi) $(MLS_SPECIFIC_PRE:.ml=.cmo) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmo) $(MLS_SPECIFIC_POST:.ml=.cmx) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx) 
+
+modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
 	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
 
 XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
 	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
 
 
-CLEANFILES = $(BASE_PATH)/*.cmi \
-	$(BASE_PATH)/*.o \
-	$(BASE_PATH)/*.cmo \
-	$(BASE_PATH)/*.cm[aiox] \
-	$(BASE_PATH)/parser.mli \
-	$(BASE_PATH)/lexer.mli \
-	$(BASE_PATH)/parser.ml \
-	$(BASE_PATH)/lexer.ml \
+
+# call the ocaml/Yacc
+generate-parser_translator: $(PARSER_SRC_translator)
+	$(OCAMLYACC) $(<)
+	$(RM) -f $(<:.mly=.mli)
+
+# Call the lexer
+generate-lexer_translator: $(LEXER_SRC_translator)
+	$(OCAMLLEX) $(<)
+
+translator: generate-parser_translator generate-lexer_translator $(MLS_SPECIFIC_PRE_translator:.ml=.cmo)  $(MLS_translator:.ml=.mli) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmo)  $(MLS_translator:.ml=.cmx) 
+	$(OCAMLOPT) -o translator $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
+
+
+CLEANFILES = $(BASE_PATH)/*/*.cmi \
+	$(BASE_PATH)/*/*.o \
+	$(BASE_PATH)/*/*.cmo \
+	$(BASE_PATH)/*/*.cm[aiox] \
+	$(BASE_PATH)/*/parser.mli \
+	$(BASE_PATH)/*/lexer.mli \
+	$(BASE_PATH)/*/parser.ml \
+	$(BASE_PATH)/*/lexer.ml \
+	$(BASE_PATH)/translator/*/*.cmi \
+	$(BASE_PATH)/translator/*/*.o \
+	$(BASE_PATH)/translator/*/*.a \
+	$(BASE_PATH)/translator/*/*.cmo \
+	$(BASE_PATH)/translator/*/*.cmxa \
+	$(BASE_PATH)/translator/*/*.cm[aiox] \
+	$(BASE_PATH)/translator/*/parser.mli \
+	$(BASE_PATH)/translator/*/lexer.mli \
+	$(BASE_PATH)/translator/*/parser.ml \
+	$(BASE_PATH)/translator/*/lexer.ml \
 	$(TARGET)
 
 endif # OCAML
