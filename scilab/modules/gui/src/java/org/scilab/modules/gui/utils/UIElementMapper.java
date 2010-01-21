@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * This object is used to map an element ID to an UIElement
- * It is used when we want to acces a Java object from Scilab which knows an object just thru its ID
+ * It is used when we want to access a Java object from Scilab which knows an object just thru its ID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,7 +20,7 @@ import org.scilab.modules.gui.uielement.UIElement;
 
 /**
  * This object is used to map an element ID to an UIElement
- * It is used when we want to acces a Java object from Scilab which knows an object just thru its ID
+ * It is used when we want to access a Java object from Scilab which knows an object just thru its ID
  * @author Vincent COUVERT
  */
 public final class UIElementMapper {

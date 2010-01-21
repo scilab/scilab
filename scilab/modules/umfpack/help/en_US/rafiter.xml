@@ -17,7 +17,7 @@
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>a real symetric positive definite sparse matrix</para>
+          <para>a real symmetric positive definite sparse matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>

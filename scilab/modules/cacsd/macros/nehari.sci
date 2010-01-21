@@ -53,7 +53,7 @@ function [nk]=nophkel(sl,tol)
   if sl==0 then nk=0,return,end,
   lf=spec(sl(2)),
   if mini(abs(lf))<=tol then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"),"nehari",1))
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"),"nehari",1))
   end,
   if maxi(real(lf))<tol then nk=0,return,end,
   sl=dtsi(sl);

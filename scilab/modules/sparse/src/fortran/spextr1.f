@@ -19,7 +19,7 @@
 *            
 *     CAUTION
 *        nel_max is the maximum non zeros elements authorized
-*        for B => if this limit is not enought the error
+*        for B => if this limit is not enough the error
 *        indicator ierr is set to -1 (else 0) 
 *
 *     AUTHOR
@@ -63,7 +63,7 @@
          B_mnel(1) = kb - 1
 
       else
-         call sz2ptr(A_mnel, A_m-1, ptr)  ! need ptr to acces fastly at the beginning of a row 
+         call sz2ptr(A_mnel, A_m-1, ptr)  ! need ptr to access fastly at the beginning of a row 
 
          if (A_n .gt. 1) then
             do k = 1, ni

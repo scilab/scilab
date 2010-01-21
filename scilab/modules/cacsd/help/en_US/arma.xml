@@ -146,7 +146,7 @@ end
 
 //-- visualization of the results
 plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
-legend(["Using macro mese";"Theoritical value";"Arma identifcation"])
+legend(["Using macro mese";"Theoretical value";"Arma identification"])
 xtitle("Spectral power","frequency","spectral estimate")
  ]]></programlisting>
   </refsection>
