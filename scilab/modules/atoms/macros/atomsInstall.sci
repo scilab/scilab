@@ -264,7 +264,7 @@ function result = atomsInstall(packages,section)
 	
 	// Force update the system informations
 	// =========================================================================
-	atomsGetTOOLBOXES(%T)
+	atomsDESCRIPTIONget(%T)
 	
 	// Get the install list
 	// =========================================================================

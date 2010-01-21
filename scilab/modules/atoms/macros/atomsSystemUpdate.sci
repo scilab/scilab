@@ -21,6 +21,6 @@ function atomsSystemUpdate()
 	
 	// Check write access on allusers zone
 	// =========================================================================
-	atomsGetTOOLBOXES(%T);
+	atomsDESCRIPTIONget(%T);
 	
 endfunction

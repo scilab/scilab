@@ -11,7 +11,7 @@
 
 // Return the full packages of the TOOLBOXES present in the differents repositories
 
-function packages = atomsGetTOOLBOXES(update)
+function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 	
 	// Check input parameters
 	// =========================================================================
@@ -19,11 +19,11 @@ function packages = atomsGetTOOLBOXES(update)
 	rhs  = argn(2);
 	
 	if rhs > 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsGetTOOLBOXES",1));
+		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsDESCRIPTIONget",1));
 	end
 	
 	if (rhs == 1) & (type(update) <> 4) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetTOOLBOXES",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsDESCRIPTIONget",1));
 	end
 	
 	// packages file path definition
@@ -137,7 +137,7 @@ function packages = atomsGetTOOLBOXES(update)
 			[rep,stat,err] = unix_g(extract_cmd);
 			
 			if stat ~= 0 then
-				error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsGetTOOLBOXES",file_out));
+				error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsDESCRIPTIONget",file_out));
 			end
 			
 			description_files = [ description_files ; strsubst(file_out,"/\.gz$/","","r") repositories(i) ];
@@ -199,7 +199,7 @@ function packages = atomsGetTOOLBOXES(update)
 	// =========================================================================
 	
 	else
-		load(packages_path,"packages");
+		load(packages_path,"packages","categories","categories_flat");
 	end
 	
 endfunction

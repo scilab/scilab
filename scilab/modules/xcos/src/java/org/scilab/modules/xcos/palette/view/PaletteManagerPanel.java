@@ -100,7 +100,7 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.expandRow(0);
 		tree.setMinimumSize(tree.getPreferredSize());
 		tree.setSelectionRow(1);
-		tree.setRootVisible(false);
+		tree.setRootVisible(true);
 		
 		/* Global layout */
 		setResizeWeight(DEFAULT_WEIGHT);
