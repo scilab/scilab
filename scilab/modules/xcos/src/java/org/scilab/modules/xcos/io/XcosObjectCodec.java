@@ -30,15 +30,11 @@ public class XcosObjectCodec extends mxObjectCodec {
     protected static final String STYLE = "style";
     private static final String ROTATION = "rotation";
     private static final String DIRECTION = "direction";
-    private static final String NORTH = "north";
     private static final String WEST = "west";
     private static final String SOUTH = "south";
     private static final String EAST = "east";
-    private static final String COMMAND = "ControlPort";
-    private static final String CONTROL = "CommandPort";
     
     private static final int DIRECTION_STEP = 90;
-    private static final int MAX_ROTATION = 360;
 
 	/**
 	 * The constructor used on for configuration
