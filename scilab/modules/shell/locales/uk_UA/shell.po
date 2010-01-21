@@ -1,0 +1,87 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-01-16 18:20+0000\n"
+"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr "%s: не реалізовано у цьому режимі.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s: цю можливість ще не реалізовано у цьому режимі.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: цю можливість ще не реалізовано.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: помилкова кількість вихідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d.\n"
+
+msgid "File or Directory"
+msgstr "Файл або каталог"
+
+msgid "Graphics handle field"
+msgstr "Поле елемента керування графіки"
+
+msgid "Scilab Command"
+msgstr "Команда Scilab"
+
+msgid "Scilab Function"
+msgstr "Функція Scilab"
+
+msgid "Scilab Macro"
+msgstr "Макрос Scilab"
+
+msgid "Scilab Variable"
+msgstr "Змінна Scilab"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Введіть «%s» або «%s», щоб повернутися на стандартний рівень запиту "
+"командного рядка.\n"
+"\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Продовжити показ? Натисніть клавішу «n» (ні), щоб зупинити показ, або будь-"
+"яку іншу клавішу, щоб його продовжити]"

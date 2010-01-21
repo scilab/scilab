@@ -11889,7 +11889,7 @@ else
 $as_echo "$as_me: WARNING: Could not link against -ljogl. Will try against -ljogl -lGL" >&2;}
 fi
 
-				   if test -z "JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
 				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on
 					   # purpose to disable the cache
@@ -17671,7 +17671,7 @@ _ACEOF
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
 
 # Check whether --enable-build-localization was given.
 if test "${enable_build_localization+set}" = set; then :
