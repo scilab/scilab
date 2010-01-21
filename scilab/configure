@@ -11240,7 +11240,7 @@ $as_echo_n "checking jgraphx... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11384,7 +11384,7 @@ $as_echo_n "checking flexdock... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11478,7 +11478,7 @@ $as_echo_n "checking looks... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11572,7 +11572,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11667,7 +11667,7 @@ $as_echo_n "checking skinlf... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11761,7 +11761,7 @@ $as_echo_n "checking jogl... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -11955,7 +11955,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12104,7 +12104,7 @@ $as_echo_n "checking jhall... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12198,7 +12198,7 @@ $as_echo_n "checking javahelp2... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12293,7 +12293,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12387,7 +12387,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12482,7 +12482,7 @@ $as_echo_n "checking jhdf5... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12577,7 +12577,7 @@ $as_echo_n "checking commons-logging... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12671,7 +12671,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12771,7 +12771,7 @@ $as_echo_n "checking checkstyle... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12865,7 +12865,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -12959,7 +12959,7 @@ $as_echo_n "checking antlr... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -21899,7 +21899,7 @@ $as_echo_n "checking batik-all... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -21993,7 +21993,7 @@ $as_echo_n "checking batik... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22089,7 +22089,7 @@ $as_echo_n "checking saxon... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22183,7 +22183,7 @@ $as_echo_n "checking fop... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22277,7 +22277,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22371,7 +22371,7 @@ $as_echo_n "checking commons-io... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22465,7 +22465,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22559,7 +22559,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22653,7 +22653,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
@@ -22751,7 +22751,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
