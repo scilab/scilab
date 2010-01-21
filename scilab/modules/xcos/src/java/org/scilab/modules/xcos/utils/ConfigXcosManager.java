@@ -24,8 +24,10 @@ import javax.xml.transform.stream.StreamResult;
 import org.scilab.modules.console.GuiManagement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.xcos.palette.model.PaletteModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -53,6 +55,13 @@ public final class ConfigXcosManager {
     
     
     private static final String PALETTES = "palettes";
+    
+    private static final String DEFAULT_PALETTE = "default";
+    private static final String ENABLE = "enable";
+    private static final String BLOCKLIST = "blockList";
+    private static final String BLOCK = "block";
+    private static final String FUNCTION = "function";
+    
     private static final String PALETTE = "palette";
 
     
@@ -450,6 +459,89 @@ public final class ConfigXcosManager {
     }
     }
 
+    /**
+     * Save the palette and the activation state of the palette 
+     * @param defaultPalettes The palette values
+     */
+    public static void saveDefaultPalettes(PaletteModel[] defaultPalettes) {
+    	Node root = XmlManagement.getXcosRoot();
+    	if (root == null) {
+    	    return;
+    	}
+    	
+    	Node palettes = XmlManagement.getNodeChild(root, PALETTES);
+    	if (palettes == null) {
+    	    palettes = document.createElement(PALETTES);
+    	    root.appendChild(palettes);
+    	}
+
+		/*
+		 * First we will remove all the old palette to be sure that all the
+		 * final configuration file will be ordered the same way as the set.
+		 */
+    	List<Node> palette = XmlManagement.getNodeChildren(palettes, DEFAULT_PALETTE);
+    	for (Node node : palette) {
+    		palettes.removeChild(node);
+		}
+    	
+    	// Put all the set as a new Node 
+    	for (int i = 0; i < defaultPalettes.length; i++) {
+    		PaletteModel model = defaultPalettes[i];
+    		Element node = document.createElement(DEFAULT_PALETTE);
+    		
+    		node.setAttribute(NAME, model.getMessage());
+    		node.setAttribute(ENABLE, Boolean.toString(model.isEnable()));
+    		
+    		Element blockList = document.createElement(BLOCKLIST);
+    		for (String block : model.getBlockNames()) {
+				Element blockElement = document.createElement(BLOCK);
+				blockElement.setAttribute(FUNCTION, block);
+				blockList.appendChild(blockElement);
+			}
+    		
+    		node.appendChild(blockList);
+    		palettes.appendChild(node);
+    	}
+    	
+    	/* Save changes */
+    	IOManagement.writeDocument();
+    }
+    
+    /**
+     * Load the default palette from the configuration file.
+     * @return the palette list
+     */
+    public static PaletteModel[] getDefaultPalettes() {
+    	Node root = XmlManagement.getXcosRoot();
+    	if (root == null) {
+    	    return null;
+    	}
+    	
+    	Node palettes = XmlManagement.getNodeChild(root, PALETTES);
+    	List<Node> defaultPalettes = XmlManagement.getNodeChildren(palettes, DEFAULT_PALETTE);
+    	
+    	PaletteModel[] model = new PaletteModel[defaultPalettes.size()];
+    	for (int i = 0; i < defaultPalettes.size(); i++) {
+    		Node palette = defaultPalettes.get(i);
+    		
+    		NamedNodeMap attr = palette.getAttributes();
+			String message = attr.getNamedItem(NAME).getNodeValue();
+			boolean enable = Boolean.parseBoolean(attr.getNamedItem(ENABLE).getNodeValue());
+			
+			List<Node> blockList = XmlManagement.getNodeChildren(palette, BLOCKLIST);
+			String[] blocks = new String[blockList.size()];
+			for (int j = 0; j < blockList.size(); j++) {
+				Node block = blockList.get(j);
+				
+				blocks[j] = block.getAttributes().getNamedItem(FUNCTION).getNodeValue();
+			}
+			
+			model[i] = new PaletteModel(message, blocks, enable);
+		}
+    	
+    	return model;
+    }
+    
     /**
      * Add a file to recent Opened Files
      * 
