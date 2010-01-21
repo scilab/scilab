@@ -99,6 +99,8 @@ Compilation:
 
 * Check of the version of jgraphx added (Min: 1.2.0.7)
 
+* Improved detection of Fedora/Redhat packages
+
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
 
