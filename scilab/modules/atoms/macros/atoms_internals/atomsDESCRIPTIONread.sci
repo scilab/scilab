@@ -191,7 +191,6 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			
 			// Category management
 			if current_field == "Category" then
-				pause
 				if ~ isfield(categories_flat,current_value) then
 					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
 				end
