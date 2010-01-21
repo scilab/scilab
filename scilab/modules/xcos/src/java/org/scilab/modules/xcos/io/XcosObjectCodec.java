@@ -33,6 +33,7 @@ public class XcosObjectCodec extends mxObjectCodec {
     private static final String NORTH = "north";
     private static final String WEST = "west";
     private static final String SOUTH = "south";
+    private static final String EAST = "east";
     private static final String COMMAND = "ControlPort";
     private static final String CONTROL = "CommandPort";
     
@@ -80,21 +81,21 @@ public class XcosObjectCodec extends mxObjectCodec {
 		if (style.containsKey(DIRECTION)) {
 			String direction = style.get(DIRECTION);
 
-			int step = DIRECTION_STEP;
 			int angle = 0;
-			if (style.containsKey(COMMAND) || style.containsKey(CONTROL)) {
-				step = -DIRECTION_STEP;
-				angle = DIRECTION_STEP;
-			}
-
-			// default is EAST (angle == 0)
-			if (direction.compareTo(SOUTH) == 0) {
-				angle = (angle + step) % MAX_ROTATION;
-			} else if (direction.compareTo(WEST) == 0) {
-				angle = (angle + step) % MAX_ROTATION;
-			} else if (direction.compareTo(NORTH) == 0) {
-				angle = (angle + step) % MAX_ROTATION;
-			}
+			do {
+				if (direction.compareTo(EAST) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+				if (direction.compareTo(SOUTH) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+				if (direction.compareTo(WEST) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+			} while (false);
 
 			style.remove(DIRECTION);
 			style.put(ROTATION, Integer.toString(angle));
