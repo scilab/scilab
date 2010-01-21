@@ -70,8 +70,6 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
 	end
 	
-	disp(file_in);
-	
 	// Init the output argument
 	// =========================================================================
 	
@@ -311,8 +309,6 @@ endfunction
 function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
 	
 	cat_flat_out  = cat_flat_in;
-	
-	disp(category);
 	
 	if ~ isfield( cat_flat_out , category ) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a registered category"),"atomsAddPackage2Cat",2,category));

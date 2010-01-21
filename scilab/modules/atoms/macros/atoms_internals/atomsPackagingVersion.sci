@@ -35,7 +35,7 @@ function result = atomsPackagingVersion(packages)
 	
 	// Get all package description
 	// =========================================================================
-	allpackages = atomsGetTOOLBOXES();
+	allpackages = atomsDESCRIPTIONget();
 	
 	// Loop on packages
 	// =========================================================================
