@@ -29,8 +29,10 @@ import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
+import org.scilab.modules.xcos.palette.model.PaletteModel;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -83,7 +85,14 @@ public class PaletteManagerMouseListener implements MouseListener {
 							ConfigXcosManager
 									.removeUserDefinedPalettes(fileName);
 						}
+					} else if (currentNode.getUserObject() instanceof Palette) {
+						Palette p = (Palette) currentNode.getUserObject();
+						
+						p.getModel().setEnable(false);
+						ConfigXcosManager.saveDefaultPalettes(PaletteModel.values());
 					}
+					
+					
 					model.getTreeModel().removeNodeFromParent(currentNode);
 					MutableTreeNode userDefinedNode = model
 							.getUserDefinedRoot();
@@ -98,13 +107,11 @@ public class PaletteManagerMouseListener implements MouseListener {
 			});
 		    
 			addTo.setEnabled(false);
-			if (((DefaultMutableTreeNode) path.getPath()[1]).getUserObject() instanceof String) {
-			if (path.getPath().length > 2) {
-			    if (((DefaultMutableTreeNode) path.getPath()[2]).getUserObject() instanceof XcosComponent) {
+			Object[] p = path.getPath();
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode) p[p.length - 1];
+			if (node.isLeaf()) {
 				addTo.setEnabled(true);
-			    }
 			}
-		    }
 
 		    menu.add(addTo);
 		    menu.setVisible(true);
