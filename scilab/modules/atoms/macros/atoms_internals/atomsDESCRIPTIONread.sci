@@ -70,6 +70,8 @@ function description_out = atomsDESCRIPTIONread(file_in)
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
 	end
 	
+	disp(file_in);
+	
 	// Init the output argument
 	// =========================================================================
 	
@@ -121,7 +123,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 				// Register the current toolbox : Check the scilab version
 				// comptability
 				if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-					this_toolbox(current_toolbox("Version")) = current_toolbox;
+					if isfield(current_toolbox,"PackagingVersion") then
+						current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					else
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					end
 				end
 				
 				// Register the current toolbox : Fill the packages struct
@@ -160,7 +167,12 @@ function description_out = atomsDESCRIPTIONread(file_in)
 					// Register the current toolbox : Check the scilab version
 					// comptability
 					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-						this_toolbox(current_toolbox("Version")) = current_toolbox;
+						if isfield(current_toolbox,"PackagingVersion") then
+							current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						else
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						end
 					end
 					
 					// Register the current toolbox : Fill the packages struct
@@ -179,6 +191,7 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			
 			// Category management
 			if current_field == "Category" then
+				pause
 				if ~ isfield(categories_flat,current_value) then
 					[categories,categories_flat] = atomsCreateCategory(categories,categories_flat,current_value)
 				end
@@ -300,6 +313,8 @@ function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
 	
 	cat_flat_out  = cat_flat_in;
 	
+	disp(category);
+	
 	if ~ isfield( cat_flat_out , category ) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a registered category"),"atomsAddPackage2Cat",2,category));
 	end
@@ -336,8 +351,7 @@ function field = atomsCheckFields( module )
 		"License"           ; ..
 		"ScilabVersion"     ; ..
 		"Depends"           ; ..
-		"Date"              ; ..
-		"PackagingVersion" ];
+		"Date"              ];
 	
 	for i=1:size(mandatory,"*")
 		if ~ isfield(module,mandatory(i)) then

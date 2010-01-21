@@ -112,6 +112,10 @@ function [insList,depTree] = atomsInstallList(packages,section)
 				msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
 		end
 		
+		// Fill the version if it doesn't contain the packaging version
+		this_package_version = atomsPackagingVersion(packages(i,:));
+		packages(i,2)        = this_package_version;
+		
 		// Build the depencency tree
 		[tree,version_out]  = atomsDepTreeFlat(this_package_name,this_package_version);
 		
