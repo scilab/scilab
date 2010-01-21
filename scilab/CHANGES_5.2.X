@@ -10,6 +10,11 @@ Text editor:
 
 * bug 5707 fixed - cmd-e executed the wrong editor file.
 
+Internationalization:
+=====================
+
+* Ukrainian localization added (Thanks Yuri Chornoivan)
+
 Xcos:
 =====
 
