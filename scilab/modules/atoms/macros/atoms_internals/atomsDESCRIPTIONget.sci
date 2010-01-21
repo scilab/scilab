@@ -199,7 +199,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 	// =========================================================================
 	
 	else
-		load(packages_path,"packages");
+		load(packages_path,"packages","categories","categories_flat");
 	end
 	
 endfunction

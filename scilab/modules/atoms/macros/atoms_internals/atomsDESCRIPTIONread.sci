@@ -247,7 +247,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		// Sub category
 		category_main         = part(cat_id,1:pattern_index-1);
 		category_sub          = part(cat_id,pattern_index+3:length(cat_id) );
-		cat_struct("label")   = [ category_main ; category_sub ];
+		cat_struct("label")   = [ category_main  category_sub ];
 		cat_struct("is_main") = %F;
 		
 	else
@@ -274,7 +274,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		end
 	end
 	
-	if cat_struct("is_main") & ~ isfield(cat_flat_out,category_main) then
+	if ~cat_struct("is_main") & ~isfield(cat_flat_out,category_main) then
 		[cat_out , cat_flat_out ] = atomsCreateCategory(cat_out,cat_flat_out,category_main)
 	end
 	
