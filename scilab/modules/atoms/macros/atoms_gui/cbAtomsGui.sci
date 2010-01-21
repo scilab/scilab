@@ -65,7 +65,7 @@ function cbAtomsGui()
 
         set(findobj("Tag", "modulesDesc"), "String", gettext("Updating..."));
         
-        if execstr("atomsRemove(getSelectedModuleName())", "errcatch")<>0 then
+        if execstr("atomsUpdate(getSelectedModuleName())", "errcatch")<>0 then
             messagebox(gettext("Update failed!"), gettext("Atoms error"), "error");
         else
             messagebox(gettext("Update done! Please restart Scilab to take changes into account."), gettext("Atoms"), "info");

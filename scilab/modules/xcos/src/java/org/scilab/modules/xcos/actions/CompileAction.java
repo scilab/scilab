@@ -32,7 +32,6 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 public class CompileAction extends DefaultAction {
 
 	private static final long serialVersionUID = 1L;
-	private static String compilationEnd = "__compilationEnd__";
 
 	/**
 	 * Constructor
@@ -57,7 +56,6 @@ public class CompileAction extends DefaultAction {
 	 */
 	public void doAction() {
 		((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
-		try {
 			Thread launchMe = new Thread() {
 				public void run() {
 					File temp;
@@ -66,10 +64,10 @@ public class CompileAction extends DefaultAction {
 						temp.deleteOnExit();
 						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 						
-						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");" +
-										 "xcos_compile(scs_m);";
+						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+						               + "xcos_compile(scs_m);";
 						try {
-							XcosInterpreterManagement.AsynchronousScilabExec(command, new ActionListener() {
+							XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
 								}
@@ -83,9 +81,5 @@ public class CompileAction extends DefaultAction {
 				}
 			};
 			launchMe.start();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

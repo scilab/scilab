@@ -66,6 +66,8 @@ typedef struct rhs_opts__ {
     <para>A C gateway function which find the position of an optional argument
     given its name. You must include stack-c.h to benefit from this
     function.</para>
+
+    <para>WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).</para>
   </refsection>
 
   <refsection>

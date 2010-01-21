@@ -51,6 +51,7 @@ public class XpadPrintPreviewWindow extends JDialog {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 7083356779238081674L;
+	private static final int ONE_HUNDRED = 100;
 	private int previewWidht;
 	private int previewHeight;
 	private JComboBox scalesComboBox;
@@ -78,7 +79,8 @@ public class XpadPrintPreviewWindow extends JDialog {
 		setModal(true); // set focus priority on the JDialog
 		setTitle(title);
 		// Java 1.5
-		((java.awt.Frame)this.getOwner()).setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
+		((java.awt.Frame) this.getOwner()).setIconImage(
+				new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		//setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		setSize(640, 940);
 
@@ -134,8 +136,8 @@ public class XpadPrintPreviewWindow extends JDialog {
 							return; 
 						}
 
-						int w = (int) (previewWidht * scale / 100);
-						int h = (int) (previewHeight * scale / 100);
+						int w = (int) (previewWidht * scale / ONE_HUNDRED);
+						int h = (int) (previewHeight * scale / ONE_HUNDRED);
 
 						Component[] comps = previewContainer.getComponents();
 						for (int i = 0; i < comps.length; i++) {
@@ -178,9 +180,9 @@ public class XpadPrintPreviewWindow extends JDialog {
 		previewHeight = (int) (pageFormat.getHeight());
 
 		// Default scale is 100%
-		int scale = 100;
-		int w = (int) (previewWidht * scale / 100); /* @TODO 100/100 ? */
-		int h = (int) (previewHeight * scale / 100); /* @TODO 100/100 ? */
+		int scale = ONE_HUNDRED;
+		int w = (int) (previewWidht * scale / ONE_HUNDRED); /* @TODO 100/100 ? */
+		int h = (int) (previewHeight * scale / ONE_HUNDRED); /* @TODO 100/100 ? */
 
 		int pageIndex = 0;
 		// Creating the preview image

@@ -22,6 +22,7 @@ options_codes=[1;2;3;
 	       -5;-6];
   f        = gcf();
   vis      = f.immediate_drawing;
+  vis_on   = vis == "on"; // current figure draw status (to decide if drawnow or standby)
   narg     = size(varargin);
   k0       = 1;
   H        = [];
@@ -91,7 +92,7 @@ options_codes=[1;2;3;
     if pos<>[] then
       c.position=pos;
     else
-      drawnow()
+      if vis_on then drawnow(); end    // draw if figure status allows it (otherwise standbye)
       bnds=get(gca(),'axes_bounds');
       as=get(gcf(),'axes_size');
       while %t
@@ -105,7 +106,7 @@ options_codes=[1;2;3;
       end
     end
   end
-  drawnow()
+  if vis_on then drawnow(); end       // draw if figure status allows it (otherwise standbye)
 endfunction
 
 function h=getvalidchildren(A)

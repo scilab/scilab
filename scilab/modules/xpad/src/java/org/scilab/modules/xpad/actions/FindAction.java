@@ -484,7 +484,10 @@ public final class FindAction extends DefaultAction {
 		
 		/*behaviour of buttons*/
 		radioSelection.addActionListener(new ActionListener() {
-
+			private static final int R_VALUE = 205;
+			private static final int G_VALUE = 183; 
+			private static final int B_VALUE = 158;
+			
 			public void actionPerformed(ActionEvent e) {
 				JTextPane xpadTextPane =  getEditor().getTextPane();		
 				startSelectedLines = xpadTextPane.getSelectionStart();
@@ -499,7 +502,7 @@ public final class FindAction extends DefaultAction {
 				hl.removeAllHighlights();
 				try {
 					hl.addHighlight(startSelectedLines, endSelectedLines, 
-							new DefaultHighlighter.DefaultHighlightPainter(new Color(205,183,158)));
+							new DefaultHighlighter.DefaultHighlightPainter(new Color(R_VALUE, G_VALUE, B_VALUE)));
 				} catch (BadLocationException exc) {
 					exc.printStackTrace();
 				}
@@ -626,11 +629,9 @@ public final class FindAction extends DefaultAction {
 		buttonClose.addActionListener(new ActionListener() {
 
 
-			public void actionPerformed(ActionEvent e) {
-				FindAction.windowAlreadyExist = false;
-				saveFindReplaceConfiguration();
-				frame.dispose();
-			}
+		    public void actionPerformed(ActionEvent e) {
+			closeFindReplaceWindow();
+		    }
 		});
 
 				
@@ -649,7 +650,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					closeFindReplaceWindow();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -703,7 +704,7 @@ public final class FindAction extends DefaultAction {
 			public void keyTyped(KeyEvent e) {}
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					closeFindReplaceWindow();
+				    closeFindReplaceWindow();
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -768,7 +769,7 @@ public final class FindAction extends DefaultAction {
 		comboReplace.getEditor().setItem(old);
 	}
 
-	private void saveFindReplaceConfiguration() {
+	public void saveFindReplaceConfiguration() {
 	
 		ConfigXpadManager.saveRecentSearch((String)comboFind.getEditor().getItem());
 		ConfigXpadManager.saveRecentReplace((String)comboReplace.getEditor().getItem());
@@ -1091,13 +1092,12 @@ public final class FindAction extends DefaultAction {
 	 * closeFindReplaceWindow
 	 */
 	public static void closeFindReplaceWindow() {
-		if (FindAction.windowAlreadyExist) {
-			Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
-			highlight.removeAllHighlights();
-			frame.dispose();
-			FindAction.windowAlreadyExist = false;
-
-		}
+	    if (FindAction.windowAlreadyExist) {
+		Highlighter highlight = Xpad.getEditor().getTextPane().getHighlighter();
+		highlight.removeAllHighlights();
+		frame.dispose();
+		FindAction.windowAlreadyExist = false;
+	    }
 	}
 
 	public static String getPreviousSearch() {

@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.utils;
 
 import java.awt.Dimension;
@@ -11,24 +23,33 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
 
-public class XcosComponent extends mxGraphComponent{
+/**
+ * Customize the default component
+ * @see java.awt.Component
+ */
+public class XcosComponent extends mxGraphComponent {
 
     private static final long serialVersionUID = 1592816691330208090L;
+    private static final int ZOOM_BORDER = 20; // px
 
+    /**
+     * Construct the component with the associated graph
+     * @param graph The associated graph
+     */
     public XcosComponent(mxGraph graph) {
 	super(graph);
 	
 	addComponentListener(new ComponentListener() {
 	    
 	    public void componentShown(ComponentEvent arg0) {
-		if(getGraph() instanceof PaletteDiagram) {
-		    ((PaletteDiagram)getGraph()).updateDiagram(getSize().getWidth());
+		if (getGraph() instanceof PaletteDiagram) {
+		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
 		}		
 	    }
 	    
 	    public void componentResized(ComponentEvent arg0) {
-		if(getGraph() instanceof PaletteDiagram) {
-		    ((PaletteDiagram)getGraph()).updateDiagram(getSize().getWidth());
+		if (getGraph() instanceof PaletteDiagram) {
+		    ((PaletteDiagram) getGraph()).updateDiagram(getSize().getWidth());
 		}		
 	    }
 	    
@@ -40,14 +61,20 @@ public class XcosComponent extends mxGraphComponent{
 	});
     }
 
-    public XcosCanvas createCanvas()
-    {
+    /**
+     * Create the associated canvas
+     * @return the canvas
+     */
+    public XcosCanvas createCanvas() {
 	return new XcosCanvas();
     }
     
+    /**
+     * @return The filename
+     */
     public String toString() {
-	if(getGraph() instanceof PaletteDiagram) {
-	    String fileName = ((PaletteDiagram)getGraph()).getName();
+	if (getGraph() instanceof PaletteDiagram) {
+	    String fileName = ((PaletteDiagram) getGraph()).getName();
 	    return fileName.substring(0, fileName.lastIndexOf('.'));
 	} else {
 	    return super.toString();
@@ -62,10 +89,10 @@ public class XcosComponent extends mxGraphComponent{
 	Rectangle preference = (Rectangle) view.getBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle().clone();
 	
 	// Feeling values to keep the zoom smart 
-	preference.x -= 20;
-	preference.y += 20;
-	preference.width += 40;
-	preference.height += 40;
+	preference.x -= ZOOM_BORDER;
+	preference.y += ZOOM_BORDER;
+	preference.width += 2 * ZOOM_BORDER;
+	preference.height += 2 * ZOOM_BORDER;
 	
 	Dimension actual = viewport.getSize();
 

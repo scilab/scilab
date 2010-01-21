@@ -19,4 +19,6 @@ SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision,
 SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _piData);
 SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
 
+static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData);
+static int getCommandNamedScalarInteger(void* _pvCtx, char* _pstName, int _iPrec, void** _pvData);
 #endif /* __INTERNAL_INT_API__ */

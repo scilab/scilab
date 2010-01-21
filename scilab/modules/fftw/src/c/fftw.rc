@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "fftw module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "fftw"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "fftw.rc"
             VALUE "ProductName", " fftw"
             VALUE "ProductVersion", "5, 3, 0, 0"

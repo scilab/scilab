@@ -14,12 +14,23 @@ package org.scilab.modules.xcos.port.input;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
+/**
+ * An input port acts as a protection barrier between a link and the internal functions of
+ * the block.
+ * 
+ * It's default orientation is on the block's WEST side and it <b>must</b> be
+ * connected to an {@link OutputPort} .
+ */
 public abstract class InputPort extends BasicPort {
 
     private static final long serialVersionUID = -7724677905288260857L;
 
+    /**
+     * Default constructor
+     * @param type The string port name ("ExplicitInputPort" or "ImplicitInputPort")
+     */
     protected InputPort(String type) {
 	super(type);
-	setInitialAngle(0);
+	setOrientation(Orientation.WEST);
     }
 }

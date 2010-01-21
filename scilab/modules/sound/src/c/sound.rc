@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "sound module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "sound"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "sound.rc"
             VALUE "ProductName", " sound"
             VALUE "ProductVersion", "5, 3, 0, 0"

@@ -14,19 +14,24 @@ package org.scilab.modules.xcos.link.explicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
 
-
+/**
+ * An explicit link connect an {@link ExplicitOutputPort} to an
+ * {@link ExplicitInputPort}.
+ */
 public class ExplicitLink extends BasicLink {
     
     private static final long serialVersionUID = 5094752091413277033L;
+	// 1 means black color
+	// 1 means regular link
+	private static final double[][] COLOR_AND_TYPE = {{1.0, 1.0}};
 
+	/** Default constructor */
     public ExplicitLink() {
 	super("ExplicitLink");
     }
     
+    /** @return A black colored explicit link identifier */
     public double[][] getColorAndType() {
-	// 1 means black color
-	// 1 means regular link
-	double[][] result = {{1.0, 1.0}};
-	return result;
+	return COLOR_AND_TYPE;
     }
 }

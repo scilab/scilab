@@ -65,7 +65,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableGrayplot::drawGrayplot(void)
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")), "ConcreteDrawableGrayplot::drawGrayplot");
     if(xGrid != NULL) { delete[] xGrid; }
     if(yGrid != NULL) { delete[] yGrid; }
     if(colors != NULL) { delete[] colors; }
@@ -86,7 +86,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableGrayplot::drawGrayplot(void)
   catch (const std::exception& e)
   {
     // some allocation failed
-    sciprint(_("%s: No more memory.\n"), "ConcreteDrawableGrayplot::drawGrayplot");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")), "ConcreteDrawableGrayplot::drawGrayplot");
     status = FAILURE;
   }
 

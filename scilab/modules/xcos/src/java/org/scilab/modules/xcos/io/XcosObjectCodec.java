@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
+import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -21,31 +23,41 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Codec for any xcos object
+ */
 public class XcosObjectCodec extends mxObjectCodec {
     protected static final String STYLE = "style";
-    protected static final String ROTATION = "rotation";
-    protected static final String DIRECTION = "direction";
-    protected static final String EAST = "east";
-    protected static final String NORTH = "north";
-    protected static final String WEST = "west";
-    protected static final String SOUTH = "south";
-    protected static final String FLIP = "flip=";
-    protected static final String MIRROR = "mirror=";
-    protected static final String COMMAND = "ControlPort";
-    protected static final String CONTROL = "CommandPort";
+    private static final String ROTATION = "rotation";
+    private static final String DIRECTION = "direction";
+    private static final String WEST = "west";
+    private static final String SOUTH = "south";
+    private static final String EAST = "east";
+    
+    private static final int DIRECTION_STEP = 90;
 
-    public XcosObjectCodec(Object template) {
-	super(template);
-    }
-
-
+	/**
+	 * The constructor used on for configuration
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+	 */
     public XcosObjectCodec(Object template, String[] exclude, String[] idrefs,
 	    Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
 
-    public Object afterDecode(mxCodec dec, Node node, Object obj){
+	/**
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed 
+	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+	 */
+    public Object afterDecode(mxCodec dec, Node node, Object obj) {
 	if (node.getNodeName().equals("mxCell")) {
 	    NamedNodeMap attrs = node.getAttributes();
 	    for (int i = 0; i < attrs.getLength(); i++) {
@@ -58,33 +70,40 @@ public class XcosObjectCodec extends mxObjectCodec {
 	return obj;
     }
 
-    public String formatStyle(String style) {
-	if(style.compareTo("") == 0) {
-	    return style;
-	}
-	
-	String result = style;
-	result = result.replaceAll(DIRECTION, ROTATION);
-	if(result.indexOf(CONTROL) < 0 && result.indexOf(COMMAND) < 0) {
-	    result = result.replaceAll(EAST, "0");
-	    result = result.replaceAll(NORTH, "270");
-	    result = result.replaceAll(WEST, "180");
-	    result = result.replaceAll(SOUTH, "90");
-	} else {
-	    result = result.replaceAll(EAST, "270");
-	    result = result.replaceAll(NORTH, "180");
-	    result = result.replaceAll(WEST, "90");
-	    result = result.replaceAll(SOUTH, "0");
-	}
+    /**
+     * @param style the style to be formatted
+     */
+	public void formatStyle(StyleMap style) {
+		if (style.containsKey(DIRECTION)) {
+			String direction = style.get(DIRECTION);
 
-	if(result.indexOf(FLIP) < 0) {
-	    result += ";flip=false";
-	}
+			int angle = 0;
+			do {
+				if (direction.compareTo(EAST) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+				if (direction.compareTo(SOUTH) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+				if (direction.compareTo(WEST) == 0) {
+					break;
+				}
+				angle += DIRECTION_STEP;
+			} while (false);
 
-	if(result.indexOf(MIRROR) < 0) {
-	    result += ";mirror=false";
-	}
+			style.remove(DIRECTION);
+			style.put(ROTATION, Integer.toString(angle));
 
-	return result;
-    }
+		}
+
+		if (!style.containsKey(XcosConstants.STYLE_FLIP)) {
+			style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
+		}
+
+		if (!style.containsKey(XcosConstants.STYLE_MIRROR)) {
+			style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
+		}
+	}
 }

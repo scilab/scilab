@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "noaction_binding module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "noaction_binding module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "noaction_binding.dll"
             VALUE "ProductName", " noaction_binding"
             VALUE "ProductVersion", "5, 3, 0, 0"

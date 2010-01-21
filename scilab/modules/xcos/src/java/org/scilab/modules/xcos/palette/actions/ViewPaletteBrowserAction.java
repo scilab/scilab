@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette.actions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -22,8 +23,7 @@ import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -34,7 +34,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 
     private static final long serialVersionUID = 1L;
 
-    private static ArrayList<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
+    private static List<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
 
     /**
      * Constructor
@@ -65,11 +65,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
      * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
      */
     public void doAction() {
-	if (XcosPaletteManager.getPalettes() == null) {
-	    XcosPaletteManager.loadPalette();
-	} else {
-	    setPalettesVisible(!XcosPaletteManager.isVisible());
-	}
+	    setPalettesVisible(!PaletteManager.isVisible());
     }
 
     /**
@@ -79,13 +75,13 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
      * @param status status to be set
      */
     public static void setPalettesVisible(boolean status) {
-	Tab palette = Xcos.getPalettes();
+	Tab palette = PaletteManager.getInstance().getView();
 	if (palette == null) {
 	    return;
 	}
 
 	// If palette has no more parent, create a new one.
-	if (status == true && palette.getParentWindow() == null) {
+	if (status && palette.getParentWindow() == null) {
 	    Window paletteWindow = ScilabWindow.createWindow();
 	    paletteWindow.setVisible(true);
 	    palette.setVisible(true);

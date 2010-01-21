@@ -22,7 +22,7 @@ int SetUimenuChecked(sciPointObj* sciObj, size_t stackPointer, int valueType, in
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Checked", "on", "off");
+        Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Checked", "on", "off");
         return SET_PROPERTY_ERROR;
       }
 
@@ -30,14 +30,14 @@ int SetUimenuChecked(sciPointObj* sciObj, size_t stackPointer, int valueType, in
       
       if (stricmp(status, "on")!=0 && stricmp(status, "off")!=0)
         {
-        Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Checked", "on", "off");
+        Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Checked", "on", "off");
         return SET_PROPERTY_ERROR;
 
         }
     }
   else
     {
-      Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected.\n"), "Checked", "on", "off");
+      Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s' or '%s' expected.\n")), "Checked", "on", "off");
       return SET_PROPERTY_ERROR;
     }
   
@@ -51,7 +51,7 @@ int SetUimenuChecked(sciPointObj* sciObj, size_t stackPointer, int valueType, in
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Checked");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Checked");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -18,7 +18,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
+
 
 import org.scilab.modules.xpad.ScilabEditorKit;
 import org.scilab.modules.xpad.style.IndentManager;

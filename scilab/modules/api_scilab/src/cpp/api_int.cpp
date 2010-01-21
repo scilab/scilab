@@ -600,4 +600,296 @@ SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecis
 	memcpy(_pvData, pvData, (_iPrecision % 10) * iSize);
 	return sciErr;
 }
+
+/* shortcut functions */
+
+int isIntegerType(void* _pvCtx, int* _piAddress)
+{
+	return checkVarType(_pvCtx, _piAddress, sci_ints);
+}
+/*--------------------------------------------------------------------------*/
+int isNamedIntegerType(void* _pvCtx, char* _pstName)
+{
+	return checkNamedVarType(_pvCtx, _pstName, sci_ints);
+}
+/*--------------------------------------------------------------------------*/
+int getScalarInteger8(void* _pvCtx, int* _piAddress, char* _pcData)
+{
+	char* pcData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_INT8, (void**)&pcData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pcData = pcData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getScalarInteger16(void* _pvCtx, int* _piAddress, short* _psData)
+{
+	short* psData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_INT16, (void**)&psData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_psData = psData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getScalarInteger32(void* _pvCtx, int* _piAddress, int* _piData)
+{
+	int* piData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_INT32, (void**)&piData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_piData = piData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int getScalarInteger64(void* _pvCtx, int* _piAddress, long long* _pllData)
+{
+	long long* pllData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_INT64, (void**)&pllData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pllData = pllData[0];
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+int getScalarUnsignedInteger8(void* _pvCtx, int* _piAddress, unsigned char* _pucData)
+{
+	unsigned char* pucData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_UINT8, (void**)&pucData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pucData = pucData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getScalarUnsignedInteger16(void* _pvCtx, int* _piAddress, unsigned short* _pusData)
+{
+	unsigned short* pusData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_UINT16, (void**)&pusData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pusData = pusData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getScalarUnsignedInteger32(void* _pvCtx, int* _piAddress, unsigned int* _puiData)
+{
+	unsigned int* puiData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_UINT32, (void**)&puiData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_puiData = puiData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int getScalarUnsignedInteger64(void* _pvCtx, int* _piAddress, unsigned long long* _pullData)
+{
+	unsigned long long* pullData = NULL;
+
+	int iRet = getCommonScalarInteger(_pvCtx, _piAddress, SCI_UINT64, (void**)&pullData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pullData = pullData[0];
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData)
+{
+	SciErr sciErr;
+	int iRows	= 0;
+	int iCols	= 0;
+
+	if(isScalar(_pvCtx, _piAddress) == 0)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_INTEGER, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "getScalarInteger", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = getCommonMatrixOfInteger(_pvCtx, _piAddress, _iPrec, &iRows, &iCols, _pvData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_INTEGER, _("%s: Unable to get argument #%d"), "getScalarInteger", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData)
+{
+	char* pcData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT8, (void**)&pcData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pcData = pcData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData)
+{
+	short* psData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT16, (void**)&psData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_psData = psData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData)
+{
+	int* piData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT32, (void**)&piData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_piData = piData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData)
+{
+	long long* pllData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_INT64, (void**)&pllData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pllData = pllData[0];
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* _pucData)
+{
+	unsigned char* pucData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT8, (void**)&pucData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pucData = pucData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short* _pusData)
+{
+	unsigned short* pusData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT16, (void**)&pusData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pusData = pusData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* _puiData)
+{
+	unsigned int* puiData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT32, (void**)&puiData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_puiData = puiData[0];
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long* _pullData)
+{
+	unsigned long long* pullData = NULL;
+
+	int iRet = getCommandNamedScalarInteger(_pvCtx, _pstName, SCI_UINT64, (void**)&pullData);
+	if(iRet)
+	{
+		return iRet;
+	}
+
+	*_pullData = pullData[0];
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+static int getCommandNamedScalarInteger(void* _pvCtx, char* _pstName, int _iPrec, void** _pvData)
+{
+	SciErr sciErr;
+	int iRows	= 0;
+	int iCols	= 0;
+
+	if(isNamedScalar(_pvCtx, _pstName) == 0)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_SCALAR_INTEGER, _("%s: Wrong type for input argument \"%s\": A scalar expected.\n"), "getNamedScalarInteger", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = readCommonNamedMatrixOfInteger(_pvCtx, _pstName, _iPrec, &iRows, &iCols, _pvData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_SCALAR_INTEGER, _("%s: Unable to get argument \"%s\""), "getNamedScalarInteger", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
 /*--------------------------------------------------------------------------*/

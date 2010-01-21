@@ -68,7 +68,7 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("%s: No more memory.\n"),"SurfaceMarkDrawerJoGL::drawSurface");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"SurfaceMarkDrawerJoGL::drawSurface");
     if(xCoords != NULL) { delete[] xCoords; }
     if(yCoords != NULL) { delete[] yCoords; }
     if(zCoords != NULL) { delete[] zCoords; }
@@ -102,7 +102,7 @@ void SurfaceMarkDrawerJoGL::drawSurface( void )
   }
   catch (std::exception & e)
   {
-    sciprint(_("%s: No more memory.\n"),"SurfaceMarkDrawerJoGL::drawSurface");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"SurfaceMarkDrawerJoGL::drawSurface");
   }
   
 
