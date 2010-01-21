@@ -115,10 +115,13 @@ public final class PaletteManagerModel {
 	public void loadTree() {
 		/* Add the categories */
 		final int length = Palette.getDatas().length;
+		int disableCounter = 0;
 		for (int i = 0; i < length; i++) {
 			Palette p = Palette.getDatas()[i];
 			if (p.getModel().isEnable()) {
-				mainRoot.insert(new DefaultMutableTreeNode(p), i);
+				mainRoot.insert(new DefaultMutableTreeNode(p), i - disableCounter);
+			} else {
+				disableCounter++;
 			}
 		}
 		
