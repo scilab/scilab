@@ -15,10 +15,12 @@ Internationalization:
 
 * Ukrainian localization added (Thanks Yuri Chornoivan)
 
+* Many english typos have been fixed by (Thanks Yuri Chornoivan)
+
 Xcos:
 =====
 
-* The xml header of an xcos file is checked before any other parsing.
+* The XML header of an xcos file is now checked before any other parsing.
 
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
@@ -105,6 +107,11 @@ Compilation:
 * Check of the version of jgraphx added (Min: 1.2.0.7)
 
 * Improved detection of Fedora/Redhat packages
+
+* Better detection of JOGL
+
+* When searching for Java packages files (jar), the oldest version was 
+  selected. Now, lastest version are now selected.
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
