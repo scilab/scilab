@@ -58,7 +58,6 @@ public final class ConfigXcosManager {
     
     private static final String DEFAULT_PALETTE = "default";
     private static final String ENABLE = "enable";
-    private static final String BLOCKLIST = "blockList";
     private static final String BLOCK = "block";
     private static final String FUNCTION = "function";
     
@@ -492,14 +491,11 @@ public final class ConfigXcosManager {
     		node.setAttribute(NAME, model.getMessage());
     		node.setAttribute(ENABLE, Boolean.toString(model.isEnable()));
     		
-    		Element blockList = document.createElement(BLOCKLIST);
     		for (String block : model.getBlockNames()) {
 				Element blockElement = document.createElement(BLOCK);
 				blockElement.setAttribute(FUNCTION, block);
-				blockList.appendChild(blockElement);
+				node.appendChild(blockElement);
 			}
-    		
-    		node.appendChild(blockList);
     		palettes.appendChild(node);
     	}
     	
@@ -528,7 +524,7 @@ public final class ConfigXcosManager {
 			String message = attr.getNamedItem(NAME).getNodeValue();
 			boolean enable = Boolean.parseBoolean(attr.getNamedItem(ENABLE).getNodeValue());
 			
-			List<Node> blockList = XmlManagement.getNodeChildren(palette, BLOCKLIST);
+			List<Node> blockList = XmlManagement.getNodeChildren(palette, BLOCK);
 			String[] blocks = new String[blockList.size()];
 			for (int j = 0; j < blockList.size(); j++) {
 				Node block = blockList.get(j);
