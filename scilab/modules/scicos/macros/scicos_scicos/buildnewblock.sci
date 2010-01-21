@@ -128,9 +128,14 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
     cflags = cflags+" -I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
   end
   
+  if MSDOS then
+  ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'',''makelib'',''loader.sce'','''','''',cflags)','errcatch')
+  else
   ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch')
-
   copyfile('lib'+blknam+getdynlibext(),TMPDIR)
+  end
+
+  
 
   if ierr<>0 then
     ok=%f;
@@ -185,7 +190,11 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
      // ierr=execstr('libn=ilib_compile(''lib''+blknamint,Makename)','errcatch')
 
      // ilib_compile needs 3 arguments
+     if MSDOS then
+     ierr=execstr('libn = ilib_compile(''lib''+blknamint,''Makelib'',files)','errcatch')
+     else
      ierr=execstr('libn = ilib_compile(''lib''+blknamint,Makename,files)','errcatch')
+     end
 
      if ierr<>0 then
        ok=%f;

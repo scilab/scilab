@@ -18,7 +18,9 @@
 //
 // See the file ../license.txt
 //
-function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)  
+// Compilation needed by the graphical interface for intitialization
+
+function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)  
 
    //called by Initilization IHM
   lines(0)
@@ -28,14 +30,14 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
   //set paths for generated files  
   outpath=pathconvert(TMPDIR,%t,%t);  
  
-
-  xmlfile=outpath+xmlmodel+'_init.xml'; 
+  // created files for initialization
+  xmlfile=outpath+xmlmodel+'_init.xml'; // file created by translator
   namei=xmlmodel+'i';
   Flati=outpath+xmlmodel+'i.mo';
-  FlatCi=outpath+xmlmodel+'i.c';
+  FlatCi=outpath+xmlmodel+'i.c';    // computational C function associated to the flat model for initialization
   incidencei=outpath+xmlmodel+'i_incidence_matrix.xml';
-  Flat_functions=outpath+xmlmodel+'_functions'+'.mo';
- 
+  Flat_functions=outpath+xmlmodel+'_functions'+'.mo'; // file created by translator
+  
   //--------------------------------------------------------------------
   ok=xml2modelica(xmlfile,Flati)
   if ~ok then return,end
@@ -45,7 +47,7 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
   if jaco=='0' then   
     JAC='';
   else
-    JAC=' -jac ';
+    JAC=' -jac '; // to generate the analytical jacobian 
   end
 
  // tmpdir=TMPDIR+'\'; tmpdir=pathconvert(tmpdir,%f,%t) 
@@ -56,14 +58,14 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
   
  Flati=' ""'+Flati+'""'
 
-
- instr=exe+Flati+' ""'+Flat_functions+'"" '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
-
+ // the file Flat_functions is not systematicly created by translator
  //instr='""modelicac.exe"" ""'+Flati+'"" '+Flat_functions+' '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
 
-//  if ~ok then return,end
-//  mprintf('%s\n',' Init C code   : '+FlatCi);
+ // generates the computational C function associated to the flat model
+ instr=exe+Flati+''+JAC+'-with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
 
+  //if ~ok then return,end
+  //mprintf('%s\n',' Init C code   : '+FlatCi);
 
  if MSDOS then, mputl(instr,tmpdir+'igenm.bat'); instr=tmpdir+'igenm.bat'; end
   if execstr('unix_s(instr)','errcatch')==0 then

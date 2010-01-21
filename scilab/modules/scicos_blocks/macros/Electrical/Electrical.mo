@@ -476,8 +476,9 @@ model Resistorx
 	Pin p, n;
 	parameter Real R (fixed=false)=1 "Re{si}s  >< ance";
         //parameter Integer n = 3;
-     //   Real Z[3] (start={ 1.0 for i in 1 : 3 });
-     	parameter Real Rx[3] (fixed = {false, false, true})={1,3,40000} "Resistance";
+        // Real Z[3] (start={ 1.0 for i in 1 : 3 });
+	
+	parameter Real Rx1[3] (fixed = {false, false, true})={1,3,40000} "Resistance";	
 	Real Z[3](fixed = {false, true, false},start={222,333,444})  "Resistance";
      	parameter Real Ry[3] (fixed = {false, false, true})={1,3,40000} "Resistance";
 	Real T (start=3.4) "fff ggg hhh";
@@ -497,7 +498,7 @@ end for ;
 	mytr=2.3;
 	mytr2=2.3;
 	T=R;
-	Z[1]=3;	Z[2]=0;	Z[3]=Rx[3];
+	Z[1]=3;	Z[2]=0;	Z[3]=Rx1[3];
 
 	Rx[1]*p.i = p.v - n.v; 
 	p.i = -n.i;
@@ -522,4 +523,3 @@ end Resistorx;
 
 /*  parameter Integer n = 400;
   Real x[n](start={ 1.0 for i in 1 : n });*/
-
