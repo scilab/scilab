@@ -54,7 +54,7 @@
 # * see if we can do more factorisation (on the lexer for example)
 # * translator must be renamed
 
-######### Modelica #############
+######### Common Modelica elements #############
 
 
 
@@ -337,7 +337,8 @@ am__modelicac_SOURCES_DIST =  \
 	$(srcdir)/src/modelica_compiler/optimization.ml \
 	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
 	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
+	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 @OCAML_TRUE@am_modelicac_OBJECTS = $(am__objects_7)
 modelicac_OBJECTS = $(am_modelicac_OBJECTS)
 modelicac_LDADD = $(LDADD)
@@ -697,8 +698,6 @@ HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@TARGET = modelicac XML2Modelica translator
 @OCAML_TRUE@BASE_PATH = $(srcdir)/src/
-@OCAML_TRUE@modelicac_SOURCES = $(MLS)
-@OCAML_TRUE@translator_SOURCES = $(MLS_translator)
 @OCAML_TRUE@OCAMLLIBS = nums.cma
 
 ### XML2Modelica
@@ -709,6 +708,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 ### Translator 
+@OCAML_TRUE@translator_SOURCES = $(MLS_translator)
 @OCAML_TRUE@MLS_translator = $(srcdir)/src/translator/compilation/types.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/compilation/nameResolve.ml \
 @OCAML_TRUE@ $(srcdir)/src/translator/instantiation/instantiation.ml \
@@ -735,6 +735,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 
 ### Modelicac
+@OCAML_TRUE@modelicac_SOURCES = $(MLS)
 @OCAML_TRUE@MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 @OCAML_TRUE@	$(srcdir)/src/modelica_compiler/linenum.ml \
 @OCAML_TRUE@	$(srcdir)/src/modelica_compiler/parser.ml \
@@ -751,7 +752,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @OCAML_TRUE@	$(srcdir)/src/modelica_compiler/optimization.ml \
 @OCAML_TRUE@	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
 @OCAML_TRUE@	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
-@OCAML_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml 
+@OCAML_TRUE@	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
+@OCAML_TRUE@	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 
 # This is a basic copy of MLS with some elements removed
@@ -2399,7 +2401,7 @@ distclean-local:
 # Build the binaries
 
 @OCAML_TRUE@modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-@OCAML_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+@OCAML_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 @OCAML_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
 @OCAML_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 

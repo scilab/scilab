@@ -12,15 +12,12 @@
 # * see if we can do more factorisation (on the lexer for example)
 # * translator must be renamed
 
-######### Modelica #############
+######### Common Modelica elements #############
 
 if OCAML
 TARGET = modelicac XML2Modelica translator
 BASE_PATH = $(srcdir)/src/
 bin_PROGRAMS = $(TARGET)
-modelicac_SOURCES = $(MLS)
-translator_SOURCES = $(MLS_translator)
-
 OCAMLLIBS=nums.cma
 
 
@@ -34,6 +31,9 @@ BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
 
 ### Translator 
+
+translator_SOURCES = $(MLS_translator)
+
 MLS_translator =  $(srcdir)/src/translator/compilation/types.ml \
  $(srcdir)/src/translator/compilation/nameResolve.ml \
  $(srcdir)/src/translator/instantiation/instantiation.ml \
@@ -62,6 +62,10 @@ INCLUDE_translator = -I $(srcdir)/src/translator/compilation \
 -I $(srcdir)/src/translator/translation
 
 ### Modelicac
+
+modelicac_SOURCES = $(MLS)
+
+
 MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/linenum.ml \
 	$(srcdir)/src/modelica_compiler/parser.ml \
@@ -78,7 +82,8 @@ MLS = $(srcdir)/src/modelica_compiler/parseTree.ml \
 	$(srcdir)/src/modelica_compiler/optimization.ml \
 	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.ml \
 	$(srcdir)/src/modelica_compiler/optimizingCompiler.ml \
-	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml 
+	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.ml \
+	$(srcdir)/src/modelica_compiler/scicosOptimizingCompiler.ml
 
 # This is a basic copy of MLS with some elements removed
 MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
@@ -95,7 +100,6 @@ MLIS = $(srcdir)/src/modelica_compiler/parseTree.mli \
 	$(srcdir)/src/modelica_compiler/xMLCodeGeneration.mli \
 	$(srcdir)/src/modelica_compiler/optimizingCompiler.mli \
 	$(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
-
 
 PARSER_SRC = $(srcdir)/src/modelica_compiler/parser.mly
 LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
@@ -165,7 +169,8 @@ generate-lexer: $(LEXER_SRC)
 # Build the binaries
 
 modelicac:generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE:.ml=.cmx) $(MLS:.ml=.cmx) $(MLS_SPECIFIC_POST:.ml=.cmx)  
+	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+
 
 XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
 	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
