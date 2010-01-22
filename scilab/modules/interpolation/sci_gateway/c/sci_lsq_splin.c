@@ -80,7 +80,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
 
   if (ierr == -1)
     {
-      Scierror(999,_("%s: Not enought points for the fit.\n"), fname);
+      Scierror(999,_("%s: Not enough points for the fit.\n"), fname);
       return 0;
     }
   else if (ierr == 1)

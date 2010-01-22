@@ -699,7 +699,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   # Provide known paths where distribs/OS can store JNI libs
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
-				   if test -z "JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
 				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on	
 					   # purpose to disable the cache
@@ -1144,7 +1144,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])

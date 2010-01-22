@@ -150,7 +150,7 @@ function result = atomsRemove(packages,section)
 			installed_details = atomsGetInstalledDetails(packages(i,:),section);
 			
 			if installed_details(3) == "allusers" then
-				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
 			end
 		
 		elseif (section=="user") & isempty(package_versions(i)) then
@@ -158,7 +158,7 @@ function result = atomsRemove(packages,section)
 			// Check if we have the right to remove at least one of the version
 			// of the package
 			if isempty(atomsGetInstalledVers(package_names(i),section)) then
-				error(msprintf(gettext("%s: You have not enought rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
 			end
 			
 		end

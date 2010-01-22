@@ -84,7 +84,7 @@ void sci_clear_and_exit(int n) /* used with handlers */
 		wsprintf(Message,"SIGABRT Signal detected");
 		break;
 	default:
-		wsprintf(Message,"Unknow Signal detected");
+		wsprintf(Message,"Unknown Signal detected");
 		break;
 	}
 	MessageBox(NULL,Message,"ERROR",MB_ICONWARNING);

@@ -24,7 +24,7 @@ int intex10c(char* fname)
   CheckLhs(minlhs,maxlhs) ;
 
   /*
-   * we want to acces scilab variable : param 
+   * we want to access scilab variable : param 
    * we can modify or read param with *stk(lp+k)
    */ 
 

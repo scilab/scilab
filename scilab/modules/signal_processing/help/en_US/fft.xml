@@ -159,7 +159,7 @@ N=size(t,'*'); //number of samples
 s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
   
 y=fft(s);
-//the fft response is symetric we retain only the first N/2 points
+//the fft response is symmetric we retain only the first N/2 points
 f=sample_rate*(0:(N/2))/N; //associated frequency vector
 n=size(f,'*')
 clf()

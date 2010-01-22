@@ -148,7 +148,7 @@ c
 *   NOTE: 
 *     This part of the code duplicate some lines which are used
 *     after for the others cases...  But if this added part
-*     should bring some problems it will be enought to delete
+*     should bring some problems it will be enough to delete
 *     it and to uncomment the "commented" lines at the beginning
 *     of this subroutine. If no problems occurs I will clean
 *     the code.
