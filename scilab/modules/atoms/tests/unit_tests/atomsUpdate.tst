@@ -24,8 +24,8 @@ atomsSetConfig("Verbose" ,"False");
 // 1st test-case : Just install the toolbox 5
 // =============================================================================
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsInstall("toolbox_5","user");
@@ -43,8 +43,8 @@ if atomsGetInstalledStatus(["toolbox_4" "1.0"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_2" "1.0"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
-// Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsUpdate();
@@ -69,8 +69,8 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 // 2nd test-case : Install toolbox 4 and then toolbox 5
 // =============================================================================
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsInstall("toolbox_4","user");
@@ -89,8 +89,8 @@ if atomsGetInstalledStatus(["toolbox_4" "1.0"],"user")<>"I" then pause, end
 if atomsGetInstalledStatus(["toolbox_2" "1.0"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
-// Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsUpdate();
@@ -117,8 +117,8 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 // => Test the behaviour of toolbox_2
 // =============================================================================
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsInstall("toolbox_3","user");
@@ -139,8 +139,8 @@ if atomsGetInstalledStatus(["toolbox_2" "2.0"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_2" "1.0"],"user")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_1" "1.0"],"user")<>"A" then pause, end
 
-// Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsUpdate();
@@ -169,8 +169,8 @@ if ~isempty( atomsGetInstalled() ) then pause, end
 // 4th test-case : Test the user/allusers behaviour
 // =============================================================================
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsInstall("toolbox_5","user");
@@ -198,8 +198,8 @@ if atomsGetInstalledStatus(["toolbox_4" "1.0"],"allusers")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_2" "1.0"],"allusers")<>"A" then pause, end
 if atomsGetInstalledStatus(["toolbox_1" "1.0"],"allusers")<>"A" then pause, end
 
-// Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsUpdate([],"user");

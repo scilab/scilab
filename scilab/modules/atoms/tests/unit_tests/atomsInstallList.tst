@@ -9,10 +9,10 @@
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 // =============================================================================
 
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 // -----------------------------------------------------------------------------
@@ -41,10 +41,10 @@ if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 
 
 
-// Load the 2nd scenario : See scene1.test.atoms.scilab.org.txt
+// Load the 2nd scenario : See scene10.test.atoms.scilab.org.txt
 // =============================================================================
 
-atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 // -----------------------------------------------------------------------------

@@ -20,8 +20,8 @@ config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 // 1st test case
@@ -46,9 +46,9 @@ if atomsAutoloadAdd(["toolbox_2" "1.0"]       ,"user") <> 1 then pause, end
 if atomsAutoloadAdd(["toolbox_2" "1.0" "user"],"user") <> 0 then pause, end
 if atomsAutoloadAdd("toolbox_2"               ,"user") <> 0 then pause, end
 
-ref = ["toolbox_5" "1.0" "user" "user" ; ..
-       "toolbox_4" "1.0" "user" "user" ; ..
-       "toolbox_2" "1.0" "user" "user"];
+ref = ["toolbox_5" "1.0-1" "user" "user" ; ..
+       "toolbox_4" "1.0-1" "user" "user" ; ..
+       "toolbox_2" "1.0-1" "user" "user"];
 
 
 if or(atomsAutoloadList()<>ref) then pause, end
@@ -82,9 +82,9 @@ if atomsAutoloadAdd(["toolbox_2" "1.0"]           ,"allusers") <> 1 then pause, 
 if atomsAutoloadAdd(["toolbox_2" "1.0" "allusers"],"allusers") <> 0 then pause, end
 if atomsAutoloadAdd("toolbox_2"                   ,"allusers") <> 0 then pause, end
 
-ref = ["toolbox_5" "1.0" "allusers" "allusers" ; ..
-       "toolbox_4" "1.0" "allusers" "allusers" ; ..
-       "toolbox_2" "1.0" "allusers" "allusers"];
+ref = ["toolbox_5" "1.0-1" "allusers" "allusers" ; ..
+       "toolbox_4" "1.0-1" "allusers" "allusers" ; ..
+       "toolbox_2" "1.0-1" "allusers" "allusers"];
 
 if or(atomsAutoloadList()<>ref) then pause, end
 
@@ -103,9 +103,9 @@ if atomsAutoloadAdd(["toolbox_2" "1.0"]           ,"user") <> 1 then pause, end
 if atomsAutoloadAdd(["toolbox_2" "1.0" "allusers"],"user") <> 0 then pause, end
 if atomsAutoloadAdd("toolbox_2"                   ,"user") <> 0 then pause, end
 
-ref = ["toolbox_5" "1.0" "allusers" "user" ; ..
-       "toolbox_4" "1.0" "allusers" "user" ; ..
-       "toolbox_2" "1.0" "allusers" "user"];
+ref = ["toolbox_5" "1.0-1" "allusers" "user" ; ..
+       "toolbox_4" "1.0-1" "allusers" "user" ; ..
+       "toolbox_2" "1.0-1" "allusers" "user"];
 
 if or(atomsAutoloadList()<>ref) then pause, end
 
@@ -125,9 +125,9 @@ if atomsAutoloadAdd(["toolbox_2" "1.0"]           ) <> 1 then pause, end
 if atomsAutoloadAdd(["toolbox_2" "1.0" "allusers"]) <> 0 then pause, end
 if atomsAutoloadAdd("toolbox_2"                   ) <> 0 then pause, end
 
-ref = ["toolbox_5" "1.0" "allusers" "allusers" ; ..
-       "toolbox_4" "1.0" "allusers" "allusers" ; ..
-       "toolbox_2" "1.0" "allusers" "allusers"];
+ref = ["toolbox_5" "1.0-1" "allusers" "allusers" ; ..
+       "toolbox_4" "1.0-1" "allusers" "allusers" ; ..
+       "toolbox_2" "1.0-1" "allusers" "allusers"];
 
 if or(atomsAutoloadList()<>ref) then pause, end
 

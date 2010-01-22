@@ -24,8 +24,8 @@ atomsSetConfig("Verbose" ,"False");
 // 1st test-case : Just install the toolbox 5
 // =============================================================================
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 
 atomsInstall("toolbox_5");

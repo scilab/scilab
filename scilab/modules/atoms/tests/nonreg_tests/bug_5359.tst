@@ -19,7 +19,7 @@
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 atomsSystemUpdate();
 if ~atomsIsInstalled("toolbox_1") then pause, end
 
