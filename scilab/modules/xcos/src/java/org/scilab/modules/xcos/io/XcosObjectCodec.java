@@ -30,7 +30,7 @@ public class XcosObjectCodec extends mxObjectCodec {
     /**
      * Throw when we cannot load the XML.
      */
-	protected class UnrecognizeFormatException extends Exception {
+	public class UnrecognizeFormatException extends Exception {
 		/**
 		 * Default constructor
 		 */

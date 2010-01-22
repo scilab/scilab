@@ -14,9 +14,9 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -113,7 +113,24 @@ public class ScilabStringCodec extends XcosObjectCodec {
 
 	    String[][] data = new String[height][width];
 	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0; i < allValues.getLength(); ++i) {
+	    fillData(data, allValues);
+
+	    ((ScilabString) obj).setData(data);
+	} catch (UnrecognizeFormatException e) {
+	    e.printStackTrace();
+	}
+	return obj;
+    }
+
+	/**
+	 * Fill the data from the node values 
+	 * @param data where to put data
+	 * @param allValues the parsed values
+	 * @throws UnrecognizeFormatException when the values are not recognized
+	 */
+	private void fillData(String[][] data, NodeList allValues)
+			throws UnrecognizeFormatException {
+		for (int i = 0; i < allValues.getLength(); ++i) {
 		int lineXMLPosition = -1;
 		int columnXMLPosition = -1;
 		int valueXMLPosition = -1;
@@ -130,11 +147,5 @@ public class ScilabStringCodec extends XcosObjectCodec {
 		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
 		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
 	    }
-
-	    ((ScilabString) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
 	}
-	return obj;
-    }
 }

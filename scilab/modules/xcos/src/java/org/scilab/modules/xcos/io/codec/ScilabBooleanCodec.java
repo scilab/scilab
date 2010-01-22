@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -113,7 +114,26 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
 
-	    boolean[][] data = new boolean[height][width];
+	    boolean[][] data = parseData(node, height, width);
+
+	    ((ScilabBoolean) obj).setData(data);
+	} catch (UnrecognizeFormatException e) {
+	    e.printStackTrace();
+	}
+	return obj;
+    }
+
+	/**
+	 * Parse the node data and return them.
+	 * @param node The node we are working on
+	 * @param height the height of the data
+	 * @param width the width of the data
+	 * @return the data
+	 * @throws UnrecognizeFormatException when the data cannot be parsed.
+	 */
+	private boolean[][] parseData(Node node, int height, int width)
+			throws UnrecognizeFormatException {
+		boolean[][] data = new boolean[height][width];
 	    NodeList allValues = node.getChildNodes();
 	    for (int i = 0; i < allValues.getLength(); ++i) {
 	    	int lineXMLPosition = -1;
@@ -138,11 +158,6 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    	}
 
 	    }
-
-	    ((ScilabBoolean) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
+		return data;
 	}
-	return obj;
-    }
 }
