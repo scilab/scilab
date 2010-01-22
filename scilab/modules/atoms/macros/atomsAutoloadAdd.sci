@@ -144,6 +144,12 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
 			end
 			
+			// If the packaging version is not mentioned, define it
+			if isempty(strindex(packages(i,2),"-")) then
+				this_package_details = atomsGetInstalledDetails(packages(i,1:3));
+				packages(i,2)        = this_package_details(2);
+			end
+			
 		end
 		
 		// The module's installed section hasn't been specified or is empty

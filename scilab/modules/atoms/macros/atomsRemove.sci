@@ -195,6 +195,7 @@ function result = atomsRemove(packages,section)
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
 		this_package_section   = remove_package_list(i,5);
+		
 		this_package_details   = atomsToolboxDetails([this_package_name this_package_version]);
 		this_package_insdet    = atomsGetInstalledDetails([this_package_name this_package_version],section);
 		this_package_directory = this_package_insdet(4);
@@ -265,19 +266,15 @@ function result = atomsRemove(packages,section)
 		// =====================================================================
 		atomsAutoloadDel([this_package_name this_package_version this_package_section]);
 		
-		// "Archive" installation
+		// Remove it from the DESCRIPTION_installed file
 		// =====================================================================
 		
-		if (isfield(this_package_details,"fromRepository")) & (this_package_details("fromRepository") == "0") then
-			
-			DESCRIPTION_file = atomsPath("system",this_package_insdet(3)) + "DESCRIPTION_archives";
-			
-			if ~ isempty(fileinfo(DESCRIPTION_file)) then
-				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
-				DESCRIPTION = atomsDESCRIPTIONrm(DESCRIPTION,this_package_name,this_package_version);
-				atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
-			end
-			
+		DESCRIPTION_file = atomsPath("system",this_package_insdet(3)) + "DESCRIPTION_installed";
+		
+		if ~ isempty(fileinfo(DESCRIPTION_file)) then
+			DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
+			DESCRIPTION = atomsDESCRIPTIONrm(DESCRIPTION,this_package_name,this_package_version);
+			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 		end
 		
 		// Del the package from the list of package to remove

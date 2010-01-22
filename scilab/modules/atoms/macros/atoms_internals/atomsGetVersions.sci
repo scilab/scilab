@@ -80,21 +80,58 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
 	package_versions          = allpackages(name);
 	package_versions_tab      = getfield(1,package_versions);
 	package_versions_tab(1:2) = [];
+	package_versions_tab      = package_versions_tab';
+	
+	without_packaging_ver     = [];
+	
+	for i=1:size(package_versions_tab,"*")
+		if ~ isempty(strindex(package_versions_tab(i),"-")) then
+			without_packaging_ver = [ without_packaging_ver ; part(package_versions_tab(i),1:strindex(package_versions_tab(i),"-")-1) ];
+		else
+			without_packaging_ver = [ without_packaging_ver ; package_versions_tab(i) ];
+		end
+	end
 	
 	// Delete out of bounds versions
 	// =========================================================================
 	
-	if max_version_included then
-		package_versions_tab(find(atomsVersionCompare(package_versions_tab,max_version) >  0)) = [];
+	if isempty(strindex(max_version,"-")) then
+		// max_version doesn't contain a packaging version
+		if max_version_included then
+			indexToDel = find(atomsVersionCompare(without_packaging_ver,max_version) >  0);
+		else
+			indexToDel = find(atomsVersionCompare(without_packaging_ver,max_version) >= 0);
+		end
 	else
-		package_versions_tab(find(atomsVersionCompare(package_versions_tab,max_version) >= 0)) = [];
+		// max_version contains a packaging version
+		if max_version_included then
+			indexToDel = find(atomsVersionCompare(package_versions_tab,max_version) >  0);
+		else
+			indexToDel = find(atomsVersionCompare(package_versions_tab,max_version) >= 0);
+		end
 	end
 	
-	if min_version_included then
-		package_versions_tab(find(atomsVersionCompare(package_versions_tab,min_version) <  0)) = [];
+	package_versions_tab(indexToDel,:) = [];
+	without_packaging_ver(indexToDel)  = [];
+	
+	if isempty(strindex(min_version,"-")) then
+		// min_version doesn't contain a packaging version
+		if min_version_included then
+			indexToDel = find(atomsVersionCompare(without_packaging_ver,min_version) <  0)
+		else
+			indexToDel = find(atomsVersionCompare(without_packaging_ver,min_version) <= 0)
+		end
 	else
-		package_versions_tab(find(atomsVersionCompare(package_versions_tab,min_version) <= 0)) = [];
+		// min_version contains a packaging version
+		if min_version_included then
+			indexToDel = find(atomsVersionCompare(package_versions_tab,min_version) <  0)
+		else
+			indexToDel = find(atomsVersionCompare(package_versions_tab,min_version) <= 0)
+		end
 	end
+	
+	package_versions_tab(indexToDel,:) = [];
+	without_packaging_ver(indexToDel)  = [];
 	
 	// Sort the version matrix
 	// =========================================================================
