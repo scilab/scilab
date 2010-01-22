@@ -354,7 +354,7 @@ SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
-	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&puiData32);
+	sciErr = allocCommonMatrixOfInteger(_pvCtx, _iVar, piAddr, SCI_UINT32, _iRows, _iCols, (void**)&puiData32);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_INT, _("%s: Unable to create variable in Scilab memory"), "allocMatrixOfUnsignedInteger32");
@@ -892,4 +892,253 @@ static int getCommandNamedScalarInteger(void* _pvCtx, char* _pstName, int _iPrec
 
 	return 0;
 }
+/*--------------------------------------------------------------------------*/
+int createScalarInteger8(void* _pvCtx, int _iVar, char cData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfInteger8(_pvCtx, _iVar, 1, 1, &cData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarInteger8");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createScalarInteger16(void* _pvCtx, int _iVar, short sData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfInteger16(_pvCtx, _iVar, 1, 1, &sData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarInteger16");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createScalarInteger32(void* _pvCtx, int _iVar, int iData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfInteger32(_pvCtx, _iVar, 1, 1, &iData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarInteger32");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int createScalarInteger64(void* _pvCtx, int _iVar, long long llData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfInteger64(_pvCtx, _iVar, 1, 1, llData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarInteger64");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char ucData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfUnsignedInteger8(_pvCtx, _iVar, 1, 1, &ucData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarUnsignedInteger8");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short usData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfUnsignedInteger16(_pvCtx, _iVar, 1, 1, &usData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarUnsignedInteger16");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int uiData)
+{
+	SciErr sciErr;
+	unsigned int* puiData = NULL;
+
+	sciErr = createMatrixOfUnsignedInteger32(_pvCtx, _iVar, 1, 1, &uiData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarUnsignedInteger32");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long ullData)
+{
+	SciErr sciErr;
+
+	sciErr = createMatrixOfUnsignedInteger64(_pvCtx, _iVar, 1, 1, &ullData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createScalarUnsignedInteger64");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char cData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfInteger8(_pvCtx, _pstName, 1, 1, &cData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarInteger8");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short sData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfInteger16(_pvCtx, _pstName, 1, 1, &sData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarInteger16");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int iData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfInteger32(_pvCtx, _pstName, 1, 1, &iData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarInteger32");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long llData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfInteger64(_pvCtx, _pstName, 1, 1, &llData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarInteger64");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+#endif
+/*--------------------------------------------------------------------------*/
+int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char ucData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfUnsignedInteger8(_pvCtx, _pstName, 1, 1, &ucData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarUnsignedInteger8");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short usData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfUnsignedInteger16(_pvCtx, _pstName, 1, 1, &usData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarUnsignedInteger16");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int uiData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfUnsignedInteger32(_pvCtx, _pstName, 1, 1, &uiData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarUnsignedInteger32");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+#ifdef __SCILAB_INT64__
+int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long ullData)
+{
+	SciErr sciErr;
+
+	sciErr = createNamedMatrixOfUnsignedInteger64(_pvCtx, _pstName, 1, 1, &ullData);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SCALAR_INT, _("%s: Unable to create variable in Scilab memory"), "createNamedScalarUnsignedInteger64");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+#endif
 /*--------------------------------------------------------------------------*/

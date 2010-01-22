@@ -26,6 +26,7 @@
 #include "stackinfo.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 
 /*Global structure for scilab 5.x*/
 extern "C"
@@ -381,7 +382,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 			return sciErr;
 		}
 
-		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
+		pstMode[1] = (char*)MALLOC(sizeof(char) * (iLen + 1)); //+1 for null termination
 		sciErr = getMatrixOfString(_pvCtx, piAddr2, &iRows2, &iCols2, &iLen, pstMode);
 		if(sciErr.iErr)
 		{
@@ -390,6 +391,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		}
 
 		iMode = (int)pstMode[0][0];
+		FREE(pstMode[0]);
 	}
 	else
 	{
