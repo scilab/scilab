@@ -1,11 +1,12 @@
-                Changes between version 5.3.0 and 5.2.X of Scilab
+                Changes between version 5.2.X and 5.3.0 of Scilab
                =================================================
 
 
 Core:
 =====
 
-* faster access to primitive table (internal)
+* Faster access to primitive table (internal). This change improves the overall
+speed of Scilab.
                
 Bug fixes:
 ==========
