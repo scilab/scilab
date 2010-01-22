@@ -723,8 +723,6 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     /**
-<<<<<<< HEAD:scilab/modules/xcos/src/java/org/scilab/modules/xcos/graph/XcosDiagram.java
-=======
      *  ForceCellReshapeTracker
      *  Called when we want a Block to reshape for it's ports positions.
      */
