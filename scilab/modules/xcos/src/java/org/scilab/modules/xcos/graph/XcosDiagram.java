@@ -1188,7 +1188,6 @@ public class XcosDiagram extends ScilabGraph {
     					refresh();
     				}
     			} else if (waitPathAddEdge) {
-    				System.err.println("mouseReleased : waitPathAddEdge");
     				if (drawLink != null) {
     					getModel().beginUpdate();
     					//move end of link and add point at old position
