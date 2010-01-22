@@ -47,25 +47,16 @@ function details = atomsToolboxDetails(package,field)
 	// Get the full list of packages
 	// =========================================================================
 	
-	repositorypackages = atomsDESCRIPTIONget();
+	allpackages = atomsDESCRIPTIONget();
 	
 	name    = package(1);
 	version = package(2);
 	
-	if ~ isfield(repositorypackages,name) then
-		if ~ atomsIsInstalled(package) then
-			// The module is not (or no more) present on the repository and not installed
-			// => in a nutshell, unknown
-			error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
-		else
-			// The module has been removed from the repository but it's still 
-			// installed
-			this_package_description = atomsDESCRIPTIONread(atomsGetInstalledPath(package)+filesep()+"DESCRIPTION");
-			repositorypackages       = this_package_description("packages");
-		end
+	if ~ isfield(allpackages,name) then
+		error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
 	end
 	
-	package_versions = repositorypackages(name);
+	package_versions = allpackages(name);
 	
 	if ~ isfield(package_versions,version) then
 		error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name+" - "+version));
@@ -92,7 +83,8 @@ function details = atomsToolboxDetails(package,field)
 	
 	if atomsIsInstalled([name version]) then
 		
-		installedDetails = atomsGetInstalledDetails(package);
+		installedDetails          = atomsGetInstalledDetails(package);
+		details("Version")        = installedDetails(2);
 		details("installAlluser") = installedDetails(3);
 		details("installPath")    = installedDetails(4);
 		details("installStatus")  = installedDetails(5);
