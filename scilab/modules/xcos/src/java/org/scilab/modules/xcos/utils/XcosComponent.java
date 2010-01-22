@@ -19,8 +19,6 @@ import java.awt.event.ComponentListener;
 
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 
-import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
