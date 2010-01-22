@@ -17,7 +17,7 @@
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>a real symetric positive definite sparse matrix</para>
+          <para>a real symmetric positive definite sparse matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -89,7 +89,7 @@
  ]]></programlisting>
     <para>
     but 4 iterations are nevertheless required and also the iterations are stopped
-    if itermax is reached (and a warning message is issued). As the matrix is symetric
+    if itermax is reached (and a warning message is issued). As the matrix is symmetric
     this is the rayleigh quotient which gives the estimated eigenvalue at each step
     (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for 
     instance if you want to see the intermediary result without setting yourself the 

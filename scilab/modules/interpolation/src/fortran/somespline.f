@@ -125,7 +125,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine TriDiagLDLtSolve(d, l, b, n)
 *
 *     PURPOSE
-*        solve a linear system A x = b with a symetric tridiagonal positive definite
+*        solve a linear system A x = b with a symmetric tridiagonal positive definite
 *        matrix A by using an LDL^t factorization
 *        
 *     PARAMETERS
@@ -165,7 +165,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine CyclicTriDiagLDLtSolve(d, lsd, lll, b, n)
 *
 *     PURPOSE
-*        solve a linear system A x = b with a symetric "nearly" tridiagonal 
+*        solve a linear system A x = b with a symmetric "nearly" tridiagonal 
 *        positive definite matrix A by using an LDL^t factorization, 
 *        the matrix A has the form :
 *           

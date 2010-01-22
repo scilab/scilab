@@ -1,9 +1,22 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -12,6 +25,9 @@ import org.w3c.dom.NodeList;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
+/**
+ * Define serialization for a {@link ScilabBoolean} instance.
+ */
 public class ScilabBooleanCodec extends XcosObjectCodec {
 
     
@@ -21,20 +37,32 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     private static final String DATA = "data";
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
-    
-    public ScilabBooleanCodec(Object template) {
-	super(template);
-    }
 
-
+    /**
+     * Default constructor
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+     */
     public ScilabBooleanCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 
     }
 
+	/**
+	 * Encodes the specified object and returns a node representing then given
+	 * object. Calls beforeEncode after creating the node and afterEncode
+	 * with the resulting node after processing.
+	 * 
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @return Returns the resulting XML node that represents the given object. 
+	 */
+    @Override
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabBoolean scilabBoolean = (ScilabBoolean) obj;
@@ -53,7 +81,17 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	return node;
     }
     
-
+    /**
+     * Parses the given node into the object or returns a new object
+	 * representing the given node.
+	 * 
+	 * @param dec Codec that controls the encoding process.
+	 * @param node XML node to be decoded.
+	 * @param into Optional object to encode the node into.
+	 * @return Returns the resulting object that represents the given XML node
+	 * or the object given to the method as the into parameter.
+	 */
+    @Override
     public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
@@ -76,7 +114,26 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
 
-	    boolean[][] data = new boolean[height][width];
+	    boolean[][] data = parseData(node, height, width);
+
+	    ((ScilabBoolean) obj).setData(data);
+	} catch (UnrecognizeFormatException e) {
+	    e.printStackTrace();
+	}
+	return obj;
+    }
+
+	/**
+	 * Parse the node data and return them.
+	 * @param node The node we are working on
+	 * @param height the height of the data
+	 * @param width the width of the data
+	 * @return the data
+	 * @throws UnrecognizeFormatException when the data cannot be parsed.
+	 */
+	private boolean[][] parseData(Node node, int height, int width)
+			throws UnrecognizeFormatException {
+		boolean[][] data = new boolean[height][width];
 	    NodeList allValues = node.getChildNodes();
 	    for (int i = 0; i < allValues.getLength(); ++i) {
 	    	int lineXMLPosition = -1;
@@ -101,15 +158,6 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    	}
 
 	    }
-
-	    ((ScilabBoolean) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
+		return data;
 	}
-	return obj;
-    }
-
-    
-    private class UnrecognizeFormatException extends Exception {}
-
 }

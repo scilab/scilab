@@ -297,6 +297,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsACheckBoxMenuItem = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 			meAsACheckBoxMenuItem.setText(getText());
 			meAsACheckBoxMenuItem.setChecked(status);
+			meAsACheckBoxMenuItem.setCallback(getCallback());
 			Container parent = getParent();
 			int index = parent.getComponentZOrder(this);
 			parent.remove(this.getComponent());

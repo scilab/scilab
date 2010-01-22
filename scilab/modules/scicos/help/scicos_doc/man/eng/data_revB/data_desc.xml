@@ -1110,7 +1110,7 @@ typedef struct {
                       \end{tabular}
                      \end{center}
 
- \item {\bf block->inptr :} An array of pointers of size nin,1 that allow to directly acces to the
+ \item {\bf block->inptr :} An array of pointers of size nin,1 that allow to directly access to the
                      data contained in the regular input matrices.\\
                      Suppose the previous example (block with three inputs : an int32 matrix of size [3,2],
                      a complex scalar and a real matrix of size [4,1]).\\
@@ -1237,7 +1237,7 @@ typedef struct {
                      and the type numbers defined at the {\bf C level} (84,11,10) and please report to the 
                      previous table to have the correspondence for all Scicos type.
 
- \item {\bf block->outptr :} An array of pointers of size nout,1 that allow to directly acces to the
+ \item {\bf block->outptr :} An array of pointers of size nout,1 that allow to directly access to the
                      data contained in the regular output matrices.\\
                      Suppose the previous example (block with three outputs : an int32 matrix of size [3,2],
                      a complex scalar and a real matrix of size [4,1]).\\
@@ -1697,7 +1697,7 @@ typedef struct {
                      \}\\
                      }
 
- \item {\bf block->oparptr :} An array of pointers of size nopar,1 that allow to directly acces to the
+ \item {\bf block->oparptr :} An array of pointers of size nopar,1 that allow to directly access to the
                      data contained in the object parameter.\\
                      Suppose that you have defined in the editor a block with the following 
                      \textbf{opar} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
@@ -2031,7 +2031,7 @@ typedef struct {
                      \}\\
                      }
 
- \item {\bf block->ozptr :} An array of pointers of size noz,1 that allow to directly acces to the
+ \item {\bf block->ozptr :} An array of pointers of size noz,1 that allow to directly access to the
                      data contained in the discrete object state.\\
                      Suppose that you have defined in the editor a block with the following 
                      \textbf{odstate} field in \htmladdnormallink{scicos\_model}{scicos_model.htm} :
@@ -4375,7 +4375,7 @@ The pair block is \htmladdnormallink{WFILE\_f}{WFILE_f.htm}.
 	<P>     A*X*(inv(In-D))*A-X+C=0</P>
 	<P>
          where A is an NxN matrix, it is the first input of the block,
-         C and D are two NxN symetrics matrices and are respectively the
+         C and D are two NxN symmetrics matrices and are respectively the
          second and third input of the RICC block. X represent the
          output of the block, it is also a NxN matrix.
         </P>

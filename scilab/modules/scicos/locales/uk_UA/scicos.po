@@ -1,0 +1,145 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"PO-Revision-Date: 2010-01-16 18:20+0000\n"
+"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-01-21 15:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " не вдалося зібрати %s.mo\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " збирання %s.mo виконується у примусовому режимі\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo доведеться зібрати повторно\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation of the Modelica block."
+msgstr "%s: під час спроби збирання блоку Modelica сталася помилка."
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: не вдалося знайти жодного файла MO за такою адресою: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
+
+#, c-format
+msgid ""
+"%s: Diagram does not compile in pass %d.\n"
+"'),"
+msgstr ""
+"%s: не вдалося створити діаграму на кроці %d.\n"
+"'),"
+
+#, c-format
+msgid "%s: Error : the following command line failed to execute: %s.\n"
+msgstr "%s: помилка: не вдалося виконати таку команду: %s.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: помилка: блок scifunc не було визначено."
+
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: помилка: не вдалося знайти компілятор Modelica (MODELICAC)."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вхідних даних.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: помилкова нумерації портів вихідних даних.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути одне ціле "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
+"рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Інструменти"
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr ""
+"«scicos» більше не підтримується, будь ласка, скористайтеся «xcos».\n"
+
+msgid "A compatible C compiler required."
+msgstr "Потрібен сумісний компілятор C."
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+"Для виконання цієї дії потрібно позначити у поточному вікні лише один блок."
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "Проблема під час спроби збирання бібліотеки %s\n"
+
+msgid "Sorry compiling problem"
+msgstr "Вибачте, проблема зі збиранням"
+
+msgid "The current icon depends on block parameter\n"
+msgstr "Поточна піктограма залежить від параметра блоку\n"

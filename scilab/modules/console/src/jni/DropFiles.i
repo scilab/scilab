@@ -1,7 +1,10 @@
 /* Allan CORNET */
 /* INRIA 2007 */
 /* Completion.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ DropFiles.i */
+/** 
+ * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ DropFiles.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 
 %module DropFiles
 

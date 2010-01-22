@@ -292,7 +292,7 @@ public class SciOutputView extends JTextPane implements OutputView {
 					.getInputCommandView()).doLayout();
 		}
 		/* Update scroll only if console has been set */
-		/* TODO : Must not do this each time... consume pretty much computing ressources */
+		/* TODO : Must not do this each time... consume pretty much computing resources */
 		if (console != null) {
 			console.updateScrollPosition();
 		}

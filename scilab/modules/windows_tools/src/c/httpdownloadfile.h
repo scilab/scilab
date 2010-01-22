@@ -15,6 +15,8 @@
 #ifndef __HTTPDOWNLOADFILE_H__
 #define __HTTPDOWNLOADFILE_H__
 
+#include "dynlib_windows_tools.h"
+
 typedef enum {
 	
 	HTTP_DOWNLOAD_ERROR_OK = 0,
@@ -35,6 +37,9 @@ typedef enum {
 * @param[in] szSaveFilePath string filename destination
 */
 httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath);
+
+/* simplified version for 'call' from scilab */
+WINDOWS_TOOLS_IMPEXP void httpdownload(char * szURL,char * szSaveFilePath, double *ierr);
 
 #endif /* __HTTPDOWNLOADFILE_H__ */
 /*--------------------------------------------------------------------------*/

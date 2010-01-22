@@ -210,7 +210,7 @@ file(action,unit)
                     <term>b</term>
 
                     <listitem>
-                      <para>0 stands for sequential acces and 1 for direct
+                      <para>0 stands for sequential access and 1 for direct
                       access</para>
                     </listitem>
                   </varlistentry>

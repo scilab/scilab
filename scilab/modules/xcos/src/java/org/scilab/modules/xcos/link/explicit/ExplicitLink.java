@@ -15,7 +15,7 @@ package org.scilab.modules.xcos.link.explicit;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
- * An implicit link connect an {@link ExplicitOutputPort} to an
+ * An explicit link connect an {@link ExplicitOutputPort} to an
  * {@link ExplicitInputPort}.
  */
 public class ExplicitLink extends BasicLink {

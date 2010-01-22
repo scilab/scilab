@@ -87,7 +87,7 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("%s: No more memory.\n"),"PolylineBarDrawerJoGL::drawPolyline");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"PolylineBarDrawerJoGL::drawPolyline");
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }
     if (zCoords != NULL) { delete[] zCoords; }
@@ -110,7 +110,7 @@ void PolylineBarDrawerJoGL::drawPolyline( void )
   }
   catch (const std::exception& e)
   {
-    sciprint(_("%s: No more memory.\n"),"PolylineBarDrawerJoGL::drawPolyline");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"PolylineBarDrawerJoGL::drawPolyline");
   }
  
   delete[] xCoords;
