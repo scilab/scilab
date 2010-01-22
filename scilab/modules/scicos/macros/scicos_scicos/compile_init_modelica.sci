@@ -59,10 +59,10 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
  Flati=' ""'+Flati+'""'
 
  // the file Flat_functions is not systematicly created by translator
- //instr='""modelicac.exe"" ""'+Flati+'"" '+Flat_functions+' '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
+ //instr='""modelicac.exe"" ""'+Flati+'"" '+Flat_functions+' '+JAC+' -with-init-in ""'+strsubst(xmlfile,'\','/')+'"" -with-init-out ""'+strsubst(xmlfile,'\','/')+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
 
  // generates the computational C function associated to the flat model
- instr=exe+Flati+''+JAC+'-with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
+ instr=exe+Flati+''+JAC+'-with-init-in ""'+strsubst(xmlfile,'\','/')+'"" -with-init-out ""'+strsubst(xmlfile,'\','/')+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
 
   //if ~ok then return,end
   //mprintf('%s\n',' Init C code   : '+FlatCi);

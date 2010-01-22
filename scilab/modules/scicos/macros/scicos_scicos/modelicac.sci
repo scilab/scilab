@@ -34,7 +34,7 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,in
   end
   
   if ((with_gui)& (fileinfo(xmlfileTMP)<>[])) then // if GUI is running
-    XMLfiles=' -with-init-in ""'+xmlfileTMP+'"" -with-init-out ""'+xmlfileTMP+'""';
+    XMLfiles=' -with-init-in ""'+strsusbst(xmlfileTMP,'\','/')+'"" -with-init-out ""'+strsusbst(xmlfileTMP,'\','/')+'""';
   else
     XMLfiles='';
   end 
