@@ -205,7 +205,7 @@ Bug fixes:
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
 
-
+* bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
