@@ -29,7 +29,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
     }
 
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = ScilabInteger.class.getName();
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabInteger scilabInteger = (ScilabInteger) obj;

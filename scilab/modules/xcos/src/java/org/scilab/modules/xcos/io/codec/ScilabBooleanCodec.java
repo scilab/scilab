@@ -29,7 +29,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     }
 
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = ScilabBoolean.class.getSimpleName();
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabBoolean scilabBoolean = (ScilabBoolean) obj;

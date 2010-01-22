@@ -40,7 +40,7 @@ public class ScilabStringCodec extends XcosObjectCodec {
     }
 
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = ScilabString.class.getSimpleName();
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabString scilabString = (ScilabString) obj;
