@@ -29,7 +29,7 @@ public class ScilabDoubleCodec extends XcosObjectCodec {
 	}
 
 	public Node encode(mxCodec enc, Object obj) {
-		String name = ScilabDouble.class.getSimpleName();
+		String name = mxCodecRegistry.getName(obj);
 		Node node = enc.getDocument().createElement(name);
 
 		ScilabDouble scilabDouble = (ScilabDouble) obj;

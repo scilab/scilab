@@ -22,6 +22,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+
     public ScilabBooleanCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
@@ -29,7 +30,7 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     }
 
     public Node encode(mxCodec enc, Object obj) {
-    	String name = ScilabBoolean.class.getSimpleName();
+    	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabBoolean scilabBoolean = (ScilabBoolean) obj;
