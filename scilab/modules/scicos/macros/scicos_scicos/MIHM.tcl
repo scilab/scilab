@@ -91,7 +91,7 @@ proc MIHM_Create { WindowsID } {
 
     ################---Table Zone-----------------############
     set pane [$pw add -weight [expr 3/2]]
-    set lf   [TitleFrame $pane.lf -text "Varaibles & parameters attributes"]
+    set lf   [TitleFrame $pane.lf -text "Variables & parameters attributes"]
     set sw   [ScrolledWindow [$lf getframe].sw -scrollbar vertical -auto none -relief sunken -borderwidth 2]
 
     set safhe [canvas $sw.safhe -width $dw_saf -height $dh_saf ]
@@ -232,6 +232,7 @@ proc MIHM_Init { {WindowsID -1 } } {
     menu $mx
     $BASE.menu add cascade -accelerator "F"  -label "File" -menu $mx -underline 0 -command ""
     $mx add command  -label "Open XML"  -underline 0 -accelerator {Alt+o} -command "button_OpenXML  $WindowsID_new"  
+    $mx add command  -label "Load simulation result"  -underline 0 -accelerator {Alt+l} -command "button_OpenXMLSim  $WindowsID_new"
     $mx add command  -label "Close XML" -underline 0 -accelerator {Alt+c} -command "button_CloseModel $WindowsID_new"   
     $mx add command  -label "Save XML"  -underline 0 -accelerator {Alt+s} -command "button_SaveXMLs  $WindowsID_new"  
     $mx add command  -label "Save XML as..." -underline 1 -accelerator {Alt+a} -command "button_SaveXML  $WindowsID_new" 
@@ -533,6 +534,23 @@ proc button_CloseModel { WindowsID } {
     }
 }
 #=======================================================================
+proc button_OpenXMLSim { WindowsID } {
+    global sciGUITable
+    global Active_Model
+    global DispMode
+    set Model_name [string range $Active_Model  4 end-1]  ;# removing "root-f" from "nodex"
+    set Sim "Sim"
+    set ext ".xml"; 
+    set tmpdir "$sciGUITable(win,$WindowsID,data,SCI_TMPDIR)"  
+    set simxml "$tmpdir/$Model_name$Sim$ext"
+    set sciGUITable(win,$WindowsID,data,Scixmlfile)  $simxml
+    if { $DispMode ne "Normal" } {
+	set DispMode "Normal"
+	DispMode_change $WindowsID ;
+    }
+    button_OpenXML $WindowsID
+}
+#=======================================================================
 proc button_OpenXML { WindowsID } {
     global XML_LIST
     global Active_Model
@@ -543,17 +561,25 @@ proc button_OpenXML { WindowsID } {
     global der_mode
     global IncidenceMatrix
     global ztree
+    global DispMode
 
     if { $EnableQuit == "no" } { return }
 	     
     set ftypes { {{XML Scripts}    {.xml} }   }
     set filename "$sciGUITable(win,$WindowsID,data,Scixmlfile)"    
     set sciGUITable(win,$WindowsID,data,Scixmlfile) ""
+    set init "_init"
 
     if { $filename=="" } { 
 	set Model_name [string range $Active_Model  4 end]  ;# removing "root" from "nodex"
-     	set filename [tk_getOpenFile -filetypes $ftypes -initialfile $Model_name]
-	set need_compile true  
+     	set filename [tk_getOpenFile -filetypes $ftypes -initialfile $Model_name$init]
+	set need_compile true 
+	if { $filename != "" } {	
+	    if { $DispMode ne "Normal" } {
+		set DispMode "Normal"
+		DispMode_change $WindowsID ;
+	    }
+	}
     }   
     if { $filename != "" } {	
 	set filename_tail [file tail  $filename]
@@ -641,6 +667,7 @@ proc button_SaveXML { WindowsID } { ;# save as button
     
     set filename "$sciGUITable(win,$WindowsID,data,Scixmlfile)"  
     set sciGUITable(win,$WindowsID,data,Scixmlfile)  ""
+    set init "_init"
 
     if { $filename=="" } { 
 	set ftypes {  {{XML Scripts}   {.xml}    }		}
@@ -896,9 +923,7 @@ proc JacobianEnabling { WindowsID } {
 
     tk_messageBox -icon question -type ok -title Help  -message $msg1
     set need_compile true
-
 }
-
 
 #=======================================================================
 proc button_HelpWindow  { WindowsID }   { 
@@ -945,6 +970,7 @@ proc button_der_mode  { new_mode WindowsID }   {
 proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } {
     global Active_Model
     set VARS {}
+    set VARD {}
     set kids [$tree nodes $parent]
 
     foreach  kid  $kids  {   
@@ -956,14 +982,9 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 	    set rowi  [lindex $data_i $i]	
 	    set namei [lindex $rowi 0] ; # "NAME" column
 	    set idi   [lindex $rowi 2] ; # "ID" column
-	    set fixed_orig  [lindex $rowi 11] ; # "fixed_orig" column
+	    # set fixed_orig  [lindex $rowi 11] ; # "fixed_orig" column
 	    if { [regexp {__der_(\w*)} $idi -> restOfWord] > 0  } {
-		lappend  VARS [string map {__der_ ""} $idi]
-		if { $NewDerWeight ==  1 } {
-		    set rowi [lreplace $rowi 4 4 0.0 ] ;# set the __der_ variable values to 0.0
-		}
-		set rowi [lreplace $rowi 5 5 $NewDerWeight ]
-		set data_i [lreplace $data_i $i $i $rowi]	
+		lappend  VARS $idi
 	    }
 	}
 	replace_ders_in_tree   $WindowsID $tree $kid $NewDerWeight $NewStateWeight
@@ -980,7 +1001,9 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 	    for { set i 0 } { $i < $NRow } { incr i } {
 		set rowi  [lindex $data_i $i]	
 		set idi   [lindex $rowi 2] ; # "ID" column
-		if { $idi == $var } {
+		# set fixed_orig   [lindex $rowi 11] ; # "Fixed_orig" column
+		set vard  [string map {__der_ ""} $var]
+		if { $idi == $vard } {		    
 		    set rowi [lreplace $rowi 5 5 $NewStateWeight ]
 		    set data_i [lreplace $data_i $i $i $rowi]
 		    break
@@ -989,6 +1012,29 @@ proc replace_ders_in_tree { WindowsID tree parent NewDerWeight NewStateWeight } 
 	    $tree itemconfigure $kid -data $data_i;
 	}
     }
+
+    foreach var $VARD {
+	foreach  kid  $kids  {   
+	    set MainNode [ find_MainNode  $WindowsID $kid $tree ]	       
+	    if { $MainNode != $Active_Model } { continue }
+	    set data_i [$tree itemcget $kid -data]		
+	    set NRow [llength $data_i]	 	
+	    for { set i 0 } { $i < $NRow } { incr i } {
+		set rowi  [lindex $data_i $i]	
+		set idi   [lindex $rowi 2] ; # "ID" column
+		if { $idi == $var } {		    	    
+	  		    if { $NewDerWeight ==  1 } {
+		           set rowi [lreplace $rowi 4 4 0.0 ] ;# set the __der_ variable values to 0.0
+		        }
+		        set rowi [lreplace $rowi 5 5 $NewDerWeight ]	       
+		        set data_i [lreplace $data_i $i $i $rowi]	
+			      break
+		}
+	    }
+	    $tree itemconfigure $kid -data $data_i;
+	}
+    }
+
 }
 
 # ----------------------------------------------------------------------------
@@ -1626,8 +1672,8 @@ global scilabpath
         set nm [lindex [lindex $name_of_struct 2 ] 0]; 
  	set StructName [string trim [string map {#text ""} $nm] "\{ \}"]
 
-        set SVname "$xparent$StructName"             
-	if { [catch {$tree insert end $xparent $SVname -image [image create photo -file "$scilabpath/modules/scicos/macros/scicos_scicos/scicos.gif"] -text $StructName }] } {  return "" }
+        set SVname "$xparent$StructName" 
+	if { [catch {$tree insert end $xparent $SVname  -image [image create photo -file "$scilabpath/modules/scicos/macros/scicos_scicos/scicos.gif"] -text $StructName }] } {  return "" }
 #      	tk_messageBox -icon question -type yesno -title Message  -message "NEQ=$SVname "
 
         SearchList $WindowsID  $Structure  $tree $SVname  
@@ -1737,10 +1783,10 @@ global scilabpath
                     if { $TrSelected eq "{}" } {set TrSelected ""}   
 		}
 
-		fixed_orig {
-		    set ter_node_2  [lindex [lindex $terj 2 ] 0]; 
-		    set TrFixedOrig [string trim [string map {#text ""} $ter_node_2 ] "\{ \}"]
-		}
+		#fixed_orig {
+		#    set ter_node_2  [lindex [lindex $terj 2 ] 0]; 
+		#    set TrFixedOrig [string trim [string map {#text ""} $ter_node_2 ] "\{ \}"]
+		#}
 
 		output {
 		    set TrOutput  "out"
@@ -1764,9 +1810,10 @@ global scilabpath
         } 
 
 	if { $TrWeight == "" } {  
-	    if { $TrKind == "fixed_parameter" } { set TrFixed "true" }
-	    if { $TrFixed == "true" } { set TrWeight 1 } else { set TrWeight 0 }
-
+	    if { $TrFixed == "true" }  { set TrWeight 1 }
+	    if { $TrFixed == "false" } { set TrWeight 0 }
+	    if { $TrFixed == "-" }     { set TrWeight 0 }	    
+	    if { $TrKind == "fixed_parameter" } { set TrWeight 1  }
 	}
 
 	if { $TrSelected== "" } { set TrSelected "n"
@@ -1777,6 +1824,7 @@ global scilabpath
 
 	} 
 	if { $TrValue== "" } { set TrValue $TrNominal }  
+	if { $TrValue== "" } { set TrValue 0.0 } 
 
         set TrValue_orig $TrValue        
 	set data_ij [list $TrName $TrKind $TrID $TrFixed $TrValue $TrWeight $TrMax $TrMin $TrNominal $TrComment $TrSelected $TrFixedOrig $TrOutput $TrValue_orig]
@@ -1786,7 +1834,6 @@ global scilabpath
 	lappend data_i $data_ij
 	
 	$tree itemconfigure $xparent -data $data_i 
-       
 	
         return $tree          
     }
@@ -1910,7 +1957,7 @@ proc Fill_List { WindowsID xlist tree xparent } {
 	set TrNominal [lindex $data_ij 8]
 	set TrComment [lindex $data_ij 9]
 	set TrSelected [lindex $data_ij 10]
-	set TrFixedOrig [lindex $data_ij 11]
+	# set TrFixedOrig [lindex $data_ij 11]
 	set TrOutput   [lindex $data_ij 12]
 	set TrValue_orig $TrValue
 
@@ -1992,7 +2039,7 @@ proc Fill_List { WindowsID xlist tree xparent } {
 	   }
        }
        append new_xlist  " {selected {value $TrSelected} {}}"
-       append new_xlist  " {fixed_orig {} {{#text $TrFixedOrig}}}"
+       # append new_xlist  " {fixed_orig {} {{#text $TrFixedOrig}}}"
        #append new_xlist  " {fixed_orig {value $TrFixedOrig} {}}" 
 
        if { $TrOutput == "out" } { append new_xlist  " {output {} {}}" }
@@ -2392,7 +2439,8 @@ proc get_model_info { WindowsID } {
     set NDIF [lindex $Info 7]
 
     set w "[sciGUIName $WindowsID].status"
-    if  { $NEQ!= [expr $NPL+$NVL] } {
+    set NVAR [expr $NPL+$NVL+$NDIS]    
+    if  { $NEQ!= $NVAR } {
 	$w.nequation configure -text "Equation=$NEQ" -fg red
 	$w.nunknown configure -text "Unknowns=[expr $NPL+$NVL]" -fg red 
 	set square false

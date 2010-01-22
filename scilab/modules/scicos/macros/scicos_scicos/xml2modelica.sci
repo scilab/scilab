@@ -19,6 +19,11 @@
 // See the file ../license.txt
 //
 function  ok=xml2modelica(xmlfile,Flati)
+// Generate the Modelica model file Flati with 
+// the xml file given by the initialization interface.
+// Interface to the external tool xml2modelica.exe
+// if <name> is the basename of filemo this function produces
+// - the flat Modelica model file in outpath+name+'fi.mo'
 
 //Scilab interface  with external tool modelicac.exe
   tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
@@ -28,16 +33,10 @@ function  ok=xml2modelica(xmlfile,Flati)
   exe='""'+pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)+'"" '
   
   in='""'+xmlfile+'""'
-  out=' -o ""'+Flati+'"" '
+  out='-o ""'+Flati+'""'
+  option='-init'  // generates a flat modelica file for the initialization
   Errfile= ' > ""'+tmpdir+'ixml2modelica.err""'
-  instr=strcat([exe in out Errfile],' ')
- "'    
- 
-  origin_xmlfile = mgetl(xmlfile);
-  modif_xml = strsubst(origin_xmlfile,'<fixed_orig>false</fixed_orig>','');
-  modif_xml(modif_xml == '')= [];
-  mputl(modif_xml,xmlfile)
-
+  instr=strcat([exe in option out Errfile],' ')
 
   if MSDOS then, 
     mputl(instr,tmpdir+'igenx.bat');
