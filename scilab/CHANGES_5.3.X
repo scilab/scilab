@@ -7,7 +7,12 @@ Core:
 
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
-               
+
+Xcos:
+=====
+
+* The default palettes can now be manipulated by the user.
+          
 Bug fixes:
 ==========
 
