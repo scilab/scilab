@@ -119,6 +119,13 @@ Compilation:
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
 
+Scilab extensions:
+==================
+
+* call_scilab: Complex examples have not been updated to use the new API Scilab.
+
+* API_Scilab: a presentation page of the feature have been added.
+
 Bug fixes:
 ==========
 
