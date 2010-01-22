@@ -10,7 +10,10 @@
  *
  */
 /* Completion.i */
-/*  swig -java -package org.scilab.modules.completion -outdir ../java/org/scilab/modules/completion/ Completion.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.completion -outdir ../java/org/scilab/modules/completion/ Completion.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 %module Completion
 
 %{

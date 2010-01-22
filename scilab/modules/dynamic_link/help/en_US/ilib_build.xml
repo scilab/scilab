@@ -132,7 +132,8 @@
   <refsection>
     <title>Examples (C code)</title>
 
-    <programlisting role="example">//Here with give a complete example on adding new primitive to Scilab
+    <programlisting role="example"><![CDATA[ 
+//Here with give a complete example on adding new primitive to Scilab
 //create the procedure files
 
 cd TMPDIR;
@@ -145,17 +146,17 @@ f1=['extern double fun2();'
 
 mputl(f1,TMPDIR + '/example_ilib_build_c/fun1.c');
 
-f2=['#include &lt;math.h&gt;'
+f2=['#include <math.h>'
     'double fun2(double x)'
     '{ return( sin(x+1.));}'];
 mputl(f2,TMPDIR + '/example_ilib_build_c/fun2.c');
 
 //creating the interface file
-i=['#include &lt;stdlib.h&gt;'
-   '#include &lt;stack-c.h&gt;'
-   '#include &lt;api_scilab.h&gt;'
-   '#include &lt;Scierror.h&gt;'
-   '#include &lt;localization.h&gt;'
+i=['#include <stdlib.h>'
+   '#include <stack-c.h>'
+   '#include <api_scilab.h>'
+   '#include <Scierror.h>'
+   '#include <localization.h>'
    ''
    'extern int fun1 ( double *x, double *y);'
    ''
@@ -170,17 +171,17 @@ i=['#include &lt;stdlib.h&gt;'
    '  CheckRhs(1,1);'
    '  CheckLhs(1,1);'
    ''
-   '  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+   '  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);'
    '  if(sciErr.iErr)'
    '  {'
-   '    printError(&amp;sciErr, 0);'
+   '    printError(&sciErr, 0);'
    '    return 0;'
    '  }' 
    ''
-   '  sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+   '  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);'
    '  if(sciErr.iErr)'
    '  {'
-   '    printError(&amp;sciErr, 0);'
+   '    printError(&sciErr, 0);'
    '    return 0;'
    '  }'
    ''
@@ -190,10 +191,10 @@ i=['#include &lt;stdlib.h&gt;'
    '     return 0;'
    '  }'
    ''
-   '  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;pdVarOne);'
+   '  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m1, &n1, &pdVarOne);'
    '  if(sciErr.iErr)'
    '  {'
-   '    printError(&amp;sciErr, 0);'
+   '    printError(&sciErr, 0);'
    '    return 0;'
    '  }'
    ''
@@ -214,13 +215,15 @@ ilib_build('build_c',['fun1','sci_fun1'],files,[]);
 exec loader.sce; 
 
 //using the new primitive
-fun1(33) </programlisting>
+fun1(33) 
+]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (C code - previous Scilab API &lt; 5.2)</title>
 
-    <programlisting role="example">cd TMPDIR;
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR;
 mkdir('example_ilib_build_c_old');
 cd('example_ilib_build_c_old'); 
 
@@ -232,7 +235,7 @@ f1=['extern double fun2();'
 
 mputl(f1,'fun1.c')
 
-f2=['#include &lt;math.h&gt;'
+f2=['#include <math.h>'
     'double fun2(double x)'
     '{ return( sin(x+1.));}'];
 mputl(f2,'fun2.c');
@@ -241,8 +244,8 @@ mputl(f2,'fun2.c');
 i=['#include ""stack-c.h""'
    '#include ""stackTypeVariable.h""'
    '#include ""version.h""'
-   '#if SCI_VERSION_MAJOR &lt;= 5'
-   '#if SCI_VERSION_MINOR &lt;  2'
+   '#if SCI_VERSION_MAJOR <= 5'
+   '#if SCI_VERSION_MINOR <  2'
    '   #error ""This example is obsolete see help ilib_buid""'
    '#endif'
    '#endif'
@@ -253,7 +256,7 @@ i=['#include ""stack-c.h""'
    '  int m1,n1,l1;'
    '  CheckRhs(1,1);'
    '  CheckLhs(1,1);'
-   '  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m1, &amp;n1, &amp;l1);'
+   '  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);'
    '  fun1(stk(l1),stk(l1));'
    '  LhsVar(1) = 1;'
    '  return 0;'
@@ -272,23 +275,24 @@ exec loader.sce
 
 //using the new primitive
 scifun1(33)
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (C++ code)</title>
 
-    <programlisting role="example">cd TMPDIR;
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR;
 mkdir('example_ilib_build_cpp');
 cd('example_ilib_build_cpp');
  
-i=['#include &lt;string&gt;'
+i=['#include <string>'
    'extern ""C"" {'
-   '#include &lt;stdlib.h&gt;'   
-   '#include &lt;stack-c.h&gt;'
-   '#include &lt;api_scilab.h&gt;'
-   '#include &lt;localization.h&gt;'
-   '#include &lt;Scierror.h&gt;'
+   '#include <stdlib.h>'   
+   '#include <stack-c.h>'
+   '#include <api_scilab.h>'
+   '#include <localization.h>'
+   '#include <Scierror.h>'
    ''
    'int sci_cppfind(char *fname)'
    '{'
@@ -309,17 +313,17 @@ i=['#include &lt;string&gt;'
    ' int m_out = 0;'
    ' int n_out = 0;'
    ''
-   ' sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+   ' sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+   ' sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -329,17 +333,17 @@ i=['#include &lt;string&gt;'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getVarAddressFromPosition(pvApiCtx, 2, &amp;piAddressVarTwo);'
+   ' sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);'
    ' if(sciErr.iErr)'
    ' {'
-   '  printError(&amp;sciErr, 0);'
+   '  printError(&sciErr, 0);'
    '  return 0;'
    ' }'
    ''
-   ' sciErr = getVarType(pvApiCtx, piAddressVarTwo, &amp;iType2);'
+   ' sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -349,10 +353,10 @@ i=['#include &lt;string&gt;'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;lenStVarOne, &amp;pStVarOne);'
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -363,10 +367,10 @@ i=['#include &lt;string&gt;'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &amp;m2, &amp;n2, &amp;lenStVarTwo, &amp;pStVarTwo);'
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -377,17 +381,17 @@ i=['#include &lt;string&gt;'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;lenStVarOne, &amp;pStVarOne);'
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
-   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &amp;m2, &amp;n2, &amp;lenStVarTwo, &amp;pStVarTwo);'
+   ' sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -407,10 +411,10 @@ i=['#include &lt;string&gt;'
 
    ' m_out = 1;'
    ' n_out = 1;'
-   ' sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &amp;dOut);'
+   ' sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);'
    ' if(sciErr.iErr)'
    ' {'
-   '   printError(&amp;sciErr, 0);'
+   '   printError(&sciErr, 0);'
    '   return 0;'
    ' }'
    ''
@@ -432,25 +436,26 @@ ilib_build('ilib_build_cpp',['cppfind','sci_cppfind'],files,[]);
 exec loader.sce;
 
 // Small test to see if the function is actually working.
-if cppfind("my very long string","long") &lt;&gt; 8 pause, end
-if cppfind("my very long string","very") &lt;&gt; 3 pause, end
-if cppfind("my very long string","short") &lt;&gt; -1 pause, end
- </programlisting>
+if cppfind("my very long string","long") <> 8 pause, end
+if cppfind("my very long string","very") <> 3 pause, end
+if cppfind("my very long string","short") <> -1 pause, end
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (C++ code - previous Scilab API &lt; 5.2)</title>
 
-    <programlisting role="example">cd TMPDIR;
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR;
 mkdir('example_ilib_build_cpp_old');
 cd('example_ilib_build_cpp_old');
 
-i=['#include &lt;string&gt;'
+i=['#include <string>'
    'extern ""C"" {'
    '#include ""stack-c.h""'
    '#include ""version.h""'
-   '#if SCI_VERSION_MAJOR &lt;= 5'
-   '#if SCI_VERSION_MINOR &lt;  2'
+   '#if SCI_VERSION_MAJOR <= 5'
+   '#if SCI_VERSION_MINOR <  2'
    '   #error ""This example is obsolete see help ilib_buid""'
    '#endif'
    '#endif'
@@ -463,9 +468,9 @@ i=['#include &lt;string&gt;'
    '  double *position = NULL; /* Where we will store the position */'
    '  CheckRhs(2,2); /* Check the number of input argument */'
    '  CheckLhs(1,1); /* Check the number of output argument */'
-   '  GetRhsVar(1, ""c"", &amp;m1, &amp;n1, &amp;l1); /* Retrieve the first input argument */'
+   '  GetRhsVar(1, ""c"", &m1, &n1, &l1); /* Retrieve the first input argument */'
    '  inputString1=cstk(l1);'
-   '  GetRhsVar(2, ""c"", &amp;m2, &amp;n2, &amp;l2); /* Retrieve the second input argument */'
+   '  GetRhsVar(2, ""c"", &m2, &n2, &l2); /* Retrieve the second input argument */'
    '  inputString2=cstk(l2);'
    '  std::string myMessage (inputString1);'
    '  std::string search (inputString2);'
@@ -476,7 +481,7 @@ i=['#include &lt;string&gt;'
    '  } else {'
    '    position[0] = -1; /* Substring not found */' 
    '  }'
-   '  CreateVarFromPtr(Rhs+1,""d"",&amp;m3,&amp;n3,&amp;position); /* Create the output argument */'
+   '  CreateVarFromPtr(Rhs+1,""d"",&m3,&n3,&position); /* Create the output argument */'
    '  LhsVar(1) = Rhs+1;'
    '  delete[] position;'
    '  return 0;'
@@ -496,15 +501,17 @@ ilib_build('foo_old',['cppfind','sci_cppfind'],files,[]);
 exec loader.sce 
 
 // Small test to see if the function is actually working.
-if cppfind("my very long string","long") &lt;&gt; 8 pause, end
-if cppfind("my very long string","very") &lt;&gt; 3 pause, end
-if cppfind("my very long string","short") &lt;&gt; -1 pause, end</programlisting>
+if cppfind("my very long string","long") <> 8 pause, end
+if cppfind("my very long string","very") <> 3 pause, end
+if cppfind("my very long string","short") <> -1 pause, end
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples (Fortran 90 code)</title>
 
-    <programlisting role="example">cd TMPDIR;
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR;
 mkdir('example_ilib_build_f90');
 cd('example_ilib_build_f90');
 
@@ -519,11 +526,11 @@ libpath=ilib_for_link('incrdoublef90','incrdoublef90.f90',[],'f');
 exec loader.sce 
 n=1.;
 m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
-if abs(m-2.)&gt;%eps then pause,end
+if abs(m-2.)>%eps then pause,end
 n=2.;
 m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
-if abs(m-3.)&gt;%eps then pause,end
- </programlisting>
+if abs(m-3.)>%eps then pause,end
+ ]]></programlisting>
   </refsection>
 
   <refsection>

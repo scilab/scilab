@@ -19,7 +19,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
 {
   // Label must be a character string
   if (valueType != sci_strings) {
-    Scierror(999, _("Wrong type for '%s' property: A string expected.\n"), "String");
+    Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "String");
     return SET_PROPERTY_ERROR;
   }
 
@@ -31,7 +31,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
         case SCI_UIFRAME:
           // String must be only one character string
           if (nbCol * nbRow > 1) {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "String");
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
             return SET_PROPERTY_ERROR;
           }
           // Send the label to Java
@@ -43,7 +43,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           // String can be single value or vector of character
           if (nbCol > 1 && nbRow > 1)
             {
-              Scierror(999, _("Wrong size for '%s' property: A string or a vector of strings expected.\n"), "String");
+              Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "String");
               return SET_PROPERTY_ERROR;
             }
           else
@@ -58,7 +58,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           // String can be single value or vector of character
           if (nbCol > 1 && nbRow > 1)
             {
-              Scierror(999, _("Wrong size for '%s' property: A string or a vector of strings expected.\n"), "String");
+              Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "String");
               return SET_PROPERTY_ERROR;
             }
           else
@@ -72,7 +72,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
         default:
           // String must be only one character string
           if (nbCol * nbRow > 1) {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "String");
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
             return SET_PROPERTY_ERROR;
           }
           // Send the label to Java
@@ -84,7 +84,7 @@ int SetUicontrolString(sciPointObj* sciObj, size_t stackPointer, int valueType, 
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "String");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "String");
       return SET_PROPERTY_ERROR;
     }
 }

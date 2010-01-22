@@ -29,7 +29,7 @@
       <varlistentry>
         <term>A,B,C</term>
         <listitem>
-          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symetric.</para>
+          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symmetric.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

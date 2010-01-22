@@ -1,36 +1,48 @@
                 Changes between version 5.2.0 and 5.2.1 of Scilab
-               =================================================
+                =================================================
+
+
+
 Text editor:
 ============
-
-Bug fixes:
-==========
 
 * bug 5649 fixed - The Editor did not undo properly after a find/replace.
 
-
-
-
-Text editor:
-============
-
 * bug 5651 fixed - closing find/replace box, remove highlights.
+
+* bug 5707 fixed - cmd-e executed the wrong editor file.
+
+Internationalization:
+=====================
+
+* Ukrainian localization added (Thanks Yuri Chornoivan)
+
+* Many english typos have been fixed by (Thanks Yuri Chornoivan)
 
 Xcos:
 =====
 
-* The xml header of an xcos file is checked before any other parsing.
+* The XML header of an xcos file is now checked before any other parsing.
 
-* Superblock masks can now be used and a new window is created when user wants to configure the variable settings.
+* Superblock masks can now be used and a new window is created when user wants 
+  to configure the variable settings.
 
 * A rework to pass checkstyle metrics has been started.
 
+* An update of the jgraphx-1.2.0.7 version has been performed.
+
 * Refactoring:
-    - The port position algorithm has been reworked to take in account default position and calculate placement according to it's default associated side.
-    - The communication with the scilab interpreter is now easier to use and can be synchronous or asynchronous (with callback).
-    - The simulation function identifier is now mapped to an enum to better follow java semantics.
-    - Blocks instanciations are performed through a Factory and reference instances are shared.
-    - Java package (eg namespace) has been added to reduce the number of classes per package and improve readability. 
+    - The port position algorithm has been reworked to take in account default
+       position and calculate placement according to it's default associated
+       side.
+    - The communication with the scilab interpreter is now easier to use and can
+      be synchronous or asynchronous (with callback).
+    - The simulation function identifier is now mapped to an enum to better 
+      follow java semantics.
+    - Blocks instanciations are performed through a Factory and reference
+      instances are shared.
+    - Java package (eg namespace) has been added to reduce the number of classes
+      per package and improve readability.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -52,7 +64,8 @@ Xcos:
 
 * bug 5626 fixed - The VoltageSensor port positions were not right.
 
-* bug 5627 fixed - It was not possible to place a port in a non-conventionnal side.
+* bug 5627 fixed - It was not possible to place a port in a non-conventionnal
+                   side.
 
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
@@ -71,6 +84,8 @@ Xcos:
                    properly.
 
 * bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
+
+* bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
 Atoms:
 ======
@@ -91,10 +106,20 @@ Compilation:
   AC_JAVA_CHECK_VERSION_PACKAGE has been added to check the version of Java
   packages used
 
-* Check of the version of jgraphx added (1.2.0.X)
+* Check of the version of jgraphx added (Min: 1.2.0.7)
 
-* bug 5503 fixed - add /usr/lib64/*/ in the search path when looking for Java
-                   libraries
+* Improved detection of Fedora/Redhat packages
+
+* Better detection of JOGL
+
+* When searching for Java packages files (jar), the oldest version was 
+  selected. Now, lastest version are now selected.
+
+* bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
+                   looking for Java libraries (Fedora 12 for example)
+
+* bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
+                   Ubuntu check tools
 
 Bug fixes:
 ==========
@@ -108,6 +133,11 @@ Bug fixes:
                    was not displayed on Windows.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
+
+* bug 5362 fixed - help type pointed to "Type" online help
+
+* bug 5413 fixed - help_from_sci was replacing the < > in the examples by
+                   &gt; and &lt; causing issues in the build of documentation.
 
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
@@ -161,6 +191,8 @@ Bug fixes:
                    returned a error message on stderr previously 
                    (5.1) there was no message.
 
+* bug 6399 fixed - m2sci failed and returs error 240.
+
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
@@ -169,6 +201,15 @@ Bug fixes:
 
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
                    when the menu is clicked.
+
+* bug 6456 fixed - SCI & SCIHOME added in getdebuginfo list
+
+* bug 6461 fixed - Scilab External function executed by scifunction may make
+                   Scilab crash when they produce an error.
+
+* bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
+
+* bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
@@ -1932,3 +1973,5 @@ Bug fixes:
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
+
+* bug 6468 fixed - wrong check in dnaupd.

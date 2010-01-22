@@ -43,20 +43,32 @@ function atomsShow(package)
 	// =========================================================================
 	package = stripblanks(package);
 	
-	// If version is not defined, the Most Recent Version is used
+	// If the version is not mentioned, complete with an empty string
 	// =========================================================================
-	if size(package(1,:),"*") == 1 then
-		package(1,2) = atomsGetMRVersion(package(1));
-	end
 	
+	if size(package,"*") == 1 then
+		package = [ package "" ];
+	end
 	
 	// Check if it's a valid package
 	// =========================================================================
-	if size(package(1,:),"*") == 1 then
-		package(1,2) = atomsGetMRVersion(package(1));
+	
+	if ~atomsIsInstalled(package) & ~atomsIsPackage(package) then
+		
+		if isempty(package(2)) then
+			module_full_name = package;
+		else
+			module_full_name = package(1)+" - "+package(2);
+		end
+		
+		atomsError("error",msprintf(gettext("%s: The package %s is not available.\n"),"atomsShow",module_full_name));
 	end
 	
-	
+	// If version is not mentioned, the Most Recent Version is used
+	// =========================================================================
+	if isempty(package(2)) then
+		package(1,2) = atomsGetMRVersion(package(1));
+	end
 	
 	// Get the details of this package
 	// =========================================================================

@@ -108,17 +108,28 @@ function description_out = atomsDESCRIPTIONread(file_in)
 					this_toolbox = packages(current_toolbox("Toolbox"));
 				end
 				
-				if isfield(current_toolbox,"ScilabVersion") then
-					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-						this_toolbox(current_toolbox("Version")) = current_toolbox;
-					end
-				else
-					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+				// Register the current toolbox : Check the mandatory fields
+				missingfield = atomsCheckFields( current_toolbox );
+				if ~ isempty(missingfield) then
+					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
 						"atomsDESCRIPTIONread",..
 						file_in,current_toolbox("Toolbox"),..
-						current_toolbox("Version")));
+						current_toolbox("Version"),..
+						missingfield));
 				end
 				
+				// Register the current toolbox : Check the scilab version
+				// comptability
+				if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+					if isfield(current_toolbox,"PackagingVersion") then
+						current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					else
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					end
+				end
+				
+				// Register the current toolbox : Fill the packages struct
 				packages(current_toolbox("Toolbox")) = this_toolbox;
 			end
 			
@@ -141,17 +152,28 @@ function description_out = atomsDESCRIPTIONread(file_in)
 						this_toolbox = packages(current_toolbox("Toolbox"));
 					end
 					
-					if isfield(current_toolbox,"ScilabVersion") then
-						if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-							this_toolbox(current_toolbox("Version")) = current_toolbox;
-						end
-					else
-						error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+					// Register the current toolbox : Check the mandatory fields
+					missingfield = atomsCheckFields( current_toolbox );
+					if ~ isempty(missingfield) then
+						error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
 							"atomsDESCRIPTIONread",..
 							file_in,current_toolbox("Toolbox"),..
-							current_toolbox("Version")));
+							current_toolbox("Version"),..
+							missingfield));
 					end
 					
+					// Register the current toolbox : Check the scilab version
+					// comptability
+					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+						if isfield(current_toolbox,"PackagingVersion") then
+							current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						else
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						end
+					end
+					
+					// Register the current toolbox : Fill the packages struct
 					packages(current_toolbox("Toolbox")) = this_toolbox;
 				end
 				
@@ -247,7 +269,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		// Sub category
 		category_main         = part(cat_id,1:pattern_index-1);
 		category_sub          = part(cat_id,pattern_index+3:length(cat_id) );
-		cat_struct("label")   = [ category_main ; category_sub ];
+		cat_struct("label")   = [ category_main  category_sub ];
 		cat_struct("is_main") = %F;
 		
 	else
@@ -274,7 +296,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		end
 	end
 	
-	if cat_struct("is_main") & ~ isfield(cat_flat_out,category_main) then
+	if ~cat_struct("is_main") & ~isfield(cat_flat_out,category_main) then
 		[cat_out , cat_flat_out ] = atomsCreateCategory(cat_out,cat_flat_out,category_main)
 	end
 	
@@ -300,6 +322,37 @@ function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
 	if ~ cat_struct("is_main") then
 		label_mat    = cat_struct("label");
 		cat_flat_out = atomsAddPackage2Cat( cat_flat_out , package , label_mat(1))
+	end
+	
+endfunction
+
+// =============================================================================
+// atomsCheckFields
+// =============================================================================
+
+function field = atomsCheckFields( module )
+	
+	field = "";
+	
+	mandatory = [             ..
+		"Toolbox"           ; ..
+		"Title"             ; ..
+		"Summary"           ; ..
+		"Version"           ; ..
+		"Author"            ; ..
+		"Maintainer"        ; ..
+		"Category"          ; ..
+		"Entity"            ; ..
+		"License"           ; ..
+		"ScilabVersion"     ; ..
+		"Depends"           ; ..
+		"Date"              ];
+	
+	for i=1:size(mandatory,"*")
+		if ~ isfield(module,mandatory(i)) then
+			field = mandatory(i);
+			return;
+		end
 	end
 	
 endfunction

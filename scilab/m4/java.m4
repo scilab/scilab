@@ -807,7 +807,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null)"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -815,7 +815,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
           AC_JAVA_TRY_COMPILE([import $2;], , "no", [

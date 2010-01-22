@@ -18,6 +18,8 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Hashtable;
 
+import java.util.Map;
+
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
@@ -25,12 +27,8 @@ import com.mxgraph.util.mxUtils;
 /**
  * Painter for each vertex and edge
  * 
- * This is tightly coupled to jgraphx internals thus it use an Hashtable on the
- * API which is forbidden by checkstyle rules. In the future, the API will use
- * the Map interface instead of the Hashtable implementation (see
- * http://www.jgraphsupport.co.uk/bugzilla/show_bug.cgi?id=8).
+ * This is tightly coupled to jgraphx internals.
  */
-// CSOFF: IllegalType
 public class XcosCanvas extends mxInteractiveCanvas {
 
 	private static final int OPACITY_MAX = 100;
@@ -50,7 +48,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 */
 	@Override
 	public Object drawVertex(int x, int y, int w, int h,
-			Hashtable<String, Object> style) {
+			Map<String, Object> style) {
 
 		int xx = x;
 		int yy = y;
@@ -64,7 +62,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 			// Applies the rotation on the graphics object and stores
 			// the previous transform so that it can be restored
 			AffineTransform saveTransform = g.getTransform();
-			g.translate(x + (w / 2.0), y + (h / 2.0));
+			g.translate(xx + (ww / 2.0), yy + (hh / 2.0));
 
 			double rotation = mxUtils.getDouble(style,
 					mxConstants.STYLE_ROTATION, 0);
@@ -73,8 +71,8 @@ public class XcosCanvas extends mxInteractiveCanvas {
 				g.rotate(Math.toRadians(rotation));
 				if (BlockPositioning.isNearHorizontalSide(rotation)) {
 					// x - h / 2, y - w / 2, h, w
-					xx = xx + (w / 2) - (h / 2);
-					yy = yy + (h / 2) - (w / 2);
+					xx = xx + (ww / 2) - (hh / 2);
+					yy = yy + (hh / 2) - (ww / 2);
 					
 					ww = h;
 					hh = w;
@@ -123,11 +121,11 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 * Scale the graphic context depending on the "flip and "mirror" properties
 	 * @param style Style contents
 	 */
-	private void applyFlipAndMirror(Hashtable<String, Object> style) {
+	private void applyFlipAndMirror(Map<String, Object> style) {
 		String flip = mxUtils.getString(style, XcosConstants.STYLE_FLIP,
-				Boolean.toString(false));
+				Boolean.FALSE.toString());
 		String mirror = mxUtils.getString(style, XcosConstants.STYLE_MIRROR,
-				Boolean.toString(false));
+				Boolean.FALSE.toString());
 
 		// scale, 1st flip, 2nd mirror
 		if (Boolean.parseBoolean(flip)) {
@@ -155,7 +153,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 * @param style The associated style
 	 */
 	private void drawSwimline(int x, int y, int w, int h,
-			Hashtable<String, Object> style) {
+			Map<String, Object> style) {
 		int start = mxUtils.getInt(style, mxConstants.STYLE_STARTSIZE);
 
 		if (start == 0) {
@@ -164,7 +162,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 			start = (int) Math.round(start * scale);
 
 			// Removes some styles to draw the content area
-			Hashtable<String, Object> cloned = new Hashtable<String, Object>(
+			Map<String, Object> cloned = new Hashtable<String, Object>(
 					style);
 			cloned.remove(mxConstants.STYLE_FILLCOLOR);
 			cloned.remove(mxConstants.STYLE_ROUNDED);
@@ -179,5 +177,4 @@ public class XcosCanvas extends mxInteractiveCanvas {
 		}
 	}
 }
-//CSON: IllegalType
 

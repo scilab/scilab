@@ -26,7 +26,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       if(nbRow > 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A real row vector expected.\n"), "Value");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real row vector expected.\n")), "Value");
           return SET_PROPERTY_ERROR;
         }
       
@@ -57,7 +57,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Value");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Value");
           return SET_PROPERTY_ERROR;
         }
 
@@ -66,7 +66,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       if(nbValue != 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong value for '%s' property: A string expected.\n"), "Value");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A string expected.\n")), "Value");
           return SET_PROPERTY_ERROR;
         }
 
@@ -77,7 +77,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: A real row vector or a string expected.\n"), "Value");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real row vector or a string expected.\n")), "Value");
       return SET_PROPERTY_ERROR;
     }
 
@@ -107,7 +107,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
           if (pUICONTROL_FEATURE(sciObj)->valueSize != 1)
             {
               /* Wrong value size */
-              Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "Value");
+              Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "Value");
               return SET_PROPERTY_ERROR;
             }
           else
@@ -122,7 +122,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
             {
               if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
                 {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "Checkbox", "Min", "Max");
+					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "Checkbox", "Min", "Max");
                }
 
               CallScilabBridge::setCheckBoxChecked(getScilabJavaVM(), 
@@ -135,7 +135,7 @@ int SetUicontrolValue(sciPointObj* sciObj, size_t stackPointer, int valueType, i
             {
               if ((pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->min) && (pUICONTROL_FEATURE(sciObj)->value[0] != pUICONTROL_FEATURE(sciObj)->max))
                 {
-                  sciprint(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n"), "RadioButton", "Min", "Max");
+					sciprint(const_cast<char*>(_("Warning: '%s' 'Value' property should be equal to either '%s' or '%s' property value.\n")), "RadioButton", "Min", "Max");
                }
 
               CallScilabBridge::setRadioButtonChecked(getScilabJavaVM(), 

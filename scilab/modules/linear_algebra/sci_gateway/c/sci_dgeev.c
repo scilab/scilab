@@ -25,12 +25,12 @@ extern int C2F(dgeev)();
 //
 // intdgeev --
 //   Interface to LAPACK's DGEEV
-//   Computes the eigenvalues and, if required, the eigenvectors of a un-symetric real matrix.
+//   Computes the eigenvalues and, if required, the eigenvectors of a asymmetric real matrix.
 //   Possible uses :
 //   * With 1 LHS :
 //       eigenvalues=spec(A)
 //     where
-//       A : un-symetric, square real matrix of size NxN
+//       A : asymmetric, square real matrix of size NxN
 //       eigenvalues : matrix of size Nx1 with right eigenvectors, type complex
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)

@@ -122,7 +122,7 @@ function tree_out = atomsDESCRIPTIONcat( tree_in_1 , tree_in_2 )
 		end
 	end
 	
-	tree_out("categories_flat") = categories_out;
+	tree_out("categories_flat") = categories_flat_out;
 	
 endfunction
 

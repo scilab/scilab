@@ -25,7 +25,7 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -94,6 +94,6 @@ public final class LoadAsPalAction extends DefaultAction {
 	    return;
 	}
 
-	XcosPaletteManager.loadUserPalette(fc.getSelection()[0]);
+	PaletteManager.getInstance().loadUserPalette(fc.getSelection()[0]);
     }
 }

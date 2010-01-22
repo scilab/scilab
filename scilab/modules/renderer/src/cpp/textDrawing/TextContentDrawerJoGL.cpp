@@ -66,7 +66,7 @@ void TextContentDrawerJoGL::getScreenBoundingBox(double corner1[3], double corne
   }
   catch (const std::exception & e)
   {
-    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::getPixelBoundingBox");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")), "TextContentDrawerJoGL::getPixelBoundingBox");
     return;
   }
 
@@ -115,7 +115,7 @@ void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3]
   }
   catch (const std::exception & e)
   {
-    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::drawTextContent");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")), "TextContentDrawerJoGL::drawTextContent");
     endDrawing();
     return;
   }

@@ -75,6 +75,7 @@ function [res,version_out] = atomsIsLoaded(packages)
 		name    = packages(i,1);
 		version = packages(i,2);
 		section = packages(i,3);
+		res(i)  = %F;
 		
 		if packages(i,3) == "all" then
 			section = "";
@@ -100,15 +101,61 @@ function [res,version_out] = atomsIsLoaded(packages)
 			// Check if the wanted version is present
 			res(i) = or(packages_filtered == version);
 			
+			// Filter on versions
+			
+			//  + The packaging version is mentioned
+			if ~ isempty(strindex(version,"-")) then
+				res(i) = or(packages_filtered == version);
+			
+			//  + The packaging version is not mentioned
+			else
+				// Loop on installed versions
+				for j=1:size(packages_filtered,"*")
+					
+					if ~ isempty(strindex(packages_filtered(j),"-")) then
+						packages_filtered(j) = part(packages_filtered(j),1:strindex(packages_filtered(j),"-")-1);
+					end
+					
+					if version == packages_filtered(j) then
+						res(i) = %T;
+						break;
+					end
+					
+				end
+				
+			end
+			
 		else
 			// Filter on names
 			packages_filtered = loadedpackages( find(loadedpackages(:,1) == name) , [2 3] );
 			
-			// Filter on version
-			packages_filtered = packages_filtered( find(packages_filtered(:,1) == version) , 2 );
+			// Filter on section
+			packages_filtered = packages_filtered( find(packages_filtered(:,2) == section) , 1 );
 			
-			// Check if the wanted section is present
-			res(i) = or(packages_filtered == section);
+			// Filter on versions
+			
+			//  + The packaging version is mentioned
+			if ~ isempty(strindex(version,"-")) then
+				res(i) = or(packages_filtered == version);
+			
+			//  + The packaging version is not mentioned
+			else
+				// Loop on installed versions
+				for j=1:size(packages_filtered,"*")
+					
+					if ~ isempty(strindex(packages_filtered(j),"-")) then
+						packages_filtered(j) = part(packages_filtered(j),1:strindex(packages_filtered(j),"-")-1);
+					end
+					
+					if version == packages_filtered(j) then
+						res(i) = %T;
+						break;
+					end
+					
+				end
+				
+			end
+			
 		end
 		
 		if lhs>1 then

@@ -74,12 +74,38 @@ function res = atomsGetInstalledDetails(packages,section)
 		// Filter on names
 		packages_filtered = installedpackages( find(installedpackages(:,1) == packages(i,1)) , : );
 		
-		// Filter on versions
-		packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
-		
 		// Filter on section
 		if ~isempty(packages(i,3)) & packages(i,3)<>"all" then
 			packages_filtered = packages_filtered( find(packages_filtered(:,3) == packages(i,3)) , : );
+		end
+		
+		// Filter on versions
+		
+		//  + The packaging version is mentioned
+		if ~ isempty(strindex(packages(i,2),"-")) then
+			packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
+		
+		//  + The packaging version is not mentioned
+		else
+			
+			candidates        = packages_filtered;
+			packages_filtered = [];
+			
+			// Loop on installed versions
+			for j=1:size(candidates(:,2),"*")
+				
+				candidate_version = candidates(j,2);
+				
+				if ~ isempty(strindex(candidate_version,"-")) then
+					candidate_version = part(candidate_version,1:strindex(candidate_version,"-")-1);
+				end
+				
+				if packages(i,2) == candidate_version then
+					packages_filtered = [ packages_filtered ; candidates(j,:) ];
+				end
+				
+			end
+			
 		end
 		
 		if ~ isempty(packages_filtered) then

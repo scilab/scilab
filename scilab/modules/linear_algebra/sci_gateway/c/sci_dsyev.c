@@ -23,12 +23,12 @@ extern int C2F(dcopy)();
 //
 // intdsyev --
 //   Interface to LAPACK's DSYEV
-//   Computes the eigenvalues and, if required, the eigenvectors of a symetric real matrix.
+//   Computes the eigenvalues and, if required, the eigenvectors of a symmetric real matrix.
 //   Possible uses :
 //   * With 1 LHS :
 //       eigenvalues=spec(A)
 //     where 
-//       A : symetric, square, real matrix of size NxN
+//       A : symmetric, square, real matrix of size NxN
 //       eigenvalues : matrix of size Nx1, type real
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)

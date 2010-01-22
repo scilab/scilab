@@ -13,7 +13,7 @@
 
 package org.scilab.modules.renderer.utils.graphicEvents;
 
-import org.scilab.modules.renderer.jni.FigureScilabCall;
+import org.scilab.modules.renderer.FigureScilabCall;
 
 /**
  * Event unzooming a subwin

@@ -23,7 +23,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, 
   
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Relief");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Relief");
       return SET_PROPERTY_ERROR;
     }
 
@@ -32,7 +32,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          Scierror(999, _("Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
           return SET_PROPERTY_ERROR;
         }
       
@@ -65,7 +65,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, 
       else
         {
           /* Wrong string format */
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
           return SET_PROPERTY_ERROR;
         }
       
@@ -88,7 +88,7 @@ int SetUicontrolRelief(sciPointObj* sciObj, size_t stackPointer, int valueType, 
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
       return SET_PROPERTY_ERROR;
     }
 
