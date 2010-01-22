@@ -23,6 +23,20 @@ public class XcosConstants extends mxConstants {
      */
     public static final String STYLE_MIRROR = "mirror";
     
+    /* HTML */
+    /**
+     * The html begin symbol
+     */
+    public static final String HTML_BEGIN = "<html>";
+    /**
+     * The html end symbol
+     */
+    public static final String HTML_END = "</html>";
+    /**
+     * The html new line symbol
+     */
+    public static final String HTML_NEWLINE = "<br>";
+    
     /* Events */
     public static final String EVENT_CHANGE_EDIT = "edit";   
     public static final String EVENT_BLOCK_UPDATED = "block";
