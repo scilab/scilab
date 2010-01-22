@@ -144,7 +144,7 @@ public final class XcosMessages {
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
-    public static final String UNKNOW_VERSION = Messages.gettext("Unknow Diagram Version : ");
+    public static final String UNKNOW_VERSION = Messages.gettext("Unknown Diagram Version : ");
     public static final String TRY_TO_CONTINUE = Messages.gettext("Will try to continue...");
 
     public static final String XCOS_ERROR = Messages.gettext("Xcos error");

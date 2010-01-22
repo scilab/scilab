@@ -229,7 +229,7 @@ evals=spec(A,B)
       </listitem>
     </itemizedlist>
 
-    <para>A complex symetric matrix has conjugate offdiagonal terms and real
+    <para>A complex symmetric matrix has conjugate offdiagonal terms and real
     diagonal terms.</para>
 
     <para>Pencil eigenvalues computations are based on the Lapack routines
@@ -257,7 +257,7 @@ evals=spec(A,B)
           </listitem>
 
           <listitem>
-            <para>Not symetric</para>
+            <para>Not symmetric</para>
 
             <para>The eigenvalues and eigenvectors are complex.</para>
           </listitem>
@@ -276,7 +276,7 @@ evals=spec(A,B)
           </listitem>
 
           <listitem>
-            <para>Not symetric</para>
+            <para>Not symmetric</para>
 
             <para>The eigenvalues and the eigenvectors are complex.</para>
           </listitem>

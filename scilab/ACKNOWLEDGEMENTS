@@ -14,6 +14,9 @@ Scilab a better software.
 	- Misc patches for Solaris
 	- Testing of Scilab under Solaris
 
+* Yuri Chornoivan
+    - Ukrainian localization 
+
 * Yann Collette
 	- Genetic algorithm
 	- Generic probabilistic meta-algorithm

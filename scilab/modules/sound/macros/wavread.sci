@@ -57,7 +57,7 @@ function [y,Fs,bits] = wavread(wavfile,ext)
   if ( type(ext) == 10 ) then
     ext = convstr(ext);
     if ( ext <> 'size' ) & ( ext <> 'info' ) then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"" or ""%s"" , an integer or a vector of %d integers.\n"),'wavread',2,'size','info',2));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be ""%s"" or ""%s"", an integer or a vector of %d integers.\n"),'wavread',2,'size','info',2));
     end
   elseif ( type(ext) == 1 ) then
     exts = size(ext,'*');

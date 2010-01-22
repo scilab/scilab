@@ -23,12 +23,12 @@ extern int C2F(zheev)();
 //
 // intzheev --
 //   Interface to LAPACK's ZHEEV
-//   Computes the eigenvalues and, if required, the eigenvectors of a complex symetric matrix.
+//   Computes the eigenvalues and, if required, the eigenvectors of a complex symmetric matrix.
 //   Possible uses :
 //   * With 1 LHS :
 //       eigenvalues=spec(A)
 //     where 
-//       A : symetric, square matrix of size NxN
+//       A : symmetric, square matrix of size NxN
 //       eigenvalues : matrix of size Nx1, type real
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)

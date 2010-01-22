@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 extern "C" {
 #include "hashtable_core.h"
 #include "stack-def.h"
@@ -25,7 +25,7 @@ extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
 #define strdup _strdup
 #endif
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 #include <iterator>
 #include <vector>
 #include <algorithm>
@@ -33,11 +33,11 @@ extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
 #include <cstring> // for std::memset
 #include "partition.hxx" // for scilab::core::partition_point_n
 #include "unrolled_algorithms.hxx" //for scilab::core::eq_n less_n copy_n
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 #define MAXLENGHTFUNCTIONNAME 32 /* 24 in fact in scilab +1 for '\0' round to nearest multiple of 8*/
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 using namespace scilab::core;
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 namespace {
 	struct entry
 	{
@@ -97,38 +97,37 @@ namespace {
 		int const data;
 	};
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /*
 * preallocate memory for  DEFAULT_ELEMENTFUNCTIONLIST entries in table
 */
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 BOOL create_hashtable_scilab_functions(void) 
 {
-	BOOL res;
 	try 
 	{
 		table_t tmp(0);
 		tmp.reserve( DEFAULT_ELEMENTFUNCTIONLIST );
 		table.swap(tmp);
-		res = TRUE;
+		return TRUE;
 	} 
 	catch( std::bad_alloc& e) 
 	{
-		res = FALSE;
+		return FALSE;
 	}
-	return res;
+	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 /*
 * free memory for table
 */
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 void destroy_hashtable_scilab_functions() 
 {
 	table_t tmp(0); // swap trick needed because resize() does *not* release memory
 	table.swap(tmp);
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 {
 	BOOL res;
@@ -146,36 +145,32 @@ static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 	if(i != table.end() && eq_n<nsiz>(keyToSearch, i->key)) 
 	{
 		*scilab_funptr = i->data;
-		res= TRUE;
+		return TRUE;
 	} 
 	else 
 	{
-		res= FALSE;
+		return FALSE;
 	}
-	return res;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 // linear search according to data field in entries
 static BOOL doBackSearchFunction(int *key, int *scilab_funptr)
 {
-	BOOL res;
 	table_t::const_iterator i= std::find_if(table.begin(), table.end()
 		, equal_data(*scilab_funptr));
 	if( i != table.end()) 
 	{
 		copy_n<nsiz>(i->key, key);
-		res= TRUE;
+		return TRUE;
 	} 
 	else 
 	{
-		res = FALSE;
+		return FALSE;
 	}
-	return res;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
 {
-	BOOL res= FALSE;
 	if(table.size() < MAXELEMENTFUNCTIONLIST) 
 	{
 		entry tmp(*scilab_funptr, name);
@@ -186,14 +181,13 @@ static BOOL doEnterFunction(int *key,char *name, int *scilab_funptr)
 		{
 			hashtable_core_maxFilled = table.size();
 		}
-		res = TRUE;
+		return TRUE;
 	}
-	return res;
+	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 {
-	BOOL res;
 	// search entry with given scilab_funptr starting from the lower bound
 	// according to given key
 	table_t::iterator i(std::find_if(partition_point_n(table.begin(), table.size()
@@ -204,16 +198,15 @@ static BOOL doDeleteFunction(int *key, int *scilab_funptr)
 	{ 
 		// entry found -> erase it
 		table.erase(i);
-		res = TRUE;
+		return TRUE;
 	} 
 	else 
 	{ 
 		// not found
-		res = FALSE;
+		return FALSE;
 	}
-	return res;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr
 									   , SCI_HFUNCTIONS_ACTION action)
 {
@@ -233,7 +226,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr
 	}
 	return FALSE;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 // small functors, could be removed with boost or c++0X lambdas
 struct has_namefunction : std::unary_function<entry const&, bool> {
 	bool operator()(entry const& e) const { return e.namefunction[0] != '\0' ;} // <=> strlen(e.namefunction) > 0
@@ -253,7 +246,7 @@ struct copy_name : std::unary_function<entry const&, char**> {
 
 	char** names;
 };
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 char **GetFunctionsList(int *sizeList) 
 {
 	*sizeList= std::count_if(table.begin(), table.end(), has_namefunction());
@@ -271,9 +264,9 @@ struct equal_name : std::unary_function<entry const&, bool>
 	bool operator()(entry const& e) const{ return std::strncmp(e.namefunction, name, MAXLENGHTFUNCTIONNAME) == 0 ;}
 	char const* const name;
 };
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 BOOL ExistFunction(char *name) 
 {
 	return (std::find_if(table.begin(), table.end(), equal_name(name)) == table.end()) ? FALSE : TRUE ;
 }
-/*-----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
