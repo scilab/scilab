@@ -18,3 +18,4 @@ end_scicos_sim
 Coserror
 Set_Jacobian_flag
 Get_Jacobian_parameter
+write_xml_states
