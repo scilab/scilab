@@ -15,7 +15,7 @@
 #include <stdlib.h> /* malloc */
 #include "api_scilab.h"
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
-#include "CallScilab.h" /* Provide functions to call Scilab engine */
+#include "call_scilab.h" /* Provide functions to call Scilab engine */
 
 /*------------------------------------------------------------*/
 int main(void)
