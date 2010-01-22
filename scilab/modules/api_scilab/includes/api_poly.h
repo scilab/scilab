@@ -133,6 +133,138 @@ SciErr readNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _p
  
 SciErr readNamedComplexMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
+/* shortcut functions */
+
+/**
+ * check if the variable type is a poly
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isPolyType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a poly
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedPolyType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get single poly variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * Get single complex poly variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @param[out] _pdblImg pointer on imaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedSingleComplexPoly(void* _pvCtx, int* _piAddress, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
+/**
+ * Get named single poly variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedNamedSinglePoly(void* _pvCtx, char* _pstName, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * Get named single complex poly variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @param[out] _pdblImg pointer on imaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedNamedSingleComplexPoly(void* _pvCtx, char* _pstName, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
+/**
+ * Get matrix of poly variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row
+ * @param[out] _piCols return number of col
+ * @param[out] _piNbCoef return polynomials coefficients number
+ * @param[out] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedMatrixOfPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal);
+
+/**
+ * Get matrix of complex poly variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row
+ * @param[out] _piCols return number of col
+ * @param[out] _piNbCoef return polynomials coefficients number
+ * @param[out] _pdblReal pointer on real data
+ * @param[out] _pdblImg pointer on imgaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedMatrixOfComplexPoly(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+
+/**
+ * Get named matrix of poly variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row
+ * @param[out] _piCols return number of col
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedNamedMatrixOfPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal);
+
+/**
+ * Get named matrix of complex poly variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row
+ * @param[out] _piCols return number of col
+ * @param[out] _piNbCoef return polynomial coefficient number
+ * @param[out] _pdblReal pointer on real data
+ * @param[out] _pdblImg pointer on imaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedNamedMatrixOfComplexPoly(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int** _piNbCoef, double*** _pdblReal, double*** _pdblImg);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _pdblReal single polynom real data 
+ */
+void freeAllocatedSinglePoly(double* _pdblReal);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _pdblReal single polynom real data
+ * @param[in] _pdblImg single polynom imaginary data
+ */
+void freeAllocatedSingleComplexPoly(double* _pdblReal, double* _pdblImg);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _iRows row count
+ * @param[in] _iCols column count
+ * @param[in] _piNbCoef polynomial coefficient number
+ * @param[in] _pdblReal matrix of polynom real data 
+ */
+void freeAllocatedMatrixOfPoly(int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _iRows row count
+ * @param[in] _iCols column count
+ * @param[in] _piNbCoef polynomial coefficient number
+ * @param[in] _pdblReal matrix of polynom real data
+ * @param[in] _pdblImg matrix of polynom imaginary data
+ */
+void freeAllocatedMatrixOfComplexPoly(int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
 #ifdef __cplusplus
 }
 #endif

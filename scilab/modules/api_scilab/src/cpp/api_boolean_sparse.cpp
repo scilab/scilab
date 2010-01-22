@@ -22,7 +22,7 @@
 
 #include "call_scilab.h"
 #include "stack-c.h"
-
+#include "MALLOC.h"
 
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
@@ -223,3 +223,67 @@ SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, 
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
+int isBooleanSparseType(void* _pvCtx, int* _piAddress)
+{
+	return checkVarType(_pvCtx, _piAddress, sci_boolean_sparse);
+}
+/*--------------------------------------------------------------------------*/
+int isNamedBooleanSparseType(void* _pvCtx, char* _pstName)
+{
+	return checkNamedVarType(_pvCtx, _pstName, sci_boolean_sparse);
+}
+/*--------------------------------------------------------------------------*/
+int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+{
+	SciErr sciErr;
+	int* piNbItemRow	= NULL;
+	int* piColPos			= NULL;
+
+	sciErr = getBooleanSparseMatrix(_pvCtx, _piAddress, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to get argument #%d"), "getAllocatedBooleanSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+	memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
+
+	*_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+	memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+{
+	SciErr sciErr;
+
+	sciErr = readNamedBooleanSparseMatrix(_pvCtx, _pstName, _piRows, _piCols, _piNbItem, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to get argument \"%s\""), "getNamedAllocatedBooleanSparseMatrix", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+	*_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+
+	sciErr = readNamedBooleanSparseMatrix(_pvCtx, _pstName, _piRows, _piCols, _piNbItem, *_piNbItemRow, *_piColPos);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to get argument \"%s\""), "getNamedAllocatedBooleanSparseMatrix", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)
+{
+	FREE(_piNbItemRow);
+	FREE(_piColPos);
+}
