@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Element;
@@ -24,6 +25,9 @@ import org.w3c.dom.NodeList;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
+/**
+ * Define serialization for a {@link ScilabString} instance.
+ */
 public class ScilabStringCodec extends XcosObjectCodec {
 
     
@@ -34,11 +38,27 @@ public class ScilabStringCodec extends XcosObjectCodec {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+    /**
+     * Default constructor
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+     */
     public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
-
     }
 
+	/**
+	 * Encodes the specified object and returns a node representing then given
+	 * object. Calls beforeEncode after creating the node and afterEncode
+	 * with the resulting node after processing.
+	 * 
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @return Returns the resulting XML node that represents the given object. 
+	 */
+    @Override
     public Node encode(mxCodec enc, Object obj) {
     	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
@@ -59,6 +79,17 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	return node;
     }
 
+    /**
+     * Parses the given node into the object or returns a new object
+	 * representing the given node.
+	 * 
+	 * @param dec Codec that controls the encoding process.
+	 * @param node XML node to be decoded.
+	 * @param into Optional object to encode the node into.
+	 * @return Returns the resulting object that represents the given XML node
+	 * or the object given to the method as the into parameter.
+	 */
+    @Override
     public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
@@ -106,8 +137,4 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	}
 	return obj;
     }
-
-    
-    private class UnrecognizeFormatException extends Exception {}
-
 }

@@ -27,6 +27,18 @@ import com.mxgraph.model.mxCell;
  * Codec for any xcos object
  */
 public class XcosObjectCodec extends mxObjectCodec {
+    /**
+     * Throw when we cannot load the XML.
+     */
+	protected class UnrecognizeFormatException extends Exception {
+		/**
+		 * Default constructor
+		 */
+		public UnrecognizeFormatException() {
+			super();
+		}
+	}
+	
     protected static final String STYLE = "style";
     private static final String ROTATION = "rotation";
     private static final String DIRECTION = "direction";
