@@ -85,6 +85,8 @@ Xcos:
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
+
 Atoms:
 ======
 

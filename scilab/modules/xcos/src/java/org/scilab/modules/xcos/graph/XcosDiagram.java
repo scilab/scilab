@@ -1242,42 +1242,55 @@ public class XcosDiagram extends ScilabGraph {
     	}
     }
 
-    /**
-     * @param origin last point in the draklink 
-     * @param click clicked point in diagram window
-     * @return new real point 
-     */
-    static mxPoint getPointPosition(mxPoint origin, mxPoint click) {
-	boolean signX = click.getX() > origin.getX();
-	boolean signY = click.getY() > origin.getY();
-	double diffX = Math.abs(click.getX() - origin.getX());
-	double diffY = Math.abs(click.getY() - origin.getY());
+	/**
+	 * Get the point position according to the scale.
+	 * 
+	 * @param origin
+	 *            last point in the draklink
+	 * @param click
+	 *            clicked point in diagram window
+	 * @return new real point
+	 */
+	mxPoint getPointPosition(mxPoint origin, mxPoint click) {
+		final double scale = getView().getScale();
 
-	if (diffX > diffY) {
-	    if (diffY > (diffX / 2)) { //diagonal
-		diffY = diffX;
-	    } else { //orthogonal
-		diffY = 0;
-	    }
-	} else { // < or ==
-	    if (diffX > (diffY / 2)) { //diagonal
-		diffX = diffY;
-	    } else { //orthogonal
-		diffX = 0;
-	    }
+		final double origX = origin.getX();
+		final double origY = origin.getY();
+
+		final double clickX = click.getX() / scale;
+		final double clickY = click.getY() / scale;
+
+		final boolean signX = clickX > origX;
+		final boolean signY = clickY > origY;
+		
+		double diffX = Math.abs(clickX - origX);
+		double diffY = Math.abs(clickY - origY);
+		if (diffX > diffY) {
+			if (diffY > (diffX / 2)) { // diagonal
+				diffY = diffX;
+			} else { // orthogonal
+				diffY = 0;
+			}
+		} else { // < or ==
+			if (diffX > (diffY / 2)) { // diagonal
+				diffX = diffY;
+			} else { // orthogonal
+				diffX = 0;
+			}
+		}
+
+		// restore signs
+		if (!signX) {
+			diffX = -diffX;
+		}
+
+		if (!signY) {
+			diffY = -diffY;
+		}
+
+		return new mxPoint(origX + diffX, origY + diffY);
 	}
-
-	//restore signs
-	if (!signX) {
-	    diffX = -diffX;
-	}
-
-	if (!signY) {
-	    diffY = -diffY;
-	}
-
-	return new mxPoint(origin.getX() + diffX, origin.getY() + diffY); 
-    }
+	
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
      * and a (+) to expand them.
