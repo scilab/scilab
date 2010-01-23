@@ -128,7 +128,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
 		depTree = atomsCatTree( depTree , tree );
 	end
 	
-	// Add a field to detect later if it's the toolbox is automaticaly installed
+	// Add a field to detect later if it's the toolbox is automatically installed
 	// or if it's a user choice
 	// =========================================================================
 	

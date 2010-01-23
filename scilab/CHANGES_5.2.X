@@ -85,6 +85,8 @@ Xcos:
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
+
 Atoms:
 ======
 
@@ -212,7 +214,9 @@ Bug fixes:
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
 
+* bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
+* bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================

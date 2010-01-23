@@ -23,23 +23,49 @@ import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 
+/**
+ * Define serialization for a {@link ScilabList} instance.
+ */
 public class ScilabListCodec  extends XcosObjectCodec {
 
     
     private static final String SCILAB_CLASS = "scilabClass";
 
+    /**
+     * Default constructor
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+     */
     public ScilabListCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
     {
 	super(template, exclude, idrefs, mapping);
 
     }
 
+    /**
+     * Add the class name as an attribute.
+     * 
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @param node XML node that represents the default encoding.
+	 * @return Returns the resulting node of the encoding.
+     * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
+     */
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		mxCodec.setAttribute(node, SCILAB_CLASS, obj.getClass().getSimpleName());
 		
 		return obj;
 	}
 	
+	/**
+	 * Instantiate defined class for the attribute 
+	 * 
+	 * @param node the node we are working on
+	 * @return the instance of the node.
+	 * @see com.mxgraph.io.mxObjectCodec#cloneTemplate(org.w3c.dom.Node)
+	 */
 	public Object cloneTemplate(Node node) {
 		Object obj = null;
 		if (node.getAttributes().getNamedItem(SCILAB_CLASS) != null) { 

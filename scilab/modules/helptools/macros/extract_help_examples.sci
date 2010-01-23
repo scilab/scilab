@@ -55,7 +55,7 @@ function build_example_test(xml_path,logfile)
   T=extract_help_example(xml_path); //look for examples
   
   if T<>[] then //an example is given
-    t=gettesttype(T) //check if it includes interactive or garphic functions
+    t=gettesttype(T) //check if it includes interactive or graphic functions
     gen_test_files(T,name,t);
   end
   

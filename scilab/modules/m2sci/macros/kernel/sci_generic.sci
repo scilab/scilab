@@ -11,7 +11,7 @@ function [tree]=sci_generic(tree)
 // M2SCI function
 // Generic conversion function for unknown Matlab functions
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 if typeof(tree)=="operation"
   tree.out(1).dims=list(-1,-1)
