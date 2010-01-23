@@ -969,7 +969,7 @@ static void GradFixedlog( double minVal, double maxVal, double * outTicks, int n
 
 
 /* compute the automatic graduation of the segment [_min,_max] and store it in _grads */
-/* the number of graduation may be fixed if compNgrads is TRUE or automaticaly computed */
+/* the number of graduation may be fixed if compNgrads is TRUE or automatically computed */
 /* otherwise. */
 int GradLog( double   _min   ,
             double   _max   ,
