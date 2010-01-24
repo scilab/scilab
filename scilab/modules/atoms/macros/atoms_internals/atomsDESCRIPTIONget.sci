@@ -92,6 +92,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 		end
 		
 		description_files = [ ..
+			atomsPath("system","session")  + "DESCRIPTION_archives"  "" ; ..
 			atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
 			atomsPath("system","user")     + "DESCRIPTION_installed" "" ; ..
 			atomsPath("system","session")  + "DESCRIPTION_installed" "" ];
