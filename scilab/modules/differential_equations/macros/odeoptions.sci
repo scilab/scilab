@@ -65,7 +65,7 @@ chapeau=[gettext("Defining %ODEOPTIONS variable");
 	 gettext("5 : internally generated banded jacobian (see ml,mu)");
 	 " ";
 	 gettext("Meaning of ml,mu:");
-	 gettext("If jactype = 4 or 5 ml and mu are the lower and upper half-banwidths");
+	 gettext("If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths");
 	 gettext("of the banded jacobian: the band is the i,j''s with i-ml <= j <= ny-1");
 	 gettext("If jactype = 4 the jacobian function must return");
 	 gettext("a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))");

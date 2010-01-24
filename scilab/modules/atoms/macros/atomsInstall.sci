@@ -404,7 +404,7 @@ function result = atomsInstall(packages,section)
 			// Intentionnaly Installed
 			this_package_status = "I";
 		else
-			// Automaticaly installed
+			// Automatically installed
 			this_package_status = "A";
 		end
 		
