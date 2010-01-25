@@ -25,9 +25,11 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* A rework to pass checkstyle metrics has been started.
+* Performance improvements under Linux
 
-* An update of the jgraphx-1.2.0.7 version has been performed.
+* A rework to pass checkstyle metrics on the code has been started.
+
+* Update to jgraphx version 1.2.0.7 has been performed.
 
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
