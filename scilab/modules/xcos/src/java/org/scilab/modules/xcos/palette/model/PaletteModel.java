@@ -88,7 +88,7 @@ public final class PaletteModel {
 		} catch (NoSuchFieldException e) {
 			e.printStackTrace();
 		} finally {
-			if (value.isEmpty()) {
+                    if (value.equals("")) {
 				value = message;
 			}
 		}
