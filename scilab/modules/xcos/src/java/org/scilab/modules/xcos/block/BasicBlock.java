@@ -322,7 +322,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnU() {
+    public boolean isDependsOnU() {
 	return dependsOnU;
     }
 
@@ -336,7 +336,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnT() {
+    public boolean isDependsOnT() {
 	return dependsOnT;
     }
 
@@ -570,8 +570,8 @@ public class BasicBlock extends XcosUIDObject {
      * @param modifiedBlock the new settings
      */
     public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.dependsOnT());
-	setDependsOnU(modifiedBlock.dependsOnU());
+	setDependsOnT(modifiedBlock.isDependsOnT());
+	setDependsOnU(modifiedBlock.isDependsOnU());
 	setExprs(modifiedBlock.getExprs());
 
 	setRealParameters(modifiedBlock.getRealParameters());
