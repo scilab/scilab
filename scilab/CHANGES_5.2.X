@@ -83,6 +83,8 @@ Xcos:
 
 * bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
 
+* bug 6415 fixed - The SAWTOOTH_f block didn't allow parameters.
+
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
 * bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
