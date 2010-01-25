@@ -15,7 +15,7 @@ Internationalization:
 
 * Ukrainian localization added (Thanks Yuri Chornoivan)
 
-* Many english typos have been fixed by (Thanks Yuri Chornoivan)
+* Many english typos have been fixed (Thanks Yuri Chornoivan)
 
 Xcos:
 =====
