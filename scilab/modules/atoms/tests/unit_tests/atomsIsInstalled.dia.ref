@@ -14,7 +14,6 @@ atomsSetConfig("Verbose" ,"False");
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 // =============================================================================
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
-atomsSystemUpdate();
 // Install toolbox N°2
 atomsInstall(["toolbox_2","2.0";"toolbox_2","2.1"],"user");
 // Check input parameters

@@ -41,4 +41,8 @@ function atomsRepositorySetOfl(url)
 	// =========================================================================
 	mputl(url,pathconvert(SCI+"/modules/atoms/etc/repositories",%F));
 	
+	// Update the toolbox list
+	// =========================================================================
+	atomsSystemUpdate();
+	
 endfunction

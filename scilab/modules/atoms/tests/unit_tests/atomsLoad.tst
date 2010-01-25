@@ -26,7 +26,6 @@ atomsSetConfig("Verbose" ,"False");
 
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
-atomsSystemUpdate();
 
 atomsInstall("toolbox_5");
 

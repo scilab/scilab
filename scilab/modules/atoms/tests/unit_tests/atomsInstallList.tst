@@ -13,7 +13,6 @@ load("SCI/modules/atoms/macros/atoms_internals/lib");
 // =============================================================================
 
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
-atomsSystemUpdate();
 
 // -----------------------------------------------------------------------------
 
@@ -45,7 +44,6 @@ if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 // =============================================================================
 
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
-atomsSystemUpdate();
 
 // -----------------------------------------------------------------------------
 
@@ -76,4 +74,3 @@ if or(atomsInstallList("toolbox_6")<>ref) then pause, end
 // Restore Original values
 // =============================================================================
 atomsRepositorySetOfl("http://atoms.scilab.org");
-atomsSystemUpdate();
