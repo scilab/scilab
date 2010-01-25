@@ -227,6 +227,8 @@ Bug fixes:
 
 * bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
 
+* bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
