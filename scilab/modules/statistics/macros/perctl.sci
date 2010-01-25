@@ -31,8 +31,7 @@ function [p]=perctl(x,y)
     error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"perctl",2));
   end
   if x==[]|y==[] then p=[];return;end
-  //if find((y-int(y)))<>[]|max(y)>100|min(y)<1 then
-  if max(y)>100|min(y)<1 then
+  if find((y-int(y)))<>[]|max(y)>100|min(y)<1 then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"perctl",2,1,100))
   end
   if type(x)<>1 then
