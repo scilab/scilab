@@ -41,6 +41,7 @@ Xcos:
       instances are shared.
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
+    - org.scilab.modules.graph is independent from Xcos and can be safely used.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -82,6 +83,8 @@ Xcos:
                    properly.
 
 * bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
+
+* bug 6415 fixed - The SAWTOOTH_f block didn't allow parameters.
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
