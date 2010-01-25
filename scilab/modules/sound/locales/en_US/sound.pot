@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_beep.c, line: 92
 # File: sci_gateway/c/sci_PlaySound.c, line: 81
@@ -142,12 +142,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
 # File: macros/wavread.sci, line: 60
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
-"vector of %d integers.\n"
-msgstr ""
-#
 # File: macros/wavread.sci, line: 75
 #, c-format
 msgid ""

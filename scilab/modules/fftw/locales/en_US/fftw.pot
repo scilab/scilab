@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 79
 #, c-format
@@ -39,10 +39,10 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw_flags.c, line: 186
 # File: sci_gateway/c/sci_fftw_flags.c, line: 203
 # File: sci_gateway/c/sci_fftw_flags.c, line: 211
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 60
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 69
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 89
-# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 97
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 62
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 71
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 92
+# File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 100
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 61
 #, c-format
 msgid "%s: No more memory.\n"
@@ -77,7 +77,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 194
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_fftw.c, line: 218
