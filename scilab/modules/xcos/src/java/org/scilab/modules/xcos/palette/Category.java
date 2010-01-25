@@ -118,7 +118,7 @@ public enum Category {
 	SOURCES(XcosMessages.SOURCES_PAL, new String[] {"CLKINV_f", "CLOCK_c",
 			"CONST_m", "CURV_f", "Counter", "FROMWSB", "GENSIN_f", "GENSQR_f",
 			"INIMPL_f", "IN_f", "Modulo_Count", "RAMP", "RAND_m", "READAU_f",
-			"READC_f", "RFILE_f", "SAWTOOTH_f", "STEP_FUNCTION", "SampleCLK",
+			"READC_f", "RFILE_f", "STEP_FUNCTION", "SampleCLK",
 			"Sigbuilder", "TIME_f", "TKSCALE"}),
 	
 	/** THERMO-HYDRAULICS palette */
