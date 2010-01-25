@@ -19,10 +19,10 @@ atomsInstall("toolbox_5");
 // Show the dependency tree
 atomsDepTreeShow("toolbox_5");
 
-    toolbox_5 - 1.0
-    `-- toolbox_4 - 1.0
-        `-- toolbox_2 - 1.0
-            `-- toolbox_1 - 1.0
+    toolbox_5 - 1.0-1
+    `-- toolbox_4 - 1.0-1
+        `-- toolbox_2 - 1.0-1
+            `-- toolbox_1 - 1.0-1
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
 atomsSystemUpdate();
@@ -31,10 +31,10 @@ atomsUpdate();
 // Show the dependency tree
 atomsDepTreeShow("toolbox_5");
 
-    toolbox_5 - 1.0
-    `-- toolbox_4 - 1.1
-        `-- toolbox_2 - 1.0
-            `-- toolbox_1 - 1.0
+    toolbox_5 - 1.0-1
+    `-- toolbox_4 - 1.1-1
+        `-- toolbox_2 - 1.0-1
+            `-- toolbox_1 - 1.0-1
 // Remove toolbox 5
 atomsRemove("toolbox_5");
 // Restore original values
