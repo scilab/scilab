@@ -1988,7 +1988,7 @@ Bug fixes:
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
 
-* bug 6423 fixed - perctl doesn't accept vector of floats as second parameter.
+* bug 6423 fixed - update the documentation of perctl.
 
 * bug 6468 fixed - wrong check in dnaupd.
 
