@@ -1990,4 +1990,8 @@ Bug fixes:
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
 
+* bug 6423 fixed - update the documentation of perctl.
+
 * bug 6468 fixed - wrong check in dnaupd.
+
+* bug 6495 fixed - in lqr, variable Q not defined.
