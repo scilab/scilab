@@ -228,7 +228,7 @@ public final class BasicBlockInfo {
 
 	model.add(block.getAllCommandPortsInitialStates()); // firing
 
-	boolean[][] dep_ut = {{block.dependsOnU() , block.dependsOnT()}};
+	boolean[][] dep_ut = {{block.isDependsOnU() , block.isDependsOnT()}};
 	model.add(new ScilabBoolean(dep_ut)); // dep_ut
 
 	model.add(new ScilabString("")); // label
