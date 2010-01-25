@@ -23,12 +23,12 @@ extern int C2F(zgeev)();
 //
 // intzgeev --
 //   Interface to LAPACK's ZGEEV
-//   Computes the eigenvalues and, if required, the eigenvectors of a complex un-symetric matrix.
+//   Computes the eigenvalues and, if required, the eigenvectors of a complex asymmetric matrix.
 //   Possible uses :
 //   * With 1 LHS :
 //     eigenvalues=spec(A)
 //   where 
-//     A : symetric, square matrix of size NxN
+//     A : symmetric, square matrix of size NxN
 //     eigenvalues : matrix of size Nx1, type complex
 //   * With 2 LHS :
 //     [eigenvectors,eigenvalues]=spec(A)

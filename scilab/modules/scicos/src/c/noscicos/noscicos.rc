@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "noscicos module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "noscicos module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "noscicos.dll"
             VALUE "ProductName", " noscicos"
             VALUE "ProductVersion", "5, 2, 0, 0"

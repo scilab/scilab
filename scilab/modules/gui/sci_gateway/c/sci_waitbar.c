@@ -193,11 +193,19 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
       GraphicHandle = (unsigned long)*hstk(handleAdr);
       pObj = sciGetPointerFromHandle(GraphicHandle);
-      waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
-
-      setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
-      setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
-      freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
+	  if (pObj)
+	  {
+		waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
+		setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
+		setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+		freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
+	  }
+	  else
+	  {
+		  freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
+		  Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 3,  "Waitbar");
+		  return 0;
+	  }
     }
 
   if (Lhs == 1)

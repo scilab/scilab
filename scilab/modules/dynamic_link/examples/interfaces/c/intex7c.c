@@ -40,7 +40,7 @@ int intex7c(char *fname)
   /* execute the Scilab disp function */
   mlhs=1; mrhs=2; 
   SciString(&ibegin,name,&mlhs,&mrhs);
-  /* check if an error has occured while running a_function */
+  /* check if an error has occurred while running a_function */
   if (Err > 0 ) return 0;
 
   /*  Note that disp, as every function which has nothing to return,

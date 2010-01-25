@@ -23,7 +23,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueTyp
 
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "FontAngle");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontAngle");
       return SET_PROPERTY_ERROR;
     }
 
@@ -32,7 +32,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueTyp
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          Scierror(999, _("Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"), "FontAngle", "normal", "italic", "oblique");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");
           return SET_PROPERTY_ERROR;
         }
       
@@ -53,7 +53,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueTyp
       else
         {
           /* Wrong string format */
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "FontAngle", "normal", "italic", "oblique");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");
           return SET_PROPERTY_ERROR;
         }
       
@@ -70,7 +70,7 @@ int SetUicontrolFontAngle(sciPointObj* sciObj, size_t stackPointer, int valueTyp
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"), "FontAngle", "normal", "italic", "oblique");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");
       return SET_PROPERTY_ERROR;
     }
 

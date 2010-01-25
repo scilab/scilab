@@ -255,7 +255,7 @@ scale       x          e          /  gamma(shape)
           generates <literal>n</literal> multivariate normal random
           variates ; <literal>Mean</literal> must be a <literal>m x
           1</literal> matrix and <literal>Cov</literal> a <literal>m x
-          m</literal> symetric positive definite matrix
+          m</literal> symmetric positive definite matrix
           (<literal>Y</literal> is then a <literal>m x n</literal>
           matrix).</para>
         </listitem>

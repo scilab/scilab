@@ -329,11 +329,11 @@ function result = atomsLoad(packages)
 		
 		if ierr > 0 then
 			if ATOMSAUTOLOAD then
-				mprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
+				mprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
 				lasterror(%T);
 				continue;
 			else
-				error(msprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
+				error(msprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
 			end
 		end
 		

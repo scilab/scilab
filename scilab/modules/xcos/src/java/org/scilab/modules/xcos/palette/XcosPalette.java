@@ -44,270 +44,344 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxEventSource;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
 
-public class XcosPalette extends JScrollPane implements ComponentListener {
-    private static final long serialVersionUID = 5693635134906513755L;
+/**
+ * The grid panel implementation for the BlockPalettes (main block view).
+ */
+public class XcosPalette extends JScrollPane {
 
-    private JPanel panel = null;
-    private String name;
+	/** Helper to manage the entry selection */
+	public final class EntryManager {
+		private BlockPalette selectedEntry;
 
-    protected BlockPalette selectedEntry;
+		/** Default Constructor */
+		private EntryManager() {
+		}
 
-    protected mxEventSource eventSource = new mxEventSource(this);
+		/**
+		 * Clear the selection.
+		 */
+		public void clearSelection() {
+			setSelectionEntry(null, null);
+		}
 
-    protected Color gradientColor = Color.LIGHT_GRAY;
+		/**
+		 * Does the block palette is selected ?
+		 * 
+		 * @param blockPalette
+		 *            The tested block palette
+		 * @return true if it is selected, false otherwise
+		 */
+		public boolean isSelectedEntry(BlockPalette blockPalette) {
+			return blockPalette == selectedEntry;
+		}
 
-    public XcosPalette(String name) {
-	super(new JPanel());
-	panel = (JPanel) getViewport().getComponent(0);
-	this.name = name;
-	setBackground(Color.WHITE);
+		/**
+		 * Select a block (perform UI and control update)
+		 * 
+		 * @param entry
+		 *            The selected block entry
+		 * @param t
+		 *            The associated transferable state
+		 */
+		public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
+			BlockPalette last = selectedEntry;
+			selectedEntry = entry;
 
-	panel.setBackground(Color.WHITE);
-	panel.setLayout(new FlowLayout(FlowLayout.LEADING, XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
-	panel.setPreferredSize(new Dimension((XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN), 0));
+			if (last != null) {
+				last.setBorder(null);
+				last.setOpaque(false);
+			}
 
-	getVerticalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
-	getVerticalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN);
+			if (selectedEntry != null) {
+				selectedEntry.setBorder(new ShadowBorder());
+				selectedEntry.setOpaque(true);
+			}
 
-	//getHorizontalScrollBar().setVisible(false);
-	getHorizontalScrollBar().setBlockIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-	getHorizontalScrollBar().setUnitIncrement(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+			eventSource.fireEvent(new mxEventObject(mxEvent.SELECT, "entry",
+					selectedEntry, "transferable", t, "previous", last));
+		}
 
-	addComponentListener(this);
-	// Clears the current selection when the background is clicked
-	addMouseListener(new MouseListener()
-	{
-
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-	     */
-	    public void mousePressed(MouseEvent e) {
-		clearSelection();
-	    }
-
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-	     */
-	    public void mouseClicked(MouseEvent e) {
-	    }
-
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-	     */
-	    public void mouseEntered(MouseEvent e) {
-	    }
-
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-	     */
-	    public void mouseExited(MouseEvent e) {
-	    }
-
-	    /*
-	     * (non-Javadoc)
-	     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-	     */
-	    public void mouseReleased(MouseEvent e) {
-	    }
-
-	});
-
-	// Shows a nice icon for drag and drop but doesn't import anything
-	setTransferHandler(new TransferHandler() {
-	    private static final long serialVersionUID = 1L;
-
-	    public boolean canImport(JComponent comp, DataFlavor[] flavors) {
-		return true;
-	    }
-	});
-    }
-
-    /**
-     * 
-     */
-    public void setGradientColor(Color c) {
-	gradientColor = c;
-    }
-
-    /**
-     * 
-     */
-    public Color getGradientColor() {
-	return gradientColor;
-    }
-
-    /**
-     * 
-     */
-    public void paintComponent(Graphics g) {
-	if (gradientColor == null) {
-	    super.paintComponent(g);
-	} else {
-	    Rectangle rect = getVisibleRect();
-
-	    if (g.getClipBounds() != null) {
-		rect = rect.intersection(g.getClipBounds());
-	    }
-
-	    Graphics2D g2 = (Graphics2D) g;
-
-	    g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
-		    gradientColor));
-	    g2.fill(rect);
-	}
-    }
-
-    /**
-     * 
-     */
-    public void clearSelection() {
-	setSelectionEntry(null, null);
-    }
-
-    /**
-     * 
-     */
-    public void setSelectionEntry(BlockPalette entry, mxGraphTransferable t) {
-	BlockPalette last = selectedEntry;
-	selectedEntry = entry;
-
-	if (last != null) {
-	    last.setBorder(null);
-	    last.setOpaque(false);
 	}
 
-	if (selectedEntry != null) {
-	    selectedEntry.setBorder(new ShadowBorder());
-	    selectedEntry.setOpaque(true);
+	/**
+	 * Contains all the controllers used by this class.
+	 */
+	private static final class XcosPaletteController {
+
+		private ComponentListener componentListener = new ComponentListener() {
+
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentHidden(ComponentEvent arg0) {
+			}
+
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentMoved(ComponentEvent arg0) {
+			}
+
+			/**
+			 * Do the layout of the blocks representations
+			 * 
+			 * @param arg0
+			 *            Event data
+			 * @see ComponentListener
+			 */
+			public void componentResized(ComponentEvent arg0) {
+				if (arg0.getSource() instanceof XcosPalette) {
+					XcosPalette palette = ((XcosPalette) arg0.getSource());
+					int panelWidth = (int) palette.getSize().getWidth()
+							- BORDER_WIDTH;
+
+					// take care if VerticalScrollBar is visible to compute
+					// visible area
+					if (palette.getVerticalScrollBar().isVisible()) {
+						panelWidth -= palette.getVerticalScrollBar().getWidth();
+					}
+
+					int numberOfCols = panelWidth
+							/ (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
+					double numberOfRows = (double) palette.panel
+							.getComponentCount()
+							/ (double) numberOfCols;
+					int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math
+							.ceil(numberOfRows));
+
+					palette.panel.setPreferredSize(new Dimension(panelWidth,
+							preferedHeight));
+				}
+			}
+
+			/**
+			 * Not used
+			 * 
+			 * @param arg0
+			 *            Not used
+			 * @see ComponentListener
+			 */
+			public void componentShown(ComponentEvent arg0) {
+			}
+
+		};
+
+		private MouseListener mouseListener = new MouseListener() {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseExited(MouseEvent e) {
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mousePressed(MouseEvent e) {
+				if (e.getSource() instanceof XcosPalette) {
+					XcosPalette palette = ((XcosPalette) e.getSource());
+					palette.getEntryManager().clearSelection();
+				}
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent
+			 * )
+			 */
+			public void mouseReleased(MouseEvent e) {
+			}
+		};
+
+		/** Default constructor */
+		private XcosPaletteController() {
+		}
+
+		/**
+		 * @return the componentListener
+		 */
+		private ComponentListener getComponentListener() {
+			return componentListener;
+		}
+
+		/**
+		 * @return the mouseListener
+		 */
+		private MouseListener getMouseListener() {
+			return mouseListener;
+		}
+	}
+	private static final int BORDER_WIDTH = 3;
+	private static final XcosPaletteController CONTROLLER = new XcosPaletteController();
+
+	private static final Color GRADIENT_COLOR = Color.LIGHT_GRAY;
+
+	private static final long serialVersionUID = 5693635134906513755L;
+	
+	private EntryManager entryManager = new EntryManager();
+	private mxEventSource eventSource = new mxEventSource(this);
+
+	private String name;
+	private JPanel panel;
+
+	/**
+	 * Default constructor
+	 * 
+	 * @param name
+	 *            The palette name
+	 */
+	public XcosPalette(String name) {
+		super(new JPanel());
+		panel = (JPanel) getViewport().getComponent(0);
+		this.name = name;
+		initComponents();
+
+		addComponentListener(CONTROLLER.getComponentListener());
+		// Clears the current selection when the background is clicked
+		addMouseListener(CONTROLLER.getMouseListener());
+
+		// Shows a nice icon for drag and drop but doesn't import anything
+		setTransferHandler(new TransferHandler() {
+			private static final long serialVersionUID = 1L;
+
+			public boolean canImport(JComponent comp, DataFlavor[] flavors) {
+				return true;
+			}
+		});
 	}
 
-	eventSource.fireEvent(mxEvent.SELECT, new mxEventObject(new Object[] {
-		selectedEntry, t, last }));
-    }
+	/**
+	 * Setup the graphical components
+	 */
+	private void initComponents() {
+		setBackground(Color.WHITE);
 
+		panel.setBackground(Color.WHITE);
+		panel.setLayout(new FlowLayout(FlowLayout.LEADING,
+				XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+		panel.setPreferredSize(new Dimension(
+				(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
+				0));
 
+		getVerticalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
+		getVerticalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_HEIGHT
+						+ XcosConstants.PALETTE_VMARGIN);
 
-    /**
-     * 
-     * @param name
-     * @param icon
-     * @param style
-     * @param width
-     * @param height
-     * @param value
-     */
-    public void addTemplate(final String name, ImageIcon icon) {
-
-	final BlockPalette entry = new BlockPalette(icon);
-
-	entry.setPalette(this);
-	entry.setToolTipText(name);
-	entry.setText(name);
-
-	// Install the handler for dragging nodes into a graph
-	DragGestureListener dragGestureListener = new DragGestureListener()
-	{
-	    /**
-	     * 
-	     */
-	    public void dragGestureRecognized(DragGestureEvent e) {
-		e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(), entry.getTransferable(), null);
-	    }
-
-	};
-
-	DragSource dragSource = new DragSource();
-	dragSource.createDefaultDragGestureRecognizer(entry,
-		DnDConstants.ACTION_COPY, dragGestureListener);
-
-	panel.add(entry);
-    }
-
-    /**
-     * @param eventName
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#addListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void addListener(String eventName, mxIEventListener listener) {
-	eventSource.addListener(eventName, listener);
-    }
-
-    /**
-     * @return
-     * @see com.mxgraph.util.mxEventSource#isEventsEnabled()
-     */
-    public boolean isEventsEnabled() {
-	return eventSource.isEventsEnabled();
-    }
-
-    /**
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener) {
-	eventSource.removeListener(listener);
-    }
-
-    /**
-     * @param eventName
-     * @param listener
-     * @see com.mxgraph.util.mxEventSource#removeListener(java.lang.String, com.mxgraph.util.mxEventSource.mxIEventListener)
-     */
-    public void removeListener(mxIEventListener listener, String eventName) {
-	eventSource.removeListener(listener, eventName);
-    }
-
-    /**
-     * @param eventsEnabled
-     * @see com.mxgraph.util.mxEventSource#setEventsEnabled(boolean)
-     */
-    public void setEventsEnabled(boolean eventsEnabled) {
-	eventSource.setEventsEnabled(eventsEnabled);
-    }
-
-    public void componentHidden(ComponentEvent arg0) {
-    }
-
-    public void componentMoved(ComponentEvent arg0) {
-    }
-
-    public void componentResized(ComponentEvent arg0) {
-	if (arg0.getSource() instanceof XcosPalette) {
-	    XcosPalette palette = ((XcosPalette) arg0.getSource());
-	    int panelWidth = (int) palette.getSize().getWidth() - 3;
-
-	    //take care if VerticalScrollBar is visible to compute visible area
-	    if (getVerticalScrollBar().isVisible()) {
-		panelWidth -=  getVerticalScrollBar().getWidth();
-	    }
-
-	    int numberOfCols = panelWidth / (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN);
-	    double numberOfRows = (double) panel.getComponentCount() / (double) numberOfCols;
-	    int preferedHeight = (int) ((XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN) * Math.ceil(numberOfRows));
-
-	    panel.setPreferredSize(new Dimension(panelWidth, preferedHeight));
+		// getHorizontalScrollBar().setVisible(false);
+		getHorizontalScrollBar().setBlockIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
+		getHorizontalScrollBar().setUnitIncrement(
+				XcosConstants.PALETTE_BLOCK_WIDTH
+						+ XcosConstants.PALETTE_HMARGIN);
 	}
-    }
 
-    public void componentShown(ComponentEvent arg0) {
-    }
+	/**
+	 * Add a block representative data
+	 * 
+	 * @param name
+	 *            The block name
+	 * @param icon
+	 *            The associated icon
+	 */
+	public void addTemplate(final String name, ImageIcon icon) {
 
-    public String toString() {
-	return this.name;
-    }
+		final BlockPalette entry = new BlockPalette(icon);
 
-    public BlockPalette getSelectedEntry() {
-	return selectedEntry;
-    }
+		entry.setPalette(this);
+		entry.setToolTipText(name);
+		entry.setText(name);
 
-    public void setSelectedEntry(BlockPalette selectedEntry) {
-	this.selectedEntry = selectedEntry;
-    }
+		// Install the handler for dragging nodes into a graph
+		DragGestureListener dragGestureListener = new DragGestureListener() {
+			public void dragGestureRecognized(DragGestureEvent e) {
+				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(), entry
+						.getTransferable(), null);
+			}
 
+		};
+
+		DragSource dragSource = new DragSource();
+		dragSource.createDefaultDragGestureRecognizer(entry,
+				DnDConstants.ACTION_COPY, dragGestureListener);
+
+		panel.add(entry);
+	}
+
+	/** @return the entry manager */
+	public EntryManager getEntryManager() {
+		return entryManager;
+	}
+
+	/**
+	 * Call the UI Paint method with a {@link GradientPaint} customized by the
+	 * {@link #GRADIENT_COLOR}.
+	 * 
+	 * @param g
+	 *            Global graphical context
+	 */
+	@Override
+	public void paintComponent(Graphics g) {
+		Rectangle rect = getVisibleRect();
+
+		if (g.getClipBounds() != null) {
+			rect = rect.intersection(g.getClipBounds());
+		}
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		g2.setPaint(new GradientPaint(0, 0, getBackground(), getWidth(), 0,
+				GRADIENT_COLOR));
+		g2.fill(rect);
+	}
+
+	/**
+	 * @return the name of the palette
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

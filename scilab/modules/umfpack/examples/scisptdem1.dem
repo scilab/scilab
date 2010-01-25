@@ -195,7 +195,7 @@ messagebox([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A
 clear A1 A3 A4 x1 x3 x4 b1 b3 b4
 
 messagebox(["            Now we will see how to use the taucs snmf stuff            ";
-	   " This is useful and recommended when your matrix is symetric positive  ";
+	   " This is useful and recommended when your matrix is symmetric positive ";
 	   " definite (s.p.d.)                                                     ";
 	   "                                                                       ";
 	   " 1/ The Cholesky factorization of a s.p.d. matrix A is gotten with :   ";

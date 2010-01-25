@@ -150,7 +150,7 @@ function result = atomsRemove(packages,section)
 			installed_details = atomsGetInstalledDetails(packages(i,:),section);
 			
 			if installed_details(3) == "allusers" then
-				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
 			end
 		
 		elseif (section=="user") & isempty(package_versions(i)) then
@@ -158,7 +158,7 @@ function result = atomsRemove(packages,section)
 			// Check if we have the right to remove at least one of the version
 			// of the package
 			if isempty(atomsGetInstalledVers(package_names(i),section)) then
-				error(msprintf(gettext("%s: You have not enought rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
 			end
 			
 		end
@@ -204,7 +204,7 @@ function result = atomsRemove(packages,section)
 		
 		// Check if the package is loaded or not
 		if atomsIsLoaded([this_package_name this_package_version]) then
-			mprintf( "\tthe package %s (%s) is currently loaded, It will removed at next Scilab restart\n" , this_package_name , this_package_version );
+			mprintf( "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab start\n" , this_package_name , this_package_version );
 			continue;
 		end
 		
@@ -216,7 +216,11 @@ function result = atomsRemove(packages,section)
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
 			atomsError("error", ..
-				msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",this_package_name,this_package_version));
+				msprintf( ..
+					gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
+						"atomsRemove", ..
+						this_package_name, ..
+						this_package_version));
 		end
 		
 		if isdir(this_package_directory) then
@@ -226,11 +230,11 @@ function result = atomsRemove(packages,section)
 			if uninstall_status<>1 then
 				atomsError("error", ..
 					msprintf( ..
-						gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+						gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
 						"atomsRemove", ..
 						this_package_name, ..
 						this_package_version, ..
-						this_package_directory));
+						strsubst(this_package_directory,"\","\\") ));
 			end
 			
 		end
@@ -245,11 +249,11 @@ function result = atomsRemove(packages,section)
 			if stat<>1 then
 				atomsError("error", ..
 					msprintf( ..
-						gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+						gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
 						"atomsRemove", ..
 						this_package_name, ..
 						this_package_version, ..
-						this_package_root_dir));
+						strsubst(this_package_root_dir,"\","\\") ));
 			end
 		end
 		

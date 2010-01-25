@@ -147,7 +147,7 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	atoms_system_directory  = atomsPath("system" ,section);
 	atoms_install_directory = atomsPath("install",section);
-	atoms_tmp_directory     = atomsPath("system" ,"session");
+	atoms_tmp_directory     = pathconvert( atomsPath("system" ,section) + "tmp_" + sprintf("%d\n",getdate("s")) );
 	
 	if ~ isdir( atoms_system_directory ) & (mkdir( atoms_system_directory ) <> 1) then
 		error(msprintf( ..
@@ -245,13 +245,13 @@ function result = atomsInstall(packages,section)
 			// -----------------------------------------------------------------
 			
 			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
-				packages_description = atomsDESCRIPTIONread(atoms_tmp_directory+"DESCRIPTION_archives");
+				packages_description = atomsDESCRIPTIONread(atomsPath("system","session")+"DESCRIPTION_archives");
 				packages_description = atomsDESCRIPTIONcat(packages_description,this_package_description);
 			else
 				packages_description = this_package_description;
 			end
 			
-			atomsDESCRIPTIONwrite(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
+			atomsDESCRIPTIONwrite(packages_description,atomsPath("system","session")+"DESCRIPTION_archives");
 			
 			// change the packages var
 			// -----------------------------------------------------------------
@@ -305,7 +305,9 @@ function result = atomsInstall(packages,section)
 		
 		if ~isdir(this_package_directory) & (mkdir(this_package_directory)<>1) then
 			atomsError("error", ..
-				msprintf( gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),this_package_directory));
+				msprintf( gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"), ..
+					"atomsInstall", ..
+					strsubst(this_package_directory,"\","\\") ));
 		end
 		
 		// "Repository" installation ; Download and Extract
@@ -344,11 +346,25 @@ function result = atomsInstall(packages,section)
 			rename_cmd = "mv """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
 		end
 		
-		[rep,stat]=unix_g(rename_cmd)
+		[rep,stat,err]=unix_g(rename_cmd);
 		
 		if stat <> 0 then
-			atomsError("error", ..
-				msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+			
+			// Second try after a sleep
+			// This is needed on windows platforms
+			
+			if MSDOS then
+				sleep(2000);
+				[rep,stat,err]=unix_g(rename_cmd);
+			end
+			
+			if stat <> 0 then
+				atomsError("error", ..
+					msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),..
+						"atomsInstall", ..
+						strsubst(pathconvert(this_package_directory+this_package_version),"\","\\") ));
+			end
+			
 		end
 		
 		// Move the created directory
@@ -360,11 +376,22 @@ function result = atomsInstall(packages,section)
 			
 			move_cmd = "move """+atoms_tmp_directory+this_package_version+""" """+pathconvert(this_package_directory,%F)+"""";
 			
-			[rep,stat]=unix_g(move_cmd)
+			[rep,stat,err]=unix_g(move_cmd);
 			
 			if stat <> 0 then
+				
+				// Second try after a sleep
+				// This is needed on windows platforms
+				
+				if MSDOS then
+					sleep(2000);
+					[rep,stat,err]=unix_g(move_cmd);
+				end
+				
 				atomsError("error", ..
-					msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
+					msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),..
+						"atomsInstall",..
+						strsubst(pathconvert(this_package_directory+this_package_version),"\","\\") ));
 			end
 			
 		end
@@ -376,7 +403,7 @@ function result = atomsInstall(packages,section)
 			// Intentionnaly Installed
 			this_package_status = "I";
 		else
-			// Automaticaly installed
+			// Automatically installed
 			this_package_status = "A";
 		end
 		
@@ -409,7 +436,10 @@ function result = atomsInstall(packages,section)
 		
 		if copyfile( this_package_archive , archives_directory ) <> 1 then
 			atomsError("error", ..
-				msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
+				msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"), ..
+					"atomsInstall", ..
+					strsubst(this_package_archive,"\","\\"), ..
+					strsubst(archives_directory,"\","\\") ));
 		end
 		
 		if this_package_details("fromRepository")=="1" then
@@ -449,6 +479,13 @@ function result = atomsInstall(packages,section)
 	
 	if ~ isempty(fileinfo(atoms_tmp_directory + "DESCRIPTION_archives")) then
 		mdelete(atoms_tmp_directory + "DESCRIPTION_archives");
+	end
+	
+	// The atoms_tmp_directory is no more needed
+	// =========================================================================
+	
+	if ~ isempty(fileinfo(atoms_tmp_directory)) then
+		rmdir(atoms_tmp_directory,"s");
 	end
 	
 	// Update the dependencies of packages that use another version of packages

@@ -24,6 +24,7 @@
 #include "isdir.h"
 #include "splitpath.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename);
 static void returnCopyFileResultOnStack(int ierr, char *fname);

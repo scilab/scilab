@@ -64,7 +64,7 @@ function n=datenum(varargin)
 					error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Minute"),0,59));
 				end
 				
-				if min(DateIn(:,6))<0 | max(DateIn(:,6))>59 then
+				if min(DateIn(:,6))<0 | max(DateIn(:,6))>=60 then
 					error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"),"datenum",1,gettext("Second"),0,59));
 				end
 				
@@ -150,7 +150,7 @@ function n=datenum(varargin)
 				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",5,0,59));
 			end
 			
-			if min(SecIn)<0 | max(SecIn)>59 then
+			if min(SecIn)<0 | max(SecIn)>=60 then
 				error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",6,0,59));
 			end
 			

@@ -960,7 +960,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
     nclock = 0;
 
-    for (jj = 1; jj <= ncord; ++jj) { /*for each continous block*/
+    for (jj = 1; jj <= ncord; ++jj) { /*for each continuous block*/
       C2F(curblk).kfun = cord[jj];
       flag__ = 6;
       if (funtyp[C2F(curblk).kfun] >= 0) {

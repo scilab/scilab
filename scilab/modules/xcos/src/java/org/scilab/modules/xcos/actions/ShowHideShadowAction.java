@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.util.Hashtable;
+import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -59,16 +59,20 @@ public class ShowHideShadowAction extends DefaultAction {
 		
 		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 		
-		for (int i = 0 ; i < allCells.length ; ++i) {
+		for (int i = 0; i < allCells.length; ++i) {
 		    if (allCells[i] instanceof BasicBlock) {
 			//((BasicBlock) allCells[i])
 				mxCellState state = getGraph(null).getView().getState(allCells[i]);
-				Hashtable<String, Object> style = (state != null) ? state.getStyle() : getGraph(null).getCellStyle(allCells[i]);
+				Map<String, Object> style;
+				if (state != null) {
+					style = state.getStyle();
+				} else {
+					style = getGraph(null).getCellStyle(allCells[i]);
+				}
 
-				if (style != null)
-				{
-					String value = (mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false)) ? "0" : "1";
-					getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW, value, new Object[] { allCells[i] });
+				if (style != null) {
+					String value = Boolean.toString(mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false));
+					getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW, value, new Object[] {allCells[i]});
 				}
 		    }
 		}

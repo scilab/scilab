@@ -59,7 +59,7 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("Unable to render polyline, memory full.\n"));
+	  sciprint(const_cast<char*>(_("Unable to render polyline, memory full.\n")));
     if (xCoords != NULL) { delete[] xCoords; }
     if (yCoords != NULL) { delete[] yCoords; }
     if (zCoords != NULL) { delete[] zCoords; }

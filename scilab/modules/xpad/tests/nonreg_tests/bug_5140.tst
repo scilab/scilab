@@ -22,4 +22,31 @@
 // paste some line in a tab 
 // try "Load into Scilab
 
+// paste theses lines:
+1+1
+2
+A= 3
+disp(A)
+
+// do "Load into Scilab" 
+// result display in console should be:
+
+
+//-->editor
+  
+ ans  =
+ 
+    2.  
+ 
+ ans  =
+ 
+    2.  
+ 
+ A  =
+ 
+    3.  
+ 
+ 
+    3.  
+ 
 

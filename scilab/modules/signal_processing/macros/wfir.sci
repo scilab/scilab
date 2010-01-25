@@ -106,7 +106,7 @@ if rhs<=0 then,
 	     gettext('df (0<df<.5): the width of the window main lobe')
 	     ' ';
 	     gettext('only one of this two values is to be defined,')
-	     gettext('the other one is automaticaly deduced')],..
+	     gettext('the other one is automatically deduced')],..
 	     [gettext('name of specified value');
 	     gettext('value')],list('str',-1,'vec',1),['dp','0.3'])
     if part(name,1:2)=='dp' then

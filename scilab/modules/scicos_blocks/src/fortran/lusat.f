@@ -25,7 +25,7 @@ c     Copyright INRIA
 
 c     Scicos block simulator
 c     Lower-Upper saturation
-c     Continous block, MIMO
+c     Continuous block, MIMO
 c
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
       double precision g(*)

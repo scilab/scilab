@@ -36,13 +36,9 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -53,8 +49,14 @@ import com.mxgraph.util.mxRectangle;
 
 public abstract class BasicLink extends XcosUIDObject {
 
-    private static final long serialVersionUID = 8557979393361216098L;
+	private static final long serialVersionUID = 8557979393361216098L;
+	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
+	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
 
+	/**
+	 * Default constructor
+	 * @param style The style to use for this link
+	 */
     public BasicLink(String style) {
 	super();
 	setVertex(false);
@@ -62,11 +64,16 @@ public abstract class BasicLink extends XcosUIDObject {
 	setStyle(style);
     }
 
+    /**
+     * Set the order number of this link (will be applied to source and target)
+     * @param ordering The order number
+     */
     public void setOrdering(int ordering) {
 	((BasicPort) this.getSource()).setConnectedLinkId(ordering);
 	((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
     }
 
+    /** @param index the point index to be removed */
     public void removePoint(int index) { 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
 	    return;
@@ -76,10 +83,21 @@ public abstract class BasicLink extends XcosUIDObject {
 	}
     }
 
+    /** Remove all the points */
     private void removePoints() {
 	getGeometry().setPoints(new ArrayList<mxPoint>());
     }
 
+	/**
+	 * Get all the points
+	 * 
+	 * @param index
+	 *            the start index
+	 * @param fromStart
+	 *            if true, get the 0 - index range; get the index - max range
+	 *            otherwise
+	 * @return The points
+	 */
     public mxPoint[] getPoints(int index, boolean fromStart) { 
 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
@@ -106,6 +124,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	return null;
     }
 
+    /** @return the number of points in this link */
     public int getPointCount() { 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
 	    return 0;
@@ -113,6 +132,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	return getGeometry().getPoints().size();
     }
 
+    /**
+     * Find the nearest link point of the point
+     * @param point The base point
+     * @return the nearest point index in the point list.
+     */
     public int findNearestSegment(mxPoint point) { 
 
 	if (getGeometry() == null || getGeometry().getPoints() == null) { 
@@ -135,13 +159,19 @@ public abstract class BasicLink extends XcosUIDObject {
 	    if (i == 0) { //first block
 		point1 = new Point2D.Double(startX, startY);
 	    } else {
-		point1 = new Point2D.Double((int) ((mxPoint)getGeometry().getPoints().get(i-1)).getX(), (int) ((mxPoint)getGeometry().getPoints().get(i-1)).getY());
+				point1 = new Point2D.Double((int) ((mxPoint) getGeometry()
+						.getPoints().get(i - 1)).getX(),
+						(int) ((mxPoint) getGeometry().getPoints().get(i - 1))
+								.getY());
 	    }
 
 	    if (i == getGeometry().getPoints().size()) { 
 		point2 = new Point2D.Double(endX, endY);
 	    } else {
-		point2 = new Point2D.Double((int)((mxPoint)getGeometry().getPoints().get(i)).getX(), (int)((mxPoint)getGeometry().getPoints().get(i)).getY());
+				point2 = new Point2D.Double((int) ((mxPoint) getGeometry()
+						.getPoints().get(i)).getX(),
+						(int) ((mxPoint) getGeometry().getPoints().get(i))
+								.getY());
 	    }
 
 	    Point2D.Double addPoint = new Point2D.Double(point.getX(), point.getY());
@@ -150,8 +180,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	    if (saveDist == -1) { 
 		saveDist = line.ptSegDist(addPoint);
 		findPos = i;
-	    }
-	    else{
+	    } else {
 		double dist = line.ptSegDist(addPoint);
 		if (dist < saveDist) { 
 		    saveDist = dist;
@@ -162,6 +191,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	return findPos;
     }
 
+    /**
+     * Add a point at the position
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
     public void addPoint(double x, double y) {
 	mxPoint point = new mxPoint(x, y);
 	if (getGeometry().getPoints() == null) {
@@ -170,18 +204,23 @@ public abstract class BasicLink extends XcosUIDObject {
 	getGeometry().getPoints().add(point);
     }
 
+    /**
+     * Insert point on the nearest link
+     * @param x X coordinate
+     * @param y Y coordinate
+     */
     public void insertPoint(double x, double y) {
 
 	//if it is a loop link, change coordinate origin to block instead of diagram
 	mxPoint point = new mxPoint(x, y);
-	if(isLoopLink() == true) {
+	if (isLoopLink()) {
 	    mxGeometry geo = getSource().getParent().getGeometry();
 	    point.setX(x - geo.getX());
 	    point.setY(y - geo.getY());
 	}
 
-	if(getGeometry() == null) {
-	    setGeometry(new mxGeometry(0, 0, 80, 80));
+	if (getGeometry() == null) {
+	    setGeometry(DEFAULT_GEOMETRY);
 	}
 
 	if (getGeometry().getPoints() == null) {
@@ -191,7 +230,11 @@ public abstract class BasicLink extends XcosUIDObject {
 	    //check to delete an old point before try to insert
 	    for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
 		mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
-		mxRectangle rect = new mxRectangle(oldPoint.getX() - 5, oldPoint.getY() - 5, 10, 10);
+				mxRectangle rect = new mxRectangle(oldPoint.getX()
+						- (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
+						- (DETECTION_RECTANGLE_DIMENSION / 2),
+						DETECTION_RECTANGLE_DIMENSION,
+						DETECTION_RECTANGLE_DIMENSION);
 		if (rect.contains(point.getX(), point.getY())) { 
 		    getGeometry().getPoints().remove(i);
 		    return;
@@ -203,15 +246,19 @@ public abstract class BasicLink extends XcosUIDObject {
 	}
     }
 
+    /** @return True if the link is on the same block, false otherwise */
     private boolean isLoopLink() {
-	if(getSource() != null && getTarget() != null) {
-	    if(getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
+	if (getSource() != null && getTarget() != null) {
+	    if (getSource().getParent() == getParent() && getTarget().getParent() == getParent()) {
 		return true;
 	    }
 	}
 	return false;
     }
 
+    /**
+     * @return A scicos representation of this link
+     */
     public ScilabMList getAsScilabObj() {
 	String[] fields = {"Link", "xx", "yy", "id", "thick", "ct", "from", "to"};
 	ScilabMList data = new ScilabMList(fields);
@@ -228,11 +275,15 @@ public abstract class BasicLink extends XcosUIDObject {
 
 	// yy
 	double[][] yy = new double[1][2 + getPointCount()];
-	yy[0][0] = -(getSource().getGeometry().getCenterY() + getSource().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		yy[0][0] = -(getSource().getGeometry().getCenterY()
+				+ getSource().getParent().getGeometry().getY() - getSource()
+				.getParent().getGeometry().getHeight());
 	for (int i = 0; i < getPointCount(); i++) { 
-	    yy[0][i+1] = - (((mxPoint) getGeometry().getPoints().get(i)).getY());
+			yy[0][i + 1] = -(((mxPoint) getGeometry().getPoints().get(i)).getY());
 	}
-	yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY() + getTarget().getParent().getGeometry().getY() - getSource().getParent().getGeometry().getHeight());
+		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY()
+				+ getTarget().getParent().getGeometry().getY() - getSource()
+				.getParent().getGeometry().getHeight());
 	data.add(new ScilabDouble(yy));
 
 	data.add(new ScilabString("drawlink")); // id
@@ -264,8 +315,13 @@ public abstract class BasicLink extends XcosUIDObject {
 	return data;
     }
 
+    /** @return The scicos color and type values */
     public abstract double[][] getColorAndType();
 
+    /**
+     * Open the contextual menu of the link
+     * @param graph The associated graph
+     */
     public void openContextMenu(ScilabGraph graph) {
 	ContextMenu menu = ScilabContextMenu.createContextMenu();
 	menu.add(DeleteAction.createMenu(graph));
@@ -288,61 +344,44 @@ public abstract class BasicLink extends XcosUIDObject {
 
 	menu.add(linkStyle);
 
-	((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);		
+		((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+				MouseInfo.getPointerInfo().getLocation().x, MouseInfo
+						.getPointerInfo().getLocation().y);		
 
 	menu.setVisible(true);
     }
 
+	/**
+	 * Create a typed link 
+	 * @param from The source
+	 * @param to The target
+	 * @return The new link
+	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
+    	// Pre-conditions
+    	assert from != null;
+    	assert to != null;
+    	
+    	BasicLink instance;
+    	
+    	boolean isFromImplicit = (from.getType() == Type.IMPLICIT);
+    	boolean isToImplicit = (to.getType() == Type.IMPLICIT);
+    	
+    	boolean isFromExplicit = (from.getType() == Type.EXPLICIT);
+    	boolean isToExplicit = (to.getType() == Type.EXPLICIT);
+    	
+    	if (isFromImplicit && isToImplicit) {
+    		instance = new ImplicitLink();
+    	} else if (isFromExplicit && isToExplicit) {
+    		instance = new ExplicitLink();
+    	} else {
+    		instance = new CommandControlLink();
+    	}
 	
-	//from and to are clearly identify
-	if (from instanceof ExplicitOutputPort && to instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	} else if (from instanceof ImplicitOutputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitOutputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitInputPort && to instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof ImplicitInputPort && to instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (from instanceof CommandPort && to instanceof ControlPort) {
-	    return new CommandControlLink();
-	} else if (to instanceof ExplicitOutputPort && from instanceof ExplicitInputPort) {
-	    return new ExplicitLink();
-	} else if (to instanceof ImplicitOutputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitOutputPort && from instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitInputPort && from instanceof ImplicitInputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof ImplicitInputPort && from instanceof ImplicitOutputPort) {
-	    return new ImplicitLink();
-	} else if (to instanceof CommandPort && from instanceof ControlPort) {
-	    return new CommandControlLink();
-	}
-	
-	//from is null, never happen
-	if(from == null) {
-	    if(to instanceof ExplicitInputPort) {
-		return new ExplicitLink();
-	    } else if(to instanceof ImplicitInputPort) {
-		return new ImplicitLink();
-	    } else if(to instanceof ControlPort) {
-		return new CommandControlLink();
-	    }
-	} else if(to == null) {
-	    if(from instanceof ExplicitOutputPort) {
-		return new ExplicitLink();
-	    } else if(from instanceof ImplicitOutputPort) {
-		return new ImplicitLink();
-	    } else if(from instanceof CommandPort) {
-		return new CommandControlLink();
-	    }
-	}
-	return new ExplicitLink();
+		return instance;
     }
 
+    /** Invert the source and target of the link */
     public void invertDirection() {
 	    //invert source and destination and all points.
 	    mxICell linkSource = getSource();
@@ -353,7 +392,7 @@ public abstract class BasicLink extends XcosUIDObject {
 	    setTarget(linkSource);
 
 	    removePoints();
-	    for(int i = points.size() - 1 ; i >= 0; i--) {
+	    for (int i = points.size() - 1; i >= 0; i--) {
 		addPoint(points.get(i).getX(), points.get(i).getY());
 	    }
 	    

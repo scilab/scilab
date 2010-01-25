@@ -23,7 +23,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, size_t stackPointer, int valueType
 
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "FontSize");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontSize");
       return SET_PROPERTY_ERROR;
     }
 
@@ -32,7 +32,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, size_t stackPointer, int valueType
       if(nbCol != 1 || nbRow != 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "FontSize");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "FontSize");
           return SET_PROPERTY_ERROR;
         }
 
@@ -53,7 +53,7 @@ int SetUicontrolFontSize(sciPointObj* sciObj, size_t stackPointer, int valueType
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: A real expected.\n"), "FontSize");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "FontSize");
       return SET_PROPERTY_ERROR;
     }
 

@@ -164,7 +164,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
 
   options = palettes(kpal).props.options ;
     
-  //** I switch to the direct acces 
+  //** I switch to the direct access 
   gh_palette.background = options.Background(1) ; //** "options" is sub structure of scs_m  
      
   if ~set_cmap(palettes(kpal).props.options('Cmap')) then 

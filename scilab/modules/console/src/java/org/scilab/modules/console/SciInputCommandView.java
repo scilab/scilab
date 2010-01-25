@@ -119,7 +119,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	    }
 	} catch (InterruptedException e) {
 	    /*
-	     * If we have concurrent acces let's interrupt the first one, then allow
+	     * If we have concurrent access let's interrupt the first one, then allow
 	     * the second to return the command.
 	     */
 	    return "";

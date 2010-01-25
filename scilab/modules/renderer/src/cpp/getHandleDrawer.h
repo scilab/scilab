@@ -49,7 +49,7 @@ struct DrawableObjectWrapper
 
 /**
  * Return the drawer of a graphic handle
- * If none exist it is automaticaly created using the drawable
+ * If none exist it is automatically created using the drawable
  * object factory.
  */
 DrawableObject * getHandleDrawer( sciPointObj * pObj ) ;

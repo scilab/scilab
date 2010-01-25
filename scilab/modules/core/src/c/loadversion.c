@@ -137,7 +137,7 @@ BOOL getversionmodule(char *modulename,
 				}
 			else
 				{
-					fprintf(stderr,_("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
+					fprintf(stderr,_("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
 					return FALSE;
 				}
 			if(xpathObj) xmlXPathFreeObject(xpathObj);

@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "nographic_export module"
             VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "nographic_export module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "nographic_export.dll"
             VALUE "ProductName", " nographic_export"
             VALUE "ProductVersion", "5, 2, 0, 0"
