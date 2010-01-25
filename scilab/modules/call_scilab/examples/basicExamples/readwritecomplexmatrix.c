@@ -10,9 +10,10 @@
 #include <math.h>
 #include <stdio.h> 
 #include <stdlib.h> 
-#include <string.h> 
+#include <string.h>
+#include "api_scilab.h"
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
-#include "CallScilab.h" /* Provide functions to call Scilab engine */
+#include "call_scilab.h" /* Provide functions to call Scilab engine */
 /*------------------------------------------------------------*/
 int main(void)
 {
@@ -32,14 +33,25 @@ int main(void)
 	 * A=[ 1+%i 3 3+7*%i 2-2*%i ];
 	 */
 	{
-		double A[]={1,3,3,2,1,0,7,-2};   /* Declare the complex matrix */
+/* Declare the complex matrix */
+		double A[]={1,3,3,2};
+		double A_img[]={1,0,7,-2};
+/*
+ * Prior to Scilab 5.2:
+ * double A[]={1,3,3,2,1,0,7,-2};
+ */
 		int rowA=1, colA=4; /* Size of the complex matrix 
 							* (note that colA = sizeof(A)/2 
 							*/
 		char variableName[]="A";
 
-		C2F(cwritecmat)(variableName, &rowA, &colA, A,strlen(variableName)); /* Write it into Scilab's memory */
+/* Write it into Scilab's memory */
+		createNamedComplexMatrixOfDouble(pvApiCtx,variableName,rowA,colA, A, A_img);
 
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cwritecmat)(variableName, &rowA, &colA, A,strlen(variableName));
+ */
 		printf("Display from Scilab of A:\n");
 		SendScilabJob("disp(A);"); /* Display A */
 	}
@@ -51,10 +63,23 @@ int main(void)
 		* Note that it is done column by column
 		*/ 
 	{
-		double B[]={1,3,4,9,2,8,3,2,1,0,-1,0,1/2,42,0,0};   /* Declare the matrix */
+
+		double B[]={1,3,4,9,2,8,3,2};
+		double B_img[]={1,0.233,-1,-0.2,0.5,42,-23,123};   /* Declare the matrix */
+/*
+ * Prior to Scilab 5.2:
+ * double B[]={1,3,4,9,2,8,3,2,1,0.233,-1,-0.2,0.5,42,-23,123};
+ */
+
 		int rowB=2, colB=4; /* Size of the matrix */
 		char variableNameB[] = "B";
-		C2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+/* Write it into Scilab's memory */
+		createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB, rowB, colB, B, B_img);
+
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB));
+ */
 		printf("\n");
 		printf("Display from Scilab of B:\n");
 		SendScilabJob("disp(B);"); /* Display B */
@@ -68,18 +93,29 @@ int main(void)
 		int rowA_ = 0, colA_ = 0,lp = 0;
 		int i = 0,j = 0;
 		double *matrixOfComplex = NULL;
+		double *matrixOfComplex_img = NULL;
 
 		char variableToBeRetrieved[] = "A";
 
 		/* First, retrieve the size of the matrix */
-		C2F(cmatcptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
+		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, NULL, NULL);
+
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cmatcptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
+ */
 
 		/* Alloc the memory */
 		matrixOfComplex = (double*)malloc((rowA_*colA_*2)*sizeof(double));
+		matrixOfComplex_img = (double*)malloc((rowA_*colA_*2)*sizeof(double));
 
 		/* Load the matrix */
-		C2F(creadcmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfComplex,strlen(variableToBeRetrieved) );
+		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfComplex, matrixOfComplex_img);
 
+/*
+ * Prior to Scilab 5.2:
+ * C2F(creadcmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfComplex,strlen(variableToBeRetrieved) );
+ */
 		printf("\n");
 		printf("Display raw A (size: %d, %d):\n", rowA_, colA_);
 		for(i=0; i < rowA_*colA_*2; i++) /* *2 is because complex part is store
@@ -110,25 +146,45 @@ int main(void)
 		int i = 0,j = 0;
 
 		double *matrixOfComplexB = NULL;
+		double *matrixOfComplexB_img = NULL;
 		char variableToBeRetrievedB[] = "B";
 
 		/* First, retrieve the size of the matrix */
-		C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+
+		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL, NULL);
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+ */
 
 		/* Alloc the memory */
-		matrixOfComplexB = (double*)malloc((rowB_*colB_*2)*sizeof(double));
+		matrixOfComplexB = (double*)malloc((rowB_*colB_)*sizeof(double));
+		matrixOfComplexB_img = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 		/* Load the matrix */
-		C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+		readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+
+/*
+ * Prior to Scilab 5.2:
+ * C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+ */
 
 		printf("\n");
-		printf("Display from B raw (size: %d, %d):\n",rowB_, colB_);
-		for(i=0; i < rowB_*colB_*2; i++) /* *2 is because complex part is store
+		printf("Display from B raw - real part (size: %d, %d):\n",rowB_, colB_);
+		for(i=0; i < rowB_*colB_; i++) /* *2 is because complex part is store
 										  * at the end 
 										  */
 			{
 				/* Display the raw matrix */
 			fprintf(stdout,"B[%d] = %5.2f\n",i,matrixOfComplexB[i]);
+		}
+		printf("Display from B raw - imaginary part (size: %d, %d):\n",rowB_, colB_);
+		for(i=0; i < rowB_*colB_; i++) /* *2 is because complex part is store
+										  * at the end 
+										  */
+			{
+				/* Display the raw matrix */
+			fprintf(stdout,"B[%d] = %5.2f\n",i,matrixOfComplexB_img[i]);
 		}
 
 		printf("\n");
@@ -139,7 +195,7 @@ int main(void)
 					{
 						/* Display the formated matrix ... the way the user
 						 * expect */
-						printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB[(rowB_*colB_)+(i * rowB_ + j)]);
+						printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB_img[i * rowB_ + j]);
 					}
 				printf("\n"); /* New row of the matrix */
 			}
@@ -148,6 +204,11 @@ int main(void)
 		{
 			free(matrixOfComplexB);
 			matrixOfComplexB=NULL;
+		}
+		if (matrixOfComplexB_img) 
+		{
+			free(matrixOfComplexB_img);
+			matrixOfComplexB_img=NULL;
 		}
 	}
 

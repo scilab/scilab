@@ -115,8 +115,16 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>integer (initial time). kvect : integer vector.</para>
+          <para>integer (initial time).</para>
         </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+	<term>kvect</term>
+	
+	<listitem>
+	  <para>integer vector.</para>
+	</listitem>
       </varlistentry>
     </variablelist>
   </refsection>

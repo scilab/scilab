@@ -8,10 +8,10 @@
 #include <stdlib.h> 
 #include <stdio.h> 
 #include <string.h>
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-/* See SCI/modules/core/includes/CallScilab.h */
+/* See SCI/modules/core/includes/call_scilab.h */
 /*--------------------------------------------------------------------------*/
 static int example1(void)
 {

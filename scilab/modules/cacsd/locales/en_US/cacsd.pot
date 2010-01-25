@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/h_inf.sci, line: 45
 #, c-format
@@ -598,17 +598,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 #
+# File: macros/trzeros.sci, line: 49
 # File: macros/trzeros.sci, line: 61
 # File: macros/invsyslin.sci, line: 18
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
-msgstr ""
-#
-# File: macros/trzeros.sci, line: 49
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square system expected.\n"
-"'),"
 msgstr ""
 #
 # File: macros/armac.sci, line: 25
@@ -689,10 +683,6 @@ msgid ""
 msgstr ""
 #
 # File: macros/cont_mat.sci, line: 35
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
-msgstr ""
-#
 # File: macros/ctr_gram.sci, line: 55
 # File: macros/repfreq.sci, line: 17
 # File: macros/abinv.sci, line: 51
@@ -714,16 +704,12 @@ msgid ""
 "of floats expected.\n"
 msgstr ""
 #
-# File: macros/obsvss.sci, line: 40
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
-msgstr ""
-#
 # File: macros/invrs.sci, line: 15
 # File: macros/observer.sci, line: 47
 # File: macros/cls2dls.sci, line: 24
 # File: macros/leqr.sci, line: 23
 # File: macros/nehari.sci, line: 20
+# File: macros/obsvss.sci, line: 40
 # File: macros/leqe.sci, line: 12
 # File: macros/lqr.sci, line: 18
 # File: macros/st_ility.sci, line: 21
@@ -871,11 +857,6 @@ msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
 msgstr ""
 #
 # File: macros/nehari.sci, line: 56
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
-msgstr ""
-#
 # File: macros/hankelsv.sci, line: 26
 #, c-format
 msgid ""
@@ -924,7 +905,7 @@ msgstr ""
 # File: macros/plzr.sci, line: 21
 # File: macros/plzr.sci, line: 29
 #, c-format
-msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
 #
 # File: macros/h_inf.sci, line: 142

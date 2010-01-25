@@ -27,9 +27,11 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* A rework to pass checkstyle metrics has been started.
+* Performance improvements under Linux
 
-* An update of the jgraphx-1.2.0.7 version has been performed.
+* A rework to pass checkstyle metrics on the code has been started.
+
+* Update to jgraphx version 1.2.0.7 has been performed.
 
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
@@ -73,6 +75,8 @@ Xcos:
 
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
+
+* bug 5667 fixed - Simulation starts faster on Linux for huge diagram ( hdf5 export issue )
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
@@ -125,6 +129,13 @@ Compilation:
 
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
+
+Scilab extensions:
+==================
+
+* call_scilab: Complex examples have not been updated to use the new API Scilab.
+
+* API_Scilab: a presentation page of the feature have been added.
 
 Bug fixes:
 ==========
@@ -1979,4 +1990,8 @@ Bug fixes:
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
 
+* bug 6423 fixed - perctl doesn't accept vector of floats as second parameter.
+
 * bug 6468 fixed - wrong check in dnaupd.
+
+* bug 6495 fixed - in lqr, variable Q not defined.
