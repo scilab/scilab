@@ -164,6 +164,120 @@ SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal);
 */
 int getRhsFromAddress(void* _pvCtx, int* _piAddress);
 
+/**
+* check if a variable is a row vector
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isRowVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a column vector
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isColumnVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a vector ( row or column )
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isVector(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a scalar
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isScalar(void* _pvCtx, int* _piAddress);
+
+/**
+* check if a variable is a square matrix
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isSquareMatrix(void* _pvCtx, int* _piAddress);
+
+/**
+* check matrix dimension
+* @param[in] _piAddress variable address
+* @param[in] _iRows excepted row number ( if -1, don't check )
+* @param[in] _iCols excepted column number ( if -1, don't check )
+* @return 1 for true and 0 for false
+*/
+int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols);
+
+/**
+* check if it is a empty matrix
+* @param[in] _piAddress variable address
+* @return 1 for true and 0 for false
+*/
+int isEmptyMatrix(void* _pvCtx, int* _piAddress);
+
+/**
+* Create an empty matrix
+* @param[in] _iVar variable number
+* @return if the operation successed (0) or not ( !0 )
+*/
+int createEmptyMatrix(void* _pvCtx, int _iVar);
+
+/**
+* Create a named empty matrix
+* @param[in] _pstName variable name
+* @return if the operation successed (0) or not ( !0 )
+*/
+int createNamedEmptyMatrix(void* _pvCtx, char* _pstName);
+
+/**
+* Check if a named variable exists
+* @param[in] _pstName variable name
+* @return if the operation successed (0) or not ( !0 )
+*/
+int isNamedVarExist(void* _pvCtx, char* _pstName);
+
+/**
+* check if a variable is a row vector
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedRowVector(void* _pvCtx, char* _pstName);
+
+/**
+* check if a variable is a row vector
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedColumnVector(void* _pvCtx, char* _pstName);
+
+/**
+* check if a variable is a row vector
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedVector(void* _pvCtx, char* _pstName);
+
+/**
+* check if a variable is a row vector
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedScalar(void* _pvCtx, char* _pstName);
+
+/**
+* check if a variable is a row vector
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedSquareMatrix(void* _pvCtx, char* _pstName);
+
+/**
+* check if it is a empty matrix
+* @param[in] _pstName variable name
+* @return 1 for true and 0 for false
+*/
+int isNamedEmptyMatrix(void* _pvCtx, char* _pstName);
+
 #ifdef __cplusplus
 }
 #endif

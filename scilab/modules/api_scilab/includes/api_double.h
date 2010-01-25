@@ -156,6 +156,91 @@ SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* 
  */
 SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
+/*shortcut functions*/
+
+
+/**
+ * check if the variable type is double
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isDoubleType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is double
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedDoubleType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get scalar double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarDouble(void* _pvCtx, int* _piAddress, double* _pdblReal);
+
+/**
+ * Get scalar complex double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @param[out] _pdblImg return pointer on imgagianry data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, double* _pdblImg);
+
+/**
+ * Get scalar double variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pdblReal return pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarDouble(void* _pvCtx, char* _pstName, double* _pdblReal);
+
+/**
+ * Get scalar complex double variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pdblReal return pointer on real data
+ * @param[out] _pdblImg return pointer on imgagianry data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double* _pdblReal, double* _pdblImg);
+
+/**
+ * Create scalar double
+ * @param[in] _iVar variable number
+ * @param[in] _dblReal value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarDouble(void* _pvCtx, int _iVar, double _dblReal);
+
+/**
+ * Create scalar complex double variable
+ * @param[in] _iVar variable number
+ * @param[in] _dblReal real value
+ * @param[in] _dblImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _dblImg);
+
+/**
+ * Create named scalar double
+ * @param[in] _pstName variable name
+ * @param[in] _dblReal value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarDouble(void* _pvCtx, char* _pstName, double _dblReal);
+
+/**
+ * Create named scalar complex double variable
+ * @param[in] _pstName variable name
+ * @param[in] _dblReal real value
+ * @param[in] _dblImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double _dblReal, double _dblImg);
+
 #ifdef __cplusplus
 }
 #endif

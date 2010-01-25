@@ -5,4 +5,4 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-if atomsVersion() <> ["1.0"] then bugmes();quit;end
+if atomsVersion() <> ["1.1"] then bugmes();quit;end

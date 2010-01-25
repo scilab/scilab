@@ -27,6 +27,6 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
       do_compile_superblock42(scs_m, [], [], %f); 
 
   export_to_hdf5(hdf5FileToSave, "XX");
-  
-  xcosNotify(hdf5FileToSave);
+
 endfunction
+

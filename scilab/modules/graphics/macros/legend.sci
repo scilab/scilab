@@ -51,7 +51,7 @@ options_codes=[1;2;3;
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then break,end
     vk=varargin(k)
-    leg=[leg;vk(:)]
+    leg=[vk(:);leg]
   end
   nleg=size(leg,'*')
 

@@ -60,7 +60,7 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
       deff('ans=%func('+%var+')',%expr)
     end
   catch
-    error(msprintf(gettext("%s: Wrong value for imput argument #%d: syntax error in given expression\n"),"integrate",1));
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));
   end
 
   [%x1,%ks]=gsort(%x1,'g','i')

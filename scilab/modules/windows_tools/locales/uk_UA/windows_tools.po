@@ -1,0 +1,104 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"PO-Revision-Date: 2010-01-13 06:27+0000\n"
+"Last-Translator: yurchor <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-01-21 15:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Cannot open Windows registry.\n"
+msgstr "%s: не вдалося відкрити реєстр Windows.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, c-format
+msgid "%s: Cannot query value of this type.\n"
+msgstr "%s: запит на значення такого типу неможливий.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: %s.\n"
+msgstr "%s: помилкове значення вхідного параметра: %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра: слід було вказувати невід’ємні "
+"цілі числа.\n"
+
+msgid "Error(s) : see help powershell"
+msgstr "Помилки: див. help powershell"
+
+msgid "Only for Microsoft Windows."
+msgstr "Лише для Microsoft Windows."
+
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "Лише у режимі вікон, а не у консольному режимі.\n"
+
+msgid "Powershell not found."
+msgstr "Powershell не знайдено."
+
+msgid "Verify your script without Scilab."
+msgstr "Перевірка вашого скрипту без Scilab."
+
+msgid "see help"
+msgstr "див. довідку"

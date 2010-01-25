@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
+import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -24,6 +25,9 @@ import org.w3c.dom.NodeList;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
+/**
+ * Define serialization for a {@link ScilabString} instance.
+ */
 public class ScilabStringCodec extends XcosObjectCodec {
 
     
@@ -34,13 +38,29 @@ public class ScilabStringCodec extends XcosObjectCodec {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+    /**
+     * Default constructor
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+     */
     public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
-
     }
 
+	/**
+	 * Encodes the specified object and returns a node representing then given
+	 * object. Calls beforeEncode after creating the node and afterEncode
+	 * with the resulting node after processing.
+	 * 
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @return Returns the resulting XML node that represents the given object. 
+	 */
+    @Override
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabString scilabString = (ScilabString) obj;
@@ -59,6 +79,17 @@ public class ScilabStringCodec extends XcosObjectCodec {
 	return node;
     }
 
+    /**
+     * Parses the given node into the object or returns a new object
+	 * representing the given node.
+	 * 
+	 * @param dec Codec that controls the encoding process.
+	 * @param node XML node to be decoded.
+	 * @param into Optional object to encode the node into.
+	 * @return Returns the resulting object that represents the given XML node
+	 * or the object given to the method as the into parameter.
+	 */
+    @Override
     public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
@@ -82,7 +113,24 @@ public class ScilabStringCodec extends XcosObjectCodec {
 
 	    String[][] data = new String[height][width];
 	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0; i < allValues.getLength(); ++i) {
+	    fillData(data, allValues);
+
+	    ((ScilabString) obj).setData(data);
+	} catch (UnrecognizeFormatException e) {
+	    e.printStackTrace();
+	}
+	return obj;
+    }
+
+	/**
+	 * Fill the data from the node values 
+	 * @param data where to put data
+	 * @param allValues the parsed values
+	 * @throws UnrecognizeFormatException when the values are not recognized
+	 */
+	private void fillData(String[][] data, NodeList allValues)
+			throws UnrecognizeFormatException {
+		for (int i = 0; i < allValues.getLength(); ++i) {
 		int lineXMLPosition = -1;
 		int columnXMLPosition = -1;
 		int valueXMLPosition = -1;
@@ -99,15 +147,5 @@ public class ScilabStringCodec extends XcosObjectCodec {
 		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
 		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
 	    }
-
-	    ((ScilabString) obj).setData(data);
-	} catch (UnrecognizeFormatException e) {
-	    e.printStackTrace();
 	}
-	return obj;
-    }
-
-    
-    private class UnrecognizeFormatException extends Exception {}
-
 }

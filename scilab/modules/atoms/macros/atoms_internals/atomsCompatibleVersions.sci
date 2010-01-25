@@ -31,7 +31,7 @@ function versions = atomsCompatibleVersions(name)
 	
 	// Get all package description
 	// =========================================================================
-	allpackages = atomsGetTOOLBOXES();
+	allpackages = atomsDESCRIPTIONget();
 	
 	// Check if it's a Atoms package
 	// =========================================================================

@@ -53,7 +53,7 @@ function packages_disp = atomsSearch( search , fields )
 	// Get the list of available toolboxes
 	// =========================================================================
 	
-	packages_struct    = atomsGetTOOLBOXES();
+	packages_struct    = atomsDESCRIPTIONget();
 	
 	packages_list      = getfield(1,packages_struct);
 	packages_list(1:2) = [];

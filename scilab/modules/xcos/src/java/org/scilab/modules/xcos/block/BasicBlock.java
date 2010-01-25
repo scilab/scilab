@@ -322,7 +322,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnU() {
+    public boolean isDependsOnU() {
 	return dependsOnU;
     }
 
@@ -336,7 +336,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnT() {
+    public boolean isDependsOnT() {
 	return dependsOnT;
     }
 
@@ -570,8 +570,8 @@ public class BasicBlock extends XcosUIDObject {
      * @param modifiedBlock the new settings
      */
     public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.dependsOnT());
-	setDependsOnU(modifiedBlock.dependsOnU());
+	setDependsOnT(modifiedBlock.isDependsOnT());
+	setDependsOnU(modifiedBlock.isDependsOnU());
 	setExprs(modifiedBlock.getExprs());
 
 	setRealParameters(modifiedBlock.getRealParameters());
@@ -781,38 +781,38 @@ public class BasicBlock extends XcosUIDObject {
      */
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
-	result.append("<html>");
-	result.append("Block Name : " + getInterfaceFunctionName() + "<br>");
-	result.append("Simulation : " + getSimulationFunctionName() + "<br>");
+	result.append(XcosConstants.HTML_BEGIN);
+	result.append("Block Name : " + getInterfaceFunctionName() + XcosConstants.HTML_NEWLINE);
+	result.append("Simulation : " + getSimulationFunctionName() + XcosConstants.HTML_NEWLINE);
 
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    if (getIntegerParameters() != null) {
-		result.append("Integer parameters : " + getIntegerParameters() + "<br>");
+		result.append("Integer parameters : " + getIntegerParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	    
 	    if (getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
-		result.append("Real parameters : " + getRealParameters() + "<br>");
+		result.append("Real parameters : " + getRealParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	    
 	    if (getObjectsParameters() != null) {
-		result.append("Object parameters : " + getObjectsParameters() + "<br>");
+		result.append("Object parameters : " + getObjectsParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	} else {
-	    result.append("UID : " + getId() + "<br>");
-	    result.append("Block Style : " + getStyle() + "<br>");
-	    result.append("Flip : " + getFlip() + "<br>");
-	    result.append("Mirror : " + getMirror() + "<br>");
-	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + "<br>");
-	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + "<br>");
-	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + "<br>");
-	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + "<br>");
+	    result.append("UID : " + getId() + XcosConstants.HTML_NEWLINE);
+	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
+	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
+	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
+	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
 	}
 
-	result.append("x : " + getGeometry().getX() + "<br>");
-	result.append("y : " + getGeometry().getY() + "<br>");
-	result.append("w : " + getGeometry().getWidth() + "<br>");
-	result.append("h : " + getGeometry().getHeight() + "<br>");
-	result.append("</html>");
+	result.append("x : " + getGeometry().getX() + XcosConstants.HTML_NEWLINE);
+	result.append("y : " + getGeometry().getY() + XcosConstants.HTML_NEWLINE);
+	result.append("w : " + getGeometry().getWidth() + XcosConstants.HTML_NEWLINE);
+	result.append("h : " + getGeometry().getHeight() + XcosConstants.HTML_NEWLINE);
+	result.append(XcosConstants.HTML_END);
 	return result.toString();
     }
 

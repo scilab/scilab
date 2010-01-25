@@ -15,10 +15,9 @@ config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
-// Load the 2nd scenario : See scene2.test.atoms.scilab.org.txt
+// Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 // =============================================================================
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsSystemUpdate();
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 
 // Install toolbox N°2
 atomsInstall(["toolbox_2","2.0"],"user");
@@ -58,4 +57,3 @@ atomsRemove("toolbox_2","user");
 atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");
-atomsSystemUpdate();

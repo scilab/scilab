@@ -195,7 +195,7 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
 	  if %jjk<> [] then
 	    %ipar=[%ipar;2;%jjk]
 	  else
-	    message('Unknow varaiable '+%lst(%ijk)(2))
+	    message('Unknown variable '+%lst(%ijk)(2))
 	    ok=%f
 	  end
 	  //%ipar=[%ipar;2;evstr(strsubst(%lst(%ijk)(2),'u',''))]

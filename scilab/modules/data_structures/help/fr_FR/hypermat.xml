@@ -40,12 +40,21 @@
     La structure de données M contient un champ <literal>M('dims')</literal> contenant les dimensions de l'hypermatrice et un champ contenant le vecteur des termes <literal>M('entries')</literal>, rangés tel que l'indice
     le plus à gauche varie en premier :
     <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
+    <para>Attention: Si vous construisez votre propre <literal>hypermat</literal>, vous devez faire attention. L'entrée M('dims') doit être un vecteur ligne alors que l'entrée M('entries') doit être un vecteur colonne.</para> 
   </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-M=hypermat([2 3 2 2],1:24)
+M = hypermat([2 3 2 2],1:24)
+disp(size(M('dims')))
+disp(size(M('entries')))
+
+M_own            = mlist(['hm','dims','entries']);
+M_own('dims')    = [2 3 2 2];
+M_own('entries') = [1:24]';
+disp(size(M_own('dims')))
+disp(size(M_own('entries')))
  ]]></programlisting>
   </refsection>
   <refsection>

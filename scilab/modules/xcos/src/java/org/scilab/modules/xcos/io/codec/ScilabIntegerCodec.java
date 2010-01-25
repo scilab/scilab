@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
@@ -12,6 +24,9 @@ import org.w3c.dom.NodeList;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
+/**
+ * Define serialization for a {@link ScilabInteger} instance.
+ */
 public class ScilabIntegerCodec extends XcosObjectCodec {
 
     private static final String BUNSIGNED = "bUnsigned";
@@ -23,13 +38,30 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+    /**
+     * Default constructor
+	 * @param template Prototypical instance of the object to be encoded/decoded.
+	 * @param exclude Optional array of fieldnames to be ignored.
+	 * @param idrefs Optional array of fieldnames to be converted to/from references.
+	 * @param mapping Optional mapping from field- to attributenames.
+     */
     public ScilabIntegerCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
 
     }
 
+	/**
+	 * Encodes the specified object and returns a node representing then given
+	 * object. Calls beforeEncode after creating the node and afterEncode
+	 * with the resulting node after processing.
+	 * 
+	 * @param enc Codec that controls the encoding process.
+	 * @param obj Object to be encoded.
+	 * @return Returns the resulting XML node that represents the given object. 
+	 */
+    @Override
     public Node encode(mxCodec enc, Object obj) {
-	String name = mxCodecRegistry.getName(obj.getClass());
+    	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
 	ScilabInteger scilabInteger = (ScilabInteger) obj;
@@ -49,8 +81,18 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	return node;
     }
 
-    public Object decode(mxCodec dec, Node node, Object into)
-    {
+    /**
+     * Parses the given node into the object or returns a new object
+	 * representing the given node.
+	 * 
+	 * @param dec Codec that controls the encoding process.
+	 * @param node XML node to be decoded.
+	 * @param into Optional object to encode the node into.
+	 * @return Returns the resulting object that represents the given XML node
+	 * or the object given to the method as the into parameter.
+	 */
+    @Override
+    public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
 	    if (!(node instanceof Element)) { return null; }
@@ -62,8 +104,7 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	    int heightXMLPosition = -1;
 	    int widthXMLPosition = -1;
 	    int bUnsignedXMLPosition = -1;
-	    for (int i = 0; i < attrs.getLength(); i++)
-	    {
+	    for (int i = 0; i < attrs.getLength(); i++) {
 		Node attr = attrs.item(i);
 		if (attr.getNodeName().compareToIgnoreCase(WIDTH) == 0) { widthXMLPosition = i; }
 		if (attr.getNodeName().compareToIgnoreCase(HEIGHT) == 0) { heightXMLPosition = i; }
@@ -106,8 +147,4 @@ public class ScilabIntegerCodec extends XcosObjectCodec {
 	}
 	return obj;
     }
-
-    
-    private class UnrecognizeFormatException extends Exception { }
-
 }

@@ -123,7 +123,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 		mputl(repositories, atoms_directory+"repositories");
 		
 		// Force reload the different distant TOOLBOXES files
-		atomsGetTOOLBOXES(%T);
+		atomsDESCRIPTIONget(%T);
 		
 	end
 	

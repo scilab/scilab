@@ -22,7 +22,7 @@
 
 function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 //** get_errorcmd : return a Scicos_commands strings
-//** to select/hilite and display error messages for block
+//** to select/highlight and display error messages for block
 //** defined by his main scs_m path.
 //** If the block is included in a super block, the editor
 //** will open the correspondig windows by the use of the
@@ -119,7 +119,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 
     if spec_err=='csuper block' then
         //** update spec_err
-        spec_err='The hilited '+spec_err+' returns the error :';
+        spec_err='The highlighted '+spec_err+' returns the error :';
         //**
         //scf(curwin)
         //** call bad_connection
@@ -132,7 +132,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
              'xcosClearBlockWarning('+string(blk)+');']
     else
       //** update spec_err
-      spec_err='The hilited '+spec_err+' returns the error :';
+      spec_err='The highlighted '+spec_err+' returns the error :';
       //** create cmd
       cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
            'Select=['+string(blk)+',curwin];'+...

@@ -207,14 +207,15 @@ function result = atomsInstall(packages,section)
 			end
 			
 			this_package_description = atomsDESCRIPTIONread(tmp_dir + "DESCRIPTION");
+			this_package_packages    = this_package_description("packages");
 			
 			// Get package name and version
 			// -----------------------------------------------------------------
 			
-			this_package_name    = getfield(1,this_package_description);
+			this_package_name    = getfield(1,this_package_packages);
 			this_package_name    = this_package_name(3);
 			
-			this_package_version = getfield(1,this_package_description(this_package_name));
+			this_package_version = getfield(1,this_package_packages(this_package_name));
 			this_package_version = this_package_version(3);
 			
 			// Save the extracted directory
@@ -245,13 +246,13 @@ function result = atomsInstall(packages,section)
 			// -----------------------------------------------------------------
 			
 			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
-				packages_description = atomsDESCRIPTIONread(atoms_tmp_directory+"DESCRIPTION_archives");
+				packages_description = atomsDESCRIPTIONread(atomsPath("system","session")+"DESCRIPTION_archives");
 				packages_description = atomsDESCRIPTIONcat(packages_description,this_package_description);
 			else
 				packages_description = this_package_description;
 			end
 			
-			atomsDESCRIPTIONwrite(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
+			atomsDESCRIPTIONwrite(packages_description,atomsPath("system","session")+"DESCRIPTION_archives");
 			
 			// change the packages var
 			// -----------------------------------------------------------------
@@ -263,7 +264,7 @@ function result = atomsInstall(packages,section)
 	
 	// Force update the system informations
 	// =========================================================================
-	atomsGetTOOLBOXES(%T)
+	atomsDESCRIPTIONget(%T)
 	
 	// Get the install list
 	// =========================================================================
@@ -403,7 +404,7 @@ function result = atomsInstall(packages,section)
 			// Intentionnaly Installed
 			this_package_status = "I";
 		else
-			// Automaticaly installed
+			// Automatically installed
 			this_package_status = "A";
 		end
 		
@@ -450,23 +451,21 @@ function result = atomsInstall(packages,section)
 		// =====================================================================
 		result = [ result ; atomsGetInstalledDetails([this_package_name this_package_version]) ];
 		
-		// "archive" installation : Save the description
+		// Save the description
+		// Needed to remove the toolbox if it's has been removed from the 
+		// repository list
 		// =====================================================================
 		
-		if this_package_details("fromRepository")=="0" then
-			
-			DESCRIPTION_file = atoms_system_directory+"DESCRIPTION_archives";
-			
-			if isempty(fileinfo(atoms_system_directory+"DESCRIPTION_archives")) then
-				DESCRIPTION = struct();
-			else
-				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
-			end
-			
-			DESCRIPTION = atomsDESCRIPTIONadd(DESCRIPTION,this_package_name,this_package_version,this_package_details);
-			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
-			
+		DESCRIPTION_file = atoms_system_directory+"DESCRIPTION_installed";
+		
+		if isempty(fileinfo(DESCRIPTION_file)) then
+			DESCRIPTION = struct();
+		else
+			DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
 		end
+		
+		DESCRIPTION = atomsDESCRIPTIONadd(DESCRIPTION,this_package_name,this_package_version,this_package_details);
+		atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 		
 		// Sucess message if needed
 		// =====================================================================

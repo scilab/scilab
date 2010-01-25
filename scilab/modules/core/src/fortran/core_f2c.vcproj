@@ -432,10 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\eqid.c"
-				>
-			</File>
-			<File
 				RelativePath=".\errmgr.c"
 				>
 			</File>
@@ -929,10 +925,6 @@
 			</File>
 			<File
 				RelativePath=".\dtosci.f"
-				>
-			</File>
-			<File
-				RelativePath=".\eqid.f"
 				>
 			</File>
 			<File

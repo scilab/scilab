@@ -142,7 +142,7 @@ std::string convertJavaString(JNIEnv * curEnv, jstring javaString);
 };
 
 /**
-* Exception that should be thrown when allocation of Java ressources from C++
+* Exception that should be thrown when allocation of Java resources from C++
 * code fails (sur as NewDoubleArray or NewStringUTF).
 */
 class JniBadAllocException : public JniException

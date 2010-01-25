@@ -8,5 +8,5 @@
  -->
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 <MODULE_VERSION name="atoms">
-<VERSION major="1" minor="0" maintenance="0" revision="0" string="unstable-git" />
+<VERSION major="1" minor="1" maintenance="0" revision="0" string="unstable-git" />
 </MODULE_VERSION>

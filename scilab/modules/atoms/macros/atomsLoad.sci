@@ -113,6 +113,12 @@ function result = atomsLoad(packages)
 				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
 			end
 			
+			// If the packaging version is not mentioned, define it
+			if isempty(strindex(packages(i,2),"-")) then
+				this_package_details = atomsGetInstalledDetails([packages(i,1) packages(i,2) packages(i,3)]);
+				packages(i,2)        = this_package_details(2);
+			end
+			
 		end
 		
 		// The module's installed section hasn't been specified or is empty
@@ -329,11 +335,11 @@ function result = atomsLoad(packages)
 		
 		if ierr > 0 then
 			if ATOMSAUTOLOAD then
-				mprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
+				mprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
 				lasterror(%T);
 				continue;
 			else
-				error(msprintf(gettext("%s: An error accured while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
+				error(msprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
 			end
 		end
 		

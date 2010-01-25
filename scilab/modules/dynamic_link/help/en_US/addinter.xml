@@ -96,17 +96,18 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">if haveacompiler() then
+    <programlisting role="example"><![CDATA[ 
+if haveacompiler() then
 
 chdir(TMPDIR);
 mkdir('example_addinter');
 chdir('example_addinter');
 
-src = ['#include &lt;math.h&gt;'
-'#include &lt;stack-c.h&gt;'
-'#include &lt;api_scilab.h&gt;'
-'#include &lt;Scierror.h&gt;'
-'#include &lt;localization.h&gt;'
+src = ['#include <math.h>'
+'#include <stack-c.h>'
+'#include <api_scilab.h>'
+'#include <Scierror.h>'
+'#include <localization.h>'
 ''
 'static double fun2(double x);'
 ''  
@@ -131,17 +132,17 @@ src = ['#include &lt;math.h&gt;'
 '  CheckRhs(1,1);'
 '  CheckLhs(1,1);'
 ''
-'  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &amp;piAddressVarOne);'
+'  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);'
 '  if(sciErr.iErr)'
 '  {'
-' printError(&amp;sciErr, 0);'
+' printError(&sciErr, 0);'
 ' return 0;'
 '  }' 
 ''
-'  sciErr = getVarType(pvApiCtx, piAddressVarOne, &amp;iType1);'
+'  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);'
 '  if(sciErr.iErr)'
 '  {'
-' printError(&amp;sciErr, 0);'
+' printError(&sciErr, 0);'
 ' return 0;'
 '  }'
 ''
@@ -151,10 +152,10 @@ src = ['#include &lt;math.h&gt;'
 '  return 0;'
 '  }'
 ''
-'  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &amp;m1, &amp;n1, &amp;pdVarOne);'
+'  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne, &m1, &n1, &pdVarOne);'
 '  if(sciErr.iErr)'
 '  {'
-' printError(&amp;sciErr, 0);'
+' printError(&sciErr, 0);'
 ' return 0;'
 '  }'
 ''
@@ -172,7 +173,7 @@ exec loader.sce;
 fun1_in_scilab(%pi)
 
 end // if haveacompiler()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

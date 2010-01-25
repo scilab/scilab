@@ -35,7 +35,7 @@ halt();
 
 my_handle = scf(100001);clf(my_handle,"reset");
 plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
-legend([_("Using macro mese");_("Theoritical value");_("Arma identifcation")])
+legend([_("Using macro mese");_("Theoretical value");_("Arma identification")])
 xtitle(_("Spectral power"),_("frequency"),_("spectral estimate"))
 
 halt();

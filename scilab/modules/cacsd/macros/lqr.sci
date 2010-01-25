@@ -19,6 +19,7 @@ function [K,X]=lqr(P12)
   end
 
   [A,B2,C1,D12]=P12(2:5);
+  Q=C1'*C1;R=D12'*D12;S=D12'*C1;
   [n,nu]=size(B2);
   [ny,n]=size(C1);
   select P12(7)

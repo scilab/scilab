@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\eqid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -481,7 +485,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hashtable_core.c"
+				RelativePath="..\cpp\hashtable_core.cpp"
 				>
 			</File>
 			<File
@@ -966,6 +970,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\eqid.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\ExceptionMessage.h"
 				>
 			</File>
@@ -1134,6 +1142,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\partition.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\PATH_MAX.h"
 				>
 			</File>
@@ -1279,6 +1291,10 @@
 			</File>
 			<File
 				RelativePath=".\typename.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\unrolled_algorithms.hxx"
 				>
 			</File>
 			<File
