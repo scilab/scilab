@@ -132,7 +132,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
 			specificArgs.add("img.src.path=" + outputDirectory);
-			this.styleDoc = SCI + "modules/helptools/schema/latex.xsl";
+			this.styleDoc = SCI + "/modules/helptools/schema/latex.xsl";
 			this.isLatexConverted = false;
 		} 
 
@@ -221,7 +221,7 @@ public class BuildDocObject extends StyleSheet {
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
         copyConvert.setPrintFormat(this.format);
-	copyConvert.setLatexConverted(isLatexConverted);
+		copyConvert.setLatexConverted(isLatexConverted);
 	
         try {
             copyConvert.run(new File(masterXML), masterXMLTransformed);
