@@ -35,14 +35,16 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
+/**
+ * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
+ * scicos informations)
+ */
 public final class BasicBlockInfo {
 
     /**
-     * 
+     * Default constructor
      */
-    private BasicBlockInfo() {
-
-    }
+    private BasicBlockInfo() { }
 
     /**
      * @param ports : list of links
@@ -228,8 +230,8 @@ public final class BasicBlockInfo {
 
 	model.add(block.getAllCommandPortsInitialStates()); // firing
 
-	boolean[][] dep_ut = {{block.isDependsOnU() , block.isDependsOnT()}};
-	model.add(new ScilabBoolean(dep_ut)); // dep_ut
+	boolean[][] dependsOnUandT = {{block.isDependsOnU() , block.isDependsOnT()}};
+	model.add(new ScilabBoolean(dependsOnUandT)); // dep_ut
 
 	model.add(new ScilabString("")); // label
 
