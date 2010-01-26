@@ -69,10 +69,13 @@ public final class PaletteManagerModel {
 	 */
 	public void addUserDefinedNode(PaletteDiagram diagram) {
 		if (userDefinedRoot == null) {
-			int nextRootIndex = mainRoot.getChildCount();
 			userDefinedRoot = new DefaultMutableTreeNode(
 					XcosMessages.USER_DEFINED);
 			((DefaultMutableTreeNode) userDefinedRoot).setAllowsChildren(true);
+		}
+		
+		if (userDefinedRoot.getParent() == null) {
+			int nextRootIndex = mainRoot.getChildCount();
 			treeModel.insertNodeInto(userDefinedRoot, mainRoot, nextRootIndex);
 		}
 		
