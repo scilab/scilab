@@ -82,6 +82,10 @@ AC_ARG_WITH(docbook,
 
 
 
+	# JLaTeXMath
+    AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
+    JLATEXMATH_FOP=$PACKAGE_JAR_FILE
+    AC_SUBST(JLATEXMATH_FOP)
 
 	# Avalon Framework (PDF)
 	AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])

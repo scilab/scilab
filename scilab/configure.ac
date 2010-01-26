@@ -1770,6 +1770,7 @@ if test $HELP_ENABLE = yes; then
    echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
    echo "  FOP (XML => PDF) ....... = $FOP"
+   echo "  JLaTeXMath FOP  ........ = $JLATEXMATH_FOP"
    echo "  Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "  Commons I/O ............ = $COMMONS_IO"
    echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
