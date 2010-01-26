@@ -357,5 +357,116 @@ SciErr readCommonNamedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex, 
 
 	return sciErr;
 }
-/*--------------------------------------------------------------------------*/
 
+/* shortcut functions */
+
+/*--------------------------------------------------------------------------*/
+int isSparseType(void* _pvCtx, int* _piAddress)
+{
+	return checkVarType(_pvCtx, _piAddress, sci_sparse);
+}
+/*--------------------------------------------------------------------------*/
+int isNamedSparseType(void* _pvCtx, char* _pstName)
+{
+	return checkNamedVarType(_pvCtx, _pstName, sci_sparse);
+}
+/*--------------------------------------------------------------------------*/
+int getAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+{
+	return getCommonAllocatedSparseMatrix(_pvCtx, _piAddress, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+}
+/*--------------------------------------------------------------------------*/
+int getAllocatedComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+{
+	return getCommonAllocatedSparseMatrix(_pvCtx, _piAddress, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+}
+/*--------------------------------------------------------------------------*/
+static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+{
+	SciErr sciErr;
+	int* piNbItemRow	= NULL;
+	int* piColPos			= NULL;
+	double* pdblReal	= NULL;
+	double* pdblImg		= NULL;
+
+	sciErr = getCommonSparseMatrix(_pvCtx, _piAddress, _iComplex, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SPARSE, _("%s: Unable to get argument #%d"), _iComplex ? "getAllocatedComplexSparseMatrix" : "getAllocatedSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+	memcpy(_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
+
+	*_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+	memcpy(_piColPos, piColPos, sizeof(int) * *_piNbItem);
+
+	*_pdblReal			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+	memcpy(_pdblReal, pdblReal, sizeof(double) * *_piNbItem);
+
+	if(_iComplex)
+	{
+		*_pdblImg			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+		memcpy(_pdblImg, pdblImg, sizeof(double) * *_piNbItem);
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getNamedAllocatedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+{
+	return getCommonNamedAllocatedSparseMatrix(_pvCtx, _pstName, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+}
+/*--------------------------------------------------------------------------*/
+int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+{
+	return getCommonNamedAllocatedSparseMatrix(_pvCtx, _pstName, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+}
+/*--------------------------------------------------------------------------*/
+static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+{
+	SciErr sciErr;
+
+	sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, NULL, NULL, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_ALLOC_SPARSE, _("%s: Unable to get argument \"%s\""), _iComplex ? "getNamedAllocatedComplexSparseMatrix" : "getNamedAllocatedSparseMatrix", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+	*_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+
+	*_pdblReal			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+	if(_iComplex)
+	{
+		*_pdblImg			= (double*)MALLOC(sizeof(double) * *_piNbItem);
+	}
+
+	sciErr = readCommonNamedSparseMatrix(_pvCtx, _pstName, _iComplex, _piRows, _piCols, _piNbItem, *_piNbItemRow, *_piColPos, *_pdblReal, *_pdblImg);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_NAMED_ALLOC_SPARSE, _("%s: Unable to get argument \"%s\""), _iComplex ? "getNamedAllocatedComplexSparseMatrix" : "getNamedAllocatedSparseMatrix", _pstName);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal)
+{
+	FREE(_piNbItemRows);
+	FREE(_piColPos);
+	FREE(_pdblReal);
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedComplexSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal, double* _pdblImg)
+{
+	freeAllocatedSparseMatrix(_piNbItemRows, _piColPos, _pdblReal);
+	FREE(_pdblImg);
+}
+/*--------------------------------------------------------------------------*/

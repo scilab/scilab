@@ -499,7 +499,10 @@ static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, doub
 	}
 
 	pdblReal[0] = _dblReal;
-	pdblImg[0]	= _dblImg;
+	if(_iComplex)
+	{
+		pdblImg[0]	= _dblImg;
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -22,7 +22,8 @@ extern "C" {
 unsigned int hashtable_core_maxFilled = 0;
 extern int C2F(cvname)(int *,char *,int const*, unsigned long int);
 #ifdef _MSC_VER
-#define strdup _strdup
+//#define strdup _strdup
+#include "strdup_windows.h"
 #endif
 }
 /*----------------------------------------------------------------------------*/

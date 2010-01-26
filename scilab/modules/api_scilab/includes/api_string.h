@@ -205,6 +205,66 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, 
  */
 int getAllocatedNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, wchar_t*** _pwstData);
 
+/**
+ * Get single string variable data
+ * @param[in] _iVar variable number
+ * @param[in] _pstStrings string ( null terminated )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createSingleString(void* _pvCtx, int _iVar, char* _pstStrings);
+
+/**
+ * Get single wide string variable data
+ * @param[in] _iVar variable number
+ * @param[in] _pwstStrings wide string ( null terminated )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createSingleWideString(void* _pvCtx, int _iVar, wchar_t* _pwstStrings);
+
+/**
+ * Get named single string variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pstStrings string ( null terminated )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedSingleString(void* _pvCtx, char* _pstName, char* _pstStrings);
+
+/**
+ * Get named single wide string variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pwstStrings wide string ( null terminated )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t* _pwstStrings);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _pstData string data
+ */
+void freeAllocatedSingleString(char* _pstData);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _pwstData wide string data
+ */
+void freeAllocatedSingleWideString(wchar_t* _pwstData);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _iRows row number
+ * @param[in] _iCols column number
+ * @param[in] _pstData matrix of string data
+ */
+void freeAllocatedMatrixOfString(int _iRows, int _iCols, char** _pstData);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _iRows row number
+ * @param[in] _iCols column number
+ * @param[in] _pwstData matrix of wide string data
+ */
+void freeAllocatedMatrixOfWideString(int _iRows, int _iCols, wchar_t** _pwstData);
+
 #ifdef __cplusplus
 }
 #endif

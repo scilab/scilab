@@ -190,4 +190,14 @@ SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
+int isPointerType(void* _pvCtx, int* _piAddress)
+{
+	return checkVarType(_pvCtx, _piAddress, sci_pointer);
+}
+/*--------------------------------------------------------------------------*/
+int isNamedPointerType(void* _pvCtx, char* _pstName)
+{
+	return checkNamedVarType(_pvCtx, _pstName, sci_pointer);
+}
+/*--------------------------------------------------------------------------*/
 

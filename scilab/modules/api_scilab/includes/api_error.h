@@ -66,13 +66,18 @@ extern "C" {
 #define API_ERROR_TOO_LONG_VAR														204
 #define API_ERROR_CREATE_NAMED_POLY												207
 #define API_ERROR_READ_NAMED_POLY													208
+#define API_ERROR_GET_ALLOC_SINGLE_POLY										209
+#define API_ERROR_GET_ALLOC_NAMED_SINGLE_POLY							210
+#define API_ERROR_GET_ALLOC_MATRIX_POLY										211
+#define API_ERROR_GET_ALLOC_NAMED_MATRIX_POLY							212
 
 	/*boolean  errors					401 - 499*/
 #define API_ERROR_GET_BOOLEAN															401
 #define API_ERROR_CREATE_BOOLEAN													402
 #define API_ERROR_CREATE_NAMED_BOOLEAN										403
-
-#define API_ERROR_READ_BOOLEAN														451
+#define API_ERROR_READ_BOOLEAN														404
+#define API_ERROR_CREATE_SCALAR_BOOLEAN										405
+#define API_ERROR_CREATE_NAMED_SCALAR_BOOLEAN							406
 
 	/*sparse errors						501 - 599*/
 #define API_ERROR_GET_SPARSE															501
@@ -80,6 +85,8 @@ extern "C" {
 #define API_ERROR_CREATE_SPARSE														504
 #define API_ERROR_CREATE_NAMED_SPARSE											505
 #define API_ERROR_READ_NAMED_SPARSE												506
+#define API_ERROR_GET_ALLOC_SPARSE												507
+#define API_ERROR_GET_NAMED_ALLOC_SPARSE									508
 
 	/*boolean sparse errors		601 - 699*/
 #define API_ERROR_GET_BOOLEAN_SPARSE											601
@@ -90,8 +97,8 @@ extern "C" {
 #define API_ERROR_READ_NAMED_BOOLEAN_SPARSE								606
 #define API_ERROR_GET_SCALAR_BOOLEAN											607
 #define API_ERROR_GET_NAMED_SCALAR_BOOLEAN								608
-#define API_ERROR_CREATE_SCALAR_BOOLEAN										609
-#define API_ERROR_CREATE_NAMED_SCALAR_BOOLEAN							610
+#define API_ERROR_GET_ALLOC_BOOLEAN_SPARSE								611
+#define API_ERROR_GET_NAMED_ALLOC_BOOLEAN_SPARSE					612
 
 	/*matlab sparse errors		701 - 799*/
 
@@ -103,6 +110,8 @@ extern "C" {
 #define API_ERROR_READ_NAMED_INT													806
 #define API_ERROR_GET_SCALAR_INTEGER											807
 #define API_ERROR_GET_NAMED_SCALAR_INTEGER								808
+#define API_ERROR_CREATE_SCALAR_INT												809
+#define API_ERROR_CREATE_NAMED_SCALAR_INT									810
 
 	/*strings errors					1001 - 1099*/
 #define API_ERROR_GET_STRING															1001
@@ -122,6 +131,10 @@ extern "C" {
 #define API_ERROR_GET_ALLOC_NAMED_SINGLE_WIDE_STRING			1016
 #define API_ERROR_GET_ALLOC_NAMED_STRING_MATRIX						1017
 #define API_ERROR_GET_ALLOC_NAMED_WIDE_STRING_MATRIX			1018
+#define API_ERROR_CREATE_SINGLE_STRING										1019
+#define API_ERROR_CREATE_SINGLE_WIDE_STRING								1020
+#define API_ERROR_CREATE_NAMED_SINGLE_STRING							1021
+#define API_ERROR_CREATE_NAMED_SINGLE_WIDE_STRING					1022
 	
 	/*list errors							1501 - 1599*/
 #define API_ERROR_LIST_ITEM_NUMBER												1501

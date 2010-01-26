@@ -13,9 +13,6 @@
 
 function atomsRepositorySetOfl(url)
 	
-	
-	
-	
 	// Check number of input arguments
 	// =========================================================================
 	rhs = argn(2);
@@ -43,5 +40,9 @@ function atomsRepositorySetOfl(url)
 	// Overwrite "repositories" file
 	// =========================================================================
 	mputl(url,pathconvert(SCI+"/modules/atoms/etc/repositories",%F));
+	
+	// Update the toolbox list
+	// =========================================================================
+	atomsSystemUpdate();
 	
 endfunction

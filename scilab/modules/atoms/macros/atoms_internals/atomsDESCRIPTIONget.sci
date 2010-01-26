@@ -92,19 +92,10 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 		end
 		
 		description_files = [ ..
-			atomsPath("system","allusers") + "DESCRIPTION_archives" "" ; ..
-			atomsPath("system","user")     + "DESCRIPTION_archives" "" ; ..
-			atomsPath("system","session")  + "DESCRIPTION_archives" "" ];
-			
-		// Add DESCRIPTION files of the installed packages
-		// → Needed when an installed module has been removed from the repository
-		// ---------------------------------------------------------------------
-		
-		installedpackages = atomsGetInstalled();
-		
-		for i=1:size(installedpackages(:,1),"*")
-			description_files = [description_files; pathconvert(atomsGetInstalledPath(installedpackages(i,1:3))+"/DESCRIPTION",%F) "" ];
-		end
+			atomsPath("system","session")  + "DESCRIPTION_archives"  "" ; ..
+			atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
+			atomsPath("system","user")     + "DESCRIPTION_installed" "" ; ..
+			atomsPath("system","session")  + "DESCRIPTION_installed" "" ];
 		
 		// 1st step : Loop on available repositories
 		// ---------------------------------------------------------------------
@@ -185,7 +176,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 			
 			// file_out is no more needed, delete it
 			// but only if it's named TOOLBOXES
-			// DESCRIPTION_archives must be keeped
+			// DESCRIPTION_installed must be keeped
 			// ----------------------------------------
 			if regexp( file_out , "/TOOLBOXES$/" , "o" ) <> [] then
 				mdelete(file_out);

@@ -92,7 +92,7 @@ function atomsShow(package)
 	fields_map = [ fields_map ; "Status"         gettext("Status")         ];
 	
 	if atomsIsInstalled(package) then
-		fields_map = [ fields_map ; "InstallAutomaticaly" gettext("Automaticaly Installed")];
+		fields_map = [ fields_map ; "InstallAutomaticaly" gettext("Automatically Installed")];
 		fields_map = [ fields_map ; "installPath"         gettext("Install Directory")];
 	end
 	
@@ -120,7 +120,7 @@ function atomsShow(package)
 		end
 		
 		//
-		// Automaticaly Installed ?
+		// Automatically Installed ?
 		// 
 		
 		if fields_map(i,1)=="InstallAutomaticaly" then

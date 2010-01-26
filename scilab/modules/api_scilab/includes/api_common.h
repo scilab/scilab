@@ -223,6 +223,13 @@ int isEmptyMatrix(void* _pvCtx, int* _piAddress);
 int createEmptyMatrix(void* _pvCtx, int _iVar);
 
 /**
+* Create a named empty matrix
+* @param[in] _pstName variable name
+* @return if the operation successed (0) or not ( !0 )
+*/
+int createNamedEmptyMatrix(void* _pvCtx, char* _pstName);
+
+/**
 * Check if a named variable exists
 * @param[in] _pstName variable name
 * @return if the operation successed (0) or not ( !0 )

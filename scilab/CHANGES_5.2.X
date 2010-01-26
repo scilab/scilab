@@ -27,9 +27,11 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* A rework to pass checkstyle metrics has been started.
+* Performance improvements under Linux
 
-* An update of the jgraphx-1.2.0.7 version has been performed.
+* A rework to pass checkstyle metrics on the code has been started.
+
+* Update to jgraphx version 1.2.0.7 has been performed.
 
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
@@ -43,6 +45,7 @@ Xcos:
       instances are shared.
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
+    - org.scilab.modules.graph is independent from Xcos and can be safely used.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -73,6 +76,8 @@ Xcos:
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
 
+* bug 5667 fixed - Simulation starts faster on Linux for huge diagram ( hdf5 export issue )
+
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
 * bug 5674 fixed - The Signal.notify didn't check is we are waiting for it
@@ -85,7 +90,11 @@ Xcos:
 
 * bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
 
+* bug 6415 fixed - The SAWTOOTH_f block didn't allow parameters.
+
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
+
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
 
 Atoms:
 ======
@@ -120,6 +129,13 @@ Compilation:
 
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
+
+Scilab extensions:
+==================
+
+* call_scilab: Complex examples have not been updated to use the new API Scilab.
+
+* API_Scilab: a presentation page of the feature have been added.
 
 Bug fixes:
 ==========
@@ -210,6 +226,8 @@ Bug fixes:
 * bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
 * bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
+
+* bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
@@ -1974,4 +1992,8 @@ Bug fixes:
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
 
+* bug 6423 fixed - update the documentation of perctl.
+
 * bug 6468 fixed - wrong check in dnaupd.
+
+* bug 6495 fixed - in lqr, variable Q not defined.

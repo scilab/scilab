@@ -27,6 +27,17 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) DIGITEO - 2010 - Sylvestre Ledru
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 
 
 VPATH = @srcdir@
@@ -57,6 +68,18 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
+DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
+	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
+	$(top_srcdir)/Makefile.call_scilab.am $(top_srcdir)/configure \
+	$(top_srcdir)/etc/classpath.xml.in \
+	$(top_srcdir)/etc/jvm_options.xml.in \
+	$(top_srcdir)/etc/modules.xml.in \
+	$(top_srcdir)/modules/core/includes/machine.h.in \
+	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
+	COPYING config/compile config/config.guess config/config.rpath \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing config/mkinstalldirs
 check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 	call_scilab_c_getlastjob$(EXEEXT) \
 	call_scilab_c_DisableInteractiveMode$(EXEEXT) \
@@ -65,17 +88,6 @@ check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 	call_scilab_readwritematrix$(EXEEXT) \
 	call_scilab_readwritestring$(EXEEXT)
 subdir = .
-DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
-	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
-	$(top_srcdir)/configure $(top_srcdir)/etc/classpath.xml.in \
-	$(top_srcdir)/etc/jvm_options.xml.in \
-	$(top_srcdir)/etc/modules.xml.in \
-	$(top_srcdir)/modules/core/includes/machine.h.in \
-	$(top_srcdir)/modules/helptools/macros/xmlfiletohtml.sci.in \
-	COPYING config/compile config/config.guess config/config.rpath \
-	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing config/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -672,7 +684,7 @@ all: all-recursive
 .SUFFIXES: .c .lo .o .obj
 am--refresh:
 	@:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.call_scilab.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \

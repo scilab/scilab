@@ -536,7 +536,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
 
 	for(i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		*_pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
+		(*_pstData)[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
 	}
 
 	sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLen, *_pstData);
@@ -664,12 +664,10 @@ int getAllocatedNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t** _p
 int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, char*** _pstData)
 {
 	SciErr sciErr;
-	int iRows		= 0;
-	int iCols		= 0;
 	int* piLen	= 0;
 
 
-	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, &iRows, &iCols, NULL, NULL);
+	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, _piRows, _piCols, NULL, NULL);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedNamedMatrixOfString");
@@ -679,7 +677,7 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, 
 
 	piLen = (int*)MALLOC(sizeof(int) * *_piRows * *_piCols);
 
-	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, &iRows, &iCols, piLen, NULL);
+	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, _piRows, _piCols, piLen, NULL);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedNamedMatrixOfString");
@@ -690,10 +688,10 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, char* _pstName, int* _piRows, 
 	*_pstData = (char**)MALLOC(sizeof(char*) * *_piRows * *_piCols);
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		*_pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
+		(*_pstData)[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
 	}
 
-	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, &iRows, &iCols, piLen, *_pstData);
+	sciErr = readNamedMatrixOfString(_pvCtx, _pstName, _piRows, _piCols, piLen, *_pstData);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedNamedMatrixOfString");
@@ -745,5 +743,93 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, char* _pstName, int* _piRo
 	}
 
 	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createSingleString(void* _pvCtx, int _iVar, char* _pstStrings)
+{
+	SciErr sciErr;
+	
+	sciErr = createMatrixOfString(_pvCtx, _iVar, 1, 1,	&_pstStrings);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SINGLE_STRING, _("%s: Unable to get argument data"), "createSingleString");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createSingleWideString(void* _pvCtx, int _iVar, wchar_t* _pwstStrings)
+{
+	SciErr sciErr;
+	
+	sciErr = createMatrixOfWideString(_pvCtx, _iVar, 1, 1,	&_pwstStrings);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_SINGLE_WIDE_STRING, _("%s: Unable to get argument data"), "createSingleWideString");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedSingleString(void* _pvCtx, char* _pstName, char* _pstStrings)
+{
+	SciErr sciErr;
+	
+	sciErr = createNamedMatrixOfString(_pvCtx, _pstName, 1, 1,	&_pstStrings);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SINGLE_STRING, _("%s: Unable to get argument data"), "createSingleString");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedSingleWideString(void* _pvCtx, char* _pstName, wchar_t* _pwstStrings)
+{
+	SciErr sciErr;
+	
+	sciErr = createNamedMatrixOfWideString(_pvCtx, _pstName, 1, 1,	&_pwstStrings);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SINGLE_WIDE_STRING, _("%s: Unable to get argument data"), "createSingleWideString");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedSingleString(char* _pstData)
+{
+	FREE(_pstData);
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedSingleWideString(wchar_t* _pwstData)
+{
+	FREE(_pwstData);
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedMatrixOfString(int _iRows, int _iCols, char** _pstData)
+{
+	for(int i = 0 ; i < _iRows * _iCols ; i++)
+	{
+		FREE(_pstData[i]);
+	}
+	FREE(_pstData);
+}
+/*--------------------------------------------------------------------------*/
+void freeAllocatedMatrixOfWideString(int _iRows, int _iCols, wchar_t** _pwstData)
+{
+	for(int i = 0 ; i < _iRows * _iCols ; i++)
+	{
+		FREE(_pwstData[i]);
+	}
+	FREE(_pwstData);
 }
 /*--------------------------------------------------------------------------*/
