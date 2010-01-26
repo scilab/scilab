@@ -132,8 +132,8 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
 			specificArgs.add("img.src.path=" + outputDirectory);
-			this.styleDoc = docbookPath + "/fo/latex.xsl";
-                        this.isLatexConverted = false;
+			this.styleDoc = SCI + "modules/helptools/schema/latex.xsl";
+			this.isLatexConverted = false;
 		} 
 
 		/* HTML Format */
