@@ -12,7 +12,15 @@ Xcos:
 =====
 
 * The default palettes can now be manipulated by the user.
-          
+
+Compilation:
+============
+
+* On Windows, Pentium III class (or equivalent) with SSE instructions is required.
+
+* Windows 2000 is no more supported as operating system.
+
+ 
 Bug fixes:
 ==========
 
