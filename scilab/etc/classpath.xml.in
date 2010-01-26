@@ -77,6 +77,11 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 </path>
+
+<path value="@JLATEXMATH_FOP@" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>
 <path value="@FOP@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>

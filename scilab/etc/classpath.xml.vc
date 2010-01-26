@@ -92,6 +92,10 @@ The option is "disableUnderMode" and can be:
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
+<path value="$SCILAB/thirdparty/jlatexmath-fop.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>	
 <path value="$SCILAB/thirdparty/fop.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
