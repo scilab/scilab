@@ -36,7 +36,7 @@ public final class PaletteManagerModel {
 	private MutableTreeNode mainRoot;
 	private MutableTreeNode userDefinedRoot;
 	
-	private Map<PaletteDiagram, DefaultMutableTreeNode> userDiagrams; 
+	private Map<Object, DefaultMutableTreeNode> palettes; 
 	
 	/**
 	 * Default constructor
@@ -45,8 +45,9 @@ public final class PaletteManagerModel {
 	public PaletteManagerModel(PaletteManager controller) {
 		this.controller = controller;
 		mainRoot = new DefaultMutableTreeNode(XcosMessages.PALETTES);
+		((DefaultMutableTreeNode) mainRoot).setAllowsChildren(true);
 		treeModel = new DefaultTreeModel(mainRoot);
-		userDiagrams = new HashMap<PaletteDiagram, DefaultMutableTreeNode>();
+		palettes = new HashMap<Object, DefaultMutableTreeNode>();
 	}
 	
 	/**
@@ -69,19 +70,29 @@ public final class PaletteManagerModel {
 	public void addUserDefinedNode(PaletteDiagram diagram) {
 		if (userDefinedRoot == null) {
 			int nextRootIndex = mainRoot.getChildCount();
-			userDefinedRoot = new DefaultMutableTreeNode(XcosMessages.USER_DEFINED);
+			userDefinedRoot = new DefaultMutableTreeNode(
+					XcosMessages.USER_DEFINED);
+			((DefaultMutableTreeNode) userDefinedRoot).setAllowsChildren(true);
 			treeModel.insertNodeInto(userDefinedRoot, mainRoot, nextRootIndex);
 		}
+		
 		int nextUserIndex = userDefinedRoot.getChildCount();
-		DefaultMutableTreeNode node = new DefaultMutableTreeNode(diagram.getAsComponent());
-		userDiagrams.put(diagram, node);
+		
+		DefaultMutableTreeNode node;
+		if (palettes.containsKey(diagram)) {
+			node = palettes.get(diagram);
+		} else {
+			node = new DefaultMutableTreeNode(diagram.getAsComponent());
+			node.setAllowsChildren(false);
+			palettes.put(diagram, node);
+		}
 		treeModel.insertNodeInto(node, userDefinedRoot, nextUserIndex);
 	}
 
 	/**
 	 * @param diagram
 	 *            A user diagram to remove from the tree. if null, all the user
-	 *            diagrams will be removed
+	 *            palettes will be removed
 	 */
 	public void removeUserDefinedNode(PaletteDiagram diagram) {
 		assert userDefinedRoot != null;
@@ -91,9 +102,9 @@ public final class PaletteManagerModel {
 			userDefinedRoot.removeFromParent();
 			userDefinedRoot = null;
 		} else {
-			MutableTreeNode node = userDiagrams.get(diagram);
+			MutableTreeNode node = palettes.get(diagram);
 			userDefinedRoot.remove(node);
-			userDiagrams.remove(diagram);
+			palettes.remove(diagram);
 			
 			// Clean up if needed
 			if (userDefinedRoot.getChildCount() == 0) {
@@ -108,7 +119,7 @@ public final class PaletteManagerModel {
 	 * @return The associated TreeNode
 	 */
 	public DefaultMutableTreeNode getUserNode(PaletteDiagram diagram) {
-		return userDiagrams.get(diagram);
+		return palettes.get(diagram);
 	}
 	
 	/** Load the tree descriptor on the model*/
@@ -118,8 +129,18 @@ public final class PaletteManagerModel {
 		int disableCounter = 0;
 		for (int i = 0; i < length; i++) {
 			Palette p = Palette.getDatas()[i];
+			
+			DefaultMutableTreeNode node;
+			if (!palettes.containsKey(p)) {
+				node = new DefaultMutableTreeNode(p);
+				node.setAllowsChildren(false);
+				palettes.put(p, node);
+			} else {
+				node = palettes.get(p);
+			}
+			
 			if (p.getModel().isEnable()) {
-				mainRoot.insert(new DefaultMutableTreeNode(p), i - disableCounter);
+				mainRoot.insert(node, i - disableCounter);
 			} else {
 				disableCounter++;
 			}
@@ -130,5 +151,26 @@ public final class PaletteManagerModel {
 		for (String file : files) {
 		    controller.loadUserPalette(file);
 		}
+	}
+	
+	/** Reload the three descriptor */
+	public void reloadTree() {
+		// Clean up the three and avoid child reordering.
+		final int childCount = mainRoot.getChildCount(); 
+		for (int i = childCount - 1; i >= 0; i--) {
+			mainRoot.remove(i);
+		}
+		
+		if (userDefinedRoot != null) {
+			final int userCount = userDefinedRoot.getChildCount();
+			for (int i = userCount - 1; i >= 0; i--) {
+				userDefinedRoot.remove(i);
+			}
+		}
+		
+		// Load the entire tree
+		loadTree();
+		
+		treeModel.reload();
 	}
 }
