@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,init)
-//Scilab interface  with external tool modelicac.exe
+//Scilab interface with external tool modelicac
 
   if argn(2)<7 then init=%f,end
   incidence=''
@@ -34,11 +34,18 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui,in
   end
   
   if ((with_gui)& (fileinfo(xmlfileTMP)<>[])) then // if GUI is running
-    XMLfiles=' -with-init-in ""'+strsusbst(xmlfileTMP,'\','/')+'"" -with-init-out ""'+strsusbst(xmlfileTMP,'\','/')+'""';
+    XMLfiles=' -with-init-in ""'+strsubst(xmlfileTMP,'\','/')+'"" -with-init-out ""'+strsubst(xmlfileTMP,'\','/')+'""';
   else
     XMLfiles='';
   end 
-  exe='""'+pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'""'
+
+  // modelicac path according the OS
+  if MSDOS then
+    exe='""'+pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'""'
+  else
+    exe='""'+pathconvert(SCI+'/modules/scicos/modelicac',%f,%t)+'""'
+  end
+  
   Flat='""'+Flat+'""'
   out='-o ""'+Cfile+'""'
   if Jacobian then, JAC=' -jac '; else, JAC=''; end

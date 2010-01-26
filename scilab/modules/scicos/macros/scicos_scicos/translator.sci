@@ -21,7 +21,7 @@
 function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 //Generate the flat model of the Modelica model given in the filemo file
 //and the Modelica libraries. Interface to the external tool
-//translator.exe
+//translator.
 // if <name> is the basename of filemo this function produces
 // - the flat Modelica model file in outpath+name+'f.mo'
 // - the flat xml representation file in  outpath+name+'f_init.xml'
@@ -78,15 +78,22 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
   end 
   translator_libs=translator_libs+'  -lib ""'+filemo+'""'
 
-  //Build the shell instruction for callin the translator
-  exe='""'+pathconvert(SCI+'/bin/translator.exe',%f,%t)+'"" '
+  //Build the shell instruction for calling the translator
+  if MSDOS then
+    exe='""'+pathconvert(SCI+'/bin/translator.exe',%f,%t)+'"" '
+  else
+    exe='""'+pathconvert(SCI+'/modules/scicos/translator',%f,%t)+'""'
+  end
+  
   out=' -o ""'+Flat+'""' //flat modelica
   Errfile=outpath+'S_translator.err""';
 
+  // without the with-init option
   // instr=exe+translator_libs+out+' -command ""'+name+' '+namef+';"" >""'+Errfile
-
-  instr=exe+translator_libs+out+' -with-init -command ""'+name+' '+namef+';"" >""'+Errfile
-
+  
+  // with the with-init option 
+   instr=exe+translator_libs+out+' -with-init -command ""'+name+' '+namef+';"" >""'+Errfile
+  
  if MSDOS then,   mputl(instr,outpath+'/gent.bat'), instr=outpath+'/gent.bat';end
  
  if execstr('unix_s(instr)','errcatch')<>0 then

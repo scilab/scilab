@@ -25,12 +25,16 @@ function  ok=xml2modelica(xmlfile,Flati)
 // if <name> is the basename of filemo this function produces
 // - the flat Modelica model file in outpath+name+'fi.mo'
 
-//Scilab interface  with external tool modelicac.exe
+//Scilab interface  with external tool xml2modelica
   tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
   xmlfile=pathconvert(xmlfile,%f,%t);  
   Flati=pathconvert(Flati,%f,%t);  
-  
-  exe='""'+pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)+'"" '
+
+  if MSDOS then
+    exe='""'+pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)+'"" '
+  else
+    exe='""'+pathconvert(SCI+'/modules/scicos/XML2Modelica',%f,%t)+'""'
+  end
   
   in='""'+xmlfile+'""'
   out='-o ""'+Flati+'""'

@@ -19,12 +19,19 @@
 // See the file ../license.txt
 //
 function [ok,modelicac,translator,xml2modelica]=Modelica_execs()
+
   ok=%f
   
+  if MSDOS then
+    modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)         
+    translator=pathconvert(SCI+'/bin/translator.exe',%f,%t) 
+    xml2modelica=pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)
+  else
+    modelicac=pathconvert(SCI+'/modules/scicos/modelicac',%f,%t)
+    translator=pathconvert(SCI+'/modules/scicos/translator',%f,%t)
+    xml2modelica=pathconvert(SCI+'/modules/scicos/xml2modelica',%f,%t)
+  end
   
-  modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)         
-  translator=pathconvert(SCI+'/bin/translator.exe',%f,%t) 
-  xml2modelica=pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)
   ok =%t
   
 //  

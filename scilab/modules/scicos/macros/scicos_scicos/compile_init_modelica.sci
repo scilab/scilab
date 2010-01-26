@@ -54,8 +54,12 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
 
  tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
 
- exe='""'+pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'""'
-  
+ if MSDOS then
+   exe='""'+pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'""'
+ else
+   exe='""'+pathconvert(SCI+'/modules/scicos/modelicac',%f,%t)+'""'
+ end 
+ 
  Flati=' ""'+Flati+'""'
 
  // the file Flat_functions is not systematicly created by translator
