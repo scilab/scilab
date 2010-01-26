@@ -15,10 +15,14 @@ function atomsGui()
 
     // Test connection
     allModules = [];
-    errStatus = execstr("allModules = atomsGetTOOLBOXES();", "errcatch");
+    errStatus  = execstr("allModules = atomsDESCRIPTIONget();", "errcatch");
 
     if errStatus<>0 | size(allModules, "*") == 0 then
-        messagebox(gettext("No Atoms module available. Check your Internet connection."), gettext("Atoms error"), "error");
+        if size(atomsRepositoryList(),"*") > 0 then
+            messagebox(gettext("No Atoms module is available. Please, check your Internet connection."), gettext("Atoms error"), "error");
+        else
+            messagebox(gettext("No Atoms module is available: your repository list is empty."), gettext("Atoms error"), "error");
+        end
         return
     end
 
@@ -119,8 +123,8 @@ function atomsGui()
         "HorizontalAlignment" , "center",..
         "VerticalAlignment"   , "middle",..
         "String"              , descFrameHTML, ..
-	"FontWeight"          , "bold",..
-	"FontSize"            , 12,..
+        "FontWeight"          , "bold",..
+        "FontSize"            , 12,..
         "Background"          , [1 1 1],..
         "Tag"                 , "modulesListboxFrameTitle")
 
@@ -158,8 +162,8 @@ function atomsGui()
         "HorizontalAlignment", "center",..
         "VerticalAlignment"  , "middle",..
         "String"             , "", ..
-	"FontWeight"         , "bold",..
-	"FontSize"           , 12,..
+        "FontWeight"         , "bold",..
+        "FontSize"           , 12,..
         "Background"         , [1 1 1],..
         "Tag"                , "modulesDescFrameTitle")
 

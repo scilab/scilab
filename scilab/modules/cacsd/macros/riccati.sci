@@ -15,7 +15,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
 // (discrete time case)
 // If called with LHS=1 (one ouput argument) riccati returns x.
 //
-// -- a,b,c real matrices nxn, b and  c symetric.
+// -- a,b,c real matrices nxn, b and c symmetric.
 // -- dom = 'c' or 'd' for the time domain (continuous or discrete)
 // -- typ = 'eigen' --->block diagonalization
 //    typ = 'schur' --->schur method

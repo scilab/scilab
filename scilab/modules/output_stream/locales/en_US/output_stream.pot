@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:33+0100\n"
 
 # File: src/c/msgs.c, line: 906
 #, c-format
@@ -57,10 +57,6 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1651
 msgid "\"unknown data\""
-msgstr ""
-#
-# File: src/c/errmsg.c, line: 944
-msgid "%: This method is NOT implemented.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 477
@@ -240,7 +236,12 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1440
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+#
+# File: src/c/errmsg.c, line: 944
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 973
@@ -597,7 +598,7 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 648
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
+msgid "%s: singular or asymmetric problem.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1425
@@ -655,7 +656,7 @@ msgid "'o' format not allowed."
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1219
-msgid "A sparse matrix entry is defined with two differents values.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1187
@@ -669,7 +670,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1081
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 217
@@ -683,7 +684,7 @@ msgid "Bad conversion."
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1348
-msgid "Binary direct acces files must be opened by 'file'.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 729
@@ -767,7 +768,7 @@ msgid "Error while linking.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1456
-msgid "Error while writing in file,(disk full or deleted file.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 140
@@ -1087,7 +1088,7 @@ msgid "Null variable cannot be used here.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 1271
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 638
@@ -1132,14 +1133,14 @@ msgstr ""
 msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr ""
 #
-# File: src/c/msgs.c, line: 591
-#, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr ""
-#
 # File: src/c/msgs.c, line: 829
 #, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr ""
+#
+# File: src/c/msgs.c, line: 591
+#, c-format
+msgid "Rank deficient. rank = %d\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 806
@@ -1292,15 +1293,15 @@ msgstr ""
 #
 # File: src/c/errmsg.c, line: 1451
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1207
-msgid "Too many input/output entries for hilited block.\n"
+msgid "Too many input/output entries for highlighted block.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1201
-msgid "Too many input/output ports for hilited block.\n"
+msgid "Too many input/output ports for highlighted block.\n"
 msgstr ""
 #
 # File: src/c/errmsg.c, line: 829
@@ -1439,7 +1440,7 @@ msgstr ""
 # File: src/c/msgs.c, line: 1111
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1117
@@ -1460,7 +1461,7 @@ msgstr ""
 #
 # File: src/c/msgs.c, line: 1105
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
 #
@@ -1479,7 +1480,7 @@ msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 584
-msgid "Warning: obsolete use of eye rand or ones.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
 msgstr ""
 #
 # File: src/c/msgs.c, line: 1129

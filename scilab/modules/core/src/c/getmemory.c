@@ -18,6 +18,11 @@
 @sa http://netbsd.gw.com/cgi-bin/man-cgi?sysctl+3+NetBSD-4.0
 @sa http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/math/scilab/patches/patch-aj?annotate=1.9
 */
+
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include "getmemory.h"
 
 #if defined(__NetBSD__) || defined(__DragonFly__)

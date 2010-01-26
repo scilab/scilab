@@ -58,6 +58,8 @@
     <para>C interface function which checks if a parameter send to the C
     function is a column vector or not. You must include stack-c.h to benefit
     from this function.</para>
+
+    <para>WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).</para>
   </refsection>
 
   <refsection>

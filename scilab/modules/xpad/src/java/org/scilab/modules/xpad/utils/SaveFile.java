@@ -31,10 +31,15 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
  * @author Allan CORNET
  *
  */
-public class SaveFile {
+public final class SaveFile {
 
 	private static final String LINE_SEPARATOR = "line.separator";
 	
+	/**
+	 * private Constructor
+	 */
+	private SaveFile() {
+	}
 	/**
 	 * save text in JTextPane
 	 * @param textPane JTextPane
@@ -53,7 +58,8 @@ public class SaveFile {
 		if (styledDocument.getEOL().compareTo(defaultEol) != 0) {
 			System.setProperty(LINE_SEPARATOR, styledDocument.getEOL());
 		}
-
+		boolean bReturn = false;
+		
 		BufferedWriter out = null;
 		try {
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fOut), styledDocument.getEncoding()));
@@ -65,24 +71,26 @@ public class SaveFile {
 				// restore default eol
 				System.setProperty(LINE_SEPARATOR, defaultEol);
 				
+				bReturn = true;
+				
 			} catch (IOException e) {
 				// restore default eol
 				System.setProperty(LINE_SEPARATOR, defaultEol);
-				return false;
+				bReturn = false;
 			} catch (BadLocationException e) {
 				// restore default eol
 				System.setProperty(LINE_SEPARATOR, defaultEol);
-				return false;
+				bReturn = false;
 			}
 		} catch (UnsupportedEncodingException e) {
 			// restore default eol
 			System.setProperty(LINE_SEPARATOR, defaultEol);
-			return false;
+			bReturn = false;
 		} catch (FileNotFoundException e) {
 			// restore default eol
 			System.setProperty(LINE_SEPARATOR, defaultEol);
-			return false;
+			bReturn = false;
 		}
-		return true;
+		return bReturn;
 	}
 }

@@ -48,7 +48,7 @@ public class ShowParentAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-	    if(getGraph(null) instanceof SuperBlockDiagram) {
+	    if (getGraph(null) instanceof SuperBlockDiagram) {
 		SuperBlockDiagram diagram =  (SuperBlockDiagram) getGraph(null);
 		diagram.getContainer().getParentDiagram().setVisible(true);
 	    }

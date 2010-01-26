@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: src/c/sp.c, line: 468
 msgid ""
@@ -100,30 +100,33 @@ msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 224
 # File: macros/optimbase/optimbase_configure.sci, line: 139
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 590
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 603
 #, c-format
-msgid "%s: Expected boolean but got %s instead"
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 217
 # File: macros/optimbase/optimbase_configure.sci, line: 132
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 583
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 596
 #, c-format
-msgid "%s: Expected function but got %s instead"
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 203
 # File: macros/optimbase/optimbase_configure.sci, line: 118
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 569
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 582
 #, c-format
-msgid "%s: Expected real variable but got %s instead"
+msgid ""
+"%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 210
 # File: macros/optimbase/optimbase_configure.sci, line: 125
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 576
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 589
 #, c-format
-msgid "%s: Expected string variable but got %s instead"
+msgid ""
+"%s: Expected string variable for variable %s at input #%d, but got %s "
+"instead."
 msgstr ""
 #
 # File: macros/optimbase/optimbase_get.sci, line: 30
@@ -271,17 +274,31 @@ msgid ""
 "derivative-free."
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 478
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 483
 #, c-format
 msgid ""
 "%s: The boundsmax vector is expected to be a row matrix, but current shape "
 "is %d x %d"
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 474
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 491
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 479
 #, c-format
 msgid ""
 "%s: The boundsmin vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 487
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to have %d columns, but current shape "
 "is %d x %d"
 msgstr ""
 #
@@ -307,17 +324,24 @@ msgid ""
 "the dimension is %d and the number of vertices is %d"
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 295
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 294
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d"
+"%d."
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 353
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 358
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 309
+#, c-format
+msgid ""
+"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
+"is %d x %d while current shape of len is %d x %d."
 msgstr ""
 #
 # File: macros/optimbase/optimbase_checkcostfun.sci, line: 139
@@ -376,7 +400,7 @@ msgid ""
 "%s: The numbers of columns of coords is %d but is expected to be at least %d"
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 526
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 539
 #, c-format
 msgid ""
 "%s: The oriented simplex can be computed only with a simplex made of n+1 "
@@ -402,15 +426,21 @@ msgid ""
 "x %d"
 msgstr ""
 #
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 281
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 340
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 403
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 421
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 470
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 345
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 408
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 426
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 475
 #, c-format
 msgid ""
 "%s: The x0 vector is expected to be a row matrix, but current shape is %d x %"
 "d"
+msgstr ""
+#
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 281
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x %"
+"d."
 msgstr ""
 #
 # File: sci_gateway/c/sci_qld.c, line: 148
@@ -555,8 +585,9 @@ msgstr ""
 msgid "%s: Unknown step %s"
 msgstr ""
 #
-# File: macros/neldermead/neldermead_configure.sci, line: 232
-# File: macros/optimbase/optimbase_configure.sci, line: 145
+# File: macros/neldermead/neldermead_configure.sci, line: 234
+# File: macros/optimbase/optimbase_configure.sci, line: 146
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 610
 #, c-format
 msgid "%s: Unknown value %s for %s option"
 msgstr ""

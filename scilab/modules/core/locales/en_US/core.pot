@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: src/c/banier.c, line: 36
 msgid "                 Consortium Scilab (DIGITEO)\n"
@@ -25,7 +25,7 @@ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 #
 # File: src/c/banier.c, line: 38
-msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+msgid "               Copyright (c) 1989-2010 (INRIA)\n"
 msgstr ""
 #
 # File: /pro/git/scilab.5.2/scilab/etc/scilab.start, line: 67
@@ -57,18 +57,18 @@ msgstr ""
 msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2911
+# File: src/c/stack2.c, line: 2928
 #, c-format
 msgid "%s and %s arguments"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2895
+# File: src/c/stack2.c, line: 2912
 #, c-format
 msgid "%s argument"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2918
-# File: src/c/stack2.c, line: 2926
+# File: src/c/stack2.c, line: 2935
+# File: src/c/stack2.c, line: 2943
 #, c-format
 msgid "%s argument and argument %d"
 msgstr ""
@@ -98,27 +98,27 @@ msgstr ""
 msgid "%s module not found.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3029
+# File: src/c/stack2.c, line: 3046
 #, c-format
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3019
+# File: src/c/stack2.c, line: 3036
 #, c-format
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3039
+# File: src/c/stack2.c, line: 3056
 #, c-format
 msgid "%s: %s has wrong length %d, expecting (%d).\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3048
+# File: src/c/stack2.c, line: 3065
 #, c-format
 msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3056
+# File: src/c/stack2.c, line: 3073
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr ""
@@ -128,12 +128,12 @@ msgstr ""
 msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2086
+# File: src/c/stack2.c, line: 2103
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3067
+# File: src/c/stack2.c, line: 3084
 #, c-format
 msgid "%s: %s should be a list with %d-element being %s.\n"
 msgstr ""
@@ -143,37 +143,37 @@ msgstr ""
 msgid "%s: '%s' already exists.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1748
-# File: src/c/stack2.c, line: 1796
+# File: src/c/stack2.c, line: 1757
+# File: src/c/stack2.c, line: 1805
 #, c-format
 msgid "%s: (%s) bad second argument!\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 878
-# File: src/c/stack2.c, line: 938
-# File: src/c/stack2.c, line: 1043
-# File: src/c/stack2.c, line: 1109
-# File: src/c/stack2.c, line: 1680
+# File: src/c/stack2.c, line: 887
+# File: src/c/stack2.c, line: 947
+# File: src/c/stack2.c, line: 1052
+# File: src/c/stack2.c, line: 1118
+# File: src/c/stack2.c, line: 1689
 #, c-format
 msgid "%s: (%s) bad third argument!\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 451
-# File: src/c/stack2.c, line: 567
-# File: src/c/stack2.c, line: 613
-# File: src/c/stack2.c, line: 646
-# File: src/c/stack2.c, line: 729
-# File: src/c/stack2.c, line: 795
-# File: src/c/stack2.c, line: 899
-# File: src/c/stack2.c, line: 969
-# File: src/c/stack2.c, line: 1074
-# File: src/c/stack2.c, line: 1128
-# File: src/c/stack2.c, line: 1157
-# File: src/c/stack2.c, line: 1240
-# File: src/c/stack2.c, line: 1438
-# File: src/c/stack2.c, line: 1535
-# File: src/c/stack2.c, line: 1656
-# File: src/c/stack2.c, line: 3119
+# File: src/c/stack2.c, line: 460
+# File: src/c/stack2.c, line: 576
+# File: src/c/stack2.c, line: 622
+# File: src/c/stack2.c, line: 655
+# File: src/c/stack2.c, line: 738
+# File: src/c/stack2.c, line: 804
+# File: src/c/stack2.c, line: 908
+# File: src/c/stack2.c, line: 978
+# File: src/c/stack2.c, line: 1083
+# File: src/c/stack2.c, line: 1137
+# File: src/c/stack2.c, line: 1166
+# File: src/c/stack2.c, line: 1249
+# File: src/c/stack2.c, line: 1447
+# File: src/c/stack2.c, line: 1544
+# File: src/c/stack2.c, line: 1665
+# File: src/c/stack2.c, line: 3136
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
@@ -229,8 +229,8 @@ msgstr ""
 # File: src/c/stack1.c, line: 2239
 # File: src/c/stack1.c, line: 2321
 # File: src/c/stack1.c, line: 2352
-# File: src/c/stack2.c, line: 1886
-# File: src/c/stack2.c, line: 2150
+# File: src/c/stack2.c, line: 1895
+# File: src/c/stack2.c, line: 2167
 # File: src/c/intmacr2tree.c, line: 114
 # File: src/c/intmacr2tree.c, line: 169
 # File: src/c/intmacr2tree.c, line: 371
@@ -292,7 +292,7 @@ msgstr ""
 msgid "%s: Optional argument %d not given and default value %s not found.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 336
+# File: src/c/stack2.c, line: 345
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
 msgstr ""
@@ -315,10 +315,10 @@ msgstr ""
 msgid "%s: Please check: %s.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1962
-# File: src/c/stack2.c, line: 1981
-# File: src/c/stack2.c, line: 2198
-# File: src/c/stack2.c, line: 2217
+# File: src/c/stack2.c, line: 1971
+# File: src/c/stack2.c, line: 1990
+# File: src/c/stack2.c, line: 2215
+# File: src/c/stack2.c, line: 2234
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr ""
@@ -362,8 +362,8 @@ msgstr ""
 # File: src/c/stack1.c, line: 2688
 # File: src/c/stack1.c, line: 3029
 # File: src/c/stack1.c, line: 3118
-# File: src/c/stack2.c, line: 1966
-# File: src/c/stack2.c, line: 2202
+# File: src/c/stack2.c, line: 1975
+# File: src/c/stack2.c, line: 2219
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr ""
@@ -398,12 +398,12 @@ msgstr ""
 msgid "%s: Unknown operator %d.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 351
+# File: src/c/stack2.c, line: 360
 #, c-format
 msgid "%s: Unrecognized optional arguments %s.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3267
+# File: src/c/stack2.c, line: 3284
 #, c-format
 msgid "%s: Variable %s not found.\n"
 msgstr ""
@@ -648,7 +648,7 @@ msgid ""
 msgstr ""
 #
 # File: src/c/stack1.c, line: 1969
-# File: src/c/stack2.c, line: 1488
+# File: src/c/stack2.c, line: 1497
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
@@ -659,7 +659,7 @@ msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 2858
-# File: src/c/stack2.c, line: 1195
+# File: src/c/stack2.c, line: 1204
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -727,7 +727,7 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1279
+# File: src/c/stack2.c, line: 1288
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
 msgstr ""
@@ -952,7 +952,7 @@ msgid ""
 "%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1575
+# File: src/c/stack2.c, line: 1584
 #, c-format
 msgid "%s: argument %d > (%d) should be a complex matrix.\n"
 msgstr ""
@@ -967,7 +967,7 @@ msgstr ""
 msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3102
+# File: src/c/stack2.c, line: 3119
 #, c-format
 msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
 msgstr ""
@@ -977,31 +977,31 @@ msgstr ""
 msgid "%s: argument must be a string.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1631
+# File: src/c/stack2.c, line: 1640
 #, c-format
 msgid "%s: bad call to %s (third argument %c).\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1479
+# File: src/c/stack2.c, line: 1488
 #, c-format
 msgid "%s: bad call to %s!\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 420
-# File: src/c/stack2.c, line: 457
-# File: src/c/stack2.c, line: 573
-# File: src/c/stack2.c, line: 619
-# File: src/c/stack2.c, line: 652
-# File: src/c/stack2.c, line: 736
-# File: src/c/stack2.c, line: 1134
-# File: src/c/stack2.c, line: 1163
-# File: src/c/stack2.c, line: 1187
-# File: src/c/stack2.c, line: 1232
-# File: src/c/stack2.c, line: 1434
-# File: src/c/stack2.c, line: 1531
-# File: src/c/stack2.c, line: 1652
-# File: src/c/stack2.c, line: 2784
-# File: src/c/stack2.c, line: 3125
+# File: src/c/stack2.c, line: 429
+# File: src/c/stack2.c, line: 466
+# File: src/c/stack2.c, line: 582
+# File: src/c/stack2.c, line: 628
+# File: src/c/stack2.c, line: 661
+# File: src/c/stack2.c, line: 745
+# File: src/c/stack2.c, line: 1143
+# File: src/c/stack2.c, line: 1172
+# File: src/c/stack2.c, line: 1196
+# File: src/c/stack2.c, line: 1241
+# File: src/c/stack2.c, line: 1443
+# File: src/c/stack2.c, line: 1540
+# File: src/c/stack2.c, line: 1661
+# File: src/c/stack2.c, line: 2801
+# File: src/c/stack2.c, line: 3142
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr ""
@@ -1012,7 +1012,7 @@ msgstr ""
 msgid "%s: code %d not yet implemented.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 1770
+# File: src/c/stack2.c, line: 1779
 #, c-format
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
@@ -1028,12 +1028,12 @@ msgstr ""
 msgid "%s: function-name is incorrect.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2428
+# File: src/c/stack2.c, line: 2445
 #, c-format
 msgid "%s: internal error, info=%d.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2584
+# File: src/c/stack2.c, line: 2601
 #, c-format
 msgid "%s: intersiz is too small.\n"
 msgstr ""
@@ -1099,7 +1099,7 @@ msgstr ""
 msgid "&Toolboxes"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2396
+# File: src/c/stack2.c, line: 2413
 msgid "A non square matrix!\n"
 msgstr ""
 #
@@ -1228,7 +1228,7 @@ msgstr ""
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
 #
 # File: src/c/readGateway.c, line: 106
@@ -1240,19 +1240,19 @@ msgstr ""
 msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 122
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 127
 msgid "Free Extended Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 92
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 97
 msgid "Free Paging File (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 72
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 77
 msgid "Free Physical Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 112
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 117
 msgid "Free Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 #
@@ -1260,7 +1260,7 @@ msgstr ""
 msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3215
+# File: src/c/stack2.c, line: 3232
 #, c-format
 msgid "GetDataFromName: variable %s not found.\n"
 msgstr ""
@@ -1293,20 +1293,20 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2400
-# File: src/c/stack2.c, line: 2404
-# File: src/c/stack2.c, line: 2408
-# File: src/c/stack2.c, line: 2412
+# File: src/c/stack2.c, line: 2417
+# File: src/c/stack2.c, line: 2421
+# File: src/c/stack2.c, line: 2425
+# File: src/c/stack2.c, line: 2429
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2386
+# File: src/c/stack2.c, line: 2403
 msgid "Invalid system.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2370
-# File: src/c/stack2.c, line: 2380
+# File: src/c/stack2.c, line: 2387
+# File: src/c/stack2.c, line: 2397
 msgid "Invalid time domain.\n"
 msgstr ""
 #
@@ -1317,7 +1317,7 @@ msgstr ""
 msgid "List full.\n"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 52
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 57
 #, c-format
 msgid "Memory in use: %*ld %%"
 msgstr ""
@@ -1328,20 +1328,20 @@ msgstr ""
 msgid "No space to allocate Scilab stack.\n"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 159
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 164
 #, c-format
 msgid "Number of processors: %d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 133
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 138
 msgid "Operating System: "
 msgstr ""
 #
-# File: src/c/stack2.c, line: 393
+# File: src/c/stack2.c, line: 402
 msgid "Optional argument list is empty.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 396
+# File: src/c/stack2.c, line: 405
 msgid "Optional arguments list: \n"
 msgstr ""
 #
@@ -1386,8 +1386,8 @@ msgid ""
 "%s\n"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 270
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 273
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 331
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 334
 #, c-format
 msgid "Screen size: %d x %d %d bits"
 msgstr ""
@@ -1421,15 +1421,15 @@ msgstr ""
 msgid "The SCI environment variable is not set.\n"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 82
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 87
 msgid "Total Paging File (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 62
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 67
 msgid "Total Physical Memory (Kbytes): %*I64d"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 102
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 107
 msgid "Total Virtual Memory (Kbytes): %*I64d"
 msgstr ""
 #
@@ -1471,12 +1471,12 @@ msgstr ""
 msgid "Version: %s"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 174
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 179
 #, c-format
 msgid "Video card driver version: %s"
 msgstr ""
 #
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 167
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 172
 #, c-format
 msgid "Video card: %s"
 msgstr ""
@@ -1521,83 +1521,83 @@ msgstr ""
 msgid "Your variables are:"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3090
+# File: src/c/stack2.c, line: 3107
 msgid "a column vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3085
+# File: src/c/stack2.c, line: 3102
 msgid "a row vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3095
+# File: src/c/stack2.c, line: 3112
 msgid "a scalar"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3080
+# File: src/c/stack2.c, line: 3097
 msgid "a vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 402
+# File: src/c/stack2.c, line: 411
 #, c-format
 msgid "and %s.\n"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2898
+# File: src/c/stack2.c, line: 2915
 #, c-format
 msgid "argument number %d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2930
+# File: src/c/stack2.c, line: 2947
 #, c-format
 msgid "arguments %d and %d"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2198
-# File: src/c/stack2.c, line: 2217
+# File: src/c/stack2.c, line: 2215
+# File: src/c/stack2.c, line: 2234
 msgid "built in"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2872
-# File: src/c/stack2.c, line: 3029
-# File: src/c/stack2.c, line: 3102
+# File: src/c/stack2.c, line: 2889
+# File: src/c/stack2.c, line: 3046
+# File: src/c/stack2.c, line: 3119
 msgid "first"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2881
+# File: src/c/stack2.c, line: 2898
 msgid "fourth"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2875
-# File: src/c/stack2.c, line: 3029
-# File: src/c/stack2.c, line: 3102
+# File: src/c/stack2.c, line: 2892
+# File: src/c/stack2.c, line: 3046
+# File: src/c/stack2.c, line: 3119
 msgid "second"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3007
+# File: src/c/stack2.c, line: 3024
 msgid "should be a column vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3002
+# File: src/c/stack2.c, line: 3019
 msgid "should be a row vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3012
+# File: src/c/stack2.c, line: 3029
 msgid "should be a scalar"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2997
+# File: src/c/stack2.c, line: 3014
 msgid "should be a vector"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2992
+# File: src/c/stack2.c, line: 3009
 msgid "should be square"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 3075
+# File: src/c/stack2.c, line: 3092
 msgid "square"
 msgstr ""
 #
-# File: src/c/stack2.c, line: 2878
+# File: src/c/stack2.c, line: 2895
 msgid "third"
 msgstr ""
 #

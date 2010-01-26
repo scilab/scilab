@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Add toolboxes to the list of packages that are automaticaly loaded at Scilab start
+// Add toolboxes to the list of packages that are automatically loaded at Scilab start
 // This function has an impact on the following files :
 //  -> ATOMSDIR/autoloaded
 

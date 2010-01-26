@@ -116,7 +116,15 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>inteiro (tempo inicial). kvect : vetor de inteiros</para>
+          <para>inteiro (tempo inicial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kvect</term>
+
+        <listitem>
+          <para>vetor de inteiros.</para>
         </listitem>
       </varlistentry>
     </variablelist>

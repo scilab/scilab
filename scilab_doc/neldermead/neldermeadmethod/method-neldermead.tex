@@ -324,6 +324,377 @@ shrink steps are rare.
 
 %TODO...
 
+\section{Automatic restarts}
+
+In this section, we describe an algorithm which enables the user 
+to perform automatic restarts when a search has failed. 
+A condition is used to detect that a false minimum has been reached.
+We describe the automatic restart algorithm as well as the 
+conditions used to detect a false minimum.
+
+\subsection{Automatic restart algorithm}
+
+In this section, we present the automatic restart algorithm.
+
+The goal of this algorithm is to detect that a false minimum has been found,
+a situation which may occur with the Nelder-Mead algorithm, as we are 
+going to see in the numerical experiments section. 
+These problems are known by practitionners since decades and several authors 
+have tried to detect and solve this specific problem.
+
+In 1971, O'Neill published a fortran 77 implementation of the Nelder-Mead
+algorithm \cite{O'Neill1971AAF}. In order to check that the algorithm has converged, 
+a factorial test is used. This test will be detailed later in this section.
+If a false minimum is found by this test, O'Neill suggests to restart the 
+algorithm.
+
+In 1998, Mc Kinnon \cite{589109} showed a simple objective function 
+for which the Nelder-Mead algorithm fails to converge to a minimum and, instead, 
+converge to a non-stationnary point. In this numerical experiment, the simplex 
+degenerates toward a single point. In 1999, Kelley \cite{589283} shows that 
+restarting the algorithm allows to converge toward the global minimum.
+In order to detect the convergence problem, Kelley adapted the sufficient decrease 
+condition which is classical in the frameword of gradient-based algorithms.
+When this condition is met, the algorithm is stopped and a restart should be performed.
+
+Scilab provides an automatic restart algorithm, which allows to detect 
+that a false optimum has been reached and that a new search must be performed.
+The algorithm is based on a loop where a maximum number of restarts 
+is allowed. The default maximum number of restarts is 3, which means that the maximum
+number of searches is 4. 
+
+After a search has been performed, a condition is computed to know whether a restart
+must be performed. There are two conditions which are implemented:
+\begin{itemize}
+\item O'Neill factorial test,
+\item Kelley's stagnation condition.
+\end{itemize}
+We will analyze these tests later in this section.
+
+Notice that the automatic restarts are available whatever the simplex algorithm,
+be it the Nelder-Mead variable shape simplex algorithm, Spendley's et al. fixed shape 
+simplex algorithm or any other algorithm. This is because the 
+automatic restart is a loop programmed above the optimization algorithm.
+
+The automatic restart algorithm is presented in \ref{algo-automaticrestart}.
+Notice that, if a false minimum is detected after the maximum number of restart has been reached,
+the status is set to "maxrestart".
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $restartnb \gets 0$
+\STATE $reached \gets FALSE$
+\FOR{$i= 1$ to $restartmax + 1$}
+  \STATE $search()$
+  \STATE $istorestart = istorestart ()$
+  \IF {$NOT(istorestart)$}
+    \STATE $reached \gets TRUE$ \COMMENT{Convergence}
+    \STATE $BREAK$
+  \ENDIF
+  \IF {$i<restartmax$}
+    \STATE $restartnb \gets restartnb + 1$ \COMMENT{A restart is going to be performed}
+  \ENDIF
+\ENDFOR
+\IF {$reached$}
+  \STATE printf ( "Convergence reached after %d restarts." , restartnb )
+\ELSE
+  \STATE printf ( "Convergence not reached after maximum %d restarts." , restartnb )
+  \STATE $status \gets "maxrestart"$
+\ENDIF
+\end{algorithmic}
+\caption{Nelder-Mead algorithm -- Automatic restart algorithm.}
+\label{algo-automaticrestart}
+\end{figure}
+
+\subsection{O'Neill factorial test}
+
+In this sectin, we present O'Neill's factorial test.
+This algorithm is given a vector of lengths, stored in the 
+$step$ variable. It is also given a small value $\epsilon$, which 
+is an step length relative to the $step$ variable.
+The algorithm is presented in figure \ref{algo-factorialtest}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $\bx \gets \bx^\star$
+\STATE $istorestart = FALSE$
+\FOR{$i = 1$ to $n$} 
+  \STATE $\delta = step ( i ) * \epsilon$
+  \IF { $\delta == 0.0$ }
+    \STATE $\delta = \epsilon$
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) - \delta - \delta $
+  \STATE $fv = f ( x ) $
+  \IF { $ fv < fopt $}
+    \STATE $istorestart = TRUE$
+    \STATE    break
+  \ENDIF
+  \STATE $x ( i ) = x ( i ) + \delta$
+\ENDFOR
+\end{algorithmic}
+\caption{O'Neill's factorial test}
+\label{algo-factorialtest}
+\end{figure}
+
+O'Neill's factorial test requires a large number of function evaluations, namely 
+$2^n$ function evaluations. In O'Neill's implementation, the parameter
+$\epsilon$ is set to the constant value $1.e-3$.
+In Scilab's implementation, this parameter can be customized, 
+thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},
+the machine epsilon. In O'Neill's implementation, the parameter \scivar{step}
+is equal to the vector of length used in order to compute the initial 
+simplex. In Scilab's implementation, the two parameters are different,
+and the \scivar{step} used in the factorial test can be customized 
+with the \scivar{-restartstep} option. Its default value is 1.0, which is 
+expanded into a vector with size $n$.
+
+\subsection{Kelley's stagnation detection}
+
+In this section, we present Kelley's stagnation detection,
+which is based on the simplex gradient, which definition has been 
+presented in chapter \ref{chapter-simplextheory}.
+
+C.T. Kelley described in \cite{589283} a method to detect stagnation
+of Nelder-Mead's algorithm. 
+In order to detect the convergence problem, Kelley adapted the sufficient decrease 
+condition which is classical in the frameword of gradient-based algorithms.
+When this condition is met, the algorithm is stopped and a restart should be performed.
+We first present the sufficient decrease condition in the context of 
+line search methods. We then present the stagnation condition and a variant of this 
+condition.
+
+\subsubsection{Line search and sufficient decrease condition}
+
+Before presenting the stagnation criteria suggested by Kelley, it 
+is worthwhile to consider a general gradient-based optimization
+algorithm and to analyse the way to compute the step length.
+
+Consider an optimization algorithm where the update of the current point $\bx^k\in\RR^n$
+is based on the iteration 
+\begin{eqnarray}
+\bx_{k+1} = \bx_k + \alpha_k \bp_k,
+\end{eqnarray}
+where $\bp_k\in\RR^n$ is the direction and $\alpha_k>0$ is the step 
+length. Assume that the direction $\bp_k$ is given and that $\alpha_k$ is 
+unknown. The problem is to find the minimizer of the one dimensional function 
+$\Phi$ defined by the equality 
+\begin{eqnarray}
+\Phi(\alpha) = f ( \bx_k + \alpha p_k),
+\end{eqnarray}
+for all $\alpha>0$.
+
+During the computation of the step length $\alpha$, there is a tradeoff 
+between reducing sufficiently the function value and not spending 
+too much time in doing so. Line search methods aims at providing an efficient 
+solution for this problem. Several algorithms can be designed in order 
+to find such an optimal $\alpha$, but all rely on a set of conditions 
+which allows to know when to stop the algorithm. Many line search 
+algorithms are based on the Goldstein-Armijo condition \cite{numericaloptimization,Gill81MurrayWright}, 
+which requires that 
+\begin{eqnarray}
+f ( \bx_k + \alpha p_k) \leq f(\bx_k) + c \alpha \nabla f_k^T \bp_k,
+\end{eqnarray}
+where $c\in(0,1)$ is a given parameter. This condition is presented in
+figure \ref{fig-nm-sufficientdecrease}. The term $f_k^T \bp_k$ is the 
+directionnal derivative of the objective function $f$ along the direction
+$\bp_k$. The Goldstein-Armijo condition ensures that the step length is not 
+too large by requiring that the reduction in $f$ be proportional 
+to the step length $\alpha$ and the directional derivative $f_k^T \bp_k$.
+In practice, the parameter $c$ is often chosen as $c=10^{-4}$. 
+This implies that the line $f(\bx_k) + c \alpha \nabla f_k^T \bp_k$ has 
+a slightly decreasing slope, i.e. the condition is rather loose and 
+accept many values of $\alpha$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=7cm]{neldermeadmethod/sufficientdecrease.pdf}
+\end{center}
+\caption{Sufficient decrease condition}
+\label{fig-nm-sufficientdecrease}
+\end{figure}
+
+In many line search methods, the Goldstein-Armijo condition is 
+used in combination with another condition, which ensures that 
+the step length $\alpha$ is not too small. This is the additionnal requirement
+of the Wolfe conditions, also called the curvature condition.
+We will not detail this further, because the curvature condition is 
+not used in Kelley's stagnation detection criteria.
+
+\subsubsection{Stagnation criteria}
+
+Let us denote by $S_k$ the simplex at iteration $k$. 
+We make the assumption that the initial simplex $S^0$ is nondegenerate, i.e.
+the condition number of the matrix of simplex directions $\kappa(D(S))$ is finite.
+We denote by $k\geq 0$ the index of the current iteration. 
+Let us denote by $f_1^k$ the function value at the best vertex $\bv_1^{(k)}$, i.e. 
+$f_1^k = f \left( \bv_1^{(k)} \right)$.
+
+The derivation is based on the following assumptions.
+
+\begin{assumption}
+\label{assumption-kelleystagnation1}
+For all iterations $k$, 
+\begin{itemize}
+\item the simplex $S_k$ is nondegenerate,
+\item the vertices are ordered by increasing function value, i.e. 
+\begin{eqnarray}
+f_1^k \leq f_2^k \leq \ldots \leq f_{n+1}^k,
+\end{eqnarray}
+\item the best function value is strictly decreasing, i.e. $f_1^{k+1} < f_1^k$.
+\end{itemize}
+\end{assumption}
+
+If no shrink step occurs in the Nelder-Mead algorithm, then the best function value
+is indeed decreasing. 
+
+Kelley defines a sufficient decrease condition which is analalogous to the 
+sufficient decrease condition for gradient-base algorithms.
+This condition requires that the $k+1$st iteration satisfies 
+\begin{eqnarray}
+\label{eq-restartkelleycond1}
+f_1^{k+1} - f_1^k < - c \| \overline{\bg}(S_k) \|^2,
+\end{eqnarray}
+where $\overline{\bg}(S_k)$ is the simplex gradient associated with the 
+simplex $S_k$ and $c>0$ is a small parameter. 
+A typical choice in line-search methods is $c = 10^{-4}$. 
+Kelley suggest in \cite{589283} to use \ref{eq-restartkelleycond1} as a 
+test to detect the stagnation of the Nelder-Mead algorithm. 
+
+For consistency, we reproduce below a proposition already presented 
+in chapter \ref{chapter-simplextheory}.
+
+\begin{proposition}
+\label{proposition-simplex-simplexgradient2}
+Let $S$ be a simplex. Let the gradient $\bg$ be Lipshitz continuous in a neighbourhood
+of $S$ with Lipshitz constant $L$. Consider the euclidian norm $\|.\|$. Then, there is a constant $K>0$,
+depending only on $L$ such that 
+\begin{eqnarray}
+\label{eq-inequality-simplexgradient2}
+\| \bg(\bv_1) - \overline{\bg}(S) \|_2 \leq K \kappa(S) \sigma_+(S).
+\end{eqnarray}
+\end{proposition}
+
+The stagnation detection criteria is based on the following proposition.
+
+\begin{proposition}
+\label{proposition-kelley-gradientconverge}
+Let a sequence of simplices $\{S_k\}_{k\geq 0}$ satisfy assumption \ref{assumption-kelleystagnation1}.
+Assume that the sequence $\{f_1^k\}_{k\geq 0}$ is bounded from below. 
+Let the gradient $\bg$ of the objective function 
+be Lipshitz continuous in a neighbourhood of $\{S_k\}_{k\geq 0}$ with Lipshitz constant $L$. 
+Assume that the constant $K_k$, defined in proposition \ref{proposition-simplex-simplexgradient2}
+is bounded. Assume that the sufficient decrease condition \ref{eq-restartkelleycond1} is satisfied and 
+that the simplices are so that 
+\begin{eqnarray}
+\label{eq-restartkelleyassumption1}
+\lim_{k \rightarrow \infty} \kappa(S_k) \sigma_+(S_k) = 0.
+\end{eqnarray}
+Therefore, if the best vertex in the simplices converges towards $\bv_1^\star$, 
+then $\bg(\bv_1^\star)=0$.
+\end{proposition}
+
+Essentially, the proposition states that the condition \ref{eq-restartkelleycond1} is 
+necessary to get the convergence of the algorithm towards a stationnary point.
+
+Notice that, since the simplex condition number $\kappa(S_k)$ satisfies 
+$\kappa(S_k) \geq 1$, then the the equality \ref{eq-restartkelleyassumption1} 
+implies that the size of the simplices converges towards 0.
+
+\begin{proof}
+We first proove that the sequence of simplex gradients $\{\overline{\bg}(S_k)\}_{k\geq 0}$ 
+converges toward 0. 
+Notice that the sufficient decrease condition \ref{eq-restartkelleycond1} can be written as 
+\begin{eqnarray}
+\label{eq-restartkelleyproof1}
+\| \overline{\bg}(S_k) \| < \frac{1}{\sqrt{c}} \sqrt{ f_1^k - f_1^{k+1} },
+\end{eqnarray}
+where the right hand side is positive, by the assumption \ref{assumption-kelleystagnation1}.
+By hypothesis, $f$ is uniformly bounded from below and the sequence $\{f_1^k\}_{k\geq 0}$ is 
+stricly decreasing by assumption \ref{assumption-kelleystagnation1}. 
+Therefore, the sequence $\{f_1^k\}_{k\geq 0}$ converges, which implies that the the sequence 
+$\{f_1^k - f_1^{k+1}\}_{k\geq 0}$ converges to 0.
+Hence, the inequality \ref{eq-restartkelleyproof1} implies that the sequence $\{\overline{\bg}(S_k)\}_{k\geq 0}$
+converges towards 0.
+
+Assume that $\bv_1^\star$ is an accumulation point of the best vertex of the simplices.
+We now proove that $\bv_1^\star$ is a critical point of the objective function, i.e.
+we proove that the sequence $\{ \bg(\bv_1^k) \}_{k\geq 0}$ converges towards 0.
+Notice that we can write the gradient as the sum
+\begin{eqnarray}
+\label{eq-restartkelleyproof2}
+\bg(\bv_1^k) = \left( \bg(\bv_1^k) - \overline{\bg}(S_k) \right) + \overline{\bg}(S_k),
+\end{eqnarray}
+which implies 
+\begin{eqnarray}
+\label{eq-restartkelleyproof3}
+\| \bg(\bv_1^k) \| \leq \| \bg(\bv_1^k) - \overline{\bg}(S_k) \| + \|\overline{\bg}(S_k) \|.
+\end{eqnarray}
+By proposition \ref{proposition-simplex-simplexgradient2}, there is a constant $K_k>0$,
+depending on $L$ and $k$, such that 
+\begin{eqnarray}
+\| \bg(\bv_1^k) - \overline{\bg}(S_k) \|_2 \leq K_k \kappa(S_k) \sigma_+(S_k).
+\end{eqnarray}
+By hypothesis, the sequence $\{ K_k \}_{k\geq 0}$ is bounded, so that there exists a $K>0$ so that 
+the inequality $K_k\leq K$, which implies 
+\begin{eqnarray}
+\| \bg(\bv_1^k) - \overline{\bg}(S_k) \|_2 \leq K \kappa(S_k) \sigma_+(S_k).
+\end{eqnarray}
+We plug the previous inequality into \ref{eq-restartkelleyproof3} and get
+\begin{eqnarray}
+\label{eq-restartkelleyproof4}
+\| \bg(\bv_1^k) \| \leq K \kappa(S_k) \sigma_+(S_k) + \|\overline{\bg}(S_k) \|.
+\end{eqnarray}
+We have already prooved that the sequence $\{\overline{\bg}(S_k)\}_{k\geq 0}$ converges towards 0.
+Moreover, by hypothesis, the sequence $\{\kappa(S_k) \sigma_+(S_k)\}_{k\geq 0}$
+converges towards 0.
+Therefore, we have 
+\begin{eqnarray}
+\lim_{k \rightarrow \infty} \bg(\bv_1^k) = 0,
+\end{eqnarray}
+which concludes the proof.
+\end{proof}
+
+Kelley also states a similar theorem which involves noisy functions. 
+These functions are of the form 
+\begin{eqnarray}
+f(\bx) = \tilde{f}(\bx)  + \phi(\bx),
+\end{eqnarray}
+where $\tilde{f}$ is smooth and $\phi$ is a bounded low-amplitude perturbation.
+The result is that, if the noise function $\phi$ has a magnitude 
+smaller than $\sigma_+(S)$, then the proposition \ref{proposition-kelley-gradientconverge} 
+still holds. 
+
+\subsubsection{A variant of the stagnation criteria}
+
+In his book \cite{Kelley1999}, C.T. Kelley suggest a slightly different 
+form for the stagnation criteria \ref{eq-restartkelleycond1}.
+This variant is based on the fact that the Armijo-Goldstein 
+condition 
+\begin{eqnarray}
+f ( \bx_k + \alpha p_k) \leq f(\bx_k) + c \alpha \nabla f_k^T \bp_k,
+\end{eqnarray}
+distinguish the parameter $c=10^{-4}$ and the step length $\alpha_k>0$.
+In the simplex algorithm, there is no such step length, so that the 
+step length $\alpha$ must be incorporated into the parameter $c$, which leads to the 
+condition 
+\begin{eqnarray}
+f_1^{k+1} - f_1^k < - c \| \overline{\bg}(S_k) \|^2,
+\end{eqnarray}
+with $c=10^{-4}$.
+Now, at the first iteration, the simplex diameter $\sigma_+(S_0)$ might be 
+much smaller that the simplex gradient $\| \overline{\bg}(S_k) \|$
+so that the previous condition may fail.
+Kelley address this problem by modifying the previous condition into
+\begin{eqnarray}
+f_1^{k+1} - f_1^k < - c \frac{\sigma_+(S_0)}{\| \overline{\bg}(S_0) \|} \| \overline{\bg}(S_k) \|^2.
+\end{eqnarray}
+
 \section{Convergence properties on a quadratic}
 
 \index{Han, Lixing}
@@ -1267,53 +1638,6 @@ computed optimum is greater than a local point computed with a relative
 epsilon equal to 1.e-3 and a step equal to the length of the initial simplex.
 \end{itemize}
 
-In order to get an accurate view on O'Neill's factorial test,
-we must describe explicitely the algorithm.
-This algorithm is given a vector of lengths, stored in the 
-$step$ variable. It is also given a small value $\epsilon$.
-The algorithm is presented in figure \ref{algo-factorialtest}.
-
-\begin{figure}[htbp]
-\begin{algorithmic}
-\STATE $\bx \gets \bx^\star$
-\STATE $istorestart = FALSE$
-\FOR{$i = 1$ to $n$} 
-  \STATE $\delta = step ( i ) * \epsilon$
-  \IF { $\delta == 0.0$ }
-    \STATE $\delta = \epsilon$
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) + \delta$
-  \STATE $fv = f ( x ) $
-  \IF { $ fv < fopt $}
-    \STATE $istorestart = TRUE$
-    \STATE    break
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) - \delta - \delta $
-  \STATE $fv = f ( x ) $
-  \IF { $ fv < fopt $}
-    \STATE $istorestart = TRUE$
-    \STATE    break
-  \ENDIF
-  \STATE $x ( i ) = x ( i ) + \delta$
-\ENDFOR
-\end{algorithmic}
-\caption{O'Neill's factorial test}
-\label{algo-factorialtest}
-\end{figure}
-
-O'Neill's factorial test requires a large number of function evaluations, namely 
-$2^n$ function evaluations. In O'Neill's implementation, the parameter
-$\epsilon$ is set to the constant value $1.e-3$.
-In Scilab's implementation, this parameter can be customized, 
-thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},
-the machine epsilon. In O'Neill's implementation, the parameter \scivar{step}
-is equal to the vector of length used in order to compute the initial 
-simplex. In Scilab's implementation, the two parameters are different,
-and the \scivar{step} used in the factorial test can be customized 
-with the \scivar{-restartstep} option. Its default value is 1.0, which is 
-expanded into a vector with size $n$.
-
-
 The following tests are presented by O'Neill :
 \begin{itemize}
 \item Rosenbrock's parabolic valley \cite{citeulike:1903787}
@@ -1548,7 +1872,7 @@ Scilab  & 4 & 616 & 3 & 3.370756e-008 & 402 & 2.949000 \\
 \label{fig-nm-oneill-table}
 \end{figure}
 
-\subsection{Convergence to a non stationnary point}
+\subsection{Mc Kinnon: convergence to a non stationnary point}
 \label{section-mcKinnon}
 \index{Mc Kinnon, K. I. M.}
 
@@ -1652,6 +1976,10 @@ f(x_1,x_2) &=&
 The solution is $\bx^\star = (0 , -0.5 )^T$.
 
 The following Scilab script solves the optimization problem.
+We must use the "-simplex0method" option so that a 
+user-defined initial simplex is used. Then the 
+"-coords0" allows to define the coordinates of the initial 
+simplex, where each row corresponds to a vertex of the simplex
 
 \lstset{language=scilabscript}
 \begin{lstlisting}
@@ -1676,21 +2004,19 @@ coords0 = [
 lambda1 lambda2
 ];
 x0 = [1.0 1.0]';
-nm = nmplot_new ();
-nm = nmplot_configure(nm,"-numberofvariables",2);
-nm = nmplot_configure(nm,"-function",mckinnon3);
-nm = nmplot_configure(nm,"-x0",x0);
-nm = nmplot_configure(nm,"-maxiter",200);
-nm = nmplot_configure(nm,"-maxfunevals",300);
-nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
-nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
-nm = nmplot_configure(nm,"-simplex0method","given");
-nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-nm = nmplot_search(nm);
-nmplot_display(nm);
-nm = nmplot_destroy(nm);
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
 \end{lstlisting}
 
 
@@ -1726,6 +2052,92 @@ inside contractions.}
 \label{fig-nm-numexp-mckinnon-detail}
 \end{figure}
 
+\subsection{Kelley: oriented restart}
+\index{Kelley, C. T.}
+
+Kelley analyzed Mc Kinnon counter example in \cite{Kelley1999}.
+He analyzed the evolution of the simplex gradient and found that 
+its norm begins to grow when the simplex start to degenerate.
+Therefore, Kelley suggest to detect the stagnation of the algorithm
+by using a termination criteria which is based on a sufficient decrease 
+condition. Once that the stagnation is detected and the algorithm is stopped,
+restarting the algorithm with a non-degenerated simplex allows to 
+converge toward the global minimum. Kelley advocates the use of the oriented 
+restart, where the new simplex is so that it maximizes the chances of 
+producing a good descent direction at the next iteration.
+
+The following Scilab script solves the optimization problem.
+We must use the "-simplex0method" option so that a 
+user-defined initial simplex is used. Then the 
+"-coords0" allows to define the coordinates of the initial 
+simplex, where each row corresponds to a vertex of the simplex.
+
+We also use the "-kelleystagnationflag" option, which turns on 
+the termination criteria associated with Kelley's stagnation
+detection method. Once that the algorithm is stopped, we want 
+to automatically restart the algorithm. This is why we 
+turn on the "-restartflag" option, which enables to perform 
+automatically 3 restarts. After an optimization process, the 
+automatic restart algorithm needs to know if the algorithm
+must restart or not. By default, the algorithm uses a 
+factorial test, due to O'Neill. This is why we configure the 
+"-restartdetection" to the "kelley" option, which uses Kelley's 
+termination condition as a criteria to determine 
+if a restart must be performed.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = mckinnon3 ( x , index )
+  if ( length ( x ) ~= 2 )
+    error ( 'Error: function expects a two dimensional input\n' );
+  end
+  tau = 3.0;
+  theta = 6.0;
+  phi = 400.0;
+  if ( x(1) <= 0.0 )
+    f = theta * phi * abs ( x(1) ).^tau + x(2) * ( 1.0 + x(2) );
+  else
+    f = theta       *       x(1).^tau   + x(2) * ( 1.0 + x(2) );
+  end
+endfunction
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
+coords0 = [
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
+x0 = [1.0 1.0]';
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","kelley");
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
+The figure \ref{fig-nm-numexp-mckinnonkelley} presents the first steps 
+of the algorithm in this numerical experiment. We see that the 
+algorithm converges now toward the minimum $\bx^\star = (0,-0.5)^T$.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=10cm]{neldermeadmethod/mckinnonkelley-history-simplex.png}
+\end{center}
+\caption{Nelder-Mead numerical experiment -- Mc Kinnon example with Kelley's stagnation detection.}
+\label{fig-nm-numexp-mckinnonkelley}
+\end{figure}
+
+
 \subsection{Han counter examples}
 
 In his Phd thesis \cite{Han2000}, Han presents two counter examples
@@ -1744,6 +2156,32 @@ This function is nonconvex, bounded below and has bounded level
 sets. The initial simplex is chosen as $S_0 = [(0.,-1),(0,1),(1,0)]$.
 Han proves that the Nelder-Mead algorithm generates a sequence of simplices
 $S_k = [(0.,-1),(0,1),(\frac{1}{2^k},0)]$.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = han1 ( x , index )
+  f = x(1)^2 + x(2) * (x(2) + 2.0) * (x(2) - 0.5) * (x(2) - 2.0);
+endfunction
+coords0 = [
+    0.  -1.  
+    0.   1.  
+    1.   0.  
+]
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",han1);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-maxiter",50);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
 
 The figure \ref{fig-nm-numexp-han1} presents the isovalues and the 
 simplices during the steps of the Nelder-Mead algorithm.
@@ -1793,6 +2231,39 @@ x_2 - 1, &\qquad \textrm{if} \qquad x_2> 1, \\
 The initial simplex is chosen as $S_0 = [(0.,1/2),(0,-1/2),(1,0)]$.
 Han prooves that the Nelder-Mead algorithm generates a sequence of simplices
 $S_k = [(0.,1/2),(0,-1/2),(\frac{1}{2^k},0)]$.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ f , index ] = han2 ( x , index )
+  if abs(x(2)) <= 1.0 then
+    rho = 0.0
+  elseif x(2) > 1.0 then
+    rho = x(2) - 1
+  else
+    rho = -x(2) - 1
+  end
+  f = x(1)^2 + rho;
+endfunction
+coords0 = [
+    0.    0.5  
+    0.   -0.5  
+    1.    0.   
+]
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",han2);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-maxiter",50);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_search(nm);
+neldermead_display(nm);
+nm = neldermead_destroy(nm);
+\end{lstlisting}
+
 
 The figure \ref{fig-nm-numexp-han2} presents the isovalues and the 
 simplices during the steps of the Nelder-Mead algorithm.
@@ -1849,32 +2320,165 @@ simplex and is the following
 where $\Delta = \max( 1 , \|\bv_1\| )$. Decreasing the value of 
 $\epsilon$ allows to get smaller simplex sizes.
 
+The initial simplex is not specified by Virginia Torczon.
+In our numerical experiments, we choose an axis-by-axis simplex,
+with an initial length equal to 1.
+
 \subsubsection{Penalty \#1}
 The first test function is the \emph{Penalty \#1} function :
 
 \begin{eqnarray}
 \label{torzcon-sumofsquares-case1}
-f_i(\bx) &=& \sqrt{1.e-5}(x_i - 1), \qquad i=1,n\\
+f_i(\bx) &=& 10^{-5/2} (x_i - 1) , \qquad i=1,n\\
 f_{n+1} & = & -\frac{1}{4} + \sum_{j=1,n} x_j^2.
 \end{eqnarray}
 
 The initial guess is given by $\bx_0 = ((\bx_0)_1 , (\bx_0)_2, \ldots , (\bx_0)_n)^T$ and 
 $(\bx_0)_j = j$ for $j=1,n$. 
 
-The problem given by 
-Mor\'e, Garbow and Hillstrom in \cite{355943} is associated with 
+The problem given by Mor\'e, Garbow and Hillstrom in \cite{355943,355936} is associated with 
 the size $n=4$. The value of the cost function at the initial guess 
 $\bx_0 = (1,2,3,4)^T$ is $f(\bx_0) = 885.063$. The value of the function
-at the optimum is given in \cite{355943} as $f(\bx^\star) = 2.24997d-5$.
+at the optimum is given in \cite{355943,355936} as $f(\bx^\star) = 2.24997d-5$.
 % TODO : what is the optimum ?
 
-Torzcon shows an experiment with the Penalty \#1 test case and $n=8$.
+Virginia Torzcon present the results of this numerical experiment with the Penalty \#1 test case and $n=8$.
 For this particular case, the initial function value is $f(\bx_0) = 4.151406.10^4$.
+
+In the following Scilab script, we define the \scifunction{penalty1} function. 
+We define the function \scifunction{penalty1\_der} which allows to compute the 
+numerical derivative.
+The use of a global variable is not 
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ y , index , n ] = penalty1 ( x , index , n )
+  y = 0.0
+  for i = 1 : n
+    fi = (x(i) - 1) * sqrt(1.e-5)
+    y = y + fi^2
+  end
+  fi = -1/4 + norm(x)^2
+  y = y + fi^2
+endfunction
+
+function y = penalty1_der ( x , n )
+  [ y , index ] = penalty1 ( x , 1 , n )
+endfunction
+\end{lstlisting}
+
+The following Scilab function defines the termination criteria, as 
+defined in \ref{torzcon-stopping}.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [ this , terminate , status ] = mystoppingrule ( this , simplex )
+  global _DATA_
+  v1 = optimsimplex_getx ( simplex , 1 )
+  delta = max ( 1.0 , norm(v1) )
+  maxnorms = 0.0
+  n = neldermead_cget ( this , "-numberofvariables" )
+  for i = 2 : n
+    vi = optimsimplex_getx ( simplex , i )
+    ni = norm ( vi - v1 )
+    maxnorms = max ( maxnorms , ni )
+  end
+  epsilon = _DATA_.epsilon
+  if ( maxnorms / delta < epsilon ) then
+    terminate = %t
+    status = "torczon"
+  else
+    terminate = %f
+  end
+endfunction
+\end{lstlisting}
+
+The following \scifunction{solvepb} function takes as input the dimension
+of the problem $n$, the cost function, the initial guess and the tolerance.
+It uses the \scifunction{neldermead} component and configures it so that 
+the algorithm uses the specific termination function defined previously.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+function [nbfevals , niter , fopt , cputime ] = solvepb ( n , cfun , x0 , tolerance )
+  tic();
+  global _DATA_;
+  _DATA_ = tlist ( [
+    "T_TORCZON"
+    "epsilon"
+  ]);
+  _DATA_.epsilon = tolerance;
+  
+  nm = neldermead_new ();
+  nm = neldermead_configure(nm,"-numberofvariables",n);
+  nm = neldermead_configure(nm,"-function",cfun);
+  nm = neldermead_configure(nm,"-costfargument",n);
+  nm = neldermead_configure(nm,"-x0",x0);
+  nm = neldermead_configure(nm,"-maxiter",10000);
+  nm = neldermead_configure(nm,"-maxfunevals",10000);
+  nm = neldermead_configure(nm,"-tolxmethod",%f);
+  nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
+  // Turn ON my own termination criteria
+  nm = neldermead_configure(nm,"-myterminate",mystoppingrule);
+  nm = neldermead_configure(nm,"-myterminateflag",%t);
+  //
+  // Perform optimization
+  //
+  nm = neldermead_search(nm);
+  niter = neldermead_get ( nm , "-iterations" );
+  nbfevals = neldermead_get ( nm , "-funevals" );
+  fopt = neldermead_get ( nm , "-fopt" );
+  xopt = neldermead_get ( nm , "-xopt" );
+  status = neldermead_get ( nm , "-status" );
+  nm = neldermead_destroy(nm);
+  cputime = toc();
+  // Compute angle between gradient and simplex direction
+  sopt = neldermead_get ( nm , "-simplexopt" )
+  xhigh = optimsimplex_getx ( sopt , n + 1 )
+  xbar = optimsimplex_xbar ( sopt )
+  d = xbar - xhigh;
+  g = derivative ( list ( penalty1_der , n ) , xopt , order=4 );
+  cost = -g*d.' / norm(g) / norm(d)
+  theta =acosd(cost)
+  // Compute condition of matrix of directions
+  D = optimsimplex_dirmat ( sopt )
+  k = cond ( D )
+  // Display result
+  mprintf ( "=============================\n")
+  mprintf ( "status = %s\n" , status )
+  mprintf ( "Tolerance=%e\n" , tolerance )
+  mprintf ( "xopt = [%s]\n" , strcat(string(xopt)," ") )
+  mprintf ( "fopt = %e\n" , fopt )
+  mprintf ( "niter = %d\n" , niter )
+  mprintf ( "nbfevals = %d\n" , nbfevals )
+  mprintf ( "theta = %25.15f (deg)\n" , theta )
+  mprintf ( "cputime = %f (s)\n" , cputime )
+  mprintf ( "cond(D) = %e (s)\n" , k )
+endfunction
+\end{lstlisting}
+
+We are now able to make a loop, and get the optimum function value 
+for various values of the tolerance use in the termination criteria.
+
+\lstset{language=scilabscript}
+\begin{lstlisting}
+x0 = [1 2 3 4 5 6 7 8].';
+for tol = [1.e-1 1.e-2 1.e-3 1.e-4 1.e-5 1.e-6 1.e-7]
+  [nbfevals , niter , fopt , cputime ] = solvepb ( 8 , penalty1 , x0 , tol );
+end
+\end{lstlisting}
+
 The figure \ref{fig-nm-torczon-table} presents the results of these
-experiments. The number of function evaluations is not the same
-so that we can conclude that the algorithm may be different 
-variants of the Nelder-Mead algorithms. We were not able to 
-explain why the number of function evaluations is so different.
+experiments. As Virginia Torczon, we get an increasing number 
+of function evaluations, with very little progress with respect 
+to the function value. We also get a search direction which becomes
+increasingly perpendicular to the gradient.
+
+The number of function evaluations is not the same between 
+Torczon's and Scilab so that we can conclude that the algorithm may be different 
+variants of the Nelder-Mead algorithm or uses a different 
+initial simplex. We were not able to explain why the number 
+of function evaluations is so different.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -1884,47 +2488,64 @@ explain why the number of function evaluations is so different.
 Author & Step & $f(\bv_1^\star)$ & Function & Angle (\degre)\\
 & Tolerance & & Evaluations & \\
 \hline
-Torzcon & 1.e-1 & 7.0355e-5 & 1605 & 89.396677792198 \\
-Scilab  & 1.e-1 & 8.2272e-5 & 530  & 87.7654 \\
+Torzcon & 1.e-1 & 7.0355e-5   & 1605 & 89.396677792198 \\
+Scilab  & 1.e-1 & 9.567114e-5 & 314  & 101.297069897149110 \\
 \hline
-Torzcon & 1.e-2 & 6.2912e-5 & 1605 & 89.935373548613 \\
-Scilab  & 1.e-2 & 7.4854e-5 & 1873 & 89.9253 \\
+Torzcon & 1.e-2 & 6.2912e-5   & 3360 & 89.935373548613 \\
+Scilab  & 1.e-2 & 8.247686e-5 & 501  & 88.936037514983468 \\
 \hline
-Torzcon & 1.e-3 & 6.2912e-5 & 3600 & 89.994626919197 \\
-Scilab  & 1.e-3 & 7.4815e-5 & 2135 & 90.0001 \\
+Torzcon & 1.e-3 & 6.2912e-5   & 3600 & 89.994626919197 \\
+Scilab  & 1.e-3 & 7.485404e-5 & 1874 & 90.134605846897529 \\
 \hline
-Torzcon & 1.e-4 & 6.2912e-5 & 3670 & 89.999288284747 \\
-Scilab  & 1.e-4 & 7.481546e-5 & 2196 & 89.9991 \\
+Torzcon & 1.e-4 & 6.2912e-5   & 3670 & 89.999288284747 \\
+Scilab  & 1.e-4 & 7.481546e-5 & 2137 & 90.000107262503008 \\
 \hline
-Torzcon & 1.e-5 & 6.2912e-5 & 3750 & 89.999931862232 \\
-Scilab  & 1.e-5 & 7.427212e-5 & 4626 & 89.999990 \\
+Torzcon & 1.e-5 & 6.2912e-5   & 3750 & 89.999931862232 \\
+Scilab  & 1.e-5 & 7.481546e-5 & 2193 & 90.000366248870506 \\
+\hline
+Torzcon & 1.e-6 & 6.2912e-5   & 3872 & 89.999995767877 \\
+Scilab  & 1.e-6 & 7.427204e-5 & 4792 & 90.000006745652769 \\
+\hline
+Torzcon & 1.e-7 & 6.2912e-5   & 3919 & 89.999999335010 \\
+Scilab  & 1.e-7 & 7.427204e-5 & 4851 & 89.999996903432063 \\
 \hline
 \end{tabular}
 %\end{tiny}
 \end{center}
-\caption{Numerical experiment with Nelder-Mead method on Torczon test cases - 
-Torczon results and our results}
+\caption{Numerical experiment with Nelder-Mead method on penalty \#1 test case - 
+Torczon results and Scilab's results}
 \label{fig-nm-torczon-table}
 \end{figure}
 
-The figure \ref{fig-nm-numexp-torczon1} presents the 
-angle between the gradient of the function $-\bg_k$ and the search 
-direction $\bx_c - \bx_h$, where $\bx_c$ is the centroid of the best 
-vertices and $\bx_h$ is the worst (or high) vertex.
+The figure \ref{fig-nm-torczon-tablecond} presents the condition number of the matrix 
+of simplex direction. When this condition number is high, the simplex is distorted. 
+The numerical experiment shows that the condition number is fastly increasing. 
+This corresponds to the fact that the simplex is increasingly distorted and might 
+explains why the algorithm fails to make any progress.
 
-\begin{figure}
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=10cm]{neldermeadmethod/torczon_test1_angle.png}
+%\begin{tiny}
+\begin{tabular}{|l|l|}
+\hline
+Tolerance & $cond(D)$ \\
+\hline
+1.e-1 & 1.573141e+001 \\
+1.e-2 & 4.243385e+002 \\
+1.e-3 & 7.375247e+008 \\
+1.e-4 & 1.456121e+009 \\
+1.e-5 & 2.128402e+009 \\
+1.e-6 & 2.323514e+011 \\
+1.e-7 & 3.193495e+010 \\
+\hline
+\end{tabular}
+%\end{tiny}
 \end{center}
-\caption{Nelder-Mead numerical experiment -- Penalty \#1 function --
-We see that the angle between the gradient and the search direction
-is very close to $90^{\circ}$, especially for large number of iterations.}
-\label{fig-nm-numexp-torczon1}
+\caption{Numerical experiment with Nelder-Mead method on penalty \#1 test case - 
+Condition number of the matrix of simplex directions}
+\label{fig-nm-torczon-tablecond}
 \end{figure}
 
-The numerical experiment shows that the conditioning of the matrix 
-of simplex direction has an increasing condition number. This corresponds to the 
-fact that the simplex is increasingly distorted.
 
 \section{Conclusion}
 
@@ -1932,8 +2553,21 @@ The main advantage of the Nelder-Mead algorithm over Spendley et al.
 algorithm is that the shape of the simplex is dynamically updated.
 That allows to get a reasonably fast convergence rate on badly scaled
 quadratics, or more generally when the cost function is made 
-of a sharp valley. Nevertheless, the behavior of the algorithm when the 
-dimension of the problem increases is disappointing : the more there are 
+of a sharp valley. Still, the behavior of the algorithm when the 
+dimension of the problem increases is disappointing: the more there are 
 variables, the more the algorithm is slow. In general, it is expected 
-that the number of function evaluations is roughly equal to $100n$.
+that the number of function evaluations is roughly equal to $100n$, where 
+$n$ is the number of parameters.
+When the algorithm comes close to the optimum, the simplex becomes more and 
+more distorted, so that less and less progress is made with respect to the 
+value of the cost function. This can measured by the fact that the 
+direction of search becomes more and more perpendicular to the gradient of the 
+cost function. It can also be measure by an increasing value of the 
+condition number of the matrix of simplex directions. Therefore, the user 
+should not require a high accuracy from the algorithm. Nevertheless, in most cases,
+the Nelder-Mead algorithms provides a good \emph{improvement} of the 
+solution.
+In some situations, the simplex can become so distorted that it converges
+toward a non-stationnary point. In this case, restarting the algorithm with 
+a new nondegenerate simplex allows to converge toward the optimum.
 

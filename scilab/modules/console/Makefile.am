@@ -99,7 +99,8 @@ libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_b
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/GuiManagement.i
+SWIG_WRAPPERS = src/jni/GuiManagement.i \
+	src/jni/DropFiles.i
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1

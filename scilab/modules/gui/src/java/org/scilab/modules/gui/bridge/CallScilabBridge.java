@@ -114,7 +114,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -160,6 +160,8 @@ public class CallScilabBridge {
 	
 	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
+	
+	private static final String CONSOLE = "Console";
 
 	/**
 	 * Constructor
@@ -2264,11 +2266,11 @@ public class CallScilabBridge {
 			e.printStackTrace();
 		}
 		if (strInputSelected != null) {
-			printString(strInputSelected, new String("Console"));
+			printString(strInputSelected, new String(CONSOLE));
 		} else if (strOutputSelected != null) {
-			printString(strOutputSelected, new String("Console"));
+			printString(strOutputSelected, new String(CONSOLE));
 		} else {
-			printString(textToPrint, new String("Console"));
+			printString(textToPrint, new String(CONSOLE));
 		}
 	}
 	

@@ -15,12 +15,17 @@ package org.scilab.modules.renderer.utils.textRendering;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.Map;
 import java.nio.Buffer;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.GLException;
 import com.sun.opengl.util.j2d.TextRenderer;
+import com.sun.opengl.util.texture.TextureData;
+import com.sun.opengl.util.texture.Texture;
+import com.sun.opengl.util.texture.TextureCoords;
+import com.sun.opengl.util.texture.TextureIO;
 
 import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
@@ -32,8 +37,10 @@ import org.scilab.modules.renderer.textDrawing.SpecialTextObjectGL;
  */
 public class SpecialTextRenderer {
 
-    private static HashMap<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
-        
+    private static final int NB_COMP = 4;
+    private static Map<String, SpecialTextObjectGL> table = new HashMap<String, SpecialTextObjectGL>();
+    private static GL gl;
+    
     /* I use the TextRenderer to render a string which isn't in MathML or LaTeX format
        although it starts with a '<' or '$'*/
     private TextRenderer textrenderer;
@@ -41,8 +48,6 @@ public class SpecialTextRenderer {
     private Color color = Color.black;
     private float fontSize;
     
-    private static GL gl = null;
-
     /**
      * Default constructor.
      * @param textrenderer a TextRenderer to display bad MathML code
@@ -51,12 +56,14 @@ public class SpecialTextRenderer {
     public SpecialTextRenderer(TextRenderer textrenderer, float fontSize) {
 		this.textrenderer = textrenderer;
 		this.fontSize = fontSize;
+                
+		GL currentGL;
 
-		GL currentGL = null;
-
-		try{
+		try {
 			currentGL = GLU.getCurrentGL();
-		} catch (GLException e) {}
+		} catch (GLException e) {
+                        currentGL = null;
+                }
 
 		if (gl != currentGL) {
 		    gl = currentGL;
@@ -74,8 +81,9 @@ public class SpecialTextRenderer {
 		if (!table.containsKey(content)) {
 			try {
 				spe = getSpecialTextObjectGL(content);
-				if(gl != null)
-		        	   createTexture(spe);
+				if (gl != null) {
+				        createTexture(spe);
+				}
 				table.put(content, spe);
 				return spe;
 			} catch (SpecialTextException e) {
@@ -85,8 +93,9 @@ public class SpecialTextRenderer {
 		}
     
 		spe = table.get(content);
-		if (spe != null && spe.setFontSize(fontSize))
-		    replaceTexture(spe);
+		if (spe != null && spe.setFontSize(fontSize)) {
+		        replaceTexture(spe);
+		}
 		
 		return spe;
     }
@@ -123,27 +132,29 @@ public class SpecialTextRenderer {
     public void setFontSize(float fontSize) {
 	        this.fontSize = fontSize;
     }
-
+    
+    /**
+     * Create a new texture with the buffer got from the image of a label
+     * @param spe the label to render
+     */
     private static void createTexture(SpecialTextObjectGL spe) {
-	        int[] text = new int[1];
-
-		/* If the buffer is null, it must be regenerated before getting width and height */
+	        /* If the buffer is null, it must be regenerated before getting width and height */
 		Buffer buf = spe.getBuffer();
-
-	        gl.glGenTextures(1, text, 0);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, text[0]);
-		gl.glTexParameteri(gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MIN_FILTER, gl.GL_LINEAR);
-		gl.glTexParameteri(gl.GL_TEXTURE_2D, gl.GL_TEXTURE_MAG_FILTER, gl.GL_LINEAR);
-		gl.glTexImage2D(gl.GL_TEXTURE_2D, 0, gl.GL_RGBA, (int) spe.getWidth(), (int) spe.getHeight(), 0, gl.GL_RGBA, gl.GL_UNSIGNED_BYTE, buf);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, 0);
 		
-		spe.setIdTexture(text[0]);
+		Texture t = TextureIO.newTexture(new TextureData(GL.GL_RGBA, (int) spe.getWidth(), (int) spe.getHeight(),
+								 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, false, false, false,
+								 buf, null));
+		
+		spe.setTexture(t);
     }
     
+    /**
+     * Replace an existing texture
+     * @param spe the label to replace
+     */
     private static void replaceTexture(SpecialTextObjectGL spe) {
-	        int[] text = { spe.getIdTexture() };
-		gl.glDeleteTextures(1, text, 0);
-		createTexture(spe);
+	        spe.getTexture().dispose();
+	        createTexture(spe);
     }
     
     /**
@@ -167,25 +178,39 @@ public class SpecialTextRenderer {
 		gl.glPushMatrix();
 
 		/* The following code handles the case where the label is colored */
-
+		Texture t = spe.getTexture();
+		TextureCoords tc = t.getImageTexCoords();
+		
+		gl.glEnable(GL.GL_BLEND);
 		gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-
+				
 		/* required to correctly render pre-colored text */
-		if(spe.getIsColored()){
+		if (spe.getIsColored()) {
 			gl.glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
 		}
-
-		gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_ADD);
-
+		
+		/* the following lines fix a strange behaviour of GL_ADD on Windows */
+		float[] f = new float[NB_COMP];
+		gl.glGetFloatv(GL.GL_CURRENT_COLOR, f, 0);
+		f[0] = 1 - f[0];
+		f[1] = 1 - f[1];
+		f[2] = 1 - f[2];
+		gl.glTexEnvfv(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_COLOR, f, 0);
+		
+		gl.glTexEnvi(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_BLEND);
+		
 		gl.glTranslatef(x, y, z);
-		gl.glBindTexture(gl.GL_TEXTURE_2D, spe.getIdTexture());
+		
+		t.enable();
+		t.bind();
+
 		gl.glBegin(gl.GL_QUADS);
-		gl.glTexCoord2f(0,0); gl.glVertex2d(0, 0);
-		gl.glTexCoord2f(1,0); gl.glVertex2d(width, 0);
-		gl.glTexCoord2f(1,1); gl.glVertex2d(width, height);
-		gl.glTexCoord2f(0,1); gl.glVertex2d(0, height);
+		gl.glTexCoord2f(tc.left(), tc.bottom()); gl.glVertex2d(0, 0);
+		gl.glTexCoord2f(tc.right(), tc.bottom()); gl.glVertex2d(width, 0);
+		gl.glTexCoord2f(tc.right(), tc.top()); gl.glVertex2d(width, height);
+		gl.glTexCoord2f(tc.left(), tc.top()); gl.glVertex2d(0, height);
 		gl.glEnd();
-		gl.glBindTexture(gl.GL_TEXTURE_2D, 0);
+		t.disable();
 		gl.glPopMatrix();
 		gl.glPopAttrib();
     }
@@ -195,6 +220,7 @@ public class SpecialTextRenderer {
      *
      * @param content the message itself
      * @return The specialTextObjectGL
+     * @throws SpecialTextException if the string isn't in MathML or in LaTeX
      */
     private SpecialTextObjectGL getSpecialTextObjectGL(String content) throws SpecialTextException {
 		switch (content.charAt(0)) {

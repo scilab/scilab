@@ -61,7 +61,7 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	 */
 	public void doAction() {
     	// If diagram is empty (has one default child) : do nothing.
-    	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 2) { return; }
+    	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 1) { return; }
 		
 		/* Save the configuration */
 		double oldZoomFactor = ((XcosDiagram) getGraph(null)).getAsComponent().getZoomFactor();

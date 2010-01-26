@@ -29,7 +29,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
     {
       if(nbCol != 1) /* More than one string */
         {
-          Scierror(999, _("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
+			Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
       
@@ -37,7 +37,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
 
       if (nbvalues != 3) /* Wrong format string */
         {
-          Scierror(999, _("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
+			Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -73,7 +73,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
     {
       if(nbCol != 3 || nbRow != 1) /* Wrong matrix size */
         {
-          Scierror(999, _("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
+			Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
           return SET_PROPERTY_ERROR;
         }
 
@@ -108,7 +108,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
   else
     {
       /* Wrong value type */
-      Scierror(999, _("Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n"), "ForegroundColor");
+		Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
       return SET_PROPERTY_ERROR;
     }
 
@@ -136,7 +136,7 @@ int SetUiobjectForegroundColor(sciPointObj* sciObj, size_t stackPointer, int val
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "ForegroundColor");
+		Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "ForegroundColor");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -45,7 +45,9 @@ public final class SelectAllAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.SELECT_ALL, null,
-				new SelectAllAction(scilabGraph),KeyStroke.getKeyStroke(KeyEvent.VK_A, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+				new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(
+						KeyEvent.VK_A, Toolkit.getDefaultToolkit()
+								.getMenuShortcutKeyMask()));
 	}
 	
 	/**

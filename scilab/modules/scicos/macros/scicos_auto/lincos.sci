@@ -133,7 +133,7 @@ if %cpr==list() then
 end
 
 if ~ok then
-  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n'),"lincos",2))
+  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"lincos",2))
 end
  
 sim   = %cpr.sim;

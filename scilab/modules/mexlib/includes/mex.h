@@ -334,6 +334,10 @@ typedef INT32_T  int32_T;
 typedef UINT32_T uint32_T;
 typedef REAL32_T real32_T;
 
+typedef int       mwSize;
+typedef int       mwIndex;
+typedef mxArray * mwPointer;
+
 #endif /* SCI_MEX  */
 
 #ifdef __cplusplus

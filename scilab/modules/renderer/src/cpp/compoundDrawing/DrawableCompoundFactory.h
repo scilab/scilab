@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
- * desc : Factory for compound objects. Automaticaly create a compound
- * drawer with the right algorithms from the garphic handle
+ * desc : Factory for compound objects. Automatically create a compound
+ * drawer with the right algorithms from the graphic handle
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which

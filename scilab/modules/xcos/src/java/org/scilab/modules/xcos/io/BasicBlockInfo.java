@@ -13,7 +13,9 @@
 package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -23,6 +25,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -225,7 +228,7 @@ public final class BasicBlockInfo {
 
 	model.add(block.getAllCommandPortsInitialStates()); // firing
 
-	boolean[][] dep_ut = {{block.dependsOnU() , block.dependsOnT()}};
+	boolean[][] dep_ut = {{block.isDependsOnU() , block.isDependsOnT()}};
 	model.add(new ScilabBoolean(dep_ut)); // dep_ut
 
 	model.add(new ScilabString("")); // label
@@ -442,5 +445,46 @@ public final class BasicBlockInfo {
 	}
 
 	return data;
+    }
+    
+    /**
+     * Get the associated port ordered by orientation.
+     * @param block The block we are working on
+     * @return Lists of ports where key are BasicPort.Orientation
+     */
+    public static Map<BasicPort.Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
+    	EnumMap<BasicPort.Orientation, List<BasicPort>> map = new EnumMap<BasicPort.Orientation, List<BasicPort>>(BasicPort.Orientation.class);
+    	List<BasicPort> northPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> southPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> eastPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> westPorts = new ArrayList<BasicPort>();
+    	
+		final int childrenCount = block.getChildCount();
+		for (int i = 0; i < childrenCount; ++i) {
+			BasicPort port = (BasicPort) block.getChildAt(i);
+			switch (port.getOrientation()) {
+			case NORTH:
+				northPorts.add(port);
+				break;
+			case SOUTH:
+				southPorts.add(port);
+				break;
+			case EAST:
+				eastPorts.add(port);
+				break;
+			case WEST:
+				westPorts.add(port);
+				break;
+			default:
+				break;
+			}
+		}
+    	
+    	map.put(Orientation.NORTH, northPorts);
+    	map.put(Orientation.SOUTH, southPorts);
+    	map.put(Orientation.EAST, eastPorts);
+    	map.put(Orientation.WEST, westPorts);
+    	
+    	return map;
     }
 }

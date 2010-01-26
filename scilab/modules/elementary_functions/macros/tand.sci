@@ -18,7 +18,9 @@ function y = tand(x)
   m = pmodulo(n,2);
   y = x
   y(m==0) = tan(%pi/180*x(m==0));
-  y(m==1 & ~z) = -1 ./ tan(%pi/180*x(m==1 & ~z));
-  y(m==1 & z & n>=0) = 1/0;
-  y(m==1 & z & n<0) = -1/0;
+  if or(m==1) then
+    y(m==1 & ~z) = -1 ./ tan(%pi/180*x(m==1 & ~z));
+    y(m==1 & z & n>=0) = %inf;
+    y(m==1 & z & n<0) = -%inf;
+  end
 endfunction

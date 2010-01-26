@@ -12,19 +12,26 @@
 // Add a field to the description of one ore more package
 // The description struct looks like that
 
-// tree_in  =
-//  
-//    toolbox_1:                     [1x1 struct]
-//      2.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "2.0"
-//        ...
-//      1.0:                         [1x1 struct]
-//        Toolbox: "toolbox_2"
-//        Title: "Toolbox Test 2"
-//        Version: "1.0"
-//    ...
+// DESCRIPTION
+// |
+// |-- packages
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories
+// |-- categories_flat
+
 
 function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_version , field , value )
 	
@@ -78,19 +85,20 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 	// And now ... action
 	// =========================================================================
 	
-	tree_out = tree_in;
+	tree_out     = tree_in;
+	packages_out = tree_out("packages");
 	
 	// 1st case : All packages are concerned
 	// -------------------------------------------------------------------------
 	
 	if (package_name == "*") & (package_version == "*") then
 		
-		package_names      = getfield(1,tree_in);
+		package_names      = getfield(1,packages_out);
 		package_names(1:2) = [];
 		
 		for i=1:size(package_names,"*")
 			
-			package_versions_struct = tree_out(package_names(i));
+			package_versions_struct = packages_out(package_names(i));
 			package_versions        = getfield(1,package_versions_struct);
 			package_versions(1:2)   = [];
 			
@@ -100,7 +108,7 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 				package_versions_struct(package_versions(j)) = this_package_struct;
 			end
 			
-			tree_out(package_names(i)) = package_versions_struct;
+			packages_out(package_names(i)) = package_versions_struct;
 		end
 	
 	
@@ -109,11 +117,11 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 	
 	elseif  package_version == "*" then
 		
-		if ~ isfield(tree_out,package_name) then
+		if ~ isfield(packages_out,package_name) then
 			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_name));
 		end
 		
-		package_versions_struct = tree_out(package_name);
+		package_versions_struct = packages_out(package_name);
 		package_versions        = getfield(1,package_versions_struct);
 		package_versions(1:2)   = [];
 		
@@ -123,7 +131,7 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 			package_versions_struct(package_versions(j)) = this_package_struct;
 		end
 		
-		tree_out(package_name) = package_versions_struct;
+		packages_out(package_name) = package_versions_struct;
 	
 	
 	// 3rd case : Specific version of a package
@@ -131,11 +139,11 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 	
 	else
 		
-		if ~ isfield(tree_out,package_name) then
+		if ~ isfield(packages_out,package_name) then
 			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_name));
 		end
 		
-		package_versions_struct = tree_out(package_name);
+		package_versions_struct = packages_out(package_name);
 		
 		if ~ isfield(package_versions_struct,package_version) then
 			error(msprintf(gettext("%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_version,package_name));
@@ -144,8 +152,10 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
 		this_package_struct                      = package_versions_struct(package_version);
 		this_package_struct(field)               = value;
 		package_versions_struct(package_version) = this_package_struct;
-		tree_out(package_name)                   = package_versions_struct;
+		packages_out(package_name)               = package_versions_struct;
 		
 	end
+	
+	tree_out("packages") = packages_out;
 	
 endfunction

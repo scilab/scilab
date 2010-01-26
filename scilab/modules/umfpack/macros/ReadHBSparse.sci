@@ -52,7 +52,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    //     where mtype is a 3 letters word given some 
    //     informations (already inside the file) on the matrix : 
    //        1st letter : R|C|P   for real|complex|pattern (no values given)
-   //        2d  letter : S|H|Z|U for symetric|hermitian|skew symetric|unsymetric
+   //        2d  letter : S|H|Z|U for symmetric|hermitian|skew symmetric|unsymmetric
    //        3d  letter : A|E     for assembled|unassembled matrix
    //                             (case E is not treated by this func)
    //  REFERENCES

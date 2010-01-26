@@ -55,7 +55,7 @@ or
     evaluated over the frequency range specified by <literal>w</literal>. (T is the sampling
     period, <literal>T=sl('dt')</literal> for sampled systems).</para>
     <para><literal>sl</literal> is a <literal>syslin</literal> list representing the system
-    <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continous or
+    <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continuous or
     discrete time or sampled system.</para>
     <para>
     The <literal>i</literal>-th column of the output matrix <literal>SVM</literal> contains the singular

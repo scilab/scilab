@@ -91,6 +91,12 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
 			return 0;
 		}
 
+		status = H5Aclose(iAttributeId);
+		if(status < 0)
+		{
+			return 0;
+		}
+
 		return iVal;
 	}
 	return 0;

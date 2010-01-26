@@ -28,12 +28,23 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class ViewDetailsAction extends DefaultAction {
+/**
+ * @author Vincent COUVERT
+ *
+ */
+public final class ViewDetailsAction extends DefaultAction {
 
+    /**
+     * @param scilabGraph graph
+     */
     private ViewDetailsAction(ScilabGraph scilabGraph) {
 	super(XcosMessages.DETAILS, scilabGraph);
     }
 
+    /**
+     * @param scilabGraph graph
+     * @return menu item
+     */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
 	return createMenu(XcosMessages.DETAILS, null, new ViewDetailsAction(scilabGraph), null);
     }
@@ -45,30 +56,30 @@ public class ViewDetailsAction extends DefaultAction {
 	//if no cells are selected : Do nothing
 	if (selectedCells.length == 0) { return; }
 
-	for (int i = 0; i < selectedCells.length ; ++i) {
+	for (int i = 0; i < selectedCells.length; ++i) {
 	    if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
 		try {
-		    File temp = File.createTempFile("xcos",".h5");
+		    File temp = File.createTempFile("xcos", ".h5");
 		    temp.deleteOnExit();
-		    int file_id = H5Write.createFile(temp.getAbsolutePath());
-		    H5Write.writeInDataSet(file_id, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
-		    H5Write.closeFile(file_id);
-		    XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);deletefile(\"" + temp.getAbsolutePath()+"\");");
-		}
-		catch (Exception e) {
+		    int fileId = H5Write.createFile(temp.getAbsolutePath());
+		    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
+		    H5Write.closeFile(fileId);
+		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
+			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
+		} catch (Exception e) {
 		    // Do Nothing !!!
 		}
 	    }
 	    if (selectedCells[i] instanceof BasicLink) {
 		try {
-		    File temp = File.createTempFile("xcos",".h5");
+		    File temp = File.createTempFile("xcos", ".h5");
 		    temp.deleteOnExit();
-		    int file_id = H5Write.createFile(temp.getAbsolutePath());
-		    H5Write.writeInDataSet(file_id, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
-		    H5Write.closeFile(file_id);
-		    XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");tree_show(scs_m);deletefile(\"" + temp.getAbsolutePath()+"\");");;
-		}
-		catch (Exception e) {
+		    int fileId = H5Write.createFile(temp.getAbsolutePath());
+		    H5Write.writeInDataSet(fileId, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
+		    H5Write.closeFile(fileId);
+		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
+			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
+		} catch (Exception e) {
 		    // Do Nothing !!!
 		}
 	    }

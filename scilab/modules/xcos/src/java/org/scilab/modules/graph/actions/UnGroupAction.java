@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,20 +23,43 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
+/**
+ * Ungroup any blocks and ease the manipulation of them.
+ */
 public class UnGroupAction extends DefaultAction {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param scilabGraph
+	 *            The associated graph
+	 */
 	public UnGroupAction(ScilabGraph scilabGraph) {
 		super(ScilabGraphMessages.UNGROUP, scilabGraph);
 	}
 
+	/**
+	 * Create the button associated with this action.
+	 * @param scilabGraph the associated graph
+	 * @return The associated button
+	 */
 	public static PushButton ungroupButton(ScilabGraph scilabGraph) {
 		return createButton(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph));
 	}
 
+	/**
+	 * Create the menu associated with this action.
+	 * @param scilabGraph the associated graph
+	 * @return The associated menu
+	 */
 	public static MenuItem ungroupMenu(ScilabGraph scilabGraph) {
 		return createMenu(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph), null);
 	}
 
+	/**
+	 * Action to be done
+	 * @param e Event descriptor 
+	 */
 	public void actionPerformed(ActionEvent e) {
 		mxGraphActions.getUngroupAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));
