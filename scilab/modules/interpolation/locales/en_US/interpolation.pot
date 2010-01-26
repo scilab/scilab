@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_linear_interpn.c, line: 99
 #, c-format
@@ -38,7 +38,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 83
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
+msgid "%s: Not enough points for the fit.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 126

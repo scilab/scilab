@@ -218,7 +218,7 @@ public final class XcosMessages {
     
     /* Debug level messages  */
     public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
-    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continuous part switches)");
     public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
     public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     

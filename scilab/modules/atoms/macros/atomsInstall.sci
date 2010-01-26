@@ -245,13 +245,13 @@ function result = atomsInstall(packages,section)
 			// -----------------------------------------------------------------
 			
 			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
-				packages_description = atomsDESCRIPTIONread(atoms_tmp_directory+"DESCRIPTION_archives");
+				packages_description = atomsDESCRIPTIONread(atomsPath("system","session")+"DESCRIPTION_archives");
 				packages_description = atomsDESCRIPTIONcat(packages_description,this_package_description);
 			else
 				packages_description = this_package_description;
 			end
 			
-			atomsDESCRIPTIONwrite(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
+			atomsDESCRIPTIONwrite(packages_description,atomsPath("system","session")+"DESCRIPTION_archives");
 			
 			// change the packages var
 			// -----------------------------------------------------------------
@@ -403,7 +403,7 @@ function result = atomsInstall(packages,section)
 			// Intentionnaly Installed
 			this_package_status = "I";
 		else
-			// Automaticaly installed
+			// Automatically installed
 			this_package_status = "A";
 		end
 		

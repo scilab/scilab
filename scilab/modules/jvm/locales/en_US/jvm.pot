@@ -14,25 +14,25 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:33+0100\n"
 
-# File: src/c/JVM.c, line: 118
+# File: src/c/JVM.c, line: 119
 #, c-format
 msgid ""
 "\n"
 "Could not load JVM dynamic library (libjava).\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 69
-# File: src/c/JVM.c, line: 71
+# File: src/c/JVM.c, line: 70
+# File: src/c/JVM.c, line: 72
 #, c-format
 msgid ""
 "\n"
 "Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 84
-# File: src/c/JVM.c, line: 86
+# File: src/c/JVM.c, line: 85
+# File: src/c/JVM.c, line: 87
 #, c-format
 msgid ""
 "\n"
@@ -40,23 +40,23 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 153
+# File: src/c/JVM.c, line: 160
 #, c-format
 msgid ""
 "\n"
 "Impossible to read %s.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 181
-# File: src/c/JVM.c, line: 183
+# File: src/c/JVM.c, line: 188
+# File: src/c/JVM.c, line: 190
 #, c-format
 msgid ""
 "\n"
 "Incorrect version JNI (needs at least JDK 1.4).\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 208
-# File: src/c/JVM.c, line: 210
+# File: src/c/JVM.c, line: 215
+# File: src/c/JVM.c, line: 217
 #, c-format
 msgid ""
 "\n"
@@ -81,7 +81,7 @@ msgid ""
 "Scilab cannot open JVM library.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 109
+# File: src/c/JVM.c, line: 110
 #, c-format
 msgid ""
 "\n"
@@ -127,11 +127,11 @@ msgstr ""
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 69
-# File: src/c/JVM.c, line: 84
-# File: src/c/JVM.c, line: 147
-# File: src/c/JVM.c, line: 181
-# File: src/c/JVM.c, line: 208
+# File: src/c/JVM.c, line: 70
+# File: src/c/JVM.c, line: 85
+# File: src/c/JVM.c, line: 154
+# File: src/c/JVM.c, line: 188
+# File: src/c/JVM.c, line: 215
 # File: src/c/InitializeJVM.c, line: 40
 # File: src/c/InitializeJVM.c, line: 53
 msgid "Error"
@@ -150,9 +150,14 @@ msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 195
+# File: src/c/JVM.c, line: 202
 #, c-format
 msgid "Error in the creation of the Java VM: %s\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 120
+#, c-format
+msgid "Error: %s\n"
 msgstr ""
 #
 # File: src/c/getJvmOptions.c, line: 63
@@ -172,6 +177,20 @@ msgstr ""
 # File: src/c/loadClasspath.c, line: 89
 #, c-format
 msgid "Error: could not parse file %s\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 121
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 122
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 #
 # File: src/c/JVM_commons.c, line: 101
@@ -200,6 +219,11 @@ msgid ""
 "Some problems during the loading of the Java libraries occured.\n"
 "This could lead to inconsistent behaviours.\n"
 "Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 124
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
 msgstr ""
 #
 # File: src/c/JVM_commons.c, line: 98
