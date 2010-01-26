@@ -20,8 +20,11 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosComponent;
 
 /**
- * A rawPalette configurator is used to configure any rawPalette state. It can easily
- * enable and disable rawPalette.
+ * A rawPalette configurator is used to configure any rawPalette state. It can
+ * easily enable and disable rawPalette.
+ * 
+ * By now the implementation is suboptimal, it needs configuration saving then
+ * loading to perform activation/deactivation.
  */
 public class PaletteConfigurator {
 	private final PaletteConfiguratorView view;
@@ -79,7 +82,12 @@ public class PaletteConfigurator {
 			assert palette instanceof XcosComponent;
 			PaletteDiagram diagram = (PaletteDiagram) ((XcosComponent) palette).getGraph();
 			String fileName = diagram.getFileName();
-			ConfigXcosManager.removeUserDefinedPalettes(fileName);
+			if (enable) {
+				PaletteManager.getInstance().getModel().addUserDefinedNode(diagram);
+				ConfigXcosManager.saveUserDefinedPalettes(fileName);
+			} else {
+				ConfigXcosManager.removeUserDefinedPalettes(fileName);
+			}
 		}
 		
 		PaletteManager.getInstance().getModel().reloadTree();
