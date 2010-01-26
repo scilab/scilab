@@ -125,6 +125,8 @@ Compilation:
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
 
+* bug 5665 fixed - Under Linux, hdf5 module can now be compiled without Java
+
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
 
