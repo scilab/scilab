@@ -14,6 +14,8 @@ package org.scilab.modules.xcos.graph;
 
 import java.io.File;
 
+import javax.swing.ScrollPaneConstants;
+
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -47,6 +49,7 @@ public class PaletteDiagram extends XcosDiagram {
 	setGridVisible(false);
 	setCellsDeletable(false);
 	setCellsEditable(false);
+	this.getAsComponent().setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	
 	getUndoManager().setEventsEnabled(false);
     }
