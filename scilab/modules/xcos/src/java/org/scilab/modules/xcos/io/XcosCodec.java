@@ -53,7 +53,7 @@ public class XcosCodec extends mxCodec {
 			"selectionModel", "multiplicities", "savedFile", "container" };
 	
     /**
-     * Register usefull codecs and packages for encoding/decoding diagrams
+     * Register packages for encoding/decoding diagrams
      */
     static {
 	// Add all xcos packages
@@ -72,7 +72,12 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
 	// Add some hdf5 packages to have all scilab types known
 	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
-	
+    }
+    
+    /**
+     * Install codecs for serializable instance
+     */
+    static {
 	String[] ignore = {//"exprs",
 		//"realParameters",
 		//"integerParameters",
@@ -166,10 +171,15 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(controltPortCodec);
     }
     
+    /** Default constructor */
     public XcosCodec() {
 	super();
     }
 
+    /**
+     * Default constructor with an associated document
+     * @param document the document instance we have to decode
+     */
     public XcosCodec(Document document) {
 	super(document);
     }
