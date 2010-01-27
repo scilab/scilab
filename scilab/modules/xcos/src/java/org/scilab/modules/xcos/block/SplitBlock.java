@@ -79,13 +79,10 @@ public final class SplitBlock extends BasicBlock {
 		if (target1 instanceof ExplicitInputPort) {
 			addPort(new ExplicitOutputPort());
 			addPort(new ExplicitOutputPort());
-			addPort(new ExplicitOutputPort());
 		} else if (target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort) {
 			addPort(new ImplicitOutputPort());
 			addPort(new ImplicitOutputPort());
-			addPort(new ImplicitOutputPort());
 		} else if (target1 instanceof ControlPort) {
-			addPort(new CommandPort());
 			addPort(new CommandPort());
 			addPort(new CommandPort());
 		}
