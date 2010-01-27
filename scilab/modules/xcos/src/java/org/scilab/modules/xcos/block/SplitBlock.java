@@ -111,33 +111,12 @@ public final class SplitBlock extends BasicBlock {
 	}
 	
 	/**
-	 * @param port command port to add
+	 * Add a port on the block.
+     * @param port The port to be added to the block
+	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
 	 */
-	public void addPort(CommandPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port control port to add
-	 */
-	public void addPort(ControlPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port input port to add
-	 */
-	public void addPort(InputPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port output port to add
-	 */
-	public void addPort(OutputPort port) {
+	@Override
+	public void addPort(BasicPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}

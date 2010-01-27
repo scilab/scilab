@@ -20,10 +20,7 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -145,15 +142,7 @@ public final class BlockFactory {
 
 			/* Clone children */
 			for (int i = 0; i < block.getChildCount(); i++) {
-				if (block.getChildAt(i) instanceof InputPort) {
-					clone.addPort((InputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof OutputPort) {
-					clone.addPort((OutputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof CommandPort) {
-					clone.addPort((CommandPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof ControlPort) {
-					clone.addPort((ControlPort) block.getChildAt(i).clone());
-				}
+				clone.addPort((BasicPort) block.getChildAt(i).clone());
 			}
 
 			return clone;
