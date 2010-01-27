@@ -45,8 +45,15 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
 
 public class XcosCodec extends mxCodec {
+	private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet",
+			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
+			"savedFile", "multiplicities" };
+	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
+			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
+			"selectionModel", "multiplicities", "savedFile", "container" };
+	
     /**
-     * Register usefull codecs and packages for encoding/decoding diagrams
+     * Register packages for encoding/decoding diagrams
      */
     static {
 	// Add all xcos packages
@@ -65,7 +72,12 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.port.output");
 	// Add some hdf5 packages to have all scilab types known
 	mxCodecRegistry.addPackage("org.scilab.modules.hdf5.scilabTypes");
-	
+    }
+    
+    /**
+     * Install codecs for serializable instance
+     */
+    static {
 	String[] ignore = {//"exprs",
 		//"realParameters",
 		//"integerParameters",
@@ -132,11 +144,9 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile", "multiplicities"};
-	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "container"};
-	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
+	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 
 	//Link 
@@ -161,10 +171,15 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(controltPortCodec);
     }
     
+    /** Default constructor */
     public XcosCodec() {
 	super();
     }
 
+    /**
+     * Default constructor with an associated document
+     * @param document the document instance we have to decode
+     */
     public XcosCodec(Document document) {
 	super(document);
     }

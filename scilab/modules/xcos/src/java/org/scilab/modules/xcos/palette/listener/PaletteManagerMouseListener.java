@@ -85,7 +85,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 							ConfigXcosManager
 									.removeUserDefinedPalettes(fileName);
 						}
-					} else if (currentNode.getUserObject() instanceof Palette) {
+					} else {
+						assert currentNode.getUserObject() instanceof Palette;
 						Palette p = (Palette) currentNode.getUserObject();
 						
 						p.getModel().setEnable(false);

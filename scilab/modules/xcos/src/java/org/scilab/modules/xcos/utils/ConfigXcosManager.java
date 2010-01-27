@@ -125,14 +125,8 @@ public final class ConfigXcosManager {
      *             When an error occurs
      */
     private static void copyFile(File in, File out) throws IOException {
-	FileInputStream fis = null;
-	try {
-	    fis = new FileInputStream(in);
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}
-	FileOutputStream fos = null;
-	fos = new FileOutputStream(out);
+	FileInputStream fis = new FileInputStream(in);
+	FileOutputStream fos = new FileOutputStream(out);
 
 	byte[] buf = new byte[BUFSIZE];
 	int i = 0;

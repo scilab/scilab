@@ -15,80 +15,30 @@ package org.scilab.modules.xcos.palette.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
-import javax.swing.SwingConstants;
-
-import org.scilab.modules.xcos.palette.Palette;
-import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
- * Implement a view of a block category.
- * 
- * As the JScrollPane doesn't allow a to specify it's associated layout, we have
- * to use a {@link #mainArea} to perform what we want there. Never use the
- * {@link JScrollPane#add(java.awt.Component)} on this class but use
- * {@link #getMainArea()} then {@link JPanel#add(java.awt.Component)} instead.
+ * Implement a view for the configurator.
  */
-public class PaletteView extends JPanel implements Scrollable {
-	private Palette controller;
-	private boolean isLoaded;
-
+public class PaletteConfiguratorListView extends JPanel implements Scrollable {
+	private static final LayoutManager LAYOUT =
+		new ModifiedFlowLayout(FlowLayout.LEADING, 5, 5);
+	private static final int MIN_DIMENSION = 125;
+	private static final Dimension MINIMUM = new Dimension(MIN_DIMENSION, MIN_DIMENSION);
+	
 	/**
 	 * Default constructor
-	 * 
-	 * @param controller
-	 *            The associated controller
 	 */
-	public PaletteView(Palette controller) {
-		this.controller = controller;
-		initComponents();
-	}
-
-	/** Setup component */
-	private void initComponents() {
+	public PaletteConfiguratorListView() {
 		setBackground(Color.WHITE);
-		setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,
-				XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
-		setMinimumSize(new Dimension(
-				(XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-				XcosConstants.PALETTE_BLOCK_HEIGHT
-						+ XcosConstants.PALETTE_VMARGIN));
+		setLayout(LAYOUT);
+		setMinimumSize(MINIMUM);
 	}
-
-	/**
-	 * @return true if the view is already loaded
-	 */
-	public boolean isLoaded() {
-		return isLoaded;
-	}
-
-	/**
-	 * This class update the status of the view. If you want to save memory,
-	 * unload the view when hidden.
-	 * 
-	 * @param b
-	 *            the load status
-	 */
-	public void setLoaded(boolean b) {
-		if (!b) {
-			removeAll();
-		}
-
-		isLoaded = b;
-	}
-
-	/**
-	 * @return the localized message
-	 * @see java.awt.Component#toString()
-	 */
-	@Override
-	public String toString() {
-		return controller.getModel().toString();
-	}
-
+	
 	/**
 	 * @return The prefered Scrollable dimension
 	 * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
@@ -112,13 +62,7 @@ public class PaletteView extends JPanel implements Scrollable {
 	 */
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
-		if (orientation == SwingConstants.VERTICAL) {
-			return XcosConstants.PALETTE_BLOCK_HEIGHT
-					+ XcosConstants.PALETTE_VMARGIN;
-		} else {
-			return XcosConstants.PALETTE_BLOCK_WIDTH
-					+ XcosConstants.PALETTE_HMARGIN;
-		}
+		return MIN_DIMENSION;
 	}
 
 	/**
@@ -152,10 +96,6 @@ public class PaletteView extends JPanel implements Scrollable {
 	 */
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
-		if (orientation == SwingConstants.VERTICAL) {
-			return XcosConstants.PALETTE_BLOCK_HEIGHT;
-		} else {
-			return XcosConstants.PALETTE_BLOCK_WIDTH;
-		}
+		return MIN_DIMENSION;
 	}
 }
