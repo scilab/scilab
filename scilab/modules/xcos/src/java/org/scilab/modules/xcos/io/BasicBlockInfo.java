@@ -40,7 +40,23 @@ import org.scilab.modules.xcos.port.output.OutputPort;
  * scicos informations)
  */
 public final class BasicBlockInfo {
+// As this is the mapping string according to the Scicos simulator, it is
+// better to keep them as raw vectors instead of playing with reference
+// name.
+// CSOFF: MultipleStringLiterals
+	private static final String[] SCICOS_OBJ_FIELDS = {"Block", "graphics",
+			"model", "gui", "doc" };
+	private static final String[] SCICOS_MODEL_FIELDS = {"model", "sim", "in",
+			"in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
+			"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype",
+			"firing", "dep_ut", "label", "nzcross", "nmode", "equations" };
+	private static final String[] SCICOS_GRAPHIC_FIELDS = {"graphics", "orig",
+			"sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout",
+			"gr_i", "id", "in_implicit", "out_implicit" };
+// CSON: MultipleStringLiterals
 
+	private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
+	
     /**
      * Default constructor
      */
@@ -147,9 +163,7 @@ public final class BasicBlockInfo {
      * @return graphic structure of given block
      */
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
-	String[] graphicsFields = {"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
-		"id", "in_implicit", "out_implicit"};
-	ScilabMList graphics = new ScilabMList(graphicsFields);
+	ScilabMList graphics = new ScilabMList(SCICOS_GRAPHIC_FIELDS);
 
 	// Adjust block cause Scilab(0,0) is bottom left
 	double y = block.getGeometry().getY() + block.getGeometry().getHeight();
@@ -175,11 +189,11 @@ public final class BasicBlockInfo {
 
 	graphics.add(getAllLinkId(getAllCommandPorts(block, false))); // peout
 
-	ScilabList gr_i = new ScilabList();
+	ScilabList graphicsInstructionList = new ScilabList();
 	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\"" + block.getInterfaceFunctionName() + "\",sz(1),sz(2));");
-	gr_i.add(graphicsInstructions);
-	gr_i.add(new ScilabDouble(8));
-	graphics.add(gr_i); // gr_i
+	graphicsInstructionList.add(graphicsInstructions);
+	graphicsInstructionList.add(new ScilabDouble(GRAPHICS_INSTRUCTION_SIZE));
+	graphics.add(graphicsInstructionList); // gr_i
 
 	graphics.add(new ScilabString("")); // id
 
@@ -197,10 +211,7 @@ public final class BasicBlockInfo {
      * @return model structure of given block
      */
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
-	String[] modelFields = {"model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
-		"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label",
-		"nzcross", "nmode", "equations"};
-	ScilabMList model = new ScilabMList(modelFields);
+	ScilabMList model = new ScilabMList(SCICOS_MODEL_FIELDS);
 
 	model.add(block.getSimulationFunctionNameAndType()); // sim
 
@@ -282,8 +293,7 @@ public final class BasicBlockInfo {
      * @return Scilab structure of given block
      */
     public static ScilabMList getAsScilabObj(BasicBlock block) {
-	String[] objFields = {"Block", "graphics", "model", "gui", "doc"};
-	ScilabMList obj = new ScilabMList(objFields);
+	ScilabMList obj = new ScilabMList(SCICOS_OBJ_FIELDS);
 
 	obj.add(BasicBlockInfo.createScilabGraphicsProperties(block));
 	obj.add(BasicBlockInfo.createScilabModelProperties(block));
