@@ -105,6 +105,8 @@ Atoms:
 
 * bug 6389 fixed - Atoms GUI : "Update" button just removed the selected module
                    but didn't update it.
+                   
+* bug 6518 fixed - atomsRepositoryAdd() didn't accept local repositories.
 
 Compilation:
 ============
