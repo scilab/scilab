@@ -10,18 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="perctl">
+
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" xml:lang="en" xml:id="perctl">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>perctl</refname>
     <refpurpose> computation of percentils</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>p=perctl(x,y)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -34,7 +43,7 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>vector of positif values between 0 and 100.</para>
+          <para>vector of positif integer values between 0 and 100.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,20 +51,23 @@
   <refsection>
     <title>Description</title>
     <para>
-			Compute the matrix p of percentils (in increasing
-			order,  column  first) of  the  real  vector or  matrix
-			x indicated by the entries of y, the values
-			of entries of y must be positive integers between
-			0  and  100.   p   is  a  matrix  whose  type  is
-			length(y) x 2 and the content of its first column
-			are the percentils values.   The contents of its second
-			column are  the places  of the computed  percentiles in
-			the input matrix x.
-		</para>
+      Compute the matrix p of percentils (in increasing
+      order, column  first) of the real vector or matrix
+      x.</para>
+    <para>The percentils are indicated by the entries of y, the values
+      of entries of y must be positive integers between
+      0 and 100. </para>
+    <para>p is a matrix whose type is
+      length(y) x 2 and the content of its first column
+      are the percentils values.</para>
+    <para>The contents of its second
+      column are  the places of the computed percentiles in
+      the input matrix x.
+    </para>
     <para>
-			The minimum or maximum values in x are assigned to
-			percentiles for percent values outside that range.
-		</para>
+      The minimum or maximum values in x are assigned to
+      percentiles for percent values outside that range.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -81,9 +93,9 @@ p=perctl(x,y)
   <refsection>
     <title>Bibliography</title>
     <para>
-			HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
-			Statistical   Packages,   The  American   Statistician,
-			Nov.1996, Vol 50, No.4
-		</para>
+      HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
+      Statistical   Packages,   The  American   Statistician,
+      Nov.1996, Vol 50, No.4
+    </para>
   </refsection>
 </refentry>

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/tree/uiFindNode.sci, line: 115
 # File: macros/tree/uiFindNode.sci, line: 142
@@ -741,6 +741,11 @@ msgid ""
 "exist.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_waitbar.c, line: 206
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_toolbar.c, line: 57
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
@@ -1054,7 +1059,7 @@ msgstr ""
 msgid "Add color in listbox"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 58
 msgid "All %s files"
 msgstr ""
 #
@@ -1062,6 +1067,7 @@ msgstr ""
 msgid "All Scilab files"
 msgstr ""
 #
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 56
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 47
 msgid "All files"
 msgstr ""
@@ -1162,11 +1168,11 @@ msgstr ""
 msgid "Console &Font..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2233
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2235
 msgid "Console Background..."
 msgstr ""
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2214
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2216
 msgid "Console Font..."
 msgstr ""
 #
@@ -1198,7 +1204,7 @@ msgid "Display selection"
 msgstr ""
 #
 # File: demos/uicontrol.dem.sce, line: 71
-msgid "Do you relly want to quit Scilab?"
+msgid "Do you really want to quit Scilab?"
 msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 177
@@ -1370,7 +1376,7 @@ msgstr ""
 #
 # File: src/cpp/SetUiobjectVisible.cpp, line: 72
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 24
-# File: src/cpp/GetUiobjectVisible.cpp, line: 62
+# File: src/cpp/GetUiobjectVisible.cpp, line: 63
 # File: src/cpp/GetUicontrolRelief.cpp, line: 43
 # File: src/cpp/SetUicontrolFontName.cpp, line: 52
 # File: src/cpp/GetUicontrolHorizontalAlignment.cpp, line: 37
@@ -1522,6 +1528,10 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 177
 msgid "Save and execute"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 54
+msgid "Scicos files"
 msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 79
@@ -2039,7 +2049,7 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 167
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""

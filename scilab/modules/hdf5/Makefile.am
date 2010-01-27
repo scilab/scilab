@@ -19,20 +19,25 @@ HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \
 src/c/h5_readDataFromFile.c
 
+if NEED_JAVA
 HDF5_CPP_SOURCES =  src/jni/jhdf5load.hxx \
 src/jni/jhdf5load.cpp \
 src/jni/GiwsException.hxx \
 src/jni/GiwsException.cpp
 
+# This is due to an ugly hack for bug #5481
+FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
+else
+HDF5_CPP_SOURCES = 
+
+# This is due to an ugly hack for bug #5481
+FORCE_LOAD_SOURCES = 
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp
-
-
-# This is due to an ugly hack for bug #5481
-FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
@@ -93,7 +98,11 @@ pkglib_LTLIBRARIES = libscihdf5.la
 
 if HDF5
 # When Scilab is built with HDF5, we need some libraries for a workaround
+
+if NEED_JAVA
 pkglib_LTLIBRARIES += libscihdf5-forceload.la
+endif
+
 pkglib_LTLIBRARIES += libscihdf5-forceload-disable.la
 endif
 

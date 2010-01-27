@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/atomsAutoloadAdd.sci, line: 162
 # File: macros/atomsAutoloadAdd.sci, line: 167
@@ -39,22 +39,22 @@ msgstr ""
 msgid "\t - ''%s - %s'' is needed by ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 200
+# File: macros/atoms_internals/atomsDownload.sci, line: 222
 #, c-format
 msgid "\t - Local location : ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 233
+# File: macros/atoms_internals/atomsDownload.sci, line: 255
 #, c-format
 msgid "\t - MD5SUM expected : ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 234
+# File: macros/atoms_internals/atomsDownload.sci, line: 256
 #, c-format
 msgid "\t - MD5SUM watched  : ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 199
+# File: macros/atoms_internals/atomsDownload.sci, line: 221
 #, c-format
 msgid "\t - URL            : ''%s''\n"
 msgstr ""
@@ -66,17 +66,17 @@ msgstr ""
 msgid "\t - You''ve asked ''%s - %s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 217
+# File: macros/atoms_internals/atomsDownload.sci, line: 239
 #, c-format
 msgid "\t - destination : ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 232
+# File: macros/atoms_internals/atomsDownload.sci, line: 254
 #, c-format
 msgid "\t - file            : ''%s''\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 216
+# File: macros/atoms_internals/atomsDownload.sci, line: 238
 #, c-format
 msgid "\t - source      : ''%s''\n"
 msgstr ""
@@ -109,7 +109,7 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 332
 # File: macros/atomsLoad.sci, line: 336
 #, c-format
-msgid "%s: An error accured while loading ''%s-%s''.\n"
+msgid "%s: An error occurred while loading ''%s-%s''.\n"
 msgstr ""
 #
 # File: macros/atomsLoad.sci, line: 197
@@ -118,17 +118,18 @@ msgstr ""
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr ""
 #
-# File: macros/atomsInstall.sci, line: 199
+# File: macros/atomsInstall.sci, line: 206
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
 msgstr ""
 #
-# File: macros/atomsInstall.sci, line: 387
+# File: macros/atomsInstall.sci, line: 439
 #, c-format
 msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
 msgstr ""
 #
-# File: macros/atomsInstall.sci, line: 344
+# File: macros/atomsInstall.sci, line: 363
+# File: macros/atomsInstall.sci, line: 392
 #, c-format
 msgid "%s: Error while creating the directory ''%s''.\n"
 msgstr ""
@@ -144,7 +145,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsToremoveRegister.sci, line: 43
 # File: macros/atoms_internals/atomsPackageIsCompatible.sci, line: 69
 # File: macros/atoms_internals/atomsToremoveUnregister.sci, line: 58
-# File: macros/atomsSetConfig.sci, line: 49
+# File: macros/atomsSetConfig.sci, line: 50
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -170,7 +171,7 @@ msgstr ""
 msgid "%s: Module ''%s'' is not installed.\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 112
+# File: macros/atoms_internals/atomsDownload.sci, line: 115
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
@@ -201,7 +202,7 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 42
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 48
-# File: macros/atomsInstall.sci, line: 301
+# File: macros/atomsInstall.sci, line: 308
 #, c-format
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
@@ -223,21 +224,21 @@ msgid ""
 "access on this directory.\n"
 msgstr ""
 #
-# File: macros/atomsRemove.sci, line: 229
+# File: macros/atomsRemove.sci, line: 233
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) cannot been deleted, please check "
 "if you have write access on this directory : %s.\n"
 msgstr ""
 #
-# File: macros/atomsRemove.sci, line: 219
+# File: macros/atomsRemove.sci, line: 220
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 231
+# File: macros/atoms_internals/atomsDownload.sci, line: 253
 #, c-format
 msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
 msgstr ""
@@ -270,7 +271,7 @@ msgstr ""
 msgid "%s: The file ''%s'' cannot be written.\n"
 msgstr ""
 #
-# File: macros/atomsInstall.sci, line: 192
+# File: macros/atomsInstall.sci, line: 199
 #, c-format
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
 msgstr ""
@@ -281,12 +282,12 @@ msgstr ""
 msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 215
+# File: macros/atoms_internals/atomsDownload.sci, line: 237
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
 msgstr ""
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 198
+# File: macros/atoms_internals/atomsDownload.sci, line: 220
 #, c-format
 msgid "%s: The following file hasn''t been downloaded:\n"
 msgstr ""
@@ -322,7 +323,7 @@ msgstr ""
 msgid "%s: The package ''%s'' is not present in the struct.\n"
 msgstr ""
 #
-# File: macros/atomsRemove.sci, line: 248
+# File: macros/atomsRemove.sci, line: 252
 #, c-format
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
@@ -370,7 +371,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsIsDirectChild.sci, line: 40
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 24
 # File: macros/atoms_internals/atomsToremoveUnregister.sci, line: 24
-# File: macros/atomsSetConfig.sci, line: 31
+# File: macros/atomsSetConfig.sci, line: 32
 # File: macros/atomsDepTreeShow.sci, line: 38
 # File: macros/atomsShow.sci, line: 28
 # File: macros/atomsIsLoaded.sci, line: 41
@@ -719,8 +720,8 @@ msgstr ""
 # File: macros/atoms_internals/atomsIsDirectChild.sci, line: 47
 # File: macros/atoms_internals/atomsToremoveUnregister.sci, line: 31
 # File: macros/atoms_internals/atomsToremoveUnregister.sci, line: 35
-# File: macros/atomsSetConfig.sci, line: 38
-# File: macros/atomsSetConfig.sci, line: 42
+# File: macros/atomsSetConfig.sci, line: 39
+# File: macros/atomsSetConfig.sci, line: 43
 # File: macros/atomsTest.sci, line: 40
 # File: macros/atomsRepositoryAdd.sci, line: 44
 # File: macros/atomsRepositoryDel.sci, line: 40
@@ -942,12 +943,12 @@ msgstr ""
 # File: macros/atomsRemove.sci, line: 161
 #, c-format
 msgid ""
-"%s: You have not enought rights to remove any version of the package %s.\n"
+"%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 153
 #, c-format
-msgid "%s: You have not enought rights to remove the package %s (%s).\n"
+msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
 #
 # File: macros/atomsUpdate.sci, line: 68
@@ -978,41 +979,42 @@ msgstr ""
 msgid "%s: the package ''%s'' doesn''t exist.\n"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 56
+# File: macros/atoms_gui/atomsGui.sci, line: 60
 msgid "&?"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 55
+# File: macros/atoms_gui/atomsGui.sci, line: 59
 msgid "&Edit"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 53
+# File: macros/atoms_gui/atomsGui.sci, line: 57
 msgid "&File"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 54
+# File: macros/atoms_gui/atomsGui.sci, line: 58
 msgid "&Tools"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 74
+# File: macros/atoms_gui/atomsGui.sci, line: 78
 msgid "?"
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 35
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 53
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 71
-# File: macros/atoms_gui/atomsGui.sci, line: 43
+# File: macros/atoms_gui/atomsGui.sci, line: 47
 msgid "Atoms"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 78
+# File: macros/atoms_gui/atomsGui.sci, line: 82
 msgid "Atoms Help..."
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 33
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 51
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 69
-# File: macros/atoms_gui/atomsGui.sci, line: 21
+# File: macros/atoms_gui/atomsGui.sci, line: 22
+# File: macros/atoms_gui/atomsGui.sci, line: 24
 msgid "Atoms error"
 msgstr ""
 #
@@ -1022,7 +1024,7 @@ msgid "Author(s)"
 msgstr ""
 #
 # File: macros/atomsShow.sci, line: 83
-msgid "Automaticaly Installed"
+msgid "Automatically Installed"
 msgstr ""
 #
 # File: macros/atoms_gui/cbAtomsGui.sci, line: 271
@@ -1033,7 +1035,7 @@ msgstr ""
 msgid "Category(ies)"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 68
+# File: macros/atoms_gui/atomsGui.sci, line: 72
 msgid "Close"
 msgstr ""
 #
@@ -1054,11 +1056,11 @@ msgstr ""
 msgid "Entity"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 64
+# File: macros/atoms_gui/atomsGui.sci, line: 68
 msgid "File"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 198
+# File: macros/atoms_gui/atomsGui.sci, line: 202
 msgid "Install"
 msgstr ""
 #
@@ -1094,15 +1096,19 @@ msgstr ""
 msgid "Maintainer(s)"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 113
+# File: macros/atoms_gui/atomsGui.sci, line: 117
 msgid "Modules"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 21
-msgid "No Atoms module available. Check your Internet connection."
+# File: macros/atoms_gui/atomsGui.sci, line: 22
+msgid "No Atoms module is available. Please, check your Internet connection."
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 173
+# File: macros/atoms_gui/atomsGui.sci, line: 24
+msgid "No Atoms module is available: your repository list is empty."
+msgstr ""
+#
+# File: macros/atoms_gui/atomsGui.sci, line: 177
 msgid "No module selected"
 msgstr ""
 #
@@ -1110,7 +1116,7 @@ msgstr ""
 msgid "Package"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 187
+# File: macros/atoms_gui/atomsGui.sci, line: 191
 msgid "Remove"
 msgstr ""
 #
@@ -1142,7 +1148,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 208
+# File: macros/atoms_gui/atomsGui.sci, line: 212
 msgid "Update"
 msgstr ""
 #

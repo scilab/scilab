@@ -14,7 +14,7 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,8 +34,8 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -46,8 +46,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -66,7 +64,7 @@ import org.scilab.modules.xpad.utils.XpadMessages;
  * @author Sylvestre KOUMAR
  * @author Allan CORNET 
  * @author Antoine ELIAS
- *
+ * @author Vincent COUVERT
  */
 public final class FindAction extends DefaultAction {
 
@@ -74,10 +72,14 @@ public final class FindAction extends DefaultAction {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -5499974793656106222L;
+	
+	private static final int GAP = 5;
+	private static final int THREE = 3;
 
 	private static boolean windowAlreadyExist;
 
 	private static JFrame frame;
+	private static String previousSearch;
 
 	private JButton buttonClose;
 	private JButton buttonFind;
@@ -99,15 +101,12 @@ public final class FindAction extends DefaultAction {
 	private JPanel panelDirection;
 	private JPanel panelFind;
 	private JPanel panelFrame;
-	private JPanel panelOption;
 	private JPanel panelOptions;
 	private JPanel panelScope;
 	private JRadioButton radioAll;
 	private JRadioButton radioBackward;
 	private JRadioButton radioForward;
 	private JRadioButton radioSelection;
-
-	private static String previousSearch;
 
 	private String oldWord;
 	private String newWord;
@@ -150,11 +149,13 @@ public final class FindAction extends DefaultAction {
 			// else find and replace action is applied to the entire document
 			int startPos = getEditor().getTextPane().getSelectionStart();
 			int endPos = getEditor().getTextPane().getSelectionEnd();
-			int startLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(startPos);
-			int endLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(endPos);
+			int startLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
+										.getDefaultRootElement().getElementIndex(startPos);
+			int endLine = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument())
+										.getDefaultRootElement().getElementIndex(endPos);
 
-			if(startPos != endPos) {
-				if(startLine != endLine) {
+			if (startPos != endPos) {
+				if (startLine != endLine) {
 					radioSelection.setSelected(true);
 					comboFind.setSelectedIndex(-1);
 					comboReplace.setSelectedIndex(-1);
@@ -204,17 +205,12 @@ public final class FindAction extends DefaultAction {
 		frame = new JFrame();
 		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(475, 450));
 		frame.setTitle(XpadMessages.FIND_REPLACE);
 		frame.setResizable(false);
-		frame.pack();
-		frame.setLocationRelativeTo(Xpad.getEditor());
-		frame.setVisible(true);
 
 		buttonGroup1 = new ButtonGroup();
 		buttonGroup2 = new ButtonGroup();
 		panelFrame = new JPanel();
-		panelOption = new JPanel();
 		panelDirection = new JPanel();
 		radioForward = new JRadioButton();
 		radioBackward = new JRadioButton();
@@ -239,42 +235,37 @@ public final class FindAction extends DefaultAction {
 		buttonClose = new JButton();
 		labelStatus = new JLabel();
 
-		panelFrame.setLayout(new java.awt.BorderLayout());
+		panelFrame.setLayout(new BoxLayout(panelFrame, BoxLayout.PAGE_AXIS));
+		panelFrame.setBorder(BorderFactory.createEmptyBorder(2 * GAP, 2 * GAP, 2 * GAP, 2 * GAP));
 
-		panelOption.setMaximumSize(new java.awt.Dimension(457, 225));
-		panelOption.setMinimumSize(new java.awt.Dimension(457, 225));
-		panelOption.setPreferredSize(new java.awt.Dimension(457, 225));
+		/* Pattern to search and replace*/
+		labelFind.setText(XpadMessages.FIND);
+		labelReplace.setText(XpadMessages.REPLACE);
 
+		comboFind.setEditable(true);
+		comboReplace.setEditable(true);
+		
+		panelFind.setLayout(new GridLayout(2, 2, GAP, GAP));
+		panelFind.add(labelFind);
+		panelFind.add(comboFind);
+		panelFind.add(labelReplace);
+		panelFind.add(comboReplace);
+		panelFrame.add(panelFind);
+
+		/* Search direction selection*/
 		panelDirection.setBorder(BorderFactory.createTitledBorder(XpadMessages.DIRECTION));
 
 		buttonGroup1.add(radioForward);
 		radioForward.setText(XpadMessages.FORWARD);
-
 		buttonGroup1.add(radioBackward);
 		radioBackward.setText(XpadMessages.BACKWARD);
 
-		GroupLayout panelDirectionLayout = new GroupLayout(panelDirection);
-		panelDirection.setLayout(panelDirectionLayout);
-		panelDirectionLayout.setHorizontalGroup(
-				panelDirectionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelDirectionLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelDirectionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addComponent(radioForward)
-								.addComponent(radioBackward))
-								.addContainerGap(83, Short.MAX_VALUE))
-		);
-		panelDirectionLayout.setVerticalGroup(
-				panelDirectionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelDirectionLayout.createSequentialGroup()
-						.addComponent(radioForward)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(radioBackward)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		panelDirection.setLayout(new GridLayout(2, 1, GAP, GAP));
+		panelDirection.add(radioForward);
+		panelDirection.add(radioBackward);
 
+		/* Scope for search */
 		panelScope.setBorder(BorderFactory.createTitledBorder(XpadMessages.SCOPE));
-		panelScope.setMaximumSize(new java.awt.Dimension(457, 225));
 
 		buttonGroup2.add(radioAll);
 		radioAll.setText(XpadMessages.SELECT_ALL);
@@ -282,26 +273,17 @@ public final class FindAction extends DefaultAction {
 		buttonGroup2.add(radioSelection);
 		radioSelection.setText(XpadMessages.SELECTED_LINES);
 
-		GroupLayout panelScopeLayout = new GroupLayout(panelScope);
-		panelScope.setLayout(panelScopeLayout);
-		panelScopeLayout.setHorizontalGroup(
-				panelScopeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelScopeLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelScopeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addComponent(radioAll)
-								.addComponent(radioSelection))
-								.addContainerGap(69, Short.MAX_VALUE))
-		);
-		panelScopeLayout.setVerticalGroup(
-				panelScopeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelScopeLayout.createSequentialGroup()
-						.addComponent(radioAll)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(radioSelection)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-
+		panelScope.setLayout(new GridLayout(2, 1, GAP, GAP));
+		panelScope.add(radioAll);
+		panelScope.add(radioSelection);
+		
+		JPanel panelDirectionScope = new JPanel();
+		panelDirectionScope.setLayout(new GridLayout(1, 2, GAP, GAP));
+		panelDirectionScope.add(panelDirection);
+		panelDirectionScope.add(panelScope);
+		panelFrame.add(panelDirectionScope);
+		
+		/* Misc Options */
 		panelOptions.setBorder(BorderFactory.createTitledBorder(XpadMessages.OPTIONS));
 
 		checkCase.setText(XpadMessages.CASE_SENSITIVE);
@@ -310,102 +292,12 @@ public final class FindAction extends DefaultAction {
 		checkWarp.setText(XpadMessages.WORD_WRAP);
 
 		checkWarp.setSelected(true);
-		GroupLayout panelOptionsLayout = new GroupLayout(panelOptions);
-		panelOptions.setLayout(panelOptionsLayout);
-		panelOptionsLayout.setHorizontalGroup(
-				panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelOptionsLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addComponent(checkCase)
-								.addComponent(checkWhole))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-								.addGroup(panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-										.addComponent(checkWarp)
-										.addComponent(checkRegular))
-										.addContainerGap())
-		);
-		panelOptionsLayout.setVerticalGroup(
-				panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelOptionsLayout.createSequentialGroup()
-						.addGroup(panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(checkCase)
-								.addComponent(checkRegular))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panelOptionsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(checkWhole)
-										.addComponent(checkWarp))
-										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-
-		GroupLayout panelOptionLayout = new GroupLayout(panelOption);
-		panelOption.setLayout(panelOptionLayout);
-		panelOptionLayout.setHorizontalGroup(
-				panelOptionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(GroupLayout.Alignment.TRAILING, panelOptionLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelOptionLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addComponent(panelOptions, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(panelOptionLayout.createSequentialGroup()
-										.addComponent(panelDirection, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGap(18, 18, 18)
-										.addComponent(panelScope, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-										.addContainerGap())
-		);
-		panelOptionLayout.setVerticalGroup(
-				panelOptionLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelOptionLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelOptionLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(panelDirection, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(panelScope, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(panelOptions, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(24, Short.MAX_VALUE))
-		);
-
-		panelFrame.add(panelOption, java.awt.BorderLayout.CENTER);
-
-		panelFind.setPreferredSize(new java.awt.Dimension(457, 80));
-
-		labelFind.setText(XpadMessages.FIND);
-		labelReplace.setText(XpadMessages.REPLACE);
-
-		comboFind.setEditable(true);
-		comboReplace.setEditable(true);
-		
-		GroupLayout panelFindLayout = new GroupLayout(panelFind);
-		panelFind.setLayout(panelFindLayout);
-		panelFindLayout.setHorizontalGroup(
-				panelFindLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelFindLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelFindLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(labelReplace, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(labelFind, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panelFindLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-										.addComponent(comboFind, 0, 284, Short.MAX_VALUE)
-										.addComponent(comboReplace, 0, 284, Short.MAX_VALUE))
-										.addContainerGap())
-		);
-		panelFindLayout.setVerticalGroup(
-				panelFindLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelFindLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelFindLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(labelFind)
-								.addComponent(comboFind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panelFindLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(comboReplace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(labelReplace))
-										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-
-		panelFrame.add(panelFind, java.awt.BorderLayout.PAGE_START);
-
-		panelButton.setPreferredSize(new java.awt.Dimension(457, 140));
+		panelOptions.setLayout(new GridLayout(2, 2, GAP, GAP));
+		panelOptions.add(checkCase);
+		panelOptions.add(checkRegular);
+		panelOptions.add(checkWhole);
+		panelOptions.add(checkWarp);
+		panelFrame.add(panelOptions);
 
 		buttonFind.setText(XpadMessages.FIND_BUTTON);
 		buttonReplaceFind.setText(XpadMessages.FIND_REPLACE);
@@ -414,60 +306,25 @@ public final class FindAction extends DefaultAction {
 		buttonClose.setText(XpadMessages.CLOSE);
 		labelStatus.setText("");
 
-		GroupLayout panelButtonLayout = new GroupLayout(panelButton);
-		panelButton.setLayout(panelButtonLayout);
-		panelButtonLayout.setHorizontalGroup(
-				panelButtonLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelButtonLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panelButtonLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addGroup(panelButtonLayout.createSequentialGroup()
-										.addComponent(buttonReplace)
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(buttonReplaceAll))
-										.addGroup(panelButtonLayout.createSequentialGroup()
-												.addComponent(labelStatus, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-												.addGap(18, 18, 18)
-												.addComponent(buttonClose))
-												.addGroup(panelButtonLayout.createSequentialGroup()
-														.addComponent(buttonFind)
-														.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-														.addComponent(buttonReplaceFind, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)))
-														.addContainerGap())
-		);
-
-		panelButtonLayout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonClose, buttonFind, buttonReplace, buttonReplaceAll, buttonReplaceFind});
-
-		panelButtonLayout.setVerticalGroup(
-				panelButtonLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(panelButtonLayout.createSequentialGroup()
-						.addGroup(panelButtonLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(buttonReplaceFind)
-								.addComponent(buttonFind))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panelButtonLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(buttonReplaceAll)
-										.addComponent(buttonReplace))
-										.addGap(18, 18, 18)
-										.addGroup(panelButtonLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-												.addComponent(buttonClose)
-												.addComponent(labelStatus))
-												.addContainerGap(29, Short.MAX_VALUE))
-		);
-
-		panelFrame.add(panelButton, java.awt.BorderLayout.PAGE_END);
-
-		GroupLayout layout = new GroupLayout(frame.getContentPane());
-		frame.getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panelFrame, GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-		);
-		layout.setVerticalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(panelFrame, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-		);
+		panelButton.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+		panelButton.setLayout(new GridLayout(THREE, THREE, GAP, GAP));
+		panelButton.add(new JLabel());
+		panelButton.add(buttonFind);
+		panelButton.add(buttonReplaceFind);
+		panelButton.add(new JLabel());
+		panelButton.add(buttonReplace);
+		panelButton.add(buttonReplaceAll);
+		panelButton.add(new JLabel());
+		panelButton.add(new JLabel());
+		panelButton.add(buttonClose);
 		
+		panelFrame.add(panelButton);
+
+		frame.setContentPane(panelFrame);
+		
+		frame.pack();
+		frame.setLocationRelativeTo(Xpad.getEditor());
+		frame.setVisible(true);
 		
 		buttonReplaceFind.setEnabled(false);
 		buttonReplace.setEnabled(false);
@@ -523,7 +380,7 @@ public final class FindAction extends DefaultAction {
 					}
 
 
-					public void focusLost(FocusEvent e) {}
+					public void focusLost(FocusEvent e) { }
 				});
 
 
@@ -637,17 +494,17 @@ public final class FindAction extends DefaultAction {
 				
 		/*comboReplace*/
 		comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) { }
 			public void mousePressed(MouseEvent e) {
 				closeComboPopUp();
 			}
-			public void mouseExited(MouseEvent e) {}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseClicked(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) { }
+			public void mouseEntered(MouseEvent e) { }
+			public void mouseClicked(MouseEvent e) { }
 		});
 		
 		comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-			public void keyTyped(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) { }
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				    closeFindReplaceWindow();
@@ -660,7 +517,7 @@ public final class FindAction extends DefaultAction {
 
 				updateFindReplaceButtonStatus();
 			}
-			public void keyPressed(KeyEvent e) {}
+			public void keyPressed(KeyEvent e) { }
 		});
 
 		comboReplace.addItemListener(new ItemListener() {
@@ -677,13 +534,13 @@ public final class FindAction extends DefaultAction {
 		
 		/*comboFind*/
 		comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent arg0) {}
+			public void mouseReleased(MouseEvent arg0) { }
 			public void mousePressed(MouseEvent arg0) {
 				closeComboPopUp();
 			}
-			public void mouseExited(MouseEvent arg0) {}
-			public void mouseEntered(MouseEvent arg0) {}
-			public void mouseClicked(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) { }
+			public void mouseEntered(MouseEvent arg0) { }
+			public void mouseClicked(MouseEvent arg0) { }
 		});
 
 		comboFind.addActionListener(new ActionListener() {
@@ -701,7 +558,7 @@ public final class FindAction extends DefaultAction {
 
 		comboFind.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
 			
-			public void keyTyped(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) { }
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				    closeFindReplaceWindow();
@@ -715,14 +572,14 @@ public final class FindAction extends DefaultAction {
 				
 			}
 			
-			public void keyPressed(KeyEvent e) {}
+			public void keyPressed(KeyEvent e) { }
 		});
 		
 		
 		frame.addWindowListener(new WindowListener() {
-			public void windowClosed(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowActivated(WindowEvent e) {}
+			public void windowClosed(WindowEvent e) { }
+			public void windowDeiconified(WindowEvent e) { }
+			public void windowActivated(WindowEvent e) { }
 			
 			public void windowClosing(WindowEvent e) {
 				FindAction.windowAlreadyExist = false;
@@ -730,19 +587,19 @@ public final class FindAction extends DefaultAction {
 
 			}
 			
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowOpened(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) { }
+			public void windowIconified(WindowEvent e) { }
+			public void windowOpened(WindowEvent e) { }
 		});
 		
 	}
 
 	private void closeComboPopUp() {
-		if(comboFind.isPopupVisible()) {
+		if (comboFind.isPopupVisible()) {
 			comboFind.hidePopup();
 		}
 
-		if(comboReplace.isPopupVisible()) {
+		if (comboReplace.isPopupVisible()) {
 			comboReplace.hidePopup();
 		}
 	}
@@ -751,7 +608,7 @@ public final class FindAction extends DefaultAction {
 		Object old = comboFind.getEditor().getItem();
 		comboFind.removeAllItems();
 		ArrayList<String> recentFind = ConfigXpadManager.getRecentSearch();
-		for(String item : recentFind) {
+		for (String item : recentFind) {
 			comboFind.addItem(item);
 		}
 
@@ -762,7 +619,7 @@ public final class FindAction extends DefaultAction {
 		Object old = comboReplace.getEditor().getItem();
 		comboReplace.removeAllItems();
 		ArrayList<String> recentReaplce = ConfigXpadManager.getRecentReplace();
-		for(String item : recentReaplce) {
+		for (String item : recentReaplce) {
 			comboReplace.addItem(item);
 		}
 
@@ -771,8 +628,8 @@ public final class FindAction extends DefaultAction {
 
 	public void saveFindReplaceConfiguration() {
 	
-		ConfigXpadManager.saveRecentSearch((String)comboFind.getEditor().getItem());
-		ConfigXpadManager.saveRecentReplace((String)comboReplace.getEditor().getItem());
+		ConfigXpadManager.saveRecentSearch((String) comboFind.getEditor().getItem());
+		ConfigXpadManager.saveRecentReplace((String) comboReplace.getEditor().getItem());
 		ConfigXpadManager.saveRegularExpression(checkRegular.isSelected());
 		ConfigXpadManager.saveWordWarp(checkWarp.isSelected());
 		ConfigXpadManager.saveWholeWord(checkWhole.isSelected());
@@ -866,7 +723,7 @@ public final class FindAction extends DefaultAction {
 		int saveEnd 	= endFindSelection;
 
 		String exp = (String) comboFind.getEditor().getItem();
-		if(exp.compareTo("") == 0) {
+		if (exp.compareTo("") == 0) {
 			return;
 		}
 		wordToFind = exp;
@@ -1048,7 +905,7 @@ public final class FindAction extends DefaultAction {
 		String find = (String) comboFind.getEditor().getItem();
 		String replace = (String) comboReplace.getEditor().getItem();
 
-		if(find.compareTo("") == 0 || replace.compareTo("") == 0) {
+		if (find.compareTo("") == 0 || replace.compareTo("") == 0) {
 			return;
 		}
 		oldWord = (String) find;
