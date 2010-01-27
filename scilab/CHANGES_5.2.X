@@ -17,7 +17,7 @@ Internationalization:
 
 * Ukrainian localization added (Thanks Yuri Chornoivan)
 
-* Many english typos have been fixed by (Thanks Yuri Chornoivan)
+* Many english typos have been fixed (Thanks Yuri Chornoivan)
 
 Xcos:
 =====
@@ -127,6 +127,8 @@ Compilation:
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
 
+* bug 5665 fixed - Under Linux, hdf5 module can now be compiled without Java
+
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
 
@@ -154,6 +156,8 @@ Bug fixes:
 
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
+
+* bug 5436 fixed - The export to svg does not work with bar graphs.
 
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
