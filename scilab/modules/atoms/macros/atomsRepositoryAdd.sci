@@ -45,7 +45,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
 	end
 	
 	for i=1:size(url,"*")
-		if ~ regexp(url(i),valid_url_pattern,"o") == 1 then
+		if (part(url(i),1:7) <> "file://") & (~ regexp(url(i),valid_url_pattern,"o") == 1) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: This ("+url(i)+") is not a valid URL.\n"),"atomsRepositoryAdd",1));
 		end
 	end
