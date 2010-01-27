@@ -28,3 +28,4 @@ Bug fixes:
 
 * bug 6484 fixed - file did not return filenale of a opened fortran file.
 
+* bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits.
