@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.graph;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ScrollPaneConstants;
 
@@ -72,14 +74,18 @@ public class PaletteDiagram extends XcosDiagram {
 
 			/* change some diagram parameters */
 			/* delete all links */
+			List<Object> tobeRemoved = new ArrayList<Object>();
 			for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
 				Object obj = getModel().getChildAt(getDefaultParent(), i);
 				if (obj instanceof BasicLink || obj instanceof SplitBlock
 						|| obj instanceof TextBlock) {
-					getModel().remove(obj);
-					i--;
+					tobeRemoved.add(obj);
 				}
 			}
+			for (Object object : tobeRemoved) {
+				getModel().remove(object);
+			}
+			
 			ConfigXcosManager.saveUserDefinedPalettes(diagramFileName);
 			return true;
 		}
