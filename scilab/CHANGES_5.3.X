@@ -25,3 +25,6 @@ Bug fixes:
 ==========
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum from scilab.
+
+* bug 6484 fixed - file did not return filenale of a opened fortran file.
+
