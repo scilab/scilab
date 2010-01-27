@@ -45,12 +45,15 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
 
 public class XcosCodec extends mxCodec {
-	private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet",
+// The non saved fields are hardcoded and can have the same name.
+// CSOFF: MultipleStringLiterals
+	private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
 			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-			"savedFile", "multiplicities" };
+			"savedFile", "multiplicities"};
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "savedFile", "container" };
+// CSON: MultipleStringLiterals
 	
     /**
      * Register packages for encoding/decoding diagrams
