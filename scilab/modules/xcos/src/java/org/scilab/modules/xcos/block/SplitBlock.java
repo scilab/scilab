@@ -19,10 +19,8 @@ import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -79,13 +77,10 @@ public final class SplitBlock extends BasicBlock {
 		if (target1 instanceof ExplicitInputPort) {
 			addPort(new ExplicitOutputPort());
 			addPort(new ExplicitOutputPort());
-			addPort(new ExplicitOutputPort());
 		} else if (target1 instanceof ImplicitOutputPort || target1 instanceof ImplicitInputPort) {
 			addPort(new ImplicitOutputPort());
 			addPort(new ImplicitOutputPort());
-			addPort(new ImplicitOutputPort());
 		} else if (target1 instanceof ControlPort) {
-			addPort(new CommandPort());
 			addPort(new CommandPort());
 			addPort(new CommandPort());
 		}
@@ -111,33 +106,12 @@ public final class SplitBlock extends BasicBlock {
 	}
 	
 	/**
-	 * @param port command port to add
+	 * Add a port on the block.
+     * @param port The port to be added to the block
+	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
 	 */
-	public void addPort(CommandPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port control port to add
-	 */
-	public void addPort(ControlPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port input port to add
-	 */
-	public void addPort(InputPort port) {
-		super.addPort(port);
-		port.setVisible(false);
-	}
-
-	/**
-	 * @param port output port to add
-	 */
-	public void addPort(OutputPort port) {
+	@Override
+	public void addPort(BasicPort port) {
 		super.addPort(port);
 		port.setVisible(false);
 	}

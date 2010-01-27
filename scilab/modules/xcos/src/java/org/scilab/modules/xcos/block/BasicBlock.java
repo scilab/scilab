@@ -491,56 +491,32 @@ public class BasicBlock extends XcosUIDObject {
     }
     
     /**
-     * @param port input port to add
+     * Add a port on the block.
+     * @param port The port to be added to the block
      */
-    public void addPort(InputPort port) {
+    public void addPort(BasicPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
+    	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
     }
 
-    /**
-     * @param port output port to add
-     */
-    public void addPort(OutputPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
-    }
+	/**
+	 * @return command ports initial state
+	 */
+	public ScilabDouble getAllCommandPortsInitialStates() {
+		final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(
+				this, false, CommandPort.class);
+		if (cmdPorts.isEmpty()) {
+			return new ScilabDouble();
+		}
 
-    /**
-     * @param port command port to add
-     */
-    public void addPort(CommandPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
-    }
+		double[][] data = new double[cmdPorts.size()][1];
+		for (int i = 0; i < cmdPorts.size(); ++i) {
+			data[i][0] = cmdPorts.get(i).getInitialState();
+		}
 
-    /**
-     * @param port control port to add
-     */
-    public void addPort(ControlPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
-    }
-
-    /**
-     * @return command ports initial state
-     */
-    public ScilabDouble getAllCommandPortsInitialStates() {
-	if (BasicBlockInfo.getAllCommandPorts(this, false).isEmpty()) {
-	    return new ScilabDouble();
+		return new ScilabDouble(data);
 	}
-
-	double[][] data = new double[BasicBlockInfo.getAllCommandPorts(this, false).size()][1];
-	for (int i = 0; i < BasicBlockInfo.getAllCommandPorts(this, false).size(); ++i) {
-	    data[i][0] = BasicBlockInfo.getAllCommandPorts(this, false).get(i).getInitialState();
-	}
-
-	return new ScilabDouble(data);
-    }
 
     /**
      * @return name and type of the simulation function
