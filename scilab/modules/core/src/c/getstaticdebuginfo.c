@@ -9,6 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+/* !!! PLEASE DO NOT TRANSLATE STRINGS IN THIS FILE SEE BUG 5505 !!! */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdio.h>
