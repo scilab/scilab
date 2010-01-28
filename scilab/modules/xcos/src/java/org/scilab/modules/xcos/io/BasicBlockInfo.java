@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.io;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
