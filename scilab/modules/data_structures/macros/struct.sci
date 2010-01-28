@@ -13,6 +13,8 @@ function s=struct(varargin)
 
 rhs=argn(2)
 
+fields=["st","dims"];
+
 if rhs==0 then
   // No Matlab equivalent
   s=mlist(fields,int32([0,0]))
@@ -26,18 +28,15 @@ end
 nbfields=size(varargin)/2
 
 dims=[]
-fields = [];
 for kf=1:2:size(varargin)
   if varargin(kf)=="dims" then
     error(msprintf(gettext("%s: ''dims'' can not be used as a field name.\n"),"struct"));
   end
-  if or(varargin(kf)==fields) then
+  if or(varargin(kf)==fields(2:$)) then
     error(msprintf(gettext("%s: field name ''%s'' defined twice.\n"),"struct",varargin(kf)));
   end
   fields=[fields varargin(kf)]
 end
-
-fields=["st","dims", fields]
 
 dims=[1 1]
 // Search struct size
