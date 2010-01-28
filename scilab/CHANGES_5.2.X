@@ -235,6 +235,9 @@ Bug fixes:
 
 * bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
 
+* bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
+
+
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
 
