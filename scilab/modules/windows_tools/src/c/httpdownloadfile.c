@@ -20,6 +20,7 @@
 /* http://msdn2.microsoft.com/en-us/library/aa385098.aspx */
 /*--------------------------------------------------------------------------*/
 #define MO 0x100000 /* Read 1 Mo by 1Mo. */
+#define OPENURL_MODE INTERNET_OPEN_TYPE_PRECONFIG
 static BOOL isValidURL(char * szURL);
 /*--------------------------------------------------------------------------*/
 static HINSTANCE WinINETDll = NULL;
@@ -95,7 +96,7 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 		char szHeader[]="Accept: */*\r\n\r\n"; 
 		HINTERNET hiDownload;
 
-		hiConnex = dynlib_InternetOpen("Scilab_Download",INTERNET_OPEN_TYPE_PRECONFIG,NULL,NULL,0);
+		hiConnex = dynlib_InternetOpen("Scilab_Download", OPENURL_MODE,NULL,NULL,0);
 		if(hiConnex == NULL) return HTTP_DOWNLOAD_ERROR_INTERNET_OPEN;
 
 		if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
@@ -220,7 +221,7 @@ static BOOL isValidURL(char *szURL)
 	DWORD dwStatusSize = sizeof(dwStatus);
 	DWORD dwIndex = 0;
 
-	hiConnex = dynlib_InternetOpen("Scilab_Download",INTERNET_OPEN_TYPE_DIRECT,NULL,NULL,0);
+	hiConnex = dynlib_InternetOpen("Scilab_Download", OPENURL_MODE,NULL,NULL,0);
 	if(hiConnex == NULL) return HTTP_DOWNLOAD_ERROR_INTERNET_OPEN;
 
 	if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
