@@ -35,17 +35,13 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.ExplicitInputPort;
-import org.scilab.modules.xcos.port.input.ImplicitInputPort;
-import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
-import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -57,8 +53,24 @@ import com.mxgraph.util.mxEventObject;
  *
  */
 public final class SuperBlock extends BasicBlock {
-
 	private static final long serialVersionUID = 3005281208417373333L;
+	/**
+	 * The simulation name (linked to Xcos-core)
+	 */
+	private static final String SIMULATION_NAME = "super";
+	/**
+	 * The interfunction name (linked to Xcos-core)
+	 */
+	private static final String INTERFUNCTION_NAME = "SUPER_f";
+	/**
+	 * The simulation name on a masked status (linked to Xcos-core)
+	 */
+	private static final String MASKED_SIMULATION_NAME = "csuper";
+	/**
+	 * The interfunction name on a masked status (linked to Xcos-core)
+	 */
+	private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
+	
 	private SuperBlockDiagram child;
 
 	/**
@@ -104,8 +116,8 @@ public final class SuperBlock extends BasicBlock {
 	@Override
 	protected void setDefaultValues() {
 		super.setDefaultValues();
-		setInterfaceFunctionName("SUPER_f");
-		setSimulationFunctionName("super");
+		setInterfaceFunctionName(INTERFUNCTION_NAME);
+		setSimulationFunctionName(SIMULATION_NAME);
 		setRealParameters(new ScilabDouble());
 		setIntegerParameters(new ScilabDouble());
 		setObjectsParameters(new ScilabList());
@@ -199,11 +211,6 @@ public final class SuperBlock extends BasicBlock {
 			menu.getAsSimpleContextMenu().addSeparator();
 			menu.add(CodeGenerationAction.createMenu(graph));
 
-			/*
-			 * FIXME: It is not possible to use Mask. So remove any possibility.
-			 * Mask removing only option is not applicable : if remove the mask
-			 * you have no way to edit the values anymore.
-			 */
 			Menu maskMenu = ScilabMenu.createMenu();
 			maskMenu.setText(XcosMessages.SUPERBLOCK_MASK);
 
@@ -293,8 +300,8 @@ public final class SuperBlock extends BasicBlock {
 			Object cell = child.getModel().getChildAt(
 					child.getDefaultParent(), i);
 			if (klass.isInstance(cell)) {
-				// Here we are sure that the cell is an instance of T. Thus we
-				// can safely cast it.
+				// According to the test we are sure that the cell is an
+				// instance of T. Thus we can safely cast it.
 				list.add((T) cell);
 			}
 		}
@@ -389,13 +396,9 @@ public final class SuperBlock extends BasicBlock {
 	 * force blocks update
 	 */
 	public void updateAllBlocksColor() {
-		updateBlocksColor(getAllExplicitInBlock());
-		updateBlocksColor(getAllImplicitInBlock());
-		updateBlocksColor(getAllEventInBlock());
-
-		updateBlocksColor(getAllExplicitOutBlock());
-		updateBlocksColor(getAllImplicitOutBlock());
-		updateBlocksColor(getAllEventOutBlock());
+		for (IOBlocks block : IOBlocks.values()) {
+			updateBlocksColor(getAllTypedBlock(block.getReferencedClass()));
+		}
 	}
 
 	/**
@@ -440,137 +443,35 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 
-		updateExportedExplicitInputPort();
-		updateExportedImplicitInputPort();
-		updateExportedEventInputPort();
-		updateExportedExplicitOutputPort();
-		updateExportedImplicitOutputPort();
-		updateExportedEventOutputPort();
+		for (IOBlocks block : IOBlocks.values()) {
+			updateExportedTypedPort(block);
+		}
 		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
 	}
 
 	/**
-	 * update explicit input super block ports in parent diagram
+	 * Update the superblock IO ports according to the values of its child.
+	 * @param block The blocks to work on
 	 */
-	private void updateExportedExplicitInputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitInBlock());
-		List<ExplicitInputPort> ports = BasicBlockInfo
-				.getAllExplicitInputPorts(this, false);
+	private void updateExportedTypedPort(IOBlocks block) {
+		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllTypedBlock(block.getReferencedClass()));
+		List< ? extends BasicPort> ports = BasicBlockInfo
+				.getAllTypedPorts(this, false, block.getReferencedPortClass());
 
 		int portCount = ports.size();
 
-		while (blockCount > portCount) { // add if required
-			ExplicitInputPort port = new ExplicitInputPort();
-			port.setDefaultValues();
-			addPort(port);
-			portCount++;
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
-	}
-
-	/**
-	 * update implicit input super block ports in parent diagram
-	 */
-	private void updateExportedImplicitInputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitInBlock());
-		List<ImplicitInputPort> ports = BasicBlockInfo
-				.getAllImplicitInputPorts(this, false);
-
-		int portCount = ports.size();
-
-		while (blockCount > portCount) { // add if required
-			addPort(new ImplicitInputPort());
-			portCount++;
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
-	}
-
-	/**
-	 * update event input super block ports in parent diagram
-	 */
-	private void updateExportedEventInputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventInBlock());
-		List<ControlPort> ports = BasicBlockInfo
-				.getAllControlPorts(this, false);
-
-		int portCount = ports.size();
-
-		while (blockCount > portCount) { // add if required
-			addPort(new ControlPort());
-			portCount++;
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
-	}
-
-	/**
-	 * update explicit output super block ports in parent diagram
-	 */
-	private void updateExportedExplicitOutputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllExplicitOutBlock());
-		List<ExplicitOutputPort> ports = BasicBlockInfo
-				.getAllExplicitOutputPorts(this, false);
-
-		int portCount = ports.size();
-
-		while (blockCount > portCount) { // add if required
-			ExplicitOutputPort port = new ExplicitOutputPort();
-			port.setDefaultValues();
-			addPort(port);
-			portCount++;
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
-	}
-
-	/**
-	 * update implicit output super block ports in parent diagram
-	 */
-	private void updateExportedImplicitOutputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllImplicitOutBlock());
-		List<ImplicitOutputPort> ports = BasicBlockInfo
-				.getAllImplicitOutputPorts(this, false);
-
-		int portCount = ports.size();
-
-		while (blockCount > portCount) { // add if required
-			addPort(new ImplicitOutputPort());
-			portCount++;
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
-	}
-
-	/**
-	 * update event output super block ports in parent diagram
-	 */
-	private void updateExportedEventOutputPort() {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllEventOutBlock());
-		List<CommandPort> ports = BasicBlockInfo
-				.getAllCommandPorts(this, false);
-
-		int portCount = ports.size();
-
-		while (blockCount > portCount) { // add if required
-			addPort(new CommandPort());
-			portCount++;
+		try {
+			while (blockCount > portCount) { // add if required
+				BasicPort port;
+					port = block.getReferencedPortClass().newInstance();
+					port.setDefaultValues();
+					addPort(port);
+					portCount++;
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
 
 		while (portCount > blockCount) { // remove if required
@@ -583,22 +484,22 @@ public final class SuperBlock extends BasicBlock {
 	 * Mask the SuperBlock
 	 */
 	public void mask() {
-		setInterfaceFunctionName("DSUPER");
-		setSimulationFunctionName("csuper");
+		setInterfaceFunctionName(MASKED_INTERFUNCTION_NAME);
+		setSimulationFunctionName(MASKED_SIMULATION_NAME);
 	}
 
 	/**
 	 * Unmask the SuperBlock
 	 */
 	public void unmask() {
-		setInterfaceFunctionName("SUPER_f");
-		setSimulationFunctionName("super");
+		setInterfaceFunctionName(INTERFUNCTION_NAME);
+		setSimulationFunctionName(SIMULATION_NAME);
 	}
 
 	/**
 	 * @return True is the SuperBlock is masked, false otherwise
 	 */
 	public boolean isMasked() {
-		return getInterfaceFunctionName().compareTo("SUPER_f") != 0;
+		return getInterfaceFunctionName().compareTo(INTERFUNCTION_NAME) != 0;
 	}
 }
