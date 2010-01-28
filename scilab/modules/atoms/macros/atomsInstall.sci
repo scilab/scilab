@@ -452,7 +452,8 @@ function result = atomsInstall(packages,section)
 		result = [ result ; atomsGetInstalledDetails([this_package_name this_package_version]) ];
 		
 		// Save the description
-		// Needed if the toolbox d
+		// Needed to remove the toolbox if it's has been removed from the 
+		// repository list
 		// =====================================================================
 		
 		DESCRIPTION_file = atoms_system_directory+"DESCRIPTION_installed";

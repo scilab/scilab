@@ -22,6 +22,7 @@ src/exe/opt.c \
 src/exe/check.c
 
 libsciintersci_la_includedir=$(pkgincludedir)
+libsciintersci_la_include_HEADERS = includes/libinter.h
 
 pkglib_LTLIBRARIES = libsciintersci.la
 

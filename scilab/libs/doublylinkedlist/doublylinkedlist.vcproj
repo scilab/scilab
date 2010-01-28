@@ -43,7 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
@@ -206,7 +206,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"

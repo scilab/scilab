@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/optim_sa.sci, line: 119
 #, c-format
@@ -31,10 +31,6 @@ msgstr ""
 # File: macros/compute_initial_temp.sci, line: 60
 #, c-format
 msgid "%s: error - wrong accept type"
-msgstr ""
-#
-# File: etc/simulated_annealing.start, line: 24
-msgid "Simulated Annealing"
 msgstr ""
 #
 # File: macros/optim_sa.sci, line: 57

@@ -131,7 +131,6 @@ void destroy_hashtable_scilab_functions()
 /*----------------------------------------------------------------------------*/
 static BOOL doFindFunction(int *key,char *name, int *scilab_funptr)
 {
-	BOOL res;
 	int tmp[nsiz];
 	int const* keyToSearch= key;
 	if (name) 

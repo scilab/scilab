@@ -13,6 +13,10 @@
 package org.scilab.modules.xcos.graph;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.ScrollPaneConstants;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -47,6 +51,7 @@ public class PaletteDiagram extends XcosDiagram {
 	setGridVisible(false);
 	setCellsDeletable(false);
 	setCellsEditable(false);
+	this.getAsComponent().setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	
 	getUndoManager().setEventsEnabled(false);
     }
@@ -55,32 +60,37 @@ public class PaletteDiagram extends XcosDiagram {
      * @param diagramFileName palette file
      * @return status
      */
-    public boolean openDiagramAsPal(String diagramFileName) {
-	File theFile = new File(diagramFileName);
+	public boolean openDiagramAsPal(String diagramFileName) {
+		File theFile = new File(diagramFileName);
 
-	if (theFile.exists()) {
-	    boolean loaded = transformAndLoadFile(theFile, true);
-	    if (!loaded) {
-		return false;
-	    }
-	    setName(theFile.getName());
-	    setFileName(theFile.getAbsolutePath());
-	    getRubberBand().setEnabled(false);
+		if (theFile.exists()) {
+			boolean loaded = transformAndLoadFile(theFile, true);
+			if (!loaded) {
+				return false;
+			}
+			setName(theFile.getName());
+			setFileName(theFile.getAbsolutePath());
+			getRubberBand().setEnabled(false);
 
-	    /*change some diagram parameters*/
-	    /*delete all links*/
-	    for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
-		Object obj = getModel().getChildAt(getDefaultParent(), i); 
-		if (obj instanceof BasicLink || obj instanceof SplitBlock || obj instanceof TextBlock) {
-		    getModel().remove(obj);
-		    i--;
+			/* change some diagram parameters */
+			/* delete all links */
+			List<Object> tobeRemoved = new ArrayList<Object>();
+			for (int i = 0; i < getModel().getChildCount(getDefaultParent()); i++) {
+				Object obj = getModel().getChildAt(getDefaultParent(), i);
+				if (obj instanceof BasicLink || obj instanceof SplitBlock
+						|| obj instanceof TextBlock) {
+					tobeRemoved.add(obj);
+				}
+			}
+			for (Object object : tobeRemoved) {
+				getModel().remove(object);
+			}
+			
+			ConfigXcosManager.saveUserDefinedPalettes(diagramFileName);
+			return true;
 		}
-	    }
-	    ConfigXcosManager.saveUserDefinedPalettes(diagramFileName);
-	    return true;
+		return false;
 	}
-	return false;
-    }
 
     /**
      * @param newWidth update diagram width
@@ -161,9 +171,17 @@ public class PaletteDiagram extends XcosDiagram {
         this.name = name;
     }
 
-    public boolean isCellConnectable(Object cell) {
-	return false;
-    }
+	/**
+	 * Always return false as we cannot draw links on the palette diagram.
+	 * 
+	 * @param cell
+	 *            the cell we are workling on
+	 * @return always false
+	 * @see org.scilab.modules.xcos.graph.XcosDiagram#isCellConnectable(java.lang.Object)
+	 */
+	public boolean isCellConnectable(Object cell) {
+		return false;
+	}
 
     /**
      * @param fileName palette filename

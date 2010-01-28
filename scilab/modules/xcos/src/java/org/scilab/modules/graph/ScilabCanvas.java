@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
 import java.awt.Composite;
@@ -19,6 +19,8 @@ import java.awt.geom.AffineTransform;
 import java.util.Hashtable;
 
 import java.util.Map;
+
+import org.scilab.modules.graph.utils.ScilabConstants;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
@@ -29,12 +31,17 @@ import com.mxgraph.util.mxUtils;
  * 
  * This is tightly coupled to jgraphx internals.
  */
-public class XcosCanvas extends mxInteractiveCanvas {
+public class ScilabCanvas extends mxInteractiveCanvas {
 
+	/** The rotation step of the clockwise and anticlockwise rotation */
+	public static final int ROTATION_STEP = 90;
+	/** The max valid rotation value (always 360°) */
+	public static final int MAX_ROTATION = 360;
+	
 	private static final int OPACITY_MAX = 100;
 	
 	/** Default constructor */
-	public XcosCanvas() { }
+	public ScilabCanvas() { }
 	
 	/**
 	 * Draw the vertex
@@ -69,7 +76,7 @@ public class XcosCanvas extends mxInteractiveCanvas {
 
 			if (rotation != 0) {
 				g.rotate(Math.toRadians(rotation));
-				if (BlockPositioning.isNearHorizontalSide(rotation)) {
+				if (isNearHorizontalSide(rotation)) {
 					// x - h / 2, y - w / 2, h, w
 					xx = xx + (ww / 2) - (hh / 2);
 					yy = yy + (hh / 2) - (ww / 2);
@@ -122,9 +129,9 @@ public class XcosCanvas extends mxInteractiveCanvas {
 	 * @param style Style contents
 	 */
 	private void applyFlipAndMirror(Map<String, Object> style) {
-		String flip = mxUtils.getString(style, XcosConstants.STYLE_FLIP,
+		String flip = mxUtils.getString(style, ScilabConstants.STYLE_FLIP,
 				Boolean.FALSE.toString());
-		String mirror = mxUtils.getString(style, XcosConstants.STYLE_MIRROR,
+		String mirror = mxUtils.getString(style, ScilabConstants.STYLE_MIRROR,
 				Boolean.FALSE.toString());
 
 		// scale, 1st flip, 2nd mirror
@@ -176,5 +183,14 @@ public class XcosCanvas extends mxInteractiveCanvas {
 			}
 		}
 	}
+	
+    /**
+     * test if the angle correspond to the NORTH or SOUTH sides.
+     * @param angle The rotation value
+     * @return true if the angle is NORTH or SOUTH side value, false otherwise.
+     */
+    private static boolean isNearHorizontalSide(double angle) {
+    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
+    }
 }
 

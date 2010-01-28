@@ -61,9 +61,6 @@ import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -322,7 +319,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnU() {
+    public boolean isDependsOnU() {
 	return dependsOnU;
     }
 
@@ -336,7 +333,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnT() {
+    public boolean isDependsOnT() {
 	return dependsOnT;
     }
 
@@ -491,56 +488,32 @@ public class BasicBlock extends XcosUIDObject {
     }
     
     /**
-     * @param port input port to add
+     * Add a port on the block.
+     * @param port The port to be added to the block
      */
-    public void addPort(InputPort port) {
+    public void addPort(BasicPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
+    	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
     }
 
-    /**
-     * @param port output port to add
-     */
-    public void addPort(OutputPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
-    }
+	/**
+	 * @return command ports initial state
+	 */
+	public ScilabDouble getAllCommandPortsInitialStates() {
+		final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(
+				this, false, CommandPort.class);
+		if (cmdPorts.isEmpty()) {
+			return new ScilabDouble();
+		}
 
-    /**
-     * @param port command port to add
-     */
-    public void addPort(CommandPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
-    }
+		double[][] data = new double[cmdPorts.size()][1];
+		for (int i = 0; i < cmdPorts.size(); ++i) {
+			data[i][0] = cmdPorts.get(i).getInitialState();
+		}
 
-    /**
-     * @param port control port to add
-     */
-    public void addPort(ControlPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
-    }
-
-    /**
-     * @return command ports initial state
-     */
-    public ScilabDouble getAllCommandPortsInitialStates() {
-	if (BasicBlockInfo.getAllCommandPorts(this, false).isEmpty()) {
-	    return new ScilabDouble();
+		return new ScilabDouble(data);
 	}
-
-	double[][] data = new double[BasicBlockInfo.getAllCommandPorts(this, false).size()][1];
-	for (int i = 0; i < BasicBlockInfo.getAllCommandPorts(this, false).size(); ++i) {
-	    data[i][0] = BasicBlockInfo.getAllCommandPorts(this, false).get(i).getInitialState();
-	}
-
-	return new ScilabDouble(data);
-    }
 
     /**
      * @return name and type of the simulation function
@@ -570,8 +543,8 @@ public class BasicBlock extends XcosUIDObject {
      * @param modifiedBlock the new settings
      */
     public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.dependsOnT());
-	setDependsOnU(modifiedBlock.dependsOnU());
+	setDependsOnT(modifiedBlock.isDependsOnT());
+	setDependsOnU(modifiedBlock.isDependsOnU());
 	setExprs(modifiedBlock.getExprs());
 
 	setRealParameters(modifiedBlock.getRealParameters());
@@ -584,86 +557,21 @@ public class BasicBlock extends XcosUIDObject {
 
 	setEquations(modifiedBlock.getEquations());
 
-
-	List< ? extends BasicPort> modifiedPorts = null;
-	List< ? extends BasicPort> ports = null;
-	
-	// Check if new input port have been added
-	modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllInputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((InputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    }
-	} else { // Check if input ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllInputPorts(this, false);
+		// Update the children according to the modified block children. We are
+		// working on the last index in order to simplify the List.remove()
+		// call.
+		final int oldChildCount = getChildCount();
+		final int newChildCount = modifiedBlock.getChildCount();
+		final int portStep = newChildCount - oldChildCount;
+		if (portStep > 0) {
+			for (int i = portStep - 1; i >= 0; i--) {
+				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
+			}
+		} else {
+			for (int i = -portStep - 1; i >= 0; i--) {
+				removePort((BasicPort) getChildAt(newChildCount + i));
+			}
 		}
-	    }
-	}
-
-	// Check if new output port have been added
-	modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((OutputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    }
-	} else { // Check if output ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-		}
-	    }
-	}
-
-
-	// Check if new command port have been added
-	modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((CommandPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    }
-	} else { // Check if command ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-		}
-	    }
-	}
-
-	// Check if new control port have been added
-	modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllControlPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((ControlPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    }
-	} else { // Check if control ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllControlPorts(this, false);
-		}
-	    }
-	}
 
 	/*
 	 * If the block is in a superblock then update it.
@@ -694,7 +602,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -740,7 +648,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -1029,9 +937,9 @@ public class BasicBlock extends XcosUIDObject {
 	if (getParentDiagram() != null) {
 	    isFlipped = flip;
 	    if (flip) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
 	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "false");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
 	    }
 	}
     }
@@ -1048,7 +956,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return mirror value
      */
-    public boolean getMirror(){
+    public boolean getMirror() {
 	return isMirrored;
     }
     
