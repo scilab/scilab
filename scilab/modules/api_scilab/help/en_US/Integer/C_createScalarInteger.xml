@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="createScalarInteger8"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>createScalarInteger8</refname>
+
+        <refpurpose>
+            Create scalar integer variable.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+        <synopsis>int createScalarInteger8(void* _pvCtx, int _iVar, char cData)</synopsis>
+        <synopsis xml:id="createScalarInteger16">int createScalarInteger16(void* _pvCtx, int _iVar, short sData)</synopsis>
+        <synopsis xml:id="createScalarInteger32">int createScalarInteger32(void* _pvCtx, int _iVar, int iData)</synopsis>
+        <synopsis xml:id="createScalarUnsignedInteger8">int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char ucData)</synopsis>
+        <synopsis xml:id="createScalarUnsignedInteger16">int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short usData)</synopsis>
+        <synopsis xml:id="createScalarUnsignedInteger32">int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int uiData)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_cData</term>
+                <listitem>
+                    <para>
+                        Integer 8 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_sData</term>
+                <listitem>
+                    <para>
+                        Integer 16 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iData</term>
+                <listitem>
+                    <para>
+                        Integer 32 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_ucData</term>
+                <listitem>
+                    <para>
+                        Unsigned integer 8 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_usData</term>
+                <listitem>
+                    <para>
+                        Unsigned integer 16 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_uiData</term>
+                <listitem>
+                    <para>
+                        Unsigned integer 32 bits value.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+	<refsection>
+		<title>Return value</title>
+		<para>if successful 0, otherwise print error(s) message(s) in the Scilab console and returns first error number.</para>
+	</refsection>
+</refentry>
