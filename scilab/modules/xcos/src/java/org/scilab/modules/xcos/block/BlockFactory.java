@@ -35,28 +35,51 @@ public final class BlockFactory {
 	 * List the specific block interface function name.
 	 */
 	public static enum BlockInterFunction {
+		/** @see TextBlock */
 		TEXT_f(new TextBlock(XcosMessages.DOTS)),
+		/** @see SuperBlock */
 		SUPER_f(new SuperBlock()),
+		/** @see SuperBlock */
 		DSUPER(new SuperBlock(true)),
+		/** @see ConstBlock */
 		CONST_m(new ConstBlock()),
+		/** @see ConstBlock */
 		CONST(CONST_m.getSharedInstance()),
+		/** @see ConstBlock */
 		CONST_f(CONST_m.getSharedInstance()),
+		/** @see AfficheBlock */
 		AFFICH_m(new AfficheBlock()),
+		/** @see AfficheBlock */
 		AFFICH_f(AFFICH_m.getSharedInstance()),
+		/** @see GainBlock */
 		GAINBLK_f(new GainBlock()),
+		/** @see GainBlock */
 		GAINBLK(GAINBLK_f.getSharedInstance()),
+		/** @see GainBlock */
 		GAIN_f(GAINBLK_f.getSharedInstance()),
+		/** @see ExplicitInBlock */
 		IN_f(new ExplicitInBlock()),
+		/** @see ExplicitOutBlock */
 		OUT_f(new ExplicitOutBlock()),
+		/** @see ImplicitInBlock */
 		INIMPL_f(new ImplicitInBlock()),
+		/** @see ImplicitOutBlock */
 		OUTIMPL_f(new ImplicitOutBlock()),
+		/** @see EventInBlock */
 		CLKINV_f(new EventInBlock()),
+		/** @see EventOutBlock */
 		CLKOUTV_f(new EventOutBlock()),
+		/** @see EventOutBlock */
 		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
+		/** @see SplitBlock */
 		SPLIT_f(new SplitBlock()),
+		/** @see SplitBlock */
 		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
+		/** @see SplitBlock */
 		CLKSPLIT_f(SPLIT_f.getSharedInstance()),
+		/** @see GroundBlock */
 		Ground(new GroundBlock()),
+		/** @see VoltageSensorBlock */
 		VoltageSensor(new VoltageSensorBlock());
 		
 		private BasicBlock block;
