@@ -265,8 +265,8 @@ public final class RegionToSuperblockAction extends DefaultAction {
 	 */
 	int midBlockIndex = blocksCopyWithoutSplitBlocks.size() / 2;
 	superBlock.setAngle(BlockPositioning.roundAngle(angle / blocksCopyWithoutSplitBlocks.size()));
-	superBlock.setFlip((flipped > midBlockIndex) ? true : false);
-	superBlock.setMirror((mirrored > midBlockIndex) ? true : false);
+	superBlock.setFlip(flipped > midBlockIndex);
+	superBlock.setMirror(mirrored > midBlockIndex);
 	
 	/*
 	 * Update the view
