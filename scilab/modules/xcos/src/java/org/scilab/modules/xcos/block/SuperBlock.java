@@ -50,7 +50,6 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -277,10 +276,12 @@ public final class SuperBlock extends BasicBlock {
 	}
 
 	/**
-	 * @return list of input explicit block
+	 * @param <T> The type to work on
+	 * @param klass the class instance to work on
+	 * @return list of typed block
 	 */
-	protected List<mxCell> getAllExplicitInBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
+	protected < T extends BasicBlock> List<T> getAllTypedBlock(Class<T> klass) {
+		List<T> list = new ArrayList<T>();
 		if (child == null) {
 			return list;
 		}
@@ -289,127 +290,70 @@ public final class SuperBlock extends BasicBlock {
 				child.getDefaultParent());
 
 		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
+			Object cell = child.getModel().getChildAt(
 					child.getDefaultParent(), i);
-			if (cell instanceof ExplicitInBlock) {
-				list.add(cell);
+			if (klass.isInstance(cell)) {
+				// Here we are sure that the cell is an instance of T. Thus we
+				// can safely cast it.
+				list.add((T) cell);
 			}
 		}
 		return list;
+	}
+	
+	/**
+	 * @return list of input explicit block
+	 */
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllExplicitInBlock() {
+		return getAllTypedBlock(ExplicitInBlock.class);
 	}
 
 	/**
 	 * @return list of input implicit block
 	 */
-	protected List<mxCell> getAllImplicitInBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
-		if (child == null) {
-			return list;
-		}
-
-		int blockCount = child.getModel().getChildCount(
-				child.getDefaultParent());
-
-		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
-					child.getDefaultParent(), i);
-			if (cell instanceof ImplicitInBlock) {
-				list.add(cell);
-			}
-		}
-		return list;
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllImplicitInBlock() {
+		return getAllTypedBlock(ImplicitInBlock.class);
 	}
 
 	/**
 	 * @return list of input event block
 	 */
-	protected List<mxCell> getAllEventInBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
-		if (child == null) {
-			return list;
-		}
-
-		int blockCount = child.getModel().getChildCount(
-				child.getDefaultParent());
-
-		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
-					child.getDefaultParent(), i);
-			if (cell instanceof EventInBlock) {
-				list.add(cell);
-			}
-		}
-		return list;
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllEventInBlock() {
+		return getAllTypedBlock(EventInBlock.class);
 	}
 
 	/**
 	 * @return list of ouput explicit block
 	 */
-	protected List<mxCell> getAllExplicitOutBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
-		if (child == null) {
-			return list;
-		}
-
-		int blockCount = child.getModel().getChildCount(
-				child.getDefaultParent());
-
-		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
-					child.getDefaultParent(), i);
-			if (cell instanceof ExplicitOutBlock) {
-				list.add(cell);
-			}
-		}
-		return list;
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllExplicitOutBlock() {
+		return getAllTypedBlock(ExplicitOutBlock.class);
 	}
 
 	/**
 	 * @return list of output implicit block
 	 */
-	protected List<mxCell> getAllImplicitOutBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
-		if (child == null) {
-			return list;
-		}
-
-		int blockCount = child.getModel().getChildCount(
-				child.getDefaultParent());
-
-		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
-					child.getDefaultParent(), i);
-			if (cell instanceof ImplicitOutBlock) {
-				list.add(cell);
-			}
-		}
-		return list;
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllImplicitOutBlock() {
+		return getAllTypedBlock(ImplicitOutBlock.class);
 	}
 
 	/**
 	 * @return list of output event block
 	 */
-	protected List<mxCell> getAllEventOutBlock() {
-		List<mxCell> list = new ArrayList<mxCell>();
-
-		int blockCount = child.getModel().getChildCount(
-				child.getDefaultParent());
-
-		for (int i = 0; i < blockCount; i++) {
-			mxCell cell = (mxCell) child.getModel().getChildAt(
-					child.getDefaultParent(), i);
-			if (cell instanceof EventOutBlock) {
-				list.add(cell);
-			}
-		}
-		return list;
+	@Deprecated
+	protected List< ? extends BasicBlock> getAllEventOutBlock() {
+		return getAllTypedBlock(EventOutBlock.class);
 	}
 
 	/**
 	 * @param blocks in/output blocks
 	 * @return greater block value
 	 */
-	protected int getBlocksConsecutiveUniqueValueCount(List<mxCell> blocks) {
+	protected int getBlocksConsecutiveUniqueValueCount(List< ? extends BasicBlock> blocks) {
 		if (blocks == null) {
 			return 0;
 		}
@@ -457,7 +401,7 @@ public final class SuperBlock extends BasicBlock {
 	/**
 	 * @param blocks block list
 	 */
-	private void updateBlocksColor(List<mxCell> blocks) {
+	private void updateBlocksColor(List< ? extends BasicBlock> blocks) {
 
 		try {
 			child.getModel().beginUpdate();
