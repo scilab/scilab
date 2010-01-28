@@ -937,9 +937,9 @@ public class BasicBlock extends XcosUIDObject {
 	if (getParentDiagram() != null) {
 	    isFlipped = flip;
 	    if (flip) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
 	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "false");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
 	    }
 	}
     }
@@ -956,7 +956,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return mirror value
      */
-    public boolean getMirror(){
+    public boolean getMirror() {
 	return isMirrored;
     }
     
