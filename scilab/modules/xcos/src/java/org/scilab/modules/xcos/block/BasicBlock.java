@@ -602,7 +602,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -648,7 +648,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
 	    tempOutput.deleteOnExit();
 	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj(this));
