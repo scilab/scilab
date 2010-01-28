@@ -56,7 +56,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="5"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
@@ -271,7 +271,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				ExecutionBucket="5"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"

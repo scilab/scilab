@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +12,7 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_io.h"
 #include "stack-c.h"
 #include "api_scilab.h"
@@ -20,12 +21,30 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "filesmanagement.h"
+#include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define FILE_OPEN_STR "open"
 #define FILE_OLD_STR "old"
 /*--------------------------------------------------------------------------*/
+static int sci_file_no_rhs(char *fname);
+static int sci_file_one_rhs(char *fname);
+/*--------------------------------------------------------------------------*/
 int C2F(sci_file)(char *fname,unsigned long fname_len)
 {
+	if (Rhs == 0)
+	{
+		return sci_file_no_rhs(fname);
+	}
+
+	if (Rhs == 1)
+	{
+		return sci_file_one_rhs(fname);
+	}
+
 	if (Rhs >= 3)
 	{
 		SciErr sciErr;
@@ -267,6 +286,320 @@ int C2F(sci_file)(char *fname,unsigned long fname_len)
 	}
 
 	C2F(intfile)();
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int sci_file_no_rhs(char *fname)
+{
+	SciErr sciErr;
+	int m_out = 0, n_out = 0;
+
+	int sizeArray = 0;
+	int *IdUsed = NULL;
+
+	CheckLhs(0,5);
+
+	/* Lhs == 0 IDs*/
+	IdUsed = GetFilesIdUsed(&sizeArray);
+
+	if (IdUsed)
+	{
+		m_out = 1;
+		n_out = sizeArray;
+		sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1, m_out, n_out, IdUsed);
+		FREE(IdUsed);
+		IdUsed = NULL;
+
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(1) = Rhs + 1; 
+	}
+
+	if (Lhs > 1) /* Types */
+	{
+		char **TypeIdsAsString = GetTypesUsedAsString(&sizeArray);
+		if (TypeIdsAsString)
+		{
+			m_out = 1;
+			n_out = sizeArray;
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out, n_out, TypeIdsAsString);
+			freeArrayOfString(TypeIdsAsString, sizeArray);
+
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(2) = Rhs + 2; 
+		}
+	}
+
+	if (Lhs > 2) /* names */
+	{
+		char **Filenames = GetFilenamesUsed(&sizeArray);
+		if (Filenames)
+		{
+			m_out = 1;
+			n_out = sizeArray;
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 3, m_out, n_out, Filenames);
+			freeArrayOfString(Filenames, sizeArray);
+
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(3) = Rhs + 3; 
+		}
+	}
+
+	if (Lhs > 3) /* mod */
+	{
+		int *Modes = GetModesUsed(&sizeArray);
+		if (Modes)
+		{
+			m_out = 1;
+			n_out = sizeArray;
+			sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 4, m_out, n_out, Modes);
+			FREE(Modes);
+			Modes = NULL;
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(4) = Rhs + 4; 
+		}
+	}
+
+	if (Lhs > 4) /* swap */
+	{
+		int *SwapId = GetSwapsUsed(&sizeArray);
+		if (SwapId)
+		{
+			m_out = 1;
+			n_out = sizeArray;
+			sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 5, m_out, n_out, SwapId);
+			FREE(SwapId);
+			SwapId = NULL;
+
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(5) = Rhs + 5; 
+		}
+	}
+
+	C2F(putlhsvar)();
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int sci_file_one_rhs(char *fname)
+{
+	SciErr sciErr;
+
+	int iID = 0;
+	int m1 = 0, n1 = 0;
+	int iType = 0;
+	int *piAddressVarOne = NULL;
+	double *pdVarOne = NULL;
+
+	int m_out = 0;
+	int n_out = 0;
+	
+	/* get Address of inputs */
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	/* check input type */
+	if ( iType != sci_matrix )
+	{
+		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
+		return 0;
+	}
+
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if( n1 != 1 || m1 != 1)
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
+		return 0;
+	}
+
+	iID = (int) *pdVarOne;
+
+	if (*pdVarOne != (double)iID)
+	{
+		Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,1);
+		return 0;
+	}
+
+	/* Lhs = 0 ID */
+	if (GetFileTypeOpenedInScilab(iID) != 0)
+	{
+		m_out = 1;
+		n_out = 1;
+		sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 1, m_out, n_out, &iID);
+	}
+	else
+	{
+		/* returns [] */
+		m_out = 0;
+		n_out = 0;
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, NULL);
+	}
+
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	LhsVar(1) = Rhs + 1; 
+
+	if (Lhs > 1) /* Type */
+	{
+		if (GetFileTypeOpenedInScilab(iID) != 0)
+		{
+			char *TypeIdAsString = GetFileTypeOpenedInScilabAsString(iID);
+			m_out = 1;
+			n_out = 1;
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out, n_out, &TypeIdAsString);
+			FREE(TypeIdAsString);
+			TypeIdAsString = NULL;
+		}
+		else
+		{
+			/* returns [] */
+			m_out = 0;
+			n_out = 0;
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, m_out, n_out, NULL);
+		}
+
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(2) = Rhs + 2; 
+	}
+
+	if (Lhs > 2) /* name */
+	{
+		if (GetFileTypeOpenedInScilab(iID) != 0)
+		{
+			char *filename = NULL;
+			m_out = 1;
+			n_out = 1;
+			if (GetFileNameOpenedInScilab(iID) == NULL)
+			{
+				filename = strdup("");
+			}
+			else
+			{
+				filename = strdup(GetFileNameOpenedInScilab(iID));
+			}
+
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 3, m_out, n_out, &filename);
+			FREE(filename);
+			filename = NULL;
+		}
+		else
+		{
+			/* returns [] */
+			m_out = 0;
+			n_out = 0;
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, m_out, n_out, NULL);
+		}
+
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(3) = Rhs + 3; 
+	}
+
+	if (Lhs > 3)  /* mod */
+	{
+		if (GetFileTypeOpenedInScilab(iID) != 0)
+		{
+			int ModeId = GetFileModeOpenedInScilab(iID);
+			m_out = 1;
+			n_out = 1;
+			sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 4, m_out, n_out, &ModeId);
+		}
+		else
+		{
+			/* returns [] */
+			m_out = 0;
+			n_out = 0;
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 4, m_out, n_out, NULL);
+		}
+
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(4) = Rhs + 4; 
+	}
+
+	if (Lhs > 4) /* swap */
+	{
+		if (GetFileTypeOpenedInScilab(iID) != 0)
+		{
+			int SwapId = GetSwapStatus(iID);
+			m_out = 1;
+			n_out = 1;
+			sciErr = createMatrixOfInteger32(pvApiCtx, Rhs + 5, m_out, n_out, &SwapId);
+		}
+		else
+		{
+			/* returns [] */
+			m_out = 0;
+			n_out = 0;
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 5, m_out, n_out, NULL);
+		}
+
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+		LhsVar(5) = Rhs + 5; 
+	}
+
+	C2F(putlhsvar)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
