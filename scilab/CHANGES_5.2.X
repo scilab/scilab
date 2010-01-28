@@ -25,7 +25,7 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* Performance improvements under Linux
+* Some performance improvements under Linux
 
 * A rework to pass checkstyle metrics on the code has been started.
 
