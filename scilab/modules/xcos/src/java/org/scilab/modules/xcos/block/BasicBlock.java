@@ -560,86 +560,21 @@ public class BasicBlock extends XcosUIDObject {
 
 	setEquations(modifiedBlock.getEquations());
 
-
-	List< ? extends BasicPort> modifiedPorts = null;
-	List< ? extends BasicPort> ports = null;
-	
-	// Check if new input port have been added
-	modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllInputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((InputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    }
-	} else { // Check if input ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllInputPorts(this, false);
+		// Update the children according to the modified block children. We are
+		// working on the last index in order to simplify the List.remove()
+		// call.
+		final int oldChildCount = getChildCount();
+		final int newChildCount = modifiedBlock.getChildCount();
+		final int portStep = newChildCount - oldChildCount;
+		if (portStep > 0) {
+			for (int i = portStep - 1; i >= 0; i--) {
+				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
+			}
+		} else {
+			for (int i = -portStep - 1; i >= 0; i--) {
+				removePort((BasicPort) getChildAt(newChildCount + i));
+			}
 		}
-	    }
-	}
-
-	// Check if new output port have been added
-	modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((OutputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    }
-	} else { // Check if output ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-		}
-	    }
-	}
-
-
-	// Check if new command port have been added
-	modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((CommandPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    }
-	} else { // Check if command ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-		}
-	    }
-	}
-
-	// Check if new control port have been added
-	modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllControlPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((ControlPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    }
-	} else { // Check if control ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllControlPorts(this, false);
-		}
-	    }
-	}
 
 	/*
 	 * If the block is in a superblock then update it.
