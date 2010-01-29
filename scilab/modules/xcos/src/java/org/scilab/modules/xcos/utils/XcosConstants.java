@@ -14,7 +14,6 @@ public final class XcosConstants extends ScilabConstants {
     public static final int PALETTE_VMARGIN = 5;
     
     /* Events */
-    public static final String EVENT_CHANGE_EDIT = "edit";   
     public static final String EVENT_BLOCK_UPDATED = "block";
     public static final String EVENT_CHANGE_OLD = "old";
     public static final String EVENT_CHANGE_NEW = "new";
