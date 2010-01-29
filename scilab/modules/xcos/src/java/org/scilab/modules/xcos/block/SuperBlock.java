@@ -74,7 +74,6 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	protected SuperBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
