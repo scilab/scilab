@@ -61,6 +61,9 @@ import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -710,10 +713,10 @@ public class BasicBlock extends XcosUIDObject {
 	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
 	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
-	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Output ports : " + BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Control ports : " + BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Command ports : " + BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + XcosConstants.HTML_NEWLINE);
 	}
 
 	result.append("x : " + getGeometry().getX() + XcosConstants.HTML_NEWLINE);
