@@ -171,6 +171,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	public BasicBlock() {
 		super();
+		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
 	}
