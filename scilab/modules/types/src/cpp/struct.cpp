@@ -11,6 +11,7 @@
  */
 
 #include <sstream>
+#include "symbol.hxx"
 #include "struct.hxx"
 
 namespace types 
@@ -20,7 +21,10 @@ namespace types
    */
   Struct::Struct() : Container()
   {
-    m_plData = new std::map<std::string *, InternalType *>();
+    m_plData = new std::map<symbol::Symbol, InternalType *>();
+    m_iRows = 1;
+    m_iCols = 1;
+    m_iSize = 0;
   }
 
   Struct::~Struct() 
@@ -36,8 +40,8 @@ namespace types
    */
   Struct::Struct(Struct *_oStructCopyMe)
   {
-    std::map<std::string *, InternalType *>::iterator itValues;
-    m_plData = new std::map<std::string *, InternalType *>();
+    std::map<symbol::Symbol, InternalType *>::iterator itValues;
+    m_plData = new std::map<symbol::Symbol, InternalType *>();
 
     for (itValues = _oStructCopyMe->getData()->begin();
 	 itValues != _oStructCopyMe->getData()->end();
@@ -47,7 +51,7 @@ namespace types
       }
   }
 
-  std::map<std::string *, InternalType *> *Struct::getData()
+  std::map<symbol::Symbol, InternalType *> *Struct::getData()
   {
     return m_plData;
   }
@@ -62,23 +66,43 @@ namespace types
   }
 
   /**
-   ** add(std::string *_psKey, InternalType *_typedValue)
+   ** add(symbol::Symbol*_psKey, InternalType *_typedValue)
    ** Append the given value to the struct
    */ 
-  void Struct::add(std::string *_psKey, InternalType *_typedValue)
+  void Struct::add(symbol::Symbol _sKey, InternalType *_typedValue)
   {
-    (*m_plData)[_psKey] = _typedValue;
+    /* Look if we are replacing some existing value */
+    if (exists(_sKey))
+      {
+	(*m_plData)[_sKey]->DecreaseRef();
+	if ((*m_plData)[_sKey]->isDeletable())
+	  {
+	    delete (*m_plData)[_sKey];
+	  }
+      }
+      _typedValue->IncreaseRef();
+    (*m_plData)[_sKey] = _typedValue;
   }
 
   /**
-   ** get(std::string *_psKey)
+   ** get(symbol::Symbol*_psKey)
    ** Append the given value to the end of the List
    */
-  InternalType* Struct::get(std::string *_psKey)
+  InternalType* Struct::get(symbol::Symbol _sKey)
   {
-    return (*m_plData)[_psKey];
+    return (*m_plData)[_sKey];
   }
 
+  bool Struct::exists(symbol::Symbol _sKey)
+  {
+    std::map<symbol::Symbol, InternalType *>::iterator it = m_plData->find(_sKey);
+    if (it ==  m_plData->end())
+      {
+	return false;
+      }
+    return true;
+  }
+  
   /**
    ** Clone
    ** Create a new Struct and Copy all values.
@@ -103,14 +127,22 @@ namespace types
     else
       {
 	int iPosition = 1;
-	std::map<std::string *, InternalType *>::iterator itValues;
+	std::map<symbol::Symbol, InternalType *>::iterator itValues;
 	for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
 	  {
-	    ostr << *(itValues->first) << " : ";
-	    ostr << (itValues->second)->toString(_iPrecision, _iLineLen);
+	    ostr << (itValues->first).name_get() << " : ";
+	    switch  ((itValues->second)->getType()) 
+	      {
+	      case RealStruct :
+		ostr << "[ " << (itValues->second)->getAsStruct()->rows_get()
+		     << " x " << (itValues->second)->getAsStruct()->cols_get()
+		     << " struct ]";
+		break;
+	      default :
+		ostr << (itValues->second)->toString(_iPrecision, _iLineLen);
+	      }
 	  }
       }
     return ostr.str();
   }
-
 }

@@ -29,12 +29,11 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     }
 
   Struct *pRetVal = new Struct();
-  std::string *psFieldName = NULL;
   InternalType *pFieldValue = NULL;
 
   for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
     {
-      psFieldName = new std::string((*itInput)->getAsString()->string_get(0));
+       symbol::Symbol psFieldName = symbol::Symbol((*itInput)->getAsString()->string_get(0));
       ++itInput;
       pFieldValue = (*itInput)->clone();
       pRetVal->add(psFieldName, pFieldValue);

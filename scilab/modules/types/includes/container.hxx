@@ -13,15 +13,15 @@
 #ifndef __CONTAINER_HXX__
 #define __CONTAINER_HXX__
 
-#include "internal.hxx"
+#include "types.hxx"
 
 namespace types
 {
-  class Container : public InternalType
+  class Container : public GenericType
   {
 
   public :
-    Container() : InternalType() {}
+    Container() : GenericType() {}
     virtual ~Container() {}
 
     virtual void whoAmI(void) { std::cout << "types::Container"; }

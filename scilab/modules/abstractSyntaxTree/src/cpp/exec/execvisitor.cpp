@@ -171,6 +171,62 @@ namespace ast
 		/*
 		a.b
 		*/
+	  ExecVisitor *execHead = new ast::ExecVisitor();
+	 	try
+		{
+		  e.head_get()->accept(*execHead);
+		}
+		catch (string sz) 
+		  {
+		    throw sz;
+		  } 
+		if (execHead->result_get() != NULL && !execHead->result_get()->isStruct())
+		  {
+		    char szError[bsiz];
+#ifdef _MSC_VER
+		    sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+#else
+		    sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+#endif
+		    delete execHead;
+		    throw string(szError);
+		  }
+		else
+		  {
+		    // Manage 3 cases
+		    // head.ID
+		    // head.variable
+		    // head.functionCall
+		    SimpleVar *psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+		    if (psvRightMember != NULL)
+		      {
+			Struct* psValue = execHead->result_get()->getAsStruct();
+			if ( psValue->exists(psvRightMember->name_get()) )
+			  {
+			    result_set(psValue->get(psvRightMember->name_get())->clone());
+			  }
+			else 
+			  {
+			    char szError[bsiz];
+#ifdef _MSC_VER
+			    sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#else
+			    sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#endif
+			    throw string(szError);
+			  }
+		      }
+		    else
+		      {
+			char szError[bsiz];
+#ifdef _MSC_VER
+			sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+#else
+			sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
+#endif
+			throw string(szError);
+		      }
+		  }
 	}
 
 	void ExecVisitor::visit(const CallExp &e)

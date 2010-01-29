@@ -16,6 +16,7 @@
 
 #include <map>
 #include "container.hxx"
+#include "symbol.hxx"
 
 namespace types
 {
@@ -26,8 +27,9 @@ namespace types
     ~Struct(); 
 
   private :
+    struct ltstr;
     Struct(Struct *_oListCopyMe);
-    std::map<std::string *, InternalType *> *getData();
+    std::map<symbol::Symbol, InternalType *> *getData();
 
   public :
     int size_get(); 
@@ -37,16 +39,21 @@ namespace types
     RealType getType(void) { return RealStruct; } 
 
   /**
-   ** add(std::string *_psKey, InternalType *_typedValue)
+   ** add(Symbol *_psKey, InternalType *_typedValue)
    ** Append the given value to the struct
    */
-    void add(std::string *_psKey, InternalType *_typedValue);
+    void add(symbol::Symbol _sKey, InternalType *_typedValue);
 
     /**
-   ** get(std::string *_psKey)
-   ** Append the given value to the end of the List
-   */
-    InternalType * get(std::string *_psKey);
+     ** get(Symbol *_psKey)
+     ** Append the given value to the end of the List
+     */
+    InternalType * get(symbol::Symbol _sKey);
+
+    /**
+     **
+     */
+    bool exists(symbol::Symbol _sKey);
 
   /**
    ** Clone
@@ -59,7 +66,7 @@ namespace types
     Struct *getAsStruct(void) { return this; }
 
   private :
-    std::map<std::string *, InternalType *> *m_plData;
+    std::map<symbol::Symbol, InternalType *> *m_plData;
   };
 }
 
