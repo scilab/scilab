@@ -12,22 +12,23 @@
 
 package org.scilab.modules.graph;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Rectangle;
-
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
 
 /**
  * Implement the default component for the {@link ScilabGraph}.
  */
 public class ScilabComponent extends mxGraphComponent {
+	private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
 	private static final double SCALE_MULTIPLIER = 1.1;
 
 	/**
@@ -36,7 +37,7 @@ public class ScilabComponent extends mxGraphComponent {
 	 * @param graph
 	 *            The associated graph
 	 */
-	public ScilabComponent(mxGraph graph) {
+	public ScilabComponent(ScilabGraph graph) {
 		super(graph);
 	}
 

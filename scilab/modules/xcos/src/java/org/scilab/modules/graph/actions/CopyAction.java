@@ -67,5 +67,6 @@ public final class CopyAction extends DefaultAction {
 	 */
     public void actionPerformed(ActionEvent e) {
     	TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(), e.getID(), e.getActionCommand()));
+    	getGraph(e).setReadOnly(!getGraph(e).isReadonly());
     }
 }
