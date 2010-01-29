@@ -17,8 +17,7 @@ import java.awt.event.ComponentListener;
 
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
-
-import com.mxgraph.view.mxGraph;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Customize the default component
@@ -32,7 +31,7 @@ public class XcosComponent extends ScilabComponent {
      * Construct the component with the associated graph
      * @param graph The associated graph
      */
-    public XcosComponent(mxGraph graph) {
+    public XcosComponent(XcosDiagram graph) {
 	super(graph);
 	
 	addComponentListener(new ComponentListener() {

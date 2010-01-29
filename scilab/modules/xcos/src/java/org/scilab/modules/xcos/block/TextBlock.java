@@ -58,7 +58,6 @@ public final class TextBlock extends BasicBlock {
 
 	protected TextBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
