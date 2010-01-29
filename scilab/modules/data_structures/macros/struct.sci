@@ -13,7 +13,7 @@ function s=struct(varargin)
 
 rhs=argn(2)
 
-fields=["st","dims"]
+fields=["st","dims"];
 
 if rhs==0 then
   // No Matlab equivalent
@@ -22,13 +22,19 @@ if rhs==0 then
 end
 
 if floor(rhs/2)*2<>rhs then
-  error(msprintf(gettext("%s: Wrong number of input argument(s) : an even number is expected."),"struct"));
+  error(msprintf(gettext("%s: Wrong number of input argument(s) : an even number is expected.\n"),"struct"));
 end
 
 nbfields=size(varargin)/2
 
 dims=[]
 for kf=1:2:size(varargin)
+  if varargin(kf)=="dims" then
+    error(msprintf(gettext("%s: ''dims'' can not be used as a field name.\n"),"struct"));
+  end
+  if or(varargin(kf)==fields(2:$)) then
+    error(msprintf(gettext("%s: field name ''%s'' defined twice.\n"),"struct",varargin(kf)));
+  end
   fields=[fields varargin(kf)]
 end
 

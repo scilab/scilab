@@ -27,7 +27,7 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* Performance improvements under Linux
+* Some performance improvements under Linux
 
 * A rework to pass checkstyle metrics on the code has been started.
 
@@ -76,7 +76,8 @@ Xcos:
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
 
-* bug 5667 fixed - Simulation starts faster on Linux for huge diagram ( hdf5 export issue )
+* bug 5667 fixed - Simulation starts faster on Linux for huge diagram 
+                   (hdf5 export issue).
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
@@ -94,7 +95,11 @@ Xcos:
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
-* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
+* bug 6474 fixed - demo_watertank.xcoscrashed when any block parameter dialog 
+                   was closed the second time.
+
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the 
+                   zoom level.
 
 Atoms:
 ======
