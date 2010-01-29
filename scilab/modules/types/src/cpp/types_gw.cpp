@@ -15,5 +15,6 @@
 bool TypesModule::Load()
 {
   symbol::Context::getInstance()->AddFunction(Function::createFunction("list", &sci_list, "types"));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("struct", &sci_struct, "types"));
   return true;
 }

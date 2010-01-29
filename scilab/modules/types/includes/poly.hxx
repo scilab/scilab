@@ -28,8 +28,10 @@ namespace types
 									Poly(double** _pdblCoefR, int _iRank);
 									Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
 									Poly(Double** _poCoefR, int _iRank);
-		virtual				~Poly();
+									~Poly();
 
+	  // FIXME : Should not return NULL;
+	  Poly::Poly*		clone() { return NULL; }
 
 		Poly*					getAsSinglePoly(void);
 		/*Config management*/

@@ -33,6 +33,9 @@ namespace types
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
     ~Function();
   
+    //FIXME : Should not return NULL
+    Function* clone() { return NULL; }
+
     static Function *createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
     static Function *createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 

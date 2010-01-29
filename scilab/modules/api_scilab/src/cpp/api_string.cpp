@@ -89,7 +89,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 	}
 
 	pS = new String(_iRows, _iCols);
-	bRet = pS->string_set((const char**)_pstStrings);
+	bRet = pS->string_set(_pstStrings);
 	if(bRet == false)
 	{
 		return 1;

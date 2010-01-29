@@ -28,6 +28,9 @@ namespace types
 									MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
 		virtual				~MatrixPoly();
 
+	  // FIXME : Should not return NULL
+	  MatrixPoly::MatrixPoly*		clone() { return NULL; }
+
 		GenericType*	get(int _iPos);
 
 		Poly*					poly_get(int _iRows, int _iCols);

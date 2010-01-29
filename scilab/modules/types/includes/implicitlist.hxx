@@ -47,8 +47,10 @@ namespace types
 		virtual ~ImplicitList();
 		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
+		ImplicitList* clone();
+
 		ImplicitList* getAsImplicitList(void) { return this; }
-		virtual				RealType getType(void) { return RealImplicitList; }
+		RealType getType(void) { return RealImplicitList; }
 
 		RealType			getOutputType();
 		Int::IntType	getOutputSubType();

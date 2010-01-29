@@ -47,6 +47,7 @@ namespace types
       /* Container */
       RealContainer,
       RealList,
+      RealStruct,
       /* User */
       RealUserType
     };
@@ -63,8 +64,7 @@ namespace types
 
 
     virtual std::string	toString(int _iPrecison, int _iLineLen) = 0;
-    /* FIXME : Should Be virtual [...] = 0; */
-    virtual InternalType* clone(void) { return NULL; }
+    virtual InternalType* clone(void) = 0;
     
     void	IncreaseRef()
     {
@@ -156,6 +156,10 @@ namespace types
     bool isList(void) { return (getType() == RealList); }
     virtual List* getAsList(void) { return NULL; }
 
+    /* Struct */
+    bool isStruct(void) { return (getType() == RealStruct); }
+    virtual Struct* getAsStruct(void) { return NULL; }
+    
     /**
      ** \}
      */

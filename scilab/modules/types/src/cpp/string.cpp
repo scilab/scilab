@@ -47,6 +47,15 @@ namespace types
 		CreateString(_iRows, _iCols);
 	}
 
+	String::String *String::clone()
+	{
+	  String::String *pstClone = new String::String(rows_get(), cols_get());
+	  
+	  pstClone->string_set(m_pstData);
+
+	  return pstClone;
+	}
+
 	void String::CreateString(int _iRows, int _iCols)
 	{
 		m_iRows		= _iRows;
@@ -96,7 +105,7 @@ namespace types
 		return string_set(_iCols * m_iRows + _iRows, _pcData);
 	}
 
-	bool String::string_set(const char **_pcData)
+	bool String::string_set(char **_pcData)
 	{
 		if(_pcData != NULL)
 		{

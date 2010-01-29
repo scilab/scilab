@@ -32,6 +32,7 @@ namespace types
   class MatrixPoly;
   class Container;
   class List;
+  class Struct;
 }
 
 #endif /* !__ANY_TYPES_HXX__ */

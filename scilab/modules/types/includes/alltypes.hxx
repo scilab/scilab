@@ -9,8 +9,8 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef ALL_TYPES_HH
-#define ALL_TYPES_HH
+#ifndef ALL_TYPES_HXX
+#define ALL_TYPES_HXX
 
 #ifdef getType
 #undef getType
@@ -35,5 +35,6 @@
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "list.hxx"
+#include "struct.hxx"
 
-#endif /* !ALL_TYPES_HH */
+#endif /* !ALL_TYPES_HXX */

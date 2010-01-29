@@ -27,6 +27,7 @@ namespace types
 									Float(int _iRows, int _iCols, float **_pfReal);
 									Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
 
+		Float* clone();
 
 		/*data management*/
 		GenericType*	get(int _iPos);

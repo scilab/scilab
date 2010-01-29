@@ -60,6 +60,14 @@ namespace types
 		return;
 	}
 
+	Bool::Bool *Bool::clone()
+	{
+	  Bool::Bool *pbClone =  new Bool::Bool(rows_get(), cols_get());
+	  pbClone->bool_set(m_pbData);
+
+	  return pbClone;
+	}
+
 	/*----------------------*/
 	/*			CreateBool			*/
 	/*	Commun constructor	*/

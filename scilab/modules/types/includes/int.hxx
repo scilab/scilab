@@ -58,6 +58,7 @@ namespace types
 	
 
 		virtual string				toString(int _iPrecision, int _iLineLen) = 0;
+	  virtual Int *clone() { return NULL; }
 
 	protected :
 	  /* Only used by Int8,16, ... */

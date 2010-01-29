@@ -108,6 +108,12 @@ namespace types
 			m_pfImg = NULL;
 	}
 
+  Float::Float* Float::clone()
+	  {
+	    // FIXME : Implement me.
+	    return NULL;
+	  }
+
 	bool Float::isComplex()
 	{
 		return m_bComplex;

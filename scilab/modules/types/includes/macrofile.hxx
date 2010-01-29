@@ -27,6 +27,9 @@ namespace types
     MacroFile(std::string _stName, string _stPath, string _stModule);
     virtual ~MacroFile(){};
     
+    //FIXME : Should not return NULL
+    MacroFile *clone() { return NULL; }
+
     MacroFile *getAsMacroFile(void);
     RealType getType(void);
     

@@ -28,6 +28,9 @@ namespace types
     Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule);
     virtual ~Macro();
 
+    // FIXME : Should not return NULL;
+    Macro* clone() { return NULL; }
+
     Macro *getAsMacro(void);
     RealType getType(void);
     

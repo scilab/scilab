@@ -23,10 +23,12 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/function.cpp \
 			src/cpp/macrofile.cpp \
 			src/cpp/macro.cpp \
-			src/cpp/list.cpp
+			src/cpp/list.cpp \
+			src/cpp/struct.cpp
 
 GATEWAY_CPP_SOURCES	= src/cpp/types_gw.cpp \
-			sci_gateway/cpp/sci_list.cpp
+			sci_gateway/cpp/sci_list.cpp \
+			sci_gateway/cpp/sci_struct.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
 

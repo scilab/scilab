@@ -33,7 +33,7 @@ namespace types
     char*						string_get(int _iRows, int _iCols) const;
 		char*						string_get(int _iPos) const;
 
-    bool						string_set(const char **_pcData);
+    bool						string_set(char **_pcData);
     bool						string_set(int _iRows, int _iCols, const char *_pcData);
 		bool 						string_set(int _iPos, const char *_pcData);
 
@@ -49,7 +49,10 @@ namespace types
 
 		bool						operator==(const InternalType& it);
 		bool						operator!=(const InternalType& it);
-  protected :
+    
+    String *clone();
+
+ protected :
     RealType				getType();//			{ return RealString; }
 
   private :
