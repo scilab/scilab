@@ -149,4 +149,28 @@ public class ScilabComponent extends mxGraphComponent {
 		}
 		return rect;
 	}
+	
+	/**
+	 * Draw a foreground if the graph is read only
+	 * @param g The global graphic context
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		// Draw the foreground if read only
+		if (((ScilabGraph) getGraph()).isReadonly()) {
+			
+			// Workaround for the jgraphx bufffer. We need to force a graph
+			// refresh in order to invalidate previous background.
+			refresh();
+			
+			Rectangle rect = getViewportBorderBounds();
+			Color tmp = g.getColor();
+			g.setColor(MASK_COLOR);
+			g.fillRect(rect.x, rect.y, rect.width, rect.height);
+			g.setColor(tmp);
+		}
+	}
 }
