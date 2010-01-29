@@ -59,5 +59,6 @@ public class StopAction extends DefaultAction {
 		XcosInterpreterManagement.requestScilabExec("haltscicos");
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		XcosTab.setStartEnabled(true);
+		((XcosDiagram) getGraph(null)).setReadOnly(false);
 	}
 }
