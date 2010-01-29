@@ -12,18 +12,13 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-
-import javax.swing.Timer;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
@@ -36,6 +31,7 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.event.ArrowKeyListener;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -85,7 +81,6 @@ import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.actions.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
@@ -97,16 +92,13 @@ import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.view.mxGraph;
 
 /**
  * Xcos tab operations
@@ -330,114 +322,6 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	    }
 	}
     }
-    
-
-    /**
-     * Move cells with the arrow keys.
-     */
-    private class ArrowKeysListener implements KeyListener {
-
-	private static final double DEFAULT_PIXEL_MOVE = 5;
-	private static final int DEFAULT_DELAY = 800; // milliseconds
-
-	private double xIncrement;
-	private double yIncrement;
-	private mxGraph graph;
-
-	private Timer repetitionTimer;
-	private ActionListener doMove = new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) {
-		if (graph != null) {
-		    Object[] cells = graph.getSelectionCells();
-
-		    graph.getModel().beginUpdate();
-		    for (Object cell : cells) {
-			if (cell instanceof BasicBlock || cell instanceof BasicLink) {
-			    graph.translateCell(cell, xIncrement, yIncrement);
-			}
-		    }
-		    graph.getModel().endUpdate();
-		    graph.refresh();
-		}
-	    }
-	};
-
-	/**
-	 * Constructor
-	 */
-	public ArrowKeysListener() {
-	    repetitionTimer = new Timer(DEFAULT_DELAY, doMove);
-	    repetitionTimer.setInitialDelay(0);
-	}
-
-	/** 
-	 * Get the action parameters and start the action timer.
-	 * @param e key event
-	 */
-	public void keyPressed(KeyEvent e) {
-	    double realMove;
-	    boolean mustMove = true;
-	    
-	    mxGraphComponent sourceDiagram = (mxGraphComponent) e.getSource();
-	    graph = sourceDiagram.getGraph();
-	    
-	    if (graph.isGridEnabled()) {
-		realMove = graph.getGridSize();
-	    } else {
-		realMove = DEFAULT_PIXEL_MOVE;
-	    }
-
-	    switch (e.getKeyCode()) {
-	    case KeyEvent.VK_UP:
-		yIncrement = -realMove;
-		break;
-
-	    case KeyEvent.VK_DOWN:
-		yIncrement = realMove;
-		break;
-
-	    case KeyEvent.VK_RIGHT:
-		xIncrement = realMove;
-		break;
-
-	    case KeyEvent.VK_LEFT:
-		xIncrement = -realMove;
-		break;
-
-	    default:
-	    	mustMove = false;
-		break;
-	    }
-
-	    if (!mustMove) {
-	    	return;
-	    }
-	    
-	    if (!graph.isGridEnabled()) {
-		xIncrement *= sourceDiagram.getZoomFactor();
-		yIncrement *= sourceDiagram.getZoomFactor();
-	    }
-
-	    repetitionTimer.start();
-	}
-
-	/** 
-	 * Stop the action timer and clear parameters 
-	 * @param e key event
-	 */
-	public void keyReleased(KeyEvent e) {
-	    repetitionTimer.stop();
-	    yIncrement = 0;
-	    xIncrement = 0;
-	    graph = null;
-	}
-
-	/**
-	 * Not used there
-	 * @param e Not used
-	 */
-	public void keyTyped(KeyEvent e) { }
-    }
 
     /**
      * Default constructor
@@ -452,7 +336,7 @@ public class XcosTab extends SwingScilabTab implements Tab {
 	this.setCallback(new CloseAction(diagram));
 	this.setContentPane(diagram.getAsComponent());
 	
-	diagram.getAsComponent().addKeyListener(new ArrowKeysListener());
+	diagram.getAsComponent().addKeyListener(new ArrowKeyListener());
     }
 
     /**
