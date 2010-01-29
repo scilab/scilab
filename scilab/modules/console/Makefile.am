@@ -63,7 +63,7 @@ endif
 
 # List of the c files
 libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
-libsciconsole_disable_la_CFLAGS = -Iincludes/
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
 
 
 # Includes need for the compilation
