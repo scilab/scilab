@@ -197,7 +197,7 @@ namespace ast
 		    // head.ID
 		    // head.variable
 		    // head.functionCall
-		    SimpleVar *psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+		    SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
 		    if (psvRightMember != NULL)
 		      {
 			Struct* psValue = execHead->result_get()->getAsStruct();
