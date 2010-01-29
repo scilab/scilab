@@ -71,8 +71,8 @@ libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_sci
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
