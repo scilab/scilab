@@ -160,7 +160,13 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 			
 			// Read the download description file
 			// ----------------------------------------
-			this_description      = atomsDESCRIPTIONread(file_out);
+			if this_repository <> "" then
+				additional("repository") = this_repository;
+			else
+				additional = struct();
+			end
+			
+			this_description = atomsDESCRIPTIONread(file_out,additional);
 			
 			// Add information about the repository
 			// ----------------------------------------

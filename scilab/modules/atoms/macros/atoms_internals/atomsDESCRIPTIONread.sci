@@ -55,19 +55,27 @@
 
 
 
-function description_out = atomsDESCRIPTIONread(file_in)
+function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 	
 	// Check input parameters
 	// =========================================================================
 	
 	rhs  = argn(2);
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONread",1));
+	if and(rhs <> [1 2])  then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDESCRIPTIONread",1,2));
 	end
 	
 	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
+	end
+	
+	if rhs < 2 then
+		additionnal = struct();
+	else
+		if type(additionnal) <> 17 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONread",2));
+		end
 	end
 	
 	// Init the output argument
@@ -185,6 +193,14 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_field_length           = regexp(lines_in(i),"/:\s/","o")
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
+			
+			// process URLs
+			if isfield(additionnal,"repository") & ..
+				( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
+				regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
+					current_value = additionnal("repository") + current_value;
+			end
+			
 			current_toolbox(current_field) = current_value;
 			
 			// Category management
