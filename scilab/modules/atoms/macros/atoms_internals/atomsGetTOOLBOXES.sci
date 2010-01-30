@@ -131,7 +131,8 @@ function packages = atomsGetTOOLBOXES(update)
 			
 			// Read the download description file
 			// ----------------------------------------
-			this_description = atomsDESCRIPTIONread(file_out);
+			additional("repository") = repositories(i);
+			this_description         = atomsDESCRIPTIONread(file_out,additional);
 			
 			// Add information about the repository
 			// ----------------------------------------
