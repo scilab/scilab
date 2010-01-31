@@ -82,7 +82,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 			
 			// Remove the existing file
 			// ----------------------------------------
-			if( fileinfo(file_out) <> [] ) then
+			if fileinfo(file_out) <> [] then
 				mdelete(file_out);
 			end
 			
