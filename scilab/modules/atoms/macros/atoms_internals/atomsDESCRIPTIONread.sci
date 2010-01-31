@@ -41,6 +41,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 	
 	description_out = struct();
 	
+	// Operating system detection + Architecture detection
+	// =========================================================================
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
+	
 	// Start Read the file
 	// =========================================================================	
 	
@@ -122,6 +126,16 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 			current_field_length           = regexp(lines_in(i),"/:\s/","o")
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
+			
+			// process binary files
+			if regexp(current_field,"/^(windows|linux|macosx|solaris|bsd)(32|64)?(Url|Name|Md5|Sha1|Id)$/","o")<>[] then
+				// This field doesn't concern this platform => Next line
+				if regexp(current_field,"/^"+OSNAME+ARCH+"/","o")==[] then
+					continue;
+				else
+					current_field = "binary"+part(current_field,length(OSNAME+ARCH)+1:length(current_field));
+				end
+			end
 			
 			// process URLs
 			if isfield(additionnal,"repository") & ..
