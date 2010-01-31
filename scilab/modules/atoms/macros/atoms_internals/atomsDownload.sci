@@ -219,7 +219,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			url_pattern = "file://";
 		end
 		
-		file_in = pathconvert(part(url_in,length(url_pattern):length(url_in)),%F);
+		file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 		
 		if copyfile(file_in,file_out) <> 1 then
 			mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");

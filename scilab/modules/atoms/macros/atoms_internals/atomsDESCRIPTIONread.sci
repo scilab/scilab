@@ -13,7 +13,7 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
-function description_out = atomsDESCRIPTIONread(file_in,additionnal)
+function description_out = atomsDESCRIPTIONread(file_in,additional)
 	
 	// Check input parameters
 	// =========================================================================
@@ -29,9 +29,9 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 	end
 	
 	if rhs < 2 then
-		additionnal = struct();
+		additional = struct();
 	else
-		if type(additionnal) <> 17 then
+		if type(additional) <> 17 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONread",2));
 		end
 	end
@@ -138,10 +138,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 			end
 			
 			// process URLs
-			if isfield(additionnal,"repository") & ..
+			if isfield(additional,"repository") & ..
 				( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
 				regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
-					current_value = additionnal("repository") + current_value;
+					current_value = additional("repository") + current_value;
 			end
 			
 			current_toolbox(current_field) = current_value;
