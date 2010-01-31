@@ -458,15 +458,15 @@ BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # List of the c files
 libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
-libsciconsole_disable_la_CFLAGS = -Iincludes/
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 

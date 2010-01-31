@@ -69,7 +69,6 @@ public final class BlockFactory {
 		 */
 		private BlockInterFunction(BasicBlock block) {
 			this.block = block;
-			block.setDefaultValues();
 		}
 		
 		/**
