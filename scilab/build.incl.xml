@@ -160,7 +160,8 @@
 	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
 		      <path refid="unittest.classpath" />
-			  <path refid="compile.classpath" />
+		      <path refid="compile.classpath" />
+		      <pathelement location="${classes.test.dir}" />
 		    </classpath>
     			 <classfileset dir="${build.test.dir}" includes="**/*.class"/>
 	   </testng>
@@ -197,7 +198,7 @@
 	</target>
 	
 	<!-- Compile test sources -->
-	<target name="compile-test" description="Build tests" depends="compile">
+	<target name="compile-test" description="Build tests" depends="jar">
 		<javac
 			srcdir="${src.test.dir}" 
 			destdir="${classes.test.dir}" 
