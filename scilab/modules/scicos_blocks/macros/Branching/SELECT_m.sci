@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,typ,nin,z0,exprs]=getvalue('Set parameters',..
+    [ok,typ,nin,z0,exprs]=scicos_getvalue('Set parameters',..
 	['Datatype(1= real double  2=Complex 3=int32 ..)';'number of inputs';'initial connected input'],..
 	list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end

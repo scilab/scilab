@@ -49,7 +49,7 @@ function result = atomsVersionCompare( version_1 , version_2 )
 	
 	for i=1:size(version_1,"*")
 		
-		if (length(version_1(i)) > 1) & (regexp(version_1(i),"/^[0-9]([0-9\.])*[0-9]$/") == []) then
+		if (length(version_1(i)) > 1) & (regexp(version_1(i),"/^[0-9]([0-9\.])*[0-9](\-[1-9]([0-9])*)?$/") == []) then
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",1));
 		end
 		
@@ -59,9 +59,9 @@ function result = atomsVersionCompare( version_1 , version_2 )
 		
 	end
 	
-	if (length(version_2) > 1) & (regexp(version_2,"/^[0-9]([0-9\.])*[0-9]$/") == []) then
+	if (length(version_2) > 1) & (regexp(version_2,"/^[0-9]([0-9\.])*[0-9](\-[1-9]([0-9])*)?$/") == []) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",2));
-	end	
+	end
 	
 	if (length(version_2) == 1) & (regexp(version_2,"/^[0-9]$/") == []) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",2));
@@ -74,6 +74,18 @@ function result = atomsVersionCompare( version_1 , version_2 )
 	// Now : action
 	// =========================================================================
 	
+	// Split version and packaging version
+	
+	if strindex(version_2,"-")==[] then
+		version_2_pack = 0;
+	else
+		version_2_tmp  = strsubst( strsplit(version_2,strindex(version_2,"-")) , "-" , "" );
+		version_2      = version_2_tmp(1);
+		version_2_pack = strtod(version_2_tmp(2));
+	end
+	
+	// Split the version
+	
 	if regexp(version_2,"/\./","o") == [] then
 		version_2_mat = strtod(version_2);
 	else
@@ -84,6 +96,18 @@ function result = atomsVersionCompare( version_1 , version_2 )
 	
 	for i=1:size(version_1,"*")
 		
+		// Split version and packaging version
+		
+		if strindex(version_1(i),"-")==[] then
+			version_1_pack = 0;
+		else
+			version_1_tmp  = strsubst( strsplit(version_1(i),strindex(version_1(i),"-")) , "-" , "" );
+			version_1(i)   = version_1_tmp(1);
+			version_1_pack = strtod(version_1_tmp(2));
+		end
+		
+		// split the version
+		
 		if regexp(version_1(i),"/\./","o") == [] then
 			version_1_mat = strtod(version_1(i));
 		else
@@ -92,31 +116,81 @@ function result = atomsVersionCompare( version_1 , version_2 )
 		
 		version_1_mat_size = size(version_1_mat,"*");
 		
-		for j=1:version_1_mat_size
-			
-			if result(i) <> 0 then
-				continue;
-			end
-			
-			if j > version_2_mat_size then
-				if version_1_mat(j) > 0 then
-					// Version_1 is superior than version_2
-					result(i) = 1;
+		if version_1_mat_size>=version_2_mat_size then
+			for j=1:version_1_mat_size
+				
+				if result(i) <> 0 then
+					break;
+				end
+				
+				if j > version_2_mat_size then
+					if version_1_mat(j) > 0 then
+						// Version_1 is superior than version_2
+						result(i) = 1;
+						break;
+					end
 					continue;
 				end
-				continue;
+				
+				if version_1_mat(j) > version_2_mat(j) then
+					// Version_1 is superior than version_2
+					result(i) = 1;
+					break;
+				end
+				
+				if version_2_mat(j) > version_1_mat(j) then
+					// Version_2 is superior than version_1
+					result(i) = -1;
+					break;
+				end
+				
+			end
+		else
+			for j=1:version_2_mat_size
+				
+				if result(i) <> 0 then
+					break;
+				end
+				
+				if j > version_1_mat_size then
+					if version_2_mat(j) > 0 then
+						// Version_2 is superior than version_1
+						result(i) = -1;
+						break;
+					end
+					continue;
+				end
+				
+				if version_2_mat(j) > version_1_mat(j) then
+					// Version_2 is superior than version_1
+					result(i) = -1;
+					break;
+				end
+				
+				if version_1_mat(j) > version_2_mat(j) then
+					// Version_1 is superior than version_2
+					result(i) = 1;
+					break;
+				end
+				
 			end
 			
-			if version_1_mat(j) > version_2_mat(j) then
-				// Version_1 is superior than version_2
+		end
+		
+		// Last test : check if the two version are equivalent
+		// If yes : compare the packaging versions
+		
+		if result(i) == 0 then
+			
+			if version_1_pack > version_2_pack then
 				result(i) = 1;
-				continue;
-			end
-			
-			if version_2_mat(j) > version_1_mat(j) then
-				// Version_2 is superior than version_1
+				
+			elseif version_1_pack < version_2_pack then
 				result(i) = -1;
-				continue;
+				
+			else
+				result(i) = 0;
+				
 			end
 			
 		end

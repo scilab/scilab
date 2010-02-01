@@ -46,18 +46,19 @@ OTHERLIBS = __OTHERSLIBS__
 #=============================================================
 # include options 
 INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
--I"$(SCIDIR)/modules/core/includes" \
--I"$(SCIDIR)/modules/call_scilab/includes" \
--I"$(SCIDIR)/modules/output_stream/includes" \
--I"$(SCIDIR)/modules/jvm/includes" \
--I"$(SCIDIR)/modules/localization/includes" \
--I"$(SCIDIR)/libs/intl" \
--I"$(SCIDIR)/libs/f2c" \
--I"$(SCIDIR)/modules/mexlib/includes" \
--I"$(SCIDIR)/modules/localization/includes" \
--I"$(SCIDIR)/modules/jvm/includes" \
--I"$(SCIDIR)/modules/time/includes" \
--I"$(SCIDIR)/libs/intl"
+-I"$(SCIDIR)\modules\core\includes" \
+-I"$(SCIDIR)\modules\api_scilab\includes" \
+-I"$(SCIDIR)\modules\call_scilab\includes" \
+-I"$(SCIDIR)\modules\output_stream\includes" \
+-I"$(SCIDIR)\modules\jvm\includes" \
+-I"$(SCIDIR)\modules\localization\includes" \
+-I"$(SCIDIR)\modules\mexlib\includes" \
+-I"$(SCIDIR)\modules\time\includes" \
+-I"$(SCIDIR)\modules\windows_tools\includes" \
+-I"$(SCIDIR)\libs\f2c" \
+-I"$(SCIDIR)\libs\hashtable" \
+-I"$(SCIDIR)\libs\intl"
+
 #=============================================================
 # Libraries 
 #=============================================================
@@ -70,6 +71,8 @@ SCILAB_LIBS="$(LCCLIBDIR)\MALLOC.lib" "$(LCCLIBDIR)\blasplus.lib" \
 "$(LCCLIBDIR)\libjvm.lib" "$(LCCLIBDIR)\scilocalization.lib" \
 "$(LCCLIBDIR)\libintl.lib" "$(LCCLIBDIR)\linpack_f.lib" \
 "$(LCCLIBDIR)\call_scilab.lib" "$(LCCLIBDIR)\time.lib" \
+"$(LCCLIBDIR)\api_scilab.lib" "$(LCCLIBDIR)\hashtable.lib" \
+"$(LCCLIBDIR)\scilab_windows.lib" \
 "$(LCCLIBDIR)\libscilab.lib"
 #=============================================================
 .c.$(OBJ):

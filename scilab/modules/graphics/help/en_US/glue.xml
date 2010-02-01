@@ -52,6 +52,19 @@ h_agreg=glue(H)</synopsis>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
+scf(1);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
+xrect(-1,1,2,2);
+xarc(-0.5,0.5,2,2,0,360*64);
+a=gca();
+r=a.children(1);
+c=a.children(2);
+nc=glue([r,c]);
+// a.children(1) and nc now both correspond to the
+// newly created compound object,
+a.children(1)
+// which is then translated.
+move(nc,[-1,-0.5]);
  ]]></programlisting>
   </refsection>
   <refsection>

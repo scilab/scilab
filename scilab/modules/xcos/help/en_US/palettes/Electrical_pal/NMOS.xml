@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="NMOS"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>NMOS</refname>
+
+    <refpurpose>Simple NMOS Transistor</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/NMOS.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_NMOS">
+    <title>Contents</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="NMOS">Simple NMOS Transistor</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_NMOS">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_NMOS">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_NMOS">Dialog box</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_NMOS">Default properties</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_NMOS">Interfacing
+              function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <link linkend="NMOS">Modelica model</link>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_NMOS">See also</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_NMOS">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_NMOS">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Electrical
+          toolbox</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_NMOS">
+    <title>Description</title>
+
+    <para>Description</para>
+
+    <para />
+
+    <para>The NMos model is a simple model of a n-channel metal-oxide
+    semiconductor FET. It differs slightly from the device used in the SPICE
+    simulator. For more details please care for H. Spiro.</para>
+
+    <para>The model does not consider capacitances. A small fixed drain-source
+    resistance is included (to avoid numerical difficulties).</para>
+
+    <para />
+
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">W [m]</td>
+
+        <td align="left">L [m]</td>
+
+        <td align="left">Beta [1/V²]</td>
+
+        <td align="left">Vt [V]</td>
+
+        <td align="left">K2</td>
+
+        <td align="left">K5</td>
+
+        <td align="left">DW [m]</td>
+
+        <td align="left">DL[m]</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">12.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.062</td>
+
+        <td align="left">-4.5</td>
+
+        <td align="left">.24</td>
+
+        <td align="left">.61</td>
+
+        <td align="left">-1.2e-6</td>
+
+        <td align="left">-.9e-6</td>
+
+        <td align="left">depletion</td>
+      </tr>
+
+      <tr>
+        <td align="left">60.e-6</td>
+
+        <td align="left">3.e-6</td>
+
+        <td align="left">.048</td>
+
+        <td align="left">.1</td>
+
+        <td align="left">.08</td>
+
+        <td align="left">.68</td>
+
+        <td align="left">-1.2e-6</td>
+
+        <td align="left">-.9e-6</td>
+
+        <td align="left">enhancement</td>
+      </tr>
+
+      <tr>
+        <td align="left">12.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.0625</td>
+
+        <td align="left">-.8</td>
+
+        <td align="left">.21</td>
+
+        <td align="left">.78</td>
+
+        <td align="left">-1.2e-6</td>
+
+        <td align="left">-.9e-6</td>
+
+        <td align="left">zero</td>
+      </tr>
+
+      <tr>
+        <td align="left">50.e-6</td>
+
+        <td align="left">8.e-6</td>
+
+        <td align="left">.0299</td>
+
+        <td align="left">.24</td>
+
+        <td align="left">1.144</td>
+
+        <td align="left">.7311</td>
+
+        <td align="left">-5.4e-6</td>
+
+        <td align="left">-4.e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">6.e-6</td>
+
+        <td align="left">.041</td>
+
+        <td align="left">.8</td>
+
+        <td align="left">1.144</td>
+
+        <td align="left">.7311</td>
+
+        <td align="left">-2.5e-6</td>
+
+        <td align="left">-1.5e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">30.e-6</td>
+
+        <td align="left">9.e-6</td>
+
+        <td align="left">.025</td>
+
+        <td align="left">-4.</td>
+
+        <td align="left">.861</td>
+
+        <td align="left">.878</td>
+
+        <td align="left">-3.4e-6</td>
+
+        <td align="left">-1.74e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">30.e-6</td>
+
+        <td align="left">5.e-6</td>
+
+        <td align="left">.031</td>
+
+        <td align="left">.6</td>
+
+        <td align="left">1.5</td>
+
+        <td align="left">.72</td>
+
+        <td align="left">0</td>
+
+        <td align="left">-3.9e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">50.e-6</td>
+
+        <td align="left">6.e-6</td>
+
+        <td align="left">.0414</td>
+
+        <td align="left">-3.8</td>
+
+        <td align="left">.34</td>
+
+        <td align="left">.8</td>
+
+        <td align="left">-1.6e-6</td>
+
+        <td align="left">-2.e-6</td>
+
+        <td align="left">depletion</td>
+      </tr>
+
+      <tr>
+        <td align="left">50.e-6</td>
+
+        <td align="left">5.e-6</td>
+
+        <td align="left">.03</td>
+
+        <td align="left">.37</td>
+
+        <td align="left">.23</td>
+
+        <td align="left">.86</td>
+
+        <td align="left">-1.6e-6</td>
+
+        <td align="left">-2.e-6</td>
+
+        <td align="left">enhancement</td>
+      </tr>
+
+      <tr>
+        <td align="left">50.e-6</td>
+
+        <td align="left">6.e-6</td>
+
+        <td align="left">.038</td>
+
+        <td align="left">-.9</td>
+
+        <td align="left">.23</td>
+
+        <td align="left">.707</td>
+
+        <td align="left">-1.6e-6</td>
+
+        <td align="left">-2.e-6</td>
+
+        <td align="left">zero</td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.06776</td>
+
+        <td align="left">.5409</td>
+
+        <td align="left">.065</td>
+
+        <td align="left">.71</td>
+
+        <td align="left">-.8e-6</td>
+
+        <td align="left">-.2e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.06505</td>
+
+        <td align="left">.6209</td>
+
+        <td align="left">.065</td>
+
+        <td align="left">.71</td>
+
+        <td align="left">-.8e-6</td>
+
+        <td align="left">-.2e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.05365</td>
+
+        <td align="left">.6909</td>
+
+        <td align="left">.03</td>
+
+        <td align="left">.8</td>
+
+        <td align="left">-.3e-6</td>
+
+        <td align="left">-.2e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.05365</td>
+
+        <td align="left">.4909</td>
+
+        <td align="left">.03</td>
+
+        <td align="left">.8</td>
+
+        <td align="left">-.3e-6</td>
+
+        <td align="left">-.2e-6</td>
+
+        <td align="left"> </td>
+      </tr>
+
+      <tr>
+        <td align="left">12.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.023</td>
+
+        <td align="left">-4.5</td>
+
+        <td align="left">.29</td>
+
+        <td align="left">.6</td>
+
+        <td align="left">0</td>
+
+        <td align="left">0</td>
+
+        <td align="left">depletion</td>
+      </tr>
+
+      <tr>
+        <td align="left">60.e-6</td>
+
+        <td align="left">3.e-6</td>
+
+        <td align="left">.022</td>
+
+        <td align="left">.1</td>
+
+        <td align="left">.11</td>
+
+        <td align="left">.65</td>
+
+        <td align="left">0</td>
+
+        <td align="left">0</td>
+
+        <td align="left">enhancement</td>
+      </tr>
+
+      <tr>
+        <td align="left">12.e-6</td>
+
+        <td align="left">4.e-6</td>
+
+        <td align="left">.038</td>
+
+        <td align="left">-.8</td>
+
+        <td align="left">.33</td>
+
+        <td align="left">.6</td>
+
+        <td align="left">0</td>
+
+        <td align="left">0</td>
+
+        <td align="left">zero</td>
+      </tr>
+
+      <tr>
+        <td align="left">20.e-6</td>
+
+        <td align="left">6.e-6</td>
+
+        <td align="left">.022</td>
+
+        <td align="left">.8</td>
+
+        <td align="left">1</td>
+
+        <td align="left">.66</td>
+
+        <td align="left">0</td>
+
+        <td align="left">0</td>
+
+        <td align="left"> </td>
+      </tr>
+    </informaltable>
+  </refsection>
+
+  <refsection id="Dialogbox_NMOS">
+    <title>Dialog box</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/NMOS_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Width [m]</emphasis>
+        </para>
+
+        <para>W</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Length [m]</emphasis>
+        </para>
+
+        <para>L</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Transconductance parameter
+          [A/(V*V)]</emphasis>
+        </para>
+
+        <para>Beta</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Zero bias threshold voltage [V]</emphasis>
+        </para>
+
+        <para>Vt</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Bulk threshold parameter</emphasis>
+        </para>
+
+        <para>K2</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Reduction of pinch-off region</emphasis>
+        </para>
+
+        <para>K5</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Narrowing of channel [m]</emphasis>
+        </para>
+
+        <para>dW</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Shortening of channel [m]</emphasis>
+        </para>
+
+        <para>dL</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Drain-Source-Resistance [Ohm]</emphasis>
+        </para>
+
+        <para>RDS</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_NMOS">
+    <title>Default properties</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'G'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'D'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'B'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis>
+            'S'</para>
+
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'W'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.00002</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'L'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.000006</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'Beta'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.000041</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'Vt'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis> 0.8</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'K2'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            1.144</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'K5'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            0.7311</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'dW'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            -0.0000025</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'dL'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            -0.0000015</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis>
+            'RDS'</para>
+
+            <para><emphasis role="bold">Default value :</emphasis>
+            10000000</para>
+
+            <para><emphasis role="bold">Is a state variable :</emphasis>
+            no.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis>
+        NMOS</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_NMOS">
+    <title>Interfacing function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Electrical/NMOS.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Modelicamodel_NMOS">
+    <title>Modelica model</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Electrical/NMOS.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_NMOS">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PMOS">PMOS - Simple PMOS Transistor</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_NMOS">
+    <title>Authors</title>
+
+    <para><emphasis role="bold" /> - www.modelica.org</para>
+  </refsection>
+</refentry>

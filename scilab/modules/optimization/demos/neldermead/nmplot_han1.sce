@@ -45,28 +45,24 @@ nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
 mprintf("Setup output files...\n");
-nm = nmplot_configure(nm,"-simplexfn","han1-history-simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","han1-history-fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","han1-history-fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","han1-history-sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 //
 // Plot the history of the simplex
 //
-mprintf("Plotting contour...\n");
+mprintf("Plotting contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
@@ -77,10 +73,17 @@ drawnow();
 //
 // Clean-up
 //
-deletefile("han1-history-simplex.txt");
-deletefile("han1-history-fbar.txt");
-deletefile("han1-history-fopt.txt");
-deletefile("han1-history-sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_han1.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-
+// <-- INTERACTIVE TEST -->
 // <-- Non-regression test for bug 805 -->
 //
 // <-- Bugzilla URL -->

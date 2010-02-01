@@ -1,28 +1,169 @@
-# Localization of the module sparse
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-16 16:23+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
 
-# File: includes/spDefs.h, line: 379
+#
+# File: src/c/spOutput.c, line: 331
 #, c-format
-msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "スパース: 線 %2$d で ファイル `%1$s' はパニックです。\n"
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+"\n"
+"密度 = %2.2lf%%.\n"
+
+#
+# File: src/c/spOutput.c, line: 322
+#, c-format
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"最も大きい対角線の要素 = %-1.4lg.\n"
+
+#
+# File: src/c/spOutput.c, line: 308
+#, c-format
+msgid ""
+"\n"
+"Largest element in matrix = %-1.4lg.\n"
+msgstr ""
+"\n"
+"行列の最も大きい要素 = %-1.4lg.\n"
+
+#
+# File: src/c/spOutput.c, line: 326
+#, c-format
+msgid ""
+"\n"
+"Largest pivot element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"最も大きい軸の要素 = %-1.4lg.\n"
+
+#
+# File: src/c/spOutput.c, line: 728
+#, c-format
+msgid "     Absolute Threshold = %e\n"
+msgstr "     絶対値境界 = %e\n"
+
+#
+# File: src/c/spOutput.c, line: 723
+#, c-format
+msgid "     Average number of elements per row = %lf\n"
+msgstr "     列当たりの要素の平均数 = %lf\n"
+
+#
+# File: src/c/spOutput.c, line: 719
+#, c-format
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr "     列当たりのfill-insの平均数 = %lf%%\n"
+
+#
+# File: src/c/spOutput.c, line: 725
+#, c-format
+msgid "     Density = %lf%%\n"
+msgstr "     密度 = %lf%%\n"
+
+#
+# File: src/c/spOutput.c, line: 718
+#, c-format
+msgid "     Fill-ins = %d\n"
+msgstr "     Fill-ins = %d\n"
+
+#
+# File: src/c/spOutput.c, line: 716
+#, c-format
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr "     列当たりの要素の最初の平均数 = %lf\n"
+
+#
+# File: src/c/spOutput.c, line: 713
+#, c-format
+msgid "     Initial number of elements = %d\n"
+msgstr "     要素の初期数 = %d\n"
+
+#
+# File: src/c/spOutput.c, line: 729
+#, c-format
+msgid "     Largest Element = %e\n"
+msgstr "     最も大きい要素 = %e\n"
+
+#
+# File: src/c/spOutput.c, line: 727
+#, c-format
+msgid "     Relative Threshold = %e\n"
+msgstr "     相対値境界 = %e\n"
+
+#
+# File: src/c/spOutput.c, line: 730
+#, c-format
+msgid ""
+"     Smallest Element = %e\n"
+"\n"
+"\n"
+msgstr ""
+"     最も小さい要素 = %e\n"
+"\n"
+"\n"
+
+#
+# File: src/c/spOutput.c, line: 721
+#, c-format
+msgid "     Total number of elements = %d\n"
+msgstr "     要素の総数 = %d\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  反復 #%s/%s 残差 : %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr "  新しい残差 = %s < tol = %s => break\n"
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  前処理の種類 #1 : %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  前処理の種類 #2 : %d\n"
+
+#
+# File: src/c/lu.c, line: 121
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr "%s: 行列でゼロが対角線で出会いました。\n"
+
+#
+# File: macros/pcg.sci, line: 269
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: 集合エラー\n"
+
+#
+# File: macros/gmres.sci, line: 290
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: 集まりませんでした。\n"
 
 #
 # File: macros/gmres.sci, line: 51
@@ -31,10 +172,55 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: 入力引数で不正な数: 少なくとも %d を想定します。\n"
 
 #
+# File: macros/gmres.sci, line: 152
+# File: macros/pcg.sci, line: 48
+# File: macros/pcg.sci, line: 51
+# File: macros/qmr.sci, line: 261
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/qmr.sci, line: 61
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
+
+#
+# File: macros/qmr.sci, line: 143
+# File: macros/qmr.sci, line: 194
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be same size as input argument "
+"#%d"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d と同じサイズでなくてはいけません"
+
+#
+# File: macros/gmres.sci, line: 128
+# File: macros/pcg.sci, line: 112
+# File: macros/pcg.sci, line: 145
+# File: macros/pcg.sci, line: 171
+# File: macros/pcg.sci, line: 179
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
 # File: macros/gmres.sci, line: 66
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 正方行列を想定します。\n"
+
+#
+# File: macros/pcg.sci, line: 98
+# File: macros/pcg.sci, line: 138
+# File: macros/pcg.sci, line: 164
+# File: macros/qmr.sci, line: 73
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
 
 #
 # File: macros/gmres.sci, line: 71
@@ -48,7 +234,18 @@ msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します�
 #
 # File: macros/gmres.sci, line: 75
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Same size as input argument #%d expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 145
+# File: macros/qmr.sci, line: 118
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
 
 #
@@ -76,51 +273,16 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 正方行列を想定します。\n"
 
 #
-# File: macros/gmres.sci, line: 128
-# File: macros/pcg.sci, line: 112
-# File: macros/pcg.sci, line: 145
-# File: macros/pcg.sci, line: 171
-# File: macros/pcg.sci, line: 179
+# File: macros/qmr.sci, line: 89
+# File: macros/qmr.sci, line: 164
+# File: macros/qmr.sci, line: 167
+# File: macros/qmr.sci, line: 215
+# File: macros/qmr.sci, line: 219
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d として同じサイズを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 145
-# File: macros/qmr.sci, line: 118
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 152
-# File: macros/pcg.sci, line: 48
-# File: macros/pcg.sci, line: 51
-# File: macros/qmr.sci, line: 261
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
-
-#
-# File: macros/gmres.sci, line: 290
-#, c-format
-msgid "%s: Did not converge.\n"
-msgstr "%s: 集まりませんでした。\n"
-
-#
-# File: macros/pcg.sci, line: 72
-#, c-format
-msgid "Arguments:\n"
-msgstr "引数:\n"
-
-#
-# File: macros/pcg.sci, line: 98
-# File: macros/pcg.sci, line: 138
-# File: macros/pcg.sci, line: 164
-# File: macros/qmr.sci, line: 73
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正な型です。\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
 
 #
 # File: macros/pcg.sci, line: 176
@@ -130,73 +292,11 @@ msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 列ベクトルを想定します。\n"
 
 #
-# File: macros/pcg.sci, line: 187
-#, c-format
-msgid "Norm of right-hand side : %s\n"
-msgstr "右手側の標準 : %s\n"
-
-#
-# File: macros/pcg.sci, line: 191
-#, c-format
-msgid "Special processing where the right-hand side is zero.\n"
-msgstr "右手の側がゼロであるところの特別の加工\n"
-
-#
-# File: macros/pcg.sci, line: 214
-#, c-format
-msgid "  New residual = %s < tol = %s => break\n"
-msgstr "新しい剰余 = %s < tol = %s => break\n"
-
-#
-# File: macros/pcg.sci, line: 220
-#, c-format
-msgid "  Iteration #%s/%s residual : %s\n"
-msgstr "  繰り返し #%s/%s 剰余 : %s\n"
-
-#
-# File: macros/pcg.sci, line: 264
-#, c-format
-msgid "Final residual = %s > tol =%s\n"
-msgstr "最終の剰余 = %s > tol =%s\n"
-
-#
-# File: macros/pcg.sci, line: 265
-#, c-format
-msgid "Algorithm fails\n"
-msgstr "アルゴリズム不正\n"
-
-#
-# File: macros/pcg.sci, line: 269
-#, c-format
-msgid "%s: Convergence error.\n"
-msgstr "%s: 集合エラー\n"
-
-#
-# File: macros/pcg.sci, line: 274
-#, c-format
-msgid "Algorithm pass\n"
-msgstr "アルゴリズム透過\n"
-
-#
-# File: macros/qmr.sci, line: 61
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
-
-#
-# File: macros/qmr.sci, line: 89
-# File: macros/qmr.sci, line: 164
-# File: macros/qmr.sci, line: 167
-# File: macros/qmr.sci, line: 215
-# File: macros/qmr.sci, line: 219
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Transpose of the function %s expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
-
-#
 # File: macros/qmr.sci, line: 97
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定します。\n"
 
 #
@@ -205,36 +305,30 @@ msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定
 msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ベクトルを想定します。\n"
 
-#
-# File: macros/qmr.sci, line: 143
-# File: macros/qmr.sci, line: 194
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must be same size as input argument #%d"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d と同じサイズでなくてはいけません"
+msgid "Algorithm fails\n"
+msgstr "異常終了\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "正常終了\n"
 
 #
-# File: src/c/lu.c, line: 121
+# File: macros/pcg.sci, line: 72
 #, c-format
-msgid "%s: A zero was encountered on the diagonal the matrix.\n"
-msgstr "%s: 行列でゼロが対角線で出会いました。\n"
+msgid "Arguments:\n"
+msgstr "引数:\n"
 
 #
-# File: src/c/spFactor.c, line: 233
+# File: src/c/spOutput.c, line: 223
+# File: src/c/spOutput.c, line: 225
 #, c-format
-msgid "Reordering,  Step = %1d\n"
-msgstr "再整理、ステップ = %1d\n"
+msgid "Columns %1d to %1d.\n"
+msgstr "列 %1d から %1d へ\n"
 
-#
-# File: src/c/spFactor.c, line: 711
 #, c-format
-msgid "Operation count for inner loop of factorization = %d.\n"
-msgstr "因数分解の内側のループのための操作数 = %d\n"
-
-#
-# File: src/c/spFactor.c, line: 3011
-#, c-format
-msgid "Pivot found at %1d,%1d using "
-msgstr "軸は %1d,%1d で使っているのを見つけました"
+msgid "Final residual = %s > tol =%s\n"
+msgstr "最終の残差 = %s > tol =%s\n"
 
 #
 # File: src/c/spOutput.c, line: 176
@@ -245,18 +339,6 @@ msgid ""
 msgstr ""
 "行列要約\n"
 "\n"
-
-#
-# File: src/c/spOutput.c, line: 177
-#, c-format
-msgid "Size of matrix = %1u x %1u.\n"
-msgstr "行列のサイズ = %1u x %1u.\n"
-
-#
-# File: src/c/spOutput.c, line: 179
-#, c-format
-msgid "Matrix has been reordered.\n"
-msgstr "行列は再整理されました。\n"
 
 #
 # File: src/c/spOutput.c, line: 183
@@ -271,93 +353,16 @@ msgid "Matrix before factorization:\n"
 msgstr "因数分解の前の行列:\n"
 
 #
-# File: src/c/spOutput.c, line: 223
-# File: src/c/spOutput.c, line: 225
+# File: src/c/spOutput.c, line: 179
 #, c-format
-msgid "Columns %1d to %1d.\n"
-msgstr "列 %1d から %1d へ\n"
-
-#
-# File: src/c/spOutput.c, line: 308
-#, c-format
-msgid ""
-"\n"
-"Largest element in matrix = %-1.4lg.\n"
-msgstr ""
-"\n"
-"行列の最も大きい要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 309
-#, c-format
-msgid "Smallest element in matrix = %-1.4lg.\n"
-msgstr "行列の最も小さい要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 322
-#, c-format
-msgid ""
-"\n"
-"Largest diagonal element = %-1.4lg.\n"
-msgstr ""
-"\n"
-"最も大きい対角線の要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 323
-#, c-format
-msgid "Smallest diagonal element = %-1.4lg.\n"
-msgstr "最も小さい対角線の要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 326
-#, c-format
-msgid ""
-"\n"
-"Largest pivot element = %-1.4lg.\n"
-msgstr ""
-"\n"
-"最も大きい軸の要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 327
-#, c-format
-msgid "Smallest pivot element = %-1.4lg.\n"
-msgstr "最も小さい軸の要素 = %-1.4lg.\n"
-
-#
-# File: src/c/spOutput.c, line: 331
-#, c-format
-msgid ""
-"\n"
-"Density = %2.2lf%%.\n"
-msgstr ""
-"\n"
-"密度 = %2.2lf%%.\n"
-
-#
-# File: src/c/spOutput.c, line: 334
-#, c-format
-msgid "Number of fill-ins = %1d.\n"
-msgstr "fill-ins の数 = %1d.\n"
-
-#
-# File: src/c/spOutput.c, line: 417
-#, c-format
-msgid "Warning : The following matrix is factored in to LU form.\n"
-msgstr "警告 : 以下の行列はLU形に因数分解されます。\n"
+msgid "Matrix has been reordered.\n"
+msgstr "行列は再整理されました。\n"
 
 #
 # File: src/c/spOutput.c, line: 683
 #, c-format
 msgid "Matrix has not been factored.\n"
 msgstr "行列は因数分解されませんでした。\n"
-
-#
-# File: src/c/spOutput.c, line: 684
-#, c-format
-msgid "|||  Starting new matrix  |||\n"
-msgstr "|||  新しい行列を開始  |||\n"
 
 #
 # File: src/c/spOutput.c, line: 687
@@ -369,77 +374,77 @@ msgstr "行列は複雑です。\n"
 # File: src/c/spOutput.c, line: 689
 #, c-format
 msgid "Matrix is real.\n"
-msgstr "行列は実数です。\n"
+msgstr "行列は実です。\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr "右辺ベクトルのノルム : %s\n"
 
 #
-# File: src/c/spOutput.c, line: 713
+# File: src/c/spOutput.c, line: 334
 #, c-format
-msgid "     Initial number of elements = %d\n"
-msgstr "     要素の初期数 = %d\n"
+msgid "Number of fill-ins = %1d.\n"
+msgstr "fill-ins の数 = %1d.\n"
 
 #
-# File: src/c/spOutput.c, line: 716
+# File: src/c/spFactor.c, line: 711
 #, c-format
-msgid "     Initial average number of elements per row = %lf\n"
-msgstr "      列当たりの要素の最初の平均数 = %lf\n"
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr "因数分解の内側のループのための操作数 = %d\n"
 
 #
-# File: src/c/spOutput.c, line: 718
+# File: src/c/spFactor.c, line: 3011
 #, c-format
-msgid "     Fill-ins = %d\n"
-msgstr "     Fill-ins = %d\n"
+msgid "Pivot found at %1d,%1d using "
+msgstr "軸は %1d,%1d で使っているのを見つけました "
 
 #
-# File: src/c/spOutput.c, line: 719
+# File: src/c/spFactor.c, line: 233
 #, c-format
-msgid "     Average number of fill-ins per row = %lf%%\n"
-msgstr "     列当たりのfill-insの平均数 = %lf%%\n"
+msgid "Reordering,  Step = %1d\n"
+msgstr "再整理、ステップ = %1d\n"
 
 #
-# File: src/c/spOutput.c, line: 721
+# File: src/c/spOutput.c, line: 177
 #, c-format
-msgid "     Total number of elements = %d\n"
-msgstr "     要素の総数 = %d\n"
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr "行列のサイズ = %1u x %1u.\n"
 
 #
-# File: src/c/spOutput.c, line: 723
+# File: src/c/spOutput.c, line: 323
 #, c-format
-msgid "     Average number of elements per row = %lf\n"
-msgstr "     列当たりの要素の平均数 = %lf\n"
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr "最も小さい対角線の要素 = %-1.4lg.\n"
 
 #
-# File: src/c/spOutput.c, line: 725
+# File: src/c/spOutput.c, line: 309
 #, c-format
-msgid "     Density = %lf%%\n"
-msgstr "     密度 = %lf%%\n"
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr "行列の最も小さい要素 = %-1.4lg.\n"
 
 #
-# File: src/c/spOutput.c, line: 727
+# File: src/c/spOutput.c, line: 327
 #, c-format
-msgid "     Relative Threshold = %e\n"
-msgstr "     相対値境界 = %e\n"
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr "最も小さい軸の要素 = %-1.4lg.\n"
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr "右辺ベクトルがゼロの特別な加工\n"
 
 #
-# File: src/c/spOutput.c, line: 728
+# File: src/c/spOutput.c, line: 417
 #, c-format
-msgid "     Absolute Threshold = %e\n"
-msgstr "     絶対値境界 = %e\n"
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr "警告 : 以下の行列はLU形に因数分解されます。\n"
+
+# File: includes/spDefs.h, line: 379
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr "スパース: 線 %2$d で ファイル `%1$s' はパニックです。\n"
 
 #
-# File: src/c/spOutput.c, line: 729
+# File: src/c/spOutput.c, line: 684
 #, c-format
-msgid "     Largest Element = %e\n"
-msgstr "     最も大きい要素 = %e\n"
-
-#
-# File: src/c/spOutput.c, line: 730
-#, c-format
-msgid ""
-"     Smallest Element = %e\n"
-"\n"
-"\n"
-msgstr ""
-"     最も小さい要素 = %e\n"
-"\n"
-"\n"
-
+msgid "|||  Starting new matrix  |||\n"
+msgstr "|||  新しい行列を開始  |||\n"

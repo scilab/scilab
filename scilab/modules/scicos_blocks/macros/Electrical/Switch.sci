@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Ron,Roff,exprs]=getvalue('Set non-ideal electrical switch parameters',..
+    [ok,Ron,Roff,exprs]=scicos_getvalue('Set non-ideal electrical switch parameters',..
 	['Resistance in On state (Ohm)';'Resistance in Off state (Ohm)'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end  
     model.equations.parameters(2)=list(Ron,Roff)

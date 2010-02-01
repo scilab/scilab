@@ -38,7 +38,7 @@ function [x,y,typ] = JKFLIPFLOP(job,arg1,arg2)
     model=xx.model;
     init_old= model.odstate(1)
     while %t do
-      [ok,init,exprs0]=getvalue(['Set parameters';'The Initial Value must be 0 or 1 of type int8';..
+      [ok,init,exprs0]=scicos_getvalue(['Set parameters';'The Initial Value must be 0 or 1 of type int8';..
 	                       'Negatif values are considered as int8(0)';..
 			       'Positif values are considered as int8(1)'] ,..
 			   ['Initial Value'],..

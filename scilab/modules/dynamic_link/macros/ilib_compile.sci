@@ -16,7 +16,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
 
   [lhs,rhs] = argn(0);
-  if rhs < 3 then
+  if rhs < 2 then
     error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
     return
   end
@@ -84,7 +84,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   else
     //** ---------- Linux/MacOS/Unix section ---------------------  
 	
-	ScilabTreeFound=%f
+	ScilabTreeFound=%f;
 
     // Source tree version
 	// Headers are dispatched in the source tree
@@ -104,14 +104,14 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	end
 
 	// Binary version
-	if isdir(SCI+"/../../include/scilab/") & ScilabTreeFound then
+	if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
   	  cflags="-I"+SCI+"/../../include/scilab/ " + cflags
   	  fflags="-I"+SCI+"/../../include/scilab/ " + fflags
 	  ScilabTreeFound=%t
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/include/scilab/") & ScilabTreeFound then
+	if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
 	   cflags="-I/usr/include/scilab/ "+cflags
 	   fflags="-I/usr/include/scilab/ "+fflags
 	   ScilabTreeFound=%t
@@ -139,7 +139,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		   mprintf(gettext("stderr: %s\n"),stderr);
 		end
 	  if ierr <> 0 then
-	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
+	      mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
 	      lines(0);
 	      disp(stderr);
 		    mprintf("\n");

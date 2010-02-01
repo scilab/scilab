@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>modulo</refname>
 
-    <refpurpose>symetric arithmetic remainder modulo m</refpurpose>
+    <refpurpose>symmetric arithmetic remainder modulo m</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="pmodulo">

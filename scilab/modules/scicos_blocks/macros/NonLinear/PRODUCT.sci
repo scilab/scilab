@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,sgn,exprs]=getvalue(['         Set multiplication block parameters';
+    [ok,sgn,exprs]=scicos_getvalue(['         Set multiplication block parameters';
                              '(multiplication is set with + 1, division with -1)';''],...
                             'Number of inputs or sign vector',...
                             list('vec',-1),exprs)

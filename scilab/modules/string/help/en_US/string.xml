@@ -10,7 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="string">
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="en" 
+	  xml:id="string">
   <info>
     <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
   </info>
@@ -29,7 +36,7 @@
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real matrix or function</para>
+          <para>Boolean, complex, real, integer, polynomial matrix, or function</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,7 +67,13 @@
 string(rand(2,2))
 deff('y=mymacro(x)','y=x+1')
 [out,in,text]=string(mymacro)
-x=123.356; 'Result is '+string(x)
+x=123.356; 
+disp('Result is '+string(x))
+
+disp('/'+string(~%t)+'/')
+disp('/'+string(%i+1)+'/')
+disp('/'+string(int16(-123))+'/')
+disp('/'+string(1+%s+%s^3)+'/')
  ]]></programlisting>
   </refsection>
   <refsection>

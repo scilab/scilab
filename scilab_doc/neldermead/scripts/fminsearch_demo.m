@@ -58,20 +58,18 @@ opt = optimset('Display','iter' , 'MaxIter' , 10 );
 [x,fval,exitflag,output] = fminsearch(banana,[-1.2, 1] , opt );
 
 % Sample use of an output function
-options = optimset('OutputFcn', @outfun);
-hold on
-[x fval] = fminsearch(objfun, [-1.2, 1], options)
-hold off
+opt = optimset('OutputFcn', @outfun);
+[x fval] = fminsearch(banana, [-1.2, 1], opt)
 
 % Sample use of a plot function : optimplotfval
-options = optimset('PlotFcns',@optimplotfval);
-[x ffinal] = fminsearch(banana,[-1.2, 1],options)
+opt = optimset('PlotFcns',@optimplotfval);
+[x ffinal] = fminsearch(banana,[-1.2, 1],opt)
 
 % Sample use of a plot function : optimplotx
-options = optimset('PlotFcns',@optimplotx);
-[x ffinal] = fminsearch(banana,[-1.2, 1],options)
+opt = optimset('PlotFcns',@optimplotx);
+[x ffinal] = fminsearch(banana,[-1.2, 1],opt)
 
 % Sample use of a plot function : optimplotfunccount
-options = optimset('PlotFcns',@optimplotfunccount);
-[x ffinal] = fminsearch(banana,[-1.2, 1],options)
+opt = optimset('PlotFcns',@optimplotfunccount);
+[x ffinal] = fminsearch(banana,[-1.2, 1],opt)
 

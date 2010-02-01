@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.filechooser;
 
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+import org.scilab.modules.gui.utils.ConfigManager;
 
 
 /**
@@ -23,8 +24,8 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
  */
 public class Juigetfile {
 	
-	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.cos*", "*.sci", "*.sc*"};
-	public static final String DEFAULT_INITIAL_DIRECTORY = System.getProperty("user.dir");
+	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.xcos", "*.sci", "*.sc*"};
+	public static final String DEFAULT_INITIAL_DIRECTORY = ConfigManager.getLastOpenedDirectory();
 	public static final String DEFAULT_BOX_TITLE_OPEN = "uigetfile";
 	public static final String DEFAULT_BOX_TITLE_SAVE = "uiputfile";
 	public static final boolean DEFAULT_MULTIPLE_SELECTION = false;
@@ -126,6 +127,18 @@ public class Juigetfile {
 		uigetfile(mask, description, initialDirectory, boxtTitle, DEFAULT_MULTIPLE_SELECTION, SAVE_DIALOG);
 	}
 	
+	/**
+	 * Scilab call point for uigetfiles (OPEN dialog type).
+	 * uigetfile called with all args (mask, initial directory, filechooser box title, multiple selection)
+	 * @param mask list of type of file(s)
+	 * @param description of type of file(s)
+	 * @param initialDirectory initial directory of uigetfile
+	 * @param boxtTitle title of the file chooser
+	 * @param multipleSelection enable or not the multiple selection
+	 */
+	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle, boolean multipleSelection) {
+		uigetfile(mask, description, initialDirectory, boxtTitle, multipleSelection, OPEN_DIALOG);
+	}
 	
 	/**
 	 * Scilab call point for uigetfiles.

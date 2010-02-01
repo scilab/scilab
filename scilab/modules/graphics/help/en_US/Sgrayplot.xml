@@ -182,16 +182,14 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
                     <term>z=4</term>
                     <listitem>
                       <para>axes are drawn centred in the middle of the frame
-                      box.</para>
+                      box, with the box disabled.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>z=5</term>
                     <listitem>
-                      <para>axes are drawn so as to cross at point
-                      <literal>(0,0)</literal>. If point <literal>(0,0)</literal> does not
-                      lie inside the frame, axes will not appear on the
-                      graph.</para>
+                      <para>axes are drawn centred in the middle of the frame
+			box, with the box enabled.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>

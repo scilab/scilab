@@ -65,8 +65,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 
 	setScilabMode(SCILAB_STD);
 
-	CreateScilabHiddenWndThread();
-
 	ScilabDirectory = getScilabDirectory(FALSE);
 
 	if (ScilabDirectory == NULL)
@@ -166,8 +164,10 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			strcpy(Commande, "empty");
 			CommandByFileExtension(FileName, CodeAction, Commande);
 
-			if (( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
-				( ( IsAGraphFile(FileName)== TRUE  ) && (CodeAction == 1) )
+			if (
+				( ( IsAScicosFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
+				( ( IsABinOrSavFile(FileName)== TRUE ) && (CodeAction == 1) ) ||
+				( ( IsAXpadFile(FileName)== TRUE  ) ) 
 				)
 			{
 				my_argc = -1;
@@ -187,6 +187,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			}
 		}
 	}	
+
 
 	if ( ShortCircuitExec == TRUE)
 	{
@@ -229,6 +230,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 #endif
 
+	CreateScilabHiddenWndThread();
 	CreateScilabConsole(sci_show_banner);
 	HideScilex(); /* hide console window */
 

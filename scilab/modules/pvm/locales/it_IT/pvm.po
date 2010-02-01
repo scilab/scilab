@@ -1,0 +1,204 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-04 13:32+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr ""
+"%s: Si è verificato un errore durante la creazione dei seg. processi: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: Non c'è alcuna directory o file simile.\n"
+
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s: Tipo sconosciuto o non ancora implementato.\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Il primo argomento in ingresso è sbagliato: era atteso ''%s'' o ''%s''.\n"
+
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s: lo spazio di lavoro (stacksize) è troppo piccolo\n"
+
+msgid "(group,instance) already exists"
+msgstr "(gruppo,istanza) già esistente"
+
+msgid "Already in group"
+msgstr "È già presente nel gruppo"
+
+msgid "Already oing operation"
+msgstr "Operazione già in corso"
+
+msgid "Bad message id"
+msgstr "Id del messaggio sbagliato"
+
+msgid "Bad parameter"
+msgstr "Parametro errato"
+
+msgid "Barrier count mismatch"
+msgstr ""
+
+msgid "Can not decode received msg"
+msgstr "Non è possibile decodificare un messaggio ricevuto"
+
+msgid "Can not get memory"
+msgstr "Non è possibile ottenere della memoria"
+
+msgid "Daemon pvmd is not responding"
+msgstr "Il demone pvmd non risponde"
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Errore di MALLOC in pvm_error\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "C'è un errore in pvm_halt - signal\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Errore in pvm_reduce: non è di tipo scalare\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "Errore in pvm_reduce: l'operazione di riduzione %s è conosciuta\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr ""
+
+msgid "Function not implemented"
+msgstr "Funzione non sviluppata"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "L'host è già configurato (Host doppione)"
+
+msgid "Host failed"
+msgstr "L' host è fallito"
+
+msgid "No current buffer"
+msgstr "Non c'è un buffer al momento"
+
+msgid "No group with that name"
+msgstr "Non c'è alcun gruppo con tale nome"
+
+msgid "No parent task"
+msgstr "Nessun processo padre"
+
+msgid "No such (group,instance)"
+msgstr "Nessun (gruppo,istanza) simile"
+
+msgid "No such executable"
+msgstr "Non c'è un simile eseguibile"
+
+msgid "No such host"
+msgstr "Non c'è un simile host"
+
+msgid "No such instance in group"
+msgstr "Non c'è alcuna instanza simile nel gruppo"
+
+msgid "No such task"
+msgstr "Non c'è alcun processo simile"
+
+msgid "Not in group"
+msgstr "Non è nel gruppo"
+
+msgid "Null group name is illegal"
+msgstr "\"Nessuno\" è illegale come nome per un gruppo"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Out of ressources"
+msgstr "Le risorse sono esaurite"
+
+msgid "PVM exists"
+msgstr "PVM  esiste"
+
+msgid "PVM not found"
+msgstr "PVM non è stato trovato"
+
+msgid "PVM parallel Toolbox"
+msgstr ""
+
+msgid "Pvmd system error"
+msgstr "C'è stato un errore di sistema in pvmd"
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Discordanza nel protocollo pvmd-pvmd"
+
+msgid "Read past end of buffer"
+msgstr "Leggere la precedente fine del buffer"
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "Il modulo PVM di Scilab non è installato.\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "Il file di configurazione %s è in uso.\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"Verrà usato il file di configurazione standard $SCI%s.\n"
+"Dove SCI=%s\n"
+"SCI sarà impostato su degli host remoti\n"
+"al fine di generare scilab\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+"Il file di configurazione standard $SCI%s%s necessita che le variabili "
+"d'ambiente %s, %s, %s siano impostate. PVM non può essere avviato.\n"
+
+msgid "Unknown Error"
+msgstr "Errore sconosciuto"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Attenzione PVM_ROOT non è impostato.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Attenzione: PVM_ROOT è impostato a %s\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"Attenzione: Il file di configurazione standard $SCI%s non è stato trovato.\n"
+"Si è supposto che PVM e scilab fossero nel luogo usuale sulla vostra rete\n"
+" (Ved. man pvmd3)\n"
+
+msgid "but there exists no configuration file:\n"
+msgstr "purtroppo non esiste alcun file di configurazione:\n"

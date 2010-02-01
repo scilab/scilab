@@ -32,12 +32,12 @@
 #  include <ncurses.h>
 #endif
 
-#ifdef HAVE_TERMCAP_H
-#include <termcap.h>
-#endif
-
 #ifdef HAVE_TERM_H
 #include <term.h>
+#endif
+
+#ifdef HAVE_TERMCAP_H
+#include <termcap.h>
 #endif
 
 #include "MALLOC.h"
@@ -793,8 +793,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				wk_buf[0] = NUL;
 				*cursor = *cursor_max = 0;
 			
-				displayPrompt(wk_buf);
-				
 				CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 				return;
 			}
@@ -854,9 +852,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 						FREE(new_line); new_line = NULL;
 					}
 				}
-				FREE(common);
-				common = NULL;
 			}
+			if (common) {FREE(common); common = NULL;}
 		}
 	}
 }
@@ -927,8 +924,6 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 					wk_buf[0] = NUL;
 					*cursor = *cursor_max = 0;
 			
-					displayPrompt(wk_buf);
-					
 					CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 				}
 			}

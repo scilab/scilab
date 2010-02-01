@@ -65,7 +65,6 @@
     <programlisting role="example"><![CDATA[ 
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-
 atomsSearch("toolbox");
 ]]></programlisting>
   </refsection>

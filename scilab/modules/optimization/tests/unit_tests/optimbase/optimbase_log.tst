@@ -7,6 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
+
 
 //
 // assert_close --
@@ -57,7 +60,7 @@ assert_equal ( computed , 0 );
 opt = optimbase_configure(opt,"-verbose",1);
 computed = optimbase_cget(opt,"-verbose");
 assert_equal ( computed , 1 );
-opt = optimbase_log ( opt , "My interesting message" );
+optimbase_log ( opt , "My interesting message" );
 opt = optimbase_configure(opt,"-verbose",0);
 // Log a message relative to the stopping rule
 computed = optimbase_cget(opt,"-verbosetermination");

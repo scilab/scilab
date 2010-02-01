@@ -49,12 +49,12 @@ function save_graphichandle(h,fd)
     mput(h.figure_size,'sl',fd) // figure size
     mput(h.axes_size,'sl',fd) // axes_size
     mput(h.viewport,'sl',fd) // viewport
-    mput(length(h.info_message),characterFormat,fd) ; // info_message
+    mput(length(ascii(h.info_message)),characterFormat,fd) ; // info_message
     mput(ascii(h.info_message),characterFormat,fd) ;
-    mput(length(h.tag),characterFormat,fd) ; // tag
+    mput(length(ascii(h.tag)),characterFormat,fd) ; // tag
     mput(ascii(h.tag),characterFormat,fd) ;
     mput(bool2s(h.auto_resize=='on'),characterFormat,fd) // auto_resize
-    mput(length(h.figure_name),characterFormat,fd); // figure_name
+    mput(length(ascii(h.figure_name)),characterFormat,fd); // figure_name
     mput(ascii(h.figure_name),characterFormat,fd);
     mput(h.figure_id,'sl',fd); // figure_id
     
@@ -63,14 +63,14 @@ function save_graphichandle(h,fd)
     mput(bool2s(h.pixmap=='on'),characterFormat,fd) ; // pix_map
     mput(length(h.pixel_drawing_mode),characterFormat,fd); // pixel_drawing_mode
     mput(ascii(h.pixel_drawing_mode),characterFormat,fd);
-	mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing
+    mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing
     mput(ascii(h.anti_aliasing),characterFormat,fd);
     mput(bool2s(h.immediate_drawing=='on'),characterFormat,fd) // immediate_drawing
     mput(h.background,'il',fd) // background
     mput(length(h.rotation_style),characterFormat,fd); // rotation style
     mput(ascii(h.rotation_style),characterFormat,fd);
     
-    mput(length(h.event_handler),characterFormat,fd); // event_handler 
+    mput(length(ascii(h.event_handler)),characterFormat,fd); // event_handler 
     mput(ascii(h.event_handler),characterFormat,fd);
     mput(length(h.event_handler_enable),characterFormat,fd); // even_handler_enable
     mput(ascii(h.event_handler_enable),characterFormat,fd); // need to be put after event_handler
@@ -696,7 +696,7 @@ function save_text_matrix(strMat,fd)
   mput( nbCol, 'il', fd ) ;
   for i = 1:nbRow
     for j = 1:nbCol
-      mput(length(strMat(i,j)),characterFormat,fd) ;
+      mput(length(ascii(strMat(i,j))),characterFormat,fd) ;
       mput(ascii(strMat(i,j)),characterFormat,fd) ;
     end
   end

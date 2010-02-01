@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>fftw</refname>
 
-    <refpurpose>fast fourier transform that use fftw library</refpurpose>
+    <refpurpose>Fast fourier transform based on the fftw library</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -89,11 +89,11 @@
     <para>For more details about FFTW library see FFTW Web site : <ulink url="http://www.fftw.org">http://www.fftw.org</ulink>
     </para>
 
-    <para>Remark : fftw function automaticaly stores his last parameters in
+    <para>Remark: fftw function automatically stores his last parameters in
     memory to re-use it in a second time.</para>
 
-    <para>This results on a time computation improvement when consecutives
-    calls (with same parameters) are used.</para>
+    <para>This improves greatly the time computation when consecutives
+    calls (with same parameters) are performed.</para>
   </refsection>
 
   <refsection>

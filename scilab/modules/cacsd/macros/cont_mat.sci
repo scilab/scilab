@@ -32,7 +32,7 @@ function c=cont_mat(a,b)
     [n,n]=size(a)  
   else 
     if rhs==1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system .\n"),"cont_mat",1))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"cont_mat",1))
     else
       error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"cont_mat",1))
     end

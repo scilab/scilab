@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,typ,a,b,exprs]=getvalue('Set EXTRACT Block',..
+    [ok,typ,a,b,exprs]=scicos_getvalue('Set EXTRACT Block',..
 	    ['Datatype (1=real double  2=Complex)';'Lines to extract';'Columns to extract'],list('vec',1,'mat',[1 -1],'mat',[1 -1]),label)
     a=a(:);
     b=b(:);

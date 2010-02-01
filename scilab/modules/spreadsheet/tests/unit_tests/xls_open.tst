@@ -28,5 +28,5 @@ for i = 1 : size(tab_ref, "*")
 	mclose(fileID);
 end
 
-cd TMPDIR
+cd TMPDIR;
 removedir open_xls_tests;

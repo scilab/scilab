@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("fibonacci.dem.sce");
-scicos_demonstration(thispath+"/Fibonacci.cosf");
+// scicos_demostration(thispath+"/Fibonacci.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/Fibonacci.cosf");
+
 clear thispath;

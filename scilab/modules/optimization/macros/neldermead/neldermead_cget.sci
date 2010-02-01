@@ -93,6 +93,8 @@ function value = neldermead_cget (this,key)
     value = this.tolabsolutevariance;
   case "-tolrelativevariance" then
     value = this.tolrelativevariance;
+  case "-greedy" then
+    value = this.greedy;
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );

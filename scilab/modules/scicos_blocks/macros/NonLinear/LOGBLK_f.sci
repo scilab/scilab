@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,'*')==2 then exprs=exprs(2),end //compatibility
   while %t do
-    [ok,a,exprs]=getvalue('Set log block parameters',..
+    [ok,a,exprs]=scicos_getvalue('Set log block parameters',..
 	'Basis (>1)',list('vec',1),exprs)
     if ~ok then break,end
     if a<=1 then

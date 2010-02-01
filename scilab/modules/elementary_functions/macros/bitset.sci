@@ -48,14 +48,14 @@ function y = bitset(x,pos,v)
 		| (type(x)==8  & (inttype(x)<10)) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitset",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitset",1));
 	end
 	
 	if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
 		| (type(pos)==8  & (inttype(pos)<10)) ..
 		| (type(pos)<>1  & type(pos)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitset",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitset",2));
 	end
 	
 	// check pos value

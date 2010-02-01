@@ -32,7 +32,7 @@
 
     <para>Macros são procedimentos Scilab ("macro", "função" e "procedimento"
     possuem o mesmo significado). Geralmente, eles são definidos em arquivos
-    com um editor e carregados no Scilab com <literal>getf</literal> ou
+    com um editor e carregados no Scilab com <literal>exec</literal> ou
     através de uma biblioteca.</para>
 
     <para>Também podem ser definidos on-line (ver <literal>deff</literal>). Um

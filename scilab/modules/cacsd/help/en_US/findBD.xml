@@ -145,7 +145,7 @@
       <varlistentry>
         <term>printw</term>
         <listitem>
-          <para>:optionnal, switch for printing the warning messages.</para>
+          <para>optionnal, switch for printing the warning messages.</para>
           <variablelist>
             <varlistentry>
               <term>=  </term>

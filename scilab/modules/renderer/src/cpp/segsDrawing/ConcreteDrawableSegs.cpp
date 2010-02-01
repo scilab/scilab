@@ -123,7 +123,7 @@ DrawableObject::EDisplayStatus ConcreteDrawableSegs::drawSegs(void)
   catch (const std::exception& e)
   {
     // allocation failed
-    sciprint(_("%s: No more memory.\n"),"ConcreteDrawableSegs::drawSegs");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"ConcreteDrawableSegs::drawSegs");
     if(xStarts != NULL) { delete[] xStarts; }
     if(xEnds != NULL)   { delete[] xEnds; }
     if(yStarts != NULL) { delete[] yStarts; }

@@ -43,6 +43,8 @@ function value = optimbase_get (this,key)
     value = this.fx0;
   case "-status" then
     value = this.status;
+  case "-logstartup" then
+    value = this.logstartup;
   else
     errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_get",key)
     error(errmsg)

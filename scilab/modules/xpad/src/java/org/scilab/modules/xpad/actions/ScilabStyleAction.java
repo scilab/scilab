@@ -22,6 +22,8 @@ public class ScilabStyleAction extends DefaultCheckAction {
 	}
 
 	public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-		return createCheckBoxMenu(XpadMessages.SCILAB_STYLE, null, new ScilabStyleAction(editor), null);
+		CheckBoxMenuItem styleType = createCheckBoxMenu(XpadMessages.SCILAB_STYLE, null, new ScilabStyleAction(editor), null);
+		styleType.setChecked(true);
+		return styleType;
 	}
 }

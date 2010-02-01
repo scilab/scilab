@@ -60,8 +60,6 @@ nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm);
 // Check optimum point
@@ -196,7 +194,7 @@ Vertex #3/3 : fv=6.065000e+001, x=-7.000000e-001 1.250000e+000
 
   > funevals=7 >= maxfunevals=300
 
-  > e(x)=1.863390e-001 < tolxrelative = 2.220446e-015 * 1.753489e+000 + 0.000000e+000
+  > e(x)=1.863390e-001 < 2.220446e-015 * 1.753489e+000 + 0.000000e+000
 
   > Terminate = F, status = continue
 
@@ -250,7 +248,7 @@ Vertex #3/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
 
   > funevals=9 >= maxfunevals=300
 
-  > e(x)=9.316950e-002 < tolxrelative = 2.220446e-015 * 1.836758e+000 + 0.000000e+000
+  > e(x)=9.316950e-002 < 2.220446e-015 * 1.836758e+000 + 0.000000e+000
 
   > Terminate = F, status = continue
 
@@ -304,7 +302,7 @@ Vertex #3/3 : fv=2.612813e+001, x=-9.500000e-001 1.375000e+000
 
   > funevals=11 >= maxfunevals=300
 
-  > e(x)=4.110296e-001 < tolxrelative = 2.220446e-015 * 1.489344e+000 + 0.000000e+000
+  > e(x)=4.110296e-001 < 2.220446e-015 * 1.489344e+000 + 0.000000e+000
 
   > Terminate = F, status = continue
 

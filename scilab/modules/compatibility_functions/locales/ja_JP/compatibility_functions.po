@@ -1,249 +1,31 @@
-# Localization of the module compatibility_functions
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-17 14:44+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
 
-# File: macros/asciimat.sci, line: 27
+#
+# File: macros/mtlb_fprintf.sci, line: 57
+# File: macros/mtlb_fprintf.sci, line: 114
 #, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s: 入力引数 #%d が不正: 一貫性がないサイズです。\n"
-
-#
-# File: macros/asciimat.sci, line: 40
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Real, Integer or String matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字行列、 実数、または整数を想定します。\n"
-
-#
-# File: macros/asciimat.sci, line: 60
-# File: macros/char.sci, line: 101
-# File: macros/mtlb_axes.sci, line: 33
-# File: macros/mtlb_box.sci, line: 36
-# File: macros/mtlb_close.sci, line: 48
-# File: macros/mtlb_delete.sci, line: 18
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: この特徴は装備されていません。\n"
-
-#
-# File: macros/char.sci, line: 44
-# File: macros/char.sci, line: 53
-# File: macros/char.sci, line: 67
-# File: macros/char.sci, line: 76
-#, c-format
-msgid "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr "%s: 入力引数で不正な型: セル要素は、文字配列でなければなりません。\n"
-
-#
-# File: macros/char.sci, line: 104
-#, c-format
-msgid "%s: Wrong type for input argument: Cell expected.\n"
-msgstr "%s: 入力引数で不正な型: セルを想定します。\n"
-
-#
-# File: macros/char.sci, line: 119
-# File: macros/char.sci, line: 129
-#, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
-
-#
-# File: macros/fseek_origin.sci, line: 26
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: %s, %s, %s, ''%s'', ''%s'' または ''%s'' を想定します。\n"
-
-#
-# File: macros/makecell.sci, line: 21
-#, c-format
-msgid "%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"
-msgstr "%s: 入力引数が不正: 最初の引数として与えられた次元は、指定されたセル内容と調和しません。\n"
-
-#
-# File: macros/mstr2sci.sci, line: 18
-#, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
-msgstr "%s: この特徴は装備されていません: 極値行列のサポート\n"
-
-#
-# File: macros/mstr2sci.sci, line: 22
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定します。\n"
-
-#
-# File: macros/mtlb_axis.sci, line: 34
-#, c-format
-msgid "%s: Wrong size for ''%s'': Vector expected.\n"
-msgstr "%s: \"%s\" で不正なサイズ: ベクトルを想定します。\n"
-
-#
-# File: macros/mtlb_axis.sci, line: 49
-# File: macros/mtlb_axis.sci, line: 71
-# File: macros/mtlb_axis.sci, line: 87
-# File: macros/mtlb_axis.sci, line: 102
-# File: macros/mtlb_axis.sci, line: 127
-#, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: この特徴は装備されていません: %s\n"
-
-#
-# File: macros/mtlb_axis.sci, line: 52
-#, c-format
-msgid "%s: Wrong value for affectation to ''%s''.\n"
-msgstr "%s: 率直に \"%s\" の値が不正です。\n"
-
-#
-# File: macros/mtlb_axis.sci, line: 92
-#, c-format
-msgid "%s: ''%s'' only used in 3d mode."
-msgstr "%s: \"%s\" は、単に 3d モードで使われました。"
-
-#
-# File: macros/mtlb_axis.sci, line: 143
-#, c-format
-msgid "%s: This feature has not been implemented: Argument of type %d.\n"
-msgstr "%s: この特徴は装備されていませんでした: 型 %d の引数\n"
-
-#
-# File: macros/mtlb_choices.sci, line: 13
-msgid "Close"
-msgstr "クローズ"
-
-#
-# File: macros/mtlb_close.sci, line: 15
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: \"%s\" を無視しました。\n"
-
-#
-# File: macros/mtlb_close.sci, line: 51
-#, c-format
-msgid "%s: All windows deleted.\n"
-msgstr "%s: 全てのウインドウを削除しました。\n"
-
-#
-# File: macros/mtlb_cond.sci, line: 15
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 正方行列を想定します。\n"
-
-#
-# File: macros/mtlb_cond.sci, line: 36
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値:  %s, %s,''%s'' または ''%s'' を想定します。\n"
-
-#
-# File: macros/mtlb_dir.sci, line: 45
-msgid "Jan"
-msgstr "1月"
-
-#
-# File: macros/mtlb_dir.sci, line: 46
-msgid "Feb"
-msgstr "2月"
-
-#
-# File: macros/mtlb_dir.sci, line: 47
-msgid "Mar"
-msgstr "3月"
-
-#
-# File: macros/mtlb_dir.sci, line: 48
-msgid "Apr"
-msgstr "4月"
-
-#
-# File: macros/mtlb_dir.sci, line: 49
-msgid "May"
-msgstr "5月"
-
-#
-# File: macros/mtlb_dir.sci, line: 50
-msgid "Jun"
-msgstr "6月"
-
-#
-# File: macros/mtlb_dir.sci, line: 51
-msgid "Jul"
-msgstr "7月"
-
-#
-# File: macros/mtlb_dir.sci, line: 52
-msgid "Aug"
-msgstr "8月"
-
-#
-# File: macros/mtlb_dir.sci, line: 53
-msgid "Sep"
-msgstr "9月"
-
-#
-# File: macros/mtlb_dir.sci, line: 54
-msgid "Oct"
-msgstr "10月"
-
-#
-# File: macros/mtlb_dir.sci, line: 55
-msgid "Nov"
-msgstr "11月"
-
-#
-# File: macros/mtlb_dir.sci, line: 56
-msgid "Dec"
-msgstr "12月"
-
-#
-# File: macros/mtlb_echo.sci, line: 23
-# File: macros/mtlb_echo.sci, line: 26
-# File: macros/mtlb_hold.sci, line: 27
-# File: macros/mtlb_num2str.sci, line: 25
-# File: macros/mtlb_realmax.sci, line: 21
-# File: macros/mtlb_realmin.sci, line: 21
-#, c-format
-msgid "%s: Not yet implemented.\n"
-msgstr "%s: まだ装備されていません。\n"
-
-#
-# File: macros/mtlb_eig.sci, line: 25
-#, c-format
-msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-msgstr "%s: %d 入力引数をもつ使用は、まだ装備されていません。\n"
-
-#
-# File: macros/mtlb_fopen.sci, line: 18
-#, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: ファイル \"%s\" を開けません。\n"
-
-#
-# File: macros/mtlb_format.sci, line: 57
-#, c-format
-msgid "%s: Unknown type.\n"
-msgstr "%s: 未知の型です。\n"
-
-#
-# File: macros/mtlb_format.sci, line: 59
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: 未知の型 \"%s\": 無視しました。\n"
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr "%s: １つ以上の列変数で、%s Scilab関数は働きません。\n"
 
 #
 # File: macros/mtlb_fprintf.sci, line: 43
@@ -254,31 +36,54 @@ msgid "%s: %s is not implemented.\n"
 msgstr "%s: %s は装備されていません。\n"
 
 #
-# File: macros/mtlb_fprintf.sci, line: 57
-# File: macros/mtlb_fprintf.sci, line: 114
+# File: macros/mtlb_close.sci, line: 15
 #, c-format
-msgid "%s: %s Scilab function does not work with more than one row variables.\n"
-msgstr "%s: １つ以上の列変数で、%s Scilab関数は働きません。\n"
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: \"%s\" を無視しました。\n"
 
 #
-# File: macros/mtlb_fread.sci, line: 44
-# File: macros/mtlb_fwrite.sci, line: 40
+# File: macros/mtlb_sscanf.sci, line: 12
 #, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: フォーマット \"%s\" は見つかりません。\n"
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: \"%s\" は装備されていません。\n"
 
 #
-# File: macros/mtlb_fread.sci, line: 48
-# File: macros/mtlb_fwrite.sci, line: 44
+# File: macros/mtlb_axis.sci, line: 92
 #, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: フォーマット \"%s\" はまだハンドルされていません。\n"
+msgid "%s: ''%s'' only used in 3d mode."
+msgstr "%s: \"%s\" は、単に 3d モードで使われました。"
 
 #
-# File: macros/mtlb_fread.sci, line: 66
+# File: macros/mtlb_plot.sci, line: 128
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: \"%s\" オプションは無視しました。\n"
+
+#
+# File: macros/mtlb_close.sci, line: 51
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: 全てのウインドウを削除しました。\n"
+
+#
+# File: macros/mtlb_fopen.sci, line: 18
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: ファイル \"%s\" を開けません。\n"
+
+#
+# File: macros/mtlb_type.sci, line: 29
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: ''%s'' また ''%s'' また ''%s'' どちらも開くことができません。\n"
+
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
-msgstr "%s: 全ての行列が読まれる前にファイルの終わりに達しました。\n"
+msgstr "%s: 全ての行列を読む前にファイルの終端に達しました。\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: データが読まれる前に文字列の終端に達しました。\n"
 
 #
 # File: macros/mtlb_get.sci, line: 24
@@ -314,117 +119,34 @@ msgstr "%s: 全ての行列が読まれる前にファイルの終わりに達�
 msgid "%s: No equivalent for ''%s'' property.\n"
 msgstr "%s: \"%s\" プロパティに等価でありません。\n"
 
-#
-# File: macros/mtlb_grid.sci, line: 35
-# File: macros/mtlb_grid.sci, line: 51
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
-msgstr "%s: Scilabの小さいグリッドがありません。\n"
+msgstr "%s: Scilabの小さいグリッドではありません。\n"
 
 #
-# File: macros/mtlb_grid.sci, line: 42
-# File: macros/mtlb_grid.sci, line: 58
+# File: macros/mtlb_echo.sci, line: 23
+# File: macros/mtlb_echo.sci, line: 26
+# File: macros/mtlb_hold.sci, line: 27
+# File: macros/mtlb_num2str.sci, line: 25
+# File: macros/mtlb_realmax.sci, line: 21
+# File: macros/mtlb_realmin.sci, line: 21
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s'', ''%s'' または ''%s'' を想定します。\n"
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: まだ装備されていません。\n"
 
 #
-# File: macros/mtlb_is.sci, line: 17
-# File: macros/mtlb_is.sci, line: 33
+# File: macros/mtlb_fread.sci, line: 48
+# File: macros/mtlb_fwrite.sci, line: 44
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列のMatlabベクトルを想定します。\n"
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: フォーマット \"%s\" はまだハンドルされていません。\n"
 
 #
-# File: macros/mtlb_isa.sci, line: 45
+# File: macros/mtlb_fread.sci, line: 44
+# File: macros/mtlb_fwrite.sci, line: 40
 #, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: クラス \"%s\" はハンドルされません。\n"
-
-#
-# File: macros/mtlb_legendre.sci, line: 15
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 明確な整数値を想定します。\n"
-
-#
-# File: macros/mtlb_plot.sci, line: 128
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: \"%s\" オプションは無視しました。\n"
-
-#
-# File: macros/mtlb_plot.sci, line: 197
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: 未知の線スタイルです \"%s\" -> 6 を設定します。\n"
-
-#
-# File: macros/mtlb_plot.sci, line: 215
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: 未知の色を見つけました　\"%s''->黒を設定します。\n"
-
-#
-# File: macros/mtlb_qr.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数(s)で不正な数: %d を想定します。\n"
-
-#
-# File: macros/mtlb_qr.sci, line: 19
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
-
-#
-# File: macros/mtlb_qz.sci, line: 21
-#, c-format
-msgid "%s: pencil is not diagonalizable.\n"
-msgstr "%s: 対角化可能に書けません。\n"
-
-#
-# File: macros/mtlb_realmax.sci, line: 24
-# File: macros/mtlb_realmin.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%1$s: 入力引数(s)で不正な数: %3$d への %2$d を想定します。\n"
-
-#
-# File: macros/mtlb_sortrows.sci, line: 28
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
-
-#
-# File: macros/mtlb_sprintf.sci, line: 39
-#, c-format
-msgid "%s: This particular case is not implemented.\n"
-msgstr "%s: この特定の事例は、装備されていません。\n"
-
-#
-# File: macros/mtlb_sscanf.sci, line: 12
-#, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: \"%s\" は装備されていません。\n"
-
-#
-# File: macros/mtlb_sscanf.sci, line: 25
-#, c-format
-msgid "%s: End of string reached before data has been read.\n"
-msgstr "%s: 文字列の終わりに達する前に、データは読まれました。\n"
-
-#
-# File: macros/mtlb_type.sci, line: 29
-#, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: ''%s'' また ''%s'' また ''%s'' どちらも開くことができません。\n"
-
-#
-# File: macros/mtlb_var.sci, line: 32
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: フォーマット \"%s\" は見つかりません。\n"
 
 #
 # File: macros/mtlb_var.sci, line: 44
@@ -438,3 +160,280 @@ msgstr "%s: 正常化　m　- １　の要因はゼロです。\n"
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: 正常化　n　- １　の要因はゼロです。\n"
 
+#
+# File: macros/asciimat.sci, line: 60
+# File: macros/char.sci, line: 101
+# File: macros/mtlb_axes.sci, line: 33
+# File: macros/mtlb_box.sci, line: 36
+# File: macros/mtlb_close.sci, line: 48
+# File: macros/mtlb_delete.sci, line: 18
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: この特徴は装備されていません。\n"
+
+#
+# File: macros/mtlb_axis.sci, line: 49
+# File: macros/mtlb_axis.sci, line: 71
+# File: macros/mtlb_axis.sci, line: 87
+# File: macros/mtlb_axis.sci, line: 102
+# File: macros/mtlb_axis.sci, line: 127
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: この特徴は装備されていません: %s\n"
+
+#
+# File: macros/mtlb_axis.sci, line: 143
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: この特徴は装備されていませんでした: 型 %d の引数\n"
+
+#
+# File: macros/mstr2sci.sci, line: 18
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s: この特徴は装備されていません: 極値行列のサポート\n"
+
+#
+# File: macros/mtlb_sprintf.sci, line: 39
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: この特定の事例は、装備されていません。\n"
+
+#
+# File: macros/mtlb_isa.sci, line: 45
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: クラス \"%s\" はハンドルされません。\n"
+
+#
+# File: macros/mtlb_plot.sci, line: 215
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s: 未知の色を見つけました　\"%s''->黒を設定します。\n"
+
+#
+# File: macros/mtlb_plot.sci, line: 197
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr "%s: 未知の線スタイルです \"%s\" -> 6 を設定します。\n"
+
+#
+# File: macros/mtlb_format.sci, line: 59
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: 未知の型 \"%s\": 無視しました。\n"
+
+#
+# File: macros/mtlb_format.sci, line: 57
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: 未知の型です。\n"
+
+# File: macros/asciimat.sci, line: 27
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s: 入力引数 #%d が不正: 一貫性がないサイズです。\n"
+
+#
+# File: macros/makecell.sci, line: 21
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr "%s: 入力引数が不正: 最初の引数として与えられた次元は、指定されたセル内容と調和しません。\n"
+
+#
+# File: macros/mtlb_qr.sci, line: 19
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/mtlb_realmax.sci, line: 24
+# File: macros/mtlb_realmin.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%1$s: 入力引数(s)で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/mtlb_var.sci, line: 32
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+#
+# File: macros/mtlb_qr.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 出力引数(s)で不正な数: %d を想定します。\n"
+
+#
+# File: macros/mtlb_axis.sci, line: 34
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s: \"%s\" で不正なサイズ: ベクトルを想定します。\n"
+
+#
+# File: macros/mtlb_is.sci, line: 17
+# File: macros/mtlb_is.sci, line: 33
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列のMatlabベクトルを想定します。\n"
+
+#
+# File: macros/asciimat.sci, line: 40
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型:  実、整数または文字列を想定します。\n"
+
+#
+# File: macros/mtlb_sortrows.sci, line: 28
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 列ベクトルを想定します。\n"
+
+#
+# File: macros/mstr2sci.sci, line: 22
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列を想定します。\n"
+
+#
+# File: macros/mtlb_cond.sci, line: 15
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 正方行列を想定します。\n"
+
+#
+# File: macros/char.sci, line: 44
+# File: macros/char.sci, line: 53
+# File: macros/char.sci, line: 67
+# File: macros/char.sci, line: 76
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr "%s: 入力引数で不正な型: セル要素は、文字配列でなければなりません。\n"
+
+#
+# File: macros/char.sci, line: 104
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr "%s: 入力引数で不正な型: セルを想定します。\n"
+
+#
+# File: macros/char.sci, line: 119
+# File: macros/char.sci, line: 129
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/mtlb_axis.sci, line: 52
+#, c-format
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr "%s: 率直に \"%s\" の値が不正です。\n"
+
+#
+# File: macros/fseek_origin.sci, line: 26
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %s, %s, %s, ''%s'', ''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: macros/mtlb_cond.sci, line: 36
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値:  %s, %s,''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: macros/mtlb_grid.sci, line: 42
+# File: macros/mtlb_grid.sci, line: 58
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: '%s'', ''%s'' または ''%s'' を想定します。\n"
+
+#
+# File: macros/mtlb_legendre.sci, line: 15
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な整数値を想定します。\n"
+
+#
+# File: macros/mtlb_qz.sci, line: 21
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: 対角化可能に書けません。\n"
+
+#
+# File: macros/mtlb_dir.sci, line: 48
+msgid "Apr"
+msgstr "4月"
+
+#
+# File: macros/mtlb_dir.sci, line: 52
+msgid "Aug"
+msgstr "8月"
+
+#
+# File: macros/mtlb_choices.sci, line: 13
+msgid "Close"
+msgstr "クローズ"
+
+#
+# File: macros/mtlb_dir.sci, line: 56
+msgid "Dec"
+msgstr "12月"
+
+#
+# File: macros/mtlb_dir.sci, line: 46
+msgid "Feb"
+msgstr "2月"
+
+#
+# File: macros/mtlb_dir.sci, line: 45
+msgid "Jan"
+msgstr "1月"
+
+#
+# File: macros/mtlb_dir.sci, line: 51
+msgid "Jul"
+msgstr "7月"
+
+#
+# File: macros/mtlb_dir.sci, line: 50
+msgid "Jun"
+msgstr "6月"
+
+#
+# File: macros/mtlb_dir.sci, line: 47
+msgid "Mar"
+msgstr "3月"
+
+#
+# File: macros/mtlb_dir.sci, line: 49
+msgid "May"
+msgstr "5月"
+
+#
+# File: macros/mtlb_dir.sci, line: 55
+msgid "Nov"
+msgstr "11月"
+
+#
+# File: macros/mtlb_dir.sci, line: 54
+msgid "Oct"
+msgstr "10月"
+
+#
+# File: macros/mtlb_dir.sci, line: 53
+msgid "Sep"
+msgstr "9月"

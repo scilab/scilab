@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:ns5="http://www.w3.org/1999/xhtml" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" xml:id="bench_run" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2009-12-07 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bench_run</refname>
+    <refpurpose>Launch benchmark tests</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      bench_run()
+      bench_run(module[,test_name[,options]])
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>module</term>
+        <listitem>
+          <para>a vector of string. It can be the name of a module or the absolute path of a toolbox.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>test_name</term>
+        <listitem>
+          <para>a vector of string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>options</term>
+        <listitem>
+          <para>a vector of string</para>
+          <itemizedlist>
+            <listitem>
+              <para>list : list of the benchmark tests available in a module</para>
+            </listitem>
+            <listitem>
+              <para>help : displays some examples of use in the Scilab console</para>
+            </listitem>
+            <listitem>
+              <para>nb_run=value : repeat the benchmark test value times</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+   Search for .tst files in benchmark test library
+   execute them, and display a report about execution time.
+   The .tst files are searched in directories SCI+"/modules/*/tests/benchmark".
+   </para>
+   <para>
+   Special tags may be inserted in the .tst file, which help to 
+   control the processing of the corresponding test. These tags
+   are expected to be found in Scilab comments.
+   </para>
+    <para>These are the available tags :</para>
+   <itemizedlist>
+     <listitem>
+       <para>
+       &#60;-- BENCH NB RUN : 10 --&#62;
+       This test will be repeated 10 times.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- BENCH START --&#62;
+       &#60;-- BENCH END --&#62;
+       The interesting part of the benchmark must be enclosed by these
+       tags.
+       </para>
+       </listitem>
+     </itemizedlist>
+  </refsection>
+
+<refsection>
+  <title>Examples</title>
+  <para>Some simple examples of invocation of bench_run</para>
+  <programlisting role="example"><![CDATA[ 
+// Launch all tests
+bench_run();
+bench_run([]);
+bench_run([],[]);
+
+// Test one or several module
+bench_run('core');
+bench_run('core',[]);
+bench_run(['core','string']);
+
+// Launch one or several test in a specified module
+bench_run('core',['trycatch','opcode']);
+
+// With options
+bench_run([],[],'list');
+bench_run([],[],'help');
+bench_run([],[],'nb_run=2000');
+ ]]></programlisting>
+  <para>An example of a benchmark file. This file corresponds to the
+    file
+    SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.</para>
+  <programlisting role="example"><![CDATA[ 
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2007-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+//==============================================================================
+// Benchmark for chol function
+//==============================================================================
+
+// <-- BENCH NB RUN : 10 -->
+
+stacksize(30000000);
+
+a = 0;
+b = 0;
+a = rand(900, 900, 'n');
+a = a'*a;
+
+// <-- BENCH START -->
+b = chol(a);
+// <-- BENCH END -->
+ ]]></programlisting>
+  <para>The result of the test</para>
+  <programlisting role="example"><![CDATA[ 
+-->bench_run('linear_algebra','bench_chol')
+
+             Boucle For .......................................       0.19 µs [ 1000000 x]
+
+   001/001 - [linear_algebra] bench_chol ......................  151576.71 µs [      10 x]
+ ]]></programlisting>
+</refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="test_run">test_run</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Yann Collette</member>
+    </simplelist>
+  </refsection>
+</refentry>

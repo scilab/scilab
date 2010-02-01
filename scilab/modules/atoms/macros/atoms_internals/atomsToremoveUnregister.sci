@@ -7,11 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of packages to remove
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function atomsToremoveUnregister(name,version,allusers)
+function atomsToremoveUnregister(name,version,section)
 	
 	rhs = argn(2);
 	
@@ -19,7 +21,7 @@ function atomsToremoveUnregister(name,version,allusers)
 	// =========================================================================
 	
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToremoveUnregister",3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsToremoveUnregister",3));
 	end
 	
 	// Check input parameters type
@@ -33,8 +35,20 @@ function atomsToremoveUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsToremoveUnregister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveUnregister",3));
+	// Allusers/user management
+	// =========================================================================
+	
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsToremoveUnregister",3));
+	end
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveUnregister",3));
+	end
+	
+	// Check if we have the write access
+	if section=="allusers" & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveUnregister",3,atomsPath("system","allusers")));
 	end
 	
 	// name and version must have the same size
@@ -44,27 +58,10 @@ function atomsToremoveUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsToremoveUnregister",1,2));
 	end
 	
-	// Define the path of the file that will record the change according to
-	// the "allusers" value
-	// =========================================================================
-	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
-	
-	// Does the atoms_directory exist, Nothing to unregister : quit the function
-	// =========================================================================
-	
-	if ~ isdir(atoms_directory) then
-		return;
-	end
-	
 	// Define the path of the file that will record the change 
 	// =========================================================================
 	
-	toremove_bin = atoms_directory+"toremove.bin";
+	toremove_bin = atomsPath("system",section)+"toremove.bin";
 	
 	// Get the toremove matrix
 	// =========================================================================

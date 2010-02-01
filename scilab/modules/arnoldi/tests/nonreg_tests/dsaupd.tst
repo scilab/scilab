@@ -7,31 +7,31 @@
 
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
 
-stacksize(100000000);
+stacksize(300000);
 
-N = 100000;
+N = 1000;
 
-A = sprand(N, N, 0.0001);
+A = sprand(N, N, 0.01);
 
-IDO = 0;
-BMAT = 'I'; //standard eigenvalue problem
+IDO   = 0;
+BMAT  = 'I'; //standard eigenvalue problem
 WHICH = "LM";
-NEV = 4; //NEVth eigen values are solved
-TOL = 1D-10;
+NEV   = 4; //NEVth eigen values are solved
+TOL   = 1D-10;
 RESID = zeros(N,1); //
-NCV = 10;
+NCV   = 10;
 
 V = zeros(N, NCV);
 
 ISHIFT = 1;
-LEVEC = 0;
+LEVEC  = 0;
 MXITER = 100; //INPUT
-NB = 1;
-NCONV = 0;
-IUPD = 0;
-MODE = 1;
-NP = 100;
-NUMOP = 0;
+NB     = 1;
+NCONV  = 0;
+IUPD   = 0;
+MODE   = 1;
+NP     = 100;
+NUMOP  = 0;
 NUMOPB = 0;
 NUMREO = 0;
 
@@ -39,7 +39,7 @@ IPARAM = [ISHIFT, LEVEC,  MXITER, NB, NCONV, IUPD, MODE, NP, NUMOP, NUMOPB, NUMR
 
 IPNTR = zeros(1,14);
 WORKD = zeros(3, N);
-WORKL = zeros(1, 3 * NCV**2 + 6 * NCV);
+WORKL = zeros(1, NCV**2 + 8 * NCV);
 
 INFO = 0;
 

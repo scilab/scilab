@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,p,rn,rd,g,last_u,last_y,exprs]=getvalue('Set block parameters',..
+    [ok,p,rn,rd,g,last_u,last_y,exprs]=scicos_getvalue('Set block parameters',..
 	['Vector of p mesh points';
 	'Numerator roots (one line for each mesh)';
 	'Denominator roots (one line for each mesh)';

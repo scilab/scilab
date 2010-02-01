@@ -18,16 +18,18 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "machine.h"
+#include "FileExist.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_lib)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 	int iType1 = 0;
 	char *pStVarOne = NULL;
+	char lib_filename[bsiz];
 	int lenStVarOne = 0;
 
 	int len = 0;
@@ -39,17 +41,17 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -59,10 +61,10 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -74,18 +76,25 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	}
 
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-	/* get string One */
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+
+	if (pStVarOne == NULL)
 	{
-		printError(&strErr, 0);
+		Scierror(999,"%s : Memory allocation error.\n", fname);
+		return 0;
+	}
+
+	/* get string One */
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	if ( (pStVarOne[strlen(pStVarOne)-1] != '/') && 
 		(pStVarOne[strlen(pStVarOne)-1] != '\\') )
 	{
-		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + 1) * sizeof(char));
+		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
 		if (pStVarOne)
 		{
 			strcat(pStVarOne, DIR_SEPARATOR);
@@ -97,14 +106,24 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	len = (int)strlen(pStVarOne);
-	C2F(intlib)(&len, pStVarOne,&len);
-
+	if ((int)strlen(pStVarOne) >= bsiz)
+	{
+		strncpy(lib_filename, pStVarOne, bsiz - 1);
+		lib_filename[bsiz - 1] = '\0';
+	}
+	else
+	{
+		strcpy(lib_filename, pStVarOne);
+	}
+	
 	if (pStVarOne)
 	{
 		FREE(pStVarOne);
 		pStVarOne = NULL;
 	}
+
+	len = (int)strlen(lib_filename);
+	C2F(intlib)(&len, lib_filename);
 
 	return 0;
 }

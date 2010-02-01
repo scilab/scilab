@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// internal function
+// Internal function
 
 // =============================================================================
 // tree_out = atomsCatTree( tree_in_1 , tree_in_2 )

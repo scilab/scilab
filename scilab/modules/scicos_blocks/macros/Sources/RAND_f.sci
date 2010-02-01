@@ -37,7 +37,7 @@ case 'set' then
   if size(exprs,'*')==5 then exprs=exprs(1:3),end //compatibility
   if size(exprs,'*')==3 then exprs=[exprs;string(model.dstate(1))],end //compatibility
   while %t do
-    [ok,flag,a,b,seed_c,exprs]=getvalue([
+    [ok,flag,a,b,seed_c,exprs]=scicos_getvalue([
 	'Set Random generator block parameters';
 	'flag = 0 : Uniform distribution A is min and A+B max';
 	'flag = 1 : Normal distribution A is mean and B deviation';

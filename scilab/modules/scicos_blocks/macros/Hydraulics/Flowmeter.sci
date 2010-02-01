@@ -39,7 +39,7 @@ case 'set' then
 x=arg1
 exprs=x.graphics.exprs
 while %f do
-  [ok,Qini,exprs]=getvalue(["Set Flowmeter block parameters:";"";"Qini: "],"Qini",list("vec",1),exprs)
+  [ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:";"";"Qini: "],"Qini",list("vec",1),exprs)
   if ~ok then break,end
   x.model.equations.parameters(2)=list(Qini)
   x.graphics.exprs=exprs

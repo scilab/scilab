@@ -31,7 +31,7 @@ int get_dimension_property( sciPointObj * pobj )
 
 	if (sciGetEntityType(pobj) != SCI_FIGURE)
 	{
-		Scierror(999, _("%s property does not exist for this handle.\n"),"dimension");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"dimension");
 		return -1;
 	}
 

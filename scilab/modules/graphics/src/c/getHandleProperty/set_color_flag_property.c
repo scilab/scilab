@@ -43,7 +43,7 @@ int set_color_flag_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_flag") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag") ;
     return SET_PROPERTY_ERROR ;
   }
   if ( nbRow * nbCol != 1 )

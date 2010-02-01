@@ -83,7 +83,7 @@ int sci_dnaupd(char *fname,unsigned long fname_len)
       return 0;
     }
 
-  if (mIPNTR*nIPNTR!=11)
+  if (mIPNTR*nIPNTR!=14)
     {
       Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPNTR", 14);
       return 0;
@@ -101,7 +101,7 @@ int sci_dnaupd(char *fname,unsigned long fname_len)
       return 0;
     }
 
-  if (mWORKD*nWORKD!=3 * *istk(pN))
+  if (mWORKD*nWORKD<3 * *istk(pN))
     {
       Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "WORKD", 3* *istk(pN));
       return 0;
@@ -109,7 +109,7 @@ int sci_dnaupd(char *fname,unsigned long fname_len)
 
   sizeWORKL = 3 * *istk(pNCV) * *istk(pNCV) + 6 * *istk(pNCV);
 
-  if (mWORKL*nWORKL!=sizeWORKL)
+  if (mWORKL*nWORKL<sizeWORKL)
     {
       Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "WORKL", sizeWORKL);
       return 0;

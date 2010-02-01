@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
@@ -209,6 +210,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -238,7 +240,6 @@
 				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -328,7 +329,6 @@
 				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"

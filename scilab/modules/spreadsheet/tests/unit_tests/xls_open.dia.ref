@@ -25,8 +25,5 @@ for i = 1 : size(tab_ref, "*")
 	if(fileID == 0) then bugmes();quit;end
 	mclose(fileID);
 end
-cd TMPDIR
- ans  =
- 
- TMPDIR   
+cd TMPDIR;
 removedir open_xls_tests;

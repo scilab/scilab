@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with configured settings.
@@ -61,7 +63,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",10);
 nm = neldermead_search(nm);
@@ -80,8 +81,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-//nm = neldermead_configure(nm,"-verbose",0);
-//nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
@@ -95,7 +94,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -method option";
+expected = "unknownValueForOption: Unknown value foo for -method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -104,7 +103,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -simplex0method option";
+expected = "unknownValueForOption: Unknown value foo for -simplex0method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -113,7 +112,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolsimplexizemethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -tolsimplexizemethod option";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -122,7 +121,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolssizedeltafvmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -tolssizedeltafvmethod option";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -135,7 +134,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",2);
 nm = neldermead_search(nm);

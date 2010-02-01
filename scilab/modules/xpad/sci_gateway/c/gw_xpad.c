@@ -25,9 +25,8 @@ static BOOL loadedDep = FALSE;
 static gw_generic_table Tab[]=
 {
   {sci_xpad, "xpad"},
-  {sci_xpad_highlightline, "xpad_highlightline"},
   {sci_xpad, "editor"},
-  {sci_xpad_highlightline, "editor_highlightline"}
+	{sci_closeXpadFromScilab, "closeEditor"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_xpad(void)
@@ -36,7 +35,7 @@ int gw_xpad(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "xpad");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xpad");
 		return 0;
 	}
 

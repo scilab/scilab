@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,typ,exprs]=getvalue('Set MATINV Block',..
+    [ok,typ,exprs]=scicos_getvalue('Set MATINV Block',..
 	    ['Datatype(1=real double  2=Complex)'],list('vec',1),label)
     if ~ok then break,end
     if (typ==1) then

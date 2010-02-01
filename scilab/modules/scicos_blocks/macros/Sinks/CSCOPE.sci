@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   //dstate=model.in
   while %t do
-    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=getvalue(..
+    [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Color (>0) or mark (<0) vector (8 entries)';
 	'Output window number (-1 for automatic)';

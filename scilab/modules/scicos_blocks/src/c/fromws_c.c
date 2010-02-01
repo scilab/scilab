@@ -1,24 +1,24 @@
 /*  Scicos
-*
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
-/*--------------------------------------------------------------------------*/ 
+   *
+   *  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+   *
+   * This program is free software; you can redistribute it and/or modify
+   * it under the terms of the GNU General Public License as published by
+   * the Free Software Foundation; either version 2 of the License, or
+   * (at your option) any later version.
+   *
+   * This program is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU General Public License for more details.
+   *
+   * You should have received a copy of the GNU General Public License
+   * along with this program; if not, write to the Free Software
+   * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+   *
+   * See the file ./license.txt
+   */
+   /*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -38,7 +38,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+   /*--------------------------------------------------------------------------*/ 
 #define Fnlength  block->ipar[0]
 #define FName     block->ipar[1]
 #define Method     block->ipar[1+Fnlength]
@@ -47,8 +47,8 @@
 #define T0        ptr->workt[0]
 #define TNm1      ptr->workt[nPoints-1]
 #define TP        (TNm1-0)
-/*--------------------------------------------------------------------------*/ 
-static int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
+   /*--------------------------------------------------------------------------*/ 
+   static int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
 /*--------------------------------------------------------------------------*/ 
 /* function to check and extract data coming from an hypermat */
 static int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType);

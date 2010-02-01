@@ -83,19 +83,28 @@
     <literal>g</literal> such as</para>
 
     <programlisting role = ""><![CDATA[ 
-[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]
+g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
 
     <para>using finite difference methods.</para>
 
-    <para>Without parameters, the function fun calling sequence is
+    <para>
+	Without parameters, the function fun calling sequence is
     <literal>y=fun(x)</literal>, and numdiff can be called as
     <literal>g=numdiff(fun,x)</literal>. Else the function fun calling
     sequence must be <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>.
     If parameters <literal>param_1,param_2,..param_q</literal> exist then
     <literal>numdiff</literal> can be called as follow
-    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.</para>
-  </refsection>
+    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.
+	</para>
+    
+    <para>
+    See the 
+  <link linkend="derivative">derivative</link> with respect to numerical accuracy 
+  issues and comparison between the two algorithms.
+	</para>
+
+</refsection>
 
   <refsection>
     <title>Examples</title>
@@ -134,6 +143,8 @@ exact2=c*(x+a)^(c-1)
 
     <simplelist type="inline">
       <member><link linkend="optim">optim</link></member>
+
+      <member><link linkend="derivative">derivative</link></member>
 
       <member><link linkend="external">external</link></member>
     </simplelist>

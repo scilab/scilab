@@ -51,8 +51,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
 import javax.swing.text.Highlighter.HighlightPainter;
 
-import org.scilab.modules.xpad.style.ScilabStyleDocument;
-
 /**
  *  This class will display line numbers for a related text component. The text
  *  component must use the same line height for each line. TextLineNumber
@@ -282,35 +280,37 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		int availableWidth = getSize().width - insets.left - insets.right;
 
 		//  Determine the rows to draw within the clipped bounds.
+		javax.swing.text.StyledDocument doc = textPane.getStyledDocument();
+		synchronized (doc) {
+			Rectangle clip = g.getClipBounds();
+			int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
+			int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
 
-		Rectangle clip = g.getClipBounds();
-		int rowStartOffset = textPane.viewToModel(new Point(0, clip.y));
-		int endOffset = textPane.viewToModel(new Point(0, clip.y + clip.height));
+			while (rowStartOffset <= endOffset) {
+				try {
+					if (isCurrentLine(rowStartOffset)) {
+						g.setColor(getCurrentLineForeground());
+					} else {
+						g.setColor(getForeground());
+					}
 
-		while (rowStartOffset <= endOffset) {
-			try {
-				if (isCurrentLine(rowStartOffset))
-				{
-					g.setColor(getCurrentLineForeground());
-				} else {
-					g.setColor(getForeground());
+					//  Get the line number as a string and then determine the
+					//  "X" and "Y" offsets for drawing the string.
+
+					String lineNumber = getTextLineNumber(rowStartOffset);
+					int stringWidth = fontMetrics.stringWidth(lineNumber);
+					int x = getOffsetX(availableWidth, stringWidth) + insets.left;
+					int y = getOffsetY(rowStartOffset, fontMetrics);
+					g.drawString(lineNumber, x, y);
+
+					//  Move to the next row
+					rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
+				} catch (BadLocationException e) {
+					// Bug 5125
+					// This exception occurs because the user removed text from the textPane 
+					// while updating the LineNumberPanel 
+					return;
 				}
-
-    			//  Get the line number as a string and then determine the
-    			//  "X" and "Y" offsets for drawing the string.
-
-				String lineNumber = getTextLineNumber(rowStartOffset);
-				int stringWidth = fontMetrics.stringWidth(lineNumber);
-				int x = getOffsetX(availableWidth, stringWidth) + insets.left;
-				int y = getOffsetY(rowStartOffset, fontMetrics);
-				g.drawString(lineNumber, x, y);
-
-    			//  Move to the next row
-
-				rowStartOffset = Utilities.getRowEnd(textPane, rowStartOffset) + 1;
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
 			}
 		}
 	}
@@ -430,7 +430,6 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 		repaint();
 	}
 	public void removeUpdate(DocumentEvent e) {
-		System.err.println("--- Calling LineNumberPanel.removeUpdate");
 		documentChanged();
 		repaint();
 	}
@@ -517,15 +516,17 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent textPane) {
 		try {
 			Rectangle r = textPane.modelToView(textPane.getCaretPosition());
-			if (isHighlighted == true) {
+			if (isHighlighted) {
 				g.setColor(currentLineHighlightColor);
 			} else {
 				g.setColor(textPane.getBackground());
 			}
 			g.fillRect(0, r.y, textPane.getWidth(), r.height);
-		}
-		catch(BadLocationException ex) {
-			ex.printStackTrace();
+		} catch (BadLocationException ex) {
+			// Bug 5125
+			// This exception occurs because the user removed text from the textPane 
+			// while updating the LineNumberPanel 
+			return;
 		}
 	}
 
@@ -550,7 +551,7 @@ MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 	}
 	
 	public void highlightLine(int lineNumber) {
-		if (lineNumber > 1 && lineNumber <= textPane.getStyledDocument().getDefaultRootElement().getElementCount()) {
+		if (lineNumber > 0 && lineNumber <= textPane.getStyledDocument().getDefaultRootElement().getElementCount()) {
 			textPane.setCaretPosition(textPane.getStyledDocument().getDefaultRootElement().getElement(lineNumber - 1).getStartOffset());
 			this.isHighlighted = true;
 			repaint();

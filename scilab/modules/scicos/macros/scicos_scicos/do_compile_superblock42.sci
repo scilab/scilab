@@ -660,7 +660,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
        rdnom,..
        rpat,..
        libs,..
-       label1]=getvalue(_('Set code generator parameters :'),..
+       label1]=scicos_getvalue(_('Set code generator parameters :'),..
                         [_('New block''s name :');
                          _('Created files Path :');
                          _('Other object files to link with (if any)')],..

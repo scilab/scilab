@@ -1,0 +1,35 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2009-10-20 20:59+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s ha una dimensione sbagliata: era attesa una "
+"matrice di dimensioni %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %s: An array of size %d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s ha una dimensione sbagliata: era atteso un "
+"array di dimensione %d.\n"
+
+#, c-format
+msgid "%s: the computation is already terminated\n"
+msgstr "%s: il calcolo è già finito\n"

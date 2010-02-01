@@ -314,4 +314,9 @@ public class ScilabConsole extends ScilabDockable implements Console {
 		ScilabBridge.setCursor(this, cursor);
 	}
 
+	public void helpOnTheKeyword() {
+		ScilabBridge.helpOnTheKeyword(this);
+		
+	}
+
 }

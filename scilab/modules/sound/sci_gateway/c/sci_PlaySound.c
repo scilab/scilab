@@ -31,7 +31,7 @@ static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/
 int sci_Playsound (char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
 	int iType1 = 0;
@@ -42,17 +42,17 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -62,16 +62,16 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
-	{
-		printError(&strErr, 0);
-		return 0;
-	}
-
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+		return 0;
+	}
+
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -82,10 +82,10 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 

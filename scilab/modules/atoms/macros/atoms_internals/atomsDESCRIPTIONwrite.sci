@@ -9,6 +9,28 @@
 
 // Internal function
 
+// The description struct looks like that :
+
+// DESCRIPTION
+// |
+// |-- packages
+// |   |-- toolbox_1                         [1x1 struct]
+// |   |   |-- 2.0                           [1x1 struct] 
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "2.0"
+// |   |   |   `-- ..
+// |   |   `-- 1.0                           [1x1 struct]
+// |   |   |   |-- Toolbox: "toolbox_2"
+// |   |   |   |-- Title: "Toolbox Test 2"
+// |   |   |   |-- Version: "1.0"
+// |   |   |   `-- ..
+// |   |-- module_lycee
+// |   `-- ..
+// |
+// |-- categories
+// |-- categories_flat
+
 function atomsDESCRIPTIONwrite(description_in,file_out)
 	
 	// Check input parameters number
@@ -41,54 +63,67 @@ function atomsDESCRIPTIONwrite(description_in,file_out)
 	// Build the string matrix
 	// =========================================================================
 	
-	str_mat            = [];
+	str_mat = [];
 	
-	package_names      = getfield(1,description_in);
-	package_names(1:2) = [];
-	
-	for i=1:size(package_names,"*")
+	if isfield(description_in,"packages") then
 		
-		package_versions_struct = description_in(package_names(i));
+		package_packages   = description_in("packages");
+		package_names      = getfield(1,package_packages);
+		package_names(1:2) = [];
 		
-		if type(package_versions_struct) <> 17 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsDESCRIPTIONwrite",1));
-		end
-		
-		package_versions      = getfield(1,package_versions_struct);
-		package_versions(1:2) = [];
-		
-		for j=1:size(package_versions,"*")
+		for i=1:size(package_names,"*")
 			
-			str_mat = [ str_mat ; "// =============================================================================" ];
+			package_versions_struct = package_packages(package_names(i));
 			
-			this_package = package_versions_struct(package_versions(j));
+			if type(package_versions_struct) <> 17 then
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsDESCRIPTIONwrite",1));
+			end
 			
-			this_package_fields      = getfield(1,this_package);
-			this_package_fields(1:2) = [];
+			package_versions      = getfield(1,package_versions_struct);
+			package_versions(1:2) = [];
 			
-			for k=1:size(this_package_fields,"*")
+			for j=1:size(package_versions,"*")
 				
-				this_field = this_package_fields(k);
-				this_value = this_package(this_package_fields(k));
+				str_mat = [ str_mat ; "// =============================================================================" ];
 				
-				if type(this_value)<>10 then
-					continue;
-				end
+				this_package = package_versions_struct(package_versions(j));
 				
-				str_mat = [ str_mat ; sprintf("%s: %s",this_field,this_value(1)) ];
+				this_package_fields      = getfield(1,this_package);
+				this_package_fields(1:2) = [];
 				
-				if size(this_value,"*") == 1 then
-					continue;
-				end
-				
-				for l=2:size(this_value,"*")
-					str_mat = [ str_mat ; sprintf(" %s",this_value(l)) ];
+				for k=1:size(this_package_fields,"*")
+					
+					this_field = this_package_fields(k);
+					this_value = this_package(this_package_fields(k));
+					
+					if type(this_value)<>10 then
+						continue;
+					end
+					
+					if (this_field=="Version") & ~isempty(strindex(this_value(1),"-")) then
+						str_mat = [ str_mat ; ..
+										sprintf("Version: %s",part(this_value(1),1:strindex(this_value(1),"-")-1)) ; ..
+										sprintf("PackagingVersion: %s",part(this_value(1),strindex(this_value(1),"-")+1:length(this_value(1)))) ];
+						continue;
+					elseif(this_field=="PackagingVersion")
+						continue;
+					else
+						str_mat = [ str_mat ; sprintf("%s: %s",this_field,this_value(1)) ];
+					end
+					
+					if size(this_value,"*") == 1 then
+						continue;
+					end
+					
+					for l=2:size(this_value,"*")
+						str_mat = [ str_mat ; sprintf(" %s",this_value(l)) ];
+					end
+					
 				end
 				
 			end
 			
 		end
-		
 	end
 	
 	// Put the string matrix in the wanted file

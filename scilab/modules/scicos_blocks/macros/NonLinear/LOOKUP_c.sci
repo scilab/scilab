@@ -44,7 +44,7 @@ case 'getorigin' then
   SaveExit=%f
   while %t do
     Ask_again=%f
-    [ok,Method,xx,yy,extrapo,graf,exprs]=getvalue('Lookup table parameters',..
+    [ok,Method,xx,yy,extrapo,graf,exprs]=scicos_getvalue('Lookup table parameters',..
 		  ['Spline Interpolation method (0..9)';..
  	    'x';'y';'Extrapolate method (0,1)';'Launch graphic window(y/n)?'],..
 	  list('vec',1,'vec',-1,'vec',-1,'vec',1,'str',1),exprs)
@@ -382,7 +382,7 @@ while %t then //=================================================
   select Cmenu
    case 'Data Bounds' then
       rectx=findrect(a);
-      [mok,xmn1,xmx1,ymn1,ymx1]=getvalue('Enter new bounds',['xmin';'xmax'; ...
+      [mok,xmn1,xmx1,ymn1,ymx1]=scicos_getvalue('Enter new bounds',['xmin';'xmax'; ...
 		    'ymin';'ymax'],list('vec',1,'vec',1,'vec',1,'vec',1), ...
 				     string(rectx))
       //drawlater();
@@ -403,7 +403,7 @@ while %t then //=================================================
    case 'Extrapolation' then 
     //extrapo
     if extrapo==1 then, ans0='1',else, ans0='0',end;
-    [mok,myans]=getvalue('Extrapolation method (just for Method 1)',['0: hold end values, 1: extrapolation'],list('vec',1),list(ans0));
+    [mok,myans]=scicos_getvalue('Extrapolation method (just for Method 1)',['0: hold end values, 1: extrapolation'],list('vec',1),list(ans0));
     if (mok==%t) then
       extrapo=int(myans); if extrapo<0 then extrapo=0;end; if extrapo>1 then extrapo=1;end;    
       ipar(4)=extrapo;
@@ -411,7 +411,7 @@ while %t then //=================================================
     end
     //-------------------------------------------------------------------
    case 'sine' then 
-    [mok,Amp,wp,phase,offset,np1,Sin_exprs2]=getvalue(' Sine parameters', ...
+    [mok,Amp,wp,phase,offset,np1,Sin_exprs2]=scicos_getvalue(' Sine parameters', ...
 				['Amplitude';'Frequency(rad/sec)'; ...
 		    'Phase(rad)';'Bias';'number of points'],list('vec',1,'vec',1,'vec',1, ...
 					   'vec',1,'vec',1),Sin_exprs)
@@ -428,7 +428,7 @@ while %t then //=================================================
     end
     //-------------------------------------------------------------------
    case 'sawtooth1' then 
-    [mok,sAmp,sTp,sdelay,Sawt1_exprs2]=getvalue('Sawtooth signal parameters', ...
+    [mok,sAmp,sTp,sdelay,Sawt1_exprs2]=scicos_getvalue('Sawtooth signal parameters', ...
 			  ['Amplitude';'Period';'delay'], ...
 			  list('vec',1,'vec',1,'vec',1),Sawt1_exprs)   
     if mok & sTp>0 then
@@ -447,7 +447,7 @@ while %t then //=================================================
     end
     //-------------------------------------------------------------------
    case 'sawtooth2' then     
-    [mok,sAmp2,sTp2,Sawt2_exprs2]=getvalue('Sawtooth signal parameters', ...
+    [mok,sAmp2,sTp2,Sawt2_exprs2]=scicos_getvalue('Sawtooth signal parameters', ...
 			  ['Amplitude';'Period'],list('vec',1,'vec',1),Sawt2_exprs)    
     if mok & sTp2>0 then
       NOrder=1;
@@ -460,7 +460,7 @@ while %t then //=================================================
     end
     //-------------------------------------------------------------------
    case 'pulse' then
-    [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2]=getvalue('Square wave pulse signal', ...
+    [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2]=scicos_getvalue('Square wave pulse signal', ...
 				    ['Amplitude';'Period (sec)';'Pulse width(% of period)';'Phase delay (sec)';'Bias'],list('vec',1, ...
 						  'vec',1,'vec',1,'vec',1,'vec', ...
 						  1),Pulse_exprs)        
@@ -486,7 +486,7 @@ while %t then //=================================================
     end
      //-------------------------------------------------------------------
    case 'random normal' then
-    [mok,mean4,var4,seed4,sample4,np4,random_n_exprs2]=getvalue('Normal (Gaussian) random signal', ...
+    [mok,mean4,var4,seed4,sample4,np4,random_n_exprs2]=scicos_getvalue('Normal (Gaussian) random signal', ...
 				    ['Mean';'Variance';'Initial seed';'Sample time';'Number of points'],list('vec',1, ...
 						  'vec',1,'vec',1,'vec', ...
 						  1,'vec',1),random_n_exprs)        
@@ -502,7 +502,7 @@ while %t then //=================================================
     end
      //-------------------------------------------------------------------
    case 'random uniform' then
-    [mok,min5,max5,seed5,sample5,np5,random_u_exprs2]=getvalue('Uniform random signal', ...
+    [mok,min5,max5,seed5,sample5,np5,random_u_exprs2]=scicos_getvalue('Uniform random signal', ...
 				    ['Minimum';'Maximum';'Initial seed';'Sample time';'Number of points'],list('vec',1, ...
 						  'vec',1,'vec',1,'vec', ...
 						  1,'vec',1),random_u_exprs)        
@@ -554,7 +554,7 @@ while %t then //=================================================
     //----------------------------------------------------------------
    case 'Edit text data NOT IN USE' then
     //  editvar xy;
-    [mok,xt,yt]=getvalue('Enter x and y data',['x';'y'],list('vec',-1,'vec',-1),list(strcat(sci2exp(xy(:,1))),strcat(sci2exp(xy(:,2)))));
+    [mok,xt,yt]=scicos_getvalue('Enter x and y data',['x';'y'],list('vec',-1,'vec',-1),list(strcat(sci2exp(xy(:,1))),strcat(sci2exp(xy(:,2)))));
     if mok then,    
       xy=[xt,yt];
       [xy]=cleandata(xy), 
@@ -644,7 +644,7 @@ while %t then //=================================================
       end
             
       if (HIT)&(btn==10) then             // change data:: double click
-	[mok,xt,yt]=getvalue('Enter new x and y',['x';'y'],list('vec', ...
+	[mok,xt,yt]=scicos_getvalue('Enter new x and y',['x';'y'],list('vec', ...
 						  1,'vec',1),list(sci2exp(xy(k,1)),sci2exp(xy(k,2))));
 	if mok then 
 	  xy(k,:)=[xt,yt];
@@ -772,7 +772,7 @@ function [tok,xyo]=ReadExcel()
   TN=['0','1','2','3','4','5','6','7','8','9'];
   xyo=[];tok=%f;
   while %t
-    [zok,filen,sheetN,xa,ya]=getvalue('Excel data file ',['Filename';'Sheet # ';'X[start:Stop]';'Y[start:stop]'],list('str',1, ...
+    [zok,filen,sheetN,xa,ya]=scicos_getvalue('Excel data file ',['Filename';'Sheet # ';'X[start:Stop]';'Y[start:stop]'],list('str',1, ...
 						  'vec',1,'str',1, ...
 						  'str',1), ...
 				      list(['Classeur1.xls'],['1'],['C5:C25'],['D5:D25']));   
@@ -915,7 +915,7 @@ endfunction
 function [sok,xye]=ReadFromFile()
   xye=[];sok=%f;
   while %t
-    [sok,filen,Cformat,Cx,Cy]=getvalue('Text data file ',['Filename';'Reading [C] format';'Abscissa column';'Output column'],list('str',1,'str',1,'vec',1,'vec',1), ...
+    [sok,filen,Cformat,Cx,Cy]=scicos_getvalue('Text data file ',['Filename';'Reading [C] format';'Abscissa column';'Output column'],list('str',1,'str',1,'vec',1,'vec',1), ...
 				      list(['mydatafile.dat'],['%g %g'],['1'],['2']));       
     if ~sok then break,end
     px=strindex(Cformat,'%');
@@ -947,7 +947,7 @@ function [sok]=SaveToFile(xye)
   ye=xye(:,2)
   sok=%f;
   while %t
-    [sok,filen,Cformat]=getvalue('Text data file ',['Filename';'Writing [C] format'],list('str',1,'str',1), ...
+    [sok,filen,Cformat]=scicos_getvalue('Text data file ',['Filename';'Writing [C] format'],list('str',1,'str',1), ...
 				      list(['mydatafile.dat'],['%g %g']));       
     if ~sok then break,end
     px=strindex(Cformat,'%');
@@ -1156,5 +1156,7 @@ Bt=[zeros(3*N,1);B]
 Zt=At\Bt;
 Z=Zt(1:3*N,1)
 endfunction
-//=================================================== 
- 
+//===================================================
+
+ 
+ 

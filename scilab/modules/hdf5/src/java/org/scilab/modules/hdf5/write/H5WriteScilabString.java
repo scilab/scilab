@@ -15,7 +15,6 @@ package org.scilab.modules.hdf5.write;
 import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
@@ -26,60 +25,45 @@ public class H5WriteScilabString {
 	String[][] realData = data.getData();
 	int rows = realData.length;
 	int cols = realData[0].length;
-	long[] dims = {rows, cols};
-	byte[][] refs = new byte[rows * cols][8];
+	long[] dims = {rows *  cols};
+	int dataLen = 0;
 
-	/*
-	 * Create a group named #<dataSetName where '/' became '_'>#
-	 */
-	int group_id = H5.H5Gcreate(file_id, "/#" + dataSetName.replace('/', '_') +"#", HDF5Constants.H5P_DEFAULT);
-	H5.H5Gclose(group_id);
-
-	/*
-	 * Then for each object, create a dataset and a Reference
-	 */
-	for (int i = 0 ; i < rows ; ++i) {
-	    for (int j = 0 ; j < cols ; ++j) {
-		String currentName = "#"+dataSetName.replace('/', '_')+"#/#"+(i+rows*j)+"#";
-		writeInDataSet(file_id, currentName, realData[i][j]);
-		refs[i * cols + j] = H5.H5Rcreate(file_id, currentName, HDF5Constants.H5R_OBJECT, -1);
+	StringBuffer dataOut = new StringBuffer();
+	//get max length
+	for(int i = 0 ; i < rows ; i++) {
+	    for(int j = 0 ; j < cols ; j++) {
+		dataLen = Math.max(dataLen, realData[i][j].length());
 	    }
 	}
 
-	int dataspaceId = H5.H5Screate_simple(2, dims, null);
-	int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName,
-		HDF5Constants.H5T_STD_REF_OBJ, dataspaceId,
-		HDF5Constants.H5P_DEFAULT);
-	H5.H5Dwrite(datasetId, HDF5Constants.H5T_STD_REF_OBJ,
-		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
-		HDF5Constants.H5P_DEFAULT, refs);
-	H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_STRING);
-	H5.H5Dclose(datasetId);
-	H5.H5Sclose(dataspaceId);
-    }
-
-
-    public static void writeInDataSet(int file_id, String dataSetName, String data) throws NullPointerException, HDF5Exception {
-	long[] dims = {1};
-	int size = 0;
-	if (data.length() != 0) {
-	    size = data.length();
-	}
-	else {
-	    size = 1;
+	if(dataLen <= 0) {
+	    dataLen = 1;
 	}
 
-	int tid = H5.H5Tcopy(HDF5Constants.H5T_C_S1);
-	H5.H5Tset_size(tid, size);
-	int dataspaceId = H5.H5Screate_simple(1, dims, null);
+	//Very ugly, TODO find another way to convert String[][] to byte[][] with homogeneous size
+	for(int i = 0 ; i < cols ; i++) {
+	    for(int j = 0 ; j < rows ; j++) {
+		dataOut.append(realData[j][i]);
+		for(int k = 0 ; k < (dataLen - realData[j][i].length()) ; k++) {
+		    dataOut.append('\0');
+		}
+	    }
+	}
+	int space = H5.H5Screate_simple(1, dims, null);
+
+	int typeId = H5.H5Tcopy (HDF5Constants.H5T_C_S1);
+	H5.H5Tset_size (typeId, dataLen);
+
 	int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName,
-		tid, dataspaceId,
-		HDF5Constants.H5P_DEFAULT);
-	H5.H5Dwrite(datasetId, tid,
-		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
-		HDF5Constants.H5P_DEFAULT, data.getBytes());
+		typeId, space, HDF5Constants.H5P_DEFAULT);
+
+	H5.H5Dwrite(datasetId, typeId, HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, dataOut.toString().getBytes());
 	H5Write.createAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS, H5ScilabConstant.SCILAB_CLASS_STRING);
+	H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_ROWS, rows);
+	H5Write.createIntAttribute(datasetId, H5ScilabConstant.SCILAB_CLASS_COLS, cols);
+
 	H5.H5Dclose(datasetId);
-	H5.H5Sclose(dataspaceId);
+	H5.H5Sclose(space);
+	H5.H5Tclose(typeId);
     }
 }

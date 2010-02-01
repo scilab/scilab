@@ -30,7 +30,7 @@ int get_y_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property undefined for this handle.\n"), "y_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"y_location");
     return -1 ;
   }
 
@@ -49,7 +49,7 @@ int get_y_location_property( sciPointObj * pobj )
     return sciReturnString( "origin" ) ;
     break;
   default : 
-    Scierror(999, _("%s is not correctly defined.\n"), "y_location") ;
+    Scierror(999, _("Wrong value for '%s' property.\n"),"y_location");
     break;
   }
   return -1 ;

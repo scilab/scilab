@@ -17,20 +17,44 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * EvaluateSelectionAction class
+ * @author Bruno JOFRET
+ *
+ */
+public final class EvaluateSelectionAction extends DefaultAction {
+	
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 320938663765236236L;
 
-public class EvaluateSelectionAction extends DefaultAction {
-
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private EvaluateSelectionAction(Xpad editor) {
 		super(XpadMessages.EVALUATE_SELECTION, editor);
 	}
 
+	/**
+	 * doAction
+	 */
 	public void doAction() {
-	    /* Will do the job as if it was copy / paste in scilab Console */
-	    //InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
-	    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getSelectedText(), true, false);
+		/* Will do the job as if it was copy / paste in scilab Console */
+		//InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
+		String selection = getEditor().getTextPane().getSelectedText();
+		if (selection.compareTo("") != 0) {
+			ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(selection, true, false);	
+		}
 	}
-	
-	 public static MenuItem createMenu(Xpad editor) {
+
+	/**
+	 * createMenu
+	 * @param editor xpad
+	 * @return MenuItem
+	 */
+	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.EVALUATE_SELECTION, null, new EvaluateSelectionAction(editor), null);
-	 }
+	}
 }

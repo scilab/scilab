@@ -2,6 +2,7 @@
 #
 # windows directories (binaries)
 #
+gzip
 zip
 swig
 giws

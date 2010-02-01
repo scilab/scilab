@@ -23,8 +23,8 @@ A=a(:,:,[1 1]);
 if typeof(A.dims)<>"int32" then pause,end
 if size(A.dims,1)<>1 then pause,end
 
-
-a(1,1)=a(1,1)+%s;
+a = [];
+a(1,1)= %s;
 A=a(:,:,[1 1]);
 if typeof(A.dims)<>"int32" then pause,end
 if size(A.dims,1)<>1 then pause,end

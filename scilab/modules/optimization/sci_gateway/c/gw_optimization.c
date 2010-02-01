@@ -22,7 +22,8 @@ static gw_generic_table Tab[] =
 {sci_fsolve, "fsolve"},
 {sci_sqrsolve, "sqrsolve"},
 {sci_qld, "qld"},
-{sci_qp_solve, "qp_solve"}
+{sci_qp_solve, "qp_solve"},
+{sci_readmps, "readmps"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_optimization(void)

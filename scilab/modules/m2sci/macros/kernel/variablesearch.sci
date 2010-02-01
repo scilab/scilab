@@ -10,7 +10,7 @@
 function  variablename=variablesearch(instr,variablename)
 //  VARIABLESEARCH recursive function (used by "translatepaths" function)
 //  Searches names of declared variables for each instruction of mtlbtree
-//  Ouput 
+//  Output 
 //  -variablename : a vector which contains the names of declared variables
 //  -instr : mtlbtree instruction
 

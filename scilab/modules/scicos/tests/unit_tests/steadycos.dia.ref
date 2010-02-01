@@ -7,7 +7,7 @@
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
 ilib_verbose(0);
-load(fullfile(SCI,'modules','scicos','tests','unit_tests','pendulum_anim45.cos'));
+load("SCI/modules/scicos/tests/unit_tests/pendulum_anim45.cos");
 M=10;
 m=3;
 l=3;

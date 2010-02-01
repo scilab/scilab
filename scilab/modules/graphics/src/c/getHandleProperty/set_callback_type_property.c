@@ -56,7 +56,7 @@ int set_callback_type_property( sciPointObj * pobj, size_t stackPointer, int val
     }
   else
     {
-      Scierror(999, _("%s property does not exist for this handle.\n"),"callback_type");
+      Scierror(999, _("'%s' property does not exist for this handle.\n"),"callback_type");
       return SET_PROPERTY_ERROR ;
     }
 

@@ -2,7 +2,7 @@ LIBRARY    scicos_blocks_f.dll
 
 
 EXPORTS
-affich2_
+;affich2_
 getgeom_
 zcross_
 writef_

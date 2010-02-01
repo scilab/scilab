@@ -34,6 +34,16 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 // !
 //--------------------------------------------------------------------------------------------
 // Copyright INRIA
+
+
+// SCILAB 5.2 --> XCOS
+
+error(msprintf(gettext("''scicos'' is no more available, please use ''xcos'' instead.\n")));
+
+return
+
+// SCILAB 5.2 --> XCOS
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //** Magic Global Variable for Diagram Browser and more
   global %scicos_navig

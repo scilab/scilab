@@ -30,34 +30,17 @@
 /*------------------------------------------------------------------------*/
 int set_colored_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "colored");
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype == 0 )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"colored") ;
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype == 0 )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"colored") ;
-    return SET_PROPERTY_ERROR ;
-  }
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "colored");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-    if ( isStringParamEqual( stackPointer, "on") )
-    {
-      pSEGS_FEATURE(pobj)->typeofchamp = 1 ;
-    }
-    else if ( isStringParamEqual( stackPointer, "off") )
-    {
-      pSEGS_FEATURE(pobj)->typeofchamp = 0 ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "colored", "on", "off");
-      return SET_PROPERTY_ERROR ;
-    }
-
-    return SET_PROPERTY_SUCCEED ;
-
+	pSEGS_FEATURE(pobj)->typeofchamp = b;
+	return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/

@@ -31,34 +31,32 @@
 function optimplotfunccount ( x , optimValues , state )
   if ( state == "init" ) then
     opfvh = scf();
-    plot ( 0 , optimValues.funcCount );
+    plot ( 0 , optimValues.funccount );
     opfvh.user_data = "optimplotfunccount";
     opfvh.children.x_label.text = "Iteration";
     opfvh.children.y_label.text = "Function evaluations";
-    opfvh.children.title.text = msprintf ( "Total Function Evaluations: %d", optimValues.funcCount )
+    opfvh.children.title.text = msprintf ( "Total Function Evaluations: %d", optimValues.funccount )
     opfvh.children.children.children.mark_mode = "on";
     opfvh.children.children.children.mark_style = 5;
     opfvh.children.children.children.mark_size = 10;
     opfvh.children.children.children.mark_background = 6;
   else
     opfvh = findobj ( "user_data" , "optimplotfunccount" );
-    scf(opfvh);
-    gg = gce();
+    gg = opfvh.children.children;
     // Update data
-    gg.children.data($+1,1:2) = [optimValues.iteration optimValues.funcCount];
+    gg.children.data($+1,1:2) = [optimValues.iteration optimValues.funccount];
     // Compute new bounds
     itermin = 0;
     itermax = optimValues.iteration;
     fmin = min(gg.children.data(:,2));
     fmax = max(gg.children.data(:,2));
     // Update bounds
-    hh = gcf();
-    hh.children.data_bounds = [
+    opfvh.children.data_bounds = [
       itermin fmin
       itermax fmax
     ];
     // Update title
-    opfvh.children.title.text = msprintf ( "Total Function Evaluations: %d", optimValues.funcCount )
+    opfvh.children.title.text = msprintf ( "Total Function Evaluations: %d", optimValues.funccount )
   end
 endfunction
 

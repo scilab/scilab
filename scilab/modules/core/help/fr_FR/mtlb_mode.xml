@@ -33,7 +33,7 @@ mtlb_mode(mmode)</synopsis>
       <varlistentry>
         <term>Scilab</term>
         <listitem>
-          <para>:</para>
+          <para></para>
           <programlisting role = ""><![CDATA[ 
 a+[] -->a
 a-[] -->a

@@ -9,6 +9,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine i_c_i
       include 'stack.h'
+      
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
       common /mtlbc/ mmode
       integer top0
       external memused

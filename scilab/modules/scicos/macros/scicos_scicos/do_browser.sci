@@ -22,12 +22,12 @@
 function do_browser(scs_m)
 
   tt = scs_TreeView(scs_m);
-  //-- cur_wd = pwd();
+  //-- cur_wd = getcwd();
   //-- chdir(TMPDIR);
   //-- mputl(tt,scs_m.props.title(1)+'.tcl');
   //-- chdir(cur_wd)
   //-- TCL_EvalFile(TMPDIR+'/'+scs_m.props.title(1)+'.tcl')
-  displaytree(tt);
+  uiDisplayTree(tt);
 endfunction
 
 function tt = scs_TreeView(scs_m)
@@ -39,7 +39,7 @@ function tt = scs_TreeView(scs_m)
 //     "}"
 //     "package require BWidget 1.8.0"
 //     'set wzz .scsTree'
-//     'proc ppsc {label} {global blkox; set blkox $label;ScilabEval '"Cmenu=''XcosMenuBrowseTo'''"}'
+//     'proc ppsc {label} {global blkox; set blkox $label;ScilabEval '"Cmenu=''BrowseTo'''"}'
 //     'catch {destroy $wzz}'
 //     'toplevel $wzz'
 //     'Tree $wzz.t -xscrollcommand {$wzz.xsb set} -yscrollcommand {$wzz.ysb set} "+...
@@ -75,7 +75,7 @@ function java = crlist1(scs_m,Path,java)
       if o.model.sim=='super' then
 	titre2 = o.model.rpar.props.title(1);
 	//-- tt = [tt;'$wzz.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
-	subTree = createNode(titre2, "default", "global blkox;blkox="""+path+""";Cmenu=''XcosMenuBrowseTo''");
+	subTree = createNode(titre2, "default", "global blkox;blkox="""+path+""";Cmenu=''BrowseTo''");
 
 	//-- tt = crlist1(o.model.rpar,path,tt); //** BEWARE: Recursive Call at the
 	//** very same function

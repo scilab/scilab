@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with default settings.
@@ -166,10 +168,9 @@ nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_configure(nm,"-kelleystagnationflag",1);
-nm = neldermead_configure(nm,"-restartflag",1);
+nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
+nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","foo");
 nm = neldermead_configure(nm,"-restartsimplexmethod","spendley");
 nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);

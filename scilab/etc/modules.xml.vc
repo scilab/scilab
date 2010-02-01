@@ -13,8 +13,6 @@
 <!-- =================== -->
 <modules>
 <module name="core" activate="yes"/>
-<module name="api_scilab" activate="yes"/>
-<module name="helptools" activate="yes"/>
 <module name="differential_equations" activate="yes"/>
 <module name="double" activate="yes"/>
 <module name="elementary_functions" activate="yes"/>
@@ -55,7 +53,6 @@
 <!-- comments -->
 <module name="arnoldi" activate="yes"/>
 <module name="compatibility_functions" activate="yes"/>
-<module name="metanet" activate="yes"/>
 <module name="javasci" activate="yes"/>
 <module name="maple2scilab" activate="yes"/>
 <module name="m2sci" activate="yes"/>
@@ -84,6 +81,9 @@
 <module name="matio" activate="yes"/>
 <module name="atoms" activate="yes"/>
 <module name="hdf5" activate="yes"/>
+<module name="xcos" activate="yes"/>
 <module name="xpad" activate="yes"/>
+<module name="api_scilab" activate="yes"/>
+<module name="helptools" activate="yes"/>
 <!-- comments -->
 </modules>

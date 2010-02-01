@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="CreateListVarFromPtr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>CreateListVarFromPtr</refname>
+
+    <refpurpose>a C interface function which allows to create a new Scilab
+    parameter from a pointer in a [mt]list</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>CreateListVarFrom(StackPos, Type, &amp;m_rows, &amp;n_cols, &amp;l_stack_list_pos, void * Pointer);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>StackPos</term>
+
+        <listitem>
+          <para>the rank of the parameter to be created (input
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Type</term>
+
+        <listitem>
+          <para>the Scilab type of the parameter to be created (input
+          parameter). Can be (see Scilab C Type for more informations):</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>STRING_DATATYPE "c"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_STRING_DATATYPE "S"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_DOUBLE_DATATYPE "d"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_RATIONAL_DATATYPE "r"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE "I"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_INTEGER_DATATYPE "i"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_BOOLEAN_DATATYPE "b"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_COMPLEX_DATATYPE "z"</para>
+            </listitem>
+
+            <listitem>
+              <para>SPARSE_MATRIX_DATATYPE "s"</para>
+            </listitem>
+
+            <listitem>
+              <para>TYPED_LIST_DATATYPE "t"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_ORIENTED_TYPED_LIST_DATATYPE "m"</para>
+            </listitem>
+
+            <listitem>
+              <para>SCILAB_POINTER_DATATYPE "p"</para>
+            </listitem>
+
+            <listitem>
+              <para>GRAPHICAL_HANDLE_DATATYPE "h"</para>
+            </listitem>
+
+            <listitem>
+              <para>EXTERNAL_DATATYPE "f"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_POLYNOMIAL_DATATYPE "x"</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m_rows</term>
+
+        <listitem>
+          <para>the number of lines of the matrix to be created (input
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n_cols</term>
+
+        <listitem>
+          <para>the number of columns of the matrix to be created (input
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>l_stack_list_pos</term>
+
+        <listitem>
+          <para>the position in the Scilab memory of the created parameter in
+          the list (output parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Pointer</term>
+
+        <listitem>
+          <para>the pointer to the data area (input parameter)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A C interface function which allows to create a new Scilab parameter
+    from a pointer in a [mt]list</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <string.h>
+
+int sci_create_list(char * fname)
+{
+  int m_list_out, n_list_out;
+  int m_var1,     n_var1,     l_var1,  l_list_var1;
+  int m_var2,     n_var2,     l_var2,  l_list_var2;
+  int m_mlist,    n_mlist,    l_mlist;
+ 
+  // The labels of our mlist 
+  static const char * ListLabels [] = {"mylist","var1","var2"};
+
+  // First, we create the variables using a classical way
+  // The size of the Scilab variables
+  m_var1  = 1; n_var1  = strlen("a string")+1; // a null terminated string
+  m_var2  = 2; n_var2  = 2; // A 2x2 double matrix
+  m_mlist = 3; n_mlist = 1; // A mlist with 3 elements
+  
+  // Creation of the Scilab variables
+  // A('var1')
+  CreateVar(1, "c", &m_var1,  &n_var1,  &l_var1);
+  // A('var2')
+  CreateVar(2, "d", &m_var2,  &n_var2,  &l_var2);
+  // A
+  CreateVar(3, "m", &m_mlist, &n_mlist, &l_mlist);
+  
+  // We store values in the create variables
+  // The matrix will be stored in A('var2')
+  *stk(l_var2+0) = 1;              
+  *stk(l_var2+1) = 2;              
+  *stk(l_var2+2) = 3;              
+  *stk(l_var2+3) = 4;              
+  
+  // The string will be stored in A('var1')
+  strncpy(cstk(l_var1),"a string\0",n_var1);
+  
+  m_list_out = 3; n_list_out = 1;
+  
+  // now, affect the variable  to the mlist
+  // The labels (it corresponds to A = mlist(['mylist','var1','var2'], ...
+  CreateListVarFromPtr(3, 1, "S", &m_list_out, &n_list_out, ListLabels);
+  // The value stored in A('var1') (it corresponds to A = ...,'a string', ...
+  CreateListVarFrom(3, 2, "c", &m_var1, &n_var1, &l_list_var1, &l_var1);
+  // The value stored in A('var2') (it corresponds to A = ...,[1 2,3 4]);
+  CreateListVarFrom(3, 3, "d", &m_var2, &n_var2, &l_list_var2, &l_var2);
+  
+  // We return only the mlist which has been created at position 3
+  LhsVar(1) = 3;
+  
+  return 0;
+}
+ ]]></programlisting>
+
+    <para>This example is available in
+    SCI/modules/core/example/create_list.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
+      <member><link linkend="istk">istk</link></member>
+
+      <member><link linkend="LhsVar">LhsVar</link></member>
+
+      <member><link linkend="CreateVar">CreateVar</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

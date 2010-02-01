@@ -53,7 +53,7 @@ function packages_disp = atomsSearch( search , fields )
 	// Get the list of available toolboxes
 	// =========================================================================
 	
-	packages_struct    = atomsGetTOOLBOXES();
+	packages_struct    = atomsDESCRIPTIONget();
 	
 	packages_list      = getfield(1,packages_struct);
 	packages_list(1:2) = [];
@@ -78,7 +78,7 @@ function packages_disp = atomsSearch( search , fields )
 		this_package_version = this_package_versions(1);
 		
 		// Get the details of this toolbox
-		this_package_details = atomsToolboxDetails(this_package_name,this_package_version);
+		this_package_details = atomsToolboxDetails([this_package_name,this_package_version]);
 		this_package_summary = this_package_details("Summary");
 		
 		if grep( convstr(this_package_name,"l") , search ) <> [] then

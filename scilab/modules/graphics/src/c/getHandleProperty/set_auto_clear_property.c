@@ -31,32 +31,20 @@
 /*------------------------------------------------------------------------*/
 int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "auto_clear");
-    return SET_PROPERTY_ERROR ;
-  }
-
+	int b =  (int)FALSE;
 	if (pobj == NULL)
 	{
-		/* If no object is specified, use the current subwin */
 		pobj = sciGetCurrentSubWin();
 	}
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetAddPlot( pobj, FALSE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetAddPlot( pobj, TRUE ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_clear", "on", "off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_clear");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	if(b==TRUE)
+	{
+		return sciSetAddPlot(pobj, FALSE);
+	}
+	return sciSetAddPlot(pobj, TRUE);
 }
 /*------------------------------------------------------------------------*/
 

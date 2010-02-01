@@ -28,6 +28,9 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   end
   fun = varargin(1);
   x0 = varargin(2);
+  // Get x0 and change it into a column vector
+  x0t = size(x0,"*");
+  x0 = matrix(x0,x0t,1);
   defaultoptions = optimset ("fminsearch");
   if rhs==2 then
     // No options on the command line
@@ -38,7 +41,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     options = varargin(3);
   end
   // Compute options from the options struct
-  numberofvariables = size(x0,2);
+  numberofvariables = size(x0,"*");
   MaxFunEvals = optimget ( options , "MaxFunEvals" , defaultoptions.MaxFunEvals );
   MaxIter = optimget ( options , "MaxIter" , defaultoptions.MaxIter );
   TolFun = optimget ( options , "TolFun" , defaultoptions.TolFun );
@@ -85,7 +88,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   fmsfundata.Fun = fun
   // Perform Optimization
   nm = neldermead_new ();
-  nm = neldermead_configure(nm,"-x0",x0.');
+  nm = neldermead_configure(nm,"-x0",x0);
   nm = neldermead_configure(nm,"-numberofvariables",numberofvariables);
   nm = neldermead_configure(nm,"-simplex0method","pfeffer");
   nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
@@ -113,16 +116,18 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   select status
   case "maxiter" then
     if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
-      mprintf(gettext("Exiting: Maximum number of iterations has been exceeded\n"))
-      mprintf(gettext("         - increase MaxIter option.\n"))
-      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+      msg = "%s: Exiting: Maximum number of iterations has been exceeded\n" + ...
+            "         - increase MaxIter option.\n" + ...
+            "         Current function value: %s\n"
+      mprintf(gettext(msg) , "fminsearch" , string(fval) )
     end
     exitflag = 0;
   case "maxfuneval" then
     if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
-      mprintf(gettext("Exiting: Maximum number of function evaluations has been exceeded\n"))
-      mprintf(gettext("         - increase MaxFunEvals option.\n"))
-      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+      msg = "%s: Exiting: Maximum number of function evaluations has been exceeded\n" + ...
+            "          - increase MaxFunEvals option.\n" + ...
+            "         Current function value: %s\n"
+      mprintf(gettext(msg) , "fminsearch" , string(fval) )
     end
     exitflag = 0;
   case "tolsizedeltafv" then
@@ -173,45 +178,51 @@ endfunction
 //    * OutputFcn : the array of output functions
 //
 function fminsearch_outputfun ( state , data , fmsdata )
-  if ( fmsdata.Display == "iter" ) then
-    select data.step
-    case "init" then
+  // 
+  // Compute procedure
+  //
+  select data.step
+  case "init" then
       if ( data.iteration == 0 ) then
-        dstep = "";
+        procedure = "";
       else
-        dstep = "initial simplex";
+        procedure = "initial simplex";
       end
-    case "done" then
-      dstep = ""
-    case "reflection" then
-      dstep = "reflect"
-    case "expansion" then
-      dstep = "expand"
-    case "insidecontraction" then
-      dstep = "contract inside"
-    case "outsidecontraction" then
-      dstep = "contract outside"
-    case "reflectionnext" then
-      dstep = "reflectionnext"
-    case "shrink" then
-      dstep = "shrink"
-    else
+  case "done" then
+      procedure = ""
+  case "reflection" then
+      procedure = "reflect"
+  case "expansion" then
+      procedure = "expand"
+  case "insidecontraction" then
+      procedure = "contract inside"
+  case "outsidecontraction" then
+      procedure = "contract outside"
+  case "shrink" then
+      procedure = "shrink"
+  else
       errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
       error(errmsg)
-    end
+  end
+  // 
+  // Display a message
+  //
+  if ( fmsdata.Display == "iter" ) then
     if ( data.step <> "done" ) then
-    mprintf ( "%6s        %5s     %12s         %-20s\n", ...
-      string(data.iteration) , string(data.funccount) , string(data.fval) , dstep )
+      mprintf ( "%6s        %5s     %12s         %-20s\n", ...
+        string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
     else
       mprintf ( "\n" )
     end
   end
+  //
   // Process output functions
+  //
   optimValues = struct(...
-      "funcCount" ,data.funccount , ...
+      "funccount" ,data.funccount , ...
       "fval" ,data.fval , ...
       "iteration" , data.iteration , ...
-      "procedure" , data.step ...
+      "procedure" , procedure ...
       );
   if ( fmsdata.OutputFcn <> [] ) then
     if ( type ( fmsdata.OutputFcn ) == 13 ) then
@@ -224,7 +235,7 @@ function fminsearch_outputfun ( state , data , fmsdata )
       end
     else
       // The user did something wrong...
-      errmsg = msprintf(gettext("%s: The output function associated with ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
+      errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
       error(errmsg)
     end
   end
@@ -240,7 +251,7 @@ function fminsearch_outputfun ( state , data , fmsdata )
       end
     else
       // The user did something wrong...
-      errmsg = msprintf(gettext("%s: The output function associated with ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
+      errmsg = msprintf(gettext("%s: The value of the ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
       error(errmsg)
     end
   end

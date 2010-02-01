@@ -44,7 +44,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
         <term>x</term>
 
         <listitem>
-          <para>a real matrice or vector. If omitted, it is assumed to be the
+          <para>a real matrix or vector. If omitted, it is assumed to be the
           vector <literal>1:n</literal> where <literal>n</literal> is the
           number of curve points given by the <literal>y</literal>
           parameter.</para>
@@ -55,7 +55,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>a real matrice or vector.</para>
+          <para>a real matrix or vector.</para>
         </listitem>
       </varlistentry>
 
@@ -75,7 +75,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>sets the style for each curve. The associated value
                 should be a real vector with integer (positive or negative)
-                values</para>
+                values.</para>
               </listitem>
             </varlistentry>
 
@@ -125,7 +125,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>sets the axes labels and tics definition. The associated
                 value should be a real vector with four integer entries
-                <literal>[nx,Nx,ny,Ny]</literal></para>
+                <literal>[nx,Nx,ny,Ny].</literal></para>
               </listitem>
             </varlistentry>
 
@@ -134,7 +134,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>sets the curves captions. The associated value should be
-                a character string</para>
+                a character string.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -175,7 +175,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
     plots each columns of <literal>y</literal> versus vector
     <literal>1:size(y,1)</literal>.</para>
 
-    <para>The <literal>&lt;opt_args&gt;</literal> arguments sould be used to
+    <para>The <literal>&lt;opt_args&gt;</literal> arguments should be used to
     customize the plot</para>
 
     <variablelist>
@@ -193,7 +193,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               curve is drawn as plain line and <literal>style(i)</literal>
               defines the index of the color used to draw the curve (see <link
               linkend="getcolor">getcolor</link>). Note that the line style
-              and the thickness can be set throught the polyline entity
+              and the thickness can be set through the polyline entity
               properties (see <link
               linkend="polyline_properties">polyline_properties</link>).</para>
 
@@ -205,7 +205,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <para>if <literal>style(i)</literal> is negative or zero, the
               given curve points are drawn using marks,
               <literal>abs(style(i))</literal> defines the mark with id used.
-              Note that the marks color and marks sizes can be set throught
+              Note that the marks color and marks sizes can be set through
               the polyline entity properties (see <link
               linkend="polyline_properties">polyline_properties</link>).</para>
             </listitem>
@@ -242,11 +242,11 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
           <para>This argument may be used together with the
           <literal>frameflag</literal> option to specify how the axes
-          boundaries are derived from teh given <literal>rect</literal>
+          boundaries are derived from the given <literal>rect</literal>
           argument. If the <literal>frameflag</literal> option is not given,
           it is supposed to be <literal>frameflag=7</literal>.</para>
 
-          <para>The axes boundaries can also be customized throught the axes
+          <para>The axes boundaries can also be customized through the axes
           entity properties (see <link
           linkend="axes_properties">axes_properties</link>).</para>
         </listitem>
@@ -353,13 +353,13 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>like<literal>frameflag=8</literal> but the range is
-                enlarged to get pretty axes labels. This the default
+                enlarged to get pretty axes labels. This is the default
                 value.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
-          <para>The axes boundaries can also be customized throught the axes
+          <para>The axes boundaries can also be customized through the axes
           entity properties (see <link
           linkend="axes_properties">axes_properties</link>)</para>
         </listitem>
@@ -377,8 +377,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=0</term>
 
               <listitem>
-                <para>nothing is drawn around the plot.(axes_visible=["off"
-                "off"];box="off")</para>
+                <para>nothing is drawn around the plot (axes_visible=["off"
+                "off"];box="off").</para>
               </listitem>
             </varlistentry>
 
@@ -386,7 +386,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=1</term>
 
               <listitem>
-                <para>axes are drawn, the y=axis is displayed on the left
+                <para>axes are drawn, the y-axis is displayed on the left
                 (axes_visible=["on" "on"];box="on",y_location="left").</para>
               </listitem>
             </varlistentry>
@@ -395,7 +395,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=2</term>
 
               <listitem>
-                <para>the plot is surrounded by a box without tics.
+                <para>the plot is surrounded by a box without tics
                 (axes_visible=["off" "off"];box="on").</para>
               </listitem>
             </varlistentry>
@@ -404,8 +404,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=3</term>
 
               <listitem>
-                <para>axes are drawn, the y=axis is displayed on the
-                right.(axes_visible=["on"
+                <para>axes are drawn, the y-axis is displayed on the
+                right (axes_visible=["on"
                 "on"];box="off",y_location="right").</para>
               </listitem>
             </varlistentry>
@@ -414,8 +414,10 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=4</term>
 
               <listitem>
-                <para>axes are drawn centred in the middle of the frame
-                box</para>
+                <para>axes are drawn centered in the middle of the frame, the box
+		being not drawn (axes_visible=["on" "on"];box="off",x_location="middle",
+		y_location="middle").
+                </para>
               </listitem>
             </varlistentry>
 
@@ -423,10 +425,9 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=5</term>
 
               <listitem>
-                <para>axes are drawn so as to cross at point (0,0). If point
-                (0,0) does not lie inside the frame, axes will not appear on
-                the graph. (axes_visible=["on"
-                "on"];box="on",y_location="middle").</para>
+                <para>axes are drawn centered in the middle of the frame similarly to
+		 <literal>axesflag=4</literal>, the difference being that the box is drawn
+		(axes_visible=["on" "on"];box="on",x_location="middle",y_location="middle").</para>
               </listitem>
             </varlistentry>
 
@@ -434,14 +435,14 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>axesflag=9</term>
 
               <listitem>
-                <para>axes are drawn, the y=axis is displayed on the left
+                <para>axes are drawn, the y-axis is displayed on the left
                 (axes_visible=["on" "on"];box="off",y_location="left"). This
-                is the defualt value</para>
+                is the default value</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
-          <para>The axes aspect can also be customized throught the axes
+          <para>The axes aspect can also be customized through the axes
           entity properties (see <link
           linkend="axes_properties">axes_properties</link>).</para>
         </listitem>
@@ -452,8 +453,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>This option may be used to specify the axes labels and tics
-          definition when <literal>axesflag=1</literal> option is used. The
-          associated value should be a real vector with four integer entries
+          definition. The associated value should be a real vector with four integer entries
           <literal>[nx,Nx,ny,Ny]</literal>.</para>
 
           <para><literal>Nx</literal> gives the number of main tics to be used
@@ -465,7 +465,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
           <para>If <literal>axesflag</literal> option is not set
           <literal>nax</literal> option supposes that
-          <literal>axesflag</literal> option has been set to 1.</para>
+          <literal>axesflag</literal> option has been set to 9.</para>
         </listitem>
       </varlistentry>
 
@@ -560,8 +560,8 @@ a.y_location ="right";
 clf();
 plot2d(x-4,sin(x),1,leg="sin(x)");
 a=gca(); // Handle on axes entity
-a.x_location = "middle"; 
-a.y_location = "middle"; 
+a.x_location = "origin"; 
+a.y_location = "origin"; 
 // Some operations on entities created by plot2d ...
 a=gca();
 a.isoview='on'; 

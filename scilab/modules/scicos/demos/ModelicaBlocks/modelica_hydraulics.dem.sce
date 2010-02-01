@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_hydraulics.dem.sce");
-scicos_demonstration(thispath+"/Hydraulics.cosf");
+xcos(thispath+"/Hydraulics.cosf");
 clear thispath;

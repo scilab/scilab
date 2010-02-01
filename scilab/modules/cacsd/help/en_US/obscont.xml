@@ -29,7 +29,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time</para>
+          <para> <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,13 @@
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (controller)</para>
+          <para> <literal>syslin</literal> list (controller)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (extended controller)</para>
+          <para> <literal>syslin</literal> list (extended controller)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

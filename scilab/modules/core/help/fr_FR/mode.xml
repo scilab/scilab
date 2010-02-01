@@ -111,7 +111,7 @@ k=mode()</synopsis>
     </variablelist>
 
     <para>L'affichage est supprimé dans les fonctions compilées
-    (voir getf ou comp). Par défaut les fonctions Scilab sont
+    (voir comp). Par défaut les fonctions Scilab sont
     éxécutées en mode silencieux ("-1").</para>
     
     <para>Les fonctions incluses dans une librairie de fonctions scilab sont executés avec le mode "-1".</para>
@@ -149,8 +149,6 @@ mode(2)
       <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="execstr">execstr</link></member>
-
-      <member><link linkend="getf">getf</link></member>
 
       <member><link linkend="semicolon">semicolon</link></member>
 

@@ -48,16 +48,21 @@
 \newcommand{\Dx}{\partial_x}
 \newcommand{\Dy}{\partial_y}
 
-\newcommand{\bv}{\mathbf{v}}
-\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bd}{\mathbf{d}}
 \newcommand{\bl}{\mathbf{l}}
 \newcommand{\br}{\mathbf{r}}
 \newcommand{\bg}{\mathbf{g}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
 
 \usepackage{url}
 
 % Scilab macros
 \newcommand{\scifunction}[1]{\textit{#1}}
+\newcommand{\scivar}[1]{\textit{#1}}
 
 % To highlight source code
 \usepackage{listings}
@@ -313,5 +318,27 @@
 % For symbol degree
 \DeclareTextSymbol{\degre}{T1}{6}
 
+% Some environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\qed\end{trivlist}}
+
+%\newenvironment{definition}[1][Definition]{\begin{trivlist} \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}\item[\hskip \labelsep {\bfseries #1}]}{$\Box$\end{trivlist}}
+%\newenvironment{remark}[1][Remark]{\begin{trivlist} \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
 
 

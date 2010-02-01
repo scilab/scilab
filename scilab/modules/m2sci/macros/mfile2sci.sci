@@ -8,7 +8,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint)
+function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
 // This function performs translation of a single M-file
 // - fil: file name
 // - res_path: path to write translated file in (default value is fil path)
@@ -16,7 +16,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
 // Get default arguments
 [lhs,rhs]=argn(0)
-if rhs<6 then prettyprint=%F,end
+if rhs<6 then prettyprintoutput=%F,end
 if rhs<5 then verbose_mode=3,end
 if rhs<4 then only_double=%F,end
 if rhs<3 then Recmode=%F,end
@@ -34,7 +34,7 @@ if exists("m2scikernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),
 if exists("m2scipercentlib")==0 then load("SCI/modules/m2sci/macros/percent/lib"),end
 if exists("m2scisci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
-if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprint) then
+if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput) then
   res=1
   return
 end
@@ -67,7 +67,7 @@ margin="  "
 rec=gettext("OFF");
 dble=gettext("NO");
 pretty=gettext("NO");
-if prettyprint then pretty=gettext("YES");end
+if prettyprintoutput then pretty=gettext("YES");end
 if Recmode then rec=gettext("ON");end
 if only_double then dble=gettext("YES");end
 
@@ -231,11 +231,11 @@ if txt~=[] then
   end
 
   // Perform the translation
-  [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprint)
+  [scitree,trad,hdr,crp]=m2sci(mtlbtree,w(1),Recmode,prettyprintoutput)
 
   //Creation of fname_resume.log file
- // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
-    //resume_logfile initialisation
+  // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
+  //resume_logfile initialisation
     if exists("resume_logfile")==0 then
       [tempfd2,ierr2]=file('open',pathconvert(TMPDIR)+gettext("resumelogfile.dat"),"old")
       if ierr2==0 then

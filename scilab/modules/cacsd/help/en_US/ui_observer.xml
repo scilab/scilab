@@ -29,7 +29,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.</para>
+          <para> <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

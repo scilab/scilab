@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Cvmax,p_rho,exprs]=getvalue('Paramètres de la vanne reglante',..
+    [ok,Cvmax,p_rho,exprs]=scicos_getvalue('Paramètres de la vanne reglante',..
        ['Cvmax';'p_rho'],..
        list('vec',-1,'vec',-1),exprs)
     if ~ok then break,end

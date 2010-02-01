@@ -42,9 +42,8 @@ function optimplotx ( x , optimValues , state )
     opfvh.children.title.text = msprintf ( "Current Point" );
   else
     opfvh = findobj ( "user_data" , "optimplotx" );
-    scf(opfvh);
     nbvar = length(x)
-    gg = gce();
+    gg = opfvh.children.children;
     for ivar = 1:nbvar
       gg.children.data(ivar,2) = x(ivar);
     end
@@ -64,8 +63,7 @@ function optimplotx ( x , optimValues , state )
     if ( ymin < 0 ) then
       ymin = ymin * 1.1
     end
-    hh = gcf();
-    hh.children.data_bounds = [
+    opfvh.children.data_bounds = [
       xmin ymin
       xmax ymax
     ];

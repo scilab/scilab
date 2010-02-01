@@ -36,7 +36,7 @@ function [x,y,typ]=BACKLASH(job,arg1,arg2)
     model=arg1.model;
     rpar=model.rpar
     while %t do
-      [ok,ini,gap,zcr,exprs]=getvalue('Set backlash parameters',..
+      [ok,ini,gap,zcr,exprs]=scicos_getvalue('Set backlash parameters',..
 				      ['initial output';
 		    'gap';'use zero-crossing (0:no, 1:yes)'],..
 		    list('vec',1,'vec',1,'vec',1),exprs)

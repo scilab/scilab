@@ -1,0 +1,243 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"PO-Revision-Date: 2009-10-29 05:41+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s：内存申请错误。\n"
+
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr "%s 已经 for profiling 编译，无操作。"
+
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr "%s 已经编译，无操作。"
+
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr "%s 已经没有编译，无操作。"
+
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr "%s：不能创建文件 %s\n"
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s：文件 %s 强制编译\n"
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s：文件 %s 不包含任何函数。\n"
+
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr "%s：文件 %s 不存在。\n"
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s：无法找到扩展名为 %s 的文件于 %s 中。\n"
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s：不能打开文件 %s 进行写操作\n"
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s：文件 %s 中存在不正确的函数。\n"
+
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr "%s：不正确的库%s。\n"
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s：没有扩展名为 %s 的文件存在于 %s\n"
+
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr "%s：请检查：%s\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s：处理文件：%s\n"
+
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr "%s：重新生成 names 和 lib\n"
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s：该函数没有被为 profiling 生成。"
+
+#, c-format
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr "%s：没有文件名为 %s.sci 存在于库目录 %s 中。\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s：没定义的变量 %s。\n"
+
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s：警告：在文件 %s 中有错误：忽略 %s.File 。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：输入参数#%d的类型错误。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该是一个标量或者一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为Scilab函数。\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为 'errcatch'。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'm'或'n'。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该是一个整数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr "%s：输入参数的值错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
+
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s：弃用的操作码 %d。\n"
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- 创建 [%s]（宏） --\n"
+
+msgid "?"
+msgstr "?"
+
+#, c-format
+msgid "Checking: %s.\n"
+msgstr "检查中：%s。\n"
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr "点击以得到相关行，使用 a-z 来移动。"
+
+msgid "Complexity"
+msgstr "复杂度"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Exit"
+msgstr "退出"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr "函数 %s 已被弃用。"
+
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+"库文件%s已被更新，但是不能装载到Scilab中，\n"
+"因为%s是一个被保护的变量。\n"
+
+msgid "No comment available.\n"
+msgstr "没有注释可用。\n"
+
+#, c-format
+msgid "No variable named: %s"
+msgstr "没有名为 %s 的变量"
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "请使用 %s 替代。"
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "该函数将被永久地从 Scilab %s 中移除。"
+
+msgid "Tools"
+msgstr "工具"
+
+#, c-format
+msgid "WARNING: Function %s is obsolete.\n"
+msgstr "警告：函数%s已废弃。\n"
+
+#, c-format
+msgid "WARNING: Please use %s instead.\n"
+msgstr "警告：请用%s代替。\n"
+
+#, c-format
+msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"
+
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr "行 %s [从 %s 调用, %s sec] :: "
+
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr "行 %s [从 %s 调用, %s sec] :: "

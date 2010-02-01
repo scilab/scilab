@@ -70,7 +70,7 @@ endfunction
       <varlistentry>
         <term>&lt;statements&gt;</term>
         <listitem>
-          <para>stands for a set of scilab instructions (statements)  This syntax may be used to define function (see functions) inline or in a script file (see exec). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>getf</literal> function.</para>
+          <para>stands for a set of scilab instructions (statements)  This syntax may be used to define function (see functions) inline or in a script file (see exec). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -121,7 +121,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
         <link linkend="exec">exec</link>
       </member>
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
     </simplelist>
   </refsection>

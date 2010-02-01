@@ -87,7 +87,7 @@ start_debug_kdbg() {
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
+	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all -v --trace-redir=yes --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
@@ -517,8 +517,15 @@ case $OS in
         LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
 	# Export the path to the Scilab lib when Scilab has been install ...
 	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
-        DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
-	export DYLD_LIBRARY_PATH
+		DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
+		# Crappy workaround for the dynamic load of sundials under Mac OS X
+		# in the source tree version. This does not occur in the binary
+		# thanks to the previous declaration on ../../lib/scilab
+		# See bug #4949
+		if test -d "$SCI/modules/scicos/.libs/"; then
+			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos/.libs/
+		fi
+		export DYLD_LIBRARY_PATH
         ;;
     *)
 esac
@@ -568,7 +575,7 @@ do_help()
 	echo     "      -nb             : do not display the Scilab banner at starting time."
 	echo     "      -ns             : do not execute scilab.start startup file. This option will disable many features in Scilab (Only use if you know what you are doing)."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-	echo     "      -nw             : start Scilab without specialized Scilab Window."
+	echo     "      -nw             : start Scilab without dedicated Scilab Window."
 	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
 	echo     "      -version        : print product version and exit."

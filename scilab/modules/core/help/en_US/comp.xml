@@ -54,9 +54,9 @@
     provided in the standard libraries are compiled.</para>
 
     <para>The online definition as well as the short syntax of the commands
-    <literal>getf</literal> and <literal>deff</literal> generate compiled
+    <literal>exec</literal> and <literal>deff</literal> generate compiled
     functions. So comp has to be used in very particular cases. To produce
-    uncompiled functions one must use ><link linkend="getf">getf</link> or
+    uncompiled functions one must use ><link linkend="exec">exec</link> or
     <link linkend="deff">deff</link> with the option <literal>"n"</literal>.</para>
 
     <para>The value opt==2 causes the function to be compiled "for profiling".
@@ -78,7 +78,7 @@
 
       <member><link linkend="deff">deff</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="function">function</link></member>
      <member><link linkend="add_profiling">add_profiling</link></member>

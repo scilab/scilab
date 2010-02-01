@@ -48,7 +48,7 @@ case 'set' then
      x=arg1
   ok=%f
   while ~ok do
-    [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,exprs]=getvalue(Btitre,Bitems,Ss,exprs)
+    [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,exprs]=scicos_getvalue(Btitre,Bitems,Ss,exprs)
     if ~ok then return;end
     %scicos_context=scicos_context;
      sblock=x.model.rpar
@@ -417,5 +417,7 @@ scs_m_1.objs(11)=scicos_link(..
        "xpolys(x'',y'');"],8)
   x=standard_define([3,2],model,exprs,gr_i)
 end
-endfunction 
- 
+endfunction
+
+ 
+ 

@@ -39,7 +39,7 @@ case 'set' then
   if size(exprs,1)==1 then exprs=[sci2exp(1);exprs;sci2exp(0)];
   elseif size(exprs,1)==2 then exprs=[exprs;sci2exp(0)]; end
   while %t do
-    [ok,Datatype,sgn,satur,exprs]=getvalue('Set sum block parameters',..
+    [ok,Datatype,sgn,satur,exprs]=scicos_getvalue('Set sum block parameters',..
 			    ['Datatype (1=real double  2=complex 3=int32 ...)';..
                              'Number of inputs or sign vector (of +1, -1)';..
 			     'Do on Overflow(0=Nothing 1=Saturate 2=Error)'],..

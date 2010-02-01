@@ -112,12 +112,8 @@ nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",0);
-nm = nmplot_configure(nm,"-verbosetermination",0);
-nm = nmplot_configure(nm,"-kelleystagnationflag",1);
-nm = nmplot_configure(nm,"-restartflag",1);
+nm = nmplot_configure(nm,"-kelleystagnationflag",%t);
+nm = nmplot_configure(nm,"-restartflag",%t);
 nm = nmplot_configure(nm,"-restartdetection","kelley");
 //
 // Setup output files
@@ -129,12 +125,13 @@ nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.restart.sigma.txt");
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 //
 // Plot
 //
-mprintf("Plot contour...\n");
+mprintf("Plot contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf();
 xset("fpf"," ")
@@ -156,5 +153,12 @@ deletefile("mckinnon.history.restart.fbar.txt");
 deletefile("mckinnon.history.restart.fopt.txt");
 deletefile("mckinnon.history.restart.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_mckinnon2.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

@@ -19,6 +19,7 @@
 Source: bin\jogl.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\jogl_awt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\jogl_cg.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\gluegen-rt.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 
 Source: bin\scirenderer.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;Source: bin\norenderer.dll; DestDir: {app}\bin; DestName: scirenderer.dll; Components: not ({#COMPN_GRAPHICS})

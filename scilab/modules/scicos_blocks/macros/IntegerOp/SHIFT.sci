@@ -39,7 +39,7 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,Datatype,nb,np,exprs]=getvalue('Set Shift block parameters',..
+    [ok,Datatype,nb,np,exprs]=scicos_getvalue('Set Shift block parameters',..
 			    ['Datatype (3=int32  4=int16 5=int8 ...)';..
                              'Number of bits to shift left (use negatif number to shift right)';..
                              'Shifttype(0=Arithmetic 1=Circular)'],..

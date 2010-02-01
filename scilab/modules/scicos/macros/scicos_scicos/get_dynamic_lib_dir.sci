@@ -28,7 +28,7 @@ function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
   label='';
   ok=%f
   while ~ok then
-   [ok,libss,label]=getvalue('Linking the '+funam+' function','External libraries (if any)',list('str',1),label);
+   [ok,libss,label]=scicos_getvalue('Linking the '+funam+' function','External libraries (if any)',list('str',1),label);
    if ~ok then chdir(cur_wd);cancel=%t,return;end
    // for multiple libraries
    if strindex(libss,'''')<>[] | strindex(libss,'""')<>[] then

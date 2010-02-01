@@ -20,7 +20,7 @@ libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 
 

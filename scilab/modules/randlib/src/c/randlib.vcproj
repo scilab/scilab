@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RANDLIB_EXPORTS"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -240,7 +242,6 @@
 				AdditionalDependencies="LibScilab.lib randlib_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -330,7 +331,6 @@
 				AdditionalDependencies="LibScilab.lib randlib_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"

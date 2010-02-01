@@ -38,7 +38,7 @@ for i = 1 : size(tab_ref,'*')
     '}'];
 
    mputl(f1,'fooc.c');
-   ilib_for_link('fooc','fooc.o',[],"c"); 
+   ilib_for_link('fooc','fooc.c',[],"c"); 
    exec loader.sce; 
    ulink();
    cd(TMPDIR);

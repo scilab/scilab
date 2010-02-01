@@ -18,7 +18,7 @@ function plzr(a,b,c,d)
     a=tf2ss(a),
     [a,b,c,d]=a(2:5)
     if type(d)<>1 then 
-      error(msprintf(gettext("%s: Wrong value for of input argument %d: Proper system expected.\n"),"plzr",1));
+      error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
     end
   case 'state-space' then
     if rhs<>1 then 
@@ -26,7 +26,7 @@ function plzr(a,b,c,d)
     end
     [a,b,c,d]=a(2:5)
     if type(d)<>1 then 
-      error(msprintf(gettext("%s: Wrong value for of input argument %d: Proper system expected.\n"),"plzr",1));
+      error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
     end
   case 'constant' then
     if rhs<>4 then 

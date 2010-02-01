@@ -116,7 +116,7 @@ function [x,y,typ]=GAINBLK_f(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,gain,exprs]=getvalue('Set gain block parameters',..
+      [ok,gain,exprs]=scicos_getvalue('Set gain block parameters',..
 			       ['Gain'],list('mat',[-1,-1]),exprs(1))
       if ~ok then break,end
       if gain==[] then

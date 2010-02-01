@@ -150,6 +150,26 @@ function [edited,options] = do_options(opt,flag)
   end
 
 
+//** ---------------------- OLD CODE---------------------------------------------------- 
+//     while %t do
+//       [ok, R,G,B] = scicos_getvalue(["Enter RGB description of new colors"; ..
+//                               "Each component must be greater or equal to 0"; ..
+//                               "and less or equal to 1"], ..
+//                               ["R","G","B"], ..
+//                               list("vec", -1, "vec", -1, "vec", -1), ..
+//                               [" ", " ", " "]) ; 
+//       if ~ok then break, end
+//       if or(R < 0 | R > 1) | or(G < 0 | G > 1) | or(B < 0 | B > 1) then
+//         messagebox("One or several RGB components are out of [0 1]","modal","error");
+//       else
+//         break; //** EXIT from the input loop 
+//       end
+//     end
+//     if ok then
+//       //** add one or more color ad the palette 
+//       options("Cmap") = [options("Cmap") ; [R(:), G(:), B(:)]]
+//     end
+
   end // if flag == ...
   
   if ok then

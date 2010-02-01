@@ -14,8 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4012
 //
 // <-- Short Description -->
-// glitch for console is wrong processing system month and week in sessions starts and ends while browsing
-history
+// glitch for console is wrong processing system month and week in
+// sessions starts and ends while browsing history
 
 // setdefaultlanguage('ru_RU')
 // restart scilab

@@ -14,27 +14,28 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 
-            
+	 
 int write_sparse(char *fname,unsigned long fname_len)
 {
-    int iRet                = 0;
+	SciErr sciErr;
 
-    int piNbItemRow[]       = {1,2,1};
-    int piColPos[]          = {8,4,7,2};
-    double pdblSReal[]      = {1,2,3,4};
-    double pdblSImg[]       = {4,3,2,1};
-    int iNbItem             = 4;
-    
-    iRet = createComplexSparseMatrix(Rhs + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
-    if(iRet)
-    {
-        return 1;
-    }
+	int piNbItemRow[]	= {1,2,1};
+	int piColPos[]		= {8,4,7,2};
+	double pdblSReal[]	= {1,2,3,4};
+	double pdblSImg[]	= {4,3,2,1};
+	int iNbItem			= 4;
 
-    LhsVar(1) = 1;
-    return 0;
+	sciErr = createComplexSparseMatrix(pvApiCtx, Rhs + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	LhsVar(1) = 1;
+	return 0;
 }
-        
-        
+ 

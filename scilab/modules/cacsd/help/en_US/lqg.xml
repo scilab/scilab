@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (augmented plant) in state-space form</para>
+          <para> <literal>syslin</literal> list (augmented plant) in state-space form</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (controller)</para>
+          <para> <literal>syslin</literal> list (controller)</para>
         </listitem>
       </varlistentry>
     </variablelist>

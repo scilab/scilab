@@ -36,7 +36,7 @@ case 'set' then
   model=arg1.model;
   //dstate=model.dstate;
   while %t do
-    [ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=getvalue(..
+    [ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Number of Curves';
 	'color (>0) or mark (<0)';

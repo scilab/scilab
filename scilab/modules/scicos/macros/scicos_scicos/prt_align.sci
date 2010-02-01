@@ -22,8 +22,9 @@
 
 function [scs_m] = prt_align(scs_m)
 //** 25/07/07: Al@n's patch for rotation of blocks
-//** 24/06/2009: Serge Steer  not to take care of selected blocs  
-  [btn, xc1 ,yc1 ,win ,str ] = xclick() ;
+  
+  //** first click 
+  [btn, xc1 ,yc1 ,win ,str ] = xclick() ;    
 
   //** check if first click is on a block
   k1 = getblock(scs_m,[xc1;yc1]);
@@ -32,12 +33,12 @@ function [scs_m] = prt_align(scs_m)
   else
     return
   end
-
   //
   while %t
     [btn,%pt2,win,Cmenu] = cosclick() ;
-    // check if second click is on a block
-    if Cmenu<>[] & Cmenu<>'XcosMenuSelectLink' then
+    // check if second click is on
+    // a block
+    if Cmenu<>[] & Cmenu<>'SelectLink' then
       [%win,Cmenu,%pt] = resume(win,Cmenu,%pt2)
     end
     xc2=%pt2(1);
@@ -51,9 +52,9 @@ function [scs_m] = prt_align(scs_m)
 
   //TOBEDONE
   if get_connected(scs_m,k2)<>[] then
-    hilite_obj(k2)  //** new
-    messagebox('Connected block can''t be aligned','modal')
-    unhilite_obj(k2)  //** new
+    xcosShowBlockWarning(k2)  //** new
+    message('Connected block can''t be aligned')
+    xcosClearBlockWarning(k2)  //** new
     return
   end
 
@@ -135,12 +136,15 @@ function [scs_m] = prt_align(scs_m)
   gh_k   = get_gri(k2,o_size(1)) ; 
   gh_blk = gh_axes.children(gh_k); //** new
 
-  //** ..because "move()" works only in differential
-  diff_x = orig2(1)-graphics2.orig(1);
-  diff_y = orig2(2)-graphics2.orig(2);
-  drawlater(); 
-  move(gh_blk,[diff_x,diff_y]);  
-  drawnow();
+  drawlater(); //** new
+
+    diff_x = orig2(1)-graphics2.orig(1);
+    diff_y = orig2(2)-graphics2.orig(2);
+
+    move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
+    //** draw(gh_blk.parent);
+    drawnow();
+    //** show_pixmap() ; //** not useful on Scilab 5 
 
   graphics2.orig = orig2 ;
   o2.graphics    = graphics2 ;

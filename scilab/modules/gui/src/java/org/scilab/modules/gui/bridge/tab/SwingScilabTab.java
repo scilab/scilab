@@ -180,10 +180,11 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @see org.scilab.modules.gui.tab.Tab#setName()
      */
     public void setName(String newTabName) {
-	setTitle(newTabName, true);
-	if (isActive()) {
-	    BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-	}
+	    setTitle(newTabName, true);
+	    if (isActive()) {
+	        BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+	    }
+      repaint();
     }
 
     /**

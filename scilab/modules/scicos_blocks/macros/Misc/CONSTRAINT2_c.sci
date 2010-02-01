@@ -38,7 +38,7 @@ case 'set' then
   while %t do
     ask_again=%f
 
-    [ok,x0,xd0,id,exprs]=getvalue('Set Constraint block parameters',['Initial guess values of states x';'Initial guess values of derivative x''';'Id(i)=1: if x''(i) is present in the feedback, else Id(i)=0'],list('vec',-1,'vec',-1,'vec',-1),exprs)
+    [ok,x0,xd0,id,exprs]=scicos_getvalue('Set Constraint block parameters',['Initial guess values of states x';'Initial guess values of derivative x''';'Id(i)=1: if x''(i) is present in the feedback, else Id(i)=0'],list('vec',-1,'vec',-1,'vec',-1),exprs)
     if ~ok then break,end
     x0=x0(:);N=size(x0,'*');
     xd0=xd0(:);Nxd=size(xd0,'*');

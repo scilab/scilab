@@ -38,7 +38,7 @@ case 'getorigin' then
   for ii=1:8,execstr('%scicos_context.u'+string(ii)+'=0'),end
   ieee(2)
   while %t do
-    [ok,%nin,%exx,%usenz,exprs]=getvalue(..
+    [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(..
 	['Give a scalar scilab expression using inputs u1, u2,...';
 	 'If only one input, input is vector [u1,u2,...] (max 8)';
 	 'ex: (dd*u1+sin(u2)>0)*u3';
@@ -201,7 +201,7 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
 	  if %jjk<> [] then
 	    %ipar=[%ipar;2;%jjk]
 	  else
-	    message('Unknow varaiable '+%lst(%ijk)(2))
+	    message('Unknown variable '+%lst(%ijk)(2))
 	    ok=%f
 	  end
 	  //%ipar=[%ipar;2;evstr(strsubst(%lst(%ijk)(2),'u',''))]

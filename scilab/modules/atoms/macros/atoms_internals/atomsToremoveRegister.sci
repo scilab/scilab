@@ -7,11 +7,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add toolboxes to the list of packages to remove
 // This function has an impact on the following files :
 //  -> ATOMSDIR/toremove.bin
 
-function nbAdd = atomsToremoveRegister(name,version,allusers)
+function nbAdd = atomsToremoveRegister(name,version,section)
 	
 	rhs            = argn(2);
 	nbAdd          = 0;
@@ -20,7 +22,7 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 	// =========================================================================
 	
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToremoveRegister",3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsToremoveRegister",3));
 	end
 	
 	// Check input parameters type
@@ -34,10 +36,6 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsToremoveRegister",2));
 	end
 	
-	if type(allusers) <> 4 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsToremoveRegister",3));
-	end
-	
 	// name and version must have the same size
 	// =========================================================================
 	
@@ -45,15 +43,26 @@ function nbAdd = atomsToremoveRegister(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsToremoveRegister",1,2));
 	end
 	
-	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// Allusers/user management
 	// =========================================================================
 	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsToremoveRegister",3));
 	end
+	
+	if and(section<>["user","allusers"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsToremoveRegister",3));
+	end
+	
+	// Check if we have the write access
+	if section=="allusers" & ~ atomsAUWriteAccess() then
+		error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsToremoveRegister",3,atomsPath("system","allusers")));
+	end
+	
+	// Define the path of the file that will record the change according to
+	// the "section" value
+	// =========================================================================
+	atoms_directory = atomsPath("system",section);
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================

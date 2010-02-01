@@ -60,7 +60,7 @@
     <title>Descrição</title>
 
     <para>Para utilizar <literal>profile</literal> a função Scilab deve ter
-    sido preparada para profiling (análise de desempenho) (ver getf).</para>
+    sido preparada para profiling (análise de desempenho) (ver exec).</para>
 
     <para>Pata tal função, quando tal função é executada, o sistema conta
     quantas vezes cada linha foi executada e quanto tempo de cpu foi gasto
@@ -106,7 +106,7 @@ profile(foo) //a execução de profiles é acumulada
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="deff">deff</link></member>
 

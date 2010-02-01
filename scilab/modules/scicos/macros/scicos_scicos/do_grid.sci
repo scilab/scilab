@@ -20,12 +20,13 @@
 //
 
 function [%scs_wgrid]=do_grid(%scs_wgrid)
+
 // ** 22/06/2009 Serge Steer INRIA
 // - gh_window.children replaced by gh_axes because of uimenu which are
 //   children of the figure as well as axes
   exprs = [string(%scs_wgrid(1)),string(%scs_wgrid(2)),string(%scs_wgrid(3))]
   while %t do
-    [ok,b1,b2,colorr,exprs]=getvalue(['Set Grid'],..
+    [ok,b1,b2,colorr,exprs]=scicos_getvalue(['Set Grid'],..
 				     ['x','y','color'],list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then
       break

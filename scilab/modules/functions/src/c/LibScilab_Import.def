@@ -22,4 +22,5 @@ createvar_
 stack_
 createvarfromptr_
 getWarningMode
+vartype_
 ;

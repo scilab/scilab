@@ -25,30 +25,12 @@ function packages = atomsGetLoaded()
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
-	packages = [];
+	loaded = atomsLoadLoad();
 	
-	// Define the differents path of the file where are installed
-	// =========================================================================
-	loaded_file   = pathconvert(TMPDIR+"/atoms/loaded",%F);
-	
-	if fileinfo(loaded_file) == [] then
+	if isempty(loaded) then
 		packages = [];
-		return;
-	end
-	
-	// load the loaded_file
-	// =========================================================================
-	loaded = mgetl(loaded_file);
-	
-	// Loop on each URL specified as first input argument
-	// =========================================================================
-	
-	for i=1:size(loaded,"*")
-		current_name_length  = regexp(loaded(i),"/\s-\s/","o");
-		current_name         = part(loaded(i),1:current_name_length-1);
-		current_version      = part(loaded(i),current_name_length+3:length(loaded(i)));
-		
-		packages = [ packages ; atomsGetInstalledDetails(current_name,current_version) ];
+	else
+		packages = atomsGetInstalledDetails(loaded);
 	end
 	
 endfunction

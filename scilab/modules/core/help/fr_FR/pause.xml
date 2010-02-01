@@ -48,6 +48,9 @@
       <member>
         <link linkend="where">where</link>
       </member>
+      <member>
+        <link linkend="sleep">sleep</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

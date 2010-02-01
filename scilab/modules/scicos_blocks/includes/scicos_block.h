@@ -22,8 +22,9 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
+#ifndef NULL
 #define NULL 0
-
+#endif 
 typedef void (*voidg)();
 
 typedef struct {   

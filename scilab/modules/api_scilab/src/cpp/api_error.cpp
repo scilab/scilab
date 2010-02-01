@@ -29,7 +29,7 @@ extern "C"
 	#include "mode_exec.h"
 }
 
-int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
+int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
 {
 	char pstMsg1[bsiz];
 	char pstMsg2[bsiz];
@@ -61,10 +61,10 @@ int addStackSizeError(StrErr* _pstrErr, char* _pstCaller, int _iNeeded)
 	strcat(pstMsg1, pstMsg4);
 	strcat(pstMsg1, pstMsg5);
 
-	return addErrorMessage(_pstrErr, 17, pstMsg1);
+	return addErrorMessage(_psciErr, 17, pstMsg1);
 }
 
-int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
+int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
 {
 	int iRet = 0;
 	char pstMsg[bsiz];
@@ -77,29 +77,29 @@ int addErrorMessage(StrErr* _pstrErr, int _iErr, const char* _pstMsg, ...)
 	iRet = vsprintf(pstMsg, _pstMsg, ap );
 #endif
 
-	if(_pstrErr->iMsgCount == MESSAGE_STACK_SIZE - 1)
+	if(_psciErr->iMsgCount == MESSAGE_STACK_SIZE - 1)
 	{//rotation ...
-		FREE(_pstrErr->pstMsg[0]);
+		FREE(_psciErr->pstMsg[0]);
 		for(int i = MESSAGE_STACK_SIZE - 1 ; i > 0 ; i--)
 		{
-			_pstrErr->pstMsg[i - 1] = _pstrErr->pstMsg[i];
+			_psciErr->pstMsg[i - 1] = _psciErr->pstMsg[i];
 		}
 	}
-	_pstrErr->pstMsg[_pstrErr->iMsgCount++] = strdup(pstMsg);
-	_pstrErr->iErr = _iErr;
+	_psciErr->pstMsg[_psciErr->iMsgCount++] = strdup(pstMsg);
+	_psciErr->iErr = _iErr;
 	return iRet;
 }
 
-int printError(StrErr* _pstrErr, int _iLastMsg)
+int printError(SciErr* _psciErr, int _iLastMsg)
 {
 	int iMode = getExecMode();
 
-	if(_pstrErr->iErr == 0)
+	if(_psciErr->iErr == 0)
 	{
 		return 0;
 	}
 
-	SciStoreError(_pstrErr->iErr);
+	SciStoreError(_psciErr->iErr);
 
 	if(iMode == SILENT_EXEC_MODE)
 	{
@@ -109,29 +109,29 @@ int printError(StrErr* _pstrErr, int _iLastMsg)
 	if(_iLastMsg)
 	{
 		sciprint(_("API Error:\n"));
-		sciprint(_("\tin %s\n"), _pstrErr->pstMsg[0]);
+		sciprint(_("\tin %s\n"), _psciErr->pstMsg[0]);
 	}
 	else
 	{
 		sciprint(_("API Error:\n"));
 
-		//		for(int i = 0 ;  i < _pstrErr->iMsgCount ;i++)
-		for(int i = _pstrErr->iMsgCount - 1 ;  i >= 0 ; i--)
+		//		for(int i = 0 ;  i < _psciErr->iMsgCount ;i++)
+		for(int i = _psciErr->iMsgCount - 1 ;  i >= 0 ; i--)
 		{
 //			if(i == 0)
-			sciprint(_("\tin %s\n"), _pstrErr->pstMsg[i]);
+			sciprint(_("\tin %s\n"), _psciErr->pstMsg[i]);
 		}
 	}
 	return 0;
 }
 
-char* getErrorMessage(StrErr _strErr)
+char* getErrorMessage(SciErr _sciErr)
 {
-	if(_strErr.iErr == 0)
+	if(_sciErr.iErr == 0)
 	{
 		return NULL;
 	}
 
-	return _strErr.pstMsg[0];
+	return _sciErr.pstMsg[0];
 }
 

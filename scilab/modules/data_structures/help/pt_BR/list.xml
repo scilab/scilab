@@ -51,7 +51,7 @@
         <term>extração</term>
 
         <listitem>
-          <para>: <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
+          <para> <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
           é um vetor de índices; <literal>[x,y,z]=L(:)</literal> extrai todos
           os elementos. </para>
         </listitem>
@@ -61,7 +61,7 @@
         <term>inserção no índice i</term>
 
         <listitem>
-          <para>: <literal>L(i)=a</literal> (note que não é errado usar
+          <para> <literal>L(i)=a</literal> (note que não é errado usar
           <literal>L(i)=a</literal> com <emphasis>i &gt; 1 +
           size(L)</emphasis> mas algumas entradas de lista estão então
           indefinidas e sua extração levanta um erro). </para>
@@ -72,7 +72,7 @@
         <term>anexar elemento no fim da lista</term>
 
         <listitem>
-          <para>: <literal>L($+1)=e</literal>.</para>
+          <para> <literal>L($+1)=e</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -80,7 +80,7 @@
         <term>anexar elementos no início da lista</term>
 
         <listitem>
-          <para>: <literal>L(0)=e</literal>. (note que após esta operação e
+          <para> <literal>L(0)=e</literal>. (note que após esta operação e
           está no índice 1, os elementos iniciais foram movidos para a
           direita). </para>
         </listitem>
@@ -90,7 +90,7 @@
         <term>deleção</term>
 
         <listitem>
-          <para>: <literal>L(i)=null()</literal> remove o i-ésimo elemento da
+          <para> <literal>L(i)=null()</literal> remove o i-ésimo elemento da
           lista <literal>L</literal>.</para>
         </listitem>
       </varlistentry>
@@ -99,7 +99,7 @@
         <term>concatenação de duas listas</term>
 
         <listitem>
-          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+          <para> <literal>L3 = lstcat(L1,L2)</literal>.</para>
         </listitem>
       </varlistentry>
 

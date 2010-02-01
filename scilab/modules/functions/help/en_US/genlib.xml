@@ -66,7 +66,7 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
     <title>Description</title>
     <para>For each <literal>.sci</literal> file in <literal>dir_name</literal> (or only those
       specified by the <literal>Names</literal> argument), <literal>genlib</literal> executes a
-    <literal>getf</literal> and saves the functions to the corresponding <literal>.bin</literal>
+    <literal>exec</literal> and saves the functions to the corresponding <literal>.bin</literal>
     file.  The <literal>.sci</literal> file must not contain anything but Scilab
     functions.  If a <literal>.bin</literal> file is newer than the associated
     <literal>.sci</literal> file, <literal>genlib</literal> does not translate and save the file.</para>
@@ -99,7 +99,7 @@ genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])<
         <link linkend="getd">getd</link>
       </member>
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="save">save</link>

@@ -43,7 +43,7 @@ int set_anti_aliasing_property( sciPointObj * pobj, size_t stackPointer, int val
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "anti_aliasing") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "anti_aliasing") ;
     return SET_PROPERTY_ERROR ;
   }
 

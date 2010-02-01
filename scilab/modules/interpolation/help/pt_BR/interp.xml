@@ -156,7 +156,7 @@ s(x) = yn + s'(xn)(x-xn)  para  x > xn
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> é estendido por periodicidade. </para>
+          <para> <literal>s</literal> é estendido por periodicidade. </para>
         </listitem>
       </varlistentry>
     </variablelist>

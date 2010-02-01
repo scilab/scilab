@@ -7,6 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
+
 
 //
 // assert_close --
@@ -116,7 +120,7 @@ newsimplex = [
 cmd = "s1 = optimsimplex_setallx ( s1 , newsimplex );";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimsimplex_setallx: The number of rows is 4, while expected 5.";
+expected = "optimsimplex_setallx: The number of rows in x is 4, while expected 5.";
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);
 //
@@ -135,7 +139,7 @@ newsimplex = [
 cmd = "s1 = optimsimplex_setallx ( s1 , newsimplex );";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimsimplex_setallx: The number of columns is 1, while expected 2.";
+expected = "optimsimplex_setallx: The number of columns in x is 1, while expected 2.";
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);
 //
@@ -158,7 +162,7 @@ s1 = optimsimplex_setallfv ( s1 , [3.0 4.0 5.0 6.0 7.0 8.0]' );
 cmd = "optimsimplex_check ( s1 );";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimsimplex_check: Number of rows of x is 5 is different from number of vertices = 6.";
+expected = "optimsimplex_check: Number of rows of x is 5, which is different from number of vertices = 6.";
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);
 //
@@ -181,7 +185,7 @@ s1 = optimsimplex_setallx ( s1 , newsimplex );
 cmd = "optimsimplex_check ( s1 );";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimsimplex_check: Number of rows of fv is 6 is different from number of vertices = 5.";
+expected = "optimsimplex_check: Number of rows of fv is 6, which is different from number of vertices = 5.";
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);
 //
@@ -223,7 +227,7 @@ s1 = optimsimplex_setn(s1,3);
 cmd = "optimsimplex_check ( s1 );";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimsimplex_check: Number of columns of x is 2 is different from dimension = 3.";
+expected = "optimsimplex_check: Number of columns of x is 2, which is different from dimension = 3.";
 assert_equal ( computed , expected );
 s1 = optimsimplex_destroy(s1);
 

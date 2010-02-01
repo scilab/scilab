@@ -33,7 +33,7 @@ int get_figure_position_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"figure_position") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_position") ;
     return -1;
   }
 

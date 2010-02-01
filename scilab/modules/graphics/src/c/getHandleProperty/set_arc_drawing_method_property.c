@@ -31,13 +31,13 @@ int set_arc_drawing_method_property( sciPointObj * pobj, size_t stackPointer, in
 
   if ( sciGetEntityType(pobj) != SCI_ARC && sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"drawing_method") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arc_drawing_method") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "drawing_method");
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "arc_drawing_method");
     return SET_PROPERTY_ERROR ;
   }
 

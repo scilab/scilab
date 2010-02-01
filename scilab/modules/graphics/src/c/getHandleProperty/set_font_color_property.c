@@ -34,7 +34,7 @@ int set_font_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"font_color") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "font_color");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -49,7 +49,7 @@ int set_font_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
   } /* F.Leray 08.04.04 */
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"font_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_color") ;
   }
 	return SET_PROPERTY_ERROR ;
 }

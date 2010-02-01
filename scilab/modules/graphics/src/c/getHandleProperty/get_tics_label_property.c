@@ -31,7 +31,7 @@ int get_tics_labels_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_AXES )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_labels") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_labels") ;
     return -1 ;
   }
 

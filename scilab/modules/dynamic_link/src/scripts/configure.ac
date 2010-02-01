@@ -43,14 +43,20 @@ esac
 
 # Mac OS >= 10.6 need -arch xx
 case "$host" in
-     i386-apple-darwin*)
-	CC=" $CC -arch i386 "
-	CXX=" $CXX -arch i386 "
-	;;
-     x86_64-apple-darwin*)
-	CC=" $CC -arch x86_64 "
-	CXX=" $CXX -arch x86_64 "
-        ;;
+     *-*-darwin*)
+	 CFLAGS=" $CFLAGS -I/sw/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
+	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+         case "$host" in
+          i386-apple-darwin*)
+                CC=" $CC -arch i386 "
+	        CXX=" $CXX -arch i386 "
+	        ;;
+          x86_64-apple-darwin*)
+	        CC=" $CC -arch x86_64 "
+	        CXX=" $CXX -arch x86_64 "
+                ;;
+     esac
 esac
 
 # Configure the Makefile

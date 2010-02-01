@@ -32,7 +32,7 @@ function ilib_gen_Make_unix(names,   ..
 	end
 
   if isdef('tables') then 
-
+  
 	/// Check tables ... the second element should be the file name
 	if typeof(tables)<>'list' then 
 	  tables=list(tables)
@@ -53,9 +53,10 @@ function ilib_gen_Make_unix(names,   ..
 	  end
 	end
 	
-  end // isdef('tables')
+	end // isdef('tables')
 
- 	originPath  = pwd();
+		
+	originPath  = pwd();
 	linkBuildDir    = TMPDIR;
 	commandpath = SCI+"/modules/dynamic_link/src/scripts";
 	[fd,ierr] = mopen(commandpath+"/write.test","w+");
@@ -137,7 +138,9 @@ function ilib_gen_Make_unix(names,   ..
 				  end
 				  copyfile(x, linkBuildDir);
 				else
-					mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"lib_gen_Make",x,pathFrom);
+				  if ( ilib_verbose() <> 0 ) then
+					  mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"ilib_gen_Make",x,pathFrom);
+					end
 				end
 
 				filelist = filelist + " " + x ;
@@ -181,7 +184,6 @@ function ilib_gen_Make_unix(names,   ..
 		mdelete(linkBuildDir+"/Makefile.orig");
 		generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
 	else
-	
 		// Reuse existing Makefile.orig because compilation flags are all empty 
 		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkBuildDir);
 
@@ -203,7 +205,7 @@ function ilib_gen_Make_unix(names,   ..
 		sleep(1000);
 		unix_g("touch Makefile");
 	end
-
+	
 	// Alter the Makefile in order to compile the right files
 	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make");
@@ -224,7 +226,7 @@ function ilib_gen_Make_unix(names,   ..
 	
 	if ierr <> 0 then
 	  if ( ilib_verbose() <> 0 ) then
-	    mprintf(gettext("%s: Error while modifing the reference Makefile:\n"),"ilib_gen_Make")
+	    mprintf(gettext("%s: Error while modifying the reference Makefile:\n"),"ilib_gen_Make")
 	    mprintf(msg + " " + stderr);
 	  end
 	  return;

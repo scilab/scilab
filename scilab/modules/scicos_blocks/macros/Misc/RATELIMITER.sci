@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,maxp,minp,exprs]=getvalue('Set rate limiter parameters',..
+    [ok,maxp,minp,exprs]=scicos_getvalue('Set rate limiter parameters',..
 	['max slope';'min slope';],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     if maxp<=minp|maxp<=0|minp>=0  then

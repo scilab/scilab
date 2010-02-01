@@ -224,8 +224,17 @@ all: simple_call_scilab.c
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
-# Serie of declarations to execute my binary
-$ export LD_LIBRARY_PATH=/home/sylvestre/dev/git/scilab.5.1/scilab/modules/.libs/:/home/sylvestre/dev/git/scilab.5.1/scilab/modules/call_scilab/.libs/
+# Serie of declarations to execute my binary.
+
+# With a Scilab source tree:
+$ SCI=<path to Scilab source tree>
+$ export LD_LIBRARY_PATH=$SCI/modules/.libs/:$SCI/modules/call_scilab/.libs/:$SCI/modules/api_scilab/.libs
+
+# With a Scilab binary:
+$ SCI=<path to Scilab binary>
+$ export LD_LIBRARY_PATH=$SCI/lib/scilab/
+
+# Don't forget to update i386 to whatever is necessary
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/server/
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/native_threads/
 $ export SCI=/path/to/scilab/
@@ -240,11 +249,11 @@ $ ./myExample
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">call_scilab</link>, <link
+      <member><link linkend="API_scilab">API Scilab</link>,<link linkend="call_scilab">call_scilab</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="SendScilabJobs">SendScilabJobs</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="DoubleManagement_callscilab">Double Management</link>, <link
       linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
       linkend="ComplexManagement_callscilab">Complex Management</link>, <link
       linkend="StringManagement_callscilab">String Management</link></member>

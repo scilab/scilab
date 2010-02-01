@@ -8,7 +8,7 @@
         <submenu label="&amp;Execute...">
             <callback
             instruction='
-              %fileToExec = uigetfile("*.sc*", pwd(), gettext("Select a file to execute"));
+              %fileToExec = uigetfile("*.sc*", "", gettext("Select a file to execute"));
               if ~(%fileToExec == "") then
                 exec(%fileToExec);
                 disp(msprintf(gettext("Execution done.\n")));
@@ -20,7 +20,7 @@
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scilab text editor"));
+              %fileToOpen = uigetfile("*.sc*", "", gettext("Select a file to open with Scilab text editor"));
               if ~(%fileToOpen == "") then
                 editor(%fileToOpen);
               end
@@ -30,7 +30,7 @@
         <submenu label="&amp;Load environment...">
             <callback
             instruction='
-              %fileToLoad = uigetfile("*.sav", pwd(), gettext("Select a file to load"));
+              %fileToLoad = uigetfile("*.sav", "", gettext("Select a file to load"));
               if ~(%fileToLoad == "") then
                 load(%fileToLoad);
                 disp(msprintf(gettext("Environment loaded.\n")));
@@ -41,7 +41,7 @@
         <submenu label="&amp;Save environment...">
             <callback
             instruction='
-              %fileToSave = uiputfile("*.sav", pwd(), gettext("Select a file to write"));
+              %fileToSave = uiputfile("*.sav", "", gettext("Select a file to write"));
               if ~(%fileToSave == "") then
                 if (fileparts(%fileToSave, "extension") == "") then
                   %fileToSave = %fileToSave + ".sav";
@@ -151,12 +151,16 @@
             <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Scicos">
-            <callback instruction='scicos();' type="0"/>
+        <submenu label="&amp;Xcos">
+            <callback instruction='if with_module("xcos") then xcos(); else disp(gettext("Please install xcos module.")); end' type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Matlab to Scilab translator">
-            <callback instruction='mfile2sci();' type="0"/>
+            <callback instruction='if with_module("m2sci") then mfile2sci(); else disp(gettext("Please install m2sci module.")); end' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="M&amp;odule manager - ATOMS">
+            <callback instruction='atomsGui();' type="0"/>
         </submenu>
     </menu>
 
@@ -174,14 +178,17 @@
             <submenu label="Scilab &amp;Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
             </submenu>
+            <submenu label="Scilab &amp;ATOMS Web Site">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilabWebSite' type="3"/>
+            </submenu>
             <submenu label="&amp;Contributions">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
             </submenu>
             <submenu label="&amp;Bug And Request database">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
             </submenu>
-            <submenu label="&amp;Newsgroup Archives">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openNewsgroupWebSite' type="3"/>
+            <submenu label="&amp;Mailing lists">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListWebSite' type="3"/>
             </submenu>
         </submenu>
         <separator/>

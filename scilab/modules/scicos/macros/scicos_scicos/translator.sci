@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
+function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
 //Generate the flat model of the Modelica model given in the filemo file
 //and the Modelica libraries. Interface to the external tool
 //translator.
@@ -26,8 +26,7 @@ function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 // - the flat Modelica model file in outpath+name+'f.mo'
 // - the flat xml representation file in  outpath+name+'f_init.xml'
 // - the flat xml  file in  outpath+name+'f_relations.xml'
-  
-  mlibs=pathconvert(modelica_libs,%f,%t)
+  mlibs=pathconvert(_Modelica_libs,%f,%t)
   filemo=pathconvert(filemo,%f,%t) 
   Flat=pathconvert(Flat,%f,%t) 
   

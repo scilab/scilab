@@ -48,7 +48,7 @@ function [mod,scs_m]=do_label(%pt,scs_m)
   end
   model = o.model
   lab = model.label
-  [ok,lab] = getvalue('Give block label','label',list('str',1),lab)
+  [ok,lab] = scicos_getvalue('Give block label','label',list('str',1),lab)
   
   //** Output 
   if ok then

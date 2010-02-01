@@ -14,70 +14,68 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
-
-            
+#include "api_scilab.h"
+#include "MALLOC.h"
+	
+	 
 int read_sparse(char *fname,unsigned long fname_len)
 {
-    int i,j,k;
-    int iRet            = 0;
-    int* piAddr         = NULL;
+	SciErr sciErr;
+	int i,j,k;
+	int* piAddr			= NULL;
 
-    int iRows           = 0;
-    int iCols           = 0;
-    int iNbItem         = 0;
-    int* piNbItemRow    = NULL;
-    int* piColPos       = NULL;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iNbItem			= 0;
+	int* piNbItemRow	= NULL;
+	int* piColPos		= NULL;
 
-    double* pdblReal    = NULL;
-    double* pdblImg     = NULL;
+	double* pdblReal	= NULL;
+	double* pdblImg		= NULL;
 
-    CheckRhs(1,1);
+	CheckRhs(1,1);
 
-    iRet = getVarAddressFromPosition(1, &piAddr);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    if(getVarType(piAddr) != sci_sparse)
-    {
-        return 1;
-    }
+	if(isVarComplex(pvApiCtx, piAddr))
+	{
+		sciErr = getComplexSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+	}
+	else
+	{
+		sciErr = getSparseMatrix(pvApiCtx, piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+	}
 
-    if(isVarComplex(piAddr))
-    {
-        iRet = getComplexSparseMatrix(piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-    }
-    else
-    {
-        iRet = getSparseMatrix(piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
-    }
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    if(iRet)
-    {
-    return 1;
-    }
-    
-    sciprint("Sparse %d item(s)\n", iNbItem);
+	sciprint("Sparse %d item(s)\n", iNbItem);
 
-    k = 0;
-    for(i = 0 ; i < iRows ; i++)
-    {
-        for(j = 0 ; j < piNbItemRow[i] ; j++)
-        {
-            sciprint("(%d,%d) = %f", i+1, piColPos[k], pdblReal[k]);
-            if(isVarComplex(piAddr))
-            {
-                sciprint(" %+fi", pdblImg[k]);
-            }
-            sciprint("\n");
-            k++;
-        }
-    }
-    //assign allocated variables to Lhs position
-    LhsVar(1) = 0;
-    return 0;
+	k = 0;
+	for(i = 0 ; i < iRows ; i++)
+	{
+		for(j = 0 ; j < piNbItemRow[i] ; j++)
+		{
+			sciprint("(%d,%d) = %f", i+1, piColPos[k], pdblReal[k]);
+			if(isVarComplex(pvApiCtx, piAddr))
+			{
+				sciprint(" %+fi", pdblImg[k]);
+			}
+			sciprint("\n");
+			k++;
+		}
+	}
+
+	//assign allocated variables to Lhs position
+	LhsVar(1) = 0;
+	return 0;
 }
-        
-        
+ 

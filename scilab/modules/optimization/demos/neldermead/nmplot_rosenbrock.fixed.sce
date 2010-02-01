@@ -23,26 +23,22 @@ nm = nmplot_configure(nm,"-maxiter",100);
 nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
-nm = nmplot_configure(nm,"-simplex0method","axes");
-nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","fixed");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",0);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","rosenbrock.fixed.history.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","rosenbrock.fixed.history.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","rosenbrock.fixed.history.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 // Plot the contours of the cost function and the simplex history
-mprintf("Plotting contour...\n");
+mprintf("Plotting contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf();
 drawlater();
@@ -51,20 +47,27 @@ nmplot_simplexhistory ( nm );
 drawnow();
 mprintf("Plotting history of fbar...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
 mprintf("Plotting history of fopt...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.fopt.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
 mprintf("Plotting history of sigma...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.sigma.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-deletefile("rosenbrock.fixed.history.simplex.txt");
-deletefile("rosenbrock.fixed.history.fbar.txt");
-deletefile("rosenbrock.fixed.history.fopt.txt");
-deletefile("rosenbrock.fixed.history.sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
+//
+// Load this script into the editor
+//
+filename = 'nmplot_rosenbrock.fixed.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

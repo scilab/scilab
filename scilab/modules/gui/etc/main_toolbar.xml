@@ -57,6 +57,25 @@
 
     <separator/>
 
+    <!-- Atoms -->
+    <button icon="package-x-generic.png" tooltiptext="Module manager - ATOMS">
+        <callback instruction='atomsGui();' type="0"/>
+    </button>
+
+    <separator/>
+
+    <!-- Xcos -->
+    <button icon="utilities-system-monitor.png" tooltiptext="Xcos">
+        <callback instruction='if with_module("xcos") then xcos(); else disp(gettext("Please install xcos module.")); end' type="0"/>
+    </button>
+
+    <separator/>
+
+    <!-- Démos -->
+    <button icon="applications-system.png" tooltiptext="Scilab Demonstrations">
+        <callback instruction='demo_gui();' type="0"/>
+    </button>
+
     <!-- Help -->
     <button icon="help-browser.png" tooltiptext="Help Browser">
         <callback instruction='help();' type="0"/>

@@ -22,13 +22,12 @@
 
 function scs_m = do_pal_tree(scicos_pal)
 
-  //scs_m = scicos_diagram(version=get_scicos_version());
-  scs_m = get_new_scs_m();
+  scs_m = scicos_diagram(version=get_scicos_version());
   scs_m.props.title(1) = 'Palettes';
   sup = SUPER_f('define');
 
-  for i=1:size(scicos_pal,1)
-disp(scicos_pal(i,:))
+  for i=1:size(scicos_pal,1)-1
+
     o = sup;
     o.model.rpar = charge(scicos_pal(i,:)); //** local functions:
                                             //** see below in this file
@@ -38,73 +37,133 @@ disp(scicos_pal(i,:))
 
   tt = pal_TreeView(scs_m); //** local functions: see below in this file
 
- 
+  //-- cur_wd = getcwd();
+  //-- chdir(TMPDIR);
+  //-- mputl(tt,scs_m.props.title(1)+'.tcl');
+  //-- chdir(cur_wd)
+
+  //-- TCL_EvalFile(TMPDIR+'/'+scs_m.props.title(1)+'.tcl');
 
 endfunction
 //**-----------------------------------------------------------------------
 
 function scs_m = charge(pal)
 
-  [ok,scs_m,cpr,edited]=do_load(pal(2),'palette')
-  if ok & size(scs_m.objs)>0 then
-    scs_m.props.title(1)=pal(1)
-  else
-    //scs_m= scicos_diagram(version=get_scicos_version())
-    scs_m = get_new_scs_m();
-    scs_m.props.title(1)='error loading '+pal(1)
-  end
+[ok,scs_m,cpr,edited]=do_load(pal(2),'palette')
+if ok & size(scs_m.objs)>0 then
+  scs_m.props.title(1)=pal(1)
+else
+  scs_m= scicos_diagram(version=get_scicos_version())
+  scs_m.props.title(1)='error loading '+pal(1)
+end
 endfunction
 
 
+
+//**------------------------------------------------------------------------
+
+//** ""sync"" ""seq""
 
 function java = pal_TreeView(scs_m)
+//--
+//-- tt=[ "set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
+//--      "if {[lsearch $auto_path $BWpath]==-1} {"
+//--     "    set auto_path [linsert $auto_path 0 $BWpath]"
+//--      "}"
+//--      "package require BWidget 1.8.0"
+//--      "namespace inscope :: package require BWidget"
+//--      "set wxx .palettes"
+//--      "proc pp {label} {global blko; set blko $label;ScilabEval ""Cmenu=''PlaceinDiagram'';"" ""sync"" ""seq""}"
+//--      "proc qq {label} {global blko; set blko $label;ScilabEval ""Cmenu=''TkPopup''       ;"" ""sync"" ""seq""}"
+//--      'catch {destroy $wxx}'
+//--      'toplevel $wxx'
+//--      'Tree $wxx.t -xscrollcommand {$wxx.xsb set} -yscrollcommand {$wxx.ysb set} "+...
+//--         "-deltay 45 -deltax 30 -width 30 -bg white'
+//--      'scrollbar $wxx.ysb -command {$wxx.t yview}'
+//--      'scrollbar $wxx.xsb -command {$wxx.t xview} -orient horizontal'
+//--      'grid $wxx.t $wxx.ysb -sticky nsew'
+//--      ' grid $wxx.xsb -sticky ew'
+//--      ' grid rowconfig    $wxx 0 -weight 1'
+//--      ' grid columnconfig $wxx 0 -weight 1'
+//--    ];
 
-  Pgif = %scicos_gif; //** GIF path
-  GIFT = listfiles(Pgif+'*.gif');
-  GIFT = strsubst(GIFT,'\','/');
-  GIF  = [];
+//-- tt = [tt; 'wm title $wxx '+scs_m.props.title(1) ];
+Pgif = %scicos_gif; //** GIF path
+GIFT = listfiles(Pgif+'*.gif');
+GIFT = strsubst(GIFT,'\','/');
+GIF  = [];
 
-  for i=1:size(GIFT,1)
-    [jxpath,Gname,jext] = splitfilepath_cos(GIFT(i));
-    GIF = [GIF;Gname];
-  end
+for i=1:size(GIFT,1)
+  [jxpath,Gname,jext] = splitfilepath_cos(GIFT(i));
+  GIF = [GIF;Gname];
+end
 
-  Path = 'root';
-  java = createNode("Palettes");
-  java = crlist(scs_m, Path, java);
-  pause
-  displaytree(java);
+
+Path = 'root'
+java = createNode("Palettes")
+//--[java, tt]= crlist(scs_m, Path, tt, java);
+java = crlist(scs_m, Path, java);
+uiDisplayTree(java);
+//-- tt = [tt;' $wxx.t bindImage <B1-Motion> {pp}'];
+//-- tt = [tt;' $wxx.t bindText  <B1-Motion> {pp}'];
+//-- tt = [tt;' $wxx.t bindImage <Double-1> {pp}'];
+//-- tt = [tt;' $wxx.t bindText  <Double-1> {pp}'];
+//-- tt = [tt;' $wxx.t bindImage <3> {qq}'];
 endfunction
+//**-----------------------------------------------------------------------------
+
+//**================================================================
+//TCL_EvalStr('$wxx.t opentree node1')
+//   pa=TCL_GetVar('x');pa=part(pa,6:length(pa));
+//   execstr('pa=list('+pa+')');       o=scs_m(scs_full_path(pa))
+//**================================================================
 
 function java = crlist(scs_m, Path, java)
-  blocks_to_remove=['CLKSPLIT_f' 'SPLIT_f' 'IMPSPLIT_f']
 
   for i=1:size(scs_m.objs)
 
     o=scs_m.objs(i);
     path=Path+','+string(i)
 
-    if and(typeof(o)<>["Link" "Deleted"]) then
-      //** Blocks and Super Blocks :)
+    if typeof(o)=="Link" then
+      titre2='link'
+      //-- tt=[tt;'$wxx.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
 
-      if (o.model.sim=='super'&(o.model.rpar.props.title(1)<>'Super Block')) |...
-	    (o.gui=='PAL_f') then //**Palettes
+    elseif typeof(o)=="Deleted" then
+      titre2='Deleted'
+      //-- tt=[tt;'$wxx.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
+
+    else //** Blocks and Super Blocks :)
+
+      if o.model.sim=='super'&(o.model.rpar.props.title(1)<>'Super Block') then
+        //** Super Blocks
 	titre2 = o.model.rpar.props.title(1);
+	//-- tt = [tt;'$wxx.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text '"'+titre2+''"']
+
 	subTree = createNode(titre2, "default");
+	//-- [subTree,tt] = crlist(o.model.rpar,path,tt,subTree);
 	subTree = crlist(o.model.rpar, path, subTree);
 	java = concatTree(java, subTree);
-      else //** Standard Blocks
-	if (find(o.gui==blocks_to_remove(:)))==[] then
-	  titre2 = o.gui;
-	  ind = find(titre2==GIF);
-	  callback="global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''";
-	  
-	  if ind<>[] then icon=GIFT(ind),else icon="default",end
-	  Node=createNode(titre2, icon, callback);
-	  java = concatTree(java,Node)
+
+      else
+        //** Standard Blocks
+	titre2 = o.gui;
+	ind = find(titre2==GIF);
+	if ind<>[] then
+	   //** a valid icon (GIF) is found
+           //-- tt = [tt;'$wxx.t insert end '+Path+' '+path+' -"+...
+	   //--     "helptext '"'+titre2+''" -image [image create photo -file '"'+GIFT(ind)+''"]']
+
+	 java = concatTree(java, createNode(titre2, GIFT(ind), "global %pa_;%pa_="""+path+""";Cmenu=''PlaceinDiagram''"));
+
+	else
+           //** NO icon is found: use the block's name
+	  //-- tt = [tt;'$wxx.t insert end '+Path+' '+path+' -text '"'+titre2+''"']
+	 java = concatTree(java, createNode(titre2, "default", "global %pa_;%pa_="""+path+""";Cmenu=''PlaceinDiagram''"));
+
 	end
 
-      end //**... Blocks and Super Blocks
+      end //**... Blocks ans Super Blocks
 
     end //**.. object filter
 
@@ -112,4 +171,3 @@ function java = crlist(scs_m, Path, java)
 
 endfunction
 
-  

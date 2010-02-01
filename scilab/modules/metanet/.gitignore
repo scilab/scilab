@@ -1,6 +1,0 @@
-#
-#generated .def files (windows)
-#
-src/c/metanet.def
-src/c/nometanet/nometanet.def
-src/fortran/metanet_f.def

@@ -37,7 +37,7 @@
     <title>Description</title>
     <para>
     To use <literal>showprofile</literal> the Scilab function must have been prepared for
-    profiling (see getf).</para>
+    profiling (see exec).</para>
     <para>
     For such function, When such a function is executed the systems counts
     how many time each line is executed and how may cpu time is spend for

@@ -31,7 +31,10 @@ XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
 
 XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
-XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp \
+	src/cpp/callxpad.cpp \
+	src/jni/GiwsException.cpp
+
 
 GIWS_WRAPPERS = src/jni/Xpad.giws.xml
 
@@ -43,7 +46,7 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp \
-sci_gateway/cpp/sci_xpad_highlightline.cpp
+sci_gateway/cpp/sci_closeXpadFromScilab.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

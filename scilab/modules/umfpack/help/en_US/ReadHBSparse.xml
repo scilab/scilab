@@ -82,7 +82,7 @@
 
     <programlisting role = ""><![CDATA[ 
 a = R|C|P   for real|complex|pattern (no values given)
-b = S|H|Z|U for symetric|hermitian|skew symetric|unsymetric
+b = S|H|Z|U for symmetric|hermitian|skew symmetric|asymmetric
 c = A|E     for assembled|unassembled matrix 
             (case E is not treated by this func)
  ]]></programlisting>

@@ -68,8 +68,8 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
         <term>opts</term>
 
         <listitem>
-          <para>a vector of string with four entries
-          :<literal>[compiler,pvm,tk,modelicac]</literal></para>
+          <para>a vector of string with seven entries
+          :<literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,7 +80,7 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
 
     <para>return in <literal>version</literal> the Scilab version name and in
     <literal>opts</literal> build options which can be used to determine if
-    scilab has been build with pvm, tk or modelicac.</para>
+    scilab has been build with pvm, tk or modelicac and give release date and time.</para>
   </refsection>
 
   <refsection>

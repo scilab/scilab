@@ -34,7 +34,7 @@
       <varlistentry>
         <term>xi, xa, kMinr, kMaxr, ar</term>
         <listitem>
-          <para>:real scalars</para>
+          <para>real scalars</para>
         </listitem>
       </varlistentry>
       <varlistentry>

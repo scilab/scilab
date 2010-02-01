@@ -1,0 +1,32 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 5292 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=5292
+//
+// <-- Short Description -->
+// There is a conflict between bool and scilab header mex.h 
+ilib_verbose(0);
+my_current_directory = pwd();
+cd(TMPDIR);
+mputl('ilib_mex_build(''libmex'',[''mex_5292'',''mexfunction_5292'',''cmex''],[''mexfunction_5292.cpp''],[],'''','''','''','''')','builder.sce');
+mputl(["#include <mex.h>"
+"#include <list>"
+"#include <memory.h>"
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])"
+"{"
+"  if(nrhs < 2)"
+"    mexErrMsgTxt(""Two input arguments required."");"
+"  if (nlhs > 1)"
+"   mexErrMsgTxt(""Too many output arguments."");"
+"}"],'mexfunction_5292.cpp');
+ierr = execstr('mex_5292()','errcatch');
+if ierr <> 999 then bugmes();quit;end
+ierr = execstr('mex_5292(2,2)','errcatch');
+if ierr <> 0 then bugmes();quit;end
+cd(my_current_directory);

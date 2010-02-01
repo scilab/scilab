@@ -23,7 +23,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, in
 
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "HorizontalAlignment");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "HorizontalAlignment");
       return SET_PROPERTY_ERROR;
     }
 
@@ -32,7 +32,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, in
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          Scierror(999, _("Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");
           return SET_PROPERTY_ERROR;
         }
       
@@ -53,7 +53,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, in
       else
         {
           /* Wrong string format */
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");
           return SET_PROPERTY_ERROR;
         }
       
@@ -72,7 +72,7 @@ int SetUicontrolHorizontalAlignment(sciPointObj* sciObj, size_t stackPointer, in
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");
       return SET_PROPERTY_ERROR;
     }
 

@@ -14,50 +14,53 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
+"Revision-Date: 2010-01-25 10:33+0100\n"
 
-# File: sci_gateway/c/gw_jvm.c, line: 41
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_javaclasspath.c, line: 56
-#, c-format
-msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_javaclasspath.c, line: 67
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 69
-# File: sci_gateway/c/sci_system_getproperty.c, line: 46
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
-#, c-format
-msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_system_setproperty.c, line: 62
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-#
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 42
+# File: src/c/JVM.c, line: 119
 #, c-format
 msgid ""
 "\n"
-"Scilab cannot open JVM library.\n"
+"Could not load JVM dynamic library (libjava).\n"
 msgstr ""
 #
-# File: src/c/InitializeJVM.c, line: 40
-# File: src/c/InitializeJVM.c, line: 53
-# File: src/c/JVM.c, line: 68
-# File: src/c/JVM.c, line: 83
-# File: src/c/JVM.c, line: 146
-# File: src/c/JVM.c, line: 180
-# File: src/c/JVM.c, line: 207
-msgid "Error"
+# File: src/c/JVM.c, line: 70
+# File: src/c/JVM.c, line: 72
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 85
+# File: src/c/JVM.c, line: 87
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 160
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 188
+# File: src/c/JVM.c, line: 190
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 215
+# File: src/c/JVM.c, line: 217
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
 msgstr ""
 #
 # File: src/c/InitializeJVM.c, line: 53
@@ -70,24 +73,15 @@ msgid ""
 "available).\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 68
-# File: src/c/JVM.c, line: 70
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 42
 #, c-format
 msgid ""
 "\n"
-"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+"Scilab cannot open JVM library.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 83
-# File: src/c/JVM.c, line: 85
-#, c-format
-msgid ""
-"\n"
-"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
-"has been loaded by Scilab before calling this function.\n"
-msgstr ""
-#
-# File: src/c/JVM.c, line: 108
+# File: src/c/JVM.c, line: 110
 #, c-format
 msgid ""
 "\n"
@@ -95,72 +89,30 @@ msgid ""
 "existing JVM.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 117
+# File: sci_gateway/c/sci_javaclasspath.c, line: 56
 #, c-format
-msgid ""
-"\n"
-"Could not load JVM dynamic library (libjava).\n"
+msgid "%s: Could not add URL to system classloader : %s.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 152
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 58
 #, c-format
-msgid ""
-"\n"
-"Impossible to read %s.\n"
+msgid "%s: Could not add path to java.library.path: %s.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 180
-# File: src/c/JVM.c, line: 182
+# File: sci_gateway/c/sci_system_setproperty.c, line: 62
 #, c-format
-msgid ""
-"\n"
-"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 194
+# File: sci_gateway/c/sci_javalibrarypath.c, line: 69
+# File: sci_gateway/c/sci_system_getproperty.c, line: 46
+# File: sci_gateway/c/sci_javaclasspath.c, line: 67
 #, c-format
-msgid "Error in the creation of the Java VM: %s\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: src/c/JVM.c, line: 207
-# File: src/c/JVM.c, line: 209
-#, c-format
-msgid ""
-"\n"
-"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 82
-msgid "Unknown JNI error"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 85
-msgid "Thread detached from the VM"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 88
-msgid "JNI version error"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 93
-msgid "JNI: not enough memory"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 99
-msgid "VM already created"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 105
-msgid "JNI: invalid arguments"
-msgstr ""
-#
-# File: src/c/JVM_commons.c, line: 109
-msgid "Undefined error code in the JNI. Weird problem"
-msgstr ""
-#
-# File: src/c/addToClasspath.c, line: 59
-#, c-format
-msgid "Warning: Could not find Java package '%s'.\n"
+# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 174
+msgid "Console"
 msgstr ""
 #
 # File: src/c/createMainScilabObject.c, line: 33
@@ -175,46 +127,93 @@ msgstr ""
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr ""
 #
-# File: src/c/getJvmOptions.c, line: 51
-#, c-format
-msgid "Error: Could not parse file %s.\n"
+# File: src/c/JVM.c, line: 70
+# File: src/c/JVM.c, line: 85
+# File: src/c/JVM.c, line: 154
+# File: src/c/JVM.c, line: 188
+# File: src/c/JVM.c, line: 215
+# File: src/c/InitializeJVM.c, line: 40
+# File: src/c/InitializeJVM.c, line: 53
+msgid "Error"
 msgstr ""
 #
-# File: src/c/getJvmOptions.c, line: 118
-#, c-format
-msgid ""
-"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
-"found.\n"
-msgstr ""
-#
-# File: src/c/loadClasspath.c, line: 78
-# File: src/c/loadLibrarypath.c, line: 51
-# File: src/c/loadOnUseClassPath.c, line: 63
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr ""
-#
-# File: src/c/loadClasspath.c, line: 166
-# File: src/c/loadLibrarypath.c, line: 114
-# File: src/c/loadOnUseClassPath.c, line: 112
-#, c-format
-msgid "Wrong format for %s.\n"
-msgstr ""
-#
-# File: src/c/loadClasspath.c, line: 178
+# File: src/c/loadClasspath.c, line: 186
 #, c-format
 msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
 #
-# File: src/c/loadClasspath.c, line: 184
-# File: src/c/loadOnUseClassPath.c, line: 123
+# File: src/c/loadLibrarypath.c, line: 133
 #, c-format
-msgid "Warning: could not find classpath declaration file %s.\n"
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
 #
-# File: src/c/loadClasspath.c, line: 188
+# File: src/c/JVM.c, line: 202
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 120
+#, c-format
+msgid "Error: %s\n"
+msgstr ""
+#
+# File: src/c/getJvmOptions.c, line: 63
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr ""
+#
+# File: src/c/getJvmOptions.c, line: 146
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+#
+# File: src/c/loadLibrarypath.c, line: 61
+# File: src/c/loadOnUseClassPath.c, line: 63
+# File: src/c/loadClasspath.c, line: 89
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 121
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
+msgstr ""
+#
+# File: src/c/JVM.c, line: 122
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
+msgstr ""
+#
+# File: src/c/JVM_commons.c, line: 101
+msgid "JNI version error"
+msgstr ""
+#
+# File: src/c/JVM_commons.c, line: 118
+msgid "JNI: invalid arguments"
+msgstr ""
+#
+# File: src/c/JVM_commons.c, line: 106
+msgid "JNI: not enough memory"
+msgstr ""
+#
+# File: sci_gateway/c/gw_jvm.c, line: 41
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr ""
+#
+# File: src/nojvm/nojvm.c, line: 27
+msgid "Scilab Java module not installed.\n"
+msgstr ""
+#
+# File: src/c/loadClasspath.c, line: 196
 #, c-format
 msgid ""
 "Some problems during the loading of the Java libraries occured.\n"
@@ -222,16 +221,41 @@ msgid ""
 "Please check SCI/etc/classpath.xml.\n"
 msgstr ""
 #
-# File: src/c/loadLibrarypath.c, line: 127
+# File: src/c/JVM.c, line: 124
 #, c-format
-msgid ""
-"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
 msgstr ""
 #
-# File: src/java/org/scilab/modules/jvm/Scilab.java, line: 145
-msgid "Console"
+# File: src/c/JVM_commons.c, line: 98
+msgid "Thread detached from the VM"
 msgstr ""
 #
-# File: src/nojvm/nojvm.c, line: 27
-msgid "Scilab Java module not installed.\n"
+# File: src/c/JVM_commons.c, line: 122
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr ""
+#
+# File: src/c/JVM_commons.c, line: 95
+msgid "Unknown JNI error"
+msgstr ""
+#
+# File: src/c/JVM_commons.c, line: 112
+msgid "VM already created"
+msgstr ""
+#
+# File: src/c/addToClasspath.c, line: 59
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr ""
+#
+# File: src/c/loadOnUseClassPath.c, line: 121
+# File: src/c/loadClasspath.c, line: 192
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr ""
+#
+# File: src/c/loadLibrarypath.c, line: 124
+# File: src/c/loadOnUseClassPath.c, line: 112
+# File: src/c/loadClasspath.c, line: 177
+#, c-format
+msgid "Wrong format for %s.\n"
 msgstr ""

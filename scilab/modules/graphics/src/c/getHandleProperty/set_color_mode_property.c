@@ -44,7 +44,7 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_mode") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 

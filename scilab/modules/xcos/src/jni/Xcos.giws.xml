@@ -1,0 +1,25 @@
+<package name="org.scilab.modules.xcos">
+    <object name="Xcos">
+        <method name="xcos" returnType="void" modifier="static"/>
+        <method name="xcos" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+        </method>
+        <method name="warnCellByUID" returnType="void" modifier="static">
+            <parameter name="UID" type="String"/>
+            <parameter name="message" type="String"/>
+        </method>
+        <method name="closeXcosFromScilab" returnType="void" modifier="static"/>
+        <method name="xcosDiagramToHDF5" returnType="int" modifier="static">
+            <parameter name="xcosFile" type="String"/>
+            <parameter name="h5File" type="String"/>
+            <parameter name="forceOverwrite" type="boolean"/>
+        </method>
+        <method name="xcosDiagramOpen" returnType="void" modifier="static">
+            <parameter name="UID" type="String"/>
+            <parameter name="show" type="boolean"/>
+        </method>
+        <method name="xcosDiagramClose" returnType="void" modifier="static">
+            <parameter name="UID" type="String"/>
+        </method>
+    </object>
+</package>

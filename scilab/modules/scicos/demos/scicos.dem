@@ -41,7 +41,7 @@ while %t do
   case 'Discrete-Kalman Filter' then
    scicos('SCI/modules/scicos/demos/Discrete-KalmanFilter.cosf');
   case 'Inverted Pendulum' then
-   exec (SCI+'/modules/scicos/demos/setw.sci');
+   exec (SCI+'/modules/xcos/demos/setw.sci');
    scicos('SCI/modules/scicos/demos/Inverted_pendulum.cos');
   case 'Lorentz attractor' then
    scicos('SCI/modules/scicos/demos/Lorentz.cos');

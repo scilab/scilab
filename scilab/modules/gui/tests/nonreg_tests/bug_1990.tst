@@ -22,4 +22,5 @@ if isempty(get(f,"position")) then pause; end
 
 set(f,"position",[100 100 200 200]);
 
-if or(get(f,"position")<>[100 100 200 200]) then pause;end		
+if or(get(f,"figure_position")<>[100 100]) then pause;end		
+if or(get(f,"axes_size")<>[200 200]) then pause;end		

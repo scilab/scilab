@@ -34,7 +34,7 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_2085.c' , TEST_DIR + 
 
 chdir(TEST_DIR);
 
-files=['bug_2085.o'];
+files=['bug_2085.c'];
 ilib_build('bug',['ex2c_1','intex2c'],files,[]);
 
 // load the shared library 

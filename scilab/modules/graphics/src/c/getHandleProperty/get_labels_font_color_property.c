@@ -33,7 +33,7 @@ int get_labels_font_color_property( sciPointObj * pobj )
   {
     return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
   }
-  Scierror(999, _("%s does not exist for this handle.\n"), "labels_font_color property") ;
+  Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_color");
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

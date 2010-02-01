@@ -30,7 +30,7 @@ int get_axes_bounds_property( sciPointObj * pobj )
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_bounds") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_bounds") ;
     return -1 ;
   }
 

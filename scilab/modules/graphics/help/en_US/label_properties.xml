@@ -53,10 +53,7 @@
         <listitem>
           <para>The matrix containing the strings of the object. The rows of the
         matrix are displayed horizontally and the columns vertically.</para>
-          <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML expression.</para>
-          <para>LaTeX texts must start and end by $ (dollar symbol).</para>
-          <para>MathML texts must start by &lt; and end by &gt; and being syntactically valids.</para>
-          <para>On the first use, note that MathML engine is slower to load than LaTeX.</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -137,7 +134,7 @@
       <varlistentry>
         <term>auto_rotation: </term>
         <listitem>
-          <para>If <literal>"on"</literal>, Scilab computes automaticaly the best angle
+          <para>If <literal>"on"</literal>, Scilab computes automatically the best angle
         to turn the label for the display. If <literal>"off"</literal>, the label
         can be manually turned with the <literal>font_angle</literal> property.</para>
         </listitem>
@@ -154,7 +151,7 @@
       <varlistentry>
         <term>auto_position: </term>
         <listitem>
-          <para>If <literal>"on"</literal>, Scilab computes automaticaly the best
+          <para>If <literal>"on"</literal>, Scilab computes automatically the best
         position in the graphic window for the display. If <literal>"off"</literal>,
         the label can be manually places with the <literal>position</literal>
         property.</para>

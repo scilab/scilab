@@ -33,19 +33,19 @@ int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"z_bounds") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_bounds");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"z_bounds",2) ;
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "z_bounds", 2);
     return SET_PROPERTY_ERROR ;
   }
 

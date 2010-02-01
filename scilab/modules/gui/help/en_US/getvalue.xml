@@ -29,7 +29,7 @@
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>: <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
+          <para> <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
           <variablelist>
             <varlistentry>
               <term>typ_i</term>

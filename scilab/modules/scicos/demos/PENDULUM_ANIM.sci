@@ -16,7 +16,7 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;dstate=model.dstate
     while %t do
-      [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=getvalue(..
+      [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
         'Set Scope parameters',..
         ['pendulum length';'cart size (square side)';'slope';
         'Xmin';'Xmax';  'Ymin'; 'Ymax'; ],..

@@ -645,7 +645,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 88:
 		{
-			displayAndStoreError(_("%s: singular or assymetric problem.\n"),"sfact");
+			displayAndStoreError(_("%s: singular or asymmetric problem.\n"),"sfact");
 		}
 		break;
 		case 89:
@@ -941,7 +941,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 136:
 		{
-			displayAndStoreError(_("%: This method is NOT implemented.\n"),"optim");
+			displayAndStoreError(_("%s: This method is NOT implemented.\n"),"optim");
 		}
 		break;
 		case 137:
@@ -1216,7 +1216,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 221:
 		{
-			displayAndStoreError(_("A sparse matrix entry is defined with two differents values.\n"));
+			displayAndStoreError(_("A sparse matrix entry is defined with two different values.\n"));
 		}
 		break;
 		case 222:
@@ -1268,7 +1268,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 229:
 		{
-			displayAndStoreError(_("Operands of / and \\ operations  must not contain NaN of Inf.\n"));
+			displayAndStoreError(_("Operands of / and \\ operations must not contain NaN of Inf.\n"));
 		}
 		break;
 		case 230:
@@ -1345,7 +1345,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 242:
 		{
-			displayAndStoreError(_("Binary direct acces files must be opened by 'file'.\n"));
+			displayAndStoreError(_("Binary direct access files must be opened by 'file'.\n"));
 		}
 		break;
 		case 243:
@@ -1437,7 +1437,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 260:
 		{
-			displayAndStoreError(_("%s: Th colocation matrix is singular.\n"),"bvode");
+			displayAndStoreError(_("%s: The colocation matrix is singular.\n"),"bvode");
 		}
 		break;
 		case 261:
@@ -1448,12 +1448,12 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		case 262:
 		{
 			int maxglobalvariables = isizt - C2F(vstk).isiz - 1;
-			displayAndStoreError(_("Too many global variables! , max number is %d.\n"),maxglobalvariables);
+			displayAndStoreError(_("Too many global variables! Max number is %d.\n"),maxglobalvariables);
 		}
 		break;
 		case 263:
 		{
-			displayAndStoreError(_("Error while writing in file,(disk full or deleted file.\n"));
+			displayAndStoreError(_("Error while writing in file: disk full or deleted file.\n"));
 		}
 		break;
 		case 264:

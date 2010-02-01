@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,typ,inp,exprs]=getvalue('Set ROOTCOEF Block',..
+    [ok,typ,inp,exprs]=scicos_getvalue('Set ROOTCOEF Block',..
 	    ['Datatype(1=real double  2=Complex)';'input row size';],list('vec',1,'vec',1),label)
     if ~ok then break,end
     if (typ==1) then

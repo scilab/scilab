@@ -13,8 +13,8 @@
 //   numerical experiment presented in Box's paper.
 //
 
-mprintf("Illustrates Box'' algorithm on Box problem A.\n");
-mprintf("Defining Box Problem A function...\n");
+mprintf("Illustrates Box'' algorithm on Box problem B.\n");
+mprintf("Defining Box Problem B function...\n");
 
 //
 //  Reference:
@@ -57,10 +57,10 @@ function [ f , c , index ] = boxproblemB ( x , index )
   f = []
   c = []
   x3 = x(1) + sqrt(3.0) * x(2)
-  if ( index==1 | index==3 ) then
+  if ( index==2 | index==6 ) then
     f = -(9.0 - (x(1) - 3.0) ^ 2) * x(2) ^ 3 / 27.0 / sqrt(3.0)
   end
-  if ( index==2 | index==3 ) then
+  if ( index==5 | index==6 ) then
       c1 = x(1) / sqrt(3.0) - x(2)
       c2 = x3
       c3 = 6.0 - x3
@@ -77,18 +77,18 @@ rand("seed" , 0)
 
 x0 = [1.0 0.5].';
 // Compute f(x0) : should be close to -0.0133645895646
-fx0 = boxproblemB ( x0 );
+fx0 = boxproblemB ( x0 , 2 );
 mprintf("Computed fx0 = %e (expected = %e)\n",fx0 , -0.0133645895646 );
-result = boxproblemB ( x0 , 2 );
+[fx0 , cx0 , index ] = boxproblemB ( x0 , 6 );
 mprintf("Computed Constraints(x0) = [%e %e %e]\n", ...
-  result(1), result(2), result(3) );
+  cx0(1), cx0(2), cx0(3) );
 mprintf("Expected Constraints(x0) = [%e %e %e]\n", ...
   0.0773503 , 1.8660254 , 4.1339746 );
 
 
 xopt = [3.0 1.7320508075688774].';
 // Compute f(xopt) : should be -1.0
-fopt = boxproblemB ( xopt );
+fopt = boxproblemB ( xopt , 2 );
 mprintf("Computed fopt = %e (expected = %e)\n", fopt , -1.0 );
 
 nm = neldermead_new ();
@@ -98,9 +98,6 @@ nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",300);
 nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "boxproblemB.txt" );
-nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0]);
 nm = neldermead_configure(nm,"-boundsmax",[100.0 57.735026918962582]);
 // Configure like Box
@@ -117,10 +114,11 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 // The index must be provided, because the additionnal argument "data"
 // comes after.
 //
-[ nm , result ] = neldermead_function ( nm , x0 , 1 );
+[ nm , f ] = neldermead_function ( nm , x0 );
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
 xcomp = neldermead_get(nm,"-xopt");
@@ -134,5 +132,12 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-deletefile ( "boxproblemB.txt" )
+mprintf("End of demo.\n");
+
+//
+// Load this script into the editor
+//
+filename = 'neldermead_boxproblemB.sce';
+dname = get_absolute_file_path(filename);
+editor ( dname + filename );
 

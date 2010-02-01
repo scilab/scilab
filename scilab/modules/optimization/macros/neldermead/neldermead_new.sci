@@ -66,6 +66,7 @@ function newobj = neldermead_new ()
     "mymethod"
     "myterminate"
     "myterminateflag"
+    "greedy"
     ]);
 
   newobj.optbase = optimbase_new();
@@ -159,7 +160,7 @@ function newobj = neldermead_new ()
   // Richardson and Kuester's algorithm 454)
   newobj.boxboundsalpha = 1.e-6
   // Set to 1 to enable Box termination criteria
-  newobj.boxtermination = 0
+  newobj.boxtermination = %f
   // The absolute tolerance on function value in Box termination criteria (beta in
   // Richardson and Kuester's algorithm 454)
   newobj.boxtolf = 1.e-5
@@ -184,5 +185,7 @@ function newobj = neldermead_new ()
   newobj.myterminate = []
   // Flag to enable the user-defined terimination criteria
   newobj.myterminateflag = %f
+  // Set to %t to enable greedy Nelder-Mead
+  newobj.greedy = %f;
 endfunction
 

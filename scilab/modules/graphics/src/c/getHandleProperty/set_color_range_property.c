@@ -40,7 +40,7 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"color_range") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -58,7 +58,7 @@ int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int value
 		  || values[1] > nbColors || values[1] < 0)
 	{
 		/* It is possible to set color_range outside the colormap, however it won't be used.*/
-		sciprint(_("WARNING: Wrong value for '%s' property: indices oustside the colormap will be clamped.\n"), "color_range");
+		sciprint(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "color_range");
 	}
 
 

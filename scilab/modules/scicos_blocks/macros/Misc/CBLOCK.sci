@@ -36,7 +36,7 @@ case 'set' then
  label=graphics.exprs;
   while %t do
     [ok,junction_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
-        getvalue('Set C-Block2 block parameters',..
+        scicos_getvalue('Set C-Block2 block parameters',..
         ['simulation function';
 	 'is block implicit? (y,n)';
         'input ports sizes';

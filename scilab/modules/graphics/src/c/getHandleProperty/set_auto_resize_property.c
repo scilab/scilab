@@ -31,36 +31,19 @@
 /*------------------------------------------------------------------------*/
 int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status = SET_PROPERTY_ERROR;
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "auto_resize");
-    return SET_PROPERTY_ERROR ;
-  }
-
+	int b =  (int)FALSE;
+	int status = 0;
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"auto_resize");
-    return SET_PROPERTY_ERROR ;
-  }
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+		return SET_PROPERTY_ERROR ;
+	}
 
-  /* disable protection since this function will call Java */
-  disableFigureSynchronization(pobj);
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    status = sciSetResize( pobj, TRUE );
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    status = sciSetResize( pobj, FALSE );
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_resize", "on", "off");
-    return SET_PROPERTY_ERROR ;
-  }
-  enableFigureSynchronization(pobj);
-  /* return set property unchanged since repaint is not really needed */
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	status = sciSetResize(pobj, b);
+	enableFigureSynchronization(pobj);
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
 }
 /*------------------------------------------------------------------------*/

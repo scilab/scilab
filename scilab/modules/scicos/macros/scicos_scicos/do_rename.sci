@@ -29,7 +29,7 @@ function [scs_m,edited,ok]=do_rename(scs_m, pal_mode)
     mess='Enter the new diagram name'
   end
   
-  [ok,new]=getvalue(mess,"Name",list("str",[1,1]),scs_m.props.title(1))
+  [ok,new]=scicos_getvalue(mess,"Name",list("str",[1,1]),scs_m.props.title(1))
   
   if new<>[] then
     drawtitle(scs_m.props)     //erase title

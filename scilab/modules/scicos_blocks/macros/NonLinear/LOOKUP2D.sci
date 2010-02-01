@@ -42,7 +42,7 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
     while %t do
 
       Ask_again=%f
-      [ok,xx,yy,zz,Method,graf,exprs]=getvalue('2D Lookup table parameters',['Row index input values';'Column index input values';'Table data';'Lookup method(1..5)';'Launch graphic window(y/n)?'],list('vec',-1,'vec',-1,'matrix',[-1,-1],'vec',1,'str',1),exprs)
+      [ok,xx,yy,zz,Method,graf,exprs]=scicos_getvalue('2D Lookup table parameters',['Row index input values';'Column index input values';'Table data';'Lookup method(1..5)';'Launch graphic window(y/n)?'],list('vec',-1,'vec',-1,'matrix',[-1,-1],'vec',1,'str',1),exprs)
       // 1 : Interpolation-extrapolation (Bilinear)
       // 2 : Interpolation_endvalues
       // 3 : use input nearest

@@ -24,7 +24,7 @@
 //  this : the current nmplot object
 //
 function nmplot_outputcmd ( state , data , this )
-  this = nmplot_log ( this , "nmplot_outputcmd (1)")
+  nmplot_log ( this , "nmplot_outputcmd (1)")
   iter = data.iteration
   // Print simplex
   x = optimsimplex_getallx ( data.simplex )

@@ -12,7 +12,7 @@
 //   Search the minimum with Nelder-Mead algorithm.
 //
 function this = nmplot_search (this)
-  this = nmplot_log ( this , "nmplot_search")
+  nmplot_log ( this , "nmplot_search")
   this = nmplot_startupfiles ( this )
   this.nmbase = neldermead_configure ( this.nmbase , "-outputcommandarg" , this );
   this.nmbase = neldermead_search ( this.nmbase )
@@ -28,7 +28,7 @@ endfunction
 //    name : the type of data in the file
 //
 function report = nmplot_header ( this , filename , name )
-  this = nmplot_log ( this , "nmplot_header")
+  nmplot_log ( this , "nmplot_header")
     report = list()
     report($+1) = sprintf("//\n")
     report($+1) = sprintf("// %s--\n" , filename)
@@ -46,7 +46,7 @@ endfunction
 //   <no arg>
 //
 function this = nmplot_startupfiles ( this )
-  this = nmplot_log ( this , "nmplot_startupfiles")
+  nmplot_log ( this , "nmplot_startupfiles")
     if this.simplexfn <> "" then 
       this.simplexhandle  = mopen ( this.simplexfn , "w" )
       header = nmplot_header ( this , this.simplexfn , "simplex" )
@@ -93,29 +93,29 @@ endfunction
 //   <no arg>
 //
 function this = nmplot_shutdownfiles ( this )
-  this = nmplot_log ( this , "nmplot_shutdownfiles")
+  nmplot_log ( this , "nmplot_shutdownfiles")
     if this.simplexfn <> "" then 
       fd  = this.simplexhandle
       mclose ( fd )
-      this = nmplot_log ( this , sprintf( "Exported Simplex history in %s",this.simplexfn))
+      nmplot_log ( this , sprintf( "Exported Simplex history in %s",this.simplexfn))
     end
     if this.fbarfn <> "" then 
       fd = this.fbarhandle
       mfprintf ( fd , "]\n" )
       mclose ( fd )
-      this = nmplot_log ( this , sprintf( "Exported fbar history in %s",this.fbarfn))
+      nmplot_log ( this , sprintf( "Exported fbar history in %s",this.fbarfn))
     end
     if this.foptfn <> "" then 
       fd = this.fopthandle
       mfprintf ( fd , "]\n" )
       mclose ( fd )
-      this = nmplot_log ( this , sprintf( "Exported fopt history in %s",this.foptfn))
+      nmplot_log ( this , sprintf( "Exported fopt history in %s",this.foptfn))
     end
     if this.sigmafn <> "" then 
       fd = this.sigmahandle
       mfprintf ( fd , "]\n" )
       mclose ( fd )
-      this = nmplot_log ( this , sprintf( "Exported sigma history in %s",this.sigmafn))
+      nmplot_log ( this , sprintf( "Exported sigma history in %s",this.sigmafn))
     end
 endfunction
 

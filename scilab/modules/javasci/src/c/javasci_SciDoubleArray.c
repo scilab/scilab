@@ -20,7 +20,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 /*! public native double GetElement(int indr, int indc); */
 JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	double Value = 0.0;
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -41,10 +41,10 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 
 	int cm = 0, cn = 0;
 
-	strErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
-	if(strErr.iErr)
+	sciErr = getNamedVarDimension(pvApiCtx, (char*)cname, &dimension[0], &dimension[1]);
+	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(strErr));
+		fprintf(stderr,"%s", getErrorMessage(sciErr));
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (1).\n");
 		return Value;
@@ -68,10 +68,10 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 	jx = (*env)->GetObjectField(env, obj_this, id_x);
 	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 
-	strErr = readNamedMatrixOfDouble(pvApiCtx, (char*)cname, &cm, &cn, cx);
-	if(strErr.iErr)
+	sciErr = readNamedMatrixOfDouble(pvApiCtx, (char*)cname, &cm, &cn, cx);
+	if(sciErr.iErr)
 	{
-		fprintf(stderr,"%s", getErrorMessage(strErr));
+		fprintf(stderr,"%s", getErrorMessage(sciErr));
 		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (4).\n");
 		(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);
 		(*env)->ReleaseStringUTFChars(env, jname , cname);

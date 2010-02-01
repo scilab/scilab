@@ -86,10 +86,11 @@ if ( TerminateScilab(NULL) == FALSE ) {
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,
+<link linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link>, <link linkend="StartScilab">StartScilab</link>,
       <link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="DoubleManagement_callscilab">Double Management</link>, <link
       linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
       linkend="ComplexManagement_callscilab">Complex Management</link>, <link
       linkend="StringManagement_callscilab">String Management</link></member>

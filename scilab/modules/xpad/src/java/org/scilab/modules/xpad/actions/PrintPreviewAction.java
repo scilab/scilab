@@ -12,9 +12,9 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
 
@@ -25,20 +25,49 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.XpadPrintPreviewWindow;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class PrintPreviewAction extends DefaultAction {
+/**
+ * PrintPreviewAction class
+ * @author Bruno JOFRET
+ *
+ */
+public final class PrintPreviewAction extends DefaultAction {
 
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -3222532237364937814L;
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private PrintPreviewAction(Xpad editor) {
 		super(XpadMessages.PRINT_PREVIEW, editor);
 	}
 
+	/**
+	 * doAction
+	 */
 	public void doAction() {
-		new XpadPrintPreviewWindow(new PrinterWriter(getEditor().getTextPane()), getEditor());
+		PrinterWriter printerWriter = new PrinterWriter(getEditor().getTextPane());
+		new XpadPrintPreviewWindow(printerWriter, getEditor());
 	}
 
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.PRINT_PREVIEW, null, new PrintPreviewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()+ActionEvent.SHIFT_MASK));
+		return createMenu(XpadMessages.PRINT_PREVIEW, null, new PrintPreviewAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask() + ActionEvent.SHIFT_MASK));
 	}
 
+	/**
+	 * createButton
+	 * @param editor Xpad
+	 * @return PushButton
+	 */
 	public static PushButton createButton(Xpad editor) {
 		return createButton(XpadMessages.PRINT_PREVIEW, "document-print-preview.png", new PrintPreviewAction(editor));
 	}

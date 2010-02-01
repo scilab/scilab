@@ -30,7 +30,7 @@ int get_x_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property undefined for this handle.\n"), "x_location") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_location");
     return -1 ;
   }
 
@@ -49,7 +49,7 @@ int get_x_location_property( sciPointObj * pobj )
     return sciReturnString( "origin" ) ;
     break;
   default : 
-    Scierror(999, _("%s is not correctly defined.\n"), "x_location") ;
+    Scierror(999, _("Wrong value for '%s' property.\n"),"x_location");
     break;
   }
   return -1 ;

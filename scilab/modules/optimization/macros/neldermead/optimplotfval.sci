@@ -42,8 +42,7 @@ function optimplotfval ( x , optimValues , state )
     opfvh.children.children.children.mark_background = 6;
   else
     opfvh = findobj ( "user_data" , "optimplotfval" );
-    scf(opfvh);
-    gg = gce();
+    gg = opfvh.children.children;
     // Update data
     gg.children.data($+1,1:2) = [optimValues.iteration optimValues.fval];
     // Compute new bounds
@@ -52,8 +51,7 @@ function optimplotfval ( x , optimValues , state )
     fmin = min(gg.children.data(:,2));
     fmax = max(gg.children.data(:,2));
     // Update bounds
-    hh = gcf();
-    hh.children.data_bounds = [
+    opfvh.children.data_bounds = [
       itermin fmin
       itermax fmax
     ];

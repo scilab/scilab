@@ -14,7 +14,7 @@
 // wrong value <option value="-Xmx1024m"/>
 
 
-res = mgetl(SCI+'/modules/jvm/etc/jvm_options.xml');
+res = mgetl(SCI+'/etc/jvm_options.xml');
 line = grep(res,'<option value=""-Xmx');
 if res(line) <> '<option value=""-Xmx256m""/>' then pause,end
 

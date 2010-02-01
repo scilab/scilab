@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("table_lookup.dem.sce");
-scicos_demonstration(thispath+"/Table_Lookup.cosf");
+//scicos_demostration(thispath+"/Table_Lookup.cosf");
+
+// Open the cosf file with xcos
+xcos(thispath+"/Table_Lookup.cosf");
+
 clear thispath;

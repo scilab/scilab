@@ -140,8 +140,8 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 		varname = wide_string_to_UTF8(wcVarName);
 		if (varname)
 		{
-			StrErr strErr = getNamedVarType(pvApiCtx, varname, &iType);
-			if(strErr.iErr)
+			SciErr sciErr = getNamedVarType(pvApiCtx, varname, &iType);
+			if(sciErr.iErr)
 			{
 				return NULL;
 			}
@@ -152,8 +152,8 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 				int VARVALUElen = 0;
 				int m = 0, n = 0;
 
-				strErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
-				if(strErr.iErr)
+				sciErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
+				if(sciErr.iErr)
 				{
 					return NULL;
 				}
@@ -165,8 +165,8 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 					{
 						BOOL bConvLong = FALSE;
 						wchar_t *LongName = NULL;
-						strErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
-						if(strErr.iErr)
+						sciErr = readNamedMatrixOfWideString(pvApiCtx, varname, &m, &n, &VARVALUElen, &VARVALUE);
+						if(sciErr.iErr)
 						{
 							FREE(VARVALUE);
 							VARVALUE = NULL;
@@ -182,6 +182,7 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 				}
 			}
 		}
+		if (varname) {FREE(varname);varname = NULL;}
 	}
 	return VARVALUE;
 }

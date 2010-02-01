@@ -7,6 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
+
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -50,37 +54,33 @@ endfunction
 //
 // Test randbounds with default number of vertices
 //
+rand("seed" , 0)
 s1 = optimsimplex_new ( "randbounds" , [-1.2 1.0], rosenbrock, ...
   [-5.0 -5.0] , [5.0 5.0] );
 computed = optimsimplex_getall ( s1 );
-assert_equal ( size(computed,1) , 3 );
-assert_equal ( size(computed,2) , 3 );
 expected = [
-  %T %T  
-  %T %T  
-  %T %T  
-];
-assert_equal ( computed(1:3,2:3) < 5.0 , expected );
-assert_equal ( computed(1:3,2:3) > -5.0 , expected );
+    24.19999999999999573674   -1.1999999999999999555911    1.                        
+    3347.7382596240795464837  -2.8867513453587889671326    2.5604385416954755783081  
+    71189.511402687028748915  -4.9977886537089943885803  -1.69672908261418342590    
+]
+assert_close ( computed , expected , %eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
 // Test randbounds with 5 vertices
 //
+rand("seed" , 0)
 s1 = optimsimplex_new ( "randbounds" , [-1.2 1.0], rosenbrock, ...
   [-5.0 -5.0] , [5.0 5.0], 5 );
 computed = optimsimplex_getall ( s1 );
-assert_equal ( size(computed,1) , 5 );
-assert_equal ( size(computed,2) , 3 );
 expected = [
-  %T %T  
-  %T %T  
-  %T %T  
-  %T %T  
-  %T %T  
+    24.19999999999999573674   -1.1999999999999999555911    1.                        
+    3347.7382596240795464837  -2.8867513453587889671326    2.5604385416954755783081  
+    71189.511402687028748915  -4.9977886537089943885803  -1.69672908261418342590    
+    211.01779965627284241236    1.6538110421970486640930    1.2839178834110498428345  
+    10770.01508687966997968     3.497452358715236186981     1.857310198247432708740   
 ];
-assert_equal ( computed(1:5,2:3) < 5.0 , expected );
-assert_equal ( computed(1:5,2:3) > -5.0 , expected );
+assert_close ( computed , expected , %eps );
 s1 = optimsimplex_destroy ( s1 );
 
 //
@@ -97,20 +97,37 @@ endfunction
 mydude = tlist(["T_MYSTUFF","nb"]);
 mydude.nb = 0;
 s1 = optimsimplex_new ();
+rand("seed" , 0)
 [ s1 , mydude ] = optimsimplex_new ( "randbounds" , [-1.2 1.0], mycostf, ...
   [-5.0 -5.0] , [5.0 5.0], 5 , mydude );
 computed = optimsimplex_getall ( s1 );
-assert_equal ( size(computed,1) , 5 );
-assert_equal ( size(computed,2) , 3 );
-assert_equal ( mydude.nb , 5 );
 expected = [
-  %T %T  
-  %T %T  
-  %T %T  
-  %T %T  
-  %T %T  
-];
-assert_equal ( computed(1:5,2:3) < 5.0 , expected );
-assert_equal ( computed(1:5,2:3) > -5.0 , expected );
+    24.19999999999999573674   -1.1999999999999999555911    1.                        
+    3347.7382596240795464837  -2.8867513453587889671326    2.5604385416954755783081  
+    71189.511402687028748915  -4.9977886537089943885803  -1.69672908261418342590    
+    211.01779965627284241236    1.6538110421970486640930    1.2839178834110498428345  
+    10770.01508687966997968     3.497452358715236186981     1.857310198247432708740   
+]
+assert_equal ( mydude.nb , 5 );
 s1 = optimsimplex_destroy ( s1 );
+
+// Test unconsistent size of boundsmin
+x0 = [1 2];
+boundsmin = [-5 -5 -5];
+boundsmax = [5 5];
+cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_randbounds: The boundsmin vector is expected to have 2 columns, but current shape is 1 x 3";
+assert_equal ( computed , expected );
+
+// Test unconsistent size of boundsmax
+x0 = [1 2];
+boundsmin = [-5 -5];
+boundsmax = [5 5 5];
+cmd = "newobj = optimsimplex_new ( ""randbounds"" , x0 , rosenbrock , boundsmin , boundsmax );";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimsimplex_randbounds: The boundsmax vector is expected to have 2 columns, but current shape is 1 x 3";
+assert_equal ( computed , expected );
 

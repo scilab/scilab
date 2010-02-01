@@ -116,7 +116,15 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>inteiro (tempo inicial). kvect : vetor de inteiros</para>
+          <para>inteiro (tempo inicial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kvect</term>
+
+        <listitem>
+          <para>vetor de inteiros.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -391,7 +399,7 @@ ccode=['#include <math.h>'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //criando o arquivo C
-ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
+ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
 exec(TMPDIR+'/loader.sce') //linking incremental
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');

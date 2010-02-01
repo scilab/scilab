@@ -38,7 +38,7 @@ case 'set' then
   end
   while %t do
     [ok,nin,lab]=..
-        getvalue('Set MATCATV block parameters',..
+        scicos_getvalue('Set MATCATV block parameters',..
         ['Number od inputs'],..
          list('vec',1),label)
     if ~ok then break,end

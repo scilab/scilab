@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 1469 -->
 //
 // <-- Bugzilla URL -->

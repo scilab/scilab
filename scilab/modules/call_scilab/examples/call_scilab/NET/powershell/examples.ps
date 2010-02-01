@@ -1,0 +1,46 @@
+#------------------------------------------------------------------------------
+# Allan CORNET - DIGITEO - 2009
+# This file is released into the public domain
+#------------------------------------------------------------------------------
+# set PATH and SCI/bin
+$Scilab_bin_directory = "C:\Program Files\scilab-5.2\bin"
+$Env:PATH = $Env:PATH + ";" + $Scilab_bin_directory
+#------------------------------------------------------------------------------
+# load dll C# component
+$Fullpath ="$Scilab_bin_directory\DotNet-Component-Scilab.dll"
+[System.Reflection.Assembly]::LoadFile($Fullpath)
+#------------------------------------------------------------------------------
+# create a scilab object
+$objScilab = new-object dotnetscilab.Scilab
+#------------------------------------------------------------------------------
+# send a command to scilab
+$r = $objScilab.SendScilabJob("disp('Hello')")
+#------------------------------------------------------------------------------
+# read a variable (double) from scilab
+$r = $objScilab.SendScilabJob("A=ones(5,10)")
+$objScilab.SendScilabJob("disp(A)")
+$objScilab.readNamedMatrixOfDouble('A')
+$dimA = $objScilab.getNamedVarDimension('A')
+#------------------------------------------------------------------------------
+# read a variable (string) from scilab
+$objScilab.SendScilabJob("strA = 'test'")
+$objScilab.readNamedMatrixOfString('strA')
+$objScilab.getNamedVarDimension('strA')
+#------------------------------------------------------------------------------	
+# read a variable (string) from scilab
+$objScilab.SendScilabJob("strB =['test';'scilab']")
+$dimstrB = $objScilab.getNamedVarDimension('strB')
+$strB = $objScilab.readNamedMatrixOfString('strB')
+#------------------------------------------------------------------------------
+$matDouble = (5.,10.,5.,10.,5.,10.)
+$objScilab.createNamedMatrixOfDouble('matDouble',3,2,$matDouble)
+$objScilab.SendScilabJob("matDouble = matDouble * 2")
+$objScilab.SendScilabJob("disp(matDouble)")
+$matDouble = $objScilab.readNamedMatrixOfDouble('matDouble')
+#------------------------------------------------------------------------------
+$matString = ('test' , 'scilab' , 'from' , 'powershell')
+$objScilab.createNamedMatrixOfString('matString',2,2,$matString)
+$objScilab.SendScilabJob("matString = convstr(matString,'u')")
+$objScilab.SendScilabJob("disp(matString)")
+$matString = $objScilab.readNamedMatrixOfString('matString')
+#------------------------------------------------------------------------------

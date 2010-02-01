@@ -38,7 +38,7 @@ case 'set' then
   if size(label,'*')==1 then label(2)=sci2exp(1),end //compatiblity
   if size(label,'*')==2 then label(3)=sci2exp(1);end //compatibility
   while %t do
-    [ok,dtype,rule,np,exprs]=getvalue(['Set MATMUL parameter';
+    [ok,dtype,rule,np,exprs]=scicos_getvalue(['Set MATMUL parameter';
     				  'For the Multipication rule:';
 				  '    1= Matrix by Matrix';
 				  '    2= Matrix by Matrix element wise ';

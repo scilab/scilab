@@ -1,0 +1,5 @@
+<package name="org.scilab.modules.hdf5">
+    <object name="jhdf5load">
+        <method name="forceLoad" returnType="void" modifier="static"/>
+    </object>
+</package>

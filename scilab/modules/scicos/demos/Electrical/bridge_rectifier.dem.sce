@@ -6,5 +6,6 @@
 //
 
 thispath = get_absolute_file_path("bridge_rectifier.dem.sce");
-scicos_demonstration(thispath+"/Bridge_Rectifier.cosf");
+xcos(thispath+"/Bridge_Rectifier.cosf");
+
 clear thispath;

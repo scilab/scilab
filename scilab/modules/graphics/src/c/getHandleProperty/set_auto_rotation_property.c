@@ -30,31 +30,16 @@
 /*------------------------------------------------------------------------*/
 int set_auto_rotation_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "auto_rotation");
-    return SET_PROPERTY_ERROR ;
-  }
+	int b =  (int)FALSE;
+	if ( sciGetEntityType(pobj) != SCI_LABEL )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_rotation");
+		return SET_PROPERTY_ERROR ;
+	}
 
-  if ( sciGetEntityType(pobj) != SCI_LABEL )
-  {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"auto_rotation");
-    return SET_PROPERTY_ERROR ;
-  }
+	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_rotation");
+	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetAutoRotation( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetAutoRotation( pobj, FALSE ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_rotation", "on", "off");
-    return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_ERROR ;
+	return sciSetAutoRotation(pobj, b);
 }
 /*------------------------------------------------------------------------*/

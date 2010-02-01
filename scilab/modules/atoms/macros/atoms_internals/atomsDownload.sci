@@ -11,17 +11,9 @@
 
 function atomsDownload(url_in,file_out,md5sum)
 	
-	// Operating system detection
+	// Operating system detection + Architecture detection
 	// =========================================================================
-	
-	if ~MSDOS then
-		OSNAME = unix_g('uname');
-		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX  = (strcmpi(OSNAME,"linux") == 0);
-	else
-		MACOSX = %F;
-		LINUX  = %F;
-	end
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Check input parameters number
 	// =========================================================================
@@ -73,20 +65,144 @@ function atomsDownload(url_in,file_out,md5sum)
 		error(msprintf(gettext("%s: Wrong length for input argument #%d: A string which has 32-characters length expected.\n"),"atomsDownload",3));
 	end
 	
+	// curl, wget or httpdownload
+	// =========================================================================
+	
+	CURL         = %F;
+	WGET         = %F;
+	HTTPDOWNLOAD = %F;
+	
+	// Maybe the detection has already been done
+	
+	if     atomsGetConfig("downloadTool") == "wget" then
+		WGET=%T;
+	
+	elseif atomsGetConfig("downloadTool") == "curl" then
+		CURL=%T;
+	
+	elseif atomsGetConfig("downloadTool") == "httpdownload" & MSDOS then
+		HTTPDOWNLOAD=%T;
+	
+	else
+		
+		// Default values according to platform
+		if LINUX | SOLARIS | BSD then
+			
+			// Need to detect under Linux platforms
+			[rep,stat,err] = unix_g("wget --version");
+			
+			if stat == 0 then
+				WGET = %T;
+				atomsSetConfig("downloadTool","wget");
+			else
+				[rep,stat,err] = unix_g("curl --version");
+				if stat == 0 then
+					CURL = %T;
+					atomsSetConfig("downloadTool","curl");
+				else
+					error(msprintf(gettext("%s: Neither Wget or Curl found: Please install one of them\n"),"atomsDownload"));
+				end
+			end
+			
+		elseif MACOSX | MSDOS then
+			CURL = %T;
+		end
+		
+	end
+	
+	
 	// Build the command
 	// =========================================================================
 	
 	if regexp(url_in,"/^(http|ftp):\/\//","o") == 1 then
 		
-		if MSDOS then
-			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url_in + " -o " + file_out;
-		elseif MACOSX then
-			download_cmd = "curl -s "+url_in + " -o " + file_out;
+		proxy_host_arg = "";
+		proxy_user_arg = "";
+		timeout_arg    = "";
+		
+		// Timeout configuration
+		
+		if CURL then
+			// Curl
+			timeout_arg = " --connect-timeout ";
 		else
-			download_cmd = "wget "+url_in + " -O " + file_out;
+			// wget
+			timeout_arg = " --timeout=";
+		end
+		
+		timeout = string(strtod(atomsGetConfig("downloadTimeout")));
+		
+		if timeout<> "0" then
+			timeout_arg = timeout_arg + timeout;
+		else
+			timeout_arg = timeout_arg + "5";
+		end
+		
+		timeout_arg = timeout_arg + " ";
+		
+		// Proxy configuration
+		if (atomsGetConfig("useProxy") == "True") & (atomsGetConfig("proxyHost") <> "") then
+			
+			// Host
+			proxy_host = atomsGetConfig("proxyHost");
+			
+			// Port
+			if atomsGetConfig("proxyPort") <> "" then
+				proxy_host =  proxy_host + ":" + atomsGetConfig("proxyPort");
+			end
+			
+			// Host/port Argument
+			if CURL then
+				// Curl
+				proxy_host_arg = " --proxy "+ proxy_host;
+			else
+				// wget
+				proxy_host_arg = " http_proxy="""+proxy_host+""" ";
+			end
+			
+			// Username/Password
+			if and([atomsGetConfig("proxyUser");atomsGetConfig("proxyPassword")]<> "") then
+				if CURL then
+					// Curl
+					proxy_user_arg = " --proxy-user "+atomsGetConfig("proxyUser")+":"+atomsGetConfig("proxyPassword");
+				else
+					// wget
+					proxy_user_arg = " --proxy-user="""+atomsGetConfig("proxyUser")+""" --proxy-password="""+atomsGetConfig("proxyPassword")+"""";
+				end
+			end
+			
+		end
+		
+		if MSDOS & CURL then
+			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
+		
+		elseif CURL then
+			// curl
+			download_cmd = "curl "+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
+		else
+			// wget
+			download_cmd = proxy_host_arg+"wget"+proxy_user_arg+timeout_arg+" "+url_in + " -O " + file_out;
 		end
 		
 		[rep,stat,err] = unix_g(download_cmd);
+		
+		// Second try with httpdownload
+		
+		if ( HTTPDOWNLOAD | stat<>0 ) & MSDOS then
+			
+			imode = ilib_verbose();
+			ilib_verbose(0) ;
+			id    = link(SCI+"/bin/windows_tools.dll","httpdownload","c");
+			stat  = call("httpdownload", url_in, 1, "c", file_out, 2, "c", "out", [1,1], 3, "d");
+			ulink(id);
+			ilib_verbose(imode);
+			
+			// Save the parameter to always download with httpdownload
+			if stat == 0 then
+				atomsSetConfig("downloadTool","httpdownload");
+			end
+			
+		end
 		
 		if stat <> 0 then
 			mprintf(gettext("%s: The following file hasn''t been downloaded:\n"),"atomsDownload");
@@ -103,7 +219,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			url_pattern = "file://";
 		end
 		
-		file_in = pathconvert(part(url_in,length(url_pattern):length(url_in)),%F);
+		file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 		
 		if copyfile(file_in,file_out) <> 1 then
 			mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");

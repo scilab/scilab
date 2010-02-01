@@ -7,14 +7,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Add toolboxes to the list of packages that are automaticaly loaded at Scilab start
+// End user function
+
+// Add toolboxes to the list of packages that are automatically loaded at Scilab start
 // This function has an impact on the following files :
 //  -> ATOMSDIR/config
 
 function nbChanges = atomsSetConfig(field,value)
 	
-	rhs       = argn(2);
-	nbChanges = 0;
+	rhs                = argn(2);
+	nbChanges          = 0;
+	systemUpdateNeeded = %F;
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
@@ -49,7 +52,7 @@ function nbChanges = atomsSetConfig(field,value)
 	
 	// Define the path of the file that will record the change
 	// =========================================================================
-	atoms_directory =  pathconvert(SCIHOME+"/atoms");
+	atoms_directory =  atomsPath("system","user");
 	
 	// Does the atoms_directory exist, if not create it
 	// =========================================================================
@@ -72,6 +75,10 @@ function nbChanges = atomsSetConfig(field,value)
 			nbChanges = nbChanges + 1;
 		else
 			continue;
+		end
+		
+		if field(i) == "offLine" then
+			systemUpdateNeeded = %T;
 		end
 		
 		config_struct(field(i)) = value(i);
@@ -97,5 +104,12 @@ function nbChanges = atomsSetConfig(field,value)
 	end
 	
 	mputl(config_str,atoms_directory+"config");
+	
+	// SystemUpdate
+	// =========================================================================
+	
+	if systemUpdateNeeded then
+		atomsSystemUpdate();
+	end
 	
 endfunction

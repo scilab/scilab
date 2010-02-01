@@ -115,9 +115,13 @@ SCICOS_BLOCKS_IMPEXP void cscope_draw(scicos_block * block, ScopeMemory ** pScop
       /* scoAddPolylineLineStyle(*pScopeMemory,colors); */
     }
   scicos_free(colors);
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 
+  /* use only single buffering to be sure to draw on the screen */
+  if (scoGetPointerScopeWindow(*pScopeMemory) != NULL)
+    {
+      sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    }
+  
 }
 /*--------------------------------------------------------------------------*/ 
 /** \fn void cscope(scicos_block * block,int flag)
@@ -174,10 +178,13 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block,int flag)
 	    for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	       {
 	         pShortDraw  = scoGetPointerShortDraw(pScopeMemory,0,i);
-	         NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
-	         pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 if (pShortDraw)
+			 {
+				NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+				pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
+				pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
+				pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 }
   	       }
 	    // End of Cannot
 

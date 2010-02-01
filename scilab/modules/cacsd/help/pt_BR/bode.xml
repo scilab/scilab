@@ -45,7 +45,7 @@ bode(frq, repf [,comments])</synopsis>
         <term>sl</term>
 
         <listitem>
-          <para>: <literal>syslin</literal> lista (sistema linear SISO ou
+          <para> <literal>syslin</literal> lista (sistema linear SISO ou
           SIMO) em tempo contínuo ou discreto </para>
         </listitem>
       </varlistentry>

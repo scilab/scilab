@@ -7,9 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Renvoie les détails sur l'installation d'un package.
 
-function res = atomsGetInstalledDetails(name,version)
+function res = atomsGetInstalledDetails(packages,section)
 	
 	rhs = argn(2);
 	res = [];
@@ -17,45 +19,97 @@ function res = atomsGetInstalledDetails(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledStatus",2,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledDetails",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledStatus",1));
+	if type(packages) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
-	if type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledStatus",2));
+	if and(size(packages(1,:),"*") <> [2 3]) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
-	// Check input parameters dimensions
+	// Allusers/user management
 	// =========================================================================
 	
-	if or( size(name,"*") <> size(version,"*"))  then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetInstalledStatus",1,2));
+	if rhs < 2 then
+		section = "all";
+	
+	else
+		
+		// Process the 2nd input argument : section
+		// Allusers can be a boolean or equal to "user" or "allusers"
+		
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a single string expected.\n"),"atomsGetInstalledDetails",2));
+		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsGetInstalledDetails",2));
+		end
+		
+	end
+	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled();
+	installedpackages = atomsGetInstalled(section);
 	
 	// Loop on name
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
 		
 		// Filter on names
-		packages_filtered = packages( find(packages(:,1) == name(i)) , : );
+		packages_filtered = installedpackages( find(installedpackages(:,1) == packages(i,1)) , : );
+		
+		// Filter on section
+		if ~isempty(packages(i,3)) & packages(i,3)<>"all" then
+			packages_filtered = packages_filtered( find(packages_filtered(:,3) == packages(i,3)) , : );
+		end
 		
 		// Filter on versions
-		packages_filtered = packages_filtered( find(packages_filtered(:,2) == version(i)) , : );
+		
+		//  + The packaging version is mentioned
+		if ~ isempty(strindex(packages(i,2),"-")) then
+			packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
+		
+		//  + The packaging version is not mentioned
+		else
+			
+			candidates        = packages_filtered;
+			packages_filtered = [];
+			
+			// Loop on installed versions
+			for j=1:size(candidates(:,2),"*")
+				
+				candidate_version = candidates(j,2);
+				
+				if ~ isempty(strindex(candidate_version,"-")) then
+					candidate_version = part(candidate_version,1:strindex(candidate_version,"-")-1);
+				end
+				
+				if packages(i,2) == candidate_version then
+					packages_filtered = [ packages_filtered ; candidates(j,:) ];
+				end
+				
+			end
+			
+		end
 		
 		if ~ isempty(packages_filtered) then
-			res = [ res ; packages_filtered ];
+			res = [ res ; packages_filtered(1,:) ];
 		else
 			res = [ res ; "" "" "" "" "" ];
 		end

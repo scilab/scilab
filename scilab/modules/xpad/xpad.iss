@@ -14,7 +14,7 @@
 ;
 #define XPAD "xpad"
 ;
-Source: bin\xpad.dll; DestDir: {app}\bin; Components: {#COMPN_XPAD}
+Source: bin\scixpad.dll; DestDir: {app}\bin; Components: {#COMPN_XPAD}
 ;
 Source: modules\{#XPAD}\jar\org.scilab.modules.xpad.jar; DestDir: {app}\modules\{#XPAD}\jar; Components: {#COMPN_XPAD}
 ;
@@ -44,6 +44,6 @@ Source: modules\{#XPAD}\help\addchapter.sce; DestDir: {app}\modules\{#XPAD}\help
 ;
 ;Source: modules\{#XPAD}\demos\*.*; DestDir: {app}\modules\{#XPAD}\demos; Flags: recursesubdirs; Components: {#COMPN_XPAD}
 ;
-;Source: modules\{#XPAD}\tests\*.*; DestDir: {app}\modules\{#XPAD}\tests; Flags: recursesubdirs; Components: {#COMPN_XPAD} and {#COMPN_TESTS}
+Source: modules\{#XPAD}\tests\*.*; DestDir: {app}\modules\{#XPAD}\tests; Flags: recursesubdirs; Components: {#COMPN_XPAD} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

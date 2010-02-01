@@ -21,10 +21,17 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-
+#include "localization.h"
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 int get_auto_resize_property( sciPointObj * pobj )
 {
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+		return -1 ;
+	}
+
   if ( sciGetResize( pobj ) )
   {
      return sciReturnString( "on" ) ;

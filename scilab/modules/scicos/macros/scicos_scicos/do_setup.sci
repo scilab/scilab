@@ -34,7 +34,7 @@ else
 end
 
 while %t do
-  [ok,tf,scale,atol,rtol,ttol,deltat,solver,hmax]=getvalue('Set parameters',[
+  [ok,tf,scale,atol,rtol,ttol,deltat,solver,hmax]=scicos_getvalue('Set parameters',[
       'Final integration time';
       'Realtime scaling';
       'Integrator absolute tolerance';

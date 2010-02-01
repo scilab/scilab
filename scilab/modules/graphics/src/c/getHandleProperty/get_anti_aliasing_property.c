@@ -28,7 +28,7 @@ int get_anti_aliasing_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s undefined for this object.\n"), "axes_size") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"anti_aliasing");
     return -1;
   }
 
@@ -50,6 +50,8 @@ int get_anti_aliasing_property( sciPointObj * pobj )
 		break;
 		return sciReturnString("16x");
 	default:
+    Scierror(999, _("Wrong value for '%s' property.\n"),"anti_aliasing");
+    return -1 ;
 		break;
 	}
 

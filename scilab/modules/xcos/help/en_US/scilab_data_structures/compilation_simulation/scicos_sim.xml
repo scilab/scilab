@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_sim">
+  <refnamediv>
+    <refname>scicos_sim</refname>
+    <refpurpose>Define a sim structure</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_sim">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="sim_scicos_sim">
+    <title>sim</title>
+    <para>
+ Scilab typed list of type scs. It contains 
+ static arrays coming from the result of the
+ compilation. That arrays does not evolve
+ during the simulation.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Size : 33.
+</para>
+    <para>
+Type : scilab tlist.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">funs</emphasis>
+        </para>
+        <para> A list containing names of the computational functions or scilab functions.</para>
+        <para> 
+Size : number of blocks.
+</para>
+        <para>
+Type : list of strings and/or scilab function.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">xptr</emphasis>
+        </para>
+        <para> A vector pointer to the continuous time state register x. The continuous-time state of block i is state.x(sim.xptr(i):sim.xptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zptr</emphasis>
+        </para>
+        <para> A vector pointer to the discrete time state register z. The discrete-time state of block i is state.z(sim.zptr(i):sim.zptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ozptr</emphasis>
+        </para>
+        <para> A vector pointer to the object discrete state register oz. The object discrete state of block i is state.oz(sim.ozptr(i):sim.ozptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zcptr</emphasis>
+        </para>
+        <para> A vector pointer to the zero-crossing surfaces.</para>
+        <para> register. That vector gives by block the used number of the zero-crossing.</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">inpptr</emphasis>
+        </para>
+        <para> (sim.inpptr(i+1)-sim.inpptr(i)) gives the number of regular input ports of the i block.</para>
+        <para> inpptr(i) points to the beginning of ith block inputs within the indirection table inplnk.</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outptr</emphasis>
+        </para>
+        <para> (sim.outptr(i+1)-sim.outptr(i)) gives the number of regular ouyput ports of the i block.</para>
+        <para> outptr(i) points to the beginning of ith block outputs within the indirection table outlnk.</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">inplnk</emphasis>
+        </para>
+        <para> (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j)) is the index of the link connected to the jth input port of the ith block where j goes from 1 to (cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i)).</para>
+        <para> 
+Size : total number of regular input port.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outlnk</emphasis>
+        </para>
+        <para> (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j)) is the index of the link connected to the jth output port of the ith block where j goes from 1 to (cpr.sim.outptr(i+1)-cpr.sim.outptr(i)).</para>
+        <para> 
+Size : total number of regular output port.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">rpar</emphasis>
+        </para>
+        <para> Vector of real parameters that is obtained by concatenating the real parameters registers of all the blocks.</para>
+        <para> 
+Size : total number of real parameters.
+</para>
+        <para>
+Type : column vector of real numbers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">rpptr</emphasis>
+        </para>
+        <para> A vector pointer to the real parameters register rpar. The real parameters of block i are sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ipar</emphasis>
+        </para>
+        <para> Vector of integer parameters that is obtained by concatenating the integer parameters registers of all the blocks.</para>
+        <para> 
+Size : total number of integer parameters.
+</para>
+        <para>
+Type : column vector of integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ipptr</emphasis>
+        </para>
+        <para> A vector pointer to the integer parameters register ipar. The integer parameters of block i are sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of real numbers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">opar</emphasis>
+        </para>
+        <para> List of object parameters that is obtained by concatenating the list of object parameters of all the blocks.</para>
+        <para> 
+Size : total number of object parameters.
+</para>
+        <para>
+Type : list of scilab objects.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">opptr</emphasis>
+        </para>
+        <para> A vector pointer to the object parameters list opar. The object parameters of block i are sim.opar(sim.opptr(i):sim.opptr(i+1)-1).</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">clkptr</emphasis>
+        </para>
+        <para> A vector pointer to output activation ports.</para>
+        <para> (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1) gives the number of output event ports of the block i.</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ordptr</emphasis>
+        </para>
+        <para> A vector pointer to ordclk designating the part of ordclk corresponding to a given activation.</para>
+        <para> (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1) points to the region within ordclk indicates the number of blocks activated by the output event ports numbered i.</para>
+        <para> 
+Size : number of sources of activation + 1.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">execlk</emphasis>
+        </para>
+        <para> Unused.</para>
+        <para> 
+Size : -
+          Type : matrix of real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ordclk</emphasis>
+        </para>
+        <para> A matrix associated to blocks activated by output activation ports. The first column contains the block number, and the second, the event code by which the block should be called.</para>
+        <para> 
+Size : total number of blocks summed by source of activations.
+</para>
+        <para>
+Type : matrix of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">cord</emphasis>
+        </para>
+        <para> A matrix associated to always active blocks.</para>
+        <para> The first column contains the block number, and the second, the event code by which the block should be called.</para>
+        <para> 
+Size : ncord.
+</para>
+        <para>
+Type : matrix of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">oord</emphasis>
+        </para>
+        <para> Subset of cord. Blocks of that matrix have outputs which affect computation of continuous state derivatives.</para>
+        <para> 
+Size : noord.
+</para>
+        <para>
+Type : matrix of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zord</emphasis>
+        </para>
+        <para> Subset of zord. Blocks of that matrix have outputs which affect computation of zero-crossing surfaces.</para>
+        <para> 
+Size : nzord.
+</para>
+        <para>
+Type : matrix of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">critev</emphasis>
+        </para>
+        <para> A vector of size equal to the number of activations and containing zeros and ones. The value one indicates that the activation is critical in the sense that the continuous-time solver must be cold restarted.</para>
+        <para> 
+Size : number of source of activation.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nb</emphasis>
+        </para>
+        <para> Number of blocks. Note that the number of blocks may differ from the original number of blocks in the diagram because c_pass2 may duplicate some conditional blocks.</para>
+        <para> 
+Size : 1.
+</para>
+        <para>
+Type : integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ztyp</emphasis>
+        </para>
+        <para> A vector of size equal to the number of blocks.</para>
+        <para> A 1 entry indicates that the block may have zero-crossings, even if it doesn't in the context of the diagram. Usually not used by the simulator.</para>
+        <para> 
+Size : number of blocks.
+</para>
+        <para>
+Type : column vector of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nblk</emphasis>
+        </para>
+        <para> Not used. Set to nb.</para>
+        <para> 
+Size : 1
+          Type : integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ndcblk</emphasis>
+        </para>
+        <para> Not used.</para>
+        <para> 
+Size : -
+          Type : integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">subscr</emphasis>
+        </para>
+        <para> Not used.</para>
+        <para> 
+Size : 0
+          Type : empty real.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">funtyp</emphasis>
+        </para>
+        <para> A vector of size equal to the number of blocks indicating the type of the computational function of the block. Block type can be 0 through 5.</para>
+        <para> Currently only type 4 (C language) and type 5 (Scilab language) computational functions should be used. But older blocks can also be used.</para>
+        <para> 
+Size : number of blocks.
+</para>
+        <para>
+Type : column vector of integer.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">iord</emphasis>
+        </para>
+        <para> A matrix associated to blocks that must be activated at the start of the simulation. This includes blocks inheriting from constant blocks and always active blocks.</para>
+        <para> 
+Size : niord.
+</para>
+        <para>
+Type : matrix of integers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">labels</emphasis>
+        </para>
+        <para> A string vector of size equal to the number of blocks containing block labels.</para>
+        <para> 
+Size : numbers of blocks.
+</para>
+        <para>
+Type : column vector of strings.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">modptr</emphasis>
+        </para>
+        <para> A vector pointer to the block modes.</para>
+        <para> 
+Size : number of blocks + 1.
+</para>
+        <para>
+Type : column vector of integer.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_scicos_sim">
+    <title>File content</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_sim.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

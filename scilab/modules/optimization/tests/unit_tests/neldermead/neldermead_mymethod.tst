@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -92,6 +93,13 @@ endfunction
 //   inequality constraints.
 //
 function this = neldermead_constraints ( this )
+  // Check settings correspond to algo
+  [ this.optbase , hascons ] = optimbase_hasconstraints ( this.optbase );
+  if ( ~hascons ) then
+      errmsg = msprintf(gettext("%s: Problem has no constraints, but variable algorithm is designed for them."), "neldermead_constraints")
+      error(errmsg)
+  end
+  verbose = optimbase_cget ( this.optbase , "-verbose" )
   //
   // Order the vertices for the first time
   //
@@ -133,7 +141,6 @@ function this = neldermead_constraints ( this )
     //
     xcoords = optimsimplex_getallx ( simplex )
     this = neldermead_storehistory ( this , n , flow , xlow , xcoords );
-    deltafv = abs(optimsimplex_deltafvmax ( simplex ));
     currentfopt = flow;
     previousxopt = currentxopt;
     currentxopt = xlow;
@@ -141,20 +148,23 @@ function this = neldermead_constraints ( this )
     currentcenter = optimsimplex_center ( simplex );
     oldfvmean = newfvmean;
     newfvmean = optimsimplex_fvmean ( simplex );
-    totaliter = optimbase_get ( this.optbase , "-iterations" );
-    funevals = optimbase_get ( this.optbase , "-funevals" );
-    ssize = optimsimplex_size ( simplex )
-    this = neldermead_log (this,sprintf("================================================================="));
-    this = neldermead_log (this,sprintf("Iteration #%d (total = %d)",iter,totaliter));
-    this = neldermead_log (this,sprintf("Function Eval #%d",funevals));
-    this = neldermead_log (this,sprintf("Xopt : [%s]",_strvec(xlow)));
-    this = neldermead_log (this,sprintf("Fopt : %e",flow));
-    this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
-    this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
-    this = neldermead_log (this,sprintf("Size : %e",ssize));
-    str = optimsimplex_tostring ( simplex )
-    for i = 1:nbve
-      this = neldermead_log (this,str(i));
+    if ( verbose == 1 ) then
+      deltafv = abs(optimsimplex_deltafvmax ( simplex ));
+      totaliter = optimbase_get ( this.optbase , "-iterations" );
+      funevals = optimbase_get ( this.optbase , "-funevals" );
+      ssize = optimsimplex_size ( simplex )
+      this = neldermead_log (this,sprintf("================================================================="));
+      this = neldermead_log (this,sprintf("Iteration #%d (total = %d)",iter,totaliter));
+      this = neldermead_log (this,sprintf("Function Eval #%d",funevals));
+      this = neldermead_log (this,sprintf("Xopt : [%s]",_strvec(xlow)));
+      this = neldermead_log (this,sprintf("Fopt : %e",flow));
+      this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
+      this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
+      this = neldermead_log (this,sprintf("Size : %e",ssize));
+      str = optimsimplex_tostring ( simplex )
+      for i = 1:nbve
+        this = neldermead_log (this,str(i));
+      end
     end
     neldermead_outputcmd ( this, "iter" , simplex , step )
 
@@ -162,24 +172,32 @@ function this = neldermead_constraints ( this )
     // Update termination flag
     //
     if ( iter > 1 ) then
-      [this , terminate , status] = neldermead_termination (this , ...
+      [ this , terminate , status] = neldermead_termination (this , ...
         fvinitial , oldfvmean , newfvmean , previouscenter , currentcenter , simplex );
       if ( terminate ) then
-        this = neldermead_log (this,sprintf("Terminate with status : %s",status));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("Terminate with status : %s",status));
+        end
         break
       end
     end
     //
     // Compute xbar, center of better vertices
     //
-    this = neldermead_log (this,sprintf("Reflect"));
+    if ( verbose == 1 ) then
+      this = neldermead_log (this,sprintf("Reflect"));
+    end
     xbar = optimsimplex_xbar ( simplex );
-    this = neldermead_log (this,sprintf("xbar=[%s]" , _strvec(xbar)));
+    if ( verbose == 1 ) then
+      this = neldermead_log (this,sprintf("xbar=[%s]" , _strvec(xbar)));
+    end
     //
     // Reflect the worst point with respect to center
     //
     xr = neldermead_interpolate ( xbar , xhigh , this.rho );
-    this = neldermead_log (this,sprintf("xr=[%s]" , _strvec(xr)));
+    if ( verbose == 1 ) then
+      this = neldermead_log (this,sprintf("xr=[%s]" , _strvec(xr)));
+    end
     // Adjust point to satisfy bounds and nonlinear inequality constraints
     if ( hasbounds | nbnlc > 0 ) then
       [ this , status , xr ] = _scaleinboundsandcons ( this , xr , xbar );
@@ -189,14 +207,20 @@ function this = neldermead_constraints ( this )
       end
     end
     [ this.optbase , fr , cr , index ] = optimbase_function ( this.optbase , xr , 2 );
-    this = neldermead_log (this,sprintf("xr=[%s], f(xr)=%f", _strvec(xr) , fr));
+    if ( verbose == 1 ) then
+      this = neldermead_log (this,sprintf("xr=[%s], f(xr)=%f", _strvec(xr) , fr));
+    end
     if ( fr >= flow & fr < fn ) then
-      this = neldermead_log (this,sprintf("  > Perform reflection"));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("  > Perform reflection"));
+      end
       simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
       step = "reflection";
     elseif ( fr < flow ) then
       // Expand
-      this = neldermead_log (this,sprintf("Expand"));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("Expand"));
+      end
       xe = neldermead_interpolate ( xbar , xhigh , this.rho*this.chi );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
@@ -207,19 +231,27 @@ function this = neldermead_constraints ( this )
         end
       end
       [ this.optbase , fe , ce , index ] = optimbase_function ( this.optbase , xe , 2 );
-      this = neldermead_log (this,sprintf("xe=[%s], f(xe)=%f", strcat(string(xe)," ") , fe ));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("xe=[%s], f(xe)=%f", strcat(string(xe)," ") , fe ));
+      end
       if (fe < fr) then
-        this = neldermead_log (this,sprintf("  > Perform Expansion"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform Expansion"));
+        end
         simplex = optimsimplex_setve ( simplex , ihigh , fe , xe )
         step = "expansion";
       else
-        this = neldermead_log (this,sprintf("  > Perform reflection"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform reflection"));
+        end
         simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
         step = "reflection";
       end
     elseif ( fr >= fn & fr < fhigh ) then
       // Outside contraction
-      this = neldermead_log (this,sprintf("Contract - outside"));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("Contract - outside"));
+      end
       xc = neldermead_interpolate ( xbar , xhigh , this.rho*this.gamma );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
@@ -230,21 +262,29 @@ function this = neldermead_constraints ( this )
         end
       end
       [ this.optbase , fc , cc , index ] = optimbase_function ( this.optbase , xc , 2 );
-      this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
+      end
       if ( fc <= fr ) then
-        this = neldermead_log (this,sprintf("  > Perform Outside Contraction"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform Outside Contraction"));
+        end
         simplex = optimsimplex_setve ( simplex , ihigh , fc , xc )
         step = "outsidecontraction";
       else
         //  Shrink
-        this = neldermead_log (this,sprintf("  > Perform Shrink"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform Shrink"));
+        end
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this );
         step = "shrink";
       end
     else
       // ( fr >= fn & fr >= fhigh )  
       // Inside contraction
-      this = neldermead_log (this,sprintf("Contract - inside"));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("Contract - inside"));
+      end
       xc = neldermead_interpolate ( xbar , xhigh , -this.gamma );
       // Adjust point to satisfy bounds and nonlinear inequality constraints
       if ( hasbounds | nbnlc > 0 ) then
@@ -255,14 +295,20 @@ function this = neldermead_constraints ( this )
         end
       end
       [ this.optbase , fc , cc , index ] = optimbase_function ( this.optbase , xc , 2 );
-      this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
+      if ( verbose == 1 ) then
+        this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
+      end
       if ( fc < fhigh ) then
-        this = neldermead_log (this,sprintf("  > Perform Inside Contraction"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform Inside Contraction"));
+        end
         simplex = optimsimplex_setve ( simplex , ihigh , fc , xc )
         step = "insidecontraction";
       else
         //  Shrink
-        this = neldermead_log (this,sprintf("  > Perform Shrink"));
+        if ( verbose == 1 ) then
+          this = neldermead_log (this,sprintf("  > Perform Shrink"));
+        end
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this )
         step = "shrink";
       end
@@ -270,7 +316,9 @@ function this = neldermead_constraints ( this )
     //
     // Sort simplex
     //
-    this = neldermead_log (this,sprintf("Sort"));
+    if ( verbose == 1 ) then
+      this = neldermead_log (this,sprintf("Sort"));
+    end
     simplex  = optimsimplex_sort ( simplex );
   end
   this.optbase = optimbase_set ( this.optbase , "-xopt" , xlow.' );
@@ -356,8 +404,6 @@ nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-nbineqconst",3);
-//nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-method","mine");
 nm = neldermead_configure(nm,"-mymethod",neldermead_constraints);
 nm = neldermead_search(nm);
@@ -371,3 +417,4 @@ assert_close ( fopt , -44.0 , 1e-5 );
 status = neldermead_get(nm,"-status");
 assert_equal ( status , "tolsize" );
 nm = neldermead_destroy(nm);
+

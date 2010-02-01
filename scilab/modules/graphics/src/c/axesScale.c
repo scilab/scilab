@@ -287,9 +287,23 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
 /**
  * Unzoom a single subwindow
  */
-void sciUnzoomSubwin(sciPointObj * subwin)
+void sciUnzoomSubwin(sciPointObj * pSubwin)
 {
-  javaUnzoomSubwin(subwin);
+  // We directly do a call to unzoomSubwin instead off path through the java code
+  // See bug 4979
+  // javaUnzoomSubwin(pSubwin);
+
+  sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
+
+  if( pSubwin == NULL || parentFigure == NULL )
+  {
+    return;
+  }
+
+  startFigureDataWriting(parentFigure);
+    unzoomSubwin(pSubwin);
+  endFigureDataWriting(parentFigure);
+
 }
 /*------------------------------------------------------------------------------*/
 void unzoomSubwin(sciPointObj * pSubwin)

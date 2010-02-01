@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="HowToAccessAMatrix_1"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>How to access a matrix</refname>
+
+    <refpurpose>How to access a matrix using the C gateway
+    functions</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+
+    <para>The goal is to get a matrix of doubles send to a function written in
+    C.</para>
+
+    <para>For this, we will wrote a C gateway function in which we will
+    retrieve the matrix, we will perform some simple steps in this C
+    function:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>First, we will get an access to the matrix in the Scilab
+        memory</para>
+      </listitem>
+
+      <listitem>
+        <para>We will perform some simple operations on the matrix (in this
+        example, we will multiply by 2 each elements of the matrix)</para>
+      </listitem>
+
+      <listitem>
+        <para>We will return the result to Scilab</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This example is available in the directory
+    SCI/modules/core/examples/ex1.</para>
+  </refsection>
+
+  <refsection>
+    <title>The C function</title>
+
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+
+int sci_multiply_by_two(char * fname)
+{
+  int m_in_var, n_in_var, l_in_var;
+  int m_out_var, n_out_var, l_out_var;
+  int i_row, j_col;
+  double * pMatrix = NULL;
+
+  // First, access to the input variable (a matrix of doubles)
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m_in_var, &n_in_var, &l_in_var);
+
+  // Create the returned variable (a matrix of doubles)
+  m_out_var = m_in_var;
+  n_out_var = n_in_var;
+  CreateVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m_out_var, &n_out_var, &l_out_var);
+
+  pMatrix = stk(l_in_var);
+
+  // Perform some simple operations on the matrix
+  for(i_row=0; i_row<m_in_var; i_row++)
+    {
+      for(j_col=0; j_col<n_in_var; j_col++)
+        {
+          pMatrix[i_row + j_col * m_out_var] = 2 * pMatrix[i_row + j_col * m_in_var];
+        }
+    }
+
+  // Return the output variable
+  LhsVar(1) = 2;
+
+  return 0;
+}
+ ]]></programlisting>
+
+    <para>This file must be saved as "multiply_by_two.c".</para>
+
+    <para>The main thing to highlight is that, to build a C gateway function,
+    we need to include the header stack-c.h. In this header, we find the
+    prototypes and macros of the main C gateway functions.</para>
+
+    <para>To be able to build and link such a C function to scilab, we need to
+    write a Scilab script which will compile this C function and then create a
+    loader script which will link the C function to a Scilab function.</para>
+  </refsection>
+
+  <refsection>
+    <title>The builder script</title>
+
+    <programlisting role="example"><![CDATA[ 
+// This is the builder.sce 
+// must be run from this directory 
+
+lines(0);
+
+ilib_name  = 'lib_multiply_by_two';
+
+files = ['multiply_by_two.c'];
+
+libs  = [];
+
+table =['multiply_by_two', 'sci_multiply_by_two'];
+
+ldflags = "";
+cflags  = "";
+fflags  = "";
+
+ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
+ ]]></programlisting>
+
+    <para>This file must be saved as "builder.sce".</para>
+
+    <para>This script will tell Scilab which files must be compiled (here,
+    it's multiply_by_two.c), what will be the name of the shared library
+    (here, it's lib_multiply_by_two) and which C symbol will be linked to a
+    Scilab function (here, we will link the sci_multiply_by_two C symbol to
+    the Scilab function "multiply_by_two").</para>
+
+    <para>To build this function, we just need to to:</para>
+
+    <programlisting role = ""><![CDATA[  
+exec builder.sce;
+ ]]></programlisting>
+
+    <para>Now we are able to test our new C function. First, let's load this
+    new function in scilab:</para>
+
+    <programlisting role = ""><![CDATA[ 
+exec loader.sce; 
+ ]]></programlisting>
+
+    <para>The script loader.sce is normally automatically built by
+    builder.sce.</para>
+  </refsection>
+
+  <refsection>
+    <title>Testing our new function</title>
+
+    <para>We now write a simple example to test our new function.</para>
+
+    <programlisting role="example"><![CDATA[  
+A = [1 2 3 4 5; 6 7 8 9 10; 11 12 13 14 15];
+
+B = multiply_by_two(A);
+
+disp(B);
+ ]]></programlisting>
+
+    <para>The script must be saved as "test.sce".</para>
+
+    <para>Let's run our scripts and see what is the result:</para>
+
+    <programlisting role = ""><![CDATA[  
+-->exec builder.sce;
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy multiply_by_two.c to TMPDIR
+   ilib_gen_Make: Copy lib_multiply_by_two.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+ 
+-->exec loader.sce;
+Shared archive loaded.
+Link done.
+ 
+-->exec test.sce;
+ 
+    2.     4.     6.     8.     10.  
+    12.    14.    16.    18.    20.  
+    22.    24.    26.    28.    30.  
+--> 
+ ]]></programlisting>
+
+    <para>This simple function has produced a new matrix which corresponds to
+    the matrix transmitted as an input argument and for which each element of
+    the matrix has been multiplied by 2.</para>
+  </refsection>
+
+  <refsection>
+    <title>Rebuilding a gateway function</title>
+
+    <para>Let's imagine that our gateway function has already been build and
+    we would like to make some changes in our function (multiply by 3 instead
+    of 2).</para>
+
+    <para>How do we perform such a changes without restarting Scilab ?</para>
+
+    <para>First, we need to list all the dynamic libraries which has been
+    loaded into Scilab. The can be done using the link('show')
+    function:</para>
+
+    <programlisting role = ""><![CDATA[ 
+-->link('show')
+Number of entry points 1.
+Shared libraries :
+[ 0 ] : 1 libraries.
+Entry point lib_multiply_by_two in shared library 0.
+ ans  =
+ 
+    0.  
+ ]]></programlisting>
+
+    <para>Here, in our current Scilab session, only 1 dynamic library has been
+    loaded. This library has a reference number. For our library, it's "0".
+    Now that we know the reference number of our library, we are able
+    to:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>unload this library (using the function ulink(0) - 0 is the
+        reference number of our library)</para>
+      </listitem>
+
+      <listitem>
+        <para>perform some modification in the source code of our C gateway
+        function (replace multiply by 2 by 3)</para>
+      </listitem>
+
+      <listitem>
+        <para>rebuild the C gateway function (exec builder.sce;)</para>
+      </listitem>
+
+      <listitem>
+        <para>load the modified C gateway function into scilab (exec
+        loader.sce;)</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This is what is done is the following example:</para>
+
+    <programlisting role = ""><![CDATA[  
+-->ulink(0)
+ 
+-->exec builder.sce;
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy multiply_by_two.c to TMPDIR
+   ilib_gen_Make: Copy lib_multiply_by_two.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+ 
+-->exec loader.sce;
+Shared archive loaded.
+Link done.
+ 
+-->exec test.sce;
+ 
+    3.     6.     9.     12.    15.  
+    18.    21.    24.    27.    30.  
+    33.    36.    39.    42.    45.  
+  ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="GetRhsVar">GetRhsVar</link></member>
+
+      <member><link linkend="ScilabCTypes">Scilab C Types</link></member>
+
+      <member><link linkend="CreateVar">CreateVar</link></member>
+
+      <member><link linkend="LhsVar">LhsVar</link></member>
+
+      <member><link linkend="stk">stk</link></member>
+
+      <member><link linkend="ilib_build">ilib_build</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="ulink">ulink</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

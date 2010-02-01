@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
@@ -205,6 +206,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"

@@ -5843,7 +5843,7 @@ That function doesn't really differs from all other scilab function : one can us
 instructions of the scilab language inside that function to do the computation.
 
 Such a function must be written in a file with extension .sci, must be loaded inside scilab by the
-common loading scilab function ({\tt exec}, {\tt getf}, {\tt getd}, {\tt genlib},...) and must have
+common loading scilab function ({\tt exec}, {\tt getd}, {\tt genlib},...) and must have
 two right hand side arguments and one left hand side argument, as the following calling sequence :
 
 {\tt

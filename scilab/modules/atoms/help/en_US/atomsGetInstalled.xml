@@ -21,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-			installed = atomsGetInstalled(allusers)
+			installed = atomsGetInstalled(section)
 		</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -30,6 +30,7 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
+			
       <varlistentry>
         <term>installed</term>
         <listitem>
@@ -44,10 +45,11 @@
 							</para>
             </listitem>
             <listitem>
-              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
+              <para>
+								<literal>3rd column</literal> : allusers/user, this parameter tell if
 								the external module has been installed for all users or only for the
 								current user.
-								</para>
+							</para>
             </listitem>
             <listitem>
               <para>
@@ -64,9 +66,39 @@
       </varlistentry>
 			
 			<varlistentry>
-        <term>allusers</term>
-        <para>If this parameter is FALSE, only the list of modules installed in the "user" zone will be returned</para>
-      </varlistentry>
+        <term>section</term>
+        <listitem>
+          <para>
+						This argument filter the output list.
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"all"</literal>: atomsGetInstalled() lists external
+								modules installed in both "user" and "allusers" sections.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: atomsGetInstalled() only lists
+								external modules	installed in the "allusers" section.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: atomsGetInstalled() only lists
+								external modules	installed in the "user" section.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						The default value is "all".
+					</para>
+        </listitem>
+			</varlistentry>
 			
     </variablelist>
   </refsection>

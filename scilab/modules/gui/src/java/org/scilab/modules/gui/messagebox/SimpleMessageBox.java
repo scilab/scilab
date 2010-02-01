@@ -10,6 +10,8 @@
  *
  */package org.scilab.modules.gui.messagebox;
 
+import org.scilab.modules.gui.tab.Tab;
+
  /**
  * Interface for SimpleMessageBox the object associated to Scilab MessageBoxes
  * @author Vincent COUVERT
@@ -135,4 +137,10 @@ public interface SimpleMessageBox {
 	 * @param name the name of the icon
 	 */
 	void setIcon(String name);
+	
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param parent tab to be set as parent
+	 */
+	void setParentForLocation(Tab parent);
 }

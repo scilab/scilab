@@ -27,7 +27,7 @@ for k=1:size(varargin)
     if varargin(k)==part('unique',1:length(varargin(k))) then
       uniqueflag=%t
     else
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expexted.\n"),"lex_sort",k+1,"unique"));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"lex_sort",k+1,"unique"));
     end
   else
     error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"lex_sort",k+1));

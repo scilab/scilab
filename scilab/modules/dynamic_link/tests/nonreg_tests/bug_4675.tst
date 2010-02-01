@@ -27,19 +27,19 @@ c_code = ['#include <stack-c.h>'
    '  double dOut = Fin;'
    '  int m_out = 1;'
    '  int n_out = 1;'
-   '  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);"
+   '  createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);"
    '  LhsVar(1) = 1;'
    '  return 0;'
    '}'];
-mputl(c_code,'bug_4685.c');
+mputl(c_code,'bug_4675.c');
 
 test_table = [];
 for i=1:999,
   test_table = [ test_table; 'fun'+string(i), 'sci_funxxx'];
 end
 
-files =['bug_4685.c'];
-ilib_build('test_bug_4685',test_table,files,[]);
+files =['bug_4675.c'];
+ilib_build('test_bug_4675',test_table,files,[]);
 
 // load the shared library 
 exec('loader.sce');
@@ -59,6 +59,6 @@ for i=1:1024,
   test_table = [ test_table; 'fun'+string(i), 'sci_funxxx'];
 end
 
-ierr = execstr("ilib_build(''test_bug_4685'',test_table,files,[]);","errcatch");
+ierr = execstr("ilib_build(''test_bug_4675'',test_table,files,[]);","errcatch");
 if ierr <> 999 then pause,end
 

@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,nclock,clrs,win,wpos,wdim,per,exprs]=getvalue(..
+    [ok,nclock,clrs,win,wpos,wdim,per,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Number of event inputs';
 	'colors c (>0) or mark (<0)';

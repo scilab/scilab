@@ -38,7 +38,7 @@ case 'set' then
   model=arg1.model;
   if size(exprs,1)==2 then exprs=[exprs;sci2exp(1)]; end
   while %t do
-    [ok,rule,zcr,Datatype,exprs]=getvalue('Set parameters',..
+    [ok,rule,zcr,Datatype,exprs]=scicos_getvalue('Set parameters',..
 	['Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)';..
 	 'Use zero crossing (no: 0), (yes: 1)'
          'Datatype (1=double 3=int32 ...)'],..

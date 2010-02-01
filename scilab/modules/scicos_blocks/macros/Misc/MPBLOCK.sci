@@ -327,7 +327,7 @@ case 'set' then
 
        //generate main getvalue cmd
        //warning here lab_2 is a list in input and a string in output
-       getvalue_txt = '[ok,'+lhs_txt+',lab_2]=getvalue(''Set parameters values'',['+..
+       getvalue_txt = '[ok,'+lhs_txt+',lab_2]=scicos_getvalue(''Set parameters values'',['+..
                       lab_txt+'],'+..
                       'list('+rhs_txt+'),lab_2)'
 
@@ -461,5 +461,7 @@ case 'define' then
   x.graphics.out_implicit=outtype
 end
 endfunction
- 
- 
+
+
+ 
+ 

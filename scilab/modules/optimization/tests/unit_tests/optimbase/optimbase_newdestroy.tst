@@ -7,6 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
+
 
 //
 // assert_close --
@@ -224,12 +228,12 @@ opt = optimbase_incriter ( opt );
 iter = optimbase_get ( opt , "-iterations");
 assert_equal ( iter , 1 );
 // Check history storing with xopt
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-xopt" , [1.0 1.0]' );
 x0 = optimbase_histget ( opt , 1 , "-xopt" );
 assert_close ( x0 , [1.0 1.0]', %eps );
 // Check history storing with fopt
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 opt = optimbase_histset ( opt , 1 , "-fopt" , 1.0 );
 f0 = optimbase_histget ( opt , 1 , "-fopt" );
 assert_close ( f0 , 1.0, %eps );
@@ -266,7 +270,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimbase_configure: Unknown value foo for -tolxmethod option";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 //
 // Test wrong -tolfunmethod
@@ -274,7 +278,7 @@ assert_equal ( computed , expected );
 cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "optimbase_configure: Unknown value foo for -tolfunmethod";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 // Cleanup
 opt = optimbase_destroy(opt);
@@ -333,7 +337,7 @@ computed = lasterror();
 expected = "optimbase_get: History disabled ; enable -storehistory option.";
 assert_equal ( computed , expected );
 // Test optimbase_function when there is no function
-cmd = "[ opt , f , index ] = optimbase_function ( opt , [] , 1 )";
+cmd = "[ opt , f , index ] = optimbase_function ( opt , [] , %t )";
 execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "optimbase_function: Empty function (use -function option).";
@@ -345,7 +349,7 @@ computed = lasterror();
 expected = "optimbase_histget: History disabled ; turn on -storehistory option.";
 assert_equal ( computed , expected );
 // Test optimbase_histget ( this , iter , key ) with negative iteration
-opt = optimbase_configure ( opt , "-storehistory" , 1 );
+opt = optimbase_configure ( opt , "-storehistory" , %t );
 cmd = "optimbase_histget ( opt , -1 , ''-xopt'' )";
 execstr(cmd,"errcatch");
 computed = lasterror();

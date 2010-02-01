@@ -37,7 +37,7 @@ level-int=debug()</synopsis>
         <link linkend="ScilabEval">ScilabEval</link>
       </member>
       <member>
-        <link linkend="scipad">scipad</link>
+        <link linkend="editor">editor</link>
       </member>
     </simplelist>
   </refsection>

@@ -1,0 +1,225 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-26 17:49+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"Non è possibile caricare la libreria dinamica (libjava) della JVM.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+msgstr ""
+"\n"
+"Errore: non è possibile restituire l'ambiente (JNIEnv_SCILAB) di Java in "
+"Scilab.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
+msgstr ""
+"\n"
+"Errore: non è possibile restituire l'ambiente (jvm_SCILAB) di Java in "
+"Scilab: controllare se la JVM è stata caricata da Scilab prima di chiamare "
+"questa funzione.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+"\n"
+"Impossibile leggere %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+"\n"
+"Versione di JNI non corretta (necessita almeno JDK 1.4).\n"
+
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
+msgstr ""
+"\n"
+"Errore di JVM in AttachCurrebtThread: non è possibile agganciarsi al thread "
+"corrente.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab non può creare la Java Main-Class per Scilab (non è stata trovata la "
+"classe main di Scilab.Controllare se sono disponibili dei pacchetti di "
+"Scilab o di altri).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab non può aprire la libreria della JVM.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Errore strano: C'è una chiamata dal Java, ma non è stato in grado di trovare "
+"la JVM già esistente.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr ""
+"%s: Non è possibile aggiungere un URL al classloader di sistema: %s.\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr ""
+"%s: Non è possibile aggiungere un percorso a java.library.path: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d o #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+msgid "Console"
+msgstr "Terminale"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Non è possibile accedere alla classe Main di Scilab\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr ""
+"Non è possibile accedere al costruttore della classe Main di Scilab:\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Non è possibile creare una classe main di Scilab. Errore:\n"
+
+msgid "Error"
+msgstr "Errore"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Errore il file classpath %s non è valido (la codifica non è \"utf-8),trovata "
+"la codifica \"%s'\"\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Errore: il file di percorso %s non è valido (la codifica non è \"utf-8\"), "
+"trovata la codifica \"%s\"\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Errore durante la creazione della JVM: %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Errore: non è possibile analizzare il file %s.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"Errore: il file di configurazione %s non è valido (la codifica non è "
+"\"%s'\"),trovata la codifica \"%s\".\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Errore: non è possibile analizzare il file %s\n"
+
+msgid "JNI version error"
+msgstr "Errore della versione di JNI"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: argomenti non validi"
+
+msgid "JNI: not enough memory"
+msgstr "JNI: memoria insufficiente"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "L'interfaccia della JVM è disabilitata in modalità -nogui o -nwni.\n"
+
+msgid "Scilab Java module not installed.\n"
+msgstr "Il modulo Java di Scilab non è installato.\n"
+
+#, c-format
+msgid ""
+"Some problems during the loading of the Java libraries occured.\n"
+"This could lead to inconsistent behaviours.\n"
+"Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+"Si sono verificati degli errori durante il caricamento delle librerie Java.\n"
+"Questo potrebbe condurre a dei comportamenti incoerenti.\n"
+"Controllare SCI/etc/classpath.xml.\n"
+
+msgid "Thread detached from the VM"
+msgstr "Thread sganciato dalla VM"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Codice di errore non definito nel JNI. È uno strano problema"
+
+msgid "Unknown JNI error"
+msgstr "Errore di JNI sconosciuto"
+
+msgid "VM already created"
+msgstr "VM già creata"
+
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Attenzione: non è possibile trovare il pacchetto Java \"%s'\".\n"
+
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr ""
+"Attenzione: non è possibile trovare il file %s di dichiarazione della "
+"classpath.\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Formato sbagliato per %s.\n"
