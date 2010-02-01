@@ -26,43 +26,43 @@ public class testScilabList {
 
 	@Test
     public void testEmptyList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
-	ScilabList data = new ScilabList();
+		ScilabList data = new ScilabList();
 	
-	int fileId = H5Write.createFile(tempDir + "/emptyListFromJava.h5");
-	H5Write.writeInDataSet(fileId, "EmptyList", data);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/emptyListFromJava.h5");
+		H5Write.writeInDataSet(fileId, "EmptyList", data);
+		H5Write.closeFile(fileId);
 	
-	data = new ScilabList();
-	fileId = H5Read.openFile(tempDir + "/emptyListFromJava.h5");
-	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_LIST);
-	H5Read.readDataFromFile(fileId, data);
-	assert data.isEmpty() == true;
+		data = new ScilabList();
+		fileId = H5Read.openFile(tempDir + "/emptyListFromJava.h5");
+		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_LIST);
+		H5Read.readDataFromFile(fileId, data);
+		assert data.isEmpty() == true;
     }
     
 	@Test
     public void testStringList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
-	ScilabList data = new ScilabList();
-	data.add(new ScilabString("hello"));
-	String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
-	data.add(new ScilabString(stringData));
+		ScilabList data = new ScilabList();
+		data.add(new ScilabString("hello"));
+		String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
+		data.add(new ScilabString(stringData));
 	
-	int fileId = H5Write.createFile(tempDir + "/stringListFromJava.h5");
-	H5Write.writeInDataSet(fileId, "StringList", data);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/stringListFromJava.h5");
+		H5Write.writeInDataSet(fileId, "StringList", data);
+		H5Write.closeFile(fileId);
     }
     
 	@Test
     public void testDoubleList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
-	ScilabList data = new ScilabList();
-	data.add(new ScilabDouble(2));
-	data.add(new ScilabDouble(51));
-	data.add(new ScilabString("hello"));
-	String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
-	data.add(new ScilabString(stringData));
+		ScilabList data = new ScilabList();
+		data.add(new ScilabDouble(2));
+		data.add(new ScilabDouble(51));
+		data.add(new ScilabString("hello"));
+		String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
+		data.add(new ScilabString(stringData));
 	
-	int fileId = H5Write.createFile(tempDir + "/doubleListFromJava.h5");
-	H5Write.writeInDataSet(fileId, "DoubleList", data);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/doubleListFromJava.h5");
+		H5Write.writeInDataSet(fileId, "DoubleList", data);
+		H5Write.closeFile(fileId);
     }
 
 }

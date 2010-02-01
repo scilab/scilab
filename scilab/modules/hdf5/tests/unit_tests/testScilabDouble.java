@@ -28,77 +28,77 @@ public class testScilabDouble {
 
 	@Test
     public void emptyMatrix() throws NullPointerException, HDF5Exception {
-	ScilabDouble scilabEmptyDouble = new ScilabDouble();
+		ScilabDouble scilabEmptyDouble = new ScilabDouble();
 
-	int fileId = H5Write.createFile(tempDir + "/emptyDoubleFromJava.h5");
-	H5Write.writeInDataSet(fileId, "EmptyDouble", scilabEmptyDouble);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/emptyDoubleFromJava.h5");
+		H5Write.writeInDataSet(fileId, "EmptyDouble", scilabEmptyDouble);
+		H5Write.closeFile(fileId);
 
-	ScilabDouble data = new ScilabDouble();
-	fileId = H5Read.openFile(tempDir + "/emptyDoubleFromJava.h5");
-	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
-	H5Read.readDataFromFile(fileId, data);
-	assert data.isEmpty()==true;
+		ScilabDouble data = new ScilabDouble();
+		fileId = H5Read.openFile(tempDir + "/emptyDoubleFromJava.h5");
+		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		H5Read.readDataFromFile(fileId, data);
+		assert data.isEmpty()==true;
     }
 
 	@Test
     public void testRealMatrix() throws NullPointerException, HDF5Exception {
-	double [][]realPart = new double[ROWS][COLS];
+		double [][]realPart = new double[ROWS][COLS];
 
-	for (int i = 0 ; i < ROWS ; ++i) {
-	    for (int j = 0 ; j < COLS ; ++j) {
-		realPart[i][j] = Math.random();
-	    }
-	}
+		for (int i = 0 ; i < ROWS ; ++i) {
+			for (int j = 0 ; j < COLS ; ++j) {
+				realPart[i][j] = Math.random();
+			}
+		}
 
-	ScilabDouble scilabRealDouble = new ScilabDouble(realPart);
+		ScilabDouble scilabRealDouble = new ScilabDouble(realPart);
 
-	int fileId = H5Write.createFile(tempDir + "/realDoubleFromJava.h5");
-	H5Write.writeInDataSet(fileId, "RealDouble", scilabRealDouble);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/realDoubleFromJava.h5");
+		H5Write.writeInDataSet(fileId, "RealDouble", scilabRealDouble);
+		H5Write.closeFile(fileId);
 
-	ScilabDouble data = new ScilabDouble();
+		ScilabDouble data = new ScilabDouble();
 
-	fileId = H5Read.openFile(tempDir + "/realDoubleFromJava.h5");
-	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
-	H5Read.readDataFromFile(fileId, data);
-	assert data.isReal()==true;
-	for (int i = 0 ; i < ROWS ; ++i) {
-	    for (int j = 0 ; j < COLS ; ++j) {
-			assert realPart[i][j] == data.getRealPart()[i][j];
-	    }
-	}
+		fileId = H5Read.openFile(tempDir + "/realDoubleFromJava.h5");
+		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		H5Read.readDataFromFile(fileId, data);
+		assert data.isReal()==true;
+		for (int i = 0 ; i < ROWS ; ++i) {
+			for (int j = 0 ; j < COLS ; ++j) {
+				assert realPart[i][j] == data.getRealPart()[i][j];
+			}
+		}
     }
 
 	@Test
     public void testComplexMatrix() throws NullPointerException, HDF5Exception {
-	double [][]realPart = new double[ROWS][COLS];
-	double [][]imagPart = new double[ROWS][COLS];
+		double [][]realPart = new double[ROWS][COLS];
+		double [][]imagPart = new double[ROWS][COLS];
 
-	for (int i = 0 ; i < ROWS ; ++i) {
-	    for (int j = 0 ; j < COLS ; ++j) {
-		realPart[i][j] = Math.random();
-		imagPart[i][j] = Math.random();
-	    }
-	}
+		for (int i = 0 ; i < ROWS ; ++i) {
+			for (int j = 0 ; j < COLS ; ++j) {
+				realPart[i][j] = Math.random();
+				imagPart[i][j] = Math.random();
+			}
+		}
 
-	ScilabDouble scilabComplexDouble = new ScilabDouble(realPart, imagPart);
+		ScilabDouble scilabComplexDouble = new ScilabDouble(realPart, imagPart);
 
-	int fileId = H5Write.createFile(tempDir + "/complexDoubleFromJava.h5");
-	H5Write.writeInDataSet(fileId, "ComplexDouble", scilabComplexDouble);
-	H5Write.closeFile(fileId);
+		int fileId = H5Write.createFile(tempDir + "/complexDoubleFromJava.h5");
+		H5Write.writeInDataSet(fileId, "ComplexDouble", scilabComplexDouble);
+		H5Write.closeFile(fileId);
 
-	ScilabDouble data = new ScilabDouble();
+		ScilabDouble data = new ScilabDouble();
 
-	fileId = H5Read.openFile(tempDir + "/complexDoubleFromJava.h5");
-	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
-	H5Read.readDataFromFile(fileId, data);
-	for (int i = 0 ; i < ROWS ; ++i) {
-	    for (int j = 0 ; j < COLS ; ++j) {
-			assert realPart[i][j] == data.getRealPart()[i][j];
-			assert imagPart[i][j] == data.getImaginaryPart()[i][j];
-	    }
-	}
+		fileId = H5Read.openFile(tempDir + "/complexDoubleFromJava.h5");
+		assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+		H5Read.readDataFromFile(fileId, data);
+		for (int i = 0 ; i < ROWS ; ++i) {
+			for (int j = 0 ; j < COLS ; ++j) {
+				assert realPart[i][j] == data.getRealPart()[i][j];
+				assert imagPart[i][j] == data.getImaginaryPart()[i][j];
+			}
+		}
     }
 
 }
