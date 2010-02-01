@@ -68,6 +68,9 @@ Xcos:
 * bug 5627 fixed - It was not possible to place a port in a non-conventionnal
                    side.
 
+* bug 5640 fixed - When launching Xcos: Toolbar and menubar didn't appear 
+                   before the focus is on the Xcos window.
+
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
 

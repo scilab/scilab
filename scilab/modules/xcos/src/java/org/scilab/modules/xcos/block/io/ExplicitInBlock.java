@@ -41,7 +41,6 @@ public final class ExplicitInBlock extends ContextUpdate {
 	 */
 	protected ExplicitInBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
