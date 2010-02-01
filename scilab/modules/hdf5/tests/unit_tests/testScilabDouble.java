@@ -24,17 +24,18 @@ public class testScilabDouble {
 
     public final static int ROWS = 123;
     public final static int COLS = 456;
+	private final static String tempDir = System.getProperty("java.io.tmpdir");
 
 	@Test
     public void emptyMatrix() throws NullPointerException, HDF5Exception {
 	ScilabDouble scilabEmptyDouble = new ScilabDouble();
 
-	int fileId = H5Write.createFile("/tmp/emptyDoubleFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/emptyDoubleFromJava.h5");
 	H5Write.writeInDataSet(fileId, "EmptyDouble", scilabEmptyDouble);
 	H5Write.closeFile(fileId);
 
 	ScilabDouble data = new ScilabDouble();
-	fileId = H5Read.openFile("/tmp/emptyDoubleFromJava.h5");
+	fileId = H5Read.openFile(tempDir + "/emptyDoubleFromJava.h5");
 	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.isEmpty()==true;
@@ -52,13 +53,13 @@ public class testScilabDouble {
 
 	ScilabDouble scilabRealDouble = new ScilabDouble(realPart);
 
-	int fileId = H5Write.createFile("/tmp/realDoubleFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/realDoubleFromJava.h5");
 	H5Write.writeInDataSet(fileId, "RealDouble", scilabRealDouble);
 	H5Write.closeFile(fileId);
 
 	ScilabDouble data = new ScilabDouble();
 
-	fileId = H5Read.openFile("/tmp/realDoubleFromJava.h5");
+	fileId = H5Read.openFile(tempDir + "/realDoubleFromJava.h5");
 	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.isReal()==true;
@@ -83,13 +84,13 @@ public class testScilabDouble {
 
 	ScilabDouble scilabComplexDouble = new ScilabDouble(realPart, imagPart);
 
-	int fileId = H5Write.createFile("/tmp/complexDoubleFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/complexDoubleFromJava.h5");
 	H5Write.writeInDataSet(fileId, "ComplexDouble", scilabComplexDouble);
 	H5Write.closeFile(fileId);
 
 	ScilabDouble data = new ScilabDouble();
 
-	fileId = H5Read.openFile("/tmp/complexDoubleFromJava.h5");
+	fileId = H5Read.openFile(tempDir + "/complexDoubleFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_DOUBLE;
 	H5Read.readDataFromFile(fileId, data);
 	for (int i = 0 ; i < ROWS ; ++i) {

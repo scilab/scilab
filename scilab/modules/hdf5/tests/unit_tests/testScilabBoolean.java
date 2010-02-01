@@ -22,17 +22,18 @@ import org.scilab.modules.hdf5.write.H5Write;
 public class testScilabBoolean {
 
     public final static boolean myBoolean = true;
+	private final static String tempDir = System.getProperty("java.io.tmpdir");
 
      @Test  
     public void testSingleBoolean() throws NullPointerException, HDF5Exception {
 	ScilabBoolean scilabSingleboolean = new ScilabBoolean(myBoolean);
 
-	int fileId = H5Write.createFile("/tmp/singleBooleanFromJava.h5");
+	int fileId = H5Write.createFile(tempDir+"/singleBooleanFromJava.h5");
 	H5Write.writeInDataSet(fileId, "SingleBoolean", scilabSingleboolean);
 	H5Write.closeFile(fileId);
 
 	ScilabBoolean data = new ScilabBoolean();
-	fileId = H5Read.openFile("/tmp/singleBooleanFromJava.h5");
+	fileId = H5Read.openFile(tempDir+"/singleBooleanFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_BOOLEAN;
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == 1;
@@ -53,12 +54,12 @@ public class testScilabBoolean {
 
 	ScilabBoolean scilabMatrixboolean = new ScilabBoolean(dataBooleanMatix);
 
-	int fileId = H5Write.createFile("/tmp/matrixbooleanFromJava.h5");
+	int fileId = H5Write.createFile(tempDir+"/matrixbooleanFromJava.h5");
 	H5Write.writeInDataSet(fileId, "Matrixboolean", scilabMatrixboolean);
 	H5Write.closeFile(fileId);
 
 	ScilabBoolean data = new ScilabBoolean();
-	fileId = H5Read.openFile("/tmp/matrixbooleanFromJava.h5");
+	fileId = H5Read.openFile(tempDir+"/matrixbooleanFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_BOOLEAN;
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == ROWS;

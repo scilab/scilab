@@ -22,17 +22,20 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.write.H5Write;
 
-public class testScilabList extends TestCase {
+public class testScilabList {
+	private final static String tempDir = System.getProperty("java.io.tmpdir");
+
+	@Test
     public void testEmptyList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
 	ScilabList data = new ScilabList();
 	
-	int fileId = H5Write.createFile("/tmp/emptyListFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/emptyListFromJava.h5");
 	H5Write.writeInDataSet(fileId, "EmptyList", data);
 	H5Write.closeFile(fileId);
 	
 	data = new ScilabList();
-	fileId = H5Read.openFile("/tmp/emptyListFromJava.h5");
-	Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_LIST);
+	fileId = H5Read.openFile(tempDir + "/emptyListFromJava.h5");
+	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_LIST;
 	H5Read.readDataFromFile(fileId, data);
 	Assert.assertEquals(data.isEmpty(), true);
     }
@@ -43,7 +46,7 @@ public class testScilabList extends TestCase {
 	String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
 	data.add(new ScilabString(stringData));
 	
-	int fileId = H5Write.createFile("/tmp/stringListFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/stringListFromJava.h5");
 	H5Write.writeInDataSet(fileId, "StringList", data);
 	H5Write.closeFile(fileId);
     }
@@ -56,7 +59,7 @@ public class testScilabList extends TestCase {
 	String[][] stringData = {{"i","am","a"},{"string", "matrix", "!!!"}};
 	data.add(new ScilabString(stringData));
 	
-	int fileId = H5Write.createFile("/tmp/doubleListFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/doubleListFromJava.h5");
 	H5Write.writeInDataSet(fileId, "DoubleList", data);
 	H5Write.closeFile(fileId);
     }

@@ -21,7 +21,8 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 
-public class testScilabGraph extends TestCase {
+public class testScilabGraph {
+	private final static String tempDir = System.getProperty("java.io.tmpdir");
 
     public static void main(String[] args) throws NullPointerException, HDF5Exception {
 	testScilabGraph test = new testScilabGraph();
@@ -158,12 +159,12 @@ public class testScilabGraph extends TestCase {
 	GRAPH.add(EDGES);
 
 
-	int fileId = H5Write.createFile("/tmp/fakeGraph.h5");
+	int fileId = H5Write.createFile(tempDir + "/fakeGraph.h5");
 	H5Write.writeInDataSet(fileId, "FakeGraph", GRAPH);
 	H5Write.closeFile(fileId);
 	
 	ScilabTList data = new ScilabTList();
-	fileId = H5Read.openFile("/tmp/fakeGraph.h5");
+	fileId = H5Read.openFile(tempDir + "/fakeGraph.h5");
 	H5Read.readDataFromFile(fileId, data);
 	H5Write.closeFile(fileId);
     }
