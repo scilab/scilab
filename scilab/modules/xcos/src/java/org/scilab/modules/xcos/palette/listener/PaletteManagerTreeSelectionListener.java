@@ -22,9 +22,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.PaletteConfigurator;
+import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
-import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -71,9 +71,9 @@ public class PaletteManagerTreeSelectionListener implements
 			
 			nodeView = panel;
 		} else {
-			assert node.getUserObject() instanceof XcosComponent;
+			assert node.getUserObject() instanceof PaletteComponent;
 			// This is a loaded diagram as Palette
-			nodeView = (XcosComponent) node.getUserObject();
+			nodeView = (PaletteComponent) node.getUserObject();
 		}
 		} else {
 			assert !node.isLeaf();

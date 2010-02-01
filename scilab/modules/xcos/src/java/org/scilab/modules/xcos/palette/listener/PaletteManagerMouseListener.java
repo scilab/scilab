@@ -33,8 +33,8 @@ import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
 import org.scilab.modules.xcos.palette.model.PaletteModel;
+import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
-import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -75,8 +75,8 @@ public class PaletteManagerMouseListener implements MouseListener {
 							.getLastPathComponent());
 
 					// remove palette from ConfigXcosManager
-					if (currentNode.getUserObject() instanceof XcosComponent) {
-						XcosComponent comp = (XcosComponent) currentNode
+					if (currentNode.getUserObject() instanceof PaletteComponent) {
+						PaletteComponent comp = (PaletteComponent) currentNode
 								.getUserObject();
 						if (comp.getGraph() instanceof PaletteDiagram) {
 							PaletteDiagram diagram = (PaletteDiagram) comp
