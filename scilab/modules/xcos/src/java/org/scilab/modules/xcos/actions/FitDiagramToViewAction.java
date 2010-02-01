@@ -18,7 +18,7 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosComponent;
+import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -66,7 +66,7 @@ public final class FitDiagramToViewAction extends DefaultAction {
 		/* Save the configuration */
 		double oldZoomFactor = ((XcosDiagram) getGraph(null)).getAsComponent().getZoomFactor();
 		
-		((XcosComponent) getGraph(null).getAsComponent()).zoomAndCenterToCells();
+		((PaletteComponent) getGraph(null).getAsComponent()).zoomAndCenterToCells();
 		
 		/* Restore previous configuration */
 		((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(oldZoomFactor);

@@ -61,6 +61,9 @@ import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -75,8 +78,10 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
 public class BasicBlock extends XcosUIDObject {
-
-    private static final long serialVersionUID = 2189690915516168262L;
+	private static final long serialVersionUID = 2189690915516168262L;
+	private static final String INTERNAL_FILE_PREFIX = "xcos";
+	private static final String INTERNAL_FILE_EXTENSION = ".h5";
+	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
@@ -169,6 +174,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	public BasicBlock() {
 		super();
+		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
 	}
@@ -602,7 +608,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
+	    tempInput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR")));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -648,7 +654,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv(XcosConstants.TMPDIR)));
+	    tempOutput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR")));
 	    tempOutput.deleteOnExit();
 	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -670,7 +676,7 @@ public class BasicBlock extends XcosUIDObject {
 
 	// Write context
 	try {
-	    File tempContext = File.createTempFile("xcos", ".h5");
+	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION);
 	    tempContext.deleteOnExit();
 	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
@@ -710,10 +716,10 @@ public class BasicBlock extends XcosUIDObject {
 	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
 	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
-	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Output ports : " + BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Control ports : " + BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Command ports : " + BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + XcosConstants.HTML_NEWLINE);
 	}
 
 	result.append("x : " + getGeometry().getX() + XcosConstants.HTML_NEWLINE);

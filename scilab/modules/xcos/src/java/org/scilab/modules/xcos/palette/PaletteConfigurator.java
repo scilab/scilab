@@ -15,9 +15,9 @@ package org.scilab.modules.xcos.palette;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.model.PaletteModel;
+import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorView;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
-import org.scilab.modules.xcos.utils.XcosComponent;
 
 /**
  * A rawPalette configurator is used to configure any rawPalette state. It can
@@ -79,8 +79,8 @@ public class PaletteConfigurator {
 			((Palette) palette).getModel().setEnable(enable);
 			ConfigXcosManager.saveDefaultPalettes(PaletteModel.values());
 		} else {
-			assert palette instanceof XcosComponent;
-			PaletteDiagram diagram = (PaletteDiagram) ((XcosComponent) palette).getGraph();
+			assert palette instanceof PaletteComponent;
+			PaletteDiagram diagram = (PaletteDiagram) ((PaletteComponent) palette).getGraph();
 			String fileName = diagram.getFileName();
 			if (enable) {
 				PaletteManager.getInstance().getModel().addUserDefinedNode(diagram);

@@ -42,6 +42,10 @@ public class ScilabConstants extends mxConstants {
      */
     public static final String HTML_NEWLINE = "<br>";
     
+    /* Events */
+    /** Name of the edit event */
+    public static final String EVENT_CHANGE_EDIT = "edit";
+    
     /* Scilab */
     
     /**

@@ -41,7 +41,6 @@ public final class ImplicitInBlock extends ContextUpdate {
 	 */
 	protected ImplicitInBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
