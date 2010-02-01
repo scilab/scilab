@@ -30,7 +30,7 @@
 	<property name="src.dir"  location="src/java/" />
 
 	<!-- Where we can find the test sources -->
-	<property name="src.test.dir"  location="tests/unit_tests/" />
+	<property name="src.test.dir"  location="tests/java/" />
 	
 	<!-- Check style definitions -->
 	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
@@ -60,7 +60,7 @@
 		<pathelement location="${qdox.jar}"/>
 	</path>
   
-	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+
 
 	<path id="compile.classpath">
 	
@@ -156,10 +156,12 @@
 	</target>
 
 	<target name="test" depends="compile-test">
-	    <testng verbose="2">
+	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
 		      <path refid="unittest.classpath" />
-			  <path refid="compile.classpath" />
+		      <path refid="compile.classpath" />
+		      <pathelement location="${classes.test.dir}" />
 		    </classpath>
     			 <classfileset dir="${build.test.dir}" includes="**/*.class"/>
 	   </testng>
@@ -196,7 +198,7 @@
 	</target>
 	
 	<!-- Compile test sources -->
-	<target name="compile-test" description="Build tests" depends="compile">
+	<target name="compile-test" description="Build tests" depends="jar">
 		<javac
 			srcdir="${src.test.dir}" 
 			destdir="${classes.test.dir}" 

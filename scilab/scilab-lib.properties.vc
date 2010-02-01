@@ -22,13 +22,13 @@ jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.7.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
-testng.jar=${thirdparty.dir}/unittest/testng.jar
+testng.jar=${thirdparty.dir}/testng.jar
 
-qdox.jar=${thirdparty.dir}/unittest/qdox.jar
+qdox.jar=${thirdparty.dir}/qdox.jar
 
-bsh.jar=${thirdparty.dir}/unittest/bsh.jar
+bsh.jar=${thirdparty.dir}/bsh.jar
 
-junit.jar=${thirdparty.dir}/unittest/junit.jar
+junit.jar=${thirdparty.dir}/junit.jar
 
 ; To build the export through the Java
 avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar

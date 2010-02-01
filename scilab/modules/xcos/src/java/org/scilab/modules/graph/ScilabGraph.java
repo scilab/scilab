@@ -41,7 +41,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * The default component of a scilab graph
 	 */
-	private ScilabComponent component;
+	protected ScilabComponent component;
 	
 	private final mxUndoManager undoManager = new mxUndoManager();
 
