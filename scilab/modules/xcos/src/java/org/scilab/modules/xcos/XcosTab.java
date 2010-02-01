@@ -251,7 +251,7 @@ public class XcosTab extends ScilabTab {
 		    .getDims();
 	    Position mainPosition = new Position(palPosition.getX()
 		    + palSize.getWidth(), palPosition.getY());
-	    tab.getAsSimpleTab().setPosition(mainPosition);
+	    tab.getParentWindow().setPosition(mainPosition);
 	}
 	
 	/*
@@ -447,6 +447,9 @@ public class XcosTab extends ScilabTab {
 
     }
 
+    /**
+     * Instantiate all the subcomponents of this Tab.
+     */
     private void initComponents() {
     	Window window = ScilabWindow.createWindow();
 		window.setDims(WIN_SIZE);
@@ -467,7 +470,6 @@ public class XcosTab extends ScilabTab {
     
     /**
      * Create the windows menu bar
-     * @return menu bar
      */
     private MenuBar createMenuBar() {
 	List<File> recentFiles = ConfigXcosManager
@@ -750,13 +752,6 @@ public class XcosTab extends ScilabTab {
 	outline.addTab(outlineTab);
 	outline.setVisible(false);
 	outlineTab.setVisible(false);
-    }
-
-    /**
-     * @return the associated parent window
-     */
-    public Window getParentWindow() {
-	return null;
     }
 
     /**
