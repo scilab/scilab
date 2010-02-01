@@ -118,6 +118,28 @@ if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
 
 atomsRemove("toolbox_5","allusers");
 
+// Install the toolbox 7 (Local package)
+// =============================================================================
+
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","user");
+
+if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+
+atomsRemove("toolbox_7","allusers");
+
+if atomsIsInstalled("toolbox_7","allusers")  then pause, end
+if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
+atomsRemove("toolbox_7","user");
+
+if atomsIsInstalled("toolbox_7","user")      then pause, end
+if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
+
+atomsRemove("toolbox_7","allusers");
+
 // Restore original values
 // =============================================================================
 atomsSetConfig("autoloadAddAfterInstall",config_autoload);
