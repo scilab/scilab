@@ -89,8 +89,8 @@ public final class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-	// After investigations, the 1pt of scicos is equivalent to a 4 real pt
-	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0])*4);
+	// After investigations, the 1pt of scicos is equivalent to a 10 real pt
+	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]) * 10);
     }
     
     /**
