@@ -60,7 +60,7 @@
 		<pathelement location="${qdox.jar}"/>
 	</path>
   
-	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+
 
 	<path id="compile.classpath">
 	
@@ -156,7 +156,8 @@
 	</target>
 
 	<target name="test" depends="compile-test">
-	    <testng verbose="2">
+	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+	    <testng verbose="2"  haltonfailure="true">
 		  <classpath>
 		      <path refid="unittest.classpath" />
 			  <path refid="compile.classpath" />
