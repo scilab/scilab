@@ -58,21 +58,9 @@ function result = atomsRemove(packages,section)
 		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
-	// Operating system detection
+	// Operating system detection + Architecture detection
 	// =========================================================================
-	
-	if ~MSDOS then
-		OSNAME  = unix_g("uname");
-		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
-		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
-		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
-	else
-		MACOSX  = %F;
-		LINUX   = %F;
-		SOLARIS = %F;
-		BSD     = %F;
-	end
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Verbose Mode ?
 	// =========================================================================
