@@ -154,7 +154,7 @@
 				
 				<tr>
 					<td>autoloadAddAfterInstall</td>
-					<td>Automaticaly add a module to the list of module to autoload at Scilab start</td>
+					<td>Automatically add a module to the list of module to autoload at Scilab start</td>
 					<td><emphasis role="strong">True</emphasis>/False</td>
 				</tr>
 			</informaltable>

@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // mesh : colors of hidden meshs (to compare with scilab 4.1.2)
-// also clipping too strict make oustside line disappear.
+// also clipping too strict make outside line disappear.
 
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;

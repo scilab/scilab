@@ -53,7 +53,7 @@
   <add as="CommandPort" extend="Port">
     <add as="strokeColor" value="red"/>
     <add as="fillColor" value="red"/>
-    <add as="direction" value="south"/>
+    <add as="rotation" value="90"/>
     <add as="type" value="Command"/>
   </add>
 
@@ -61,7 +61,7 @@
   <add as="ControlPort" extend="Port">
     <add as="strokeColor" value="red"/>
     <add as="fillColor" value="red"/>
-    <add as="direction" value="south"/>
+    <add as="rotation" value="90"/>
     <add as="type" value="Control"/>
   </add>
 
@@ -69,14 +69,14 @@
   <add as="ExplicitInputPort" extend="Port">
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="black"/>
-    <add as="direction" value="east"/>
+    <add as="rotation" value="0"/>
   </add>
 
   <!-- Explicit Output -->
   <add as="ExplicitOutputPort" extend="Port">
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="black"/>
-    <add as="direction" value="east"/>
+    <add as="rotation" value="0"/>
   </add>
 
   <!-- Implicit Input -->

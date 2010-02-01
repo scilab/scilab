@@ -18,9 +18,17 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.2.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.7.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
+
+testng.jar=${thirdparty.dir}/testng.jar
+
+qdox.jar=${thirdparty.dir}/qdox.jar
+
+bsh.jar=${thirdparty.dir}/bsh.jar
+
+junit.jar=${thirdparty.dir}/junit.jar
 
 ; To build the export through the Java
 avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar

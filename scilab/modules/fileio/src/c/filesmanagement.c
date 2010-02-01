@@ -100,7 +100,32 @@ void SetFileModeOpenedInScilab(int Id,int mode)
 /*--------------------------------------------------------------------------*/
 int GetFileTypeOpenedInScilab(int Id)
 {
-	return ScilabFileList[Id].fttype;
+	if ( (Id > 0) && (Id < GetMaximumFileOpenedInScilab()) )
+	{
+		return ScilabFileList[Id].fttype;
+	}
+	else
+	{
+		return 0;
+	}
+}
+/*--------------------------------------------------------------------------*/
+char *GetFileTypeOpenedInScilabAsString(int Id)
+{
+	char *ret = NULL;
+	switch (GetFileTypeOpenedInScilab(Id))
+	{
+		case 1:
+			ret = strdup("F");
+			break;
+		case 2:
+			ret = strdup("C");
+			break;
+		case 0: default:
+			ret = strdup("Error");
+			break;
+	}
+	return ret;
 }
 /*--------------------------------------------------------------------------*/
 void SetFileTypeOpenedInScilab(int Id,int Type)
@@ -110,7 +135,19 @@ void SetFileTypeOpenedInScilab(int Id,int Type)
 /*--------------------------------------------------------------------------*/
 char* GetFileNameOpenedInScilab(int Id)
 {
-	if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
+	if (GetFileTypeOpenedInScilab(Id) == 1) // Fortran file
+	{
+		/* A exception for Id 5 and 6 */ 
+		/* no name */
+		if ((Id != 5) && (Id != 6))
+		{
+			return ScilabFileList[Id].ftname;
+		}
+	}
+	else
+	{
+		if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
+	}
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
@@ -269,5 +306,182 @@ int GetIdFromFilename(char *filename)
 		}
 	}
 	return FILE_ID_NOT_DEFINED;
+}
+/*--------------------------------------------------------------------------*/
+int *GetFilesIdUsed(int *sizeArrayReturned)
+{
+	int i = 0, j = 0;
+	int* ArrayIdUsed = NULL;
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	ArrayIdUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	if (ArrayIdUsed == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			ArrayIdUsed[j] = i;
+			j++;
+		}
+	}
+	return ArrayIdUsed;
+}
+/*--------------------------------------------------------------------------*/
+int *GetSwapsUsed(int *sizeArrayReturned)
+{
+	int *ArraySwapUsed = NULL;
+	int i = 0, j = 0;
+
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	ArraySwapUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	if (ArraySwapUsed == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			ArraySwapUsed[j] = GetSwapStatus(i);
+			j++;
+		}
+	}
+	return ArraySwapUsed;
+}
+/*--------------------------------------------------------------------------*/
+int *GetModesUsed(int *sizeArrayReturned)
+{
+	int *ArrayModeUsed = NULL;
+	int i = 0, j = 0;
+
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	ArrayModeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	if (ArrayModeUsed == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			ArrayModeUsed[j] = GetFileModeOpenedInScilab(i);
+			j++;
+		}
+	}
+	return ArrayModeUsed;
+}
+/*--------------------------------------------------------------------------*/
+int *GetTypesUsed(int *sizeArrayReturned)
+{
+	int *ArrayTypeUsed = NULL;
+	int i = 0, j = 0;
+
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	ArrayTypeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	if (ArrayTypeUsed == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			ArrayTypeUsed[j] = GetFileTypeOpenedInScilab(i);
+			j++;
+		}
+	}
+	return ArrayTypeUsed;
+}
+/*--------------------------------------------------------------------------*/
+char **GetTypesUsedAsString(int *sizeArrayReturned)
+{
+	char **ArrayTypeUsedAsString = NULL;
+	int i = 0, j = 0;
+
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	ArrayTypeUsedAsString = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
+	if (ArrayTypeUsedAsString == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			ArrayTypeUsedAsString[j] = GetFileTypeOpenedInScilabAsString(i);
+			j++;
+		}
+	}
+	return ArrayTypeUsedAsString;
+}
+/*--------------------------------------------------------------------------*/
+char **GetFilenamesUsed(int *sizeArrayReturned)
+{
+	char **FilenamesArray = NULL;
+	int i = 0, j = 0;
+
+	*sizeArrayReturned = GetNumberOfIdsUsed();
+
+	FilenamesArray = (char**)MALLOC(sizeof(char*) * (*sizeArrayReturned));
+	if (FilenamesArray == NULL)
+	{
+		*sizeArrayReturned = 0;
+		return NULL;
+	}
+
+	j = 0;
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			if (GetFileNameOpenedInScilab(i))
+			{
+				FilenamesArray[j] = strdup(GetFileNameOpenedInScilab(i));
+			}
+			else
+			{
+				FilenamesArray[j] = strdup("");
+			}
+			j++;
+		}
+	}
+	return FilenamesArray;
+}
+/*--------------------------------------------------------------------------*/
+int GetNumberOfIdsUsed(void)
+{
+	int i = 0;
+	int numberOfIds = 0;
+	
+	for (i = 0; i < GetMaximumFileOpenedInScilab(); i++)
+	{
+		if (GetFileTypeOpenedInScilab(i) != 0)
+		{
+			numberOfIds++;
+		}
+	}
+	return numberOfIds;
 }
 /*--------------------------------------------------------------------------*/

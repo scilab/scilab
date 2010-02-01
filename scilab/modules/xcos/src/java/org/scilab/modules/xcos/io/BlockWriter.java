@@ -35,6 +35,35 @@ import org.scilab.modules.xcos.link.BasicLink;
  *
  */
 public final class BlockWriter {
+	private static final String[] DIAGRAM_FIELDS = {"diagram", "props", "objs", "version"};
+	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	
+	// The window parameters and diagram options are not used in the simulation
+	// thus we set it to default values.
+	// As the values are scicos dependent we avoid using constant references.
+	// CSOFF: MagicNumber
+	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}}; 
+	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
+			new String[] {"scsopt", "3D", "Background", "Link", "ID", "Cmap"}) {
+		{
+			add(new ScilabList() { // 3D
+				{
+					add(new ScilabBoolean(true));
+					add(new ScilabDouble(33));
+				}
+			});
+			add(new ScilabDouble(new double[][] {{8, 1}})); // Background
+			add(new ScilabDouble(new double[][] {{1, 5}})); // Link
+			add(new ScilabList() { // ID
+				{
+					add(new ScilabDouble(new double[][] {{5, 1}}));
+					add(new ScilabDouble(new double[][] {{4, 1}}));
+				}
+			});
+			add(new ScilabDouble(new double[][] {{0.8, 0.8, 0.8}})); // Cmap
+		}
+	};
+	// CSON: MagicNumber
 
     /**
      * Constructor (MUST NOT BE USED !!!)
@@ -67,10 +96,12 @@ public final class BlockWriter {
 	return isSuccess;
     }
 
+    /**
+     * @param diagram The diagram to convert
+     * @return The diagram formatted as an mlist
+     */
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
-	String[] diagramFields = {"diagram", "props", "objs", "version"};
-
-	ScilabMList data = new ScilabMList(diagramFields);
+	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
 	data.add(getDiagramProps(diagram));
 	data.add(getDiagramObjs(diagram));
 	data.add(getDiagramVersion(diagram));
@@ -85,17 +116,15 @@ public final class BlockWriter {
      * @return a TList
      */
     private static ScilabTList getDiagramProps(XcosDiagram diagram) {
-	String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
-	ScilabTList data = new ScilabTList(propsFields);
+	ScilabTList data = new ScilabTList(PROPS_FIELDS);
 	// This propertie has no impact among simulation
-	double[][] wpar = {{600,450,0,0,600,450}};
-	data.add(new ScilabDouble(wpar)); // wpar
+	data.add(new ScilabDouble(WPAR)); // wpar
 	data.add(new ScilabString(diagram.getTitle())); // title
 	data.add(new ScilabDouble(createTol(diagram))); // tol
 	data.add(new ScilabDouble(diagram.getFinalIntegrationTime())); // tf
 	data.add(new ScilabString(diagram.getContext())); // context
 	data.add(new ScilabDouble()); // void1
-	data.add(getDiagramOptions()); // options
+	data.add(DIAGRAM_OPTIONS); // options
 	data.add(new ScilabDouble()); // void2
 	data.add(new ScilabDouble()); // void3
 	data.add(new ScilabList()); // doc
@@ -120,37 +149,6 @@ public final class BlockWriter {
     }
 
     /**
-     * Create a Scilab TList from digram options
-     * @return the TList
-     */
-    private static ScilabTList getDiagramOptions() {
-	String[] optionsFields = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
-
-	ScilabTList data = new ScilabTList(optionsFields);
-	ScilabList threeDimension = new ScilabList();
-	threeDimension.add(new ScilabBoolean(true));
-	threeDimension.add(new ScilabDouble(33));
-
-	double[][] background = {{8, 1}};
-	double[][] link = {{1, 5}};
-
-	ScilabList iD = new ScilabList();
-	double[][] iD1 = {{5, 1}};
-	double[][] iD2 = {{4, 1}};
-	iD.add(new ScilabDouble(iD1));
-	iD.add(new ScilabDouble(iD2));
-	double[][] cmap = {{0.8, 0.8, 0.8}};
-
-	data.add(threeDimension); // 3D
-	data.add(new ScilabDouble(background)); // Background
-	data.add(new ScilabDouble(link)); // Link
-	data.add(iD); // ID
-	data.add(new ScilabDouble(cmap)); // Cmap
-
-	return data;
-    }
-
-    /**
      * Create a Scilab TList containing all diagram objects 
      * @param diagram the diagram
      * @return the TList
@@ -167,13 +165,13 @@ public final class BlockWriter {
     		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
     		
     		
-    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock) ) {
+    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock)) {
     			blockList.add((BasicBlock) currentObject);
     			//
     			// Look inside a Block to see if there is no "AutoLink"
     			// Jgraphx will store this link as block's child  
     			//
-    			for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
+    			for (int j = 0; j < ((BasicBlock) currentObject).getChildCount(); ++j) {
     				if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
     					linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
     				}

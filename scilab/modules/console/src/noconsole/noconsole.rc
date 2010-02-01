@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "noconsole module"
             VALUE "FileVersion", "5, 3, 0, 0"
             VALUE "InternalName", "noconsole module"
-            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "noconsole.dll"
             VALUE "ProductName", " noconsole"
             VALUE "ProductVersion", "5, 3, 0, 0"

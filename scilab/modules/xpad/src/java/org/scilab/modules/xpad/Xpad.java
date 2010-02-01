@@ -1,4 +1,4 @@
-/*9
+/*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  *
@@ -88,19 +88,25 @@ import org.scilab.modules.xpad.utils.SaveFile;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
 /**
- * Main Xpad class
+ * Main Xpad class.
  * @author Bruno JOFRET
  */
-public class Xpad extends SwingScilabTab implements Tab { 
+public class Xpad extends SwingScilabTab implements Tab {
 
 	private static final long serialVersionUID = -6410183357490518676L;
-	
+
 	private static final String XPAD = "Editor";
 	private static final String SCI_EXTENSION = ".sci";
 	private static final String SCE_EXTENSION = ".sce";
 	private static final String ALL_SCI_FILES = "*.sci";
 	private static final String ALL_SCE_FILES = "*.sce";
-	
+	private static final String ALL_SCX_FILES = "*.sc*";	
+	private static final String ALL_FILES = "*.*";
+	private static final int ZERO = 0;
+	private static final int ONE = 1;
+	private static final int TWO = 2;
+	private static final int THREE = 3;
+
 	private static Xpad editor;
 
 	private final Window parentWindow;
@@ -117,9 +123,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private Vector<Integer> tabList = new Vector<Integer>();
 	private Vector<Integer> closedTabList = new Vector<Integer>();
-	
+
 	private String fileFullPath = "";
-	
+
 	//private static org.scilab.modules.gui.menuitem.MenuItem evaluateSelectionMenuItem;
 	
 	private File fileToEncode;
@@ -451,7 +457,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		File newSavedFile = new File(fileToSave);
 		
-		if (SaveFile.doSave(textPaneAt, newSavedFile, editorKit) == false) return false;
+		if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+			return false;
+		}
 
 		ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPaneAt.getStyledDocument();
 		styledDocument.setContentModified(false);
@@ -499,10 +507,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 			initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
 		}
 
-		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
-		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
+		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , ZERO);
+		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , ONE);
+		SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES , null , TWO);
+		SciFileFilter allFilter = new SciFileFilter(ALL_FILES , null , THREE);
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
@@ -592,8 +600,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		//prefer to use chooseFileToSave function !
 		SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES , null , 0);
 		SciFileFilter sciFilter = new SciFileFilter(ALL_SCI_FILES , null , 1);
-		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 2);
-		SciFileFilter allFilter = new SciFileFilter("*.*" , null , 3);
+		SciFileFilter scxFilter = new SciFileFilter(ALL_SCX_FILES , null , 2);
+		SciFileFilter allFilter = new SciFileFilter(ALL_FILES , null , 3);
 		
 
 		SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
@@ -643,7 +651,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 			/*if no extension , we add it */
 			if (hasNoExtension) {
-
 				if (fileChooser.getFileFilter() == sciFilter) {
 					extension = SCI_EXTENSION;
 				} else if (fileChooser.getFileFilter() == sceFilter) {
@@ -658,7 +665,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 			ScilabStyleDocument styledDocument = (ScilabStyleDocument) textPane.getStyledDocument();
 
-			if (SaveFile.doSave(textPane, f, editorKit) == false) return false;
+			if (!SaveFile.doSave(textPane, f, editorKit)) { 
+				return false;
+			}
 
 			ConfigManager.saveLastOpenedDirectory(f.getPath());
 			ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
@@ -1096,6 +1105,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		private File fileToRead;
 
+		/**
+		 * ReadFileThread
+		 * @param f File
+		 */
 		public ReadFileThread(File f) {
 			this.fileToRead = f;
 			setFileToEncode(f);
@@ -1107,10 +1120,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 			this.stop();
 		}
 
+		/**
+		 * readFile
+		 * @param f File
+		 */
 		public void readFile(File f) {
 			getInfoBar().setText(XpadMessages.LOADING);
-
-			boolean colorStatus = false;
 			// Get current file path for Execute file into Scilab 
 			fileFullPath = f.getAbsolutePath();
 

@@ -13,7 +13,9 @@
 package org.scilab.modules.xcos.io;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -23,6 +25,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.BasicPort.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -32,26 +35,46 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
+import com.mxgraph.model.mxICell;
+
+/**
+ * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
+ * scicos informations)
+ */
 public final class BasicBlockInfo {
+// As this is the mapping string according to the Scicos simulator, it is
+// better to keep them as raw vectors instead of playing with reference
+// name.
+// CSOFF: MultipleStringLiterals
+	private static final String[] SCICOS_OBJ_FIELDS = {"Block", "graphics",
+			"model", "gui", "doc" };
+	private static final String[] SCICOS_MODEL_FIELDS = {"model", "sim", "in",
+			"in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
+			"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype",
+			"firing", "dep_ut", "label", "nzcross", "nmode", "equations" };
+	private static final String[] SCICOS_GRAPHIC_FIELDS = {"graphics", "orig",
+			"sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout",
+			"gr_i", "id", "in_implicit", "out_implicit" };
+// CSON: MultipleStringLiterals
 
+	private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
+	
     /**
-     * 
+     * Default constructor
      */
-    private BasicBlockInfo() {
-
-    }
+    private BasicBlockInfo() { }
 
     /**
      * @param ports : list of links
      * @return array of links id
      */
-    public static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
+    public static ScilabDouble getAllLinkId(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 
 	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
+	for (int i = 0; i < ports.size(); ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getConnectedLinkId();
 	}
 
@@ -60,15 +83,16 @@ public final class BasicBlockInfo {
 
 
     /**
-     * @param ports
+	 * @param ports
+	 *            the ports we are working on
      * @return array of ports data lines
      */
-    public static ScilabDouble getAllPortsDataLines(List<? extends BasicPort> ports) {
+    public static ScilabDouble getAllPortsDataLines(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
+	for (int i = 0; i < ports.size(); ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getDataLines();
 	}
 
@@ -76,19 +100,20 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+	 * @param ports
+	 *            the ports we are working on
      * @return array of ports data columns
      */
-    public static ScilabDouble getAllPortsDataColumns(List<? extends BasicPort> ports) {
+    public static ScilabDouble getAllPortsDataColumns(List< ? extends BasicPort> ports) {
 	boolean allZeros = true;
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 
 	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
+	for (int i = 0; i < ports.size(); ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getDataColumns();
-	    if(data[i][0] != 0) {
+	    if (data[i][0] != 0) {
 		allZeros = false;
 	    }
 	}
@@ -101,15 +126,16 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+	 * @param ports
+	 *            the ports we are working on
      * @return array of ports data type
      */
-    public static ScilabType getAllPortsDataType(List<? extends BasicPort> ports) {
+    public static ScilabType getAllPortsDataType(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 	double[][] data = new double[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
+	for (int i = 0; i < ports.size(); ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getDataType().getAsDouble();
 	}
 
@@ -117,15 +143,16 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+	 * @param ports
+	 *            the ports we are working on
      * @return array of ports type
      */
-    public static ScilabType getAllPortsType(List<? extends BasicPort> ports) {
+    public static ScilabType getAllPortsType(List< ? extends BasicPort> ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 	String[][] data = new String[ports.size()][1];
-	for (int i = 0 ; i < ports.size() ; ++i) {
+	for (int i = 0; i < ports.size(); ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getType().getAsString();
 	}
 
@@ -133,18 +160,20 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+	 * @param block
+	 *            the block we are working on
      * @return graphic structure of given block
      */
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
-	String[] graphicsFields = {"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout", "pein", "peout", "gr_i",
-		"id", "in_implicit", "out_implicit"};
-	ScilabMList graphics = new ScilabMList(graphicsFields);
+	ScilabMList graphics = new ScilabMList(SCICOS_GRAPHIC_FIELDS);
 
+	List<InputPort> inPorts = getAllTypedPorts(block, false, InputPort.class);
+	List<OutputPort> outPorts = getAllTypedPorts(block, false, OutputPort.class);
+	
 	// Adjust block cause Scilab(0,0) is bottom left
 	double y = block.getGeometry().getY() + block.getGeometry().getHeight();
 	
-	double[][] orig = {{block.getGeometry().getX(), - y}};
+	double[][] orig = {{block.getGeometry().getX(), -y}};
 	graphics.add(new ScilabDouble(orig)); // orig
 
 	double[][] sz = {{block.getGeometry().getWidth(), block.getGeometry().getHeight()}};
@@ -157,57 +186,60 @@ public final class BasicBlockInfo {
 
 	graphics.add(block.getExprs()); // exprs
 
-	graphics.add(getAllLinkId(getAllInputPorts(block, false))); // pin
+	graphics.add(getAllLinkId(inPorts)); // pin
 
-	graphics.add(getAllLinkId(getAllOutputPorts(block, false))); // pout
+	graphics.add(getAllLinkId(outPorts)); // pout
 
-	graphics.add(getAllLinkId(getAllControlPorts(block, false))); // pein
+	graphics.add(getAllLinkId(getAllTypedPorts(block, false, ControlPort.class))); // pein
 
-	graphics.add(getAllLinkId(getAllCommandPorts(block, false))); // peout
+	graphics.add(getAllLinkId(getAllTypedPorts(block, false, CommandPort.class))); // peout
 
-	ScilabList gr_i = new ScilabList();
+	ScilabList graphicsInstructionList = new ScilabList();
 	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\"" + block.getInterfaceFunctionName() + "\",sz(1),sz(2));");
-	gr_i.add(graphicsInstructions);
-	gr_i.add(new ScilabDouble(8));
-	graphics.add(gr_i); // gr_i
+	graphicsInstructionList.add(graphicsInstructions);
+	graphicsInstructionList.add(new ScilabDouble(GRAPHICS_INSTRUCTION_SIZE));
+	graphics.add(graphicsInstructionList); // gr_i
 
 	graphics.add(new ScilabString("")); // id
 
-	graphics.add(getAllPortsType(getAllInputPorts(block, false))); // in_implicit
+	graphics.add(getAllPortsType(inPorts)); // in_implicit
 
-	graphics.add(getAllPortsType(getAllOutputPorts(block, false))); // out_implicit
+	graphics.add(getAllPortsType(outPorts)); // out_implicit
 
 	return graphics;
     }
 
 
     /**
-     * @param block
+	 * @param block
+	 *            the block we are working on
      * @return model structure of given block
      */
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
-	String[] modelFields = {"model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout",
-		"state", "dstate", "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label",
-		"nzcross", "nmode", "equations"};
-	ScilabMList model = new ScilabMList(modelFields);
+	ScilabMList model = new ScilabMList(SCICOS_MODEL_FIELDS);
+	
+	List<InputPort> inPorts = getAllTypedPorts(block, false, InputPort.class);
+	List<OutputPort> outPorts = getAllTypedPorts(block, false, OutputPort.class);
+	List<ControlPort> ctrlPorts = getAllTypedPorts(block, false, ControlPort.class);
+	List<CommandPort> commandPorts = getAllTypedPorts(block, false, CommandPort.class);
 
 	model.add(block.getSimulationFunctionNameAndType()); // sim
 
-	model.add(getAllPortsDataLines(getAllInputPorts(block, false))); // in
+	model.add(getAllPortsDataLines(inPorts)); // in
 
-	model.add(getAllPortsDataColumns(getAllInputPorts(block, false))); // in2
+	model.add(getAllPortsDataColumns(inPorts)); // in2
 
-	model.add(getAllPortsDataType(getAllInputPorts(block, false))); // intyp
+	model.add(getAllPortsDataType(inPorts)); // intyp
 
-	model.add(getAllPortsDataLines(getAllOutputPorts(block, false))); // out
+	model.add(getAllPortsDataLines(outPorts)); // out
 
-	model.add(getAllPortsDataColumns(getAllOutputPorts(block, false))); // out2
+	model.add(getAllPortsDataColumns(outPorts)); // out2
 
-	model.add(getAllPortsDataType(getAllOutputPorts(block, false))); // outtyp
+	model.add(getAllPortsDataType(outPorts)); // outtyp
 
-	model.add(getAllPortsDataLines(getAllControlPorts(block, false))); // evtin
+	model.add(getAllPortsDataLines(ctrlPorts)); // evtin
 
-	model.add(getAllPortsDataLines(getAllCommandPorts(block, false))); // evtout
+	model.add(getAllPortsDataLines(commandPorts)); // evtout
 
 	model.add(block.getState()); // state
 
@@ -225,8 +257,8 @@ public final class BasicBlockInfo {
 
 	model.add(block.getAllCommandPortsInitialStates()); // firing
 
-	boolean[][] dep_ut = {{block.dependsOnU() , block.dependsOnT()}};
-	model.add(new ScilabBoolean(dep_ut)); // dep_ut
+	boolean[][] dependsOnUandT = {{block.isDependsOnU() , block.isDependsOnT()}};
+	model.add(new ScilabBoolean(dependsOnUandT)); // dep_ut
 
 	model.add(new ScilabString("")); // label
 
@@ -236,8 +268,7 @@ public final class BasicBlockInfo {
 
 	if (block.getEquations() == null) {
 	    model.add(new ScilabList()); // equations
-	}
-	else {
+	} else {
 	    model.add(block.getEquations()); // equations
 	}
 
@@ -245,7 +276,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+	 * @param block
+	 *            the block we are working on
      * @return gui structure of given block
      */
     public static ScilabString createScilabGuiProperties(BasicBlock block) {
@@ -253,7 +285,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+	 * @param block
+	 *            the block we are working on
      * @return doc structure of given block
      */
     public static ScilabList createScilabDocProperties(BasicBlock block) {
@@ -265,12 +298,12 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+	 * @param block
+	 *            the block we are working on
      * @return Scilab structure of given block
      */
     public static ScilabMList getAsScilabObj(BasicBlock block) {
-	String[] objFields = {"Block", "graphics", "model", "gui", "doc"};
-	ScilabMList obj = new ScilabMList(objFields);
+	ScilabMList obj = new ScilabMList(SCICOS_OBJ_FIELDS);
 
 	obj.add(BasicBlockInfo.createScilabGraphicsProperties(block));
 	obj.add(BasicBlockInfo.createScilabModelProperties(block));
@@ -280,167 +313,117 @@ public final class BasicBlockInfo {
 	return obj;
     }
 
-    /**
-     * @param block
-     * @return input ports of given block
-     */
+    @Deprecated
     public static List<InputPort> getAllInputPorts(BasicBlock block, boolean revert) {
-	List<InputPort> data = new ArrayList<InputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof InputPort) {
-		if(revert) {
-		    data.add(0, (InputPort) block.getChildAt(i));
-		} else {
-		    data.add((InputPort) block.getChildAt(i));
-		}
-	    }
-	}
-
-	return data;
+    	return getAllTypedPorts(block, revert, InputPort.class);
     }
-
-    /**
-     * @param block
-     * @return explicit input ports of given block
-     */
+    
+    @Deprecated
     public static List<ExplicitInputPort> getAllExplicitInputPorts(BasicBlock block, boolean revert) {
-	List<ExplicitInputPort> data = new ArrayList<ExplicitInputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof ExplicitInputPort) {
-		if(revert) {
-		    data.add(0, (ExplicitInputPort) block.getChildAt(i));
-		} else {
-		    data.add((ExplicitInputPort) block.getChildAt(i));
-		}
-	    }
-	}
-	return data;
+    	return getAllTypedPorts(block, revert, ExplicitInputPort.class);
     }
-
-    /**
-     * @param block
-     * @return implicit input ports of given block
-     */
+    
+    @Deprecated
     public static List<ImplicitInputPort> getAllImplicitInputPorts(BasicBlock block, boolean revert) {
-	List<ImplicitInputPort> data = new ArrayList<ImplicitInputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof ImplicitInputPort) {
-		if(revert) {
-		    data.add(0, (ImplicitInputPort) block.getChildAt(i));
-		} else {
-		    data.add((ImplicitInputPort) block.getChildAt(i));
-		}
-	    }
-	}
-	return data;
+    	return getAllTypedPorts(block, revert, ImplicitInputPort.class);
     }
-
-    /**
-     * @param block
-     * @return output ports of given block
-     */
+    
+    @Deprecated
     public static List<OutputPort> getAllOutputPorts(BasicBlock block, boolean revert) {
-	List<OutputPort> data = new ArrayList<OutputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof OutputPort) {
-		if(revert) {
-		    data.add(0 ,(OutputPort) block.getChildAt(i));
-		} else {
-		    data.add((OutputPort) block.getChildAt(i));
-		}
-	    }
-	}
-
-	return data;
+    	return getAllTypedPorts(block, revert, OutputPort.class);
     }
-
-    /**
-     * @param block
-     * @return explicit output ports of given block
-     */
+    
+    @Deprecated
     public static List<ExplicitOutputPort> getAllExplicitOutputPorts(BasicBlock block, boolean revert) {
-	List<ExplicitOutputPort> data = new ArrayList<ExplicitOutputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof ExplicitOutputPort) {
-		if(revert) {
-		    data.add(0, (ExplicitOutputPort) block.getChildAt(i));
-		} else {
-		    data.add((ExplicitOutputPort) block.getChildAt(i));
-		}
-	    }
-	}
-	return data;
+    	return getAllTypedPorts(block, revert, ExplicitOutputPort.class);
     }
-
-    /**
-     * @param block
-     * @return implicit outputs ports of given block
-     */
+    
+    @Deprecated
     public static List<ImplicitOutputPort> getAllImplicitOutputPorts(BasicBlock block, boolean revert) {
-	List<ImplicitOutputPort> data = new ArrayList<ImplicitOutputPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof ImplicitOutputPort) {
-		if(revert) {
-		    data.add(0, (ImplicitOutputPort) block.getChildAt(i));
-		} else {
-		    data.add((ImplicitOutputPort) block.getChildAt(i));
-		}
-	    }
-	}
-	return data;
+    	return getAllTypedPorts(block, revert, ImplicitOutputPort.class);
     }
-
-    /**
-     * @param block
-     * @return command ports of given block
-     */
-    public static List<CommandPort> getAllCommandPorts(BasicBlock block, boolean revert) {
-	List<CommandPort> data = new ArrayList<CommandPort>();
-	int childrenCount = block.getChildCount();
-
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof CommandPort) {
-		if(revert) {
-		    data.add(0, (CommandPort) block.getChildAt(i));
-		} else {
-		    data.add((CommandPort) block.getChildAt(i));
-		}
-	    }
-	}
-	
-	return data;
-    }
-
-    /**
-     * @param block
-     * @return control ports of given block
-     */
+    
+    @Deprecated
     public static List<ControlPort> getAllControlPorts(BasicBlock block, boolean revert) {
-	List<ControlPort> data = new ArrayList<ControlPort>();
-	int childrenCount = block.getChildCount();
+    	return getAllTypedPorts(block, revert, ControlPort.class);
+    }
+    
+    @Deprecated
+    public static List<CommandPort> getAllCommandPorts(BasicBlock block, boolean revert) {
+    	return getAllTypedPorts(block, revert, CommandPort.class);
+    }
+    
+	/**
+	 * @param block
+	 *            the block we are working on
+	 * @param revert
+	 *            True if the returned list have to be in a reversed order or
+	 * @param type
+	 *            the class instance to search for
+	 * @param <T>
+	 *            The type to search for.
+	 * @return control ports of given block
+	 */
+	public static <T extends BasicPort> List<T> getAllTypedPorts(
+			BasicBlock block, boolean revert, Class<T> type) {
+		List<T> data = new ArrayList<T>();
+		int childrenCount = block.getChildCount();
 
-	for (int i = 0 ; i < childrenCount ; ++i) {
-	    if (block.getChildAt(i) instanceof ControlPort) {
-		if(revert) {
-		    data.add(0, (ControlPort) block.getChildAt(i));
-		} else {
-		    data.add((ControlPort) block.getChildAt(i));
+		for (int i = 0; i < childrenCount; ++i) {
+			mxICell cell = block.getChildAt(i);
+			if (type.isInstance(cell)) {
+				// There we are sure that the cell is an instance of the type
+				// class. Thus we can safely cast it and add it to the result
+				// vector.
+				if (revert) {
+					data.add(0, (T) cell);
+				} else {
+					data.add((T) cell);
+				}
+			}
 		}
-	    }
-	}
 
-	return data;
+		return data;
+	}
+    
+    /**
+     * Get the associated port ordered by orientation.
+     * @param block The block we are working on
+     * @return Lists of ports where key are BasicPort.Orientation
+     */
+    public static Map<BasicPort.Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
+    	EnumMap<BasicPort.Orientation, List<BasicPort>> map = new EnumMap<BasicPort.Orientation, List<BasicPort>>(BasicPort.Orientation.class);
+    	List<BasicPort> northPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> southPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> eastPorts = new ArrayList<BasicPort>();
+    	List<BasicPort> westPorts = new ArrayList<BasicPort>();
+    	
+		final int childrenCount = block.getChildCount();
+		for (int i = 0; i < childrenCount; ++i) {
+			BasicPort port = (BasicPort) block.getChildAt(i);
+			switch (port.getOrientation()) {
+			case NORTH:
+				northPorts.add(port);
+				break;
+			case SOUTH:
+				southPorts.add(port);
+				break;
+			case EAST:
+				eastPorts.add(port);
+				break;
+			case WEST:
+				westPorts.add(port);
+				break;
+			default:
+				break;
+			}
+		}
+    	
+    	map.put(Orientation.NORTH, northPorts);
+    	map.put(Orientation.SOUTH, southPorts);
+    	map.put(Orientation.EAST, eastPorts);
+    	map.put(Orientation.WEST, westPorts);
+    	
+    	return map;
     }
 }

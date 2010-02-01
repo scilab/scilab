@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="freeAllocatedBooleanSparse"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+	<refnamediv>
+		<refname>freeAllocatedBooleanSparse</refname>
+
+		<refpurpose>
+            Free memory allocated by getAllocatedBooleanSparseMatrix function.
+        </refpurpose>
+	</refnamediv>
+	<refsynopsisdiv>
+		<title>Calling Sequence</title>
+		<synopsis>void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos)</synopsis>
+	</refsynopsisdiv>
+	<refsection>
+		<title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term>_piNbItemRow</term>
+				<listitem>
+					<para>
+                        Pointer "_piNbItemRow" allocated by getAllocatedBooleanSparseMatrix.
+                    </para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>_piColPos</term>
+				<listitem>
+					<para>
+                        Pointer "_piColPos" allocated by getAllocatedBooleanSparseMatrix.
+                    </para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+</refentry>

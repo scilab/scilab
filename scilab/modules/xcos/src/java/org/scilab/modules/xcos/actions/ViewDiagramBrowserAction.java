@@ -25,12 +25,23 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 
-public class ViewDiagramBrowserAction extends DefaultAction {
+/**
+ * @author Vincent COUVERT
+ *
+ */
+public final class ViewDiagramBrowserAction extends DefaultAction {
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	private ViewDiagramBrowserAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.DIAGRAM_BROWSER, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.DIAGRAM_BROWSER, null, new ViewDiagramBrowserAction(scilabGraph), null);
 	}
@@ -41,9 +52,9 @@ public class ViewDiagramBrowserAction extends DefaultAction {
 		    temp.deleteOnExit();
 		    ((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
 		    try {
-				XcosInterpreterManagement.SynchronousScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"
-				    +"tree_show(scs_m);"
-				    +"deletefile(\"" + temp.getAbsolutePath()+"\");");
+				XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+				    + "tree_show(scs_m);"
+				    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
 			} catch (InterpreterException e) {
 				e.printStackTrace();
 			}

@@ -11,7 +11,10 @@
  */
 
 /* InterpreterManagement.i */
-/*  swig -java -package org.scilab.modules.action_binding -outdir ../java/org/scilab/modules/action_binding/ InterpreterManagement.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.action_binding -outdir ../java/org/scilab/modules/action_binding/ InterpreterManagement.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 %module InterpreterManagement
 %{
 #include "../c/InterpreterManagement.h"

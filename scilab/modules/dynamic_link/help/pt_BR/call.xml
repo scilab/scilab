@@ -195,13 +195,13 @@
 
     <programlisting role="example"><![CDATA[ 
 //Exemplo 1 com um código C simples
-f1=['#include &lt;math.h&gt;'
+f1=['#include <math.h>;'
     'void fooc(c,a,b,m,n)'
     'double a[],*b,c[];'
     'int *m,*n;'
     '{'
     '   int i;'
-    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 

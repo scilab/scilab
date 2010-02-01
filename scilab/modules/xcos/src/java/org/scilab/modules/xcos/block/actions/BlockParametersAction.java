@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -57,7 +58,7 @@ public class BlockParametersAction extends DefaultAction {
 	public void doAction() {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
 		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
-		((BasicBlock)diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
+		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
 	    }
 	}
 

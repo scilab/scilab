@@ -99,12 +99,45 @@ function remList = atomsRemoveList(packages,section)
 		// get the list of the versions of this package to uninstall
 		
 		if isempty(package_versions(i)) then
-			// uninstall all version of this toolbox (if we have the right, of
+			
+			// No version is mention :
+			// → uninstall all version of this toolbox (if we have the right, of
 			// course)
 			this_package_versions = atomsGetInstalledVers(package_names(i),section);
+		
 		else
-			// Just uninstall the specified version
-			this_package_versions = package_versions(i);
+			// A version is mentioned
+			
+			if isempty( strindex(package_versions(i),"-") ) then
+				
+				// The packaging version is not mentioned :
+				// → Remove all packaging version that fit with the mentioned version
+				
+				candidates            = atomsGetInstalledVers(package_names(i),section);
+				this_package_versions = [];
+				
+				for j=1:size(candidates,"*")
+					
+					if isempty( strindex(candidates(j),"-") ) then
+						if candidates(j) == package_versions(i) then
+							this_package_versions = [ this_package_versions ; candidates(j) ];
+						end
+					
+					else
+						if part(candidates(j), 1:strindex(candidates(j),"-")-1)  == package_versions(i) then
+							this_package_versions = [ this_package_versions ; candidates(j) ];
+						end
+					end
+					
+				end
+				
+			else
+			
+				// The packaging version is mentioned : 
+				// → Just uninstall the specified version
+				this_package_versions = package_versions(i);
+				
+			end
 		end
 		
 		for j=1:size(this_package_versions,"*")

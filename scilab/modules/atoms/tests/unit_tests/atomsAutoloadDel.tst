@@ -20,9 +20,8 @@ config_Verbose  = atomsGetConfig("Verbose");
 atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
-atomsSystemUpdate();
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 
 // 1st test case
 // =============================================================================
@@ -40,15 +39,15 @@ if atomsAutoloadAdd(["toolbox_2" "1.0" "user"]    ,"user") <> 1 then pause, end
 if atomsAutoloadAdd(["toolbox_1" "1.0" "user"]    ,"user") <> 1 then pause, end
 
 if atomsAutoloadDel("toolbox_5"                   ,"user") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_5" "1.0"]           ,"user") <> 0 then pause, end
-if atomsAutoloadDel(["toolbox_5" "1.0" "user"]    ,"user") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_5" "1.0-1"]         ,"user") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_5" "1.0-1" "user"]  ,"user") <> 0 then pause, end
 
-if atomsAutoloadDel(["toolbox_4" "1.0" "user"]    ,"user") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_4" "1.0"]           ,"user") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_4" "1.0-1" "user"]  ,"user") <> 1 then pause, end
+if atomsAutoloadDel(["toolbox_4" "1.0-1"]         ,"user") <> 0 then pause, end
 if atomsAutoloadDel("toolbox_4"                   ,"user") <> 0 then pause, end
 
-if atomsAutoloadDel(["toolbox_2" "1.0"]           ,"user") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_2" "1.0" "user"]    ,"user") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_2" "1.0-1"]         ,"user") <> 1 then pause, end
+if atomsAutoloadDel(["toolbox_2" "1.0-1" "user"]  ,"user") <> 0 then pause, end
 if atomsAutoloadDel("toolbox_2"                   ,"user") <> 0 then pause, end
 
 if atomsAutoloadDel("toolbox_1")                           <> 1 then pause, end
@@ -77,15 +76,15 @@ if atomsAutoloadAdd(["toolbox_5" "1.0" "allusers" ; ..
                      "toolbox_1" "1.0" "allusers" ] ,"allusers") <> 4 then pause, end
 
 if atomsAutoloadDel("toolbox_5"                       ,"allusers") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_5" "1.0"]               ,"allusers") <> 0 then pause, end
-if atomsAutoloadDel(["toolbox_5" "1.0" "allusers"]    ,"allusers") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_5" "1.0-1"]             ,"allusers") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_5" "1.0-1" "allusers"]  ,"allusers") <> 0 then pause, end
 
-if atomsAutoloadDel(["toolbox_4" "1.0" "allusers"]    ,"allusers") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_4" "1.0"]               ,"allusers") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_4" "1.0-1" "allusers"]  ,"allusers") <> 1 then pause, end
+if atomsAutoloadDel(["toolbox_4" "1.0-1"]             ,"allusers") <> 0 then pause, end
 if atomsAutoloadDel("toolbox_4"                       ,"allusers") <> 0 then pause, end
 
-if atomsAutoloadDel(["toolbox_2" "1.0"]               ,"allusers") <> 1 then pause, end
-if atomsAutoloadDel(["toolbox_2" "1.0" "allusers"]    ,"allusers") <> 0 then pause, end
+if atomsAutoloadDel(["toolbox_2" "1.0-1"]             ,"allusers") <> 1 then pause, end
+if atomsAutoloadDel(["toolbox_2" "1.0-1" "allusers"]  ,"allusers") <> 0 then pause, end
 if atomsAutoloadDel("toolbox_2"                       ,"allusers") <> 0 then pause, end
 
 if atomsAutoloadDel("toolbox_1")                                   <> 1 then pause, end

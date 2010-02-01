@@ -17,15 +17,25 @@ import java.rmi.server.UID;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 
-public class XcosUIDObject extends mxCell implements Comparable<XcosUIDObject>{
+/**
+ * @author Bruno JOFRET
+ *
+ */
+public class XcosUIDObject extends mxCell implements Comparable<XcosUIDObject> {
 
     private static final long serialVersionUID = -2915277403393545917L;
 
+    /**
+     * Constructor
+     */
     public XcosUIDObject() {
 	super();
 	setId((new UID()).toString());
     }
 
+    /**
+     * 
+     */
     public void setId() {
 	setId(new UID().toString());
     }
@@ -38,6 +48,6 @@ public class XcosUIDObject extends mxCell implements Comparable<XcosUIDObject>{
 	mxGeometry source = getGeometry();
 	mxGeometry target = o.getGeometry();
 	
-	return (int)((source.getX() - target.getX()) + (Integer.MAX_VALUE/2) * (source.getY() - target.getY()));
+	return (int) ((source.getX() - target.getX()) + (Integer.MAX_VALUE / 2) * (source.getY() - target.getY()));
     }
 }

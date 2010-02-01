@@ -43,7 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STATISTICS_EXPORTS"
@@ -210,7 +210,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"

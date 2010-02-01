@@ -12,45 +12,75 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.block.io.EventInBlock;
+import org.scilab.modules.xcos.block.io.EventOutBlock;
+import org.scilab.modules.xcos.block.io.ExplicitInBlock;
+import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
+import org.scilab.modules.xcos.block.io.ImplicitInBlock;
+import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
+import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Ease the creation of blocks
  */
 public final class BlockFactory {
 
+	// DAC: As this is the constructor for all the block classes, this class is
+	// very coupled with *Block classes
+	// CSOFF: ClassDataAbstractionCoupling
 	/**
 	 * List the specific block interface function name.
-	 * 
-	 * @checkstyle DAC: As this is the constructor for all the block classes,
-	 *             this class is very coupled with *Block classes
 	 */
-	private enum BlockInterFunction {
-		TEXT_f(new TextBlock()),
+	public static enum BlockInterFunction {
+		/** @see TextBlock */
+		TEXT_f(new TextBlock(XcosMessages.DOTS)),
+		/** @see SuperBlock */
 		SUPER_f(new SuperBlock()),
-		DSUPER(new SuperBlock() { { mask(); } }),
+		/** @see SuperBlock */
+		DSUPER(new SuperBlock(true)),
+		/** @see ConstBlock */
 		CONST_m(new ConstBlock()),
-		CONST(new ConstBlock()),
-		CONST_f(new ConstBlock()),
+		/** @see ConstBlock */
+		CONST(CONST_m.getSharedInstance()),
+		/** @see ConstBlock */
+		CONST_f(CONST_m.getSharedInstance()),
+		/** @see AfficheBlock */
 		AFFICH_m(new AfficheBlock()),
-		AFFICH_f(new AfficheBlock()),
+		/** @see AfficheBlock */
+		AFFICH_f(AFFICH_m.getSharedInstance()),
+		/** @see GainBlock */
 		GAINBLK_f(new GainBlock()),
-		GAINBLK(new GainBlock()),
-		GAIN_f(new GainBlock()),
+		/** @see GainBlock */
+		GAINBLK(GAINBLK_f.getSharedInstance()),
+		/** @see GainBlock */
+		GAIN_f(GAINBLK_f.getSharedInstance()),
+		/** @see ExplicitInBlock */
 		IN_f(new ExplicitInBlock()),
+		/** @see ExplicitOutBlock */
 		OUT_f(new ExplicitOutBlock()),
+		/** @see ImplicitInBlock */
 		INIMPL_f(new ImplicitInBlock()),
+		/** @see ImplicitOutBlock */
 		OUTIMPL_f(new ImplicitOutBlock()),
+		/** @see EventInBlock */
 		CLKINV_f(new EventInBlock()),
-		/* TODO: What about CLKIN_F ? */
+		/** @see EventOutBlock */
 		CLKOUTV_f(new EventOutBlock()),
-		CLKOUT_f(new EventOutBlock()),
-		SPLIT(new SplitBlock()),
-		IMPSPLIT_f(new SplitBlock()),
-		CLKSPLIT_f(new SplitBlock());
+		/** @see EventOutBlock */
+		CLKOUT_f(CLKOUTV_f.getSharedInstance()),
+		/** @see SplitBlock */
+		SPLIT_f(new SplitBlock()),
+		/** @see SplitBlock */
+		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
+		/** @see SplitBlock */
+		CLKSPLIT_f(SPLIT_f.getSharedInstance()),
+		/** @see GroundBlock */
+		Ground(new GroundBlock()),
+		/** @see VoltageSensorBlock */
+		VoltageSensor(new VoltageSensorBlock());
 		
 		private BasicBlock block;
 		/**
@@ -59,14 +89,13 @@ public final class BlockFactory {
 		 */
 		private BlockInterFunction(BasicBlock block) {
 			this.block = block;
-			block.setValue(this.name());
 		}
 		
 		/**
 		 * Create a block instance
 		 * @return The new block instance
 		 */
-		public BasicBlock createInstance() {
+		private BasicBlock createInstance() {
 			BasicBlock clone = null;
 			
 			if (block != null) {
@@ -74,7 +103,16 @@ public final class BlockFactory {
 			}
 			return clone;
 		}
+		
+		/**
+		 * Get the reference shared block instance for this BlockInterFunction.
+		 * @return The shared block instance
+		 */
+		public BasicBlock getSharedInstance() {
+			return block;
+		}
 	}
+	// CSON: ClassDataAbstractionCoupling
 	
 	/** Default singleton constructor */
 	private BlockFactory() {
@@ -82,7 +120,7 @@ public final class BlockFactory {
 	}
 
 	/**
-	 * Instanciate a new block with the specified interface function name.
+	 * Instantiate a new block with the specified interface function name.
 	 * @param label The interface function name.
 	 * @return A new instance of a block.
 	 */
@@ -103,6 +141,15 @@ public final class BlockFactory {
 		
 		return block;
 	}
+	
+	/**
+	 * Instantiate a new block with the specified interface function.
+	 * @param func the interface function
+	 * @return A new instance of a block. 
+	 */
+	public static BasicBlock createBlock(BlockInterFunction func) {
+		return func.createInstance();
+	}
 
 	/**
 	 * Create a clone for a block
@@ -117,15 +164,7 @@ public final class BlockFactory {
 
 			/* Clone children */
 			for (int i = 0; i < block.getChildCount(); i++) {
-				if (block.getChildAt(i) instanceof InputPort) {
-					clone.addPort((InputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof OutputPort) {
-					clone.addPort((OutputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof CommandPort) {
-					clone.addPort((CommandPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof ControlPort) {
-					clone.addPort((ControlPort) block.getChildAt(i).clone());
-				}
+				clone.addPort((BasicPort) block.getChildAt(i).clone());
 			}
 
 			return clone;

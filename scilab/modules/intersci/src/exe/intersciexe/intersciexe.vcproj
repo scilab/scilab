@@ -46,7 +46,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../core/includes;../../../../core/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
@@ -224,7 +224,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"

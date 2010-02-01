@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,16 +21,11 @@ import org.scilab.modules.localization.Messages;
 
 /**
  * All localized messages/menus labels used in Xcos
- * @author Vincent COUVERT
- *
  */
+// CSOFF: JavadocVariable
+// CSOFF: LineLength
+// CSOFF: MultipleStringLiterals
 public final class XcosMessages {
-    /**
-     * Constructor
-     */
-    private XcosMessages() {
-
-    }
 
     public static final String XCOS = Messages.gettext("Xcos");
 
@@ -37,7 +33,7 @@ public final class XcosMessages {
 
     public static final String UNTITLED = Messages.gettext("Untitled");
 
-    /** File menu */
+    /* File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New");
     public static final String NEW_DIAGRAM = Messages.gettext("New diagram") + DOTS;
@@ -52,15 +48,7 @@ public final class XcosMessages {
     public static final String QUIT = Messages.gettext("Quit Xcos");
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
 
-    /** Palette menu in palette browser*/
-    public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
-    public static final String USER_DEFINED = Messages.gettext("User-Defined");
-    public static final String REMOVE_USER_DEFINED = Messages.gettext("Remove");
-
-    public static final String DUMP = Messages.gettext("Dump");
-    public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
-
-    /** Edit Menu */
+    /* Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");
     public static final String BLOCK_PARAMETERS = Messages.gettext("Block Parameters") + DOTS;
     public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
@@ -70,7 +58,15 @@ public final class XcosMessages {
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
 
-    /** View Menu */
+    /* Palette menu in palette browser*/
+    public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
+    public static final String USER_DEFINED = Messages.gettext("User-Defined");
+    public static final String REMOVE_USER_DEFINED = REMOVE;
+
+    public static final String DUMP = Messages.gettext("Dump");
+    public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
+    
+    /* View Menu */
     public static final String VIEW = Messages.gettext("View");
     public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram to view");
     public static final String NORMAL_100 = Messages.gettext("Normal 100%");
@@ -81,7 +77,7 @@ public final class XcosMessages {
     public static final String DETAILS = Messages.gettext("Details");
     public static final String SHOW_PARENT = Messages.gettext("Show parent diagram");
 
-    /** Simulation menu */
+    /* Simulation menu */
     public static final String SIMULATION = Messages.gettext("Simulation");
     public static final String SETUP = Messages.gettext("Setup");
     public static final String COMPILE = Messages.gettext("Compile");
@@ -89,7 +85,7 @@ public final class XcosMessages {
     public static final String STOP = Messages.gettext("Stop");
     public static final String SET_CONTEXT = Messages.gettext("Set Context");
 
-    /** Format menu */
+    /* Format menu */
     public static final String FORMAT = Messages.gettext("Format");
     public static final String RESIZE = Messages.gettext("Resize");
     public static final String ROTATE = Messages.gettext("Rotate");
@@ -99,18 +95,18 @@ public final class XcosMessages {
     public static final String GRID = Messages.gettext("Grid");
     public static final String DIAGRAM_BACKGROUND = Messages.gettext("Diagram background") + DOTS;
     
-    /** Tools menu */
+    /* Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
 
-    /** Help menu */
+    /* Help menu */
     public static final String HELP = Messages.gettext("?");
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
 
-    /** PALETTES */
+    /* PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
     public static final String SOURCES_PAL = Messages.gettext("Sources");
     public static final String CONTINUOUS_PAL = Messages.gettext("Continuous time systems");
@@ -133,6 +129,8 @@ public final class XcosMessages {
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
+    
+    public static final String ACTIVATE_PAL_TITLE = Messages.gettext("Enable this palette");
 
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save.<br/> Do you want to save it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
@@ -141,14 +139,14 @@ public final class XcosMessages {
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"  + Messages.gettext("You may enter here scilab instructions to define "
 	    + "symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed."
-	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)" ) + "</html>";
+	    + "(i.e. you click on OK, by Eval and every time diagram is loaded.)") + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
     public static final String FAIL_SAVING_DIAGRAM = Messages.gettext("Could not save diagram.");
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
-    public static final String UNKNOW_VERSION = Messages.gettext("Unknow Diagram Version : ");
+    public static final String UNKNOW_VERSION = Messages.gettext("Unknown Diagram Version : ");
     public static final String TRY_TO_CONTINUE = Messages.gettext("Will try to continue...");
 
     public static final String XCOS_ERROR = Messages.gettext("Xcos error");
@@ -206,7 +204,7 @@ public final class XcosMessages {
     public static final String COPYRIGHT_INRIA = Messages.gettext("Copyright (c) 1989-2009 (INRIA)");
     public static final String SCICOS_BASED = Messages.gettext("Based on Scicos");
 
-    /** InfoBar messages */
+    /* InfoBar messages */
     public static final String EMPTY_INFO = "";
     public static final String SAVING_DIAGRAM = Messages.gettext("Saving diagram" + DOTS);
     public static final String LOADING_DIAGRAM = Messages.gettext("Loading diagram" + DOTS);
@@ -220,19 +218,19 @@ public final class XcosMessages {
     public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
     
     
-    /** Debug level messages  */
+    /* Debug level messages  */
     public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
-    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continuous part switches)");
     public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
     public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     
-    /** File description */
+    /* File description */
     public static final String FILE_COSF = Messages.gettext("Scicos file");
-    public static final String FILE_COS = Messages.gettext("Scicos file");
+    public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_HDF5 = Messages.gettext("Scilab file");
 
-    /** Superblock mask editor */
+    /* Superblock mask editor */
     public static final String MASK_TITLE = Messages.gettext("Masked SuperBlock editor");
     public static final String MASK_INSERT = Messages.gettext("Insert");
     public static final String MASK_DELETE = Messages.gettext("Delete");
@@ -247,13 +245,29 @@ public final class XcosMessages {
     public static final String MASK_VARDESC = Messages.gettext("Variable descriptions");
     public static final String MASK_EDITABLE = Messages.gettext("Editable");
     public static final String MASK_VARVALUES = Messages.gettext("Values");
+    public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
+    
+    /* Interpreter errors */
+    public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
+    public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
+    
+// CSON: JavadocVariable
+// CSON: LineLength
+// CSON: MultipleStringLiterals
+    
+    /** This class is a static singleton, thus it must not be instantiated */
+    private XcosMessages() { }
     
     /**
      * This function checks for the popup menu activation under MacOS with Java version 1.5
      * Related to Scilab bug #5190
+     * @param e Click event
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
-    public static boolean isMacOsPopupTrigger(MouseEvent e) {
-	return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System.getProperty("java.specification.version").equals("1.5")));
-    }
+	public static boolean isMacOsPopupTrigger(MouseEvent e) {
+		return (SwingUtilities.isLeftMouseButton(e)
+				&& e.isControlDown()
+				&& (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
+				.getProperty("java.specification.version").equals("1.5")));
+	}
 }

@@ -56,6 +56,8 @@
     0;</literal> within the gateway function, it is important to call this
     macro before any memory allocation in order to avoid any memory
     leak.</para>
+
+    <para>WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).</para>
   </refsection>
 
   <refsection>

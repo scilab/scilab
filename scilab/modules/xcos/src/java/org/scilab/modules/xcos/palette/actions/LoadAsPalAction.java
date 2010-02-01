@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.palette.actions;
 
 import java.awt.Toolkit;
@@ -13,10 +25,17 @@ import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class LoadAsPalAction extends DefaultAction {
+/**
+ * Load a diagram on the palette.
+ * 
+ * It will load each block as an independent block and produce a visible panel
+ * similar to {@link XcosPalette}.
+ */
+public final class LoadAsPalAction extends DefaultAction {
 
     private static final long serialVersionUID = 6292720188130217522L;
 
@@ -60,8 +79,8 @@ public class LoadAsPalAction extends DefaultAction {
 	fc.setMultipleSelection(false);
 
 
-	SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
-	SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
+	SciFileFilter xcosFilter = new SciFileFilter(XcosFileType.XCOS.getFileMask(), null, 0);
+	SciFileFilter cosFilter = new SciFileFilter(XcosFileType.COS.getFileMask() + "*", null, 1);
 	SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
 	fc.addChoosableFileFilter(xcosFilter);
 	fc.addChoosableFileFilter(cosFilter);
@@ -75,6 +94,6 @@ public class LoadAsPalAction extends DefaultAction {
 	    return;
 	}
 
-	XcosPaletteManager.loadUserPalette(fc.getSelection()[0]);
+	PaletteManager.getInstance().loadUserPalette(fc.getSelection()[0]);
     }
 }

@@ -23,7 +23,7 @@ int GetUicontrolMin(sciPointObj* sciObj)
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Min");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Min");
       return FALSE;
     }
 }

@@ -10,7 +10,10 @@
  *
  */
 /* Messages.i */
-/*  swig -java -package org.scilab.modules.localization -outdir ../java/org/scilab/modules/localization/ Messages.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.localization -outdir ../java/org/scilab/modules/localization/ Messages.i 
+ * Others: Use the option --enable-build-swig to the configure
+*/
 %module Messages
 
 %{

@@ -28,13 +28,13 @@ int GetUicontrolHorizontalAlignment(sciPointObj* sciObj)
         case RIGHT_ALIGNMENT:
           return sciReturnString("right");
         default:
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"), "HorizontalAlignment", "left", "center", "right");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");
           return FALSE;
         }
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "HorizontalAlignment");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "HorizontalAlignment");
       return FALSE;
     }
 }

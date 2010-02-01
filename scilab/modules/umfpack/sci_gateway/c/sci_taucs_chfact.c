@@ -85,9 +85,9 @@ int sci_taucs_chfact(char* fname, unsigned long l)
 		{
 			if ( stat == MAT_IS_NOT_SPD )
 			{
-				Scierror(999,_("%s: Wrong value for input argument #%d: Must be symetric positive definite"),fname,1);
+				Scierror(999,_("%s: Wrong value for input argument #%d: Must be symmetric positive definite matrix."),fname,1);
 			}
-			/* the message for the other problem (not enought memory in stk) is treated automaticaly */
+			/* the message for the other problem (not enough memory in stk) is treated automaticaly */
 			return 0;
 		};
 

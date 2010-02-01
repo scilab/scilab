@@ -277,6 +277,295 @@ SciErr readNamedMatrixOfInteger64(void* _pvCtx, char* _pstName, int* _piRows, in
 SciErr readNamedMatrixOfUnsignedInteger64(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
 #endif
 
+/* shortcut functions */
+
+/**
+ * check if the variable type is a integer
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isIntegerType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a integer
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedIntegerType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pcData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarInteger8(void* _pvCtx, int* _piAddress, char* _pcData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _psData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarInteger16(void* _pvCtx, int* _piAddress, short* _psData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarInteger32(void* _pvCtx, int* _piAddress, int* _piData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pllData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int getScalarInteger64(void* _pvCtx, int* _piAddress, long long* _pllData);
+#endif
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pcData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarUnsignedInteger8(void* _pvCtx, int* _piAddress, unsigned char* _pucData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _psData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarUnsignedInteger16(void* _pvCtx, int* _piAddress, unsigned short* _pusData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarUnsignedInteger32(void* _pvCtx, int* _piAddress, unsigned int* _puiData);
+
+/**
+ * Get scalar integer variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pllData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int getScalarUnsignedInteger64(void* _pvCtx, int* _piAddress, unsigned long long* _pullData);
+#endif
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pcData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarInteger8(void* _pvCtx, char* _pstName, char* _pcData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _psData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarInteger16(void* _pvCtx, char* _pstName, short* _psData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarInteger32(void* _pvCtx, char* _pstName, int* _piData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pllData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int getNamedScalarInteger64(void* _pvCtx, char* _pstName, long long* _pllData);
+#endif
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pcData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char* _pucData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _psData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short* _pusData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int* _puiData);
+
+/**
+ * Get named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pllData return integer value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long* _pullData);
+#endif
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _pcData array of integer 8 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarInteger8(void* _pvCtx, int _iVar, char _cData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _psData array of integer 16 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarInteger16(void* _pvCtx, int _iVar, short _sData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _piData array of integer 32 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarInteger32(void* _pvCtx, int _iVar, int _iData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _pllData array of integer 64 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int createScalarInteger64(void* _pvCtx, int _iVar, long long _llData);
+#endif
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _pucData array of unsigned integer 8 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char _ucData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _pusData array of unsigned integer 16 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _puiData array of unsigned integer 32 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData);
+
+/**
+ * create scalar integer variable data
+ * @param[in] _piAddress variable name
+ * @param[in] _pullData array of unsigned integer 64 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _ullData);
+#endif
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pcData array of integer 8 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _psData array of integer 16 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _piData array of integer 32 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pllData array of integer 64 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData);
+#endif
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pucData array of unsigned integer 8 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char _ucData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pusData array of unsigned integer 16 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short _usData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _puiData array of unsigned integer 32 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int _uiData);
+
+/**
+ * create named scalar integer variable data
+ * @param[in] _pstName variable name
+ * @param[in] _pullData array of unsigned integer 64 bits
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long _ullData);
+#endif
+
+
 #ifdef __cplusplus
 }
 #endif

@@ -57,6 +57,22 @@ SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr);
  */
 SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr);
 
+/* shortcut functions */
+
+/**
+ * check if the variable type is a pointer
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isPointerType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a pointer
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedPointerType(void* _pvCtx, char* _pstName);
+
 #ifdef __cplusplus
 }
 #endif

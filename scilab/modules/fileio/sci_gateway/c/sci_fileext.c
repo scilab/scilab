@@ -18,6 +18,9 @@
 #include "FindFileExtension.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_fileext(char *fname,unsigned long fname_len)
 {
@@ -50,6 +53,11 @@ int sci_fileext(char *fname,unsigned long fname_len)
 				else
 				{
 					Output_extensions[i] = NULL;
+				}
+
+				if (Output_extensions[i] == NULL)
+				{
+					Output_extensions[i] = strdup("");
 				}
 			}
 			CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_extensions );

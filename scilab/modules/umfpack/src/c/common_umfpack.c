@@ -233,8 +233,8 @@ int is_sparse_upper_triangular(SciSparse *A)
 int spd_sci_sparse_to_taucs_sparse(int num, SciSparse *A, taucs_ccs_matrix *B)
 {
   /*  
-   *  this function create a taucs sparse symetric matrix (with only the lower
-   *  triangle part) from a supposed symetric spd scilab sparse one's.
+   *  this function create a taucs sparse symmetric matrix (with only the lower
+   *  triangle part) from a supposed symmetric spd scilab sparse one's.
    *  This is to put a sci sparse in the format wait by taucs routines
    *
    *  The scilab sparse may be only upper triangular

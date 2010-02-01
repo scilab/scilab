@@ -22,17 +22,32 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
-public class SuperblockMaskRemoveAction extends DefaultAction {
+/**
+ * @author Vincent COUVERT
+ *
+ */
+public final class SuperblockMaskRemoveAction extends DefaultAction {
 
+	/**
+	 * @param scilabGraph graph
+	 */
 	private SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.REMOVE, scilabGraph);
 	}
 
+	/**
+	 * @param scilabGraph graph
+	 * @return menu item
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
 	}
 	
-	@Override
+	/**
+	 * Do something
+	 * @param e the parameters
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
 	    block.unmask();

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/scicos_scicos/genmoc.sci, line: 79
 #, c-format
@@ -42,15 +42,9 @@ msgid "%s: Cannot find any MO files in the following location: %s.\n"
 msgstr ""
 #
 # File: macros/scicos_auto/lincos.sci, line: 126
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr ""
-#
 # File: macros/scicos_auto/lincos.sci, line: 136
 #, c-format
-msgid ""
-"%s: Diagram does not compile in pass %d.\n"
-"'),"
+msgid "%s: Diagram does not compile in pass %d.\n"
 msgstr ""
 #
 # File: macros/scicos_scicos/build_block.sci, line: 92

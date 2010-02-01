@@ -65,8 +65,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 
 	setScilabMode(SCILAB_STD);
 
-	CreateScilabHiddenWndThread();
-
 	ScilabDirectory = getScilabDirectory(FALSE);
 
 	if (ScilabDirectory == NULL)
@@ -190,6 +188,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 		}
 	}	
 
+
 	if ( ShortCircuitExec == TRUE)
 	{
 		char PathWScilex[PATH_MAX*2];
@@ -231,6 +230,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
 #endif
 
+	CreateScilabHiddenWndThread();
 	CreateScilabConsole(sci_show_banner);
 	HideScilex(); /* hide console window */
 

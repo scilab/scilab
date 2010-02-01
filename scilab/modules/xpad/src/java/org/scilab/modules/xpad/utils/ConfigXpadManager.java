@@ -92,10 +92,8 @@ public final class ConfigXpadManager {
 	private static String SETTING = "Setting";
 	private static String XPAD = "xpad";
 
-	//private static final String XPAD_CONFIG_FILE = "/home/allan/scilab5-2/scilab/modules/xpad/etc/xpadConfiguration.xml";
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/xpadConfiguration.xml";
 
-	//private static final String USER_XPAD_CONFIG_FILE = "/home/allan/Bureau/xpadConfiguration.xml";
 	private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/xpadConfiguration.xml";
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
