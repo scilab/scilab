@@ -158,6 +158,25 @@ public class XcosTab extends ScilabTab {
     private boolean actionsEnabled;
 
     /**
+     * Default constructor
+     * @param diagram The associated diagram model
+     */
+    public XcosTab(XcosDiagram diagram) {
+	super(XcosMessages.XCOS);
+
+	this.diagram = diagram;
+	this.actionsEnabled = false;
+
+	initComponents();
+
+	// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
+	((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());
+	
+	setCallback(new CloseAction(diagram));
+	diagram.getAsComponent().addKeyListener(new ArrowKeyListener());
+    }
+    
+    /**
      * @param diag diagram
      */
     public static void closeDiagram(XcosDiagram diag) {
@@ -295,25 +314,6 @@ public class XcosTab extends ScilabTab {
 				.get(i)));
 	    }
 	}
-    }
-
-    /**
-     * Default constructor
-     * @param diagram The associated diagram model
-     */
-    public XcosTab(XcosDiagram diagram) {
-	super(XcosMessages.XCOS);
-
-	this.diagram = diagram;
-	this.actionsEnabled = false;
-
-	initComponents();
-
-	// No SimpleTab.addMember(ScilabComponent ...) so perform a raw association.
-	((SwingScilabTab) getAsSimpleTab()).setContentPane(diagram.getAsComponent());
-	
-	setCallback(new CloseAction(diagram));
-	diagram.getAsComponent().addKeyListener(new ArrowKeyListener());
     }
 
     /**
