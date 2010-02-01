@@ -23,11 +23,12 @@ import org.scilab.modules.hdf5.write.H5Write;
 public class testScilabString extends TestCase {
 
     public final static String myString = "myString";
+	private final static String tempDir = System.getProperty("java.io.tmpdir");
 
     public void testEmptyString() throws NullPointerException, HDF5Exception {
 	ScilabString emptyString = new ScilabString("");
 	
-	int fileId = H5Write.createFile("/tmp/emptyStringFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/emptyStringFromJava.h5");
 	H5Write.writeInDataSet(fileId, "EmptyString", emptyString);
 	H5Write.closeFile(fileId);
 	
@@ -36,13 +37,13 @@ public class testScilabString extends TestCase {
     public void testSingleString() throws NullPointerException, HDF5Exception {
 	ScilabString scilabSingleString = new ScilabString(myString);
 
-	int fileId = H5Write.createFile("/tmp/singleStringFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/singleStringFromJava.h5");
 	H5Write.writeInDataSet(fileId, "SingleString", scilabSingleString);
 	H5Write.closeFile(fileId);
 
 	ScilabString data = new ScilabString();
-	fileId = H5Read.openFile("/tmp/singleStringFromJava.h5");
-	Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_STRING);
+	fileId = H5Read.openFile(tempDir + "/singleStringFromJava.h5");
+	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
 	H5Read.readDataFromFile(fileId, data);
 	Assert.assertEquals(data.getData().length, 1);
 	Assert.assertEquals(data.getData()[0].length, 1);
@@ -61,13 +62,13 @@ public class testScilabString extends TestCase {
 
 	ScilabString scilabMatrixString = new ScilabString(dataStringMatix);
 
-	int fileId = H5Write.createFile("/tmp/matrixStringFromJava.h5");
+	int fileId = H5Write.createFile(tempDir + "/matrixStringFromJava.h5");
 	H5Write.writeInDataSet(fileId, "MatrixString", scilabMatrixString);
 	H5Write.closeFile(fileId);
 
 	ScilabString data = new ScilabString();
-	fileId = H5Read.openFile("/tmp/matrixStringFromJava.h5");
-	Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_STRING);
+	fileId = H5Read.openFile(tempDir + "/matrixStringFromJava.h5");
+	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
 	H5Read.readDataFromFile(fileId, data);
 	Assert.assertEquals(data.getData().length, ROWS);
 	Assert.assertEquals(data.getData()[0].length, COLS);
