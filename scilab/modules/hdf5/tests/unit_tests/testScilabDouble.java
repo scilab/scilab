@@ -91,7 +91,7 @@ public class testScilabDouble {
 	ScilabDouble data = new ScilabDouble();
 
 	fileId = H5Read.openFile(tempDir + "/complexDoubleFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_DOUBLE;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_DOUBLE);
 	H5Read.readDataFromFile(fileId, data);
 	for (int i = 0 ; i < ROWS ; ++i) {
 	    for (int j = 0 ; j < COLS ; ++j) {

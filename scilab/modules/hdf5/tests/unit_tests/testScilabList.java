@@ -34,7 +34,7 @@ public class testScilabList {
 	
 	data = new ScilabList();
 	fileId = H5Read.openFile(tempDir + "/emptyListFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_LIST;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_LIST);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.isEmpty() == true;
     }

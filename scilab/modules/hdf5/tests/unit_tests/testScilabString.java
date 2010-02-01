@@ -43,7 +43,7 @@ public class testScilabString {
 
 	ScilabString data = new ScilabString();
 	fileId = H5Read.openFile(tempDir + "/singleStringFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_STRING);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == 1;
 	assert data.getData()[0].length == 1;
@@ -69,13 +69,13 @@ public class testScilabString {
 
 	ScilabString data = new ScilabString();
 	fileId = H5Read.openFile(tempDir + "/matrixStringFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_STRING);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == ROWS;
 	assert data.getData()[0].length == COLS;
 	for (int i = 0 ; i < ROWS ; ++i) {
 	    for (int j = 0 ; j < COLS ; ++j) {
-		assert data.getData()[i][j] == dataStringMatix[i][j];
+			assert data.getData()[i][j].equals(dataStringMatix[i][j]);
 	    }
 	}
 

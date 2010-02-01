@@ -34,7 +34,7 @@ public class testScilabBoolean {
 
 	ScilabBoolean data = new ScilabBoolean();
 	fileId = H5Read.openFile(tempDir+"/singleBooleanFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_BOOLEAN;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == 1;
 	assert data.getData()[0].length == 1;
@@ -60,7 +60,7 @@ public class testScilabBoolean {
 
 	ScilabBoolean data = new ScilabBoolean();
 	fileId = H5Read.openFile(tempDir+"/matrixbooleanFromJava.h5");
-	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_BOOLEAN;
+	assert H5Read.getRootType(fileId).equals(H5ScilabConstant.SCILAB_CLASS_BOOLEAN);
 	H5Read.readDataFromFile(fileId, data);
 	assert data.getData().length == ROWS;
 	assert data.getData()[0].length == COLS;
