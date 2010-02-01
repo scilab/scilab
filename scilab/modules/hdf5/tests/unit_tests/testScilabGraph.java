@@ -10,7 +10,8 @@
  *
  */
 
-import junit.framework.TestCase;
+import org.testng.annotations.*;
+
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.read.H5Read;
@@ -29,6 +30,7 @@ public class testScilabGraph {
 	test.testFakeMetanetGraph();
     }
 
+	@Test
     public void testFakeMetanetGraph() throws NullPointerException, HDF5Exception {
 	/* PROFILES */
 	ScilabList PROFILES = new ScilabList();

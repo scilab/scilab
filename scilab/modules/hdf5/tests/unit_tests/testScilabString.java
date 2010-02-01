@@ -1,4 +1,4 @@
-/*
+ /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  *
@@ -9,9 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+import org.testng.annotations.*;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
@@ -20,20 +19,21 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.write.H5Write;
 
 
-public class testScilabString extends TestCase {
+public class testScilabString {
 
     public final static String myString = "myString";
 	private final static String tempDir = System.getProperty("java.io.tmpdir");
 
-    public void testEmptyString() throws NullPointerException, HDF5Exception {
+	@Test
+    public void emptyStringTest() throws NullPointerException, HDF5Exception {
 	ScilabString emptyString = new ScilabString("");
 	
 	int fileId = H5Write.createFile(tempDir + "/emptyStringFromJava.h5");
 	H5Write.writeInDataSet(fileId, "EmptyString", emptyString);
-	H5Write.closeFile(fileId);
-	
+	H5Write.closeFile(fileId);	
     }
-    
+
+	@Test    
     public void testSingleString() throws NullPointerException, HDF5Exception {
 	ScilabString scilabSingleString = new ScilabString(myString);
 
@@ -45,11 +45,12 @@ public class testScilabString extends TestCase {
 	fileId = H5Read.openFile(tempDir + "/singleStringFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
 	H5Read.readDataFromFile(fileId, data);
-	Assert.assertEquals(data.getData().length, 1);
-	Assert.assertEquals(data.getData()[0].length, 1);
-	Assert.assertEquals(data.getData()[0][0], myString);
+	assert data.getData().length == 1;
+	assert data.getData()[0].length == 1;
+	assert data.getData()[0][0].equals(myString);
     }
 
+	@Test
     public void testStringMatrix() throws NullPointerException, HDF5Exception {
 	String[][] dataStringMatix = {
 		{"MatrixString(1,1)", "MatrixString(1,2)"},
@@ -70,11 +71,11 @@ public class testScilabString extends TestCase {
 	fileId = H5Read.openFile(tempDir + "/matrixStringFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_STRING;
 	H5Read.readDataFromFile(fileId, data);
-	Assert.assertEquals(data.getData().length, ROWS);
-	Assert.assertEquals(data.getData()[0].length, COLS);
+	assert data.getData().length == ROWS;
+	assert data.getData()[0].length == COLS;
 	for (int i = 0 ; i < ROWS ; ++i) {
 	    for (int j = 0 ; j < COLS ; ++j) {
-		Assert.assertEquals(data.getData()[i][j], dataStringMatix[i][j]);
+		assert data.getData()[i][j] == dataStringMatix[i][j];
 	    }
 	}
 

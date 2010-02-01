@@ -9,9 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+import org.testng.annotations.*;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
@@ -37,9 +36,10 @@ public class testScilabList {
 	fileId = H5Read.openFile(tempDir + "/emptyListFromJava.h5");
 	assert H5Read.getRootType(fileId) == H5ScilabConstant.SCILAB_CLASS_LIST;
 	H5Read.readDataFromFile(fileId, data);
-	Assert.assertEquals(data.isEmpty(), true);
+	assert data.isEmpty() == true;
     }
     
+	@Test
     public void testStringList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
 	ScilabList data = new ScilabList();
 	data.add(new ScilabString("hello"));
@@ -51,6 +51,7 @@ public class testScilabList {
 	H5Write.closeFile(fileId);
     }
     
+	@Test
     public void testDoubleList() throws NullPointerException, HDF5LibraryException, HDF5Exception {
 	ScilabList data = new ScilabList();
 	data.add(new ScilabDouble(2));
