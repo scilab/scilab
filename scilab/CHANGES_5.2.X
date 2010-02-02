@@ -104,6 +104,9 @@ Xcos:
 * bug 6490 fixed - The multiple-point link didn't work accordingly to the 
                    zoom level.
 
+* bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
+                   limitation.
+
 Atoms:
 ======
 

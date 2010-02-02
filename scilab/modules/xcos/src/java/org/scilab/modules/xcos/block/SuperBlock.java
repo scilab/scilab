@@ -117,7 +117,7 @@ public final class SuperBlock extends BasicBlock {
 		super.setDefaultValues();
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
 		setSimulationFunctionName(SIMULATION_NAME);
-		setRealParameters(new ScilabDouble());
+		setRealParameters(new ScilabMList());
 		setIntegerParameters(new ScilabDouble());
 		setObjectsParameters(new ScilabList());
 		setExprs(new ScilabDouble());
