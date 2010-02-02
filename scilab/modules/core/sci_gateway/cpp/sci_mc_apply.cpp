@@ -41,73 +41,124 @@ extern "C" {
 
 #include <iostream>
 
+
+  /*
+   *
+   fun_name='test_fun';
+   c_prog=['#include  <math.h>'
+   'void '+fun_name+'(double* arg, double* res) {'
+   '*res= 2.*(*arg);'
+   '}'];
+   disp(c_prog);
+   mputl(c_prog,fun_name+'.c');
+   ilib_for_link(fun_name,fun_name+'.c',[],"c");
+   exec loader.sce;
+   mc_apply([1,2],fun_name,1)
+
+   function res= f(arg); res=2*arg; endfunction;
+
+   mc_apply([1, 2], f, 1);
+
+   *
+   */
+
+
+
+
+
+
+
+
+
 extern "C" {
   int C2F(sci_mc_apply)(char *fname,unsigned long fname_len);
- }
+}
 
 namespace {
-/* makes (with MALLOC) a '\0'-terminated string from an Rhs var n<B0>arg. */
- char* getStringArg(int arg)
+
+static int getSciFunctionArg(int arg)
 {
-  char* res= 0;
-  if(GetType(arg) == sci_strings)
-    {
-      int nbChars, unused, tmp;
-      /* TODO: STACK2 api used because no stack3 api available */
-      GetRhsVar(arg, STRING_DATATYPE, &nbChars, &unused, &tmp);
-      res= static_cast<char*>( MALLOC(nbChars+1));
-      strncpy(res, cstk(tmp), nbChars);
-      res[nbChars]= '\0';
-    }
+  int res=0;
+  if(GetType(arg) == sci_c_function)
+	{
+		int unusedDim;
+		/* TODO: STACK2 api used because no stack3 api available */
+		GetRhsVar(arg, EXTERNAL_DATATYPE, &unusedDim, &unusedDim, &res);
+	}
   return res;
 }
-static double getDoubleArg(int arg)
-{
-  int err;
-  double res;
-  int* addr;
-  getVarAddressFromPosition(arg, &addr);
-  if(getVarType(addr) == sci_matrix)
-    {
+  /* makes (with MALLOC) a '\0'-terminated string from an Rhs var n<B0>arg. */
+  char* getStringArg(int* arg_addr)
+  {
+    char* res= 0;
+    int type;
+    SciErr err= getVarType(pvApiCtx, arg_addr, &type);
+    if(type == sci_strings)
+      {
+	int rows, cols;
+	err = getMatrixOfString(pvApiCtx, arg_addr, &rows, &cols, NULL, NULL);
+	if( (!err.iErr) && (rows == 1) && (cols == 1)){
+	  int nChars;
+	  err = getMatrixOfString(pvApiCtx, arg_addr, &rows, &cols, &nChars, NULL);
+	  if(!err.iErr) {
+	    res= static_cast<char*>( MALLOC(nChars+1));
+	    if( res ) {
+	      char* data;
+	      err = getMatrixOfString(pvApiCtx, arg_addr, &rows, &cols, &nChars, &res);
+	      if( err.iErr ) {
+		FREE(res);
+		res= 0;
+	      }
+	    }
+	  }
+	}
+      }
+    return res;
+  }
+  static double getDoubleArg(int arg)
+  {
+    double res;
+    int* addr;
+    SciErr err=  getVarAddressFromPosition(pvApiCtx, arg, &addr);
+    int type;
+    err= getVarType(pvApiCtx, addr, &type);
+    if(type == sci_matrix)
+      {
+	int rows, cols;
+	double* val;
+	err = getMatrixOfDouble(pvApiCtx, addr, &rows, &cols, &val);
+	if(rows != 1 || cols != 1)
+	  {
+	    // err
+	  }
+	res= *val;
+      }
+    return res;
+  }
+
+  static int scilab_function=0;
+  static double* scilab_arg_data=0;
+  static int currentTop;
+  static int n, k, m;
+
+  int wrapper(double const * args, double* res) {
+    memcpy(scilab_arg_data, args, sizeof(double)*k);
+    int  nb_lhs= 1, nb_rhs= 1;
+    std::cerr<<"in wrapper\n";
+    C2F(scifunction)(&currentTop, &scilab_function, &nb_lhs, &nb_rhs);
+    { // should be the same every time we are called.
       int rows, cols;
-      double* val;
-      err = getMatrixOfDouble(addr, &rows, &cols, &val);
-      if(rows != 1 || cols != 1)
-        {
-          // err
-        }
-      res= *val;
+      int* scilab_res_var;
+      double* scilab_res_data;
+      getVarAddressFromPosition(pvApiCtx, 1, &scilab_res_var);
+      getMatrixOfDouble(pvApiCtx, scilab_res_var, &rows, &cols, &scilab_res_data);
+      memcpy(res, scilab_res_data, sizeof(double)*m);
     }
-  return res;
+    return 0;
+  }
+
+
 }
-
-}
-
-
-/*
- *
-fun_name='test_fun';
-c_prog=['#include  <math.h>'
-'void '+fun_name+'(double* arg, double* res) {'
-'*res= 2.*(*arg);'
-'}'];
-disp(c_prog);
-mputl(c_prog,fun_name+'.c');
-ilib_for_link(fun_name,fun_name+'.c',[],"c");
-exec loader.sce;
-mc_apply([1,2],fun_name,1)
- *
- */
-
-
-
-
-
-
-
-
-
-
 
 
 int C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
@@ -123,26 +174,39 @@ int C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
 
   double* args;
   double* results;
-  int n, k, m; // n x k args and n x m results
   
   char* funName;
-  void (*function)(double*, double*);
-  int err;
-  {
-    int* argVar;
-    int type;
-    getVarAddressFromPosition(1, &argVar);
-    type= getVarType(argVar);
- getMatrixOfDouble( argVar, &k, &n, &args);
-  }
+  int (*function)(double const *, double*);
+
+  
+  int* argVar;
+  int type;
+  SciErr err;
+
+  int debug = getSciFunctionArg(1);
+
+  err= getVarAddressFromPosition(pvApiCtx, 1, &argVar);
+  err= getVarType(pvApiCtx, argVar, &type);
+  err= getMatrixOfDouble(pvApiCtx, argVar, &k, &n, &args);
+  
   //  fprintf(stderr,"n:%d k:%d\n",n,k);
   std::cerr<<"n:"<<n<<" k:"<<k; 
-funName = getStringArg(2);
-  //  fprintf(stderr,"function:%s \n",funName);
-  if(funName == NULL)
-    {
-    }
-  {
+  int* funVar;
+
+
+
+  err= getVarAddressFromPosition(pvApiCtx, 2, &funVar);
+  err= getVarType(pvApiCtx, funVar, &type);
+
+  currentTop= Rhs;
+  m= (int) getDoubleArg(3);
+  //  fprintf(stderr,"m:%d \n",m);
+  std::cerr<<"m:"<<m<<std::endl;
+  allocMatrixOfDouble(pvApiCtx, ++currentTop, m, n, &results);
+
+  switch(type){
+  case sci_strings: { // native function name
+    funName = getStringArg(funVar);
     int found;
     found=SearchInDynLinks(funName, (reinterpret_cast< void (**)()>(&function)));
     if(found == -1) 
@@ -151,15 +215,27 @@ funName = getStringArg(2);
 	//SciError( a pa trouvé);
 	return 1;
       }
+    break;
   }
-  m= (int) getDoubleArg(3);
-  //  fprintf(stderr,"m:%d \n",m);
+  case sci_c_function: { // scilab macro
+    int lhs, rhs;
+    GetRhsVar(2, EXTERNAL_DATATYPE, &lhs, &rhs, &scilab_function);
+    function= &wrapper;
+    err= allocMatrixOfDouble(pvApiCtx, ++currentTop, k, 1, &scilab_arg_data);
+    break;
+  }
+  default:{/* SciError*/}
+  }
+
+
+
   std::cerr<<"m:"<<m<<std::endl;
-  allocMatrixOfDouble(Rhs+1, m, n, &results);
-   mc_apply_n_process(args, k*sizeof(double), n, results, m*sizeof(double),  reinterpret_cast<void(*)(void const*, void*)>(function),0);
-   // mc_apply_n_threads(args, k*sizeof(double), n, results, m*sizeof(double), reinterpret_cast<void(*)(void const*, void*)>(function), 0);
+  allocMatrixOfDouble(pvApiCtx, Rhs+1, m, n, &results);
+  mc_apply_n_process(args, k*sizeof(double), n, results, m*sizeof(double),  reinterpret_cast<void(*)(void const*, void*) >(function),0);
+  // mc_apply_n_threads(args, k*sizeof(double), n, results, m*sizeof(double), reinterpret_cast<void(*)(void const*, void*)>(function), 0);
 
   LhsVar(1)= Rhs+1;
   PutLhsVar();
   return 0;
 }
+
