@@ -132,6 +132,12 @@ Compilation:
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
 
+Scilab CLI:
+===========
+
+* With the option --texmacs, the mode NWNI was used. It has been changed to NW
+  to allow the use of graphic features.
+
 Scilab extensions:
 ==================
 
