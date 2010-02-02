@@ -4,7 +4,7 @@
                 xmlns:latex="http://forge.scilab.org/p/jlatexmath"
                 version='1.0'>
 
-<xsl:include href="./docbook.xsl"/>
+<xsl:include href="STYLE_DOC"/>
 
 <xsl:template match="latex:*">
   <fo:instream-foreign-object>
