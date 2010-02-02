@@ -815,7 +815,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls -r $jar 2>/dev/null`
+	jar_resolved=`ls $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
           AC_JAVA_TRY_COMPILE([import $2;], , "no", [

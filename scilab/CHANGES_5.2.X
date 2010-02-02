@@ -129,9 +129,6 @@ Compilation:
 
 * Better detection of JOGL
 
-* When searching for Java packages files (jar), the oldest version was 
-  selected. Now, lastest version are now selected.
-
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
 
