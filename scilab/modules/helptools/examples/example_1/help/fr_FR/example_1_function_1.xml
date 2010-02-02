@@ -75,7 +75,7 @@
   </refsection>
   
   <refsection>
-    <title>Example of MathML inclusion : Inline</title>
+    <title>Exemple of MathML inclusion : Inline</title>
     <para>
       <informalequation>
         <mediaobject>
@@ -229,7 +229,7 @@
   </refsection>
   
   <refsection>
-    <title>Examples</title>
+    <title>Exemples</title>
     <programlisting role="example"><![CDATA[
     
 // Commentaires
