@@ -22,12 +22,18 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.utils.StyleMap;
 
 import com.mxgraph.util.mxConstants;
 
+/**
+ * 
+ */
 public final class TextBlock extends BasicBlock {
     
-    private static final long serialVersionUID = -4279562884443733433L;
+	/** After investigations, the 1pt of scicos is equivalent to a 10 real pt */
+	private static final int SCICOS_FONTSIZE_RATIO = 10;
+	private static final long serialVersionUID = -4279562884443733433L;
 
     /**
      * Font list from http://www.w3.org/TR/CSS2/fonts.html#generic-font-families
@@ -43,22 +49,35 @@ public final class TextBlock extends BasicBlock {
 	
 	private String name;
 	
+	/**
+	 * Default constructor
+	 * @param name the font name
+	 */
 	private Font(String name) {
 	    this.name = name;
 	}
 	
+	/**
+	 * @return the font name
+	 */
 	public String getName() {
 	    return name;
 	}
     }
 
+    /**
+     * Default constructor
+     */
 	public TextBlock() {
 		super();
 	}
 
+	/**
+	 * Constructor with value
+	 * @param label the current value
+	 */
 	protected TextBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
@@ -69,6 +88,7 @@ public final class TextBlock extends BasicBlock {
 	protected void setDefaultValues() {
 		super.setDefaultValues();
 		setInterfaceFunctionName("TEXT_f");
+		setStyle(getInterfaceFunctionName());
 	}
     
     /**
@@ -83,48 +103,43 @@ public final class TextBlock extends BasicBlock {
      */
     private Font getFont() {
 	int number = Integer.parseInt(((ScilabString) getExprs()).getData()[1][0]);
-	return Font.values()[number-1];
+	return Font.values()[number - 1];
     }
 
     /**
      * @return the fontSize
      */
     private int getFontSize() {
-	// After investigations, the 1pt of scicos is equivalent to a 4 real pt
-	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0])*4);
+	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]) * SCICOS_FONTSIZE_RATIO);
     }
     
     /**
      * Apply style on setExprs
+     * @param exprs the current expression value
      */
     @Override
     public void setExprs(ScilabType exprs) {
         super.setExprs(exprs);
         
-        StringBuilder str = new StringBuilder();
-        str.append("[;");
-        str.append(mxConstants.STYLE_FONTFAMILY);
-        str.append("=");
-        str.append(getFont().getName());
-        str.append(";");
-        str.append(mxConstants.STYLE_FONTSIZE);
-        str.append("=");
-        str.append(getFontSize());
-        str.append(";]");
+        StyleMap map = new StyleMap(getStyle());
+        map.put(mxConstants.STYLE_FONTFAMILY, getFont().getName());
+        map.put(mxConstants.STYLE_FONTSIZE, Integer.toString(getFontSize()));
         
-        setStyle(str.toString());
+        setStyle(map.toString());
     }
     
     /**
      * Disabling BlockSettings action
+     * @param context the current context
      */
     @Override
-    public void openBlockSettings(String context[]) {
+    public void openBlockSettings(String[] context) {
 	// NOTHING TO BE DONE
     }
     
     /**
      * Disabling BlockSettings action
+     * @param modifiedBlock the updated values
      */
     @Override
     public void updateBlockSettings(BasicBlock modifiedBlock) {
@@ -133,31 +148,12 @@ public final class TextBlock extends BasicBlock {
     
     /**
      * Customize menu
+     * @param menuList the current menus to modifiate
      */
     @Override
     protected void customizeMenu(
-            Map<Class<? extends DefaultAction>, Menu> menuList) {
+            Map<Class< ? extends DefaultAction>, Menu> menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
-    }
-    
-    @Override
-    public String getStyle() {
-        String style = super.getStyle();
-
-        /*
-         * Automatically add mxConstants.STYLE_SHAPE if not present  
-         */
-        if (!style.contains(mxConstants.STYLE_SHAPE)) {
-            StringBuilder str = new StringBuilder(style);
-            str.append(";");
-            str.append(mxConstants.STYLE_SHAPE);
-            str.append("=");
-            str.append(mxConstants.SHAPE_LABEL);
-            str.append(";");
-            style = str.toString();
-        }
-        
-        return style;
     }
 }

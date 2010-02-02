@@ -68,13 +68,17 @@ Xcos:
 * bug 5627 fixed - It was not possible to place a port in a non-conventionnal
                    side.
 
+* bug 5640 fixed - When launching Xcos: Toolbar and menubar didn't appear 
+                   before the focus is on the Xcos window.
+
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
 
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
 
-* bug 5667 fixed - Simulation starts faster on Linux for huge diagram ( hdf5 export issue )
+* bug 5667 fixed - Simulation starts faster on Linux for huge diagram 
+                   (hdf5 export issue).
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
@@ -92,7 +96,14 @@ Xcos:
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
-* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
+* bug 6474 fixed - demo_watertank.xcoscrashed when any block parameter dialog 
+                   was closed the second time.
+
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the 
+                   zoom level.
+
+* bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
+                   limitation.
 
 Atoms:
 ======
@@ -120,9 +131,6 @@ Compilation:
 * Improved detection of Fedora/Redhat packages
 
 * Better detection of JOGL
-
-* When searching for Java packages files (jar), the oldest version was 
-  selected. Now, lastest version are now selected.
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
