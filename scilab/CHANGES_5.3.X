@@ -8,6 +8,12 @@ Core:
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
 
+Documentation:
+==============
+
+* It is now possible to use LaTeX inline in the documentation. Thanks to 
+ Calixte Denizet for this feature 
+
 Xcos:
 =====
 
