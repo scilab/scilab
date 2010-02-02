@@ -20,6 +20,10 @@ Compilation:
 
 * Windows 2000 is no more supported as operating system.
 
+Tests:
+======
+
+* Mechanism of unitary tests for Java code based on testng added and used
  
 Bug fixes:
 ==========
