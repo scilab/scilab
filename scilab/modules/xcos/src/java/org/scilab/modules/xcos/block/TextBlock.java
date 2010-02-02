@@ -35,8 +35,7 @@ public final class TextBlock extends BasicBlock {
 	/**
 	 * The factor between a real point and a scicos point
 	 */
-	private static final int FONT_FACTOR = 4;
-
+	private static final int FONT_FACTOR = 10;
 	private static final String INTERFUNCTION_NAME = "TEXT_f";
 	
     /**
@@ -69,7 +68,9 @@ public final class TextBlock extends BasicBlock {
 		}
     }
 
-    /** Default cstr  */
+    /**
+     * Default constructor
+     */
 	public TextBlock() {
 		super();
 	}
@@ -90,6 +91,7 @@ public final class TextBlock extends BasicBlock {
 	protected void setDefaultValues() {
 		super.setDefaultValues();
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
+		setStyle(INTERFUNCTION_NAME);
 	}
     
     /**
@@ -111,9 +113,9 @@ public final class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-	// After investigations, the 1pt of scicos is equivalent to a 4 real pt
+	// After investigations, the 1pt of scicos is equivalent to a 10 real pt
 	return (Integer.parseInt(((ScilabString) getExprs()).getData()[2][0]) * FONT_FACTOR);
-    }
+   }
     
     /**
      * Apply style on setExprs
@@ -123,8 +125,7 @@ public final class TextBlock extends BasicBlock {
     public void setExprs(ScilabType exprs) {
         super.setExprs(exprs);
         
-        StyleMap map = new StyleMap(INTERFUNCTION_NAME);
-        map.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_LABEL);
+        StyleMap map = new StyleMap(getStyle());
         map.put(mxConstants.STYLE_FONTFAMILY, getFont().getName());
         map.put(mxConstants.STYLE_FONTSIZE, Integer.toString(getFontSize()));
         
@@ -143,7 +144,7 @@ public final class TextBlock extends BasicBlock {
     /**
      * Disabling BlockSettings action
      * @param modifiedBlock the updated block
-     */
+    */
     @Override
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	// NOTHING TO BE DONE
@@ -158,25 +159,5 @@ public final class TextBlock extends BasicBlock {
             Map<Class< ? extends DefaultAction>, Menu> menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
-    }
-    
-    /**
-     * @return The style string associated whit this component
-     * @see com.mxgraph.model.mxCell#getStyle()
-     */
-    @Override
-    public String getStyle() {
-        String style = super.getStyle();
-
-        /*
-         * Automatically add mxConstants.STYLE_SHAPE if not present  
-         */
-        StyleMap map = new StyleMap(style);
-        if (!map.containsKey(mxConstants.STYLE_SHAPE)) {
-            map.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_LABEL);
-            style = map.toString();
-        }
-        
-        return style;
     }
 }
