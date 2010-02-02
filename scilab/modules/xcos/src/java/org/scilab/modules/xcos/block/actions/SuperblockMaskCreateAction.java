@@ -47,6 +47,11 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 				new SuperblockMaskCreateAction(scilabGraph), null);
 	}
 
+	/**
+	 * Callback to be done
+	 * @param e parameters
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();

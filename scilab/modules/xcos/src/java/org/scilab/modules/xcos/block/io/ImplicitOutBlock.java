@@ -41,7 +41,6 @@ public final class ImplicitOutBlock extends ContextUpdate {
 	 */
 	protected ImplicitOutBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 

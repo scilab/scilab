@@ -235,8 +235,9 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	hsize_t     subdims[1] = {1};
 	hid_t       typeId, space, dset, memspace;
 	herr_t      status;
-	hid_t				iCompress;
-	size_t			iMaxLen = 0;
+	hid_t		iCompress;
+	size_t		iMaxLen = 0;
+	char*		pstDataTemp = NULL;
 
 	for(i = 0 ; i < _iRows * _iCols ; i++)
 	{
@@ -252,6 +253,11 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
 	//Create special string type
 	typeId = H5Tcopy(H5T_C_S1);
+
+	/* Bug 6474 */
+	/* we allocate datas in fixed length string */
+	/* workaround for memcpy in hdf5 with wrong size */
+	pstDataTemp = malloc(sizeof(char) * (iMaxLen + 1));
 
 	if(iMaxLen > 0)
 	{
@@ -283,6 +289,8 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 		hssize_t		start[1]={i};
 		hsize_t			count[1]={1};
 
+		strcpy(pstDataTemp, data[i]);
+
 		space = H5Dget_space(dset);
 		if(space < 0)
 		{
@@ -302,7 +310,8 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 			return -1;
 		}
 
-		status = H5Dwrite (dset, typeId, memspace, space, H5P_DEFAULT, data[i]);
+		status = H5Dwrite (dset, typeId, memspace, space, H5P_DEFAULT, pstDataTemp);
+
 		if(status < 0)
 		{
 			return -1;
@@ -371,6 +380,9 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	{
 		return -1;
 	}
+
+	free(pstDataTemp);
+
 	return 0;
 }
 

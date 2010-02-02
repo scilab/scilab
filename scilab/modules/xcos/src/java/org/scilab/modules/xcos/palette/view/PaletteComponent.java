@@ -10,21 +10,20 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.xcos.palette.view;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
-
-import com.mxgraph.view.mxGraph;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Customize the default component
  * @see java.awt.Component
  */
-public class XcosComponent extends ScilabComponent {
+public class PaletteComponent extends ScilabComponent {
 
     private static final long serialVersionUID = 1592816691330208090L;
 
@@ -32,7 +31,7 @@ public class XcosComponent extends ScilabComponent {
      * Construct the component with the associated graph
      * @param graph The associated graph
      */
-    public XcosComponent(mxGraph graph) {
+    public PaletteComponent(XcosDiagram graph) {
 	super(graph);
 	
 	addComponentListener(new ComponentListener() {

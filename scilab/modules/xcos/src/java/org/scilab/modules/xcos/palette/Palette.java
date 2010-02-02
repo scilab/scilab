@@ -20,6 +20,8 @@ import org.scilab.modules.xcos.palette.view.PaletteView;
  * similar to those performed by the {@link PaletteDiagram} class.
  */
 public final class Palette {
+	private static Palette[] datas;
+	
 	private PaletteModel model;
 	private PaletteView view;
 	
@@ -76,14 +78,16 @@ public final class Palette {
 	}
 	
 	/** @return the Palette list */
-	public static Palette[] getDatas() {
-		final int length = PaletteModel.values().length;
-		Palette[] pal = new Palette[length];
-
-		for (int i = 0; i < length; i++) {
-			pal[i] = new Palette(PaletteModel.values()[i]);
+	public static synchronized Palette[] getDatas() {
+		if (datas == null) {
+			final int length = PaletteModel.values().length;
+			datas = new Palette[length];
+	
+			for (int i = 0; i < length; i++) {
+				datas[i] = new Palette(PaletteModel.values()[i]);
+			}
 		}
 
-		return pal;
+		return datas;
 	}
 }

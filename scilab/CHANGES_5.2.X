@@ -17,7 +17,7 @@ Internationalization:
 
 * Ukrainian localization added (Thanks Yuri Chornoivan)
 
-* Many english typos have been fixed by (Thanks Yuri Chornoivan)
+* Many english typos have been fixed (Thanks Yuri Chornoivan)
 
 Xcos:
 =====
@@ -27,7 +27,7 @@ Xcos:
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
-* Performance improvements under Linux
+* Some performance improvements under Linux
 
 * A rework to pass checkstyle metrics on the code has been started.
 
@@ -70,13 +70,17 @@ Xcos:
 * bug 5627 fixed - It was not possible to place a port in a non-conventionnal
                    side.
 
+* bug 5640 fixed - When launching Xcos: Toolbar and menubar didn't appear 
+                   before the focus is on the Xcos window.
+
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
 
 * bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
                    its parameters.
 
-* bug 5667 fixed - Simulation starts faster on Linux for huge diagram ( hdf5 export issue )
+* bug 5667 fixed - Simulation starts faster on Linux for huge diagram 
+                   (hdf5 export issue).
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
@@ -94,7 +98,14 @@ Xcos:
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
-* bug 6490 fixed - The multiple-point link didn't work accordingly to the zoom level.
+* bug 6474 fixed - demo_watertank.xcoscrashed when any block parameter dialog 
+                   was closed the second time.
+
+* bug 6490 fixed - The multiple-point link didn't work accordingly to the 
+                   zoom level.
+
+* bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
+                   limitation.
 
 Atoms:
 ======
@@ -107,6 +118,8 @@ Atoms:
 
 * bug 6389 fixed - Atoms GUI : "Update" button just removed the selected module
                    but didn't update it.
+                   
+* bug 6518 fixed - atomsRepositoryAdd() didn't accept local repositories.
 
 Compilation:
 ============
@@ -126,6 +139,8 @@ Compilation:
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
+
+* bug 5665 fixed - Under Linux, hdf5 module can now be compiled without Java
 
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
@@ -154,6 +169,8 @@ Bug fixes:
 
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
+
+* bug 5436 fixed - The export to svg does not work with bar graphs.
 
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
 
@@ -228,6 +245,9 @@ Bug fixes:
 * bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
 
 * bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
+
+* bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================

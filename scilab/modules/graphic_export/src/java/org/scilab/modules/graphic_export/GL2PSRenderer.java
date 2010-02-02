@@ -40,7 +40,7 @@ public class GL2PSRenderer extends ExportRenderer {
 	private SciRenderer sciRend;
 	private int figureIndex;
 	private int format;
-
+        private boolean is2D;
 	
 	/**
 	 * GL2PSRenderer
@@ -52,7 +52,8 @@ public class GL2PSRenderer extends ExportRenderer {
 	public GL2PSRenderer(int figureIndex, String fileName, int fileType, int fileOrientation) {
 		super(fileName, fileType, fileOrientation);
 		this.figureIndex = figureIndex;
-		setGL2PSFile(fileName, fileType);		
+		setGL2PSFile(fileName, fileType);
+                is2D = FigureMapper.getCorrespondingFigure(figureIndex).getCoordinateTransformation().is2dMode();
 	}
 	
 	/**
@@ -117,9 +118,9 @@ public class GL2PSRenderer extends ExportRenderer {
 			}						
 			
 			GL gl = gLDrawable.getGL();
-			
+			int sort = is2D ? GL2PS.GL2PS_NO_SORT : GL2PS.GL2PS_SIMPLE_SORT; 
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
-					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
+					sort, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
 					GL.GL_RGBA, 0, null, null, null, null, 
 					0, 0, 0, buffsize, ExportRenderer.getFileName());	

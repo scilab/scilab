@@ -787,6 +787,27 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		ANTLR=$PACKAGE_JAR_FILE
 		AC_SUBST(ANTLR)
 
+		# Test NG (java unitary test)
+		AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
+		TESTNG=$PACKAGE_JAR_FILE
+		AC_SUBST(TESTNG)
+
+		# Qdox (parses declarations and Javadoc) - dependency of TestNG
+		AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
+		QDOX=$PACKAGE_JAR_FILE
+		AC_SUBST(QDOX)
+
+                # bsh (Java scripting environment) - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+                BSH=$PACKAGE_JAR_FILE
+                AC_SUBST(BSH)
+
+                # Junit - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+                JUNIT=$PACKAGE_JAR_FILE
+                AC_SUBST(JUNIT)
+
+
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -1819,6 +1840,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
+echo "  TestNG .............. = $TESTNG"
 echo "  splint .............. = $SPLINT"
 
 echo "" 

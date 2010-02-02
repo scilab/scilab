@@ -3,7 +3,6 @@ package org.scilab.modules.xcos.utils;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -125,14 +124,8 @@ public final class ConfigXcosManager {
      *             When an error occurs
      */
     private static void copyFile(File in, File out) throws IOException {
-	FileInputStream fis = null;
-	try {
-	    fis = new FileInputStream(in);
-	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
-	}
-	FileOutputStream fos = null;
-	fos = new FileOutputStream(out);
+	FileInputStream fis = new FileInputStream(in);
+	FileOutputStream fos = new FileOutputStream(out);
 
 	byte[] buf = new byte[BUFSIZE];
 	int i = 0;
