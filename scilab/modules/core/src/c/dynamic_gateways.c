@@ -341,3 +341,28 @@ int gw_dynamic_graphic_export(void)
 /*--------------------------------------------------------------------------*/
 
 
+
+/*--------------------------------------------------------------------------*/
+/* MPI module */
+#define MPI_MODULE_NAME "mpi"
+static DynLibHandle hmpiLib = NULL;
+static PROC_GATEWAY ptr_gw_mpi = NULL;
+static char* dynlibname_mpi = NULL;
+static char* gatewayname_mpi = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_mpi(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_mpi == NULL)
+	{
+		dynlibname_mpi = buildModuleDynLibraryName(MPI_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	return gw_dynamic_generic(MPI_MODULE_NAME,
+		&dynlibname_mpi,
+		&gatewayname_mpi,
+		&hmpiLib ,
+		&ptr_gw_mpi);
+}
+/*--------------------------------------------------------------------------*/
+
