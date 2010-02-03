@@ -11302,7 +11302,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11328,7 +11333,7 @@ $as_echo_n "checking minimal version (1.2.0.7) of jgraphx... " >&6; }
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11331 "configure"
+// #line 11336 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -11392,7 +11397,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11395 "configure"
+// #line 11400 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11448,7 +11453,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11488,7 +11498,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11491 "configure"
+// #line 11501 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11544,7 +11554,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11584,7 +11599,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11587 "configure"
+// #line 11602 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11640,7 +11655,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11681,7 +11701,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11684 "configure"
+// #line 11704 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11737,7 +11757,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11777,7 +11802,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11780 "configure"
+// #line 11805 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11833,7 +11858,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -11973,7 +12003,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11976 "configure"
+// #line 12006 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12029,7 +12059,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12124,7 +12159,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12127 "configure"
+// #line 12162 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12180,7 +12215,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12220,7 +12260,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12223 "configure"
+// #line 12263 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12276,7 +12316,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12317,7 +12362,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12320 "configure"
+// #line 12365 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12373,7 +12418,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12413,7 +12463,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12416 "configure"
+// #line 12466 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -12469,7 +12519,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12510,7 +12565,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12513 "configure"
+// #line 12568 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12566,7 +12621,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12607,7 +12667,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12610 "configure"
+// #line 12670 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -12663,7 +12723,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12703,7 +12768,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12706 "configure"
+// #line 12771 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -12759,7 +12824,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12805,7 +12875,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12808 "configure"
+// #line 12878 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -12861,7 +12931,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12901,7 +12976,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12904 "configure"
+// #line 12979 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -12957,7 +13032,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -12997,7 +13077,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13000 "configure"
+// #line 13080 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -13053,7 +13133,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -21045,7 +21130,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 21048 "configure"
+#line 21133 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -21357,7 +21442,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 21360 "configure"
+#line 21445 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -21939,7 +22024,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21942 "configure"
+// #line 22027 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -21995,7 +22080,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22035,7 +22125,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22038 "configure"
+// #line 22128 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -22091,7 +22181,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22133,7 +22228,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22136 "configure"
+// #line 22231 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -22189,7 +22284,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22229,7 +22329,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22232 "configure"
+// #line 22332 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -22285,7 +22385,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22325,7 +22430,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22328 "configure"
+// #line 22433 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -22381,7 +22486,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22421,7 +22531,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22424 "configure"
+// #line 22534 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -22477,7 +22587,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22517,7 +22632,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22520 "configure"
+// #line 22635 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -22573,7 +22688,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22613,7 +22733,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22616 "configure"
+// #line 22736 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -22669,7 +22789,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22709,7 +22834,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22712 "configure"
+// #line 22837 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -22765,7 +22890,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -22809,7 +22939,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22812 "configure"
+// #line 22942 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -22865,7 +22995,12 @@ $as_echo "$jar_resolved" >&6; }
 
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
@@ -29075,7 +29210,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29078 "configure"
+#line 29213 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29181,7 +29316,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29184 "configure"
+#line 29319 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
