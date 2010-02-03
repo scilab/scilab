@@ -748,7 +748,6 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     /**
->>>>>>> e48febf... API compatibility with jgraphx-1.2.0.5:scilab/modules/xcos/src/java/org/scilab/modules/xcos/graph/XcosDiagram.java
      *  SuperBlockUpdateTracker
      *  Called when adding some port in a SuperBlock diagram
      *  to update current sub-diagram (i.e SuperBlock) representation.
