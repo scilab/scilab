@@ -1120,7 +1120,7 @@ if test "$with_mpi" != no; then
 fi
 AC_SUBST(MPI_ENABLE)
 
-AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+AM_CONDITIONAL(MPI, test "$with_mpi" != no)
 
 #################
 ## PVM

@@ -17152,7 +17152,7 @@ CFLAGS=$saved_cflags
 fi
 
 
- if test "$with_mpi" = yes; then
+ if test "$with_mpi" != no; then
   MPI_TRUE=
   MPI_FALSE='#'
 else
