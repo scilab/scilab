@@ -171,8 +171,6 @@ Bug fixes:
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
 
-* bug 5362 fixed - help type pointed to "Type" online help
-
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
 
