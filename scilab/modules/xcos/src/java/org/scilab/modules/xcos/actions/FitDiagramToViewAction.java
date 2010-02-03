@@ -13,12 +13,11 @@
 
 package org.scilab.modules.xcos.actions;
 
+import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.palette.view.PaletteComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -60,15 +59,21 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
 	 */
 	public void doAction() {
-    	// If diagram is empty (has one default child) : do nothing.
-    	if (getGraph(null).getModel().getChildCount(getGraph(null).getDefaultParent()) < 1) { return; }
-		
+		// If diagram is empty (has one default child) : do nothing.
+		if (getGraph(null).getModel().getChildCount(
+				getGraph(null).getDefaultParent()) < 1) {
+			return;
+		}
+
+		ScilabComponent comp = ((ScilabComponent) getGraph(null)
+				.getAsComponent());
+
 		/* Save the configuration */
-		double oldZoomFactor = ((XcosDiagram) getGraph(null)).getAsComponent().getZoomFactor();
-		
-		((PaletteComponent) getGraph(null).getAsComponent()).zoomAndCenterToCells();
-		
+		double oldZoomFactor = comp.getZoomFactor();
+
+		comp.zoomAndCenterToCells();
+
 		/* Restore previous configuration */
-		((XcosDiagram) getGraph(null)).getAsComponent().setZoomFactor(oldZoomFactor);
+		comp.setZoomFactor(oldZoomFactor);
 	}
 }
