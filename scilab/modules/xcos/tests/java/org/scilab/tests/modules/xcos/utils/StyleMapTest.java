@@ -10,8 +10,9 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.tests.modules.xcos.utils;
 
+import org.scilab.modules.xcos.utils.StyleMap;
 import org.testng.annotations.Test;
 
 /**

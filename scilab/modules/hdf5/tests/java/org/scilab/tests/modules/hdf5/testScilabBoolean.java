@@ -1,3 +1,4 @@
+package org.scilab.tests.modules.hdf5;
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET

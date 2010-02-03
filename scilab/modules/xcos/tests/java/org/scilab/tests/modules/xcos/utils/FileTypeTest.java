@@ -10,12 +10,13 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.tests.modules.xcos.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.testng.annotations.Test;
 
 /**

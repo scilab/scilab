@@ -10,8 +10,10 @@
  *
  */
 
-package org.scilab.modules.xcos;
+package org.scilab.tests.modules.xcos;
 
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.testng.annotations.Test;
 
