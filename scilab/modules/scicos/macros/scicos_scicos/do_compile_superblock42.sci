@@ -1750,7 +1750,7 @@ function XX=gen_allblk()
 
   //@@ run 'set' job of the CBLOCK4
   prot=funcprot();funcprot(0)
-  getvalue=setvalue;
+  scicos_getvalue=setvalue;
   deff('message(txt)',['messagebox(''In block ''+XX.gui+'': ''+txt,''Warning'',''info'',''modal'');'
 		    'global %scicos_prob;'
 		    '%scicos_prob=%t'])

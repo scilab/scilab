@@ -178,7 +178,7 @@ return
     mpopup = createpopup ;
     mdialog = x_mdialog  ;
 
-    getvalue=scicos_getvalue
+    scicos_getvalue=scicos_getvalue
     choose=x_choose
     funcprot(prot);
     

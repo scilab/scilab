@@ -260,7 +260,7 @@ function [ok,scs_m]=do_define_and_set(scs_m,flg)
 
 %mprt=funcprot()
 funcprot(0) 
-getvalue=setvalue;
+scicos_getvalue=setvalue;
 deff('scicosmessage(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
 		    'global %scicos_prob;'
 		    '%scicos_prob=resume(%t)'])
