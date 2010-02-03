@@ -275,8 +275,10 @@ public class BuildDocObject extends StyleSheet {
 		String mainStyleDoc = SCI + "/modules/helptools/schema/extendedStyle.xsl";
 		try {
 			String contentMainStyleDoc = Helpers.loadString(new File(mainStyleDoc), "UTF-8");
+
 			/* STYLE_DOC is a predefined variable */
-			contentMainStyleDoc = contentMainStyleDoc.replaceAll("STYLE_DOC", this.styleDoc);
+			File tmpFileForURI = new File(this.styleDoc);
+			contentMainStyleDoc = contentMainStyleDoc.replaceAll("STYLE_DOC", tmpFileForURI.toURI().toString());
 
 			File temporaryStyleFile = File.createTempFile("style_",".xsl");
 
