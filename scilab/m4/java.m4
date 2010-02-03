@@ -830,7 +830,12 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
           ])
         fi
 	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then 
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
