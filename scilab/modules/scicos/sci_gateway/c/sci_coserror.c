@@ -25,6 +25,7 @@
 #include "scicos_block.h"
 #include "cvstr.h"
 #include "localization.h"
+#include "scicos-def.h"
 /*--------------------------------------------------------------------------*/
 /* Coserror : break the simulation and return a message
 *            in the scicos editor
@@ -37,7 +38,7 @@
 /*--------------------------------------------------------------------------*/
 /* TO DO : cleaning this */
 extern struct {int isrun;} C2F(cosim); 
-extern struct {char buf[4096];} coserr;  
+extern COSERR_struct coserr;  
 /*--------------------------------------------------------------------------*/
 int sci_coserror(char *fname, unsigned long fname_len)
 /* renvoi un message erreur */
