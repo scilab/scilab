@@ -346,7 +346,7 @@ public class XcosTab extends ScilabTab {
 		addToolBar(toolBar);
 		
 		/* Create the infoBar */
-		getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+		addInfoBar(ScilabTextBox.createTextBox());
 		
 		window.addTab(this);
     }
