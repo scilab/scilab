@@ -72,6 +72,7 @@
 #include "scicos_math.h"
 #include "sciblk2.h"
 #include "sciblk4.h"
+#include "dynlib_scicos.h"
 
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
@@ -99,8 +100,10 @@ SCICOS_IMPEXP SCSPTR_struct C2F(scsptr);
 	if ( ng>0 ) FREE(jroot);			\
 	if ( ng>0 ) FREE(zcros);
 
+
+/* TJacque allocates by sundials */
 #define freeallx				\
-	if (*neq>0)  FREE(TJacque);			\
+	if (*neq>0) free(TJacque);	\
 	if (*neq>0) FREE(data->rwork);		\
 	if (( ng>0 )&& (*neq>0)) FREE(data->gwork);	\
 	if (*neq>0) N_VDestroy_Serial(data->ewt);	\
@@ -4879,9 +4882,9 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 	}
 	if (result==0) return 0;
 
-	xv=malloc(nvar*sizeof(char*));
+	xv=MALLOC(nvar*sizeof(char*));
 	for (i=0;i<nvar;i++){    
-		xv[i]=malloc(nvar*100*sizeof(char));
+		xv[i]=MALLOC(nvar*100*sizeof(char));
 		sprintf(xv[i],"%g",x[i]);
 	}
 
@@ -4952,7 +4955,7 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 		for(j=0;j<N;j++)
 			jac[j]=a[j];
 	}else {
-		if ((work = (double *) malloc(N * sizeof(double)))==NULL){
+		if ((work = (double *) MALLOC(N * sizeof(double)))==NULL){
 			*ierr =10000;
 			return *ierr;
 		}
@@ -4971,7 +4974,7 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 			jac[j]=(jac[j]-work[j])*inc_inv;
 
 		x[*col-2]=xi;
-		free(work);
+		FREE(work);
 	}
 	return 0;
 }
