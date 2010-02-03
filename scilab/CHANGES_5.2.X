@@ -112,6 +112,9 @@ Xcos:
 * bug 6490 fixed - The multiple-point link didn't work accordingly to the 
                    zoom level.
 
+* bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
+                   limitation.
+
 Atoms:
 ======
 
@@ -138,9 +141,6 @@ Compilation:
 * Improved detection of Fedora/Redhat packages
 
 * Better detection of JOGL
-
-* When searching for Java packages files (jar), the oldest version was 
-  selected. Now, lastest version are now selected.
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)

@@ -867,7 +867,9 @@
 				    op : &amp;&lt;"/>
   </add>
   <add as="TEXT_f" extend="Label">
-    <add as="displayedLabel" value="Text"/>
+    <!-- <add as="displayedLabel" value="Text"/>  -->
+    <add as="strokeColor" value="none"/>
+    <add as="fillColor" value="none"/>
   </add>
 
   <!-- USER-DEFINED FUNCTIONS -->
