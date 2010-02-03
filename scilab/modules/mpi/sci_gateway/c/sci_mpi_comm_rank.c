@@ -18,7 +18,7 @@
  * the specified communicator.
  */
 
-int C2F(sci_mpi_comm_rank) (char *fname,unsigned long fname_len)
+int sci_mpi_comm_rank (char *fname,unsigned long fname_len)
 {
 	int comm_rank;
 	int n1=1,m1=1,l1=0;

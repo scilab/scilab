@@ -28,12 +28,12 @@ typedef struct table_struct
 
 // Declaration of all the profile function declared and 
 // used in sci_gateway/*/
-int C2F(sci_mpi_init) (char *fname,unsigned long fname_len);
-int C2F(sci_mpi_finalize) (char *fname,unsigned long fname_len);
-int C2F(sci_mpi_comm_size) (char *fname,unsigned long fname_len);
-int C2F(sci_mpi_comm_rank) (char *fname,unsigned long fname_len);
-int C2F(sci_mpi_recv) (char *fname,unsigned long fname_len);
-int C2F(sci_mpi_send) (char *fname,unsigned long fname_len);
+int sci_mpi_init (char *fname,unsigned long fname_len);
+int sci_mpi_finalize (char *fname,unsigned long fname_len);
+int sci_mpi_comm_size (char *fname,unsigned long fname_len);
+int sci_mpi_comm_rank (char *fname,unsigned long fname_len);
+int sci_mpi_recv (char *fname,unsigned long fname_len);
+int sci_mpi_send (char *fname,unsigned long fname_len);
 
 /*
 int intsmpi_comm_size (char *fname,unsigned long fname_len));
