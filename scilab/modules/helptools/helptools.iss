@@ -58,6 +58,7 @@ Source: thirdparty\xml-apis-ext.jar;DestDir: {app}\thirdparty; Components: {#COM
 Source: thirdparty\xmlgraphics-commons-1.3.1.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xalan.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 Source: thirdparty\batik-all-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
