@@ -57,6 +57,7 @@ int main(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
+
   /* This bug only occurs under Linux 32 bits
    * See: http://wiki.scilab.org/Scilab_precision
    */
@@ -121,7 +122,7 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"--texmacs") == 0)
       {
-      	setScilabMode(SCILAB_NWNI);
+      	setScilabMode(SCILAB_NW);
       	settexmacs();
       }
       else if ( strcmp(argv[i],"-nogui") == 0)
