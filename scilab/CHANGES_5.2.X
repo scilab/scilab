@@ -132,6 +132,9 @@ Compilation:
 
 * Better detection of JOGL
 
+* When two versions of the same jar libraries, in some cases, the system
+  could not detect any of them
+
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
 
