@@ -9,12 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include <stdio.h>
+
 /**
  * SCILAB function : mpi_comm_size, fin = 3
  * This function returns the rank of a process 
@@ -60,7 +61,7 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
     double *pdblReal1 = (double*)malloc(sizeof(double) * iRows2 * iCols2);
 	pdblReal1[0]=(double)comm_size;
 	
-	StrErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
+	SciErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
     if(iRet.iErr)
     {
 		Scierror(999,"error in the creation of the variable");
