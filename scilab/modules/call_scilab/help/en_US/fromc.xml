@@ -30,7 +30,7 @@
    <refsection>
     <title>See Also</title>
      <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,<link linkend="fromjava">fromjava</link></member>
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="fromjava">fromjava</link></member>
     </simplelist>
   </refsection>
   
