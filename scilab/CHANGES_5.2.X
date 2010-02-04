@@ -260,6 +260,8 @@ Bug fixes:
 
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
 
+* bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
