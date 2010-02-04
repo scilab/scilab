@@ -2025,3 +2025,6 @@ Bug fixes:
 * bug 6468 fixed - wrong check in dnaupd.
 
 * bug 6495 fixed - in lqr, variable Q not defined.
+
+* bug 4785 fixed - tand(0) generated an error
+
