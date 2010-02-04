@@ -104,6 +104,7 @@ public class DefaultAction extends CallBack {
 		 * Install it only when there is a real shortcut (with a mnemonic).
 		 */
 		if (mnemonic != 0) {
+			putValue(Action.MNEMONIC_KEY, mnemonic);
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic,
 					accelerator));
 		}
