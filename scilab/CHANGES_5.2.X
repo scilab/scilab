@@ -132,6 +132,8 @@ Compilation:
 
 * Better detection of JOGL
 
+* Better check of the lib math (libm)
+
 * When two versions of the same jar libraries, in some cases, the system
   could not detect any of them
 
