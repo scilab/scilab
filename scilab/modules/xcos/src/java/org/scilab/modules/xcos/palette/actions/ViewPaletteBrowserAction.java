@@ -20,7 +20,7 @@ import java.util.List;
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -63,7 +63,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 
 	/**
 	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

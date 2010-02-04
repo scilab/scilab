@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.graph.actions;
+package org.scilab.modules.graph.actions.base;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.scilab.modules.graph.ScilabGraph;
+
+import com.mxgraph.model.mxCell;
 
 /**
  * Implement construction methods for Actions. 

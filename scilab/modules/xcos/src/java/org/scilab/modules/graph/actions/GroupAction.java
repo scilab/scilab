@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.MultiSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
@@ -27,7 +29,7 @@ import com.mxgraph.swing.util.mxGraphActions;
 /**
  * Group any blocks and ease the manipulation of them.
  */
-public class GroupAction extends DefaultAction {
+public class GroupAction extends MultiSelectionDependantAction {
 	public static final String NAME = ScilabGraphMessages.GROUP;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_G;

@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.graph.actions;
+package org.scilab.modules.graph.actions.base;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -66,6 +66,13 @@ public abstract class DefaultAction extends CallBack {
 		super("");
 		this.scilabGraph = scilabGraph;
 
+		installProperties();
+	}
+
+	/**
+	 * Install the static actions properties on the instance
+	 */
+	private void installProperties() {
 		String name = "";
 		String icon = "";
 		int mnemonic = 0;
@@ -293,6 +300,4 @@ public abstract class DefaultAction extends CallBack {
 	public void callBack() {
 		assert "Must never be called as we bypass Callback.java".equals("");
 	}
-	
-	
 }
