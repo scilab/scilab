@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFileChooser;
@@ -66,11 +67,12 @@ public final class LoadAsPalAction extends DefaultAction {
     	return createButton(scilabGraph, LoadAsPalAction.class);
     }
 
-    /**
-     * Open file action
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 	/* Standard files */

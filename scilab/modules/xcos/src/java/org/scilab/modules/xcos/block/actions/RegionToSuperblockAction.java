@@ -14,6 +14,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -154,7 +155,12 @@ public class RegionToSuperblockAction extends DefaultAction {
 	return createMenu(scilabGraph, RegionToSuperblockAction.class);
     }
 
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	graph.info(XcosMessages.GENERATE_SUPERBLOCK);

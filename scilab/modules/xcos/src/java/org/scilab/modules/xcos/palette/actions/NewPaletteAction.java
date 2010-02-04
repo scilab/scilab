@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos.palette.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -21,7 +23,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Generate a new palette where user can edit it's own blocks and save them as palette.
  * 
- * TODO: doAction for this class 
+ * TODO: actionPerformed for this class 
  */
 public final class NewPaletteAction extends DefaultAction {
 	public static final String NAME = XcosMessages.NEW_PALETTE;
@@ -44,5 +46,14 @@ public final class NewPaletteAction extends DefaultAction {
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(scilabGraph, NewPaletteAction.class);
+	}
+	
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//  TODO do something
 	}
 }

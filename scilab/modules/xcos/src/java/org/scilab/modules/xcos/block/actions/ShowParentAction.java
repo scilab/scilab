@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -49,10 +50,11 @@ public class ShowParentAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    if (getGraph(null) instanceof SuperBlockDiagram) {
 		SuperBlockDiagram diagram =  (SuperBlockDiagram) getGraph(null);
 		diagram.getContainer().getParentDiagram().setVisible(true);

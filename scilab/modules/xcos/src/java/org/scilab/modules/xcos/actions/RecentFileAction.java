@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -39,7 +40,12 @@ public final class RecentFileAction extends DefaultAction {
 		recentFile = file;
 	}
 	
-	public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		ConfigXcosManager.saveToRecentOpenedFiles(recentFile.getPath());
 		if (getGraph(null) == null) { // Called from palettes 
 			Xcos.xcos(recentFile.getPath());

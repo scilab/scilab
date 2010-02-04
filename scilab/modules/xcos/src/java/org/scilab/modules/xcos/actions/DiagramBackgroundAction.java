@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JColorChooser;
 
@@ -51,10 +52,11 @@ public class DiagramBackgroundAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
 		Color newColor = JColorChooser.showDialog(graphComponent, XcosMessages.DIAGRAM_BACKGROUND, null);
 

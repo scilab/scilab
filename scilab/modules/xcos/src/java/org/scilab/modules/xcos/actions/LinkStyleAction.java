@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +63,13 @@ public class LinkStyleAction extends DefaultAction {
 	
 	return createMenu(title, null, new LinkStyleAction(scilabGraph, title, value), KeyStroke.getKeyStroke(mnemonic));
     }
-
-    public void doAction() {
+    
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	List<Object> links = new ArrayList<Object>();
 	Object[] selectedCells = graph.getSelectionCells();

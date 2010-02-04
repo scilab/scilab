@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -56,10 +58,11 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		// If diagram is empty (has one default child) : do nothing.
 		if (getGraph(null).getModel().getChildCount(
 				getGraph(null).getDefaultParent()) < 1) {
