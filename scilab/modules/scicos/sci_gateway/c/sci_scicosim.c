@@ -152,8 +152,8 @@
 	FREE(l_pointi)
 /*--------------------------------------------------------------------------*/
 COSIM_struct C2F(cosim); /* declaration of cosim -valable partout- */
-COSERR_struct coserr;    /* declaration of coserr -valable partout- */
 /*--------------------------------------------------------------------------*/
+extern COSERR_struct coserr;    /* declaration of coserr -defined in scicos- */
 extern int *listentry(int *header, int i); /* mexlib.h */
 extern int C2F(funnum)(char *fname);
 extern int C2F(namstr)();
