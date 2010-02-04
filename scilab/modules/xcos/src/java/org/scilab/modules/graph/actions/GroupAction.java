@@ -14,7 +14,9 @@
 
 package org.scilab.modules.graph.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
@@ -28,8 +30,8 @@ import com.mxgraph.swing.util.mxGraphActions;
 public class GroupAction extends DefaultAction {
 	public static final String NAME = ScilabGraphMessages.GROUP;
 	public static final String SMALL_ICON = "";
-	public static final int MNEMONIC_KEY = 0;
-	public static final int ACCELERATOR_KEY = 0;
+	public static final int MNEMONIC_KEY = KeyEvent.VK_G;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**
 	 * Default constructor
