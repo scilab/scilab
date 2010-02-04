@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,7 +26,6 @@ import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -47,19 +47,19 @@ import com.mxgraph.util.mxUtils;
 
 /**
  * Diagram export management
- * @author Vincent COUVERT
- *
  */
 public final class ExportAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
-
+	public static final String NAME = XcosMessages.EXPORT;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private ExportAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.EXPORT, scilabGraph);
+	public ExportAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -68,8 +68,7 @@ public final class ExportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.EXPORT, null, new ExportAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ExportAction.class);
 	}
 
 	/**
@@ -91,7 +90,7 @@ public final class ExportAction extends DefaultAction {
 		Set<String> mask = new TreeSet<String>();
 		Set<String> maskDesc = new TreeSet<String>();
 
-		/* TODO : why hardcoded ? */
+		/* FIXME : why hardcoded ? */
 		mask.add(".svg");
 		mask.add(".html");
 		mask.add(".vml");

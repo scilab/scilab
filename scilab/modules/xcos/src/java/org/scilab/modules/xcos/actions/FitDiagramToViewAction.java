@@ -22,18 +22,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Use maximum of space inside the diagram
- * @author Vincent COUVERT
  */
 public final class FitDiagramToViewAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
+	public static final String SMALL_ICON = "view-fullscreen.png";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
-	private FitDiagramToViewAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.FIT_DIAGRAM_TO_VIEW, scilabGraph);
+	public FitDiagramToViewAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -42,7 +43,7 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.FIT_DIAGRAM_TO_VIEW, null, new FitDiagramToViewAction(scilabGraph), null);
+		return createMenu(scilabGraph, FitDiagramToViewAction.class);
 	}
 	
 	/**
@@ -51,7 +52,7 @@ public final class FitDiagramToViewAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.FIT_DIAGRAM_TO_VIEW, "view-fullscreen.png", new FitDiagramToViewAction(scilabGraph));
+		return createButton(scilabGraph, FitDiagramToViewAction.class);
 	}
 
 	/**

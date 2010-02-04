@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,8 +18,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -26,18 +25,19 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Undo manager
- * @author Bruno JOFFRET
  */
 public class UndoAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = ScilabGraphMessages.UNDO;
+	public static final String SMALL_ICON = "edit-undo.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_Z;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabgraph corresponding Scilab Graph
 	 */
 	public UndoAction(ScilabGraph scilabgraph) {
-		super(ScilabGraphMessages.UNDO, scilabgraph);
+		super(scilabgraph);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class UndoAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton undoButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.UNDO, "edit-undo.png", new UndoAction(scilabGraph));
+		return createButton(scilabGraph, UndoAction.class);
 	}
 
 	/**
@@ -55,8 +55,7 @@ public class UndoAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem undoMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.UNDO, null, new UndoAction(scilabGraph), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, UndoAction.class);
 	}
 
 	/**

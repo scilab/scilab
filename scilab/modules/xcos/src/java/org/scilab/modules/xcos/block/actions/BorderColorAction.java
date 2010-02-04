@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,40 +21,39 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 
 /**
- * @author Bruno JOFRET
- *
+ * Change the color of multiple blocks
  */
-public final class ColorAction extends DefaultAction {
-
-    private static final long serialVersionUID = -1253470374053230723L;
-    private String key;
-    private String title;
-    
+public final class BorderColorAction extends DefaultAction {
+	public static final String NAME = XcosMessages.BORDER_COLOR;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
     /**
      * @param scilabGraph graph
-     * @param title title
-     * @param key key
      */
-    private ColorAction(ScilabGraph scilabGraph, String title, String key) {
-	super(title, scilabGraph);
-	this.key = key;
-	this.title = title;
+    public BorderColorAction(ScilabGraph scilabGraph) {
+    	super(scilabGraph);
     }
 
     /**
      * @param scilabGraph graph
-     * @param title title
-     * @param key key
      * @return menu item
      */
-    public static MenuItem createMenu(ScilabGraph scilabGraph, String title, String key) {
-	return createMenu(title, null, new ColorAction(scilabGraph, title, key), null);
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+    	return createMenu(scilabGraph, BorderColorAction.class);
     }
 
+    /**
+     * Action !!!
+     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+     */
     public void doAction() {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();
@@ -61,10 +61,10 @@ public final class ColorAction extends DefaultAction {
 	//if no cells are selected : Do nothing
 	if (selectedCells.length == 0) { return; }
 
-	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), title, null);
+	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, null);
 
 	if (newColor != null) {
-	    graph.setCellStyles(key, mxUtils.hexString(newColor));
+	    graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(newColor));
     	}
     }
 }

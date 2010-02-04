@@ -44,6 +44,7 @@ Xcos:
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
     - org.scilab.modules.graph is independent from Xcos and can be safely used.
+    - the actions are now only instanciated per graph.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -232,6 +233,10 @@ Bug fixes:
 
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
+* bug 6401 fixed - chfact() had trouble factoring 3X3 identity matrix.
+
+* bug 6412 fixed - the function sp2adj was not working.
+
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
@@ -253,6 +258,8 @@ Bug fixes:
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
 
 * bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
+* bug 6558 fixed - Infinite value was not plotted even if it was possible.
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -2018,10 +2025,11 @@ Bug fixes:
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
 
-* bug 6412 fixed - the function sp2adj was not working.
-
 * bug 6423 fixed - update the documentation of perctl.
 
 * bug 6468 fixed - wrong check in dnaupd.
 
 * bug 6495 fixed - in lqr, variable Q not defined.
+
+* bug 4785 fixed - tand(0) generated an error
+

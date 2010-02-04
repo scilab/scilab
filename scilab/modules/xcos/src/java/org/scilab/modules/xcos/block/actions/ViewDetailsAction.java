@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,16 +30,20 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 
 /**
- * @author Vincent COUVERT
- *
+ * View the details of the action
  */
 public final class ViewDetailsAction extends DefaultAction {
+	public static final String NAME = XcosMessages.DETAILS;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
     /**
+     * Constructor
      * @param scilabGraph graph
      */
-    private ViewDetailsAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.DETAILS, scilabGraph);
+    public ViewDetailsAction(ScilabGraph scilabGraph) {
+	super(scilabGraph);
     }
 
     /**
@@ -46,9 +51,13 @@ public final class ViewDetailsAction extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.DETAILS, null, new ViewDetailsAction(scilabGraph), null);
+	return createMenu(scilabGraph, ViewDetailsAction.class);
     }
 
+    /**
+     * Action !!!
+     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+     */
     public void doAction() {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();

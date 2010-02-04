@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,18 +28,19 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 
 /**
  * Diagram compilation management
- * @author Allan SIMON
  */
 public class CompileAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.COMPILE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public CompileAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.COMPILE, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class CompileAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.COMPILE, null, new CompileAction(scilabGraph), null);
+		return createMenu(scilabGraph, CompileAction.class);
 	}
 
 	/**
