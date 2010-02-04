@@ -749,6 +749,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+
+				# MathML rendering solution
+				# Used in both graphic & help 
+				AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
+				JEUCLID_CORE=$PACKAGE_JAR_FILE
+				AC_SUBST(JEUCLID_CORE)
+
+
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
@@ -1772,7 +1780,6 @@ if test $HELP_ENABLE = yes; then
    echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
    echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "  Commons I/O ............ = $COMMONS_IO"
    echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
@@ -1807,6 +1814,7 @@ echo "  JOGL ................ = $JOGL"
 echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
 echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
