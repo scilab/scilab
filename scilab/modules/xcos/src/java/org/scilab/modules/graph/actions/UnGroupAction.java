@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
@@ -27,7 +26,11 @@ import com.mxgraph.swing.util.mxGraphActions;
  * Ungroup any blocks and ease the manipulation of them.
  */
 public class UnGroupAction extends DefaultAction {
-
+	public static final String NAME = ScilabGraphMessages.UNGROUP;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * Default constructor
 	 * 
@@ -35,16 +38,7 @@ public class UnGroupAction extends DefaultAction {
 	 *            The associated graph
 	 */
 	public UnGroupAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.UNGROUP, scilabGraph);
-	}
-
-	/**
-	 * Create the button associated with this action.
-	 * @param scilabGraph the associated graph
-	 * @return The associated button
-	 */
-	public static PushButton ungroupButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph));
+		super(scilabGraph);
 	}
 
 	/**
@@ -53,7 +47,7 @@ public class UnGroupAction extends DefaultAction {
 	 * @return The associated menu
 	 */
 	public static MenuItem ungroupMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.UNGROUP, null, new UnGroupAction(scilabGraph), null);
+		return createMenu(scilabGraph, UnGroupAction.class);
 	}
 
 	/**
