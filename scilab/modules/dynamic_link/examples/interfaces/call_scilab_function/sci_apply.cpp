@@ -1,84 +1,34 @@
+//-------------------------------------------------------------------------------------
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
+ * Scilab ( http://www.scilab.org/ )
+ * Copyright (C) DIGITEO - Bernard HUGUENEY - 2010
+ * 
  */
+
 extern "C" {
-#include <stdio.h>
-
-#include "stack-c.h"
-#include "gw_core.h"
-
-#include "dynamic_link.h"
-#include "api_common.h"
-#include "api_double.h"
-
-#include "MALLOC.h"
-
-#include "stack1.h"
-#include "api_double.h"
-#include "api_int.h"
-#include "api_list.h"
-#include "api_string.h"
-#include "api_common.h"
-#include "stack3.h"
-#include "stack2.h"
 #include "stack-c.h"
 #include "Scierror.h"
-#include "localization.h"
-#include "sci_mem_alloc.h"
+#include "api_common.h"
+#include "api_double.h"
+#include "api_string.h"
+#include "MALLOC.h"
+#include <string.h> // memcpy
 
-#include "stack-def.h" //#define nlgh nsiz*4  
-#include "stack-c.h"  // #define Nbvars C2F(intersci).nbvars, Top & cie
+#include "dynamic_link.h"
+#include <stdio.h>
+
+
+#include <unistd.h>
+
+#include <stdlib.h>
+
+  int sci_apply(char *fname);
+
 
 }
-
-#include <cstdlib>
-#include "mc_apply.hxx"
-
-#include <iostream>
+#include <omp.h>
 
 
-  /*
-   *
-   fun_name='test_fun';
-   c_prog=['#include  <math.h>'
-   'void '+fun_name+'(double* arg, double* res) {'
-   '*res= 2.*(*arg);'
-   '}'];
-   disp(c_prog);
-   mputl(c_prog,fun_name+'.c');
-   ilib_for_link(fun_name,fun_name+'.c',[],"c");
-   exec loader.sce;
-   mc_apply([1,2],fun_name,1)
-
-   function res= f(arg); res=2*arg; endfunction;
-
-   mc_apply([1, 2], f, 1);
-
-   *
-   */
-
-
-
-
-
-
-
-
-
-extern "C" {
-  int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len);
-}
-
-
-namespace {
  char* getStringArg(int* arg_addr)
   {
     char* res= 0;
@@ -107,6 +57,83 @@ namespace {
     return res;
   }
 
+static size_t* share_work(size_t s, size_t n, size_t* o){
+  while(n) {
+    if(n==1) {
+      *o= s;
+    } else {
+      size_t const r=s/n;
+      *o= r;
+      s-= r;
+    }
+    --n;
+    ++o;
+  }
+  return o;
+}
+
+
+static void* mc_apply_n_process_worker(void const* const b, size_t in_size, size_t n, void* const out,  size_t out_size, void (*f)(void const*, void *), int const nb_process){
+
+  size_t shares[nb_process];
+  share_work(n, nb_process, &shares[0]);
+  int i;
+  for( i=1; i != nb_process; ++i) {
+    shares[i]+= shares[i-1];
+  }
+
+  pid_t my_id;
+  int p;
+  int pipes_id[nb_process][2];
+  for(p= 1; p != nb_process; ++p) {
+    pipe(pipes_id[p-1]);
+    fprintf(stderr,"forking one child\n");
+    my_id= fork();
+    if( my_id == 0 ) { // child process
+      close(pipes_id[p-1][0]);
+      break;
+    }// only parent process after this line
+    close(pipes_id[p-1][1]);
+  }
+  
+  if( my_id ) { // parent
+    // does own work
+    fprintf(stderr,"master process working\n");
+    size_t i; // reused for the two loops : we will read after the last result that we computed in the master process
+    for(i=0; i != shares[0]; ++i) {
+      f(((char const*const)(b))+i*in_size, ((char *const)(out))+i*out_size);
+    }
+    // copy results from children
+    i *= out_size;
+    size_t child;
+    for(child=1; child != nb_process; ++child) { // reading time is considered negligible, otherwise we would asynch read
+      size_t const chunk_size=(shares[child]-shares[child-1])*out_size;
+      read(pipes_id[child-1][0], ((char *const)(out))+i, chunk_size);
+      i+=chunk_size;
+      close(pipes_id[child-1][0]);
+    }
+  } else { // child
+    fprintf(stderr,"slave process %d working\n", p);
+    size_t i;
+    for(i= shares[p-1]; i != shares[p]; ++i) {
+      f( ((char const*const)b)+i*in_size, ((char *)out)+i*out_size);
+    }
+    write(pipes_id[p-1][1], ((char *const)out)+shares[p-1]*out_size, (shares[p]-shares[p-1])*out_size);
+    close(pipes_id[p-1][1]);
+    exit(0);
+  }
+  return out;
+}
+
+
+
+
+static void* mc_apply_n_process(void const* const b, size_t in_size, size_t n, void* const out,  size_t out_size, void (*f)(void const*, void *), int nb_process){
+  // _worker takes a const nb_process that can be used as an array size on the stack.
+  if(nb_process == 0) { nb_process = omp_get_num_procs() ; }
+  if(n<nb_process) { nb_process = n ;}
+  return mc_apply_n_process_worker(b, in_size, n, out,out_size,  f, nb_process);
+}
 
 static int currentTop;
 static int n, k, m;
@@ -121,7 +148,7 @@ static void wrapper(double const* args, double * res) {
     err= allocMatrixOfDouble(pvApiCtx, ++currentTop, 1, k, &data);
     memcpy(data, args, k*sizeof(double));
   }
-  int sci_arg_pos = currentTop;
+  int  sci_arg_pos = currentTop;
   int  sci_rhs = 1;
   int  sci_lhs = 1;
   //  fprintf(stderr, " Nbvars = %d\n", 	Nbvars);
@@ -148,15 +175,31 @@ static void wrapper(double const* args, double * res) {
       --currentTop;
     }
 }
+
+
+
+
+
+void* mc_apply_n_threads(void const* const b,  size_t in_size, size_t n, void* const out,  size_t out_size, void (*f)(void const*, void *), int nb_threads){
+  size_t i;
+  if(n <  nb_threads) { nb_threads = n;}
+  if(nb_threads) {
+    omp_set_num_threads(nb_threads);
+  }
+#pragma omp parallel for private(i)
+  for(i=0; i < n; ++i)
+  {
+    (*f)(((char const*const)b)+i*in_size, ((char *const)out)+i*out_size);
+  }
+return out;
 }
 
-
-int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len) 
+int sci_apply(char *fname) 
 {
  
   double* args_data;
   double* res_data;
-  double* tmp;
+  double*tmp;
   
   CheckRhs(3,3);// args, fun, res_size
   CheckLhs(1,1);// res
@@ -164,7 +207,6 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
   int type;
   SciErr err;
   int* addr;
-
   typedef void (*function_to_call_t)(void const*, void*);
   typedef void (*wrapper_function_t)(double const*, double*);
   typedef void (*loaded_function_t)();
@@ -173,6 +215,8 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
     loaded_function_t to_load;
     wrapper_function_t wrapper;
   } function;
+
+
   err= getVarAddressFromPosition(pvApiCtx, 1, &addr);
   err= getVarType(pvApiCtx, addr, &type);
   if (type != sci_matrix)
@@ -245,12 +289,11 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
       }
   }	
   if(scilab_function) { // we have a macro
-    mc_apply_n_process(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call);
+    mc_apply_n_process(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call, 0);
   }else {
-    mc_apply_n_threads(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call);
+    mc_apply_n_threads(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call, 0);
   }
   LhsVar(1) = res_pos;
 	
   return 0;
 }
-
