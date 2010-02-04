@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -50,10 +51,11 @@ public class RotateAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 		
 		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();

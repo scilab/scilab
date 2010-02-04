@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -34,13 +33,25 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 
 /**
  * Default action for a Scilab Graph
- * @author Bruno JOFFRET
  */
-public class DefaultAction extends CallBack {
+public abstract class DefaultAction extends CallBack {
+	/**
+	 * Specify the kind of event that may change the status of any action.
+	 * 
+	 * It is used to quickly find which action enable/disable on event.
+	 */
+	public enum UpdateOn {
+		FirstCellOnGraph,
+		OneCellSelected,
+		MultipleCellsSelected,
+		SpecificCellSelected
+	}
+	
 	private static final String ICON_PATH = System.getenv("SCI")
 			+ "/modules/xcos/images/icons/";
 
@@ -278,19 +289,19 @@ public class DefaultAction extends CallBack {
 
 		return menu;
 	}
-
+	
 	/**
-	 * Action associated
+	 * Action
+	 * @param e parameters
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		JOptionPane.showMessageDialog(getGraph(null).getAsComponent(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
-	}
-
+	@Override
+	public abstract void actionPerformed(ActionEvent e);
+	
 	/**
-	 * Action associated
+	 * Not used
+	 * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
 	 */
-	public void callBack() {
-		doAction();
-	}
-
+	@Override
+	public void callBack() { }
 }

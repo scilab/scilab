@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -45,10 +47,11 @@ public final class NormalViewAction extends DefaultAction {
 	}
 	
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		((XcosDiagram) getGraph(null)).getAsComponent().zoomActual();
 	}
 

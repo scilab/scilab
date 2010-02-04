@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -53,10 +54,11 @@ public class ShowHideShadowAction extends DefaultAction {
 	}
 	
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 		
 		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();

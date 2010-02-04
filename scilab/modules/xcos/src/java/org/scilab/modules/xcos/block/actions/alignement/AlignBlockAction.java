@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos.block.actions.alignement;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 
@@ -31,10 +33,12 @@ public abstract class AlignBlockAction extends DefaultAction {
 	this.align = align;
     }
     
-    /**
-     * Action !!!
-     */
-    public void doAction() {
-	getGraph(null).alignCells(align);
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	getGraph(e).alignCells(align);
     }
 }

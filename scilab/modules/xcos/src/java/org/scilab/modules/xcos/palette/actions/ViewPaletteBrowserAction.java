@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.palette.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,12 +61,12 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
     	return menu;
     }
 
-    /**
-     * Action !
-     * 
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	if (XcosPaletteManager.getPalettes() == null) {
 	    XcosPaletteManager.loadPalette();
 	} else {
