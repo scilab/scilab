@@ -1105,8 +1105,10 @@ function st = st_run(st)
 	
 	if st.language == "any" then
 		language_arg = "";
-	else
+	elseif MSDOS then
 		language_arg = "-l "+ st.language;
+	else
+		language_arg = "LANG=" + st.language + " ; ";
 	end
 	
 	// Assembly
@@ -1115,7 +1117,7 @@ function st = st_run(st)
 	if MSDOS then
 		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+mode_arg+" "+language_arg+" -nb -f """+st.tmp_tst+""" > """+st.tmp_res+""" ) 2> """+st.tmp_err+"""";
 	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+mode_arg+" "+language_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
+		test_cmd = "( "+language_arg+" "+SCI_BIN+"/bin/scilab "+mode_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
 	end
 	
 	st= st_set_cmd(st,test_cmd);
