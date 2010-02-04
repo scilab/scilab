@@ -230,6 +230,10 @@ Bug fixes:
 
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
+* bug 6401 fixed - chfact() had trouble factoring 3X3 identity matrix.
+
+* bug 6412 fixed - the function sp2adj was not working.
+
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
@@ -2015,8 +2019,6 @@ Bug fixes:
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
-
-* bug 6412 fixed - the function sp2adj was not working.
 
 * bug 6423 fixed - update the documentation of perctl.
 
