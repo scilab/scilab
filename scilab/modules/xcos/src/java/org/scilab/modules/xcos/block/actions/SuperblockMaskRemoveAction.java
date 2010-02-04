@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,16 +24,20 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 
 /**
- * @author Vincent COUVERT
- *
+ * Remove the {@link SuperBlock} mask.
+ * @see SuperBlock#unmask()
  */
 public final class SuperblockMaskRemoveAction extends DefaultAction {
-
+	public static final String NAME = XcosMessages.REMOVE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * @param scilabGraph graph
 	 */
-	private SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.REMOVE, scilabGraph);
+	public SuperblockMaskRemoveAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -40,12 +45,12 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
+		return createMenu(scilabGraph, SuperblockMaskRemoveAction.class);
 	}
 	
 	/**
-	 * Do something
-	 * @param e the parameters
+	 * Action !!!
+	 * @param e the event source
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {

@@ -67,10 +67,11 @@ import com.mxgraph.model.mxGeometry;
  * contains this new diagram.
  */
 public final class RegionToSuperblockAction extends DefaultAction {
-
-	/**
-	 * 
-	 */
+	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	private static final String INTERFUNCTION_NAME = "SUPER_f";
 
 	/**
@@ -140,10 +141,11 @@ public final class RegionToSuperblockAction extends DefaultAction {
     }
 
     /**
+     * Default constructor
      * @param scilabGraph graph
      */
-    private RegionToSuperblockAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.REGION_TO_SUPERBLOCK, scilabGraph);
+    public RegionToSuperblockAction(ScilabGraph scilabGraph) {
+	super(scilabGraph);
     }
 
     /**
@@ -151,8 +153,7 @@ public final class RegionToSuperblockAction extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.REGION_TO_SUPERBLOCK, null,
-		new RegionToSuperblockAction(scilabGraph), null);
+	return createMenu(scilabGraph, RegionToSuperblockAction.class);
     }
 
     /** To be done on action */

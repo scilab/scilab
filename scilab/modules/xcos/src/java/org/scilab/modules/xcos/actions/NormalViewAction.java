@@ -20,19 +20,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Back to normal size for diagram (100%)
- * @author Vincent COUVERT
- *
  */
 public final class NormalViewAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.NORMAL_100;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private NormalViewAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.NORMAL_100, scilabGraph);
+	public NormalViewAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public final class NormalViewAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.NORMAL_100, null, new NormalViewAction(scilabGraph), null);
+		return createMenu(scilabGraph, NormalViewAction.class);
 	}
 	
 	/**

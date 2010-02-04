@@ -14,12 +14,13 @@
 
 package org.scilab.modules.graph.actions;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
@@ -27,7 +28,11 @@ import com.mxgraph.swing.util.mxGraphActions;
  * Group any blocks and ease the manipulation of them.
  */
 public class GroupAction extends DefaultAction {
-
+	public static final String NAME = ScilabGraphMessages.GROUP;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_G;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	
 	/**
 	 * Default constructor
 	 * 
@@ -35,16 +40,7 @@ public class GroupAction extends DefaultAction {
 	 *            The associated graph
 	 */
 	public GroupAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.GROUP, scilabGraph);
-	}
-
-	/**
-	 * Create the button associated with this action.
-	 * @param scilabGraph the associated graph
-	 * @return The associated button
-	 */
-	public static PushButton groupButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.GROUP, null, new GroupAction(scilabGraph));
+		super(scilabGraph);
 	}
 
 	/**
@@ -53,7 +49,7 @@ public class GroupAction extends DefaultAction {
 	 * @return The associated menu
 	 */
 	public static MenuItem groupMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.GROUP, null, new GroupAction(scilabGraph), null);
+		return createMenu(scilabGraph, GroupAction.class);
 	}
 
 	/**

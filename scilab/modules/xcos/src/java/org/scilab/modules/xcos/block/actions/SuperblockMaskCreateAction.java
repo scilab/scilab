@@ -26,16 +26,19 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * @author Vincent COUVERT
- *
+ * Create a mask for the {@link SuperBlock}
  */
 public final class SuperblockMaskCreateAction extends DefaultAction {
-
+	public static final String NAME = XcosMessages.CREATE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * @param scilabGraph graph
 	 */
-	private SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CREATE, scilabGraph);
+	public SuperblockMaskCreateAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -43,8 +46,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CREATE, null,
-				new SuperblockMaskCreateAction(scilabGraph), null);
+		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
 	}
 
 	/**
@@ -52,6 +54,7 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 	 * @param e parameters
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
