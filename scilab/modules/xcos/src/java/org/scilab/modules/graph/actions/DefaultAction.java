@@ -290,5 +290,9 @@ public abstract class DefaultAction extends CallBack {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
 	 */
 	@Override
-	public void callBack() { }
+	public void callBack() {
+		assert "Must never be called as we bypass Callback.java".equals("");
+	}
+	
+	
 }
