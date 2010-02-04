@@ -252,6 +252,8 @@ Bug fixes:
 
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
 
+* bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
@@ -2015,6 +2017,8 @@ Bug fixes:
 * bug 5210 fixed - editor("SCI/etc/scilab.start") freezes Scilab.
 
 * bug 5670 fixed - in the demo Latex with colored box, the sqrt symbol was not rendered correctly.
+
+* bug 6412 fixed - the function sp2adj was not working.
 
 * bug 6423 fixed - update the documentation of perctl.
 
