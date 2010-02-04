@@ -26,34 +26,42 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
 // - the flat Modelica model file in outpath+name+'f.mo'
 // - the flat xml representation file in  outpath+name+'f_init.xml'
 // - the flat xml  file in  outpath+name+'f_relations.xml'
-  mlibs=pathconvert(_Modelica_libs,%f,%t)
-  filemo=pathconvert(filemo,%f,%t) 
-  Flat=pathconvert(Flat,%f,%t) 
-  
-  name=basename(filemo)
-  namef=name+'f';
 
-  molibs=[]
-  mlibsM=pathconvert(TMPDIR+'/Modelica/',%f,%t)      
-  for k=1:size(Mblocks,'r')
-    funam=stripblanks(Mblocks(k))
-    [dirF,nameF,extF]=fileparts(funam);
-    if (extF=='.mo') then
-      molibs=[molibs;""""+funam+""""];
+  // TO DO : rename filename too generic
+  if MSDOS then
+    TRANSLATOR_FILENAME = 'translator.exe';
+  else
+    TRANSLATOR_FILENAME = 'translator';
+  end
+
+  mlibs = pathconvert(_Modelica_libs,%f,%t);
+  filemo = pathconvert(filemo,%f,%t);
+  Flat = pathconvert(Flat,%f,%t); 
+  
+  name = basename(filemo);
+  namef = name + 'f';
+
+  molibs = [];
+  mlibsM = pathconvert(TMPDIR+'/Modelica/',%f,%t);
+  for k = 1:size(Mblocks,'r')
+    funam = stripblanks(Mblocks(k));
+    [dirF, nameF, extF] = fileparts(funam);
+    if (extF == '.mo') then
+      molibs = [molibs; """" + funam + """"];
     else
-      molibs=[molibs;""""+mlibsM+funam+'.mo'+""""]
+      molibs = [molibs; """" + mlibsM + funam + '.mo' + """"]
     end
   end
 
   // directories for translator libraries
-  for k=1:(size(mlibs,'*')-1)
-    modelica_directories=mlibs(k); 
+  for k = 1:(size(mlibs,'*')-1)
+    modelica_directories = mlibs(k); 
     if modelica_directories<> [] then 
-      molibs=[molibs;""""+modelica_directories+""""];
+      molibs = [molibs; """" + modelica_directories + """"];
     end
   end
   
-  translator_libs=strcat(' -lib '+ molibs);
+  translator_libs = strcat(' -lib '+ molibs);
   
   // build the sequence of -lib arguments for translator
   if MSDOS then, Limit=1000;else, Limit=3500;end
@@ -61,45 +69,44 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
     // OS limitation may restrict the length of shell command line
     // arguments. If there are to many .mo file we catenate them into a
     // single MYMOPACKAGE.mo file
-    messagebox(msprintf(_('There are too many Modelica files.\n'+..
-			  'it would be better to define several \n'+..
-			  'Modelica programs in a single file.')),'warning','modal')
-    mymopac= pathconvert(outpath+'MYMOPACKAGE.mo',%f,%t)
-    txt=[];
-    for k=1:size(molibs,'*')
-      [pathx,fnamex,extensionx]=fileparts(molibs(k));
-      if (fnamex<>'MYMOPACKAGE') then 
-	txt=[txt;mgetl(evstr(molibs(k)))];
+    messagebox(msprintf(_('There are too many Modelica files.\n' + ..
+			  'it would be better to define several \n' + ..
+			  'Modelica programs in a single file.')),'warning','modal');
+    mymopac = pathconvert(outpath+'MYMOPACKAGE.mo',%f,%t);
+    txt = [];
+    for k = 1:size(molibs,'*')
+      [pathx,fnamex,extensionx] = fileparts(molibs(k));
+      if (fnamex <> 'MYMOPACKAGE') then 
+	txt = [txt; mgetl(evstr(molibs(k)))];
       end
     end
-    mputl(txt,mymopac);     
+    mputl(txt, mymopac);     
     translator_libs= ' -lib ""'+mymopac+'""';
   end 
-  translator_libs=translator_libs+'  -lib ""'+filemo+'""'
+  translator_libs = translator_libs + '  -lib ""' + filemo + '""'
 
   //Build the shell instruction for calling the translator
-  if MSDOS then
-    exe='""'+pathconvert(SCI+'/bin/translator.exe',%f,%t)+'"" '
-  else
-    exe='""'+pathconvert(SCI+'/modules/scicos/translator',%f,%t)+'""'
-  end
-  
-  out=' -o ""'+Flat+'""' //flat modelica
-  Errfile=outpath+'S_translator.err""';
 
-  // without the with-init option
-  // instr=exe+translator_libs+out+' -command ""'+name+' '+namef+';"" >""'+Errfile
+  exe = getmodelicacpath() + TRANSLATOR_FILENAME
+  exe = '""' + pathconvert(getmodelicacpath() + TRANSLATOR_FILENAME,%f,%t) + '"" ';
   
+  out =' -o ""'+Flat+'""' //flat modelica
+  Errfile = outpath + 'S_translator.err""';
+
   // with the with-init option 
-   instr=exe+translator_libs+out+' -with-init -command ""'+name+' '+namef+';"" >""'+Errfile
+  instr = exe + translator_libs + out + ' -with-init -command ""' + name + ' ' + namef + ';"" >""' + Errfile
   
- if MSDOS then,   mputl(instr,outpath+'/gent.bat'), instr=outpath+'/gent.bat';end
+ if MSDOS then
+   mputl(instr,outpath+'/gent.bat')
+   instr = outpath + '/gent.bat';
+ end
  
- if execstr('unix_s(instr)','errcatch')<>0 then
+ if execstr('unix_s(instr)','errcatch') <> 0 then
     messagebox([_('-------Modelica translator error message:-----');
-		mgetl(outpath+'S_translator.err')],'error','modal');
-    ok=%f,
+		mgetl(outpath + 'S_translator.err')], 'error', 'modal');
+    ok = %f,
   else
-    ok=%t
+    ok = %t
   end
 endfunction
+
