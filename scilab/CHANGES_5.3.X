@@ -36,3 +36,5 @@ Bug fixes:
 
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
+* bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more) on the same file.
+
