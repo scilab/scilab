@@ -26,6 +26,7 @@ import org.scilab.modules.graph.ScilabGraph;
 public final class GraphActionFactory {
 	private static Map<ScilabGraph, Set<DefaultAction>> perGraphAction = 
 		new Hashtable<ScilabGraph, Set<DefaultAction>>();
+	private static Set<DefaultAction> nullGraphAction = new HashSet<DefaultAction>();
 
 	/**
 	 * Static class so private constructor 
@@ -46,42 +47,53 @@ public final class GraphActionFactory {
 	 * @return the instance or null on error.
 	 */
 	public static DefaultAction getInstance(ScilabGraph graph, Class< ? extends DefaultAction> action) {
-		if (perGraphAction.containsKey(graph)) {
-			Set<DefaultAction> set = perGraphAction.get(graph);
-			for (DefaultAction defaultAction : set) {
-				if (defaultAction.getClass() == action) {
-					return defaultAction;
-				}
+		Set<DefaultAction> actionSet = getActionSet(graph);
+		
+		for (DefaultAction defaultAction : actionSet) {
+			if (defaultAction.getClass() == action) {
+				return defaultAction;
 			}
-		} else {
-			perGraphAction.put(graph, new HashSet<DefaultAction>());
 		}
 		
 		DefaultAction instance = null;
 		try {
 			instance = action.getConstructor(ScilabGraph.class).newInstance(graph);
-			perGraphAction.get(graph).add(instance);
+			actionSet.add(instance);
 		} catch (IllegalArgumentException e) {
-			// Oupss
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// Oupss
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// Oupss
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// Oupss
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// Oupss
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			// Oupss
 			e.printStackTrace();
 		}
 		
 		return instance;
+	}
+
+	/**
+	 * Get the action set attached to the graph
+	 * @param graph the graph where to search
+	 * @return the {@link DefaultAction} set
+	 */
+	private static Set<DefaultAction> getActionSet(ScilabGraph graph) {
+		Set<DefaultAction> actionSet;
+		if (graph == null) {
+			actionSet = nullGraphAction;
+		} else {
+			if (perGraphAction.containsKey(graph)) {
+				actionSet = perGraphAction.get(graph);
+			} else {
+				actionSet = new HashSet<DefaultAction>();
+				perGraphAction.put(graph, actionSet);
+			}
+		}
+		return actionSet;
 	}
 	
 	/**
@@ -97,14 +109,14 @@ public final class GraphActionFactory {
 	 * @return the instance or null if not found.
 	 */
 	public static DefaultAction get(ScilabGraph graph, Class< ? extends DefaultAction> action) {
-		if (perGraphAction.containsKey(graph)) {
-			Set<DefaultAction> set = perGraphAction.get(graph);
-			for (DefaultAction defaultAction : set) {
-				if (defaultAction.getClass() == action) {
-					return defaultAction;
-				}
+		Set<DefaultAction> actionSet = getActionSet(graph);
+
+		for (DefaultAction defaultAction : actionSet) {
+			if (defaultAction.getClass() == action) {
+				return defaultAction;
 			}
 		}
+			
 		return null;
 	}
 }
