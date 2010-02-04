@@ -23,13 +23,17 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * TODO: doAction for this class 
  */
 public final class NewPaletteAction extends DefaultAction {
-
+	public static final String NAME = XcosMessages.NEW_PALETTE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * Default constructor
 	 * @param scilabGraph associated graph
 	 */
-	private NewPaletteAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.NEW_PALETTE, scilabGraph);
+	public NewPaletteAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -38,6 +42,6 @@ public final class NewPaletteAction extends DefaultAction {
 	 * @return the menu associated whith this action
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.NEW_PALETTE, null, new NewPaletteAction(scilabGraph), null);
+		return createMenu(scilabGraph, NewPaletteAction.class);
 	}
 }
