@@ -23,7 +23,7 @@ import org.scilab.modules.graph.ScilabGraph;
 /**
  * Implement construction methods for Actions. 
  */
-public final class GraphActionFactory {
+public final class GraphActionManager {
 	private static Map<ScilabGraph, Set<DefaultAction>> perGraphAction = 
 		new Hashtable<ScilabGraph, Set<DefaultAction>>();
 	private static Set<DefaultAction> nullGraphAction = new HashSet<DefaultAction>();
@@ -31,7 +31,7 @@ public final class GraphActionFactory {
 	/**
 	 * Static class so private constructor 
 	 */
-	private GraphActionFactory() { }
+	private GraphActionManager() { }
 	
 	/**
 	 * As each action is unique per graph, get the action instance for the

@@ -33,25 +33,12 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
-import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 
 /**
  * Default action for a Scilab Graph
  */
 public abstract class DefaultAction extends CallBack {
-	/**
-	 * Specify the kind of event that may change the status of any action.
-	 * 
-	 * It is used to quickly find which action enable/disable on event.
-	 */
-	public enum UpdateOn {
-		FirstCellOnGraph,
-		OneCellSelected,
-		MultipleCellsSelected,
-		SpecificCellSelected
-	}
-	
 	private static final String ICON_PATH = System.getenv("SCI")
 			+ "/modules/xcos/images/icons/";
 
@@ -132,7 +119,7 @@ public abstract class DefaultAction extends CallBack {
 	 */
 	protected static MenuItem createMenu(ScilabGraph graph,
 			final Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		MenuItem item = ScilabMenuItem.createMenuItem();
 
 		SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
@@ -153,7 +140,7 @@ public abstract class DefaultAction extends CallBack {
 	 */
 	protected static PushButton createButton(ScilabGraph graph,
 			final Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		PushButton item = ScilabPushButton.createPushButton();
 
 		SwingScilabPushButton swingItem = (SwingScilabPushButton) item
@@ -177,7 +164,7 @@ public abstract class DefaultAction extends CallBack {
 	 */
 	protected static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph graph,
 			Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
 		SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item
