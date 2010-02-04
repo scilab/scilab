@@ -115,11 +115,7 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
 
   //** compile Makefile
   chdir(TMPDIR)
-  mkdir('toto')
-  copyfile(files+'.c','toto'+'/'+files+'.c')
-  mdelete(files+'.c');
-  chdir('toto')
-  
+ 
   if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
     //** Binary version
     cflags = cflags+" -I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
@@ -132,10 +128,7 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
   ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'',''makelib'',''loader.sce'','''','''',cflags)','errcatch')
   else
   ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch')
-  copyfile('lib'+blknam+getdynlibext(),TMPDIR)
   end
-
-  
 
   if ierr<>0 then
     ok=%f;
