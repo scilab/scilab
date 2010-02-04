@@ -54,7 +54,7 @@ import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
-import org.scilab.modules.xcos.utils.XcosComponent;
+import org.scilab.modules.xcos.utils.PaletteComponent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -159,8 +159,8 @@ public final class XcosPaletteManager {
 			    DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) path.getLastPathComponent();
 			    
 			    //remove palette from ConfigXcosManager
-			    if (currentNode.getUserObject() instanceof XcosComponent) {
-				XcosComponent comp = (XcosComponent) currentNode.getUserObject();
+			    if (currentNode.getUserObject() instanceof PaletteComponent) {
+				PaletteComponent comp = (PaletteComponent) currentNode.getUserObject();
 				if (comp.getGraph() instanceof PaletteDiagram) {
 				    PaletteDiagram diagram = (PaletteDiagram) comp.getGraph();
 				    String fileName = diagram.getFileName();
@@ -180,7 +180,7 @@ public final class XcosPaletteManager {
 			addTo.setEnabled(false);
 			if (((DefaultMutableTreeNode) path.getPath()[1]).getUserObject() instanceof String) {
 			if (path.getPath().length > 2) {
-			    if (((DefaultMutableTreeNode) path.getPath()[2]).getUserObject() instanceof XcosComponent) {
+			    if (((DefaultMutableTreeNode) path.getPath()[2]).getUserObject() instanceof PaletteComponent) {
 				addTo.setEnabled(true);
 			    }
 			}
@@ -230,8 +230,8 @@ public final class XcosPaletteManager {
 				
 				//hide previous palette
 				Component oldComp = allpalettes.getRightComponent();
-				if (oldComp instanceof XcosComponent) {
-				    XcosComponent comp = (XcosComponent) oldComp;
+				if (oldComp instanceof PaletteComponent) {
+				    PaletteComponent comp = (PaletteComponent) oldComp;
 				    comp.setVisible(false);
 				}
 
@@ -244,8 +244,8 @@ public final class XcosPaletteManager {
 				allpalettes.setRightComponent(nodeInfo);
 				
 				//show next palette
-				if (nodeInfo instanceof XcosComponent) {
-				    XcosComponent comp = (XcosComponent) nodeInfo;
+				if (nodeInfo instanceof PaletteComponent) {
+				    PaletteComponent comp = (PaletteComponent) nodeInfo;
 				    comp.setVisible(true);
 				}
 			    }

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,18 +22,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Viewport tab visibility managemet 
- * @author Vincent COUVERT
  */
 public final class ViewViewportAction extends DefaultAction {
-	
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.VIEWPORT;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private ViewViewportAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.VIEWPORT, scilabGraph);
+	public ViewViewportAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -41,7 +43,7 @@ public final class ViewViewportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		return  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
+		return createCheckBoxMenu(scilabGraph, ViewViewportAction.class);
 	}
 	
 	/**

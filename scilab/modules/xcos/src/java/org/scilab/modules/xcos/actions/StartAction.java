@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,18 +30,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
- * @author Bruno JOFRET
- *
+ * Start the simulation
  */
 public class StartAction  extends DefaultAction {
-
-    private static final long serialVersionUID = -7548486977403506053L;
-
+	public static final String NAME = XcosMessages.START;
+	public static final String SMALL_ICON = "media-playback-start.png";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
     /**
      * @param scilabGraph graph
      */
     public StartAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.START, scilabGraph);
+    	super(scilabGraph);
     }
 
     /**
@@ -48,7 +50,7 @@ public class StartAction  extends DefaultAction {
      * @return push button
      */
     public static PushButton createButton(ScilabGraph scilabGraph) {
-	return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
+    	return createButton(scilabGraph, StartAction.class);
     }
 
     /**
@@ -56,9 +58,14 @@ public class StartAction  extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.START, null, new StartAction(scilabGraph), null);
+    	return createMenu(scilabGraph, StartAction.class);
     }
 
+    /**
+     * Action !!!
+     * @param e the source event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
     public void actionPerformed(ActionEvent e) {
 	File temp;
 	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);

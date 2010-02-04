@@ -44,6 +44,7 @@ Xcos:
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
     - org.scilab.modules.graph is independent from Xcos and can be safely used.
+    - the actions are now only instanciated per graph.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -2027,3 +2028,6 @@ Bug fixes:
 * bug 6468 fixed - wrong check in dnaupd.
 
 * bug 6495 fixed - in lqr, variable Q not defined.
+
+* bug 4785 fixed - tand(0) generated an error
+
