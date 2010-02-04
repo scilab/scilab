@@ -23,7 +23,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
  * Customize the default component
  * @see java.awt.Component
  */
-public class XcosComponent extends ScilabComponent {
+public class PaletteComponent extends ScilabComponent {
 
     private static final long serialVersionUID = 1592816691330208090L;
 
@@ -31,7 +31,7 @@ public class XcosComponent extends ScilabComponent {
      * Construct the component with the associated graph
      * @param graph The associated graph
      */
-    public XcosComponent(XcosDiagram graph) {
+    public PaletteComponent(XcosDiagram graph) {
 	super(graph);
 	
 	addComponentListener(new ComponentListener() {

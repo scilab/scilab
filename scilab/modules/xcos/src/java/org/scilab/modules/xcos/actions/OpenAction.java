@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +17,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFileChooser;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
@@ -33,18 +33,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * File opening management
- * @author Vincent COUVERT
  */
 public final class OpenAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.OPEN;
+	public static final String SMALL_ICON = "document-open.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_O;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private OpenAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.OPEN, scilabGraph);
+	public OpenAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -53,8 +54,7 @@ public final class OpenAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, OpenAction.class);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public final class OpenAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.OPEN, "document-open.png", new OpenAction(scilabGraph));
+		return createButton(scilabGraph, OpenAction.class);
 	}
 
 	/**
@@ -78,7 +78,9 @@ public final class OpenAction extends DefaultAction {
 	    fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
 	    fc.setMultipleSelection(false);
 	    
-
+	    /*
+	     * FIXME: why hardcoded values ?  
+	     */
 	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
 	    SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
 	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);

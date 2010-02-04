@@ -18,8 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -32,15 +30,17 @@ import com.mxgraph.swing.util.mxGraphActions;
  * @author Bruno JOFFRET
  */
 public class ZoomOutAction extends DefaultAction implements ActionListener {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = ScilabGraphMessages.ZOOM_OUT;
+	public static final String SMALL_ICON = "list-remove.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_MINUS;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public ZoomOutAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.ZOOM_OUT, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @return the button
 	 */
 	public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_OUT, "list-remove.png", new ZoomOutAction(scilabGraph));
+		return createButton(scilabGraph, ZoomOutAction.class);
 	}
 
 	/**
@@ -58,8 +58,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @return the menu
 	 */
 	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ZoomOutAction.class);
 	}
 
 	/**

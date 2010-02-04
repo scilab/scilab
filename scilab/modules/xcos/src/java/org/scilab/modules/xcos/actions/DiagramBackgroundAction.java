@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,18 +26,19 @@ import com.mxgraph.swing.mxGraphComponent;
 
 /**
  * Diagram background color changing
- * @author Vincent COUVERT
  */
 public class DiagramBackgroundAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.DIAGRAM_BACKGROUND;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public DiagramBackgroundAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.DIAGRAM_BACKGROUND, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class DiagramBackgroundAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.DIAGRAM_BACKGROUND, null, new DiagramBackgroundAction(scilabGraph), null);
+		return createMenu(scilabGraph, DiagramBackgroundAction.class);
 	}
 
 	/**
