@@ -100,9 +100,13 @@ public class DefaultAction extends CallBack {
 		 * Set up the accelerator instead of the mnemonic as the menu is the
 		 * preferred way on keyboard control. We are using Action.MNEMONIC_KEY
 		 * as keyboard key and Action.ACCELERATOR_KEY as a mask.
+		 * 
+		 * Install it only when there is a real shortcut (with a mnemonic).
 		 */
-		putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic,
-				accelerator));
+		if (mnemonic != 0) {
+			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic,
+					accelerator));
+		}
 	}
 
 	/**
