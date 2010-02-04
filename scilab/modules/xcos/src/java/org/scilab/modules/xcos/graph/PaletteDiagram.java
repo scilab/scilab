@@ -20,6 +20,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.utils.XcosComponent;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
@@ -42,6 +43,8 @@ public class PaletteDiagram extends XcosDiagram {
      */
     public PaletteDiagram() {
 	super();
+	
+	setComponent(new XcosComponent(this));
 	
 	setCellsLocked(true);
 	setGridVisible(false);
