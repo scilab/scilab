@@ -81,6 +81,53 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, 
  */
 SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
+/* shortcut functions */
+
+/**
+ * check if the variable type is a boolean sparse
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isBooleanSparseType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a boolean sparse
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedBooleanSparseType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get boolean sparse variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+
+/**
+ * Get named boolean sparse variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+
+/**
+ * free data allocated by shortcut functions
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ */
+void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos);
+
 #ifdef __cplusplus
 }
 #endif

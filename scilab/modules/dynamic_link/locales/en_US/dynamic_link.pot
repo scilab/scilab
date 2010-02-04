@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: macros/ilib_gen_Make_unix.sci, line: 258
 #, c-format
@@ -162,7 +162,7 @@ msgstr ""
 #
 # File: macros/ilib_compile.sci, line: 141
 #, c-format
-msgid "%s: An error occured during the compilation:\n"
+msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 107
@@ -189,7 +189,7 @@ msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 229
 #, c-format
-msgid "%s: Error while modifing the reference Makefile:\n"
+msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr ""
 #
 # File: macros/gencompilationflags_unix.sci, line: 14

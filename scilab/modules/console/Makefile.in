@@ -197,6 +197,7 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -269,6 +270,7 @@ JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -325,6 +327,7 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -343,6 +346,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -458,15 +462,15 @@ BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # List of the c files
 libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
-libsciconsole_disable_la_CFLAGS = -Iincludes/
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_scilab/includes -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
@@ -485,7 +489,9 @@ libsciconsole_la_LIBADD = $(top_builddir)/modules/action_binding/libsciaction_bi
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/GuiManagement.i
+SWIG_WRAPPERS = src/jni/GuiManagement.i \
+	src/jni/DropFiles.i
+
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1

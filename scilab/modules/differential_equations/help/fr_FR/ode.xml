@@ -118,7 +118,15 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>entier (instant initial). kvect : vecteur d'entiers</para>
+          <para>entier (instant initial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kvect</term>
+
+        <listitem>
+          <para>vecteur d'entiers.</para>
         </listitem>
       </varlistentry>
     </variablelist>

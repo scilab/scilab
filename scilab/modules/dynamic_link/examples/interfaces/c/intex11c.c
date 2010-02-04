@@ -42,7 +42,7 @@ int intex11c(char *fname)
   /* execute the function "myfct" */
   SciString(&ibegin,name,&mlhs,&mrhs);
 
-  /* check if an error has occured while running a_function */
+  /* check if an error has occurred while running a_function */
   if (Err > 0 ) return 0;
   
   /* Output variables u, v, and w of myfct

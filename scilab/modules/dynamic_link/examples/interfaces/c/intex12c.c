@@ -47,7 +47,7 @@ int intex12c(char *fname)
   /* execute the function "mypoly" */
   mlhs=1; mrhs=1 ; 
   SciString(&ibegin,name,&mlhs,&mrhs);
-  /* check if an error has occured while running mypoly */
+  /* check if an error has occurred while running mypoly */
   if (Err > 0 ) return 0;
 
   LhsVar(1) = 2; 

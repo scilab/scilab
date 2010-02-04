@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 /*
 ** TCL Arrays are Hashtable in fact.
-** So we have to acces it through string indexes.
+** So we have to access it through string indexes.
 */
 char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,char *index)
 {

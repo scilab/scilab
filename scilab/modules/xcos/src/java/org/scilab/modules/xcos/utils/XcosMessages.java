@@ -129,6 +129,8 @@ public final class XcosMessages {
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
+    
+    public static final String ACTIVATE_PAL_TITLE = Messages.gettext("Enable this palette");
 
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save.<br/> Do you want to save it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
@@ -144,7 +146,7 @@ public final class XcosMessages {
     public static final String OVERWRITE_EXISTING_FILE = Messages.gettext("Do you want to overwrite existing file?");
     public static final String TRANSPARENT_BACKGROUND = Messages.gettext("Do you want a transparent background image?");
     public static final String NO_IMAGE_DATA = Messages.gettext("Image contains no data.");
-    public static final String UNKNOW_VERSION = Messages.gettext("Unknow Diagram Version : ");
+    public static final String UNKNOW_VERSION = Messages.gettext("Unknown Diagram Version : ");
     public static final String TRY_TO_CONTINUE = Messages.gettext("Will try to continue...");
 
     public static final String XCOS_ERROR = Messages.gettext("Xcos error");
@@ -218,7 +220,7 @@ public final class XcosMessages {
     
     /* Debug level messages  */
     public static final String DEBUGLEVEL_0 = Messages.gettext("No trace nor debug printing");
-    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continous part switches)");
+    public static final String DEBUGLEVEL_1 = Messages.gettext("Light Simulation trace (Discrete and Continuous part switches)");
     public static final String DEBUGLEVEL_2 = Messages.gettext("Per block execution trace and Debug block calls");
     public static final String DEBUGLEVEL_3 = Messages.gettext("Debug block calls without trace");
     

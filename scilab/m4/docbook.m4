@@ -33,12 +33,12 @@ AC_ARG_WITH(docbook,
 		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
 	fi
 	# xml.apache.org SVG Library (under mandriva for example)
-	AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library])
+	AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
 	BATIK=$PACKAGE_JAR_FILE
 
 	if test -z "$BATIK"; then
 		# Other other distribs
-		AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+		AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
 		BATIK=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(BATIK)
@@ -70,9 +70,17 @@ AC_ARG_WITH(docbook,
 	AC_SUBST(XMLGRAPHICS_COMMONS)
 
 	# XML API EXT (conversion of a SVG => PNG)
-	AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+	AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
 	XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+	if test -z "$XML_APIS_EXT"; then
+		# Other other distribs (Ex: Fedora/Redhat)
+		AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+		XML_APIS_EXT=$PACKAGE_JAR_FILE
+	fi
 	AC_SUBST(XML_APIS_EXT)
+
+
 
 
 	# Avalon Framework (PDF)

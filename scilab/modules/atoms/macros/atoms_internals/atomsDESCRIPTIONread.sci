@@ -55,19 +55,27 @@
 
 
 
-function description_out = atomsDESCRIPTIONread(file_in)
+function description_out = atomsDESCRIPTIONread(file_in,additional)
 	
 	// Check input parameters
 	// =========================================================================
 	
 	rhs  = argn(2);
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONread",1));
+	if and(rhs <> [1 2])  then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDESCRIPTIONread",1,2));
 	end
 	
 	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
+	end
+	
+	if rhs < 2 then
+		additional = struct();
+	else
+		if type(additional) <> 17 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONread",2));
+		end
 	end
 	
 	// Init the output argument
@@ -81,6 +89,10 @@ function description_out = atomsDESCRIPTIONread(file_in)
 	description_out("packages")        = packages;
 	description_out("categories")      = categories;
 	description_out("categories_flat") = categories_flat;
+	
+	// Operating system detection + Architecture detection
+	// =========================================================================
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Start Read the file
 	// =========================================================================
@@ -108,17 +120,28 @@ function description_out = atomsDESCRIPTIONread(file_in)
 					this_toolbox = packages(current_toolbox("Toolbox"));
 				end
 				
-				if isfield(current_toolbox,"ScilabVersion") then
-					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-						this_toolbox(current_toolbox("Version")) = current_toolbox;
-					end
-				else
-					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+				// Register the current toolbox : Check the mandatory fields
+				missingfield = atomsCheckFields( current_toolbox );
+				if ~ isempty(missingfield) then
+					error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
 						"atomsDESCRIPTIONread",..
 						file_in,current_toolbox("Toolbox"),..
-						current_toolbox("Version")));
+						current_toolbox("Version"),..
+						missingfield));
 				end
 				
+				// Register the current toolbox : Check the scilab version
+				// comptability
+				if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+					if isfield(current_toolbox,"PackagingVersion") then
+						current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					else
+						this_toolbox(current_toolbox("Version")) = current_toolbox;
+					end
+				end
+				
+				// Register the current toolbox : Fill the packages struct
 				packages(current_toolbox("Toolbox")) = this_toolbox;
 			end
 			
@@ -141,17 +164,28 @@ function description_out = atomsDESCRIPTIONread(file_in)
 						this_toolbox = packages(current_toolbox("Toolbox"));
 					end
 					
-					if isfield(current_toolbox,"ScilabVersion") then
-						if atomsIsCompatible(current_toolbox("ScilabVersion")) then
-							this_toolbox(current_toolbox("Version")) = current_toolbox;
-						end
-					else
-						error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the ScilabVersion field\n"), ..
+					// Register the current toolbox : Check the mandatory fields
+					missingfield = atomsCheckFields( current_toolbox );
+					if ~ isempty(missingfield) then
+						error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
 							"atomsDESCRIPTIONread",..
 							file_in,current_toolbox("Toolbox"),..
-							current_toolbox("Version")));
+							current_toolbox("Version"),..
+							missingfield));
 					end
 					
+					// Register the current toolbox : Check the scilab version
+					// comptability
+					if atomsIsCompatible(current_toolbox("ScilabVersion")) then
+						if isfield(current_toolbox,"PackagingVersion") then
+							current_toolbox("Version") = current_toolbox("Version") + "-" + current_toolbox("PackagingVersion");
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						else
+							this_toolbox(current_toolbox("Version")) = current_toolbox;
+						end
+					end
+					
+					// Register the current toolbox : Fill the packages struct
 					packages(current_toolbox("Toolbox")) = this_toolbox;
 				end
 				
@@ -163,6 +197,24 @@ function description_out = atomsDESCRIPTIONread(file_in)
 			current_field_length           = regexp(lines_in(i),"/:\s/","o")
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
+			
+			// process binary files
+			if regexp(current_field,"/^(windows|linux|macosx|solaris|bsd)(32|64)?(Url|Name|Md5|Sha1|Id)$/","o")<>[] then
+				// This field doesn't concern this platform => Next line
+				if regexp(current_field,"/^"+OSNAME+ARCH+"/","o")==[] then
+					continue;
+				else
+					current_field = "binary"+part(current_field,length(OSNAME+ARCH)+1:length(current_field));
+				end
+			end
+			
+			// process URLs
+			if isfield(additional,"repository") & ..
+				( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
+				regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
+					current_value = additional("repository") + current_value;
+			end
+			
 			current_toolbox(current_field) = current_value;
 			
 			// Category management
@@ -247,7 +299,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		// Sub category
 		category_main         = part(cat_id,1:pattern_index-1);
 		category_sub          = part(cat_id,pattern_index+3:length(cat_id) );
-		cat_struct("label")   = [ category_main ; category_sub ];
+		cat_struct("label")   = [ category_main  category_sub ];
 		cat_struct("is_main") = %F;
 		
 	else
@@ -274,7 +326,7 @@ function [cat_out , cat_flat_out ] = atomsCreateCategory(cat_in,cat_flat_in,cat_
 		end
 	end
 	
-	if cat_struct("is_main") & ~ isfield(cat_flat_out,category_main) then
+	if ~cat_struct("is_main") & ~isfield(cat_flat_out,category_main) then
 		[cat_out , cat_flat_out ] = atomsCreateCategory(cat_out,cat_flat_out,category_main)
 	end
 	
@@ -300,6 +352,37 @@ function cat_flat_out = atomsAddPackage2Cat( cat_flat_in , package , category)
 	if ~ cat_struct("is_main") then
 		label_mat    = cat_struct("label");
 		cat_flat_out = atomsAddPackage2Cat( cat_flat_out , package , label_mat(1))
+	end
+	
+endfunction
+
+// =============================================================================
+// atomsCheckFields
+// =============================================================================
+
+function field = atomsCheckFields( module )
+	
+	field = "";
+	
+	mandatory = [             ..
+		"Toolbox"           ; ..
+		"Title"             ; ..
+		"Summary"           ; ..
+		"Version"           ; ..
+		"Author"            ; ..
+		"Maintainer"        ; ..
+		"Category"          ; ..
+		"Entity"            ; ..
+		"License"           ; ..
+		"ScilabVersion"     ; ..
+		"Depends"           ; ..
+		"Date"              ];
+	
+	for i=1:size(mandatory,"*")
+		if ~ isfield(module,mandatory(i)) then
+			field = mandatory(i);
+			return;
+		end
 	end
 	
 endfunction

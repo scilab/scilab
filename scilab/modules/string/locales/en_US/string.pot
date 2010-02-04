@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-12-09 16:34+0100\n"
+"Revision-Date: 2010-01-25 10:33+0100\n"
 
 # File: sci_gateway/c/sci_isdigit.c, line: 74
 # File: sci_gateway/c/sci_tokens.c, line: 99
@@ -355,8 +355,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_emptystr.c, line: 133
-# File: sci_gateway/c/sci_emptystr.c, line: 145
+# File: sci_gateway/c/sci_emptystr.c, line: 159
+# File: sci_gateway/c/sci_emptystr.c, line: 163
 # File: sci_gateway/c/sci_strncpy.c, line: 175
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"

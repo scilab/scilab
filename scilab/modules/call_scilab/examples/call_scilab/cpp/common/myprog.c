@@ -8,7 +8,7 @@
 #define FALSE 0
  
 /*--------------------------------------------------------------------------*/ 
-/* See routines/system/CallScilab.h */
+/* See routines/system/call_scilab.h */
 extern int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job); 

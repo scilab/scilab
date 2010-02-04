@@ -31,7 +31,9 @@ import com.mxgraph.util.mxUtils;
  */
 public final class BlockPositioning {
 
+	/** The rotation step of the clockwise and anticlockwise rotation */
 	public static final int ROTATION_STEP = 90;
+	/** The max valid rotation value (always 360°) */
 	public static final int MAX_ROTATION = 360;
 	
 	/** This class is a static singleton, thus it must not be instantiated */
@@ -383,14 +385,5 @@ public final class BlockPositioning {
 	if (block != null && block.getParentDiagram() != null) {
 	    block.getParentDiagram().getModel().endUpdate();
 	}
-    }
-    
-    /**
-     * test if the angle correspond to the NORTH or SOUTH sides.
-     * @param angle The rotation value
-     * @return true if the angle is NORTH or SOUTH side value, false otherwise.
-     */
-    public static boolean isNearHorizontalSide(double angle) {
-    	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
 }

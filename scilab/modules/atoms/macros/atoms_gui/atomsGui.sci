@@ -15,7 +15,7 @@ function atomsGui()
 
     // Test connection
     allModules = [];
-    errStatus  = execstr("allModules = atomsGetTOOLBOXES();", "errcatch");
+    errStatus  = execstr("allModules = atomsDESCRIPTIONget();", "errcatch");
 
     if errStatus<>0 | size(allModules, "*") == 0 then
         if size(atomsRepositoryList(),"*") > 0 then

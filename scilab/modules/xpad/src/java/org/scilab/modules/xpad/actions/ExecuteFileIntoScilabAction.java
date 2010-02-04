@@ -41,9 +41,6 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	 */
 	private static final long serialVersionUID = -8625083632641564277L;
 	
-	private static int CANCEL = 1;
-	private static int SAVE_AND_EXECUTE = 2;
-
 	/**
 	 * Constructor
 	 * @param editor Xpad
@@ -57,7 +54,8 @@ public final class ExecuteFileIntoScilabAction extends DefaultAction {
 	 * @param editor the Scilab editor
 	 */
 	private void executeFile(Xpad editor) {
-		String filePath = editor.getFileFullPath();
+		
+		String filePath = editor.getTextPane().getName();
 		
 		if (filePath.compareTo("") != 0) {
 			String cmdToExec = "exec('" + filePath + "', -1)";

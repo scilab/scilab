@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="api_scilab" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>api_scilab</refname>
+
+    <refpurpose>api_scilab is the Scilab interface to read/write data from/to Scilab memory </refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>In the previous versions of Scilab, there was no clear or easy way to extend Scilab or to use it as an embedded application.</para>
+<para>Since Scilab 5.2.0, these issues have been tackled by API Scilab. Its provides a new consistent, documented and easy way API.
+</para>
+
+    <para>This API provides functions to read/write data from/to Scilab memory.</para>
+<para>  It provides many advantages:</para>
+          <itemizedlist>
+            <listitem>
+<para>Management of all Scilab data types</para></listitem>
+<listitem>
+<para>Consistency over all data types</para></listitem>
+<listitem>
+<para>Error management</para></listitem>
+<listitem>
+<para>Fully documented</para></listitem>
+<listitem>
+<para>Fully tested by unitary tests</para></listitem>
+<listitem>
+<para>Straight and named access (See the <link linkend="call_scilab">call_scilab API</link>) to variables.</para></listitem>
+<listitem>
+<para>And it will be maintained over future versions of Scilab</para></listitem>
+</itemizedlist>
+
+<para>Usually, this API is used to extend Scilab capabilities but can be used in other contexts</para>
+
+          <itemizedlist>
+            <listitem>
+<para>Libraires or C/C++ functions: Many librairies have been developped on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
+</para>
+            </listitem>
+            <listitem>
+<para>Scilab can be used as computing engine from a third party software. This feature is called <link linkend="call_scilab">call_scilab</link> when Scilab is used from C/C++ code or  <link linkend="javasci">javasci</link> when used from Java. Access to variable is done through their names (named variable).
+</para>
+            </listitem>
+</itemizedlist>
+   <para>Note that old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link>, <link linkend="DoubleManagement_callscilab">Matrix
+      Management</link>, <link linkend="BooleanManagement_callscilab">Boolean
+      Management</link>, <link linkend="ComplexManagement_callscilab">Complex
+      Management</link>, <link linkend="StringManagement_callscilab">String
+      Management</link>, <link linkend="call_scilab">Call_Scilab</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

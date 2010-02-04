@@ -36,7 +36,7 @@ C
       CALL BSLSQ (X, Y, WGT, M, WK(1), N, 4, WK(LA),
      *            WK(LW), WK(LQ), IERR)
 *
-*     pour BSLSQ : IERR =-1  not enought points for the fit
+*     pour BSLSQ : IERR =-1  not enough points for the fit
 *                  IERR = 0  OK 
 *                  IERR = 1  non uniqness of the solution (but a solution is computed)
 *

@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Add toolboxes to the list of packages that are automaticaly loaded at Scilab start
+// Add toolboxes to the list of packages that are automatically loaded at Scilab start
 // This function has an impact on the following files :
 //  -> ATOMSDIR/autoloaded
 
@@ -142,6 +142,12 @@ function nbAdd = atomsAutoloadAdd(packages,section)
 			
 			if ~atomsIsInstalled([packages(i,1) packages(i,2)]) then
 				error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+			end
+			
+			// If the packaging version is not mentioned, define it
+			if isempty(strindex(packages(i,2),"-")) then
+				this_package_details = atomsGetInstalledDetails(packages(i,1:3));
+				packages(i,2)        = this_package_details(2);
 			end
 			
 		end

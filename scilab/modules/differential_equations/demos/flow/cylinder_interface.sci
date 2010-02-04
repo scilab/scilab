@@ -49,7 +49,7 @@ function execylinder()
 	my_figure_handle.background      = -2;
 	my_figure_handle.figure_position = [0 0];
 	my_figure_handle.axes_size       = [axes_figure_w axes_figure_h];
-	my_figure_handle.figure_name     = gettext("Cylindre");
+	my_figure_handle.figure_name     = gettext("Cylinder");
 
 	my_axe                           = gca()
 	my_axe.axes_bounds               = [0,0,1,3/4];

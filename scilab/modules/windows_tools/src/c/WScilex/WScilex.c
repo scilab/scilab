@@ -16,6 +16,7 @@
 #include "win_mem_alloc.h" /* MALLOC */
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
+#define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "Wscilex.exe failed with error %d: %s"
 #define MAIN_FUNCTION "Windows_Main"
@@ -35,6 +36,13 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	if (GetWindowsVersion() < OS_WIN32_WINDOWS_2000)
 	{
 		MessageBox(NULL,TEXT(MSG_DETECT_2K_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
+		return -1;
+	}
+
+	/* http://msdn.microsoft.com/en-us/library/ms724482(VS.85).aspx */
+	if (!IsProcessorFeaturePresent(PF_XMMI_INSTRUCTIONS_AVAILABLE))
+	{
+		MessageBox(NULL,TEXT(MSG_DETECT_SSE_OR_MORE),TEXT(MSG_WARNING),MB_ICONWARNING);
 		return -1;
 	}
 

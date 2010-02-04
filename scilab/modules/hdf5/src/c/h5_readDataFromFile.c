@@ -91,6 +91,12 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
 			return 0;
 		}
 
+		status = H5Aclose(iAttributeId);
+		if(status < 0)
+		{
+			return 0;
+		}
+
 		return iVal;
 	}
 	return 0;
@@ -536,6 +542,24 @@ static int readString(int _iDatasetId, char **_pstData)
 		return -1;
 	}
 
+	status = H5Tclose(memtype);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	status = H5Sclose(iSpace);
+	if(status < 0)
+	{
+		return -1;
+	}
+
+	status = H5Tclose(iFileType);
+	if(status < 0)
+	{
+		return -1;
+	}
+
 	status = H5Dclose(_iDatasetId);
 	if(status < 0)
 	{
@@ -657,6 +681,12 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
 		return -1;
 	}
 
+
+	status = H5Tclose(filetype);
+	if(status < 0)
+	{
+		return -1;
+	}
 
 	status = H5Dclose(_iDatasetId);
 	if(status < 0)

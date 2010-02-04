@@ -50,7 +50,7 @@ void DrawableObjectJoGL::endDrawing( void )
 	}
 	catch (const std::exception & e)
 	{
-		sciprint(_("%s: No more memory.\n"),"DrawableObjectJoGL::endDrawing");
+		sciprint(const_cast<char*>(_("%s: No more memory.\n")),"DrawableObjectJoGL::endDrawing");
 	}
 }
 /*---------------------------------------------------------------------------------*/

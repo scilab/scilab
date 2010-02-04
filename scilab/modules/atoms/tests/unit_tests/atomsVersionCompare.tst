@@ -23,3 +23,13 @@ B = [0 ; 0 ; 0 ; 0 ; 0 ];
 
 if or( atomsVersionCompare(A,"5.1")<>B ) then pause, end
 
+if atomsVersionCompare("1.4-1"      ,"1.4")       <>  1 then pause, end
+if atomsVersionCompare("1.4-1"      ,"1.4-3")     <> -1 then pause, end
+if atomsVersionCompare("1.4-10"     ,"1.4-3")     <>  1 then pause, end
+if atomsVersionCompare("1.5-1"      ,"1.4-3")     <>  1 then pause, end
+
+
+A = ["1.4-1";"1.4-3";"1.4.0-2";"1.4-10";"1.5-2";"1.4"];
+B = [   -1  ;   1   ;    0    ;    1   ;   1   ;  -1 ];
+
+if or( atomsVersionCompare(A,"1.4-2")<>B ) then pause, end

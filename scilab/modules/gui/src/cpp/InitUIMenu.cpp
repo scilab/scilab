@@ -100,7 +100,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
         } 
       else
         {
-          Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+          Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
           return SET_PROPERTY_ERROR;
         }
     }
@@ -113,7 +113,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
     } 
   else
     {
-      Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+      Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
       return SET_PROPERTY_ERROR;
     }
   

@@ -166,6 +166,94 @@ SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _p
 
 SciErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
+/* shortcut functions */
+
+/**
+ * check if the variable type is a sparse
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isSparseType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a sparse
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedSparseType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get sparse variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @param[out] _pdblReal return array of real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+
+/**
+ * Get sparse variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @param[out] _pdblReal return array of real data
+ * @param[out] _pdblImg return array of imaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+
+/**
+ * Get named sparse variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @param[out] _pdblReal return array of real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedAllocatedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+
+/**
+ * Get named sparse variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @param[out] _pdblReal return array of real data
+ * @param[out] _pdblImg return array of imaginary data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedAllocatedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal sparse real data
+ */
+void freeAllocatedSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal);
+
+/**
+ * free data allocated by shortcut functions ( named or not )
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal sparse real data
+ * @param[in] _pdblImg sparse imaginary data
+ */
+void freeAllocatedComplexSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal, double* _pdblImg);
+
 #ifdef __cplusplus
 }
 #endif

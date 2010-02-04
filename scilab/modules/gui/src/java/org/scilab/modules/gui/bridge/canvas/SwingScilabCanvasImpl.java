@@ -165,7 +165,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	if(!onOrOff && noGLJPanel) {
 	    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Despite of our previous warning, "
-			+ "you choosed to use Scilab with advanced graphics capabilities. "
+			+ "you chose to use Scilab with advanced graphics capabilities. "
 			+ "Type \"\"help usecanvas\"\" for more information.\")"));
 	}
 	enableGLCanvas = onOrOff;

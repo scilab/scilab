@@ -13,15 +13,13 @@
 
 package org.scilab.modules.graph;
 
-import java.awt.Color;
 import java.util.List;
 
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.xcos.utils.XcosComponent;
-import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.graph.utils.ScilabConstants;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
@@ -40,11 +38,12 @@ import com.mxgraph.view.mxGraph;
  * modification state management, Tab association, etc...
  */
 public class ScilabGraph extends mxGraph {
-
-	private static final int DEFAULTCOLOR = 240;
-
+	/**
+	 * The default component of a scilab graph
+	 */
+	protected ScilabComponent component;
+	
 	private final mxUndoManager undoManager = new mxUndoManager();
-	private final XcosComponent component;
 
 	private String title = ScilabGraphMessages.UNTITLED;
 	private String savedFile;
@@ -54,7 +53,6 @@ public class ScilabGraph extends mxGraph {
 	private boolean redoInAction;
 	private int undoCounter;
 	private boolean readOnly;
-	private Color originalColor;
 
 	private transient mxRubberband rubberBand;
 
@@ -75,7 +73,7 @@ public class ScilabGraph extends mxGraph {
 
 			if (!redoInAction) {
 				undoManager.undoableEditHappened((mxUndoableEdit) evt
-						.getProperty(XcosConstants.EVENT_CHANGE_EDIT));
+						.getProperty(ScilabConstants.EVENT_CHANGE_EDIT));
 				incrementUndoCounter();
 			}
 		}
@@ -86,7 +84,7 @@ public class ScilabGraph extends mxGraph {
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(XcosConstants.EVENT_CHANGE_EDIT)).getChanges();
+			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabConstants.EVENT_CHANGE_EDIT)).getChanges();
 			setSelectionCells(getSelectionCellsForChanges(changes));
 		}
 	};
@@ -103,7 +101,7 @@ public class ScilabGraph extends mxGraph {
 		mxGraphActions.getSelectPreviousAction().setEnabled(false);
 		mxGraphActions.getSelectChildAction().setEnabled(false);
 		mxGraphActions.getSelectParentAction().setEnabled(false);
-
+		
 		// Undo / Redo capabilities
 		getModel().addListener(mxEvent.UNDO, undoHandler);
 		getView().addListener(mxEvent.UNDO, undoHandler);
@@ -112,7 +110,7 @@ public class ScilabGraph extends mxGraph {
 		undoManager.addListener(mxEvent.UNDO, selectionHandler);
 		undoManager.addListener(mxEvent.REDO, selectionHandler);
 
-		component = new XcosComponent(this);
+		component = new ScilabComponent(this);
 
 		// Adds rubberband selection
 		rubberBand = new mxRubberband(component);
@@ -312,13 +310,6 @@ public class ScilabGraph extends mxGraph {
 		this.readOnly = readOnly;
 
 		setCellsLocked(readOnly);
-		if (isReadonly()) {
-			setOriginalColor(getAsComponent().getBackground());
-			getAsComponent().setBackground(
-					new Color(DEFAULTCOLOR, DEFAULTCOLOR, DEFAULTCOLOR));
-		} else {
-			getAsComponent().setBackground(getOriginalColor());
-		}
 	}
 
 	/**
@@ -326,28 +317,6 @@ public class ScilabGraph extends mxGraph {
 	 */
 	public boolean isReadonly() {
 		return readOnly;
-	}
-
-	/**
-	 * Useful function for the read-only property
-	 * 
-	 * @param originalColor
-	 *            The default color to apply
-	 */
-	private void setOriginalColor(Color originalColor) {
-		this.originalColor = originalColor;
-	}
-
-	/**
-	 * Useful function for the read-only property
-	 * 
-	 * @return The default color
-	 */
-	private Color getOriginalColor() {
-		if (originalColor != null) {
-			return originalColor;
-		}
-		return Color.WHITE;
 	}
 
 	/**

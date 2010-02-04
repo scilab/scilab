@@ -37,12 +37,17 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
 
 	/**
 	 * @param scilabGraph graph
-	 * @return ùenu item
+	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.REMOVE, null, new SuperblockMaskRemoveAction(scilabGraph), null);
 	}
 	
+	/**
+	 * Do something
+	 * @param e the parameters
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
 	    block.unmask();

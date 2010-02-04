@@ -52,13 +52,6 @@ void destroy_hashtable_scilab_functions(void);
  * @return TRUE or FALSE
  */
 BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action);
-
-/**
-* enable sort of scilab table functions
-* called when table are loaded
-*/
-void enable_sort_hashtable_scilab_functions(void);
-
 /*--------------------------------------------------------------------------*/
 #endif /* __HASHTABLE_CORE_H__ */
 /*--------------------------------------------------------------------------*/

@@ -191,7 +191,7 @@ int sci_fftw(char *fname,unsigned long fname_len)
 	  /* look at for type of Rhs(3) */
 	  if ((VarType(3)!=sci_ints)&&(VarType(3)!=sci_matrix)) 
 	    {
-	      Scierror(53,_("%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"),fname,3);
+	      Scierror(53,_("%s: Wrong type for input argument #%d: N-dimensional array expected.\n"),fname,3);
 	      return(0);
 	    }
 	  
