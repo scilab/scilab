@@ -26,34 +26,37 @@ function  ok=xml2modelica(xmlfile,Flati)
 // - the flat Modelica model file in outpath+name+'fi.mo'
 
 //Scilab interface  with external tool xml2modelica
-  tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
-  xmlfile=pathconvert(xmlfile,%f,%t);  
-  Flati=pathconvert(Flati,%f,%t);  
 
+  XML2MODELICA_FILENAME = 'XML2Modelica';
   if MSDOS then
-    exe='""'+pathconvert(SCI+'/bin/XML2Modelica.exe',%f,%t)+'"" '
-  else
-    exe='""'+pathconvert(SCI+'/modules/scicos/XML2Modelica',%f,%t)+'""'
+    XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + '.exe'; 
   end
-  
-  in='""'+xmlfile+'""'
-  out='-o ""'+Flati+'""'
-  option='-init'  // generates a flat modelica file for the initialization
-  Errfile= ' > ""'+tmpdir+'ixml2modelica.err""'
-  instr=strcat([exe in option out Errfile],' ')
+
+  tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
+  xmlfile = pathconvert(xmlfile, %f, %t);  
+  Flati = pathconvert(Flati, %f, %t);
+
+  exe = '""' + pathconvert(XML2MODELICA_FILENAME, %f, %t) + '"" ';
+  in = '""' + xmlfile + '""';
+  out = '-o ""' + Flati + '""';
+  option = '-init';  // generates a flat modelica file for the initialization
+  Errfile = ' > ""' + tmpdir + 'ixml2modelica.err""';
+  instr = strcat([exe in option out Errfile], ' ');
 
   if MSDOS then, 
-    mputl(instr,tmpdir+'igenx.bat');
-    instr=tmpdir+'igenx.bat';
+    mputl(instr, tmpdir + 'igenx.bat');
+    instr = tmpdir + 'igenx.bat';
   end
   
-  if execstr('unix_s(instr)','errcatch')==0 then
-    mprintf('%s\n',' xml->Modelica : '+Flati);
+  if execstr('unix_s(instr)','errcatch') == 0 then
+    mprintf('%s\n', ' xml->Modelica : ' + Flati);
   else 
     messagebox([_('-------XML to Modelica error:-------');
-		mgetl(Errfile);],'error','modal');	    
-    ok=%f,
-    TCL_EvalStr("Compile_finished nok "+ %_winId); 
+		mgetl(Errfile);], 'error', 'modal');	    
+    ok = %f;
+    if %tk then 
+      TCL_EvalStr("Compile_finished nok "+ %_winId);
+    end
     return
   end
 endfunction
