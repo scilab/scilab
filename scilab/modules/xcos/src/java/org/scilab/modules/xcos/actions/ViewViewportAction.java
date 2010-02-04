@@ -13,8 +13,10 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -47,10 +49,11 @@ public final class ViewViewportAction extends DefaultAction {
 	}
 	
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
 
 		((XcosDiagram) getGraph(null)).setViewPortVisible(!viewPort.isVisible());

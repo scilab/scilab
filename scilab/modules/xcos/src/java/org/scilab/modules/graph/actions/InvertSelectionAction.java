@@ -16,6 +16,7 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 

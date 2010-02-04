@@ -13,13 +13,14 @@
 
 package org.scilab.modules.xcos.palette.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -59,13 +60,13 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
     	return menu;
     }
 
-    /**
-     * Action !
-     * 
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
-	    setPalettesVisible(!PaletteManager.isVisible());
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		setPalettesVisible(!PaletteManager.isVisible());
     }
 
     /**

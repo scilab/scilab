@@ -20,7 +20,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosTab;

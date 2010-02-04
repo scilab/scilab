@@ -11,7 +11,7 @@
  *
  */
 
-package org.scilab.modules.graph.actions;
+package org.scilab.modules.graph.actions.base;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
@@ -38,9 +37,8 @@ import com.mxgraph.swing.mxGraphComponent;
 
 /**
  * Default action for a Scilab Graph
- * @author Bruno JOFFRET
  */
-public class DefaultAction extends CallBack {
+public abstract class DefaultAction extends CallBack {
 	private static final String ICON_PATH = System.getenv("SCI")
 			+ "/modules/xcos/images/icons/";
 
@@ -68,6 +66,13 @@ public class DefaultAction extends CallBack {
 		super("");
 		this.scilabGraph = scilabGraph;
 
+		installProperties();
+	}
+
+	/**
+	 * Install the static actions properties on the instance
+	 */
+	private void installProperties() {
 		String name = "";
 		String icon = "";
 		int mnemonic = 0;
@@ -121,7 +126,7 @@ public class DefaultAction extends CallBack {
 	 */
 	protected static MenuItem createMenu(ScilabGraph graph,
 			final Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		MenuItem item = ScilabMenuItem.createMenuItem();
 
 		SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
@@ -142,7 +147,7 @@ public class DefaultAction extends CallBack {
 	 */
 	protected static PushButton createButton(ScilabGraph graph,
 			final Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		PushButton item = ScilabPushButton.createPushButton();
 
 		SwingScilabPushButton swingItem = (SwingScilabPushButton) item
@@ -166,7 +171,7 @@ public class DefaultAction extends CallBack {
 	 */
 	protected static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph graph,
 			Class< ? extends DefaultAction> klass) {
-		DefaultAction action = GraphActionFactory.getInstance(graph, klass);
+		DefaultAction action = GraphActionManager.getInstance(graph, klass);
 		CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
 		SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item
@@ -278,19 +283,21 @@ public class DefaultAction extends CallBack {
 
 		return menu;
 	}
-
+	
 	/**
-	 * Action associated
+	 * Action
+	 * @param e parameters
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		JOptionPane.showMessageDialog(getGraph(null).getAsComponent(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
-	}
-
+	@Override
+	public abstract void actionPerformed(ActionEvent e);
+	
 	/**
-	 * Action associated
+	 * Not used
+	 * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
 	 */
+	@Override
 	public void callBack() {
-		doAction();
+		assert "Must never be called as we bypass Callback.java".equals("");
 	}
-
 }

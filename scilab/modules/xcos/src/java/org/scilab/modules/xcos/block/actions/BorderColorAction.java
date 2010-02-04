@@ -14,11 +14,12 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JColorChooser;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -50,11 +51,12 @@ public final class BorderColorAction extends DefaultAction {
     	return createMenu(scilabGraph, BorderColorAction.class);
     }
 
-    /**
-     * Action !!!
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();
 	

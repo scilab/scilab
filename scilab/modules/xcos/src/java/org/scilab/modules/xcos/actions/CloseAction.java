@@ -14,10 +14,11 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -50,10 +51,11 @@ public class CloseAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		if (getGraph(null) instanceof SuperBlockDiagram) {
 			((SuperBlockDiagram) getGraph(null)).getContainer().closeBlockSettings();
 		} else {

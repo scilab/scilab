@@ -21,13 +21,14 @@ import java.awt.event.KeyEvent;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Paste manager
  */
-public final class PasteAction extends DefaultAction {
+public final class PasteAction extends SelectionDependantAction {
 	public static final String NAME = ScilabGraphMessages.PASTE;
 	public static final String SMALL_ICON = "edit-paste.png";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_V;

@@ -21,13 +21,14 @@ import java.awt.event.KeyEvent;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Copy manager
  */
-public final class CopyAction extends DefaultAction {
+public final class CopyAction extends SelectionDependantAction {
 	public static final String NAME = ScilabGraphMessages.COPY;
 	public static final String SMALL_ICON = "edit-copy.png";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_C;

@@ -14,12 +14,13 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFileChooser;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -67,10 +68,11 @@ public final class OpenAction extends DefaultAction {
 	}
 
 	/**
-	 * Open file action
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 		/* Standard files */

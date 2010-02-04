@@ -14,10 +14,11 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -49,10 +50,11 @@ public final class QuitAction extends DefaultAction {
 	}
 	
 	/**
-	 * Associated action
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		Xcos.closeSession();
 	}
 }

@@ -14,10 +14,11 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -54,11 +55,12 @@ public final class ViewDetailsAction extends DefaultAction {
 	return createMenu(scilabGraph, ViewDetailsAction.class);
     }
 
-    /**
-     * Action !!!
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();
 
@@ -75,7 +77,7 @@ public final class ViewDetailsAction extends DefaultAction {
 		    H5Write.closeFile(fileId);
 		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
 			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e) {
+		} catch (Exception e2) {
 		    // Do Nothing !!!
 		}
 	    }
@@ -88,7 +90,7 @@ public final class ViewDetailsAction extends DefaultAction {
 		    H5Write.closeFile(fileId);
 		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
 			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e) {
+		} catch (Exception e2) {
 		    // Do Nothing !!!
 		}
 	    }

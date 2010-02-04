@@ -21,7 +21,7 @@ import java.io.IOException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -63,11 +63,12 @@ public class CodeGenerationAction extends DefaultAction {
     	return createMenu(scilabGraph, CodeGenerationAction.class);
     }
 
-    /**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-    public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	Object selectedObj = getGraph(null).getSelectionCell();
 		if (!(selectedObj instanceof SuperBlock)) {
 			((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
@@ -103,14 +104,14 @@ public class CodeGenerationAction extends DefaultAction {
 			};
 			
 			XcosInterpreterManagement.asynchronousScilabExec(command, callback);
-	} catch (IOException e) {
-	    e.printStackTrace();
+	} catch (IOException ex) {
+		ex.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (HDF5Exception e) {
-		e.printStackTrace();
+	} catch (HDF5Exception ex) {
+		ex.printStackTrace();
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (InterpreterException e) {
-		e.printStackTrace();
+	} catch (InterpreterException ex) {
+		ex.printStackTrace();
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}
     }

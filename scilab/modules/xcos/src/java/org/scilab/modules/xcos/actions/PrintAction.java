@@ -14,6 +14,7 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
@@ -21,7 +22,7 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -63,10 +64,11 @@ public final class PrintAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
 		PrinterJob pj = PrinterJob.getPrinterJob();
 

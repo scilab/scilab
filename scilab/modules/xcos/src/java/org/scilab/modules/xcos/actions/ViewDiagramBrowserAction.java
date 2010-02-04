@@ -14,11 +14,12 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -52,10 +53,11 @@ public final class ViewDiagramBrowserAction extends DefaultAction {
 	}
 
 	/**
-	 * Action !!!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		try {
 			File temp = File.createTempFile("xcos", ".h5");
 			temp.deleteOnExit();
@@ -67,8 +69,8 @@ public final class ViewDiagramBrowserAction extends DefaultAction {
 								+ temp.getAbsolutePath() + "\");"
 								+ "tree_show(scs_m);" + "deletefile(\""
 								+ temp.getAbsolutePath() + "\");");
-			} catch (InterpreterException e) {
-				e.printStackTrace();
+			} catch (InterpreterException e2) {
+				e2.printStackTrace();
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
