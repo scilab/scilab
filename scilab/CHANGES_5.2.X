@@ -133,6 +133,8 @@ Compilation:
 
 * Better detection of JOGL
 
+* Better check of the lib math (libm)
+
 * When two versions of the same jar libraries, in some cases, the system
   could not detect any of them
 
@@ -256,6 +258,8 @@ Bug fixes:
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
 
 * bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
+* bug 6558 fixed - Infinite value was not plotted even if it was possible.
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab

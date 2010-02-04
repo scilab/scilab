@@ -890,10 +890,14 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
-# Provided by math.h
-save_LDFLAGS="$LDFLAGS"
-LDFLAGS="$LDFLAGS -lm"
 
+# Check of the libm (lib math). Macro provided by libtool.
+save_LDFLAGS="$LIBS"
+LT_LIB_M()
+
+# Provided by math.h
+
+LDFLAGS="$LDFLAGS $LIBM"
 AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
 
 AC_CHECK_FUNC([exp10],,[
@@ -906,8 +910,8 @@ AC_CHECK_FUNC([exp10],,[
 AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
-
-LDFLAGS="$save_LDFLAGS"
+LIBS="$LIBS $LIBM"
+LDFLAGS="$save_LIBS"
 
 # Provided by regex.h
 AC_CHECK_FUNCS([re_comp])
