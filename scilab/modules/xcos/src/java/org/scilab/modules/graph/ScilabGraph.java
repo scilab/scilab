@@ -88,7 +88,7 @@ public class ScilabGraph extends mxGraph {
 			setSelectionCells(getSelectionCellsForChanges(changes));
 		}
 	};
-
+	
 	/**
 	 * Default constructor: - disable unused actions - install listeners -
 	 * Replace JGraphX components by specialized components if needed.
@@ -175,13 +175,13 @@ public class ScilabGraph extends mxGraph {
 	}
 	
 	/**
-	 * @param comp the component to use for rendering
+	 * @param component The graphical component associated with this graph
 	 */
-	public void setComponent(ScilabComponent comp) {
-		component = comp;
+	protected void setComponent(ScilabComponent component) {
+		this.component = component;
 		
 		// Adds rubberband selection
-		rubberBand = new mxRubberband(comp);
+		rubberBand = new mxRubberband(component);
 	}
 
 	/**
