@@ -50,8 +50,6 @@ public class ScilabGraph extends mxGraph {
 	private boolean modified;
 	private Tab parentTab;
 	private boolean opened;
-	private boolean redoInAction;
-	private int undoCounter;
 	private boolean readOnly;
 
 	private transient mxRubberband rubberBand;
@@ -68,24 +66,35 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * Manage the undo/redo on change
 	 */
-	private mxIEventListener undoHandler = new mxIEventListener() {
+	private final mxIEventListener undoHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
-
-			if (!redoInAction) {
-				undoManager.undoableEditHappened((mxUndoableEdit) evt
+			undoManager.undoableEditHappened((mxUndoableEdit) evt
 						.getProperty(ScilabConstants.EVENT_CHANGE_EDIT));
-				incrementUndoCounter();
-			}
 		}
 	};
 
 	/**
-	 * Manage the selection on change
+	 * Remove the undo handler from the component
+	 */
+	public void removeUndoHandler() {
+		getModel().removeListener(undoHandler, mxEvent.UNDO);
+	}
+	
+	/**
+	 * Register the undo handler on the right component
+	 */
+	public void registerUndoHandler() {
+		// Undo / Redo capabilities
+		getModel().addListener(mxEvent.UNDO, undoHandler);
+	}
+
+	/**
+	 * Update the selection on undo/redo
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
 		public void invoke(Object source, mxEventObject evt) {
 			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabConstants.EVENT_CHANGE_EDIT)).getChanges();
-			setSelectionCells(getSelectionCellsForChanges(changes));
+			getSelectionModel().setCells(getSelectionCellsForChanges(changes));
 		}
 	};
 	
@@ -102,9 +111,7 @@ public class ScilabGraph extends mxGraph {
 		mxGraphActions.getSelectChildAction().setEnabled(false);
 		mxGraphActions.getSelectParentAction().setEnabled(false);
 		
-		// Undo / Redo capabilities
-		getModel().addListener(mxEvent.UNDO, undoHandler);
-		getView().addListener(mxEvent.UNDO, undoHandler);
+		registerUndoHandler();
 
 		// Keeps the selection in sync with the command history
 		undoManager.addListener(mxEvent.UNDO, selectionHandler);
@@ -182,66 +189,6 @@ public class ScilabGraph extends mxGraph {
 		
 		// Adds rubberband selection
 		rubberBand = new mxRubberband(component);
-	}
-
-	/**
-	 * Undo the last action
-	 * 
-	 * @see com.mxgraph.util.mxUndoManager
-	 */
-	public void undo() {
-		decrementUndoCounter();
-		redoInAction = true;
-		undoManager.undo();
-		redoInAction = false;
-	}
-
-	/**
-	 * Redo the last action com.mxgraph.util.mxUndoManager
-	 */
-	public void redo() {
-	    if (!redoInAction) {
-
-		incrementUndoCounter();
-		redoInAction = true;
-		undoManager.redo();
-		redoInAction = false;
-	    }
-	}
-
-	/**
-	 * Used internally to manage the modified state on undo/redo
-	 */
-	private void incrementUndoCounter() {
-		if (undoCounter < Integer.MAX_VALUE) {
-			undoCounter++;
-		}
-	}
-
-	/**
-	 * Used internally to manage the modified state on undo/redo
-	 */
-	private void decrementUndoCounter() {
-		if (undoCounter > Integer.MIN_VALUE) {
-			undoCounter--;
-		}
-	}
-
-	/**
-	 * Used internally to manage the modified state on undo/redo
-	 * 
-	 * @return true if the document is in a previous saved state, false
-	 *         otherwise
-	 */
-	protected boolean isZeroUndoCounter() {
-		return (undoCounter == 0);
-	}
-
-	/**
-	 * Used internally to manage the modified state on undo/redo
-	 */
-	protected void resetUndoCounter() {
-		undoCounter = 0;
 	}
 
 	/**
@@ -337,7 +284,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @return The undo manager associated with this graph
 	 */
-	protected final mxUndoManager getUndoManager() {
+	public final mxUndoManager getUndoManager() {
 		return undoManager;
 	}
 }

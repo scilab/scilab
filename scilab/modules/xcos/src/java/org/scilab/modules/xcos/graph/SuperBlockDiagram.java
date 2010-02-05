@@ -154,16 +154,4 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
     public void setModifiedNonRecursively(boolean modified) {
 	super.setModified(modified);
     }
-    
-    public void undo() {
-	super.undo();
-	getContainer().updateAllBlocksColor();
-	getContainer().updateExportedPort();
-    }
-
-    public void redo() {
-	super.redo();
-	getContainer().updateAllBlocksColor();
-	getContainer().updateExportedPort();
-    }
 }

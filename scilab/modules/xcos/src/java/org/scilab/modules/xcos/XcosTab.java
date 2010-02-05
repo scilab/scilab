@@ -293,22 +293,6 @@ public class XcosTab extends ScilabTab {
 	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
 	
 	xcosDiagram.setVisible(true);
-
-	/*
-	 * Superblock specific customizations
-	 */
-	if (xcosDiagram instanceof SuperBlockDiagram) {
-	    tab.setSimulationActionEnabled(false);
-	}
-
-	/*
-	 * Set buttons enabled
-	 */
-	tab.setActionsEnabled(true);
-
-	// Disabling undo/redo at startup
-	tab.setEnabledRedo(false);
-	tab.setEnabledUndo(false);
     }
     
     /**
@@ -750,68 +734,5 @@ public class XcosTab extends ScilabTab {
 	outline.addTab(outlineTab);
 	outline.setVisible(false);
 	outlineTab.setVisible(false);
-    }
-
-    /**
-     * @param status new status
-     */
-    public void setEnabledRedo(boolean status) {
-	if (actionsEnabled) {
-	redoAction.setEnabled(status);
-	}
-    }
-
-    /**
-     * @param status new status
-     */
-    public void setEnabledUndo(boolean status) {
-	if (actionsEnabled) {
-	undoAction.setEnabled(status);
-	}
-    }
-    
-    /**
-     * Enable or Disable simulation related actions
-     * @param state True if it have to be enabled, flase otherwise
-     */
-    public void setSimulationActionEnabled(boolean state) {
-	if (actionsEnabled) {
-    	simulate.setEnabled(state);
-    	startAction.setEnabled(state);
-    	stopAction.setEnabled(state);
-	}
-    }
-    
-    /**
-     * Enable or disable all actions
-     * @param status True if they have to be enabled, false otherwise
-     */
-    public void setActionsEnabled(boolean status) {
-	fileMenu.setEnabled(status);
-	edit.setEnabled(status);
-	view.setEnabled(status);
-	simulate.setEnabled(status);
-	format.setEnabled(status);
-	alignMenu.setEnabled(status);
-	linkStyle.setEnabled(status);
-	tools.setEnabled(status);
-	help.setEnabled(status);
-	openAction.setEnabled(status);
-	saveAction.setEnabled(status);
-	saveAsAction.setEnabled(status);
-	printAction.setEnabled(status);
-	newDiagramAction.setEnabled(status);
-	deleteAction.setEnabled(status);
-	undoAction.setEnabled(status);
-	redoAction.setEnabled(status);
-	fitDiagramToViewAction.setEnabled(status);
-	startAction.setEnabled(status);
-	stopAction.setEnabled(false);
-	zoomInAction.setEnabled(status);
-	zoomOutAction.setEnabled(status);
-	xcosDemonstrationAction.setEnabled(status);
-	xcosDocumentationAction.setEnabled(status);
-	
-	actionsEnabled = status;
     }
 }
