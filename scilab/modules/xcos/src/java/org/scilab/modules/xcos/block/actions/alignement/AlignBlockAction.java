@@ -16,12 +16,12 @@ package org.scilab.modules.xcos.block.actions.alignement;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.MultiSelectionDependantAction;
 
 /**
  * Align selected blocks on axes (left-right-centered-top-bottom-middle)
  */
-public abstract class AlignBlockAction extends DefaultAction {
+public abstract class AlignBlockAction extends MultiSelectionDependantAction {
     private String align;
 
     /**
