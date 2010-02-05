@@ -25,7 +25,7 @@ public abstract class OneBlockDependantAction extends DefaultAction {
 	public OneBlockDependantAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 		
-		SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(1);
+		MinimalNumberOfCellsConstraint constraint = new MinimalNumberOfCellsConstraint(1);
 		constraint.install(this, scilabGraph);
 	}
 }
