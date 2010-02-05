@@ -15,25 +15,17 @@ package org.scilab.modules.graph.actions.base;
 import org.scilab.modules.graph.ScilabGraph;
 
 /**
- * Common class for selection dependent actions.
- * 
- * Children of this class will be activated when there something selected. If
- * not, the action will be disabled.
+ * Common class for actions that need at least 1 cell on the graph.
  */
-public abstract class SelectionDependantAction extends DefaultAction {
-
+public abstract class OneBlockDependantAction extends DefaultAction {
 	/**
 	 * Default constructor
-	 * 
-	 * @param scilabGraph
-	 *            The associated graph
+	 * @param scilabGraph the graph to work on
 	 */
-	public SelectionDependantAction(ScilabGraph scilabGraph) {
+	public OneBlockDependantAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 		
-		if (scilabGraph != null) {
-			SelectedNumberOfCellsConstraint c = new SelectedNumberOfCellsConstraint(1);
-			c.install(this, scilabGraph);
-		}
+		SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(1);
+		constraint.install(this, scilabGraph);
 	}
 }

@@ -20,8 +20,6 @@ import java.util.Set;
 
 import org.scilab.modules.graph.ScilabGraph;
 
-import com.mxgraph.model.mxCell;
-
 /**
  * Implement construction methods for Actions. 
  */
