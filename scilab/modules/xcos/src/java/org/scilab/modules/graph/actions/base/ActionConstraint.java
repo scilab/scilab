@@ -24,6 +24,7 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
  */
 public abstract class ActionConstraint implements mxIEventListener {
 	private boolean enabled;
+	private DefaultAction action;
 	
 	/**
 	 * Install this constraint on a graph for the specific action.
@@ -37,11 +38,20 @@ public abstract class ActionConstraint implements mxIEventListener {
 	 *            where to install constraint
 	 */
 	public void install(final DefaultAction action, ScilabGraph scilabGraph) {
+		this.action = action;
+		
+		/**
+		 * assume that at installation time, the constraint is not valid. 
+		 */
+		setEnabled(false);
+		
 		// If the current constraint is not valid : force setEnable(false).
 		// This will force the current constraint. 
 		action.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				action.setEnabled(!isEnabled());
+				if (!isEnabled()) {
+					action.setEnabled(false);
+				}
 			}
 		});
 	}
@@ -58,5 +68,7 @@ public abstract class ActionConstraint implements mxIEventListener {
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+		
+		action.setEnabled(enabled);
 	}
 }
