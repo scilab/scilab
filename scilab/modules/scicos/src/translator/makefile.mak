@@ -21,6 +21,10 @@
 MAKE=nmake /f makefile.mak
 
 all::
+	@cd parsing
+	@$(MAKE) all
+	@cd ..
+
 	@cd compilation
 	@$(MAKE) all
 	@cd ..

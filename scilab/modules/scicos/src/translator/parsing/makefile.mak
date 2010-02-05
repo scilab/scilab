@@ -41,6 +41,7 @@ all::
 	$(OCAMLYACC) parser.mly
 	$(RM) parser.mli
 	$(OCAMLC) -g -c parser.ml
+	$(OCAMLLEX) lexer.mll
 	$(OCAMLC) -g -c lexer.ml
 	$(OCAMLC) -g -a -o parsing.cma syntax.cmo linenum.cmo parser.cmo lexer.cmo
 	
