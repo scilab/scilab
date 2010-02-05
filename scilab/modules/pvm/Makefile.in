@@ -514,7 +514,8 @@ yacc_present = @yacc_present@
 
 @PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
 @PVM_FALSE@-I$(srcdir)/includes/ \
-@PVM_FALSE@-I$(top_srcdir)/modules/output_stream/includes/
+@PVM_FALSE@-I$(top_srcdir)/modules/output_stream/includes/ \
+@PVM_FALSE@-I$(top_srcdir)/modules/operations/includes/
 
 @PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  \

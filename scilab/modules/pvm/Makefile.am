@@ -103,7 +103,8 @@ libscipvm_la_LIBADD = \
 
 libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/operations/includes/
 
 modulename=pvm
 
