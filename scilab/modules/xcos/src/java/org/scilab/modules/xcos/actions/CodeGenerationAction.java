@@ -21,11 +21,11 @@ import java.io.IOException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -40,12 +40,12 @@ import com.mxgraph.util.mxUtils;
 /**
  * Generate code for the current graph.
  */
-public class CodeGenerationAction extends DefaultAction {
+public class CodeGenerationAction extends SuperBlockSelectedAction {
 	public static final String NAME = XcosMessages.CODE_GENERATION;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
 	public static final int ACCELERATOR_KEY = 0;
-
+	
     /**
 	 * Constructor
 	 * @param scilabGraph associated Scilab graph

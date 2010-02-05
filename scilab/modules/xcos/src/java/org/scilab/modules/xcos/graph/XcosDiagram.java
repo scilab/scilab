@@ -64,7 +64,6 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
-import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -423,10 +422,8 @@ public class XcosDiagram extends ScilabGraph {
 	super();
 	getModel().addListener(mxEvent.UNDO, undoEnabler);
 	getView().addListener(mxEvent.UNDO, undoEnabler);
-	// The association is inverted there (by the parameter)
-	new XcosShortCut(this);
+	
 	mxCodec codec = new mxCodec();
-
 	try {
 	    File uri = new File(System.getenv("SCI"));
 	    String xml = mxUtils.readFile(System.getenv("SCI") + "/modules/xcos/etc/Xcos-style.xml");

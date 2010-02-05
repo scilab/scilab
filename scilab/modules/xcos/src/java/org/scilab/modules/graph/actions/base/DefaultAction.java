@@ -154,8 +154,10 @@ public abstract class DefaultAction extends CallBack {
 				.getAsSimplePushButton();
 		swingItem.setAction(action);
 
+		// Not compatible with java 1.5
 		// Hide the name text
-		swingItem.setHideActionText(true);
+		// swingItem.setHideActionText(true);
+		swingItem.setText("");
 
 		return item;
 	}

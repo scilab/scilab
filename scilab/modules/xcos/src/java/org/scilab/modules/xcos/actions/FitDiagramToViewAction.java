@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -25,7 +25,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Use maximum of space inside the diagram
  */
-public final class FitDiagramToViewAction extends DefaultAction {
+public final class FitDiagramToViewAction extends OneBlockDependantAction {
 	public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
 	public static final String SMALL_ICON = "view-fullscreen.png";
 	public static final int MNEMONIC_KEY = 0;
