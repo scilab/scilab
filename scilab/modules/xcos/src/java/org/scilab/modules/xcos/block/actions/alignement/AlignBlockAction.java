@@ -16,7 +16,7 @@ package org.scilab.modules.xcos.block.actions.alignement;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 
 /**
  * Align selected blocks on axes (left-right-centered-top-bottom-middle)
@@ -35,7 +35,7 @@ public abstract class AlignBlockAction extends DefaultAction {
     
 	/**
 	 * @param e parameter
-	 * @see org.scilab.modules.graph.actions.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

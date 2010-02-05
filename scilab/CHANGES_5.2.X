@@ -106,6 +106,8 @@ Xcos:
 * bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
                    limitation.
 
+* bug 6551 fixed - SaveAs action was not accessible
+
 Atoms:
 ======
 

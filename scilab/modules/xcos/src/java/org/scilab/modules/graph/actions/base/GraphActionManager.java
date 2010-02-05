@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.graph.actions;
+package org.scilab.modules.graph.actions.base;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
@@ -20,10 +20,12 @@ import java.util.Set;
 
 import org.scilab.modules.graph.ScilabGraph;
 
+import com.mxgraph.model.mxCell;
+
 /**
  * Implement construction methods for Actions. 
  */
-public final class GraphActionFactory {
+public final class GraphActionManager {
 	private static Map<ScilabGraph, Set<DefaultAction>> perGraphAction = 
 		new Hashtable<ScilabGraph, Set<DefaultAction>>();
 	private static Set<DefaultAction> nullGraphAction = new HashSet<DefaultAction>();
@@ -31,7 +33,7 @@ public final class GraphActionFactory {
 	/**
 	 * Static class so private constructor 
 	 */
-	private GraphActionFactory() { }
+	private GraphActionManager() { }
 	
 	/**
 	 * As each action is unique per graph, get the action instance for the
