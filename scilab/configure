@@ -13743,7 +13743,7 @@ done
 
 
 # Check of the libm (lib math). Macro provided by libtool.
-save_LDFLAGS="$LIBS"
+save_LDFLAGS="$LDFLAGS"
 LIBM=
 case $host in
 *-*-beos* | *-*-cegcc* | *-*-cygwin* | *-*-pw32* | *-*-darwin*)

@@ -900,7 +900,7 @@ AC_CHECK_FUNCS([munmap])
 
 
 # Check of the libm (lib math). Macro provided by libtool.
-save_LDFLAGS="$LIBS"
+save_LDFLAGS="$LDFLAGS"
 LT_LIB_M()
 
 # Provided by math.h
