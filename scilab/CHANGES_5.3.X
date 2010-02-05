@@ -36,6 +36,8 @@ Bug fixes:
 
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
+* bug 6549 fixed - genlib function had a behavior which was not consistent with the load function.
+
 * bug 6550 fixed - lib(".") returned a relative path in library variable created.
 
 * bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more) on the same file.
