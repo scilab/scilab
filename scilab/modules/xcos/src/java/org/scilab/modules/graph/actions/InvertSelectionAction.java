@@ -16,14 +16,14 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Selection management
  */
-public final class InvertSelectionAction extends DefaultAction {
+public final class InvertSelectionAction extends SelectionDependantAction {
 	public static final String NAME = ScilabGraphMessages.INVERT_SELECTION;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

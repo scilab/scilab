@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -67,7 +67,8 @@ import com.mxgraph.model.mxGeometry;
  * Extract the selection to a new diagram and create a {@link SuperBlock} which
  * contains this new diagram.
  */
-public final class RegionToSuperblockAction extends DefaultAction {
+
+public final class RegionToSuperblockAction extends SelectionDependantAction {
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
