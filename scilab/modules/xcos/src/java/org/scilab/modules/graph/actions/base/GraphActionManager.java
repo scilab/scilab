@@ -119,4 +119,27 @@ public final class GraphActionManager {
 			
 		return null;
 	}
+	
+	/**
+	 * Enable or disable action on all registered graph.
+	 * @param actionKlass The action type to enable
+	 * @param enable the enable status
+	 */
+	public static void setEnable(Class< ? extends DefaultAction> actionKlass, boolean enable) {
+		// Handle null graph
+		for (DefaultAction action : nullGraphAction) {
+			if (actionKlass.isInstance(action)) {
+				action.setEnabled(enable);
+			}
+		}
+		
+		// Handle non-null graph
+		for (Set<DefaultAction> actions : perGraphAction.values()) {
+			for (DefaultAction action : actions) {
+				if (actionKlass.isInstance(action)) {
+					action.setEnabled(enable);
+				}
+			}
+		}
+	}
 }
