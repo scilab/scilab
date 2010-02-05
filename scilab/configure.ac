@@ -921,7 +921,7 @@ AC_CHECK_FUNCS([munmap])
 
 
 # Check of the libm (lib math). Macro provided by libtool.
-save_LDFLAGS="$LIBS"
+save_LDFLAGS="$LDFLAGS"
 LT_LIB_M()
 
 # Provided by math.h
@@ -940,7 +940,7 @@ AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 LIBS="$LIBS $LIBM"
-LDFLAGS="$save_LIBS"
+LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
 AC_CHECK_FUNCS([re_comp])

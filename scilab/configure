@@ -13743,7 +13743,7 @@ done
 
 
 # Check of the libm (lib math). Macro provided by libtool.
-save_LDFLAGS="$LIBS"
+save_LDFLAGS="$LDFLAGS"
 LIBM=
 case $host in
 *-*-beos* | *-*-cegcc* | *-*-cygwin* | *-*-pw32* | *-*-darwin*)
@@ -13923,7 +13923,7 @@ $as_echo "#define isinf(x) (!finite(x) && x==x)" >>confdefs.h
 fi
 
 LIBS="$LIBS $LIBM"
-LDFLAGS="$save_LIBS"
+LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
 for ac_func in re_comp
