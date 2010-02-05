@@ -93,7 +93,6 @@ import org.scilab.modules.xcos.block.actions.MirrorAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
-import org.scilab.modules.xcos.block.actions.alignement.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionBottom;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionCenter;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
