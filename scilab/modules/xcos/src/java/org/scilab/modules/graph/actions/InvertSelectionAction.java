@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,23 +16,25 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Selection management
- * @author Vincent COUVERT
  */
 public final class InvertSelectionAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = ScilabGraphMessages.INVERT_SELECTION;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private InvertSelectionAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.INVERT_SELECTION, scilabGraph);
+	public InvertSelectionAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -40,7 +43,7 @@ public final class InvertSelectionAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.INVERT_SELECTION, null, new InvertSelectionAction(scilabGraph), null);
+		return createMenu(scilabGraph, InvertSelectionAction.class);
 	}
 	
 	/**

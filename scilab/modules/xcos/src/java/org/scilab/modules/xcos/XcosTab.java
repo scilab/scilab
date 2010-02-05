@@ -79,15 +79,21 @@ import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
-import org.scilab.modules.xcos.block.actions.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
-import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionBottom;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionCenter;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -464,26 +470,18 @@ public class XcosTab extends ScilabTab {
 	format.addSeparator();
 	alignMenu = ScilabMenu.createMenu();
 	alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+	alignMenu.add(AlignBlockActionLeft.createMenu(diagram));
+	alignMenu.add(AlignBlockActionCenter.createMenu(diagram));
+	alignMenu.add(AlignBlockActionRight.createMenu(diagram));
 	alignMenu.addSeparator();
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+	alignMenu.add(AlignBlockActionTop.createMenu(diagram));
+	alignMenu.add(AlignBlockActionMiddle.createMenu(diagram));
+	alignMenu.add(AlignBlockActionBottom.createMenu(diagram));
 	format.add(alignMenu);
 	format.addSeparator();
 
-	format.add(ColorAction.createMenu(diagram,
-		XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
-	format.add(ColorAction.createMenu(diagram, XcosMessages.FILL_COLOR,
-		mxConstants.STYLE_FILLCOLOR));
+	format.add(BorderColorAction.createMenu(diagram));
+	format.add(FilledColorAction.createMenu(diagram));
 	format.addSeparator();
 
 	linkStyle = ScilabMenu.createMenu();

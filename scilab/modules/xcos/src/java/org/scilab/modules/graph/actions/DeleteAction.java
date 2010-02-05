@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,28 +16,27 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Delete manager
- * @author Bruno JOFFRET
  */
-public final class DeleteAction extends DefaultAction {
-
-
-	private static final long serialVersionUID = 1L;
+public final class DeleteAction extends SelectionDependantAction {
+	public static final String NAME = ScilabGraphMessages.DELETE;
+	public static final String SMALL_ICON = "edit-delete.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_DELETE;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private DeleteAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.DELETE, scilabGraph);
+	public DeleteAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public final class DeleteAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.DELETE, null, new DeleteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+		return createMenu(scilabGraph, DeleteAction.class);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public final class DeleteAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.DELETE, "edit-delete.png", new DeleteAction(scilabGraph));
+		return createButton(scilabGraph, DeleteAction.class);
 	}
 	
 	/**

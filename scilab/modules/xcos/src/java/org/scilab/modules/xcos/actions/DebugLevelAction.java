@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -42,12 +43,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
- * @author Allan SIMON
- *
+ * Set the debug level
  */
 public class DebugLevelAction extends DefaultAction {
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.SET_DEBUG;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
+	/*
+	 * FIXME: these following fields must be graph dependent instead of static.
+	 * Imagine the situation when Xcos has 2 diagrams opened and perform the
+	 * action.
+	 */
 	private static XcosDiagram diagram;
 	private static JFrame mainFrame;
 	private static JList debugList;
@@ -91,7 +99,7 @@ public class DebugLevelAction extends DefaultAction {
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public DebugLevelAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SET_DEBUG, scilabGraph);
+		super(scilabGraph);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -104,7 +112,7 @@ public class DebugLevelAction extends DefaultAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SET_DEBUG, null, new DebugLevelAction(scilabGraph), null);
+		return createMenu(scilabGraph, DebugLevelAction.class);
 	}
 
 	/**

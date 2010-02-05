@@ -308,13 +308,13 @@ int GetIdFromFilename(char *filename)
 	return FILE_ID_NOT_DEFINED;
 }
 /*--------------------------------------------------------------------------*/
-int *GetFilesIdUsed(int *sizeArrayReturned)
+double *GetFilesIdUsed(int *sizeArrayReturned)
 {
 	int i = 0, j = 0;
-	int* ArrayIdUsed = NULL;
+	double* ArrayIdUsed = NULL;
 	*sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayIdUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	ArrayIdUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
 	if (ArrayIdUsed == NULL)
 	{
 		*sizeArrayReturned = 0;
@@ -326,21 +326,21 @@ int *GetFilesIdUsed(int *sizeArrayReturned)
 	{
 		if (GetFileTypeOpenedInScilab(i) != 0)
 		{
-			ArrayIdUsed[j] = i;
+			ArrayIdUsed[j] = (double)i;
 			j++;
 		}
 	}
 	return ArrayIdUsed;
 }
 /*--------------------------------------------------------------------------*/
-int *GetSwapsUsed(int *sizeArrayReturned)
+double *GetSwapsUsed(int *sizeArrayReturned)
 {
-	int *ArraySwapUsed = NULL;
+	double *ArraySwapUsed = NULL;
 	int i = 0, j = 0;
 
 	*sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArraySwapUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	ArraySwapUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
 	if (ArraySwapUsed == NULL)
 	{
 		*sizeArrayReturned = 0;
@@ -352,21 +352,21 @@ int *GetSwapsUsed(int *sizeArrayReturned)
 	{
 		if (GetFileTypeOpenedInScilab(i) != 0)
 		{
-			ArraySwapUsed[j] = GetSwapStatus(i);
+			ArraySwapUsed[j] = (double)GetSwapStatus(i);
 			j++;
 		}
 	}
 	return ArraySwapUsed;
 }
 /*--------------------------------------------------------------------------*/
-int *GetModesUsed(int *sizeArrayReturned)
+double *GetModesUsed(int *sizeArrayReturned)
 {
-	int *ArrayModeUsed = NULL;
+	double *ArrayModeUsed = NULL;
 	int i = 0, j = 0;
 
 	*sizeArrayReturned = GetNumberOfIdsUsed();
 
-	ArrayModeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+	ArrayModeUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
 	if (ArrayModeUsed == NULL)
 	{
 		*sizeArrayReturned = 0;
@@ -378,7 +378,7 @@ int *GetModesUsed(int *sizeArrayReturned)
 	{
 		if (GetFileTypeOpenedInScilab(i) != 0)
 		{
-			ArrayModeUsed[j] = GetFileModeOpenedInScilab(i);
+			ArrayModeUsed[j] = (double)GetFileModeOpenedInScilab(i);
 			j++;
 		}
 	}
