@@ -18,7 +18,7 @@
 /* desc : interface for xrect routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xrect.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "sciCall.h"
 #include "DrawObjects.h"

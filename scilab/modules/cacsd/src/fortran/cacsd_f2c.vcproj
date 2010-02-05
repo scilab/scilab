@@ -6,6 +6,7 @@
 	ProjectGUID="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	RootNamespace="cacsd_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -359,14 +360,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dgeco.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgedi.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dhetr.c"
 				>
 			</File>
@@ -376,18 +369,6 @@
 			</File>
 			<File
 				RelativePath=".\domout.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrdc.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrsl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrsm.c"
 				>
 			</File>
 			<File
@@ -416,10 +397,6 @@
 			</File>
 			<File
 				RelativePath=".\hessl2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\hhdml.c"
 				>
 			</File>
 			<File
@@ -618,18 +595,6 @@
 				RelativePath=".\wesidu.c"
 				>
 			</File>
-			<File
-				RelativePath=".\wgeco.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wgefa.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wgesl.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -671,14 +636,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dgeco.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgedi.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dhetr.f"
 				>
 			</File>
@@ -688,18 +645,6 @@
 			</File>
 			<File
 				RelativePath=".\domout.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrdc.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrsl.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dqrsm.f"
 				>
 			</File>
 			<File
@@ -728,10 +673,6 @@
 			</File>
 			<File
 				RelativePath=".\hessl2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\hhdml.f"
 				>
 			</File>
 			<File
@@ -928,18 +869,6 @@
 			</File>
 			<File
 				RelativePath=".\wesidu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wgeco.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wgefa.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wgesl.f"
 				>
 			</File>
 		</Filter>

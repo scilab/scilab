@@ -133,7 +133,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
     sing=[sing;%sel(roots(denh(i)),fmin,fmax,tol)];
   end
 
-  pp=sort(sing');npp=size(pp,'*');//'
+  pp=gsort(sing');npp=size(pp,'*');//'
 
   // singularities just on the left of the range
   kinf=find(pp<fmin)

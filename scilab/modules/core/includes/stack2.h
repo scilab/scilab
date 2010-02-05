@@ -11,7 +11,8 @@
  */
 #ifndef STACK2_H
 #define  STACK2_H
-/* from sci_tools */
+
+#include "machine.h"
 
 /**
  * Convert an Scilab array of double to a fortran format
@@ -48,14 +49,6 @@ extern int C2F(ref2val)(void);
 extern int C2F(allops)(void);
 extern int C2F(putfunnam)(char *fname,int *lw, unsigned long);
 
-
-/* from intersci */
-
-extern void C2F(cchar)(int *n,char **ip,int *op);
-extern void C2F(cdouble)(int *n,double **ip,double *op);
-extern void C2F(cint) (int *n,int **ip,double *op);
-extern void C2F(cfloat)(     int *n,     float *ip[],     double *op);
-extern void C2F(cbool)(     int *n,     int *ip[],     int *op);
 
 /* from somewhere (maybe stack1.h) */
 

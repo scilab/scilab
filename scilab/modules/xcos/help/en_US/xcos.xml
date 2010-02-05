@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xcos"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xcos</refname>
+
+    <refpurpose>Block diagram editor and GUI for the hybrid
+    simulator</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>xcos(filename)
+xcos(scs_m_list)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection id="Module_xcos">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_xcos">
+    <title>Description</title>
+
+    <para>Xcos is a visual editor for constructing models of hybrid dynamical
+    systems.</para>
+
+    <para>Invoking Xcos with no argument opens up an empty Xcos window. Models
+    can then be assembled, loaded, saved, compiled, simulated, using GUI of
+    Xcos. Xcos serves as an interface to the various block diagram compilers
+    and the hybrid simulator scicosim.</para>
+
+    <programlisting role="example"> 
+xcos('mydiagram.xcos')
+ </programlisting>
+  </refsection>
+
+  <refsection id="Parameters_xcos">
+    <title>Parameters</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">filename : </emphasis> a character string
+        containing the path of the diagram file (.cos, .cosf or .xcos
+        extension). If no input argument is used, an empty diagram is opened
+        (default name Untitled).</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">scs_m_list : </emphasis>a Xcos diagram
+        structure after edition.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_xcos">
+    <title>Example</title>
+
+    <programlisting role="example"> 
+// Open a new diagram 
+xcos();
+xcos
+
+// Load a diagram  
+xcos SCI/scicos/demos/bounce.cosf; 
+
+// Load a structure 
+load('mondiagr.cos'); 
+xcos(scs_m);
+ </programlisting>
+  </refsection>
+
+  <refsection id="SeeAlso_xcos">
+    <title>See Also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="scicosim">scicosim - Scicos (batch) simulation
+        function (Scilab Function)</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="scicos_simulate">scicos_simulate - Function for
+        running xcos simulation in batch mode (Scilab
+        Function)</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="xcos_menu_entries">Menu entries</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

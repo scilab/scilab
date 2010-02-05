@@ -14,10 +14,21 @@
 #include "gw_string.h"
 #include "NumTokens.h"
 #include "StringConvert.h"
+#include "sciprint.h"
+#include "localization.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/ 
 int sci_NumTokens(char *fname,unsigned long fname_len)
 {
 	int l1 = 0,m1 = 0,n1 = 0,l2 = 0,un = 1;
+
+	if (getWarningMode())
+	{
+		sciprint(_("WARNING: Function %s is obsolete.\n"), fname);
+		sciprint(_("WARNING: Please use %s instead.\n"), "tokens");
+		sciprint(_("WARNING: This function will be permanently removed in Scilab %s.\n"), "5.2.1");
+	}
+
 	Nbvars = 0;
 	CheckRhs(1,1);
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);

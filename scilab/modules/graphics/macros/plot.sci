@@ -168,6 +168,9 @@ current_figure.immediate_drawing = 'off';
 
 // check wether this is the first plot for the axes in which we will draw
 curAxes = gca();
+// save auto_clear state.
+OldAutoClear = curAxes.auto_clear;
+
 isFirstPlot = (curAxes.children == [])
 
 //Now, we plot the decomposed plots one by one with their own linespec
@@ -177,6 +180,11 @@ FinalAgreg=[]; // Final Compound containing all the new created plots.
 
 //for i=numplot:-1:1
 for i=1:numplot
+  // Set off auto_clear for allowing multiple graphics entity
+  // will be restored behond
+  if i>1 then
+    curAxes.auto_clear='off';
+  end
   
   //default values
   Marker=[];
@@ -384,6 +392,8 @@ for i=1:numplot
   end
 end
 
+//Reset auto_clear Property
+curAxes.auto_clear = OldAutoClear;
 
 ///////////////////////////////////
 //Global Property treatment      //
@@ -437,19 +447,3 @@ ResetFigureDDM(current_figure, cur_draw_mode)
 endfunction
 
 
-
-
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure) == 9
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
-
-endfunction

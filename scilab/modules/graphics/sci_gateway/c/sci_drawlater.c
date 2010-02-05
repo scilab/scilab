@@ -16,7 +16,7 @@
 /* desc : interface for drawlater routine                                 */
 /*------------------------------------------------------------------------*/
 
-#include "sci_drawlater.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"

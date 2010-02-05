@@ -48,13 +48,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 B = rand(100,100);
 A = rand(100,100);
 pvm_set_timer();C=A*B;t=pvm_get_timer()
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

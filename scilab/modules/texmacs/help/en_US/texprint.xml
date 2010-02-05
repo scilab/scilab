@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>texprint</refname>
-    <refpurpose> TeX output of Scilab object</refpurpose>
+    <refpurpose> TeX output of Scilab object. This function is obsolete and will be removed in Scilab 5.3. Please use <link linkend="prettyprint">prettyprint</link></refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -45,21 +45,21 @@
     returns the Tex source code of the Scilab variable <literal>a</literal>.
     <literal>a</literal> is a matrix (constant, polynomial, rational) or a linear system
     (<literal>syslin</literal> list).</para>
+<para>This function is obsolete and will be removed in Scilab 5.3. Please use <link linkend="prettyprint">prettyprint</link></para>
+
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 texprint([1/s,s^2])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="pol2tex">pol2tex</link>
+        <link linkend="prettyprint">prettyprint</link>
       </member>
       <member>
         <link linkend="pol2str">pol2str</link>

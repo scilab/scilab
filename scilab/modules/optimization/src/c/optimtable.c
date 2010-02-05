@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "AddFunctionInTable.h"
 #include "machine.h"
+#include "dynlib_optimization.h"
 /***********************************
 * Search Table for foptim 
 ***********************************/
@@ -23,8 +24,8 @@ extern void C2F(genros)(ARGS_foptim);
 extern void C2F(topt2)(ARGS_foptim);
 extern void C2F(icsemc)(ARGS_foptim);
 
-void C2F(foptim)(ARGS_foptim);
-void C2F(setfoptim)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(foptim)(ARGS_foptim);
+OPTIMIZATION_IMPEXP void C2F(setfoptim)(char *name, int *rep);
 
 FTAB FTab_foptim[] =
 {

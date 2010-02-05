@@ -38,7 +38,7 @@ case 'set' then
   %scicos_context=%scicos_context; //copy the semi-global variable locally
   %scicos_context.z=%z //add z definition to the context
   while %t do
-    [ok,num,den,exprs]=getvalue('Set discrete SISO transfer parameters',..
+    [ok,num,den,exprs]=scicos_getvalue('Set discrete SISO transfer parameters',..
 	['Numerator (z)';
 	 'Denominator (z)'],..
  	list('pol',1,'pol',1),exprs)

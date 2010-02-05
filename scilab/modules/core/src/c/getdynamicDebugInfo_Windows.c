@@ -10,6 +10,10 @@
  *
  */
 
+
+/* !!! PLEASE DO NOT TRANSLATE STRINGS IN THIS FILE SEE BUG 5505 !!! */
+
+
 #include <windows.h>
 #include <string.h>
 #include <stdio.h>
@@ -18,6 +22,10 @@
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
+#include "getos.h"
+#include "api_scilab.h"
+#include "stack-c.h"
+#include "charEncoding.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
@@ -27,16 +35,18 @@ static char * GetScreenResolution(void);
 static char * GetNumberMonitors(void);
 static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str);
 /*--------------------------------------------------------------------------*/
-char **getDynamicDebugInfo_Windows(int *sizeArray)
+char **getDynamicDebugInfo_Windows(int *sizeArray, int* _piKey)
 {
-#define DIV 1024
-#define WIDTH 7
+	#define DIV 1024
+	#define WIDTH 7
+	#define BUFFER_LEN 255
 
-#define BUFFER_LEN 255
+	SciErr sciErr;
 	int nb_info = 0;
 	char *str_info = NULL;
-	char **outputDynamicList=NULL;
+	char **outputDynamicList = NULL;
 	char *fromGetenv = NULL;
+	int iType = 0;
 
 
 	MEMORYSTATUSEX statex;
@@ -48,7 +58,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Memory in use: %*ld %%"),
+			"Memory in use: %*ld %%",
 			WIDTH,
 			statex.dwMemoryLoad);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -58,7 +68,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Physical Memory (Kbytes): %*I64d"),
+			"Total Physical Memory (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullTotalPhys/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -68,7 +78,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Physical Memory (Kbytes): %*I64d"),
+			"Free Physical Memory (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullAvailPhys/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -78,7 +88,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Paging File (Kbytes): %*I64d"),
+			"Total Paging File (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullTotalPageFile/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -88,7 +98,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Paging File (Kbytes): %*I64d"),
+			"Free Paging File (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullAvailPageFile/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -98,7 +108,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Total Virtual Memory (Kbytes): %*I64d"),
+			"Total Virtual Memory (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullTotalVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -108,7 +118,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Virtual Memory (Kbytes): %*I64d"),
+			"Free Virtual Memory (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullAvailVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -118,7 +128,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	if (str_info)
 	{
 		sprintf(str_info,
-			_("Free Extended Memory (Kbytes): %*I64d"),
+			"Free Extended Memory (Kbytes): %*I64d",
 			WIDTH,
 			statex.ullAvailExtendedVirtual/DIV);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
@@ -127,58 +137,24 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 	if (str_info)
 	{
-		strcpy(str_info ,_("Operating System: "));
-		switch (GetWindowsVersion())
+		char *OS = getOSFullName();
+		char *OSRelease = getOSRelease();
+		strcpy(str_info ,"Operating System: ");
+
+		if (OS && OSRelease)
 		{
-		case OS_ERROR : default :
-			strcat(str_info ,"Windows Unknown");
-		break;
-		case OS_WIN32_WINDOWS_NT_3_51 :
-			strcat(str_info ,"Windows NT 3.51");
-		break;
-		case OS_WIN32_WINDOWS_NT_4_0 :
-			strcat(str_info ,"Windows NT 4.0");
-		break;
-		case OS_WIN32_WINDOWS_95 :
-			strcat(str_info ,"Windows 95");
-		break;
-		case OS_WIN32_WINDOWS_98 :
-			strcat(str_info ,"Windows 98");
-		break;
-		case OS_WIN32_WINDOWS_Me :
-			strcat(str_info ,"Windows ME");
-		break;
-		case OS_WIN32_WINDOWS_2000 :
-			strcat(str_info ,"Windows 2000");
-		break;
-		case OS_WIN32_WINDOWS_XP :
-			strcat(str_info ,"Windows XP");
-		break;
-		case OS_WIN32_WINDOWS_XP_64 :
-			strcat(str_info ,"Windows XP x64");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003 :
-			strcat(str_info ,"Windows Server 2003");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003_R2 :
-			strcat(str_info ,"Windows Server 2003 R2");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2003_64 :
-			strcat(str_info ,"Windows Server 2003 x64");
-		break;
-		case OS_WIN32_WINDOWS_VISTA :
-			strcat(str_info ,"Windows Vista");
-		break;
-		case OS_WIN32_WINDOWS_VISTA_64 :
-			strcat(str_info ,"Windows Vista x64");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2008 :
-			strcat(str_info ,"Windows Server 2008");
-		break;
-		case OS_WIN32_WINDOWS_SERVER_2008_64 :
-			strcat(str_info ,"Windows Server 2008 x64");
-		break;
+			strcat(str_info , OS);
+			strcat(str_info , " ");
+			strcat(str_info , OSRelease);
 		}
+		else
+		{
+			strcat(str_info, "ERROR");
+		}
+
+		if (OS) {FREE(OS); OS = NULL;}
+		if (OSRelease) {FREE(OSRelease); OSRelease = NULL;}
+
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -189,7 +165,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	{
 		SYSTEM_INFO siSysInfo;
 		GetSystemInfo(&siSysInfo); 
-		sprintf(str_info,_("Number of processors: %d"),  siSysInfo.dwNumberOfProcessors);
+		sprintf(str_info,"Number of processors: %d",  siSysInfo.dwNumberOfProcessors);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -197,14 +173,14 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
 	if (str_info)
 	{
-		sprintf(str_info,_("Video card: %s"),  GetRegKeyVideoCard());
+		sprintf(str_info,"Video card: %s",  GetRegKeyVideoCard());
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
 	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
 	if (str_info)
 	{
-		sprintf(str_info,_("Video card driver version: %s"),  GetRegKeyVideoCardVersion());
+		sprintf(str_info,"Video card driver version: %s",  GetRegKeyVideoCardVersion());
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
@@ -248,13 +224,69 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	#define SCIHOME_var "SCIHOME"
-	fromGetenv = getenv(SCIHOME_var);
-	if (fromGetenv)
+
+	sciErr = getNamedVarType(_piKey, "WSCI", &iType);
+	if ((sciErr.iErr == 0) && (iType == sci_strings))
 	{
-		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
-		sprintf(str_info,"%s: %s", SCIHOME_var,fromGetenv);
-		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+		wchar_t * WSCI_value = NULL;
+		int WSCI_length = 0;
+		int m = 0, n = 0;
+
+		sciErr = readNamedMatrixOfWideString(_piKey, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
+		if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+		{
+			WSCI_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(WSCI_length + 1));
+			if (WSCI_value)
+			{
+				sciErr = readNamedMatrixOfWideString(_piKey, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
+				if(sciErr.iErr == 0)
+				{
+					char *utfstr = wide_string_to_UTF8(WSCI_value);
+					if (utfstr)
+					{
+						str_info = (char*)MALLOC( sizeof(char)*(strlen("WSCI") + strlen("%s : %s") + strlen(utfstr) + 1) );
+						sprintf(str_info,"%s: %s", "WSCI", utfstr);
+						outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+						FREE(utfstr);
+						utfstr = NULL;
+					}
+				}
+				FREE(WSCI_value);
+				WSCI_value = NULL;
+			}
+		}
+	}
+
+	sciErr = getNamedVarType(_piKey, "SCIHOME", &iType);
+	if ((sciErr.iErr == 0) && (iType == sci_strings))
+	{
+		wchar_t * SCIHOME_value = NULL;
+		int SCIHOME_length = 0;
+		int m = 0, n = 0;
+
+		sciErr = readNamedMatrixOfWideString(_piKey, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
+		if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
+		{
+			SCIHOME_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(SCIHOME_length + 1));
+			if (SCIHOME_value)
+			{
+				sciErr = readNamedMatrixOfWideString(_piKey, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
+				if(sciErr.iErr == 0)
+				{
+					char *utfstr = wide_string_to_UTF8(SCIHOME_value);
+					if (utfstr)
+					{
+						str_info = (char*)MALLOC( sizeof(char)*(strlen("SCIHOME") + strlen("%s : %s") + strlen(utfstr) + 1) );
+						sprintf(str_info,"%s: %s", "SCIHOME", utfstr);
+						outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+						FREE(utfstr);
+						utfstr = NULL;
+					}
+				}
+				FREE(SCIHOME_value);
+				SCIHOME_value = NULL;
+			}
+		}
 	}
 
 	*sizeArray = nb_info;
@@ -300,10 +332,10 @@ static char * GetScreenResolution(void)
 	
 	ReleaseDC (NULL, hdc);
 
-	Resolution = (char*)MALLOC( sizeof(char)*( strlen(_("Screen size: %d x %d %d bits")) + 32));
+	Resolution = (char*)MALLOC( sizeof(char)*( strlen("Screen size: %d x %d %d bits") + 32));
 	if (Resolution)
 	{
-		sprintf(Resolution,_("Screen size: %d x %d %d bits"),ResX ,ResY,BitsByPixel);
+		sprintf(Resolution,"Screen size: %d x %d %d bits",ResX ,ResY,BitsByPixel);
 	}
 	
 	return Resolution;
@@ -333,10 +365,10 @@ static char * GetNumberMonitors(void)
 	char *returnedStr = NULL;
 	int nbMonitors = GetSystemMetrics(SM_CMONITORS) ;
 
-	returnedStr = (char*)MALLOC( sizeof(char)*( strlen(_(NBMONITORS)) +  32));
+	returnedStr = (char*)MALLOC( sizeof(char)*( strlen(NBMONITORS) +  32));
 	if (returnedStr)
 	{
-		sprintf(returnedStr,_(NBMONITORS),nbMonitors);
+		sprintf(returnedStr,NBMONITORS,nbMonitors);
 	}
 
 	return returnedStr;
@@ -345,6 +377,7 @@ static char * GetNumberMonitors(void)
 static char * GetRegKeyVideoCard(void)
 {
 	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
 	#define LenLine 255
 
 	HKEY key;
@@ -352,7 +385,12 @@ static char * GetRegKeyVideoCard(void)
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 
@@ -373,15 +411,21 @@ static char * GetRegKeyVideoCard(void)
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyVideoCardVersion(void)
 {
-#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
-#define LenLine 255
+	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define KeyDisplayIdentiferOthers "SYSTEM\\ControlSet002\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+	#define LenLine 255
 
 	HKEY key;
 	DWORD result;
 	char *LineIdentifier;
 	ULONG length = LenLine,Type;
 
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+	if (result !=  ERROR_SUCCESS)
+	{
+		// On some configuration (x64 + non official drivers), ControlSet001 does not exist 
+		result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentiferOthers, 0, KEY_QUERY_VALUE , &key);
+	}
 
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 

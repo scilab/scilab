@@ -6,7 +6,7 @@
 	ProjectGUID="{96248E56-C84A-4803-9F50-25E2089AB6B8}"
 	RootNamespace="eispack_f2c"
 	Keyword="Win32Proj"
-
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -401,7 +401,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\polynomials\src\fortran\eispack\balbak.c"
+				RelativePath=".\balbak.c"
 				>
 			</File>
 			<File
@@ -425,7 +425,7 @@
 			Name="Fortran Files"
 			>
 			<File
-				RelativePath="..\..\..\..\polynomials\src\fortran\eispack\balbak.f"
+				RelativePath=".\balbak.f"
 				>
 			</File>
 			<File

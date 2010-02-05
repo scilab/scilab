@@ -94,20 +94,6 @@
               line with dash id <literal>style(i)</literal> is used; use
               <literal>xset()</literal> to see the color ids.</para>
             </listitem>
-
-            <listitem>
-              <para>When only one curve is drawn, <literal>style</literal>
-              could be the row vector of size 2 <literal>[sty,pos]</literal>
-              where <literal>sty</literal> is used to specify the style and
-              <literal>pos</literal> is an integer ranging from 1 to 6 which
-              specifies a position to use for the caption. This was useful
-              when a user wants to draw multiple curves on a plot by calling
-              the function <literal>plot2d</literal> several times and wants
-              to give a caption for each curve. <emphasis role="bold">This
-              option is no more effective with the new graphic mode. Use the
-              <link linkend="captions">captions</link> function to set the
-              captions when all curves are drawn. </emphasis></para>
-            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -366,7 +352,7 @@
     plotting is used.</para>
 
     <para>By default, successive plots are superposed. To clear the previous
-    plot, use <literal>xbasc()</literal>.</para>
+    plot, use <literal>clf()</literal>.</para>
 
     <para>See the meaning of the parameters above for a complete
     description.</para>
@@ -399,51 +385,50 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //simple plot 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
-xbasc()
+clf()
 plot2d(x,sin(x))
 //multiple plot
-xbasc()
+clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 // multiple plot giving the dimensions of the frame 
 // old syntax and new syntax
-xbasc()
+clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],1:3,"011","",[0,0,6,0.5])
-xbasc()
+clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
-//multiple plot with captions and given tics // old syntax and new syntax
-xbasc()
+//multiple plot with captions and given tics 
+// old syntax and new syntax
+clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
-xbasc()
+clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
 // isoview
-xbasc()
+clf()
 plot2d(x,sin(x),1,"041")
 // scale
-xbasc()
+clf()
 plot2d(x,sin(x),1,"061")
 // auto scaling with previous plots
-xbasc()
+clf()
 plot2d(x,sin(x),1)
 plot2d(x,2*sin(x),2) 
 plot2d(2*x,cos(x),3)
 // axis on the right 
-xbasc()
+clf()
 plot2d(x,sin(x),1,"183","sin(x)")
 // centered axis 
-xbasc()
+clf()
 plot2d(x,sin(x),1,"184","sin(x)")
 // axis centered at (0,0)
-xbasc()
+clf()
 plot2d(x-4,sin(x),1,"185","sin(x)")
- 
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -458,7 +443,7 @@ plot2d(x-4,sin(x),1,"185","sin(x)")
 
       <member><link linkend="plot2d4">plot2d4</link></member>
 
-      <member><link linkend="xbasc">xbasc</link></member>
+      <member><link linkend="clf">clf</link></member>
 
       <member><link linkend="xset">xset</link></member>
     </simplelist>

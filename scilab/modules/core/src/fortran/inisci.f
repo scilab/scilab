@@ -123,7 +123,6 @@ c     .  wte = unit number for terminal output
       else
          wte=9999
       endif
-      wio = 0
 c     
       rio=rte
 c     

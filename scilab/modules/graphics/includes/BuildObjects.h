@@ -23,19 +23,17 @@
       - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-
 
 #ifndef __SCI_BUILD__
 #define __SCI_BUILD__
 
 #include "BOOL.h"
+#include "ObjectStructure.h"
 
+GRAPHICS_IMPEXP sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
+GRAPHICS_IMPEXP sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
 
-sciPointObj * ConstructFigure (sciPointObj * pparent, int * figureIndex) ;/* BUILD */
-sciPointObj *ConstructSubWin (sciPointObj * pparentfigure); /* BUILD */
-
-sciPointObj * allocateText( sciPointObj        * pparentsubwin,
+GRAPHICS_IMPEXP sciPointObj * allocateText( sciPointObj        * pparentsubwin,
                                    char             ** text          ,
                                    int                 nbRow         ,
                                    int                 nbCol         ,
@@ -51,31 +49,33 @@ sciPointObj * allocateText( sciPointObj        * pparentsubwin,
                                    BOOL                isfilled      ,
                                    sciTextAlignment    align          ) ;
 
-sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
+GRAPHICS_IMPEXP sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
                                     double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background, 
                                     BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align ) ;
     
 
-sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], long long tabofhandles[],
+GRAPHICS_IMPEXP sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char *text[], long long tabofhandles[],
 				     int nblegends);  /* BUILD */
 
-sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+GRAPHICS_IMPEXP sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
                                int closed, int n1,int plot, int *foreground, int *background,
                                int *mark_style, int *mark_foreground, int *mark_background,
                                BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);
-sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+                               
+GRAPHICS_IMPEXP sciPointObj *ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
 				       int closed, int n1, int plot, int *foreground, int *background,
 				       int *mark_style, int *mark_foreground, int *mark_background,
 				       BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded); /* BUILD */
-sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
+				       
+GRAPHICS_IMPEXP sciPointObj *ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 				  double height, double width, double alphabegin, double alphaend, 
 				  int *foreground, int *background, BOOL isfilled, BOOL isline);
 
-sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
+GRAPHICS_IMPEXP sciPointObj *ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 					double height, double width,  int *foreground, int *background,
 					int isfilled, int isline);
 
-sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
+GRAPHICS_IMPEXP sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,
 				      double *zcol, int izcol, int dimzx, int dimzy, 
 				      int *flag, double *ebox, int flagcolor, int *isfac,
@@ -83,37 +83,37 @@ sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d
 				      int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
 
-sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy, 
+GRAPHICS_IMPEXP sciPointObj *ConstructGrayplot (sciPointObj * pparentfigure,double *vx,double *vy, 
                                    double *vz,int nx,int ny, int type); /* BUILD */
 
-sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
+GRAPHICS_IMPEXP sciPointObj *ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
                                    int nx, double *vy, int ny, char *str[], int subint, char *format, 
                                    int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);  /* BUILD */
 
-sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
+GRAPHICS_IMPEXP sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 
 				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 
-sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, int Nbr1, 
-               int Nbr2, double *vfx, double *vfy, int flag, 
-              int *style, double arsize1,  int colored, double arfact, int typeofchamp);  /* BUILD */
+GRAPHICS_IMPEXP sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, double *vz, int Nbr1, 
+               int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, 
+              int *style, double arsize,  int colored, int typeofchamp);  /* BUILD */
 
-sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
-sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
+GRAPHICS_IMPEXP sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
+GRAPHICS_IMPEXP sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
 
-sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
+GRAPHICS_IMPEXP sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type); /* BUILD */
 
-sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) ;
+GRAPHICS_IMPEXP sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent ) ;
 
-void SciWin(void);
+GRAPHICS_IMPEXP void SciWin(void);
 
-sciPointObj * createFullFigure(int * winNum);
+GRAPHICS_IMPEXP sciPointObj * createFullFigure(int * winNum);
 
-sciPointObj * createFirstSubwin(sciPointObj * pFigure);
+GRAPHICS_IMPEXP sciPointObj * createFirstSubwin(sciPointObj * pFigure);
 
-void createDefaultRelationShip(sciPointObj * pObj);
+GRAPHICS_IMPEXP void createDefaultRelationShip(sciPointObj * pObj);
 
-void initUserData(sciPointObj * pObj);
+GRAPHICS_IMPEXP void initUserData(sciPointObj * pObj);
 
 
 #endif /* __SCI_BUILD__ */

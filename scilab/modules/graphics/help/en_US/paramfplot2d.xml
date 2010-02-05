@@ -70,13 +70,11 @@ paramfplot2d(f,x,theta,flagrect)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff('y=f(x,t)','y=t*sin(x)')
 x=linspace(0,2*%pi,50);theta=0:0.05:1;
 paramfplot2d(f,x,theta);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

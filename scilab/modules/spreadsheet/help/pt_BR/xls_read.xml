@@ -101,14 +101,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   //decodificando um arquivo ole, extraindo e abrindo um fluxo de dados do Excel
-    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
-    //lendo a primeira folha de dados
-    [Value,TextInd] = xls_read(fd,Sheetpos(1))
-    //fechando o fluxo de dados da planilha
-    mclose(fd)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+//decodificando um arquivo ole, extraindo e abrindo um fluxo de dados do Excel
+[fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+//lendo a primeira folha de dados
+[Value,TextInd] = xls_read(fd,Sheetpos(1))
+//fechando o fluxo de dados da planilha
+mclose(fd)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

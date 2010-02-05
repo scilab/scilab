@@ -103,8 +103,6 @@ public class BuildDocObject extends StyleSheet {
 		return true;
 	}
 
-
-
     /**
      * Defines the language
      *
@@ -117,7 +115,6 @@ public class BuildDocObject extends StyleSheet {
 	
     /**
      * Defines the export format
-     *
      * @param format the format (among the list CHM, HTML, PDF, JH, PS)
 	 */
 	public void setExportFormat(String format) {
@@ -149,13 +146,15 @@ public class BuildDocObject extends StyleSheet {
 			this.styleDoc = docbookPath + "/html/chunk.xsl";
 
 			/* Copy the css file for thr HTML pages */
-			String cssFile=new String(SCI+"/modules/helptools/css/html.css");
+			String cssFile = new String(SCI + "/modules/helptools/css/html.css");
 			try {
-				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/html.css"));
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory + "/html.css"));
 			} catch (java.io.FileNotFoundException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			} catch (java.io.IOException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			}
 		}
 		
@@ -169,13 +168,15 @@ public class BuildDocObject extends StyleSheet {
 			this.styleDoc = docbookPath + "/htmlhelp/htmlhelp.xsl";
 
 			/* Copy the css file for thr HTML pages */
-			String cssFile=new String(SCI+"/modules/helptools/css/htmlhelp.css");
+			String cssFile = new String(SCI + "/modules/helptools/css/htmlhelp.css");
 			try {
-				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/htmlhelp.css"));
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory + "/htmlhelp.css"));
 			} catch (java.io.FileNotFoundException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			} catch (java.io.IOException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			}
 		}
 		
@@ -225,10 +226,10 @@ public class BuildDocObject extends StyleSheet {
         } catch (SAXParseException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
 					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.err.println("Line: "+e.getLineNumber());
+            System.err.println("Line: " + e.getLineNumber());
 			System.err.println("Column: " + e.getColumnNumber());
-			System.err.println("Public ID: "+e.getPublicId());
-			System.err.println("System Id: "+ e.getSystemId());
+			System.err.println("Public ID: " + e.getPublicId());
+			System.err.println("System Id: " + e.getSystemId());
             return null;
         } catch (SAXException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
@@ -330,8 +331,8 @@ public class BuildDocObject extends StyleSheet {
 			d.setOutputDirectory("/tmp/");
 			d.setExportFormat(JH_FORMAT);
 			d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-			d.process(SCI+"/modules/helptools/master_en_US_help.xml",
-					SCI+"/modules/helptools/css/javahelp.css");
+			d.process(SCI + "/modules/helptools/master_en_US_help.xml",
+					SCI + "/modules/helptools/css/javahelp.css");
 		} catch (FileNotFoundException e) {
 			System.err.println("Exception catched: " + e.getMessage());
 		}

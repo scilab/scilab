@@ -99,12 +99,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example #1 (a simple one)
 //function to minimize
 function f=rosenbrock(x,varargin)
-   p=varargin(1)
-   f=1+sum( p*(x(2:$)-x(1:$-1)^2)^2 + (1-x(2:$))^2)
+  p=varargin(1)
+  f=1+sum( p*(x(2:$)-x(1:$-1)^2)^2 + (1-x(2:$))^2)
 endfunction
 
 x0=[1;2;3;4];
@@ -131,25 +131,25 @@ x0=[1;2;3;4];
 // (*) This method is not the most efficient but it is easy to implement.
 // 
 function dy = DEQ(t,y,p)
-   // The rhs of our first order differential equation system.
-   c =p(1);k=p(2)
-   dy=[y(2);-c*y(2)-k*y(1)]
+  // The rhs of our first order differential equation system.
+  c =p(1);k=p(2)
+  dy=[y(2);-c*y(2)-k*y(1)]
 endfunction
 
 function y=uN(p, t, t0, y0)
-   // Numerical solution obtained with ode. (In this linear case an exact analytic
-   // solution can easily be found, but ode would also work for "any" system.)
-   // Note: the ode output must be an approximation of the solution at
-   //       times given in the vector t=[t(1),...,t($)]  
-   y = ode(y0,t0,t,list(DEQ,p))
+  // Numerical solution obtained with ode. (In this linear case an exact analytic
+  // solution can easily be found, but ode would also work for "any" system.)
+  // Note: the ode output must be an approximation of the solution at
+  //       times given in the vector t=[t(1),...,t($)]  
+  y = ode(y0,t0,t,list(DEQ,p))
 endfunction
 
 function r = cost_func(p, t_obs, x_obs, t0, y0) 
-   // This is the function to be minimized, that is the sum of the squared
-   // errors between what gives the model and the measuments.
-   sol = uN(p, t_obs, t0, y0)
-   e = sol(1,:) - x_obs
-   r = sum(e.*e) 
+  // This is the function to be minimized, that is the sum of the squared
+  // errors between what gives the model and the measuments.
+  sol = uN(p, t_obs, t0, y0)
+  e = sol(1,:) - x_obs
+  r = sum(e.*e) 
 endfunction
 
 // Data
@@ -173,7 +173,6 @@ p0 = [0.5 ; 5];
 // The value of the cost function before optimization:
 cost0 = cost_func(p0, t_obs, x_obs, t0, y0); 
 mprintf("\n\r The value of the cost function before optimization = %g \n\r",...
-                                                                       cost0)
 
 // Solution with optim
 [costopt,popt]=optim(list(NDcost,cost_func, t_obs, x_obs, t0, y0),p0,...
@@ -191,7 +190,7 @@ plot2d(t',y(1,:)',style=5)
 plot2d(t_obs',x_obs(1,:)',style=-5)
 legend(["model","measurements"]);
 xtitle("Least square fit to identify ode parameters")
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

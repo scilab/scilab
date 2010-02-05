@@ -46,9 +46,9 @@
 Build an initialized outtb list.
 
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [outtb]=buildouttb(lnksz,lnktyp)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_buildouttb">
     <title>Parameters</title>

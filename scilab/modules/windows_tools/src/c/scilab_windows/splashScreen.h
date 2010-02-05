@@ -14,8 +14,10 @@
 #ifndef __SPLASHSCREEN_H__
 #define __SPLASHSCREEN_H__
 
+#include "dynlib_scilab_windows.h"
+
 /* Display splashscreen */
-void splashScreen(void);
+SCILAB_WINDOWS_IMPEXP void splashScreen(void);
 
 #endif /* __SPLASHSCREEN_H__ */
 /*--------------------------------------------------------------------------*/

@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_bufinfo
  ******************************************/
-int intspvm_bufinfo(char *fname,unsigned long fname_len)
+int sci_pvm_bufinfo(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1;
   int bytes,msgtag,tid,res,i;

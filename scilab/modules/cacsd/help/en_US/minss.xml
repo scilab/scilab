@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl,slc</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists (linear systems in state-space form)</para>
+          <para> <literal>syslin</literal> lists (linear systems in state-space form)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -45,13 +45,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 sl=syslin('c',[1 0;0 2],[1;0],[2 1]);
 ssprint(sl);
 ssprint(minss(sl))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

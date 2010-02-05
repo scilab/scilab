@@ -14,8 +14,7 @@
 #include "gw_sparse.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define SPARSE_TAB_SIZE 26
-static gw_generic_table Tab[SPARSE_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 	{C2F(sci_sparsefunc),"sparse"},
 	{C2F(sci_spget),"spget"},
@@ -30,7 +29,6 @@ static gw_generic_table Tab[SPARSE_TAB_SIZE]=
 	{NULL, ""}, //spmin
 	{C2F(sci_spmatrix),"spmatrix"},
 	{C2F(sci_spchol),"spchol"},
-	{C2F(sci_readmps),"readmps"},
 	{C2F(sci_fadj2sp),"fadj2sp"},
 	{C2F(sci_spcompa),"spcompa"},
 	{C2F(sci_ordmmd),"ordmmd"},
@@ -47,7 +45,7 @@ static gw_generic_table Tab[SPARSE_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void)
 {  
-	callFunctionFromGateway(Tab,SPARSE_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

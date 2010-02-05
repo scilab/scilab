@@ -38,6 +38,7 @@ static int sci_strcat_two_rhs(char *fname);
 static int sci_strcat_one_rhs(char *fname);
 static int sci_strcat_rhs_one_is_a_matrix(char *fname);
 static int sumlengthstring(int rhspos);
+static int *lengthEachString(int rhspos, int *sizeArrayReturned);
 /*-------------------------------------------------------------------------------------*/
 int sci_strcat(char *fname,unsigned long fname_len)
 {
@@ -46,22 +47,22 @@ int sci_strcat(char *fname,unsigned long fname_len)
 
 	switch (Rhs)
 	{
-		case 3:
+	case 3:
 		{
 			sci_strcat_three_rhs(fname);
 		}
 		break;
-		case 2:
+	case 2:
 		{
 			sci_strcat_two_rhs(fname);
 		}
 		break;
-		case 1:
+	case 1:
 		{
 			sci_strcat_one_rhs(fname);
 		}
 		break;
-		default:
+	default:
 		/* nothing */
 		break;
 	}
@@ -97,23 +98,23 @@ static int sci_strcat_three_rhs(char *fname)
 	}
 
 	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
-	mn = Row_One*Col_One;  
+	mn = Row_One * Col_One;  
 
 	if (Rhs >= 2) 
 	{ 
 		/* second argument always a string and not a matrix of string */
 		int l2 = 0;
 		int Row_Two = 0,Col_Two = 0;
-		GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
+		GetRhsVar(2, STRING_DATATYPE, &Row_Two, &Col_Two, &l2);
 		Input_String_Two = cstk(l2);
 	}
 
 	if (Rhs >= 3) 
 	{
-		int Row_Three = 0,Col_Three = 0;
+		int Row_Three = 0, Col_Three = 0;
 		int l3 = 0;
-		GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3);
-		if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
+		GetRhsVar(3, STRING_DATATYPE, &Row_Three, &Col_Three, &l3);
+		if (Row_Three * Col_Three != 0) typ = cstk(l3)[0];
 		if (typ != COL && typ != ROW ) 
 		{
 			freeArrayOfString(Input_String_One,mn);
@@ -124,129 +125,157 @@ static int sci_strcat_three_rhs(char *fname)
 
 	switch ( typ ) 
 	{
-		case STAR : 
+	case STAR : 
+		{
+			int nchars = 0; 
+			int one = 1;
+			int l3 = 0;
+			int k = 0;
+
+			/* just return one string */ 
+			for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]); 
+			nchars += (mn-1)*(int)strlen(Input_String_Two);
+
+			CreateVar(Rhs+1,STRING_DATATYPE,&one,&nchars,&l3);
+
+			for ( i = 0 ; i < mn ; i++ ) 
 			{
-				int nchars = 0; 
-				int one = 1;
-				int l3 = 0;
-				int k = 0;
-
-				/* just return one string */ 
-				for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]); 
-				nchars += (mn-1)*(int)strlen(Input_String_Two);
-
-				CreateVar(Rhs+1,STRING_DATATYPE,&one,&nchars,&l3);
-
-				for ( i = 0 ; i < mn ; i++ ) 
-				{
-					int j = 0;
-					for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
-					if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
-				}
-				freeArrayOfString(Input_String_One,mn);
-				LhsVar(1) = Rhs+1  ;
-			}
-		break;
-		case COL: 
-			{
-				char **Output_String = NULL;
-				int nchars = 0;
-				int one = 1;
-				/* return a column matrix */ 
-				if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
-				{
-					freeArrayOfString(Input_String_One,mn);
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				}
-				Output_String[Row_One]=NULL;
-				for (i= 0 ; i < Row_One ; i++) 
-				{
-					int j = 0;
-					/* length of row i */ 
-					nchars = 0;
-					for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
-					nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
-
-					Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
-					if ( Output_String[i] == NULL) 
-					{
-						freeArrayOfString(Output_String,i);
-						freeArrayOfString(Input_String_One,mn);
-						Scierror(999,_("%s: No more memory.\n"),fname);
-						return 0;
-					} 
-					/* fill the string */
-					strcpy(Output_String[i],Input_String_One[i]);
-
-					for ( j = 1 ; j < Col_One ; j++ ) 
-					{
-						strcat(Output_String[i],Input_String_Two); 
-						strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
-					}
-
-				}
-
-				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &one, Output_String);
-				freeArrayOfString(Input_String_One,mn);
-				freeArrayOfString(Output_String,Row_One+1);
-				LhsVar(1) = Rhs+1  ;
-			}
-		break;
-
-		case ROW:
-			{
-				char **Output_String = NULL;
-				int nchars = 0;
 				int j = 0;
-				int one = 1;
-				/* return a row matrix */ 
-				if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
-				{
-					freeArrayOfString(Input_String_One,mn);
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				}
-				Output_String[Col_One]=NULL;
-				for (j= 0 ; j < Col_One ; j++) 
-				{
-					/* length of col j */ 
-					nchars = 0;
-					for ( i = 0 ; i < Row_One ; i++ ) 
-					{
-						nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
-					}
-					nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
-
-					Output_String[j] = strdup(Input_String_One[j*Row_One]);
-
-					if ( Output_String[j] == NULL) 
-					{
-						freeArrayOfString(Output_String,j);
-						freeArrayOfString(Input_String_One,mn);
-						Scierror(999,_("%s: No more memory.\n"),fname);
-						return 0;
-					} 
-
-					for ( i = 1 ; i < Row_One ; i++ ) 
-					{
-						strcat(Output_String[j],Input_String_Two); 
-						strcat(Output_String[j],Input_String_One[i+ Row_One*j]);
-					}
-				}
-				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &one, &Col_One, Output_String);
-				freeArrayOfString(Input_String_One,mn);
-				freeArrayOfString(Output_String,Col_One+1);
-				LhsVar(1) = Rhs+1  ;
+				for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
+				if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
 			}
+			freeArrayOfString(Input_String_One,mn);
+			LhsVar(1) = Rhs+1  ;
+		}
 		break;
-
-		default:
+	case COL: 
+		{
+			char **Output_String = NULL;
+			int nchars = 0;
+			int one = 1;
+			/* return a column matrix */ 
+			if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 			{
 				freeArrayOfString(Input_String_One,mn);
-				Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
+				Scierror(999,_("%s: No more memory.\n"),fname);
 				return 0;
 			}
+			Output_String[Row_One]=NULL;
+			for (i= 0 ; i < Row_One ; i++) 
+			{
+				int j = 0;
+				/* length of row i */ 
+				nchars = 0;
+				for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
+				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
+
+				Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
+				if ( Output_String[i] == NULL) 
+				{
+					freeArrayOfString(Output_String,i);
+					freeArrayOfString(Input_String_One,mn);
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				} 
+				/* fill the string */
+				strcpy(Output_String[i],Input_String_One[i]);
+
+				for ( j = 1 ; j < Col_One ; j++ ) 
+				{
+					strcat(Output_String[i],Input_String_Two); 
+					strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
+				}
+			}
+
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &one, Output_String);
+			freeArrayOfString(Input_String_One,mn);
+			freeArrayOfString(Output_String,Row_One+1);
+			LhsVar(1) = Rhs+1  ;
+		}
+		break;
+
+	case ROW:
+		{
+			char **Output_String = NULL;
+			int nchars = 0;
+			int j = 0;
+			int one = 1;
+			/* return a row matrix */ 
+			if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
+			{
+				freeArrayOfString(Input_String_One,mn);
+				Scierror(999,_("%s: No more memory.\n"),fname);
+				return 0;
+			}
+			Output_String[Col_One]=NULL;
+			for (j= 0 ; j < Col_One ; j++) 
+			{
+				int lenMax = 0;
+				/* length of col j */ 
+				nchars = 0;
+				for ( i = 0 ; i < Row_One ; i++ ) 
+				{
+					nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
+				}
+				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
+
+				lenMax = 0;
+				if (Input_String_One[j*Row_One])
+				{
+					lenMax = lenMax + (int)strlen(Input_String_One[j*Row_One]) + 1;
+				}
+
+				if (Input_String_Two)
+				{
+					lenMax = lenMax + (int)strlen(Input_String_Two) + 1;
+				}
+
+				if (Input_String_One[i+ Row_One*j])
+				{
+					for ( i = 1 ; i < Row_One ; i++ ) 
+					{
+						lenMax = lenMax + (int)strlen(Input_String_One[i+ Row_One*j]) + 1;
+					}
+				}
+
+				Output_String[j] = (char*) MALLOC(sizeof(char)*lenMax);
+
+				if ( Output_String[j] == NULL) 
+				{
+					freeArrayOfString(Output_String,j);
+					freeArrayOfString(Input_String_One,mn);
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				} 
+
+				strcpy(Output_String[j], Input_String_One[j*Row_One]);
+
+				for ( i = 1 ; i < Row_One ; i++ ) 
+				{
+					if (Input_String_Two)
+					{
+						strcat(Output_String[j], Input_String_Two); 
+					}
+
+					if (Input_String_One[i+ Row_One*j])
+					{
+						strcat(Output_String[j], Input_String_One[i+ Row_One*j]);
+					}
+				}
+			}
+			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &one, &Col_One, Output_String);
+			freeArrayOfString(Input_String_One,mn);
+			freeArrayOfString(Output_String,Col_One+1);
+			LhsVar(1) = Rhs+1  ;
+		}
+		break;
+
+	default:
+		{
+			freeArrayOfString(Input_String_One,mn);
+			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
+			return 0;
+		}
 		break;
 
 	}
@@ -258,10 +287,10 @@ static int sci_strcat_two_rhs(char *fname)
 {
 	int Type_One = VarType(1);
 	int Type_Two = VarType(2);
-	
+
 	int Number_Inputs_Two = 0;
 	char **Input_String_Two = NULL;
-	
+
 	if (Type_Two != sci_strings)
 	{
 		Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2); 
@@ -270,7 +299,7 @@ static int sci_strcat_two_rhs(char *fname)
 	else /* sci_strings */
 	{
 		int Row_Two = 0,Col_Two = 0;
-		
+
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&Row_Two,&Col_Two,&Input_String_Two);
 		Number_Inputs_Two = Row_Two * Col_Two;
 		/* check we have only a string as second parameter */
@@ -416,23 +445,42 @@ static int sci_strcat_one_rhs(char *fname)
 				char *Output_String = NULL;
 				int i = 0;
 
+				int sizeLengths = 0;
+				int *lengths = lengthEachString(1, &sizeLengths);
+
+				int l = 0;
+
+				if (lengths == NULL)
+				{
+					Scierror(999,_("%s: error.\n"),fname);
+					return 0;
+				}
+
 				GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m,&n,&Input_String_One);
 				mn = m * n;
 
 				CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
 				Output_String = cstk(outIndex);
 
+				l = 0;
 				for (i = 0; i < mn; i++)
 				{
+					/* bug 4728 Compatibility with Scilab 4.1.2 */
+					/* replaces strcpy & strcat by memcpy */
+					/* copy of char array and not string */
 					if ( i == 0)
 					{
-						strcpy(Output_String,Input_String_One[i]);
+						memcpy(Output_String,Input_String_One[i], lengths[i]);
 					}
 					else
 					{
-						strcat(Output_String,Input_String_One[i]);
+						memcpy(Output_String + l, Input_String_One[i],  lengths[i]);
 					}
+					l = l + lengths[i];
 				}
+
+				FREE(lengths); lengths = NULL;
+
 				LhsVar(1) = Rhs+1;
 				C2F(putlhsvar)();
 				if (Input_String_One) freeArrayOfString(Input_String_One,mn);
@@ -479,20 +527,40 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname)
 /*-------------------------------------------------------------------------------------*/
 static int sumlengthstring(int rhspos)
 {
+	int sizelengths = 0;
 	int sumlength = -1; /* error */
-	if (VarType(1) == sci_strings)
+	int *lengths = lengthEachString(rhspos, &sizelengths);
+	int i = 0;
+	if (lengths)
+	{
+		sumlength = 0;
+		for(i = 0;i < sizelengths; i++)
+		{
+			sumlength = sumlength + lengths[i];
+		}
+		FREE(lengths); lengths = NULL;
+	}
+
+	return sumlength;
+}
+/*-------------------------------------------------------------------------------------*/
+static int *lengthEachString(int rhspos, int *sizeArrayReturned)
+{
+	int *StringsLength = NULL;
+
+	if (VarType(rhspos) == sci_strings)
 	{
 		int m = 0, n = 0; /* matrix size */
 		int mn = 0; /* m*n */
 
 		int il = 0; int ilrd = 0;
 		int l1 = 0;
-		
+
 		int x = 0;
-	
+
 		int lw = rhspos + Top - Rhs;
 		int lenstrcat = 0;
-	
+
 		l1 = *Lstk(lw);
 		il = iadr(l1);
 
@@ -502,15 +570,18 @@ static int sumlengthstring(int rhspos)
 		m = getNumberOfLines(il); /* row */
 		n = getNumberOfColumns(il); /* col */
 		mn = m * n ;
-	
 		ilrd = il + 4;
+
+		StringsLength = (int*)MALLOC(sizeof(int) * mn);
+		if (StringsLength == NULL) return NULL;
+
+		*sizeArrayReturned = mn;
 
 		for  ( x = 0; x < mn; x++ )
 		{
-			lenstrcat +=  (int) (*istk(ilrd + x + 1) - *istk(ilrd + x));
+			StringsLength[x]=  (int) (*istk(ilrd + x + 1) - *istk(ilrd + x));
 		}
-		sumlength = lenstrcat;
 	}
-	return sumlength;
+	return StringsLength;
 }
 /*-------------------------------------------------------------------------------------*/

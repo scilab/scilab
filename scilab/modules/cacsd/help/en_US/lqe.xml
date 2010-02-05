@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P21</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,49 +46,38 @@
     <para><literal>P21</literal> is a <literal>syslin</literal> list representing the system <literal>P21=[A,B1,C2,D21] P21=syslin('c',A,B1,C2,D21) or P21=syslin('d',A,B1,C2,D21)</literal></para>
     <para>
     The input to <literal>P21</literal> is a white noise with variance:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
      [B1 ]               [Q  S]
 BigV=[   ] [ B1' D21'] = [    ]
      [D21]               [S' R]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>X</literal> is the solution of the stabilizing Riccati 
     equation and <literal>A+K*C2</literal> is stable.</para>
     <para>
     In continuous time:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 (A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
-   
-    ]]></programlisting>
-    <programlisting><![CDATA[
-
+ ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
 K=-(X*C2'+S)*inv(R)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     In discrete time:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
       <literal>K=-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')</literal>
     </para>
     <para><literal>xhat(t+1)= E(x(t+1)| y(0),...,y(t))</literal> (one-step predicted <literal>x</literal>)
     satisfies the recursion:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Assume the equations
 //.
 //x = Ax + Ge
@@ -132,8 +121,7 @@ S=G*N;Q=B1*B1';
 
 //Stability check:
 spec(A+K*C)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

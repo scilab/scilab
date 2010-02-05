@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="integrate" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-08 09:42:14 +0200 (Tue, 08 Apr 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>integrate</refname>
+
+    <refpurpose>integration of an expression by quadrature</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>expr</term>
+
+        <listitem>
+          <para>Character string defining a Scilab expression.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>Character string, the integration variable name)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>real number, the lower bound of integration</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x1</term>
+
+        <listitem>
+          <para>vector of real numbers, upper bounds of integration</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol</term>
+
+        <listitem>
+          <para>real number (absolute error bound) Default value: 1.-8</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rtol</term>
+
+        <listitem>
+          <para>real number, (relative error bound) Default value:
+          1e-14</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vector of real numbers, the integral value for each
+          <literal>x1(i)</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>computes : <subscript><inlinemediaobject>
+        <imageobject>
+          <imagedata>
+            <mml:math display="block">
+            <mml:mi mathvariant="normal">x</mml:mi>
+            <mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            <mml:mo>=</mml:mo> <mml:mrow> <mml:msubsup> <mml:mo>∫</mml:mo>
+            <mml:msub> <mml:mi mathvariant="normal">x</mml:mi>
+            <mml:mn>0</mml:mn> </mml:msub> <mml:mrow> <mml:msub> <mml:mi
+            mathvariant="normal">x</mml:mi> <mml:mn>1</mml:mn> </mml:msub>
+            <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            </mml:mrow> </mml:msubsup> <mml:mi mathvariant="normal">f</mml:mi>
+            </mml:mrow> </mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">v</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            <mml:mi>d</mml:mi><mml:mi mathvariant="normal">v</mml:mi>
+            <mml:annotation
+            mml:encoding="StarMath 5.0">x(i)=int_{x_0}^{x_1(i)}
+            f(v)dv</mml:annotation></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject></subscript> for
+    <literal>i=1:size(x1,'*')</literal></para>
+
+    <para>Where <inlinemediaobject>
+        <imageobject>
+          <imagedata>
+            <mml:math display="block">
+            <mml:mi mathvariant="normal">f</mml:mi>
+            <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">v</mml:mi>
+            <mml:mo>)</mml:mo></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject> is given by the expression
+    <literal>expr</literal>.</para>
+
+    <para>The evaluation hopefully satisfies following claim for accuracy:
+    <literal>abs(I-x)&lt;= max(atol,rtol*abs(I))</literal> where
+    <literal>I</literal> stands for the exact value of the integral.</para>
+  </refsection>
+
+  <refsection>
+    <title>Restriction</title>
+
+    <para>the given expression should not use variable names with a leading
+    <literal>%</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+x0=0;x1=0:0.1:2*%pi;
+X=integrate('sin(x)','x',x0,x1);
+norm(cos(x1)-(1-X))
+
+ x1=-10:0.1:10;
+X=integrate(['if x==0 then 1,';
+             'else sin(x)/x,end'],'x',0,x1)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="intg">intg</link></member>
+
+      <member><link linkend="inttrap">inttrap</link></member>
+
+      <member><link linkend="intsplin">intsplin</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

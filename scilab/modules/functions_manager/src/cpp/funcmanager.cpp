@@ -318,7 +318,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
 	stPath += _stModule;
 	stPath += MACRO_DIR;
 	int iSize = 0;
-	char **pstPath = findfiles(const_cast<char*>(stPath.c_str()), const_cast<char*>("*.sci"), &iSize);
+	char **pstPath = findfiles(const_cast<char*>(stPath.c_str()), const_cast<char*>("*.sci"), &iSize, FALSE);
 
 	if(pstPath)
 	{

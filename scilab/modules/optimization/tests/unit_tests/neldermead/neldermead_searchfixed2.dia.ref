@@ -1,0 +1,288 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+function [ y , index ] = rosenbrock ( x , index )
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",200);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_search(nm);
+// With fixed-size simplices, one cannot lead the 
+// simplex to the optimum.
+// Check optimum point
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [1.0;1.0], 1e1 );
+// Check optimum point value
+fopt = neldermead_get(nm,"-fopt");
+assert_close ( fopt , 0.0 , 1e1 );
+// Check status
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "maxfuneval" );
+// Cleanup
+nm = neldermead_destroy(nm);
+// Check that the verbose mode is functionnal
+// Few iterations are necessary to check this
+// Many iterations costs a lot more in time.
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",5);
+nm = neldermead_configure(nm,"-maxfunevals",200);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_configure(nm,"-verbose",1);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_search(nm);
+Function Evaluation #1 at [-1.2 1]
+
+Function Evaluation #2 at [-1.2 1]
+
+Function Evaluation #3 at [-1.2 1]
+
+Function Evaluation #4 at [-0.2 1]
+
+Function Evaluation #5 at [-1.2 2]
+
+Sort
+
+=================================================================
+
+Iteration #1 (total = 1)
+
+Function Eval #5
+
+Xopt : -1.2 1
+
+Fopt : 2.420000e+001
+
+DeltaFv : 6.940000e+001
+
+Center : -0.8666667 1.3333333
+
+Size : 1.000000e+000
+
+Vertex #1/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #2/3 : fv=3.620000e+001, x=-1.200000e+000 2.000000e+000
+
+Vertex #3/3 : fv=9.360000e+001, x=-2.000000e-001 1.000000e+000
+
+Reflect
+
+xbar=-1.2 1.5
+
+Function Evaluation #6 at [-2.2 2]
+
+xr=-2.2 2, f(xr)=816.800000
+
+xbar2=-0.7 1
+
+Function Evaluation #7 at [-0.2 0]
+
+xr2=-0.2 0, f(xr2)=1.600000
+
+  > Perform reflect / next
+
+=================================================================
+
+Iteration #2 (total = 2)
+
+Function Eval #7
+
+Xopt : -0.2 0
+
+Fopt : 1.600000e+000
+
+DeltaFv : 9.200000e+001
+
+Center : -0.5333333 0.6666667
+
+Size : 1.414214e+000
+
+Vertex #1/3 : fv=1.600000e+000, x=-2.000000e-001 0.000000e+000
+
+Vertex #2/3 : fv=2.420000e+001, x=-1.200000e+000 1.000000e+000
+
+Vertex #3/3 : fv=9.360000e+001, x=-2.000000e-001 1.000000e+000
+
+Reflect
+
+xbar=-0.7 0.5
+
+Function Evaluation #8 at [-1.2 0]
+
+xr=-1.2 0, f(xr)=212.200000
+
+xbar2=-0.2 0.5
+
+Function Evaluation #9 at [0.8 0]
+
+xr2=0.8 0, f(xr2)=41.000000
+
+  > Perform Shrink
+
+Function Evaluation #10 at [-0.7 0.5]
+
+Function Evaluation #11 at [-0.2 0.5]
+
+=================================================================
+
+Iteration #3 (total = 3)
+
+Function Eval #11
+
+Xopt : -0.2 0
+
+Fopt : 1.600000e+000
+
+DeltaFv : 2.100000e+001
+
+Center : -0.3666667 0.3333333
+
+Size : 7.071068e-001
+
+Vertex #1/3 : fv=1.600000e+000, x=-2.000000e-001 0.000000e+000
+
+Vertex #2/3 : fv=2.900000e+000, x=-7.000000e-001 5.000000e-001
+
+Vertex #3/3 : fv=2.260000e+001, x=-2.000000e-001 5.000000e-001
+
+Reflect
+
+xbar=-0.45 0.25
+
+Function Evaluation #12 at [-0.7 0]
+
+xr=-0.7 0, f(xr)=26.900000
+
+xbar2=-0.2 0.25
+
+Function Evaluation #13 at [0.3 0]
+
+xr2=0.3 0, f(xr2)=1.300000
+
+  > Perform reflect / next
+
+=================================================================
+
+Iteration #4 (total = 4)
+
+Function Eval #13
+
+Xopt : 0.3 0
+
+Fopt : 1.300000e+000
+
+DeltaFv : 2.130000e+001
+
+Center : -0.0333333 0.1666667
+
+Size : 7.071068e-001
+
+Vertex #1/3 : fv=1.300000e+000, x=3.000000e-001 0.000000e+000
+
+Vertex #2/3 : fv=1.600000e+000, x=-2.000000e-001 0.000000e+000
+
+Vertex #3/3 : fv=2.260000e+001, x=-2.000000e-001 5.000000e-001
+
+Reflect
+
+xbar=0.05 0
+
+Function Evaluation #14 at [0.3 -0.5]
+
+xr=0.3 -0.5, f(xr)=35.300000
+
+xbar2=0.05 0.25
+
+Function Evaluation #15 at [0.3 0.5]
+
+xr2=0.3 0.5, f(xr2)=17.300000
+
+  > Perform Shrink
+
+Function Evaluation #16 at [0.05 0]
+
+Function Evaluation #17 at [0.05 0.25]
+
+=================================================================
+
+Iteration #5 (total = 5)
+
+Function Eval #17
+
+Xopt : 0.05 0
+
+Fopt : 9.031250e-001
+
+DeltaFv : 6.125000e+000
+
+Center : 0.1333333 0.0833333
+
+Size : 2.500000e-001
+
+Vertex #1/3 : fv=9.031250e-001, x=5.000000e-002 0.000000e+000
+
+Vertex #2/3 : fv=1.300000e+000, x=3.000000e-001 0.000000e+000
+
+Vertex #3/3 : fv=7.028125e+000, x=5.000000e-002 2.500000e-001
+
+Terminate with status : maxiter
+
+status = neldermead_get(nm,"-status");
+assert_equal ( status , "maxiter" );
+nm = neldermead_destroy(nm);

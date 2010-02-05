@@ -85,14 +85,14 @@ xs2emf(fig, file_name [,orientation])</synopsis>
 
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then
   scf(0);
   plot2d();
   //EMF export
   xs2emf(0,'foo.emf');
 end
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

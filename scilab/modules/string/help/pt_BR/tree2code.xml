@@ -93,13 +93,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

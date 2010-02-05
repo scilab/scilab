@@ -9,7 +9,7 @@
 
 // Internal function
 
-function struct_out = atomsLoadInstalledStruct(allusers)
+function struct_out = atomsLoadInstalledStruct(section)
 	
 	rhs = argn(2);
 	
@@ -24,24 +24,25 @@ function struct_out = atomsLoadInstalledStruct(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoadInstalledStruct",1));
 	end
 	
-	// Check number of input argument type
+	// Check input argument
 	// =========================================================================
 	
-	if (type(allusers)<>4) & (type(allusers)<>10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a string expected.\n"),"atomsLoadInstalledStruct",1));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsLoadInstalledStruct",1));
+	end
+	
+	if size(section,"*")<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsLoadInstalledStruct",1));
+	end
+	
+	if and(section<>["user","allusers","all"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsLoadInstalledStruct",1));
 	end
 	
 	// Define the path of the file that will record the change according to
 	// the "allusers" value
 	// =========================================================================
-	
-	if (type(allusers)==10) & (allusers=="all") then
-		installed_file = [ pathconvert(SCI+"/.atoms/installed.bin",%F); pathconvert(SCIHOME+"/atoms/installed.bin",%F) ];
-	elseif allusers then
-		installed_file = pathconvert(SCI+"/.atoms/installed.bin",%F);
-	else
-		installed_file = pathconvert(SCIHOME+"/atoms/installed.bin",%F);
-	end
+	installed_file = atomsPath("system",section) + "installed.bin";
 	
 	// Loop on installed files
 	// =========================================================================

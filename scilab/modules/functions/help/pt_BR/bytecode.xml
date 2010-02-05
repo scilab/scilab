@@ -82,10 +82,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    function a=foo(),a=sin(3),endfunction
-    bytecode(foo)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+function a=foo(),a=sin(3),endfunction
+bytecode(foo)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

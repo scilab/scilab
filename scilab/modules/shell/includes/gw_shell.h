@@ -13,18 +13,18 @@
 #ifndef __GW_SHELL_H__
 #define __GW_SHELL_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_shell.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_shell(void);
+SHELL_IMPEXP int gw_shell(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-int C2F(sci_clc)(char *fname,unsigned long fname_len);
-int C2F(sci_tohome)(char *fname,unsigned long fname_len);
-int C2F(sci_lines)(char *fname,unsigned long fname_len);
-int C2F(sci_prompt)(char *fname,unsigned long fname_len);
-int sci_iswaitingforinput(char *fname,unsigned long fname_len);
+SHELL_IMPEXP int sci_clc(char *fname,unsigned long fname_len);
+SHELL_IMPEXP int sci_tohome(char *fname,unsigned long fname_len);
+SHELL_IMPEXP int sci_lines(char *fname,unsigned long fname_len);
+SHELL_IMPEXP int sci_prompt(char *fname,unsigned long fname_len);
+SHELL_IMPEXP int sci_iswaitingforinput(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SHELL_H__ */
 

@@ -29,13 +29,13 @@
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>:Specifies the format conversion.</para>
+          <para>Specifies the format conversion.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>file</term>
         <listitem>
-          <para>:Specifies the input file name or file number.</para>
+          <para>Specifies the input file name or file number.</para>
         </listitem>
       </varlistentry>
     </variablelist>

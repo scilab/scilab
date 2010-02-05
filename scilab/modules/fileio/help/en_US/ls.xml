@@ -69,13 +69,11 @@ files=ls( [path] )</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ls
 ls SCI/modules/core/macros/*.sci
 x=ls('SCI/modules/core/macros/*.sci')
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

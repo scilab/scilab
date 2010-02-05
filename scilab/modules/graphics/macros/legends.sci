@@ -18,13 +18,16 @@ function legends(leg, style, opt, with_box, font_size )
  
   rhs=argn(2)
  
-  if rhs < 2 then, error("bad number of arguments"), end
+  if rhs < 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "legends", 2));
+  end
   if type(leg) ~= 10 then,
-    error("first arg may be a vector of strings"),
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "legends", 1));
   end
   nleg=size(leg,'*')
   if type(style) ~= 1 & type(style) ~= 9 then,
     error("second argument type may be 1 or 9  "),
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real array or graphic handle array expected.\n"), "legends", 2));
   end 
   if ~exists("opt","local") then
     opt=5

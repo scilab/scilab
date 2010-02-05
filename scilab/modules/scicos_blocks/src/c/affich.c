@@ -90,16 +90,17 @@ void C2F(affichup)( double * textIndex,
                     char * value,
                     int valueLength)
 {
- int nbRow,nbCol;
-  /* First step, retreive text handle */
-  /* For now we got the index of the block coupound within the axes children */
-  sciPointObj * pText = getAffichTextObject((int) *winNum, ((int) *textIndex) - 1);
- if (pText==(sciPointObj *)NULL) return;
-  if (sciGetEntityType (pText)== SCI_TEXT) {
-  /* Second step update text data */
-    sciSetText(pText, &value, 1, 1);
-    sciDrawObj(pText);
-  }
+
+	/* First step, retreive text handle */
+	/* For now we got the index of the block coupound within the axes children */
+	sciPointObj * pText = getAffichTextObject((int) *winNum, ((int) *textIndex) - 1);
+	if (pText==(sciPointObj *)NULL) return;
+	if (sciGetEntityType (pText)== SCI_TEXT) 
+	{
+		/* Second step update text data */
+		sciSetText(pText, &value, 1, 1);
+		sciDrawObj(pText);
+	}
 }
 /*---------------------------------------------------------------------------------*/
 

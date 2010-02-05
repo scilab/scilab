@@ -11,6 +11,7 @@
  *
  */
 
+#include "gw_randlib.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 

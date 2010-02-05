@@ -89,15 +89,13 @@ fplot2d(xr,f,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff("[y]=f(x)","y=sin(x)+cos(x)")
 x=[0:0.1:10]*%pi/10;
 fplot2d(x,f)
 clf();
 fplot2d(1:10,'parab')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

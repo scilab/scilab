@@ -13,12 +13,13 @@
 #ifndef __GETCHARWITHOUTOUTPUT_H__
 #define __GETCHARWITHOUTOUTPUT_H__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_console.h"
 /*--------------------------------------------------------------------------*/
 /**
 * Make the console wait for a user input character (used for [more (y or n) ?])
 * @return code for the character entered
 */
-int GetCharWithoutOutput(void);
+CONSOLE_IMPEXP int GetCharWithoutOutput(void);
 /*--------------------------------------------------------------------------*/
 #endif /* __GETCHARWITHOUTOUTPUT_H__ */
 

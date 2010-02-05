@@ -23,22 +23,14 @@
 BOOL FileExist(char *filename)
 {
 #ifdef _MSC_VER
+	wchar_t *wcFilename = to_wide_string(filename);
+	if (wcFilename)
 	{
-		WIN32_FIND_DATAW FindFileData;
-		wchar_t *wcFilename = to_wide_string(filename);
-		if (wcFilename)
-		{
-			HANDLE handle = FindFirstFileW (wcFilename, &FindFileData);
-			FREE(wcFilename);
-			if (handle != INVALID_HANDLE_VALUE)
-			{
-				FindClose (handle);
-				return TRUE;
-			}
-			else return FALSE;
-		}
-		else return FALSE;
+		BOOL bOK = FileExistW(wcFilename);
+		FREE(wcFilename);
+		return bOK;
 	}
+	return FALSE;
 #else
 	FILE* tmpFile=fopen(filename,"r");
 	if(tmpFile) 
@@ -52,5 +44,33 @@ BOOL FileExist(char *filename)
 		} 
 #endif
 
+}
+/*--------------------------------------------------------------------------*/ 
+BOOL FileExistW(wchar_t *wcfilename)
+{
+#ifdef _MSC_VER
+	if (wcfilename)
+	{
+		WIN32_FIND_DATAW FindFileData;
+		HANDLE handle = FindFirstFileW (wcfilename, &FindFileData);
+		if (handle != INVALID_HANDLE_VALUE)
+		{
+			FindClose (handle);
+			return TRUE;
+		}
+		else return FALSE;
+	}
+	else return FALSE;
+	
+#else
+	char *filename = wide_string_to_UTF8(wcfilename);
+	if (filename)
+	{
+		BOOL bOK = FileExist(filename);
+		FREE(filename);
+		return bOK;
+	}
+	return FALSE;
+#endif
 }
 /*--------------------------------------------------------------------------*/ 

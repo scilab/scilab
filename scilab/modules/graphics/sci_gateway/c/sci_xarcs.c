@@ -16,7 +16,7 @@
 /* desc : interface for xarcs routine                                      */
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
-#include "sci_xarcs.h"
+#include "gw_graphics.h"
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "sciCall.h"

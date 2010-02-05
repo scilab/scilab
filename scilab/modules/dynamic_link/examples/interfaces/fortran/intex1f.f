@@ -33,7 +33,7 @@ c     execute the disp function
       mrhs=2
       if(.not.scistring(ibegin,'disp',mlhs,mrhs)) return
 
-c     check if an error has occured while running a_function
+c     check if an error has occurred while running a_function
       if(err.gt.0) return
 
 c     Note that disp, as every function which has nothing to return,

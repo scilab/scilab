@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-   [ok,x0,exprs]=getvalue('Set continuous linear system parameters',..
+   [ok,x0,exprs]=scicos_getvalue('Set continuous linear system parameters',..
 	'Initial state',list('vec',1),exprs)
 
 

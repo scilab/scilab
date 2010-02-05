@@ -28,7 +28,7 @@
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,19 +55,17 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,s^2*(s+2)];
 [pp,fact]=lcm(p);
 p.*fact, pp
+
 //integer case
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 lcm(V)
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

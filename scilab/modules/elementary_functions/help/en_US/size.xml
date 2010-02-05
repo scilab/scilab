@@ -51,7 +51,7 @@
         <term>y</term>
 
         <listitem>
-          <para>: <literal> 1x2</literal> integer vector or integer
+          <para> <literal> 1x2</literal> integer vector or integer
           number</para>
         </listitem>
       </varlistentry>
@@ -154,7 +154,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [n,m]=size(rand(3,2))
 [n,m]=size(['a','b';'c','d'])
 x=ssrand(3,2,4);[ny,nu]=size(x)
@@ -167,7 +167,7 @@ n=size(rand(3,2),"r")
 m=size(rand(3,2),"c")
 // Returns the product of the dimensions
 nm=size(rand(3,2),"*")
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

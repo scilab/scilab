@@ -20,7 +20,7 @@
 #include "tmpdir.h"
 #include "scirun.h"
 #include "sciquit.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "fromjava.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/

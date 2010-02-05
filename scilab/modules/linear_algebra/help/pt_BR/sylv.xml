@@ -62,34 +62,28 @@
     <para><literal>X = sylv(A,B,C,'c')</literal> computa <literal>X</literal>,
     solução da equação de "tempo contínuo" de Sylvester.</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 A*X+X*B=C 
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>X=sylv(A,B,C,'d')</literal> computa <literal>X</literal>,
     solução da equação de "tempo discreto" de Sylvester.</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 A*X*B-X=C
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(4,4);C=rand(4,3);B=rand(3,3);
 X = sylv(A,B,C,'c');
 norm(A*X+X*B-C)
 X=sylv(A,B,C,'d') 
 norm(A*X*B-X-C)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

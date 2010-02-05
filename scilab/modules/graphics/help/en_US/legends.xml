@@ -30,6 +30,7 @@
         <term>strings</term>
         <listitem>
           <para>n vector of strings, strings(i) is the legend of the ith curve</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -123,9 +124,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  
-
+    <programlisting role="example"><![CDATA[ 
 // Example 1
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
@@ -135,7 +134,6 @@ scf() ;
 xset("line style",2);plot2d(t,cos(t),style=5);
 xset("line style",4);plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
-
 
 // Example 2
 scf() ;
@@ -158,10 +156,7 @@ subplot(224)
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
-
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -46,7 +46,7 @@
       <varlistentry>
         <term>Ac</term>
         <listitem>
-          <para>: <literal>Ac=X*A</literal>, polynomial matrix</para>
+          <para> <literal>Ac=X*A</literal>, polynomial matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -53,7 +53,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -73,8 +72,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@@PVM_TRUE@am__append_1 = java
 @NEED_JAVA_TRUE@@PVM_FALSE@am__append_2 = java
@@ -83,20 +81,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -124,8 +122,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipvm_la_etcdir)" \
 	"$(DESTDIR)$(libscipvm_la_rootdir)" \
-	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscipvm_la_includedir)"
+	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @PVM_FALSE@libscipvm_la_DEPENDENCIES =  \
 @PVM_FALSE@	$(top_builddir)/modules/core/libscicore.la
@@ -222,9 +219,6 @@ SOURCES = $(libscipvm_la_SOURCES)
 DIST_SOURCES = $(am__libscipvm_la_SOURCES_DIST)
 DATA = $(libscipvm_la_etc_DATA) $(libscipvm_la_root_DATA) \
 	$(libscipvm_la_sci_gateway_DATA)
-am__libscipvm_la_include_HEADERS_DIST = includes/gw_pvm.h \
-	includes/with_pvm.h
-HEADERS = $(libscipvm_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -232,6 +226,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -240,9 +235,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -303,11 +301,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -367,24 +368,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -447,7 +450,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -510,9 +512,9 @@ yacc_present = @yacc_present@
 @PVM_TRUE@sci_gateway/c/sci_pvm_recv_var.c \
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
-@PVM_FALSE@libscipvm_la_CFLAGS = \
-@PVM_FALSE@						-I$(top_srcdir)/modules/api_scilab/includes \
-@PVM_FALSE@						-I$(top_srcdir)/modules/output_stream/includes/
+@PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+@PVM_FALSE@-I$(srcdir)/includes/ \
+@PVM_FALSE@-I$(top_srcdir)/modules/output_stream/includes/
 
 @PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  \
@@ -554,12 +556,6 @@ yacc_present = @yacc_present@
 #### pvm : gateway declaration ####
 @PVM_TRUE@libscipvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
-
-#### pvm : include files ####
-@PVM_TRUE@libscipvm_la_includedir = $(pkgincludedir)/pvm
-@PVM_TRUE@libscipvm_la_include_HEADERS = includes/gw_pvm.h \
-@PVM_TRUE@includes/with_pvm.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 @PVM_FALSE@mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1199,26 +1195,6 @@ uninstall-libscipvm_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscipvm_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" && rm -f $$files
-install-libscipvm_la_includeHEADERS: $(libscipvm_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_includedir)"
-	@list='$(libscipvm_la_include_HEADERS)'; test -n "$(libscipvm_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscipvm_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscipvm_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscipvm_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipvm_la_include_HEADERS)'; test -n "$(libscipvm_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscipvm_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscipvm_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1305,9 +1281,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1359,7 +1335,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscipvm_la_etcDATA \
-	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA
 
@@ -1408,7 +1383,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscipvm_la_etcDATA \
-	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1424,9 +1398,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscipvm_la_etcDATA \
-	install-libscipvm_la_includeHEADERS \
-	install-libscipvm_la_rootDATA \
+	install-libscipvm_la_etcDATA install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1434,7 +1406,6 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscipvm_la_etcDATA \
-	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1447,10 +1418,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	export LANG=C;\
 @PVM_TRUE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 @PVM_TRUE@check-code:
-@PVM_TRUE@	@if test -f build.xml; then \
+@PVM_TRUE@	if test -f build.xml; then \
 @PVM_TRUE@		$(ANT) checkstyle; \
-@PVM_TRUE@	fi;\
-@PVM_TRUE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+@PVM_TRUE@	fi
+@PVM_TRUE@	if test -x "$(SPLINT)"; then \
+@PVM_TRUE@		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+@PVM_TRUE@	fi
 @NEED_JAVA_TRUE@@PVM_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@PVM_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1473,7 +1446,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @PVM_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @PVM_TRUE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @PVM_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1485,7 +1458,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @GIWS_TRUE@@PVM_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1591,10 +1564,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@PVM_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
-@PVM_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@PVM_TRUE@			done; \
-@PVM_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_TRUE@				done; \
+@PVM_TRUE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_TRUE@			fi; \
 @PVM_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
@@ -1627,10 +1602,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	export LANG=C;\
 @PVM_FALSE@	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 @PVM_FALSE@check-code:
-@PVM_FALSE@	@if test -f build.xml; then \
+@PVM_FALSE@	if test -f build.xml; then \
 @PVM_FALSE@		$(ANT) checkstyle; \
-@PVM_FALSE@	fi;\
-@PVM_FALSE@	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+@PVM_FALSE@	fi
+@PVM_FALSE@	if test -x "$(SPLINT)"; then \
+@PVM_FALSE@		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+@PVM_FALSE@	fi
 @NEED_JAVA_TRUE@@PVM_FALSE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@@PVM_FALSE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1653,7 +1630,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_FALSE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_FALSE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_FALSE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @PVM_FALSE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @PVM_FALSE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @PVM_FALSE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1665,7 +1642,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @GIWS_TRUE@@PVM_FALSE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_FALSE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_FALSE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1771,10 +1748,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@PVM_FALSE@			for specialExt in $(MACROSSPECIALEXT); do \
-@PVM_FALSE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@PVM_FALSE@			done; \
-@PVM_FALSE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_FALSE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_FALSE@				for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_FALSE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_FALSE@				done; \
+@PVM_FALSE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_FALSE@			fi; \
 @PVM_FALSE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

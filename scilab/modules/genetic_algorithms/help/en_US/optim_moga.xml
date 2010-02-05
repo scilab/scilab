@@ -44,11 +44,15 @@
           <para>the function to be optimized. The header of the function is
           the following :</para>
 
-          <programlisting>y = f(x)    </programlisting>
+          <programlisting role=""><![CDATA[ 
+y = f(x)
+ ]]></programlisting>
 
           <para>or</para>
 
-          <programlisting>y = list(f,p1,p2,...)</programlisting>
+          <programlisting role =""><![CDATA[
+y = list(f,p1,p2,...)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 

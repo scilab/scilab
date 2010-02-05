@@ -17,7 +17,7 @@
       <varlistentry>
         <term>Sl,Stmp</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists</para>
+          <para> <literal>syslin</literal> lists</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,16 +44,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=%s;
 w=[1/s,0;s/(s^3+2),2/s];
 Sl=tf2ss(w);
 [Stmp,Ws]=rowregul(Sl,-1,-2);
 Stmp('D')     // D matrix of Stmp
 clean(ss2tf(Stmp))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

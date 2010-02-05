@@ -1,0 +1,38 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-06 14:19+0000\n"
+"Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+# File: src/c/dynamic_menus.c, line: 78
+# File: src/c/dynamic_menus.c, line: 86
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: これ以上のメモリはありません。\n"
+
+#
+# File: src/c/dynamic_menus.c, line: 137
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "列を成しません %s - オプションではありません。\n"
+
+#
+# File: src/c/dynamic_menus.c, line: 138
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "列を成しません %s - seq.\n"

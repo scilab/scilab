@@ -28,7 +28,7 @@ function [scs_m, fct] = do_addnew(scs_m)
 //**---------- This part handle the file related functions and error handling --------------
 
   fct = [] ;
-  [ok,name] = getvalue( 'Get block GUI function name', ['Name'],list('str',1),emptystr() )
+  [ok,name] = scicos_getvalue( 'Get block GUI function name', ['Name'],list('str',1),emptystr() )
 
   if ~ok then return, end ; //** --> Exit point
 
@@ -62,7 +62,7 @@ function [scs_m, fct] = do_addnew(scs_m)
     //  message(path+' file, Not found')
     //  return
     //end
-    //if execstr('getf(u)','errcatch')<>0 then
+    //if execstr('exec(u)','errcatch')<>0 then
     //  file('close',u)
     //  message([name + " erroneous function:"; lasterror()])
     //  return

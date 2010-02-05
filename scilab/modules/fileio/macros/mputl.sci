@@ -17,7 +17,7 @@ if ~or(lhs ==[0 1]) then
   return
 end
 
-if ~or(rhs ==[1 2]) then
+if rhs <> 2 then
   error(999,msprintf(gettext("%s: Wrong number of input argument(s).\n"),'mputl'));
   return
 end
@@ -35,23 +35,16 @@ end
 
 opened = %f;
 
-if rhs == 1 then //write to last opened file
-  opened = %f;
-  fd = -1;
-  // @OBSOLETE
-  warnobsolete("mputl with a second input parameter", "5.2");
-else
-  if type(fd) == 10 then // file given by its path
-    opened = %t;
-    fil = fd;
-    [fd,ierr] = mopen(fil,'wt');
-    if ierr ~= 0 then 
-      error(999,msprintf(gettext("%s: Cannot open file %s.\n"),'mputl',fil));
-    end
-  else // file given by its logical unit
-    opened = %f;
+if type(fd) == 10 then // file given by its path
+  opened = %t;
+  fil = fd;
+  [fd,ierr] = mopen(fil,'wt');
+  if ierr ~= 0 then 
+    error(999,msprintf(gettext("%s: Cannot open file %s.\n"),'mputl',fil));
   end
-end  
+else // file given by its logical unit
+  opened = %f;
+end
 
 // checks that file is not read only
 // units,typ,nams,mod,swap

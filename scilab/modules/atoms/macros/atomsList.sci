@@ -15,7 +15,7 @@ function atomsList()
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
-	if ~ exists("atoms_internalslib") then
+	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
@@ -31,7 +31,7 @@ function atomsList()
 	// Get the list of available toolboxes
 	// =========================================================================
 	
-	packages_struct    = atomsGetTOOLBOXES();
+	packages_struct    = atomsDESCRIPTIONget();
 	
 	packages_list      = getfield(1,packages_struct);
 	packages_list(1:2) = [];
@@ -56,7 +56,7 @@ function atomsList()
 		this_package_version = this_package_versions(1);
 		
 		// Get the details of this toolbox
-		this_package_details = atomsToolboxDetails(this_package_name,this_package_version);
+		this_package_details = atomsToolboxDetails([this_package_name,this_package_version]);
 		this_package_summary = this_package_details("Summary");
 		
 		packages_disp        = [ packages_disp ; this_package_name this_package_summary ];

@@ -47,12 +47,12 @@ cd path</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    chdir(TMPDIR);
-    pwd
-    cd 
-    cd SCI
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+chdir(TMPDIR);
+pwd
+cd 
+cd SCI
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

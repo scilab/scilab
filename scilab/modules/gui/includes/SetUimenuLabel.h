@@ -12,7 +12,7 @@
 
 #ifndef __SET_UIMENU_LABEL_H__
 #define __SET_UIMENU_LABEL_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUimenuLabel(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
+GUI_IMPEXP int SetUimenuLabel(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif

@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-    <synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]])</synopsis>
+    <synopsis>mfile2sci(M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Paramètres</title>
@@ -83,7 +83,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>prettyprint</term>
+        <term>prettyprintoutput</term>
         <listitem>
           <para>Flag booléen, si il vaut %T le code généré est réarrangé. Valeur par défaut : %F</para>
         </listitem>
@@ -149,8 +149,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Création d'une fichier .m simple
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  '[m,n] = size(A);'
@@ -173,16 +172,19 @@ write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  'else'
  '    B = A;'
  'end']);
+
 // Conversion en Scilab
 mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
+
 // Affichage du code
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
+
 // get it into scilab
 exec(TMPDIR+'/rot90.sci')
+
 // Exécution du code
 m=rand(4,2);rot90(m,1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

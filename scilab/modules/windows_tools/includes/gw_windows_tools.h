@@ -14,25 +14,25 @@
 #ifndef __GW_WINDOWS_TOOLS_H__
 #define __GW_WINDOWS_TOOLS_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_windows_tools.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_windows_tools(void);
+WINDOWS_TOOLS_IMPEXP int gw_windows_tools(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-int sci_winopen(char *fname,unsigned long l);
-int sci_winqueryreg(char *fname,unsigned long l);
-int sci_findfileassociation(char *fname,unsigned long l);
-int sci_dos(char *fname,unsigned long l);
-int sci_mcisendstring(char *fname,unsigned long l);
-int sci_oemtochar(char *fname,unsigned long l);
-int sci_chartooem(char *fname,unsigned long l);
-int sci_consolebox(char *fname,unsigned long l);
-int sci_win64(char *fname,unsigned long l);
-int sci_istssession(char *fname,unsigned long l);
-int sci_getsystemmetrics(char *fname,unsigned long l);
-int sci_createGUID(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_winopen(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_findfileassociation(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_mcisendstring(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_oemtochar(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_chartooem(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_consolebox(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_istssession(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_getsystemmetrics(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname,unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

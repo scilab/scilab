@@ -108,8 +108,15 @@ void createScilabTMPDIR(void)
 		static char bufenv[PATH_MAX + 16];
 		first++;
 
+#ifdef __APPLE__
+                /* /tmp is a symbolic link to /private/tmp under MacOS */
+                realpath("/tmp/", tmp_dir);
+		sprintf(tmp_dir,"%s/SD_%d_",tmp_dir, (int) getpid());
+#else
 		sprintf(tmp_dir,"/tmp/SD_%d_",(int) getpid());
+#endif
 		createdirectory(tmp_dir) ;
+
 		sprintf(bufenv,"TMPDIR=%s",tmp_dir);
 		putenv(bufenv);
 	}
@@ -136,5 +143,10 @@ char *getTMPDIR(void)
 void C2F(tmpdirc)(void)
 {
 	removedir(tmp_dir);
+}
+/*--------------------------------------------------------------------------*/
+wchar_t *getTMPDIRW(void)
+{
+	return to_wide_string(tmp_dir);
 }
 /*--------------------------------------------------------------------------*/

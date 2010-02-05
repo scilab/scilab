@@ -7,13 +7,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // get the list of repositories
 
-function repositories = atomsRepositoryList(level)
+function repositories = atomsRepositoryList(section)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
-	if ~ exists("atoms_internalslib") then
+	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
@@ -30,35 +32,42 @@ function repositories = atomsRepositoryList(level)
 	// Check input argument type (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (type(level) <> 10) then
+	if (rhs==1) & (type(section) <> 10) then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument dimension (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (size(level,"*")<>1) then
+	if (rhs==1) & (size(section,"*")<>1) then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument values (if any)
 	// =========================================================================
 	
-	if (rhs==1) & (and(level<>["user","allusers","official"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositoryList",1));
+	if (rhs==1) & (and(section<>["all","user","allusers","official"])) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositoryList",1));
+	end
+	
+	// Default value of section
+	// =========================================================================
+	
+	if rhs==0 then
+		section = "all";
 	end
 	
 	// Define the needed paths
 	// =========================================================================
 	
 	official_repositories = pathconvert(SCI+"/modules/atoms/etc/repositories",%F);
-	allusers_repositories = pathconvert(SCI+"/.atoms/repositories",%F);
-	user_repositories     = pathconvert(SCIHOME+"/atoms/repositories",%F);
+	allusers_repositories = atomsPath("system","allusers") + "repositories";
+	user_repositories     = atomsPath("system","user")     + "repositories";
 	
 	// official repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "official")) then
+	if or(section == ["all";"official"]) then
 		if fileinfo(official_repositories) <> [] then
 			url_list = mgetl(official_repositories);
 			for i=1:size(url_list,"*")
@@ -70,7 +79,7 @@ function repositories = atomsRepositoryList(level)
 	// All users repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "allusers")) then
+	if or(section == ["all";"allusers"]) then
 		if fileinfo(allusers_repositories) <> [] then
 			url_list = mgetl(allusers_repositories);
 			for i=1:size(url_list,"*")
@@ -82,13 +91,28 @@ function repositories = atomsRepositoryList(level)
 	// User repositories
 	// =========================================================================
 	
-	if (rhs == 0) | ((rhs == 1) & (level == "user")) then
+	if or(section == ["all";"user"]) then
 		if fileinfo(user_repositories) <> [] then
 			url_list = mgetl(user_repositories);
 			for i=1:size(url_list,"*")
 				repositories = [ repositories ; url_list(i)  "user" ];
 			end
 		end
+	end
+	
+	// Filter
+	// =========================================================================
+	if atomsGetConfig("offLine") == "True" then
+		
+		repositories_in = repositories;
+		repositories    = [];
+		
+		for i=1:size(repositories_in(:,1),"*")
+			if regexp(repositories_in(i,1),"/^(http|ftp):\/\//","o") <> 1 then
+				repositories = [ repositories ; repositories_in(i,:) ];
+			end
+		end
+		
 	end
 	
 endfunction

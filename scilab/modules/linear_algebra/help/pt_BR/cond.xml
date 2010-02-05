@@ -58,12 +58,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=testmatrix('hilb',6);
 cond(A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

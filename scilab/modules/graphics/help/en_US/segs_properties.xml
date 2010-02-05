@@ -160,7 +160,7 @@
         <listitem>
           <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant edge.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -168,7 +168,7 @@
         <listitem>
           <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant face.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -215,32 +215,30 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-10,-10;10,10];
+x=2*%pi*(0:7)/8;
+xv=[2*sin(x);9*sin(x)];
+yv=[2*cos(x);9*cos(x)];
+xsegs(xv,yv,1:8)
 
-   a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-10,-10;10,10];
-   x=2*%pi*(0:7)/8;
-   xv=[2*sin(x);9*sin(x)];
-   yv=[2*cos(x);9*cos(x)];
-   xsegs(xv,yv,1:8)
+s=a.children
+s.arrow_size=1;
+s.segs_color=15:22;
+for j=1:2
+  for i=1:8
+    h=s.data(i*2,j);
+    s.data(i*2,j)=s.data(i*2-1,j);
+    s.data(i*2-1,j)=  h;
+  end
+end
 
-   s=a.children
-   s.arrow_size=1;
-    s.segs_color=15:22;
-    for j=1:2
-      for i=1:8
-        h=s.data(i*2,j);
-        s.data(i*2,j)=s.data(i*2-1,j);
-        s.data(i*2-1,j)=  h;
-       end
-    end
+s.segs_color=5; //set all the colors to 5
 
-   s.segs_color=5; //set all the colors to 5
-
-   s.clip_box=[-4,4,8,8];
-   a.thickness=4;
-   xrect(s.clip_box);
-
+s.clip_box=[-4,4,8,8];
+a.thickness=4;
+xrect(s.clip_box);
  ]]></programlisting>
   </refsection>
   <refsection>

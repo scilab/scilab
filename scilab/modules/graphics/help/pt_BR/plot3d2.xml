@@ -330,21 +330,21 @@ plot3d2(X,Y,Z, &lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
 Y = cos(u)'*sin(v);
 Z = sin(u)'*ones(v);
 plot3d2(X,Y,Z);
- // apenas no novo modo de gráficos 
- e=gce();
+// apenas no novo modo de gráficos 
+e=gce();
 e.color_mode=4; // mudando a cor
 f=e.data;
 TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,10*(f.z)+1);
 e.data=TL;
-e.color_flag=2;  </programlisting>
+e.color_flag=2;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

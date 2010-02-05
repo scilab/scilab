@@ -535,7 +535,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // inicialização de x
 x=[0:0.1:2*%pi]';
 //esboço simples
@@ -551,7 +551,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
 //múltiplos esboços com legendas dados tiques + estilo
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
-  [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
+       [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
 // isovisualização
 clf();
 plot2d(x,sin(x),1,frameflag= 4);
@@ -587,7 +587,7 @@ leg = a.children(2); // armazena manipulador de legenda em leg
 leg.font_style = 9; 
 leg.line_mode = "on";
 a.isoview='off';
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

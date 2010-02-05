@@ -50,12 +50,12 @@ extern "C"
 	/**
 	* public static native void sendDoubleMatrix(SciDoubleMatrix matrix); 
 	*/
-	JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix, int* _piKey);
+	JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
 	/**
 	* public static native void sendComplexMatrix (SciComplexMatrix matrix); 
 	*/
-	JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix, int* _piKey);
+	JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
 	/**
 	* public static native void receiveComplexMatrix (SciComplexMatrix matrix); 

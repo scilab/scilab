@@ -65,14 +65,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
 format("v") //retoma o formato padrão
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -80,14 +80,18 @@
     <para>Minimax approximation of a frequency domain magnitude response. The
     approximation takes the form</para>
 
-    <programlisting> h = sum[a(i)*cos(weight)], i=1:n</programlisting>
+    <programlisting role = ""><![CDATA[ 
+h = sum[a(i)*cos(weight)], i=1:n
+ ]]></programlisting>
 
     <para>An FIR, linear-phase filter can be obtained from the the output of
     <literal>remez</literal> by using the following commands:</para>
 
-    <programlisting>  hn(1:nc-1)=an(nc:-1:2)/2;
-  hn(nc)=an(1);
-  hn(nc+1:2*nc-1)=an(2:nc)/2;   </programlisting>
+    <programlisting role = ""><![CDATA[ 
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+ ]]></programlisting>
 
     <para>This function is mainly intended to be called by the <link
     linkend="remezb">remezb function</link>.</para>
@@ -130,16 +134,18 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">      nc=21;
-      ngrid=nc*250;
-      fgrid=.5*(0:(ngrid-1))/(ngrid-1);
-      mag(1:ngrid/2)=ones(1:ngrid/2);
-      mag(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
-      weight=ones(fgrid);
-      guess=round(1:ngrid/nc:ngrid);
-      guess(nc+1)=ngrid;
-      guess(nc+2)=ngrid;
-      an=remez(guess,mag,fgrid,weight);</programlisting>
+    <programlisting role="example"><![CDATA[ 
+nc=21;
+ngrid=nc*250;
+fgrid=.5*(0:(ngrid-1))/(ngrid-1);
+mag(1:ngrid/2)=ones(1:ngrid/2);
+mag(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+weight=ones(fgrid);
+guess=round(1:ngrid/nc:ngrid);
+guess(nc+1)=ngrid;
+guess(nc+2)=ngrid;
+an=remez(guess,mag,fgrid,weight);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

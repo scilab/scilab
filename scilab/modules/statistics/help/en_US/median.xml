@@ -70,8 +70,7 @@ y=median(x,dim)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2,10;7,7.1,7.01];
 median(A)
 median(A,'r')
@@ -79,7 +78,7 @@ median(A,'c')
 A=matrix([-9 3 -8 6 74 39 12 -6 -89 23 65 34],[2,3,2]);
 median(A,3)
 median(A,'m')
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -11,6 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#ifndef __MSGS_H__
+#define __MSGS_H__
+
+#include "dynlib_output_stream.h"
 
 /**
  * @TODO : comment
@@ -19,7 +23,7 @@
  * @param ierr  
  * @return <ReturnValue>
  */
-int C2F(msgs)(int *n, int *ierr);
+OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
 /*
  * print a message
  * @param n int message number see modules/output_stream/src/c/msgs.c 
@@ -36,3 +40,5 @@ void Msgs(int n,int ierr);
  * @return same as sprintf
  */
 int printToBuffer(const char* format,...);
+
+#endif /* __MSGS_H__ */

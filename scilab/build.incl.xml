@@ -14,14 +14,23 @@
 	<!-- The building directory -->
 	<property name="build.dir" location="build/"/>
 	
+	<!-- The building test directory -->
+	<property name="build.test.dir" location="build/test"/>
+	
 	<!-- Where builded classes will be generated -->
 	<property name="classes.dir" location="${build.dir}/classes" />
+	
+	<!-- Where builded test classes will be generated -->
+	<property name="classes.test.dir" location="${build.test.dir}/classes" />
 	
 	<!-- Where we store cache files -->
 	<property name="cache.dir" location="${build.dir}/cachefile" />
 	
 	<!-- Where we can find the sources -->
 	<property name="src.dir"  location="src/java/" />
+
+	<!-- Where we can find the test sources -->
+	<property name="src.test.dir"  location="tests/unit_tests/" />
 	
 	<!-- Check style definitions -->
 	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />
@@ -39,12 +48,26 @@
 
 	<path id="checkstyle.classpath">
 		<pathelement location="${checkstyle.jar}"/>
+                <pathelement location="${commons-logging.jar}"/>
+                <pathelement location="${commons-beanutils.jar}"/>
+                <pathelement location="${antlr.jar}"/>
 	</path>
-	
+
+	<path id="unittest.classpath">
+		<pathelement location="${testng.jar}"/>
+		<pathelement location="${bsh.jar}"/> 
+		<pathelement location="${junit.jar}"/>
+		<pathelement location="${qdox.jar}"/>
+	</path>
+  
+
+
 	<path id="compile.classpath">
 	
-	  <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
-	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
+		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
+		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
+		<pathelement location="${library.xpad.dir}/${library.xpad.name}"/>
+		<pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
 		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
 		<pathelement location="${library.completion.dir}/${library.completion.name}"/>
@@ -59,7 +82,7 @@
 		<pathelement location="${commons-logging.jar}"/>
 		
 		<pathelement location="${flexdock.jar}"/>
-		
+
 		<pathelement location="${gluegen.jar}"/>
 		
 		<pathelement location="${jrosetta-API.jar}"/>
@@ -71,6 +94,8 @@
 		<pathelement location="${jhdf5.jar}"/>
 		
 		<pathelement location="${jhall.jar}"/>
+		
+		<pathelement location="${jgraphx.jar}"/>
 
 	<!-- Only usefull for the documentation -->	
 		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
@@ -80,7 +105,13 @@
 
 		<pathelement location="${fop.jar}"/>
 
+		<pathelement location="${avalon-framework.jar}"/>
+
+		<pathelement location="${avalon-framework-impl.jar}"/>
+
 		<pathelement location="${jeuclid-core.jar}"/>
+
+		<pathelement location="${jlatexmath.jar}"/>
 	</path>
 
 	<taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
@@ -123,9 +154,22 @@
 	<target name="checkstyle-clean">
 		<delete dir="${checkstyle.report.dir}"/>
 	</target>
-	
+
+	<target name="test" depends="compile-test">
+	<taskdef name="testng" classpathref="unittest.classpath" classname="org.testng.TestNGAntTask" />
+	    <testng verbose="2"  haltonfailure="true">
+		  <classpath>
+		      <path refid="unittest.classpath" />
+		      <path refid="compile.classpath" />
+		      <pathelement location="${classes.test.dir}" />
+		    </classpath>
+    			 <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+	   </testng>
+	 </target>
+
 	<target name="init">
 		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${classes.test.dir}"/>
 		<mkdir dir="${build.jar.dir}"/>
 			<!-- Create the time stamp -->
 		<tstamp/>
@@ -134,6 +178,7 @@
 	<!-- Clean sources -->
 	<target name="clean" description="Clean built files">
 		<delete dir="${build.dir}"/>
+		<delete dir="${build.test.dir}"/>
 		<delete dir="${build.jar.dir}"/>
 		<delete file="${build.jar.dir}/${library.name}"/>
 	</target>
@@ -150,6 +195,24 @@
 			listfiles="on"
 			source="5"
 			/>
+	</target>
+	
+	<!-- Compile test sources -->
+	<target name="compile-test" description="Build tests" depends="jar">
+		<javac
+			srcdir="${src.test.dir}" 
+			destdir="${classes.test.dir}" 
+			deprecation="on"
+			debug="off"
+			verbose="off"
+			listfiles="on"
+			source="5"
+			>
+		  <classpath>
+		      <path refid="unittest.classpath" />
+			  <path refid="compile.classpath" />
+		    </classpath>
+			</javac>
 	</target>
 
 	<!-- Create the jar -->

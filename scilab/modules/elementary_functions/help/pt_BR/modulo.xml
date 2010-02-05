@@ -72,14 +72,12 @@ i=pmodulo(n,m)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 n=[1,2,10,15];m=[2,2,3,5];
 modulo(n,m)
 
 modulo(-3,9)
 pmodulo(-3,9)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

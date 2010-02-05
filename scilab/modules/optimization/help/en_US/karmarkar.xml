@@ -121,9 +121,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-// n=10;p=20;
-// a=rand(n,p);c=rand(p,1);x0=abs(rand(p,1));b=a*x0;x1=karmarkar(a,b,c,x0);
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+n=10;p=20;
+a=rand(n,p);
+c=rand(p,1);
+x0=abs(rand(p,1));
+b=a*x0;
+x1=karmarkar(a,b,c,x0);
+ ]]></programlisting>
   </refsection>
 </refentry>

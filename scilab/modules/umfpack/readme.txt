@@ -76,7 +76,7 @@ quickly a minor problem. We had also nice e-mail exchanges. Thanks Sivan !
 
 UMFPACK seems to be the fastest free sparse solver for non // computer (there is
 currently no // UMFPACK version  while SuperLU have  scalar  and // one's).  The
-same seems also true for the TAUCS snmf routines (for symetric positive matrices). 
+same seems also true for the TAUCS snmf routines (for symmetric positive matrices). 
 The toolbox contains also the following utility scilab macros :
 
  PlotSparse   -> to plot the sparse pattern of a matrix

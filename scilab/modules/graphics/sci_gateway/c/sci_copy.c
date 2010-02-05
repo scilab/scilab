@@ -17,7 +17,7 @@
 /* desc : interface for copy routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_copy.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "CloneObjects.h"

@@ -66,10 +66,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 tanhm(atanhm(A))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

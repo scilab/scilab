@@ -1,7 +1,7 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU , Allan CORNET
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,11 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 /*------------------------------------------------------------------------*/
 #include <string.h>
-#include <stdio.h>
-#include <ctype.h>
 #include "gw_string.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -22,331 +19,368 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"
+#include "api_scilab.h"
+#include "strsplitfunction.h"
 /*----------------------------------------------------------------------------*/
-extern int C2F(icopy)(int *nbelements, int *arrayInput, int *incBetweenElementsInputs,
-					  int *arrayOutput, int *incBetweenElementsOutputs);
-/* fortran function defined in SCI/modules/elementary_functions/src/fortran */
-/*----------------------------------------------------------------------------*/
-int sci_strsplit(char *fname,unsigned long fname_len)
+int sci_strsplit(char *fname, int* _piKey)
 {
-	/* Check Input & Output parameters */
-	CheckRhs(2,2);
-	CheckLhs(1,1);
+	SciErr sciErr;
+	int lw = 0;
+	int *piAddressVarOne = NULL;
+	wchar_t *pStVarOne = NULL;
+	int lenStVarOne = 0;
+	int m = 0, n = 0;
+	int iType1		= 0;
+	int iType2		= 0;
+	int iType3		= 0;
 
-	if (VarType(1) == sci_matrix) /* strsplit([]) */
+	/* Check Input & Output parameters */
+	CheckRhs(1,3);
+	CheckLhs(1,2);
+
+	if (Rhs == 3)
 	{
-		int m = 0, n = 0, l = 0;
-		
-		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-		if ( (m == 0) && (n == 0) )
+		int *piAddressVarThree = NULL;
+		double *pdVarThree = NULL;
+
+		int *piAddressVarTwo = NULL;
+
+		sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+		if(sciErr.iErr)
 		{
-			/* returns [] */
-			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
+			printError(&sciErr, 0);
+			return 0;
 		}
-		else
+
+		sciErr = getVarType(_piKey, piAddressVarThree, &iType3);
+		if(sciErr.iErr)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"),fname,1);
+			printError(&sciErr, 0);
+			return 0;
 		}
+
+		if (iType3 != sci_matrix)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 3);
+			return 0;
+		}
+
+		sciErr = getVarDimension(_piKey, piAddressVarThree, &m, &n);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if ( (m != n) && (n != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 3);
+			return 0;
+		}
+
+		// get value of third argument
+		sciErr = getMatrixOfDouble(_piKey, piAddressVarThree, &m, &n, &pdVarThree);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+
+		if ( ((int)pdVarThree[0] < 1) && ((int)pdVarThree[0] != -1) )
+		{
+			Scierror(999,_("%s: Wrong value for input argument #%d: A value > 0 expected.\n"), fname, 3);
+			return 0;
+		}
+
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if (iType2 != sci_strings) 
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
+			return 0;
+		}
+	}
+
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
 		return 0;
 	}
-	else if ( (VarType(1) == sci_strings) && (VarType(2) == sci_matrix) )
-	{
-		/* split works directly on scilab code and not on strings :( */
-		/* interface written with stack1 */
-		/* faster but very difficult to understand and debug :( */
-		/* benchmark : Windows Vista C2D 6600 2.4 Ghz */
-		/* 
-		text     = mgetl(SCI+"/modules/string/tests/benchmarks/ascii_text.txt");
-		text_cat = strcat(text);
-		nb_run = 10000;
-		timer();
-		for i = 1:nb_run
-		a = strsplit(text_cat,[1000 2000 3000 4000 5000 6000 7000]);
-		end
-		timing = timer();
-		returned_time = timing * 1000000 / nb_run;
-		*/
-
-		/* Scilab 4.1.2 : 140 s */
-		/* Scilab strsplit stack1 (current version) : 142 s */
-		/* Scilab strsplit stack3 : 12200 s */
-		/* slower because with stack3, scilab converts scilab code to strings and strings to code */
-
-		#define  get_value_param2(pos) (*stk(l2 + pos))
-		#define  POSITION_FIRST_CHAR 1
-
-		int i = 0;
-
-		int l1 = 0, il1 = 0; /* variables paramater 1 */
-		int lengthInputString = 0;
-		BOOL bParam1IsaRef = FALSE;
-
-		int l2 = 0, il2 = 0; /* variables paramater 2 */
-		int m2n2 = 0; /* (m2 * n2) size of param2 */
-		BOOL bParam2IsaRef = FALSE;
-
-		int ilr = 0; /* variable paramater output */
-		int  id1 = 0;
 		
-		int one = 1;
+	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-		int lw = C2F(vstk).lstk[Top];
-
-		/* check if parameter two is a reference */
-		il2 = iadr( C2F(vstk).lstk[Top - 1] );
-		bParam2IsaRef = (*istk(il2) < 0);
-		if (bParam2IsaRef) il2 = iadr( *istk(il2 + 1) );
-
-		/* get number elements in param2 */
-		m2n2 = *istk(il2 + 1) * *istk(il2 + 2);
-
-		l2 = sadr(il2 + 4);
-
-		/* Check second parameter (a matrix) is sorted (increasing) */
-		if (get_value_param2(0) < POSITION_FIRST_CHAR) 
+	if (iType1 == sci_matrix)
+	{
+		sciErr = getVarDimension(_piKey, piAddressVarOne, &m, &n);
+		if(sciErr.iErr)
 		{
-			Err = 2;
-			Error(116);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		for (i = 1; i <= m2n2 - 1; ++i) 
+		if ( (m != n) && (n != 0) ) 
 		{
-			if ( get_value_param2(i) < get_value_param2(i-1) ) 
-			{
-				Err = 2;
-				Error(99);
-				return 0;
-			}
-		}
-
-		/* returns @ Top */
-		--Top;
-
-		/* check if parameter one is a reference */
-		il1 = iadr( C2F(vstk).lstk[Top - 1] );
-		bParam1IsaRef = (*istk(il1) < 0);
-
-		if (bParam1IsaRef) il1 = iadr( *istk(il1+1) );
-
-		id1 = il1 + 4;
-		l1 = id1 + 2;
-		lengthInputString = *istk(id1+1) - 1;
-
-		/* check that last value if >=  than length of input string */
-		if ( get_value_param2(m2n2 - 1) >= (double) lengthInputString ) 
-		{
-			Err = 2;
-			Error(116);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 			return 0;
 		}
 
-		if (bParam1IsaRef && bParam2IsaRef) 
-		{
-			ilr = iadr ( C2F(vstk).lstk[Top - 1] );
-		}
-		else 
-		{
-			int j = 0;
-			ilr = iadr (lw);
-			j = ilr + 4 + m2n2 + 2 + lengthInputString;
+		// strsplit([], ...) returns []
 
-			Err = sadr(j) - C2F(vstk).lstk[Bot - 1];
-			if (Err > 0) 
+		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 0, 0, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(1) = Rhs + 1;
+		C2F(putlhsvar)();
+		return 0;
+	}
+
+	if (iType1 != sci_strings)
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+		return 0;
+	}
+
+	if ( (m != n) && (n != 1) ) 
+	{
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+		return 0;
+	}
+
+	if (Rhs == 2)
+	{
+		int *piAddressVarTwo = NULL;
+
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		sciErr = getVarType(_piKey, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if (iType2 == sci_matrix)
+		{
+			int m2 = 0, n2 = 0;
+			double *pdVarTwo = NULL;
+
+			if (Lhs == 2)
 			{
-				/* stacksize exceeded */
-				Error(17);
+				Scierror(78,_("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
 				return 0;
 			}
+
+			// get lenStVarOne
+			sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			// get value of first argument only now
+			pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
+			if (pStVarOne == NULL)
+			{
+				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				return 0;
+			}
+			
+			sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			// get value of second argument
+			sciErr = getMatrixOfDouble(_piKey, piAddressVarTwo, &m2, &n2, &pdVarTwo);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			if ( (m2 == 1) || (n2 == 1) ) 
+			{
+				int i = 0;
+				int m_out = 0, n_out = 0;
+				strsplit_error ierr = STRSPLIT_NO_ERROR;
+
+				wchar_t **results = strsplitfunction(pStVarOne, pdVarTwo, m2 * n2, &ierr);
+
+				switch (ierr)
+				{
+				case STRSPLIT_NO_ERROR:
+					{
+						m_out = (m2 * n2) + 1;
+						n_out = 1;
+
+						sciErr = createMatrixOfWideString(_piKey, Rhs + 1, m_out, n_out, results);
+						if(sciErr.iErr)
+						{
+							printError(&sciErr, 0);
+							return 0;
+						}
+
+						LhsVar(1) = Rhs + 1;
+						C2F(putlhsvar)();
+
+						freeArrayOfWideString(results, m_out);
+					}
+					break;
+				case STRSPLIT_INCORRECT_VALUE_ERROR:
+					{
+						Scierror(116,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
+					}
+					break;
+				case STRSPLIT_INCORRECT_ORDER_ERROR:
+					{
+						Scierror(99,_("%s: Elements of %dth argument must be in increasing order.\n"), fname, 2);
+					}
+					break;
+				case STRSPLIT_MEMORY_ALLOCATION_ERROR:
+					{
+						Scierror(999,_("%s : Memory allocation error.\n"), fname);
+					}
+					break;
+				default:
+					{
+						Scierror(999,_("%s: error.\n"),fname);
+					}
+					break;
+				}
+			}
+			else
+			{
+				Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
+			}
+
+			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+
+			return 0;
 		}
-
-		/* create output strings matrix , see C2F(crematvar) stack1.c */
-		*istk(ilr) = sci_strings;
-		*istk(ilr + 1) = m2n2 + 1;
-		*istk(ilr + 2) = 1;
-		*istk(ilr + 3) = 0;
-		*istk(ilr + 4) = 1;
-		
-		for (i = 1; i <= m2n2; ++i) 
+		else if (iType2 != sci_strings)
 		{
-			*istk(ilr + 4 + i) = (int) (*stk(l2 + i - 1) + 1);
+			Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 2);
+			return 0;
 		}
-
-		/* put values on stack */
-		*istk(ilr + 5 + m2n2) = lengthInputString + 1;
-		C2F(icopy)(&lengthInputString, istk(l1), &one, istk(ilr + nsiz + m2n2), &one);
-
-		if (bParam1IsaRef && bParam2IsaRef) 
+		else /* sci_strings */
 		{
-			int j = ilr + nsiz + m2n2 + lengthInputString;
-			C2F(vstk).lstk[Top] = sadr(j);
-		}
-		else 
-		{
-			int j = 0;
-			int il = iadr( C2F(vstk).lstk[Top - 1]);
+			int m = 0, n = 0;
 
-			j = m2n2 + nsiz + lengthInputString;
-			C2F(icopy)(&j, istk(ilr), &one, istk(il), &one);
+			sciErr = getVarDimension(_piKey, piAddressVarTwo, &m, &n);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
 
-			j = il + nsiz + m2n2 + lengthInputString;
-			C2F(vstk).lstk[Top] = sadr(j);
+			if ( (m != n) && ((m * n) != 1) )
+			{
+				int k = 0;
+				wchar_t **pStVarTwo = NULL;
+				int *lenStVarTwo = NULL;
+
+				lenStVarTwo = (int *)MALLOC(sizeof(int) * (m * n));
+				if (lenStVarTwo == NULL)
+				{
+					Scierror(999,_("%s : Memory allocation error.\n"), fname);
+					return 0;
+				}
+				
+				// get lenStVarTwo
+				sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(sciErr.iErr)
+				{
+					printError(&sciErr, 0);
+					return 0;
+				}
+
+				pStVarTwo = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m * n));
+				if (pStVarTwo== NULL)
+				{
+					if (lenStVarTwo) {FREE(lenStVarTwo); lenStVarTwo = NULL;}
+					Scierror(999,_("%s : Memory allocation error.\n"), fname);
+					return 0;
+				}
+
+				for (k = 0; k < m * n; k++)
+				{
+					pStVarTwo[k] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo[k] + 1));
+					if (pStVarTwo[k] == NULL)
+					{
+						freeArrayOfWideString(pStVarTwo, m * n);
+						Scierror(999,_("%s : Memory allocation error.\n"), fname);
+						return 0;
+					}
+				}
+
+				sciErr = getMatrixOfWideString(_piKey, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(sciErr.iErr)
+				{
+					printError(&sciErr, 0);
+					return 0;
+				}
+
+				/* checks that 2nd parameter is not a array of regexp pattern */
+				if (pStVarTwo)
+				{
+					for (k = 0; k < m * n; k++)
+					{
+						if (pStVarTwo[k])
+						{
+							int lenStr = (int)wcslen(pStVarTwo[k]);
+							if (lenStr > 2)
+							{
+								if ( (pStVarTwo[k][0] == '/') && (pStVarTwo[k][lenStr - 1] == '/') )
+								{
+									Scierror(999,_("%s: Wrong value for input argument #%d: a string expected, not a regexp pattern.\n"), fname, 2);
+									if (lenStVarTwo) {FREE(lenStVarTwo); lenStVarTwo = NULL;}
+									freeArrayOfWideString(pStVarTwo, m * n);
+									return 0;
+								}
+							}
+						}
+					}
+				}
+				if (lenStVarTwo) {FREE(lenStVarTwo); lenStVarTwo = NULL;}
+				freeArrayOfWideString(pStVarTwo, m * n);
+			}
 		}
 	}
-	else
-	{
-		if(VarType(1) != sci_strings)
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
-		}
-	}
+
+	// others cases , we call %_strsplit macro
+	C2F(overload)(&lw, fname, strlen(fname));
+
 	return 0;
 }
 /*----------------------------------------------------------------------------*/
-//int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
-//{
-//	CheckRhs(2,2);
-//	CheckLhs(1,1);
-//
-//	if ( (VarType(1)== sci_strings) && (VarType(2)== sci_matrix) )
-//	{
-//		int m1 = 0, n1 = 0, l1 = 0;
-//
-//		int m2 = 0, n2 = 0, l2 = 0;
-//		int m2n2 = 0;
-//
-//		char *Input_String = NULL;
-//		int *Input_Matrix = NULL;
-//
-//		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-//		Input_String = cstk(l1);
-//
-//		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-//		m2n2 = m2 * n2;
-//		Input_Matrix = istk(l2);
-//
-//		if ( (m2 != 1) && (n2 != 1) && (m2n2 != 1) )
-//		{
-//			Scierror(999,_("%s : Wrong type for second input argument: vector expected.\n"),fname);
-//			return 0;
-//		}
-//
-//		if (m2n2 == 0)
-//		{
-//			int outIndex = 0;
-//			CreateVar( Rhs+1,STRING_DATATYPE,&m1,&n1,&outIndex);
-//			strcpy(cstk(outIndex), Input_String );
-//			LhsVar(1) = Rhs+1;
-//			C2F(putlhsvar)();
-//		}
-//		else
-//		{
-//			int i = 0;
-//			int j = 0;
-//			char **Output = NULL;
-//			int m_out = 0, n_out = 0;
-//
-//			j = 0;
-//			for (i = 0; i < m2n2 ; i++)
-//			{
-//				/* Check input matrix */
-//				if ( (Input_Matrix[i] <= 0) || (Input_Matrix[i]>= m1) )
-//				{
-//					freeArrayOfString(Output,i);
-//					Scierror(116,_("%s : 2th argument has incorrect value.\n"),fname);
-//					return 0;
-//				}
-//
-//				if ( i < (m2n2 - 1) )
-//				{
-//					if (Input_Matrix[i] >Input_Matrix[i+1])
-//					{
-//						freeArrayOfString(Output,i);
-//						Scierror(99,"%s : elements of 2th must be in increasing order!",fname);
-//						return 0;
-//					}
-//				}
-//
-//				if (i == 0)
-//				{
-//					Output = (char**)MALLOC(sizeof(char*)*(m2n2 + 1) );
-//					if (Output == NULL)
-//					{
-//						Scierror(999,_("%s: No more memory.\n"),fname);
-//						return 0;
-//					}
-//
-//					Output[i] = (char*)MALLOC(sizeof(char)*(Input_Matrix[i]+1));
-//					if (Output[i] == NULL)
-//					{
-//						freeArrayOfString(Output,i);
-//						Scierror(999,_("%s: No more memory.\n"),fname);
-//						return 0;
-//					}
-//					strncpy(Output[i],&Input_String[j],Input_Matrix[i]);
-//				}
-//				else
-//				{
-//					Output[i] = (char*)MALLOC(sizeof(char)*((Input_Matrix[i]-Input_Matrix[i-1])+1));
-//					if (Output[i] == NULL)
-//					{
-//						freeArrayOfString(Output,i);
-//						Scierror(999,_("%s: No more memory.\n"),fname);
-//						return 0;
-//					}
-//					strncpy(Output[i],&Input_String[j],Input_Matrix[i]-Input_Matrix[i-1]);
-//				}
-//
-//				j = Input_Matrix[i];
-//			}
-//			
-//			Output[m2n2] = (char*)MALLOC(sizeof(char)*(Input_Matrix[m2n2]+1));
-//			if (Output[m2n2] == NULL)
-//			{
-//				freeArrayOfString(Output,m2n2);
-//				Scierror(999,_("%s: No more memory.\n"),fname);
-//				return 0;
-//			}
-//			strncpy(Output[m2n2],&Input_String[j],Input_Matrix[m2n2]-Input_Matrix[m2n2-1]);
-//			
-//			m_out = m2n2 + 1;
-//			n_out = 1;
-//
-//			CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE, &m_out, &n_out, Output );
-//			LhsVar(1) = Rhs + 1 ;
-//			C2F(putlhsvar)();
-//			freeArrayOfString(Output,m_out);
-//		}
-//	}
-//	else if (VarType(1) == sci_matrix)
-//	{
-//		int m = 0;
-//		int n = 0;
-//		int l = 0;
-//
-//		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-//		if ( (m == 0) && (n == 0) )
-//		{
-//			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-//			LhsVar(1) = Rhs+1 ;
-//			C2F(putlhsvar)();
-//		}
-//		else
-//		{
-//			Scierror(999,_("%s : Wrong type for first input argument: string expected.\n"),fname);
-//		}
-//		return 0;
-//	}
-//	else
-//	{
-//		Scierror(999,_("%s : Wrong type for input argument(s).\n"),fname);
-//	}
-//	return 0;
-//}
-///*--------------------------------------------------------------------------*/

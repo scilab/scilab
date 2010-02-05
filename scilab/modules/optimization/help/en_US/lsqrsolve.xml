@@ -358,7 +358,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // A simple example with lsqrsolve 
 a=[1,7;
    2,8
@@ -371,7 +371,6 @@ endfunction
 
 [xsol,v]=lsqrsolve([100;100],f1,3)
 xsol+a\b
-
 
 function y=fj1(x,m)
   y=a;
@@ -396,7 +395,7 @@ endfunction
 [abc,v]=lsqrsolve([10;10;10],f1,size(X,1));
 abc
 norm(v)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -406,8 +405,6 @@ norm(v)
       <member><link linkend="external">external</link></member>
 
       <member><link linkend="qpsolve">qpsolve</link></member>
-
-      <member><link linkend="linpro">linpro</link></member>
 
       <member><link linkend="optim">optim</link></member>
 

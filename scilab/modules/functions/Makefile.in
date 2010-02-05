@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscifunctions_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/functions
@@ -66,20 +64,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -107,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_la_etcdir)" \
 	"$(DESTDIR)$(libscifunctions_la_rootdir)" \
-	"$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscifunctions_la_includedir)"
+	"$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -116,16 +113,23 @@ libscifunctions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__objects_1 =
-am__objects_2 = libscifunctions_la-gw_functions.lo \
+am__objects_1 = libscifunctions_la-getmacroslist.lo \
+	libscifunctions_la-librarieslist.lo \
+	libscifunctions_la-libraryinfo.lo \
+	libscifunctions_la-searchmacroinlibraries.lo
+am__objects_2 = whereis.lo
+am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
 	libscifunctions_la-sci_getf.lo \
 	libscifunctions_la-sci_execstr.lo \
-	libscifunctions_la-sci_exec.lo
-am__objects_3 = intlib.lo intdeff.lo intgetf.lo intexecstr.lo \
+	libscifunctions_la-sci_exec.lo \
+	libscifunctions_la-sci_whereis.lo \
+	libscifunctions_la-sci_librarieslist.lo \
+	libscifunctions_la-sci_libraryinfo.lo
+am__objects_4 = intlib.lo intdeff.lo intgetf.lo intexecstr.lo \
 	intexec.lo
-am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3)
+am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3) $(am__objects_4)
 libscifunctions_la_OBJECTS = $(am_libscifunctions_la_OBJECTS)
 libscifunctions_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -154,7 +158,6 @@ SOURCES = $(libscifunctions_la_SOURCES)
 DIST_SOURCES = $(libscifunctions_la_SOURCES)
 DATA = $(libscifunctions_la_etc_DATA) $(libscifunctions_la_root_DATA) \
 	$(libscifunctions_la_sci_gateway_DATA)
-HEADERS = $(libscifunctions_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -162,6 +165,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -170,9 +174,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -233,11 +240,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -297,24 +307,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -377,7 +389,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -394,14 +405,21 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-FUNCTIONS__C_SOURCES = 
-FUNCTIONS__FORTRAN_SOURCES = 
+FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
+	src/c/librarieslist.c \
+	src/c/libraryinfo.c \
+	src/c/searchmacroinlibraries.c
+
+FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_execstr.c \
-sci_gateway/c/sci_exec.c
+sci_gateway/c/sci_exec.c \
+sci_gateway/c/sci_whereis.c \
+sci_gateway/c/sci_librarieslist.c \
+sci_gateway/c/sci_libraryinfo.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intdeff.f \
@@ -414,6 +432,8 @@ libscifunctions_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/call_scilab/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes \
@@ -421,7 +441,7 @@ libscifunctions_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifunctions.la
 libscifunctions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscifunctions_la_SOURCES = $(FUNCTIONS__C_SOURCES) $(FUNCTIONS__FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
@@ -447,10 +467,6 @@ libscifunctions_la_etc_DATA = etc/functions.quit etc/functions.start
 #### functions : gateway declaration ####
 libscifunctions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifunctions_la_sci_gateway_DATA = sci_gateway/functions_gateway.xml
-
-#### functions : include files ####
-libscifunctions_la_includedir = $(pkgincludedir)/functions
-libscifunctions_la_include_HEADERS = includes/gw_functions.h 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -588,12 +604,19 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-getmacroslist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-gw_functions.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-librarieslist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-libraryinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_deff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_exec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_execstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_getf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_lib.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_librarieslist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_libraryinfo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-sci_whereis.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_la-searchmacroinlibraries.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -615,6 +638,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscifunctions_la-getmacroslist.lo: src/c/getmacroslist.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-getmacroslist.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-getmacroslist.Tpo -c -o libscifunctions_la-getmacroslist.lo `test -f 'src/c/getmacroslist.c' || echo '$(srcdir)/'`src/c/getmacroslist.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-getmacroslist.Tpo $(DEPDIR)/libscifunctions_la-getmacroslist.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getmacroslist.c' object='libscifunctions_la-getmacroslist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-getmacroslist.lo `test -f 'src/c/getmacroslist.c' || echo '$(srcdir)/'`src/c/getmacroslist.c
+
+libscifunctions_la-librarieslist.lo: src/c/librarieslist.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-librarieslist.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-librarieslist.Tpo -c -o libscifunctions_la-librarieslist.lo `test -f 'src/c/librarieslist.c' || echo '$(srcdir)/'`src/c/librarieslist.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-librarieslist.Tpo $(DEPDIR)/libscifunctions_la-librarieslist.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/librarieslist.c' object='libscifunctions_la-librarieslist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-librarieslist.lo `test -f 'src/c/librarieslist.c' || echo '$(srcdir)/'`src/c/librarieslist.c
+
+libscifunctions_la-libraryinfo.lo: src/c/libraryinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-libraryinfo.Tpo -c -o libscifunctions_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-libraryinfo.Tpo $(DEPDIR)/libscifunctions_la-libraryinfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/libraryinfo.c' object='libscifunctions_la-libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-libraryinfo.lo `test -f 'src/c/libraryinfo.c' || echo '$(srcdir)/'`src/c/libraryinfo.c
+
+libscifunctions_la-searchmacroinlibraries.lo: src/c/searchmacroinlibraries.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-searchmacroinlibraries.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-searchmacroinlibraries.Tpo -c -o libscifunctions_la-searchmacroinlibraries.lo `test -f 'src/c/searchmacroinlibraries.c' || echo '$(srcdir)/'`src/c/searchmacroinlibraries.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-searchmacroinlibraries.Tpo $(DEPDIR)/libscifunctions_la-searchmacroinlibraries.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/searchmacroinlibraries.c' object='libscifunctions_la-searchmacroinlibraries.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-searchmacroinlibraries.lo `test -f 'src/c/searchmacroinlibraries.c' || echo '$(srcdir)/'`src/c/searchmacroinlibraries.c
 
 libscifunctions_la-gw_functions.lo: sci_gateway/c/gw_functions.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-gw_functions.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-gw_functions.Tpo -c -o libscifunctions_la-gw_functions.lo `test -f 'sci_gateway/c/gw_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_functions.c
@@ -658,6 +709,27 @@ libscifunctions_la-sci_exec.lo: sci_gateway/c/sci_exec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_exec.lo `test -f 'sci_gateway/c/sci_exec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exec.c
 
+libscifunctions_la-sci_whereis.lo: sci_gateway/c/sci_whereis.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-sci_whereis.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo $(DEPDIR)/libscifunctions_la-sci_whereis.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_whereis.c' object='libscifunctions_la-sci_whereis.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
+
+libscifunctions_la-sci_librarieslist.lo: sci_gateway/c/sci_librarieslist.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-sci_librarieslist.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_librarieslist.Tpo -c -o libscifunctions_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_librarieslist.Tpo $(DEPDIR)/libscifunctions_la-sci_librarieslist.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_librarieslist.c' object='libscifunctions_la-sci_librarieslist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
+
+libscifunctions_la-sci_libraryinfo.lo: sci_gateway/c/sci_libraryinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-sci_libraryinfo.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_libraryinfo.Tpo -c -o libscifunctions_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_libraryinfo.Tpo $(DEPDIR)/libscifunctions_la-sci_libraryinfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_libraryinfo.c' object='libscifunctions_la-sci_libraryinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_libraryinfo.lo `test -f 'sci_gateway/c/sci_libraryinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_libraryinfo.c
+
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -666,6 +738,9 @@ libscifunctions_la-sci_exec.lo: sci_gateway/c/sci_exec.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
+
+whereis.lo: src/fortran/whereis.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o whereis.lo `test -f 'src/fortran/whereis.f' || echo '$(srcdir)/'`src/fortran/whereis.f
 
 intlib.lo: sci_gateway/fortran/intlib.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intlib.lo `test -f 'sci_gateway/fortran/intlib.f' || echo '$(srcdir)/'`sci_gateway/fortran/intlib.f
@@ -747,26 +822,6 @@ uninstall-libscifunctions_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)" && rm -f $$files
-install-libscifunctions_la_includeHEADERS: $(libscifunctions_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscifunctions_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscifunctions_la_includedir)"
-	@list='$(libscifunctions_la_include_HEADERS)'; test -n "$(libscifunctions_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscifunctions_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscifunctions_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscifunctions_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscifunctions_la_include_HEADERS)'; test -n "$(libscifunctions_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscifunctions_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscifunctions_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -853,9 +908,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifunctions_la_etcdir)" "$(DESTDIR)$(libscifunctions_la_rootdir)" "$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)" "$(DESTDIR)$(libscifunctions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifunctions_la_etcdir)" "$(DESTDIR)$(libscifunctions_la_rootdir)" "$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -907,7 +962,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscifunctions_la_etcDATA \
-	install-libscifunctions_la_includeHEADERS \
 	install-libscifunctions_la_rootDATA \
 	install-libscifunctions_la_sci_gatewayDATA
 
@@ -956,7 +1010,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscifunctions_la_etcDATA \
-	uninstall-libscifunctions_la_includeHEADERS \
 	uninstall-libscifunctions_la_rootDATA \
 	uninstall-libscifunctions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -973,7 +1026,6 @@ uninstall-am: uninstall-libscifunctions_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscifunctions_la_etcDATA \
-	install-libscifunctions_la_includeHEADERS \
 	install-libscifunctions_la_rootDATA \
 	install-libscifunctions_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -983,7 +1035,6 @@ uninstall-am: uninstall-libscifunctions_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscifunctions_la_etcDATA \
-	uninstall-libscifunctions_la_includeHEADERS \
 	uninstall-libscifunctions_la_rootDATA \
 	uninstall-libscifunctions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -995,10 +1046,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1021,7 +1074,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1033,7 +1086,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1139,10 +1192,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

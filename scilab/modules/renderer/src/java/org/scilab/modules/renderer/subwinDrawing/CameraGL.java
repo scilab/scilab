@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009-2009 - DIGITEO - Pierre Lando
  * desc : Class containing the driver dependant routines position the camera
  * 
  * This file must be used under the terms of the CeCILL.
@@ -23,7 +24,7 @@ import org.scilab.modules.renderer.utils.glTools.UnitaryCubeGL;
 import javax.media.opengl.GL;
 
 /**
- * Class containing the driver dependant routines position the camera.
+ * Class containing the driver dependent routines position the camera.
  * @author Jean-Baptiste Silvy
  */
 public abstract class CameraGL extends ObjectGL {
@@ -38,13 +39,13 @@ public abstract class CameraGL extends ObjectGL {
 	/** Move viewPort to respect margins */
 	private Vector3D viewPortTranslation = new Vector3D(); 
 	
-	/** Rescale viewport to respect margins */
+	/** Rescaled viewport to respect margins */
 	private Vector3D viewPortScale = new Vector3D();
 	
-	/** Scale to put all datas between 0 and 1 */
+	/** Scale to put all data between 0 and 1 */
 	private Vector3D normalizeScale = new Vector3D();
 	
-	/** Translation to put all datas between 0 and 1. */
+	/** Translation to put all data between 0 and 1. */
 	private Vector3D normalizeTranslation = new Vector3D();
 	
 	/** center of the axes box */
@@ -105,7 +106,7 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Place the camera using alredy computed matrices
+	 * Place the camera using already computed matrices
 	 */
 	public void showCamera() {
 		GL gl = getGL();
@@ -115,6 +116,9 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
 		gl.glPushMatrix();
 		getCoordinateTransformation().update(gl);
+
+		// set the FrontFace
+		computeFrontFace();
 	}
 	
 	/**
@@ -125,7 +129,7 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Override endrawing to update coordinate transforation.
+	 * Override endDrawing to update coordinate transformation.
 	 */
 	public void endDrawing() {
 		super.endDrawing();
@@ -141,9 +145,9 @@ public abstract class CameraGL extends ObjectGL {
 	protected abstract void setViewPort();
 	
 	/**
-	 * Specify the size of teh OpenGL viewport to use
+	 * Specify the size of the OpenGL viewport to use
 	 * @param width width of the viewport in pixel
-	 * @param height heigh tof the viewPport in pixels
+	 * @param height height of the viewPport in pixels
 	 */
 	protected void setViewPortSize(double width, double height) {
 		this.viewPortWidth = width;
@@ -186,7 +190,7 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Set the parameters for positionning viewing area (specified by axes margins)
+	 * Set the parameters for positioning viewing area (specified by axes margins)
 	 * @param transX X translation of the viewing area
 	 * @param transY Y translation of the viewing area
 	 * @param scaleX X scale of the viewing area
@@ -199,27 +203,26 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Position the viewing area in order to respect Subwin position.
+	 * Position the viewing area in order to respect Subwindows position.
 	 */
 	protected void moveViewingArea() {
 		GL gl = getGL();
-		
+
 		setViewPort();
-		
+
 		// set the projection matrix with default depth range
 		// the real one will be computed after
 		setProjectionMatrix(-1.0, 1.0);
-		
-	    gl.glMatrixMode(GL.GL_MODELVIEW);
-	    gl.glLoadIdentity();
 
-	    gl.glScaled(getViewportWidth(), getViewportHeight(), 1.0);
+		gl.glMatrixMode(GL.GL_MODELVIEW);
+		gl.glLoadIdentity();
+
+		gl.glScaled(getViewportWidth(), getViewportHeight(), 1.0);
 		gl.glTranslated(viewPortTranslation.getX(), viewPortTranslation.getY(), viewPortTranslation.getZ());
 		gl.glScaled(viewPortScale.getX(), viewPortScale.getY(), viewPortScale.getZ());
-		
+
 		// save pixel coordinates of the margin box, our axes box needs to fit inside.
 		computeMarginsSize();
-		
 	}
 	
 	/**
@@ -229,7 +232,7 @@ public abstract class CameraGL extends ObjectGL {
 		// get width ad height of the viewPort
 		double[] viewPortSize = getViewPortSize();
 		
-        //marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL(), getCoordinateTransformation());
+		//marginSize = UnitaryCubeGL.getCubeScreenExtent(getGL(), getCoordinateTransformation());
 		marginSize = new double[2];
 		marginSize[0] = viewPortSize[0] * viewPortScale.getX();
 		marginSize[1] = viewPortSize[1] * viewPortScale.getY();
@@ -251,10 +254,10 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Specify which axies to revert
-	 * @param xAxisRevert set wether X axis is revert or not.
-	 * @param yAxisRevert set wether Y axis is revert or not.
-	 * @param zAxisRevert set wether Z axis is revert or not.
+	 * Specify which axis to revert
+	 * @param xAxisRevert set whether X axis is revert or not.
+	 * @param yAxisRevert set whether Y axis is revert or not.
+	 * @param zAxisRevert set whether Z axis is revert or not.
 	 */
 	public void setAxesReverse(boolean xAxisRevert, boolean yAxisRevert, boolean zAxisRevert) {
 		this.xAxisRevert = xAxisRevert;
@@ -275,7 +278,7 @@ public abstract class CameraGL extends ObjectGL {
 	
 	/**
 	 * Set the parameters for rotating the axes box.
-	 * @param centerX X coordiantes of the rotation center 
+	 * @param centerX X coordinates of the rotation center 
 	 * @param centerY Y coordinates of the rotation center
 	 * @param centerZ Z coordinates of the rotation center
 	 * @param alpha rotation angle around axe X
@@ -292,7 +295,7 @@ public abstract class CameraGL extends ObjectGL {
 	 * Set the scale used to best fit the margins.
 	 * @param scaleX X coordinate of the scale
 	 * @param scaleY Y coordinate of the scale
-	 * @param scaleZ Z cordinate of the scale
+	 * @param scaleZ Z coordinate of the scale
 	 */
 	public void setFittingScale(double scaleX, double scaleY, double scaleZ) {
 		fittingScale.setValues(scaleX, scaleY, scaleZ);
@@ -347,7 +350,7 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
-	 * Compute the scale wich will best fit the window in accordance with viewing angles.
+	 * Compute the scale which will best fit the window in accordance with viewing angles.
 	 */
 	protected abstract void computeFittingScale();
 	
@@ -364,32 +367,51 @@ public abstract class CameraGL extends ObjectGL {
 	}
 	
 	/**
+	 * @param isAxisRevert specify if the axis is revert or not.
+	 * @return Scale factor corresponding to the revert status of an axis.
+	 */
+	private float revertScale(boolean isAxisRevert) {
+		if (isAxisRevert) {
+			return -1.0f;
+		} else {
+			return 1.0f;
+		}
+	}
+	
+	/**
 	 * 
 	 *
 	 */
 	protected void revertAxes() {
-		// to be applyed on the center of the box
-		GL gl = getGL();
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ()); // translate origin back
+		if (xAxisRevert | yAxisRevert | zAxisRevert) {
+    		GL gl = getGL();
+			// To be applied on the center of the box
+			gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+			gl.glScalef(revertScale(xAxisRevert), revertScale(yAxisRevert), revertScale(zAxisRevert));
+			// translate origin back
+			gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		}
+	}
 
-		if (xAxisRevert) {
-			gl.glScaled(-1.0, 1.0, 1.0);
+	/**
+	 * Set the orientation of the scene.
+	 */
+	protected void computeFrontFace() {
+		if (xAxisRevert ^ yAxisRevert ^ zAxisRevert) {
+			getGL().glFrontFace(GL.GL_CW);
+		} else {
+			getGL().glFrontFace(GL.GL_CCW);
 		}
-		if (yAxisRevert) {
-			gl.glScaled(1.0, -1.0, 1.0);
-		}
-		if (zAxisRevert) {
-			gl.glScaled(1.0, 1.0, -1.0);
-		}
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 	}
 	
 	/**
 	 * Rotate the axes in accordance with viewing angles.
 	 */
 	public void placeCamera() {
-		
 		GL gl = getGL();
+
+		// set frontface
+		computeFrontFace();
 		
 		// set viewport
 		moveViewingArea();
@@ -402,9 +424,7 @@ public abstract class CameraGL extends ObjectGL {
 		
 		// find the best scale to fit the view port.
 		computeFittingScale();
-		
-		
-		
+				
 		gl.glPushMatrix();
 		rotateAxesBox();
 		revertAxes();
@@ -540,7 +560,7 @@ public abstract class CameraGL extends ObjectGL {
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
 		
-		// apperently we need to use the opposite of depth range
+		// Apparently we need to use the opposite of depth range
 		gl.glOrtho(0.0, getViewportWidth(), 0.0, getViewportHeight(), -depthRange[1], -depthRange[0]);
 		
 		gl.glMatrixMode(GL.GL_MODELVIEW);

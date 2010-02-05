@@ -23,7 +23,7 @@
 /******************************************
  * SCILAB function : pvm_bcast, fin = 7
  ******************************************/
-int intspvm_bcast(char *fname,unsigned long fname_len)
+int sci_pvm_bcast(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m3,n3,l3,un=1,l4,size,l5,used,ierr;
   int *Ipack,address,*header;
@@ -47,9 +47,9 @@ int intspvm_bcast(char *fname,unsigned long fname_len)
   address = Top-Rhs+2;
   C2F(varpak)(&address,Ipack,&used,&size,&ierr); 
   switch (ierr ) { 
-  case 1: Scierror(999,_("%s: work space (stacksize) is too small d\n"),fname);
+  case 1: Scierror(999,_("%s: work space (stacksize) is too small.\n"),fname);
     return 0;
-  case 2: Scierror(999,_("%s: Unknow type or not yet implemented\n"),fname);
+  case 2: Scierror(999,_("%s: Unknown type or not yet implemented.\n"),fname);
     return 0; 
   }
   C2F(scipvmbcast)(cstk(l1),&m1,Ipack,&used,(double *)header,istk(l3),istk(l4));

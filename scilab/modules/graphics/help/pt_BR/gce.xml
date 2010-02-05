@@ -57,22 +57,19 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   
-    a=gca() //obtendo o manipulador dos novos eixos criados
-    a.data_bounds=[1,1;10,10];
-    a.axes_visible = 'on' ;
-    for i=1:5
-      xfrect(7-i,9-i,3,3);
-      e=gce();
-      e.background=i;
-     end
-    delete(); // deletando a entidade corrente
-    delete(gce()); // deletando a entidade corrente
-    delete(gcf()); // deletando a figura corrente
-     
-
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=gca() //obtendo o manipulador dos novos eixos criados
+a.data_bounds=[1,1;10,10];
+a.axes_visible = 'on' ;
+for i=1:5
+  xfrect(7-i,9-i,3,3);
+  e=gce();
+  e.background=i;
+end
+delete(); // deletando a entidade corrente
+delete(gce()); // deletando a entidade corrente
+delete(gcf()); // deletando a figura corrente
+ ]]></programlisting>
   </refsection>
 
   <refsection>

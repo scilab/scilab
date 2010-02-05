@@ -13,6 +13,7 @@
 #include "do_error_number.h"
 #include "MALLOC.h" /* NULL*/
 #include "error_internal.h"
+#include "msgstore.h"
 /*--------------------------------------------------------------------------*/ 
 int C2F(error)(int *n)
 {
@@ -22,5 +23,10 @@ int C2F(error)(int *n)
 void SciError(int n)
 {
 	C2F(error)(&n);
+}
+
+void SciStoreError(int n)
+{
+	C2F(errstore)(&n);
 }
 /*--------------------------------------------------------------------------*/

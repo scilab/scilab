@@ -80,12 +80,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 X=['a' 'dd' 'arreu'; 'ber' 'car' 'zon']
 s=sample(25,X)
 s=sample(25,X,'r')
 s=sample(25,X,'c')
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

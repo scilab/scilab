@@ -37,8 +37,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //Nomes válidos
 %eps
 A1=123
@@ -46,7 +45,6 @@ A1=123
 My_Special_Color_Table=rand(10,3)
 //Nomes inválidos
 //1A , b%, .C
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

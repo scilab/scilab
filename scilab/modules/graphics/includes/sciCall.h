@@ -19,11 +19,11 @@
 #ifndef _SCI_CALL_H_
 #define _SCI_CALL_H_
 
-
+#include "dynlib_graphics.h"
 #include "BOOL.h"
 #include "ObjectStructure.h"
 
-void Objrect ( double * x         ,
+GRAPHICS_IMPEXP void Objrect ( double * x         ,
                double * y         ,
                double * width     ,
                double * height    ,
@@ -33,7 +33,7 @@ void Objrect ( double * x         ,
                BOOL     isline    ,
                long   * hdl       ) ;
 
-void Objarc( double * angle1    ,
+GRAPHICS_IMPEXP void Objarc( double * angle1    ,
              double * angle2    ,
              double * x         ,
              double * y         ,
@@ -45,28 +45,29 @@ void Objarc( double * angle1    ,
              BOOL     isline    ,
              long   * hdl        ) ;
 
-void Objpoly ( double  * x     ,
+GRAPHICS_IMPEXP void Objpoly ( double  * x     ,
                double  * y     ,
                int   n     ,
                int   closed,
                int       mark  ,
                long    * hdl    ) ;
 
-void Objfpoly ( double  * x    ,
+GRAPHICS_IMPEXP void Objfpoly ( double  * x    ,
                 double  * y    ,
                 int   n    ,
                 int * style,
                 long    * hdl  ,
                 int   shading ) ;
 
-void Objsegs ( int * style,
+GRAPHICS_IMPEXP void Objsegs ( int * style,
                int   flag ,
                int   n1   ,
                double  * x    ,
                double  * y    ,
+               double  * z    ,
                double    arsize ) ;
 
-void Objstring( char            ** fname      ,
+GRAPHICS_IMPEXP void Objstring( char            ** fname      ,
                 int                nbRow      ,
                 int                nbCol      ,
                 double             x          ,
@@ -85,7 +86,7 @@ void Objstring( char            ** fname      ,
                 sciTextAlignment   alignment   ) ;
 
 
-void Objplot2d ( int       ptype     ,
+GRAPHICS_IMPEXP void Objplot2d ( int       ptype     ,
                  char      logflags[],
                  double    x[]       ,
                  double    y[]       ,
@@ -98,7 +99,7 @@ void Objplot2d ( int       ptype     ,
                  int   aaint[]   ,
                  BOOL      flagNax    ) ;
 
-void Objgrayplot ( double    x[]      ,
+GRAPHICS_IMPEXP void Objgrayplot ( double    x[]      ,
                    double    y[]      ,
                    double    z[]      ,
                    int * n1       ,
@@ -108,7 +109,7 @@ void Objgrayplot ( double    x[]      ,
                    int   aaint[]  ,
                    BOOL      flagNax   ) ;
 
-void Objmatplot (double    z[]      ,
+GRAPHICS_IMPEXP void Objmatplot (double    z[]      ,
                  int * n1       ,
                  int * n2       ,
                  char      strflag[],
@@ -116,12 +117,12 @@ void Objmatplot (double    z[]      ,
                  int   aaint[]  ,
                  BOOL      flagNax   ) ;
 
-void Objmatplot1 ( double    z[],
+GRAPHICS_IMPEXP void Objmatplot1 ( double    z[],
                    int * n1 ,
                    int * n2 ,
                    double    xrect[] ) ;
 
-void Objplot3d ( char    * fname ,
+GRAPHICS_IMPEXP void Objplot3d ( char    * fname ,
                  int * isfac ,
                  int * izcol ,
                  double    x[]   ,
@@ -144,7 +145,7 @@ void Objplot3d ( char    * fname ,
                  int * m3n   ,
                  int * n3n    ) ;
 
-void Objdrawaxis ( char     dir    ,
+GRAPHICS_IMPEXP void Objdrawaxis ( char     dir    ,
                    char     tics   ,
                    double * x      ,
                    int    * nx     ,
@@ -160,7 +161,7 @@ void Objdrawaxis ( char     dir    ,
                    int      seg    ,
                    int      nb_tics_labels ) ;
 
-void Objnumb( char          * fname    ,
+GRAPHICS_IMPEXP void Objnumb( char          * fname    ,
               unsigned long   fname_len,
               int         n        ,
               int         flag     ,
@@ -169,7 +170,7 @@ void Objnumb( char          * fname    ,
               double        * angle    ,
               double        * box       ) ;
 
-void Objfec ( double    x[]        ,
+GRAPHICS_IMPEXP void Objfec ( double    x[]        ,
               double    y[]        ,
               double    noeud[]    ,
               double  * fun        ,

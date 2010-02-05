@@ -63,3 +63,4 @@ sciReturnString
 addMatrixToReturnedList
 sciReturnColHandleVector
 sciReturnRowVectorFromInt
+GetVarDimension

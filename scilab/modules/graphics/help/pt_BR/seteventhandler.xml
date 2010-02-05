@@ -65,26 +65,24 @@ seteventhandler('')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+function my_eventhandler(win,x,y,ibut)
+  if ibut==-1000 then return,end
+  [x,y]=xchange(x,y,'i2f')
+  xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
+endfunction
 
-   function my_eventhandler(win,x,y,ibut)
-      if ibut==-1000 then return,end
-      [x,y]=xchange(x,y,'i2f')
-       xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
-   endfunction
-   plot2d()
-   seteventhandler('my_eventhandler')
-   //agora:
-   //   -  mova o mouse sobre a janela gráfica
-   //   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
-   //   -  pressione um botão, espere um pouco e libere
-   //   -  pressione e libere um botão
-   //   -  clique duas vezes em um botão
+plot2d()
+seteventhandler('my_eventhandler')
+//agora:
+//   -  mova o mouse sobre a janela gráfica
+//   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
+//   -  pressione um botão, espere um pouco e libere
+//   -  pressione e libere um botão
+//   -  clique duas vezes em um botão
 
-
-   seteventhandler('') //suprimindo o gerenciador de eventos
- 
-  </programlisting>
+seteventhandler('') //suprimindo o gerenciador de eventos
+ ]]></programlisting>
   </refsection>
 
   <refsection>

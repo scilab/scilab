@@ -14,8 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid " -- View Code -- "
+msgstr " -- 浏览代码 -- "
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "编辑(&E)"
 
 msgid "&File"
 msgstr "文件(&F)"
@@ -23,20 +32,11 @@ msgstr "文件(&F)"
 msgid "&Tools"
 msgstr "工具(&T)"
 
-msgid "&Edit"
-msgstr "编辑(&E)"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "File"
-msgstr "文件"
-
 msgid "Close"
 msgstr "关闭"
 
 msgid "Demos"
 msgstr "Demos"
 
-msgid " -- View Code -- "
-msgstr " -- 浏览代码 -- "
+msgid "File"
+msgstr "文件"

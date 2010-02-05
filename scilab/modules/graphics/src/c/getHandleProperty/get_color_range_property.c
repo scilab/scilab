@@ -29,7 +29,7 @@ int get_color_range_property( sciPointObj * pobj )
   int range[2];
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"range") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_range") ;
     return -1 ;
   }
 

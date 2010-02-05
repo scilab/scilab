@@ -50,12 +50,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 x=linspace(-0.99,0.99,100);
 y=erfinv(x);
 plot2d(x,y)
 norm(x-erf(y),'inf')
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

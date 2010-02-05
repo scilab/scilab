@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,28 +56,28 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscisparse_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/sparse
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -106,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisparse_la_etcdir)" \
 	"$(DESTDIR)$(libscisparse_la_rootdir)" \
-	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscisparse_la_includedir)"
+	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisparse_la_DEPENDENCIES = $(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -130,13 +128,13 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	dspos.lo dspasp.lo inpnv.lo spreshape.lo spsort.lo wperm.lo \
 	dij2sp.lo dspcsp.lo spcho2.lo lspos.lo wspe2.lo spif.lo \
 	lspasp.lo dspisp.lo wful2sp.lo lij2sp.lo lspcsp.lo wspis.lo \
-	dspmsp.lo intreadmps.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo \
-	dspcle.lo wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo \
-	spextr1.lo wcompa.lo lspxsp.lo spisp.lo rdmps1.lo dperm.lo \
-	spind.lo dspe2.lo wspasp.lo wij2sp.lo rdmpsz.lo wspcsp.lo \
-	lspops.lo spifp.lo isort1.lo dspis.lo wspxs.lo lspe2.lo \
-	wspisp.lo dsmsp.lo dspms.lo spord.lo dsosp.lo dspmat.lo \
-	wspmsp.lo lspis.lo dspmin.lo writebuf.lo
+	dspmsp.lo dsposp.lo wsmsp.lo wspms.lo lspisp.lo dspcle.lo \
+	wsosp.lo dspssp.lo lsposp.lo dspxsp.lo ordmmd.lo spextr1.lo \
+	wcompa.lo lspxsp.lo spisp.lo dperm.lo spind.lo dspe2.lo \
+	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
+	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
+	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
+	writebuf.lo
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -148,9 +146,9 @@ am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_spget.lo libscisparse_la-sci_spclean.lo \
 	libscisparse_la-sci_spmin.lo libscisparse_la-sci_spchol.lo \
 	libscisparse_la-sci_spmax.lo libscisparse_la-sci_lusolve.lo \
-	libscisparse_la-sci_fadj2sp.lo libscisparse_la-sci_readmps.lo \
-	libscisparse_la-gw_sparse.lo libscisparse_la-sci_sfinit.lo \
-	libscisparse_la-sci_sparse.lo libscisparse_la-sci_mspget.lo
+	libscisparse_la-sci_fadj2sp.lo libscisparse_la-gw_sparse.lo \
+	libscisparse_la-sci_sfinit.lo libscisparse_la-sci_sparse.lo \
+	libscisparse_la-sci_mspget.lo
 am__objects_4 = sci_spcompa.lo sci_sparse.lo sci_full.lo \
 	sci_blkslvi.lo sci_inpnvi.lo sci_nnz.lo sci_ludel.lo \
 	sci_bfinit.lo spops.lo sci_spmatrix.lo sci_blkfc1i.lo \
@@ -187,7 +185,6 @@ SOURCES = $(libscisparse_la_SOURCES)
 DIST_SOURCES = $(libscisparse_la_SOURCES)
 DATA = $(libscisparse_la_etc_DATA) $(libscisparse_la_root_DATA) \
 	$(libscisparse_la_sci_gateway_DATA)
-HEADERS = $(libscisparse_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -195,6 +192,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -203,9 +201,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -266,11 +267,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -330,24 +334,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -410,7 +416,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -492,7 +497,6 @@ src/fortran/lij2sp.f \
 src/fortran/lspcsp.f \
 src/fortran/wspis.f \
 src/fortran/dspmsp.f \
-src/fortran/intreadmps.f \
 src/fortran/dsposp.f \
 src/fortran/wsmsp.f \
 src/fortran/wspms.f \
@@ -507,13 +511,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -554,7 +556,6 @@ sci_gateway/c/sci_spchol.c \
 sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
-sci_gateway/c/sci_readmps.c \
 sci_gateway/c/gw_sparse.c \
 sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \
@@ -612,16 +613,6 @@ libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 #### sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
-
-#### sparse : include files ####
-libscisparse_la_includedir = $(pkgincludedir)/sparse
-libscisparse_la_include_HEADERS = includes/gw_sparse.h \
-includes/spmalloc.h \
-includes/sp.h \
-includes/spDefs.h \
-includes/spmatrix.h \
-includes/spConfig.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -777,7 +768,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_mspget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_nnz.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_ordmmd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_readmps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sfinit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_sparse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisparse_la-sci_spchol.Plo@am__quote@
@@ -1026,13 +1016,6 @@ libscisparse_la-sci_fadj2sp.lo: sci_gateway/c/sci_fadj2sp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_fadj2sp.lo `test -f 'sci_gateway/c/sci_fadj2sp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fadj2sp.c
 
-libscisparse_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-sci_readmps.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-sci_readmps.Tpo -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-sci_readmps.Tpo $(DEPDIR)/libscisparse_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_readmps.c' object='libscisparse_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -c -o libscisparse_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
-
 libscisparse_la-gw_sparse.lo: sci_gateway/c/gw_sparse.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisparse_la_CFLAGS) $(CFLAGS) -MT libscisparse_la-gw_sparse.lo -MD -MP -MF $(DEPDIR)/libscisparse_la-gw_sparse.Tpo -c -o libscisparse_la-gw_sparse.lo `test -f 'sci_gateway/c/gw_sparse.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sparse.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisparse_la-gw_sparse.Tpo $(DEPDIR)/libscisparse_la-gw_sparse.Plo
@@ -1232,9 +1215,6 @@ wspis.lo: src/fortran/wspis.f
 dspmsp.lo: src/fortran/dspmsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspmsp.lo `test -f 'src/fortran/dspmsp.f' || echo '$(srcdir)/'`src/fortran/dspmsp.f
 
-intreadmps.lo: src/fortran/intreadmps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intreadmps.lo `test -f 'src/fortran/intreadmps.f' || echo '$(srcdir)/'`src/fortran/intreadmps.f
-
 dsposp.lo: src/fortran/dsposp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsposp.lo `test -f 'src/fortran/dsposp.f' || echo '$(srcdir)/'`src/fortran/dsposp.f
 
@@ -1277,9 +1257,6 @@ lspxsp.lo: src/fortran/lspxsp.f
 spisp.lo: src/fortran/spisp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spisp.lo `test -f 'src/fortran/spisp.f' || echo '$(srcdir)/'`src/fortran/spisp.f
 
-rdmps1.lo: src/fortran/rdmps1.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmps1.lo `test -f 'src/fortran/rdmps1.f' || echo '$(srcdir)/'`src/fortran/rdmps1.f
-
 dperm.lo: src/fortran/dperm.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dperm.lo `test -f 'src/fortran/dperm.f' || echo '$(srcdir)/'`src/fortran/dperm.f
 
@@ -1294,9 +1271,6 @@ wspasp.lo: src/fortran/wspasp.f
 
 wij2sp.lo: src/fortran/wij2sp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wij2sp.lo `test -f 'src/fortran/wij2sp.f' || echo '$(srcdir)/'`src/fortran/wij2sp.f
-
-rdmpsz.lo: src/fortran/rdmpsz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rdmpsz.lo `test -f 'src/fortran/rdmpsz.f' || echo '$(srcdir)/'`src/fortran/rdmpsz.f
 
 wspcsp.lo: src/fortran/wspcsp.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wspcsp.lo `test -f 'src/fortran/wspcsp.f' || echo '$(srcdir)/'`src/fortran/wspcsp.f
@@ -1480,26 +1454,6 @@ uninstall-libscisparse_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisparse_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" && rm -f $$files
-install-libscisparse_la_includeHEADERS: $(libscisparse_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscisparse_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_includedir)"
-	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisparse_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisparse_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscisparse_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscisparse_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscisparse_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1586,9 +1540,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisparse_la_etcdir)" "$(DESTDIR)$(libscisparse_la_rootdir)" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" "$(DESTDIR)$(libscisparse_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisparse_la_etcdir)" "$(DESTDIR)$(libscisparse_la_rootdir)" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1640,7 +1594,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscisparse_la_etcDATA \
-	install-libscisparse_la_includeHEADERS \
 	install-libscisparse_la_rootDATA \
 	install-libscisparse_la_sci_gatewayDATA
 
@@ -1689,7 +1642,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscisparse_la_etcDATA \
-	uninstall-libscisparse_la_includeHEADERS \
 	uninstall-libscisparse_la_rootDATA \
 	uninstall-libscisparse_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1706,7 +1658,6 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscisparse_la_etcDATA \
-	install-libscisparse_la_includeHEADERS \
 	install-libscisparse_la_rootDATA \
 	install-libscisparse_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1715,7 +1666,6 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libscisparse_la_etcDATA \
-	uninstall-libscisparse_la_includeHEADERS \
 	uninstall-libscisparse_la_rootDATA \
 	uninstall-libscisparse_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1727,10 +1677,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1753,7 +1705,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1765,7 +1717,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1871,10 +1823,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

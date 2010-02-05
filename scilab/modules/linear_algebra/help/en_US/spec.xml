@@ -190,9 +190,29 @@ evals=spec(A,B)
           the pencil.</para>
         </listitem>
       </varlistentry>
-    </variablelist>
-  </refsection>
 
+
+      <varlistentry>
+        <term>[al,be,Z] = spec(A,E)</term>
+	<listitem>
+	  <para> returns the matrix <literal>Z</literal> of right
+	    generalized eigen vectors.</para>
+	</listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>[al,be,Q,Z] = spec(A,E)</term>
+	<listitem>
+	  <para>returns the matrices <literal>Q</literal>
+	    and <literal>Z</literal> of right and left generalized
+	    eigen vectors.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <para>For big full / sparse matrix, you can use the Arnoldi module.</para>
+  </refsection>
+  
   <refsection>
     <title>References</title>
 
@@ -209,7 +229,7 @@ evals=spec(A,B)
       </listitem>
     </itemizedlist>
 
-    <para>A complex symetric matrix has conjugate offdiagonal terms and real
+    <para>A complex symmetric matrix has conjugate offdiagonal terms and real
     diagonal terms.</para>
 
     <para>Pencil eigenvalues computations are based on the Lapack routines
@@ -237,7 +257,7 @@ evals=spec(A,B)
           </listitem>
 
           <listitem>
-            <para>Not symetric</para>
+            <para>Not symmetric</para>
 
             <para>The eigenvalues and eigenvectors are complex.</para>
           </listitem>
@@ -256,7 +276,7 @@ evals=spec(A,B)
           </listitem>
 
           <listitem>
-            <para>Not symetric</para>
+            <para>Not symmetric</para>
 
             <para>The eigenvalues and the eigenvectors are complex.</para>
           </listitem>
@@ -268,17 +288,17 @@ evals=spec(A,B)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // MATRIX EIGENVALUES
 A=diag([1,2,3]);
 X=rand(3,3);
 A=inv(X)*A*X;
 spec(A)
-//
+
 x=poly(0,'x');
 pol=det(x*eye()-A)
 roots(pol)
-//
+
 [S,X]=bdiag(A);
 clean(inv(X)*A*X)
 
@@ -290,8 +310,7 @@ clean(inv(R)*A*R)  //displaying the eigenvalues (generic matrix)
 A=A+%i*rand(A);
 E=rand(A);
 roots(det(A-%s*E))   //complex case
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -307,6 +326,10 @@ roots(det(A-%s*E))   //complex case
       <member><link linkend="bdiag">bdiag</link></member>
 
       <member><link linkend="colcomp">colcomp</link></member>
+
+      <member><link linkend="dsaupd">dsaupd</link></member>
+
+      <member><link linkend="dnaupd">dnaupd</link></member>
     </simplelist>
   </refsection>
 </refentry>

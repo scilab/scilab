@@ -17,7 +17,7 @@
       <varlistentry>
         <term>w0</term>
         <listitem>
-          <para>: <literal>list(theta,p,l,phi,psi)</literal> where:</para>
+          <para> <literal>list(theta,p,l,phi,psi)</literal> where:</para>
           <variablelist>
             <varlistentry>
               <term>theta</term>
@@ -27,7 +27,7 @@
 		  <varlistentry>
 		    <term>a,b,c</term>
 		    <listitem>
-		      <para>: <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal></para>
+		      <para> <literal>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</literal></para>
 		    </listitem>
 		  </varlistentry>
 		</variablelist>
@@ -49,11 +49,9 @@
           <para>
 	    Applicable values for the first call:
 	  </para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
-   
-          ]]></programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,11 +81,9 @@ theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
         <listitem>
           <para>optional argument (forgetting constant) choosed close to 1 as convergence occur:</para>
           <para><literal>lambda=[lambda0,alfa,beta]</literal> evolves according to :</para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 lambda(t)=alfa*lambda(t-1)+beta 
-   
-        ]]></programlisting>
+ ]]></programlisting>
           <para>
 	    with <literal>lambda(0)=lambda0</literal></para>
 	</listitem>
@@ -97,11 +93,9 @@ lambda(t)=alfa*lambda(t-1)+beta
 	<listitem>
 	  <para>contraction factor to be chosen close to 1 as convergence occurs.</para>
           <para><literal>k=[k0,mu,nu]</literal> evolves according to:</para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 k(t)=mu*k(t-1)+nu 
-   
-        ]]></programlisting>
+ ]]></programlisting>
           <para>
 	    with <literal>k(0)=k0</literal>.</para>
 	</listitem>
@@ -144,12 +138,10 @@ k(t)=mu*k(t-1)+nu
     Uses Ljung-Soderstrom recursive prediction error method.
     Model considered is the following:
   </para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
 b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
   </para>
     <para>

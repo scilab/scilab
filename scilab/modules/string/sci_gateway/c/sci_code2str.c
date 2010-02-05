@@ -23,6 +23,7 @@
 #include "localization.h"
 #include "code2str.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_code2str(char *fname,unsigned long fname_len)
 {
@@ -87,9 +88,7 @@ int sci_code2str(char *fname,unsigned long fname_len)
 	C2F(putlhsvar)();
 
 	/* free pointers */
-	if (Output_Matrix[0]) { FREE(Output_Matrix[0]); Output_Matrix[0]=NULL;}
-	if (Output_Matrix) {FREE(Output_Matrix); Output_Matrix=NULL; }
-    
+	freeArrayOfString(Output_Matrix, 1);
 
 	return 0;
 }

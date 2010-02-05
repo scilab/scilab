@@ -16,7 +16,11 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   	return;
   end
   
-  [lhs,rhs]=argn(0);
+  [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_mex_build"));
+    return
+  end
   
   if rhs <= 4 then makename = 'Makelib';end
   if rhs <= 5 then ldflags = ''; end 

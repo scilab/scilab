@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 function struct_out = atomsRmfields(struct_in,fields_to_remove)
 	
 	rhs        = argn(2);

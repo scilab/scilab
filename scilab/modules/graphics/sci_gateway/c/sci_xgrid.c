@@ -16,7 +16,7 @@
 /* desc : interface for xgrid routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xgrid.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"

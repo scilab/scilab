@@ -125,37 +125,36 @@ lst=link()</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-    //Example of the use of ilib_for_link with  a simple C code
-    cd TMPDIR
-    f1=['#include &lt;math.h&gt;'
+    <programlisting role="example"><![CDATA[ 
+//Example of the use of ilib_for_link with  a simple C code
+cd TMPDIR
+f1=['#include <math.h>'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
     '{'
     '   int i;'
-    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
-    mputl(f1,'fooc.c');
+mputl(f1,'fooc.c');
 
-    //creating the shared library: a Makefile and a loader are 
-    //generated, the code is compiled and a shared library built.
-    ilib_for_link('fooc','fooc.c',[],"c") 
+//creating the shared library: a Makefile and a loader are 
+//generated, the code is compiled and a shared library built.
+ilib_for_link('fooc','fooc.c',[],"c") 
 
-    // display the loader.sce file which calls link
-    mprintf('%s\n',mgetl('loader.sce')) 
-    // load the shared library 
-    exec loader.sce;
+// display the loader.sce file which calls link
+mprintf('%s\n',mgetl('loader.sce')) 
+// load the shared library 
+exec loader.sce;
 
-    link('show') 
-    // call the new linked entry point
-    a=linspace(0,%pi,10);b=5;
-    y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d')
-    // check
-    y1-(sin(a)+b)
-    exec cleaner.sce;
-    
-    </programlisting>
+link('show') 
+// call the new linked entry point
+a=linspace(0,%pi,10);b=5;
+y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d')
+// check
+y1-(sin(a)+b)
+exec cleaner.sce;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -15,7 +15,7 @@
 #ifndef _XS2FILE_H_
 #define _XS2FILE_H_
 
-#include "ObjectStructure.h"
+#include "dynlib_graphic_export.h"
 #include "exportToFile.hxx"
 
 /**
@@ -25,7 +25,7 @@
  * @param fileType type of the export (ie JPG_EXPORT, BMP_EXPORT, PS_EXPORT, ...).
  * @return 0 if success, -1 otherwise
  */
-int xs2file(char * fname, ExportFileType fileType) ;
+GRAPHIC_EXPORT_IMPEXP int xs2file(char * fname, ExportFileType fileType) ;
 
 
 #endif /* _INT_XS2FILE_H_ */

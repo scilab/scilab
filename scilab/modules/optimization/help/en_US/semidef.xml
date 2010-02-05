@@ -180,7 +180,7 @@
 
     <para>Convergence criterion:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 (1) maxiters is exceeded
 (2) duality gap is less than abstol
 (3) primal and dual objective are both positive and
@@ -190,13 +190,13 @@
 (4) reltol is negative and
     primal objective is less than tv or dual objective is greater
     than tv
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 F0=[2,1,0,0;
     1,2,0,0;
     0,0,3,1
@@ -235,7 +235,7 @@ c'*x+trace(F0*Z)
 spec(F0+F1*x(1)+F2*x(2))
 trace(F1*Z)-c(1)
 trace(F2*Z)-c(2)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

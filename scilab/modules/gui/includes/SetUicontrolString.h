@@ -12,7 +12,7 @@
 
 #ifndef __SET_UICONTROL_STRING_H__
 #define __SET_UICONTROL_STRING_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUicontrolString(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
+GUI_IMPEXP int SetUicontrolString(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* __SET_UICONTROL_STRING_H__ */

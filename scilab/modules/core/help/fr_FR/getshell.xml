@@ -19,9 +19,9 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    getshell()
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+getshell()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Auteurs</title>

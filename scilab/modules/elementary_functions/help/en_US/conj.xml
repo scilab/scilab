@@ -57,10 +57,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[1+%i,-%i;%i,2*%i];
 conj(x)
 x'-conj(x)  //x'  is conjugate transpose
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

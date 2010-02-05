@@ -132,23 +132,23 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-    x=[-0.3:0.8:27.3]';
-    y=rand(x);
-    rect=[min(x),min(y),max(x),max(y)];
-    tics=[4,10,2,5];    // 4 x-intervalles et 2 y-intervalles
-    plotframe(rect,tics,[%f,%f],["Mon plot","x","y"],[0,0,0.5,0.5])
-    plot2d(x,y,2,"000")
-    plotframe(rect,tics,[%t,%f],["Mon plot avec grille","x","y"],[0.5,0,0.5,0.5])
-    plot2d(x,y,3,"000")
-    plotframe(rect,tics,[%t,%t],..
-    ["plot avec grille et bornes automatiques","x","y"],[0,0.5,0.5,0.5])
-    plot2d(x,y,4,"000")
-    plotframe(rect,flags=[%f,%t],tics=tics,..
-       Captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
-       subwin=[0.5,0.5,0.5,0.5])
-    plot2d(x,y,5,"000")
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    // 4 x-intervalles et 2 y-intervalles
+plotframe(rect,tics,[%f,%f],["Mon plot","x","y"],[0,0,0.5,0.5])
+plot2d(x,y,2,"000")
+plotframe(rect,tics,[%t,%f],["Mon plot avec grille","x","y"],[0.5,0,0.5,0.5])
+plot2d(x,y,3,"000")
+plotframe(rect,tics,[%t,%t],..
+          ["plot avec grille et bornes automatiques","x","y"],[0,0.5,0.5,0.5])
+plot2d(x,y,4,"000")
+plotframe(rect,flags=[%f,%t],tics=tics,..
+          Captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
+          subwin=[0.5,0.5,0.5,0.5])
+plot2d(x,y,5,"000")
+ ]]></programlisting>
   </refsection>
 
   <refsection>

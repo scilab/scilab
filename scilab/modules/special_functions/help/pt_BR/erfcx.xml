@@ -61,16 +61,14 @@
     <para><literal>erfcx</literal> computa a função de erro complementar
     escalada:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
               2                
      y = exp(x ) * erfc(x)
 
                 1
-     y  --&gt;  ---------    quando x --&gt; +oo
+     y  -->  ---------    quando x --> +oo
              x sqrt(pi) 
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

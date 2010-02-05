@@ -17,7 +17,6 @@ extern "C" {
 #endif
 
 #include "doublecomplex.h"
-#include "dynlib_api_scilab.h"
 
 /*******************************/
 /*   double matrix functions   */
@@ -30,7 +29,7 @@ extern "C" {
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
+SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -41,7 +40,7 @@ API_SCILAB_IMPEXP int getMatrixOfDouble(int* _piAddress, int* _piRows, int* _piC
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+SciErr getComplexMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get double variable data
@@ -51,7 +50,7 @@ API_SCILAB_IMPEXP int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, in
  * @param[out] _pdblZ return pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
+SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, doublecomplex** _pdblZ);
 
 /**
  * Get double variable data
@@ -61,7 +60,7 @@ API_SCILAB_IMPEXP int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, i
  * @param[out] _pdblReal return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, int* _piKey);
+SciErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -72,7 +71,7 @@ API_SCILAB_IMPEXP int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, dou
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int* _piKey);
+SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create double variable data
@@ -82,7 +81,7 @@ API_SCILAB_IMPEXP int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCo
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, int* _piKey);
+SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -93,22 +92,17 @@ API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, do
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey);
-
-API_SCILAB_IMPEXP int createMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piKey);
-API_SCILAB_IMPEXP int createComplexMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg, int* _piKey);
+SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
- * Get double variable data
+ * Get complex double variable data
  * @param[in] _iVar variable number
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal pointer on real data
- * @param[in] _pdblImg pointer on img data
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[ ] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData, int* _piKey);
+SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double variable data
@@ -118,7 +112,7 @@ API_SCILAB_IMPEXP int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _i
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, int* _piKey);
+SciErr createNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -129,17 +123,17 @@ API_SCILAB_IMPEXP int createNamedMatrixOfDouble(char* _pstName, int _iRows, int 
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey);
+SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double variable data
  * @param[in] _pstName variable name
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblZ pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[in] _pdblData pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData, int* _piKey);
+SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * Get double named variable data
@@ -149,7 +143,7 @@ API_SCILAB_IMPEXP int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRo
  * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
+SciErr readNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * Get double named variable data
@@ -160,8 +154,130 @@ API_SCILAB_IMPEXP int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int*
  * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+SciErr readNamedComplexMatrixOfDouble(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
+/*shortcut functions*/
+
+
+/**
+ * check if the variable type is double
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isDoubleType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is double
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedDoubleType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get scalar double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarDouble(void* _pvCtx, int* _piAddress, double* _pdblReal);
+
+/**
+ * Get scalar complex double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _pdblReal return pointer on real data
+ * @param[out] _pdblImg return pointer on imgagianry data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarComplexDouble(void* _pvCtx, int* _piAddress, double* _pdblReal, double* _pdblImg);
+
+/**
+ * Get scalar double variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pdblReal return pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarDouble(void* _pvCtx, char* _pstName, double* _pdblReal);
+
+/**
+ * Get scalar complex double variable data
+ * @param[in] _pstName variable name
+ * @param[out] _pdblReal return pointer on real data
+ * @param[out] _pdblImg return pointer on imgagianry data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double* _pdblReal, double* _pdblImg);
+
+/**
+ * Create scalar double
+ * @param[in] _iVar variable number
+ * @param[in] _dblReal value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarDouble(void* _pvCtx, int _iVar, double _dblReal);
+
+/**
+ * Create scalar complex double variable
+ * @param[in] _iVar variable number
+ * @param[in] _dblReal real value
+ * @param[in] _dblImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _dblImg);
+
+/**
+ * Create named scalar double
+ * @param[in] _pstName variable name
+ * @param[in] _dblReal value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarDouble(void* _pvCtx, char* _pstName, double _dblReal);
+
+/**
+ * Create named scalar complex double variable
+ * @param[in] _pstName variable name
+ * @param[in] _dblReal real value
+ * @param[in] _dblImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarComplexDouble(void* _pvCtx, char* _pstName, double _dblReal, double _dblImg);
+
+/**
+ * Create scalar double variable from integer value
+ * @param[in] _iVar variable number
+ * @param[in] _iReal real value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal);
+
+/**
+ * Create scalar complex double variable from integer value
+ * @param[in] _iVar variable number
+ * @param[in] _iReal real value
+ * @param[in] _iImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal, int _iImg);
+
+/**
+ * Create matrix of double variable from integer value
+ * @param[in] _iVar variable number
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piReal real value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal);
+
+/**
+ * Create matrix of complex double variable from integer value
+ * @param[in] _iVar variable number
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piReal real value
+ * @param[in] _piImg imaginary value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg);
 
 #ifdef __cplusplus
 }

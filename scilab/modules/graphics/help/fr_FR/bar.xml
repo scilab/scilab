@@ -88,7 +88,7 @@ bar([h],x,y [,width [,color [,style]]])</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Premier exemple : dessine une barre, avec les paramètres width=0.5
 // et color='yellow' et par défaut x=1:length(y), style = 'grouped'.
 scf(0);
@@ -109,7 +109,7 @@ bar(x,y,'stacked');
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

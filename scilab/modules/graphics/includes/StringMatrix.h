@@ -19,6 +19,7 @@
 #ifndef _SCI_STRING_MATRIX_H_
 #define _SCI_STRING_MATRIX_H_
 
+#include "dynlib_graphics.h"
 #include "sciMatrix.h"
 
 /*----------------------------------------------------------------------------------*/
@@ -34,38 +35,38 @@ typedef sciMatrix StringMatrix ;
  * create a nbRow x nbCol matrix which data are copied.
  * @param textMat the copied data.
  */
-StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol ) ;
+GRAPHICS_IMPEXP StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol ) ;
 
 /**
  * Create a new string matrix filled with empty strings
  */
-StringMatrix * newEmptyStringMatrix(int nbRow, int nbCol);
+GRAPHICS_IMPEXP StringMatrix * newEmptyStringMatrix(int nbRow, int nbCol);
 
 /** 
  * copy constructor
  */
-StringMatrix * copyStringMatrix( const StringMatrix * copyMat ) ;
+GRAPHICS_IMPEXP StringMatrix * copyStringMatrix( const StringMatrix * copyMat ) ;
 
 /*----------------------------------------------------------------------------------*/
 /* accessors */
-char * getStrMatElement( const StringMatrix * mat, int row, int col ) ;
+GRAPHICS_IMPEXP char * getStrMatElement( const StringMatrix * mat, int row, int col ) ;
 
 /**
  * get the pointer on the array of string. May be used for faster access to the data.
  */
-char ** getStrMatData(  const StringMatrix * mat ) ;
+GRAPHICS_IMPEXP char ** getStrMatData(  const StringMatrix * mat ) ;
 
 /**
  * desalocate the (row,col) current string and copy the new one.
  */
-void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyStr ) ;
+GRAPHICS_IMPEXP void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyStr ) ;
 
 /*----------------------------------------------------------------------------------*/
 /* utilities */
 /**
  * Print the matrix using printf
  */
-void printStrMat(StringMatrix * mat);
+GRAPHICS_IMPEXP void printStrMat(StringMatrix * mat);
 /*----------------------------------------------------------------------------------*/
 
 #endif /* _SCI_STRING_MATRIX_H_ */

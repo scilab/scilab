@@ -30,6 +30,10 @@ extern void sci_usr1_signal(int n);
 /*--------------------------------------------------------------------------*/
 static int no_startup_flag=0;
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static int callScirun(char *startupCommand);
+#endif
+/*--------------------------------------------------------------------------*/
 int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
   static int initialization=-1;
@@ -119,26 +123,9 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
   /* execute the initial script and enter scilab */
 
 #if !defined(_DEBUG) && defined(_MSC_VER)
-  _try
-    {
-      C2F(scirun)(startup,(long int)strlen(startup));
-    }
-  _except (EXCEPTION_EXECUTE_HANDLER)
-    {
-    Rerun:
-      {
-	ExceptionMessage(GetExceptionCode(),NULL);
-      }
-      _try
-	{
-	  C2F(scirun)("",(long int)strlen(""));
-	}
-      _except (EXCEPTION_EXECUTE_HANDLER)
-	{
-	  goto Rerun;
-	}
-
-    }
+  /* if scilab crashs by a exception , we try to quit properly */
+  /* Windows release mode */
+  callScirun(startup);
 #else
   C2F(scirun)(startup,(long int)strlen(startup));
 #endif
@@ -159,4 +146,33 @@ int Get_no_startup_flag(void)
 {
   return no_startup_flag;
 }
+/*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static int callScirun(char *startupCommand)
+{
+	_try
+	{
+		C2F(scirun)(startupCommand,(long int)strlen(startupCommand));
+	}
+	_except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		DWORD dwExceptionCode = GetExceptionCode();
+Rerun:
+		ExceptionMessage(GetExceptionCode(),NULL);
+		if (dwExceptionCode != EXCEPTION_ACCESS_VIOLATION)
+		{
+			_try
+			{
+				C2F(scirun)("",(long int)strlen(""));
+			}
+
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+				goto Rerun;
+			}
+		}
+	}
+	return 0;
+}
+#endif
 /*--------------------------------------------------------------------------*/

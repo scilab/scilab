@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsInstalled">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsIsInstalled</refname>
-    <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
+    <refpurpose>Determines whether the module is installed. Returns true if the module is installed, false otherwise.</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -24,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  res = atomsIsInstalled(name[,version,allusers])
+	  res = atomsIsInstalled(modules[,section])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -33,36 +30,117 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
-        <term>name</term>
+			
+			<!-- 1st input parameter -->
+			
+			<varlistentry>
+        <term>modules</term>
+        <listitem>
+					
+          <para>
+						mx1, mx2 Matrix of strings:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's version is ignored.
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								module's section is ignored.
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
+      </varlistentry>
+			
+			<!-- 2nd input parameter -->
+			
+			<varlistentry>
+        <term>section</term>
         <listitem>
           <para>
-			Matrix of strings : Names of modules to test
-		  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
+						This argument controls the list of searched modules.
+					</para>
           <para>
-			Matrix of strings : Versions of modules to test
-		  </para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"all"</literal>: atomsIsInstalled() searchs external
+								modules installed in both "user" and "allusers" sections.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: atomsIsInstalled() searchs external
+								modules installed in the "allusers" section.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: atomsIsInstalled() searchs external
+								modules installed in the "user" section.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						The default value is "all".
+					</para>
         </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>allusers</term>
-        <listitem>
-          <para>
-			A boolean
-		  </para>
-        </listitem>
-      </varlistentry>
+			</varlistentry>
+			
       <varlistentry>
         <term>res</term>
         <listitem>
           <para>
-			
-		  </para>
+					</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -81,8 +159,32 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-]]></programlisting>
+    <programlisting role="example">
+<![CDATA[
+atomsSetConfig("Verbose","True");
+atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+
+// Install the needed module for the purpose of the example
+atomsInstall("toolbox_5","user");
+
+// simplest way
+atomsIsInstalled("toolbox_5");
+
+// Check several modules ...
+atomsIsInstalled(["toolbox_5" "toolbox_4"])
+
+// ... with a specific version
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"])
+
+// ... installed in a specific section
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"],"user")
+atomsIsInstalled(["toolbox_5" "1.0" ; "toolbox_4" "1.0" ; "toolbox_5" "1.1"],"allusers")
+
+// Some cleaning ...
+atomsRepositoryDel("http://scene2.test.atoms.scilab.org");
+atomsRemove("toolbox_2");
+]]>
+		</programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

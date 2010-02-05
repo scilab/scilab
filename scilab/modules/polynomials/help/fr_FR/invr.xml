@@ -39,7 +39,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 H=[s,s*s+2;1-s,1+s]; invr(H)
 [Num,den]=coffg(H);Num/den

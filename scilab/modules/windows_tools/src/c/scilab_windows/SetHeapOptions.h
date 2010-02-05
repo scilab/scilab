@@ -14,6 +14,7 @@
 #ifndef __SETHEAPOPTIONS_H__
 #define __SETHEAPOPTIONS_H__
 
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h"
 
 /**
@@ -23,7 +24,7 @@
  * @return TRUE if it is enabled.
  */
 
-BOOL SetHeapOptions(void);
+SCILAB_WINDOWS_IMPEXP BOOL SetHeapOptions(void);
 
 #endif /* __SETHEAPOPTIONS_H__ */
 /*--------------------------------------------------------------------------*/ 

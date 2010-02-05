@@ -22,22 +22,24 @@
 #include "rcond.h"
 
 
-int C2F(intrcond)(char *fname, int* _piKey)
+int sci_rcond(char *fname, int* _piKey)
 {
   int ret= 0;
   /*   rcond(A)  */
   int* adr1;
+  int type;
   if(Rhs >=1)
     {
-      getVarAddressFromPosition(1, &adr1, _piKey);
-      if(getVarType(adr1) != sci_matrix)
+      getVarAddressFromPosition(_piKey, 1, &adr1);
+      getVarType(_piKey, adr1, &type);
+      if(type != sci_matrix)
 	{
 	  OverLoad(1);
 	  return 0;
 	}
       else
 	{
-	  
+
 	  CheckRhs(1,1);
 	  CheckLhs(1,1);
 	  {
@@ -45,10 +47,10 @@ int C2F(intrcond)(char *fname, int* _piKey)
 	    int iRows, iCols;
 	    int complexArg;
 
-	    if( (complexArg= isVarComplex(adr1)) )
+	    if( (complexArg= isVarComplex(_piKey, adr1)) )
 	      {
 
-		getComplexZMatrixOfDouble(adr1, &iRows, &iCols, ((doublecomplex**)&pData));
+		getComplexZMatrixOfDouble(_piKey, adr1, &iRows, &iCols, ((doublecomplex**)&pData));
 		if(!pData)
 		  {
 		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
@@ -57,7 +59,7 @@ int C2F(intrcond)(char *fname, int* _piKey)
 	      }
 	    else
 	      {
-		getMatrixOfDouble(adr1, &iRows, &iCols, &pData);
+		getMatrixOfDouble(_piKey, adr1, &iRows, &iCols, &pData);
 	      }
 	    if( iRows != iCols)
 	      {
@@ -68,7 +70,7 @@ int C2F(intrcond)(char *fname, int* _piKey)
 	      {
 		double* pRcond;
 		int dim= iRows ? 1 : 0 ;
-		allocMatrixOfDouble(2, dim, dim, &pRcond, _piKey);
+		allocMatrixOfDouble(_piKey, 2, dim, dim, &pRcond);
 		if(iRows)
 		  {
 		    if( iRows == -1 )

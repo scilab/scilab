@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -24,7 +24,7 @@ extern int C2F(ql0001)(int *m,int *me,int *mmax,int *n,int *nmax,int *mnn,
             int *iprint,double *war,int *lwar,int *iwar,int *liwar,
             double *eps1);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_qld)(char *fname,unsigned long fname_len)
+int sci_qld(char *fname,unsigned long fname_len)
 {
 	static int un = 1,zero = 0;
 	static int Q = 0, n = 0, nbis = 0;

@@ -89,9 +89,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-
+    <programlisting role="example"><![CDATA[ 
 // example_1/
 // `-- help
 //     |-- en_US
@@ -115,20 +113,17 @@ my_french_help_dir    =  my_module_path+'/help/fr_FR';
 my_french_help_title  =  'Example 1 [fr_FR]';
 xmltojar(my_french_help_dir,my_french_help_title,'fr_FR');
 
-
 // Construindo a ajuda em inglês
 // =============================================================================
 my_english_help_dir   =  my_module_path+'/help/en_US';
 my_english_help_title =  'Example 1 [en_US]';
 xmltojar(my_english_help_dir,my_english_help_title,'en_US');
 
-
 // Construindo a ajuda em chinês
 // =============================================================================
 my_chinese_help_dir   =  my_module_path+'/help/zh_TW';
 my_chinese_help_title =  'Example 1 [zh_TW]';
 xmltojar(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
-
 
 // Adicionando capítulos de ajuda em francês, inglês e chinês
 // =============================================================================
@@ -154,9 +149,7 @@ if getlanguage() == 'fr_FR' then
 else
   del_help_chapter(my_english_help_title);
 end
-
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

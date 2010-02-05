@@ -26,6 +26,7 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
@@ -85,6 +86,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	public SwingScilabWindow() {
 		super();
 
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
@@ -125,7 +127,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 				for (int i = 0; i < dockArray.length; i++) {
 					((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
 				}
-				removeWindowListener(this);
+
+				//if dock stay open, do not close main window
+				if(dockArray.length == 0){
+					removeWindowListener(this);
+				}
 			}
 		});
 		

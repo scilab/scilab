@@ -84,22 +84,31 @@ src/jni/JOGLConstant.giws.xml
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
 
-USEANT=1
-
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/GL2PSConstant.i  src/jni/GL2PSWrapping.i
+
+if SWIG
+BUILT_SOURCES=swig
 endif
 
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 
-libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/operations/includes \
+	-I$(srcdir)/includes/ 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
 endif
 
@@ -108,19 +117,5 @@ libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xml
-
-#### graphic_export : include files ####
-libscigraphic_export_la_includedir=$(pkgincludedir)/graphic_export
-libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
-includes/sci_xs2ppm.h \
-includes/sci_xs2gif.h \
-includes/xs2file.h \
-includes/sci_xs2bmp.h \
-includes/sci_xs2ps.h \
-includes/sci_xs2eps.h \
-includes/sci_xs2jpg.h \
-includes/sci_xs2pdf.h \
-includes/sci_xs2png.h \
-includes/sci_xs2svg.h
 
 include $(top_srcdir)/Makefile.incl.am

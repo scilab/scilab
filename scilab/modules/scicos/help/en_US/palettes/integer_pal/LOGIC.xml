@@ -159,7 +159,7 @@ This block is used to implement SR and JK flip-flops.
   </refsection>
   <refsection id="Example_LOGIC">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 The easiest example to consider is the OR example. In this case we have two inputs and only one output.the truth table for this example is [0;1;1;1].
 |-----------|-----------|-----------| 
 |  input 1  |  input 2  |  output   | 
@@ -172,7 +172,7 @@ The easiest example to consider is the OR example. In this case we have two inpu
 |-----------|-----------|-----------| 
 |     1     |     1     |     1     | 
 |-----------|-----------|-----------|
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_LOGIC">
     <title>Default properties</title>

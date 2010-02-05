@@ -12,14 +12,14 @@
 #ifndef __GW_COMPLETION_H__
 #define __GW_COMPLETION_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_completion.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_completion(void);
+COMPLETION_IMPEXP int gw_completion(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-int C2F(sci_completion)(char *fname,unsigned long fname_len);
+COMPLETION_IMPEXP int sci_completion(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_COMPLETION_H__ */
 

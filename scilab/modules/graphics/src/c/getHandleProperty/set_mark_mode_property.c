@@ -28,24 +28,9 @@
 /*------------------------------------------------------------------------*/
 int set_mark_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Incompatible type for property %s.\n"),"mark_mode") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    return sciSetIsMark( pobj, TRUE ) ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    return sciSetIsMark( pobj, FALSE ) ;
-  }
-  else
-  {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off") ;
-    return SET_PROPERTY_ERROR ;
-  }
+  int b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "mark_mode");
+  if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+  
+  return sciSetIsMark(pobj, b);
 }
 /*------------------------------------------------------------------------*/

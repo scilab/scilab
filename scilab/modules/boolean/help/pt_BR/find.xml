@@ -95,22 +95,20 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(1,20);
-w=find(A&lt;0.4)
+w=find(A<0.4)
 A(w)
-w=find(A&gt;100) 
+w=find(A>100) 
 
 B=rand(1,20);
-w=find(B&lt;0.4,2) //no máximo dois valores retornados
+w=find(B<0.4,2) //no máximo dois valores retornados
 
 H=rand(4,3,5); //uma hipermatriz
-[i,j,k]=find(H&gt;0.9)  
+[i,j,k]=find(H>0.9)  
 
 H(i(1),j(1),k(1))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

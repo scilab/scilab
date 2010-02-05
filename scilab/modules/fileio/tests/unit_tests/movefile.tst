@@ -1,0 +1,146 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// =============================================================================
+// Unitary tests for movefile function
+// =============================================================================
+
+tab_ref = [
+"世界您好",
+"азеазея",
+"ハロー・ワールド",
+"เฮลโลเวิลด์",
+"حريات وحقوق",
+"תוכנית"];
+cd TMPDIR;
+mkdir test_copyfile_source;
+mkdir test_copyfile_target;
+cd('test_copyfile_source');
+
+for i = 1 : size(tab_ref,"*")
+	filename = tab_ref(i) + '.orig';
+	mputl('I am a dummy String : ' + tab_ref(i), filename);
+	if fileinfo(filename) == [] then pause,end
+end
+
+for i = 1 : size(tab_ref,"*")
+	orig = tab_ref(i) + '.orig';
+	dest = tab_ref(i) + '.dest';
+
+	r = movefile(TMPDIR+'/test_copyfile_source/' + orig, TMPDIR+'/test_copyfile_target/' + dest);
+	if r <> 1 then pause,end
+	if fileinfo(TMPDIR+'/test_copyfile_source/' + orig) <> [] then pause,end
+	if fileinfo(TMPDIR+'/test_copyfile_target/' + dest) == [] then pause,end
+end
+
+cd TMPDIR;
+rmdir('test_copyfile_source', 's');
+rmdir('test_copyfile_target', 's');
+// =============================================================================
+cd TMPDIR;
+dir1="test dir with space";
+dir2="test dir with space number 2";
+file1='dummyFile.dummy';
+mkdir(dir1);
+mkdir(dir2);
+
+mputl('I am a dummy String', dir1+'/'+file1);
+movefile(dir1+'/'+file1,dir2);
+
+lsResult = ls(dir2+'/'+file1);
+if lsResult == [] then pause,end
+
+lsResult = ls(dir1+'/'+file1);
+if lsResult <> [] then pause,end
+rmdir(TMPDIR + filesep() + dir1, 's');
+rmdir(TMPDIR + filesep() + dir2, 's');
+// =============================================================================
+removedir(TMPDIR+'/etc');
+ierr = execstr("movefile(SCI+""etc"",TMPDIR)","errcatch");
+if ierr <> 999 then pause,end
+// =============================================================================
+ref_files = ['fileio.start','fileio.quit'];
+// =============================================================================
+// move a directory into a directory
+dest = 'dirtomove1';
+renamedDst = 'renameddir1';
+a = copyfile(SCI+'/modules/fileio/etc',TMPDIR + filesep() + dest);
+if (a <> 1) then pause,end
+if fileinfo(TMPDIR + filesep() + dest + filesep() + ref_files(1)) == [] then pause,end
+if fileinfo(TMPDIR + filesep() + dest + filesep() + ref_files(2)) == [] then pause,end
+
+a = movefile(TMPDIR + filesep() + dest, TMPDIR + filesep() + renamedDst);
+if (a <> 1) then pause,end
+
+if fileinfo(TMPDIR + filesep() + renamedDst + filesep() + ref_files(1)) == [] then pause,end
+if fileinfo(TMPDIR + filesep() + renamedDst + filesep() + ref_files(2)) == [] then pause,end
+
+mdelete(TMPDIR + filesep() + renamedDst + filesep() + ref_files(1));
+mdelete(TMPDIR + filesep() + renamedDst + filesep() + ref_files(2));
+rmdir(TMPDIR + filesep() + renamedDst);
+// =============================================================================
+// move a directory into a directory  with separator(s)
+dest = 'dirtomove2';
+renamedDst = 'renameddir2';
+
+mkdir(TMPDIR, renamedDst);
+a = copyfile(SCI+'/modules/fileio/etc',TMPDIR + filesep() + dest);
+if (a <> 1) then pause,end
+if fileinfo(TMPDIR + filesep() + dest + filesep() + ref_files(1)) == [] then pause,end
+if fileinfo(TMPDIR + filesep() + dest + filesep() + ref_files(2)) == [] then pause,end
+
+a = movefile(TMPDIR + filesep() + dest, TMPDIR + filesep() + renamedDst + filesep());
+if (a <> 1) then pause,end
+
+if fileinfo(TMPDIR + filesep() + renamedDst + filesep() + ref_files(1)) == [] then pause,end
+if fileinfo(TMPDIR + filesep() + renamedDst + filesep() + ref_files(2)) == [] then pause,end
+
+mdelete(TMPDIR + filesep() + renamedDst + filesep() + ref_files(1));
+mdelete(TMPDIR + filesep() + renamedDst + filesep() + ref_files(2));
+rmdir(TMPDIR + filesep() + renamedDst);
+// =============================================================================
+// move a file into a directory
+dest = 'dirtomove2';
+renamedDst = 'renameddir2';
+mkdir(TMPDIR, dest);
+a = copyfile(SCI+'/modules/fileio/etc/fileio.start',TMPDIR + filesep() + dest);
+if (a <> 1) then pause,end
+if fileinfo(TMPDIR + filesep() + dest + '/fileio.start') == [] then pause,end
+
+mkdir(TMPDIR, renamedDst);
+a = movefile(TMPDIR + filesep() + dest + '/fileio.start', TMPDIR + filesep() + renamedDst + filesep());
+if (a <> 1) then pause,end
+if fileinfo(TMPDIR + filesep() + renamedDst + filesep() + '/fileio.start') == [] then pause,end
+
+rmdir(TMPDIR + filesep() + renamedDst,'s');
+rmdir(TMPDIR + filesep() + dest,'s');
+// =============================================================================
+// move a file into a file
+mdelete(TMPDIR + '/scilab.quit');
+a = copyfile(SCI+'/etc/scilab.quit', TMPDIR);
+if (a <> 1) then pause,end
+
+a = movefile(TMPDIR + '/scilab.quit', TMPDIR + '/renamed_scilab.quit');
+if fileinfo(TMPDIR + '/scilab.quit') <> [] then pause,end
+if fileinfo(TMPDIR + '/renamed_scilab.quit') == [] then pause,end
+mdelete(TMPDIR + '/renamed_scilab.quit');
+// =============================================================================
+// move directory with sub-directories
+mkdir(TMPDIR + '/copyfile_test');
+a = copyfile(SCI+'/modules/fileio/tests', TMPDIR + filesep() + 'copyfile_test');
+if (a <> 1) then pause,end
+if fileinfo(TMPDIR + '/copyfile_test/unit_tests/copyfile.tst') == [] then pause,end
+
+a = movefile(TMPDIR + filesep() + 'copyfile_test', TMPDIR + filesep() + 'copyfile_test2');
+if (a <> 1) then pause,end
+
+if fileinfo(TMPDIR + '/copyfile_test/unit_tests/copyfile.tst') <> [] then pause,end
+if fileinfo(TMPDIR + '/copyfile_test2/unit_tests/copyfile.tst') == [] then pause,end
+rmdir(TMPDIR + '/copyfile_test2','s');
+// =============================================================================

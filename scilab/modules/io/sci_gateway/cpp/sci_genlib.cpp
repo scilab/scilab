@@ -96,7 +96,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 	xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
 
 
-	char **pstPath = findfiles(pstParsePath, const_cast<char*>("*.sci"), &iNbFile);
+	char **pstPath = findfiles(pstParsePath, const_cast<char*>("*.sci"), &iNbFile, FALSE);
 
 	if(pstPath)
 	{

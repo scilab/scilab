@@ -21,7 +21,6 @@
 #include "string.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-#include "sortTemplate.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "isanan.h"
@@ -44,24 +43,25 @@ of error
 #define CreateVarFromPtrNoCheck(n,ct,mx,nx,lx) C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(void *)lx,1L)
 #define CreateVarNoCheck(n,ct,mx,nx,lx) C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L)
 
-int getVarString(int* _piAddress, char*** _pstData, int* _piRows, int* _piCols);
 int checkInputValue(char* _pstInput, const char** _pcstRef, int _iRefCount);
-char* getWayType(int* _piAddress);
-char* getProcessType(int* _piAddress);
+char* getWayType(int* _piKey, int* _piAddress);
+char* getProcessType(int* _piKey, int* _piAddress);
 int computeIndiceDim(const char* _pcstProcess, int _iRowsIn, int _iColsIn,  int* _piRowsOut, int* _piColsOut);
 
-int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
-int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
-int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
+int	gsort_int(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay);
+int	gsort_string(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay);
+int	gsort_double(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay);
 /*--------------------------------------------------------------------------*/
 static int gsort_complex(char *fname, char *mode, char *order);
 /*--------------------------------------------------------------------------*/
 int sci_gsort(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet								= 0;
 
 	int iRows1							= 0;
 	int iCols1							= 0;
+	int iType1							= 0;
 
 	int* piAddr1						= NULL;
 	int* piAddr2						= NULL;
@@ -75,13 +75,14 @@ int sci_gsort(char *fname, int* _piKey)
 
 	if(Rhs > 1)
 	{//get option
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		pcstProcess = getProcessType(piAddr2); 
+		pcstProcess = getProcessType(_piKey, piAddr2); 
 		if(pcstProcess == NULL)
 		{
 			return 1;
@@ -90,35 +91,38 @@ int sci_gsort(char *fname, int* _piKey)
 
 	if(Rhs == 3)
 	{//get way ( inc or dec )
-		iRet = getVarAddressFromPosition(3, &piAddr3, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr3);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		pcstWay = getWayType(piAddr3); 
+		pcstWay = getWayType(_piKey, piAddr3); 
 		if(pcstWay == NULL)
 		{
 			return 1;
 		}
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
-
-	switch(getVarType(piAddr1))
+	
+	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	switch(iType1)
 	{
 	case sci_matrix : 
-		iRet = gsort_double(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_double(_piKey, piAddr1, pcstProcess, pcstWay);
 		break;
 	case sci_strings : 
-		iRet = gsort_string(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_string(_piKey, piAddr1, pcstProcess, pcstWay);
 		break;
 	case sci_ints : 
-		iRet = gsort_int(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_int(_piKey, piAddr1, pcstProcess, pcstWay);
 		break;
 	default :
 		return 1;
@@ -133,8 +137,9 @@ int sci_gsort(char *fname, int* _piKey)
 } 
 
 
-int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+int	gsort_double(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay)
 {
+	SciErr sciErr;
 	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
@@ -146,68 +151,71 @@ int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	int *piInd						= NULL;
 	int iLhs2							= Lhs == 2;
 
-	if(isVarComplex(_piAddress))
+	if(isEmptyMatrix(_piKey, _piAddress))
 	{
-		OverLoad(1);
-		return 0;
-	}
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblReal, _piKey);
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
 		if(iRet)
 		{
-			return 1;
+			return iRet;
 		}
 
 		if(Lhs == 2)
-		{
-			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblReal, _piKey);
+		{		
+			iRet = createEmptyMatrix(_piKey, Rhs + 1);
 			if(iRet)
 			{
-				return 1;
+				return iRet;
 			}
-		}
+		}		
+	}
+	
+	if(isVarComplex(_piKey, _piAddress))
+	{
+		OverLoad(1); //call %_gsort.sci
 		return 0;
 	}
-
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealOut1, _piKey);
-	if(iRet)
+	
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealOut1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	memcpy(pdblRealOut1, pdblReal, sizeof(double) * iRows * iCols);
 	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
 	if(iRet)
 	{
-		return 1;
+		return iRet;
 	}
 
-	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+	piInd = (int*)MALLOC(sizeof(int) * iRowsInd * iColsInd);
 	C2F(gsortd)(pdblRealOut1, piInd , &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 
 	if(Lhs == 2)
 	{
-		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		iRet = createMatrixOfDoubleFromInteger(_piKey, Rhs + 2, iRowsInd, iColsInd, piInd);
 		if(iRet)
 		{
-			free(piInd);
-			return 1;
+			FREE(piInd);
+			return iRet;
 		}
 	}
 
-	free(piInd);
+	FREE(piInd);
 	return 0;
 }
 
-int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+int	gsort_string(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
@@ -218,43 +226,49 @@ int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	int* piInd			= NULL;
 	char** pstData	= NULL;
 
-	iRet = getVarString(_piAddress, &pstData, &iRows, &iCols);
+	iRet = getAllocatedMatrixOfString(_piKey, _piAddress, &iRows, &iCols, &pstData);
 	if(iRet)
 	{
-		return 1;
+		freeAllocatedMatrixOfString(iRows, iCols, pstData);
+		return iRet;
 	}
 
 	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
 	if(iRet)
 	{
-		return 1;
+		freeAllocatedMatrixOfString(iRows, iCols, pstData);
+		return iRet;
 	}
 
-	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+	piInd = (int*)MALLOC(sizeof(int) * iRowsInd * iColsInd);
 	C2F(gsorts)(pstData, piInd, &iLhs2, &iRows,&iCols, (char*)_pcstProcess, (char*)_pcstWay);
 	
-	iRet = createMatrixOfString(Rhs + 1, iRows, iCols, pstData, _piKey);
-	if(iRet)
+	sciErr = createMatrixOfString(_piKey, Rhs + 1, iRows, iCols, pstData);
+	if(sciErr.iErr)
 	{
-		return 1;
+		freeAllocatedMatrixOfString(iRows, iCols, pstData);
+		FREE(piInd);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	if(Lhs == 2)
 	{
-		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		iRet = createMatrixOfDoubleFromInteger(_piKey, Rhs + 2, iRowsInd, iColsInd, piInd);
 		if(iRet)
 		{
-			free(piInd);
-			return 1;
+			FREE(piInd);
+			return iRet;
 		}
 	}
 	
-	free(piInd);
+	FREE(piInd);
 	return 0;
 }
 
-int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+int	gsort_int(int* _piKey, int * _piAddress, const char* _pcstProcess, const char* _pcstWay)
 {
+	SciErr sciErr;
 	int iRet			= 0;
 	int iRows			= 0;
 	int iCols			= 0;
@@ -265,24 +279,27 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 
 	int* piInd		= NULL;
 
-	iRet = getVarDimension(_piAddress, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarDimension(_piKey, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
 	if(iRet)
 	{
-		return 1;
+		return iRet;
 	}
 
-	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+	piInd = (int*)MALLOC(sizeof(int) * iRowsInd * iColsInd);
 
-	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
-	if(iRet)
+	sciErr = getMatrixOfIntegerPrecision(_piKey, _piAddress, &iPrec);
+	if(sciErr.iErr)
 	{
-		return 1;
+		FREE(piInd);
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	switch(iPrec)
@@ -291,16 +308,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			char* pcDataIn		= NULL;
 			char* pcDataOut		= NULL;
-			iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfInteger8(_piKey, _piAddress, &iRows, &iCols, &pcDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfInteger8(Rhs + 1, iRows, iCols, &pcDataOut, _piKey);
-			if(iRet)
+			sciErr  = allocMatrixOfInteger8(_piKey, Rhs + 1, iRows, iCols, &pcDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(pcDataOut, pcDataIn, sizeof(char) * iRows * iCols);
@@ -311,16 +333,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			unsigned char* pucDataIn		= NULL;
 			unsigned char* pucDataOut		= NULL;
-			iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfUnsignedInteger8(_piKey, _piAddress, &iRows, &iCols, &pucDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfUnsignedInteger8(Rhs + 1, iRows, iCols, &pucDataOut, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfUnsignedInteger8(_piKey, Rhs + 1, iRows, iCols, &pucDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(pucDataOut, pucDataIn, sizeof(unsigned char) * iRows * iCols);
@@ -331,16 +358,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			short* psDataIn		= NULL;
 			short* psDataOut	= NULL;
-			iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfInteger16(_piKey, _piAddress, &iRows, &iCols, &psDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfInteger16(Rhs + 1, iRows, iCols, &psDataOut, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfInteger16(_piKey, Rhs + 1, iRows, iCols, &psDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(psDataOut, psDataIn, sizeof(short) * iRows * iCols);
@@ -351,16 +383,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			unsigned short* pusDataIn		= NULL;
 			unsigned short* pusDataOut	= NULL;
-			iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfUnsignedInteger16(_piKey, _piAddress, &iRows, &iCols, &pusDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfUnsignedInteger16(Rhs + 1, iRows, iCols, &pusDataOut, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfUnsignedInteger16(_piKey, Rhs + 1, iRows, iCols, &pusDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(pusDataOut, pusDataIn, sizeof(unsigned short) * iRows * iCols);
@@ -371,16 +408,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			int* piDataIn		= NULL;
 			int* piDataOut	= NULL;
-			iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfInteger32(_piKey, _piAddress, &iRows, &iCols, &piDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfInteger32(Rhs + 1, iRows, iCols, &piDataOut, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfInteger32(_piKey, Rhs + 1, iRows, iCols, &piDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(piDataOut, piDataIn, sizeof(int) * iRows * iCols);
@@ -391,16 +433,21 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		{
 			unsigned int* puiDataIn		= NULL;
 			unsigned int* puiDataOut	= NULL;
-			iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiDataIn);
-			if(iRet)
+			
+			sciErr = getMatrixOfUnsignedInteger32(_piKey, _piAddress, &iRows, &iCols, &puiDataIn);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
-			iRet = allocMatrixOfUnsignedInteger32(Rhs + 1, iRows, iCols, &puiDataOut, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfUnsignedInteger32(_piKey, Rhs + 1, iRows, iCols, &puiDataOut);
+			if(sciErr.iErr)
 			{
-				return 1;
+				FREE(piInd);
+				printError(&sciErr, 0);
+				return sciErr.iErr;
 			}
 
 			memcpy(puiDataOut, puiDataIn, sizeof(unsigned int) * iRows * iCols);
@@ -408,6 +455,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			break;
 		}
 	default : 
+		FREE(piInd);
 		return 1;
 	}
 
@@ -416,12 +464,12 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
 		if(iRet)
 		{
-			free(piInd);
-			return 1;
+			FREE(piInd);
+			return iRet;
 		}
 	}
 
-	free(piInd);
+	FREE(piInd);
 	return 0;
 }
 
@@ -433,125 +481,54 @@ static int gsort_complex(char *fname, char *mode, char *order)
 }
 /*-----------------------------------------------------------------------------------*/
 
-char* getWayType(int* _piAddress)
+char* getWayType(int* _piKey, int* _piAddress)
 {
 	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
-	char** pstWay = NULL;
+	char* pstWay 			= NULL;
 
 	const char* pcstRef[2] = {g_pcstWayDec,g_pcstWayInc};
-	iRet = getVarString(_piAddress, &pstWay, &iRows, &iCols);
+	
+	iRet = getAllocatedSingleString(_piKey, _piAddress, &pstWay);
 	if(iRet)
 	{
+		freeAllocatedSingleString(pstWay);
 		return NULL;
 	}
 
-	if(iRows == 1 && iCols == 1)
-	{
-		iRet = checkInputValue(pstWay[0], pcstRef, 2);
-	}
-	else
-	{
-		iRet = 1;
-	}
-
+	iRet = checkInputValue(pstWay, pcstRef, 2);
 	if(iRet)
 	{
-		int i;
-		for(i = 0 ; i < iRows * iCols ; i++)
-		{
-			free(pstWay[i]);
-		}
-		free(pstWay);
+		freeAllocatedSingleString(pstWay);
 		return NULL;
 	}
-	return pstWay[0];
+	return pstWay;
 }
 
-char* getProcessType(int* _piAddress)
+char* getProcessType(int* _piKey, int* _piAddress)
 {
 	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
-	char** pstProcess = NULL;
+	char* pstProcess	= NULL;
 
 	const char* pcstRef[5] = {g_pcstProcessGlobal,g_pcstProcessRow,g_pcstProcessCol,g_pcstProcessListRow,g_pcstProcessListCol};
-	iRet = getVarString(_piAddress, &pstProcess, &iRows, &iCols);
+	
+	iRet = getAllocatedSingleString(_piKey, _piAddress, &pstProcess);
 	if(iRet)
 	{
+		freeAllocatedSingleString(pstProcess);
 		return NULL;
 	}
 
-	if(iRows == 1 && iCols == 1)
-	{
-		iRet = checkInputValue(pstProcess[0], pcstRef, 5);
-	}
-	else
-	{
-		iRet = 1;
-	}
-
+	iRet = checkInputValue(pstProcess, pcstRef, 5);
 	if(iRet)
 	{
-		int i;
-		for(i = 0 ; i < iRows * iCols ; i++)
-		{
-			free(pstProcess[i]);
-		}
-		free(pstProcess);
+		freeAllocatedSingleString(pstProcess);
 		return NULL;
 	}
-	return pstProcess[0];
-}
-
-int getVarString(int* _piAddress, char*** _pstData, int* _piRows, int* _piCols)
-{
-	int i;
-	int iRet				= 0;
-	int iRows				= 0;
-	int iCols				= 0;
-	int *piLen			= NULL;
-
-	if(getVarType(_piAddress) != sci_strings)
-	{
-		return 1;
-	}
-
-	iRet = getVarDimension(_piAddress, &iRows, &iCols);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, NULL, NULL);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	*_pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		(*_pstData)[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1)); //+1 for null termination
-	}
-
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, *_pstData);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	*_piRows = iRows;
-	*_piCols = iCols;
-	return 0;
+	return pstProcess;
 }
 
 int checkInputValue(char* _pstInput, const char** _pcstRef, int _iRefCount)

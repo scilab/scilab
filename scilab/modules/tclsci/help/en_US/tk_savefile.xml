@@ -55,7 +55,7 @@ path=tk_savefile(file_mask,dir,'string')</synopsis>
       <varlistentry>
         <term>Title='string'</term>
         <listitem>
-          <para>:Optional argument which gives the title for the tk_savefile
+          <para>Optional argument which gives the title for the tk_savefile
           window. <literal>Warning</literal>: Use the new variable
           <literal>Title</literal> instead of the old variable <literal>title</literal>.
           </para>
@@ -65,17 +65,17 @@ path=tk_savefile(file_mask,dir,'string')</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
+    <para>WARNING: this function is obsolete (see uigetfile as a replacement of tk_savefile). It will be removed in Scilab 5.3.</para>
+
     <para>Creates a dialog window for output file selection</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 tk_savefile()
 tk_savefile('*.sci','SCI/modules/graphics/macros')
 tk_savefile(Title='Choose a file name ')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -84,7 +84,7 @@ tk_savefile(Title='Choose a file name ')
         <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
-        <link linkend="tk_getdir">tk_getdir</link>
+        <link linkend="uigetdir">uigetdir</link>
       </member>
       <member>
         <link linkend="file">file</link>

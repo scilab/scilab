@@ -151,7 +151,7 @@ function [edited,options] = do_options(opt,flag)
 
 //** ---------------------- OLD CODE---------------------------------------------------- 
 //     while %t do
-//       [ok, R,G,B] = getvalue(["Enter RGB description of new colors"; ..
+//       [ok, R,G,B] = scicos_getvalue(["Enter RGB description of new colors"; ..
 //                               "Each component must be greater or equal to 0"; ..
 //                               "and less or equal to 1"], ..
 //                               ["R","G","B"], ..

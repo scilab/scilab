@@ -60,6 +60,6 @@ function [y,R]=kpure(sl,eps)
     end;
   end;
 
-  [y,k]=sort(y)
+  [y,k]=gsort(y)
   R=R(k)
 endfunction

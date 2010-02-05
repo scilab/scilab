@@ -15,9 +15,9 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_savehistory)(char *fname,unsigned long fname_len)
+int sci_savehistory(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;
@@ -34,22 +34,25 @@ int C2F(sci_savehistory)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		#define MAXBUF	1024
-		char  line[MAXBUF];
-		char *Path;
-		int l1, m1, n1, out_n;
+		char  *line = NULL;
+		char *Path = NULL;
+		int l1 = 0, m1 = 0, n1 = 0;
 
 		if ( GetType(1) == sci_strings )
 		{
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-			Path=cstk(l1);
+			Path = cstk(l1);
 
-			C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-			writeScilabHistoryToFile(line);
+			line = expandPathVariable(Path);
+			if (line)
+			{
+				writeScilabHistoryToFile(line);
+				FREE(line);
+				line = NULL;
+			}
 		}
 	}
-
-	LhsVar(1)=0;
+	LhsVar(1) = 0;
 	C2F(putlhsvar)();
 	return 0;
 }

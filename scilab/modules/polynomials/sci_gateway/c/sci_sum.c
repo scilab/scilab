@@ -13,12 +13,11 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
+#include "gw_polynomials.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intpsum)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_psum)(char *fname,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_psum)(char *fname,unsigned long fname_len)
+int sci_psum(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intpsum)(id);

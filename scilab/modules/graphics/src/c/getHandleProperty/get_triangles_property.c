@@ -29,7 +29,7 @@ int get_triangles_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType (pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"triangles") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles") ;
     return -1;
   }
   

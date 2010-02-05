@@ -12,6 +12,7 @@
 
 #include <string.h>
 
+#include "dynlib_intersci.h"
 #include "MALLOC.h"
 #include "../../../string/includes/men_Sutils.h"
 #include "stack-c.h"
@@ -236,15 +237,6 @@ void C2F(dbl2cdbl)(int *n,double *ip[],double *op)
 {
   int i;
   for (i = 0; i < *n; i++)  (*ip)[i]=op[i];
-}
-
-/*--------------------------------------------------------------
- * freeptr : free ip pointer
- *--------------------------------------------------------------*/
-
-void C2F(freeptr)(double *ip[])
-{
-  if (ip) FREE((char *)(*ip));
 }
 
 /*--------------------------------------------------------------

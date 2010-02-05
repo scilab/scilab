@@ -13,8 +13,9 @@
 #ifndef __TERMINATESHELL_H__
 #define __TERMINATESHELL_H__
 #include "BOOL.h"
+#include "dynlib_shell.h"
 
-BOOL TerminateShell(void);
+SHELL_IMPEXP BOOL TerminateShell(void);
 
 #endif /* _TERMINATESHELL_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -279,26 +279,24 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   
-   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
-   a.data_bounds=[-2,-2;2,2];
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+a.data_bounds=[-2,-2;2,2];
 
-   xrect(-1,1,2,2)
+xrect(-1,1,2,2)
 
-   r=get("hdl");//obtendo o manipulador da entidade corrente (aqui, a entidade Rectangle)
-   r.type
-   r.parent.type
-   r.foreground=13;
-   r.line_style=2;
-   r.fill_mode="on";
-   r.background=color('red');
-   r.clip_box=[-1 1;1 1];
-   r.data(:,[3 4])=[1/2 1/2];
-   r.data(:,[1 2])=[1/2 1/2];
-   r.clip_state="off"
-      
- </programlisting>
+r=get("hdl");//obtendo o manipulador da entidade corrente (aqui, a entidade Rectangle)
+r.type
+r.parent.type
+r.foreground=13;
+r.line_style=2;
+r.fill_mode="on";
+r.background=color('red');
+r.clip_box=[-1 1;1 1];
+r.data(:,[3 4])=[1/2 1/2];
+r.data(:,[1 2])=[1/2 1/2];
+r.clip_state="off"
+ ]]></programlisting>
   </refsection>
 
   <refsection>

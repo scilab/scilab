@@ -49,8 +49,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 l=list(1);l(3)=5
 k=definedfields(l)
 
@@ -59,8 +58,7 @@ definedfields(t)
 
 m=mlist(['m','a','b']);m.b='sdfgfgd'
 definedfields(m)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

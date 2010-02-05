@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,tt,exprs]=getvalue('Set Event time',..
+    [ok,tt,exprs]=scicos_getvalue('Set Event time',..
 	['Event Time'],list('vec',1),exprs)
     if ~ok then break,end
     graphics.exprs=exprs

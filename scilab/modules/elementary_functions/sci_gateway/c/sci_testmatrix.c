@@ -21,11 +21,12 @@
 #define FRK_LETTER		'f'
 #define HILB_LETTER		'h'
 
-char getGenerateMode(int* _piAddress);
-int getGenerateSize(int* _piAddress);
+char getGenerateMode(int* _piKey, int* _piAddress);
+int getGenerateSize(int* _piKey, int* _piAddress);
 /*--------------------------------------------------------------------------*/
 int sci_testmatrix(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet						= 0;
 
 	int iRows1					= 0;
@@ -45,26 +46,28 @@ int sci_testmatrix(char *fname, int* _piKey)
 	CheckLhs(1,1);
 
 	/*check input 1*/
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	cMode = getGenerateMode(piAddr1);
+	cMode = getGenerateMode(_piKey, piAddr1);
 
 	if(cMode == -1)
 	{
 		return 1;
 	}
 
-	iDim = getGenerateSize(piAddr2);
+	iDim = getGenerateSize(_piKey, piAddr2);
 
 
 	if(cMode != FRK_LETTER && cMode != HILB_LETTER && iDim == 2)
@@ -74,7 +77,7 @@ int sci_testmatrix(char *fname, int* _piKey)
 
 	if(iDim == 0)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet, _piKey);
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
 		if(iRet)
 		{
 			return 1;
@@ -84,10 +87,11 @@ int sci_testmatrix(char *fname, int* _piKey)
 		return 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iDim, iDim, &pdblRealRet, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iDim, iDim, &pdblRealRet);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	switch(cMode)
@@ -108,44 +112,24 @@ int sci_testmatrix(char *fname, int* _piKey)
 	return 0;
 }
 
-char getGenerateMode(int* _piAddress)
+char getGenerateMode(int* _piKey, int* _piAddress)
 {
-	int iRet		= 0;
-	int iRows		= 0;
-	int iCols		= 0;
-	int piLen[1];
+	int iRet = 0;
 
-	char* pstData[1];
+	char* pstData;
 
-	if(getVarType(_piAddress) != sci_strings)
-	{
-		return -1;
-	}
-
-	iRet = getVarDimension(_piAddress, &iRows, &iCols);
-	if(iRet || iRows != 1 || iCols != 1)
-	{
-		return -1;
-	}
-
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
-	if(iRet)
-	{
-		return -1;
-	}
-
-	pstData[0] = malloc(sizeof(char) * (piLen[0] + 1));//+1 for null termination
-	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, (char**)pstData);
+	iRet = getAllocatedSingleString(_piKey, _piAddress, &pstData);
 	if(iRet)
 	{
 		return -1;
 	}
 	
-	return pstData[0][0];
+	return pstData[0];
 }
 
-int getGenerateSize(int* _piAddress)
+int getGenerateSize(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int iRet = 0;
 	int iRows = 0;
 	int iCols = 0;
@@ -153,24 +137,21 @@ int getGenerateSize(int* _piAddress)
 	double* pdblReal = NULL;
 	double* pdblImg	 = NULL;
 
-	if(getVarType(_piAddress) != sci_matrix)
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		return 0;
-	}
-
-	if(isVarComplex(_piAddress))
-	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
+			printError(&sciErr, 0);
 			return 0;
 		}
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
+			printError(&sciErr, 0);
 			return 0;
 		}
 	}

@@ -33,13 +33,13 @@ int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"segs_color") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "segs_color");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "segs_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -61,8 +61,8 @@ int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
     copyDoubleVectorToIntFromStack( stackPointer, pSEGS_FEATURE (pobj)->pstyle, nbSegs ) ;
   }
   else
-  { 
-    Scierror(999, "%s color has a wrong size (%d), expecting %d or (%d)", "segs", nbRow * nbCol , 1, nbSegs );
+  {
+    Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "segs_color", 1, nbSegs);
     return SET_PROPERTY_ERROR ;
   }
 

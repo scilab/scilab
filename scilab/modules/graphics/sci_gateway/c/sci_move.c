@@ -17,7 +17,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-#include "sci_move.h"
+#include "gw_graphics.h"
 #include "Interaction.h"
 #include "localization.h"
 #include "Scierror.h"

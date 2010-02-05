@@ -29,7 +29,7 @@
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>:a positive scalar: The offset from origin in number of bytes.</para>
+          <para>a positive scalar: The offset from origin in number of bytes.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,8 +63,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 file3='test3.bin'
 fd1= mopen(file3,'wb');
 for i=1:10, mput(i,'d'); end 
@@ -78,14 +77,14 @@ res=mget(11,'d')
 res1=[1:11]; res1(1)=678;res1($)=932;
 if res1<>res ;write(%io(2),'Bug');end;
 mseek(0,fd1,'set');
+
 // trying to read more than stored data 
 res1=mget(100,'d',fd1);
 if res1<>res ;write(%io(2),'Bug');end;
 meof(fd1)
 mclearerr(fd1)
 mclose(fd1);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

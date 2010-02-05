@@ -69,15 +69,13 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A = [1 2 3;4 5 6];
 // max Scilab
 M = max(A)
 // Emulation du max Matlab
 M = max(A,firstnonsingleton(A))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Auteurs</title>

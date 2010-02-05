@@ -36,8 +36,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W
@@ -47,8 +46,7 @@ H=Num./Den
 syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

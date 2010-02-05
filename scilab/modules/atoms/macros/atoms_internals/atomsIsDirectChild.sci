@@ -29,37 +29,30 @@
 //
 //   result : . Boolean Array
 
-function result = atomsIsDirectChild(parent_name,parent_version,child_name)
+function result = atomsIsDirectChild(parent_packages,child_name)
 	
 	rhs    = argn(2);
 	result = [];
 	
 	// Check number of input arguments
 	// =========================================================================
-	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsDirectChild",4));
+	if rhs <> 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsDirectChild",2));
 	end
 	
 	// Check input parameter type
 	// =========================================================================
 	
-	if type(parent_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",1));
+	if type(parent_packages) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsDirectChild",1));
 	end
 	
-	if type(parent_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",2));
+	if size(parent_packages(1,:),"*") <> 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsIsDirectChild",1));
 	end
 	
 	if type(child_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",3));
-	end
-	
-	// Check input parameter dimension
-	// =========================================================================
-	
-	if size(parent_name,"*") <> size(parent_version,"*") then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsDirectChild",1,2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsIsDirectChild",2));
 	end
 	
 	if size(child_name,"*") <> 1 then
@@ -69,13 +62,9 @@ function result = atomsIsDirectChild(parent_name,parent_version,child_name)
 	// Loop on parents
 	// =========================================================================
 	
-	for i=1:size(parent_name,"*")
-		parent_deps = atomsToolboxDetails(parent_name(i),parent_version(i),"Depends");
+	for i=1:size(parent_packages(:,1),"*")
+		parent_deps = atomsToolboxDetails([parent_packages(i,:)],"Depends");
 		result = [ result ; grep(parent_deps,"/\s"+child_name+"\s/","r") <> [] ];
 	end
-	
-	// reshape the matrix
-	// =========================================================================
-	result = matrix(result,size(parent_name) );
 	
 endfunction

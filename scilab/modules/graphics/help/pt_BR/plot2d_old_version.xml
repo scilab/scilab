@@ -407,8 +407,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //esboço simples
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
@@ -426,7 +425,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
 //esboços múltiplos com legendas e tiques dados// velha sintaxe e nova sintaxe
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
-  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
+      [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
 xbasc()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
@@ -450,8 +449,7 @@ plot2d(x,sin(x),1,"184","sin(x)")
 // eixo centrado em(0,0
 xbasc()
 plot2d(x-4,sin(x),1,"185","sin(x)")
- 
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

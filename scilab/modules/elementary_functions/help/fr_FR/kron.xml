@@ -35,13 +35,13 @@ x.*.y</synopsis>
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
 A(1,1)=%i;
 kron(A,A)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

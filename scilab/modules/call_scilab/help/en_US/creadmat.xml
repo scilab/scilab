@@ -22,11 +22,11 @@
   </info>
 
   <refnamediv>
-    <refname>creadmat</refname>
+    <refname>creadmat (obsolete)</refname>
 
     <refpurpose>Read a single double or a matrix of double from Scilab memory
     using call_scilab. Note that it is the default datatype in
-    Scilab.</refpurpose>
+    Scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_reading_API">API_Scilab: Double reading</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 /* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwritematrix.c
 int rowB_ = 0, colB_ = 0, lp_ = 0;
@@ -140,10 +140,10 @@ for(j = 0 ; j < rowB_ ; j++)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,<link linkend="Double_management_reading_API">API_Scilab: Double reading</link>,<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritemat">cwritemat</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link></member>
+      linkend="DoubleManagement_callscilab">Double Management</link></member>
     </simplelist>
   </refsection>
 

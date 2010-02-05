@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include "MALLOC.h"
+#include "BOOL.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,6 +66,19 @@ char *wide_string_to_UTF8(wchar_t *_wide);
 #ifdef _MSC_VER
 int wcstat(char* filename, struct _stat *st);
 #endif
+
+#ifdef _MSC_VER
+#define wcsicmp _wcsicmp
+#else
+#define wcsicmp wcsicmp_others
+#endif
+
+/**
+* checks input text is a valid UTF-8 format
+* @param[in] string to check
+* @return TRUE or FALSE
+*/
+BOOL IsValidUTF8(const char* pStText);
 
 #ifdef __cplusplus
 }

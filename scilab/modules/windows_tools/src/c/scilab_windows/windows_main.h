@@ -15,6 +15,7 @@
 #define __WINDOWS_MAIN_H__
 
 #include <Windows.h>
+#include "dynlib_scilab_windows.h"
 
 /**
 * Main for scilab with GUI
@@ -24,7 +25,7 @@
 * @param [in] Specifies how the window is to be shown
 * @return 0
 */
-int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
+SCILAB_WINDOWS_IMPEXP int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow);
 
 #endif /* __WINDOWS_MAIN_H__ */
 /*--------------------------------------------------------------------------*/ 

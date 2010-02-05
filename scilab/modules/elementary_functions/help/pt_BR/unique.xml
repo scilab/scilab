@@ -96,8 +96,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 M=round(2*rand(20,1));
 
 unique(M)
@@ -105,7 +104,6 @@ unique(M)
 
 unique(string(M))
 [N,k]=unique(string(M))
-
 
 A = [0,0,1,1;
      0,1,1,1;
@@ -123,8 +121,7 @@ unique(T,'r')
 //colunas únicas
 [m,k]=unique(T,'c')
 unique(A,'c')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

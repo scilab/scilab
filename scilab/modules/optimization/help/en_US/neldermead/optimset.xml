@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="optimset" 
+	  xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>optimset</refname>
+
+    <refpurpose>Configures and returns an optimization data structure.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      options = optimset ()
+      options = optimset ( funname )
+      options = optimset ( key , value )
+      options = optimset ( key1 , value1 , key2 , value2, ... )
+      options = optimset ( oldoptions , key , value )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      This function creates or updates a data structure which can
+      be used on modify the behaviour of optimization methods.
+      The goal of this function is to manage the "options" data structure,
+      which is a struct with a set of fields (for example, "MaxFunEvals", "MaxIter", etc...).
+      The user can create a new structure with empty fields or create 
+      a new structure with default fields which correspond to a particular 
+      algorithm.
+      The user can also configure each field and set it to a particular value.
+      Finally, the user pass the structure to an optimization function 
+      so that the algorithm uses the options configured by the user.
+    </para>
+
+    <para>
+        In the following, we analyse the various ways to call the optimset
+        function.
+      </para>
+
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ()
+ ]]></programlisting>
+      <para>creates a new data structure where the fields have been set to the empty matrix (i.e. []).
+    </para>
+
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( funname )
+ ]]></programlisting>
+      <para>creates a new data structure where the default parameters which correspond to the "funname" function have been set. For example,</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( "fminsearch" )
+ ]]></programlisting>
+      <para>returns a new data structure where the default parameters which correspond to the "fminsearch" function have been set.</para>
+
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( oldoptions , key , value )
+ ]]></programlisting>
+      <para>creates a new data structure where all fields from the "oldoptions" 
+      structure have been copied, except the field corresponding to the "key",
+      which has been set to "value".
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+    
+          <varlistentry>
+        <term>key</term>
+        <listitem>
+          <para>a string. The following keys are available :</para>
+	  <itemizedlist>
+	    
+	    <listitem>
+	      <para>"Display"</para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>"FunValCheck"</para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>"MaxFunEvals"</para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>"MaxIter"</para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>"OutputFcn"</para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>"PlotFcns"</para>
+	    </listitem>
+	    
+	  </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value</term>
+        <listitem>
+          <para>
+	  the value of the parameter
+          </para>
+        </listitem>
+      </varlistentry>
+    
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>
+            A struct which contains the following fields.
+            By default, all fields are empty. Specific settings
+            are associated with a particular function name.
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>options.Display</term>
+
+              <listitem>
+                <para>
+                  The verbose level. 
+		  The default value is "notify".
+		  The following is a list of available verbose levels.</para>
+		<itemizedlist>
+		  <listitem>
+		    <para>
+		      options.Display = "off": the algorithm displays no message at all.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      options.Display = "notify": the algorithm displays message if the termination criteria
+		      is not reached at the end of the optimization. This may happen if the 
+		      maximum number of iterations of the maximum number of function evaluations 
+		      is reached and warns the user of a convergence problem.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      options.Display = "final": the algorithm displays a message at the end of the optimization,
+		      showing the number of iterations, the number of function evaluations
+		      and the status of the optimization.
+		      This option includes the messages generated by the "notify" option i.e. warns 
+		      in case of a convergence problem.
+		    </para>
+		  </listitem>
+		  <listitem>
+		    <para>
+		      options.Display = "iter": the algorithm displays a one-line message at each iteration.
+		      This option includes the messages generated by the "notify" option i.e. warns 
+		      in case of a convergence problem. It also includes the message generated 
+		      by the "final" option.
+		    </para>
+		  </listitem>
+		</itemizedlist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.FunValCheck</term>
+
+              <listitem>
+                <para>
+                  A boolean to enable the checking of function values.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.MaxFunEvals</term>
+
+              <listitem>
+                <para>
+                  The maximum number of evaluations of the cost function.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.MaxIter</term>
+
+              <listitem>
+                <para>
+                  The maximum number of iterations. 
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.OutputFcn</term>
+
+              <listitem>
+                <para>
+                  A function which is called at each iteration to print out intermediate 
+                  state of the optimization algorithm (for example into a log file).
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.PlotFcns</term>
+
+              <listitem>
+                <para>
+                  A function which is called at each iteration to plot the intermediate
+                  state of the optimization algorithm (for example into a 2D graphic).
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.TolFun</term>
+
+              <listitem>
+                <para>
+                  The absolute tolerance on function value.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.TolX</term>
+
+              <listitem>
+                <para>
+                  The absolute tolerance on the variable x.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>funname</term>
+
+        <listitem>
+          <para>
+            A string containing the name of an optimization function which
+            takes the options structure as input argument. Currently, the only
+            possible value is "fminsearch".
+          </para>
+        </listitem>
+      </varlistentry>
+      
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Design</title>
+    <para>
+      Most optimization algorithms require many algorithmic
+      parameters such as the number of iterations or the number of
+      function evaluations. If these parameters are given to the optimization
+      function as input parameters, this forces both the user and the
+      developper to manage many input parameters. For example, the "optim" function
+      provides more than 20 input arguments. The goal of the optimset function
+      is to simplify the management of input arguments, by gathering
+      all the parameters into a single data structure.
+    </para>
+
+    <para>
+      While the current implementation of the "optimset" function only supports
+      the fminsearch function, it is designed to be extended to as many
+      optimization function as required. Because all optimization algorithms
+      do not require the same parameters, the data structure aims at remaining
+      flexible. But, most of the time, most parameters are the same from
+      algorithm to algorithm, for example, the tolerance parameters which
+      drive the termination criteria are often the same, even if the
+      termination criteria itself is not the same.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Output and plot functions</title>
+    <para>
+    The "OutputFcn" and "PlotFcns" options accept as argument a function (or a list 
+    of functions). In the client optimization algorithm, this output or plot function 
+    is called back once per iteration. It can be used by the user 
+    to display a message in the console, write into a file, etc...
+    </para>
+    <para>
+    The output or plot function is expected to have the following definition:
+    </para>
+      <programlisting role="example">
+      <![CDATA[ 
+function myfun ( x , optimValues , state )
+ ]]>
+ </programlisting>
+    <para>where the input parameters are:</para>
+    <itemizedlist>
+    
+      <listitem>
+	<para>
+	  <literal>x</literal>: the current point
+	</para>
+      </listitem>
+      
+      <listitem>
+    	<para><literal>optimValues</literal>: a <literal>struct</literal> which contains the following fields</para>
+	  <itemizedlist>
+	    
+	    <listitem>
+	      <para>
+		<literal>optimValues.funccount</literal>: the number of function evaluations
+	      </para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>
+		<literal>optimValues.fval</literal>: the best function value
+	      </para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>
+		<literal>optimValues.iteration</literal>: the current iteration number
+	      </para>
+	    </listitem>
+	    
+	    <listitem>
+	      <para>
+		<literal>optimValues.procedure</literal>: the type of step performed. 
+		This string depends on the specific algorithm see <link linkend="fminsearch">fminsearch</link>
+		for details.
+	      </para>
+	    </listitem>
+	    
+	  </itemizedlist>
+	</listitem>
+      
+	<listitem>
+	  <para><literal>state</literal>: the state of the algorithm. The following states are available : "init", "iter" and "done".</para>
+	    <itemizedlist>
+	      
+	      <listitem>
+		<para>
+		  "init", when the algorithm is initializing,
+		</para>
+	      </listitem>
+	      
+	      <listitem>
+		<para>
+		  "iter", when the algorithm is performing iterations,
+		</para>
+	      </listitem>
+	      
+	      <listitem>
+		<para>
+		  "done", when the algorithm is terminated.
+		</para>
+	      </listitem>
+	      
+	    </itemizedlist>
+	</listitem>
+	
+      </itemizedlist>
+    
+  </refsection>
+
+
+  <refsection>
+    <title>Example #1</title>
+
+    <para>
+      In the following example, we create an empty optimization structure.
+    </para>
+
+    <programlisting role="example"><![CDATA[ 
+op = optimset ()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #2</title>
+
+    <para>
+      In the following example, we create an optimization structure
+      with all fields set to specific settings.
+    </para>
+
+    <programlisting role="example"><![CDATA[ 
+op = optimset ("Display","iter",...
+               "FunValCheck","on",...
+               "MaxFunEvals",100,...
+               "MaxIter",110,...
+               "OutputFcn",myoutputfun,...
+               "PlotFcns",myplotfun,...
+               "TolFun",1.e-12,...
+               "TolX",1.e-13)
+ ]]></programlisting>
+  </refsection>
+
+  
+  <refsection>
+    <title>Example #3</title>
+
+    <para>
+      In the following example, we create an optimization structure
+      with all fields set to the default settings for the "fminsearch"
+      optimization function.
+    </para>
+
+    <programlisting role="example"><![CDATA[ 
+op = optimset ("fminsearch")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+    <para>Michael Baudin - Digiteo - 2009</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="optimget">optimget</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+</refentry>

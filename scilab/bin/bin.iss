@@ -72,6 +72,8 @@ Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\intersci.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -79,6 +81,7 @@ Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ; hdf5 libraries
+Source: bin\jhdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\szlibdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

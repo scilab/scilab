@@ -13,11 +13,11 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_windows_tools.h"
+#include "MALLOC.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define WINDOWS_TOOLS_TAB_SIZE 12
-static gw_generic_table Tab[WINDOWS_TOOLS_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 {sci_winopen,"winopen"},
 {sci_winqueryreg,"winqueryreg"},
@@ -36,8 +36,14 @@ static gw_generic_table Tab[WINDOWS_TOOLS_TAB_SIZE]=
 int gw_windows_tools(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,WINDOWS_TOOLS_TAB_SIZE);
-	
+
+	if(pvApiCtx == NULL)
+	{
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+	}
+
+	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

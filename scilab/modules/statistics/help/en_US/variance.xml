@@ -79,16 +79,12 @@ number of elements in the matrix.
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-
+    <programlisting role="example"><![CDATA[ 
 x=[0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918]
 s=variance(x)
 s=variance(x,'r')
 s=variance(x,'c')
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -169,8 +169,7 @@ h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 f=figure('position', [10 10 300 200]);
 // create a figure
 m=uimenu(f,'label', 'windows');
@@ -179,12 +178,11 @@ m1=uimenu(m,'label', 'operations');
 m2=uimenu(m,'label', 'quit scilab', 'callback', "exit");
 //create two items in the menu "windows"
 m11=uimenu(m1,'label', 'new window', 'callback',"xselect()");
-m12=uimenu(m1,'label', 'clear  window', 'callback',"xbasc()");
+m12=uimenu(m1,'label', 'clear  window', 'callback',"clf()");
 // create a submenu to the item "operations"
 close(f);
 // close the figure
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

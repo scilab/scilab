@@ -18,46 +18,50 @@
 #include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sum_matrix(int* _piAddress, int _iMode, int* _piKey);
-int sum_sparse(int* _piAddress, int* _piKey);
+int sum_matrix(int* _piKey, int* _piAddress, int _iMode);
+int sum_sparse(int* _piKey, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
 int sci_sum(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet		= 0;
 	int iMode		= 0;
+	int iType		= 0;
 	int* piAddr = NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	//manage "c", "r", "m"
 	if(Rhs == 2)
 	{
-		int *piAddr2		= NULL;
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getProcessMode(_piKey, 2, piAddr, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
-		}
-
-		iRet = getProcessMode(piAddr2, piAddr, &iMode);
-		if(iRet)
-		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	switch(getVarType(piAddr))
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_matrix :
-		iRet = sum_matrix(piAddr, iMode, _piKey);
+		iRet = sum_matrix(_piKey, piAddr, iMode);
 		break;
 	case sci_poly :
 		//call psum in poly module
@@ -65,7 +69,7 @@ int sci_sum(char *fname, int* _piKey)
 	case sci_sparse :
 		if(iMode == 0)
 		{
-			iRet = sum_sparse(piAddr, _piKey);
+			iRet = sum_sparse(_piKey, piAddr);
 		}
 		else
 		{
@@ -90,44 +94,55 @@ int sci_sum(char *fname, int* _piKey)
 
 int sum_sparse(int* _piAddress, int* _piKey)
 {
-	int iRows				= 0;
-	int iCols				= 0;
-	int iRealData			= 0;
-	int iImgData			= 0;
+	int iRet						= 0;
 
-	int iTotalElem		= 0;
-	int *piElemByRow	= NULL;
-	int *piColByRow		= NULL;
-
+	int iRows						= 0;
+	int iCols						= 0;
+	int iTotalElem			= 0;
+	int *piElemByRow		= NULL;
+	int *piColByRow			= NULL;
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
-	double *pReturnRealData	= NULL;
-	double *pReturnImgData	= NULL;
+	
+	double dblRealOut		= 0;
+	double dblImgOut		=	0;
 
-	if(iIsComplex(1))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData, &iImgData);
-		piElemByRow	= (int*)malloc(iRows * sizeof(int));
-		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData, &iImgData);
+		iRet = getAllocatedComplexSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iTotalElem, &piElemByRow, &piColByRow, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			freeAllocatedComplexSparseMatrix(piElemByRow, piColByRow, pdblReal, pdblImg);
+			return 0;
+		}
 
-		pdblReal	= stk(iRealData);
-		pdblImg		= stk(iImgData);
+		zdmsums(BY_ALL, pdblReal, pdblImg, iTotalElem, 1, &dblRealOut, &dblImgOut);
 
-		iAllocComplexMatrixOfDouble(Rhs + 1, 1, 1, &pReturnRealData, &pReturnImgData);
-		zdmsums(BY_ALL, pdblReal, pdblImg, iTotalElem, 1, pReturnRealData, pReturnImgData);
+		createScalarComplexDouble(_piKey, Rhs + 1, dblRealOut, dblImgOut);
+		if(iRet)
+		{
+			return 0;
+		}
+		freeAllocatedComplexSparseMatrix(piElemByRow, piColByRow, pdblReal, pdblImg);
 	}
 	else
 	{
-		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
-		piElemByRow	= (int*)malloc(iRows * sizeof(int));
-		piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
+		iRet = getAllocatedSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iTotalElem, &piElemByRow, &piColByRow, &pdblReal);
+		if(iRet)
+		{
+			freeAllocatedSparseMatrix(piElemByRow, piColByRow, pdblReal);
+			return 0;
+		}
 
-		pdblReal	= stk(iRealData);
+		ddmsums(BY_ALL, pdblReal, iTotalElem, 1, &dblRealOut);
 
-		iAllocMatrixOfDouble(Rhs + 1, 1, 1, &pReturnRealData);
-		ddmsums(BY_ALL, pdblReal, iTotalElem, 1, pReturnRealData);
+		createScalarDouble(_piKey, Rhs + 1, dblRealOut);
+		if(iRet)
+		{
+			return 0;
+		}
+
+		freeAllocatedSparseMatrix(piElemByRow, piColByRow, pdblReal);
 	}
 
 	free(piElemByRow);
@@ -135,8 +150,9 @@ int sum_sparse(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int sum_matrix(int* _piAddress, int _iMode, int* _piKey)
+int sum_matrix(int* _piKey, int* _piAddress, int _iMode)
 {
+	SciErr sciErr;
 	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
@@ -150,48 +166,46 @@ int sum_matrix(int* _piAddress, int _iMode, int* _piKey)
 	double *pdblRealRet	= NULL;
 	double *pdblImgRet	= NULL;
 
-	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	sciErr = getVarDimension(_piKey, _piAddress, &iRows, &iCols);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	if(iRows * iCols == 0)
+	if(isEmptyMatrix(_piKey, _piAddress))
 	{
 		if(_iMode == BY_ALL)
 		{
-			iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet, _piKey);
+			iRet = createScalarDouble(_piKey, Rhs + 1, 0);
 			if(iRet)
 			{
 				return 1;
 			}
-
-			pdblRealRet[0]	= 0;
-			return 0;
 		}
 		else
 		{
-			iRet = allocMatrixOfDouble(Rhs + 1, 0,0, &pdblRealRet, _piKey);
+			iRet = createEmptyMatrix(_piKey, Rhs + 1);
 			if(iRet)
 			{
 				return 1;
 			}
-			return 0;
 		}
+		return 0;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 	
 	switch(_iMode)
@@ -213,22 +227,24 @@ int sum_matrix(int* _piAddress, int _iMode, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsOut, iColsOut, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		zdmsums(_iMode, pdblReal, pdblImg, iRows, iCols, pdblRealRet, pdblImgRet);
 	}
 	else
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsOut, iColsOut, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		ddmsums(_iMode, pdblReal, iRows, iCols, pdblRealRet);

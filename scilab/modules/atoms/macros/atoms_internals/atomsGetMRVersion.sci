@@ -32,7 +32,7 @@ function versions = atomsGetMRVersion(packages)
 	// Get all package description
 	// =========================================================================
 	
-	allpackages = atomsGetTOOLBOXES();
+	allpackages = atomsDESCRIPTIONget();
 	
 	// Loop on packages
 	// =========================================================================

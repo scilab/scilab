@@ -70,11 +70,9 @@
     </simplelist>
   </refsection>
   <refsection><title>Examples</title>
-  <programlisting role="example"><![CDATA[
-
-   plot(hilb(51))
- 
-  ]]></programlisting></refsection>
+  <programlisting role="example"><![CDATA[ 
+plot(hilb(51))
+ ]]></programlisting></refsection>
   <refsection>
 <title>Authors</title>
   <para>C. B.  </para></refsection>

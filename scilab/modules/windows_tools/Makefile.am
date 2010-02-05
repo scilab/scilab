@@ -11,6 +11,7 @@ libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/operations/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -39,16 +40,6 @@ libsciwindows_tools_la_etc_DATA = etc/windows_tools.quit etc/windows_tools.start
 #### windows_tools : gateway declaration ####
 libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
-
-#### windows_tools : include files ####
-libsciwindows_tools_la_includedir=$(pkgincludedir)/windows_tools
-libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h \
-includes/ConvertSlash.h \
-includes/InitializeWindows_tools.h \
-includes/strdup_windows.h \
-includes/TerminateWindows_tools.h \
-includes/FocusOnConsole.h \
-includes/MutexClosingScilab.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

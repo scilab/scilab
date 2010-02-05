@@ -36,7 +36,10 @@ void sciprint(char *fmt,...) ;
 * @param[in] fmt
 * @param[in] va_list
 * @return nb characters
-*/int scivprint(char *fmt,va_list args);
+*/
+
+int scivprint(char *fmt,va_list args);
+
 #ifdef __cplusplus
 }
 #endif

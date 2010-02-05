@@ -17,7 +17,7 @@
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>a real symetric positive definite sparse matrix</para>
+          <para>a real symmetric positive definite sparse matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -85,7 +85,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 b = rand(size(A,1),1);

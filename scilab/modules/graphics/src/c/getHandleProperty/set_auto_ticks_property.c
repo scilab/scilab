@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,10 +33,11 @@
 int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   char ** values;
+  int mSize = nbRow*nbCol;
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"auto_ticks") ;
+    Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "auto_ticks");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -43,11 +45,11 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"auto_ticks") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_ticks") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if( nbCol == 1 )
+  if( mSize == 1 )
   {
     /* only one parameter to set the value for every axes.*/
     if ( strcmp( values[0], "off" ) == 0 ) 
@@ -60,17 +62,17 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
     }
     else
     {
-      Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),"set_auto_ticks_property",2,"on","off") ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_ticks", "on", "off");
       return SET_PROPERTY_ERROR ; ;
     }
     return SET_PROPERTY_SUCCEED ;
   }
-  else if ( nbCol == 2 || nbCol == 3)
+  else if ( mSize == 2 || mSize == 3)
   {
     int i ;
     BOOL autoTicks[3];
     sciGetAutoTicks(pobj, autoTicks);
-    for ( i = 0; i < nbCol; i++ )
+    for ( i = 0; i < mSize; i++ )
     {
       if ( strcmp(values[i],"off") == 0 )
       {
@@ -82,7 +84,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
       }
       else
       {
-        Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"),"set_auto_ticks_property",2,"on","off");
+        Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "auto_ticks", "on", "off");
         return SET_PROPERTY_ERROR ;
       }
     }
@@ -91,7 +93,7 @@ int set_auto_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   {
-    Scierror(999, _("Wrong value for input argument #%d: Between %d to %d expected.\n"),2,1,3) ;
+    Scierror(999, _("Wrong size for '%s' property: At most %d elements expected.\n"), "auto_ticks", 3);
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

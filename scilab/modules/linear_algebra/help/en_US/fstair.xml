@@ -94,7 +94,7 @@
       <varlistentry>
         <term>nblcks</term>
         <listitem>
-          <para>:is the number of submatrices having full row rank &gt;= 0  detected in matrix  <literal>A</literal>.</para>
+          <para>is the number of submatrices having full row rank &gt;= 0  detected in matrix  <literal>A</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

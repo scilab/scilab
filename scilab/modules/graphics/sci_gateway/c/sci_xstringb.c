@@ -17,9 +17,8 @@
 /* desc : interface for xstringb routine                                  */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xstringb.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "Scierror.h"
 #include "sciCall.h"
 #include "freeArrayOfString.h"

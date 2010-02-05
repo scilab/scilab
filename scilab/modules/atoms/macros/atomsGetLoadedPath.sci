@@ -9,89 +9,60 @@
 
 // End user function
 
-// Output argument :
-
-//   path : . If the toolbox is loaded, path is the path of the loaded toolbox
-//            otherwise, path = ""
-//          . Matrix of string (n x 1)
-//          . mandatory
-
-function path = atomsGetLoadedPath(name,version)
+function res = atomsGetLoadedPath(packages)
 	
-	// Load Atoms Internals lib if it's not already loaded
-	// =========================================================================
-	if ~ exists("atoms_internalslib") then
-		load("SCI/modules/atoms/macros/atoms_internals/lib");
-	end
-	
-	rhs         = argn(2);
-	lhs         = argn(1);
-	res         = [];
-	path        = [];
+	rhs           = argn(2);
+	res           = [];
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetLoadedPath",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
+	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
-	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetLoadedPath",2));
+	if size(packages(1,:),"*") > 3 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix expected.\n"),"atomsGetLoadedPath",1));
 	end
 	
-	// name and version must have the same size
+	packages = stripblanks(packages);
+	
+	// Complete packages matrix with empty columns to have a mx3 matrix
 	// =========================================================================
 	
-	if rhs>1 & version<>[] & or(size(name)<>size(version)) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetLoadedPath",1,2));
-	end
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
 	
-	// Value of version if not precised
-	// =========================================================================
+	elseif size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	
-	if rhs < 2 then
-		version = [];
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetLoaded();
+	loadedpackages = atomsGetLoaded();
 	
 	// Loop on name
 	// =========================================================================
 	
-	for i=1:size(name,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		if isempty(version) then
-			// Just check the name
-			res(i) = or(packages(:,1) == name(i));
+		if ~ atomsIsLoaded(packages(i,:)) then
+			res(i) = "";
 			
 		else
 			// Filter on names
-			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
+			packages_filtered = loadedpackages( find(loadedpackages(:,1) == packages(i,1)),:);
 			
-			// Check if the wanted version is present$
-			res(i) = or(packages_version == version(i) );
+			res(i) = packages_filtered(1,4);
 		end
-		
-		if res(i) then
-			path(i) = packages( find(packages(:,1) == name(i)) , 4 )
-		else
-			path(i) = "";
-		end
-		
 	end
-	
-	// Reshape the matrix [path]
-	// =========================================================================
-	path = matrix(path,size(name));
 	
 endfunction

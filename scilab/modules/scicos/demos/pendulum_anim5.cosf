@@ -1,12 +1,17 @@
 scs_m=scicos_diagram(..
       version="scicos4.2",..
       props=scicos_params(..
-            wpar=[135.44327,724.53665,29.080015,443.59669,803,565,106,32,670,580,445,243,1.4],..
-            Title=["pendulum_anim5","SCI"],..
-            tol=[0.0001;0.000001;1.000E-10;100001;0.1;0;0],..
+            wpar=[135.44327,724.53665,24.114143,449.16652,803,580,66,0,670,580,445,243,1.4],..
+            Title=["pendulum_anim5",..
+            "/home/collette/repositories/master/scilab/modules/scicos/demos/"],..
+            tol=[0.0001;0.000001;1.000D-10;100001;0.1;0;0],..
             tf=30,..
             context=["M=10;m=3;l=3;ph=0.1; ";
-            "scs_m=scs_m.objs(5).model.rpar;";
+            "if scs_m.objs(5).gui==''SUPER_f'' then";
+            "  scs_m=scs_m.objs(5).model.rpar;";
+            "else";
+            "  scs_m=scs_m.objs(4).model.rpar;";
+            "end";
             "[X,U,Y,XP]=steadycos(scs_m,[],[],[],[],1,1:$);";
             "sys= lincos(scs_m,X,U);";
             "Kc=-ppol(sys.A,sys.B,[-1,-1,-1,-1]);";
@@ -119,7 +124,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title="Untitled",..
-              tol=[0.0001,0.000001,1.000E-10,100001,0,0],..
+              tol=[0.0001,0.000001,1.000D-10,100001,0,0],..
               tf=100000,..
               context=[],..
               void1=[],..
@@ -345,7 +350,7 @@ scs_m_1=scicos_diagram(..
         props=scicos_params(..
               wpar=[600,450,0,0,600,450],..
               Title=["non_lin","/home/ramin/SCILAB_BOOK/scilab-sc-jpc-rn/ScicosPart/"],..
-              tol=[0.0001;0.000001;1.000E-10;100001;0;0;0],..
+              tol=[0.0001;0.000001;1.000D-10;100001;0;0;0],..
               tf=30,..
               context=" ",..
               void1=[],..
@@ -1035,8 +1040,8 @@ scs_m.objs(6)=scicos_block(..
                        dstate=[],..
                        odstate=list(),..
                        rpar=[1.2232416;1;-0.4057101;0;-3.6941896;-4;-0.1014262;0.0000007;15.748401;0;
-                       -5.2232416;1;31.791238;8.962E-08;-14.544138;-4;4;4;-0.0000013;-0.0000007;
-                       -2.9195685;-8.962E-08;8.2383277;4;12.268991;3.0672477;157.95489;318.86294],..
+                       -5.2232416;1;31.791238;8.962D-08;-14.544138;-4;4;4;-0.0000013;-0.0000007;
+                       -2.9195685;-8.962D-08;8.2383277;4;12.268991;3.0672477;157.95489;318.86294],..
                        ipar=[],..
                        opar=list(),..
                        blocktype="c",..

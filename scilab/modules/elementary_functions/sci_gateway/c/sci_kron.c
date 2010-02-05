@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -35,8 +35,7 @@ extern int C2F(dscal)();
 /*--------------------------------------------------------------------------*/
 int sci_kron(char *fname,int* _piKey)
 {
-	int iRet						= 0;
-
+	SciErr sciErr;
 	int iRows1					= 0;
 	int iCols1					= 0;
 	double *pdblReal1		= NULL;
@@ -58,140 +57,165 @@ int sci_kron(char *fname,int* _piKey)
 	int* piAddr1				= NULL;
 	int* piAddr2				= NULL;
 
-	//static int id[6];
-	//C2F(intkron)(id);
-	//return 0;
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iComplex1 = isVarComplex(piAddr1);
-	iComplex2 = isVarComplex(piAddr2);
+	iComplex1 = isVarComplex(_piKey, piAddr1);
+	iComplex2 = isVarComplex(_piKey, piAddr2);
 	iComplexRet = iComplex1 | iComplex2;
 
 	/*get first parameter*/
-	if(isVarComplex(piAddr1))
+	if(isVarComplex(_piKey, piAddr1))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
-	}
-	
-	if(iRet)
-	{
-		return 1;
-	}
-	/*get second parameter*/
-	if(isVarComplex(piAddr2))
-	{
-		iRet = getComplexMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2, &pdblImg2);
-	}
-	else
-	{
-		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+		sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 
-	if(iRet)
+	/*get second parameter*/
+	if(isVarComplex(_piKey, piAddr2))
 	{
-		return 1;
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2, &pdblImg2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
+	else
+	{
+		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+	}
+
 	if(iComplexRet)
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet, _piKey);
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 	else
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 
-	if(iRet)
-	{
-		return 1;
-	}
 
 	/*Specials cases ./. and .\. */
 	if(Fin == 20) // operator is ./.
 	{
+		int iRet = 0;
 		if(iComplex2)
 		{
 			iRet = conv_img_input(pdblReal2, pdblImg2, iRows2 * iCols2);
+			if(iRet)
+			{
+				return 1;
+			}
 		}
 		else
 		{
 			iRet = conv_real_input(pdblReal2, iRows2 * iCols2);
-		}
-
-		if(iRet)
-		{
-			return 1;
+			if(iRet)
+			{
+				return 1;
+			}
 		}
 	}
 	else if(Fin == 21) // operator is .\.
 	{
+		int iRet = 0;
 		if(iComplex1)
 		{
 			iRet = conv_img_input(pdblReal1, pdblImg1, iRows1 * iCols1);
+			if(iRet)
+			{
+				return 1;
+			}
 		}
 		else
 		{
 			iRet = conv_real_input(pdblReal1, iRows1 * iCols1);
-		}
-
-		if(iRet)
-		{
-			return 1;
+			if(iRet)
+			{
+				return 1;
+			}
 		}
 	}
 
 	if(iComplex1 == 0 && iComplex2 == 0)
 	{//A real and B real
-		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1,
 						pdblReal2, iRows2, iRows2, iCols2,
 						pdblRealRet, iRows1 * iRows2);
 	}
 	else if(iComplex1 == 1 && iComplex2 == 0)
 	{//A complex and B real
 		/*Real part*/
-		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1,
 						pdblReal2, iRows2, iRows2, iCols2,
 						pdblRealRet, iRows1 * iRows2);
 		/*Img part*/
-		vKronR(	pdblImg1, iRows1, iRows1, iCols1, 
+		vKronR(	pdblImg1, iRows1, iRows1, iCols1,
 						pdblReal2, iRows2, iRows2, iCols2,
 						pdblImgRet, iRows1 * iRows2);
 	}
 	else if(iComplex1 == 0 && iComplex2 == 1)
 	{//A real and B complex
 		/*Real part*/
-		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1,
 						pdblReal2, iRows2, iRows2, iCols2,
 						pdblRealRet, iRows1 * iRows2);
 		/*Img part*/
-		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1,
 						pdblImg2, iRows2, iRows2, iCols2,
 						pdblImgRet, iRows1 * iRows2);
 	}
 	else
 	{//A complex and B complex
 		/*Real part*/
-		vKronC(	pdblReal1, pdblImg1, iRows1, iRows1, iCols1, 
+		vKronC(	pdblReal1, pdblImg1, iRows1, iRows1, iCols1,
 						pdblReal2, pdblImg2, iRows2, iRows2, iCols2,
 						pdblRealRet, pdblImgRet, iRows1 * iRows2);
 	}
@@ -234,7 +258,7 @@ void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 		}
 	}
 }
-				
+
 void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 				double* _pdblRealIn2, double* _pdblImgIn2, int _iIncIn2, int _iRowsIn2, int _iColsIn2,
 				double* _pdblRealOut, double* _pdblImgOut, int _iIncOut)
@@ -256,11 +280,11 @@ void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRows
 			{
 				for(iLoop4 = 0 ; iLoop4 < _iRowsIn2 ; iLoop4++)
 				{
-					_pdblRealOut[iIndex5 + iLoop4] = 
-							_pdblRealIn1[iIndex4] * _pdblRealIn2[iIndex3 + iLoop4] - 
+					_pdblRealOut[iIndex5 + iLoop4] =
+							_pdblRealIn1[iIndex4] * _pdblRealIn2[iIndex3 + iLoop4] -
 							_pdblImgIn1[iIndex4] * _pdblImgIn2[iIndex3 + iLoop4];
-					_pdblImgOut[iIndex5 + iLoop4] = 
-							_pdblRealIn1[iIndex4] * _pdblImgIn2[iIndex3 + iLoop4] + 
+					_pdblImgOut[iIndex5 + iLoop4] =
+							_pdblRealIn1[iIndex4] * _pdblImgIn2[iIndex3 + iLoop4] +
 							_pdblImgIn1[iIndex4] * _pdblRealIn2[iIndex3 + iLoop4];
 				}
 				iIndex5 += _iRowsIn2;

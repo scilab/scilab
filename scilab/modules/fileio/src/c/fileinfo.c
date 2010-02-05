@@ -18,7 +18,7 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "returnanan.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 #define FILEINFO_ARRAY_SIZE 13
 
@@ -46,7 +46,7 @@ static double *fileinfo_Others(char *filepathname,int *ierr);
 /*--------------------------------------------------------------------------*/
 double * fileinfo(char *filename, int *ierr)
 {
-	char expandedpath[PATH_MAX + FILENAME_MAX + 1];
+	char *expandedpath = NULL;
 	double *FILEINFO_ARRAY = NULL;
 	int out_n = 0;
 
@@ -56,14 +56,18 @@ double * fileinfo(char *filename, int *ierr)
 		return NULL;
 	}
 
-	C2F(cluni0)(filename ,expandedpath, &out_n,(int)strlen(filename),PATH_MAX + FILENAME_MAX + 1);
-
-
+	expandedpath = expandPathVariable(filename);
+	if (expandedpath)
+	{
 #ifdef _MSC_VER
-	FILEINFO_ARRAY = fileinfo_Windows(expandedpath,ierr);
+		FILEINFO_ARRAY = fileinfo_Windows(expandedpath,ierr);
 #else
-	FILEINFO_ARRAY = fileinfo_Others(expandedpath,ierr);
+		FILEINFO_ARRAY = fileinfo_Others(expandedpath,ierr);
 #endif
+		FREE(expandedpath);
+		expandedpath = NULL;
+	}
+
 	return FILEINFO_ARRAY;
 }
 /*--------------------------------------------------------------------------*/
@@ -131,13 +135,13 @@ static double *fileinfo_Windows(char *filepathname,int *ierr)
 		return NULL;
 	}
 
-	swprintf(DriveTemp, wcslen(wcpath), L"%s", wcpath);
+	swprintf(DriveTemp, wcslen(wcpath)+1, L"%s", wcpath);
 	if ( (DriveTemp[wcslen(DriveTemp)-1] == L'/') || (DriveTemp[wcslen(DriveTemp)-1] == L'\\') )
 	{
 		DriveTemp[wcslen(DriveTemp)-1] = L'\0';
 	}
 
-	result = _wstat(wcpath, &buf );
+	result = _wstat(DriveTemp, &buf );
 
 	FREE(wcpath); wcpath = NULL;
 

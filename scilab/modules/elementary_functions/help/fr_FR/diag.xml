@@ -89,7 +89,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 diag([1,2])
 
 A=[1,2;3,4];
@@ -100,7 +100,7 @@ diag(sparse(1:10))  // matrice diagonale creuse
 
 // Construction d'une matrice tridiagonale de taille 2*m+1
 m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

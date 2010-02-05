@@ -15,10 +15,10 @@ function z = bitxor(x,y)
 	// whose the binary form is the XOR of the binary representations of x and y
 	
 	// -Inputs :
-	//  x, y :  scalars/vectors/matices/hypermatices of positives integers, 
+	//  x, y :  scalars/vectors/matices of positives integers, 
 	//          x and y must have the same size
 	// -Output :
-	//  z : scalar/vector/matrix/hypermatice
+	//  z : scalar/vector/matrix
 	//
 	// P. Marechal, 5 Feb 2008
 	//   - fix bug 2691 and 2692
@@ -51,7 +51,7 @@ function z = bitxor(x,y)
 		| (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[]) ..
 		| (type(x)<>1  & type(x)<>8 & type(x)<>17) then
 		
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitxor",1));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
@@ -59,7 +59,7 @@ function z = bitxor(x,y)
 		| (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) ..
 		| (type(y)<>1  & type(y)<>8 & type(y)<>17) then
 		
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitxor",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitxor",2));
 	end
 	
 	// Algorithm

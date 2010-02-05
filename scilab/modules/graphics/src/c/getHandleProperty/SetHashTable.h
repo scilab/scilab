@@ -18,6 +18,7 @@
 #ifndef _SET_HASH_TABLE_H_
 #define _SET_HASH_TABLE_H_
 
+#include "dynlib_graphics.h"
 #include "setGetHashTable.h"
 #include "ObjectStructure.h"
 
@@ -25,12 +26,12 @@
  * create the fill hash table already filled for set functions
  * this use the singleton pattern since only one hashtable is useful.
  */
-SetPropertyHashTable * createScilabSetHashTable( void ) ;
+GRAPHICS_IMPEXP SetPropertyHashTable * createScilabSetHashTable( void ) ;
 
 /**
  * Delete the scilab set hashtable
  */
-void destroyScilabSetHashTable( void ) ;
+GRAPHICS_IMPEXP void destroyScilabSetHashTable( void ) ;
 
 /** 
  * call the function which the property propertyName of object pObj
@@ -38,6 +39,6 @@ void destroyScilabSetHashTable( void ) ;
  *         -1 if an error occured in the get function
  *          1 if the property was not found
  */
-int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
+GRAPHICS_IMPEXP int callSetProperty( sciPointObj * pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
 
 #endif /* _SET_HASH_TABLE_H_ */

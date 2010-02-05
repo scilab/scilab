@@ -14,6 +14,7 @@
 #ifndef __MUTEXCLOSINGSCILAB_H__
 #define __MUTEXCLOSINGSCILAB_H__
 
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h"
 
 #define CLOSING_SCILAB_MUTEX_NAME "Closing_Scilab"
@@ -21,18 +22,18 @@
 /**
 * Create a named Mutex used to known if we close scilab
 */
-void createMutexClosingScilab(void);
+SCILAB_WINDOWS_IMPEXP void createMutexClosingScilab(void);
 
 /**
 * Close named Mutex used by Innosetup
 */
-void terminateMutexClosingScilab(void);
+SCILAB_WINDOWS_IMPEXP void terminateMutexClosingScilab(void);
 
 /** 
 * check if Mutex about Closing scilab is opening 
 * @return TRUE or FALSE
 */
-BOOL haveMutexClosingScilab(void);
+SCILAB_WINDOWS_IMPEXP BOOL haveMutexClosingScilab(void);
 /*--------------------------------------------------------------------------*/
 
 #endif /* __MUTEXCLOSINGSCILAB_H__ */

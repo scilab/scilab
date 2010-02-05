@@ -70,7 +70,7 @@
      function. In the following, the XML file is displayed in a <literal>type writer font</literal>
      and cut-out in several parts, each part being preceded by some associated explanations.
      The entire XML file <literal>foo.xml</literal> is in the <literal>&lt;SCIDIR&gt;/man/eng/utility</literal>
-     directory and the result may be displayed by clicking on <link linkend="foo">foo</link>.
+     directory and the result may be displayed by clicking on foo.
      (you may found others examples in the <literal>&lt;SCIDIR&gt;/examples/man-examples-xml</literal> 
      directory). <emphasis role="bold">Finally</emphasis> note that some tag pairs <literal>&lt;TAG&gt;</literal>, 
      <literal>&lt;/TAG&gt;</literal> have been renamed here <literal>&lt;ATAG&gt;</literal>, 
@@ -87,16 +87,14 @@
       (most of the cases) but may be simply  'Scilab keyword' or 'Scilab data type', ..., 
       depending of what explains the help page. 
    </para>
-    <programlisting><![CDATA[
-
-       <!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
-       <MAN>
-          <LANGUAGE>eng</LANGUAGE>
-          <TITLE>foo</TITLE>
-          <TYPE>Scilab function</TYPE>
-          <DATE>$LastChangedDate$</DATE>
-   
-        ]]></programlisting>
+    <programlisting><![CDATA[ 
+<!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
+<MAN>
+   <LANGUAGE>eng</LANGUAGE>
+   <TITLE>foo</TITLE>
+   <TYPE>Scilab function</TYPE>
+   <DATE>$LastChangedDate$</DATE>
+ ]]></programlisting>
     <para>
    The first of these 2 following entries (<literal>SHORT_DESCRIPTION</literal>)
    is mandatory and important since the words of the short description text, are used by the
@@ -238,7 +236,9 @@
     <programlisting role="example"><![CDATA[
     function y=foo(a,b,c),y=a+2*b+c,endfunction
     path=help_skeleton('foo',TMPDIR)
-    scipad(path)
+    if (isdef('editor') | (funptr('editor')<>0)) then
+      editor(path);
+    end
   ]]></programlisting>
   </refsection>
   <refsection>

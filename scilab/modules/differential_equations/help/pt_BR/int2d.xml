@@ -127,7 +127,7 @@
               <term>iflag</term>
 
               <listitem>
-                <para>:</para>
+                <para></para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -182,15 +182,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')
 [I,e]=int2d(X,Y,f)
 // computa o integrando sobre o quadrado [0 1]x[0 1]
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -205,7 +203,7 @@ deff('z=f(x,y)','z=cos(x+y)')
 
       <member><link linkend="intg">intg</link></member>
 
-      <member><link linkend="mesh2d">mesh2d</link></member>
+      <member><link linkend="mesh">mesh</link></member>
     </simplelist>
   </refsection>
 

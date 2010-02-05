@@ -73,12 +73,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,2)*rand(2,4);
 norm(A*pinv(A)*A-A,1)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

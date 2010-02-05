@@ -40,7 +40,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -53,8 +53,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 H=[1/(s+0.5);2/(s-0.4)]   //strictly proper
 np=20;w=ldiv(H('num'),H('den'),np);
@@ -68,8 +67,7 @@ rep=rtitr(H('num'),H('den'),u);   //Impulse rep.
 w=z*imrep2ss(rep)   //Realization with shifted impulse response 
 // i.e strictly proper to proper
 H2=ss2tf(w);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

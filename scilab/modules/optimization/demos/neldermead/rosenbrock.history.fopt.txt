@@ -1,0 +1,12 @@
+//
+// rosenbrock.history.fopt.txt--
+//   History of the function value optimum during Nelder-Mead algorithm.
+//
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+history = [
+0 8.000000e+000
+1 8.000000e+000
+2 8.000000e+000
+2 8.000000e+000
+]

@@ -58,13 +58,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 subf('0','a')
 subf('2','1')
 subf('a','0')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

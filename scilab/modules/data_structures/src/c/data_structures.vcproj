@@ -43,8 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -120,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -194,10 +195,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -276,7 +278,7 @@
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

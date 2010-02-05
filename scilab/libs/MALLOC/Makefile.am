@@ -13,7 +13,7 @@ MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
 #MALLOC_C_SOURCES += src/malloc.c
 #endif
 
-libscimalloc_la_includedir=$(pkgincludedir)/malloc
+libscimalloc_la_includedir=$(pkgincludedir)
 
 libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \

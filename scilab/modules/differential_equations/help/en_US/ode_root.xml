@@ -130,9 +130,9 @@
     <para>If <literal>g</literal> is a function the syntax should be as
     follows:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 z = g(t,y)
-       </programlisting>
+ ]]></programlisting>
 
     <para>where <literal>t</literal> is a real scalar (time) and
     <literal>y</literal> a real vector (state). It returns a vector of size
@@ -159,7 +159,7 @@ z = g(t,y)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // Integration of the differential equation
 // dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
 deff("[ydot]=f(t,y)","ydot=y")
@@ -169,7 +169,7 @@ y0=1;ng=1;
  
 deff("[z]=g(t,y)","z=y-[2;2;33]")
 [y,rd]=ode("roots",1,0,2,f,3,g)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

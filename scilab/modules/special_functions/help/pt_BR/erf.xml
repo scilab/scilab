@@ -60,26 +60,21 @@
 
     <para><literal>erf</literal> computa a função de erro:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
                     /x     2
             2       |    -t
      y = -------    |   e    dt
          sqrt(pi)  /0
-                   
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

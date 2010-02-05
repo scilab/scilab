@@ -10,8 +10,8 @@
  *
  */
 
-#include "sci_loadfftwlibrary.h"
 #include "callfftw.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "fftwlibname.h"
 #include "gw_fftw.h"

@@ -87,7 +87,7 @@ v(i)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 3^(-1)
 x=poly(0,"x");
 //

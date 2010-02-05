@@ -77,12 +77,10 @@
     <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>. Se
     <literal>nx</literal> e <literal>ny</literal> são matrizes:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>a <literal>k</literal>-ésima seta é definida por
     <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
@@ -95,8 +93,7 @@ ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=2*%pi*(0:9)/8;
 x1=[sin(x);9*sin(x)];
 y1=[cos(x);9*cos(x)];
@@ -104,8 +101,7 @@ plot2d([-10,10],[-10,10],[-1,-1],"022")
 xset("clipgrf")
 xarrows(x1,y1,1,1:10)
 xset("clipoff")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

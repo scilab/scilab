@@ -34,7 +34,7 @@
       <varlistentry>
         <term>xi, xa, kMinr, kMaxr, ar</term>
         <listitem>
-          <para>:real scalars</para>
+          <para>real scalars</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -56,11 +56,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-  [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+[x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

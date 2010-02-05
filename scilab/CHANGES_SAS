@@ -34,3 +34,4 @@ Bug fixes:
 
 Obsolete functions removed :
 ============================
+ffir and fiir removed: were no longer linked in gw_signal_processing.h

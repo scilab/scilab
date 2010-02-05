@@ -49,6 +49,16 @@ ieee(0);
 //%T = %t;
 //%F = %f;
 
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args = sciargs();
+larg = find(args=="-l");
+if larg<>[] & larg<=size(args,"*") then
+  L = args(larg+1);
+  setlanguage(L);
+end
+clear larg args L
+
 // Startup message  ===================================================
 
 if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
@@ -74,16 +84,6 @@ global demolist
 demolist = [];
 clear demolist;
 
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-args = sciargs();
-larg = find(args=="-l");
-if larg<>[] & larg<=size(args,"*") then
-  L = args(larg+1);
-  setlanguage(L);
-end
-clear larg args L
-
 // loads modules ======================================================
 
 modules = getmodules();
@@ -108,7 +108,12 @@ else
 end
 setenv("VERSION",getversion());
 
-clear pathconvert; //remove the local variable
+// ATOMS ===============================================================
+if with_module('atoms') then
+  atomsSystemInit();
+  atomsAutoload();
+  clear atomsSystemInit atomsAutoload
+end
 
 // Protect variable previously defined  ================================
 predef("all");
@@ -131,32 +136,27 @@ if fileinfo(SCI+'/contrib/loader.sce') <> [] then
 end
 
 // calling user initialization =========================================
-// Home dir startup (if any)
-if sciargs()<>"-nouserstartup" then
-  startup_path = SCIHOME + filesep();
 
-  if (fileinfo(startup_path+".scilab") <> []) then
-    lines(0);
-    exec(startup_path+".scilab",-1);
-  else
-    if (fileinfo(startup_path+"scilab.ini") <> []) then
-      exec(startup_path+"scilab.ini",-1);
+if sciargs()<>'-nouserstartup' then
+
+  startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
+                   SCIHOME + filesep() + "scilab.ini" ];    //  ''      ''    startup
+
+  if SCIHOME <> pwd() then
+    startupfiles = [ startupfiles     ; ..                     
+                     ".scilab"        ; .. // Working directory startup
+                     "scilab.ini" ]   ;    //  ''         ''    startup
+  end
+
+  for i=1:size(startupfiles,"*")
+    if ~isempty(fileinfo(startupfiles(i))) & ~isdir(startupfiles(i)) then
+      exec(startupfiles(i),-1);
     end
   end
-  clear startup ierr startup_path
 
-  // working dir startup (if any)
-  if (SCIHOME <> pwd()) then
-    if (fileinfo(".scilab") <> []) then
-      exec(".scilab",-1);
-    else
-      if (fileinfo("scilab.ini") <> []) then
-        exec("scilab.ini",-1);
-      end
-    end
-  end
+  clear startupfiles isempty i;
+  
 end
-clear startup ierr
 
 // Menus/toolbar can now be enabled ====================================
 if getscilabmode() == "STD" then
@@ -165,10 +165,10 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&Preferences"));
   setmenu(gettext("&Control"));
   setmenu(gettext("&Applications"));
-  if ~with_module("scipad") then // Desactivate Editor menu
+  if ~with_module("xpad") then // Desactivate Editor menu
     unsetmenu(gettext("&Applications"),1);
   end
-  if ~with_module("scicos") then // Desactivate Scicos menu
+  if ~with_module("xcos") then // Desactivate xcos menu
     unsetmenu(gettext("&Applications"),3);
   end
   if ~with_module("m2sci") then // Desactivate mfile2sci menu

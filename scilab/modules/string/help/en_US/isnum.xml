@@ -46,15 +46,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-	
+    <programlisting role="example"><![CDATA[ 
 isnum(['1'     , ..
        '-1.23' , ..
        '+1e+23', .. 
        '1d+23' , ..
        '%pi'])
-	
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

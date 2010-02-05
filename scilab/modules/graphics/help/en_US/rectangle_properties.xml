@@ -99,7 +99,7 @@
         <listitem>
           <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant edge.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -107,7 +107,7 @@
         <listitem>
           <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant face.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -220,25 +220,23 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   
-   a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-2,-2;2,2];
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-2,-2;2,2];
 
-   xrect(-1,1,2,2)
+xrect(-1,1,2,2)
 
-   r=get("hdl");//get handle on current entity (here the rectangle entity)
-   r.type
-   r.parent.type
-   r.foreground=13;
-   r.line_style=2;
-   r.fill_mode="on";
-   r.background=color('red');
-   r.clip_box=[-1 1;1 1];
-   r.data(:,[3 4])=[1/2 1/2];
-   r.data(:,[1 2])=[1/2 1/2];
-   r.clip_state="off"
-      
+r=get("hdl");//get handle on current entity (here the rectangle entity)
+r.type
+r.parent.type
+r.foreground=13;
+r.line_style=2;
+r.fill_mode="on";
+r.background=color('red');
+r.clip_box=[-1 1;1 1];
+r.data(:,[3 4])=[1/2 1/2];
+r.data(:,[1 2])=[1/2 1/2];
+r.clip_state="off"
  ]]></programlisting>
   </refsection>
   <refsection>

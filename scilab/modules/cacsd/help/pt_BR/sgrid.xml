@@ -76,14 +76,12 @@ sgrid(zeta,wn [,color])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
 evans(H,100)
 sgrid()
 sgrid(0.6,2,7)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

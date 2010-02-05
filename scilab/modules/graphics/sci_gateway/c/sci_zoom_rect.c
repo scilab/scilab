@@ -17,7 +17,7 @@
 /* desc : interface for zoom_rect routine                                 */
 /*------------------------------------------------------------------------*/
 
-#include "sci_zoom_rect.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "getPropertyAssignedValue.h"
 #include "axesScale.h"

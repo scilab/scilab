@@ -103,6 +103,8 @@
 #define GL2PS_IMAGEMAP_WRITTEN 8
 #define GL2PS_IMAGEMAP_VISIBLE 9
 #define GL2PS_SPECIAL          10
+/* Added by Calixte */
+#define GL2PS_SPECIAL_TEXT     11
 
 /* BSP tree primitive comparison */
 
@@ -134,6 +136,9 @@
 #define GL2PS_IMAGEMAP_TOKEN       13
 #define GL2PS_DRAW_PIXELS_TOKEN    14
 #define GL2PS_TEXT_TOKEN           15
+
+#define PI_OVER_180  0.01745329251994329576913914624236578987393
+#define DEG2RAD(x) ((x) * PI_OVER_180  )
 
 typedef enum {
   T_UNDEFINED    = -1,
@@ -3413,13 +3418,31 @@ static int gl2psPrintPDFLineWidth(float lw)
 
 static void gl2psPutPDFText(GL2PSstring *text, int cnt, float x, float y)
 {
-  gl2ps->streamlength += 
-    gl2psPrintf("BT\n"
+  if( text->angle == 0 )
+  {
+    gl2ps->streamlength += 
+	   gl2psPrintf("BT\n"
+				"/F%d %d Tf\n"
+				"%f %f Td\n"
+				"(%s) Tj\n"
+				"ET\n", 
+				cnt, text->fontsize, x, y, text->str);
+  } 
+  else {
+    /* Handle rotated text */
+    float cos_ang = (float)cos(-DEG2RAD(text->angle)); /* compute sine and cosine values just once */
+    float sin_ang = (float)sin(-DEG2RAD(text->angle));
+
+    gl2ps->streamlength += 
+      gl2psPrintf("BT\n"
                 "/F%d %d Tf\n"
-                "%f %f Td\n"
+                "%f %f %f %f %f %f Tm\n"
                 "(%s) Tj\n"
                 "ET\n", 
-                cnt, text->fontsize, x, y, text->str);  
+                cnt, text->fontsize, 
+				cos_ang, -sin_ang, sin_ang, cos_ang,
+				x, y, text->str);  
+  }
 }
 
 static void gl2psPutPDFImage(GL2PSimage *image, int cnt, float x, float y)
@@ -4495,6 +4518,7 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
 {
   int x, y;
   float r, g, b, a;
+  char shift = (sizeof(unsigned long) - 1) * 8;
 
   if(im->format != joglGL_RGBA() && gray)
     return 0;
@@ -4508,12 +4532,12 @@ static int gl2psPrintPDFPixmapStreamData(GL2PSimage *im,
     for(x = 0; x < im->width; ++x){
       a = gl2psGetRGB(im, x, y, &r, &g, &b);
       if(im->format == joglGL_RGBA() && gray){
-        (*action)((unsigned long)(a*255) << 24, gray);
+        (*action)((unsigned long)(a*255) << shift, gray);
       }
       else{
-        (*action)((unsigned long)(r*255) << 24, 1);
-        (*action)((unsigned long)(g*255) << 24, 1);
-        (*action)((unsigned long)(b*255) << 24, 1);
+        (*action)((unsigned long)(r*255) << shift, 1);
+        (*action)((unsigned long)(g*255) << shift, 1);
+        (*action)((unsigned long)(b*255) << shift, 1);
       }
     }
   }
@@ -5137,8 +5161,9 @@ static void gl2psPrintSVGPrimitive(void *data)
     gl2ps->lastfactor = prim->factor;
     if(newline){
       gl2psSVGGetColorString(rgba[0], col);
+      /* Calixte Added a 0.5* because the lines are better with this factor */
       gl2psPrintf("<polyline fill=\"none\" stroke=\"%s\" stroke-width=\"%g\" ", 
-                  col, prim->width);
+                  col, 0.5 * prim->width);
       if(rgba[0][3] < 1.0F) gl2psPrintf("stroke-opacity=\"%g\" ", rgba[0][3]);
       gl2psPrintSVGDash(prim->pattern, prim->factor);
       gl2psPrintf("points=\"%g,%g ", xyz[0][0], xyz[0][1]);
@@ -5190,6 +5215,13 @@ static void gl2psPrintSVGPrimitive(void *data)
        is intended */
     if(prim->data.text->alignment == GL2PS_SVG)
       gl2psPrintf("%s\n", prim->data.text->str);
+    break;
+    /* Added by Calixte to add LaTeX labels converted in SVG */
+  case GL2PS_SPECIAL_TEXT :
+    if(prim->data.text->alignment == GL2PS_SVG) {
+      gl2psSVGGetColorString(prim->verts[0].rgba, col);
+      gl2psPrintf("<g fill=\"%s\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
+    }
     break;
   default :
     break;
@@ -5832,10 +5864,12 @@ GL2PSDLL_API int gl2psEndViewport(void)
   return res;
 }
 
+/* Modified by Calixte
+   When fontSize==0, the text is considered as SVG code (it should contain the fontsize)*/
 GL2PSDLL_API int gl2psTextOpt(const char *str, const char *fontname, 
                                 short fontsize, int alignment, float angle)
 {
-  return gl2psAddText(GL2PS_TEXT, str, fontname, fontsize, alignment, angle);
+  return gl2psAddText(fontsize != 0 ? GL2PS_TEXT : GL2PS_SPECIAL_TEXT, str, fontname, fontsize, alignment, angle);
 }
 
 GL2PSDLL_API int gl2psText(const char *str, const char *fontname, short fontsize)

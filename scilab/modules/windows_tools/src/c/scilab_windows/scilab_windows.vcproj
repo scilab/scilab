@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{8028F371-6A94-4A26-8804-6E7F05F1D1AA}"
 	RootNamespace="scilab_windows"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -42,8 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
+				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../core/src/c;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -62,14 +64,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilab_windows.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scilab_windowstmp.def &gt;nul&#x0D;&#x0A;copy ..\scilab_windows_header.def+scilab_windowstmp.def  ..\scilab_windows.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilocalization.lib"
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="scilab_windows.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -126,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
+				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../core/src/c;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -145,14 +147,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilab_windows.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scilab_windowstmp.def &gt;nul&#x0D;&#x0A;copy ..\scilab_windows_header.def+scilab_windowstmp.def  ..\scilab_windows.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilocalization.lib"
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="scilab_windows.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -208,10 +210,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
+				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../core/src/c;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -230,14 +233,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilab_windows.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scilab_windowstmp.def &gt;nul&#x0D;&#x0A;copy ..\scilab_windows_header.def+scilab_windowstmp.def  ..\scilab_windows.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilocalization.lib"
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="scilab_windows.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -300,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
+				AdditionalIncludeDirectories=".;..;../../../../../libs/MALLOC/includes;../../../../core/includes;../../../../core/src/c;../../../../localization/includes;../../../../output_stream/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -319,14 +322,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilab_windows.dll %%f &gt;nul&#x0D;&#x0A;copy *.def scilab_windowstmp.def &gt;nul&#x0D;&#x0A;copy ..\scilab_windows_header.def+scilab_windowstmp.def  ..\scilab_windows.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilocalization.lib"
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="scilab_windows.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -445,6 +448,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TextToPrint.c"
+				>
+			</File>
+			<File
 				RelativePath=".\windows_main.c"
 				>
 			</File>
@@ -466,10 +473,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\charEncoding.h"
-				>
-			</File>
-			<File
 				RelativePath=".\console.h"
 				>
 			</File>
@@ -479,6 +482,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\ConvertSlash.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynlib_scilab_windows.h"
 				>
 			</File>
 			<File
@@ -518,7 +525,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource_scilab_windows.h"
+				>
+			</File>
+			<File
 				RelativePath=".\scilab_main.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SetHeapOptions.h"
 				>
 			</File>
 			<File
@@ -539,6 +554,10 @@
 			</File>
 			<File
 				RelativePath=".\stristr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TextToPrint.h"
 				>
 			</File>
 			<File
@@ -565,10 +584,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\scilab_windows_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

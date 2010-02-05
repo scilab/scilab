@@ -350,8 +350,8 @@ if norm(sinm(t)**2+cosm(t)**2-eye(),1) > 50*%eps then pause,end
 if norm(sinm(tc)**2+cosm(tc)**2-eye(),1) > 50*%eps then pause,end
 //poly et root
 p=rand(5,1);pc=p+i*rand(5,1);x=poly(0,'x');
-if norm(sort(p )-sort(real(roots(poly(p,'x'))))) > 1000*%eps then pause,end
-if norm(sort(imag(pc))-sort(real(roots(poly(imag(pc),'x'))))) > 10000*%eps then pause,end
+if norm(gsort(p )-gsort(real(roots(poly(p,'x'))))) > 1000*%eps then pause,end
+if norm(gsort(imag(pc))-gsort(real(roots(poly(imag(pc),'x'))))) > 10000*%eps then pause,end
 //**
 if norm(t^(-1)-inv(t),1) > 200*%eps then pause,end
 if norm(tc**(-1)-inv(tc),1) > 200*%eps then pause,end 

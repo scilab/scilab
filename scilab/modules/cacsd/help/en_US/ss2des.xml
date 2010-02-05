@@ -29,7 +29,7 @@ S=ss2des(Sl,flag)</synopsis>
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list: proper or improper linear system.</para>
+          <para> <literal>syslin</literal> list: proper or improper linear system.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,27 +54,23 @@ S=ss2des(Sl,flag)</synopsis>
     polynomial or constant, but not zero <literal>ss2des</literal>
     returns a descriptor system as <literal>list('des',A,B,C,0,E)</literal>
     such that:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 Sl=C*(s*E-A)^(-1)*B
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     If the flag <literal>"withD"</literal> is given, <literal> S=list('des',A,B,C,D,E) </literal>
     with a <literal>D</literal> matrix of maximal rank.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 G=[1/(s+1),s;1+s^2,3*s^3];Sl=tf2ss(G);
 S=ss2des(Sl)
 S1=ss2des(Sl,"withD")
 Des=des2ss(S);Des(5)=clean(Des(5))
 Des1=des2ss(S1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -28,7 +28,7 @@ int get_filled_property( sciPointObj * pobj )
 
   if (sciGetEntityType(pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "filled") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled") ;
     return -1;
   }
 

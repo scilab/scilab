@@ -78,15 +78,16 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
+
 // Then we generate the sound: a two channels sound.
 s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];
 savewave(TMPDIR+'/foo.wav',s);
 s1=loadwave(TMPDIR+'/foo.wav');
 max(abs(s1-s))
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -45,10 +45,10 @@
     <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
     Si <literal>nx</literal> et <literal>ny</literal> sont des matrices :
   </para>
-    <programlisting><![CDATA[
+    <programlisting role = ""><![CDATA[ 
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     la flèche numéro <literal>k</literal> est définie par <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
   </para>
@@ -57,7 +57,7 @@ ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 x=2*%pi*(0:9)/8;
 x1=[sin(x);9*sin(x)];
 y1=[cos(x);9*cos(x)];

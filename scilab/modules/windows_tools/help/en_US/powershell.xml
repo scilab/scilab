@@ -33,8 +33,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[[s,w] = powershell('ls');
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+[s,w] = powershell('ls');
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -16,9 +16,8 @@
 /* desc : interface for champ (and champ1) routine                        */
 /*------------------------------------------------------------------------*/
 
-#include "sci_champ.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "DefaultCommandArg.h"

@@ -466,7 +466,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 //criando uma figura
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z); 
@@ -503,9 +503,7 @@ e=gce();
 e.color_flag=1 // índice de cor proporcional à altitude (coordenada z)
 e.color_flag=2; // de volta ao modo padrão
 e.color_flag= 3; // modo de gradação interpolada (baseada na cor azul padrão porque o campo data.color não está preenchido)
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

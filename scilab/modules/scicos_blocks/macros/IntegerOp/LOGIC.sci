@@ -35,7 +35,7 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,mat,herit,exprs]=getvalue('Set Logic parameters',..
+      [ok,mat,herit,exprs]=scicos_getvalue('Set Logic parameters',..
 	  ['Truth table';'Inherit(0=no 1=yes)'],..
 	  list('mat',[-1,-2],'vec',1),exprs)
       if ~ok then break,end

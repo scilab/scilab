@@ -13,10 +13,11 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "gw_string.h"
+#include "stack-c.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define STRING_TAB_SIZE 31
-static gw_generic_table Tab[STRING_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //length
 	{sci_part,"part"},
@@ -27,17 +28,17 @@ static gw_generic_table Tab[STRING_TAB_SIZE]=
 	{sci_code2str,"code2str"},
 	{sci_strcat,"strcat"},
 	{sci_strindex,"strindex"},
-	{sci_strsubst,"strsubst"},
+	{NULL, ""}, //strsubst
 	{sci_ascii,"ascii"},
 	{sci_grep,"grep"},
 	{sci_tokens,"tokens"},
-	{sci_strsplit,"strsplit"},
+	{NULL, ""}, //strsplit
 	{sci_stripblanks,"stripblank"},
 	{sci_strcmp,"strcmp"},
 	{sci_isletter,"isletter"},
-	{sci_isdigit,"isdigit"},
-	{sci_isalphanum,"isalphanum"},
-	{sci_isascii,"isascii"},
+	{NULL, ""}, //isdigit
+	{NULL ,""}, //isalphanum
+	{NULL, ""}, //isascii
 	{sci_strcspn,"strcspn"},
 	{sci_strncpy,"strncpy"},
 	{sci_strrchr,"strrchr"},
@@ -54,7 +55,7 @@ static gw_generic_table Tab[STRING_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_string(void)
 {  
-	callFunctionFromGateway(Tab,STRING_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

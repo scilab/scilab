@@ -7,17 +7,42 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add an URL to the list of repositories, and returns
 
 function res = atomsAUWriteAccess()
 	
 	res = %F;
 	
-	try
-		mputl("dummy",pathconvert(SCI+"/contrib/dummy",%F));
-		mdelete(pathconvert(SCI+"/contrib/dummy",%F));
+	// Cache
+	if isdef("ATOMSALLUSERSWRITEACCESS") then
+		res = ATOMSALLUSERSWRITEACCESS;
+		return;
+	end
+	
+	atoms_system_directory  = atomsPath("system" ,"allusers");
+	atoms_install_directory = atomsPath("install","allusers");
+	
+	// Physical test
+	
+	if ~ isdir(atoms_system_directory) then
+		if mkdir(atoms_system_directory) <> 1 then
+			return;
+		end
+	end
+	
+	if execstr("mputl(""dummy"",atoms_system_directory+""dummy"");","errcatch") == 0 then
 		res = %T;
-	catch
+		mdelete(atoms_system_directory+"dummy");
+	else
+		return;
+	end
+	
+	if execstr("mputl(""dummy"",atoms_install_directory+""dummy"");","errcatch") <> 0 then
+		res = %F;
+	else
+		mdelete(atoms_install_directory+"dummy");
 	end
 	
 endfunction

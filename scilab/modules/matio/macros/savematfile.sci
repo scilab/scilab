@@ -181,6 +181,7 @@ if bin then
 	if norm(imag(x),1)<>0 then it1=1,else it1=0,end
 	P=0
 	T=2
+        // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
 	[x,v,mn]=spget(x);
 	if it1==0 then
 	  x=[x real(v);[mn 0]]
@@ -274,8 +275,10 @@ if bin then
     // Write variables as miMATRIX data type
     for k=1:size(mtlb_names,"*")
       %var=evstr(mtlb_names(k));
+      // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
+      if type(%var)==5 then %var = %var'; end
       if and(type(%var)<>[9 11 13]) then
-	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %F) then
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %F) then
 	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
 	end
       else
@@ -301,8 +304,10 @@ if bin then
     // Write variables as miCOMPRESSED data type
     for k=1:size(mtlb_names,"*")
       %var=evstr(mtlb_names(k));
+      // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
+      if type(%var)==5 then %var = %var'; end
       if and(type(%var)<>[9 11 13]) then
-	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), evstr(mtlb_names(k)), %T) then
+	if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %T) then
 	  error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
 	end
       else
@@ -357,7 +362,8 @@ else
     case 4 then
       write(mtlb_fd,bool2s(x),"("+string(size(x,2))+mtlb_fmt+")")
     case 5 then
-      [ij,x]=spget(real(x));x=[ij x];
+      // We need to transpose to conform to the matlab sparse format
+      [ij,x]=spget(real(x'));x=[ij x];
       write(mtlb_fd,real(x),"(2f8.0,1x"+string(size(x,2))+mtlb_fmt+")")
     case 6 then
       [ij,x]=spget(bool2s(x));x=[ij x];
@@ -374,5 +380,3 @@ else
   file("close",mtlb_fd)
 end
 endfunction
-
-

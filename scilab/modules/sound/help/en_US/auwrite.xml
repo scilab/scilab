@@ -80,14 +80,12 @@ auwrite(y,Fs,bits,method,aufile)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-  A=matrix(1:6,2,3);
-  auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
-  B=auread(TMPDIR+'/foo.au');
-  maxi(abs(A- round(B*6)))
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+A=matrix(1:6,2,3);
+auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
+B=auread(TMPDIR+'/foo.au');
+maxi(abs(A- round(B*6)))
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -52,13 +52,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 strrchr('This is a sample string','s')
 strrchr(['This is a sample string','in scilab'],'s')
 strrchr(['This is a sample string','in scilab'],['s','a'])
-
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

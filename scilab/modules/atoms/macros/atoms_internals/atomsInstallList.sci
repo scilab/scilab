@@ -34,14 +34,10 @@
 //                   toolbox_2 - 1.3: [1x1 struct]
 //                   toolbox_1 - 1.9: [1x1 struct]
 
-function [insList,depTree] = atomsInstallList(packages)
+function [insList,depTree] = atomsInstallList(packages,section)
 	
 	insList = [];
 	depTree = struct();
-	
-	// Save the initial path
-	// =========================================================================
-	initialpath = pwd();
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
@@ -52,74 +48,98 @@ function [insList,depTree] = atomsInstallList(packages)
 	
 	rhs = argn(2);
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsInstallList",1))
+	if rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: at most %d expected.\n"),"atomsInstallList",2))
 	end
+	
+	// 1st input argument
 	
 	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallList",1));
 	end
 	
+	if size(packages(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsInstall",1));
+	end
+	
 	packages = stripblanks(packages);
+	
+	// 2nd input input argument, section management :
+	//   - 1st case: section is not specified or is equal to "all", module 
+	//               is searched in both "user" and "allusers" section
+	//   - 2nd case: section is equal to "user", module is only searched in
+	//               the "user" section"
+	//   - 3rd case: section is equal to "allusers", module is only searched
+	//               in the "allusers" section"
+	
+	if rhs < 2 then
+		section = "all";
+	
+	else
+		
+		if type(section) <> 10 then
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsInstallList",2));
+		end
+		
+		if and(section<>["user","allusers","all"]) then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"),"atomsInstallList",2));
+		end
+		
+	end
+	
+	// If mx1 matrix, add a 2nd column with empty versions
+	// =========================================================================
+	if size(packages(1,:),"*") == 1 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
 	
 	// Loop on packages and to build the dependency tree
 	// =========================================================================
 	
-	for i=1:size(packages,"*")
+	for i=1:size(packages(:,1),"*")
 		
-		package = packages(i);
+		this_package_name    = packages(i,1);
+		this_package_version = packages(i,2);
 		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstallList",1));
-		end
-		
-		if size(regexp(package,"/\s/") ,"*" ) == 0 then
-			// install the most recent version of the package
-			package_names(i)    = package;
-			package_versions(i) = "";
-		else
-			// A version is specified
-			space               = regexp(package,"/\s/");
-			package_names(i)    = part(package,[1:space-1]);
-			package_versions(i) = part(package,[space+1:length(package)]);
-		end
-		
-		// Ok, The syntax is correct, Now check if it's a valid package
-		if ~ atomsIsPackage(package_names(i),package_versions(i)) then
-			if isempty(package_versions(i)) then
-				package_full_name = package_names(i);
+		// Now check if it's a valid package
+		if ~ atomsIsPackage(packages(i,:)) then
+			if isempty(this_package_version) then
+				module_full_name = this_package_name;
 			else
-				package_full_name = package_names(i)+" - "+package_versions(i);
+				module_full_name = this_package_name+" - "+this_package_version;
 			end
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",package_full_name));
+			atomsError("error", ..
+				msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
 		end
+		
+		// Fill the version if it doesn't contain the packaging version
+		this_package_version = atomsPackagingVersion(packages(i,:));
+		packages(i,2)        = this_package_version;
 		
 		// Build the depencency tree
-		[tree,version_out]  = atomsDepTreeFlat(package_names(i),package_versions(i));
+		[tree,version_out]  = atomsDepTreeFlat(this_package_name,this_package_version);
 		
 		if (type(tree) == 4) & (~ tree) then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
+			atomsError("error", ..
+				msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
 		end
 		
 		// Update the  package_versions(i) with the version returned by
 		// atomsDepTreeFlat
-		package_versions(i) = version_out;
+		packages(i,2) = version_out;
 		
 		// Concatenate the tree with the existing one
 		depTree = atomsCatTree( depTree , tree );
 	end
 	
-	// Add a field to detect later if it's the toolbox is automaticaly installed
+	// Add a field to detect later if it's the toolbox is automatically installed
 	// or if it's a user choice
 	// =========================================================================
 	
-	for i=1:size(package_names,"*")
-		this_package_details                                = depTree(package_names(i)+" - "+package_versions(i));
-		this_package_details("user_choice")                 = %T;
-		depTree(package_names(i)+" - "+package_versions(i)) = this_package_details;
+	for i=1:size(packages(:,1),"*")
+		this_package_details                     = depTree(packages(i,1)+" - "+packages(i,2));
+		this_package_details("user_choice")      = %T;
+		depTree(packages(i,1)+" - "+packages(i,2)) = this_package_details;
 	end
 	
 	// Now we have the list of package that have to be installed
@@ -132,6 +152,7 @@ function [insList,depTree] = atomsInstallList(packages)
 	mandatory_packages(1:2) = [];
 	
 	for i=1:size(mandatory_packages,"*")
+		
 		this_package_details = depTree(mandatory_packages(i));
 		
 		this_package_name    = this_package_details("Toolbox");
@@ -145,8 +166,16 @@ function [insList,depTree] = atomsInstallList(packages)
 		
 		to_install = %F;
 		
-		if atomsIsInstalled(this_package_name) then
-			vers = atomsGetInstalledVers(this_package_name);
+		// Now, it's time to check if the module is installed or not :
+		//   - 1st case: section is not specified or is equal to "all", module 
+		//               is searched in both "user" and "allusers" section
+		//   - 2nd case: section is equal to "user", module is only searched in
+		//               the "user" section"
+		//   - 3rd case: section is equal to "allusers", module is only searched
+		//               in the "allusers" section"
+		
+		if atomsIsInstalled(this_package_name,section) then
+			vers = atomsGetInstalledVers(this_package_name,section);
 			if find( vers == this_package_version ) == [] then
 				to_install = %T;
 			end
@@ -162,8 +191,92 @@ function [insList,depTree] = atomsInstallList(packages)
 		
 	end
 	
-	// Go to the initial location
+endfunction
+
+// =============================================================================
+// Return the version filled with the packaging version
+// → The result is based on the packages struct returned by atomsDESCRIPTIONget(),
+//   not on the installed packages.
+// → If a package doesn't exist in the packages struct, an empty string is
+//   returned
+// =============================================================================
+
+function result = atomsPackagingVersion(packages)
+	
+	// Initialize
 	// =========================================================================
-	chdir(initialpath);
+	result = [];
+	
+	// Check input parameters
+	// =========================================================================
+	rhs  = argn(2);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsPackagingVersion",1));
+	end
+	
+	if type(packages) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsPackagingVersion",1));
+	end
+	
+	if size(packages(1,:),"*") <> 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsPackagingVersion",1));
+	end
+	
+	// Get all package description
+	// =========================================================================
+	allpackages = atomsDESCRIPTIONget();
+	
+	// Loop on packages
+	// =========================================================================
+	
+	for i=1:size(packages(:,1),"*")
+		
+		result(i) = "",
+		name      = packages(i,1);
+		version   = packages(i,2);
+		
+		// Check if the name exists in the packages struct
+		if ~ isfield(allpackages,name) then
+			result(i) = "";
+			break;
+		end
+		
+		// 1st case : no version is mentioned
+		if isempty(version) then
+			result(i) = "";
+		
+		// 2nd case : the packaging version is already mentioned
+		elseif ~ isempty(strindex(version,"-")) then
+			result(i) = version;
+		
+		// 3rd case : the packaging version is not mentioned
+		else
+			
+			// Loop on this packages versions
+			package_versions          = allpackages(name);
+			package_versions_tab      = getfield(1,package_versions);
+			package_versions_tab(1:2) = [];
+			
+			for j=1:size(package_versions_tab,"*")
+				
+				if isempty( strindex(package_versions_tab(j),"-") ) then
+					if package_versions_tab(j) == version then
+						result(i) = version;
+						break;
+					end
+				
+				else
+					if part(package_versions_tab(j), 1:strindex(package_versions_tab(j),"-")-1)==version then
+						result(i) = package_versions_tab(j);
+						break;
+					end
+					
+				end
+				
+			end
+		end
+		
+	end
 	
 endfunction

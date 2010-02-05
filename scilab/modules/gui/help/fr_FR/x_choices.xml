@@ -48,7 +48,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 l1=list('choix 1',1,['article c1','article c2','article c3']);
 l2=list('choix 2',2,['article d1','article d2','article d3']);
 l3=list('choix 3',3,['article e1','article e2']);

@@ -9,9 +9,8 @@
 mode(0)
 path=get_absolute_file_path('fec.ex1');
 exec(path+'fec_demo.sci');
-xbasc();
+clf();
 xset("colormap",jetcolormap(128));
-new_style = get("figure_style")=="new";
 
 N=20;
 n=1:N;
@@ -25,10 +24,10 @@ for i=1:(N-1),trianl=[trianl;i,i,i+1,N+1,0];end
 trianl=[trianl;N,N,1,N+1,0];
 triang=N;
 rect=[-1.2,-1.2,1.2,1.2];
-if new_style then, drawlater(), end
+drawlater();
 fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
 meshvisu(3,rect);
-if new_style then, drawnow(), end
+drawnow();
 xselect();
 
 mode(-1)

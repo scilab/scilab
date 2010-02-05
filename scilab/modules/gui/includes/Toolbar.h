@@ -12,7 +12,7 @@
 
 #ifndef __TOOLBAR_H__
 #define __TOOLBAR_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "BOOL.h"
@@ -23,7 +23,7 @@
  * @param figNum number of the parent figure (-1 for Console window)
  * @param status TRUE to set the toolbar visible
  */
-void setToolbarVisible(int figNum, BOOL status);
+GUI_IMPEXP void setToolbarVisible(int figNum, BOOL status);
 
 /**
  * Get the visibility of the toolbar
@@ -31,6 +31,6 @@ void setToolbarVisible(int figNum, BOOL status);
  * @param figNum number of the parent figure (-1 for Console window)
  * @return TRUE if the toolbar is visible
  */
-BOOL isToolbarVisible(int figNum);
+GUI_IMPEXP BOOL isToolbarVisible(int figNum);
 
 #endif /* __TOOLBAR_H__ */

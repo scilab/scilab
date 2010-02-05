@@ -71,10 +71,11 @@ txt=ascii(a)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">ascii(["hello";"world"])
+    <programlisting role="example"><![CDATA[ 
+ascii(["hello";"world"])
 ascii("scilab")
 ascii([115 99 105 108 97 98])
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

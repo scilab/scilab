@@ -26,7 +26,7 @@ Source: modules\{#UMFPACK}\etc\{#UMFPACK}.start; DestDir: {app}\modules\{#UMFPAC
 ;
 Source: modules\{#UMFPACK}\help\addchapter.sce; DestDir: {app}\modules\{#UMFPACK}\help; Flags: recursesubdirs; Components:  {#COMPN_UMFPACK}
 ;
-Source: modules\{#UMFPACK}\includes\*.h; DestDir: {app}\modules\{#UMFPACK}\includes; Components: {#COMPN_UMFPACK}
+;Source: modules\{#UMFPACK}\includes\*.h; DestDir: {app}\modules\{#UMFPACK}\includes; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\macros\buildmacros.sce; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\macros\buildmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_UMFPACK}

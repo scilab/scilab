@@ -160,7 +160,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[system_getproperty('awt.toolkit')
+    <programlisting role="example"><![CDATA[ 
+system_getproperty('awt.toolkit')
 system_getproperty('file.encoding')
 system_getproperty('file.encoding.pkg')
 system_getproperty('java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment')
@@ -210,7 +211,7 @@ system_getproperty('user.language')
 system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

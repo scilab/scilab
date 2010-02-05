@@ -58,7 +58,8 @@ log10is=log(10);
 w=[w ; exp(lwnew'*log10is)];
 mod=[mod ; exp(modnew'*log10is)];
 
-[w,ind]=sort(-w);w=-w; mod=mod(ind); weight=weight(ind);
+[w,ind] = gsort(-w);
+w=-w; mod=mod(ind); weight=weight(ind);
 ind=find(diff(w)>0); ind=[ind(:);length(w)];
 w=w(ind); mod=mod(ind); weight=weight(ind);
 

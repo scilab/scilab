@@ -29,7 +29,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.</para>
+          <para> <literal>syslin</literal> list containing the matrices <literal>(A,B,C2,D2)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -86,13 +86,11 @@
     with <literal>D11=D(:,reject)</literal></para>
     <para>
     The data (Sys, reject,C1, D1)   define a 2-input 2-output system:</para>
-    <programlisting><![CDATA[
-
-  xdot =  A x + B1  w + B2  u
-     z = C1 x + D11 w + D12 u
-     y = C2 x + D21 w + D22 u
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
     <para>
     An observer <literal>(u,y) --&gt; zhat</literal> is looked for the output z.</para>
     <para><literal>flag='ge'</literal> no stability constraints
@@ -115,8 +113,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([3,-3,7,4,-4,8]);
 B=[eye(3,3);zeros(3,3)];
 C=[0,0,1,2,3,4;0,0,0,0,0,1];
@@ -140,8 +137,7 @@ clean(ss2tf(wu_to_z)-ss2tf(UIobsW),1.d-7)
 nx=2;ny=3;nwu=2;Sys=ssrand(ny,nwu,nx);
 C1=rand(1,nx);D1=[0,1];
 UIobs=ui_observer(Sys,1,C1,D1);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

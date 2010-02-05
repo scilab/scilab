@@ -10,9 +10,9 @@
  *
  */
 
-#include "sci_disposefftwlibrary.h"
 #include "callfftw.h"
 #include "gw_fftw.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 int sci_disposefftwlibrary(char *fname,unsigned long fname_len)
 {

@@ -58,14 +58,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(3,3);x=poly(0,'x');
 [NUM,den]=nlev(A,'x')
 clean(den-poly(A,'x'))
 clean(NUM/den-inv(x*eye()-A))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

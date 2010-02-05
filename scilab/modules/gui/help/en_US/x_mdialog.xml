@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>x_mdialog</refname>
-    <refpurpose>Xwindow dialog</refpurpose>
+    <refpurpose>Dialog for interactive vector/matrix input.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -69,22 +69,20 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>X-window vector/matrix interactive input function</para>
+    <para>Opens a dialog for interactive vector/matrix input.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+txt = ['magnitude';'frequency';'phase    '];
+sig = x_mdialog('enter sine signal',txt,['1';'10';'0'])
+mag = evstr(sig(1))
+frq = evstr(sig(2))
+ph  = evstr(sig(3))
 
- txt=['magnitude';'frequency';'phase    '];
- sig=x_mdialog('enter sine signal',txt,['1';'10';'0'])
- mag=evstr(sig(1))
- frq=evstr(sig(2))
- ph=evstr(sig(3))
-
- rep=x_mdialog(['System Simulation';'with PI regulator'],...
-                      ['P gain';'I gain '],[' ';' '])
- 
-  ]]></programlisting>
+rep = x_mdialog(['System Simulation';'with PI regulator'],...
+                 ['P gain';'I gain '],[' ';' '])
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -99,7 +97,7 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
         <link linkend="x_choose">x_choose</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
       <member>
         <link linkend="getvalue">getvalue</link>

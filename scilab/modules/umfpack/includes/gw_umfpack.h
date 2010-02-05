@@ -13,22 +13,23 @@
 #ifndef __GW_UMFPACK__
 #define __GW_UMFPACK__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_umfpack.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_umfpack(void);
-int sci_umfpack(char* fname, unsigned long l);
-int sci_umf_lufact(char* fname, unsigned long l);
-int sci_umf_lusolve(char* fname, unsigned long l);
-int sci_umf_ludel(char* fname, unsigned long l);
-int sci_umf_luinfo(char* fname, unsigned long l);
-int sci_umf_luget(char* fname, unsigned long l);
-int sci_taucs_chfact(char* fname, unsigned long l);
-int sci_taucs_chsolve(char* fname, unsigned long l);
-int sci_taucs_chdel(char* fname, unsigned long l);
-int sci_taucs_chinfo(char* fname, unsigned long l);
-int sci_taucs_chget(char* fname, unsigned long l);
-int sci_res_with_prec(char* fname, unsigned long l);
+UMFPACK_IMPEXP int gw_umfpack(void);
+/*--------------------------------------------------------------------------*/
+UMFPACK_IMPEXP int sci_umfpack(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_lufact(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_lusolve(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_ludel(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_luinfo(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_luget(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chfact(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chsolve(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chdel(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chinfo(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chget(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_res_with_prec(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_UMFPACK__ */
 /*--------------------------------------------------------------------------*/

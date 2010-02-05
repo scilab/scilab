@@ -69,10 +69,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[0,30 45 60 90 360];
 sind(x)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

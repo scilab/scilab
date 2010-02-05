@@ -210,7 +210,7 @@ file(action,unit)
                     <term>b</term>
 
                     <listitem>
-                      <para>0 stands for sequential acces and 1 for direct
+                      <para>0 stands for sequential access and 1 for direct
                       access</para>
                     </listitem>
                   </varlistentry>
@@ -357,8 +357,7 @@ file(action,unit)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 u=file('open',TMPDIR+'/foo','unknown')
 for k=1:4
   a=rand(1,4)
@@ -373,8 +372,7 @@ u2=mopen(TMPDIR+'/foo1','wb')
 [units,typs,nams]=file()
 file('close',u1);
 mclose(u2);
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

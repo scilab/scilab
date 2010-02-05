@@ -53,9 +53,11 @@ exit(n)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting>exit
+    <programlisting role = "example"><![CDATA[ 
+exit
 i = 4;
-exit(i);  </programlisting>
+exit(i);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

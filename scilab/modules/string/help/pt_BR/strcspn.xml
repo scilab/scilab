@@ -79,13 +79,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strcspn("fcba73","1234567890")
 strcspn(["fcba73","f7cba73"],"1234567890")
 strcspn(["fcba73","f7cba73"],["312","34567890"])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

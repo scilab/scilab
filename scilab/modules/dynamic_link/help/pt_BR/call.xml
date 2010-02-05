@@ -193,66 +193,66 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    //Exemplo 1 com um código C simples
-    f1=['#include &lt;math.h&gt;'
-        'void fooc(c,a,b,m,n)'
-         'double a[],*b,c[];'
-         'int *m,*n;'
-         '{'
-         '   int i;'
-         '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
-         '     c[i] = sin(a[i]) + *b; '
-         '}'];
+    <programlisting role="example"><![CDATA[ 
+//Exemplo 1 com um código C simples
+f1=['#include <math.h>;'
+    'void fooc(c,a,b,m,n)'
+    'double a[],*b,c[];'
+    'int *m,*n;'
+    '{'
+    '   int i;'
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
+    '     c[i] = sin(a[i]) + *b; '
+    '}'];
 
-    mputl(f1,'fooc.c')
+mputl(f1,'fooc.c')
 
-    //criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
-    //gerados.)  
+//criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
+//gerados.)  
 
-    ilib_for_link('fooc','fooc.o',[],"c") 
+ilib_for_link('fooc','fooc.c',[],"c") 
 
-    // carregando a biblioteca compartilhada  
+// carregando a biblioteca compartilhada  
 
-    exec loader.sce 
+exec loader.sce 
 
-    //usando a nova primitiva
-    a=[1,2,3;4,5,6];b= %pi;
-    [m,n]=size(a);
+//usando a nova primitiva
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
 
-    // Entradas:
-    // a está na posição 2 e double
-    // b                3     double
-    // n                4     integer
-    // m                5     integer
-    // Saídas:
-    // c está na posição 1 e double com tamanho [m,n]
-    c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+// Entradas:
+// a está na posição 2 e double
+// b                3     double
+// n                4     integer
+// m                5     integer
+// Saídas:
+// c está na posição 1 e double com tamanho [m,n]
+c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
 
-    //Exemplo 2 com um código FORTRAN simples
-    f1=['      subroutine foof(c,a,b,n,m)'
-        '      integer n,m'
-        '      double precision a(*),b,c(*)'
-        '      do 10 i=1,m*n '
-        '        c(i) = sin(a(i))+b'
-        '   10 continue'
-        '      end'];
-    mputl(f1,'foof.f')
+//Exemplo 2 com um código FORTRAN simples
+f1=['      subroutine foof(c,a,b,n,m)'
+    '      integer n,m'
+    '      double precision a(*),b,c(*)'
+    '      do 10 i=1,m*n '
+    '        c(i) = sin(a(i))+b'
+    '   10 continue'
+    '      end'];
+mputl(f1,'foof.f')
 
-    //criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
-    //gerados.)  
+//criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
+//gerados.)  
 
-    ilib_for_link('foof','foof.o',[],"f") 
+ilib_for_link('foof','foof.f',[],"f") 
 
-    // carrega a biblioteca compartilhada 
+// carrega a biblioteca compartilhada 
 
-    exec loader.sce 
+exec loader.sce 
 
-    //usando a nova primitiva
-    a=[1,2,3;4,5,6];b= %pi;
-    [m,n]=size(a);
-    c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");  </programlisting>
+//usando a nova primitiva
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
+c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+ ]]></programlisting>
   </refsection>
 
   <refsection>

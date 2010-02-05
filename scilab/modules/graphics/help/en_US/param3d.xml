@@ -70,7 +70,7 @@
         <term>flag=[type,box]</term>
 
         <listitem>
-          <para>: <literal>type</literal> and <literal>box</literal> have the
+          <para> <literal>type</literal> and <literal>box</literal> have the
           same meaning as in <literal>plot3d</literal>:</para>
 
           <variablelist>
@@ -258,8 +258,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=0:0.1:5*%pi;
 param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
 
@@ -269,7 +268,7 @@ e.foreground=color('red');
 
 a=gca(); //the handle on the axes
 a.rotation_angles=[10 70];
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

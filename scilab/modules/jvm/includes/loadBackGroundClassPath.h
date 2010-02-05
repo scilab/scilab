@@ -15,13 +15,14 @@
 #ifndef __LOADBACKGROUNDCLASSPATH_H__
 #define __LOADBACKGROUNDCLASSPATH_H__
 
+#include "dynlib_jvm.h"
 #include "BOOL.h"
 
 /**
 * load classpath in background
 * @return TRUE or FALSE
 */
-BOOL loadBackGroundClassPath(void);
+JVM_IMPEXP BOOL loadBackGroundClassPath(void);
 
 #endif /* __LOADBACKGROUNDCLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

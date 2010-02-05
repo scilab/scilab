@@ -74,8 +74,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X=[
 3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
 0.,  5.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
@@ -90,8 +89,7 @@ X=[
 0.,  0.,  0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  5.];
 X=sparse(X);[R,P] = spchol(X);
 max(P*R*R'*P'-X)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

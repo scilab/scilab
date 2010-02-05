@@ -29,6 +29,6 @@ k=find(dims>1)
 if k<>[] then
   dims(k($)+1:$)=[]
   N=prod(dims)
-  f=mlist(['hm','dims','entries'],[size(f) dims]',ones(N,1).*.f(:))
+  f=mlist(['hm','dims','entries'],int32([size(f) dims]),ones(N,1).*.f(:))
 end
 endfunction

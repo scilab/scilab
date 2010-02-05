@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,89 +48,32 @@ int getdDataBoundsFromStack( size_t  stackPointer, int nbRow, int nbCol,
   *zMin = 1.0 ;
   *zMax = 2.0 ;
 
-  switch ( nbRow )
+  if( nbRow==3 )  /* Remove the 3x2 case */
   {
-  case 1 : /* row vector */
-    if ( nbCol == 4 )
-    {
-      *xMin = bounds[0] ;
-      *xMax = bounds[1] ;
-      *yMin = bounds[2] ;
-      *yMax = bounds[3] ;
-    }
-    else if( nbCol == 6 )
-    {
-      *xMin = bounds[0] ;
-      *xMax = bounds[1] ;
-      *yMin = bounds[2] ;
-      *yMax = bounds[3] ;
-      *zMin = bounds[4] ;
-      *zMax = bounds[5] ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
+      Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
       return SET_PROPERTY_ERROR ;
-    }
-    break ;
+  }
 
-  case 2 : /* 2x2 or 2x3 matrix */
-    if ( nbCol == 2 )
-    {
+  switch ( nbRow*nbCol )
+  {
+  case 4 : /* 2D case */
       *xMin = bounds[0] ;
-      *yMin = bounds[2] ;
       *xMax = bounds[1] ;
-      *yMax = bounds[3] ;
-    }
-    else if ( nbCol == 3 )
-    {
-      *xMin = bounds[0] ;
       *yMin = bounds[2] ;
-      *zMin = bounds[4] ;
-      *xMax = bounds[1] ;
       *yMax = bounds[3] ;
-      *zMax = bounds[5] ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
-      return SET_PROPERTY_ERROR ;
-    }
-    break ;
+      break;
 
-  case 4 : /* column vector for 2D */
-    if ( nbCol == 1 )
-    {
-      *xMin = bounds[0] ;
-      *xMax = bounds[1] ;
-      *yMin = bounds[2] ;
-      *yMax = bounds[3] ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
-      return SET_PROPERTY_ERROR ;
-    }
-    break ;
-  case 6 : /* column vector for 3D */
-    if ( nbCol == 1 )
-    {
+  case 6 : /* 3D case */
       *xMin = bounds[0] ;
       *xMax = bounds[1] ;
       *yMin = bounds[2] ;
       *yMax = bounds[3] ;
       *zMin = bounds[4] ;
       *zMax = bounds[5] ;
-    }
-    else
-    {
-      Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
-      return SET_PROPERTY_ERROR ;
-    }
-    break ;
+      break ;
   default:
-    Scierror(999, _("Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"),2,"2x2", "2x3", "1x4", "4x1", "1x6","6x1");
-    return SET_PROPERTY_ERROR ;
+      Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "data_bounds", "1x4, 1x6, 2x2, 2x3, 4x1, 6x1");
+      return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;
 }
@@ -139,7 +83,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"data_bounds") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "data_bounds");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -198,7 +142,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   {
     if ( nbRow * nbCol != 6 )
     {
-      Scierror(999, _("Argument #%d must have %d elements.\n"),2,6) ;
+      Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "data_bounds", 6);
       return SET_PROPERTY_ERROR ;
     }
     sciSetDataBounds(pobj, getDoubleMatrixFromStack(stackPointer) ) ;
@@ -207,7 +151,7 @@ int set_data_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
   }
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"data_bounds") ; 
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"data_bounds") ; 
     return SET_PROPERTY_ERROR ;
   }
 

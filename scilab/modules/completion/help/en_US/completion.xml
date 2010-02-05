@@ -10,67 +10,101 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="completion">
+<refentry version="5.0-subset Scilab" xml:id="completion" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct. 2007)$</pubdate>
+    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct.
+    2007)$</pubdate>
   </info>
+
   <refnamediv>
     <refname>completion</refname>
-    <refpurpose>returns words that start with the text you pass as parameter.</refpurpose>
+
+    <refpurpose>returns words that start with the text you pass as
+    parameter.</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>r = completion(beginning_of_a_word)
 r = completion(beginning_of_a_word,dictionary)
-[functions,commands,variables,macros,graphic_properties,files] = completion(beginning_of_a_word)
-[functions,commands,variables,macros,graphic_properties] = completion(beginning_of_a_word)
-[functions,commands,variables,macros] = completion(beginning_of_a_word)
-[functions,commands,variables] = completion(beginning_of_a_word)
-[functions,commands] = completion(beginning_of_a_word)</synopsis>
+[functions, commands, variables, macros, graphic_properties, files] = completion(beginning_of_a_word)
+[functions, commands, variables, macros, graphic_properties] = completion(beginning_of_a_word)
+[functions, commands, variables, macros] = completion(beginning_of_a_word)
+[functions, commands, variables] = completion(beginning_of_a_word)
+[functions, commands] = completion(beginning_of_a_word)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>r</term>
+
         <listitem>
           <para>a string matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
+
     <variablelist>
       <varlistentry>
         <term>beginning_of_a_word</term>
+
         <listitem>
           <para>a string</para>
         </listitem>
       </varlistentry>
     </variablelist>
+
     <variablelist>
       <varlistentry>
         <term>dictionary</term>
+
         <listitem>
-          <para>a string
-          ("functions","commands","variables","macros","graphic_properties","files")</para>
+          <para>a string ("functions", "commands", "variables", "macros",
+          "graphic_properties", "files")</para>
         </listitem>
       </varlistentry>
     </variablelist>
+
     <variablelist>
       <varlistentry>
-        <term>functions,commands,variables,macros,graphic_properties,files</term>
+        <term>functions, commands, variables, macros, graphic_properties,
+        files</term>
+
         <listitem>
           <para>a string matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
+
     <para>returns words that start with the text you pass as parameter.</para>
+    <para>functions: a string matrix of functions name (C gateways). see 'what'.</para>
+    <para>commands: a string matrix of command words (reserved). see 'what'.</para>
+    <para>variables: a string matrix of variables names. see 'who'.</para>
+    <para>macros: a string matrix of macros names. see 'who'.</para>
+    <para>graphic_properties: a string matrix</para>
+    <para>files: a string matrix </para>
+    
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[r = completion('w')
+
+    <programlisting role="example"> 
+r = completion('w')
 r = completion('w','functions')
 r = completion('w','commands')
 r = completion('w','variables')
@@ -83,15 +117,18 @@ r = completion('w','files')
 [functions,commands,variables,macros] = completion('w')
 [functions,commands,variables] = completion('w')
 [functions,commands] = completion('w')
-
-   ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="getscilabkeywords">getscilabkeywords</link>
-      </member>
+      <member><link linkend="getscilabkeywords">getscilabkeywords</link></member>
+      <member><link linkend="who">who</link></member>
+      <member><link linkend="what">what</link></member>
+      <member><link linkend="libraryinfo">libraryinfo</link></member>
+      <member><link linkend="librarieslist">librarieslist</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -28,6 +28,8 @@ bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli bin/scilab6
 
 
 scilab_bin_LDFLAGS 		=
+scilab_cli_bin_LDFLAGS		=
+
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
@@ -42,6 +44,7 @@ COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 $(top_builddir)/modules/io/libsciio.la \
 $(LTLIBINTL)
 
@@ -83,7 +86,7 @@ scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
 scilab6_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-					$(top_srcdir)/modules/core/src/cpp/tasks.cpp 
+					$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 #					$(top_srcdir)/modules/core/src/cpp/yaspio.cpp
 scilab6_bin_CPPFLAGS	= \
@@ -132,6 +135,7 @@ $(top_srcdir)/etc/modules.xml \
 $(top_srcdir)/etc/classpath.xml \
 $(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml \
+$(top_builddir)/etc/jvm_options.xml \
 $(top_srcdir)/etc/yasp_modules.xml
 
 
@@ -150,6 +154,7 @@ $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
 $(top_srcdir)/RELEASE_NOTES_5.1.X \
+$(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
@@ -334,45 +339,4 @@ pkgconfig_DATA = scilab.pc
 
 .NOTPARALLEL: macros doc
 
-CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/
-CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
-
-# These binaries are built here and not in the call_scilab module because 
-# we do need libscilab.so to exist before building these files
-# To build them, just launch "make check-am"
-# To run them, see the help of call Scilab in particular 
-# "Compile and run with Call Scilab"
-check_PROGRAMS = call_scilab_c_simple call_scilab_c call_scilab_c_getlastjob call_scilab_c_DisableInteractiveMode call_scilab_readwriteboolean call_scilab_readwritecomplexmatrix call_scilab_readwritematrix call_scilab_readwritestring
-
-call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
-call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_c_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-
-call_scilab_c_simple_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
-call_scilab_c_simple_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_c_simple_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_c_getlastjob_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
-call_scilab_c_getlastjob_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_c_getlastjob_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_c_DisableInteractiveMode_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
-call_scilab_c_DisableInteractiveMode_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_c_DisableInteractiveMode_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_readwriteboolean_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
-call_scilab_readwriteboolean_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_readwriteboolean_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_readwritecomplexmatrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
-call_scilab_readwritecomplexmatrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_readwritecomplexmatrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_readwritematrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
-call_scilab_readwritematrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
-
-call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
-call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
-call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+include $(top_srcdir)/Makefile.call_scilab.am

@@ -45,7 +45,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=int(10*rand(2,6))
 // construction d'une matrice polynomiale de degré 1
 P=inv_coeff(A,1)

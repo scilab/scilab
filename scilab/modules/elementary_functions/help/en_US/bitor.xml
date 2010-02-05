@@ -42,7 +42,7 @@
         <term>x</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>y</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>z</term>
 
         <listitem>
-          <para>scalar/vector/matrix/hypermatrix of positives integers</para>
+          <para>scalar/vector/matrix of positives integers</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,7 +80,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example 1 :
 // '110000' : is the binary representation of 48 
 // '100101' : is the binary representation of 37   
@@ -92,7 +92,7 @@ z=bitor(x,y)
 // example 2 :
 x=[12,45]; y=[25,49]
 z=bitor(x,y)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

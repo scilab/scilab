@@ -87,14 +87,11 @@ error(n,pos)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 error('my error message')
 error(43)
 error(52,3)
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

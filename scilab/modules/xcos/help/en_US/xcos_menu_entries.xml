@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xcos_menu_entries"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Menu_entries</refname>
+
+    <refpurpose>Editor menu entries</refpurpose>
+  </refnamediv>
+
+  <refsection id="Filemenu_Menu_entries">
+    <title>File menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_file.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">File:New</emphasis></para>
+
+        <para>Clicking on the New menu item loads an empty diagram in the
+        active editor xcos window. If the previous content of the window is
+        not saved, it will be lost. With this menu, you can open a new diagram
+        or a new palette.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Open (Ctrl+o)</emphasis></para>
+
+        <para>Select the Open menu item to load an ASCII or binary file
+        containing a saved block diagram or palette. A dialog box allows user
+        choosing the file.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Save (Ctrl+s)</emphasis></para>
+
+        <para>Select the save menu item to save the block diagram in a binary
+        file already selected by a previous select the Save As menu item. If
+        you select this menu item and you have never clicked on the Save As
+        menu item, the diagram is saved in the current directory as
+        "window_name".cos where "window_name" is the name of the window
+        appearing on top of the window (usually Untitled or Super Block). The
+        .cos binary files are machine independent.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Save As
+        (Ctrl+Shift+s)</emphasis></para>
+
+        <para>Select the Save As menu item to save the block diagram or
+        palette in a file. A dialog box allows choosing the file which must
+        have a .cos or .cosf extension. The diagram takes the name of the file
+        (without the extension). If extension is ".cosf" an ASCII formatted
+        save is performed instead of binary save. Formatted save is slower
+        than regular save.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Export (Ctrl+e)</emphasis></para>
+
+        <para>This menu is used to export a figure of the current xcos
+        diagram. The export can be done directly in postscript format or done
+        first in a graphic window to export in a second step in all the format
+        that scilab can provide.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Recent Files</emphasis></para>
+
+        <para>Via this menu, you have a quick access to the recent opened
+        files.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Print (Ctrl+p)</emphasis></para>
+
+        <para>Print the current diagram onto a printer.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Close (Ctrl+w)</emphasis></para>
+
+        <para>If several diagram are opened, the Close action closes the
+        current diagram. If only one diagram is opened, the Close action will
+        close xcos and closes the viewport and palettes windows if these
+        windows are opened.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">File:Quit (Ctrl+q)</emphasis></para>
+
+        <para>If several diagram are opened, the Quit action will close xcos
+        and closes the viewport and palettes windows if these windows are
+        opened. It will close all the opened diagram.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Editmenu_Menu_entries">
+    <title>Edit menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_edit.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Edit:Undo (Ctrl+z)</emphasis></para>
+
+        <para>Select the Undo menu item to undo the last edit
+        operation.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Redo (Ctrl+y)</emphasis></para>
+
+        <para>Select the Redo menu item to redo the last undo edit
+        operation.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Cut (Ctrl+x)</emphasis></para>
+
+        <para>Cut is used to remove the selected object from the diagram and
+        keep a copy in the clipboard if the object is a block.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Copy (Ctrl+c)</emphasis></para>
+
+        <para>Copy is used to place a copy of the selected object in the
+        clipboard if the object is a block.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Paste (Ctrl+v)</emphasis></para>
+
+        <para>Paste places the object in the Clipboard in the diagram.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Delete (Delete)</emphasis></para>
+
+        <para>To delete blocks or a links, select first the Delete menu item,
+        then click successively on the selected objects (with left button).
+        When you delete a block all links connected to it are deleted as
+        well.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Select all (Ctrl+a)</emphasis></para>
+
+        <para>Select all the blocks in the current diagram.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Invert selection</emphasis></para>
+
+        <para>Invert the current selection.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Block Parameters
+        (Ctrl+b)</emphasis></para>
+
+        <para>Open the block configuration window for the current selected
+        block.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Edit:Region to
+        superblock</emphasis></para>
+
+        <para>Convert a selection of blocks into a superblock.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Viewmenu_Menu_entries">
+    <title>View menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_view.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">View:Zoom in (Ctrl+plus)</emphasis></para>
+
+        <para>When you select this menu item the diagram is zoomed in by a
+        factor of 10%.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Zoom out
+        (Ctrl+minus)</emphasis></para>
+
+        <para>When you select this menu item the diagram is zoomed out by a
+        factor of 10%.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Fit diagram to view</emphasis></para>
+
+        <para>When you select this menu item the diagram is fit to the size of
+        the current window.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Normal 100%</emphasis></para>
+
+        <para>Resize the work area so as the diagram fits onto this work
+        area.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Palette browser</emphasis></para>
+
+        <para>Open the palette browser.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Diagram browser</emphasis></para>
+
+        <para>Displays a window which lists all the blocks of a diagram and
+        print some informations related to the scs_m structure of the
+        blocks.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Viewport</emphasis></para>
+
+        <para>Display the viewport. The viewport is an image of the current
+        diagram. With the viewport, you can move the working area onto a piece
+        of the diagram. You can zoom and unzoom part of a diagram.</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../images/xcos_viewport_example.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>Above, you have an example of the viewport which is used to zoom
+        on a part of a diagram, and on the right, the xcos window displays the
+        zoomed part of the diagram.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">View:Details</emphasis></para>
+
+        <para>Displays a window which lists all the selected blocks of a
+        diagram and print some informations related to the scs_m structure of
+        these blocks.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Simulatemenu_Menu_entries">
+    <title>Simulation menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_simulation.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Simulation:Setup</emphasis></para>
+
+        <para>In the main Xcos window, clicking on the Setup menu item invokes
+        a dialog box that allows you to change integration parameters:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Final integration time (integration ends at this time, it
+            always starts from 0)</para>
+          </listitem>
+
+          <listitem>
+            <para>Real time scaling (forces real time simulation by setting
+            xcos unit of time to 1 second)</para>
+          </listitem>
+
+          <listitem>
+            <para>Absolute and relative error tolerances (solver
+            properties)</para>
+          </listitem>
+
+          <listitem>
+            <para>Time tolerance (the smallest time interval for which the ode
+            solver is used to update continuous states)</para>
+          </listitem>
+
+          <listitem>
+            <para>Max integration time interval (the maximum time interval for
+            each call to solver, it must be reduced if the error message "too
+            many calls" is encountered)</para>
+          </listitem>
+
+          <listitem>
+            <para>Solver (choose the numerical solver to be used), Max step
+            size (max time step taken by solver)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Execution trace and
+        Debug</emphasis></para>
+
+        <para>Set Xcos in debug mode. Allows diagram debugging.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation:Set Context</emphasis></para>
+
+        <para>When you select this menu item you obtain a dialog to enter
+        Scilab instructions for defining symbolic Xcos parameters used in
+        block definitions or to do whatever you want. These instructions will
+        be evaluated each time the diagram is loaded. If you change the value
+        of a symbolic Xcos parameters in the context, all the blocks are
+        updated (Eval is performed).</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulate:Compile</emphasis></para>
+
+        <para>Select the Compile menu item to compile the block diagram. This
+        menu item need never be used since compilation is performed
+        automatically, if necessary, before the beginning of every simulation
+        (Run menu item). Normally, a new compilation is not needed if only
+        system parameters and internal states are modified. In some cases
+        however these modifications are not correctly updated and a manual
+        compilation may be needed before a Restart or a Continue. Please
+        report if you encounter such a case.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulate:start</emphasis></para>
+
+        <para>Select the Run menu item to start the simulation. If the system
+        has already been simulated, a dialog box appears where you can choose
+        to Continue, Restart or End the simulation.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation:Stop</emphasis></para>
+
+        <para>You may interrupt the simulation by clicking on the "stop"
+        button, change any of the block parameters and continue the simulation
+        with the new values.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Formatmenu_Menu_entries">
+    <title>Format menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_format.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Format:Rotate (Ctrl+r)</emphasis></para>
+
+        <para>Rotate allows to turn a block on the Left. Each time the block
+        is turned left, his angle is decresead of 45 degrees. If no blocks or
+        many blocks are selected, this is the block under the mouse pointer
+        which turns.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Flip (Ctrl+f)</emphasis></para>
+
+        <para>To reverse the positions of the (regular) inputs and outputs of
+        a block placed on its sides, select the Flip menu item first and then
+        click on the selected block. This does not affect the order, nor the
+        position of the input and output event ports which are numbered from
+        left to right.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Show/Hide shadow</emphasis></para>
+
+        <para>This menu allows to select 3D shape for selected blocks and
+        associated parameters.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Align Blocks</emphasis></para>
+
+        <para>When you select several blocks, it is possible to align them
+        vertically (Top, Bottom and Middle) and horizontally (Left, Right,
+        Center).</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../images/xcos_menu_format_align.png" />
+          </imageobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format: Border Color</emphasis></para>
+
+        <para>This menu allows to change the border color.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Line Color</emphasis></para>
+
+        <para>This menu allows to change the line color.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Link Style</emphasis></para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../images/xcos_menu_format_link_style.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>This menu allows to the the style of the link:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Horizontal</para>
+          </listitem>
+
+          <listitem>
+            <para>Straight</para>
+          </listitem>
+
+          <listitem>
+            <para>Vertical</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Diagram
+        background</emphasis></para>
+
+        <para>This menu allows to change the background color.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format:Grid</emphasis></para>
+
+        <para>This menu allows to activate / desactivate the grid. Using a
+        grid, it is easier to place a block on the working area.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Diagrammenu_Menu_entries">
+    <title>Tools menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_tools.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Tools:Code generation</emphasis></para>
+
+        <para>This menu allows to generate the simulation code associated with
+        a discrete time Super Block. The code generation is obtained simply by
+        selecting this menu and then the desired Super Block. If the Super
+        Block satisfies the required conditions, a dialog box pops up to ask
+        for a block name, a directory where to put the generated files and for
+        optional libraries requested by the linker. Given this information the
+        code is generated, compiled and linked with Scilab. The Super Block is
+        automatically replaced by a new block which implements the generated
+        code. It is then possible to run the modified diagram. The code for
+        standalone use is also generated.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="menu_Menu_entries">
+    <title>Help menu</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../images/xcos_menu_help.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Help:Xcos Help</emphasis></para>
+
+        <para>This menu opens the help browser.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Help:Block Help</emphasis></para>
+
+        <para>To get help on a Xcos object (a block), select first an object
+        (a block) and then click on this menuHelp menu item and then on the
+        selected object or menu item.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Help:Xcos Demos</emphasis></para>
+
+        <para>The Demos menu allows to open some examples of Xcos
+        diagram.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Help:About Xcos</emphasis></para>
+
+        <para>About xcos item display the current version of Xcos and gives
+        some useful informations.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

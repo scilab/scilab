@@ -85,10 +85,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 length([123 ; 456 ])
 length(['hello world',SCI])
-	</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

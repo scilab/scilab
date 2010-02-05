@@ -25,17 +25,15 @@
 
     <para>Use-a do seguinte modo:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 select expressão0,
- case expressão1 then instruções1,
- case expressão2 then instruções2,
- ...
- case expressãon then instruçõesn,
- [else instruções],
+  case expressão1 then instruções1,
+  case expressão2 then instruções2,
+  ...
+  case expressãon then instruçõesn,
+  [else instruções],
 end
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

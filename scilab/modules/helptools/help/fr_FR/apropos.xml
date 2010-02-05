@@ -51,7 +51,7 @@ apropos(regexp)</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 apropos('ode')
 apropos ode 
 apropos "list of"

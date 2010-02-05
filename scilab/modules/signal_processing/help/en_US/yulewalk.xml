@@ -44,15 +44,13 @@
     <title>Description</title>
     <para>
     Hz = yulewalk(N,frq,mag) finds the N-th order iir filter</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
                   n-1         n-2            
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
                 n-1       n-2
       A(z)    z   + a(2)z    + .... + a(n)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     which matches the magnitude frequency response given by vectors frq and mag.
     Vectors frq and mag specify the frequency and magnitude of the desired
@@ -62,16 +60,14 @@ H(z)= ---- = ---------------------------------
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
 fs=1000;fhz = f*fs/2;  
-xbasc(0);xset('window',0);plot2d(fhz',H');
+clf(0);xset('window',0);plot2d(fhz',H');
 xtitle('Desired Frequency Response (Magnitude)')
 [frq,repf]=repfreq(Hz,0:0.001:0.5);
-xbasc(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+clf(1);xset('window',1);plot2d(fs*frq',abs(repf'));
 xtitle('Obtained Frequency Response (Magnitude)')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

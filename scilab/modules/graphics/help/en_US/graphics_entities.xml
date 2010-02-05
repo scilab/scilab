@@ -19,11 +19,6 @@
     <refpurpose>description of the graphics
   entities data structures</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="newgraphics">
-    <refname>new graphics </refname>
-    <refpurpose>description of the graphics entities
-  data structures</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Description</title>
     <para> In Scilab,
@@ -32,8 +27,8 @@
     least one child of type Axes. Each Axes entity contains a set of leaf
     entities which are the basic graphics objects like Polylines, Rectangles,
     Arcs, Segs,... It can also contain an Compound type which are recursive
-    sets of entities. The main interest of the new graphic mode is to make
-    property change easier. This new graphics'mode provides a set of
+    sets of entities. The main interest of the graphic mode is to make
+    property change easier. This graphics'mode provides a set of
     high-level graphing routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used
     to control objects' properties such as data, coordinates and scaling,
     color and appearences without requiring to replay the initial graphics
@@ -198,42 +193,38 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+//Play this example line per line
 
+scf() //create a figure in entity mode
 
-  //Play this example line per line
+//get the handle on the Figure entity and display its properties
+f=get("current_figure") 
+a=f.children // the handle on the Axes child
+x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+e=a.children //Compound of 2 polylines
 
-  scf() //create a figure in entity mode
+p1=e.children(1) //the last drawn polyline properties
+p1.foreground=5;  // change the polyline color
+e.children.thickness=5; // change the thickness of the two polylines
 
-  //get the handle on the Figure entity and display its properties
-  f=get("current_figure") 
-  a=f.children // the handle on the Axes child
-  x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-  e=a.children //Compound of 2 polylines
+delete(e.children(2))
 
-  p1=e.children(1) //the last drawn polyline properties
-  p1.foreground=5;  // change the polyline color
-  e.children.thickness=5; // change the thickness of the two polylines
+move(e.children,[0,30]) //translate the polyline
 
-  delete(e.children(2))
+a.axes_bounds=[0 0 0.5 0.5]; 
 
-  move(e.children,[0,30]) //translate the polyline
+subplot(222) //create a new Axes entity
+plot(1:10);
+a1=f.children(1); //get its handle
+copy(e.children,a1); //copy the polyline of the first plot in the new Axes
+a1.data_bounds=[1 0;10 100]; //change the Axes bounds  
 
-  a.axes_bounds=[0 0 0.5 0.5]; 
-
-  subplot(222) //create a new Axes entity
-  plot(1:10);
-  a1=f.children(1); //get its handle
-  copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-  a1.data_bounds=[1 0;10 100]; //change the Axes bounds  
-
-  set("current_figure",10) //create a new figure with figure_id=10
-  plot3d() //the drawing are sent to figure 10
-  set("current_figure",f) //make the previous figure the current one
-  plot2d(x,x^3)  //the drawing are sent to the initial figure
-
- 
-  ]]></programlisting>
+set("current_figure",10) //create a new figure with figure_id=10
+plot3d() //the drawing are sent to figure 10
+set("current_figure",f) //make the previous figure the current one
+plot2d(x,x^3)  //the drawing are sent to the initial figure
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

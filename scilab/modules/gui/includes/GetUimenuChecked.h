@@ -12,7 +12,7 @@
 
 #ifndef __GETUIMENUCHECKED_H__
 #define __GETUIMENUCHECKED_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uimenu
  * @return true if the status is got without error
  */
-int GetUimenuChecked(sciPointObj * pobj);
+GUI_IMPEXP int GetUimenuChecked(sciPointObj * pobj);
 
 #endif /* !__GETUIMENUCHECKED_H__ */

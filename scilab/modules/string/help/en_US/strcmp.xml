@@ -89,16 +89,14 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmp(TXT1,TXT2)
 strcmp(TXT1,'scilab')
 strcmp(TXT1,'SciLab')
 strcmp(TXT1,TXT2,'i')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

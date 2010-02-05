@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_lvgroup, fin = 2
  ******************************************/
-int intspvm_lvgroup(char *fname,unsigned long fname_len)
+int sci_pvm_lvgroup(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);

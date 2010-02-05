@@ -10,13 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "scanf_functions.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "freeArrayOfString.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
@@ -79,11 +84,7 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 
 	/* BUG 3714 */
 	shortcut_path = cstk(l1);
-
-	lout          = PATH_MAX + FILENAME_MAX;
-	real_path     = (char*)MALLOC(sizeof(char*)*lout);
-	
-	C2F(cluni0)( shortcut_path, real_path, &out_n, (long)strlen(shortcut_path), lout);
+	real_path     = expandPathVariable(shortcut_path);
 
 	#if _MSC_VER
 	#define MODEFD "rt"
@@ -91,7 +92,12 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 	#define MODEFD "r"
 	#endif
 
-	wcfopen(f , real_path, MODEFD);
+	if (real_path)
+	{
+		wcfopen(f , real_path, MODEFD);
+		FREE(real_path);
+		real_path = NULL;
+	}
 
 	if ( f  == (FILE *)0)
 	{

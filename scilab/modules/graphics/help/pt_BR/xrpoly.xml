@@ -85,12 +85,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

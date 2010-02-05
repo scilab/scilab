@@ -55,20 +55,17 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   recompilefunction("asinh","p")
-   for i=1:100; asinh(rand(100,100)); end
-   showprofile(asinh)   
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+recompilefunction("asinh","p")
+for i=1:100; asinh(rand(100,100)); end
+showprofile(asinh)   
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="function">function</link>
-      </member>
-      <member>
-        <link linkend="getf">getf</link>
       </member>
       <member>
         <link linkend="deff">deff</link>

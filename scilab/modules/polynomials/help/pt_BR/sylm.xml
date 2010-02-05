@@ -74,13 +74,11 @@
     <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
     instruções</para>
 
-    <programlisting>
-
-  u = sylm(a,b) \ eye(na+nb,1)
-  x = poly(u(1:nb),'z','coeff')
-  y = poly(u(nb+1:na+nb),'z','coeff')
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+u = sylm(a,b) \ eye(na+nb,1)
+x = poly(u(1:nb),'z','coeff')
+y = poly(u(nb+1:na+nb),'z','coeff')
+ ]]></programlisting>
 
     <para>computam os fatores de Bezout <literal>x</literal> e
     <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y =

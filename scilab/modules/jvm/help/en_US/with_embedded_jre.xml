@@ -39,8 +39,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[res=with_embedded_jre();
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+res=with_embedded_jre();
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

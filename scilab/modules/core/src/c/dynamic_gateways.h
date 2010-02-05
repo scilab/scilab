@@ -12,6 +12,19 @@
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
+/**
+* xcos gateway
+* xcos is loaded dynamically at runtime
+* load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
+*/
+int gw_dynamic_xcos(void);
+
+/**
+* xpad gateway
+* functions is loaded dynamically at runtime
+* load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
+*/
+int gw_dynamic_xpad(void);
 
 /**
 * functions gateway
@@ -120,6 +133,20 @@ int gw_dynamic_metanet(void);
 * load gw_symbolic in SCI/modules/symbolic/sci_gateway/gw_symbolic.c
 */
 int gw_dynamic_symbolic(void);
+
+/**
+* hdf5 gateway
+* hdf5 is loaded dynamically at runtime
+* load gw_hdf5 in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
+*/
+int gw_dynamic_hdf5(void);
+
+/**
+* graphic_export gateway
+* graphic_export is loaded dynamically at runtime
+* load gw_graphic_export in SCI/modules/graphic_export/sci_gateway/gw_graphic_export.c
+*/
+int gw_dynamic_graphic_export(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

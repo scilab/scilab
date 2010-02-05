@@ -105,8 +105,7 @@ row=grep(haystack,needle ,[flag])
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 txt=['acha correspondência em um string ou em um vetor de strings'
      'procura posição de um string em outro string'
      'Compara Strings'];
@@ -121,8 +120,7 @@ str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
 grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

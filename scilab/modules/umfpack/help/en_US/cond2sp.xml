@@ -17,7 +17,7 @@
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>a real symetric positive definite sparse matrix</para>
+          <para>a real symmetric positive definite sparse matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -84,20 +84,20 @@
     <literal>K2 = lM/lm</literal>. For each method the iterations are stopped until the following
     condition is met :
   </para>
-    <programlisting><![CDATA[
-     | (l_new - l_old)/l_new | < rtol
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+| (l_new - l_old)/l_new | < rtol
+ ]]></programlisting>
     <para>
     but 4 iterations are nevertheless required and also the iterations are stopped
-    if itermax is reached (and a warning message is issued). As the matrix is symetric
+    if itermax is reached (and a warning message is issued). As the matrix is symmetric
     this is the rayleigh quotient which gives the estimated eigenvalue at each step
     (<literal>lambda = v'*A*v</literal>). You may called this function with named parameter, for 
     instance if you want to see the intermediary result without setting yourself the 
     rtol and itermax parameters you may called this function with the syntax :
   </para>
-    <programlisting><![CDATA[
-    [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, verb=%t )
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+[K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, verb=%t )
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Caution</title>
@@ -113,13 +113,13 @@
     not very good. If you look for a smaller residual <literal>||Av - l*v||</literal>, you may apply some inverse 
     power iterations  from v0 with the matrix :
   </para>
-    <programlisting><![CDATA[
-   B = A - l0*speye(A)
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+B = A - l0*speye(A)
+ ]]></programlisting>
     <para>
     For instance, applied 5 such iterations for <literal>(lm,vm)</literal> is done with :
   </para>
-    <programlisting><![CDATA[
+    <programlisting role = "example"><![CDATA[ 
 l0 = lm ; v0 = vm;  // or l0 = lM ; v0 = vM;  // to polish (lM,vM)
 B = A - l0*speye(A);
 LUp = umf_lufact(B);
@@ -134,11 +134,11 @@ mprintf(" first estimated eigenvalue : l0 = %e \n\t", l0)
 mprintf(" |l-l0| <= ||Av0-l0v0|| = %e , |l-l0|/l0 <= %e \n\r", norm_r0, norm_r0/l0)
 mprintf(" raffined estimated eigenvalue : lr = %e \n\t", lr) 
 mprintf(" |l-lr| <= ||Avr-lrvr|| = %e , |l-lr|/lr <= %e \n\r", norm_rr, norm_rr/lr)
-   ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );

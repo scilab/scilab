@@ -35,7 +35,6 @@ BOOL startJVM(char *SCI_PATH);
 */
 BOOL finishJVM(void);
 
-
 /**
  * Returns the current JNIEnv of Scilab
  * @return The JNI environnement of Scilab

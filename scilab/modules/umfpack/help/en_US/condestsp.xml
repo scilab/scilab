@@ -52,12 +52,12 @@
     Give an estimate of the 1-norm condition number of 
     the sparse matrix A by Algorithm 2.4 appearing in :
   </para>
-    <programlisting><![CDATA[
-  "A block algorithm for matrix 1-norm estimation
-   with an application to 1-norm pseudospectra"
-   Nicholas J. Higham and Francoise Tisseur
-   Siam J. Matrix Anal. Appl., vol 21, No 4, pp 1185-1201
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+"A block algorithm for matrix 1-norm estimation
+ with an application to 1-norm pseudospectra"
+ Nicholas J. Higham and Francoise Tisseur
+ Siam J. Matrix Anal. Appl., vol 21, No 4, pp 1185-1201
+ ]]></programlisting>
     <para> Noting the exact condition number <literal>K1e = ||A||_1 ||A^(-1)||_1</literal>, 
     we have allways <literal>K1 &lt;= K1e</literal> and this estimate gives in most case 
     something superior to <literal>1/2 K1e</literal>
@@ -65,7 +65,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
               0 -1 -3  2  0; 
@@ -86,7 +86,7 @@ K1e = norm(A,1)*norm(inv(full(A)),1)
 Lup = umf_lufact(A);   
 K1 = condestsp(A,Lup)
 umf_ludel(Lup)         // clear memory
-   ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

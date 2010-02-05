@@ -66,9 +66,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;2,3]
 sinh(asinh(A))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

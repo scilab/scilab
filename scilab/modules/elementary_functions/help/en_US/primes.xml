@@ -67,10 +67,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=35
 y=primes(x)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

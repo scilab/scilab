@@ -58,12 +58,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 tanhm(A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -221,7 +221,7 @@
       <varlistentry>
         <term>X</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -239,34 +239,30 @@
     using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD, 
     SB04RD, SB03MD, and SB03OD.
   </para>
-    <programlisting><![CDATA[
-
-       [X] = linmeq(1,A,B,C,flag,trans,schur)
-   [X,sep] = linmeq(2,A,C,flag,trans)
-       [X] = linmeq(2,A,C,flag,trans)
-       [X] = linmeq(3,A,C,flag,trans)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+    [X] = linmeq(1,A,B,C,flag,trans,schur)
+[X,sep] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(2,A,C,flag,trans)
+    [X] = linmeq(3,A,C,flag,trans)
+ ]]></programlisting>
     <para>
     linmeq solves various Sylvester and Lyapunov matrix equations:
   </para>
-    <programlisting><![CDATA[
+    <programlisting role = ""><![CDATA[
+op(A)*X + X*op(B) = C,                           (1a)
 
-        op(A)*X + X*op(B) = C,                           (1a)
+op(A)*X*op(B) + X = C,                           (1b)
 
-        op(A)*X*op(B) + X = C,                           (1b)
+op(A)'*X + X*op(A) = C,                          (2a)
 
-        op(A)'*X + X*op(A) = C,                          (2a)
+op(A)'*X*op(A) - X = C,                          (2b)
 
-        op(A)'*X*op(A) - X = C,                          (2b)
+op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
+                      -  op(C)'*op(C),           (3a)
 
-        op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
-                              -  op(C)'*op(C),           (3a)
-
-        op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
-                                    - op(C)'*op(C),      (3b)
-   
-    ]]></programlisting>
+op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
+                            - op(C)'*op(C),      (3b)
+ ]]></programlisting>
     <para>
     where op(M) = M, or M'.
   </para>
@@ -313,8 +309,7 @@ significantly more efficient than the Schur method.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //(1a)
 n=40;m=30;
 A=rand(n,n);C=rand(n,m);B=rand(m,m);
@@ -348,8 +343,7 @@ A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
 C=rand(A);
 X=linmeq(3,A,C,[1 0]);
 norm(A'*X'*X*A - X'*X +C'*C,1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

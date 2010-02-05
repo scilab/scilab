@@ -94,7 +94,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 deff('[z]=f(x,y)','z=x^2+y^2');
 feval(1:10,1:5,f)
 deff('[z]=f(x,y)','z=x+%i*y');
@@ -103,8 +103,8 @@ feval(1:10,1:5,'parab')   //See ffeval.f file
 feval(1:10,'parab')
 // Para link dinâmico (ver exemplo ftest em ffeval.f)
 // você pode usar o comando link (os parâmetros dependem da máquina):
-// unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest')
-   </programlisting>
+// unix('make ftest.o');link('ftest.f','ftest); feval(1:10,1:5,'ftest')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

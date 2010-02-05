@@ -70,12 +70,10 @@
     define system function which generates the next
     observation given the old state.
     System recursively calculated</para>
-    <programlisting><![CDATA[
-
-     x1=f*x0+g*u
-     y=h*x0+v
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x1=f*x0+g*u
+y=h*x0+v
+ ]]></programlisting>
     <para>
     where <literal>u</literal> is distributed <literal>N(0,q)</literal>
     and <literal>v</literal> is distribute <literal>N(0,r)</literal>.</para>

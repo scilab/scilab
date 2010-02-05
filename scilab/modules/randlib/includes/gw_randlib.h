@@ -14,12 +14,12 @@
 #ifndef __GW_RANDLIB_H__
 #define __GW_RANDLIB_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_randlib.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_randlib(void);
+RANDLIB_IMPEXP int gw_randlib(void);
 /*--------------------------------------------------------------------------*/ 
-int sci_Rand(char *fname,unsigned long fname_len);
+RANDLIB_IMPEXP int sci_Rand(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_RANDLIB_H__ */
 /*--------------------------------------------------------------------------*/

@@ -28,21 +28,5 @@ level-int=debug()</synopsis>
     <para>For the values 0,1,2,3,4 of <literal>level-int</literal> , <literal>debug</literal>
     defines various levels of debugging. This is targeted to the parser, not
     to Scilab scripts, and is for Scilab experts only.</para>
-    <para>For the value -1 of <literal>level-int</literal> , <literal>debug</literal> defines a
-    special level of debugging dedicated to the ScilabEval Tcl
-    instruction.</para>
-    <para>See also the <literal>Scipad</literal> debugger, which is targeted to
-    debugging Scilab scripts.</para>
-  </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="ScilabEval">ScilabEval</link>
-      </member>
-      <member>
-        <link linkend="scipad">scipad</link>
-      </member>
-    </simplelist>
   </refsection>
 </refentry>

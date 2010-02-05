@@ -17,50 +17,23 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define FUNCTIONS_TAB_SIZE 5
-static gw_generic_table Tab[FUNCTIONS_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{NULL ,""}, //lib
-	{C2F(sci_deff),"deff"},
-	{C2F(sci_getf),"getf"},
-	{C2F(sci_exec),"exec"},
-	{C2F(sci_execstr),"execstr"}
+	{NULL, ""}, //deff
+	{NULL, ""}, //getf
+	{NULL, ""}, //exec
+	{NULL, ""}, //execstr
+	{sci_librarieslist,"librarieslist"},
+	{sci_libraryinfo,"libraryinfo"},
+	{sci_whereis,"whereis"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)
 {  
 	Rhs = Max(0, Rhs);
 
-	if ( isRecursionCallToFunction() )
-	{
-		switch ( getRecursionFunctionToCall() )
-		{
-			case RECURSION_CALL_DEFF:
-				#define deff_fname "deff"
-				C2F(sci_deff)(deff_fname,(unsigned long)strlen(deff_fname));
-				return 0;
-
-			case RECURSION_CALL_GETF:
-				#define getf_fname "getf"
-				C2F(sci_getf)(deff_fname,(unsigned long)strlen(getf_fname));
-				return 0;
-
-			case RECURSION_CALL_EXEC1: case RECURSION_CALL_EXEC2:
-				#define exec_fname "exec"
-				C2F(sci_exec)(exec_fname,(unsigned long)strlen(exec_fname));
-				return 0;
-
-			case RECURSION_CALL_EXECSTR:
-				#define execstr_fname "execstr"
-				C2F(sci_execstr)(execstr_fname,(unsigned long)strlen(execstr_fname));
-				return 0;
-
-			default:
-				return 0;
-		}
-	}
-	
-	callFunctionFromGateway(Tab,FUNCTIONS_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

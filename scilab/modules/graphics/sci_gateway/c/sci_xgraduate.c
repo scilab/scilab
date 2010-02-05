@@ -16,7 +16,7 @@
 /* desc : interface for xgraduate routine                                 */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xgraduate.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Format.h"
 

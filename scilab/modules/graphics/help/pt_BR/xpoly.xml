@@ -79,8 +79,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 
@@ -91,7 +90,7 @@ xpoly(x,y,"lines",1) // por padrão é fechado
 // apenas no novo estilo de gráficos
 e=gce(); // retorna a entidade corrente (a última criada: aqui, é a poligonal)
 e.closed = 'off' // a poligonal está agora aberta
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

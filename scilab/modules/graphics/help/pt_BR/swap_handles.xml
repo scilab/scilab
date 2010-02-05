@@ -77,7 +77,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">//-----------------//
+    <programlisting role="example"><![CDATA[ 
+//-----------------//
 // Primeiro Exemplo//
 //-----------------//
 
@@ -121,9 +122,7 @@ axes2 = gca() ;
 // trocando os seus eixos
 // note que o mapa de cores não muda.
 swap_handles( axes1, axes2 ) ;
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

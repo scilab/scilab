@@ -30,7 +30,7 @@ FObj_Pop_Max = max(Total_FObj);
 FObj_Pop_Min = min(Total_FObj);
 
 Efficiency = (1 - pressure) * (FObj_Pop_Max - Total_FObj)/max([FObj_Pop_Max - FObj_Pop_Min, %eps]) + pressure;
-[Efficiency, Index_sort] = sort(Efficiency);
+[Efficiency, Index_sort] = gsort(Efficiency);
 Efficiency = Efficiency(1:pop_size);
 
 // Extraction and selection of the phenotype

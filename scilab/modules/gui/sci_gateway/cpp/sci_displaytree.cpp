@@ -145,10 +145,11 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	//Free
 	for(i = 0; i < struct_size; ++i)
 	{
-		delete[] tab[i];
+		FREE(tab[i]);
 	}
 
-	delete[] tab;
+	delete [] tab;
+	tab = NULL;
 
 	return 0;
 }

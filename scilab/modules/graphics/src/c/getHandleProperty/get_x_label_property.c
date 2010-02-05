@@ -30,7 +30,7 @@ int get_x_label_property( sciPointObj * pobj )
 {
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "x_label") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "x_label") ;
     return -1 ;
   }
   return sciReturnHandle( sciGetHandle( pSUBWIN_FEATURE(pobj)->mon_x_label ) ) ;

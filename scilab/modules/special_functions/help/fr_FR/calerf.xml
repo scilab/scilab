@@ -55,7 +55,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 deff('y=f(t)','y=exp(-t^2)');
 calerf(1,0)
 2/sqrt(%pi)*intg(0,1,f)

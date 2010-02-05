@@ -51,15 +51,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // isoview scaling 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xfarc(-0.5,0.5,1,1,0,90*64)
 xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

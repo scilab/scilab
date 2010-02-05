@@ -33,7 +33,7 @@
 <PRIMITIVE gatewayId="50" primitiveId="2" primitiveName="getlanguage" />
 <PRIMITIVE gatewayId="50" primitiveId="3" primitiveName="getdefaultlanguage" />
 <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="gettext" />
-<PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="_" />
-<PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="dgettext" />
-<PRIMITIVE gatewayId="50" primitiveId="7" primitiveName="setdefaultlanguage" />
+<PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="_" />
+<PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="dgettext" />
+<PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="setdefaultlanguage" />
 </GATEWAY>

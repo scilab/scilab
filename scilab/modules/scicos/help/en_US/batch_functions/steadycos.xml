@@ -47,9 +47,9 @@ This function finds the steady state for a given system described by a Scicos di
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_steadycos">
     <title>Parameters</title>

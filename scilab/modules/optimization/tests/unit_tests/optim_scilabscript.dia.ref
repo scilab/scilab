@@ -1,43 +1,1455 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - INRIA - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+//
+// Do not check ref, because imp option create a output messages
+// which contains lots of floating point values which may
+// be slightly different across platforms, without being bugs.
 //
 // optim_script.tst --
-//   Test the optim command with the Rosenbrock test case
+//   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.
 //   The expected solution is x=(1,...,1) where f(x)=0
 //
-Leps=2.e-4;
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+Leps=1.e-3;
 bs=[5 5];
 bi=-bs;
-x0=1.05*[1 1];
+x0=[-1.2 1];
 xopt=[1 1];
-function [f,g,ind]=rose(x,ind)
-  a=x(2)-x(1)^2
-  b=1-x(2)
-  f=50.*a^2 + b^2
-  g(1)=-400.*x(1)*a
-  g(2)=200.*a -2.*b
+fopt = 0.0;
+gopt = 0.0;
+function [ f , g , ind ] = rosenbrock ( x , ind )
+  if ind == 2 | ind == 4 then
+    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  end
+  if ind == 2 | ind == 4 then
+    g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+    g(2) = 200. * ( x(2) - x(1)**2 )
+  end
 endfunction
-[f,x,g,tr]=optim(rose,x0,'qn','ar',50);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g]=optim(rose,x0,tr,'ar',50);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g]=optim(rose,x0,'gc','ar',50);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
 //
-[f,x,g]=optim(rose,x0,'nd','ar',50);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g]=optim(rose,'b',bi,bs,x0,'qn','ar',25);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g]=optim(rose,'b',bi,bs,x0,'gc','ar',50);
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g,td]=optim(rose,x0,'gc','ar',50,'sd');
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g,ti]=optim(rose,x0,'gc','ar',50,'si');
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
-[f,x,g,ti,td]=optim(rose,x0,'gc','ar',50,'si','sd');
-if abs(f+norm(x-xopt)) > Leps then bugmes();quit;end
+// Configure the test so that verbose message do not interrupt the test.
+lines(0);
+//
+// 1. Test unconstrained BFGS
+// Test without arguments
+[f,x,g,tr]=optim(rosenbrock,x0);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function
+[f,x,g]=optim(rosenbrock,x0,'qn','ar',50);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with hot-restart array tr
+[f,x,g,tr]=optim(rosenbrock,x0,'qn','ar',50);
+[f,x,g]=optim(rosenbrock,x0,tr);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function, maximum number of iterations
+[f,x,g]=optim(rosenbrock,x0,'qn','ar', 50 , 100 );
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with various imp levels
+// imp = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,'qn',imp=0);
+// imp = 1 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,'qn',imp=1);
+
+***** enters -qn code- (without bound cstr)
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         1
+max number of iterations allowed: iter=       100
+max number of calls to costf allowed: nap=       100
+------------------------------------------------
+ iter num   38, nb calls=  46, f= 0.000
+***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+// imp = 2 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,'qn',imp=2);
+
+***** enters -qn code- (without bound cstr)
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         2
+max number of iterations allowed: iter=       100
+max number of calls to costf allowed: nap=       100
+------------------------------------------------
+ iter num    1, nb calls=   1, f= 24.20
+ iter num    2, nb calls=   2, f= 7.272
+ iter num    3, nb calls=   3, f= 4.350
+ iter num    4, nb calls=   5, f= 3.417
+ iter num    5, nb calls=   6, f= 3.109
+ iter num    6, nb calls=   8, f= 2.888
+ iter num    7, nb calls=   9, f= 2.528
+ iter num    8, nb calls=  10, f= 2.079
+ iter num    9, nb calls=  11, f= 1.684
+ iter num   10, nb calls=  13, f= 1.487
+ iter num   11, nb calls=  14, f= 1.331
+ iter num   12, nb calls=  15, f= 1.094
+ iter num   13, nb calls=  17, f=0.9515
+ iter num   14, nb calls=  18, f=0.7438
+ iter num   15, nb calls=  19, f=0.5691
+ iter num   16, nb calls=  21, f=0.4953
+ iter num   17, nb calls=  22, f=0.4021
+ iter num   18, nb calls=  23, f=0.2856
+ iter num   19, nb calls=  25, f=0.2208
+ iter num   20, nb calls=  26, f=0.1793
+ iter num   21, nb calls=  27, f=0.1226
+ iter num   22, nb calls=  29, f=0.8763E-01
+ iter num   23, nb calls=  30, f=0.6050E-01
+ iter num   24, nb calls=  31, f=0.3408E-01
+ iter num   25, nb calls=  33, f=0.1690E-01
+ iter num   26, nb calls=  34, f=0.1151E-01
+ iter num   27, nb calls=  35, f=0.4470E-02
+ iter num   28, nb calls=  36, f=0.1802E-02
+ iter num   29, nb calls=  37, f=0.4269E-03
+ iter num   30, nb calls=  38, f=0.4499E-04
+ iter num   31, nb calls=  39, f=0.1626E-05
+ iter num   32, nb calls=  40, f=0.1849E-07
+ iter num   33, nb calls=  41, f=0.8950E-10
+ iter num   34, nb calls=  42, f=0.2801E-15
+ iter num   35, nb calls=  43, f=0.4239E-20
+ iter num   36, nb calls=  44, f=0.2642E-25
+ iter num   37, nb calls=  45, f=0.4980E-29
+ iter num   38, nb calls=  46, f= 0.000
+***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+// imp = 3 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,'qn',imp=3);
+
+***** enters -qn code- (without bound cstr)
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         3
+max number of iterations allowed: iter=       100
+max number of calls to costf allowed: nap=       100
+------------------------------------------------
+ iter num    1, nb calls=   1, f= 24.20
+ linear search: initial derivative=-232.9
+                step length=0.1000E-01, df=-16.93    , derivative=-85.60
+ iter num    2, nb calls=   2, f= 7.272
+ linear search: initial derivative=-42.24
+                step length= 1.000    , df=-2.923    , derivative=-1.329
+ iter num    3, nb calls=   3, f= 4.350
+ linear search: initial derivative=-1.898
+                step length= 1.000    , df=-.1237    , derivative=-1.824
+                step length= 10.00    , df=-.9331    , derivative=0.2202
+ iter num    4, nb calls=   5, f= 3.417
+ linear search: initial derivative=-5.550
+                step length= 1.000    , df=-.3079    , derivative=-3.790
+ iter num    5, nb calls=   6, f= 3.109
+ linear search: initial derivative=-1.647
+                step length=0.4722    , df=-.4528E-01, derivative= 2.629
+                step length=0.2798    , df=-.2206    , derivative=-.3888E-01
+ iter num    6, nb calls=   8, f= 2.888
+ linear search: initial derivative=-4.438
+                step length=0.6098    , df=-.3600    , derivative=-2.968
+ iter num    7, nb calls=   9, f= 2.528
+ linear search: initial derivative=-3.266
+                step length= 1.000    , df=-.4494    , derivative=-1.801
+ iter num    8, nb calls=  10, f= 2.079
+ linear search: initial derivative=-4.375
+                step length= 1.000    , df=-.3951    , derivative=-2.224
+ iter num    9, nb calls=  11, f= 1.684
+ linear search: initial derivative=-2.203
+                step length=0.2673    , df= 1.009    , derivative= 13.78
+                step length=0.1089    , df=-.1964    , derivative=0.1570
+ iter num   10, nb calls=  13, f= 1.487
+ linear search: initial derivative=-2.478
+                step length= 1.000    , df=-.1558    , derivative=-1.410
+ iter num   11, nb calls=  14, f= 1.331
+ linear search: initial derivative=-4.524
+                step length=0.5294    , df=-.2371    , derivative=-2.628
+ iter num   12, nb calls=  15, f= 1.094
+ linear search: initial derivative=-1.940
+                step length= 1.000    , df=0.5590E-01, derivative= 4.817
+                step length=0.5465    , df=-.1427    , derivative=-.4464E-01
+ iter num   13, nb calls=  17, f=0.9515
+ linear search: initial derivative=-2.968
+                step length= 1.000    , df=-.2076    , derivative=-1.697
+ iter num   14, nb calls=  18, f=0.7438
+ linear search: initial derivative=-2.579
+                step length= 1.000    , df=-.1747    , derivative=-1.324
+ iter num   15, nb calls=  19, f=0.5691
+ linear search: initial derivative=-1.362
+                step length=0.5720    , df=0.6117    , derivative= 10.41
+                step length=0.2117    , df=-.7377E-01, derivative=0.1629
+ iter num   16, nb calls=  21, f=0.4953
+ linear search: initial derivative=-1.489
+                step length= 1.000    , df=-.9325E-01, derivative=-.9504
+ iter num   17, nb calls=  22, f=0.4021
+ linear search: initial derivative=-1.740
+                step length=0.9187    , df=-.1165    , derivative=-.6277
+ iter num   18, nb calls=  23, f=0.2856
+ linear search: initial derivative=-.8565
+                step length=0.7197    , df=0.2244    , derivative= 4.627
+                step length=0.3184    , df=-.6478E-01, derivative=0.4025E-01
+ iter num   19, nb calls=  25, f=0.2208
+ linear search: initial derivative=-.6915
+                step length= 1.000    , df=-.4156E-01, derivative=-.4294
+ iter num   20, nb calls=  26, f=0.1793
+ linear search: initial derivative=-1.024
+                step length=0.5978    , df=-.5666E-01, derivative=-.4359
+ iter num   21, nb calls=  27, f=0.1226
+ linear search: initial derivative=-.4236
+                step length= 1.000    , df=0.2045E-01, derivative= 1.162
+                step length=0.5356    , df=-.3498E-01, derivative=-.7704E-02
+ iter num   22, nb calls=  29, f=0.8763E-01
+ linear search: initial derivative=-.4234
+                step length= 1.000    , df=-.2712E-01, derivative=-.2548
+ iter num   23, nb calls=  30, f=0.6050E-01
+ linear search: initial derivative=-.5418
+                step length= 1.000    , df=-.2643E-01, derivative=-.8204E-01
+ iter num   24, nb calls=  31, f=0.3408E-01
+ linear search: initial derivative=-.2244
+                step length=0.8549    , df=0.1962E-01, derivative=0.7472
+                step length=0.4325    , df=-.1717E-01, derivative=-.6534E-03
+ iter num   25, nb calls=  33, f=0.1690E-01
+ linear search: initial derivative=-.1257
+                step length= 1.000    , df=-.5392E-02, derivative=-.6886E-01
+ iter num   26, nb calls=  34, f=0.1151E-01
+ linear search: initial derivative=-.1993
+                step length=0.6643    , df=-.7042E-02, derivative=-.7138E-01
+ iter num   27, nb calls=  35, f=0.4470E-02
+ linear search: initial derivative=-.6177E-01
+                step length= 1.000    , df=-.2669E-02, derivative=0.1873E-01
+ iter num   28, nb calls=  36, f=0.1802E-02
+ linear search: initial derivative=-.5318
+                step length= 1.000    , df=-.1375E-02, derivative=-.7452E-01
+ iter num   29, nb calls=  37, f=0.4269E-03
+ linear search: initial derivative=-.1952E-01
+                step length= 1.000    , df=-.3819E-03, derivative=-.5887E-02
+ iter num   30, nb calls=  38, f=0.4499E-04
+ linear search: initial derivative=-.6081E-02
+                step length= 1.000    , df=-.4337E-04, derivative=-.6785E-03
+ iter num   31, nb calls=  39, f=0.1626E-05
+ linear search: initial derivative=-.2438E-02
+                step length= 1.000    , df=-.1608E-05, derivative=0.7953E-04
+ iter num   32, nb calls=  40, f=0.1849E-07
+ linear search: initial derivative=-.1711E-03
+                step length= 1.000    , df=-.1840E-07, derivative=0.1167E-04
+ iter num   33, nb calls=  41, f=0.8950E-10
+ linear search: initial derivative=-.1010E-04
+                step length= 1.000    , df=-.8950E-10, derivative=0.1344E-07
+ iter num   34, nb calls=  42, f=0.2801E-15
+ linear search: initial derivative=-.5481E-07
+                step length= 1.000    , df=-.2801E-15, derivative=-.1438E-09
+ iter num   35, nb calls=  43, f=0.4239E-20
+ linear search: initial derivative=-.1106E-09
+                step length= 1.000    , df=-.4239E-20, derivative=-.2044E-12
+ iter num   36, nb calls=  44, f=0.2642E-25
+ linear search: initial derivative=-.1512E-12
+                step length= 1.000    , df=-.2642E-25, derivative=0.4543E-15
+ iter num   37, nb calls=  45, f=0.4980E-29
+ linear search: initial derivative=-.2682E-13
+                step length= 1.000    , df=-.4980E-29, derivative= 0.000
+ iter num   38, nb calls=  46, f= 0.000
+***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+// Negative imp : call back the cost function with ind = 0 each -imp iteration
+[f,x,g]=optim(rosenbrock,x0,'qn',imp=-5);
+Norm of projected gradient lower than   0.0000000D+00.
+
+//
+// 2. Test unconstrained Limited Memory BFGS
+[f,x,g]=optim(rosenbrock,x0,'gc');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+[f,x,g]=optim(rosenbrock,x0,'gc','ar',50);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with various imp levels
+// imp = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,'gc',imp=0);
+// imp = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,'gc',imp=1);
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   1
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  1
+     number of iterations:   41
+     number of simulations:     52
+     realized relative precision on g:  0.00D+00
+     norm of x =  0.14142136D+01
+     f         =  0.00000000D+00
+     norm of x =  0.00000000D+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+// imp = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,'gc',imp=2);
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   2
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  1
+     number of iterations:   41
+     number of simulations:     52
+     realized relative precision on g:  0.00D+00
+     norm of x =  0.14142136D+01
+     f         =  0.00000000D+00
+     norm of x =  0.00000000D+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+// imp = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,'gc',imp=3);
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   3
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ -------------------------------------------------------------------------------
+
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: iter  14, simul  20, f= 0.13542803D+01, h'(0)=-0.33867D+00
+ n1qn3: iter  15, simul  21, f= 0.12033040D+01, h'(0)=-0.20678D+00
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: iter  17, simul  24, f= 0.88479939D+00, h'(0)=-0.18657D+00
+ n1qn3: iter  18, simul  25, f= 0.73594988D+00, h'(0)=-0.31085D+00
+ n1qn3: iter  19, simul  26, f= 0.63444380D+00, h'(0)=-0.42075D+00
+ n1qn3: iter  20, simul  27, f= 0.45317910D+00, h'(0)=-0.12594D+00
+ n1qn3: iter  21, simul  28, f= 0.34356270D+00, h'(0)=-0.22838D+00
+ n1qn3: iter  22, simul  30, f= 0.30624971D+00, h'(0)=-0.55446D-01
+ n1qn3: iter  23, simul  31, f= 0.25851790D+00, h'(0)=-0.14344D+00
+ n1qn3: iter  24, simul  32, f= 0.17073487D+00, h'(0)=-0.12793D+00
+ n1qn3: iter  25, simul  33, f= 0.10886882D+00, h'(0)=-0.10034D+00
+ n1qn3: iter  26, simul  34, f= 0.93394350D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  27, simul  35, f= 0.68247280D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  28, simul  36, f= 0.49926731D-01, h'(0)=-0.55493D-01
+ n1qn3: iter  29, simul  38, f= 0.36769034D-01, h'(0)=-0.91754D-02
+ n1qn3: iter  30, simul  39, f= 0.28635889D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  31, simul  40, f= 0.11210346D-01, h'(0)=-0.94861D-02
+ n1qn3: iter  32, simul  41, f= 0.47312611D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  33, simul  43, f= 0.27115703D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  34, simul  44, f= 0.78629249D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  35, simul  45, f= 0.10596409D-03, h'(0)=-0.16467D-03
+ n1qn3: iter  36, simul  46, f= 0.65779244D-05, h'(0)=-0.12836D-04
+ n1qn3: iter  37, simul  47, f= 0.65335854D-06, h'(0)=-0.24142D-05
+ n1qn3: iter  38, simul  48, f= 0.48517342D-06, h'(0)=-0.97016D-06
+ n1qn3: iter  39, simul  49, f= 0.72461377D-12, h'(0)=-0.14375D-11
+ n1qn3: iter  40, simul  50, f= 0.49419780D-16, h'(0)=-0.98838D-16
+ n1qn3: iter  41, simul  51, f= 0.23045863D-24, h'(0)=-0.46082D-24
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  1
+     number of iterations:   41
+     number of simulations:     52
+     realized relative precision on g:  0.00D+00
+     norm of x =  0.14142136D+01
+     f         =  0.00000000D+00
+     norm of x =  0.00000000D+00
+Norm of projected gradient lower than   0.0000000D+00.
+
+//
+// 3. Test unconstrained non-differentiable method
+[f,x,g]=optim(rosenbrock,x0,'nd');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function
+[f,x,g]=optim(rosenbrock,x0,'nd','ar',100);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function, maximum number of iterations
+[f,x,g]=optim(rosenbrock,x0,'nd','ar', 100 , 100 );
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with various imp levels
+// imp = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,'nd',imp=0);
+// imp = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,'nd',imp=1);
+entry in n1fc1 . n=   2 memax= 10  
+minimal array sizes: iz(    22)  rz(    70)  dz(   198)
+n1fc1      Incorrect end of fprf2
+End of optimization.
+
+// imp = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,'nd',imp=2);
+entry in n1fc1 . n=   2 memax= 10  
+minimal array sizes: iz(    22)  rz(    70)  dz(   198)
+ n1fc1            diam1= 0.739D+00    eta2= 0.000D+00    ap= 0.299D-28
+ n1fc1     10   32   0.2102076D+01   faisceau reduit a  2 gradients
+ n1fc1     18   56   0.5316674D-01   faisceau reduit a  2 gradients
+n1fc1   eta2 assigned to  0.444D-14
+ n1fc1     26   76   0.1360041D-02   convergence a 0.224D-02 pres  ( 0.44D-15)
+ n1fc1     26   77   0.7792185D-03   faisceau reduit a  3 gradients
+n1fc1   eta2 assigned to  0.444D-14
+ n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  (-0.00D+00)
+ n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
+n1fc1      Incorrect end of fprf2
+End of optimization.
+
+// imp = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,'nd',imp=3);
+entry in n1fc1 . n=   2 memax= 10  
+minimal array sizes: iz(    22)  rz(    70)  dz(   198)
+n1fc1      1    1   0.2420000D+02  0.10D+01  0.54D+05  0.00D+00  2
+ n1fc1            diam1= 0.739D+00    eta2= 0.000D+00    ap= 0.299D-28
+n1fc1      2    4   0.4198816D+01  0.10D+01  0.15D+03  0.00D+00  2
+n1fc1      3    8   0.4198816D+01  0.10D+01  0.15D+03  0.00D+00  3
+n1fc1      4   10   0.4198816D+01  0.10D+01  0.14D+03  0.00D+00  3
+n1fc1      5   12   0.4198816D+01  0.10D+01  0.12D+03  0.00D+00  3
+n1fc1      6   17   0.4131268D+01  0.25D+00  0.33D+01  0.00D+00  3
+n1fc1      7   19   0.3662595D+01  0.10D+01  0.61D+00  0.00D+00  3
+n1fc1      8   23   0.3639147D+01  0.47D-01  0.10D+04  0.15D+04  2
+n1fc1      9   26   0.2590584D+01  0.10D+01  0.40D+00  0.00D+00  3
+n1fc1     10   31   0.2359570D+01  0.14D+00  0.25D+02  0.28D+03  2
+ n1fc1     10   32   0.2102076D+01   faisceau reduit a  2 gradients
+n1fc1     11   32   0.2102076D+01  0.46D+00  0.54D+01  0.00D+00  2
+n1fc1     12   39   0.8277294D+00  0.10D+01  0.35D+01  0.00D+00  3
+n1fc1     13   44   0.6868523D+00  0.27D+00  0.23D+01  0.00D+00  3
+n1fc1     14   46   0.6037192D+00  0.16D+00  0.20D+02  0.15D+03  2
+n1fc1     15   48   0.4376910D+00  0.33D+00  0.12D+01  0.00D+00  3
+n1fc1     16   50   0.3030057D+00  0.19D+00  0.84D+00  0.00D+00  3
+n1fc1     17   52   0.2144893D+00  0.16D+00  0.73D+00  0.26D+01  3
+n1fc1     18   54   0.7256611D-01  0.35D+00  0.34D+00  0.00D+00  3
+ n1fc1     18   56   0.5316674D-01   faisceau reduit a  2 gradients
+n1fc1     19   56   0.5316674D-01  0.58D-01  0.34D-01  0.00D+00  3
+n1fc1     20   58   0.4531702D-01  0.15D-01  0.71D+01  0.52D+03  2
+n1fc1     21   60   0.2482046D-01  0.41D-01  0.13D-01  0.00D+00  3
+n1fc1     22   62   0.1225140D-01  0.16D-01  0.12D-02  0.00D+00  3
+n1fc1     23   66   0.1190406D-01  0.11D-02  0.54D+01  0.25D+04  2
+n1fc1     24   69   0.5110747D-02  0.14D-01  0.12D-03  0.00D+00  3
+n1fc1     25   74   0.2527134D-02  0.82D-03  0.96D+00  0.61D+03  2
+n1fc1   eta2 assigned to  0.444D-14
+ n1fc1     26   76   0.1360041D-02   convergence a 0.224D-02 pres  ( 0.44D-15)
+n1fc1     26   76   0.1360041D-02  0.22D-03  0.93D-03  0.46D+00  3
+ n1fc1     26   77   0.7792185D-03   faisceau reduit a  3 gradients
+n1fc1     27   77   0.7792185D-03  0.22D-03  0.31D+00  0.16D+04  2
+n1fc1     28   79   0.2612544D-03  0.22D-03  0.19D+00  0.46D+03  2
+n1fc1     29   81   0.3217976D-04  0.22D-03  0.33D-05  0.27D-01  3
+n1fc1     30   83   0.6090815D-05  0.57D-04  0.35D-06  0.19D-01  3
+n1fc1     31   85   0.1944220D-05  0.84D-05  0.75D-03  0.68D+02  2
+n1fc1     32   87   0.7841516D-06  0.23D-05  0.23D-06  0.65D-01  3
+n1fc1   eta2 assigned to  0.444D-14
+ n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  (-0.00D+00)
+n1fc1     33   88   0.2192247D-06  0.93D-07  0.51D-04  0.12D+03  2
+ n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
+n1fc1     34   90   0.1890964D-06  0.93D-07  0.14D-06  0.00D+00  3
+n1fc1     35   92   0.8733602D-08  0.93D-07  0.15D-07  0.00D+00  3
+n1fc1     36   95   0.2709627D-08  0.12D-07  0.75D-06  0.32D+02  2
+n1fc1      Incorrect end of fprf2
+End of optimization.
+
+//
+// 4. Test bound-constrained BFGS
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn','ar',50);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function, maximum number of iterations
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn','ar', 100 , 100 );
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with various imp levels
+// imp = 0 : No messages
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=0);
+// imp = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=1);
+ *********** qnbd ****************
+ qnbd : indqn=      13
+End of optimization (linear search fails).
+
+// imp = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=2);
+ *********** qnbd ****************
+ qnbd : iter=  1  f=  0.2420000D+02
+ qnbd : nbre fact  2 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.5062D+02  epsf,diff= 0.0000D+00 0.1784D+02  nap=  3
+ qnbd : iter=  2  f=  0.6363632D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2926D+01  epsf,diff= 0.0000D+00 0.2276D+01  nap=  5
+ qnbd : iter=  3  f=  0.4088059D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1462D+01  epsf,diff= 0.0000D+00 0.7160D-02  nap=  6
+ qnbd : iter=  4  f=  0.4080900D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1281D+01  epsf,diff= 0.0000D+00 0.4927D-02  nap=  7
+ qnbd : iter=  5  f=  0.4075972D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2639D+01  epsf,diff= 0.0000D+00 0.1666D-01  nap=  8
+ qnbd : iter=  6  f=  0.4059314D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.5535D+01  epsf,diff= 0.0000D+00 0.3949D-01  nap=  9
+ qnbd : iter=  7  f=  0.4019827D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1029D+02  epsf,diff= 0.0000D+00 0.9032D-01  nap= 10
+ qnbd : iter=  8  f=  0.3929503D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1482D+02  epsf,diff= 0.0000D+00 0.1269D+00  nap= 11
+ qnbd : iter=  9  f=  0.3802616D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1584D+02  epsf,diff= 0.0000D+00 0.1911D+00  nap= 12
+ qnbd : iter= 10  f=  0.3611527D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1335D+02  epsf,diff= 0.0000D+00 0.4793D+00  nap= 13
+ qnbd : iter= 11  f=  0.3132213D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.4831D+01  epsf,diff= 0.0000D+00 0.5408D+00  nap= 14
+ qnbd : iter= 12  f=  0.2591395D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.9927D+01  epsf,diff= 0.0000D+00 0.2198D+00  nap= 16
+ qnbd : iter= 13  f=  0.2371631D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.7508D+01  epsf,diff= 0.0000D+00 0.3368D+00  nap= 17
+ qnbd : iter= 14  f=  0.2034811D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1723D+01  epsf,diff= 0.0000D+00 0.3605D+00  nap= 18
+ qnbd : iter= 15  f=  0.1674355D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.6425D+01  epsf,diff= 0.0000D+00 0.2554D+00  nap= 20
+ qnbd : iter= 16  f=  0.1418994D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2962D+01  epsf,diff= 0.0000D+00 0.1320D+00  nap= 21
+ qnbd : iter= 17  f=  0.1286986D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2970D+01  epsf,diff= 0.0000D+00 0.2772D+00  nap= 22
+ qnbd : iter= 18  f=  0.1009809D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.7110D+01  epsf,diff= 0.0000D+00 0.9782D-01  nap= 23
+ qnbd : iter= 19  f=  0.9119930D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1223D+01  epsf,diff= 0.0000D+00 0.2439D+00  nap= 24
+ qnbd : iter= 20  f=  0.6680716D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1598D+01  epsf,diff= 0.0000D+00 0.1495D+00  nap= 25
+ qnbd : iter= 21  f=  0.5185575D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.4195D+01  epsf,diff= 0.0000D+00 0.5204D-01  nap= 27
+ qnbd : iter= 22  f=  0.4665182D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1092D+01  epsf,diff= 0.0000D+00 0.1651D+00  nap= 29
+ qnbd : iter= 23  f=  0.3014090D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.3616D+01  epsf,diff= 0.0000D+00 0.4378D-01  nap= 31
+ qnbd : iter= 24  f=  0.2576320D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2649D+01  epsf,diff= 0.0000D+00 0.8347D-01  nap= 32
+ qnbd : iter= 25  f=  0.1741653D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.7655D+00  epsf,diff= 0.0000D+00 0.5731D-01  nap= 33
+ qnbd : iter= 26  f=  0.1168531D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.3144D+01  epsf,diff= 0.0000D+00 0.3345D-01  nap= 35
+ qnbd : iter= 27  f=  0.8340131D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1683D+01  epsf,diff= 0.0000D+00 0.2213D-01  nap= 36
+ qnbd : iter= 28  f=  0.6127324D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.4212D+01  epsf,diff= 0.0000D+00 0.1946D-01  nap= 37
+ qnbd : iter= 29  f=  0.4181115D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1112D+01  epsf,diff= 0.0000D+00 0.2302D-01  nap= 38
+ qnbd : iter= 30  f=  0.1879567D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.4225D+00  epsf,diff= 0.0000D+00 0.1025D-01  nap= 39
+ qnbd : iter= 31  f=  0.8546911D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1351D+01  epsf,diff= 0.0000D+00 0.2852D-02  nap= 41
+ qnbd : iter= 32  f=  0.5695252D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.8746D+00  epsf,diff= 0.0000D+00 0.2625D-02  nap= 42
+ qnbd : iter= 33  f=  0.3069880D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2491D+00  epsf,diff= 0.0000D+00 0.2494D-02  nap= 43
+ qnbd : iter= 34  f=  0.5755995D-03
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2501D+00  epsf,diff= 0.0000D+00 0.4653D-03  nap= 44
+ qnbd : iter= 35  f=  0.1103321D-03
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2082D+00  epsf,diff= 0.0000D+00 0.6258D-04  nap= 45
+ qnbd : iter= 36  f=  0.4774899D-04
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.9357D-02  epsf,diff= 0.0000D+00 0.4743D-04  nap= 46
+ qnbd : iter= 37  f=  0.3189662D-06
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.7401D-03  epsf,diff= 0.0000D+00 0.3183D-06  nap= 47
+ qnbd : iter= 38  f=  0.6829435D-09
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2102D-04  epsf,diff= 0.0000D+00 0.6824D-09  nap= 48
+ qnbd : iter= 39  f=  0.4984941D-12
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2913D-06  epsf,diff= 0.0000D+00 0.4981D-12  nap= 49
+ qnbd : iter= 40  f=  0.3925578D-15
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2479D-08  epsf,diff= 0.0000D+00 0.3925D-15  nap= 50
+ qnbd : iter= 41  f=  0.5929270D-19
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.4715D-10  epsf,diff= 0.0000D+00 0.5929D-19  nap= 51
+ qnbd : iter= 42  f=  0.2854806D-23
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.1902D-10  epsf,diff= 0.0000D+00 0.1961D-23  nap= 56
+ qnbd : iter= 43  f=  0.8942187D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2730D-10  epsf,diff= 0.0000D+00 0.7863D-25  nap= 63
+ qnbd : iter= 44  f=  0.8155913D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2231D-10  epsf,diff= 0.0000D+00 0.2484D-25  nap= 70
+ qnbd : iter= 45  f=  0.7907465D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2553D-10  epsf,diff= 0.0000D+00 0.8508D-26  nap= 77
+ qnbd : iter= 46  f=  0.7822385D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2405D-10  epsf,diff= 0.0000D+00 0.5487D-26  nap= 85
+ qnbd : iter= 47  f=  0.7767511D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : epsg,difg= 0.2220D-15 0.2436D-10  epsf,diff= 0.0000D+00 0.2594D-26  nap= 95
+ qnbd : iter= 48  f=  0.7741575D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ qnbd : indqn=      13
+End of optimization (linear search fails).
+
+// imp = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=3);
+ *********** qnbd ****************
+ qnbd : iter=  1  f=  0.2420000D+02
+ qnbd : nbre fact  2 defact  0 total var factorisees  2
+ rlbd tp= 0.2876E-01 tmax= 0.1000E+11 dh0/dt=-0.5423E+05
+e   t= 0.3688E-04 h=-0.1945E+01 dh/dt=-0.5124E+05 dfh/dt=-0.5273E+05 dt 0.4E-04
+    t= 0.5135E-03 h=-0.1784E+02 dh/dt=-0.1667E+05 dfh/dt=-0.3334E+05 dt 0.5E-03
+ qnbd : epsg,difg= 0.2220D-15 0.5062D+02  epsf,diff= 0.0000D+00 0.1784D+02  nap=  3
+ qnbd : iter=  2  f=  0.6363632D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1089E+03 tmax= 0.1000E+11 dh0/dt=-0.3720E+01
+ic  t= 0.9589E+01 h= 0.5286E+02 dh/dt= 0.9380E+01 dfh/dt= 0.5513E+01 dt 0.1E+02
+    t= 0.1322E+01 h=-0.2276E+01 dh/dt= 0.1483E+00 dfh/dt= 0.6670E+01 dt-0.8E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2926D+01  epsf,diff= 0.0000D+00 0.2276D+01  nap=  5
+ qnbd : iter=  3  f=  0.4088059D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1871E+04 tmax= 0.1000E+11 dh0/dt=-0.1067E-01
+    t= 0.1000E+01 h=-0.7160E-02 dh/dt=-0.3644E-02 dfh/dt=-0.7160E-02 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1462D+01  epsf,diff= 0.0000D+00 0.7160D-02  nap=  6
+ qnbd : iter=  4  f=  0.4080900D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2129E+04 tmax= 0.1000E+11 dh0/dt=-0.5871E-02
+    t= 0.1000E+01 h=-0.4927E-02 dh/dt=-0.3984E-02 dfh/dt=-0.4927E-02 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1281D+01  epsf,diff= 0.0000D+00 0.4927D-02  nap=  7
+ qnbd : iter=  5  f=  0.4075972D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4921E+03 tmax= 0.1000E+11 dh0/dt=-0.2087E-01
+    t= 0.1000E+01 h=-0.1666E-01 dh/dt=-0.1244E-01 dfh/dt=-0.1666E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2639D+01  epsf,diff= 0.0000D+00 0.1666D-01  nap=  8
+ qnbd : iter=  6  f=  0.4059314D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1794E+03 tmax= 0.1000E+11 dh0/dt=-0.4910E-01
+    t= 0.1000E+01 h=-0.3949E-01 dh/dt=-0.2960E-01 dfh/dt=-0.3949E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.5535D+01  epsf,diff= 0.0000D+00 0.3949D-01  nap=  9
+ qnbd : iter=  7  f=  0.4019827D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.6788E+02 tmax= 0.1000E+11 dh0/dt=-0.1202E+00
+    t= 0.1000E+01 h=-0.9032E-01 dh/dt=-0.5611E-01 dfh/dt=-0.9032E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1029D+02  epsf,diff= 0.0000D+00 0.9032D-01  nap= 10
+ qnbd : iter=  8  f=  0.3929503D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4367E+02 tmax= 0.1000E+11 dh0/dt=-0.1810E+00
+    t= 0.1000E+01 h=-0.1269E+00 dh/dt=-0.5900E-01 dfh/dt=-0.1269E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1482D+02  epsf,diff= 0.0000D+00 0.1269D+00  nap= 11
+ qnbd : iter=  9  f=  0.3802616D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4643E+02 tmax= 0.1000E+11 dh0/dt=-0.2391E+00
+    t= 0.1000E+01 h=-0.1911E+00 dh/dt=-0.1369E+00 dfh/dt=-0.1911E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1584D+02  epsf,diff= 0.0000D+00 0.1911D+00  nap= 12
+ qnbd : iter= 10  f=  0.3611527D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2935E+02 tmax= 0.1000E+11 dh0/dt=-0.6544E+00
+    t= 0.1000E+01 h=-0.4793E+00 dh/dt=-0.3144E+00 dfh/dt=-0.4793E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1335D+02  epsf,diff= 0.0000D+00 0.4793D+00  nap= 13
+ qnbd : iter= 11  f=  0.3132213D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.5262E+02 tmax= 0.1000E+11 dh0/dt=-0.7617E+00
+    t= 0.1000E+01 h=-0.5408E+00 dh/dt=-0.3919E+00 dfh/dt=-0.5408E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.4831D+01  epsf,diff= 0.0000D+00 0.5408D+00  nap= 14
+ qnbd : iter= 12  f=  0.2591395D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1420E+02 tmax= 0.1000E+11 dh0/dt=-0.8312E+00
+ic  t= 0.1000E+01 h= 0.7497E+00 dh/dt= 0.4176E+01 dfh/dt= 0.7497E+00 dt 0.1E+01
+    t= 0.4382E+00 h=-0.2198E+00 dh/dt= 0.4016E-01 dfh/dt= 0.1726E+01 dt-0.6E+00
+ qnbd : epsg,difg= 0.2220D-15 0.9927D+01  epsf,diff= 0.0000D+00 0.2198D+00  nap= 16
+ qnbd : iter= 13  f=  0.2371631D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.5731E+02 tmax= 0.1000E+11 dh0/dt=-0.4306E+00
+    t= 0.1000E+01 h=-0.3368E+00 dh/dt=-0.2579E+00 dfh/dt=-0.3368E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.7508D+01  epsf,diff= 0.0000D+00 0.3368D+00  nap= 17
+ qnbd : iter= 14  f=  0.2034811D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.5735E+02 tmax= 0.1000E+11 dh0/dt=-0.6267E+00
+    t= 0.1000E+01 h=-0.3605E+00 dh/dt=-0.1724E+00 dfh/dt=-0.3605E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1723D+01  epsf,diff= 0.0000D+00 0.3605D+00  nap= 18
+ qnbd : iter= 15  f=  0.1674355D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1099E+02 tmax= 0.1000E+11 dh0/dt=-0.1363E+01
+ic  t= 0.1000E+01 h= 0.6994E+01 dh/dt= 0.2893E+02 dfh/dt= 0.6994E+01 dt 0.1E+01
+    t= 0.3516E+00 h=-0.2554E+00 dh/dt= 0.7273E+00 dfh/dt= 0.1118E+02 dt-0.6E+00
+ qnbd : epsg,difg= 0.2220D-15 0.6425D+01  epsf,diff= 0.0000D+00 0.2554D+00  nap= 20
+ qnbd : iter= 16  f=  0.1418994D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1891E+03 tmax= 0.1000E+11 dh0/dt=-0.1977E+00
+    t= 0.1000E+01 h=-0.1320E+00 dh/dt=-0.6635E-01 dfh/dt=-0.1320E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2962D+01  epsf,diff= 0.0000D+00 0.1320D+00  nap= 21
+ qnbd : iter= 17  f=  0.1286986D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.3721E+02 tmax= 0.1000E+11 dh0/dt=-0.3536E+00
+    t= 0.1000E+01 h=-0.2772E+00 dh/dt=-0.1853E+00 dfh/dt=-0.2772E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2970D+01  epsf,diff= 0.0000D+00 0.2772D+00  nap= 22
+ qnbd : iter= 18  f=  0.1009809D+01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2944E+02 tmax= 0.1000E+11 dh0/dt=-0.3275E+00
+    t= 0.1000E+01 h=-0.9782E-01 dh/dt= 0.3071E+00 dfh/dt=-0.9782E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.7110D+01  epsf,diff= 0.0000D+00 0.9782D-01  nap= 23
+ qnbd : iter= 19  f=  0.9119930D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.9911E+02 tmax= 0.1000E+11 dh0/dt=-0.4982E+00
+    t= 0.1000E+01 h=-0.2439E+00 dh/dt= 0.1033E-01 dfh/dt=-0.2439E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1223D+01  epsf,diff= 0.0000D+00 0.2439D+00  nap= 24
+ qnbd : iter= 20  f=  0.6680716D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4542E+02 tmax= 0.1000E+11 dh0/dt=-0.1736E+00
+    t= 0.1000E+01 h=-0.1495E+00 dh/dt=-0.9751E-01 dfh/dt=-0.1495E+00 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1598D+01  epsf,diff= 0.0000D+00 0.1495D+00  nap= 25
+ qnbd : iter= 21  f=  0.5185575D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2050E+02 tmax= 0.1000E+11 dh0/dt=-0.2727E+00
+ic  t= 0.1000E+01 h= 0.4900E+00 dh/dt= 0.2064E+01 dfh/dt= 0.4900E+00 dt 0.1E+01
+    t= 0.3554E+00 h=-0.5204E-01 dh/dt= 0.3697E-01 dfh/dt= 0.8409E+00 dt-0.6E+00
+ qnbd : epsg,difg= 0.2220D-15 0.4195D+01  epsf,diff= 0.0000D+00 0.5204D-01  nap= 27
+ qnbd : iter= 22  f=  0.4665182D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1410E+03 tmax= 0.1000E+11 dh0/dt=-0.9467E-01
+e   t= 0.1000E+01 h=-0.7980E-01 dh/dt=-0.6688E-01 dfh/dt=-0.7980E-01 dt 0.1E+01
+    t= 0.2612E+01 h=-0.1651E+00 dh/dt=-0.4242E-01 dfh/dt=-0.5292E-01 dt 0.2E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1092D+01  epsf,diff= 0.0000D+00 0.1651D+00  nap= 29
+ qnbd : iter= 23  f=  0.3014090D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.3134E+02 tmax= 0.1000E+11 dh0/dt=-0.1393E+00
+ic  t= 0.1000E+01 h= 0.2342E-01 dh/dt= 0.3255E+00 dfh/dt= 0.2342E-01 dt 0.1E+01
+    t= 0.5240E+00 h=-0.4378E-01 dh/dt=-0.1060E-02 dfh/dt= 0.1412E+00 dt-0.5E+00
+ qnbd : epsg,difg= 0.2220D-15 0.3616D+01  epsf,diff= 0.0000D+00 0.4378D-01  nap= 31
+ qnbd : iter= 24  f=  0.2576320D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.5270E+02 tmax= 0.1000E+11 dh0/dt=-0.1139E+00
+    t= 0.1000E+01 h=-0.8347E-01 dh/dt=-0.5954E-01 dfh/dt=-0.8347E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2649D+01  epsf,diff= 0.0000D+00 0.8347D-01  nap= 32
+ qnbd : iter= 25  f=  0.1741653D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.5702E+02 tmax= 0.1000E+11 dh0/dt=-0.9052E-01
+    t= 0.1000E+01 h=-0.5731E-01 dh/dt=-0.3243E-01 dfh/dt=-0.5731E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.7655D+00  epsf,diff= 0.0000D+00 0.5731D-01  nap= 33
+ qnbd : iter= 26  f=  0.1168531D+00
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1523E+02 tmax= 0.1000E+11 dh0/dt=-0.1721E+00
+ic  t= 0.1000E+01 h= 0.5149E+00 dh/dt= 0.2154E+01 dfh/dt= 0.5149E+00 dt 0.1E+01
+    t= 0.3552E+00 h=-0.3345E-01 dh/dt= 0.4665E-01 dfh/dt= 0.8504E+00 dt-0.6E+00
+ qnbd : epsg,difg= 0.2220D-15 0.3144D+01  epsf,diff= 0.0000D+00 0.3345D-01  nap= 35
+ qnbd : iter= 27  f=  0.8340131D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1267E+03 tmax= 0.1000E+11 dh0/dt=-0.2710E-01
+    t= 0.1000E+01 h=-0.2213E-01 dh/dt=-0.1760E-01 dfh/dt=-0.2213E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1683D+01  epsf,diff= 0.0000D+00 0.2213D-01  nap= 36
+ qnbd : iter= 28  f=  0.6127324D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2794E+02 tmax= 0.1000E+11 dh0/dt=-0.5182E-01
+    t= 0.1000E+01 h=-0.1946E-01 dh/dt= 0.2933E-01 dfh/dt=-0.1946E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.4212D+01  epsf,diff= 0.0000D+00 0.1946D-01  nap= 37
+ qnbd : iter= 29  f=  0.4181115D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2113E+03 tmax= 0.1000E+11 dh0/dt=-0.5837E-01
+    t= 0.1000E+01 h=-0.2302E-01 dh/dt= 0.1234E-01 dfh/dt=-0.2302E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.1112D+01  epsf,diff= 0.0000D+00 0.2302D-01  nap= 38
+ qnbd : iter= 30  f=  0.1879567D-01
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.6064E+02 tmax= 0.1000E+11 dh0/dt=-0.1349E-01
+    t= 0.1000E+01 h=-0.1025E-01 dh/dt=-0.5166E-02 dfh/dt=-0.1025E-01 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.4225D+00  epsf,diff= 0.0000D+00 0.1025D-01  nap= 39
+ qnbd : iter= 31  f=  0.8546911D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4124E+02 tmax= 0.1000E+11 dh0/dt=-0.9192E-02
+ic  t= 0.1000E+01 h=-0.1115E-03 dh/dt= 0.1345E-01 dfh/dt=-0.1115E-03 dt 0.1E+01
+    t= 0.5527E+00 h=-0.2852E-02 dh/dt=-0.5725E-04 dfh/dt= 0.6127E-02 dt-0.4E+00
+ qnbd : epsg,difg= 0.2220D-15 0.1351D+01  epsf,diff= 0.0000D+00 0.2852D-02  nap= 41
+ qnbd : iter= 32  f=  0.5695252D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1606E+03 tmax= 0.1000E+11 dh0/dt=-0.3214E-02
+    t= 0.1000E+01 h=-0.2625E-02 dh/dt=-0.2090E-02 dfh/dt=-0.2625E-02 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.8746D+00  epsf,diff= 0.0000D+00 0.2625D-02  nap= 42
+ qnbd : iter= 33  f=  0.3069880D-02
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.8464E+02 tmax= 0.1000E+11 dh0/dt=-0.3887E-02
+    t= 0.1000E+01 h=-0.2494E-02 dh/dt=-0.1350E-02 dfh/dt=-0.2494E-02 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2491D+00  epsf,diff= 0.0000D+00 0.2494D-02  nap= 43
+ qnbd : iter= 34  f=  0.5755995D-03
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1302E+03 tmax= 0.1000E+11 dh0/dt=-0.7571E-03
+    t= 0.1000E+01 h=-0.4653E-03 dh/dt=-0.1769E-03 dfh/dt=-0.4653E-03 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2501D+00  epsf,diff= 0.0000D+00 0.4653D-03  nap= 44
+ qnbd : iter= 35  f=  0.1103321D-03
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4072E+03 tmax= 0.1000E+11 dh0/dt=-0.2997E-03
+    t= 0.1000E+01 h=-0.6258E-04 dh/dt= 0.1693E-03 dfh/dt=-0.6258E-04 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2082D+00  epsf,diff= 0.0000D+00 0.6258D-04  nap= 45
+ qnbd : iter= 36  f=  0.4774899D-04
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.8042E+03 tmax= 0.1000E+11 dh0/dt=-0.1003E-03
+    t= 0.1000E+01 h=-0.4743E-04 dh/dt= 0.6575E-05 dfh/dt=-0.4743E-04 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.9357D-02  epsf,diff= 0.0000D+00 0.4743D-04  nap= 46
+ qnbd : iter= 37  f=  0.3189662D-06
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.6116E+04 tmax= 0.1000E+11 dh0/dt=-0.6644E-06
+    t= 0.1000E+01 h=-0.3183E-06 dh/dt= 0.2630E-07 dfh/dt=-0.3183E-06 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.7401D-03  epsf,diff= 0.0000D+00 0.3183D-06  nap= 47
+ qnbd : iter= 38  f=  0.6829435D-09
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1710E+06 tmax= 0.1000E+11 dh0/dt=-0.1340E-08
+    t= 0.1000E+01 h=-0.6824E-09 dh/dt=-0.2448E-10 dfh/dt=-0.6824E-09 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2102D-04  epsf,diff= 0.0000D+00 0.6824D-09  nap= 48
+ qnbd : iter= 39  f=  0.4984941D-12
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1312E+08 tmax= 0.1000E+11 dh0/dt=-0.9764E-12
+    t= 0.1000E+01 h=-0.4981E-12 dh/dt=-0.1984E-13 dfh/dt=-0.4981E-12 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2913D-06  epsf,diff= 0.0000D+00 0.4981D-12  nap= 49
+ qnbd : iter= 40  f=  0.3925578D-15
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1721E+09 tmax= 0.1000E+11 dh0/dt=-0.7785E-15
+    t= 0.1000E+01 h=-0.3925E-15 dh/dt=-0.6537E-17 dfh/dt=-0.3925E-15 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.2479D-08  epsf,diff= 0.0000D+00 0.3925D-15  nap= 50
+ qnbd : iter= 41  f=  0.5929270D-19
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1308E+11 tmax= 0.1000E+11 dh0/dt=-0.1180E-18
+    t= 0.1000E+01 h=-0.5929E-19 dh/dt=-0.5949E-21 dfh/dt=-0.5929E-19 dt 0.1E+01
+ qnbd : epsg,difg= 0.2220D-15 0.4715D-10  epsf,diff= 0.0000D+00 0.5929D-19  nap= 51
+ qnbd : iter= 42  f=  0.2854806D-23
+ qnbd : emploi truc powell (y,s)= 0.1174D-18
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.1233E+12 tmax= 0.1000E+11 dh0/dt=-0.8132E-22
+d   t= 0.1000E+01 h= 0.7180E-21 dh/dt= 0.1517E-20 dfh/dt= 0.7180E-21 dt 0.1E+01
+d   t= 0.5000E+00 h= 0.1592E-21 dh/dt= 0.7180E-21 dfh/dt= 0.1118E-20 dt-0.5E+00
+d   t= 0.2500E+00 h= 0.2963E-22 dh/dt= 0.3184E-21 dfh/dt= 0.5181E-21 dt-0.2E+00
+d   t= 0.1250E+00 h= 0.2325E-23 dh/dt= 0.1185E-21 dfh/dt= 0.2184E-21 dt-0.1E+00
+    t= 0.6250E-01 h=-0.1961E-23 dh/dt= 0.1862E-22 dfh/dt= 0.6857E-22 dt-0.6E-01
+ qnbd : epsg,difg= 0.2220D-15 0.1902D-10  epsf,diff= 0.0000D+00 0.1961D-23  nap= 56
+ qnbd : iter= 43  f=  0.8942187D-24
+ qnbd : emploi truc powell (y,s)= 0.6247D-23
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.6780E+11 tmax= 0.1000E+11 dh0/dt=-0.2325E-22
+d   t= 0.1000E+01 h= 0.1132E-20 dh/dt= 0.2288E-20 dfh/dt= 0.1132E-20 dt 0.1E+01
+d   t= 0.5000E+00 h= 0.2773E-21 dh/dt= 0.1132E-20 dfh/dt= 0.1710E-20 dt-0.5E+00
+d   t= 0.2500E+00 h= 0.6644E-22 dh/dt= 0.5547E-21 dfh/dt= 0.8434E-21 dt-0.2E+00
+d   t= 0.1250E+00 h= 0.1515E-22 dh/dt= 0.2657E-21 dfh/dt= 0.4103E-21 dt-0.1E+00
+d   t= 0.6250E-01 h= 0.3062E-23 dh/dt= 0.1212E-21 dfh/dt= 0.1934E-21 dt-0.6E-01
+d   t= 0.3125E-01 h= 0.4061E-24 dh/dt= 0.4904E-22 dfh/dt= 0.8499E-22 dt-0.3E-01
+    t= 0.1562E-01 h=-0.7863E-25 dh/dt= 0.1291E-22 dfh/dt= 0.3102E-22 dt-0.2E-01
+ qnbd : epsg,difg= 0.2220D-15 0.2730D-10  epsf,diff= 0.0000D+00 0.7863D-25  nap= 63
+ qnbd : iter= 44  f=  0.8155913D-24
+ qnbd : emploi truc powell (y,s)= 0.5658D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.3429E+11 tmax= 0.1000E+11 dh0/dt=-0.3998E-22
+id  t= 0.1000E+01 h= 0.1023E-19 dh/dt= 0.2049E-19 dfh/dt= 0.1023E-19 dt 0.1E+01
+d   t= 0.1000E+00 h= 0.9866E-22 dh/dt= 0.2013E-20 dfh/dt= 0.1125E-19 dt-0.9E+00
+d   t= 0.5000E-01 h= 0.2367E-22 dh/dt= 0.9866E-21 dfh/dt= 0.1500E-20 dt-0.5E-01
+d   t= 0.2500E-01 h= 0.5417E-23 dh/dt= 0.4733E-21 dfh/dt= 0.7300E-21 dt-0.3E-01
+d   t= 0.1250E-01 h= 0.1105E-23 dh/dt= 0.2166E-21 dfh/dt= 0.3450E-21 dt-0.1E-01
+d   t= 0.6250E-02 h= 0.1496E-24 dh/dt= 0.8849E-22 dfh/dt= 0.1528E-21 dt-0.6E-02
+    t= 0.3125E-02 h=-0.2484E-25 dh/dt= 0.2420E-22 dfh/dt= 0.5584E-22 dt-0.3E-02
+ qnbd : epsg,difg= 0.2220D-15 0.2231D-10  epsf,diff= 0.0000D+00 0.2484D-25  nap= 70
+ qnbd : iter= 45  f=  0.7907465D-24
+ qnbd : emploi truc powell (y,s)= 0.2006D-24
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.7009E+10 tmax= 0.1000E+11 dh0/dt=-0.8031E-22
+id  t= 0.1000E+01 h= 0.1088E-18 dh/dt= 0.2176E-18 dfh/dt= 0.1088E-18 dt 0.1E+01
+id  t= 0.1000E+00 h= 0.1081E-20 dh/dt= 0.2169E-19 dfh/dt= 0.1197E-18 dt-0.9E+00
+d   t= 0.1000E-01 h= 0.1009E-22 dh/dt= 0.2097E-20 dfh/dt= 0.1190E-19 dt-0.9E-01
+d   t= 0.5000E-02 h= 0.2314E-23 dh/dt= 0.1008E-20 dfh/dt= 0.1554E-20 dt-0.5E-02
+d   t= 0.2500E-02 h= 0.4799E-24 dh/dt= 0.4640E-21 dfh/dt= 0.7337E-21 dt-0.3E-02
+d   t= 0.1250E-02 h= 0.6986E-25 dh/dt= 0.1919E-21 dfh/dt= 0.3281E-21 dt-0.1E-02
+    t= 0.6250E-03 h=-0.8508E-26 dh/dt= 0.5560E-22 dfh/dt= 0.1254E-21 dt-0.6E-03
+ qnbd : epsg,difg= 0.2220D-15 0.2553D-10  epsf,diff= 0.0000D+00 0.8508D-26  nap= 77
+ qnbd : iter= 46  f=  0.7822385D-24
+ qnbd : emploi truc powell (y,s)= 0.8484D-25
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.2254E+10 tmax= 0.1000E+11 dh0/dt=-0.2593E-21
+id  t= 0.1000E+01 h= 0.2369E-17 dh/dt= 0.4737E-17 dfh/dt= 0.2369E-17 dt 0.1E+01
+id  t= 0.1000E+00 h= 0.2366E-19 dh/dt= 0.4735E-18 dfh/dt= 0.2605E-17 dt-0.9E+00
+id  t= 0.1000E-01 h= 0.2343E-21 dh/dt= 0.4712E-19 dfh/dt= 0.2603E-18 dt-0.9E-01
+d   t= 0.1000E-02 h= 0.2110E-23 dh/dt= 0.4477E-20 dfh/dt= 0.2580E-19 dt-0.9E-02
+d   t= 0.5000E-03 h= 0.4624E-24 dh/dt= 0.2110E-20 dfh/dt= 0.3294E-20 dt-0.5E-03
+d   t= 0.2500E-03 h= 0.8387E-25 dh/dt= 0.9243E-21 dfh/dt= 0.1514E-20 dt-0.3E-03
+d   t= 0.1250E-03 h= 0.2587E-26 dh/dt= 0.3350E-21 dfh/dt= 0.6502E-21 dt-0.1E-03
+    t= 0.6250E-04 h=-0.5487E-26 dh/dt= 0.3532E-22 dfh/dt= 0.1292E-21 dt-0.6E-04
+ qnbd : epsg,difg= 0.2220D-15 0.2405D-10  epsf,diff= 0.0000D+00 0.5487D-26  nap= 85
+ qnbd : iter= 47  f=  0.7767511D-24
+ qnbd : emploi truc powell (y,s)= 0.1833D-25
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.3148E+09 tmax= 0.1000E+11 dh0/dt=-0.2565E-21
+id  t= 0.1000E+01 h= 0.5352E-16 dh/dt= 0.1070E-15 dfh/dt= 0.5352E-16 dt 0.1E+01
+id  t= 0.1000E+00 h= 0.5352E-18 dh/dt= 0.1070E-16 dfh/dt= 0.5888E-16 dt-0.9E+00
+id  t= 0.1000E-01 h= 0.5350E-20 dh/dt= 0.1070E-17 dfh/dt= 0.5887E-17 dt-0.9E-01
+id  t= 0.1000E-02 h= 0.5327E-22 dh/dt= 0.1068E-18 dfh/dt= 0.5885E-18 dt-0.9E-02
+d   t= 0.1000E-03 h= 0.5117E-24 dh/dt= 0.1046E-19 dfh/dt= 0.5862E-19 dt-0.9E-03
+d   t= 0.5000E-04 h= 0.1218E-24 dh/dt= 0.5099E-20 dfh/dt= 0.7796E-20 dt-0.5E-04
+d   t= 0.2500E-04 h= 0.2743E-25 dh/dt= 0.2421E-20 dfh/dt= 0.3777E-20 dt-0.3E-04
+d   t= 0.1250E-04 h= 0.6249E-26 dh/dt= 0.1086E-20 dfh/dt= 0.1694E-20 dt-0.1E-04
+d   t= 0.6250E-05 h= 0.1019E-26 dh/dt= 0.4148E-21 dfh/dt= 0.8367E-21 dt-0.6E-05
+    t= 0.3125E-05 h=-0.2594E-26 dh/dt= 0.6735E-22 dfh/dt= 0.1156E-20 dt-0.3E-05
+ qnbd : epsg,difg= 0.2220D-15 0.2436D-10  epsf,diff= 0.0000D+00 0.2594D-26  nap= 95
+ qnbd : iter= 48  f=  0.7741575D-24
+ qnbd : emploi truc powell (y,s)= 0.9833D-27
+ qnbd : nbre fact  0 defact  0 total var factorisees  2
+ rlbd tp= 0.4866E+07 tmax= 0.1000E+11 dh0/dt=-0.3485E-19
+id  t= 0.1000E+01 h= 0.2126E-12 dh/dt= 0.4252E-12 dfh/dt= 0.2126E-12 dt 0.1E+01
+id  t= 0.1000E-02 h= 0.2126E-18 dh/dt= 0.4252E-15 dfh/dt= 0.2128E-12 dt-0.1E+01
+id  t= 0.1000E-04 h= 0.2092E-22 dh/dt= 0.4218E-17 dfh/dt= 0.2147E-15 dt-0.1E-02
+d   t= 0.1000E-05 h= 0.1767E-24 dh/dt= 0.3901E-18 dfh/dt= 0.2305E-17 dt-0.9E-05
+d   t= 0.5000E-06 h= 0.3717E-25 dh/dt= 0.1781E-18 dfh/dt= 0.2790E-18 dt-0.5E-06
+    t= 0.2500E-06 h= 0.5251E-26 dh/dt= 0.1781E-18 dfh/dt=-0.0000E+00 dt-0.3E-06
+ qnbd : indqn=      13
+End of optimization (linear search fails).
+
+//
+// 5. Test bound-constrained Limited Memory BFGS
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc','ar',100);
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with maximum number of call to cost function, maximum number of iterations
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc','ar', 100 , 100 );
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+// Test with various imp levels
+// imp = 0 : No messages
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=0);
+// imp = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=1);
+ gcbd max appels simul
+ gcbd : retour avec indgc=       4
+ f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
+Optim stops: maximum number of calls to f is reached.
+
+// imp = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=2);
+ dans gcbd  iter=  1  f=  0.2420000D+02
+ gcbd. epsg,difg= 0.2220D-15 0.7159D+02  epsf,diff= 0.0000D+00 0.1784D+02  nap=  2
+ dans gcbd  iter=  2  f=  0.6363632D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2340D+01  epsf,diff= 0.0000D+00 0.2231D+01  nap=  4
+ dans gcbd  iter=  3  f=  0.4132134D+01
+ gcbd. epsg,difg= 0.2220D-15 0.1913D+01  epsf,diff= 0.0000D+00 0.4550D-02  nap=  6
+ dans gcbd  iter=  4  f=  0.4127584D+01
+ gcbd. epsg,difg= 0.2220D-15 0.5416D+01  epsf,diff= 0.0000D+00 0.1486D-01  nap=  8
+ dans gcbd  iter=  5  f=  0.4112720D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2091D+02  epsf,diff= 0.0000D+00 0.1464D+00  nap= 10
+ dans gcbd  iter=  6  f=  0.3966314D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2247D+02  epsf,diff= 0.0000D+00 0.6344D+00  nap= 12
+ dans gcbd  iter=  7  f=  0.3331870D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2143D+01  epsf,diff= 0.0000D+00 0.6856D+00  nap= 13
+ dans gcbd  iter=  8  f=  0.2646310D+01
+ gcbd. epsg,difg= 0.2220D-15 0.8030D+01  epsf,diff= 0.0000D+00 0.7397D+00  nap= 15
+ dans gcbd  iter=  9  f=  0.1906596D+01
+ gcbd. epsg,difg= 0.2220D-15 0.1073D+02  epsf,diff= 0.0000D+00 0.3822D-01  nap= 18
+ dans gcbd  iter= 10  f=  0.1868373D+01
+ gcbd. epsg,difg= 0.2220D-15 0.7322D+01  epsf,diff= 0.0000D+00 0.4014D+00  nap= 20
+ dans gcbd  iter= 11  f=  0.1467012D+01
+ gcbd. epsg,difg= 0.2220D-15 0.9099D+01  epsf,diff= 0.0000D+00 0.2159D+00  nap= 22
+ dans gcbd  iter= 12  f=  0.1251075D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2373D+01  epsf,diff= 0.0000D+00 0.2771D+00  nap= 23
+ dans gcbd  iter= 13  f=  0.9739653D+00
+ gcbd. epsg,difg= 0.2220D-15 0.5464D+01  epsf,diff= 0.0000D+00 0.7093D-01  nap= 25
+ dans gcbd  iter= 14  f=  0.9030358D+00
+ gcbd. epsg,difg= 0.2220D-15 0.6580D+01  epsf,diff= 0.0000D+00 0.2702D+00  nap= 30
+ dans gcbd  iter= 15  f=  0.6328802D+00
+ gcbd. epsg,difg= 0.2220D-15 0.2530D+01  epsf,diff= 0.0000D+00 0.2982D-01  nap= 32
+ dans gcbd  iter= 16  f=  0.6030573D+00
+ gcbd. epsg,difg= 0.2220D-15 0.7873D+01  epsf,diff= 0.0000D+00 0.8989D-01  nap= 34
+ dans gcbd  iter= 17  f=  0.5131695D+00
+ gcbd. epsg,difg= 0.2220D-15 0.1104D+01  epsf,diff= 0.0000D+00 0.8223D-01  nap= 35
+ dans gcbd  iter= 18  f=  0.4309425D+00
+ gcbd. epsg,difg= 0.2220D-15 0.3437D+01  epsf,diff= 0.0000D+00 0.1651D-01  nap= 37
+ dans gcbd  iter= 19  f=  0.4144307D+00
+ gcbd. epsg,difg= 0.2220D-15 0.4566D+01  epsf,diff= 0.0000D+00 0.1344D+00  nap= 39
+ dans gcbd  iter= 20  f=  0.2800585D+00
+ gcbd. epsg,difg= 0.2220D-15 0.6863D+01  epsf,diff= 0.0000D+00 0.7865D-01  nap= 41
+ dans gcbd  iter= 21  f=  0.2014068D+00
+ gcbd. epsg,difg= 0.2220D-15 0.1826D+01  epsf,diff= 0.0000D+00 0.7752D-01  nap= 42
+ dans gcbd  iter= 22  f=  0.1238910D+00
+ gcbd. epsg,difg= 0.2220D-15 0.2529D+01  epsf,diff= 0.0000D+00 0.7119D-01  nap= 44
+ dans gcbd  iter= 23  f=  0.5270207D-01
+ gcbd. epsg,difg= 0.2220D-15 0.4306D+01  epsf,diff= 0.0000D+00 0.6135D-02  nap= 47
+ dans gcbd  iter= 24  f=  0.4656719D-01
+ gcbd. epsg,difg= 0.2220D-15 0.1231D+01  epsf,diff= 0.0000D+00 0.2703D-01  nap= 49
+ dans gcbd  iter= 25  f=  0.1953329D-01
+ gcbd. epsg,difg= 0.2220D-15 0.1445D+01  epsf,diff= 0.0000D+00 0.1631D-01  nap= 51
+ dans gcbd  iter= 26  f=  0.3222476D-02
+ gcbd. epsg,difg= 0.2220D-15 0.6193D+00  epsf,diff= 0.0000D+00 0.2216D-02  nap= 53
+ dans gcbd  iter= 27  f=  0.1006378D-02
+ gcbd. epsg,difg= 0.2220D-15 0.3527D+00  epsf,diff= 0.0000D+00 0.5871D-03  nap= 55
+ dans gcbd  iter= 28  f=  0.4193247D-03
+ gcbd. epsg,difg= 0.2220D-15 0.1105D+00  epsf,diff= 0.0000D+00 0.3655D-03  nap= 56
+ dans gcbd  iter= 29  f=  0.5385147D-04
+ gcbd. epsg,difg= 0.2220D-15 0.9174D-01  epsf,diff= 0.0000D+00 0.4928D-04  nap= 58
+ dans gcbd  iter= 30  f=  0.4571613D-05
+ gcbd. epsg,difg= 0.2220D-15 0.1255D-01  epsf,diff= 0.0000D+00 0.4367D-05  nap= 60
+ dans gcbd  iter= 31  f=  0.2050776D-06
+ gcbd. epsg,difg= 0.2220D-15 0.9260D-03  epsf,diff= 0.0000D+00 0.2043D-06  nap= 63
+ dans gcbd  iter= 32  f=  0.7658047D-09
+ gcbd. epsg,difg= 0.2220D-15 0.6032D-04  epsf,diff= 0.0000D+00 0.7625D-09  nap= 65
+ dans gcbd  iter= 33  f=  0.3300830D-11
+ gcbd. epsg,difg= 0.2220D-15 0.2425D-06  epsf,diff= 0.0000D+00 0.3301D-11  nap= 67
+ dans gcbd  iter= 34  f=  0.5127616D-16
+ gcbd. epsg,difg= 0.2220D-15 0.3168D-08  epsf,diff= 0.0000D+00 0.5126D-16  nap= 71
+ dans gcbd  iter= 35  f=  0.1131843D-19
+ gcbd. epsg,difg= 0.2220D-15 0.8861D-09  epsf,diff= 0.0000D+00 0.4625D-20  nap= 78
+ dans gcbd  iter= 36  f=  0.6693058D-20
+ gcbd. epsg,difg= 0.2220D-15 0.4257D-09  epsf,diff= 0.0000D+00 0.3089D-21  nap= 82
+ dans gcbd  iter= 37  f=  0.6384148D-20
+ gcbd. epsg,difg= 0.2220D-15 0.3053D-09  epsf,diff= 0.0000D+00 0.5249D-22  nap= 84
+ dans gcbd  iter= 38  f=  0.6331659D-20
+ gcbd. epsg,difg= 0.2220D-15 0.8042D-10  epsf,diff= 0.0000D+00 0.4895D-22  nap= 85
+ dans gcbd  iter= 39  f=  0.6282712D-20
+ gcbd. epsg,difg= 0.2220D-15 0.2603D-09  epsf,diff= 0.0000D+00 0.7315D-23  nap= 87
+ dans gcbd  iter= 40  f=  0.6275397D-20
+ gcbd. epsg,difg= 0.2220D-15 0.2373D-09  epsf,diff= 0.0000D+00 0.1517D-22  nap= 96
+ dans gcbd  iter= 41  f=  0.6260226D-20
+ gcbd. epsg,difg= 0.2220D-15 0.1259D-09  epsf,diff= 0.0000D+00 0.2288D-22  nap= 97
+ dans gcbd  iter= 42  f=  0.6237341D-20
+ gcbd. epsg,difg= 0.2220D-15 0.8448D-10  epsf,diff= 0.0000D+00 0.1153D-22  nap= 99
+ dans gcbd  iter= 43  f=  0.6225811D-20
+ gcbd max appels simul
+ gcbd : retour avec indgc=       4
+ f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
+Optim stops: maximum number of calls to f is reached.
+
+// imp = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=3);
+ dans gcbd  iter=  1  f=  0.2420000D+02
+ relvar1. valeur de eps1=  0.1020000D+02
+   redemarrage. icycl=    2
+ rlbd tp= 0.2876E-01 tmax= 0.1000E+11 dh0/dt=-0.5423E+05
+e   t= 0.3688E-04 h=-0.1945E+01 dh/dt=-0.5124E+05 dfh/dt=-0.5273E+05 dt 0.4E-04
+    t= 0.5135E-03 h=-0.1784E+02 dh/dt=-0.1667E+05 dfh/dt=-0.3334E+05 dt 0.5E-03
+ retour mlibd indrl=     1 pas=  0.5135D-03 f=  0.6364D+01
+ gcbd. epsg,difg= 0.2220D-15 0.7159D+02  epsf,diff= 0.0000D+00 0.1784D+02  nap=  2
+ dans gcbd  iter=  2  f=  0.6363632D+01
+ relvar1. valeur de eps1=  0.3799926D+01
+ rlbd tp= 0.1253E+03 tmax= 0.1000E+11 dh0/dt=-0.3802E+01
+ic  t= 0.9384E+01 h= 0.6768E+02 dh/dt= 0.1385E+02 dfh/dt= 0.7212E+01 dt 0.9E+01
+    t= 0.1228E+01 h=-0.2231E+01 dh/dt= 0.7747E-01 dfh/dt= 0.8572E+01 dt-0.8E+01
+ retour mlibd indrl=     1 pas=  0.1228D+01 f=  0.4132D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2340D+01  epsf,diff= 0.0000D+00 0.2231D+01  nap=  4
+ dans gcbd  iter=  3  f=  0.4132134D+01
+ relvar1. valeur de eps1=  0.4060355D-02
+   redemarrage. icycl=    3
+ rlbd tp= 0.3491E+04 tmax= 0.1000E+11 dh0/dt=-0.4314E-02
+id  t= 0.1035E+04 h= 0.1274E+04 dh/dt= 0.2763E+01 dfh/dt= 0.1231E+01 dt 0.1E+04
+    t= 0.1613E+01 h=-0.4550E-02 dh/dt=-0.1328E-02 dfh/dt= 0.1233E+01 dt-0.1E+04
+ retour mlibd indrl=     1 pas=  0.1613D+01 f=  0.4128D+01
+ gcbd. epsg,difg= 0.2220D-15 0.1913D+01  epsf,diff= 0.0000D+00 0.4550D-02  nap=  6
+ dans gcbd  iter=  4  f=  0.4127584D+01
+ relvar1. valeur de eps1=  0.2713482D-02
+ rlbd tp= 0.1714E+04 tmax= 0.1000E+11 dh0/dt=-0.5472E-02
+e   t= 0.1663E+01 h=-0.7784E-02 dh/dt=-0.3889E-02 dfh/dt=-0.4681E-02 dt 0.2E+01
+    t= 0.4407E+01 h=-0.1486E-01 dh/dt=-0.1270E-02 dfh/dt=-0.2580E-02 dt 0.3E+01
+ retour mlibd indrl=     1 pas=  0.4407D+01 f=  0.4113D+01
+ gcbd. epsg,difg= 0.2220D-15 0.5416D+01  epsf,diff= 0.0000D+00 0.1486D-01  nap=  8
+ dans gcbd  iter=  5  f=  0.4112720D+01
+ relvar1. valeur de eps1=  0.2174276D-01
+ rlbd tp= 0.3394E+03 tmax= 0.1000E+11 dh0/dt=-0.2756E-01
+e   t= 0.1079E+01 h=-0.2860E-01 dh/dt=-0.2543E-01 dfh/dt=-0.2652E-01 dt 0.1E+01
+    t= 0.1071E+02 h=-0.1464E+00 dh/dt= 0.4420E-02 dfh/dt=-0.1223E-01 dt 0.1E+02
+ retour mlibd indrl=     1 pas=  0.1071D+02 f=  0.3966D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2091D+02  epsf,diff= 0.0000D+00 0.1464D+00  nap= 10
+ dans gcbd  iter=  6  f=  0.3966314D+01
+ relvar1. valeur de eps1=  0.3241092D+00
+ rlbd tp= 0.5571E+02 tmax= 0.1000E+11 dh0/dt=-0.3012E+00
+e   t= 0.9721E+00 h=-0.2598E+00 dh/dt=-0.2366E+00 dfh/dt=-0.2673E+00 dt 0.1E+01
+    t= 0.3474E+01 h=-0.6344E+00 dh/dt=-0.2926E-01 dfh/dt=-0.1497E+00 dt 0.3E+01
+ retour mlibd indrl=     1 pas=  0.3474D+01 f=  0.3332D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2247D+02  epsf,diff= 0.0000D+00 0.6344D+00  nap= 12
+ dans gcbd  iter=  7  f=  0.3331870D+01
+ relvar1. valeur de eps1=  0.3741640D+00
+ rlbd tp= 0.1088E+03 tmax= 0.1000E+11 dh0/dt=-0.5645E+00
+    t= 0.2248E+01 h=-0.6856E+00 dh/dt=-0.1262E+00 dfh/dt=-0.3050E+00 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.2248D+01 f=  0.2646D+01
+ gcbd. epsg,difg= 0.2220D-15 0.2143D+01  epsf,diff= 0.0000D+00 0.6856D+00  nap= 13
+ dans gcbd  iter=  8  f=  0.2646310D+01
+ relvar1. valeur de eps1=  0.3403105D-02
+ rlbd tp= 0.7769E+02 tmax= 0.1000E+11 dh0/dt=-0.1859E+00
+ic  t= 0.7377E+01 h= 0.6756E+00 dh/dt= 0.1233E+01 dfh/dt= 0.9159E-01 dt 0.7E+01
+    t= 0.4255E+01 h=-0.7397E+00 dh/dt=-0.4571E-01 dfh/dt= 0.4535E+00 dt-0.3E+01
+ retour mlibd indrl=     1 pas=  0.4255D+01 f=  0.1907D+01
+ gcbd. epsg,difg= 0.2220D-15 0.8030D+01  epsf,diff= 0.0000D+00 0.7397D+00  nap= 15
+ dans gcbd  iter=  9  f=  0.1906596D+01
+ relvar1. valeur de eps1=  0.4780419D-01
+ rlbd tp= 0.3212E+02 tmax= 0.1000E+11 dh0/dt=-0.2472E+00
+id  t= 0.5985E+01 h= 0.1537E+03 dh/dt= 0.9159E+02 dfh/dt= 0.2567E+02 dt 0.6E+01
+e   t= 0.1611E-01 h=-0.3896E-02 dh/dt=-0.2364E+00 dfh/dt= 0.2574E+02 dt-0.6E+01
+    t= 0.2846E+00 h=-0.3822E-01 dh/dt=-0.8113E-04 dfh/dt=-0.1279E+00 dt 0.3E+00
+ retour mlibd indrl=     1 pas=  0.2846D+00 f=  0.1868D+01
+ gcbd. epsg,difg= 0.2220D-15 0.1073D+02  epsf,diff= 0.0000D+00 0.3822D-01  nap= 18
+ dans gcbd  iter= 10  f=  0.1868373D+01
+ relvar1. valeur de eps1=  0.8535631D-01
+ rlbd tp= 0.1129E+03 tmax= 0.1000E+11 dh0/dt=-0.1980E+00
+e   t= 0.3861E+00 h=-0.7241E-01 dh/dt=-0.1777E+00 dfh/dt=-0.1876E+00 dt 0.4E+00
+    t= 0.2884E+01 h=-0.4014E+00 dh/dt=-0.9237E-01 dfh/dt=-0.1317E+00 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.2884D+01 f=  0.1467D+01
+ gcbd. epsg,difg= 0.2220D-15 0.7322D+01  epsf,diff= 0.0000D+00 0.4014D+00  nap= 20
+ dans gcbd  iter= 11  f=  0.1467012D+01
+ relvar1. valeur de eps1=  0.3974892D-01
+ rlbd tp= 0.4776E+02 tmax= 0.1000E+11 dh0/dt=-0.2843E+00
+ic  t= 0.2824E+01 h= 0.4689E+00 dh/dt= 0.1143E+01 dfh/dt= 0.1661E+00 dt 0.3E+01
+    t= 0.1342E+01 h=-0.2159E+00 dh/dt= 0.7689E-02 dfh/dt= 0.4621E+00 dt-0.1E+01
+ retour mlibd indrl=     1 pas=  0.1342D+01 f=  0.1251D+01
+ gcbd. epsg,difg= 0.2220D-15 0.9099D+01  epsf,diff= 0.0000D+00 0.2159D+00  nap= 22
+ dans gcbd  iter= 12  f=  0.1251075D+01
+ relvar1. valeur de eps1=  0.6137646D-01
+ rlbd tp= 0.2230E+03 tmax= 0.1000E+11 dh0/dt=-0.2142E+00
+    t= 0.2016E+01 h=-0.2771E+00 dh/dt=-0.6822E-01 dfh/dt=-0.1375E+00 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.2016D+01 f=  0.9740D+00
+ gcbd. epsg,difg= 0.2220D-15 0.2373D+01  epsf,diff= 0.0000D+00 0.2771D+00  nap= 23
+ dans gcbd  iter= 13  f=  0.9739653D+00
+ relvar1. valeur de eps1=  0.4173212D-02
+ rlbd tp= 0.1759E+03 tmax= 0.1000E+11 dh0/dt=-0.7701E-01
+ic  t= 0.7196E+01 h= 0.1711E-01 dh/dt= 0.2397E-02 dfh/dt= 0.2377E-02 dt 0.7E+01
+    t= 0.2294E+01 h=-0.7093E-01 dh/dt= 0.3779E-02 dfh/dt= 0.1796E-01 dt-0.5E+01
+ retour mlibd indrl=     1 pas=  0.2294D+01 f=  0.9030D+00
+ gcbd. epsg,difg= 0.2220D-15 0.5464D+01  epsf,diff= 0.0000D+00 0.7093D-01  nap= 25
+ dans gcbd  iter= 14  f=  0.9030358D+00
+ relvar1. valeur de eps1=  0.2213301D-01
+ rlbd tp= 0.1925E+03 tmax= 0.1000E+11 dh0/dt=-0.5988E-01
+es  t= 0.2369E+01 h=-0.1457E+00 dh/dt=-0.6005E-01 dfh/dt=-0.6152E-01 dt 0.2E+01
+ic  t= 0.1925E+03 h= 0.6099E+05 dh/dt= 0.1255E+04 dfh/dt= 0.3208E+03 dt 0.2E+03
+ic  t= 0.6286E+02 h= 0.7424E+03 dh/dt= 0.4626E+02 dfh/dt= 0.4648E+03 dt-0.1E+03
+ic  t= 0.1991E+02 h= 0.7578E+01 dh/dt= 0.1633E+01 dfh/dt= 0.1711E+02 dt-0.4E+02
+    t= 0.7386E+01 h=-0.2702E+00 dh/dt= 0.4024E-01 dfh/dt= 0.6267E+00 dt-0.1E+02
+ retour mlibd indrl=     1 pas=  0.7386D+01 f=  0.6329D+00
+ gcbd. epsg,difg= 0.2220D-15 0.6580D+01  epsf,diff= 0.0000D+00 0.2702D+00  nap= 30
+ dans gcbd  iter= 15  f=  0.6328802D+00
+ relvar1. valeur de eps1=  0.3209633D-01
+ rlbd tp= 0.8587E+02 tmax= 0.1000E+11 dh0/dt=-0.1289E+00
+ic  t= 0.4193E+01 h= 0.5736E+00 dh/dt= 0.1516E+00 dfh/dt= 0.1368E+00 dt 0.4E+01
+    t= 0.5819E+00 h=-0.2982E-01 dh/dt= 0.1805E-01 dfh/dt= 0.1671E+00 dt-0.4E+01
+ retour mlibd indrl=     1 pas=  0.5819D+00 f=  0.6031D+00
+ gcbd. epsg,difg= 0.2220D-15 0.2530D+01  epsf,diff= 0.0000D+00 0.2982D-01  nap= 32
+ dans gcbd  iter= 16  f=  0.6030573D+00
+ relvar1. valeur de eps1=  0.4746197D-02
+ rlbd tp= 0.2718E+03 tmax= 0.1000E+11 dh0/dt=-0.2597E-01
+e   t= 0.2297E+01 h=-0.5336E-01 dh/dt=-0.2015E-01 dfh/dt=-0.2323E-01 dt 0.2E+01
+    t= 0.7857E+01 h=-0.8989E-01 dh/dt= 0.1364E-01 dfh/dt=-0.6570E-02 dt 0.6E+01
+ retour mlibd indrl=     1 pas=  0.7857D+01 f=  0.5132D+00
+ gcbd. epsg,difg= 0.2220D-15 0.7873D+01  epsf,diff= 0.0000D+00 0.8989D-01  nap= 34
+ dans gcbd  iter= 17  f=  0.5131695D+00
+ relvar1. valeur de eps1=  0.4594621D-01
+ rlbd tp= 0.3039E+03 tmax= 0.1000E+11 dh0/dt=-0.1195E+00
+    t= 0.1504E+01 h=-0.8223E-01 dh/dt= 0.7334E-02 dfh/dt=-0.5466E-01 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.1504D+01 f=  0.4309D+00
+ gcbd. epsg,difg= 0.2220D-15 0.1104D+01  epsf,diff= 0.0000D+00 0.8223D-01  nap= 35
+ dans gcbd  iter= 18  f=  0.4309425D+00
+ relvar1. valeur de eps1=  0.9029729D-03
+ rlbd tp= 0.1063E+04 tmax= 0.1000E+11 dh0/dt=-0.4518E-02
+ic  t= 0.3640E+02 h= 0.5310E+00 dh/dt= 0.4494E-01 dfh/dt= 0.1459E-01 dt 0.4E+02
+    t= 0.7310E+01 h=-0.1651E-01 dh/dt= 0.3403E-03 dfh/dt= 0.1882E-01 dt-0.3E+02
+ retour mlibd indrl=     1 pas=  0.7310D+01 f=  0.4144D+00
+ gcbd. epsg,difg= 0.2220D-15 0.3437D+01  epsf,diff= 0.0000D+00 0.1651D-01  nap= 37
+ dans gcbd  iter= 19  f=  0.4144307D+00
+ relvar1. valeur de eps1=  0.8757447D-02
+ rlbd tp= 0.2773E+03 tmax= 0.1000E+11 dh0/dt=-0.2666E-01
+e   t= 0.1239E+01 h=-0.3089E-01 dh/dt=-0.2333E-01 dfh/dt=-0.2493E-01 dt 0.1E+01
+    t= 0.7614E+01 h=-0.1344E+00 dh/dt=-0.7689E-02 dfh/dt=-0.1623E-01 dt 0.6E+01
+ retour mlibd indrl=     1 pas=  0.7614D+01 f=  0.2801D+00
+ gcbd. epsg,difg= 0.2220D-15 0.4566D+01  epsf,diff= 0.0000D+00 0.1344D+00  nap= 39
+ dans gcbd  iter= 20  f=  0.2800585D+00
+ relvar1. valeur de eps1=  0.1545384D-01
+ rlbd tp= 0.7879E+02 tmax= 0.1000E+11 dh0/dt=-0.7000E-01
+ic  t= 0.3839E+01 h= 0.4880E-01 dh/dt= 0.1721E+00 dfh/dt= 0.1271E-01 dt 0.4E+01
+    t= 0.2019E+01 h=-0.7865E-01 dh/dt=-0.1462E-02 dfh/dt= 0.7004E-01 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.2019D+01 f=  0.2014D+00
+ gcbd. epsg,difg= 0.2220D-15 0.6863D+01  epsf,diff= 0.0000D+00 0.7865D-01  nap= 41
+ dans gcbd  iter= 21  f=  0.2014068D+00
+ relvar1. valeur de eps1=  0.3491271D-01
+ rlbd tp= 0.1452E+03 tmax= 0.1000E+11 dh0/dt=-0.7317E-01
+    t= 0.2150E+01 h=-0.7752E-01 dh/dt=-0.1664E-02 dfh/dt=-0.3606E-01 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.2150D+01 f=  0.1239D+00
+ gcbd. epsg,difg= 0.2220D-15 0.1826D+01  epsf,diff= 0.0000D+00 0.7752D-01  nap= 42
+ dans gcbd  iter= 22  f=  0.1238910D+00
+ relvar1. valeur de eps1=  0.2472755D-02
+ rlbd tp= 0.6021E+03 tmax= 0.1000E+11 dh0/dt=-0.3742E-02
+ic  t= 0.4144E+02 h= 0.4582E-01 dh/dt= 0.1733E-01 dfh/dt= 0.1106E-02 dt 0.4E+02
+    t= 0.2377E+02 h=-0.7119E-01 dh/dt=-0.5166E-03 dfh/dt= 0.6624E-02 dt-0.2E+02
+ retour mlibd indrl=     1 pas=  0.2377D+02 f=  0.5270D-01
+ gcbd. epsg,difg= 0.2220D-15 0.2529D+01  epsf,diff= 0.0000D+00 0.7119D-01  nap= 44
+ dans gcbd  iter= 23  f=  0.5270207D-01
+ relvar1. valeur de eps1=  0.4743240D-02
+ rlbd tp= 0.5996E+02 tmax= 0.1000E+11 dh0/dt=-0.1525E-01
+id  t= 0.9339E+01 h= 0.6520E+01 dh/dt= 0.2531E+01 dfh/dt= 0.6982E+00 dt 0.9E+01
+e   t= 0.5592E-01 h=-0.8282E-03 dh/dt=-0.1437E-01 dfh/dt= 0.7025E+00 dt-0.9E+01
+    t= 0.7449E+00 h=-0.6135E-02 dh/dt= 0.3026E-03 dfh/dt=-0.7702E-02 dt 0.7E+00
+ retour mlibd indrl=     1 pas=  0.7449D+00 f=  0.4657D-01
+ gcbd. epsg,difg= 0.2220D-15 0.4306D+01  epsf,diff= 0.0000D+00 0.6135D-02  nap= 47
+ dans gcbd  iter= 24  f=  0.4656719D-01
+ relvar1. valeur de eps1=  0.1374282D-01
+ rlbd tp= 0.9843E+02 tmax= 0.1000E+11 dh0/dt=-0.2153E-01
+e   t= 0.5698E+00 h=-0.1080E-01 dh/dt=-0.1656E-01 dfh/dt=-0.1895E-01 dt 0.6E+00
+    t= 0.1891E+01 h=-0.2703E-01 dh/dt=-0.8803E-02 dfh/dt=-0.1229E-01 dt 0.1E+01
+ retour mlibd indrl=     1 pas=  0.1891D+01 f=  0.1953D-01
+ gcbd. epsg,difg= 0.2220D-15 0.1231D+01  epsf,diff= 0.0000D+00 0.2703D-01  nap= 49
+ dans gcbd  iter= 25  f=  0.1953329D-01
+ relvar1. valeur de eps1=  0.1122833D-02
+ rlbd tp= 0.6390E+02 tmax= 0.1000E+11 dh0/dt=-0.1231E-01
+ic  t= 0.4393E+01 h= 0.2726E-02 dh/dt= 0.2652E-01 dfh/dt= 0.6205E-03 dt 0.4E+01
+    t= 0.2476E+01 h=-0.1631E-01 dh/dt=-0.9453E-03 dfh/dt= 0.9927E-02 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.2476D+01 f=  0.3222D-02
+ gcbd. epsg,difg= 0.2220D-15 0.1445D+01  epsf,diff= 0.0000D+00 0.1631D-01  nap= 51
+ dans gcbd  iter= 26  f=  0.3222476D-02
+ relvar1. valeur de eps1=  0.1548651D-02
+ rlbd tp= 0.2501E+03 tmax= 0.1000E+11 dh0/dt=-0.2338E-02
+ic  t= 0.1396E+02 h= 0.3783E-01 dh/dt= 0.4338E-02 dfh/dt= 0.2710E-02 dt 0.1E+02
+    t= 0.2121E+01 h=-0.2216E-02 dh/dt= 0.1389E-03 dfh/dt= 0.3384E-02 dt-0.1E+02
+ retour mlibd indrl=     1 pas=  0.2121D+01 f=  0.1006D-02
+ gcbd. epsg,difg= 0.2220D-15 0.6193D+00  epsf,diff= 0.0000D+00 0.2216D-02  nap= 53
+ dans gcbd  iter= 27  f=  0.1006378D-02
+ relvar1. valeur de eps1=  0.2843555D-03
+   redemarrage. icycl=    4
+ rlbd tp= 0.1091E+04 tmax= 0.1000E+11 dh0/dt=-0.2329E-03
+ic  t= 0.1903E+02 h= 0.6140E-02 dh/dt= 0.1045E-02 dfh/dt= 0.3226E-03 dt 0.2E+02
+    t= 0.4894E+01 h=-0.5871E-03 dh/dt= 0.2637E-05 dfh/dt= 0.4758E-03 dt-0.1E+02
+ retour mlibd indrl=     1 pas=  0.4894D+01 f=  0.4193D-03
+ gcbd. epsg,difg= 0.2220D-15 0.3527D+00  epsf,diff= 0.0000D+00 0.5871D-03  nap= 55
+ dans gcbd  iter= 28  f=  0.4193247D-03
+ relvar1. valeur de eps1=  0.9222784D-04
+ rlbd tp= 0.1062E+04 tmax= 0.1000E+11 dh0/dt=-0.8678E-04
+    t= 0.1353E+02 h=-0.3655E-03 dh/dt= 0.2643E-04 dfh/dt=-0.2701E-04 dt 0.1E+02
+ retour mlibd indrl=     1 pas=  0.1353D+02 f=  0.5385D-04
+ gcbd. epsg,difg= 0.2220D-15 0.1105D+00  epsf,diff= 0.0000D+00 0.3655D-03  nap= 56
+ dans gcbd  iter= 29  f=  0.5385147D-04
+ relvar1. valeur de eps1=  0.9059077D-05
+   redemarrage. icycl=    5
+ rlbd tp= 0.4375E+03 tmax= 0.1000E+11 dh0/dt=-0.1214E-03
+ic  t= 0.6022E+01 h= 0.1322E-02 dh/dt= 0.4847E-03 dfh/dt= 0.2195E-03 dt 0.6E+01
+    t= 0.9155E+00 h=-0.4928E-04 dh/dt= 0.9833E-05 dfh/dt= 0.2685E-03 dt-0.5E+01
+ retour mlibd indrl=     1 pas=  0.9155D+00 f=  0.4572D-05
+ gcbd. epsg,difg= 0.2220D-15 0.9174D-01  epsf,diff= 0.0000D+00 0.4928D-04  nap= 58
+ dans gcbd  iter= 30  f=  0.4571613D-05
+ relvar1. valeur de eps1=  0.6239751D-05
+ rlbd tp= 0.2108E+05 tmax= 0.1000E+11 dh0/dt=-0.5025E-05
+icb t= 0.1961E+02 h= 0.4515E-03 dh/dt= 0.5112E-04 dfh/dt= 0.2302E-04 dt 0.2E+02
+    t= 0.1961E+01 h=-0.4367E-05 dh/dt= 0.5731E-06 dfh/dt= 0.2582E-04 dt-0.2E+02
+ retour mlibd indrl=     1 pas=  0.1961D+01 f=  0.2051D-06
+ gcbd. epsg,difg= 0.2220D-15 0.1255D-01  epsf,diff= 0.0000D+00 0.4367D-05  nap= 60
+ dans gcbd  iter= 31  f=  0.2050776D-06
+ relvar1. valeur de eps1=  0.1168284D-06
+   redemarrage. icycl=    6
+ rlbd tp= 0.9888E+04 tmax= 0.1000E+11 dh0/dt=-0.3710E-06
+icb t= 0.2354E+02 h= 0.7839E-04 dh/dt= 0.6768E-05 dfh/dt= 0.3330E-05 dt 0.2E+02
+ic  t= 0.2354E+01 h= 0.5630E-07 dh/dt= 0.4160E-06 dfh/dt= 0.3698E-05 dt-0.2E+02
+    t= 0.1103E+01 h=-0.2043E-06 dh/dt= 0.4074E-12 dfh/dt= 0.2084E-06 dt-0.1E+01
+ retour mlibd indrl=     1 pas=  0.1103D+01 f=  0.7658D-09
+ gcbd. epsg,difg= 0.2220D-15 0.9260D-03  epsf,diff= 0.0000D+00 0.2043D-06  nap= 63
+ dans gcbd  iter= 32  f=  0.7658047D-09
+ relvar1. valeur de eps1=  0.6356802D-09
+ rlbd tp= 0.3886E+06 tmax= 0.1000E+11 dh0/dt=-0.6357E-09
+id  t= 0.6428E+03 h= 0.5664E-04 dh/dt= 0.1809E-06 dfh/dt= 0.8811E-07 dt 0.6E+03
+    t= 0.2251E+01 h=-0.7625E-09 dh/dt=-0.4174E-10 dfh/dt= 0.8842E-07 dt-0.6E+03
+ retour mlibd indrl=     1 pas=  0.2251D+01 f=  0.3301D-11
+ gcbd. epsg,difg= 0.2220D-15 0.6032D-04  epsf,diff= 0.0000D+00 0.7625D-09  nap= 65
+ dans gcbd  iter= 33  f=  0.3300830D-11
+ relvar1. valeur de eps1=  0.2697842D-11
+   redemarrage. icycl=    7
+ rlbd tp= 0.2431E+07 tmax= 0.1000E+11 dh0/dt=-0.6603E-11
+id  t= 0.2309E+03 h= 0.1751E-06 dh/dt= 0.1525E-08 dfh/dt= 0.7581E-09 dt 0.2E+03
+    t= 0.9958E+00 h=-0.3301E-11 dh/dt=-0.2602E-13 dfh/dt= 0.7614E-09 dt-0.2E+03
+ retour mlibd indrl=     1 pas=  0.9958D+00 f=  0.5128D-16
+ gcbd. epsg,difg= 0.2220D-15 0.2425D-06  epsf,diff= 0.0000D+00 0.3301D-11  nap= 67
+ dans gcbd  iter= 34  f=  0.5127616D-16
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.6222E+09 tmax= 0.1000E+11 dh0/dt=-0.1025E-15
+id  t= 0.6439E+05 h= 0.2131E-06 dh/dt= 0.6629E-11 dfh/dt= 0.3310E-11 dt 0.6E+05
+icb t= 0.6439E+02 h= 0.2059E-12 dh/dt= 0.6498E-14 dfh/dt= 0.3313E-11 dt-0.6E+05
+ic  t= 0.6439E+01 h= 0.1465E-14 dh/dt= 0.5576E-15 dfh/dt= 0.3528E-14 dt-0.6E+02
+    t= 0.1000E+01 h=-0.5126E-16 dh/dt=-0.6186E-23 dfh/dt= 0.2788E-15 dt-0.5E+01
+ retour mlibd indrl=     1 pas=  0.1000D+01 f=  0.1132D-19
+ gcbd. epsg,difg= 0.2220D-15 0.3168D-08  epsf,diff= 0.0000D+00 0.5126D-16  nap= 71
+ dans gcbd  iter= 35  f=  0.1131843D-19
+ relvar1. valeur de eps1=  0.0000000D+00
+   redemarrage. icycl=    8
+ rlbd tp= 0.1883E+13 tmax= 0.1000E+11 dh0/dt=-0.7441E-20
+id  t= 0.1378E+05 h= 0.5241E-12 dh/dt= 0.7609E-16 dfh/dt= 0.3804E-16 dt 0.1E+05
+id  t= 0.1378E+04 h= 0.5232E-14 dh/dt= 0.7602E-17 dfh/dt= 0.4184E-16 dt-0.1E+05
+id  t= 0.1378E+03 h= 0.5140E-16 dh/dt= 0.7535E-18 dfh/dt= 0.4178E-17 dt-0.1E+04
+d   t= 0.1378E+02 h= 0.4217E-18 dh/dt= 0.6865E-19 dfh/dt= 0.4111E-18 dt-0.1E+03
+d   t= 0.6889E+01 h= 0.7979E-19 dh/dt= 0.3061E-19 dfh/dt= 0.4963E-19 dt-0.7E+01
+d   t= 0.3445E+01 h= 0.7131E-20 dh/dt= 0.1158E-19 dfh/dt= 0.2109E-19 dt-0.3E+01
+    t= 0.1722E+01 h=-0.4625E-20 dh/dt= 0.2070E-20 dfh/dt= 0.6826E-20 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.1722D+01 f=  0.6693D-20
+ gcbd. epsg,difg= 0.2220D-15 0.8861D-09  epsf,diff= 0.0000D+00 0.4625D-20  nap= 78
+ dans gcbd  iter= 36  f=  0.6693058D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.1067E+14 tmax= 0.1000E+11 dh0/dt=-0.5821E-21
+d   t= 0.1589E+02 h= 0.4498E-19 dh/dt= 0.6243E-20 dfh/dt= 0.2830E-20 dt 0.2E+02
+d   t= 0.7947E+01 h= 0.8933E-20 dh/dt= 0.2830E-20 dfh/dt= 0.4537E-20 dt-0.8E+01
+d   t= 0.3973E+01 h= 0.1077E-20 dh/dt= 0.1124E-20 dfh/dt= 0.1977E-20 dt-0.4E+01
+    t= 0.1987E+01 h=-0.3089E-21 dh/dt= 0.2711E-21 dfh/dt= 0.6976E-21 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.1987D+01 f=  0.6384D-20
+ gcbd. epsg,difg= 0.2220D-15 0.4257D-09  epsf,diff= 0.0000D+00 0.3089D-21  nap= 82
+ dans gcbd  iter= 37  f=  0.6384148D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+   redemarrage. icycl=    9
+ rlbd tp= 0.1325E+14 tmax= 0.1000E+11 dh0/dt=-0.1343E-21
+d   t= 0.4600E+01 h= 0.4080E-21 dh/dt= 0.3117E-21 dfh/dt= 0.8869E-22 dt 0.5E+01
+    t= 0.2300E+01 h=-0.5249E-22 dh/dt= 0.8867E-22 dfh/dt= 0.2002E-21 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.2300D+01 f=  0.6332D-20
+ gcbd. epsg,difg= 0.2220D-15 0.3053D-09  epsf,diff= 0.0000D+00 0.5249D-22  nap= 84
+ dans gcbd  iter= 38  f=  0.6331659D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.2753E+14 tmax= 0.1000E+11 dh0/dt=-0.6909E-22
+    t= 0.1519E+01 h=-0.4895E-22 dh/dt= 0.4659E-23 dfh/dt=-0.3222E-22 dt 0.2E+01
+ retour mlibd indrl=     1 pas=  0.1519D+01 f=  0.6283D-20
+ gcbd. epsg,difg= 0.2220D-15 0.8042D-10  epsf,diff= 0.0000D+00 0.4895D-22  nap= 85
+ dans gcbd  iter= 39  f=  0.6282712D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+   redemarrage. icycl=   10
+ rlbd tp= 0.8214E+14 tmax= 0.1000E+11 dh0/dt=-0.4794E-23
+d   t= 0.2042E+02 h= 0.6864E-22 dh/dt= 0.1152E-22 dfh/dt= 0.3361E-23 dt 0.2E+02
+    t= 0.1021E+02 h=-0.7315E-23 dh/dt= 0.3361E-23 dfh/dt= 0.7439E-23 dt-0.1E+02
+ retour mlibd indrl=     1 pas=  0.1021D+02 f=  0.6275D-20
+ gcbd. epsg,difg= 0.2220D-15 0.2603D-09  epsf,diff= 0.0000D+00 0.7315D-23  nap= 87
+ dans gcbd  iter= 40  f=  0.6275397D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.3083E+14 tmax= 0.1000E+11 dh0/dt=-0.5022E-22
+e   t= 0.2914E+00 h=-0.1318E-22 dh/dt=-0.4014E-22 dfh/dt=-0.4523E-22 dt 0.3E+00
+d   t= 0.2914E+03 h= 0.1452E-17 dh/dt= 0.1001E-19 dfh/dt= 0.4987E-20 dt 0.3E+03
+d   t= 0.1458E+03 h= 0.3600E-18 dh/dt= 0.4987E-20 dfh/dt= 0.7501E-20 dt-0.1E+03
+d   t= 0.7306E+02 h= 0.8852E-19 dh/dt= 0.2473E-20 dfh/dt= 0.3730E-20 dt-0.7E+02
+d   t= 0.3667E+02 h= 0.2139E-19 dh/dt= 0.1217E-20 dfh/dt= 0.1845E-20 dt-0.4E+02
+d   t= 0.1848E+02 h= 0.4972E-20 dh/dt= 0.5882E-21 dfh/dt= 0.9024E-21 dt-0.2E+02
+d   t= 0.9387E+01 h= 0.1051E-20 dh/dt= 0.2740E-21 dfh/dt= 0.4312E-21 dt-0.9E+01
+d   t= 0.4839E+01 h= 0.1615E-21 dh/dt= 0.1169E-21 dfh/dt= 0.1955E-21 dt-0.5E+01
+    t= 0.2565E+01 h=-0.1517E-22 dh/dt= 0.3839E-22 dfh/dt= 0.7767E-22 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.2565D+01 f=  0.6260D-20
+ gcbd. epsg,difg= 0.2220D-15 0.2373D-09  epsf,diff= 0.0000D+00 0.1517D-22  nap= 96
+ dans gcbd  iter= 41  f=  0.6260226D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.2303E+14 tmax= 0.1000E+11 dh0/dt=-0.4176E-22
+    t= 0.7266E+00 h=-0.2288E-22 dh/dt=-0.2121E-22 dfh/dt=-0.3150E-22 dt 0.7E+00
+ retour mlibd indrl=     1 pas=  0.7266D+00 f=  0.6237D-20
+ gcbd. epsg,difg= 0.2220D-15 0.1259D-09  epsf,diff= 0.0000D+00 0.2288D-22  nap= 97
+ dans gcbd  iter= 42  f=  0.6237341D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+   redemarrage. icycl=   11
+ rlbd tp= 0.4323E+14 tmax= 0.1000E+11 dh0/dt=-0.1175E-22
+d   t= 0.3894E+01 h=-0.3634E-24 dh/dt= 0.1157E-22 dfh/dt=-0.9333E-25 dt 0.4E+01
+    t= 0.1947E+01 h=-0.1153E-22 dh/dt=-0.9088E-25 dfh/dt= 0.5735E-23 dt-0.2E+01
+ retour mlibd indrl=     1 pas=  0.1947D+01 f=  0.6226D-20
+ gcbd. epsg,difg= 0.2220D-15 0.8448D-10  epsf,diff= 0.0000D+00 0.1153D-22  nap= 99
+ dans gcbd  iter= 43  f=  0.6225811D-20
+ relvar1. valeur de eps1=  0.0000000D+00
+ rlbd tp= 0.6434E+14 tmax= 0.1000E+11 dh0/dt=-0.5291E-23
+    t= 0.4359E+01 h=-0.1174E-22 dh/dt=-0.9310E-25 dfh/dt=-0.2693E-23 dt 0.4E+01
+ retour mlibd indrl=     1 pas=  0.4359D+01 f=  0.6214D-20
+ gcbd max appels simul
+ gcbd : retour avec indgc=       4
+ f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
+Optim stops: maximum number of calls to f is reached.
+
+//
+// 6. Test "sd", "si", "td", "ti" options
+[f,x,g,td]=optim(rosenbrock,x0,'sd');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+[f,x,g,ti]=optim(rosenbrock,x0,'si');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+[f,x,g,ti,td]=optim(rosenbrock,x0,'si','sd');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );
+[f,x,g,ti,td]=optim(rosenbrock,x0,"ti",[2 2 2],"td",[1.1 1.1 1.1],'si','sd');
+assert_close ( x , xopt , Leps );
+assert_close ( f , fopt , Leps );
+assert_close ( g , gopt , Leps );

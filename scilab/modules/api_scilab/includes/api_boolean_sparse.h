@@ -31,7 +31,7 @@ extern "C" {
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Alloc boolean sparse variable data
@@ -43,7 +43,7 @@ API_SCILAB_IMPEXP int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int*
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Create boolean sparse variable
@@ -55,7 +55,7 @@ API_SCILAB_IMPEXP int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create named boolean sparse variable
@@ -68,7 +68,7 @@ API_SCILAB_IMPEXP int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCol
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr createNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Read named boolean sparse variable
@@ -81,7 +81,54 @@ API_SCILAB_IMPEXP int createNamedBooleanSparseMatrix(char* _pstName, int _iRows,
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+
+/* shortcut functions */
+
+/**
+ * check if the variable type is a boolean sparse
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isBooleanSparseType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a boolean sparse
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedBooleanSparseType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get boolean sparse variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+
+/**
+ * Get named boolean sparse variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _iNbItem return number of item
+ * @param[out] _piNbItemRow return array of number of item for each row
+ * @param[out] _piColPos return array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+
+/**
+ * free data allocated by shortcut functions
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ */
+void freeAllocatedBooleanSparse(int* _piNbItemRow, int* _piColPos);
 
 #ifdef __cplusplus
 }

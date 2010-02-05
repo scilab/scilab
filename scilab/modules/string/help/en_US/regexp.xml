@@ -115,13 +115,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 regexp('xabyabbbz','/ab*/','o')
 regexp('a!','/((((((((((a))))))))))\041/')
 regexp('ABCC','/^abc$/i')
 regexp('ABC','/ab|cd/i')
 [a b c]=regexp('XABYABBBZ','/ab*/i')
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -301,7 +301,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[x=1:0.1:10; // Init.
+    <programlisting role="example"><![CDATA[ 
+x=1:0.1:10; // Init.
 plot(x,sin(x),'r.->') // plots a dash-dotted line with a right-pointing triangle centered on each points.
 clf();
 
@@ -316,8 +317,7 @@ plot(x,x.*x,'*cya--')
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
- 
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

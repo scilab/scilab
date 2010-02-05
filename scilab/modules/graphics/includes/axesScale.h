@@ -18,32 +18,32 @@
 
 #ifndef _AXES_SCALE_H_
 #define _AXES_SCALE_H_
-
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 
 /*------------------------------------------------------------------------------*/
-int sciZoom2D(sciPointObj * subwin, const double zoomRect[4]);
-int sciZoom3D(sciPointObj * subwin, const double zoomBox[6]);
-int sciZoomRect(sciPointObj * pObj, const double zoomRect[4]);
-int sciDefaultZoom2D(const double zoomRect[4]);
-int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4]);
-void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6]);
-void sciDefaultInteractiveZoom(void);
-void sciInteractiveZoom(sciPointObj * pObj);
-void sciUnzoomSubwin(sciPointObj * subwin);
-void sciUnzoomFigure(sciPointObj * figure);
-void sciUnzoomAll(void);
-void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbSubwin);
+GRAPHICS_IMPEXP int sciZoom2D(sciPointObj * subwin, const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciZoom3D(sciPointObj * subwin, const double zoomBox[6]);
+GRAPHICS_IMPEXP int sciZoomRect(sciPointObj * pObj, const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciDefaultZoom2D(const double zoomRect[4]);
+GRAPHICS_IMPEXP int sciFigureZoom2D(sciPointObj * figure, const double zoomRect[4]);
+GRAPHICS_IMPEXP void sciGetZoom3D(sciPointObj * pObj, double zoomBox[6]);
+GRAPHICS_IMPEXP void sciDefaultInteractiveZoom(void);
+GRAPHICS_IMPEXP void sciInteractiveZoom(sciPointObj * pObj);
+GRAPHICS_IMPEXP void sciUnzoomSubwin(sciPointObj * subwin);
+GRAPHICS_IMPEXP void sciUnzoomFigure(sciPointObj * figure);
+GRAPHICS_IMPEXP void sciUnzoomAll(void);
+GRAPHICS_IMPEXP void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbSubwin);
 
 /**
  * Update subwin size and scale if needed
  */
-void updateSubwinScale(sciPointObj * pSubwin);
+GRAPHICS_IMPEXP void updateSubwinScale(sciPointObj * pSubwin);
 
 /**
  * Update text bounds if needed
  */
-void updateTextBounds(sciPointObj * pText);
+GRAPHICS_IMPEXP void updateTextBounds(sciPointObj * pText);
 
 /**
  * Zoom an object using a rectangular selection given in pixels.
@@ -53,14 +53,14 @@ void updateTextBounds(sciPointObj * pText);
  * @param x2 X coordinate of the oppoiste corner of the selection
  * @param y2 Y coordinate of the opposite corner of the selection
  */
-void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2);
+GRAPHICS_IMPEXP void sciZoomObject(sciPointObj * pObj, int x1, int y1, int x2, int y2);
 
 /**
  * Unzoom a subwindow
  */
-void unzoomSubwin(sciPointObj * pSubwin);
+GRAPHICS_IMPEXP void unzoomSubwin(sciPointObj * pSubwin);
 /*------------------------------------------------------------------------------*/
-BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
+GRAPHICS_IMPEXP BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax);
 /*------------------------------------------------------------------------------*/
 

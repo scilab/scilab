@@ -58,12 +58,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=[0,1,%i]
 acos(cos(x))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -13,6 +13,7 @@
 package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -250,4 +251,13 @@ public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 	public void setIcon(String name) {
 		ScilabBridge.setIcon(this, name);
 	}
+	
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param parent the tab to be set as parent
+	 */
+	public void setParentForLocation(Tab parent) {
+		ScilabBridge.setParentForLocation(this, parent);
+	}
+
 }

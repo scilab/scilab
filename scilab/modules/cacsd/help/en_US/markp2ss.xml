@@ -40,7 +40,7 @@
       <varlistentry>
         <term>Sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -52,17 +52,14 @@
     <literal>markpar</literal> of size <literal>nout</literal>X<literal>(n*nin) markp2ss</literal>
     returns a state-space linear system <literal>sl</literal> (<literal>syslin</literal> list) 
     such that with <literal>[A,B,C,D]=abcd(sl)</literal>:</para>
-    <programlisting><![CDATA[
-
-   C*B = markpar(1:nout,1:nin),
-   C*A*B =markpar(1:nout,nin+1:2*nin),....
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+C*B = markpar(1:nout,1:nin),
+C*A*B =markpar(1:nout,nin+1:2*nin),....
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 W=ssrand(2,3,4);   //random system with 2 outputs and 3 inputs
 [a,b,c,d]=abcd(W);
 markpar=[c*b,c*a*b,c*a^2*b,c*a^3*b,c*a^4*b];
@@ -71,8 +68,7 @@ S=markp2ss(markpar,5,2,3);
 Markpar=[C*B,C*A*B,C*A^2*B,C*A^3*B,C*A^4*B];
 norm(markpar-Markpar,1)
 //Caution... c*a^5*b is not C*A^5*B !
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

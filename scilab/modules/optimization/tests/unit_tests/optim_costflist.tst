@@ -1,9 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
-//
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
 // optim_costflist.tst --
 //   Test the optim command in the case where the cost function is a list.
 //
@@ -16,15 +19,18 @@
 // penalization (see doc)
 //
 // min (x1^2 +x2^2)/2 ; x1>=0, x1 + x2 =1 (solution [0.5 0.5] )
+
 function [f,g,ind]=sip2(x,ind)
   f= [ x(1)+x(2)-1, -x(1), (x(1)^2+x(2)^2)/2]
   g= [ 1, -1, x(1); 1,  0, x(2)]
 endfunction
+
 cpen=50; 
 ne=1; 
 nc=2;
 bi=[0 0]; 
 bs=[2 2];
+
 function [fpen,gpen,ind]=sipn(x,ind,sip1,ne,nc,cpen)
   [f,g,indic]=sip1(x,ind)
   if indic < 0 then 

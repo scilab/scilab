@@ -102,15 +102,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=rand(5,2)*rand(2,5);A=sparse(a);
 [hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
 full(L), P*L*U*Q-A
 clean(P*L*U*Q-A)
 ludel(hand)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

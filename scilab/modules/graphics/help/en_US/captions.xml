@@ -159,8 +159,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=0:0.1:2*%pi;
 a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
 a.margins(4)=0.2;
@@ -175,7 +174,7 @@ hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)'],'in_upper_right');
 
 hl.legend_location='in_upper_right'
 hl.fill_mode='on';
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

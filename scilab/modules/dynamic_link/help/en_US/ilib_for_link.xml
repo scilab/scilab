@@ -34,7 +34,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving objects files needed for shared library creation</para>
+          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -126,8 +126,7 @@
   </refsection>
   <refsection>
     <title>Examples (C code)</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 if haveacompiler() then
 
 chdir(TMPDIR)
@@ -154,9 +153,7 @@ c=call('ext1c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
 if norm(c-(a+b)) > %eps then pause,end
 
 end
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

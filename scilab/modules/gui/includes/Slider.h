@@ -12,7 +12,7 @@
 
 #ifndef __SLIDER_H__
 #define __SLIDER_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +21,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createSlider(sciPointObj* sciObj);
+GUI_IMPEXP void createSlider(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a Slider in Scilab GUIs
@@ -29,6 +29,6 @@ void createSlider(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsSliderParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsSliderParent(sciPointObj* sciObj);
 
 #endif /* __SLIDER_H__ */

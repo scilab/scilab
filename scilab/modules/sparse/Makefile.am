@@ -68,7 +68,6 @@ src/fortran/lij2sp.f \
 src/fortran/lspcsp.f \
 src/fortran/wspis.f \
 src/fortran/dspmsp.f \
-src/fortran/intreadmps.f \
 src/fortran/dsposp.f \
 src/fortran/wsmsp.f \
 src/fortran/wspms.f \
@@ -83,13 +82,11 @@ src/fortran/spextr1.f \
 src/fortran/wcompa.f \
 src/fortran/lspxsp.f \
 src/fortran/spisp.f \
-src/fortran/rdmps1.f \
 src/fortran/dperm.f \
 src/fortran/spind.f \
 src/fortran/dspe2.f \
 src/fortran/wspasp.f \
 src/fortran/wij2sp.f \
-src/fortran/rdmpsz.f \
 src/fortran/wspcsp.f \
 src/fortran/lspops.f \
 src/fortran/spifp.f \
@@ -130,7 +127,6 @@ sci_gateway/c/sci_spchol.c \
 sci_gateway/c/sci_spmax.c \
 sci_gateway/c/sci_lusolve.c \
 sci_gateway/c/sci_fadj2sp.c \
-sci_gateway/c/sci_readmps.c \
 sci_gateway/c/gw_sparse.c \
 sci_gateway/c/sci_sfinit.c \
 sci_gateway/c/sci_sparse.c \
@@ -193,14 +189,5 @@ libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 #### sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
-
-#### sparse : include files ####
-libscisparse_la_includedir=$(pkgincludedir)/sparse
-libscisparse_la_include_HEADERS = includes/gw_sparse.h \
-includes/spmalloc.h \
-includes/sp.h \
-includes/spDefs.h \
-includes/spmatrix.h \
-includes/spConfig.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -70,8 +70,7 @@ plot2d3(x,y &lt;,opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // compare o seguinte com plot2d1
 x=[0:0.1:2*%pi]';
 plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
@@ -81,7 +80,8 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
-e.children(3).polyline_style=3;</programlisting>
+e.children(3).polyline_style=3;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

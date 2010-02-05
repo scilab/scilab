@@ -80,29 +80,29 @@
     ..., xn</literal> e os valores <literal>v</literal> de uma função (aqui
     nomeada <emphasis>f</emphasis>) nos pontos do grid : </para>
 
-    <programlisting>
-      v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
-         </programlisting>
+    <programlisting role = ""><![CDATA[ 
+v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
+ ]]></programlisting>
 
     <para>esta função computa o interpolante linear de <emphasis>f</emphasis>
     do grid (chamado de s a partir daqui) nos pontos nos quais as coordenadas
     são definidas pelos vetores (ou matrizes) <literal>xp1, xp2, ...,
     xpn</literal>:</para>
 
-    <programlisting>
-   vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
+    <programlisting role = ""><![CDATA[ 
+vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
 
-   or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
-         </programlisting>
+or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
+ ]]></programlisting>
 
     <para>O parâmetro <literal>out_mode</literal> ajusta a regra para
     extrapolação: se notarmos
     <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , então
     <literal>out_mode</literal> define a regra de avaliação quando: </para>
 
-    <programlisting>
-   P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
-         </programlisting>
+    <programlisting role = ""><![CDATA[ 
+P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
+ ]]></programlisting>
 
     <para>As escolhas são: </para>
 
@@ -129,10 +129,10 @@
         <listitem>
           <para>a extrapolação é definida como segue: </para>
 
-          <programlisting>
-     s(P) = s(proj(P))onde  proj(P) é o ponto mais próximo de P 
-                       localizado na fronteira do grid.
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P 
+                  localizado na fronteira do grid.
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -149,7 +149,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> é estendido por periodicidade.</para>
+          <para> <literal>s</literal> é estendido por periodicidade.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -158,7 +158,7 @@
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1 : interpolação linear 1d
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -221,11 +221,10 @@ subplot(2,3,6)
    xtitle("by_nan")
 xselect()
 
-
 // exemplo 4 : interpolação trilinear (ver ajuda de splin3d
 //             que tem os mesmos exemplos com
 //             interpolação por spline tricúbico)
-getf("SCI/demos/interp/interp_demo.sci") 
+exec("SCI/demos/interp/interp_demo.sci") 
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 
@@ -258,7 +257,7 @@ colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("Interpolação trilinear de"+func)
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

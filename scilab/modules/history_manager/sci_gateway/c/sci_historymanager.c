@@ -25,7 +25,7 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
+int sci_historymanager(char *fname,unsigned long fname_len)
 {
 	int l1 = 0,n1 = 0,m1 = 0;
 	char *Output = NULL;

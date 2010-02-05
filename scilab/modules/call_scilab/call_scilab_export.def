@@ -1,0 +1,16 @@
+LIBRARY    call_scilab.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; call_scilab explicit export (SEP 35)
+; --------------------------------------- 
+	DisableInteractiveMode
+	StartScilab
+	TerminateScilab
+	ScilabDoOneEvent
+	ScilabHaveAGraph
+	SendScilabJob
+	GetLastJob
+	SendScilabJobs
+; --------------------------------------- 

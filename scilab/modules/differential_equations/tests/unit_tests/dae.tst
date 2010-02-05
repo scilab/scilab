@@ -8,6 +8,8 @@
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 
+ilib_verbose(0);
+
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
 //
@@ -61,7 +63,7 @@ t=[1,2,3];t0=0;
 x=dae([x0,x0d],t0,t,g);
 x=[t;x];
 x1=x(2:nx+1,:);
-if norm(pp*x1-x1,1)>1.d-5 then pause,end //bug car on a plus la première ligne 
+if norm(pp*x1-x1,1)>1.d-5 then pause,end // Bug because we don't have the first line anymore
 //x(4) goes through 1 at  t=1.5409711;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 t=1.5409711;
@@ -163,6 +165,10 @@ if abs(nn(1)-162.57763)>0.004 then pause,end
 
 ilib_verbose(0);
 
+cd TMPDIR;
+mkdir("dae_test1");
+cd("dae_test1");
+
 code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
       '{res[0] = yd[0] - y[1];'
@@ -176,9 +182,9 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}'];
-mputl(code,TMPDIR+'/t22.c') ;
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
-exec(TMPDIR+'/t22loader.sce');
+mputl(code,'t22.c') ;
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c','','c');
+exec('loader.sce');
 
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
@@ -231,6 +237,9 @@ norm(y1-yb1);
 
 //banded  jacobian, C code
 //Residuals computation code
+cd TMPDIR;
+mkdir("dae_test2");
+cd("dae_test2");
 ccode=['#include <math.h>'
        'void myres(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
        '{'
@@ -299,10 +308,9 @@ ccode=['#include <math.h>'
        '  res[48]=-10.0+*cj;'
        '  res[49]=0.0;'                                              
        '}'];
-mputl(ccode,TMPDIR+'/band.c'); //create the C file of myjac
-
-ilib_for_link(['myres','myjac'],'band.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/bandloader.sce');//compile
-exec(TMPDIR+'/bandloader.sce'); //incremental linking
+mputl(ccode,'band.c'); //create the C file of myjac
+ilib_for_link(['myres','myjac'],'band.c','','c');//compile
+exec('loader.sce');
 y0=ones(n,1);yd0=0*y0;
 yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
 a = norm(y-yb);

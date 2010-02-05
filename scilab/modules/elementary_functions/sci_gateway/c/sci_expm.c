@@ -99,9 +99,11 @@ extern int C2F(drot)();
 /*--------------------------------------------------------------------------*/
 int sci_expm(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
+	int iType						= 0;
 
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
@@ -114,39 +116,50 @@ int sci_expm(char *fname, int* _piKey)
 	CheckLhs(1,1);
 	CheckRhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr) != sci_matrix)
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iType != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(isVarComplex(piAddr))
+	if(isVarComplex(_piKey, piAddr))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(iRows * iCols == 0)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, 0, 0, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
+
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		return 0;
@@ -158,13 +171,15 @@ int sci_expm(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(piAddr))
+	if(isVarComplex(_piKey, piAddr))
 	{
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
+
 		iRet = zexpms2(pdblReal, pdblImg, pdblRealRet, pdblImgRet, iCols);
 		if(iRet)
 		{
@@ -173,11 +188,13 @@ int sci_expm(char *fname, int* _piKey)
 	}
 	else
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
+
 		iRet = dexpms2(pdblReal, pdblRealRet, iCols);
 		if(iRet)
 		{

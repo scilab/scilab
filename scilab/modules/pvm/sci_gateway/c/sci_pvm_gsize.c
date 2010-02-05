@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_gsize, fin = 3
  ******************************************/
-int intspvm_gsize(char *fname,unsigned long fname_len)
+int sci_pvm_gsize(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,un=1,l2;
   CheckRhs(1,1);

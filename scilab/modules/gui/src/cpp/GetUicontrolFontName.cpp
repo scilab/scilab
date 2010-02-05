@@ -41,7 +41,7 @@ int GetUicontrolFontName(sciPointObj* sciObj)
      }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "FontName");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontName");
       return FALSE;
     }
 }

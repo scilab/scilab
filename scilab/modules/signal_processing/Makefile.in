@@ -66,20 +66,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -115,31 +115,27 @@ libscisignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/elementary_fun
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
-	dsqrtc.lo tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo \
-	bounn.lo nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo \
-	cheby.lo trbize.lo r2tx.lo deli2.lo gee.lo r4tx.lo transn.lo \
-	r8tx.lo kaiser.lo deli11.lo compel.lo filbut.lo desi01.lo \
-	desi22.lo amell.lo desi24.lo dellk.lo syredi.lo dpspln.lo \
-	coeft.lo tranpo.lo blnumz.lo sn.lo bldenz.lo dspln.lo belan.lo \
-	desib.lo freque.lo desi12.lo cmpse2.lo desi14.lo delip.lo \
-	deli1.lo trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo \
-	snell.lo fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo \
-	desi21.lo dfftmx.lo
+am__objects_1 = degree.lo parcha.lo ouch.lo dfftbi.lo dsqrtc.lo \
+	tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo bounn.lo \
+	nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo cheby.lo \
+	trbize.lo r2tx.lo deli2.lo gee.lo r4tx.lo transn.lo r8tx.lo \
+	kaiser.lo deli11.lo compel.lo filbut.lo desi01.lo desi22.lo \
+	amell.lo desi24.lo dellk.lo syredi.lo dpspln.lo coeft.lo \
+	tranpo.lo blnumz.lo sn.lo bldenz.lo dspln.lo belan.lo desib.lo \
+	freque.lo desi12.lo cmpse2.lo desi14.lo delip.lo deli1.lo \
+	trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo snell.lo \
+	fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo desi21.lo \
+	dfftmx.lo
 am__objects_2 = libscisignal_processing_la-corrtable.lo
 am__objects_3 = libscisignal_processing_la-sci_remez.lo \
 	libscisignal_processing_la-sci_rpem.lo \
 	libscisignal_processing_la-sci_corr.lo \
-	libscisignal_processing_la-sci_ffir.lo \
-	libscisignal_processing_la-sci_fiir.lo \
 	libscisignal_processing_la-sci_amell.lo \
 	libscisignal_processing_la-gw_signal.lo \
 	libscisignal_processing_la-sci_delip.lo \
 	libscisignal_processing_la-sci_fft.lo \
 	libscisignal_processing_la-sci_syredi.lo
-am__objects_4 = sci_delip.lo sci_fft.lo sci_syredi.lo sci_remez.lo \
-	sci_rpem.lo sci_corr.lo sci_fiir.lo sci_amell.lo bgetx.lo \
-	bgety.lo Ex-corr.lo
+am__objects_4 = bgetx.lo bgety.lo Ex-corr.lo
 am_libscisignal_processing_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4)
 libscisignal_processing_la_OBJECTS =  \
@@ -181,6 +177,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -189,9 +186,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -252,11 +252,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -316,24 +319,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -396,7 +401,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -414,8 +418,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
-SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
-src/fortran/degree.f \
+SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
 src/fortran/parcha.f \
 src/fortran/ouch.f \
 src/fortran/dfftbi.f \
@@ -481,29 +484,21 @@ src/fortran/dfftmx.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_remez.c \
 sci_gateway/c/sci_rpem.c \
 sci_gateway/c/sci_corr.c \
-sci_gateway/c/sci_ffir.c \
-sci_gateway/c/sci_fiir.c \
 sci_gateway/c/sci_amell.c \
 sci_gateway/c/gw_signal.c \
 sci_gateway/c/sci_delip.c \
 sci_gateway/c/sci_fft.c \
 sci_gateway/c/sci_syredi.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_delip.f \
-sci_gateway/fortran/sci_fft.f \
-sci_gateway/fortran/sci_syredi.f \
-sci_gateway/fortran/sci_remez.f \
-sci_gateway/fortran/sci_rpem.f \
-sci_gateway/fortran/sci_corr.f \
-sci_gateway/fortran/sci_fiir.f \
-sci_gateway/fortran/sci_amell.f \
-sci_gateway/fortran/bgetx.f \
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
 					-I$(top_srcdir)/modules/output_stream/includes \
 					-I$(top_srcdir)/modules/dynamic_link/includes \
+					-I$(top_srcdir)/modules/api_scilab/includes \
+					-I$(top_srcdir)/modules/statistics/includes \
 					-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
@@ -675,9 +670,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_amell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_corr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_delip.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_ffir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_fft.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_fiir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_remez.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_rpem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_syredi.Plo@am__quote@
@@ -731,20 +724,6 @@ libscisignal_processing_la-sci_corr.lo: sci_gateway/c/sci_corr.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_corr.lo `test -f 'sci_gateway/c/sci_corr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_corr.c
 
-libscisignal_processing_la-sci_ffir.lo: sci_gateway/c/sci_ffir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_ffir.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_ffir.Tpo -c -o libscisignal_processing_la-sci_ffir.lo `test -f 'sci_gateway/c/sci_ffir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ffir.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_ffir.Tpo $(DEPDIR)/libscisignal_processing_la-sci_ffir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_ffir.c' object='libscisignal_processing_la-sci_ffir.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_ffir.lo `test -f 'sci_gateway/c/sci_ffir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ffir.c
-
-libscisignal_processing_la-sci_fiir.lo: sci_gateway/c/sci_fiir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_fiir.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_fiir.Tpo -c -o libscisignal_processing_la-sci_fiir.lo `test -f 'sci_gateway/c/sci_fiir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fiir.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_fiir.Tpo $(DEPDIR)/libscisignal_processing_la-sci_fiir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fiir.c' object='libscisignal_processing_la-sci_fiir.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_fiir.lo `test -f 'sci_gateway/c/sci_fiir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fiir.c
-
 libscisignal_processing_la-sci_amell.lo: sci_gateway/c/sci_amell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_amell.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_amell.Tpo -c -o libscisignal_processing_la-sci_amell.lo `test -f 'sci_gateway/c/sci_amell.c' || echo '$(srcdir)/'`sci_gateway/c/sci_amell.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscisignal_processing_la-sci_amell.Tpo $(DEPDIR)/libscisignal_processing_la-sci_amell.Plo
@@ -788,9 +767,6 @@ libscisignal_processing_la-sci_syredi.lo: sci_gateway/c/sci_syredi.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-sci_ffir.lo: src/fortran/sci_ffir.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ffir.lo `test -f 'src/fortran/sci_ffir.f' || echo '$(srcdir)/'`src/fortran/sci_ffir.f
 
 degree.lo: src/fortran/degree.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o degree.lo `test -f 'src/fortran/degree.f' || echo '$(srcdir)/'`src/fortran/degree.f
@@ -977,30 +953,6 @@ desi21.lo: src/fortran/desi21.f
 
 dfftmx.lo: src/fortran/dfftmx.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftmx.lo `test -f 'src/fortran/dfftmx.f' || echo '$(srcdir)/'`src/fortran/dfftmx.f
-
-sci_delip.lo: sci_gateway/fortran/sci_delip.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delip.lo `test -f 'sci_gateway/fortran/sci_delip.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delip.f
-
-sci_fft.lo: sci_gateway/fortran/sci_fft.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fft.lo `test -f 'sci_gateway/fortran/sci_fft.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fft.f
-
-sci_syredi.lo: sci_gateway/fortran/sci_syredi.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_syredi.lo `test -f 'sci_gateway/fortran/sci_syredi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_syredi.f
-
-sci_remez.lo: sci_gateway/fortran/sci_remez.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_remez.lo `test -f 'sci_gateway/fortran/sci_remez.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_remez.f
-
-sci_rpem.lo: sci_gateway/fortran/sci_rpem.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_rpem.lo `test -f 'sci_gateway/fortran/sci_rpem.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_rpem.f
-
-sci_corr.lo: sci_gateway/fortran/sci_corr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_corr.lo `test -f 'sci_gateway/fortran/sci_corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_corr.f
-
-sci_fiir.lo: sci_gateway/fortran/sci_fiir.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fiir.lo `test -f 'sci_gateway/fortran/sci_fiir.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fiir.f
-
-sci_amell.lo: sci_gateway/fortran/sci_amell.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_amell.lo `test -f 'sci_gateway/fortran/sci_amell.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_amell.f
 
 bgetx.lo: sci_gateway/fortran/bgetx.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgetx.lo `test -f 'sci_gateway/fortran/bgetx.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgetx.f
@@ -1325,10 +1277,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1351,7 +1305,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1363,7 +1317,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1469,10 +1423,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

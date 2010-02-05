@@ -16,9 +16,8 @@
 /* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_plot2d1.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "DefaultCommandArg.h"
 #include "sciCall.h"

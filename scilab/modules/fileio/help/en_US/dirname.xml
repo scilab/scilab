@@ -62,13 +62,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 files=dirname('SCI/modules/fileio/macros/poo.sci')
 files=dirname('SCI/modules\fileio/macros/poo.sci')
 files=dirname('SCI/modules\fileio/macros/poo.sci.k')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

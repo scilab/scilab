@@ -99,13 +99,11 @@ string_out=strsubst(string_in,searchStr,replaceStr,[flag])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strsubst('SCI/demos/scicos','SCI','.')
 strsubst('SCI/demos/scicos','/',' ')
 strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

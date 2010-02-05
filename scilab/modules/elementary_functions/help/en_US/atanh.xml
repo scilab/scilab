@@ -88,7 +88,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example 1
 x=[0,%i,-%i]
 tanh(atanh(x))
@@ -102,7 +102,7 @@ atanh(tanh(x))
 ieee(2)
 atanh([1 2])
 atanh([1 0.5])
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -34,12 +34,12 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
- x_message_modeless(['Ceci est un message non modal'
-                     'Scilab peut continuer a travailler'
-                     ' '
-                     'Cliquer sur ""Ok"" pour fermer le message'])
- x_message_modeless('Voici un deuxieme message')
+    <programlisting role="example"><![CDATA[ 
+x_message_modeless(['Ceci est un message non modal'
+                    'Scilab peut continuer a travailler'
+                    ' '
+                    'Cliquer sur ""Ok"" pour fermer le message'])
+x_message_modeless('Voici un deuxieme message')
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -52,7 +52,7 @@
         <link linkend="x_mdialog">x_mdialog</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
     </simplelist>
   </refsection>

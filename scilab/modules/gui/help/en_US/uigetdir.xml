@@ -42,13 +42,11 @@ directory = uigetdir(start_path [,title])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 uigetdir()
 uigetdir("SCI/modules/")
 uigetdir("SCI/modules/", "Choose a directory")
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -58,9 +56,6 @@ uigetdir("SCI/modules/", "Choose a directory")
       </member>
       <member>
         <link linkend="uiputfile">uiputfile</link>
-      </member>
-     <member>
-        <link linkend="tk_getdir">tk_getdir</link>
       </member>
     </simplelist>
   </refsection>

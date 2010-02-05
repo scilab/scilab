@@ -12,13 +12,13 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "dynlib_scilab_windows.h"
 #include "MALLOC.h"
-#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 /* strdup is deprecated on windows*/
 /* required to fix warnings about strdup */
 /*--------------------------------------------------------------------------*/
-char *strdup_windows(const char *strSource)
+SCILAB_WINDOWS_IMPEXP char *strdup_windows(const char *strSource)
 {
 	char *retStr = NULL;
 	if (strSource)
@@ -28,8 +28,8 @@ char *strdup_windows(const char *strSource)
 	}
 	return retStr;
 }
-
-wchar_t *wstrdup_windows(const wchar_t *strSource)
+/*--------------------------------------------------------------------------*/
+SCILAB_WINDOWS_IMPEXP wchar_t *wstrdup_windows(const wchar_t *strSource)
 {
 	wchar_t *retStr = NULL;
 	if (strSource)

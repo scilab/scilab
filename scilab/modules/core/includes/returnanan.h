@@ -17,5 +17,6 @@
  * @return the "nan"
  */
 double C2F(returnanan)(void);
+void C2F(returnananfortran)(double * nan);
 
 #endif /*__RETURNANAN_H__ */

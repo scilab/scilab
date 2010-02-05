@@ -84,12 +84,12 @@
     <emphasis>s</emphasis> (e <emphasis>ds/dx, ds/dy, ds/dz</emphasis> , se
     necessário) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :</para>
 
-    <programlisting>
-      zp(i) = s(xp(i),yp(i))   
-      dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
-      dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
-      dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
-         </programlisting>
+    <programlisting role = ""><![CDATA[ 
+zp(i) = s(xp(i),yp(i))   
+dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
+dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
+dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
+ ]]></programlisting>
 
     <para>O parâmetro <literal>out_mode</literal>define a regra de avaliação
     para extrapolação, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
@@ -118,10 +118,10 @@
         <listitem>
           <para>a extrapolação definida como segue :</para>
 
-          <programlisting>
-    s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
-                           em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
+                       em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -129,7 +129,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> é estendido por periodicidade.</para>
+          <para> <literal>s</literal> é estendido por periodicidade.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,10 +138,9 @@
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // veja exemplos na página da função splin3d
-
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

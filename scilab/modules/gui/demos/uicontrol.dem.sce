@@ -68,7 +68,7 @@ delete(findobj("Tag", "uicontrols_demo_figure"));
 endfunction
 
 function exit_scilab()
-msg = gettext("Do you relly want to quit Scilab?");
+msg = gettext("Do you really want to quit Scilab?");
 answ = messagebox(msg, gettext("Quit Scilab"), "quextion", [gettext("Yes") gettext("No")], "modal");
 if answ==1 then
   exit;

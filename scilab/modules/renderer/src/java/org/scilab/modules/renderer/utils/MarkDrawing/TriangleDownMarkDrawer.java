@@ -41,7 +41,5 @@ public class TriangleDownMarkDrawer extends TriangleMarkDrawer {
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
 		gl.glRotated(ROTATION_ANGLE, 0.0, 0.0, 1.0);
 		super.drawMark(gl, backColor, frontColor);
-
 	}
-
 }

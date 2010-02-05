@@ -8,18 +8,18 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function  C=instruction2code(I,prettyprint)
+function  C=instruction2code(I, bprettyprintformat)
 // Translate an instruction tlist to Scilab code (called by tree2code)
 // Input:
 // - I: instruction 'tree'
-// - prettyprint: boolean value, if FALSE (default value), generated code is not formated else it is
+// - bprettyprintformat: boolean value, if FALSE (default value), generated code is not formated else it is
 // Output:
 // - C: Scilab code corresponding to I
 
 // Default value
 rhs=argn(2)
 if rhs==1 then
-  prettyprint=%F
+  bprettyprintformat=%F
 end
 
 C=[]
@@ -39,22 +39,22 @@ if typeof(I)=="trycatch" then
 
   //TRYCATCH
 C="try "
-  [C,indent_space] = format_txt(C,I.trystat(1),prettyprint); // Add EOL after while if needed and returns indent_space
+  [C,indent_space] = format_txt(C,I.trystat(1),bprettyprintformat); // Add EOL after while if needed and returns indent_space
   for k=1:size(I.trystat)
   C=cat_code(C,indent_space+instruction2code(I.trystat(k))) 
     if k<size(I.trystat) then // Add EOL between statements if needed
-      C = format_txt(C,I.trystat(k),prettyprint,I.trystat(k+1));
+      C = format_txt(C,I.trystat(k),bprettyprintformat,I.trystat(k+1));
     end
   end
-  C = format_txt(C,I.trystat($),prettyprint); // Add EOL after last statement if needed
+  C = format_txt(C,I.trystat($),bprettyprintformat); // Add EOL after last statement if needed
   C=cat_code(C,"catch ")
   for k=1:size(I.catchstat)
   C=cat_code(C,indent_space+instruction2code(I.catchstat(k))) 
     if k<size(I.catchstat) then // Add EOL between statements if needed
-      C = format_txt(C,I.catchstat(k),prettyprint,I.catchstat(k+1));
+      C = format_txt(C,I.catchstat(k),bprettyprintformat,I.catchstat(k+1));
     end
   end
-  C = format_txt(C,I.catchstat($),prettyprint); // Add EOL after last statement if needed 
+  C = format_txt(C,I.catchstat($),bprettyprintformat); // Add EOL after last statement if needed 
   C=cat_code(C,"end")
   C($)=C($)+";"
   return
@@ -67,41 +67,41 @@ if typeof(I)=="ifthenelse" then
 
   // IF
   C="if "+expression2code(I.expression)+" then"
-  [C,indent_space] = format_txt(C,I.then(1),prettyprint); // Add EOL after then if needed and returns indent_space
+  [C,indent_space] = format_txt(C,I.then(1),bprettyprintformat); // Add EOL after then if needed and returns indent_space
   for k=1:size(I.then)
     C=cat_code(C,indent_space+instruction2code(I.then(k)))
     if k<size(I.then) then // Add EOL between then statements if needed
-      C = format_txt(C,I.then(k),prettyprint,I.then(k+1));
+      C = format_txt(C,I.then(k),bprettyprintformat,I.then(k+1));
     end
   end
-  C = format_txt(C,I.then($),prettyprint); // Add EOL after last then statement if needed
+  C = format_txt(C,I.then($),bprettyprintformat); // Add EOL after last then statement if needed
 
   // ELSEIF
   if size(I.elseifs)<>0 then
   for k=1:size(I.elseifs)
   C=cat_code(C,"elseif "+expression2code(I.elseifs(k).expression)+" then")
-[C,indent_space] = format_txt(C,I.elseifs(k).then(1),prettyprint); // Add EOL after then if needed and returns indent_space
+[C,indent_space] = format_txt(C,I.elseifs(k).then(1),bprettyprintformat); // Add EOL after then if needed and returns indent_space
   for l=1:size(I.elseifs(k).then)
 C=cat_code(C,indent_space+instruction2code(I.elseifs(k).then(l)))
   if l<size(I.elseifs(k).then) then // Add EOL between then statements
-  C = format_txt(C,I.elseifs(k).then(l),prettyprint,I.elseifs(k).then(l+1));
+  C = format_txt(C,I.elseifs(k).then(l),bprettyprintformat,I.elseifs(k).then(l+1));
 end
 end
-C = format_txt(C,I.elseifs(k).then($),prettyprint); // Add EOL after last then statement if needed
+C = format_txt(C,I.elseifs(k).then($),bprettyprintformat); // Add EOL after last then statement if needed
 end
 end
 
 // ELSE
 if size(I.else)<>0 then
 C=cat_code(C,"else")
-[C,indent_space] = format_txt(C,I.else(1),prettyprint); // Add EOL after else if needed and returns indent_space
+[C,indent_space] = format_txt(C,I.else(1),bprettyprintformat); // Add EOL after else if needed and returns indent_space
   for k=1:size(I.else)
 C=cat_code(C,indent_space+instruction2code(I.else(k)))
 if k<size(I.else) then // Add EOL between else statements if needed
-  C = format_txt(C,I.else(k),prettyprint,I.else(k+1));
+  C = format_txt(C,I.else(k),bprettyprintformat,I.else(k+1));
 end
 end
-C = format_txt(C,I.else($),prettyprint); // Add EOL after last else statement if needed
+C = format_txt(C,I.else($),bprettyprintformat); // Add EOL after last else statement if needed
 end
 C=cat_code(C,"end")
 C($)=C($)+";"
@@ -117,7 +117,7 @@ if typeof(I)=="selectcase" then
   C="select "+expression2code(I.expression(1))
 
   if size(I.expression)==1 // Not EOL and not comment after the expression 
-    if prettyprint then
+    if bprettyprintformat then
       C = cat_code(C,"") // Add EOL after expression 
     end
   else
@@ -130,33 +130,33 @@ if typeof(I)=="selectcase" then
   if size(I.cases)<>0 then
     for k=1:size(I.cases)
       C=cat_code(C,"  case "+expression2code(I.cases(k).expression)+" then")
-      [C,indent_space] = format_txt(C,I.cases(k).then(1),prettyprint); // Add EOL after then if needed and returns indent_space
+      [C,indent_space] = format_txt(C,I.cases(k).then(1),bprettyprintformat); // Add EOL after then if needed and returns indent_space
       if indent_space=="  " then // indent_space is modified because indentation differs from others control instructions
 	indent_space="    "
       end
       for l=1:size(I.cases(k).then)
 	C=cat_code(C,indent_space+instruction2code(I.cases(k).then(l)))
 	if l<size(I.cases(k).then) then // Add EOL between then statements if needed
-	  C = format_txt(C,I.cases(k).then(l),prettyprint,I.cases(k).then(l+1));
+	  C = format_txt(C,I.cases(k).then(l),bprettyprintformat,I.cases(k).then(l+1));
 	end
       end
-      C = format_txt(C,I.cases(k).then($),prettyprint); // Add EOL after last then statement if needed
+      C = format_txt(C,I.cases(k).then($),bprettyprintformat); // Add EOL after last then statement if needed
     end
   end
   // ELSE
   if size(I.else)<>0 then
   C=cat_code(C,"  else")
-[C,indent_space] = format_txt(C,I.else(1),prettyprint); // Add EOL after else if needed and returns indent_space
+[C,indent_space] = format_txt(C,I.else(1),bprettyprintformat); // Add EOL after else if needed and returns indent_space
   if indent_space=="  " then // indent_space is modified because indentation differs from others control instructions
     indent_space="    "
   end
   for k=1:size(I.else)
 C=cat_code(C,indent_space+instruction2code(I.else(k)))
 if k<size(I.else) then // Add EOL between else statements if needed
-  C = format_txt(C,I.else(k),prettyprint,I.else(k+1));
+  C = format_txt(C,I.else(k),bprettyprintformat,I.else(k+1));
 end
 end
-C = format_txt(C,I.else($),prettyprint); // Add EOL after last else statement if needed
+C = format_txt(C,I.else($),bprettyprintformat); // Add EOL after last else statement if needed
 end
 C=cat_code(C,"end")
 C($)=C($)+";"
@@ -169,14 +169,14 @@ end
 if typeof(I)=="while" then
 
   C="while "+expression2code(I.expression)
-  [C,indent_space] = format_txt(C,I.statements(1),prettyprint); // Add EOL after while if needed and returns indent_space
+  [C,indent_space] = format_txt(C,I.statements(1),bprettyprintformat); // Add EOL after while if needed and returns indent_space
   for k=1:size(I.statements)
     C=cat_code(C,indent_space+instruction2code(I.statements(k)))
     if k<size(I.statements) then // Add EOL between statements if needed
-      C = format_txt(C,I.statements(k),prettyprint,I.statements(k+1));
+      C = format_txt(C,I.statements(k),bprettyprintformat,I.statements(k+1));
     end
   end
-  C = format_txt(C,I.statements($),prettyprint); // Add EOL after last statement if needed
+  C = format_txt(C,I.statements($),bprettyprintformat); // Add EOL after last statement if needed
   C=cat_code(C,"end")
   C($)=C($)+";"
   return
@@ -188,14 +188,14 @@ end
 if typeof(I)=="for" then
 
   C="for "+instruction2code(I.expression)
-  [C,indent_space] = format_txt(C,I.statements(1),prettyprint); // Add EOL after while if needed and returns indent_space
+  [C,indent_space] = format_txt(C,I.statements(1),bprettyprintformat); // Add EOL after while if needed and returns indent_space
   for k=1:size(I.statements)
     C=cat_code(C,indent_space+instruction2code(I.statements(k)))
     if k<size(I.statements) then // Add EOL between statements if needed
-      C = format_txt(C,I.statements(k),prettyprint,I.statements(k+1));
+      C = format_txt(C,I.statements(k),bprettyprintformat,I.statements(k+1));
     end
   end
-  C = format_txt(C,I.statements($),prettyprint); // Add EOL after last statement if needed
+  C = format_txt(C,I.statements($),bprettyprintformat); // Add EOL after last statement if needed
   C=cat_code(C,"end")
   C($)=C($)+";"
   return

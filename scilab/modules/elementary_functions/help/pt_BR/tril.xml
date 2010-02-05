@@ -68,13 +68,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 tril([s,s;s,1])
 tril([1/s,1/s;1/s,1])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

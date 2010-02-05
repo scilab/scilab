@@ -28,7 +28,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.</para>
+          <para> <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,13 +46,13 @@
       <varlistentry>
         <term>S</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Series</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -69,8 +69,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Kalman filter
 Sys=ssrand(3,2,4);Sys('D')=rand(3,2);
 S=sysfact(Sys,lqr(Sys),'post');
@@ -81,8 +80,7 @@ Sys=ssrand(2,3,4);
 [X,d,F,U,k,Z]=abinv(Sys);
 ss2tf(Sys*Z)
 ss2tf(Sys*sysfact(Sys,F,'post')*U)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

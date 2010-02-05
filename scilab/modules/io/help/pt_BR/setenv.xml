@@ -75,10 +75,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
- setenv('toto','example')
- getenv('toto')
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+setenv('toto','example')
+getenv('toto')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

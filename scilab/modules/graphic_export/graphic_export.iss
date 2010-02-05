@@ -32,7 +32,7 @@ Source: modules\{#GRAPHIC_EXPORT}\version.xml; DestDir: {app}\modules\{#GRAPHIC_
 ;
 Source: modules\{#GRAPHIC_EXPORT}\sci_gateway\graphic_export_gateway.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHIC_EXPORT}\includes\*.h; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\includes; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#GRAPHIC_EXPORT}\includes\*.h; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\includes; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHIC_EXPORT}\help\addchapter.sce; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
 ;

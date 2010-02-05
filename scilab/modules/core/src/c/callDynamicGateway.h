@@ -24,6 +24,16 @@ typedef enum { DYN_GW_NO_ERROR = 0,
 	
 } dynamic_gateway_error_code;
 
+typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0, 
+			DYNLIB_NAME_FORMAT_1 = 1,
+			DYNLIB_NAME_FORMAT_2 = 2,
+			DYNLIB_NAME_FORMAT_3 = 3
+} dynlib_name_format;
+
+#define FORMATGATEWAYLIBNAME_1 "%s%s"
+#define FORMATGATEWAYLIBNAME_2 "sci%s%s"
+#define FORMATGATEWAYLIBNAME_3 "libsci%s%s"
+
 /**
 * load and call a scilab gateway
 * @param[in] name of the Scilab module
@@ -42,9 +52,10 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 /**
 * Build name of dynamic library based on module name
 * @param[in] module name
+* @param[in] generated dynamic lib name type
 * @return name of dynamic library
 */
-char *buildModuleDynLibraryName(char *modulename);
+char *buildModuleDynLibraryName(char *modulename, dynlib_name_format iType);
 
 /**
 * Build gateway name based on module name

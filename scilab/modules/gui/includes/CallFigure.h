@@ -12,7 +12,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "dynlib_gui.h"
 #include "BOOL.h"
 
 /**
@@ -21,7 +21,7 @@
  * @param ID the ID of the figure 
  * @param command the name of the event handling function
  */
-void setFigureEventHandler(int ID, char * command);
+GUI_IMPEXP void setFigureEventHandler(int ID, char * command);
 
 /**
  * Enable or Disable the event handler of a figure
@@ -29,14 +29,14 @@ void setFigureEventHandler(int ID, char * command);
  * @param ID the ID of the figure
  * @param status true to set the event handler enabled
  */
-void setFigureEventHandlerEnabled(int ID, BOOL status);
+GUI_IMPEXP void setFigureEventHandlerEnabled(int ID, BOOL status);
 
 /**
  * Create a new graphic window
  * @param ID id of the figure to create
  * @return id of the created figure
  */
-int newFigure(int ID);
+GUI_IMPEXP int newFigure(int ID);
 
 #endif /* !__CALLFIGURE_H__ */
 

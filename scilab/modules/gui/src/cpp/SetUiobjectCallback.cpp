@@ -29,7 +29,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+		  Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Callback");
         return SET_PROPERTY_ERROR;
       }
       
@@ -39,14 +39,14 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
     {
       if (nbRow * nbCol != 2)
         {
-          Scierror(999, _("Wrong size for '%s' property: a 2-item list expected.\n"), "Callback");
+			Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: a 2-item list expected.\n")), "Callback");
           return SET_PROPERTY_ERROR;
         }
 
       GetListRhsVar((int)stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
       if (typeNbRow * typeNbCol !=1)
         {
-          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "CallbackType");
+			Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "CallbackType");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -57,7 +57,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
       GetListRhsVar((int)stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
       if (strNbCol !=1)
         {
-          Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+			Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "Callback");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -82,8 +82,8 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
         }
 
       // Set the new callback
-      pUIMENU_FEATURE(sciObj)->callback = new char[strlen(getStringFromStack(stackPointer)) + 1];
-      strcpy(pUIMENU_FEATURE(sciObj)->callback, getStringFromStack(stackPointer));
+      pUIMENU_FEATURE(sciObj)->callback = new char[strlen(cbString) + 1];
+      strcpy(pUIMENU_FEATURE(sciObj)->callback, cbString);
 
       pUIMENU_FEATURE(sciObj)->callbackType = cbType;
 
@@ -131,7 +131,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "Callback");
+		Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Callback");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -64,9 +64,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
+    <programlisting role = ""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
-   ]]></programlisting>
+ ]]></programlisting>
     <para><literal>[Ab [,X [,bs]]]=bdiag(A [,rmax])</literal> calcule la forme
     bloc-diagonale de <literal>A</literal>.  bs précise la structure des
     blocs (tailles respectives des blocs).  <literal>X</literal> est la
@@ -86,7 +86,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Cas réel: blocs 1x1 et 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 // Cas complexe : blocs complexes 1x1

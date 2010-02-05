@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>pol2tex</refname>
-    <refpurpose> convert polynomial  to TeX format</refpurpose>
+    <refpurpose> convert polynomial to TeX format. This function is obsolete and will be removed in Scilab 5.3. Please use <link linkend="prettyprint">prettyprint</link></refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -44,22 +44,21 @@
     <para>
     Latex source code for the polynomial  <literal>x</literal>.
     (For use with <literal>texprint</literal>)</para>
+<para>This function is obsolete and will be removed in Scilab 5.3. Please use <link linkend="prettyprint">prettyprint</link></para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=s^3+2*s-5;
 pol2tex(p)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="texprint">texprint</link>
+        <link linkend="prettyprint">prettyprint</link>
       </member>
     </simplelist>
   </refsection>

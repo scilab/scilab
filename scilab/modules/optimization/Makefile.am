@@ -48,7 +48,6 @@ src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
 src/fortran/zqnbd.f \
 src/fortran/ajour.f \
-src/fortran/dpmpar.f \
 src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
@@ -75,9 +74,10 @@ src/fortran/calbx.f \
 src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
-src/fortran/dpofa.f \
 src/fortran/qpgen1sci.f \
-src/fortran/util.f
+src/fortran/intreadmps.f \
+src/fortran/rdmps1.f \
+src/fortran/rdmpsz.f
 
 MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
@@ -85,6 +85,7 @@ src/fortran/minpack/hybrj1.f \
 src/fortran/minpack/dogleg.f \
 src/fortran/minpack/lmder.f \
 src/fortran/minpack/hybrd.f \
+src/fortran/minpack/dpmpar.f \
 src/fortran/minpack/lmpar.f \
 src/fortran/minpack/hybrj.f \
 src/fortran/minpack/r1updt.f \
@@ -103,7 +104,8 @@ sci_gateway/c/gw_optimization.c \
 sci_gateway/c/sci_optim.c \
 sci_gateway/c/sci_fsolv.c \
 sci_gateway/c/sci_sqrsolve.c \
-sci_gateway/c/sci_qp_solve.c
+sci_gateway/c/sci_qp_solve.c \
+sci_gateway/c/sci_readmps.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_semidef.f \
 sci_gateway/fortran/sci_f_fsolve.f \
@@ -141,17 +143,18 @@ modulename=optimization
 libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
+#### m2sci : Macros ####
+MACROSDIRSEXT =  macros/neldermead \
+	macros/optimbase \
+	macros/optimsimplex
 
-####�optimization : init scripts ####
+####optimization : init scripts ####
 libscioptimization_la_etcdir = $(mydatadir)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
-####�optimization : gateway declaration ####
+####optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
-####�optimization : include files ####
-libscioptimization_la_includedir=$(pkgincludedir)/optimization
-libscioptimization_la_include_HEADERS = includes/gw_optim.h \
-includes/spd.h
+
 
 include $(top_srcdir)/Makefile.incl.am

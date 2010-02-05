@@ -47,9 +47,9 @@ Cette fonction permet de définir une erreur spécifique en cours de simulation 
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 set_blockerror(n)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_set_blockerror">
     <title>Paramètres</title>

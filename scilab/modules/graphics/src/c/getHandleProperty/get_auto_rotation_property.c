@@ -29,7 +29,7 @@ int get_auto_rotation_property( sciPointObj * pobj )
 {
   if( sciGetEntityType(pobj) != SCI_LABEL )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "auto_rotation") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_rotation") ;
     return -1 ;
   }
 

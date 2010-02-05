@@ -15,15 +15,17 @@
 #include "stack-c.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-#define CHAR(x)         (cstk(x))
-#define INT(x)  	(istk(x))
-#define DOUBLE(x)	( stk(x))
-#define CMPLX(x)	(zstk(x))
+extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr, 
+		       double *di, double *z, int *ldz, double *sigmar, 
+		       double *sigmai, double *workev, char *bmat, int *n, 
+		       char *which, int *nev, double *tol, double *resid, 
+		       int *ncv, double *v, int *ldv, int *iparam, int *ipntr, 
+		       double *workd, double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
-extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length);
-/*--------------------------------------------------------------------------*/
-int C2F(intdneupd)(char *fname,unsigned long fname_len)
+int sci_dneupd(char *fname,unsigned long fname_len)
 {
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
@@ -50,33 +52,106 @@ int C2F(intdneupd)(char *fname,unsigned long fname_len)
 
   int minlhs=1, minrhs=22, maxlhs=10, maxrhs=22;
   int LDZ, LDV, LWORKL;
+  int sizeWORKL = 0;
 
-  CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
+  CheckRhs(minrhs,maxrhs);
+  CheckLhs(minlhs,maxlhs);
+
   /*                                                  VARIABLE = NUMBER   */
-  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mRVEC,   &nRVEC,   &pRVEC);         RVEC  =  1;
-  GetRhsVar( 2,STRING_DATATYPE, &mHOWMANY,&nHOWMANY,&pHOWMANY);   HOWMANY  =  2;
-  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mSELECT, &nSELECT, &pSELECT);     SELECT  =  3;
-  GetRhsVar( 4,MATRIX_OF_DOUBLE_DATATYPE, &mDr,     &nDr,     &pDr);             Dr  =  4;
-  GetRhsVar( 5,MATRIX_OF_DOUBLE_DATATYPE, &mDi,     &nDi,     &pDi);             Di  =  5;
-  GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE, &mZ,      &nZ,      &pZ);               Z  =  6;
-  GetRhsVar( 7,MATRIX_OF_DOUBLE_DATATYPE, &mSIGMAr, &nSIGMAr, &pSIGMAr);      SIGMAr =  7;
-  GetRhsVar( 8,MATRIX_OF_DOUBLE_DATATYPE, &mSIGMAi, &nSIGMAi, &pSIGMAi);      SIGMAi =  8;
-  GetRhsVar( 9,MATRIX_OF_DOUBLE_DATATYPE, &mWORKev, &nWORKev, &pWORKev);      WORKev =  9;
-  GetRhsVar(10,STRING_DATATYPE, &mBMAT,   &nBMAT,   &pBMAT);          BMAT = 10;
-  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);             N    = 11;
-  GetRhsVar(12,STRING_DATATYPE, &mWHICH,  &nWHICH,  &pWHICH);       WHICH  = 12;
+  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mRVEC,   &nRVEC,   &pRVEC);          RVEC =  1;
+  GetRhsVar( 2,STRING_DATATYPE,            &mHOWMANY,&nHOWMANY,&pHOWMANY);    HOWMANY =  2;
+  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mSELECT, &nSELECT, &pSELECT);      SELECT =  3;
+  GetRhsVar( 4,MATRIX_OF_DOUBLE_DATATYPE,  &mDr,     &nDr,     &pDr);              Dr =  4;
+  GetRhsVar( 5,MATRIX_OF_DOUBLE_DATATYPE,  &mDi,     &nDi,     &pDi);              Di =  5;
+  GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE,  &mZ,      &nZ,      &pZ);                Z =  6;
+  GetRhsVar( 7,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAr, &nSIGMAr, &pSIGMAr);      SIGMAr =  7;
+  GetRhsVar( 8,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAi, &nSIGMAi, &pSIGMAi);      SIGMAi =  8;
+  GetRhsVar( 9,MATRIX_OF_DOUBLE_DATATYPE,  &mWORKev, &nWORKev, &pWORKev);      WORKev =  9;
+  GetRhsVar(10,STRING_DATATYPE,            &mBMAT,   &nBMAT,   &pBMAT);          BMAT = 10;
+  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);                N = 11;
+  GetRhsVar(12,STRING_DATATYPE,            &mWHICH,  &nWHICH,  &pWHICH);        WHICH = 12;
   GetRhsVar(13,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);            NEV = 13;
-  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE, &mTOL,    &nTOL,    &pTOL);            TOL = 14;
-  GetRhsVar(15,MATRIX_OF_DOUBLE_DATATYPE, &mRESID,  &nRESID,  &pRESID);        RESID = 15;
+  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE,  &mTOL,    &nTOL,    &pTOL);            TOL = 14;
+  GetRhsVar(15,MATRIX_OF_DOUBLE_DATATYPE,  &mRESID,  &nRESID,  &pRESID);        RESID = 15;
   GetRhsVar(16,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);            NCV = 16;
-  GetRhsVar(17,MATRIX_OF_DOUBLE_DATATYPE, &mV,      &nV,      &pV);               V  = 17;
+  GetRhsVar(17,MATRIX_OF_DOUBLE_DATATYPE,  &mV,      &nV,      &pV);                V = 17;
   GetRhsVar(18,MATRIX_OF_INTEGER_DATATYPE, &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 18;
-  GetRhsVar(19,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);       IPNTR  = 19;
-  GetRhsVar(20,MATRIX_OF_DOUBLE_DATATYPE, &mWORKD,  &nWORKD,  &pWORKD);       WORKD  = 20;
-  GetRhsVar(21,MATRIX_OF_DOUBLE_DATATYPE, &mWORKL,  &nWORKL,  &pWORKL);       WORKL  = 21;
+  GetRhsVar(19,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);        IPNTR = 19;
+  GetRhsVar(20,MATRIX_OF_DOUBLE_DATATYPE,  &mWORKD,  &nWORKD,  &pWORKD);        WORKD = 20;
+  GetRhsVar(21,MATRIX_OF_DOUBLE_DATATYPE,  &mWORKL,  &nWORKL,  &pWORKL);        WORKL = 21;
   GetRhsVar(22,MATRIX_OF_INTEGER_DATATYPE, &mINFO,   &nINFO,   &pINFO);          INFO = 22;
 
   LWORKL = mWORKL*nWORKL;   LDV=Max(1,*istk(pN)); LDZ=LDV;
+
+  /* Check some sizes */
+  if (mIPARAM*nIPARAM!=11)
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPARAM", 11);
+      return 0;
+    }
+
+  if (mIPNTR*nIPNTR!=14)
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPNTR", 14);
+      return 0;
+    }
+
+  if (mRESID*nRESID!=*istk(pN))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "RESID", *istk(pN));
+      return 0;
+    }
+
+  if (mWORKD*nWORKD<3 * *istk(pN))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "WORKD", 3* *istk(pN));
+      return 0;
+    }
+
+  if (mSELECT*nSELECT!=*istk(pNCV))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "SELECT", *istk(pNCV));
+      return 0;
+    }
+
+  if (mDr*nDr!=(*istk(pNEV)+1))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Dr", *istk(pNEV) + 1);
+      return 0;
+    }
+
+  if (mDi*nDi!=(*istk(pNEV)+1))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "Di", *istk(pNEV) + 1);
+      return 0;
+    }
+
+  if ((mZ!=*istk(pN))&&(nZ!=*istk(pNEV)+1))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "Z", *istk(pN), *istk(pNEV) + 1);
+      return 0;
+    }
+
+  if (mWORKev*nWORKev!=3 * *istk(pNCV))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKev", 3 * *istk(pNCV));
+      return 0;
+    }
+
+  if ((mV!=*istk(pN))&&(mV!=*istk(pNCV)))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "V", *istk(pN),*istk(pNCV));
+      return 0;
+    }
+
+  sizeWORKL = 3 * *istk(pNCV) * *istk(pNCV) + 6 * *istk(pNCV);
+
+  if ((mWORKL*nWORKL<sizeWORKL))
+    {
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKL", sizeWORKL);
+      return 0;
+    }
+
 
   C2F(dneupd)(istk(pRVEC), cstk(pHOWMANY),  istk(pSELECT),
 	      stk(pDr), stk(pDi), stk(pZ),   &LDZ,
@@ -86,16 +161,26 @@ int C2F(intdneupd)(char *fname,unsigned long fname_len)
               istk(pNCV), stk(pV), &LDV,
 	      istk(pIPARAM), istk(pIPNTR),
                stk(pWORKD), stk(pWORKL), &LWORKL,
-              istk(pINFO), 1L, 1L, 2L);
+              istk(pINFO));
 
   if (*istk(pINFO) < 0) {
     C2F(errorinfo)("dneupd", istk(pINFO), 6L);
     return 0;
   }
-  LhsVar(1)=Dr;    LhsVar(2)=Di;  LhsVar(3)=Z;
-  LhsVar(4)=RESID; LhsVar(5)=V; LhsVar(6)=IPARAM;
-  LhsVar(7)=IPNTR;  LhsVar(8)=WORKD; LhsVar(9)=WORKL; LhsVar(10)=INFO;
+
+  LhsVar(1)  = Dr;
+  LhsVar(2)  = Di;
+  LhsVar(3)  = Z;
+  LhsVar(4)  = RESID; 
+  LhsVar(5)  = V; 
+  LhsVar(6)  = IPARAM;
+  LhsVar(7)  = IPNTR;  
+  LhsVar(8)  = WORKD; 
+  LhsVar(9)  = WORKL; 
+  LhsVar(10) = INFO;
+
   PutLhsVar();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

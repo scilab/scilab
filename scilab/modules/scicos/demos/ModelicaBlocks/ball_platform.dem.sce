@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("ball_platform.dem.sce");
-scicos_demostration(thispath+"/Ball_Platform.cosf");
+xcos(thispath+"/Ball_Platform.cosf");
 clear thispath;

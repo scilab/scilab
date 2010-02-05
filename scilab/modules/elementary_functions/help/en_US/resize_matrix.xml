@@ -104,7 +104,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // number matrix
 myMat = 5 * rand( 3, 4 )
 myMat = resize_matrix( myMat, 3, 3 ) // reduce the matrix size
@@ -115,7 +115,7 @@ myMatBoolean = resize_matrix( myMatBoolean, 3, 5 )
 // string matrix
 myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
 myMatString = resize_matrix( myMatString, 3, 1 )
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

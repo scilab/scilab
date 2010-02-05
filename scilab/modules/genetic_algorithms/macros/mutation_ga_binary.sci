@@ -27,7 +27,7 @@ if ~MultiMut then
   end
 else
   pos = ceil((length(Indiv)-1)*rand(MultiMutNb,1))+1;
-  pos = -unique(sort(-pos));
+  pos = -unique(gsort(-pos));
   Mut_Indiv = Indiv;
   for i=1:length(pos)
     if part(Mut_Indiv,pos(i))=='0' then 

@@ -83,12 +83,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //x=input("Quantas iterações")
 //x=input("Qual o seu nome?","string")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

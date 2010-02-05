@@ -35,7 +35,7 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
  
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"figure_position") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "screen_position");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -43,13 +43,13 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for %s property: Vector of size %d expected.\n"),"screen_position",2) ;
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "screen_position", 2);
     return SET_PROPERTY_ERROR ;
   }
 
 	if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "figure_position") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"screen_position");
     return SET_PROPERTY_ERROR ;
   }
 

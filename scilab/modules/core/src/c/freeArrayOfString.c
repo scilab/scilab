@@ -15,22 +15,32 @@
 /*---------------------------------------------------------------------------*/ 
 BOOL freeArrayOfString(char **Str,int dim)
 {
+	return freeArray((void**)Str, dim);
+}
+/*---------------------------------------------------------------------------*/ 
+BOOL freeArrayOfWideString(wchar_t **wcStr, int dim)
+{
+	return freeArray((void**)wcStr, dim);
+}
+/*---------------------------------------------------------------------------*/ 
+BOOL freeArray(void **pArray, int dim)
+{
 	BOOL bRet = TRUE;
 
-	if (Str)
+	if (pArray)
 	{
 		int i = 0;
 		for (i = 0;i < dim; i++)
 		{
-			if (Str[i])
+			if (pArray[i])
 			{
-				FREE(Str[i]);
-				Str[i] = NULL;
+				FREE(pArray[i]);
+				pArray[i] = NULL;
 			}
 			else bRet = FALSE;
 		}
-		FREE(Str);
-		Str = NULL;
+		FREE(pArray);
+		pArray = NULL;
 		return bRet;
 	}
 	else

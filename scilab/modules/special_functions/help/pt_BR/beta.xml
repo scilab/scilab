@@ -63,12 +63,12 @@
 
     <para>Computa a função beta completa : </para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
                /1
                |   x-1     y-1        gamma(x) gamma(y)
   beta(x,y) =  |  t   (1-t)    dt  =  ----------------
                /0                        gamma(x+y)
-      </programlisting>
+ ]]></programlisting>
 
     <para>Para <literal>x</literal> e <literal>y</literal> pequenos, o
     algoritmo usa a expressão em função da função gama, de outro modo, ele
@@ -82,7 +82,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1 :
 beta(5,2) - beta(2,5)   // simetria (deve ser exatamente 0)
 beta(0.5,0.5)           // o valor exato é pi
@@ -108,7 +108,7 @@ xbasc()
 plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
 xtitle("A função beta em [0.2,10]x[0.2,10]")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

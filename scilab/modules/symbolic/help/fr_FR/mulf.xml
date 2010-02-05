@@ -19,7 +19,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 mulf('1','a')
 mulf('0','a')
 'a'+'b'   // attention ...

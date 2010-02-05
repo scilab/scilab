@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscipolynomials_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/polynomials
@@ -66,20 +64,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -107,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_etcdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_rootdir)" \
-	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscipolynomials_la_includedir)"
+	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscipolynomials_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
@@ -123,10 +120,10 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	dpsimp.lo dmp2pm.lo dmpext.lo wpmul.lo bezstp.lo wmpad.lo \
 	dprxc.lo quadsd.lo wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo \
 	mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo matra.lo \
-	dmpcle.lo rpoly.lo wmptld.lo wpodiv.lo wdmpmu.lo wmptra.lo \
-	wmpins.lo mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo \
-	dmpad.lo nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo \
-	impcnc.lo wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
+	dmpcle.lo rpoly.lo wpodiv.lo wdmpmu.lo wmptra.lo wmpins.lo \
+	mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo dmpad.lo \
+	nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo impcnc.lo \
+	wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
 	writebufsfact.lo
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
@@ -150,9 +147,8 @@ am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_poly.lo \
 	libscipolynomials_la-sci_triu.lo \
 	libscipolynomials_la-sci_degree.lo
-am__objects_4 = balbak.lo
 am_libscipolynomials_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+	$(am__objects_3)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -182,7 +178,6 @@ DIST_SOURCES = $(libscipolynomials_la_SOURCES)
 DATA = $(libscipolynomials_la_etc_DATA) \
 	$(libscipolynomials_la_root_DATA) \
 	$(libscipolynomials_la_sci_gateway_DATA)
-HEADERS = $(libscipolynomials_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -190,6 +185,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -198,9 +194,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -261,11 +260,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -325,24 +327,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -405,7 +409,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -459,7 +462,6 @@ src/fortran/mpdiag.f \
 src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
-src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
@@ -483,7 +485,6 @@ src/fortran/quad.f \
 src/fortran/calcsc.f \
 src/fortran/writebufsfact.f
 
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
 sci_gateway/c/sci_cleanp.c \
@@ -527,7 +528,7 @@ libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
@@ -548,10 +549,6 @@ libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 #### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
-
-#### polynomials : include files ####
-libscipolynomials_la_includedir = $(pkgincludedir)/polynomials
-libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -967,9 +964,6 @@ dmpcle.lo: src/fortran/dmpcle.f
 rpoly.lo: src/fortran/rpoly.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpoly.lo `test -f 'src/fortran/rpoly.f' || echo '$(srcdir)/'`src/fortran/rpoly.f
 
-wmptld.lo: src/fortran/wmptld.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmptld.lo `test -f 'src/fortran/wmptld.f' || echo '$(srcdir)/'`src/fortran/wmptld.f
-
 wpodiv.lo: src/fortran/wpodiv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpodiv.lo `test -f 'src/fortran/wpodiv.f' || echo '$(srcdir)/'`src/fortran/wpodiv.f
 
@@ -1090,9 +1084,6 @@ sci_f_sfact.lo: sci_gateway/fortran/sci_f_sfact.f
 sci_f_simpmd.lo: sci_gateway/fortran/sci_f_simpmd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simpmd.lo `test -f 'sci_gateway/fortran/sci_f_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simpmd.f
 
-balbak.lo: src/fortran/eispack/balbak.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1158,26 +1149,6 @@ uninstall-libscipolynomials_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" && rm -f $$files
-install-libscipolynomials_la_includeHEADERS: $(libscipolynomials_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipolynomials_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipolynomials_la_includedir)"
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscipolynomials_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscipolynomials_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscipolynomials_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipolynomials_la_include_HEADERS)'; test -n "$(libscipolynomials_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscipolynomials_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscipolynomials_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1264,9 +1235,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libscipolynomials_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipolynomials_la_etcdir)" "$(DESTDIR)$(libscipolynomials_la_rootdir)" "$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1319,7 +1290,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscipolynomials_la_etcDATA \
-	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA
 
@@ -1368,7 +1338,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscipolynomials_la_etcDATA \
-	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1385,7 +1354,6 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscipolynomials_la_etcDATA \
-	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1395,7 +1363,6 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
 	uninstall-libscipolynomials_la_etcDATA \
-	uninstall-libscipolynomials_la_includeHEADERS \
 	uninstall-libscipolynomials_la_rootDATA \
 	uninstall-libscipolynomials_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1407,10 +1374,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1433,7 +1402,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1445,7 +1414,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1551,10 +1520,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

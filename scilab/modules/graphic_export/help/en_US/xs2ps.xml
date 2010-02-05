@@ -88,20 +88,20 @@ xs2ps(fig, file_name [,orientation])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 // Postcript export
 filename='foo.ps';
 xs2ps(0,filename);
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="set_posfig_dim">set_posfig_dim</link></member>
+      <member>figure_size property</member>
 
       <member><link linkend="toprint">toprint</link></member>
 

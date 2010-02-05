@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Differential Equations",SCI+"/modules/differential_equations/help/en_US",%T);
+add_help_chapter("Differential Equations, Integration",SCI+"/modules/differential_equations/help/en_US",%T);
 

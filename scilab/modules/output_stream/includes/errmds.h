@@ -15,6 +15,7 @@
 #define __ERRMDS_H__
 
 #include "machine.h"
+#include "dynlib_output_stream.h"
 
 /* routine used by fortran */
 
@@ -25,7 +26,7 @@
 * @param num  : error to catch, if num=-1 all errors are catched
 * @return 0
 */
-int C2F(errmds)(int *num, int *imess, int *imode);
+OUTPUT_STREAM_IMPEXP int C2F(errmds)(int *num, int *imess, int *imode);
 
 #endif /* __ERRMDS_H__ */
 /*--------------------------------------------------------------------------*/

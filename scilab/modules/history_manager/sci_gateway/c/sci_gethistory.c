@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_gethistory)(char *fname,unsigned long fname_len)
+int sci_gethistory(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, m1 = 0, n1 = 0;
 	CheckRhs(0,1);

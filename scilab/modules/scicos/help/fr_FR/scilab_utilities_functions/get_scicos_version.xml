@@ -47,9 +47,9 @@ Cette fonction retourne le numéro de version courant de Scicos.
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 scicos_ver = get_scicos_version
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_get_scicos_version">
     <title>Paramètres</title>
@@ -61,10 +61,10 @@ scicos_ver = get_scicos_version
   </refsection>
   <refsection id="Exemple_get_scicos_version">
     <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 //Retourne la version de scicos 
 get_scicos_version()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Contenudufichier_get_scicos_version">
     <title>Contenu du fichier</title>

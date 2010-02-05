@@ -24,7 +24,7 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "ListboxTop");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
 
@@ -35,7 +35,7 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
       if(nbCol > 1 || nbRow > 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "ListboxTop");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
 
@@ -44,14 +44,14 @@ int SetUicontrolListboxTop(sciPointObj* sciObj, size_t stackPointer, int valueTy
       if(nbValue != 1)
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong value for '%s' property: A real expected.\n"), "ListboxTop");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A real expected.\n")), "ListboxTop");
           return SET_PROPERTY_ERROR;
         }
     }
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: A real expected.\n"), "ListboxTop");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "ListboxTop");
       return SET_PROPERTY_ERROR;
     }
 

@@ -74,8 +74,7 @@ v(i)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 3^(-1)
 x=poly(0,"x");
 //
@@ -99,8 +98,7 @@ l($+1)='new'
 v=%t([1 1 1 1 1])
 //
 [x,y,z]=(1,2,3)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

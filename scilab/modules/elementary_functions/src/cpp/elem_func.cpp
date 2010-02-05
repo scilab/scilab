@@ -61,7 +61,6 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sign", &sci_sign, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("size", &sci_size, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("sort", &sci_sort, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sum", &sci_sum, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("tan", &sci_tan, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("testmatrix", &sci_testmatrix, MODULE_NAME));

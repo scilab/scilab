@@ -62,7 +62,6 @@ int sci_round(char *fname, int* _piKey);
 int sci_sign(char *fname, int* _piKey);
 int sci_sin(char *fname, int* _piKey);
 int sci_size(char *fnam, int* _piKey);
-int sci_sort(char *fname, int* _piKey);
 int sci_sqrt(char *fname, int* _piKey);
 int sci_sum(char *fname, int* _piKey);
 int sci_tan(char *fname, int* _piKey);

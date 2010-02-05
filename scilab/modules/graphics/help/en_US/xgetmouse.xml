@@ -168,13 +168,12 @@
     </variablelist>
     <para>
     WARNING: In previous versions of Scilab (&lt;5.0), the user could give a flag to precise if the mouse click event queue had to be cleared when entering xgetmouse.
-    This option is now obsolete and will be removed in Scilab 5.1.
+    This option has been removed in Scilab 5.1.
     </para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //  rectangle selection
 clf();  // erase/create window
 a=gca();a.data_bounds=[0 0;100 100];//set user coordinates
@@ -195,8 +194,7 @@ while rep(3)==-1 do // mouse just moving ...
   r.data=[ox,oy,w,h]; //change the retangle origin, width an height
   first=%f;
 end
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

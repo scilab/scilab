@@ -39,8 +39,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 [6.9,9.64; sqrt(-1) 0]
 [1 +%i  2 -%i  3]
 []
@@ -49,8 +48,7 @@ s=poly(0,'s');[1/s,2/s]
 [tf2ss(1/s),tf2ss(2/s)]
 
 [u,s]=schur(rand(3,3))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

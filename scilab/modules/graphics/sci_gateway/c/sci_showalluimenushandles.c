@@ -17,12 +17,14 @@
 /* desc : interface for howalluimenushandles routine                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_showalluimenushandles.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "HandleManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+/*--------------------------------------------------------------------------*/
+static int SciShowAllUimenus( sciPointObj * pparent );
 /*--------------------------------------------------------------------------*/
 int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 {
@@ -59,7 +61,7 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int SciShowAllUimenus( sciPointObj * pparent )
+static int SciShowAllUimenus( sciPointObj * pparent )
 {
   sciSons * psonstmp = sciGetLastSons(pparent) ;
 

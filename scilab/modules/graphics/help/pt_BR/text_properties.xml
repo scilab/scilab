@@ -299,26 +299,26 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-  a=get("current_axes");
-  a.data_bounds=[0,0;1,1];
-  a.axes_visible = 'on' ;
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");
+a.data_bounds=[0,0;1,1];
+a.axes_visible = 'on' ;
 
-  xstring(0.5,0.5,"Scilab is not esilaB",0,0)
+xstring(0.5,0.5,"Scilab is not esilaB",0,0)
 
-  t=get("hdl")   //obtendo o manipulador do novo objeto criado
+t=get("hdl")   //obtendo o manipulador do novo objeto criado
 
-  t.font_foreground=6; // alterando as propriedades da fonte
-  t.font_size=5;
-  t.font_style=5;
+t.font_foreground=6; // alterando as propriedades da fonte
+t.font_size=5;
+t.font_style=5;
 
-  t.text=["SCILAB","não";"é","esilaB"] ; // alterando
-  t.font_angle=90 ; // virando os strings
-  t.text_box = [0,0] ;
-  t.text_box_mode = 'centered' ; // o texto está agora centrado em [0.5,0.5].
-  t.alignment = 'center' ;
-  t.box = 'on' ; // desenhando uma caixa ao redor do texto
- </programlisting>
+t.text=["SCILAB","não";"é","esilaB"] ; // alterando
+t.font_angle=90 ; // virando os strings
+t.text_box = [0,0] ;
+t.text_box_mode = 'centered' ; // o texto está agora centrado em [0.5,0.5].
+t.alignment = 'center' ;
+t.box = 'on' ; // desenhando uma caixa ao redor do texto
+ ]]></programlisting>
   </refsection>
 
   <refsection>

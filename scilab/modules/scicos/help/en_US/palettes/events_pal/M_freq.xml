@@ -164,14 +164,14 @@ So the number of outputs is equal to 2**number of different time values. Each of
   </refsection>
   <refsection id="Example_M_freq">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 Let us take the example where the sample time is equal to [1 1 2] and the offset is equal to [0 .5 0]. Consider t=simulation time.
 When t=0, the fifth output is activated (001 + 100).
 When t=0.5, the second output is activated (010).
 When t=1, the first output is activated (001).
 When t=1.5, the second output is activated (010).
 When t=2 we loop back to 0.
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_M_freq">
     <title>Default properties</title>

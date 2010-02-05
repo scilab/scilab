@@ -73,9 +73,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 erf([0.5,0.2])+erfc([0.5,0.2])
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

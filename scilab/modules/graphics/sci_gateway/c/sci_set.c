@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 #include <stdio.h>
 /*------------------------------------------------------------------------*/
-#include "sci_set.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
@@ -131,6 +131,10 @@ int sci_set(char *fname, unsigned long fname_len)
 			else if ( valueType == sci_matrix )
 			{
 				GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&numrow3,&numcol3,&l3);
+			}
+			else if ( valueType == sci_boolean )
+			{
+				GetRhsVar(3,MATRIX_OF_BOOLEAN_DATATYPE,&numrow3,&numcol3,&l3);
 			}
 			else  if ( valueType == sci_handles )
 			{

@@ -29,7 +29,8 @@ Source: modules\{#WINDOWS_TOOLS}\version.xml; DestDir: {app}\modules\{#WINDOWS_T
 ;
 Source: modules\{#WINDOWS_TOOLS}\sci_gateway\windows_tools_gateway.xml; DestDir: {app}\modules\{#WINDOWS_TOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WINDOWS_TOOLS}\includes\*.h; DestDir: {app}\modules\{#WINDOWS_TOOLS}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#WINDOWS_TOOLS}\includes\*.h; DestDir: {app}\modules\{#WINDOWS_TOOLS}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#WINDOWS_TOOLS}\includes\strdup_windows.h; DestDir: {app}\modules\{#WINDOWS_TOOLS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#WINDOWS_TOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#WINDOWS_TOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;

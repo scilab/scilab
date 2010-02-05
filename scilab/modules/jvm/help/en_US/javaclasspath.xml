@@ -41,11 +41,11 @@ javaclasspath(path)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[res=javaclasspath();
+    <programlisting role="example"><![CDATA[ 
+res=javaclasspath();
 javaclasspath(SCI);
 javaclasspath([SCI,SCI+'/java']);
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

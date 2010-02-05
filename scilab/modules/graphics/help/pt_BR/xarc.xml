@@ -70,15 +70,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // escala de isovisualização
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xset("color",3)
 xarc(-1,1,2,2,0,90*64)
 xarc(-1.5,1.5,3,3,0,360*64)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

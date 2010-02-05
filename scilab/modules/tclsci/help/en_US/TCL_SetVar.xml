@@ -61,32 +61,40 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-//----------------------------------------------------
+    <programlisting role="example"><![CDATA[ 
 TCL_EvalStr("toplevel .tst1");
+
 // creates a toplevel TK window. 
 TCL_EvalStr("entry .tst1.e -textvariable tvar");
+
 // create an editable entry
 TCL_EvalStr("set tvar foobar");
+
 // set the entry value
 TCL_EvalStr("pack .tst1.e");
+
 // pack the entry widget. It appears on the screen.
 text=TCL_GetVar("tvar")
+
 // retrieve the variable value
 // change the entry text and repeat the last command ...
 //delete the toplevel TK window.
 TCL_EvalStr("destroy .tst1")
+
 //----------------------------------------------------
 a=["A","B","C";"D","E","F"];
 TCL_SetVar("A",a)
 AfromTCL=TCL_GetVar("A")
+
 //----------------------------------------------------
 b=[6,4,1;2,3,5];
 TCL_SetVar("B",b)
 BfromTCL=TCL_GetVar("B")
+
 //----------------------------------------------------
 TCL_SetVar("StringTCL","string")
 StringFromTCL=TCL_GetVar("StringTCL")
+
 //----------------------------------------------------
 TCL_SetVar("ScalarTCL",1.22)
 ScalarFromTCL=TCL_GetVar("ScalarTCL")
@@ -99,26 +107,26 @@ a=['AA','BB','CC';'DD','EE','FF'];
 TCL_SetVar("A_slave",a,'TCLSlave')
 AfromTCL_slave=TCL_GetVar('A_slave','TCLSlave')
 TCL_DeleteInterp('TCLSlave')
+
 //----------------------------------------------------
 TCL_CreateSlave('TCLSlave')
 b=[66,44,11;22,33,55];
 TCL_SetVar("B_slave",b,'TCLSlave')
 BfromTCL_slave=TCL_GetVar('B_slave','TCLSlave')
 TCL_DeleteInterp('TCLSlave')
+
 //----------------------------------------------------
 TCL_CreateSlave('TCLSlave')
 TCL_SetVar("StringTCL_slave","string in slave interpreter",'TCLSlave')
 StringFromTCL_slave=TCL_GetVar("StringTCL_slave",'TCLSlave')
 TCL_DeleteInterp('TCLSlave')
+
 //----------------------------------------------------
 TCL_CreateSlave('TCLSlave')
 TCL_SetVar("ScalarTCL_slave",1.22,'TCLSlave')
 ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'TCLSlave')
 TCL_DeleteInterp('TCLSlave')
-//----------------------------------------------------
-
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

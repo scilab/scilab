@@ -61,7 +61,7 @@ function fprintf(fil,frmt,varargin)
          
        end
      else
-       error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A filename or file descriptor nexpected.\n"),"fprintf",1));
+       error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A filename or file descriptor expected.\n"),"fprintf",1));
      end
      
   end

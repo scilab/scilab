@@ -56,11 +56,15 @@
     <para>A variável <literal>%DAEOPTIONS</literal> é uma lista <link
     linkend="list">list</link> com os seguintes elementos:</para>
 
-    <programlisting>list(tstop,imode,band,maxstep,stepin,nonneg,isest)</programlisting>
+    <programlisting role = ""><![CDATA[ 
+list(tstop,imode,band,maxstep,stepin,nonneg,isest)
+ ]]></programlisting>
 
     <para>O valor padrão é:</para>
 
-    <programlisting>list([],0,[],[],[],0,0)</programlisting>
+    <programlisting role = ""><![CDATA[ 
+list([],0,[],[],[],0,0)
+ ]]></programlisting>
 
     <para>Os siginificados destes elementos são listados abaixo.</para>
 

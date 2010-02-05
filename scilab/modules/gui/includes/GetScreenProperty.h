@@ -13,7 +13,7 @@
 
 #ifndef __GETSCREENPROPERTY_H__
 #define __GETSCREENPROPERTY_H__
-
+#include "dynlib_gui.h"
 /*
  * Get a screen (root) property
  * 
@@ -21,6 +21,6 @@
  * @param propertyName the name of the property to get
  * @return execution status
  */
-int GetScreenProperty(char *propertyName);
+GUI_IMPEXP int GetScreenProperty(char *propertyName);
 
 #endif /* !__GETSCREENPROPERTY_H__ */

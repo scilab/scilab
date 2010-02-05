@@ -21,22 +21,12 @@
 //
 
 function r = with_modelica_compiler()
-  // check if modelica compiler exists in current $PATH
-
-  compilername = 'modelicac'
-
-  // try to launch 'modelicac' with an '--help' switch and test result:
-  //  - ierr == 0 means that command completed successfully
-  //  - ierr != 0 means an error occurred (most likely file was not found)
-  try
-    [rep,ierr,err] = unix_g(compilername + ' --help')
-    if (ierr == 0) then
-      r = %t
-    else
-      r = %f
-    end
-  catch
-    r = %f
+  
+  if exists('scicos_scicoslib') == 0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
   end
+
+  // check if modelica compiler exists in current $PATH
+  r = ~isempty(getmodelicacpath());
 endfunction
 

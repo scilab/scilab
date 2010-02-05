@@ -15,13 +15,13 @@
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
-
+#include "dynlib_gui.h"
 /**
  * Create a new Label in Scilab GUIs
  *
  * @param sciObj the corresponding Scilab object
  */
-void createLabel(sciPointObj* sciObj);
+GUI_IMPEXP void createLabel(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a Label in Scilab GUIs
@@ -29,6 +29,6 @@ void createLabel(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsLabelParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsLabelParent(sciPointObj* sciObj);
 
 #endif /* __LABEL_H__ */

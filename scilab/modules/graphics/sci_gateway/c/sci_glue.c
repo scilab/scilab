@@ -16,7 +16,7 @@
 /* desc : interface for glue routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_glue.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"

@@ -15,6 +15,7 @@
 #ifndef __ADDFUNCTIONINTABLE_H__
 #define __ADDFUNCTIONINTABLE_H__
 
+#include "dynlib_dynamic_link.h"
 
 typedef void (*voidf)();
 
@@ -34,7 +35,7 @@ typedef struct {
 * @param table functions hashtable
 * @return a pointer on function in functions table
 */
-voidf AddFunctionInTable (char *name, int *rep, FTAB *table);  
+DYNAMIC_LINK_IMPEXP voidf AddFunctionInTable (char *name, int *rep, FTAB *table);  
 
 #endif /* __ADDFUNCTIONINTABLE_H__ */
 /*--------------------------------------------------------------------------*/

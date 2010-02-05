@@ -13,8 +13,10 @@
 #ifndef __READLINE_H__
 #define __READLINE_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h"
-int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr);
-void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr);
+
+FILEIO_IMPEXP int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr);
+FILEIO_IMPEXP void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr);
 
 #endif /* __READLINE_H__ */

@@ -78,15 +78,14 @@ status = toprint(figid,output)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
+    <programlisting role="example"><![CDATA[ 
 toprint(SCI+"/etc/scilab.start");
 toprint(['Test','toprint primitive'],'Scilab page header');
 scf(4);
 plot();
 toprint(4);
 toprint(4,"pos");
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

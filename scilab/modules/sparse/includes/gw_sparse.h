@@ -14,7 +14,7 @@
 #define __GW_SPARSE__
 
 #include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
@@ -29,7 +29,6 @@ int C2F(sci_spclean) (char *fname,unsigned long fname_len);
 int C2F(sci_nnz) (char *fname,unsigned long fname_len);
 int C2F(sci_spmatrix) (char *fname,unsigned long fname_len);
 int C2F(sci_spchol) (char *fname,unsigned long fname_len);
-int C2F(sci_readmps) (char *fname,unsigned long fname_len);
 int C2F(sci_fadj2sp) (char *fname,unsigned long fname_len);
 int C2F(sci_spcompa) (char *fname,unsigned long fname_len);
 int C2F(sci_ordmmd) (char *fname,unsigned long fname_len);

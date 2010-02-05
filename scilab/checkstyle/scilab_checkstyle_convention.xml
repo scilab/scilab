@@ -11,12 +11,9 @@ Description:
 <module name="Checker">
     <property name="severity" value="warning"/>
     <module name="TreeWalker">
-        <module name="JavadocMethod">
-            <property name="severity" value="error"/>
-        </module>
-        <module name="JavadocType">
-            <property name="severity" value="error"/>
-        </module>
+        <module name="FileContentsHolder"/>
+        <module name="JavadocMethod"/>
+        <module name="JavadocType"/>
         <module name="JavadocVariable">
             <property name="severity" value="info"/>
             <property name="scope" value="package"/>
@@ -131,4 +128,10 @@ Commented because we do need it (copy and paste for create bridges)
 <module name="StrictDuplicateCode">
         <property name="severity" value="info"/>
     </module>-->
+    <module name="SuppressionCommentFilter">
+        <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
+        <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
+        <property name="checkFormat" value="$1"/>
+    </module>
+    <module name="SuppressionCommentFilter" />
 </module>

@@ -31,7 +31,7 @@ int get_fractional_font_property( sciPointObj * pobj )
       && sciGetEntityType(pobj) != SCI_AXES
       && sciGetEntityType(pobj) != SCI_LEGEND)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "fractional_font") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "fractional_font") ;
     return -1 ;
   }
 

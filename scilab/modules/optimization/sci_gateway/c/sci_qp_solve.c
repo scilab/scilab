@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
@@ -31,7 +31,7 @@ extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *ptr,
 					double *A_R,  double *A_I, int *mnel,  int *A_icol, 
 					double *At_R, double *At_I,int *At_mnel, int *At_icol);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_qp_solve)(char *fname,unsigned long fname_len)
+int sci_qp_solve(char *fname,unsigned long fname_len)
 {
 	static int un = 1,deux = 2;
         // n : first dimension of Q

@@ -421,26 +421,23 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">  
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes")//obtendo o manipulador dos novos eixos criados
+a.data_bounds=[-2,-2;2,2];
 
-   a=get("current_axes")//obtendo o manipulador dos novos eixos criados
-   a.data_bounds=[-2,-2;2,2];
-
-   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
-   p=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade poligonal)
-   p.foreground=2;
-   p.thickness=3;
-   p.mark_style=9;
-   d=p.data;d(1,:)=[0 0];p.data=d;
-   a.rotation_angles=[0 45];
+xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+p=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade poligonal)
+p.foreground=2;
+p.thickness=3;
+p.mark_style=9;
+d=p.data;d(1,:)=[0 0];p.data=d;
+a.rotation_angles=[0 45];
    
-   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
-   p.mark_mode="off";
-   p.polyline_style=3;
-   p.line_style=4;
-
-
- </programlisting>
+p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+p.mark_mode="off";
+p.polyline_style=3;
+p.line_style=4;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -117,11 +117,9 @@ xsetech()</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // para obter uma explanação gráfica dos parâmetros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
 
 // aqui xsetech é usado para dividir a janela de gráficos em duas partes
 // o primeiro xsetech é usado para se ajustar a primeira sub-janela 
@@ -154,8 +152,7 @@ xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
 xbasc()
 xset("default")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

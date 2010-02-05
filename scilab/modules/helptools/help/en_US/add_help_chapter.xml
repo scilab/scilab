@@ -10,7 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_help_chapter">
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" xml:lang="en" xml:id="add_help_chapter">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
@@ -20,7 +25,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>add_help_chapter(title,path[,mode])</synopsis>
+    <synopsis>ok = add_help_chapter(title,path[,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -45,6 +50,15 @@
           It's an optional input argument and its default value is %F.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>a vector of booleans. The same size as
+          the <literal>path</literal> variable. If the chapter page
+          number i was not existing in the help system then ok(i) is
+          set to %t.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
@@ -59,6 +73,9 @@
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="del_help_chapter">del_help_chapter</link>
       </member>
     </simplelist>
   </refsection>

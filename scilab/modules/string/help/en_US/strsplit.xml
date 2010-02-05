@@ -10,77 +10,176 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="strsplit">
+<refentry version="5.0-subset Scilab" xml:id="strsplit" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>strsplit</refname>
-    <refpurpose> split a string into a vector of strings</refpurpose>
+
+    <refpurpose>split a string into a vector of strings</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>v = strsplit(str,ind)</synopsis>
+
+    <synopsis>
+      v = strsplit(str,ind)
+      [v, matched_separators] = strsplit(str)
+      [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
+      [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+    </synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>str</term>
+
         <listitem>
-          <para>A character string</para>
+          <para>A character string to split</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ind</term>
+
         <listitem>
-          <para>a vector of stricly increasing indices in the interval <literal>[1 length(str)-1] </literal>.
-       </para>
+          <para>a vector of stricly increasing indices in the interval
+          <literal>[1 length(str)-1] </literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>v</term>
+
         <listitem>
-          <para>the resulting column vector of strings (dimension <literal>size(ind,'*')+1 </literal>).
-       </para>
+          <para>the resulting column vector of string (dimension &gt;<literal>
+          size(ind,'*')+1</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>matched_separators</term>
+
+        <listitem>
+          <para>a column vector of the matched separators</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>matrix_of_strings</term>
+
+        <listitem>
+          <para>a matrix of strings to search in str</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>regexp_pattern</term>
+
+        <listitem>
+          <para>a regular expression pattern</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>limit</term>
+
+        <listitem>
+          <para>maximum of limit elements</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>v = strsplit(str,ind)</literal> splits the string <literal>str</literal> into
-    a vector of strings at the points given by the indices in <literal>ind</literal>
-    (after each characters pointed to by the index in ind).</para>
+
+    <para><literal>v = strsplit(str, ind)</literal> splits the string
+    <literal>str</literal> into a vector of strings at the points given by the
+    indices in <literal>ind</literal> (after each characters pointed to by the
+    index in ind).</para>
+
+    <para><literal>strsplit(str)</literal> returns same thing as
+    <literal>strsplit(str,1:length(str)-1).</literal></para>
+
+    <para><literal>strsplit(str, regexp_pattern, limit)</literal> returns an
+    column vector of strings, each of which is a substring of str formed by
+    splitting it on boundaries formed by the case-sensitive regular expression
+    pattern.</para>
+
+    <para>If there are n occurrences of pattern , the returned array will
+    contain n+1 items.</para>
+
+    <para>For example, if there is no occurrence of pattern , an array with
+    only one element will be returned. Of course, this is also true if str is
+    empty.</para>
+
+    <para>If limit is set, the returned array will contain a maximum of limit
+    elements with the last element containing the whole rest of string.</para>
+
+    <para><literal>strsplit(str, matrix_of_strings, limit)</literal> , str is
+    splitted on any of elements. It allows to split on different separators
+    for users without regex knowledge.</para>
+
+    <para>If <literal>strsplit()</literal> is called with a second output
+    argument, the column vector of the matched separators is returned.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    S='strsplit splits a string into a vector of strings';
-    strsplit(S,[15 25 30])
-    ind=strindex(S,' ')
-  ]]></programlisting>
+
+    <programlisting role="example"><![CDATA[ 
+S='strsplit splits a string into a vector of strings';
+strsplit(S,[15 25 30])
+ind=strindex(S,' ')
+    
+[r_1, r_2] = strsplit("abcd")
+    
+[r_1, r_2] = strsplit("root:x:0:0:root:/root:/bin/bash",":",5)
+    
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo","/:|,/")
+   
+[r_1, r_2] = strsplit("abc,def:ijk,:lmo",[":";","])    
+    
+strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/") 
+
+[r_1, r_2] = strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/",2) 
+ ]]></programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="strcat"> strcat</link>
-      </member>
-      <member>
-        <link linkend="tokens"> tokens</link>
-      </member>
+      <member><link linkend="strcat"> strcat</link></member>
+
+      <member><link linkend="tokens"> tokens</link></member>
+
+      <member><link linkend="regexp"> regexp</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <variablelist>
       <varlistentry>
-        <term>S. Steer</term>
+        <term>S. Steer, Allan CORNET</term>
+
         <listitem>
-          <para>
-     INRIA
-    </para>
+          <para>INRIA, DIGITEO</para>
         </listitem>
       </varlistentry>
     </variablelist>

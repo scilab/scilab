@@ -29,7 +29,7 @@
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>: <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
+          <para> <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal></para>
           <variablelist>
             <varlistentry>
               <term>typ_i</term>
@@ -117,13 +117,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 labels=["magnitude";"frequency";"phase    "];
 [ok,mag,freq,ph]=getvalue("define sine signal",labels,...
      list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

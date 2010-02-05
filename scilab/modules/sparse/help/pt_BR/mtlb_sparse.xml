@@ -76,12 +76,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X=sparse(rand(2,2)); Y=mtlb_sparse(X);
 Y, full(Y), [ij,v,mn]=spget(Y)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

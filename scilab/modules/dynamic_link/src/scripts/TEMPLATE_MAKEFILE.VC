@@ -17,6 +17,7 @@ OBJS = __OBJS__
 OBJS_WITH_PATH = __OBJS_WITH_PATH__
 # ------------------------------------------------------
 # added libraries
+FORTRAN_RUNTIME_LIBRARIES = __FORTRAN_RUNTIME__
 OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
 !include $(SCIDIR1)\modules\dynamic_link\src\scripts\Makefile.incl.mak

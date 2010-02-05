@@ -15,22 +15,22 @@
 #ifndef  __GW_INTERPOLATION_H__
 #define __GW_INTERPOLATION_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_interpolation.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_interpolation(void);
+INTERPOLATION_IMPEXP int gw_interpolation(void);
 /*--------------------------------------------------------------------------*/
-int intsplin(char *fname,unsigned long fname_len); 
-int intlsq_splin(char *fname,unsigned long fname_len);
-int intinterp1(char *fname,unsigned long fname_len); 
-int intlinear_interpn(char *fname,unsigned long fname_len);
-int intsplin2d(char *fname,unsigned long fname_len); 
-int intinterp2d(char *fname,unsigned long fname_len); 
-int intcshep2d(char *fname,unsigned long fname_len); 
-int inteval_cshep2d(char *fname,unsigned long fname_len);
-int intsplin3d(char *fname,unsigned long fname_len); 
-int intinterp3d(char *fname,unsigned long fname_len); 
-int intbsplin3val(char *fname,unsigned long fname_len) ;
+INTERPOLATION_IMPEXP int intsplin(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intlsq_splin(char *fname,unsigned long fname_len);
+INTERPOLATION_IMPEXP int intinterp1(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intlinear_interpn(char *fname,unsigned long fname_len);
+INTERPOLATION_IMPEXP int intsplin2d(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intinterp2d(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intcshep2d(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int inteval_cshep2d(char *fname,unsigned long fname_len);
+INTERPOLATION_IMPEXP int intsplin3d(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intinterp3d(char *fname,unsigned long fname_len); 
+INTERPOLATION_IMPEXP int intbsplin3val(char *fname,unsigned long fname_len) ;
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_INTERPOLATION_H__ */
 /*--------------------------------------------------------------------------*/

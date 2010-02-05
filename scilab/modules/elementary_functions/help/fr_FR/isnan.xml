@@ -50,9 +50,9 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 isnan([1 0.01 -%nan %inf-%inf])
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

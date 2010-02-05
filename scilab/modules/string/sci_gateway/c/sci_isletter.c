@@ -22,6 +22,7 @@
 #include "freeArrayOfString.h"
 #include "isletter.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 int sci_isletter(char *fname,unsigned long fname_len)
 {
@@ -35,8 +36,10 @@ int sci_isletter(char *fname,unsigned long fname_len)
 	{
 		char **Input_StringMatrix = NULL;
 		BOOL *values = NULL;
+		int sizeValues = 0;
 		int Row_Num = 0,Col_Num = 0;
 		int mn = 0; /* Row_Num * Col_Num */
+		wchar_t *wcInput = NULL;
 
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
 		mn = Row_Num * Col_Num;
@@ -48,12 +51,22 @@ int sci_isletter(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		values = isletter(Input_StringMatrix[0]);
+		wcInput = to_wide_string(Input_StringMatrix[0]);
+		if (wcInput)
+		{
+			values = isletterW(wcInput, &sizeValues);
+			FREE(wcInput);
+			wcInput = NULL;
+		}
+		else
+		{
+			values = isletter(Input_StringMatrix[0], &sizeValues);
+		}
 
 		if (values)
 		{
 			int m1 = 1;
-			int n1 = (int)strlen(Input_StringMatrix[0]);
+			int n1 = sizeValues;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &values);
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();

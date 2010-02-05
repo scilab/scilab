@@ -47,7 +47,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 driver("Pos")
 xinit("foo.ps")
 plot2d()

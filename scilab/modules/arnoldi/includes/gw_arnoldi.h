@@ -14,17 +14,17 @@
 #ifndef __GW_ARNOLDI_H__
 #define __GW_ARNOLDI_H__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_arnoldi.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_arnoldi(void);
+ARNOLDI_IMPEXP int gw_arnoldi(void);
 /*--------------------------------------------------------------------------*/
-int C2F(intdsaupd)(char *fname,unsigned long fname_len);
-int C2F(intdnaupd)(char *fname,unsigned long fname_len);
-int C2F(intznaupd)(char *fname,unsigned long fname_len);
-int C2F(intdseupd)(char *fname,unsigned long fname_len);
-int C2F(intdneupd)(char *fname,unsigned long fname_len);
-int C2F(intzneupd)(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dsaupd(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dnaupd(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_znaupd(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dseupd(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dneupd(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_zneupd(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_ARNOLDI_H__ */
 /*--------------------------------------------------------------------------*/

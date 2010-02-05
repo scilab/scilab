@@ -29,7 +29,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time</para>
+          <para> <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,13 @@
       <varlistentry>
         <term>K</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (controller)</para>
+          <para> <literal>syslin</literal> list (controller)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>J</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (extended controller)</para>
+          <para> <literal>syslin</literal> list (extended controller)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -82,12 +82,12 @@
     <para>
     The closed loop feedback system <literal> Cl: v -&gt;y</literal> with
     (negative) feedback <literal>K</literal> (i.e. <literal>y = P u, u = v - K y</literal>, or  </para>
-    <programlisting><![CDATA[
-       xdot = A x + B u, 
-       y = C x + D u, 
-       zdot = (A + Kf C) z - Kf y + B u, 
-       u = v -F z
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+xdot = A x + B u, 
+   y = C x + D u, 
+zdot = (A + Kf C) z - Kf y + B u, 
+   u = v -F z
+ ]]></programlisting>
     <para>) is given by <literal>Cl = P/.(-K)</literal></para>
     <para>
     The poles of <literal>Cl</literal> (<literal> spec(cl('A')) </literal>) are located at the eigenvalues of <literal>A+B*Kc</literal>
@@ -106,8 +106,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
 Kc=-ppol(A,B,[-1,-1,-1,-1]);  //Controller gain
 Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';    //Observer gain
@@ -117,8 +116,7 @@ Q=ssrand(nu,ny,3);Q('A')=Q('A')-(maxi(real(spec(Q('A'))))+0.5)*eye(Q('A'))
 //Q is a stable parameter
 K=lft(J,r,Q);
 spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

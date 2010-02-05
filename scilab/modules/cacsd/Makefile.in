@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,28 +56,28 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscicacsd_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/cacsd
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -106,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicacsd_la_etcdir)" \
 	"$(DESTDIR)$(libscicacsd_la_rootdir)" \
-	"$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscicacsd_la_includedir)"
+	"$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/mexlib/libmat.la \
@@ -119,30 +117,25 @@ libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
-	libscicacsd_la-hhdml.lo libscicacsd_la-tild.lo \
-	libscicacsd_la-degl2.lo libscicacsd_la-dqrdc.lo \
+	libscicacsd_la-tild.lo libscicacsd_la-degl2.lo \
 	libscicacsd_la-qvalz.lo libscicacsd_la-dfrmg.lo \
 	libscicacsd_la-hessl2.lo libscicacsd_la-rtitr.lo \
 	libscicacsd_la-watfac.lo libscicacsd_la-sszer.lo \
 	libscicacsd_la-mzdivq.lo libscicacsd_la-expan.lo \
 	libscicacsd_la-optml2.lo libscicacsd_la-wdegre.lo \
-	libscicacsd_la-phi.lo libscicacsd_la-dgeco.lo \
-	libscicacsd_la-ricd.lo libscicacsd_la-shrslv.lo \
-	libscicacsd_la-qhesz.lo libscicacsd_la-rilac.lo \
-	libscicacsd_la-scaleg.lo libscicacsd_la-arl2.lo \
-	libscicacsd_la-wesidu.lo libscicacsd_la-dzdivq.lo \
-	libscicacsd_la-arl2a.lo libscicacsd_la-wgeco.lo \
+	libscicacsd_la-phi.lo libscicacsd_la-ricd.lo \
+	libscicacsd_la-shrslv.lo libscicacsd_la-qhesz.lo \
+	libscicacsd_la-rilac.lo libscicacsd_la-scaleg.lo \
+	libscicacsd_la-arl2.lo libscicacsd_la-wesidu.lo \
+	libscicacsd_la-dzdivq.lo libscicacsd_la-arl2a.lo \
 	libscicacsd_la-lq.lo libscicacsd_la-outl2.lo \
 	libscicacsd_la-dhetr.lo libscicacsd_la-domout.lo \
 	libscicacsd_la-rootgp.lo libscicacsd_la-feq.lo \
-	libscicacsd_la-dgedi.lo libscicacsd_la-fout.lo \
-	libscicacsd_la-deg1l2.lo libscicacsd_la-modul.lo \
-	libscicacsd_la-scapol.lo libscicacsd_la-wgesl.lo \
+	libscicacsd_la-fout.lo libscicacsd_la-deg1l2.lo \
+	libscicacsd_la-modul.lo libscicacsd_la-scapol.lo \
 	libscicacsd_la-dlslv.lo libscicacsd_la-giv.lo \
-	libscicacsd_la-dqrsl.lo libscicacsd_la-storl2.lo \
-	libscicacsd_la-dqrsm.lo libscicacsd_la-calsca.lo \
-	libscicacsd_la-qitz.lo libscicacsd_la-front.lo \
-	libscicacsd_la-wgefa.lo
+	libscicacsd_la-storl2.lo libscicacsd_la-calsca.lo \
+	libscicacsd_la-qitz.lo libscicacsd_la-front.lo
 am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-tb01wd.lo libscicacsd_la-ib01py.lo \
 	libscicacsd_la-mb01rx.lo libscicacsd_la-ib01md.lo \
@@ -195,7 +188,7 @@ am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-ereduc.lo libscicacsd_la-fstair.lo \
 	libscicacsd_la-inva.lo libscicacsd_la-polmc.lo \
 	libscicacsd_la-ssxmc.lo libscicacsd_la-ZB03OD.lo \
-	libscicacsd_la-riccpack.lo
+	libscicacsd_la-riccpack.lo libscicacsd_la-Ex-schur.lo
 am__objects_3 = libscicacsd_la-sci_f_hinf.lo \
 	libscicacsd_la-sci_f_zrankqr.lo libscicacsd_la-sci_f_tzer.lo \
 	libscicacsd_la-sci_f_residu.lo libscicacsd_la-sci_f_sylv.lo \
@@ -249,7 +242,6 @@ SOURCES = $(libscicacsd_la_SOURCES)
 DIST_SOURCES = $(libscicacsd_la_SOURCES)
 DATA = $(libscicacsd_la_etc_DATA) $(libscicacsd_la_root_DATA) \
 	$(libscicacsd_la_sci_gateway_DATA)
-HEADERS = $(libscicacsd_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -257,6 +249,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -265,9 +258,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -328,11 +324,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -392,24 +391,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -472,7 +473,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -593,15 +593,14 @@ src/slicot/inva.f \
 src/slicot/polmc.f \
 src/slicot/ssxmc.f \
 src/slicot/ZB03OD.f \
-src/slicot/riccpack.f
+src/slicot/riccpack.f \
+src/slicot/Ex-schur.f
 
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
-src/fortran/hhdml.f \
 src/fortran/tild.f \
 src/fortran/degl2.f \
-src/fortran/dqrdc.f \
 src/fortran/qvalz.f \
 src/fortran/dfrmg.f \
 src/fortran/hessl2.f \
@@ -613,7 +612,6 @@ src/fortran/expan.f \
 src/fortran/optml2.f \
 src/fortran/wdegre.f \
 src/fortran/phi.f \
-src/fortran/dgeco.f \
 src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
@@ -623,28 +621,22 @@ src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
 src/fortran/arl2a.f \
-src/fortran/wgeco.f \
 src/fortran/lq.f \
 src/fortran/outl2.f \
 src/fortran/dhetr.f \
 src/fortran/domout.f \
 src/fortran/rootgp.f \
 src/fortran/feq.f \
-src/fortran/dgedi.f \
 src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/wgesl.f \
 src/fortran/dlslv.f \
 src/fortran/giv.f \
-src/fortran/dqrsl.f \
 src/fortran/storl2.f \
-src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
-src/fortran/front.f \
-src/fortran/wgefa.f
+src/fortran/front.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \
 sci_gateway/c/sci_gspec.c \
@@ -723,15 +715,6 @@ libscicacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 ####�cacsd : gateway declaration ####
 libscicacsd_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicacsd_la_sci_gateway_DATA = sci_gateway/cacsd_gateway.xml
-
-####�cacsd : include files ####
-libscicacsd_la_includedir = $(pkgincludedir)/cacsd
-libscicacsd_la_include_HEADERS = includes/gw_cacsd0.h \
-includes/gw_cacsd1.h \
-includes/gw_cacsd2.h \
-includes/gw_cacsd3.h \
-includes/gw_slicot.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1058,17 +1041,11 @@ libscicacsd_la-jacl2.lo: src/fortran/jacl2.f
 libscicacsd_la-onface.lo: src/fortran/onface.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
 
-libscicacsd_la-hhdml.lo: src/fortran/hhdml.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-hhdml.lo `test -f 'src/fortran/hhdml.f' || echo '$(srcdir)/'`src/fortran/hhdml.f
-
 libscicacsd_la-tild.lo: src/fortran/tild.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
 
 libscicacsd_la-degl2.lo: src/fortran/degl2.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
-
-libscicacsd_la-dqrdc.lo: src/fortran/dqrdc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrdc.lo `test -f 'src/fortran/dqrdc.f' || echo '$(srcdir)/'`src/fortran/dqrdc.f
 
 libscicacsd_la-qvalz.lo: src/fortran/qvalz.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
@@ -1103,9 +1080,6 @@ libscicacsd_la-wdegre.lo: src/fortran/wdegre.f
 libscicacsd_la-phi.lo: src/fortran/phi.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
 
-libscicacsd_la-dgeco.lo: src/fortran/dgeco.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dgeco.lo `test -f 'src/fortran/dgeco.f' || echo '$(srcdir)/'`src/fortran/dgeco.f
-
 libscicacsd_la-ricd.lo: src/fortran/ricd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
 
@@ -1133,9 +1107,6 @@ libscicacsd_la-dzdivq.lo: src/fortran/dzdivq.f
 libscicacsd_la-arl2a.lo: src/fortran/arl2a.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
 
-libscicacsd_la-wgeco.lo: src/fortran/wgeco.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgeco.lo `test -f 'src/fortran/wgeco.f' || echo '$(srcdir)/'`src/fortran/wgeco.f
-
 libscicacsd_la-lq.lo: src/fortran/lq.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
 
@@ -1154,9 +1125,6 @@ libscicacsd_la-rootgp.lo: src/fortran/rootgp.f
 libscicacsd_la-feq.lo: src/fortran/feq.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
 
-libscicacsd_la-dgedi.lo: src/fortran/dgedi.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dgedi.lo `test -f 'src/fortran/dgedi.f' || echo '$(srcdir)/'`src/fortran/dgedi.f
-
 libscicacsd_la-fout.lo: src/fortran/fout.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
 
@@ -1169,23 +1137,14 @@ libscicacsd_la-modul.lo: src/fortran/modul.f
 libscicacsd_la-scapol.lo: src/fortran/scapol.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
 
-libscicacsd_la-wgesl.lo: src/fortran/wgesl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgesl.lo `test -f 'src/fortran/wgesl.f' || echo '$(srcdir)/'`src/fortran/wgesl.f
-
 libscicacsd_la-dlslv.lo: src/fortran/dlslv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
 
 libscicacsd_la-giv.lo: src/fortran/giv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
 
-libscicacsd_la-dqrsl.lo: src/fortran/dqrsl.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrsl.lo `test -f 'src/fortran/dqrsl.f' || echo '$(srcdir)/'`src/fortran/dqrsl.f
-
 libscicacsd_la-storl2.lo: src/fortran/storl2.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
-
-libscicacsd_la-dqrsm.lo: src/fortran/dqrsm.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrsm.lo `test -f 'src/fortran/dqrsm.f' || echo '$(srcdir)/'`src/fortran/dqrsm.f
 
 libscicacsd_la-calsca.lo: src/fortran/calsca.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
@@ -1195,9 +1154,6 @@ libscicacsd_la-qitz.lo: src/fortran/qitz.f
 
 libscicacsd_la-front.lo: src/fortran/front.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
-
-libscicacsd_la-wgefa.lo: src/fortran/wgefa.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgefa.lo `test -f 'src/fortran/wgefa.f' || echo '$(srcdir)/'`src/fortran/wgefa.f
 
 libscicacsd_la-sb04pd.lo: src/slicot/sb04pd.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f
@@ -1514,6 +1470,9 @@ libscicacsd_la-ZB03OD.lo: src/slicot/ZB03OD.f
 libscicacsd_la-riccpack.lo: src/slicot/riccpack.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-riccpack.lo `test -f 'src/slicot/riccpack.f' || echo '$(srcdir)/'`src/slicot/riccpack.f
 
+libscicacsd_la-Ex-schur.lo: src/slicot/Ex-schur.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
+
 libscicacsd_la-sci_f_hinf.lo: sci_gateway/fortran/sci_f_hinf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sci_f_hinf.lo `test -f 'sci_gateway/fortran/sci_f_hinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_hinf.f
 
@@ -1654,26 +1613,6 @@ uninstall-libscicacsd_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" && rm -f $$files
-install-libscicacsd_la_includeHEADERS: $(libscicacsd_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicacsd_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicacsd_la_includedir)"
-	@list='$(libscicacsd_la_include_HEADERS)'; test -n "$(libscicacsd_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscicacsd_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscicacsd_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscicacsd_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscicacsd_la_include_HEADERS)'; test -n "$(libscicacsd_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscicacsd_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscicacsd_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1760,9 +1699,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicacsd_la_etcdir)" "$(DESTDIR)$(libscicacsd_la_rootdir)" "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libscicacsd_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicacsd_la_etcdir)" "$(DESTDIR)$(libscicacsd_la_rootdir)" "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1814,7 +1753,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscicacsd_la_etcDATA \
-	install-libscicacsd_la_includeHEADERS \
 	install-libscicacsd_la_rootDATA \
 	install-libscicacsd_la_sci_gatewayDATA
 
@@ -1863,7 +1801,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscicacsd_la_etcDATA \
-	uninstall-libscicacsd_la_includeHEADERS \
 	uninstall-libscicacsd_la_rootDATA \
 	uninstall-libscicacsd_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1879,9 +1816,7 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscicacsd_la_etcDATA \
-	install-libscicacsd_la_includeHEADERS \
-	install-libscicacsd_la_rootDATA \
+	install-libscicacsd_la_etcDATA install-libscicacsd_la_rootDATA \
 	install-libscicacsd_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1889,7 +1824,6 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscicacsd_la_etcDATA \
-	uninstall-libscicacsd_la_includeHEADERS \
 	uninstall-libscicacsd_la_rootDATA \
 	uninstall-libscicacsd_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1901,10 +1835,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1927,7 +1863,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1939,7 +1875,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -2045,10 +1981,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

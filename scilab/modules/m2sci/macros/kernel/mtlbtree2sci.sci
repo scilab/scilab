@@ -7,11 +7,11 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprint)
+function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
 // Conversion of a Matlab function tree to Scilab (and code generation)
 // Input arguments:
 //  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code
-//  - prettyprint: boolean flag for pretty printed output file if TRUE
+//  - prettyprintoutput: boolean flag for pretty printed output file if TRUE
 // Output arguments:
 //  - scitree: Scilab equivalent for mtlbtree
 //  - crp: Scilab equivalent function code (function body)
@@ -43,7 +43,7 @@ m2sci_info(gettext("Conversion of M-tree..."),-1);
 // Default value
 rhs = argn(2);
 if rhs<2 then
-  prettyprint=%F
+  prettyprintoutput=%F
 end
 
 crp=""
@@ -91,8 +91,8 @@ while ninstr<=size(mtlbtree.statements)-3
   end    
   for k=1:size(scitree.statements)
     if k<size(scitree.statements)
-      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprint));  
-      crp = format_txt(crp,scitree.statements(k),prettyprint,scitree.statements(k+1));
+      crp = cat_code(crp,instruction2code(scitree.statements(k),prettyprintoutput));  
+      crp = format_txt(crp,scitree.statements(k),prettyprintoutput,scitree.statements(k+1));
     end
   end
   
@@ -105,8 +105,8 @@ while ninstr<=size(mtlbtree.statements)-3
 end
 
 if scitree.statements(1)<>list("EOL") then
-  crp = cat_code(crp,instruction2code(scitree.statements(1),prettyprint));
-  crp = format_txt(crp,scitree.statements(1),prettyprint,list("EOL"));
+  crp = cat_code(crp,instruction2code(scitree.statements(1),prettyprintoutput));
+  crp = format_txt(crp,scitree.statements(1),prettyprintoutput,list("EOL"));
 end
 
 if scitree.name<>"" then // Not a batch file

@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes;;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS"
@@ -63,7 +64,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -71,7 +72,7 @@
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
-				ModuleDefinitionFile="integer.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -147,7 +148,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -155,7 +156,7 @@
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
-				ModuleDefinitionFile="integer.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -233,15 +235,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib integer_f.lib polynomials_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
-				ModuleDefinitionFile="integer.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -323,15 +324,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n integer.dll %%f &gt;nul&#x0D;&#x0A;copy *.def integertmp.def &gt;nul&#x0D;&#x0A;copy ..\integer_header.def+integertmp.def  ..\integer.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib integer_f.lib polynomials_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
-				ModuleDefinitionFile="integer.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -563,171 +563,187 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\db2int.h"
+				RelativePath="..\..\includes\db2int.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genabs.h"
+				RelativePath="..\..\includes\def.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genadd.h"
+				RelativePath="..\..\includes\dynlib_integer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genbitops.h"
+				RelativePath="..\..\includes\genabs.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gencheck.h"
+				RelativePath="..\..\includes\genadd.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genconcatcol.h"
+				RelativePath="..\..\includes\genbitops.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genconcatrow.h"
+				RelativePath="..\..\includes\gencheck.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gencopy.h"
+				RelativePath="..\..\includes\genconcatcol.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gencuprod.h"
+				RelativePath="..\..\includes\genconcatrow.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gencusum.h"
+				RelativePath="..\..\includes\gencopy.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gendiag.h"
+				RelativePath="..\..\includes\gencuprod.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gendot.h"
+				RelativePath="..\..\includes\gencusum.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genextrac1.h"
+				RelativePath="..\..\includes\gendiag.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genextrac2.h"
+				RelativePath="..\..\includes\gendot.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genimpl.h"
+				RelativePath="..\..\includes\genextrac1.h"
 				>
 			</File>
 			<File
-				RelativePath=".\geninsert1.h"
+				RelativePath="..\..\includes\genextrac2.h"
 				>
 			</File>
 			<File
-				RelativePath=".\geninsert2.h"
+				RelativePath="..\..\includes\genimpl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genisany.h"
+				RelativePath="..\..\includes\geninsert1.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genkron.h"
+				RelativePath="..\..\includes\geninsert2.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmax2.h"
+				RelativePath="..\..\includes\genisany.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmcopy.h"
+				RelativePath="..\..\includes\genkron.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmcuprod.h"
+				RelativePath="..\..\includes\genmax2.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmcusum.h"
+				RelativePath="..\..\includes\genmcopy.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmdiag.h"
+				RelativePath="..\..\includes\genmcuprod.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmdsp.h"
+				RelativePath="..\..\includes\genmcusum.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmin2.h"
+				RelativePath="..\..\includes\genmdiag.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmmax.h"
+				RelativePath="..\..\includes\genmdsp.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmmin.h"
+				RelativePath="..\..\includes\genmin2.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmmul.h"
+				RelativePath="..\..\includes\genmmax.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmprod.h"
+				RelativePath="..\..\includes\genmmin.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmsum.h"
+				RelativePath="..\..\includes\genmmul.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genmtran.h"
+				RelativePath="..\..\includes\genmprod.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genprod.h"
+				RelativePath="..\..\includes\genmsum.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genrdiv.h"
+				RelativePath="..\..\includes\genmtran.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genscal.h"
+				RelativePath="..\..\includes\genprod.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genset.h"
+				RelativePath="..\..\includes\genrdiv.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gensubst.h"
+				RelativePath="..\..\includes\genscal.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gensum.h"
+				RelativePath="..\..\includes\genset.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gentril.h"
+				RelativePath="..\..\includes\gensubst.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gentriu.h"
+				RelativePath="..\..\includes\gensum.h"
 				>
 			</File>
 			<File
-				RelativePath=".\genvmul.h"
+				RelativePath="..\..\includes\gentril.h"
 				>
 			</File>
 			<File
-				RelativePath=".\i_nextj.h"
+				RelativePath="..\..\includes\gentriu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\genvmul.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_integer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\i_nextj.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\tpconv.h"
 				>
 			</File>
 		</Filter>
@@ -742,10 +758,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\integer_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

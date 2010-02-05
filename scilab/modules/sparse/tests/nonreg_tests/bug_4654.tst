@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Yann COLLETTE <yann.collette@scilab.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- Non-regression test for bug 4654 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4654
+//
+// <-- Short Description -->
+// max of an empty sparse matrix makes Scilab hangs
+
+[v, ij] = max(sprand(50,50,0));
+
+if v~=0 then pause,end
+if ~isempty(ij) then pause,end

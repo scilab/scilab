@@ -47,12 +47,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-n=x_choose_modeless(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
-n=x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

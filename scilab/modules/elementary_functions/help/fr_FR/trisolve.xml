@@ -49,13 +49,13 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=['x','y';'0','z'];b=['0';'1'];
 w=trisolve(A,b)
 x=5;y=2;z=4;
 evstr(w)
 inv(evstr(A))*evstr(b)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

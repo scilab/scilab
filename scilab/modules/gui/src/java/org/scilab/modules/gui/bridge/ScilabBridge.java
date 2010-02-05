@@ -35,6 +35,7 @@ import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooserBridge;
 import org.scilab.modules.gui.colorchooser.SimpleColorChooser;
 import org.scilab.modules.gui.console.Console;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.console.ScilabConsoleBridge;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
@@ -4999,6 +5000,15 @@ public class ScilabBridge {
 		ScilabMessageBoxBridge.setIcon(messageBox, name);
 	}
 
+	/**
+	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
+	 * @param messageBox the MessageBox we want to set the parent of
+	 * @param parent the tab to be set as parent
+	 */
+	public static void setParentForLocation(MessageBox messageBox, Tab parent) {
+		ScilabMessageBoxBridge.setParentForLocation(messageBox, parent);
+	}
+
 	/******************/
 	/* WaitBar Bridge */
 	/******************/
@@ -5228,5 +5238,10 @@ public class ScilabBridge {
 
 	public static SimpleTree createTree(Tree scilabTree) {
 	    return ScilabTreeBridge.createTree(scilabTree);
+	}
+
+	public static void helpOnTheKeyword(ScilabConsole console) {
+		ScilabConsoleBridge.helpOnTheKeyword(console);
+		
 	}
 }

@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - Allan CORNET - 2009
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,60 +24,103 @@
 #include "isalphanum.h"
 #include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
-int sci_isalphanum(char *fname,unsigned long fname_len)
+int sci_isalphanum(char *fname, int* _piKey)
 {
-	int Type_One = 0;
-	
+	SciErr sciErr;
+	int *piAddressVarOne = NULL;
+	int iType1 = 0;
+
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	Type_One = VarType(1);
-	if (Type_One == sci_strings)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		char **Input_StringMatrix = NULL;
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if (iType1 == sci_strings)
+	{
+		wchar_t *pStVarOne = NULL;
+		int lenStVarOne = 0;
+		int m1 = 0, n1 = 0;
 		BOOL *values = NULL;
-		int Row_Num = 0,Col_Num = 0;
-		int mn = 0; /* Row_Num * Col_Num */
+		int valuesSize = 0;
 
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-		mn = Row_Num * Col_Num;
-
-		if (mn != 1)
+		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
 		{
-			freeArrayOfString(Input_StringMatrix,mn);
-			Scierror(999,_("%s: Wrong size for input argument #%d: Single string expected.\n"),fname,1);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		values = isalphanum(Input_StringMatrix[0]);
+		if ( (m1 != n1) && (n1 != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
+
+		pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
+		if (pStVarOne == NULL)
+		{
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			return 0;
+		}
+
+		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		if(sciErr.iErr)
+		{
+			FREE(pStVarOne); pStVarOne = NULL;
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		values = isalphanumW(pStVarOne, &valuesSize);
+
+		if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 
 		if (values)
 		{
-			int m1 = 1;
-			int n1 = (int)strlen(Input_StringMatrix[0]);
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &values);
-			LhsVar(1)=Rhs+1;
-			C2F(putlhsvar)();
+			m1 = 1;
+			n1 = valuesSize;
+			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m1, n1, values);
 
-			freeArrayOfString(Input_StringMatrix,mn);
 			if (values) {FREE(values);values = NULL;}
+
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
 		}
 		else
 		{
-			/* returns [] */
-			int m1 = 0;
-			int n1 = 0;
-			int l = 0;
-			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-			LhsVar(1) = Rhs+1 ;
-			C2F(putlhsvar)();
-			freeArrayOfString(Input_StringMatrix,mn);
-			return 0;
+			if (values) {FREE(values);values = NULL;}
+			m1 = 0;
+			n1 = 0;
+
+			sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m1, n1, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
 		}
+
+		LhsVar(1) = Rhs+1;
+		C2F(putlhsvar)();
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
 	}
 	return 0;
 }

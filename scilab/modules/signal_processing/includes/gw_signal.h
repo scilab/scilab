@@ -13,19 +13,22 @@
 #ifndef __GW_SIGNAL__
 #define __GW_SIGNAL__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_signal_processing.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int gw_signal(void);
+SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-int sci_ffir(char *fname,unsigned long fname_len);
-int sci_fft(char *fname,unsigned long fname_len);
-int sci_corr(char *fname,unsigned long fname_len);
-int sci_fiir(char *fname,unsigned long fname_len);
-int sci_rpem(char *fname,unsigned long fname_len);
-int sci_amell(char *fname,unsigned long fname_len);
-int sci_delip(char *fname,unsigned long fname_len);
-int sci_remez(char *fname,unsigned long fname_len);
-int sci_syredi(char *fname,unsigned long fname_len);
+
+//YaSp
+SIGNAL_PROCESSING_IMPEXP int sci_remez(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_rpem(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_corr(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_ffir(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_fft(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_fiir(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_amell(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_delip(char *fname, int* _piKey);
+SIGNAL_PROCESSING_IMPEXP int sci_syredi(char *fname, int* _piKey);
 
 /* commented out by VL 04/03/2009 : should'nt be used outside of the module [ */
 

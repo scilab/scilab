@@ -20,8 +20,8 @@
 /*-----------------------------------------------------------------------------------*/ 
 int gw_matio(void);
 /*-----------------------------------------------------------------------------------*/ 
-#define MATIO_TAB_SIZE 5
-static gw_generic_table Tab[MATIO_TAB_SIZE]={
+static gw_generic_table Tab[] =
+{
   {sci_matfile_open,"matfile_open"},
   {sci_matfile_close,"matfile_close"},
   {sci_matfile_listvar,"matfile_listvar"},
@@ -32,8 +32,7 @@ static gw_generic_table Tab[MATIO_TAB_SIZE]={
 int gw_matio(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,MATIO_TAB_SIZE);
-
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

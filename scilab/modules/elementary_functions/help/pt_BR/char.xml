@@ -93,7 +93,8 @@ y=char(st1,st2,st3,....)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">//exemplo com uma hipermatriz de códigos ASCII :
+    <programlisting role="example"><![CDATA[ 
+//exemplo com uma hipermatriz de códigos ASCII :
 x=hypermat([4,2,3],61:84);
 y=char(x)
 size(x)
@@ -107,8 +108,7 @@ y=char(st1,st2,st3)
 size(y)
 //todos os strings são completados por "lacunas" para terem o mesmo comprimento : 6
 length(y)
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

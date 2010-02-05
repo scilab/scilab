@@ -74,10 +74,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[30 45 60 90];
 cotd(x)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

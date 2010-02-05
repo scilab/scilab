@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -20,8 +20,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_prod(char *fname, int* _piKey)
 {
-	int iRet						= 0;
-
+	SciErr sciErr;
 	int iRows						= 0;
 	int iCols						= 0;
 	int*piAddr					= NULL;
@@ -37,32 +36,28 @@ int sci_prod(char *fname, int* _piKey)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(Rhs == 2)
 	{
-		int* piAddr2 = NULL;
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getProcessMode(_piKey, 2, piAddr, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
-		}
-
-		iRet = getProcessMode(piAddr2, piAddr, &iMode);
-		if(iRet)
-		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(iRows * iCols == 0)
@@ -79,10 +74,12 @@ int sci_prod(char *fname, int* _piKey)
 			iRows = 0;
 			iCols = 0;
 		}
-		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblVal, _piKey);
-		if(iRet)
+
+		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, 1, 1, &dblVal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		LhsVar(1) = Rhs + 1;
@@ -105,36 +102,40 @@ int sci_prod(char *fname, int* _piKey)
 		iColsRet = 1;
 		break;
 	}
-	
-	
-	if(isVarComplex(piAddr))
+
+
+	if(isVarComplex(_piKey, piAddr))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		vWDmProd(iMode, pdblReal, pdblImg, iRows, iRows, iCols, pdblRealRet, pdblImgRet, 1);
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		vDmProd(iMode, pdblReal, iRows, iRows, iCols, pdblRealRet, 1);

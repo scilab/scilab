@@ -6,9 +6,9 @@
 //
 
 function[]=bike()
-xbasc();xselect()
+clf();xselect()
 rect=[0,0,10,10];
-xbasc();
+clf();
 isoview(0,11,0,7)
 //plot2d([],[],[1],"010"," ",rect);
 

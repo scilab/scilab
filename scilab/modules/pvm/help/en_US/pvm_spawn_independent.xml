@@ -68,13 +68,11 @@
     from parent environment to children tasks.  If set, the envar
     <literal>PVM_EXPORT</literal> is passed.  If <literal>PVM_EXPORT</literal> contains other names
     (separated by ':') they will be passed too.  This is useful for e.g.:</para>
-    <programlisting><![CDATA[
-
- setenv DISPLAY myworkstation:0.0
- setenv MYSTERYVAR 13
- setenv PVM_EXPORT DISPLAY:MYSTERYVAR
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+setenv DISPLAY myworkstation:0.0
+setenv MYSTERYVAR 13
+setenv PVM_EXPORT DISPLAY:MYSTERYVAR
+ ]]></programlisting>
     <para>
     The hosts on which the PVM processes are started are determined by the
      <literal>where</literal> arguments. On return the array

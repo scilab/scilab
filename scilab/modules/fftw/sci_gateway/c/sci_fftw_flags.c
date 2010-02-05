@@ -11,7 +11,6 @@
  *
  */
 #include <string.h>
-#include "sci_fftw_flags.h"
 #include "fftw_utilities.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"

@@ -43,12 +43,10 @@
     <title>Description</title>
     <para>
     Utility function: converts the system matrix:</para>
-    <programlisting><![CDATA[
-
- Sm = [-sE + A   B;
-      [    C     D]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+Sm = [-sE + A   B;
+     [    C     D]
+ ]]></programlisting>
     <para>
     to descriptor system <literal>Des=list('des',A,B,C,D,E)</literal>).</para>
   </refsection>

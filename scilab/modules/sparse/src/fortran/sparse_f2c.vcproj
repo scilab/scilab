@@ -6,6 +6,7 @@
 	ProjectGUID="{13082624-97F9-47DB-A9A1-AD7D6BF3856A}"
 	RootNamespace="sparse_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -514,10 +515,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intreadmps.c"
-				>
-			</File>
-			<File
 				RelativePath=".\iperm.c"
 				>
 			</File>
@@ -595,14 +592,6 @@
 			</File>
 			<File
 				RelativePath=".\ordmmd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\rdmps1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\rdmpsz.c"
 				>
 			</File>
 			<File
@@ -990,10 +979,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intreadmps.f"
-				>
-			</File>
-			<File
 				RelativePath=".\iperm.f"
 				>
 			</File>
@@ -1071,14 +1056,6 @@
 			</File>
 			<File
 				RelativePath=".\ordmmd.f"
-				>
-			</File>
-			<File
-				RelativePath=".\rdmps1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\rdmpsz.f"
 				>
 			</File>
 			<File

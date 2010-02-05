@@ -19,6 +19,28 @@
 #include "localization.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
+/* BLAS 1 */
+extern double F2C(dnrm2)( );
+extern double F2C(ddot)( );
+extern void F2C(dcopy)( );
+extern void F2C(daxpy)( );
+extern void F2C(dscal)( );
+
+/* BLAS 2 */
+extern void F2C(dgemv)( );
+extern void F2C(dspmv)( );
+
+/* BLAS 3 */
+extern void F2C(dgemm)( );
+
+/* LAPACK */
+extern void F2C(dgels)( );
+extern void F2C(dspgst)( );
+extern void F2C(dspev)( );
+extern void F2C(dspgv)( );
+extern void F2C(dtrcon)( );
+extern double F2C(dlamch)( );
+/*--------------------------------------------------------------------------*/
 /*
  * if itype = 1, computes C = B*A*B', otherwise, computes C = B'*A*B
  * A and B are nxn with A symmetric.

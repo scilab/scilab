@@ -84,14 +84,12 @@ RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 uigetcolor()
 [R, G, B] = uigetcolor([255 128 0])
 RBG = uigetcolor(0, 128, 255)
 RBG = uigetcolor("My color chooser", 0, 128, 255)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

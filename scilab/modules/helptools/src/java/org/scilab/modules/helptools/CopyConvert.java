@@ -620,7 +620,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 		context.setParameter(Parameter.ANTIALIAS,"true");
 		// Workaround a XEP problem. FOP 1 is OK.
 		context.setParameter(Parameter.MATHBACKGROUND,"#FFFFFF");
-		context.setParameter(Parameter.MATHSIZE,"14");
+		context.setParameter(Parameter.MATHSIZE,"18");
 
         try {
             Converter.getInstance().convert(inFile, outFile, "image/png", context);

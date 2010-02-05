@@ -104,7 +104,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       l'exécution se fait dans l'environnement courant (les variables
       créées dans la fonction sont conservées après l'exécution). Cette
       forme est plus efficace, car ainsi les instructions du script peuvent
-      être pré-compilées (voir getf, comp). Cette méthode d'exécution des
+      être pré-compilées (voir comp). Cette méthode d'exécution des
       scripts permet aussi de stocker des scripts comme des fonctions dans des
       librairies. 
     </para>
@@ -126,33 +126,37 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    // création d'un script
-    mputl('a=1;b=2',TMPDIR+'/myscript')
-    // on l'exécute
-    exec(TMPDIR+'/myscript')
-    whos -name "a "
+    <programlisting role="example"><![CDATA[ 
+// création d'un script
+mputl('a=1;b=2',TMPDIR+'/myscript')
 
-    // création d'une function
-    function y=foo(x),a=x+1;y=a^2,endfunction
-    clear a b
-    // appel à la fonction
-    foo(1)
-    // a est une variable créée dans l'environnement de la fonction foo
-    // elle est détruite à la sortie de la fonction.
-    whos -name "a "
+// on l'exécute
+exec(TMPDIR+'/myscript')
+whos -name "a "
 
-    x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
-    exec(foo)
-    // a et y ont été créées dans l'environnement courant
-    whos -name "a "
-    ]]></programlisting>
+// création d'une function
+function y=foo(x),a=x+1;y=a^2,endfunction
+clear a b
+
+// appel à la fonction
+foo(1)
+
+// a est une variable créée dans l'environnement de la fonction foo
+// elle est détruite à la sortie de la fonction.
+whos -name "a "
+
+x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
+exec(foo)
+
+// a et y ont été créées dans l'environnement courant
+whos -name "a "
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="execstr">execstr</link>

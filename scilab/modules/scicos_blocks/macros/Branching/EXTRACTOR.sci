@@ -36,7 +36,7 @@ function [x,y,typ]=EXTRACTOR(job,arg1,arg2)
     model=arg1.model;
     while %t do
       [ok,ind,exprs]=..
-	  getvalue('Set block parameters',..
+	  scicos_getvalue('Set block parameters',..
 		   ['indices to extract'],..
 		   list('vec',-1),exprs)
       if ~ok then break,end

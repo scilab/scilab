@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl,slp</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists</para>
+          <para> <literal>syslin</literal> lists</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,8 +53,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
 [Q,M]=pbig(A,0,'c');  //keeping unstable poles
 slred=projsl(sl,Q,M);spec(slred('A'))
@@ -70,8 +69,7 @@ sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
 [Q,M]=pbig(W,nk2(2)-%eps,'c');    //keeping 2 eigenvalues of W
 slr=projsl(sl,Q,M);  //reduced model
 hankelsv(slr)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

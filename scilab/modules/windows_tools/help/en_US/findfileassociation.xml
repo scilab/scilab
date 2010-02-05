@@ -28,13 +28,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  findfileassociation('.txt')
-  findfileassociation('.sce')
-  findfileassociation('.xsl')
-  findfileassociation('.toto')
-  
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+findfileassociation('.txt')
+findfileassociation('.sce')
+findfileassociation('.xsl')
+findfileassociation('.toto')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

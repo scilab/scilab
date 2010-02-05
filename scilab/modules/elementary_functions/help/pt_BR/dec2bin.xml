@@ -82,7 +82,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exemplo 1 :
+    <programlisting role="example"><![CDATA[ 
+// exemplo 1 :
 x=86;
 str=dec2bin(x)
 
@@ -96,7 +97,7 @@ str=dec2bin(x,n)
 // exemplo 3 :
 x=[12;45;135]
 z=dec2bin(x)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

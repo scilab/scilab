@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscielementary_functions_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/elementary_functions
@@ -66,20 +64,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -107,8 +105,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_etcdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_rootdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_includedir)"
+	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementary_functions_la_LIBADD =
 am_libdummy_elementary_functions_la_OBJECTS =  \
@@ -124,8 +121,7 @@ libdummy_elementary_functions_la_LINK = $(LIBTOOL) --tag=F77 \
 	$(libdummy_elementary_functions_la_FFLAGS) $(FFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 libscielementary_functions_la_DEPENDENCIES =  \
-	libdummy-elementary_functions.la \
-	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+	libdummy-elementary_functions.la
 am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-d9b0mp.lo \
 	libscielementary_functions_la-d9b1mp.lo \
@@ -211,12 +207,28 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-zunk2.lo \
 	libscielementary_functions_la-zuoik.lo \
 	libscielementary_functions_la-dlngam.lo \
-	libscielementary_functions_la-balanc.lo
+	libscielementary_functions_la-balanc.lo \
+	libscielementary_functions_la-dtensbs.lo \
+	libscielementary_functions_la-pchim.lo
 am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-wpade.lo \
 	libscielementary_functions_la-wcopy.lo \
-	libscielementary_functions_la-dgefa.lo
-am__objects_3 = libscielementary_functions_la-sci_tools.lo \
+	libscielementary_functions_la-dgefa.lo \
+	libscielementary_functions_la-dgbfa.lo \
+	libscielementary_functions_la-dgeco.lo \
+	libscielementary_functions_la-dgedi.lo \
+	libscielementary_functions_la-dqrdc.lo \
+	libscielementary_functions_la-dqrsl.lo \
+	libscielementary_functions_la-dqrsm.lo \
+	libscielementary_functions_la-hhdml.lo \
+	libscielementary_functions_la-spofa.lo \
+	libscielementary_functions_la-wgeco.lo \
+	libscielementary_functions_la-wgefa.lo \
+	libscielementary_functions_la-wgesl.lo \
+	libscielementary_functions_la-dpofa.lo \
+	libscielementary_functions_la-util.lo
+am__objects_3 = libscielementary_functions_la-balbak.lo
+am__objects_4 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
 	libscielementary_functions_la-vfinite.lo \
 	libscielementary_functions_la-cmp.lo \
@@ -264,7 +276,7 @@ am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-vmul.lo \
 	libscielementary_functions_la-add_vector.lo \
 	libscielementary_functions_la-sub_vector.lo
-am__objects_4 = libscielementary_functions_la-psi.lo \
+am__objects_5 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasum.lo \
 	libscielementary_functions_la-dexpm1.lo \
 	libscielementary_functions_la-wwdiv.lo \
@@ -390,8 +402,9 @@ am__objects_4 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rjbesl.lo \
 	libscielementary_functions_la-rkbesl.lo \
 	libscielementary_functions_la-rybesl.lo \
-	libscielementary_functions_la-old_pythag.lo
-am__objects_5 = libscielementary_functions_la-sci_matrix.lo \
+	libscielementary_functions_la-old_pythag.lo \
+	libscielementary_functions_la-sdot.lo
+am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
 	libscielementary_functions_la-sci_expm.lo \
 	libscielementary_functions_la-sci_size.lo \
@@ -438,9 +451,9 @@ am__objects_5 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_maxi.lo \
 	libscielementary_functions_la-sci_gsort.lo \
 	libscielementary_functions_la-sci_chinesehat.lo \
-	libscielementary_functions_la-sci_sort.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
-am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
+am__objects_7 = libscielementary_functions_la-sci_isequal.lo
+am__objects_8 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
 	libscielementary_functions_la-sci_f_prod.lo \
@@ -484,14 +497,11 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_chinesehat.lo \
 	libscielementary_functions_la-sci_f_exp.lo \
 	libscielementary_functions_la-sci_f_sort.lo
-am__objects_7 = libscielementary_functions_la-sortTemplate.lo \
-	libscielementary_functions_la-elem_func.lo \
-	libscielementary_functions_la-sci_isequal.lo \
-	libscielementary_functions_la-sci_cos2.lo \
-	libscielementary_functions_la-sci_sin2.lo
+am__objects_9 = libscielementary_functions_la-elem_func.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5) $(am__objects_6) $(am__objects_7)
+	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
+	$(am__objects_8) $(am__objects_9)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
 libscielementary_functions_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -534,7 +544,6 @@ DIST_SOURCES = $(libdummy_elementary_functions_la_SOURCES) \
 DATA = $(libscielementary_functions_la_etc_DATA) \
 	$(libscielementary_functions_la_root_DATA) \
 	$(libscielementary_functions_la_sci_gateway_DATA)
-HEADERS = $(libscielementary_functions_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -542,6 +551,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -550,9 +560,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -613,11 +626,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -677,24 +693,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -757,7 +775,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -825,11 +842,8 @@ src/c/sub_vector.c
 
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp \
-					src/cpp/elem_func.cpp \
-					sci_gateway/cpp/sci_isequal.cpp \
-					sci_gateway/cpp/sci_cos2.cpp \
-					sci_gateway/cpp/sci_sin2.cpp
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = \
+src/cpp/elem_func.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -916,12 +930,28 @@ src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
 src/fortran/slatec/zuoik.f \
 src/fortran/slatec/dlngam.f \
-src/fortran/slatec/balanc.f
+src/fortran/slatec/balanc.f \
+src/fortran/slatec/dtensbs.f \
+src/fortran/slatec/pchim.f
 
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
-   src/fortran/linpack/wpade.f \
-   src/fortran/linpack/wcopy.f \
-   src/fortran/linpack/dgefa.f
+	src/fortran/linpack/wpade.f \
+	src/fortran/linpack/util.f \
+	src/fortran/linpack/wcopy.f \
+	src/fortran/linpack/dgefa.f \
+	src/fortran/linpack/dgbfa.f \
+	src/fortran/linpack/dgeco.f \
+	src/fortran/linpack/dgedi.f \
+	src/fortran/linpack/dqrdc.f \
+	src/fortran/linpack/dqrsl.f \
+	src/fortran/linpack/dqrsm.f \
+	src/fortran/linpack/hhdml.f \
+	src/fortran/linpack/spofa.f \
+	src/fortran/linpack/wgeco.f \
+	src/fortran/linpack/wgefa.f \
+	src/fortran/linpack/wgesl.f \
+	src/fortran/linpack/dpofa.f \
+	src/fortran/linpack/util.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -1050,7 +1080,8 @@ src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
 src/fortran/rybesl.f \
-src/fortran/old_pythag.f
+src/fortran/old_pythag.f \
+src/fortran/sdot.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_matrix.c \
@@ -1100,7 +1131,6 @@ sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_chinesehat.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
@@ -1148,6 +1178,8 @@ sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f \
 sci_gateway/fortran/sci_f_sort.f 
 
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_isequal.cpp
+EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
@@ -1171,15 +1203,13 @@ libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_builddir)/modules/functions_manager/includes \
-	-I$(top_builddir)/modules/types/includes \
-	-I$(top_builddir)/modules/operations/includes \
-	-I$(top_builddir)/modules/abstractSyntaxTree/includes \
-	-I$(top_builddir)/modules/api_scilab/includes \
-	-I$(top_builddir)/modules/system_env/includes \
-	-I$(top_builddir)/modules/fileio/includes \
-	-I$(top_builddir)/modules/symbol/includes
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+	-I$(top_builddir)/modules/operations/includes
 
 
 # Includes need for the compilation
@@ -1192,14 +1222,12 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
-libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la \
-					$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
-
+libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 
 #### Target ######
 modulename = elementary_functions
@@ -1215,23 +1243,6 @@ libscielementary_functions_la_etc_DATA = etc/elementary_functions.quit etc/eleme
 #### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
-
-#### elementary_functions : include files ####
-libscielementary_functions_la_includedir = $(pkgincludedir)/elementary_functions
-libscielementary_functions_la_include_HEADERS = includes/sci_tools.h \
-includes/gw_elementary_functions.h \
-includes/elementary_functions.h \
-includes/xerhlt.h \
-includes/idmax.h \
-includes/idmin.h \
-includes/int2db.h \
-includes/rea2b.h \
-includes/rea2db.h \
-includes/scidcopy.h \
-includes/unsfdcopy.h \
-includes/finite.h \
-includes/vfinite.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1426,7 +1437,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumsum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_diag.Plo@am__quote@
@@ -1457,9 +1467,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_round.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_spones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
@@ -1473,7 +1481,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sinh.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sortTemplate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sub_vector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-tan.Plo@am__quote@
@@ -2170,13 +2177,6 @@ libscielementary_functions_la-sci_chinesehat.lo: sci_gateway/c/sci_chinesehat.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
 
-libscielementary_functions_la-sci_sort.lo: sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sort.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_sort.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sort.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_sort.c' object='libscielementary_functions_la-sci_sort.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_sort.lo `test -f 'sci_gateway/c/sci_sort.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sort.c
-
 libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbitwise.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequalbitwise.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Tpo -c -o libscielementary_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Tpo $(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Plo
@@ -2205,20 +2205,6 @@ libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscielementary_functions_la-sortTemplate.lo: src/cpp/sortTemplate.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sortTemplate.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sortTemplate.Tpo -c -o libscielementary_functions_la-sortTemplate.lo `test -f 'src/cpp/sortTemplate.cpp' || echo '$(srcdir)/'`src/cpp/sortTemplate.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sortTemplate.Tpo $(DEPDIR)/libscielementary_functions_la-sortTemplate.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/sortTemplate.cpp' object='libscielementary_functions_la-sortTemplate.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sortTemplate.lo `test -f 'src/cpp/sortTemplate.cpp' || echo '$(srcdir)/'`src/cpp/sortTemplate.cpp
-
-libscielementary_functions_la-elem_func.lo: src/cpp/elem_func.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-elem_func.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-elem_func.Tpo -c -o libscielementary_functions_la-elem_func.lo `test -f 'src/cpp/elem_func.cpp' || echo '$(srcdir)/'`src/cpp/elem_func.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-elem_func.Tpo $(DEPDIR)/libscielementary_functions_la-elem_func.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/elem_func.cpp' object='libscielementary_functions_la-elem_func.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-elem_func.lo `test -f 'src/cpp/elem_func.cpp' || echo '$(srcdir)/'`src/cpp/elem_func.cpp
-
 libscielementary_functions_la-sci_isequal.lo: sci_gateway/cpp/sci_isequal.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo $(DEPDIR)/libscielementary_functions_la-sci_isequal.Plo
@@ -2226,19 +2212,12 @@ libscielementary_functions_la-sci_isequal.lo: sci_gateway/cpp/sci_isequal.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp
 
-libscielementary_functions_la-sci_cos2.lo: sci_gateway/cpp/sci_cos2.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_cos2.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_cos2.Tpo -c -o libscielementary_functions_la-sci_cos2.lo `test -f 'sci_gateway/cpp/sci_cos2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cos2.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_cos2.Tpo $(DEPDIR)/libscielementary_functions_la-sci_cos2.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_cos2.cpp' object='libscielementary_functions_la-sci_cos2.lo' libtool=yes @AMDEPBACKSLASH@
+libscielementary_functions_la-elem_func.lo: src/cpp/elem_func.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-elem_func.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-elem_func.Tpo -c -o libscielementary_functions_la-elem_func.lo `test -f 'src/cpp/elem_func.cpp' || echo '$(srcdir)/'`src/cpp/elem_func.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-elem_func.Tpo $(DEPDIR)/libscielementary_functions_la-elem_func.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/elem_func.cpp' object='libscielementary_functions_la-elem_func.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_cos2.lo `test -f 'sci_gateway/cpp/sci_cos2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cos2.cpp
-
-libscielementary_functions_la-sci_sin2.lo: sci_gateway/cpp/sci_sin2.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_sin2.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sin2.Tpo -c -o libscielementary_functions_la-sci_sin2.lo `test -f 'sci_gateway/cpp/sci_sin2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin2.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_sin2.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sin2.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_sin2.cpp' object='libscielementary_functions_la-sci_sin2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_sin2.lo `test -f 'sci_gateway/cpp/sci_sin2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin2.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-elem_func.lo `test -f 'src/cpp/elem_func.cpp' || echo '$(srcdir)/'`src/cpp/elem_func.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -2507,6 +2486,12 @@ libscielementary_functions_la-dlngam.lo: src/fortran/slatec/dlngam.f
 libscielementary_functions_la-balanc.lo: src/fortran/slatec/balanc.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balanc.lo `test -f 'src/fortran/slatec/balanc.f' || echo '$(srcdir)/'`src/fortran/slatec/balanc.f
 
+libscielementary_functions_la-dtensbs.lo: src/fortran/slatec/dtensbs.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dtensbs.lo `test -f 'src/fortran/slatec/dtensbs.f' || echo '$(srcdir)/'`src/fortran/slatec/dtensbs.f
+
+libscielementary_functions_la-pchim.lo: src/fortran/slatec/pchim.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-pchim.lo `test -f 'src/fortran/slatec/pchim.f' || echo '$(srcdir)/'`src/fortran/slatec/pchim.f
+
 libscielementary_functions_la-dgesl.lo: src/fortran/linpack/dgesl.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgesl.lo `test -f 'src/fortran/linpack/dgesl.f' || echo '$(srcdir)/'`src/fortran/linpack/dgesl.f
 
@@ -2518,6 +2503,48 @@ libscielementary_functions_la-wcopy.lo: src/fortran/linpack/wcopy.f
 
 libscielementary_functions_la-dgefa.lo: src/fortran/linpack/dgefa.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgefa.lo `test -f 'src/fortran/linpack/dgefa.f' || echo '$(srcdir)/'`src/fortran/linpack/dgefa.f
+
+libscielementary_functions_la-dgbfa.lo: src/fortran/linpack/dgbfa.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgbfa.lo `test -f 'src/fortran/linpack/dgbfa.f' || echo '$(srcdir)/'`src/fortran/linpack/dgbfa.f
+
+libscielementary_functions_la-dgeco.lo: src/fortran/linpack/dgeco.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgeco.lo `test -f 'src/fortran/linpack/dgeco.f' || echo '$(srcdir)/'`src/fortran/linpack/dgeco.f
+
+libscielementary_functions_la-dgedi.lo: src/fortran/linpack/dgedi.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgedi.lo `test -f 'src/fortran/linpack/dgedi.f' || echo '$(srcdir)/'`src/fortran/linpack/dgedi.f
+
+libscielementary_functions_la-dqrdc.lo: src/fortran/linpack/dqrdc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dqrdc.lo `test -f 'src/fortran/linpack/dqrdc.f' || echo '$(srcdir)/'`src/fortran/linpack/dqrdc.f
+
+libscielementary_functions_la-dqrsl.lo: src/fortran/linpack/dqrsl.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dqrsl.lo `test -f 'src/fortran/linpack/dqrsl.f' || echo '$(srcdir)/'`src/fortran/linpack/dqrsl.f
+
+libscielementary_functions_la-dqrsm.lo: src/fortran/linpack/dqrsm.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dqrsm.lo `test -f 'src/fortran/linpack/dqrsm.f' || echo '$(srcdir)/'`src/fortran/linpack/dqrsm.f
+
+libscielementary_functions_la-hhdml.lo: src/fortran/linpack/hhdml.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-hhdml.lo `test -f 'src/fortran/linpack/hhdml.f' || echo '$(srcdir)/'`src/fortran/linpack/hhdml.f
+
+libscielementary_functions_la-spofa.lo: src/fortran/linpack/spofa.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-spofa.lo `test -f 'src/fortran/linpack/spofa.f' || echo '$(srcdir)/'`src/fortran/linpack/spofa.f
+
+libscielementary_functions_la-wgeco.lo: src/fortran/linpack/wgeco.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wgeco.lo `test -f 'src/fortran/linpack/wgeco.f' || echo '$(srcdir)/'`src/fortran/linpack/wgeco.f
+
+libscielementary_functions_la-wgefa.lo: src/fortran/linpack/wgefa.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wgefa.lo `test -f 'src/fortran/linpack/wgefa.f' || echo '$(srcdir)/'`src/fortran/linpack/wgefa.f
+
+libscielementary_functions_la-wgesl.lo: src/fortran/linpack/wgesl.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wgesl.lo `test -f 'src/fortran/linpack/wgesl.f' || echo '$(srcdir)/'`src/fortran/linpack/wgesl.f
+
+libscielementary_functions_la-dpofa.lo: src/fortran/linpack/dpofa.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dpofa.lo `test -f 'src/fortran/linpack/dpofa.f' || echo '$(srcdir)/'`src/fortran/linpack/dpofa.f
+
+libscielementary_functions_la-util.lo: src/fortran/linpack/util.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
+
+libscielementary_functions_la-balbak.lo: src/fortran/eispack/balbak.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
 
 libscielementary_functions_la-psi.lo: src/fortran/psi.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
@@ -2900,6 +2927,9 @@ libscielementary_functions_la-rybesl.lo: src/fortran/rybesl.f
 libscielementary_functions_la-old_pythag.lo: src/fortran/old_pythag.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-old_pythag.lo `test -f 'src/fortran/old_pythag.f' || echo '$(srcdir)/'`src/fortran/old_pythag.f
 
+libscielementary_functions_la-sdot.lo: src/fortran/sdot.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sdot.lo `test -f 'src/fortran/sdot.f' || echo '$(srcdir)/'`src/fortran/sdot.f
+
 libscielementary_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
 
@@ -3097,26 +3127,6 @@ uninstall-libscielementary_functions_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" && rm -f $$files
-install-libscielementary_functions_la_includeHEADERS: $(libscielementary_functions_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscielementary_functions_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_includedir)"
-	@list='$(libscielementary_functions_la_include_HEADERS)'; test -n "$(libscielementary_functions_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscielementary_functions_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscielementary_functions_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscielementary_functions_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscielementary_functions_la_include_HEADERS)'; test -n "$(libscielementary_functions_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscielementary_functions_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscielementary_functions_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -3203,9 +3213,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libscielementary_functions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -3258,7 +3268,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_includeHEADERS \
 	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA
 
@@ -3307,7 +3316,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_includeHEADERS \
 	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -3324,7 +3332,6 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_includeHEADERS \
 	install-libscielementary_functions_la_rootDATA \
 	install-libscielementary_functions_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am \
@@ -3334,13 +3341,10 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libscielementary_functions_la_etcDATA \
-	uninstall-libscielementary_functions_la_includeHEADERS \
 	uninstall-libscielementary_functions_la_rootDATA \
 	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-# Commented because of cyclic deps
-#					$(top_builddir)/modules/types/libscitypes.la
 # Commented because it is one of the first module to be compiled
 #libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
@@ -3365,10 +3369,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -3391,7 +3397,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -3403,7 +3409,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -3509,10 +3515,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

@@ -47,9 +47,9 @@ Cette fonction génére une palette si Path est une chaîne de caractères indiq
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [routines,IntFunc] = create_palette(Path)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_create_palette">
     <title>Paramètres</title>

@@ -20,8 +20,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Valid names
 %eps
 A1=123
@@ -29,7 +28,6 @@ A1=123
 My_Special_Color_Table=rand(10,3)
 //Non valid names
 //1A , b%, .C
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

@@ -22,10 +22,17 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-
+#include "localization.h"
+#include "Scierror.h"
 /*------------------------------------------------------------------------*/
 int get_auto_scale_property( sciPointObj * pobj )
 {
+	if (sciGetEntityType(pobj) != SCI_FIGURE && sciGetEntityType(pobj) != SCI_SUBWIN)
+	{
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_scale");
+		return -1 ;
+	}
+
   if ( sciGetAutoScale( pobj ) )
   {
     return sciReturnString( "on" ) ;

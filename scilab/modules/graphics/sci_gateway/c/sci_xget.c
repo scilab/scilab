@@ -16,9 +16,8 @@
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xget.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "XsetXgetParameters.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"

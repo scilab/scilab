@@ -20,13 +20,9 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-#ifdef __APPLE__
-#define _wfullpath(a,r,l)  realpath(r,a)  
-#endif
-/*--------------------------------------------------------------------------*/
 char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes)
 {
-#if defined(_MSC_VER) || defined(__APPLE__)
+#if defined(_MSC_VER)
 	char *returnedFullPath = NULL;	
 
 	wchar_t *wPath = to_wide_string((char*)_Path);
@@ -50,5 +46,44 @@ char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes)
 	return _FullPath;
 #endif
 
+}
+/*--------------------------------------------------------------------------*/
+wchar_t * get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _SizeInBytes)
+{
+	wchar_t *wcResult = NULL;
+#if defined(_MSC_VER)
+	if (_wcPath)
+	{
+		wcResult = (wchar_t *) MALLOC(sizeof(wchar_t)*_SizeInBytes);
+		if (wcResult)
+		{
+			_wfullpath(wcResult, _wcPath, _SizeInBytes );
+			wcscpy(_wcFullPath, wcResult);
+		}
+	}
+#else
+	if (_wcPath)
+	{
+		char *_Path = wide_string_to_UTF8(_wcPath);
+		if (_Path)
+		{
+			char *_FullPath = (char *) MALLOC(sizeof(char)*(_SizeInBytes));
+			if (_FullPath)
+			{
+				char *rp = realpath(_Path, _FullPath);
+				wcResult = to_wide_string(_FullPath);
+				if (wcResult)
+				{
+					wcscpy(_wcFullPath, wcResult);
+				}
+				FREE(_FullPath);
+				_FullPath = NULL;
+			}
+			FREE(_Path);
+			_Path = NULL;
+		}
+	}
+#endif
+	return wcResult;
 }
 /*--------------------------------------------------------------------------*/

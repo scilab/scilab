@@ -81,7 +81,7 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
         <term>flag=[type,box]</term>
 
         <listitem>
-          <para>: <literal>type</literal> and <literal>box</literal> have the
+          <para> <literal>type</literal> and <literal>box</literal> have the
           same meaning as in <literal>plot3d</literal>:</para>
 
           <variablelist>
@@ -269,24 +269,25 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">xset('window',20) // create a window number 20
+    <programlisting role="example"><![CDATA[ 
+xset('window',20) // create a window number 20
 t=[0:0.1:5*%pi]';
 param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
-  list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+         list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
 
-xdel(20) ;
- a=get("current_axes");//get the handle of the newly created axes
- t=[0:0.1:5*%pi]';
- param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
- a.rotation_angles=[65,75]; 
- a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
- a.thickness = 2;
- h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
- h.children(1).foreground = 3 // first curve
- curve2 = h.children(2);
- curve2.foreground = 6;
- curve2.mark_style = 2;
- </programlisting>
+xdel(20);
+a=get("current_axes");//get the handle of the newly created axes
+t=[0:0.1:5*%pi]';
+param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+a.rotation_angles=[65,75]; 
+a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+a.thickness = 2;
+h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
+h.children(1).foreground = 3 // first curve
+curve2 = h.children(2);
+curve2.foreground = 6;
+curve2.mark_style = 2;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

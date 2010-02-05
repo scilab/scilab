@@ -95,12 +95,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
     esboçada assumindo-se que é linear em um conjunto de triângulos
     construídos a partir do grid (aqui, com n1=5, n2=3):</para>
 
-    <programlisting>
-             _____________
-             | /| /| /| /|
-             |/_|/_|/_|/_| 
-             | /| /| /| /| 
-             |/_|/_|/_|/_|</programlisting>
+    <programlisting role = ""><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></programlisting>
 
     <para>A função <link linkend="colorbar">colorbar</link> pode ser utilizada
     para se visualizar a escala de cores (mas você deve saber (ou computar) os
@@ -117,7 +118,7 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo #1: esboço de 4 superfícies
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
@@ -176,8 +177,7 @@ fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, com partes abaixo de z = -0.5 e acima de z = 1 removidas")
 drawnow() ;
 xselect()
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

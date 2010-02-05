@@ -33,7 +33,7 @@ Source: modules\{#LINALG}\etc\{#LINALG}.start; DestDir: {app}\modules\{#LINALG}\
 ;
 Source: modules\{#LINALG}\help\addchapter.sce; DestDir: {app}\modules\{#LINALG}\help; Flags: recursesubdirs; Components:  {#COMPN_LINALG}
 ;
-Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
+;Source: modules\{#LINALG}\includes\*.h; DestDir: {app}\modules\{#LINALG}\includes; Components: {#COMPN_LINALG}
 ;
 Source: modules\{#LINALG}\macros\buildmacros.sce; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}
 Source: modules\{#LINALG}\macros\buildmacros.bat; DestDir: {app}\modules\{#LINALG}\macros; Components: {#COMPN_LINALG}

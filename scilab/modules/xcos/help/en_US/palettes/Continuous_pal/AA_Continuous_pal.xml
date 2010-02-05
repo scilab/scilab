@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Continuous_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Continuous_pal</refname>
+
+    <refpurpose>Continuous time systems palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/Continuous_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Continuous_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Continuous_pal">
+    <title>Description</title>
+
+    <para>The Continuous time systems palette includes basic linear blocks .</para>
+  </refsection>
+
+  <refsection id="Blocks_Continuous_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      
+	  <listitem>
+        <para>
+          <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="CLR">CLR — Continuous transfer function</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CLSS">CLSS - Continuous state-space system</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DERIV">DERIV - Derivative</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_m">INTEGRAL_m — Integration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PID">PID - PID regulator</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS — Continuous linear system with
+          jump</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TIME_DELAY">TIME_DELAY - Time delay</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — Variable
+          delay</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

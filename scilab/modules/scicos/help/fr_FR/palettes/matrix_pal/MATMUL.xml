@@ -144,11 +144,11 @@ Le bloc MATMUL fait la multiplication matricielle de ses deux entrées. Le nombr
   </refsection>
   <refsection id="Exemple_MATMUL">
     <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=[1 2 3;4 5 6]
 B=[9 8 7 6;5 4 3 2;9 7 5 3]
 y=[46 37 28 19;115 94 73 52]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Propriétéspardéfaut_MATMUL">
     <title>Propriétés par défaut</title>

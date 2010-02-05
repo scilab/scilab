@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/ 
 static int pvm_error = 0;
 /*--------------------------------------------------------------------------*/ 
-int intspvm_error_mode(char *fname,unsigned long fname_len)
+int sci_pvm_error_mode(char *fname,unsigned long fname_len)
 { 
   char *loc;
   static char stop[]="stop"; 

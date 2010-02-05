@@ -49,8 +49,6 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 
-# memory_manager
-
 #umfpack
 
 #if MPI
@@ -61,28 +59,31 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@SCICOS_TRUE@am__append_3 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@ENABLE_STATIC_TRUE@am__append_4 = $(ALL_LIBS)
+@HDF5_TRUE@am__append_3 = $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
+@HDF5_TRUE@am__append_4 = $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
+@GUI_TRUE@am__append_5 = $(GUI_LIBS)
+@GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
+@ENABLE_STATIC_TRUE@am__append_7 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -110,15 +111,15 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
-	$(OTHER_LIBS) $(EXTERNAL_LIBS)
+	$(EXTERNAL_LIBS)
 am_libscilab_cli_la_OBJECTS =
 libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
 libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 am__DEPENDENCIES_1 =
-libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
+libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(EXTERNAL_LIBS) \
+	$(am__append_5) $(am__append_6) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -157,13 +158,13 @@ DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
 	gui jvm graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \
 	data_structures mexlib differential_equations cacsd \
-	polynomials boolean double pvm io intersci metanet \
-	signal_processing call_scilab sound time sparse windows_tools \
-	functions overloading maple2scilab m2sci texmacs scipad \
-	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms hdf5 system_env abstractSyntaxTree \
-	symbol parse types scicos_blocks scicos . javasci
+	polynomials boolean double pvm io intersci signal_processing \
+	call_scilab sound time sparse windows_tools functions \
+	overloading maple2scilab m2sci texmacs development_tools \
+	compatibility_functions helptools fftw umfpack demo_tools \
+	genetic_algorithms simulated_annealing parameters matio atoms \
+	hdf5 system_env abstractSyntaxTree symbol parse types xcos \
+	xpad scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -194,6 +195,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -202,9 +204,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -265,11 +270,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -329,24 +337,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -409,7 +419,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -436,14 +445,14 @@ SUBDIRS = core operations output_stream action_binding arnoldi \
 	gui jvm graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \
 	data_structures mexlib differential_equations cacsd \
-	polynomials boolean double pvm io intersci metanet \
-	signal_processing core call_scilab interpolation sound time \
-	randlib sparse windows_tools functions overloading \
-	maple2scilab m2sci texmacs scipad development_tools \
-	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 system_env abstractSyntaxTree symbol parse types \
-	$(am__append_1) scicos . $(am__append_2)
+	polynomials boolean double pvm io intersci signal_processing \
+	core call_scilab interpolation sound time randlib sparse \
+	windows_tools functions overloading maple2scilab m2sci texmacs \
+	development_tools compatibility_functions helptools fftw \
+	umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters matio atoms hdf5 system_env abstractSyntaxTree \
+	symbol parse types xcos xpad $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -465,15 +474,20 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
-
+	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
+	$(top_builddir)/modules/xpad/libscixpad.la $(am__append_3)
+# HDF5 is here because it needs the JVM (see bug #5481)
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
-	$(top_builddir)/modules/jvm/libscijvm-disable.la
-
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(am__append_4)
+# HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
@@ -502,39 +516,44 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+	$(top_builddir)/modules/functions/libscifunctions.la
+
+
+# These libraries are loaded dynamically from Scilab.
+ENGINE_LIBS_DYNAMIC_LOAD = \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/hdf5/libscihdf5.la
-
-OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_3)
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
-# Dev in progress
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_4)
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) \
+	$(am__append_5) $(am__append_6) $(am__append_7)
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

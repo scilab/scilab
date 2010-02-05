@@ -113,7 +113,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
     dnl Test out the Java compiler with an empty class
     AC_MSG_CHECKING([to see if the java compiler works])
-    AC_JAVA_TRY_COMPILE(,,works=yes)
+    AC_JAVA_TRY_COMPILE(,,"no",works=yes)
     if test "$works" = "yes" ; then
         AC_MSG_RESULT($works)
     else
@@ -125,7 +125,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
 
 #------------------------------------------------------------------------
-# AC_JAVA_TRY_COMPILE(imports, main-body, action-if-worked, [action-if-failed])
+# AC_JAVA_TRY_COMPILE(imports, main-body, try-to-run, action-if-worked, [action-if-failed])
 #
 #	Try to compile a Java program. This works a lot like AC_TRY_COMPILE
 #	except is supports Java instead of C or C++. This macro will create
@@ -154,14 +154,29 @@ EOF
     export CLASSPATH
     cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
     if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD) ; then
-        echo "yes" >&AS_MESSAGE_LOG_FD
-        $3
+       if test "$3" = "no"; then
+           echo "yes" >&AS_MESSAGE_LOG_FD
+   		   $4
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD); then
+	           echo "yes" >&AS_MESSAGE_LOG_FD
+       		   $4
+			else
+		        echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
+				cat conftest.java >&AS_MESSAGE_LOG_FD
+        		echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
+        		m4_ifval([$5],
+        		[  $5
+        		])dnl
+			fi
+		fi
     else
         echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
         cat conftest.java >&AS_MESSAGE_LOG_FD
         echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
-        m4_ifval([$4],
-        [  $4
+        m4_ifval([$5],
+        [  $5
         ])dnl
     fi
 ])
@@ -231,7 +246,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
     AC_MSG_CHECKING([type of jvm]) 
 
     if test "x$ac_java_jvm_name" = "x" ; then
-        AC_JAVA_TRY_COMPILE([import gnu.java.io.EncodingManager;],,ac_java_jvm_name=gcj)
+        AC_JAVA_TRY_COMPILE([import gnu.java.io.EncodingManager;],,"no",ac_java_jvm_name=gcj)
     fi
 
     if test "x$ac_java_jvm_name" = "x" ; then
@@ -252,11 +267,11 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 
     # The class java.nio.charset.Charset is new to 1.4
 
-    AC_JAVA_TRY_COMPILE([import java.nio.charset.Charset;], , ac_java_jvm_version=1.4)
+    AC_JAVA_TRY_COMPILE([import java.nio.charset.Charset;], , "no", ac_java_jvm_version=1.4)
 
     # The class java.lang.StringBuilder is new to 1.5
 
-    AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , ac_java_jvm_version=1.5)
+    AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , "no", ac_java_jvm_version=1.5)
 
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
@@ -425,6 +440,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
+		  armv4l|armv5tel)
+		  machine=arm
+		  ;;
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
 		  ;;
@@ -528,7 +546,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
                 AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
-		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
+				libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -560,6 +578,32 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             fi
         fi
     fi
+
+        # Under GNU/Debian on a mipsel CPU, uname -m is still returning mips
+		# causing a confusion with mips... Therefor, I have to hardcode this 
+		# test
+		# Note that most of the code is duplicated from
+        # Sun/Blackdown 1.4 for Linux (client JVM) tests
+        F=jre/lib/mipsel/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+                D=$ac_java_jvm_dir/jre/lib/mipsel/client
+		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+			# Try the server directory
+			D=$ac_java_jvm_dir/jre/lib/mipsel/server
+		fi
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+                D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+            fi
+        fi
 
     # Generate error for unsupported JVM layout
 
@@ -760,9 +804,10 @@ AC_DEFUN([AC_JAVA_ANT], [
 
 AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 	AC_MSG_CHECKING($1)
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
@@ -770,10 +815,10 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls $jar 2>/dev/null`
+	jar_resolved=`ls -r $jar 2>/dev/null`
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-          AC_JAVA_TRY_COMPILE([import $2;], , [
+          AC_JAVA_TRY_COMPILE([import $2;], , "no", [
             AC_MSG_RESULT([$jar_resolved])
             found_jar=yes
             PACKAGE_JAR_FILE=$jar_resolved

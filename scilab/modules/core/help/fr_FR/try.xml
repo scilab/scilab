@@ -69,9 +69,11 @@ end</synopsis>
     <para>Notez également que <literal>try-catch</literal> est plus ou moins
     similaire à :</para>
 
-    <programlisting>if execstr("&lt;instructions du bloc try&gt;","errcatch")&lt;&gt;0 then
-  &lt;instructions du bloc catch&gt;
-end</programlisting>
+    <programlisting role = ""><![CDATA[ 
+if execstr("<instructions du bloc try>","errcatch")<>0 then
+  <instructions du bloc catch>
+end
+ ]]></programlisting>
 
     <para>Il utilise le même mécanisme interne que <link
     linkend="errcatch">errcatch</link>. C'est pourquoi <link
@@ -90,7 +92,8 @@ end</programlisting>
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">// premier exemple
+    <programlisting role="example"><![CDATA[ 
+// premier exemple
 file_path=TMPDIR+'/wrong'
 try
   u=mopen(file_path,'r')
@@ -124,7 +127,8 @@ endfunction
 nestedtry(1,1)
 nestedtry("une chaîne",1)
 nestedtry(1,"une chaîne")
-nestedtry("une chaîne","une chaîne") </programlisting>
+nestedtry("une chaîne","une chaîne")
+ ]]></programlisting>
   </refsection>
 
   <refsection>

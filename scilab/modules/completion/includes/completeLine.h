@@ -13,7 +13,9 @@
 #ifndef __COMPLETE_LINE_H__
 #define __COMPLETE_LINE_H__
 
+#include "dynlib_completion.h"
 #include "BOOL.h"
+
 
 /**
 * complete line with a string 
@@ -22,9 +24,10 @@
 * @param[in] file pattern
 * @param[in] default pattern
 * @param[in] string added is path or not
+* @param[in] string after caret (completion with insertion)
 * @return line assembled
 */
-char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
-				   char *defaultPattern,BOOL stringToAddIsPath);
+COMPLETION_IMPEXP char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
+				   char *defaultPattern,BOOL stringToAddIsPath, char *postCaretLine);
 
 #endif /* __COMPLETE_LINE_H__ */

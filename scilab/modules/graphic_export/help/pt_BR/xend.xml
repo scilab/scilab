@@ -44,15 +44,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 driver("Pos")
 xinit("foo.ps")
 plot2d()
 xend()
 driver("X11")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -78,15 +78,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=eye(2,2);b=ones(a);
 oldsave(TMPDIR+'/vals.dat',a,b);
 clear a
 clear b
 oldload(TMPDIR+'/vals.dat','a','b');
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -95,7 +93,7 @@ oldload(TMPDIR+'/vals.dat','a','b');
     <simplelist type="inline">
       <member><link linkend="save">save</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="readmps">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>readmps</refname>
+    <refpurpose> reads a file in MPS format</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>mps= readmps (file-name,bounds [,maxsizes]);</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>
+            a string, the name of the mps file
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bounds</term>
+        <listitem>
+          <para>
+            2-vector
+            <literal>[lowbound,upbound]</literal> , default lower and upper bounds
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>maxsizes</term>
+        <listitem>
+          <para>
+            3-vector <literal>[maxm,maxn,maxnza]</literal>
+            Maximum number of contraints and variables, maximum number of
+            nonzeros entries in the LP constraint matrix. If omitted readmps
+            reads the file once just to compute these numbers.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mps</term>
+        <listitem>
+          <para>tlist with following fields</para>
+          <variablelist>
+            <varlistentry>
+              <term>irobj</term>
+              <listitem>
+                <para>integer (index of the objective row).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>namec</term>
+              <listitem>
+                <para>character string (Name of the objective).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nameb</term>
+              <listitem>
+                <para>character string (Name of the right hand side).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>namran</term>
+              <listitem>
+                <para>character string (Name of the ranges section).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nambnd</term>
+              <listitem>
+                <para>character string (Name of the bounds section).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>name</term>
+              <listitem>
+                <para>character string (Name of the  LP problem).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rownames</term>
+              <listitem>
+                <para>
+                  character string column vector (Name of the rows).
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>colnames</term>
+              <listitem>
+                <para>
+                   character string row vector (Name of the columns).
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rowstat</term>
+              <listitem>
+                <para>integer vector,  row types:</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>1</term>
+                    <listitem>
+                      <para>row type is "="</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>2</term>
+                    <listitem>
+                      <para> row type is "&gt;="</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>3</term>
+                    <listitem>
+                      <para> row type is "&lt;="</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>4</term>
+                    <listitem>
+                      <para> objective row</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>5</term>
+                    <listitem>
+                      <para> other free row</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rowcode</term>
+              <listitem>
+                <para>
+                  real matrix <literal>[hdrowcd,lnkrow]</literal> with
+                </para>
+                <variablelist>
+                  <varlistentry>
+                    <term>hdrowcd</term>
+                    <listitem>
+                      <para>real vector (Header to the linked list of rows with the same codes).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>lnkrow</term>
+                    <listitem>
+                      <para>integer vector (Linked list of rows with the same codes).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>colcode</term>
+              <listitem>
+                <para>
+                  real matrix <literal>[hdcolcd,lnkcol]</literal> with
+                </para>
+                <variablelist>
+                  <varlistentry>
+                    <term>hdcolcd</term>
+                    <listitem>
+                      <para>integer vector (Header to the linked list of columns with the same codes).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>lnkcol</term>
+                    <listitem>
+                      <para>integer vector (Linked list of columns with the same codes).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rownmbs</term>
+              <listitem>
+                <para>integer vector (Row numbers of nonzeros in columns of matrix A.)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>colpnts</term>
+              <listitem>
+                <para>integer vector (Pointers to the beginning of columns of matrix A).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>acoeff</term>
+              <listitem>
+                <para>real vector (Array of nonzero elements for each column).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rhs</term>
+              <listitem>
+                <para>real vector ( Right hand side of the linear program).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>ranges</term>
+              <listitem>
+                <para>real vector of constraint ranges.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>bounds</term>
+              <listitem>
+                <para>
+                  real matrix <literal>[lbounds,ubounds]</literal> with
+                </para>
+                <variablelist>
+                  <varlistentry>
+                    <term>ubounds</term>
+                    <listitem>
+                      <para>full column vector of upper bounds</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>lbounds</term>
+                    <listitem>
+                      <para>full column vector of lower bounds</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>stavar</term>
+              <listitem>
+                <para>full column vector of variable status</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>0</term>
+                    <listitem>
+                      <para>standard (non negative) variable</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>1</term>
+                    <listitem>
+                      <para>upper bounded variable</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>2</term>
+                    <listitem>
+                      <para>lower bounded variable</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>3</term>
+                    <listitem>
+                      <para>lower and upper bounded variable</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>4</term>
+                    <listitem>
+                      <para>minus infinity type variable  i.e -inf&lt;x&lt;=u</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>5</term>
+                    <listitem>
+                      <para>plus infinity type variable  i.e l&lt;=x&lt; inf</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>6</term>
+                    <listitem>
+                      <para>fixed type variable  i.e l=x=u</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>-k</term>
+                    <listitem>
+                      <para>free variable</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Reads a file containing description of an LP problem
+      given  in MPS format and returns a <literal>tlist</literal>
+      which describes the problem. It is an
+      interface with the program <literal>rdmps1.f</literal> of hopdm (J. Gondzio).
+      For a description of the variables, see the file rdmps1.f.
+    </para>
+    <para>
+      MPS format is a standard ASCII medium for LP codes.
+      MPS format is described in more detail in Murtagh's book:
+    </para>
+    <para>
+      Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
+      New York, 1981.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[ 
+//Let the LP problem:
+//objective:
+//   min     XONE + 4 YTWO + 9 ZTHREE
+//constraints:
+//  LIM1:    XONE +   YTWO            < = 5
+//  LIM2:    XONE +            ZTHREE > = 10
+// MYEQN:         -   YTWO  +  ZTHREE   = 7
+//Bounds
+//  0 < = XONE < = 4
+// -1 < = YTWO < = 1
+
+//Generate MPS file 
+txt=['NAME          TESTPROB'
+     'ROWS'
+     ' N  COST'
+     ' L  LIM1'
+     ' G  LIM2'
+     ' E  MYEQN'
+     'COLUMNS'
+     '    XONE      COST                 1   LIM1                 1'
+     '    XONE      LIM2                 1'
+     '    YTWO      COST                 4   LIM1                 1'
+     '    YTWO      MYEQN               -1'
+     '    ZTHREE    COST                 9   LIM2                 1'
+     '    ZTHREE    MYEQN                1'
+     'RHS'
+     '    RHS1      LIM1                 5   LIM2                10'
+     '    RHS1      MYEQN                7'
+     'BOUNDS'
+     ' UP BND1      XONE                 4'
+     ' LO BND1      YTWO                -1'
+     ' UP BND1      YTWO                 1'
+     'ENDATA'];
+mputl(txt,TMPDIR+'/test.mps')
+//Read the MPS file
+P=readmps(TMPDIR+'/test.mps',[0 10^30])
+disp(P)
+ ]]>
+    </programlisting>
+  </refsection>
+</refentry>

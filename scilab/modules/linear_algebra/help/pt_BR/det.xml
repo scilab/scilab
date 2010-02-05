@@ -90,15 +90,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=poly(0,'x');
 det([x,1+x;2-x,x^2])
 w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros do sistema linear
 A=rand(3,3);
 det(A), prod(spec(A))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

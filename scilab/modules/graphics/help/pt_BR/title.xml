@@ -128,7 +128,8 @@ title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exibindo um título com várias propriedades
+    <programlisting role="example"><![CDATA[ 
+// exibindo um título com várias propriedades
 title('meu título');
 // mudando a cor de fonte do título
 title('meu título','color','blue');
@@ -143,8 +144,7 @@ title('meu título','rotation',90);
 
 // podemos realizar todas essas modificações apenas pela instrução abaixo:
 title('meu título','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -28,6 +28,12 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
 		return
 	end
 
+
+if rhs<3,
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fgrayplot", 3));
+end
+
+
 opts=[]
 if exists('style','local')==1 then opts=[opts,'style=style'],end
 if exists('strf','local')==1 then opts=[opts,'strf=strf'],end
@@ -35,7 +41,6 @@ if exists('rect','local')==1 then opts=[opts,'rect=rect'],end
 if exists('nax','local')==1 then opts=[opts,'nax=nax'],end
 if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
-if size(opts,2)<rhs-3 then  error('invalid named arguments'),end
 
 if type(f)==11 then comp(f),end;
 execstr('grayplot(x,y,feval(x,y,f),'+strcat(opts,',')+')')

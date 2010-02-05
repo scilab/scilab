@@ -111,9 +111,9 @@ sciGetPointerToFeature (sciPointObj * pobj)
 sciEntityType
 sciGetEntityType (sciPointObj * pobj)
 {
-  /*if (pobj != (sciPointObj *) NULL)*/
+  if (pobj != (sciPointObj *) NULL)
     return pobj->entitytype;
-  /*return (sciEntityType)-1;*/
+  return (sciEntityType)-1;
 }
 
 
@@ -181,6 +181,9 @@ sciGetCharEntityType (sciPointObj * pobj)
       break;
     case SCI_UIMENU: 
       return "uimenu";
+      break;
+    case SCI_UICONTEXTMENU: 
+      return "uicontextmenu";
       break;
     case SCI_UICONTROL: 
       return "uicontrol";

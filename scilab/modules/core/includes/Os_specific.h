@@ -24,7 +24,6 @@ void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *inam
 		   int *desc, int *ptrdesc, int *nv, char *c_cpp,
 		   int *lib_cpp, int *err);
 
-extern void C2F(userlk)(int *k);
 
 /*  "basin-n.c.X1" */
 

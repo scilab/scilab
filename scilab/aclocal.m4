@@ -13,8 +13,8 @@
 
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
-m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.65],,
-[m4_warning([this file was generated for autoconf 2.65.
+m4_if(m4_defn([AC_AUTOCONF_VERSION]), [2.64],,
+[m4_warning([this file was generated for autoconf 2.64.
 You have another version of autoconf.  It may work, but is not guaranteed to.
 If you have problems, you may need to regenerate the build system entirely.
 To do so, use the procedure documented by the package, typically `autoreconf'.])])
@@ -3116,9 +3116,9 @@ m4_include([m4/fortran.m4])
 m4_include([m4/giws.m4])
 m4_include([m4/hdf5.m4])
 m4_include([m4/intel_compiler.m4])
+m4_include([m4/java-thirdparty.m4])
 m4_include([m4/java.m4])
 m4_include([m4/lib-ld.m4])
-m4_include([m4/libs_by_debian.m4])
 m4_include([m4/libsmath.m4])
 m4_include([m4/libtool.m4])
 m4_include([m4/libxml2.m4])

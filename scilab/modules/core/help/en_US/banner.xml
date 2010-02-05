@@ -18,8 +18,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[clc();banner()
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+clc();banner()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

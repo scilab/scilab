@@ -104,10 +104,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  a=rand(100,10,'n');
-  [facpr,comprinc,lambda,tsquare] = princomp(a);
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=rand(100,10,'n');
+[facpr,comprinc,lambda,tsquare] = princomp(a);
+ ]]></programlisting>
   </refsection>
  <refsection>
     <title>See Also</title>

@@ -16,11 +16,10 @@
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xset.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "sci_demo.h"
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
@@ -176,9 +175,9 @@ int sci_xset( char *fname, unsigned long fname_len )
 
     /*special treatement for xset default and old_style off F.Leray 23.09.04 */
     /* mimic clf(gcf(),'reset') behaviour here */
-    sciXbasc();
+    sciClearFigure(sciGetCurrentFigure());
 
-		ResetFigureToDefaultValues(pfigure);
+    ResetFigureToDefaultValues(pfigure);
   }
   else if( strcmp(cstk(l1),"clipgrf") == 0 ) {
     /* special treatement for xset("cligrf") */

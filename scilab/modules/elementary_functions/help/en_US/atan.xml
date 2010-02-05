@@ -89,7 +89,7 @@ phi=atan(y,x)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // examples with the second form
 x=[1,%i,-1,%i]
 phasex=atan(imag(x),real(x))
@@ -106,7 +106,7 @@ atan(+%eps - 2*%i)
 ieee(2)
 atan(%i)
 atan(-%i)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

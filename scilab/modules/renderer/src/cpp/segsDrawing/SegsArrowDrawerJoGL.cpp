@@ -65,7 +65,7 @@ void SegsArrowDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
   }
   catch (const std::exception & e)
   {
-    sciprint(_("%s: No more memory.\n"),"SegsArrowDrawerJoGL::drawSegs");
+    sciprint(const_cast<char*>(_("%s: No more memory.\n")),"SegsArrowDrawerJoGL::drawSegs");
   }
 
   endDrawing();

@@ -234,8 +234,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //  seleção de retângulo
 clf();  // apagando/criando janela
 a=gca();a.data_bounds=[0 0;100 100];//ajustando cooredenadas do usuário
@@ -256,8 +255,7 @@ while rep(3)==-1 do // movimentação do mouse...
   r.data=[ox,oy,w,h]; //mudando a origem, largura e altura do retângulo
   first=%f;
 end
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

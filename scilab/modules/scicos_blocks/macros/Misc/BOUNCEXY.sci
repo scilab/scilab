@@ -37,7 +37,7 @@ case 'set' then
   model=arg1.model;
   dstate=model.dstate
   while %t do
-    [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=getvalue(..
+    [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['colors';
 	 'radii';

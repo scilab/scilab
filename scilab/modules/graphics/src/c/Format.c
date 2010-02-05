@@ -4,6 +4,7 @@
  * Copyright (C) 2001 - INRIA - François Delebecque
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,7 +28,12 @@
  *                : change [xmi,xmax] for pretty graduation 
  *--------------------------------------------------------------------------*/
 
+#if defined(__linux__)
+#define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
+#endif
+
 #include <stdio.h>
+#include <string.h>
 #include "math_graphics.h"
 #include "Format.h"
 #include "MALLOC.h"
@@ -37,6 +43,9 @@
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include <machine.h>
+
+#define MAX(A,B) ((A<B)?B:A)
 
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
@@ -652,7 +661,7 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   //nup = round(*xmaxv/ width2);
 	nup = floor(*xmaxv / width2 + 0.5);
   up = nup * width2;
-  
+
   if ( low > *xminv )
   { 
     nlow = floor( *xminv / width2 ) ;
@@ -678,7 +687,6 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   {
     gr[k]=gr[k-1]+width2;
   }
-  
 }
 
 
@@ -758,9 +766,18 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
   static int k, tst0;
   
   /* check if the two bounds are not too close for a correct display */
-  if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) ) 
+  if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) )
   {
     correctBounds( *xminv, *xmaxv, &xmin, &xmax ) ;    
+    /* call again the ticks with updated values. */
+    return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
+  }
+
+  // Correction of bug 4724 and 4432
+  if ( SAFE_EQUAL2( *xmaxv, *xminv, 1e-5 ) )
+  {
+    xmin = *xminv - 1e-6*MAX(MAX(fabs(*xmaxv),fabs(*xminv)),1);
+    xmax = *xmaxv + 1e-6*MAX(MAX(fabs(*xmaxv),fabs(*xminv)),1);
     /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
@@ -839,9 +856,9 @@ int TheTicks( double * xminv ,
   }
 
   C2F(theticks)(xminv, xmaxv, grads, ngrads);
-  
+
   if(*ngrads == 1 && !compNgrads)
-    {
+    { 
       /* unfortunately there is only 1 graduation (normally this case 
 	 happens when handling small intervals with huge numbers (i.e. [10^60 10^60+1]) */
       /* What I do is to enlarge this interval */
@@ -952,7 +969,7 @@ static void GradFixedlog( double minVal, double maxVal, double * outTicks, int n
 
 
 /* compute the automatic graduation of the segment [_min,_max] and store it in _grads */
-/* the number of graduation may be fixed if compNgrads is TRUE or automaticaly computed */
+/* the number of graduation may be fixed if compNgrads is TRUE or automatically computed */
 /* otherwise. */
 int GradLog( double   _min   ,
             double   _max   ,
@@ -973,6 +990,12 @@ int GradLog( double   _min   ,
   log_max =  (int) ceil(_max);
   log_min =  (int) floor(_min);
 
+  /* If _min == _max, enlarge the interval*/
+  if(log_max == log_min)
+  {
+    log_max++;
+    log_min--;
+  }
 
   size = log_max - log_min +1;
 

@@ -105,6 +105,24 @@ function test_run(varargin)
 	lhs = argn(1);
 	rhs = argn(2);
 	
+	// test type
+	type_filter  = "all_tests"; // By default, lauch nonreg tests AND unitary tests
+	skip_mat     = [];          // The list of test to skip
+	
+	// =========================================================================
+	// Print test_run help
+	// =========================================================================
+	
+	if (rhs >= 3) & (~ isempty(grep(varargin(3),"help"))) then
+		example = test_examples();
+		printf("%s\n",example);
+		return;
+	end
+	
+	// =======================================================
+	// Gestion des types de tests à lancer
+	// =======================================================
+	
 	global MACOSX;
 	global LINUX;
 	
@@ -117,75 +135,35 @@ function test_run(varargin)
 		LINUX  = %F;
 	end
 	
-	global test_list;
-	global test_count;
-	global displayed_txt;
+	global testsuite;
+	testsuite = testsuite_new();
 	
-	// options
-	
-	global check_ref;
-	global check_error_output;
-	global create_ref;
-	global launch_mode;
-	global launch_mode_arg;  // TRUE if user specify the launch mode
-	
-	launch_mode_arg = %F;
-	
-	// test type
-	test_types         = ["unit_tests","nonreg_tests"];
-	test_types_keeped  = "all_tests"; // By default, lauch nonreg tests AND unitary tests
-	
-	skip_tests         = %F; // if true, the second argument is the list of tests
-	                         // to skip instead of the list of tests to launch
-	                         // By default, the second input argument is the list
-	                         // of test to launch
-	
-	check_ref          = %T;
-	check_error_output = %T;
-	create_ref         = %F;
-	just_list_tests    = %F;
-	print_help         = %F;
-	
-	if and(getscilabmode() <> ["NW";"STD"]) then
-		launch_mode = "-nwni";
-	else
-		launch_mode = "-nw";
-	end
-	
-	test_count         = 0;
-	test_passed_count  = 0;
-	test_failed_count  = 0;
-	test_skipped_count = 0;
-	
-	displayed_txt      = '';
-	details_failed     = '';
-	
-	// =======================================================
-	// Gestion des types de tests à lancer
-	// =======================================================
-	
-	if rhs < 3 then
-		test_types_keeped = "all_tests";
-	else
+	if rhs >= 3 then
 		
-		option_mat =  varargin(3);
+		option_mat = varargin(3);
 		
-		if (or(option_mat == "unit_tests") & or(option_mat == "nonreg_tests")) ..
-			| (or(option_mat == "all_tests") ) then
-			test_types_keeped = "all_tests";
+		if (or(option_mat == "unit_tests") & or(option_mat == "nonreg_tests")) | (or(option_mat == "all_tests") ) then
+			type_filter = "all_tests";
 			
 		elseif or(option_mat == "unit_tests") then
-			test_types_keeped = "unit_tests";
+			type_filter = "unit_tests";
 			
 		elseif or(option_mat == "nonreg_tests") then
-			test_types_keeped = "nonreg_tests";
+			type_filter = "nonreg_tests";
 		end
 		
-		if or(option_mat == "skip_tests") & rhs>=2 then
-			skip_tests = %T;
+		if or(option_mat == "skip_tests") then
+			skip_mat = varargin(2);
 		end
 		
 	end
+	
+	// =======================================================
+	// Stacksize management
+	// =======================================================
+	
+	gstacksize(10000000);
+	stacksize(10000000);
 	
 	// =======================================================
 	// Gestion des tests à lancer
@@ -202,14 +180,19 @@ function test_run(varargin)
 		
 		module_list = getmodules();
 		module_list = gsort(module_list,"lr","i");
-		for k=1:size(module_list,'*')
-			test_add_module(module_list(k),test_types_keeped,[]);
+		
+		for i=1:size(module_list,"*")
+			module    = module_new();
+			module    = module_set_name(module,module_list(i))
+			module    = module_set_path(module,pathconvert(SCI+"/modules/"+module.name,%F));
+			tests     = get_tests_from_module(module,type_filter,skip_mat);
+			testsuite = testsuite_add_tests( testsuite, tests );
 		end
-	
+		
 	elseif (rhs == 1) ..
 				| ((rhs == 2) & (varargin(2)==[])) ..
 				| ((rhs == 3) & (varargin(2)==[])) ..
-				| skip_tests then
+				| ( ~ isempty(skip_mat)) then
 		
 		// One input argument
 		// test_run(<module_name>)
@@ -219,27 +202,30 @@ function test_run(varargin)
 		
 		module_mat = varargin(1);
 		
-		// Matrice of test to skip
-		if skip_tests then
-			skip_tests_mat = varargin(2);
-		else
-			skip_tests_mat = [];
-		end
-		
-		[nl,nc] = size(module_mat);
-		
 		// test_run([<module_name_1>,<module_name_2>])
 		
-		for i=1:nl
-			for j=1:nc
-				if( (with_module(module_mat(i,j))) | .. // It's a scilab internal module
-					( isdir(module_mat(i,j)) & ..       // It's a toolbox
-					  ( isdir(module_mat(i,j)+"/tests/unit_tests") | isdir(module_mat(i,j)+"/tests/nonreg_tests") ) ) ) then
-					test_add_module(module_mat(i,j),test_types_keeped,skip_tests_mat);
-				else
-					error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i,j)));
-				end
+		for i=1:size(module_mat,"*")
+			
+			module = module_new();
+			module = module_set_name(module,module_mat(i))
+			
+			 // It's a scilab internal module
+			if with_module(module.items(1)) then
+				module = module_set_path(module,pathconvert(SCI+"/modules/"+module.items(1),%F));
+				
+			// It's an external module
+			elseif isdir(module.items(1)) then
+				module = module_set_path(module,pathconvert(module.items(1),%F));
+			
+			// It's an error
+			else
+				error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i)));
 			end
+			
+			tests = get_tests_from_module(module,type_filter,skip_mat);
+			
+			testsuite = testsuite_add_tests( testsuite , tests);
+			
 		end
 		
 	elseif (rhs == 2) | (rhs == 3) then
@@ -251,196 +237,146 @@ function test_run(varargin)
 		// varargin(1) = <module_name> ==> string 1x1
 		// varargin(2) = <test_name_1> ==> mat nl x nc
 		
-		module     = varargin(1);
+		module_in  = varargin(1);
 		test_mat   = varargin(2);
 		
-		if ((or(size(module) <> [1,1])) & (test_mat <> [])) then
+		if ((or(size(module_in) <> [1,1])) & (test_mat <> [])) then
+			
 			example = test_examples();
 			err     = ["" ; msprintf(gettext("%s: Wrong size for input argument."),"test_run") ; "" ; example ];
 			printf("%s\n",err);
 			return;
 		end
 		
-		[nl,nc] = size(test_mat);
+		module = module_new();
+		module = module_set_name(module,module_in)
 		
-		for i=1:nl
-			for j=1:nc
+		// It's a scilab internal module
+		if with_module(module.items(1)) then
+			module = module_set_path(module,pathconvert(SCI+"/modules/"+module.items(1),%F));
+			
+		// It's an external module
+		elseif isdir(module.items(1)) then
+			module = module_set_path(module,pathconvert(module.items(1),%F));
+		
+		// It's an error
+		else
+			error(sprintf(gettext("%s is not an installed module or toolbox"),module.items(1)));
+		end
+		
+		for i=1:size(test_mat,"*")
+			
+			types    = ["unit_tests";"nonreg_tests"]
+			my_tests = list();
+			
+			for j=1:size(types,"*")
 				
-				if with_module(module) then
+				if (type_filter<>"all_tests") & (type_filter<>types(j)) then
+					continue;
+				end
 				
-					if (fileinfo(SCI+"/modules/"+module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
-						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
-						test_add_onetest(module,test_mat(i,j),"unit_tests");
-						
-					elseif (fileinfo(SCI+"/modules/"+module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
-						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
-						test_add_onetest(module,test_mat(i,j),"nonreg_tests");
-					else
-						error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i,j),module));
+				// Get the list of directories where search
+				
+				test_directory_path = module.path + "/tests/" + types(j);
+				for k=2:size(module.items,"*")
+					test_directory_path = test_directory_path + "/" + module.items(k);
+				end
+				
+				// The main directory doesn't exist, continue the loop
+				
+				if ~ isdir(test_directory_path) then
+					continue;
+				end
+				
+				test_main_directory = directory_new();
+				test_main_directory = directory_set_type(test_main_directory,types(j));
+				test_main_directory = directory_set_module(test_main_directory,module);
+				test_main_directory = directory_set_path(test_main_directory,test_directory_path);
+				
+				test_directories = get_directories(test_main_directory);
+				
+				for k=1:size(test_directories)
+					
+					this_directory = test_directories(k);
+					
+					test = st_new();
+					test = st_set_name(   test , test_mat(i) );
+					test = st_set_module( test , this_directory.module );
+					test = st_set_type(   test , types(j) );
+					test = st_set_path(   test , pathconvert( this_directory.path + "/" + test.name + ".tst" , %F ) );
+					
+					if ~ isempty( fileinfo(test.path) ) then
+						test = st_analyse(test);
+						my_tests($+1) = test;
 					end
 					
-				else
-					
-					if (fileinfo(module+"/tests/unit_tests/"+test_mat(i,j)+".tst")<>[]) ..
-						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="unit_tests") ) then
-						test_add_onetest(module,test_mat(i,j),"unit_tests");
-						
-					elseif (fileinfo(module+"/tests/nonreg_tests/"+test_mat(i,j)+".tst")<>[]) ..
-						& ( (test_types_keeped=="all_tests") | (test_types_keeped=="nonreg_tests") ) then
-						test_add_onetest(module,test_mat(i,j),"nonreg_tests");
-					else
-						error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" toolbox"),test_mat(i,j),module));
-					end
-				
 				end
 				
 			end
+			
+			if size(my_tests) == 0 then
+				error(sprintf(gettext("The test ""%s"" is not available from the ""%s"" module"),test_mat(i),module.name));
+			end
+			
+			testsuite = testsuite_add_tests(testsuite,my_tests);
+			
 		end
+		
 	else
 		error(msprintf(gettext('%s: Wrong number of input arguments.'),"test_run"));
 	end
 	
-	// =======================================================
+	// =========================================================================
 	// Gestion des options
-	// =======================================================
+	// =========================================================================
 	
-	if rhs == 3 then
+	if rhs >= 3 then
 		
-		option_mat =  varargin(3);
-		
-		if grep(option_mat,"no_check_ref") <> [] then
-			check_ref  = %F;
-		end
-		
-		if grep(option_mat,"no_check_error_output") <> [] then
-			check_error_output  = %F;
-		end
-		
-		if grep(option_mat,"create_ref") <> [] then
-			create_ref = %T;
-			check_ref  = %F;
-		end
+		// Mode
 		
 		if grep(option_mat,"mode_nw") <> [] then
-			launch_mode     = "-nw";
-			launch_mode_arg = %T;
+			testsuite = testsuite_set_WM(testsuite,"NW");
 		end
 		
 		if grep(option_mat,"mode_nwni") <> [] then
-			launch_mode     = "-nwni";
-			launch_mode_arg = %T;
+			testsuite = testsuite_set_WM(testsuite,"NWNI");
 		end
 		
-		if grep(option_mat,"list") <> [] then
-			just_list_tests    = %T;
+		// Reference
+		
+		if grep(option_mat,"no_check_ref") <> [] then
+			testsuite = testsuite_set_reference(testsuite,"skip")
 		end
 		
-		if grep(option_mat,"help") <> [] then
-			print_help         = %T;
+		if grep(option_mat,"create_ref") <> [] then
+			testsuite = testsuite_set_reference(testsuite,"create")
 		end
+		
+		// Error Output
+		
+		if grep(option_mat,"no_check_error_output") <> [] then
+			testsuite = testsuite_set_EO(testsuite,"skip")
+		end
+		
 	end
-
-	if print_help then
-		
-		example = test_examples();
-		printf("%s\n",example);
+	
+	// =========================================================================
+	// List test
+	// =========================================================================
+	
+	if (rhs >= 3) & (~ isempty(grep(option_mat,"list"))) then
+		testsuite_list(testsuite);
+		clearglobal testsuite;
 		return;
 	
-	elseif just_list_tests then
-		
-		// =======================================================
-		// Just list tests
-		// =======================================================
-		
-		for i=1:test_count
-			printf("   %03d - ",i);
-			printf("[%s] %s\n",test_list(i,1),test_list(i,2));
-		end
-		
+	// =========================================================================
+	// Test launch
+	// =========================================================================
+	
 	else
-		
-		// =======================================================
-		// Test launch
-		// =======================================================
-		
-		printf("   TMPDIR = %s\n",TMPDIR);
-		printf("\n");
-		
-		start_date = getdate();
-		
-		for i=1:test_count
-			
-			test_list_1 = test_list(i,1);
-			
-			// Improve the display of the module
-			if isdir(test_list_1) then
-				if part(test_list(i,1),1:length(SCI)) == SCI then
-					test_list_1 = "SCI" + part(test_list_1,length(SCI)+1:length(test_list_1));
-				elseif part(test_list(i,1),1:length(SCIHOME)) == SCIHOME then
-					test_list_1 = "SCIHOME" + part(test_list_1,length(SCIHOME)+1:length(test_list_1));
-				end
-			end
-			
-			printf("   %03d/%03d - ",i,test_count);
-			printf("[%s] %s",test_list_1,test_list(i,2));
-			for j = length(test_list(i,2) + test_list_1):50
-				printf(".");
-			end
-			
-			[status_id,status_msg,status_details] = test_run_onetest(test_list(i,1),test_list(i,2),test_list(i,3));
-			printf("%s \n",status_msg);
-			
-			// Recencement des tests
-			
-			if status_id == 0 then
-				// passed
-				test_passed_count = test_passed_count + 1;
-			
-			elseif (status_id > 0) & (status_id < 10) then
-				// failed
-				test_failed_count = test_failed_count + 1;
-				details_failed = [ details_failed ; sprintf("   TEST : [%s] %s",test_list(i,1),test_list(i,2))];
-				details_failed = [ details_failed ; sprintf("     %s",status_msg) ];
-				details_failed = [ details_failed ; status_details ];
-				details_failed = [ details_failed ; "" ];
-			
-			elseif (status_id >= 10) & (status_id < 20) then
-				// skipped
-				test_skipped_count = test_skipped_count + 1;
-			end
-		end
-		
-		end_date = getdate();
-		
-		// Summary
-		
-		if test_count<>0 then
-			test_passed_percent  = test_passed_count  / test_count * 100;
-			test_skipped_percent = test_skipped_count / test_count * 100;
-			test_failed_percent  = test_failed_count  / test_count * 100;
-		else
-			test_passed_percent  = 0;
-			test_skipped_percent = 0;
-			test_failed_percent  = 0;
-		end
-		
-		printf("\n");
-		printf("   --------------------------------------------------------------------------\n");
-		printf("   Summary\n\n");
-		printf("   tests                     %4d - 100 %% \n",test_count);
-		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
-		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
-		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
-		printf("   length                          %4.2f sec \n" ,etime(end_date,start_date));
-		printf("   --------------------------------------------------------------------------\n");
-		
-		if test_failed_count > 0 then
-			printf("   Details\n\n");
-			printf("%s\n",details_failed);
-			printf("\n");
-			printf("   --------------------------------------------------------------------------\n");
-		end
-		
+		testsuite_run(testsuite);
+		clearglobal testsuite;
+		return;
 	end
 	
 endfunction
@@ -454,60 +390,97 @@ endfunction
 // => Add them to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function test_add_module(module_mat,test_type,skip_tests_mat)
+function my_tests = get_tests_from_module(module,type_filter,skip_mat)
 	
-	if (test_type == "all_tests") | (test_type == "unit_tests") then
+	my_types = ["unit_tests","nonreg_tests"];
 	
-		if with_module(module_mat) then
-			// It's a scilab internal module
-			module_test_dir = SCI+"/modules/"+module_mat+"/tests/unit_tests";
-		else
-			// It's a toolbox
-			module_test_dir = module_mat+"/tests/unit_tests";
+	// 1st action : build the list of directories to explore
+	// test_type : {"all_tests"|"unit_tests"|"nonreg_tests"}
+	
+	// Example of a directory :
+	//   path: "/home/robert/scilab/modules/time/tests/unit_tests/date"
+	//   type: "unit_tests"
+	//   module: "time|date"
+	
+	my_directories = list();
+	
+	for i=1:size(my_types,"*")
+		
+		if (type_filter == "all_tests") | (type_filter == my_types(i)) then	
+			
+			directory = directory_new();
+			directory = directory_set_type(directory,my_types(i));
+			directory = directory_set_module(directory,module);
+			
+			directory_path = module.path+"/tests/"+my_types(i);
+			module_items   = module.items;
+			
+			for j=2:size(module_items,"*")
+				directory_path = directory_path + "/" + module_items(j);
+			end
+			
+			directory = directory_set_path(directory,directory_path);
+			
+			if isdir(directory.path) then
+				my_directories = lstcat( my_directories , get_directories(directory) );
+			end
 		end
+	end
+	
+	// 2nd action : Build the list of tests
+	// Example of a test :
+	//   name: "bug_793"
+	//   path: "/home/robert/scilab/modules/time/tests/nonreg_tests/bug_793.tst"
+	//   type: "nonreg_tests"
+	//   module: "time"
+	
+	my_tests = list();
+	
+	for i=1:length(my_directories)
 		
-		test_mat = [];
+		directory = my_directories(i);
+		tests_in  = get_tests_from_directory(directory.path);
+		tests_out = list();
 		
-		if isdir(module_test_dir) then
-			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
-		end
-		
-		nl = size(test_mat,"*");
-		
-		for i=1:nl
-			if or(skip_tests_mat == test_mat(i)) then
+		for j=1:length(tests_in)
+			test = tests_in(j);
+			if or(test.name==skip_mat) then 
 				continue;
 			end
-			test_add_onetest(module_mat,test_mat(i),"unit_tests");
+			test = st_set_type(test,directory.type);
+			test = st_set_module(test,directory.module);
+			test = st_analyse(test);
+			tests_out($+1) = test;
 		end
+		
+		my_tests = lstcat( my_tests , tests_out );
 		
 	end
 	
-	if (test_type == "all_tests") | (test_type == "nonreg_tests") then
-		
-		if with_module(module_mat) then
-			// It's a scilab internal module
-			module_test_dir = SCI+"/modules/"+module_mat+"/tests/nonreg_tests";
-		else
-			// It's a toolbox
-			module_test_dir = module_mat+"/tests/nonreg_tests";
+endfunction
+
+
+
+//-----------------------------------------------------------------------------
+// Pierre MARECHAL
+// Scilab team
+// Date : 28 août 2009
+//
+// List all test file in the directory
+//-----------------------------------------------------------------------------
+
+function tests = get_tests_from_directory(directory)
+	
+	tests = list();
+	
+	if isdir(directory) then
+		test_mat = gsort(basename(listfiles(directory+"/*.tst")),"lr","i");
+		for i=1:size(test_mat,"*")
+			this_test  = st_new();
+			this_test  = st_set_name(this_test,test_mat(i));
+			this_test  = st_set_path(this_test,pathconvert(directory)+test_mat(i)+".tst");
+			tests($+1) = this_test;
 		end
-		
-		test_mat = [];
-		
-		if isdir(module_test_dir) then
-			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
-		end
-		
-		nl = size(test_mat,"*");
-		
-		for i=1:nl
-			if or(skip_tests_mat == test_mat(i)) then
-				continue;
-			end
-			test_add_onetest(module_mat,test_mat(i),"nonreg_tests");
-		end
-		
 	end
 	
 endfunction
@@ -515,468 +488,40 @@ endfunction
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
 // Scilab team
-// Date : 28 oct. 2007
+// Date : 28 août 2009
 //
-// => Add the test <test> to the test_mat matrix
+// => Get subdirectories of a directory
+// 
+// directories is a list of "directory" object (See directory interface)
 //-----------------------------------------------------------------------------
 
-function test_add_onetest(module,test,test_type)
+function directories = get_directories(directory)
 	
-	global test_list;
-	global test_count;
+	this_directory_type   = directory.type;
 	
-	test_count = test_count + 1;
-	test_list( test_count , 1 ) = module;
-	test_list( test_count , 2 ) = test;
-	test_list( test_count , 3 ) = test_type;
+	directories           = list();
+	directories($+1)      = directory;
+	
+	items = gsort(listfiles(directory.path),"lr","i");
+	
+	for i=1:size(items,"*")
+		if isdir(pathconvert(directory.path) + items(i)) then
+			
+			new_module = module_new();
+			new_module = module_set_name( new_module , directory.module.name +  "|" + items(i) );
+			new_module = module_set_path( new_module , pathconvert(directory.path) + items(i) );
+			
+			new_dir = directory_new();
+			new_dir = directory_set_path(new_dir,pathconvert(directory.path) + items(i));
+			new_dir = directory_set_module(new_dir,new_module);
+			new_dir = directory_set_type(new_dir,directory.type) 
+			
+			directories = lstcat( directories , get_directories(new_dir) );
+		end
+	end
 	
 endfunction
 
-//-----------------------------------------------------------------------------
-// Pierre MARECHAL
-// Scilab team
-// Date : 28 oct. 2007
-//
-// => Run one test
-//-----------------------------------------------------------------------------
-
-function [status_id,status_msg,status_details] = test_run_onetest(module,test,test_type)
-	
-	status_id      = 0 ;
-	status_msg     = "passed" ;
-	status_details = "";
-	
-	global MACOSX;
-	global LINUX;
-	
-	global check_ref;
-	global create_ref;
-	global launch_mode;
-	global launch_mode_arg;
-	global check_error_output;
-	
-	// Specific parameters for each tests
-	this_check_error_output = %T;
-	this_check_ref          = %T;
-	this_use_try_catch      = %T;
-	this_use_graphics       = %F;
-	this_english_imposed    = '';
-	
-	if and(getscilabmode() <> ["NW";"STD"]) then
-		this_launch_mode = "-nwni";
-	else
-		this_launch_mode = "-nw";
-	end
-	
-	// Some definitions
-	
-	if with_module(module) then
-		// It's a scilab internal module
-		fullPath=SCI+"/modules/"+module+"/tests/"+test_type+"/"+test
-	else
-		// It's a toolbox
-		fullPath=module+"/tests/"+test_type+"/"+test
-	end
-	
-	tstfile     = pathconvert(fullPath+".tst",%f,%f);
-	diafile     = pathconvert(fullPath+".dia",%f,%f);
-	reffile     = pathconvert(fullPath+".dia.ref",%f,%f);
-	
-	// Reference file management OS by OS
-	
-	if MSDOS then
-		altreffile = [ pathconvert(fullPath+".win.dia.ref",%f,%f) ];
-	elseif MACOSX then
-		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".macosx.dia.ref",%f,%f) ];
-	elseif LINUX then
-		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".linux.dia.ref",%f,%f) ];
-	else
-		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ];
-	end
-	
-	for k=1:size(altreffile,'*')
-		if fileinfo(altreffile(k)) <> [] then
-			reffile = altreffile(k);
-		end
-	end
-	
-	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
-	tmp_diafile = pathconvert(TMPDIR+"/"+test+".dia",%f,%f);
-	tmp_resfile = pathconvert(TMPDIR+"/"+test+".res",%f,%f);
-	tmp_errfile = pathconvert(TMPDIR+"/"+test+".err",%f,%f);
-	
-	// Remove the previous tmp files
-	if fileinfo(tmp_tstfile) <> [] then
-		deletefile(tmp_tstfile)
-	end
-	
-	if fileinfo(tmp_diafile) <> [] then
-		deletefile(tmp_diafile)
-	end
-	
-	if fileinfo(tmp_resfile) <> [] then
-		deletefile(tmp_resfile)
-	end
-	
-	if fileinfo(tmp_errfile) <> [] then
-		deletefile(tmp_errfile)
-	end
-	
-	//Reset standard globals
-	rand('seed',0);
-	rand('uniform');
-	
-	// Get the tst file
-	txt = mgetl(tstfile);
-	
-	
-	// Specific parameters
-	
-	if grep(txt,"<-- INTERACTIVE TEST -->") <> [] then
-		status_msg = "skipped : interactive test";
-		status_id  = 10;
-		return;
-	end
-	
-	if grep(txt,"<-- NOT FIXED -->") <> [] then
-		status_msg = "skipped : not yet fixed";
-		status_id  = 10;
-		return;
-	end
-	
-	if grep(txt,"<-- REOPENED -->") <> [] then
-		status_msg = "skipped : Bug reopened";
-		status_id  = 10;
-		return;
-	end
-	
-	if (~MSDOS) & (grep(txt,"<-- WINDOWS ONLY -->") <> [])  then
-		status_msg = "skipped : Windows only";
-		status_id  = 10;
-		return;
-	end
-	
-	if MSDOS & (grep(txt,"<-- UNIX ONLY -->") <> [])  then
-		status_msg = "skipped : Unix only";
-		status_id  = 10;
-		return;
-	end
-	
-	if (~LINUX) & (grep(txt,"<-- LINUX ONLY -->") <> [])  then
-		status_msg = "skipped : Linux only";
-		status_id  = 10;
-		return;
-	end
-	
-	if (~MACOSX) & (grep(txt,"<-- MACOSX ONLY -->") <> [])  then
-		status_msg = "skipped : MacOSX only";
-		status_id  = 10;
-		return;
-	end
-	
-	if grep(txt,"<-- TEST WITH GRAPHIC -->") <> [] then
-		this_use_graphics = %T;
-		if launch_mode=="-nwni" then
-			status_msg = "skipped : test with graphic";
-			status_id  = 11;
-			return;
-		end
-	end
-	
-	if ((~launch_mode_arg) & (grep(txt,"<-- JVM NOT MANDATORY -->") <> [])) then
-		this_launch_mode = "-nwni";
-	end
-	
-	if launch_mode_arg then
-		this_launch_mode = launch_mode;
-	end
-	
-	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
-		this_use_try_catch = %F;
-	end
-	
-	if grep(txt,"<-- NO CHECK ERROR OUTPUT -->") <> [] then
-		this_check_error_output = %F;
-	end
-	
-	if grep(txt,"<-- NO CHECK REF -->") <> [] then
-		this_check_ref = %F;
-	end
-	
-	if grep(txt,"<-- ENGLISH IMPOSED -->") <> [] then
-		this_english_imposed = "-l en_US";
-	end
-
-	if grep(txt,"<-- FRENCH IMPOSED -->") <> [] then
-		this_english_imposed = "-l fr_FR";
-	end
-	
-	// Do some modification in tst file
-	txt = strsubst(txt,'pause,end' ,'bugmes();quit;end');
-	txt = strsubst(txt,'pause, end','bugmes();quit;end');
-	txt = strsubst(txt,'pause;end' ,'bugmes();quit;end');
-	txt = strsubst(txt,'pause; end','bugmes();quit;end');
-	txt = strsubst(txt,'-->','@#>'); //to avoid suppression of input --> with prompts
-	txt = strsubst(txt,'halt();','');
-	
-	
-	// Test header
-	
-	head = [                                                                    ...
-		"// <-- HEADER START -->";                                              ...
-		"mode(3);" ;                                                            ...
-		"lines(28,72);";                                                        ...
-		"lines(0);" ;                                                           ...
-		"function %onprompt" ;                                                           ...
-		"quit;" ;                                                           ...
-		"endfunction" ;                                                           ...
-		"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
-		"predef(''all'');" ;                                                    ...
-		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
-	]
-	
-	if this_use_try_catch then
-		head = [ head ; "try" ];
-	end
-	
-	head = [                                                                    ...
-		head ;                                                                  ...
-		"diary(''"+tmp_diafile+"'');";                                          ...
-		"write(%io(2),tmpdirToPrint);";                                         ...
-		"// <-- HEADER END -->"                                                 ...
-	];
-	
-	// Test footer
-	
-	tail = [ "// <-- FOOTER START -->" ];
-	
-	if this_use_try_catch then
-		tail = [ tail;                                                          ...
-			"catch";                                                            ...
-			"   errmsg = ""<--""+""Error on the test script file""+""-->"";";   ...
-			"   printf(""%s\n"",errmsg);";                                      ...
-			"   lasterror()";                                                   ...
-			"end";                                                              ...
-			];
-	end
-	
-	tail = [ tail; "diary(0);" ];
-	
-	if this_use_graphics then
-		tail = [ tail; "xdel(winsid());sleep(1000);" ];
-	end
-	
-	tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
-	
-	// Assembly
-	
-	txt = [head;
-		txt;
-		tail];
-	
-	// and save it in a temporary file
-	mputl(txt,tmp_tstfile);
-	
-	// Gestion de l'emplacement de bin/scilab
-	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
-		SCI_BIN = strsubst(SCI,'share/scilab','');
-	else
-		SCI_BIN = SCI;
-	end
-	
-	// Build the command to launch
-	if MSDOS then
-		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+this_launch_mode+" "+this_english_imposed+" -nb -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
-	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+this_launch_mode+" "+this_english_imposed+" -nb -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
-	end
-	
-	// Launch the test exec
-	
-	host(test_cmd);
-	
-	// First Check : error output
-	if check_error_output & this_check_error_output then
-		tmp_errfile_info = fileinfo(tmp_errfile);
-		
-		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
-			status_msg = "failed  : error_output not empty"
-			status_details = sprintf("     Check the following file : \n     - %s",tmp_errfile);
-			status_id  = 5;
-			return;
-		end
-	end
-	
-	//  Get the dia file
-	dia = mgetl(tmp_diafile);
-	
-	// To get TMPDIR value
-	tmpdir1_line = grep(dia,"TMPDIR1");
-	execstr(dia(tmpdir1_line));
-	
-	//Check for execution errors
-	if this_use_try_catch & grep(dia,"<--Error on the test script file-->")<>[] then
-		status_msg = "failed  : premature end of the test script";
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
-		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
-		status_id = 3;
-		return;
-	end
-	
-	// Remove Header and Footer
-	dia = remove_headers(dia);
-	
-	//Check for execution errors
-	dia_tmp                     = dia;
-	dia_tmp(grep(dia_tmp,"//")) = [];  // remove commented lines
-	
-	if this_use_try_catch & grep(dia_tmp,"!--error")<>[] then
-		status_msg     = "failed  : the string (!--error) has been detected";
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
-		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
-		status_id  = 1;
-		return;
-	end
-	
-	if grep(dia_tmp,"error on test")<>[] then
-		status_msg     = "failed  : one or several tests failed";
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
-		status_details = [ status_details ; sprintf("     Or launch the following command : \n     - exec %s;",tstfile) ];
-		status_id      = 2;
-		return;
-	end
-	
-	if tmpdir1_line == [] then
-		status_msg     = "failed  : the dia file is not correct";
-		status_details = sprintf("     Check the following file : \n     - %s",tmp_diafile);
-		status_id = 6;
-		return;
-	end
-	
-	// Check the reference file only if check_ref (i.e. for the whole 
-	// test sequence) is true and this_check_ref (i.e. for the specific current .tst)
-	// is true.
-	
-	if ( check_ref & this_check_ref ) then
-		if fileinfo(reffile) == [] then
-			status_msg     = "failed  : the ref file doesn''t exist";
-			status_details = "     Add or create the following file"+reffile+" file";
-			status_details = sprintf("     Add or create the following file : \n     - %s",reffile);
-			status_id      = 5;
-			return;
-		end
-	end
-	
-	// Comparaison ref <--> dia
-	
-	if ( check_ref & this_check_ref ) | create_ref then
-		
-		//  Do some modification in  dia file
-		dia(grep(dia,"exec("))                     = [];
-		dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
-		dia(grep(dia,"TMPDIR1"))                   = [];
-		dia(grep(dia,"diary(0)"))                  = [];
-		
-		dia = strsubst(dia,TMPDIR ,"TMPDIR");
-		dia = strsubst(dia,TMPDIR1,"TMPDIR");
-		
-		if MSDOS then
-			dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
-			dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
-			dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
-			dia = strsubst(dia,strsubst(TMPDIR1,"/","\"),"TMPDIR");
-			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR) ,"\","/"),"TMPDIR");
-			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR1),"\","/"),"TMPDIR");
-			dia = strsubst(dia,getshortpathname(TMPDIR) ,"TMPDIR");
-			dia = strsubst(dia,getshortpathname(TMPDIR1),"TMPDIR");
-		end
-		
-		dia = strsubst(dia,SCI,"SCI");
-	
-		if MSDOS then
-			dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
-			dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
-			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
-			dia = strsubst(dia,getshortpathname(SCI) ,"SCI");
-		end
-		
-		//suppress the prompts
-		dia = strsubst(dia,'-->','');
-		dia = strsubst(dia,'@#>','-->');
-		dia = strsubst(dia,'-1->','');
-		
-		//standardise  number display
-		
-		// strsubst(dia," .","0.");
-		// strsubst(dia,"-.","-0.")
-		// strsubst(dia,"E+","D+");
-		// strsubst(dia,"E-","D-");
-		
-		//not to change the ref files
-		dia = strsubst(dia,"bugmes();return","bugmes();quit");
-		
-		if create_ref then
-			
-			// Delete previous .dia.ref file
-			if fileinfo(reffile) <> [] then
-				deletefile(reffile)
-			end
-			
-			mputl(dia,reffile);
-			
-			status_msg = "passed : ref created";
-			status_id  = 20;
-			
-			return;
-			
-		else
-			
-			// write down the resulting dia file
-			mputl(dia,diafile);
-			
-			//Check for diff with the .ref file
-			
-			[u,ierr] = mopen(reffile,'r');
-			if ierr== 0 then //ref file exists
-				
-				ref=mgetl(u);
-				mclose(u)
-				
-				// suppress blank (diff -nw)
-				
-				dia = strsubst(dia,' ','')
-				ref = strsubst(ref,' ','')
-				
-				dia(find(dia=='')) = [];
-				ref(find(ref=='')) = [];
-				
-				dia(find(dia=='')) = [];
-				ref(find(ref=='')) = [];
-				
-				dia( find(part(dia,(1:2))=="//") ) = [];
-				ref( find(part(ref,(1:2))=="//") ) = [];
-				
-				if or(ref<>dia) then
-					if MSDOS then
-						status_msg     = "failed  : dia and ref are not equal";
-						status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
-						status_id      = 4;
-					else
-						status_msg     = "failed  : dia and ref are not equal";
-						status_details = sprintf("     Compare the following files : \n     - %s\n     - %s",diafile,reffile);
-						status_id      = 4;
-					end
-				end
-			else
-				error(sprintf(gettext("The ref file (%s) doesn''t exist"),reffile));
-			end
-		end
-		
-	end
-	
-	return;
-	
-endfunction
 
 //-----------------------------------------------------------------------------
 // Pierre MARECHAL
@@ -1044,3 +589,1091 @@ function example = test_examples()
 	example = [ example ; "" ];
 	
 endfunction
+
+// =============================================================================
+// Pierre MARECHAL
+// Scilab team
+// Date : 31 août 2009
+//
+// singletest interface
+// =============================================================================
+
+// constructor
+// -----------------------------------------------------------------------------
+
+function st = st_new()
+	
+	st = tlist([ "T_SINGLETEST"   ..
+				 "name"           ..
+				 "type"           ..
+				 "path"           ..
+				 "module"         ..
+				 "skip"           ..
+				 "content"        ..
+				 "interactive"    ..
+				 "notyetfixed"    ..
+				 "reopened"       ..
+				 "platform"       ..
+				 "language"       ..
+				 "jvm_mandatory"  ..
+				 "graphic"        ..
+				 "mode"           ..    // NW, NWNI, GUI
+				 "reference"      ..    // check, create, skip
+				 "error_output"   ..    // check, skip
+				 "try_catch"      .. 
+				 "path_dia"       ..    // diary file
+				 "path_dia_ref"   ..    // reference file
+				 "tmp_tst"        ..    // diary file
+				 "tmp_dia"        ..    // reference file
+				 "tmp_res"        ..    // diary file
+				 "tmp_err"        ..    // reference file
+				 "status"         ..    // status
+				 "cmd"            ..    // command to launch
+				 ] );
+				 
+	// Default values
+	st.skip          = %F;
+	st.interactive   = %F;
+	st.notyetfixed   = %F;
+	st.reopened      = %F;
+	st.jvm_mandatory = %T;
+	st.graphic       = %F;
+	st.mode          = "";
+	st.platform      = "all";
+	st.language      = "any";
+	st.try_catch     = %T;
+	st.error_output  = "check";
+	st.reference     = "check";
+	
+	st.path_dia      = "";
+	st.path_dia_ref  = "";
+
+	st.tmp_tst       = "";
+	st.tmp_dia       = "";
+	st.tmp_res       = "";
+	st.tmp_err       = "";
+	
+	st.cmd           = "";
+	
+	st.content       = "";
+	
+	st.status        = status_new();
+	
+endfunction
+
+// setters
+// -----------------------------------------------------------------------------
+
+function st = st_set_name(st,name)
+	
+	st.name = name;
+	
+	st.tmp_tst       = pathconvert( TMPDIR + "/" + name + ".tst" , %F);
+	st.tmp_dia       = pathconvert( TMPDIR + "/" + name + ".dia" , %F);
+	st.tmp_res       = pathconvert( TMPDIR + "/" + name + ".res" , %F);
+	st.tmp_err       = pathconvert( TMPDIR + "/" + name + ".err" , %F);
+	
+endfunction
+
+function st = st_set_type(st,sttype)
+	st.type = sttype;
+endfunction
+
+function st = st_set_path(st,path)
+	
+	st.path     = path;
+	basepath    = strsubst(path,"/\.tst$/","","r");
+	st.path_dia = basepath + ".dia";
+	
+	st.path_dia_ref = basepath + ".dia.ref";
+	
+	// Reference file management OS by OS
+	if MSDOS then
+		altreffile = [ basepath+".win.dia.ref" ];
+	elseif MACOSX then
+		altreffile = [ basepath+".unix.dia.ref" ; basepath+".macosx.dia.ref" ];
+	elseif LINUX then
+		altreffile = [ basepath+".unix.dia.ref" ; basepath+".linux.dia.ref" ];
+	else
+		altreffile = [ basepath+".unix.dia.ref" ];
+	end
+	
+	for i=1:size(altreffile,"*")
+		if ~ isempty(fileinfo(altreffile(i))) then
+			st.path_dia_ref = altreffile(i);
+		end
+	end
+	
+endfunction
+
+function st = st_set_module(st,module)
+	st.module = module;
+endfunction
+
+function st = st_set_skip(st,skip)
+	st.skip = skip;
+endfunction
+
+function st = st_set_content(st,content)
+	st.content = content;
+endfunction
+
+function st = st_set_interactive(st,interactive)
+	st.interactive = interactive;
+endfunction
+
+function st = st_set_notyetfixed(st,notyetfixed)
+	st.notyetfixed = notyetfixed;
+endfunction
+
+function st = st_set_reopened(st,reopened)
+	st.reopened = reopened;
+endfunction
+
+function st = st_set_platform(st,platform)
+	st.platform = platform;
+endfunction
+
+function st = st_set_jvm_mandatory(st,jvm_mandatory)
+	st.jvm_mandatory = jvm_mandatory;
+endfunction
+
+function st = st_set_graphic(st,graphic)
+	st.graphic = graphic;
+endfunction
+
+function st = st_set_language(st,language)
+	st.language = language;
+endfunction
+
+function st = st_set_try_catch(st,try_catch)
+	st.try_catch = try_catch;
+endfunction
+
+function st = st_set_error_output(st,error_output)
+	st.error_output = error_output;
+endfunction
+
+function st = st_set_reference(st,reference)
+	st.reference = reference;
+endfunction
+
+function st = st_set_status(st,status)
+	st.status = status;
+endfunction
+
+function st = st_set_cmd(st,cmd)
+	st.cmd = cmd;
+endfunction
+
+function st = st_set_mode(st,smode)
+	st.mode = smode;
+endfunction
+
+// show
+// -----------------------------------------------------------------------------
+
+function st_show(st)
+	
+	if st.skip           then st_skip           = "Yes"; else st_skip           = "No"; end
+	if st.interactive    then st_interactive    = "Yes"; else st_interactive    = "No"; end
+	if st.notyetfixed    then st_notyetfixed    = "Yes"; else st_notyetfixed    = "No"; end
+	if st.reopened       then st_reopened       = "Yes"; else st_reopened       = "No"; end
+	if st.jvm_mandatory  then st_jvm_mandatory  = "Yes"; else st_jvm_mandatory  = "No"; end
+	if st.graphic        then st_graphic        = "Yes"; else st_graphic        = "No"; end
+	if st.try_catch      then st_try_catch      = "Yes"; else st_try_catch      = "No"; end
+	
+	mprintf("Test :\n");
+	mprintf("  name           = %s\n"   ,st.name);
+	mprintf("  type           = %s\n"   ,st.type);
+	mprintf("  module         = %s\n"   ,st.module.name);
+	mprintf("\n");
+	
+	mprintf("Test paths :\n");
+	mprintf("  path           = %s\n"   ,st.path);
+	mprintf("  path_dia       = %s\n"   ,st.path_dia);
+	mprintf("  path_dia_ref   = %s\n"   ,st.path_dia_ref);
+	mprintf("  tmp_tst        = %s\n"   ,st.tmp_tst);
+	mprintf("  tmp_dia        = %s\n"   ,st.tmp_dia);
+	mprintf("  tmp_res        = %s\n"   ,st.tmp_res);
+	mprintf("  tmp_err        = %s\n"   ,st.tmp_err);
+	mprintf("\n");
+	
+	mprintf("Test features :\n");
+	mprintf("  skip           = %s\n"   ,st_skip);
+	mprintf("  interactive    = %s\n"   ,st_interactive);
+	mprintf("  notyetfixed    = %s\n"   ,st_notyetfixed);
+	mprintf("  reopened       = %s\n"   ,st_reopened);
+	mprintf("  platform       = %s\n"   ,st.platform);
+	mprintf("  jvm_mandatory  = %s\n"   ,st_interactive);
+	mprintf("  graphic        = %s\n"   ,st_graphic);
+	mprintf("  mode           = %s\n"   ,st.mode);
+	mprintf("  reference      = %s\n"   ,st.reference);
+	mprintf("  error_output   = %s\n"   ,st.error_output);
+	mprintf("  try_catch      = %s\n"   ,st_try_catch);
+	mprintf("\n");
+	
+	mprintf("Test scilab cmd :\n");
+	mprintf("  cmd            = %s\n"   ,st.cmd);
+	mprintf("\n");
+	
+	module_show(test.module);
+	status_show(test.status);
+	
+endfunction
+
+// Analyse
+// -----------------------------------------------------------------------------
+
+function st = st_analyse(st)
+	
+	if typeof(st) <> "T_SINGLETEST" then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"),"st_analyse","T_SINGLETEST",1));
+	end
+	
+	if isempty( fileinfo(st.path) ) then
+		error(msprintf(gettext("%s: The test ''%s'' doesn''t exist or is not read available.\n"),"st_analyse",st.path));
+	end
+	
+	// Get the test content
+	st = st_set_content(st,mgetl(st.path));
+	
+	// Test status
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- NOT FIXED -->") ) then
+		st = st_set_notyetfixed(st,%T);
+	end
+	
+	if ~ isempty( grep(st.content,"<-- REOPENED -->") ) then
+		st = st_set_reopened(st,%T);
+	end
+	
+	// platform
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- WINDOWS ONLY -->") ) then
+		st = st_set_platform(st,"windows");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- LINUX ONLY -->") ) then
+		st = st_set_platform(st,"linux");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- MACOSX ONLY -->") ) then
+		st = st_set_platform(st,"macosx");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- MACOSX ONLY -->") ) then
+		st = st_set_platform(st,"macosx");
+	end
+	
+	// Test execution
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- INTERACTIVE TEST -->") ) then
+		st = st_set_interactive(st,%T);
+	end
+	
+	if ~ isempty( grep(st.content,"<-- TEST WITH GRAPHIC -->") ) then
+		st = st_set_graphic(st,%T);
+		st = st_set_jvm_mandatory(st,%T);
+		st = st_set_mode(st,"NW");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- JVM NOT MANDATORY -->") ) then
+		st = st_set_jvm_mandatory(st,%F);
+		st = st_set_mode(st,"NWNI");
+	end
+	
+	// Language
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- FRENCH IMPOSED -->") ) then
+		st = st_set_language(st,"fr_FR");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- ENGLISH IMPOSED -->") ) then
+		st = st_set_language(st,"en_US");
+	end
+	
+	// Test building
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- NO TRY CATCH -->") ) then
+		st = st_set_try_catch(st,%F);
+	end
+	
+	// Test result
+	// =========================================================================
+	
+	if ~ isempty( grep(st.content,"<-- NO CHECK ERROR OUTPUT -->") ) then
+		st = st_set_error_output(st,"skip");
+	end
+	
+	if ~ isempty( grep(st.content,"<-- NO CHECK REF -->") ) then
+		st = st_set_reference(st,"skip");
+	end
+	
+endfunction
+
+
+//-----------------------------------------------------------------------------
+// Pierre MARECHAL
+// Scilab team
+// Date : 28 oct. 2007
+//
+// => Run one test
+//
+// Example of test variable :
+//    name: "bug_793"
+//    path: "/home/robert/scilab/modules/time/tests/nonreg_tests/bug_793.tst"
+//    type: "nonreg_tests"
+//    module: "time"
+//
+//-----------------------------------------------------------------------------
+
+function st = st_run(st)
+	
+	//Reset standard globals
+	rand("seed",0);
+	rand("uniform");
+	
+	st.status = status_new();
+	
+	// Case where the test is skipped
+	// =========================================================================
+	
+	// The test is interactive
+	
+	if st.interactive then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : interactive test");
+		return;
+	end
+	
+	// The bug is not yet fixed
+	
+	if st.notyetfixed then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : not yet fixed");
+		return;
+	end
+	
+	// The bug is reopenned
+	
+	if st.reopened then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Bug reopened");
+		return;
+	end
+	
+	// The test cannot be launched on this platform
+	
+	if (st.platform=="windows") & (~MSDOS) then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Windows only");
+		return;
+	end
+	
+	if (st.platform=="unix") & MSDOS then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Unix only");
+		return;
+	end
+	
+	if (st.platform=="linux") & (~LINUX) then
+		st.status = status_set_id(status,10);
+		st.status = status_set_message(status,"skipped : Linux only");
+		return;
+	end
+	
+	if (st.platform=="macosx") & (~MACOSX) then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : MacOSX only");
+		return;
+	end
+	
+	// The test launches some graphic windows
+	
+	if st.graphic & (testsuite.wanted_mode == "NWNI") then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Test with graphic");
+		return;
+	end
+	
+	// Build the test
+	// =========================================================================
+	
+	txt = st.content;
+	
+	// Do some modification in tst file
+	txt = strsubst(txt,"pause,end" ,"bugmes();quit;end");
+	txt = strsubst(txt,"pause, end","bugmes();quit;end");
+	txt = strsubst(txt,"pause;end" ,"bugmes();quit;end");
+	txt = strsubst(txt,"pause; end","bugmes();quit;end");
+	txt = strsubst(txt,"-->","@#>"); //to avoid suppression of input --> with prompts
+	txt = strsubst(txt,"halt();","");
+	
+	// Test header
+	
+	head = [                                                                    ...
+		"// <-- HEADER START -->";                                              ...
+		"mode(3);" ;                                                            ...
+		"lines(28,72);";                                                        ...
+		"lines(0);" ;                                                           ...
+		"function %onprompt" ;                                                           ...
+		"quit;" ;                                                           ...
+		"endfunction" ;                                                           ...
+		"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
+		"predef(''all'');" ;                                                    ...
+		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
+	]
+	
+	if st.try_catch then
+		head = [ head ; "try" ];
+	end
+	
+	head = [                                                                    ...
+		head ;                                                                  ...
+		"diary(''"+st.tmp_dia+"'');";                                          ...
+		"write(%io(2),tmpdirToPrint);";                                         ...
+		"// <-- HEADER END -->"                                                 ...
+	];
+	
+	// Test footer
+	
+	tail = [ "// <-- FOOTER START -->" ];
+	
+	if st.try_catch then
+		tail = [ tail;                                                          ...
+			"catch";                                                            ...
+			"   errmsg = ""<--""+""Error on the test script file""+""-->"";";   ...
+			"   printf(""%s\n"",errmsg);";                                      ...
+			"   lasterror()";                                                   ...
+			"end";                                                              ...
+			];
+	end
+	
+	tail = [ tail; "diary(0);" ];
+	
+	if st.graphic then
+		tail = [ tail; "xdel(winsid());sleep(1000);" ];
+	end
+	
+	tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
+	
+	// Assembly
+	
+	txt = [head;
+		txt;
+		tail];
+	
+	// Build the command
+	// =========================================================================
+	
+	// Gestion de l'emplacement de bin/scilab
+	// -------------------------------------------------------------------------
+	
+	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
+		SCI_BIN = strsubst(SCI,'share/scilab','');
+	else
+		SCI_BIN = SCI;
+	end
+	
+	// Mode Argument (NW, NWNI, GUI)
+	// -------------------------------------------------------------------------
+	
+	if testsuite.wanted_mode == "NW" then
+		mode_arg = "-nw";
+	
+	elseif testsuite.wanted_mode == "NWNI" then
+		mode_arg = "-nwni";
+	
+	else
+		if st.mode == "NWNI" then
+			mode_arg = "-nwni";
+		elseif st.mode == "NW" then
+			mode_arg = "-nw";
+		else
+			mode_arg = "-nw";
+		end
+	end
+	
+	// Language Argument (en_US, fr_FR, ... )
+	// -------------------------------------------------------------------------
+	
+	if st.language == "any" then
+		language_arg = "";
+	else
+		language_arg = "-l "+ st.language;
+	end
+	
+	// Assembly
+	// -------------------------------------------------------------------------
+	
+	if MSDOS then
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+mode_arg+" "+language_arg+" -nb -f """+st.tmp_tst+""" > """+st.tmp_res+""" ) 2> """+st.tmp_err+"""";
+	else
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+mode_arg+" "+language_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
+	end
+	
+	st= st_set_cmd(st,test_cmd);
+	
+	// Remove the previous tmp files
+	// =========================================================================
+	
+	if ~ isempty(fileinfo(st.tmp_tst)) then
+		deletefile(st.tmp_tst);
+	end
+	
+	if ~ isempty(fileinfo(st.tmp_dia)) then
+		deletefile(st.tmp_dia);
+	end
+	
+	if ~ isempty(fileinfo(st.tmp_res)) then
+		deletefile(st.tmp_res);
+	end
+	
+	if ~ isempty(fileinfo(st.tmp_err)) then
+		deletefile(st.tmp_err);
+	end
+	
+	
+	// Write the tmp test file
+	// =========================================================================
+	mputl(txt,st.tmp_tst);
+	
+	
+	// Launch the test exec
+	// =========================================================================
+	host(st.cmd);
+	
+	
+	
+	// First Check : error output
+	// =========================================================================
+	
+	if (st.error_output == "check") & (testsuite.error_output == "check") then
+		
+		tmp_errfile_info = fileinfo(st.tmp_err);
+		
+		if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
+			st.status = status_set_id(st.status,5);
+			st.status = status_set_message(st.status,"failed  : error_output not empty");
+			st.status = status_set_details(st.status,sprintf("     Check the following file : \n     - %s",st.tmp_err));
+			return;
+		end
+	end
+	
+	//  Get the dia file
+	dia = mgetl(st.tmp_dia);
+	
+	// To get TMPDIR value
+	tmpdir1_line = grep(dia,"TMPDIR1");
+	execstr(dia(tmpdir1_line));
+	
+	//Check for execution errors
+	if st.try_catch & grep(dia,"<--Error on the test script file-->")<>[] then
+		details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
+					sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+		st.status = status_set_id(st.status,3);
+		st.status = status_set_message(st.status,"failed  : premature end of the test script");
+		st.status = status_set_details(st.status,details);
+		return;
+	end
+	
+	// Remove Header and Footer
+	dia = remove_headers(dia);
+	
+	//Check for execution errors
+	dia_tmp                     = dia;
+	dia_tmp(grep(dia_tmp,"//")) = [];  // remove commented lines
+	
+	if st.try_catch & grep(dia_tmp,"!--error")<>[] then
+		details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
+					sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+		st.status = status_set_id(st.status,1);
+		st.status = status_set_message(st.status,"failed  : the string (!--error) has been detected");
+		st.status = status_set_details(st.status,details);
+		return;
+	end
+	
+	
+	if grep(dia_tmp,"error on test")<>[] then
+		details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
+					sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+		st.status = status_set_id(st.status,2);
+		st.status = status_set_message(st.status, "failed  : one or several tests failed");
+		st.status = status_set_details(st.status,details);
+		return;
+	end
+	
+	
+	if tmpdir1_line == [] then
+		st.status = status_set_id(st.status,6);
+		st.status = status_set_message(st.status, "failed  : the dia file is not correct");
+		st.status = status_set_details(st.status,sprintf("     Check the following file : \n     - %s",st.tmp_dia));
+		return;
+	end
+	
+	
+	
+	// Check the reference file only if check_ref (i.e. for the whole 
+	// test sequence) is true and this_check_ref (i.e. for the specific current .tst)
+	// is true.
+	
+	if (st.reference=="check") & (testsuite.reference=="check")  then
+		if isempty(fileinfo(st.path_dia_ref)) then
+			st.status = status_set_id(st.status,5);
+			st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist");
+			st.status = status_set_details(st.status,sprintf("     Add or create the following file : \n     - %s",st.path_dia_ref));
+			return;
+		end
+	end
+	
+	// Comparaison ref <--> dia
+	
+	if ( (st.reference=="check") & (testsuite.reference=="check") ) | (testsuite.reference=="create") then
+		
+		//  Do some modification in  dia file
+		dia(grep(dia,"exec("))                     = [];
+		dia(grep(dia,"write(%io(2),tmpdirToPrint"))= [];
+		dia(grep(dia,"TMPDIR1"))                   = [];
+		dia(grep(dia,"diary(0)"))                  = [];
+		
+		dia = strsubst(dia,TMPDIR ,"TMPDIR");
+		dia = strsubst(dia,TMPDIR1,"TMPDIR");
+		
+		if MSDOS then
+			dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
+			dia = strsubst(dia,strsubst(TMPDIR1,"/","\"),"TMPDIR");
+			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR) ,"\","/"),"TMPDIR");
+			dia = strsubst(dia,strsubst(getshortpathname(TMPDIR1),"\","/"),"TMPDIR");
+			dia = strsubst(dia,getshortpathname(TMPDIR) ,"TMPDIR");
+			dia = strsubst(dia,getshortpathname(TMPDIR1),"TMPDIR");
+		end
+		
+		dia = strsubst(dia,SCI,"SCI");
+	
+		if MSDOS then
+			dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
+			dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
+			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
+			dia = strsubst(dia,getshortpathname(SCI) ,"SCI");
+		end
+		
+		//suppress the prompts
+		dia = strsubst(dia,"-->" ,"");
+		dia = strsubst(dia,"@#>" ,"-->");
+		dia = strsubst(dia,"-1->","");
+		
+		//standardise  number display
+		
+		// strsubst(dia," .","0.");
+		// strsubst(dia,"-.","-0.")
+		// strsubst(dia,"E+","D+");
+		// strsubst(dia,"E-","D-");
+		
+		//not to change the ref files
+		dia = strsubst(dia,"bugmes();return","bugmes();quit");
+		
+		if testsuite.reference=="create" then
+			
+			// Delete previous .dia.ref file
+			if fileinfo(st.path_dia_ref) <> [] then
+				deletefile(st.path_dia_ref)
+			end
+			
+			mputl(dia,st.path_dia_ref);
+			
+			st.status = status_set_id(st.status,20);
+			st.status = status_set_message(st.status,"passed : ref created");
+			return;
+			
+		else
+			
+			// write down the resulting dia file
+			mputl(dia,st.path_dia);
+			
+			//Check for diff with the .ref file
+			
+			[u,ierr] = mopen(st.path_dia_ref,"r");
+			if ierr== 0 then //ref file exists
+				
+				ref=mgetl(u);
+				mclose(u)
+				
+				// suppress blank (diff -nw)
+				
+				dia = strsubst(dia,' ','')
+				ref = strsubst(ref,' ','')
+				
+				dia(find(dia=='')) = [];
+				ref(find(ref=='')) = [];
+				
+				dia(find(dia=='')) = [];
+				ref(find(ref=='')) = [];
+				
+				dia( find(part(dia,(1:2))=="//") ) = [];
+				ref( find(part(ref,(1:2))=="//") ) = [];
+				
+				if or(ref<>dia) then
+					st.status = status_set_id(st.status,4);
+					st.status = status_set_message(st.status,"failed  : dia and ref are not equal");
+					st.status = status_set_details(st.status,sprintf("     Compare the following files : \n     - %s\n     - %s",st.path_dia,st.path_dia_ref));
+					return;
+				end
+				
+			else
+				error(sprintf(gettext("The ref file (%s) doesn''t exist"),st.path_dia_ref));
+			end
+		end
+		
+	end
+	
+	st.status = status_set_id(st.status,0);
+	st.status = status_set_message(st.status,"passed");
+	
+	return;
+	
+endfunction
+
+
+
+
+
+
+
+// =============================================================================
+// Pierre MARECHAL
+// Scilab team
+// Date : 31 août 2009
+//
+// module interface
+// =============================================================================
+
+// constructor
+// -----------------------------------------------------------------------------
+
+function md = module_new()
+	
+	md = tlist([  "T_MODULE" ..
+				  "name" ..
+				  "path" ..
+				  "items" ] );
+	
+endfunction
+
+// setters
+// -----------------------------------------------------------------------------
+
+function md = module_set_name(md,name)
+	md.name  = name;
+	if isempty( regexp(stripblanks(name),"/\|/") ) then
+		md.items = [ name ];
+	else
+		md.items = stripblanks( strsubst( strsplit(name,regexp(stripblanks(name),"/\|/")) , "/\|$/","","r" ) );
+	end
+endfunction
+
+function md = module_set_path(md,path)
+	md.path = path;
+endfunction
+
+// show
+// -----------------------------------------------------------------------------
+
+function module_show(module)
+		mprintf("Module :\n");
+		mprintf("  name           = %s\n"   ,module.name);
+		mprintf("  path           = %s\n"   ,module.path);
+		mprintf("  items          = %s\n"   ,module.items);
+		mprintf("\n");
+endfunction
+
+
+
+// =============================================================================
+// Pierre MARECHAL
+// Scilab team
+// Date : 31 août 2009
+//
+// directory interface
+// =============================================================================
+
+// constructor
+// -----------------------------------------------------------------------------
+
+function directory = directory_new()
+	
+	directory = tlist([  "T_DIRECTORY" ..
+				  "path"         ..
+				  "module"       ..
+				  "type"         ..
+				  ]);
+	
+endfunction
+
+// setters
+// -----------------------------------------------------------------------------
+
+function directory = directory_set_path(directory,path)
+	directory.path = path;
+endfunction
+
+function directory = directory_set_module(directory,module)
+	directory.module = module;
+endfunction
+
+function directory = directory_set_type(directory,dtype)
+	directory.type = dtype;
+endfunction
+
+
+// show
+// -----------------------------------------------------------------------------
+
+function directory_show(directory)
+	mprintf("Directory :\n");
+	mprintf("  path           = %s\n"   ,directory.path);
+	mprintf("  module         = %s\n"   ,directory.module.name);
+	mprintf("  type           = %s\n"   ,directory.type);
+	mprintf("\n");
+endfunction
+
+
+
+
+// =============================================================================
+// Pierre MARECHAL
+// Scilab team
+// Date : 31 août 2009
+//
+// testsuite interface
+// =============================================================================
+
+// constructor
+// -----------------------------------------------------------------------------
+
+function testsuite = testsuite_new()
+	
+	testsuite = tlist([  "T_TESTSUITE" ..
+				 "items"           ..
+				 "current_mode"    ..    // NW, NWNI, GUI
+				 "wanted_mode"     ..    // NW, NWNI, GUI
+				 "reference"       ..    // check, create, skip
+				 "error_output"    ..    // check, skip
+				 ]);
+	
+	testsuite.items = list();
+	
+	// Default values
+	
+	if and(getscilabmode() <> ["NW";"STD"]) then
+		testsuite.current_mode = "NWNI";
+	else
+		testsuite.current_mode = "NW";
+	end
+	
+	testsuite.wanted_mode  = "";
+	testsuite.reference    = "check";
+	testsuite.error_output = "check";
+	
+endfunction
+
+// Add tests
+// -----------------------------------------------------------------------------
+
+function testsuite = testsuite_add_tests(testsuite,tests)
+	testsuite.items = lstcat(testsuite.items,tests);
+endfunction
+
+function testsuite = testsuite_add_one_test(testsuite,test)
+	testsuite.items($+1) = test;
+endfunction
+
+// Number of tests
+// -----------------------------------------------------------------------------
+
+function l = testsuite_length(testsuite)
+	l = size(testsuite.items);
+endfunction
+
+// Setters
+// -----------------------------------------------------------------------------
+
+function testsuite = testsuite_set_WM(testsuite,wanted_mode)
+	testsuite.wanted_mode = wanted_mode;
+endfunction
+
+function testsuite = testsuite_set_reference(testsuite,reference)
+	testsuite.reference = reference;
+endfunction
+
+function testsuite = testsuite_set_EO(testsuite,error_output)
+	testsuite.error_output = error_output;
+endfunction
+
+// List tests
+// -----------------------------------------------------------------------------
+
+function testsuite_list(testsuite)
+	
+	for i=1:size(testsuite.items)
+		test = testsuite.items(i);
+		printf("   %03d - ",i);
+		printf("[%s] %s\n",test.module.name,test.name);
+	end
+	
+endfunction
+
+// Launch tests
+// -----------------------------------------------------------------------------
+
+function testsuite_run(testsuite)
+
+	details_failed     = "";
+	test_count         = 0;
+	test_passed_count  = 0;
+	test_failed_count  = 0;
+	test_skipped_count = 0;
+	
+	printf("   TMPDIR = %s\n",TMPDIR);
+	printf("\n");
+	
+	start_date = getdate();
+	test_count = length(testsuite.items);
+	
+	for i=1:test_count
+		
+		test        = testsuite.items(i);
+		test_module = test.module.name;
+		test_name   = test.name;
+		
+		// Improve the display of the module
+		if isdir(test_module) then
+			if part(test.module.name,1:length(SCI)) == SCI then
+				test_module = "SCI" + part(test_module,length(SCI)+1:length(test_module));
+			elseif part(test.module.name,1:length(SCIHOME)) == SCIHOME then
+				test_module = "SCIHOME" + part(test_module,length(SCIHOME)+1:length(test_module));
+			end
+		end
+		
+		printf("   %03d/%03d - ",i,test_count);
+		printf("[%s] %s",test_module,test_name);
+		for j = length(test_name+test_module):50
+			printf(".");
+		end
+		
+		test = st_run(test);
+		
+		printf("%s \n",test.status.message);
+		
+		// Recencement des tests
+		
+		if test.status.id == 0 then
+			// passed
+			test_passed_count = test_passed_count + 1;
+		
+		elseif (test.status.id > 0) & (test.status.id < 10) then
+			// failed
+			test_failed_count = test_failed_count + 1;
+			details_failed = [ details_failed ; sprintf("   TEST : [%s] %s",test.module.name,test.name)];
+			details_failed = [ details_failed ; sprintf("     %s",test.status.message) ];
+			details_failed = [ details_failed ; test.status.details ];
+			details_failed = [ details_failed ; "" ];
+		
+		elseif (test.status.id >= 10) & (test.status.id < 20) then
+			// skipped
+			test_skipped_count = test_skipped_count + 1;
+		end
+	end
+	
+	end_date = getdate();
+	
+	// Summary
+	
+	if test_count<>0 then
+		test_passed_percent  = test_passed_count  / test_count * 100;
+		test_skipped_percent = test_skipped_count / test_count * 100;
+		test_failed_percent  = test_failed_count  / test_count * 100;
+	else
+		test_passed_percent  = 0;
+		test_skipped_percent = 0;
+		test_failed_percent  = 0;
+	end
+	
+	printf("\n");
+	printf("   --------------------------------------------------------------------------\n");
+	printf("   Summary\n\n");
+	printf("   tests                     %4d - 100 %% \n",test_count);
+	printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
+	printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
+	printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
+	printf("   length                          %4.2f sec \n" ,etime(end_date,start_date));
+	printf("   --------------------------------------------------------------------------\n");
+	
+	if test_failed_count > 0 then
+		printf("   Details\n\n");
+		printf("%s\n",details_failed);
+		printf("\n");
+		printf("   --------------------------------------------------------------------------\n");
+	end
+
+endfunction
+
+
+// =============================================================================
+// Pierre MARECHAL
+// Scilab team
+// Date : 1 septembre 2009
+//
+// status
+// =============================================================================
+
+// constructor
+// -----------------------------------------------------------------------------
+
+function status = status_new()
+	status = tlist([  "T_STATUS" ..
+				"id"             ..
+				"message"        ..
+				"details"        ..
+				]);
+				
+	status.id      = 0;
+	status.message = "";
+	status.details = "";
+	
+endfunction
+
+// setters
+// -----------------------------------------------------------------------------
+
+function status = status_set_id(status,id)
+	status.id = id;
+endfunction
+
+function status = status_set_message(status,smessage)
+	status.message = smessage;
+endfunction
+
+function status = status_set_details(status,details)
+	status.details = details;
+endfunction
+
+// show
+// -----------------------------------------------------------------------------
+
+function status_show(status)
+	mprintf("Status :\n");
+	mprintf("  id             = %d\n"   ,status.id);
+	mprintf("  message        = %s\n"   ,status.message);
+	mprintf("  details        = %s\n"   ,status.details);
+	mprintf("\n");
+endfunction
+
+

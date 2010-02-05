@@ -80,14 +80,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmpi(TXT1,TXT2)
 strcmpi(TXT1,'scilab')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

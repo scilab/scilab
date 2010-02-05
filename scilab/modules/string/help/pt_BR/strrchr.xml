@@ -78,13 +78,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strrchr('Este e um string de amostra','s')
 strrchr(['Este e um string de amostra','no scilab'],'s')
 strrchr(['Este e um string de amostra','no scilab'],['s','a'])
-
-	</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

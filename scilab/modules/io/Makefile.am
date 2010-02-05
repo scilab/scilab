@@ -28,7 +28,6 @@ sci_gateway/c/sci_writeb.c \
 sci_gateway/c/sci_setenv.c \
 sci_gateway/c/gw_io.c \
 sci_gateway/c/sci_mgetl.c \
-sci_gateway/c/sci_diary.c \
 sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
@@ -113,12 +112,5 @@ libsciio_la_etc_DATA = etc/io.quit etc/io.start
 ####�io : gateway declaration ####
 libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
-
-####�io : include files ####
-libsciio_la_includedir=$(pkgincludedir)/io
-libsciio_la_include_HEADERS = includes/gw_io.h \
-includes/getenvc.h \
-includes/setenvc.h \
-includes/GetenvB.h
 
 include $(top_srcdir)/Makefile.incl.am

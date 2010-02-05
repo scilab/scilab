@@ -39,7 +39,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[bOK=with_lcc()]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+bOK=with_lcc()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

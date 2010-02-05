@@ -72,12 +72,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=0:0.1:%pi
 intsplin(t,sin(t))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

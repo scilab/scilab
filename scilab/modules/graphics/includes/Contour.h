@@ -18,6 +18,8 @@
 #ifndef _CONTOUR_H_
 #define _CONTOUR_H_
 
+#include "dynlib_graphics.h"
+
 /**
  * Draw level curves for a function f(x,y) which values 
  * at points x(i),y(j) are given by z(i,j)
@@ -32,11 +34,11 @@
  * Computed from min and max of z
  * Example Contour(1:5,1:10,rand(5,10),5);
  */
-int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style) ;
+GRAPHICS_IMPEXP int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style) ;
 
 /**
  * used to bring back data to Scilab Stack
  */
-int C2F(getconts)(double **x, double **y, int *mm, int *n) ;
+GRAPHICS_IMPEXP int C2F(getconts)(double **x, double **y, int *mm, int *n) ;
 
 #endif /* _CONTOUR_H_ */

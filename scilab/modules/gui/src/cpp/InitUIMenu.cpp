@@ -66,6 +66,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
@@ -78,6 +79,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
@@ -90,6 +92,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
@@ -97,7 +100,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
         } 
       else
         {
-          Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+          Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
           return SET_PROPERTY_ERROR;
         }
     }
@@ -110,7 +113,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
     } 
   else
     {
-      Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+      Scierror(999, const_cast<char*>(_("%s: Wrong type for parent: Figure or uimenu expected.\n")),"SetMenuParent");
       return SET_PROPERTY_ERROR;
     }
   

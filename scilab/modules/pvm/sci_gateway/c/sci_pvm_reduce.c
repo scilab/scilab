@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_reduce 
  ******************************************/
-int intspvm_reduce(char *fname,unsigned long fname_len)
+int sci_pvm_reduce(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mn1,m2,n2,l2,m3,n3,l3,un=1,m4,n4,l4,mn4,res;
   int m5,n5,l5;

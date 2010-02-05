@@ -54,12 +54,12 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynôme caractéristique
 spec(A) 
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

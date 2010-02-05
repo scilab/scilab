@@ -61,20 +61,20 @@ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -122,18 +122,25 @@ am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-error_internal.lo \
 	libscioutput_stream_la-do_xxprintf.lo \
 	libscioutput_stream_la-set_xxprintf.lo
-am__objects_2 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
+am__objects_2 = libscioutput_stream_la-Diary.lo \
+	libscioutput_stream_la-yaspio.lo \
+	libscioutput_stream_la-DiaryList.lo \
+	libscioutput_stream_la-diary_manager.lo \
+	libscioutput_stream_la-getDiaryDate.lo \
+	libscioutput_stream_la-getFullFilename.lo
+am__objects_3 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
 	lspdsp.lo fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo \
 	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
-am__objects_3 = libscioutput_stream_la-gw_output_stream.lo \
+am__objects_4 = libscioutput_stream_la-gw_output_stream.lo \
 	libscioutput_stream_la-sci_print.lo \
 	libscioutput_stream_la-sci_mprintf.lo \
 	libscioutput_stream_la-sci_msprintf.lo \
 	libscioutput_stream_la-sci_disp.lo
-am__objects_4 = intprint.lo intdisp.lo
-am__objects_5 = libscioutput_stream_la-yaspio.lo
+am__objects_5 = libscioutput_stream_la-sci_diary.lo
+am__objects_6 = intprint.lo intdisp.lo
 am_libscioutput_stream_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5)
+	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
+	$(am__objects_6)
 libscioutput_stream_la_OBJECTS = $(am_libscioutput_stream_la_OBJECTS)
 libscioutput_stream_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -180,6 +187,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -188,9 +196,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -251,11 +262,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -315,24 +329,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -395,7 +411,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -412,6 +427,14 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
+OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
+	src/cpp/yaspio.cpp \
+	src/cpp/DiaryList.cpp \
+	src/cpp/diary_manager.cpp \
+	src/cpp/getDiaryDate.cpp \
+	src/cpp/getFullFilename.cpp
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_diary.cpp
 OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 				src/c/cerro.c \
 				src/c/Scierror.c \
@@ -428,9 +451,6 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
 				src/c/set_xxprintf.c
-
-OUTPUT_STREAM_CPP_SOURCES = \
-		src/cpp/yaspio.cpp
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
@@ -469,14 +489,15 @@ libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 libscioutput_stream_la_CPPFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
+-I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES) \ $(OUTPUT_STREAM_CPP_SOURCES)
+libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
@@ -500,18 +521,10 @@ libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
-libscioutput_stream_la_includedir = $(pkgincludedir)/output_stream
-libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-includes/erro.h \
-includes/do_error_number.h \
-includes/errmds.h \
+libscioutput_stream_la_includedir = $(pkgincludedir)
+libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
-includes/Scierror.h \
-includes/basout.h \
-includes/msgs.h \
-includes/sciprint_full.h \
-includes/do_xxprintf.h \
-includes/gw_output_stream.h
+includes/Scierror.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -650,20 +663,26 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Diary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-DiaryList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Scierror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-basout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-cerro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-diary_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-do_xxprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errmds.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errmsg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-erro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error_internal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getDiaryDate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getFullFilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-gw_output_stream.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstxt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_diary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_disp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_mprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_msprintf.Plo@am__quote@
@@ -862,12 +881,54 @@ libscioutput_stream_la-sci_disp.lo: sci_gateway/c/sci_disp.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
+libscioutput_stream_la-Diary.lo: src/cpp/Diary.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-Diary.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-Diary.Tpo -c -o libscioutput_stream_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-Diary.Tpo $(DEPDIR)/libscioutput_stream_la-Diary.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Diary.cpp' object='libscioutput_stream_la-Diary.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
+
 libscioutput_stream_la-yaspio.lo: src/cpp/yaspio.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-yaspio.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-yaspio.Tpo -c -o libscioutput_stream_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-yaspio.Tpo $(DEPDIR)/libscioutput_stream_la-yaspio.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/yaspio.cpp' object='libscioutput_stream_la-yaspio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
+
+libscioutput_stream_la-DiaryList.lo: src/cpp/DiaryList.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-DiaryList.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-DiaryList.Tpo -c -o libscioutput_stream_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-DiaryList.Tpo $(DEPDIR)/libscioutput_stream_la-DiaryList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DiaryList.cpp' object='libscioutput_stream_la-DiaryList.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
+
+libscioutput_stream_la-diary_manager.lo: src/cpp/diary_manager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-diary_manager.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-diary_manager.Tpo -c -o libscioutput_stream_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-diary_manager.Tpo $(DEPDIR)/libscioutput_stream_la-diary_manager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/diary_manager.cpp' object='libscioutput_stream_la-diary_manager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
+
+libscioutput_stream_la-getDiaryDate.lo: src/cpp/getDiaryDate.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-getDiaryDate.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Tpo -c -o libscioutput_stream_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Tpo $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getDiaryDate.cpp' object='libscioutput_stream_la-getDiaryDate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
+
+libscioutput_stream_la-getFullFilename.lo: src/cpp/getFullFilename.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-getFullFilename.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-getFullFilename.Tpo -c -o libscioutput_stream_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-getFullFilename.Tpo $(DEPDIR)/libscioutput_stream_la-getFullFilename.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getFullFilename.cpp' object='libscioutput_stream_la-getFullFilename.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
+
+libscioutput_stream_la-sci_diary.lo: sci_gateway/cpp/sci_diary.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-sci_diary.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sci_diary.Tpo -c -o libscioutput_stream_la-sci_diary.lo `test -f 'sci_gateway/cpp/sci_diary.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_diary.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sci_diary.Tpo $(DEPDIR)/libscioutput_stream_la-sci_diary.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_diary.cpp' object='libscioutput_stream_la-sci_diary.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-sci_diary.lo `test -f 'sci_gateway/cpp/sci_diary.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_diary.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1246,10 +1307,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1272,7 +1335,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1284,7 +1347,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1390,10 +1453,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

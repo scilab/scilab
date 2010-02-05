@@ -17,24 +17,32 @@
 /*--------------------------------------------------------------------------*/
 int sci_type(char *fname, int* _piKey)
 {
-	int iRet		= 0;
+	SciErr sciErr;
 	int* piAddr	= NULL;
 	int iType		= 0;
+	int iRet = 0;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iType = getVarType(piAddr);
-	iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &iType, _piKey);
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	iRet = createMatrixOfDoubleFromInteger(_piKey, Rhs + 1, 1, 1, &iType);
 	if(iRet)
 	{
-		return 1;
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;

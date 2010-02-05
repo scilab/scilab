@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * ...
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,7 +35,15 @@ void C2F(mtell) (int *fd, double *offset, int *err)
 		*err=1;
 		return;
 	}
-	*err=0;
+	*err = 0;
+	#ifdef _MSC_VER
+		#if _WIN64 
+			*offset = (double) _ftelli64(fa) ;
+		#else
+			*offset = (double) ftell(fa) ;
+		#endif
+	#else
 	*offset = (double) ftell(fa) ;
+	#endif
 }
 /*--------------------------------------------------------------------------*/

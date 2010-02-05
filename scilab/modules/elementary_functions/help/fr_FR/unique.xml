@@ -89,7 +89,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 M=round(2*rand(20,1));
 
 unique(M)
@@ -114,7 +114,7 @@ unique(T,'r')
 //unique columns
 [m,k]=unique(T,'c')
 unique(A,'c')
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

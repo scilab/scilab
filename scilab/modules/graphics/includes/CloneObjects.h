@@ -21,19 +21,22 @@
  *    a copy of an object under the same subwin.
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
+
 
 #ifndef __SCI_CLONE__
 #define __SCI_CLONE__
 
-extern sciPointObj *CloneText (sciPointObj * pthis); /* CLONE */
-extern sciPointObj *sciCloneObj (sciPointObj * pobj); /* CLONE */
+#include "dynlib_graphics.h"
+#include "ObjectStructure.h"
 
-extern sciPointObj *CloneRectangle (sciPointObj * pthis);
-extern sciPointObj *ClonePolyline (sciPointObj * pthis);
-extern sciPointObj *CloneArc (sciPointObj * pthis);
+GRAPHICS_IMPEXP sciPointObj *CloneText (sciPointObj * pthis); /* CLONE */
+GRAPHICS_IMPEXP sciPointObj *sciCloneObj (sciPointObj * pobj); /* CLONE */
 
-extern sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
+GRAPHICS_IMPEXP sciPointObj *CloneRectangle (sciPointObj * pthis);
+GRAPHICS_IMPEXP sciPointObj *ClonePolyline (sciPointObj * pthis);
+GRAPHICS_IMPEXP sciPointObj *CloneArc (sciPointObj * pthis);
+
+GRAPHICS_IMPEXP sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget ); /* CLONE */
 
 /*--------------------------------------------------------------------------*/
 /**
@@ -42,7 +45,7 @@ extern sciPointObj * sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparent
  * @param pObjDest the object in which the GC is paste
  * @return 0 if the copy is ok, -1 otherwise.
  */
-extern int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+GRAPHICS_IMPEXP int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
 /*--------------------------------------------------------------------------*/
 /**
  * copy the fontContext of an object to another.
@@ -50,7 +53,7 @@ extern int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest
  * @param pObjDest the object in which the FC is paste
  * @return 0 if the copy is ok, -1 otherwise.
  */
-extern int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+GRAPHICS_IMPEXP int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
 /*--------------------------------------------------------------------------*/
 /**
  * copy the user data of an object to an other.

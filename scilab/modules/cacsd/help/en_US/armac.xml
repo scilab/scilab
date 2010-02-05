@@ -68,19 +68,16 @@
     <para>
     This function creates a description as a tlist of an  ARMAX process</para>
     <para><literal>ar</literal> is defined by</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     and thus the coefficients of <literal>ar</literal> can be retrieved by e.g.
     <literal> ar('a') </literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
 b=[0,1,1,1].*.[1;1];
 d=[1,0.7,0.2].*.eye(2,2);
@@ -88,8 +85,7 @@ sig=eye(2,2);
 ar=armac(a,b,d,2,1,sig)
 // extract polynomial matrices from ar representation 
 [A,B,D]=arma2p(ar);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

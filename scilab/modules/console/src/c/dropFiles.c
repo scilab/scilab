@@ -20,26 +20,29 @@
 #include "../../../fileio/includes/FindFileExtension.h"
 #include "../../../fileio/includes/URIFileToFilename.h"
 #include "../../../string/includes/stricmp.h"
+#include "../../../core/src/c/with_module.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
-#define GRAPH_EXTENSION_FILE ".graph"
-#define GRAPHB_EXTENSION_FILE ".graphb"
 #define COS_EXTENSION_FILE ".cos"
+#define XCOS_EXTENSION_FILE ".xcos"
 #define COSF_EXTENSION_FILE ".cosf"
 #define SCI_EXTENSION_FILE ".sci"
 #define SCE_EXTENSION_FILE ".sce"
 #define TST_EXTENSION_FILE ".tst"
-#define DEM_EXTENSION_FILE ".tst"
+#define DEM_EXTENSION_FILE ".dem"
 #define SCG_EXTENSION_FILE ".scg"
 /*--------------------------------------------------------------------------*/
 #define FORMAT_BIN_SCE_EXTENSION_FILES "load('%s');"
-#define FORMAT_GRAPH_GRAPHB_EXTENSION_FILES "edit_graph('%s');"
-#define FORMAT_COS_COSF_EXTENSION_FILES "scicos('%s');"
-#define FORMAT_SCI_EXTENSION_FILES "exec('%s');" /* "getf('%s');" */
+#define FORMAT_COS_COSF_XCOS_EXTENSION_FILES "xcos('%s');"
+#define FORMAT_SCI_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
-#define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s\n'));"
+#define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s'));"
+#define XCOS_NOT_INSTALLED "disp(gettext('Please install xcos module.'))"
 /*--------------------------------------------------------------------------*/
 static char *getCommandByFileExtension(char *File,char *FileExtension);
 static char *buildCommand(char *format,char *filename);
@@ -72,7 +75,7 @@ BOOL LaunchFilebyExtension(char *File)
 	char *FileExtension=NULL;
 
 	FileExtension = FindFileExtension(File);
-	CommandLine = getCommandByFileExtension(File,FileExtension);
+	CommandLine = getCommandByFileExtension(File, FileExtension);
 
 	if (CommandLine)
 	{
@@ -80,7 +83,7 @@ BOOL LaunchFilebyExtension(char *File)
 		bOK = TRUE;
 
 		FREE(CommandLine);
-		CommandLine=NULL;
+		CommandLine = NULL;
 	}
 
 	if (FileExtension) {FREE(CommandLine);CommandLine=NULL;}
@@ -94,38 +97,41 @@ static char *getCommandByFileExtension(char *File,char *FileExtension)
 
 	if (FileExtension)
 	{
-		if ( (stricmp(FileExtension,BIN_EXTENSION_FILE)==0) ||	(stricmp(FileExtension,SAV_EXTENSION_FILE)==0) )
+		if ( (stricmp(FileExtension, BIN_EXTENSION_FILE) == 0) || (stricmp(FileExtension, SAV_EXTENSION_FILE) == 0) )
 		{
-			command = buildCommand(FORMAT_BIN_SCE_EXTENSION_FILES,File);
+			command = buildCommand(FORMAT_BIN_SCE_EXTENSION_FILES, File);
 		}
 		else
-		if ( (stricmp(FileExtension,GRAPH_EXTENSION_FILE)==0) || (stricmp(FileExtension,GRAPHB_EXTENSION_FILE)==0) )
+		if ( (stricmp(FileExtension, COS_EXTENSION_FILE) == 0) || (stricmp(FileExtension, COSF_EXTENSION_FILE) == 0) ||
+			(stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
 		{
-			command = buildCommand(FORMAT_GRAPH_GRAPHB_EXTENSION_FILES,File);
+			if (with_module("xcos"))
+			{
+				command = buildCommand(FORMAT_COS_COSF_XCOS_EXTENSION_FILES, File);
+			}
+			else
+			{
+				command = strdup(XCOS_NOT_INSTALLED);
+			}
 		}
 		else
-		if ( (stricmp(FileExtension,COS_EXTENSION_FILE)==0) || (stricmp(FileExtension,COSF_EXTENSION_FILE)==0) )
+		if (stricmp(FileExtension,SCI_EXTENSION_FILE) == 0)
 		{
-			command = buildCommand(FORMAT_COS_COSF_EXTENSION_FILES,File);
+			command = buildCommand(FORMAT_SCI_EXTENSION_FILES, File);
 		}
 		else
-		if (stricmp(FileExtension,SCI_EXTENSION_FILE)==0)
+		if ( (stricmp(FileExtension, SCE_EXTENSION_FILE) == 0) || (stricmp(FileExtension, TST_EXTENSION_FILE) == 0) || (stricmp(FileExtension, DEM_EXTENSION_FILE) == 0) )
 		{
-			command = buildCommand(FORMAT_SCI_EXTENSION_FILES,File);
+			command = buildCommand(FORMAT_SCE_TST_EXTENSION_FILES, File);
 		}
 		else
-		if ( (stricmp(FileExtension,SCE_EXTENSION_FILE)==0) || (stricmp(FileExtension,TST_EXTENSION_FILE)==0) || (stricmp(FileExtension,DEM_EXTENSION_FILE)==0) )
+		if (stricmp(FileExtension, SCG_EXTENSION_FILE) == 0)
 		{
-			command = buildCommand(FORMAT_SCE_TST_EXTENSION_FILES,File);
-		}
-		else
-		if (stricmp(FileExtension,SCG_EXTENSION_FILE)==0)
-		{
-			command = buildCommand(FORMAT_SCG_EXTENSION_FILES,File);
+			command = buildCommand(FORMAT_SCG_EXTENSION_FILES, File);
 		}
 		else
 		{
-			command = buildCommand(FORMAT_UNKNOW_EXTENSION_FILES,File);
+			command = buildCommand(FORMAT_UNKNOW_EXTENSION_FILES, File);
 		}
 	}
 	return command;
@@ -137,7 +143,7 @@ static char *buildCommand(char *format,char *filename)
 
 	if (format && filename)
 	{
-		command =(char*)MALLOC( (strlen(filename)+strlen(format)+1)*sizeof(char) );
+		command =(char*)MALLOC( (strlen(filename) + strlen(format) + 1)*sizeof(char) );
 		if (command) sprintf(command,format,filename);
 	}
 

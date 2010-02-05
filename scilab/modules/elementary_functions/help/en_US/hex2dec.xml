@@ -68,9 +68,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 hex2dec(['ABC','0','A'])
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

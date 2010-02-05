@@ -28,7 +28,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.</para>
+          <para> <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -120,9 +120,7 @@
     In the <literal>X,U</literal> bases, the matrices 
     <literal>[X'*(A+B*F)*X,X'*B*U;(C+D*F)*X,D*U]</literal> 
     are displayed as follows:</para>
-    <programlisting><![CDATA[
-
-
+    <programlisting><![CDATA[ 
 [A11,*,*,*,*,*]  [B11 * ]
 [0,A22,*,*,*,*]  [0   * ]
 [0,0,A33,*,*,*]  [0   * ]
@@ -131,8 +129,7 @@
 [0,0,0,0,0,A66]  [0   0 ]
 
 [0,0,0,*,*,*]    [0  D2]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     where the X-partitioning is defined by <literal>dims</literal> and 
     the U-partitioning is defined by <literal>k</literal>.</para>
@@ -161,8 +158,7 @@
     (resp. stabilizable) subspace of the blocks 3 to 6 (resp. 2 to 6).</para>
     <para>
     This function can be used for the (exact) disturbance decoupling problem.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 DDPS:
    Find u=Fx+Rd=[F,R]*[x;d] which rejects Q*d and stabilizes the plant:
 
@@ -176,13 +172,11 @@ B2=G*B; Q2=G*Q; DDPS solvable iff [B2;D]*R + [Q2;T] =0 has a solution.
 The pair F,R  is the solution  (with F=output of abinv).
 Im(Q2) is in Im(B2) means row-compression of B2=>row-compression of Q2
 Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 nu=3;ny=4;nx=7;
 nrt=2;ngt=3;ng0=3;nvt=5;rk=2;
 flag=list('on',nrt,ngt,ng0,nvt,rk);
@@ -196,6 +190,7 @@ X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
 trzeros(Sys)
 spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
 clean(ss2tf(Sys*Z))
+
 // 2nd Example
 nx=6;ny=3;nu=2;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
@@ -234,8 +229,7 @@ Q=G\Q2;   //a valid [Q;T] since
 closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
 ss2tf(closed)       // Closed loop is zero
 spec(closed('A'))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

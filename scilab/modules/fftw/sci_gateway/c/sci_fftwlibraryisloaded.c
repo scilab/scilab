@@ -9,9 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "sci_fftwlibraryisloaded.h"
 #include "callfftw.h"
 #include "gw_fftw.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 int sci_fftwlibraryisloaded(char *fname,unsigned long fname_len)
 {

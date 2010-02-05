@@ -61,42 +61,32 @@
     <para>
     If <literal>d1=maxi(degree(Den))</literal>, and <literal>d2=maxi(degree(Num))</literal> the polynomial 
     matrices  <literal>Den(z)</literal> and <literal>Num(z)</literal> may be written respectively as:</para>
-    <programlisting><![CDATA[
-
-  D(z)= D_0  + D_1  z + ... + D_d1   z^d1
-  N(z)= N_0  + N_1  z + ... + N_d2   z^d2
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+D(z) = D_0  + D_1  z + ... + D_d1   z^d1
+N(z) = N_0  + N_1  z + ... + N_d2   z^d2
+ ]]></programlisting>
     <para>
     and <literal>Den y = Num u</literal> is interpreted as the recursion:</para>
-    <programlisting><![CDATA[
-
-  D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
+ ]]></programlisting>
     <para>
     It is assumed that <literal>D(d1)</literal> is non singular.</para>
     <para>
     The columns of u are the inputs of the system at t=0,1,...,T:</para>
-    <programlisting><![CDATA[
-
-  u=[u(0) , u(1),...,u(T)]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+u=[u(0) , u(1),...,u(T)]
+ ]]></programlisting>
     <para>
     The outputs at <literal>t=0,1,...,T+d1-d2</literal> are the columns of the matrix <literal>y</literal>:</para>
-    <programlisting><![CDATA[
-
-  y=[y(0), y(1),  .... y(T+d1-d2)]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+y = [y(0), y(1),  .... y(T+d1-d2)]
+ ]]></programlisting>
     <para><literal>up</literal> and <literal>yp</literal> define the initial conditions for t &lt; 0 i.e</para>
-    <programlisting><![CDATA[
-
-  up=[u(-d1), ..., u(-1)  ]
-  yp=[y(-d1), ...  y(-1)  ]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+up = [u(-d1), ..., u(-1)  ]
+yp = [y(-d1), ...  y(-1)  ]
+ ]]></programlisting>
     <para>
     Depending on the relative values of <literal>d1</literal> and <literal>d2</literal>, some of the
     leftmost components of <literal>up</literal>, <literal>yp</literal> are ignored.
@@ -105,8 +95,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 z=poly(0,'z');
 Num=1+z;Den=1+z;u=[1,2,3,4,5];
 rtitr(Num,Den,u)-u
@@ -163,8 +152,7 @@ s=syslin('d',a,b,c,d);
 h=ss2tf(s);num=h('num');den=h('den');den=den(1,1)*eye(2,2);
 u=1;u(3,10)=0;r3=flts(u,s);
 r=rtitr(num,den,u);norm(r3-r,1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

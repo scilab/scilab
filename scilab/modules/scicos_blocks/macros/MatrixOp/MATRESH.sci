@@ -37,7 +37,7 @@ case 'set' then
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,typ,l1,out,lab]=..
-        getvalue('Set MATRESH block parameters',..
+        scicos_getvalue('Set MATRESH block parameters',..
         ['Datatype(1=real double  2=Complex)'
 	 'input size';
          'output size desired'],..

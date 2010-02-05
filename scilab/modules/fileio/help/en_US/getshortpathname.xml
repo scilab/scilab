@@ -77,9 +77,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">[shortpath,bOK]=getshortpathname(SCI) 
+    <programlisting role="example"><![CDATA[ 
+[shortpath,bOK]=getshortpathname(SCI) 
 [shortpaths,bOKs]=getshortpathname([SCI;SCI]) 
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

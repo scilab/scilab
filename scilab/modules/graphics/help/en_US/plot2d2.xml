@@ -50,8 +50,7 @@ plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // plots a step function of value i on the segment [i,i+1]
 // the last segment is not drawn
 plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
@@ -59,15 +58,13 @@ plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
 x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
-  // In New graphics only
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=2;
 e.children(2).polyline_style=2;
 e.children(3).polyline_style=2;
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

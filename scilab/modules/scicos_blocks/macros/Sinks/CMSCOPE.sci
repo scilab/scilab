@@ -39,7 +39,7 @@ case 'set' then
   //dstate=model.in
   //pause
   while %t do
-    [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=getvalue(..
+    [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Input ports sizes';
 	'Drawing colors (>0) or mark (<0)';

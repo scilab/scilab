@@ -12,21 +12,21 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
 #include "stack-c.h"
+#include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define IO_TAB_SIZE 18
-static gw_generic_table Tab[IO_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 {NULL, ""}, //setenv
 {C2F(sci_read),"read"},
 {NULL, ""}, //getenv
 {C2F(sci_getio),"getio"},
-{C2F(sci_diary),"diary"},
+{NULL,""},
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
-{C2F(sci_file),"file"},
+{NULL, ""}, //file
 {C2F(sci_host),"host"},
 {C2F(sci_unix),"unix"},
 {C2F(sci_readb),"readb"},
@@ -40,7 +40,6 @@ static gw_generic_table Tab[IO_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {  
-	/* Recursion from a function */
 	if ( isRecursionCallToFunction() )
 	{
 		switch ( getRecursionFunctionToCall() )
@@ -51,6 +50,12 @@ int gw_io(void)
 					return 0;
 				}
 				break;
+			case RECURSION_CALL_LOAD:
+				{
+					//C2F(sci_load)("load",(unsigned long)strlen("load"));
+					return 0;
+				}
+				break;
 			default:
 				break;
 		}
@@ -58,7 +63,7 @@ int gw_io(void)
 	else
 	{
 		Rhs = Max(0, Rhs);
-		callFunctionFromGateway(Tab,IO_TAB_SIZE);
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	return 0;
 }

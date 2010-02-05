@@ -55,19 +55,17 @@ oldplot(y)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=0:0.1:2*%pi;
 // simple plot
 oldplot(sin(x))
 // using captions
-xbasc()
+clf()
 oldplot(x,sin(x),"sin","time","plot of sinus")
 // plot 2 functions
-xbasc()
+clf()
 oldplot([sin(x);cos(x)])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

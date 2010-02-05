@@ -28,11 +28,10 @@ rmdir('dirname','s')
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 mkdir(SCI,'Directory')
 rmdir(SCI+'/Directory')
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

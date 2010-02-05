@@ -67,11 +67,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 tanm(atanm([1,2;3,4]))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

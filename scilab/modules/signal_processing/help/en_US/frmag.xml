@@ -80,14 +80,14 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-      hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
-      [hzm,fr]=frmag(hz,256);
-      plot(fr,hzm)
-      hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
-      [hzm,fr]=frmag(hz,256);
-      plot(fr,hzm,'r')
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm)
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm,'r')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

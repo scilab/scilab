@@ -69,10 +69,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">setbpt('foo'),setbpt('foo',10),dispbpt()
+    <programlisting role="example"><![CDATA[ 
+setbpt('foo'),setbpt('foo',10),dispbpt()
 delbpt()
 
-setbpt('foo',[1,2,5,6]),dispbpt()</programlisting>
+setbpt('foo',[1,2,5,6]),dispbpt()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

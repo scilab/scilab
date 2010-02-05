@@ -16,7 +16,7 @@
 /* desc : interface for xsetech routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xsetech.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetCommandArg.h"
 #include "PloEch.h"

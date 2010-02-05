@@ -72,8 +72,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
 t=%pi*(-10:10)/10;
 // esboço 3d da superfície
@@ -81,8 +80,7 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // agora, (t,t,sin(t).*cos(t)) é uma curva na superfície
 // que pode ser desenhada utilizando-se geom3d e xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

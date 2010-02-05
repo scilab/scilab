@@ -23,9 +23,9 @@
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
+static BOOL loadedDepVectorialExport = FALSE;
 /*--------------------------------------------------------------------------*/
-#define GRAPHIC_EXPORT_TAB_SIZE 9
-static gw_generic_table Tab[GRAPHIC_EXPORT_TAB_SIZE]= 
+static gw_generic_table Tab[] = 
 {
   {sci_xs2bmp,"xs2bmp"},
   {sci_xs2gif,"xs2gif"},
@@ -48,9 +48,16 @@ int gw_graphic_export(void)
 			loadOnUseClassPath("graphics");
 			loadedDep=TRUE;
 		}
+		if (!loadedDepVectorialExport && (strcmp(Tab[Fin-1].name, "xs2eps")==0
+                           || strcmp(Tab[Fin-1].name, "xs2pdf")==0
+                           || strcmp(Tab[Fin-1].name, "xs2svg")==0
+                           || strcmp(Tab[Fin-1].name, "xs2ps")==0))
+          {
+            loadOnUseClassPath("pdf_ps_eps_graphic_export");
+            loadedDepVectorialExport = TRUE;
+          }
 
-		callFunctionFromGateway(Tab,GRAPHIC_EXPORT_TAB_SIZE);
-		
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	else
 	{

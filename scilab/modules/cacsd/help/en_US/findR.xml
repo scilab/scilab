@@ -35,13 +35,13 @@
       <varlistentry>
         <term>Y</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -171,7 +171,7 @@
       <varlistentry>
         <term>R</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -206,12 +206,10 @@
     upper triangular factor  R  of the concatenated block-Hankel matrices 
     built from the input-output data, and the order  N  of a discrete-time
     realization. The model structure is:</para>
-    <programlisting><![CDATA[
-
-     x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
-     y(k)   = Cx(k) + Du(k) + e(k).
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k).
+ ]]></programlisting>
     <para>
     The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
     respectively.</para>
@@ -227,8 +225,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -244,8 +241,7 @@ Y=(flts(U,SYS)+0.5*rand(1,1000,'normal'));
 [R,N,SVAL] = findR(15,Y',U');
 SVAL
 N
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

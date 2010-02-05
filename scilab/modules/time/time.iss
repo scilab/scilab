@@ -25,7 +25,10 @@ Source: modules\{#TIME}\license.txt; DestDir: {app}\modules\{#TIME}; Components:
 Source: modules\{#TIME}\readme.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\VERSION.xml; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\includes\*.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#TIME}\includes\*.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\includes\realtime.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\includes\timer.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\includes\dynlib_time.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\sci_gateway\time_gateway.xml; DestDir: {app}\modules\{#TIME}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

@@ -12,7 +12,6 @@ callFunctionFromGateway
 ; ---------------------------------------
 putlhsvar_
 iAllocMatrixOfDouble
-Scierror
 ; cstk
 stack_
 ; CheckRhs is a define, real symbol is

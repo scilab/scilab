@@ -88,19 +88,19 @@
 
     <para>Esta função funciona sob as condições: </para>
 
-    <programlisting>
-       nx, ny, nz &gt;= 3
-       2 &lt;= kx &lt; nx
-       2 &lt;= ky &lt; ny
-       2 &lt;= kz &lt; nz</programlisting>
-
-    <para>Há erro quando estas condições não são respeitadas. </para>
+    <programlisting role = ""><![CDATA[ 
+nx, ny, nz <= 3
+2 <= kx < nx
+2 <= ky < ny
+2 <= kz < nz
+ ]]></programlisting>
+ <para>Há erro quando estas condições não são respeitadas. </para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1
 // =============================================================================
 
@@ -118,8 +118,6 @@ vp_exact = f(xp,yp,zp);
 vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // tente agora com n=20 e veja o erro
-
-
 
 // exemplo 2 (veja a página de ajuda de linear_interpn que contém o
 //            mesmo exemplo com interpolação trilinear)
@@ -157,7 +155,7 @@ colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("interpolação por spline 3d da função "+func)
 xselect()
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

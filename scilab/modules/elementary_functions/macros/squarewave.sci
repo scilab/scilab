@@ -12,7 +12,7 @@ function s = squarewave(t,%)
 //square(t) is like sin(t), only it creates a square wave 
 //with peaks of +1 to -1 instead of a sine wave.
 
-//square(t,%) generates an unsymetric  square wave: %, is the 
+//square(t,%) generates an unsymmetric  square wave: %, is the 
 //percent of the period in which the signal is positive.
 [lhs,rhs]=argn()
 if rhs<2 then %=50,end

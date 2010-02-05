@@ -50,14 +50,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 W=rand(5,5)+%i*rand(5,5);
 X=W*W';
 R=chol(X);
 norm(R'*R-X)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

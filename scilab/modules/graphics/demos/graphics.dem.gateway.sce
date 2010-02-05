@@ -15,7 +15,8 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
                "Bezier curves and surfaces"  ,"bezier/bezier.dem.gateway.sce"                       ; ..
                "More surfaces"               ,"surface/surfaces.dem.gateway.sce"                    ; ..
                "Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
-               "bar histogram"               ,"bar/bar.dem.sce"                                     ];
+               "bar histogram"               ,"bar/bar.dem.sce"; ..
+               "LaTeX/MathML"                ,"textrendering/textrendering.dem.gateway.sce"                                     ];
 
 
 

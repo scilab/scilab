@@ -66,13 +66,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=-2:0.1:2; y=x;
 z=eval3d(milk_drop,x,y);
 plot3d(x,y,z)
- 
-  </programlisting>
+ ]]> </programlisting>
   </refsection>
 
   <refsection>

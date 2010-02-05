@@ -13,6 +13,12 @@
 
 #ifndef __MSGTXT_H__ 
 #define __MSGTXT_H__
-int C2F(msgstxt)(char *txt,long int txt_len);
+
+#include "dynlib_output_stream.h"
+
+/**
+* 
+*/
+OUTPUT_STREAM_IMPEXP int C2F(msgstxt)(char *txt,long int txt_len);
 
 #endif /* __MSGTXT_H__ */

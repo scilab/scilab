@@ -20,8 +20,44 @@
 /*--------------------------------------------------------------------------*/
 int sci_completeline(char *fname,unsigned long fname_len)
 {
-	CheckRhs(5,5);
+	char *postCaretLine = NULL;
+	char **InputString_Parameter6 = NULL;
+	
+	CheckRhs(5,6);
 	CheckLhs(1,1);
+	
+	if (Rhs == 6)
+	{
+		if (GetType(6) == sci_strings)
+		{
+			int m6 = 0;
+			int n6 = 0;
+			
+			GetRhsVar(6,MATRIX_OF_STRING_DATATYPE,&m6,&n6,&InputString_Parameter6);
+			if ( (m6 == 1) && (n6 == 1) )
+			{
+				postCaretLine = InputString_Parameter6[0];
+			}
+			else
+			{
+				freeArrayOfString(InputString_Parameter6, m6*n6);
+				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,6);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong type for input arguments.\n"),fname);
+			return 0;
+		}
+	}
+	else
+	{
+		InputString_Parameter6 = (char**)MALLOC(sizeof(char*) * 1);
+		InputString_Parameter6[0] = (char*)MALLOC(sizeof(char) * ((int)strlen("") + 1));
+		strcpy(InputString_Parameter6[0], "");
+		postCaretLine = InputString_Parameter6[0];
+	}
 	
 	if ( (GetType(1) == sci_strings) &&	
 			 (GetType(2) == sci_strings) &&	
@@ -52,6 +88,7 @@ int sci_completeline(char *fname,unsigned long fname_len)
 			else
 			{
 				freeArrayOfString(InputString_Parameter1, m*n);
+				freeArrayOfString(InputString_Parameter6, 1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 				return 0;
 			}
@@ -65,6 +102,7 @@ int sci_completeline(char *fname,unsigned long fname_len)
 			{
 				freeArrayOfString(InputString_Parameter1, 1);
 				freeArrayOfString(InputString_Parameter2, m*n);
+				freeArrayOfString(InputString_Parameter6, 1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 				return 0;
 			}
@@ -79,6 +117,7 @@ int sci_completeline(char *fname,unsigned long fname_len)
 				freeArrayOfString(InputString_Parameter1, 1);
 				freeArrayOfString(InputString_Parameter2, 1);
 				freeArrayOfString(InputString_Parameter3, m*n);
+				freeArrayOfString(InputString_Parameter6, 1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,3);
 				return 0;
 			}
@@ -94,6 +133,7 @@ int sci_completeline(char *fname,unsigned long fname_len)
 				freeArrayOfString(InputString_Parameter2, 1);
 				freeArrayOfString(InputString_Parameter3, 1);
 				freeArrayOfString(InputString_Parameter4, m*n);
+				freeArrayOfString(InputString_Parameter6, 1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,4);
 				return 0;
 			}
@@ -109,11 +149,12 @@ int sci_completeline(char *fname,unsigned long fname_len)
 				freeArrayOfString(InputString_Parameter2, 1);
 				freeArrayOfString(InputString_Parameter3, 1);
 				freeArrayOfString(InputString_Parameter4, 1);
+				freeArrayOfString(InputString_Parameter6, 1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A boolean expected.\n"),fname,4);
 				return 0;
 			}
 			
-			result = completeLine(currentline, stringToAdd, filePattern, defaultPattern, stringToAddIsPath);
+			result = completeLine(currentline, stringToAdd, filePattern, defaultPattern, stringToAddIsPath, postCaretLine);
 			
 			if (result == NULL)
 			{
@@ -133,6 +174,7 @@ int sci_completeline(char *fname,unsigned long fname_len)
 			freeArrayOfString(InputString_Parameter2, 1);
 			freeArrayOfString(InputString_Parameter3, 1);
 			freeArrayOfString(InputString_Parameter4, 1);
+			freeArrayOfString(InputString_Parameter6, 1);
 			
 		}
 		else

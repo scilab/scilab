@@ -25,6 +25,10 @@
 #include <string.h>
 #include <stdio.h>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "sciprint.h"
@@ -37,13 +41,15 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "callinterf.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "recursionFunction.h"
 #include "doublecomplex.h"
+#include "libinter.h"
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
 #endif
+
 /* Table of constant values */
 static int cx1 = 1;
 static int cx0 = 0;
@@ -125,6 +131,15 @@ int C2F(isopt)(int *k, char *namex,unsigned long name_len)
   return TRUE;
 }
 
+/*--------------------------------------------------------------
+* freeptr : free ip pointer
+*--------------------------------------------------------------*/
+
+void C2F(freeptr)(double *ip[])
+{
+	if (ip) FREE((char *)(*ip));
+}
+
 /*---------------------------------------
  * isoptlw :
  * returns the status of the variable at position lw in the stack
@@ -145,7 +160,7 @@ int C2F(isoptlw)(int *topk,int  *lw, char *namex, unsigned long name_len)
  * given as xx=val in the calling sequence.
  * If no such argument it returns Rhs+1.
  *--------------------------------------- */
-int C2F(firstopt)()
+int C2F(firstopt)(void)
 
 {
   int k;
@@ -182,7 +197,7 @@ int C2F(findopt)(char * str,rhs_opts opts[])
  *  top must have a correct value when using this function
  *--------------------------------------- */
 
-int C2F(numopt)()
+int C2F(numopt)(void)
 {
   int k, ret=0;
   for (k = 1; k <= Rhs ; ++k)
@@ -254,7 +269,7 @@ static int overloadtype(int *lw,char *fname,unsigned char *typ)
     ityp=sci_c_function;
     break;
   case 'p' : /* pointer */
-    ityp=sci_lufact_pointer;
+    ityp=sci_pointer; /* used to be sci_lufact_pointer before Scilab 5.2 */
     break;
   case 's' : /* sparse */
     ityp= sci_sparse;
@@ -1985,7 +2000,7 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   C2F(recu).krec = -1;
   if (C2F(com).fun >= 0) {
     if (Top - Lhs + 1 > 0) {
-      C2F(iset)(&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
+      C2F(iset)(&Rhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
     }
     if(C2F(recu).paus > 0) goto L91;
     if (C2F(errgst).err1 > 0) Top=ireftop;
@@ -1994,7 +2009,9 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   /*    called interface ask for a scilab function to perform the function (fun=-1)
    *     the function name is given in ids(1,pt+1)
    */
-  C2F(ref2val)();
+  /*     call ref2val removed here because if forces overloading function to
+   *     be called by value
+   C2F(ref2val)();*/
   C2F(com).fun = 0;
   C2F(funs)(&C2F(recu).ids[(C2F(recu).pt + 1)* nsiz - nsiz]);
   if (Err > 0) goto L97;
@@ -2045,6 +2062,12 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
  L9999:
   Top = intop;
   --C2F(recu).niv;
+  if(C2F(errgst).err1>0) {
+    Lhs = C2F(recu).ids[C2F(recu).pt * nsiz -nsiz ];
+    Rhs = C2F(recu).ids[C2F(recu).pt * nsiz -(nsiz-1)];
+    --C2F(recu).pt;
+    C2F(com).fun = 0;
+  }
   intersci_pop();
   return FALSE;
 }
@@ -2855,32 +2878,71 @@ static char *Get_Iname()
  * Utility for error message
  *---------------------------------------------------------------------*/
 
-static char *pos[4] ={"first","second","third","fourth"};
 static char arg_position[56]; /* @TODO WTF is 56 ? */
+
+char * CharPosition(int i)
+{
+  char * tmp_buffer = NULL;
+  switch(i+1)
+    {
+    case 1:
+      tmp_buffer = strdup(_("first"));
+      break;
+    case 2:
+      tmp_buffer = strdup(_("second"));
+      break;
+    case 3:
+      tmp_buffer = strdup(_("third"));
+      break;
+    case 4:
+      tmp_buffer = strdup(_("fourth"));
+      break;
+    default:
+      tmp_buffer = strdup(" ");
+      break;
+    }
+  return tmp_buffer;
+}
 
 char *ArgPosition(int i)
 {
-	if ( i > 0 && i <= 4 ) {
-		sprintf(arg_position,_("%s argument"),pos[i-1]);
-	}else{
-		sprintf(arg_position,_("argument number %d"),i);
-	}
+  char * tmp_buffer = NULL;
+  if ( i > 0 && i <= 4 ) {
+    tmp_buffer = CharPosition(i-1);
+    sprintf(arg_position,_("%s argument"),tmp_buffer);
+    FREE(tmp_buffer);
+  }else{
+    sprintf(arg_position,_("argument number %d"),i);
+  }
   return arg_position;
 }
 
 char *ArgsPosition(int i,int j)
 {
+  char * tmp_buffer_1 = NULL, * tmp_buffer_2 = NULL;
   if ( i > 0 && i <= 4 )
     {
-      if ( j > 0 && j <= 4 )
-	sprintf(arg_position,_("%s and %s arguments"),pos[i-1],pos[j-1]);
-      else
-	sprintf(arg_position,_("%s argument and argument %d"),pos[i-1],j);
+      if ( j > 0 && j <= 4 ) {
+	tmp_buffer_1 = CharPosition(i-1);
+	tmp_buffer_2 = CharPosition(j-1);
+	sprintf(arg_position,_("%s and %s arguments"),tmp_buffer_1,tmp_buffer_2);
+	FREE(tmp_buffer_1);
+	FREE(tmp_buffer_2);
+      }
+      else 
+	{
+	  tmp_buffer_1 = CharPosition(i-1);
+	  sprintf(arg_position,_("%s argument and argument %d"),tmp_buffer_1,j);
+	  FREE(tmp_buffer_1);
+	}
     }
   else
     {
-      if ( j > 0 && j <= 4 )
-	sprintf(arg_position,_("%s argument and argument %d"),pos[j-1],i);
+      if ( j > 0 && j <= 4 ) {
+	tmp_buffer_1 = CharPosition(j-1);
+	sprintf(arg_position,_("%s argument and argument %d"),tmp_buffer_1,i);
+	FREE(tmp_buffer_1);
+      }
       else
 	sprintf(arg_position,_("arguments %d and %d"),i,j);
     }

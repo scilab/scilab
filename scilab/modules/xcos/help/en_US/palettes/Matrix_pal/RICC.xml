@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="RICC_blk"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>RICC</refname>
+
+    <refpurpose>Riccati Equation</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/RICC.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_RICC">
+    <title>Contents</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="RICC_blk">Riccati Equation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_RICC">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_RICC">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_RICC">Dialog box</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_RICC">Default properties</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_RICC">Interfacing
+              function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_RICC">Computational
+              function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_RICC">See also</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_RICC">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_RICC">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Matrix_pal">Matrix operation palette</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_RICC">
+    <title>Description</title>
+
+    <para>This block computes the solution of Riccati equation using different
+    method and for both case continuous and discrete.</para>
+
+    <para>The Riccati equation in continuous time is:</para>
+
+    <para>A*X+X*A+C-X*D*X=0</para>
+
+    <para>The Riccati equation in discrete time is:</para>
+
+    <para>A*X*(inv(In-D))*A-X+C=0</para>
+
+    <para>where A is an NxN matrix, it is the first input of the block, C and
+    D are two NxN symmetrics matrices and are respectively the second and third
+    input of the RICC block. X represent the output of the block, it is also a
+    NxN matrix.</para>
+
+    <para>The user can choose between two methods of computation. For the
+    continuous time he can use even the Schur method or the matrix sign
+    function approach method, by setting the Model parameter to 1 or 2. For
+    the discrete time, the models are the Schur method and the inverse free
+    spectral decomposition method.</para>
+
+    <para />
+  </refsection>
+
+  <refsection id="Dialogbox_RICC">
+    <title>Dialog box</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/RICC_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Type (1=Cont 2=Disc)</emphasis>
+        </para>
+
+        <para>For continuous time signal set this parameter to 1. For discrete
+        input time set it to 2.</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Model(1=Schr 2=sign(cont)
+          inv(disc))</emphasis>
+        </para>
+
+        <para>To use the Shur method in computation set this parameter to 1.
+        To use matrix sign function approach in continuous case or the inverse
+        free spectral decomposition method in discrete case set this parameter
+        to 2.</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_RICC">
+    <title>Default properties</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 2 : size [-1,-1] / type 1</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 3 : size [-1,-1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>
+        no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>
+        no</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+
+          <emphasis role="italic">ricc_m</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_RICC">
+    <title>Interfacing function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/MatrixOp/RICC.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_RICC">
+    <title>Computational function</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/ricc_m.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_RICC">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Matrix_pal">Matrix_pal - Matrix operation palette
+          (xcos Palette)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_RICC">
+    <title>Authors</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

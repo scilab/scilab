@@ -16,8 +16,7 @@
 /* desc : interface for param3d1 routine                                  */
 /*------------------------------------------------------------------------*/
 
-#include "sci_param3d1.h"
-#include "sci_demo.h"
+#include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "sciCall.h"

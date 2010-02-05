@@ -118,18 +118,16 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+//retourne sous forme entière la valeur du flag
+fftw_flags()
 
- //retourne sous forme entière la valeur du flag
- fftw_flags()
+//changement de méthode
+fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
 
- //changement de méthode
- fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-
- //changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
- [a,S]=fftw_flags("FFTW_PATIENT")
- 
-  ]]></programlisting>
+//changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
+[a,S]=fftw_flags("FFTW_PATIENT")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

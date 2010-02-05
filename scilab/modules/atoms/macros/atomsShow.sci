@@ -7,13 +7,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Show information on a package
 
-function atomsShow(name,version)
+function atomsShow(package)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
-	if ~ exists("atoms_internalslib") then
+	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	
@@ -22,43 +24,56 @@ function atomsShow(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsShow",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsShow",1));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
-	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShow",1));
+	if type(package) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsShow",1));
 	end
 	
-	if (rhs>1) & (type(version)<>10)  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShow",2));
+	if size(package(1,:),"*") > 2 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"),"atomsShow",1));
 	end
 	
-	// Check input parameters dimensions
+	// Remove leading and trailing parameters
+	// =========================================================================
+	package = stripblanks(package);
+	
+	// If the version is not mentioned, complete with an empty string
 	// =========================================================================
 	
-	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShow",1));
+	if size(package,"*") == 1 then
+		package = [ package "" ];
 	end
 	
-	if (rhs>1) & (size(version,"*") <> 1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShow",2));
-	end
-	
-	
-	// If version is not defined, the Most Recent Version is used
+	// Check if it's a valid package
 	// =========================================================================
-	if rhs<2 then
-		version = atomsGetMRVersion(name);
+	
+	if ~atomsIsInstalled(package) & ~atomsIsPackage(package) then
+		
+		if isempty(package(2)) then
+			module_full_name = package;
+		else
+			module_full_name = package(1)+" - "+package(2);
+		end
+		
+		atomsError("error",msprintf(gettext("%s: The package %s is not available.\n"),"atomsShow",module_full_name));
+	end
+	
+	// If version is not mentioned, the Most Recent Version is used
+	// =========================================================================
+	if isempty(package(2)) then
+		package(1,2) = atomsGetMRVersion(package(1));
 	end
 	
 	// Get the details of this package
 	// =========================================================================
 	
-	details = atomsToolboxDetails(name,version);
+	details = atomsToolboxDetails(package);
 	
 	fields_map = [];
 	fields_map = [ fields_map ; "Toolbox"        gettext("Package")        ];
@@ -67,6 +82,7 @@ function atomsShow(name,version)
 	fields_map = [ fields_map ; "Version"        gettext("Version")        ];
 	fields_map = [ fields_map ; "Depends"        gettext("Depend")         ];
 	fields_map = [ fields_map ; "Category"       gettext("Category(ies)")  ];
+	fields_map = [ fields_map ; "Author"         gettext("Author(s)")      ];
 	fields_map = [ fields_map ; "Maintainer"     gettext("Maintainer(s)")  ];
 	fields_map = [ fields_map ; "Entity"         gettext("Entity")         ];
 	fields_map = [ fields_map ; "WebSite"        gettext("WebSite")        ];
@@ -75,8 +91,8 @@ function atomsShow(name,version)
 	
 	fields_map = [ fields_map ; "Status"         gettext("Status")         ];
 	
-	if atomsIsInstalled(name,version) then
-		fields_map = [ fields_map ; "InstallAutomaticaly" gettext("Automaticaly Installed")];
+	if atomsIsInstalled(package) then
+		fields_map = [ fields_map ; "InstallAutomaticaly" gettext("Automatically Installed")];
 		fields_map = [ fields_map ; "installPath"         gettext("Install Directory")];
 	end
 	
@@ -96,7 +112,7 @@ function atomsShow(name,version)
 		// 
 		
 		if fields_map(i,1)=="Status" then
-			if atomsIsInstalled(name,version) then
+			if atomsIsInstalled(package) then
 				value = "Installed";
 			else
 				value = "Not installed";
@@ -104,11 +120,11 @@ function atomsShow(name,version)
 		end
 		
 		//
-		// Automaticaly Installed ?
+		// Automatically Installed ?
 		// 
 		
 		if fields_map(i,1)=="InstallAutomaticaly" then
-			if atomsGetInstalledStatus(name,version) == "A" then
+			if atomsGetInstalledStatus(package) == "A" then
 				value = "yes";
 			else
 				value = "no";

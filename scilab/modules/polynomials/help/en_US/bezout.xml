@@ -46,8 +46,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // polynomial case
 x=poly(0,'x');
 p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
@@ -56,6 +55,7 @@ det(U)
 clean([p1,p2]*U)
 thelcm=p1*U(1,2)
 lcm([p1,p2])
+
 // integer case
 i1=int32(2*3^5); i2=int32(2^3*3^2);
 [thegcd,U]=bezout(i1,i2)
@@ -63,8 +63,7 @@ V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
 lcm(V)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -47,15 +47,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 P=rand(4,4);P=P*P';
 Q=rand(4,4);Q=Q*Q';
 T=equil(P,Q)
 clean(T*P*T')
 clean(inv(T)'*Q*inv(T))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

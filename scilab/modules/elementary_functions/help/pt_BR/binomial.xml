@@ -74,20 +74,17 @@
     probability(X=k)</literal> , com X uma variável aleatória, segundo a
     distribuição B(n,p) , e numericamente :</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
             / n \  k      n-k       / n \       n!
  pr(k+1) =  |   | p  (1-p)    com  |   |  = ---------
             \ k /                   \ k /    k! (n-k)!
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // primeiro exemplo
 n=10;p=0.3; xbasc(); plot2d3(0:n,binomial(p,n));
 
@@ -113,8 +110,7 @@ Cnks=gamma(n+1)./(gamma(1:n+1).*gamma(n+1:-1:1));
 x=poly(0,'x');
 pr=Cnks.*horner(x.^(0:n).*(1-x)^(n:-1:0),p);
 pr-binomial(p,n)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

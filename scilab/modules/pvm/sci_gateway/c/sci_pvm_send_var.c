@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_send_var, fin = 25
  ******************************************/
-int intspvm_send_var(char *fname,unsigned long fname_len)
+int sci_pvm_send_var(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mn1,m2,n2,l2,m3,n3,l3,un=1,l4;
   CheckRhs(3,3);

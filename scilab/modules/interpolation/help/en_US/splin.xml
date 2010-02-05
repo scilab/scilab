@@ -232,7 +232,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example 1
 deff("y=runge(x)","y=1 ./(1 + x.^2)")
 a = -5; b = 5; n = 11; m = 400;
@@ -242,7 +242,7 @@ d = splin(x, y);
 xx = linspace(a, b, m)';
 yyi = interp(xx, x, y, d);
 yye = runge(xx);
-xbasc()
+clf()
 plot2d(xx, [yyi yye], style=[2 5], leg="interpolation spline@exact function")
 plot2d(x, y, -9)
 xtitle("interpolation of the Runge function")
@@ -257,13 +257,13 @@ xx = linspace(a,b,m)';
 yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
 yf = interp(xx, x, y, splin(x,y,"fast"));
 ym = interp(xx, x, y, splin(x,y,"monotone"));
-xbasc()
+clf()
 plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
        leg="fast@monotone@not a knot spline")
 plot2d(x,y,-9, strf="000")  // to show interpolation points
 xtitle("Various spline and sub-splines on random datas")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

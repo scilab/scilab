@@ -113,7 +113,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //External écrit en Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -137,7 +137,7 @@ F=['      double precision function ffun(x)'
 mputl(F,TMPDIR+'/ffun.f')
 
 // compilation du code Fortran
-l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
 
 // link incrémental
 link(l,'ffun','f')
@@ -148,7 +148,7 @@ abs(exact-I)
 
 // External écrit en C (un compilateur C est nécessaire)
 // Ecriture du code C
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
    '  double y,pi=3.14159265358979312;'
@@ -158,7 +158,7 @@ C=['#include &lt;math.h&gt;'
 mputl(C,TMPDIR+'/cfun.c')
 
 // compilation du code C
-l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.f',[],'c',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'cfun','c')
@@ -166,7 +166,7 @@ link(l,'cfun','c')
 // integration de la fonction
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

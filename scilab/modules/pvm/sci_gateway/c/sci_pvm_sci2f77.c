@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_sci2f77
  ******************************************/
-int intspvm_sci2f77(char *fname,unsigned long fname_len)
+int sci_pvm_sci2f77(char *fname,unsigned long fname_len)
 {
   int *header;
   CheckRhs(1,1);

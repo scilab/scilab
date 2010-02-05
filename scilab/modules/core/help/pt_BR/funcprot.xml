@@ -63,8 +63,7 @@ funcprot(prot)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 funcprot(1)
 deff('[x]=foo(a)','x=a')
 deff('[x]=foo(a)','x=a+1')
@@ -73,7 +72,6 @@ funcprot(0)
 deff('[x]=foo(a)','x=a')
 deff('[x]=foo(a)','x=a+1')
 foo=33
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

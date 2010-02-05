@@ -113,8 +113,7 @@ win_l=window('kr',n,alpha)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Hamming window
 clf()
 N=64;
@@ -147,8 +146,7 @@ subplot(122)
 n=256;[W,fr]=frmag(w,n);
 plot2d(fr,20*log10(W),style=color('blue'))
 set(gca(),'grid',[1 1]*color('gray'))
-   
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -489,7 +489,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 f=figure();
 // create a figure
 h=uicontrol(f,'style','listbox', ...
@@ -501,7 +501,7 @@ set(h, 'value', [1 3]);
 // select item 1 and 3 in the list
 close(f);
 // close the figure
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

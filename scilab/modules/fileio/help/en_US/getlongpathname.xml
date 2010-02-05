@@ -77,9 +77,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">[longpath,bOK]=getlongpathname(SCI) 
+    <programlisting role="example"><![CDATA[ 
+[longpath,bOK]=getlongpathname(SCI) 
 [longpaths,bOKs]=getlongpathname([SCI;SCI]) 
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

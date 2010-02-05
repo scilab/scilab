@@ -58,13 +58,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;2,3]
 asinhm(sinhm(A))
 A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Caso para complexos
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

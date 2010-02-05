@@ -1,30 +1,18 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO - Yann COLLETTE
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// stacksize
+// <-- JVM NOT MANDATORY -->
 
-a = stacksize();
-a = a(1);
-stacksize(a+1000);
-y =stacksize();
-
-if y(1)<>a+1000 then pause,end
-
-stacksize('max');
-y1 =stacksize();
-stacksize('max');
-y2 =stacksize();
-
-if y1<>y2  then pause,end
-
+currentstksize = stacksize();
 stacksize('min');
-y1 =stacksize();
-stacksize('min');
-y2 =stacksize();
+minstksize = stacksize();
+stacksize('max');
+maxstksize = stacksize();
+stacksize(ceil((maxstksize(1) + minstksize(1))/2));
+stacksize(currentstksize(1));
 
-if y1<>y2  then pause,end
-
+// These commands should not hangs scilab

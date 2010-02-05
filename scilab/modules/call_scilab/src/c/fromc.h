@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "dynlib_call_scilab.h"
 #include "BOOL.h"
 
 /**
@@ -21,7 +22,7 @@
  *
  * @param void  
  */
-void SetFromCToON(void);
+CALL_SCILAB_IMPEXP void SetFromCToON(void);
 
 /**
  * @TODO add comment
@@ -29,7 +30,7 @@ void SetFromCToON(void);
  * @param void  
  * @return <ReturnValue>
  */
-int IsFromC(void);
+CALL_SCILAB_IMPEXP int IsFromC(void);
 
 #endif /*FROMC*/
 /*--------------------------------------------------------------------------*/ 

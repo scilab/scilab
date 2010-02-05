@@ -43,13 +43,11 @@ setmenu(gwin,button [,nsub])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-addmenu('foo')   //New button made in main scilab window
-unsetmenu('foo')   //button foo cannot be activated (grey string)
-setmenu('foo')     //button foo can be activated (black string)
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+addmenu('foo')   // New button made in main scilab window
+unsetmenu('foo') // button foo cannot be activated (grey string)
+setmenu('foo')   // button foo can be activated (black string)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

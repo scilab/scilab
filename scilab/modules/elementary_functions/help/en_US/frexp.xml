@@ -77,9 +77,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [f,e]=frexp([1,%pi,-3,%eps])
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

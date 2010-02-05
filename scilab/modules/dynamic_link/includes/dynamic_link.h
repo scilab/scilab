@@ -14,6 +14,7 @@
 #ifndef __DYNAMIC_LINK_H__
 #define __DYNAMIC_LINK_H__
 
+#include "dynlib_dynamic_link.h"
 #include "BOOL.h"
 #include "machine.h" /* C2F */
 
@@ -22,7 +23,7 @@
 /**
 * Initialize tables 
 */
-void initializeLink(void);
+DYNAMIC_LINK_IMPEXP void initializeLink(void);
 
 /**
 * check that a routine name is a loaded
@@ -36,7 +37,7 @@ void initializeLink(void);
 * @param[in/out] ilib number in the function table (-1 if FALSE)
 * @return a BOOL
 */
-BOOL c_link(char *routinename,int *ilib);
+DYNAMIC_LINK_IMPEXP BOOL c_link(char *routinename,int *ilib);
 
 /**
 * OBSOLETE 
@@ -48,7 +49,7 @@ BOOL c_link(char *routinename,int *ilib);
 * @param[in] routinename
 * @param[in/out] ilib
 */
-void C2F(iislink)(char *routinename, int *ilib);
+DYNAMIC_LINK_IMPEXP void C2F(iislink)(char *routinename, int *ilib);
 
 
 /**
@@ -56,7 +57,7 @@ void C2F(iislink)(char *routinename, int *ilib);
 * @param ii
 * @param ptr on functions
 */
-void GetDynFunc(int ii, void (**realop) ());
+DYNAMIC_LINK_IMPEXP void GetDynFunc(int ii, void (**realop) ());
 
 /**
 * Search a function in the table 
@@ -64,23 +65,23 @@ void GetDynFunc(int ii, void (**realop) ());
 * @param 
 * @param 
 */
-int SearchInDynLinks(char *op, void (**realop) ());
+DYNAMIC_LINK_IMPEXP int SearchInDynLinks(char *op, void (**realop) ());
 
 /**
 * Show the linked files 
 */
-void ShowDynLinks(void);
+DYNAMIC_LINK_IMPEXP void ShowDynLinks(void);
 
 /**
 * unlink all linked files 
 */
-void unlinkallsharedlib(void);
+DYNAMIC_LINK_IMPEXP void unlinkallsharedlib(void);
 
 /**
 * Unlink a shared lib 
 * @param i (number of shared lib)
 */
-void unlinksharedlib(int *i);
+DYNAMIC_LINK_IMPEXP void unlinksharedlib(int *i);
 
 
 /**
@@ -89,27 +90,27 @@ void unlinksharedlib(int *i);
 * return value is == -1 if the LoadDynLibrary failed 
 * @param loaded_file
 */
-int Sci_dlopen( char *loaded_file);
+DYNAMIC_LINK_IMPEXP int Sci_dlopen( char *loaded_file);
 
 /**
 * This routine load the entryname ename 
 * from shared lib ishared 
 * @return TRUE or FALSE
 */
-BOOL Sci_dlsym(char *ename,int ishared,char *strf);
+DYNAMIC_LINK_IMPEXP BOOL Sci_dlsym(char *ename,int ishared,char *strf);
 
 /**
 * Delete entry points associated with shared lib ishared
 * then delete the shared lib 
 @param ishared
 */
-void Sci_Delsym(int ishared);
+DYNAMIC_LINK_IMPEXP void Sci_Delsym(int ishared);
 
 /**
 * @param sizearray returns size of string array returned
 * @return string array with functions names loaded
 */
-char **getNamesOfFunctionsInSharedLibraries(int *sizearray);
+DYNAMIC_LINK_IMPEXP char **getNamesOfFunctionsInSharedLibraries(int *sizearray);
 
 /**
 * call link for scilab
@@ -121,7 +122,7 @@ char **getNamesOfFunctionsInSharedLibraries(int *sizearray);
 * @param ierr (last error)
 * @return id 
 */
-int scilabLink(int idsharedlibrary,
+DYNAMIC_LINK_IMPEXP int scilabLink(int idsharedlibrary,
 			   char *filename,
 			   char **subnamesarray,int sizesubnamesarray,
 			   BOOL fflag,int *ierr);
@@ -131,7 +132,7 @@ int scilabLink(int idsharedlibrary,
 * @param size of returned list
 * @return list of Id
 */
-int *getAllIdSharedLib(int *sizeList);
+DYNAMIC_LINK_IMPEXP int *getAllIdSharedLib(int *sizeList);
 
 #endif /* __DYNAMIC_LINK_H__ */
 /*-----------------------------------------------------------------------------------*/

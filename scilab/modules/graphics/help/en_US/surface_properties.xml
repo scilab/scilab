@@ -143,7 +143,7 @@
         <listitem>
           <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant edge.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,7 +151,7 @@
         <listitem>
           <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant face.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -378,7 +378,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 //create a figure 
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z); 
@@ -415,9 +415,7 @@ e=gce();
 e.color_flag=1 // color index proportional to altitude (z coord.)
 e.color_flag=2; // back to default mode
 e.color_flag= 3; // interpolated shading mode (based on blue default color because field data.color is not filled)
-
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -50,31 +50,24 @@
     <title>Description</title>
     <para>
     calculates the time response of the discrete time system</para>
-    <programlisting><![CDATA[
-
-         x[t+1] = Ax[t] + Bu[t].
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x[t+1] = Ax[t] + Bu[t].
+ ]]></programlisting>
     <para>
     The inputs <literal>ui</literal>'s are the columns of the <literal>U</literal> matrix</para>
-    <programlisting><![CDATA[
-
-        U=[u0,u1,...,un];
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+U=[u0,u1,...,un];
+ ]]></programlisting>
     <para><literal>x0</literal> is the vector of initial state (default value : 0) ;</para>
     <para><literal>X</literal> is the matrix of outputs (same number of columns as <literal>U</literal>).</para>
-    <programlisting><![CDATA[
-
-        X=[x0,x1,x2,...,xn] 
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+X=[x0,x1,x2,...,xn] 
+ ]]></programlisting>
     <para><literal>xf</literal> is the vector of final state <literal>xf=X[n+1]</literal></para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=eye(2,2);B=[1;1];
 x0=[-1;-2];
 u=[1,2,3,4,5];
@@ -82,8 +75,7 @@ x=ltitr(A,B,u,x0)
 x1=A*x0+B*u(1)
 x2=A*x1+B*u(2)
 x3=A*x2+B*u(3) //....
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

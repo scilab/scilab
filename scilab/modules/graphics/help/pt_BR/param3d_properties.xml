@@ -257,23 +257,20 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   
-   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
-   t=[0:0.1:5*%pi]';
-   param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+t=[0:0.1:5*%pi]';
+param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
   
-   a.rotation_angles=[65,75]; 
-   a.data_bounds=[-1,-1,-1;1,1,2]; //limites dados por data_bounds
-   a.thickness = 2;
-   h=a.children //obtendo o manipulador da entidade param3d: um Compound composto de duas curvas
-   h.children(1).foreground = 3 // primeira curva
-   curve2 = h.children(2);
-   curve2.foreground = 6;
-   curve2.mark_style = 2;
-
- 
-  </programlisting>
+a.rotation_angles=[65,75]; 
+a.data_bounds=[-1,-1,-1;1,1,2]; //limites dados por data_bounds
+a.thickness = 2;
+h=a.children //obtendo o manipulador da entidade param3d: um Compound composto de duas curvas
+h.children(1).foreground = 3 // primeira curva
+curve2 = h.children(2);
+curve2.foreground = 6;
+curve2.mark_style = 2;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

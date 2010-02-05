@@ -54,13 +54,11 @@ k=newest(path1,path2,...,pathn)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 newest('SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin')
 newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin'])
 newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -126,7 +126,8 @@ c     necessary while matdsr and matdsc cannot be called by reference
          lstk(top+1)=lr+mn1*(it1+1)
       endif
       rhs=1
-      call inteig('spec')
+c			call remove for scilab 6, need to convert poly fonction en C/C++      
+c      call inteig('spec')
       call putlhsvar
       if(err.gt.0) return
       il1=iadr(lstk(top))

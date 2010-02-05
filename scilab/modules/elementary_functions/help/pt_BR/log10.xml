@@ -57,11 +57,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 10.^log10([1,%i,-1,-%i])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

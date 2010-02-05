@@ -27,8 +27,7 @@ static int C2F(scivoid)(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-#define INTEGER_TAB_SIZE 25
-static gw_generic_table Tab[INTEGER_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
   {NULL, ""}, //int32
   {NULL, ""}, //int16
@@ -66,13 +65,13 @@ int gw_integer(void)
 		/* Bug 4123 F2C code (i_prod.f) returns a wrong exception after callFunctionFromGateway */
 		/* and it crashs with release mode */
 		/* workaround disabled callFunctionFromGateway and call function without check */
-		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 	}
 	else
 	#endif
 	#endif
 	{
-		callFunctionFromGateway(Tab,INTEGER_TAB_SIZE);
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	return 0;
 }

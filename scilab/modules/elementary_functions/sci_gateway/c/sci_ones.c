@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_ones(char *fname, int* _piKey)
 {
-	int iRet					= 0;
+	SciErr sciErr;
 	int iRows					= 0;
 	int iCols					= 0;
 	double *pdblReal	= 0;
@@ -50,47 +50,54 @@ int sci_ones(char *fname, int* _piKey)
 	}
 	else if(Rhs == 1)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		if(getVarType(piAddr1) > 10)//pas classe !
+		if(!isVarMatrixType(_piKey, piAddr1))
 		{
 			OverLoad(1);
 			return 0;
 		}
-		iRet = getVarDimension(piAddr1, &iRows, &iCols);
-		if(iRet)
+
+		sciErr = getVarDimension(_piKey, piAddr1, &iRows, &iCols);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 	else if(Rhs == 2)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getDimFromVar(piAddr1, &iRows);
-		if(iRet)
+		sciErr = getDimFromVar(_piKey, piAddr1, &iRows);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getDimFromVar(piAddr2, &iCols);
-		if(iRet)
+		sciErr = getDimFromVar(_piKey, piAddr2, &iCols);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
@@ -100,7 +107,13 @@ int sci_ones(char *fname, int* _piKey)
 		iCols = 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReal, _piKey);
+	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblReal);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
 	if(iRows != 0)
 	{
 		vDset(iRows * iCols, 1, pdblReal, 1);

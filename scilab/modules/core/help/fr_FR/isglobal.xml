@@ -37,7 +37,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 isglobal(1)
 global a
 isglobal(a)

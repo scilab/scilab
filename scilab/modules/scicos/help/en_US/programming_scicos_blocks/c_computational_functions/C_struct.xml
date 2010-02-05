@@ -158,7 +158,7 @@ Do the difference here in the type numbers defined at the  (2,1,3)
   </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">block-&gt;inptr :</emphasis> An array of pointers of size nin,1 that allow to directly acces to the data contained in the regular input matrices.</para>
+        <para><emphasis role="bold">block-&gt;inptr :</emphasis> An array of pointers of size nin,1 that allow to directly access to the data contained in the regular input matrices.</para>
         <para> Suppose the previous example (block with three inputs : an int32 matrix of size [3,2], a complex scalar and a real matrix of size [4,1]).</para>
         <para>  contains three pointers, and should be viewed as arrays contained the data for the int32, the real and the complex matrices :
 

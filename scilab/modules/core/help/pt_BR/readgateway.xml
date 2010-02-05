@@ -43,13 +43,12 @@ primitives = readgateway(module_name);
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 [primitives,primitivesID,gatewayID] = readgateway('core');
 primitives(1) // primitiva 'debug' primitive
 primitivesID(1) // 1 é o ID de 'debug' na porta de ligação de 'core'
 gatewayID(1) // 13 é o ID da porta de ligação de 'core' no Scilab
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

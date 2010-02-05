@@ -82,7 +82,7 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 	/* check if the XML file has been encoded with utf8 (unicode) or not */
 	if ( (strcmp("utf-8", encoding)!=0) || (strcmp("UTF-8", encoding)==0) )
 	{
-		xmlDocPtr doc;
+		xmlDocPtr doc = NULL;
 		xmlXPathContextPtr xpathCtxt = NULL;
 		xmlXPathObjectPtr xpathObj = NULL;
 

@@ -44,13 +44,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 w=0.1:0.1:5;mag=1+abs(sin(w));
 fresp=cepstrum(w,mag);
 plot2d([w',w'],[mag(:),abs(fresp)])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

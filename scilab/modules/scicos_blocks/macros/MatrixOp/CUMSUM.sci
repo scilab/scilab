@@ -36,7 +36,7 @@ case 'set' then
 model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
-    [ok,typ,decomptyp,lab]=getvalue('Set CUMSUM block parameters',['Datatype(1=real double  2=Complex)';'Sum along (0=the first non singleton dimension  1=Rows  2=Columns)'],list('vec',1,'vec',1),label)
+    [ok,typ,decomptyp,lab]=scicos_getvalue('Set CUMSUM block parameters',['Datatype(1=real double  2=Complex)';'Sum along (0=the first non singleton dimension  1=Rows  2=Columns)'],list('vec',1,'vec',1),label)
     if ~ok then break,end
     label=lab
 	if (typ==1) then

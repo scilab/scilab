@@ -19,22 +19,24 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-static int getMode(int _iPos, char *_pcMode, int* _piKey);
+static SciErr getMode(int* _piKey, int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
 int sci_dsearch(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int i;
-	int iRet								= 0;
 
 	int* piAddr1						= NULL;
 	int iRows1							= 0;
 	int iCols1							= 0;
+	int iType1							= 0;
 	double *pdblReal1				= NULL;
 
 	int* piAddr2						= NULL;
 	int iRows2							= 0;
 	int iCols2							= 0;
+	int iType2							= 0;
 	double *pdblReal2				= NULL;
 
 	char cMode							= 0;
@@ -49,19 +51,35 @@ int sci_dsearch(char *fname, int* _piKey)
 	CheckRhs(2,3);
 	CheckLhs(1,3);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr1) != sci_matrix || getVarType(piAddr2) != sci_matrix)
+	sciErr = getVarType(_piKey, piAddr1, &iType1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = getVarType(_piKey, piAddr2, &iType2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iType1 != sci_matrix || iType2 != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -70,14 +88,17 @@ int sci_dsearch(char *fname, int* _piKey)
 	//get ch
 	if(Rhs == 3)
 	{
-		iRet = getMode(3, &cMode, _piKey);
-		if(iRet)
+		sciErr = getMode(_piKey, 3, &cMode);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 	else
+	{
 		cMode = 'c';
+	}
 
 	if(cMode != 'c' && cMode != 'd')
 	{
@@ -86,17 +107,18 @@ int sci_dsearch(char *fname, int* _piKey)
 		return 0;
 	}
 
-	if(isVarComplex(piAddr1) || isVarComplex(piAddr2))
+	if(isVarComplex(_piKey, piAddr1) || isVarComplex(_piKey, piAddr2))
 	{
 		Error(202);
 		return 0;
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		//verif that val is in strict increasing order
@@ -131,31 +153,51 @@ int sci_dsearch(char *fname, int* _piKey)
 			return 0;
 		}
 		if(iRowsOcc == 1)
+		{
 			iColsOcc--;
+		}
 		else
+		{
 			iRowsOcc--;
+		}
 	}
 
 	//Get X
-	iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
-	if(iRet)
+	sciErr = getMatrixOfDouble(_piKey, piAddr1, &iRows1, &iCols1, &pdblReal1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(Lhs >= 1)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealInd, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealInd);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 
 	if(Lhs >= 2)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 
 	if(Lhs >= 3)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 3, 1, 1, &pdblRealInfo, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 3, 1, 1, &pdblRealInfo);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 	}
 
 	if(iRows1 == 0 || iCols1 == 0)
@@ -183,10 +225,12 @@ int sci_dsearch(char *fname, int* _piKey)
 	{
 		LhsVar(1) = Rhs + 1;
 	}
+
 	if(Lhs >= 2)
 	{
 		LhsVar(2) = Rhs + 2;
 	}
+
 	if(Lhs >= 3)
 	{
 		LhsVar(3) = Rhs + 3;
@@ -196,50 +240,44 @@ int sci_dsearch(char *fname, int* _piKey)
 	return 0;
 }
 
-static int getMode(int _iPos, char *_pcMode, int* _piKey)
+static SciErr getMode(int* _piKey, int _iPos, char *_pcMode)
 {
-	int iRet			= 0;
+	SciErr sciErr;
 	int iRows			= 0;
 	int iCols			= 0;
 	int iMode			= 0;
 	int* piAddr		= NULL;
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr, _piKey);
-	if(iRet)
+	int iLen						= 0;
+	char pstMode[1][2]	= {""};
+
+	sciErr = getVarAddressFromPosition(_piKey, _iPos, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
-	if(getVarType(piAddr) == sci_strings)
+
+	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
+	if(sciErr.iErr)
 	{
-		int iLen						= 0;
-		char pstMode[1][2]	= {""};
+		return sciErr;
+	}
 
-		iRet = getVarDimension(piAddr, &iRows, &iCols);
-		if(iRet)
+	if(iRows == 1 && iCols == 1)
+	{
+		sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, (char**)pstMode);
+		if(sciErr.iErr)
 		{
-			return 1;
-		}
-
-		if(iRows != 1 || iCols != 1)
-		{
-			Error(89);
-			return 1;
-		}
-
-		iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, (char**)pstMode);
-		if(iRet)
-		{
-			return 1;
+			return sciErr;
 		}
 
 		*_pcMode = pstMode[0][0];
 	}
 	else
 	{
-		Error(44);
-		return 2;
+		Error(89);
 	}
-	return 0;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

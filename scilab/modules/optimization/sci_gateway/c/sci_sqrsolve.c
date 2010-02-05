@@ -10,7 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -21,7 +21,9 @@ __declspec (dllexport) struct {
 } C2F(clsqrsolve);
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sqrsolve)(char *fname,unsigned long fname_len)
+extern int C2F(intlsqrsolve)(); /* FORTRAN subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_sqrsolve(char *fname,unsigned long fname_len)
 {
 	C2F(intlsqrsolve)(fname,fname_len);
 	return 0;

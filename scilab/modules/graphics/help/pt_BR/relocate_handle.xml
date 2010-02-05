@@ -78,7 +78,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">x = 0:10 ;
+    <programlisting role="example"><![CDATA[ 
+x = 0:10 ;
 
 // esboçando uma primeira poligonal
 plot(x,x^2) ;
@@ -94,8 +95,7 @@ poly2bis = copy( poly2 ) ; // criando uma cópia da poligonal
 
 // pondo ambas as poligonais na mesma janela
 relocate_handle( poly2bis, axes1 ) ;
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

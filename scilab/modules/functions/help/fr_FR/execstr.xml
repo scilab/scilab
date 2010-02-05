@@ -83,7 +83,7 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 execstr('a=1') // affecte a=1.
 
 execstr('1+1') // ne fait rien de particulier (alors que evstr('1+1') renvoie 2)
@@ -116,7 +116,6 @@ if execstr('variable2;','errcatch')<>0 then
 else
    disp("execstr est content");
 end
-
  ]]></programlisting>
   </refsection>
   <refsection>

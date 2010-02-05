@@ -16,7 +16,7 @@
 /* desc : interface for xgetech routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xgetech.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "PloEch.h"
 

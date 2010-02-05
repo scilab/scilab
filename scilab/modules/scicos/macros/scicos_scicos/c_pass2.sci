@@ -567,7 +567,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
             end  
 	    
             pvec=vec(primary)+.5*typ_l(primary) // same order typ_l to the right
-            [mi,In]=sort(-pvec)
+            [mi,In]=gsort(-pvec)
 	    primary=primary(In)
             lp=find(typ_l(primary))
 	    lprimary=primary(lp)
@@ -669,7 +669,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      primary0=primary0(k);
 	      prt0=prt0(k)
               [primary0,prt0]=aggregate(primary0,prt0)
-	      [mi,In]=sort(-Vec(primary0))
+	      [mi,In]=gsort(-Vec(primary0))
 	      if blk<>0 then
         	lordclk(clkptr(blk)+port-1)=[primary0(In),prt0(In)]
 
@@ -940,7 +940,7 @@ function primary=discardprimary(primary)
 // discard
   mma=maxi(primary(:,2))+1
   con=mma*primary(:,1)+primary(:,2)
-  [junk,ind]=sort(-con);con=-junk
+  [junk,ind]=gsort(-con);con=-junk
   primary=primary(ind,:)
   // discard duplicate calls to the same block port
   if size(con,'*')>=2 then
@@ -1011,7 +1011,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   // code to replace faulty unique which reorders
   yy=ext_cord1(:,1)'
   [xx,kkn]=unique(yy);
-  ext_cord=yy(-sort(-kkn))
+  ext_cord=yy(-gsort(-kkn))
   //ext_cord=unique(ext_cord1(:,1)');
   //for i=ext_cord
   //  if typ_l(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
@@ -1021,7 +1021,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
 
   [ext_cord_old,ok]=newc_tree3(vec,dep_u,dep_uptr,typp);
  
-  if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
+  if or(gsort(ext_cord_old)<>gsort(ext_cord)) then pause,end
   //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
@@ -1108,7 +1108,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
     end
     if fini then break;end
   end
-  [k,ord]=sort(-vec);
+  [k,ord]=gsort(-vec);
   ord(find(k==1))=[];
 endfunction
 
@@ -1118,7 +1118,7 @@ function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
     clkconnectj=exe_cons
     mma=maxi(clkconnectj(:,2))+1
     con=mma*(clkconnectj(:,1))+clkconnectj(:,2)
-    [junk,ind]=sort(-con);con=-junk
+    [junk,ind]=gsort(-con);con=-junk
     clkconnectj=clkconnectj(ind,:)
     // discard duplicate calls to the same block port
     if size(con,'*')>=2 then
@@ -1333,7 +1333,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
   clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
   con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
-  [junk,ind]=sort(-con);con=-junk;
+  [junk,ind]=gsort(-con);con=-junk;
   clkconnect=clkconnect(ind,:);
   //
   bclkconnect=clkconnect(:,[1 3]);
@@ -1483,7 +1483,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
     if fini then break;end
   end
 
-  [k,ord]=sort(-vec);
+  [k,ord]=gsort(-vec);
   ord(find(k==1))=[];
   ord=ord(:)
 endfunction
@@ -2031,140 +2031,82 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 // path_in  : Path of the "to block" in scs_m
 //!
 
-  //** save the current figure handle
-  gh_wins = gcf();
+    //** save the current figure handle
+    //gh_wins = gcf();
 
-  if path_in==-1 then
-    hilite_obj(path_out);
-    message(['One of this block''s outputs has negative size';
-	     'Please check.'])
-    unhilite_obj(path_out);
-    ninnout=0
-    return
-  end
-
-  if path_in==-2 then
-    hilite_obj(path_out);
-    message(['The input port '+string(prt_out)+' of this block have a negative size.';
-	     'Please check.'])
-    unhilite_obj(path_out);
-    ninnout=0
-    return
-  end
-
-  lp=mini(size(path_out,'*'),size(path_in,'*'))
-  k=find(path_out(1:lp)<>path_in(1:lp))
-  path=path_out(1:k(1)-1) // common superbloc path
-  if (k <> []) then
-    path_out=path_out(k(1)) // "from" block number
-    path_in=path_in(k(1))   // "to" block number
-  end
-  if isdef('Code_gene_run') then
-    mxwin=maxi(winsid())
-    path=path+1 // Consider locally compiled superblock as a superblock
-    for k=1:size(path,'*')
-      //hilite_obj(all_scs_m.objs(numk(k)))
-      hilite_obj(numk(k))
-      scs_m=all_scs_m.objs(numk(k)).model.rpar;
-      scs_show(scs_m,mxwin+k)
+    if path_in==-1 then
+        xcosShowBlockWarning(path_out);
+        message(['One of this block''s outputs has negative size';
+            'Please check.'])
+        xcosClearBlockWarning(path_out);
+        ninnout=0
+        return
     end
-    //hilite_obj(scs_m.objs(path_out))
-    hilite_obj(path_out)
-    //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-    if or(path_in<>path_out) then hilite_obj(path_in),end
-    if flagg==1 then
-      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-		    'with  sizes that cannot be determined by the context';
-		  'what is the size of this link'],'[1,1]'))
-    else 
-      ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-		    'with  types that cannot be determined by the context';
-		    'what is the size of this link'],'1'))
-    end
-	      
-    for k=size(path,'*'):-1:1,
-      //** select the mxwin+k window and get the handle
-      gh_del = scf(mxwin+k);
-      //** delete the window
-      delete(gh_del)
-    end
-    //scs_m=null()
-    //unhilite_obj(all_scs_m.objs(numk(1)))
 
-    //** restore the active window
-    scf(gh_wins);
+    if path_in==-2 then
+        xcosShowBlockWarning(path_out);
+        message(['The input port '+string(prt_out)+' of this block have a negative size.';
+            'Please check.'])
+        xcosClearBlockWarning(path_out);
+        ninnout=0
+        return
+    end
 
-    unhilite_obj(numk(1))
-  else
-    if path==[] then
-      kk=path_out
-      if or(path_in<>path_out) then kk=[kk;path_in], end
-      if prt_in<>[] & prt_out<>[] then
-        if prt_in >0 & prt_out >0 then
-          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
-                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
-          end
+    lp=mini(size(path_out,'*'),size(path_in,'*'))
+    k=find(path_out(1:lp)<>path_in(1:lp))
+    path=path_out(1:k(1)-1) // common superbloc path
+    if (k <> []) then
+        path_out=path_out(k(1)) // "from" block number
+        path_in=path_in(k(1))   // "to" block number
+    end
+
+    msg = ['Hilited block(s) have connected ports ';
+        'with  sizes that cannot be determined by the context';
+        'what is the size of this link'];
+
+    field = '1';
+    if flagg == 1 then
+        field = '[1,1]';
+    end
+    if isdef('Code_gene_run') then
+        mxwin=maxi(winsid())
+        path=path+1 // Consider locally compiled superblock as a superblock
+        for k=1:size(path,'*')
+            xcosShowBlockWarning(numk(k))
+            scs_m=all_scs_m.objs(numk(k)).model.rpar;
+            scs_show(scs_m,mxwin+k)
         end
-      end
-      hilite_obj(kk)
-      if flagg==1 then
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	    'with  sizes that cannot be determined by the context';
-	    'what is the size of this link'],'[1,1]'))
-      else
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	    'with  types that cannot be determined by the context';
-	    'what is the size of this link'],'1'))
-      end
-      unhilite_obj(kk)
+    
+        xcosShowBlockWarning(path_out)
+        if or(path_in<>path_out) then xcosShowBlockWarning(path_in),end
+        ninnout=evstr(dialog(msg,field))
+
+        for k=size(path,'*'):-1:1,
+            //** select the mxwin+k window and get the handle
+            gh_del = scf(mxwin+k);
+            //** delete the window
+            delete(gh_del)
+        end
+        
+
+        //** restore the active window
+        //scf(gh_wins);
+
+        xcosClearBlockWarning(numk(1))
     else
-      mxwin=maxi(winsid())
-      kk=[];
-      for k=1:size(path,'*')
-	//hilite_obj(scs_m.objs(path(k)))
-        hilite_obj(path(k))
-	scs_m=scs_m.objs(path(k)).model.rpar;
-	scs_show(scs_m,mxwin+k)
-      end
-      //hilite_obj(scs_m.objs(path_out))
-      kk=[path_out]
-      //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
-      if or(path_in<>path_out) then kk=[kk;path_in], end
-      if prt_in<>[] & prt_out<>[] then
-        if prt_in >0 & prt_out >0 then
-          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-              scs_m.objs(path_in).graphics.pin(prt_in) then 
-                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
-          end
+        kk=path_out
+        if or(path_in<>path_out) then kk=[kk;path_in], end
+        if prt_in<>[] & prt_out<>[] then
+            if prt_in >0 & prt_out >0 then
+                if scs_m.objs(path_out).graphics.pout(prt_out) == ...
+                    scs_m.objs(path_in).graphics.pin(prt_in) then 
+                    kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
+                end
+            end
         end
-      end
-      hilite_obj(kk)
-      if flagg==1 then
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	    'with  sizes that cannot be determined by the context';
-	    'what is the size of this link'],'[1,1]'))
-      else
-	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	    'with  types that cannot be determined by the context';
-	    'what is the size of this link'],'1'))
-      end
-      
-      //for k=size(path,'*'):-1:1,xdel(mxwin+k),end //TOBEDONE
-      for k=size(path,'*'):-1:1,
-        //** select the mxwin+k window and get the handle
-        gh_del = scf(mxwin+k);
-        //** delete the window
-        delete(gh_del)
-      end
-      //scs_m=null()
-      //** restore the active window
-      scf(gh_wins);
 
-      //unhilite_obj(scs_m.objs(path(1)))
-      unhilite_obj(path(1))
+        ninnout = errorDiagramPath(path, kk, msg, field, %t);
     end
-  end
 endfunction
 
 function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
@@ -2202,7 +2144,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   [clkr,clkc]=size(clkconnect);
   mm=max(clkconnect(:,2))+1;
   cll=clkconnect(:,1)*mm+clkconnect(:,2);
-  [cll,ind]=sort(-cll);
+  [cll,ind]=gsort(-cll);
   clkconnect=clkconnect(ind,:);
   if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
   cll=[-1;-cll;mcll];
@@ -2388,7 +2330,7 @@ function   clkconnect=cleanup(clkconnect)
   mm=maxi(clkconnect)+1
   cc=clkconnect(:,4)+mm*clkconnect(:,3)+clkconnect(:,2)*mm^2+..
      clkconnect(:,1)*mm^3
-  [cc1,ind]=sort(-cc)
+  [cc1,ind]=gsort(-cc)
   clkconnect=clkconnect(ind,:)
   ind=find(cc1(2:$)-cc1(1:$-1)==0)
   clkconnect(ind,:)=[]
@@ -2397,7 +2339,7 @@ endfunction
 //function mat=cleanup1(mat)
 //  mm=maxi(mat)+1
 //  cc=mat(:,1)*mm
-//  [cc1,ind]=sort(-cc)
+//  [cc1,ind]=gsort(-cc)
 //  mat=mat(ind,:)
 //  ind=find(cc1(2:$)-cc1(1:$-1)==0)
 //  mat(ind,:)=[]
@@ -2467,7 +2409,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     mm=maxi(clkconnect)+1;
 
     cll=clkconnect(:,1)*mm+clkconnect(:,2);
-    [cll,ind]=sort(-cll);
+    [cll,ind]=gsort(-cll);
     clkconnect=clkconnect(ind,:);
     cll=[-1;-cll;mm];
     ii=find(cll(2:$)-cll(1:$-1)<>0)

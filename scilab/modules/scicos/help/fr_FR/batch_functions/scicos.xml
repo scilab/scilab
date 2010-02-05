@@ -57,9 +57,9 @@ Des arguments en entrée et en sortie de la commande scicos peuvent
 aussi être utilisées pour réaliser des opérations de débogage.
 
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 scs_m = scicos([toto])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_scicos">
     <title>Paramètres</title>
@@ -74,17 +74,19 @@ scs_m = scicos([toto])
   </refsection>
   <refsection id="Exemple_scicos">
     <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Ouvrir un nouveau diagramme 
 scicos();
 scicos
+
 // Charge un diagramme  
 scicos SCI/demos/scicos/bounce.cosf; 
 scs_m=scicos('SCI/demos/scicos/bounce.cosf'); 
+
 // Charge une structure 
 load('mondiagr.cos'); 
 scs_m=scicos(scs_m);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Contenudufichier_scicos">
     <title>Contenu du fichier</title>

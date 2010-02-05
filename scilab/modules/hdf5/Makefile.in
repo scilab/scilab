@@ -41,7 +41,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -61,28 +60,32 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscihdf5_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+
+# When Scilab is built with HDF5, we need some libraries for a workaround
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__append_1 = libscihdf5-forceload.la
+@HDF5_TRUE@am__append_2 = libscihdf5-forceload-disable.la
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/hdf5
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -110,9 +113,34 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihdf5_la_etcdir)" \
 	"$(DESTDIR)$(libscihdf5_la_rootdir)" \
-	"$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscihdf5_la_includedir)"
+	"$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libscihdf5_forceload_disable_la_LIBADD =
+am__libscihdf5_forceload_disable_la_SOURCES_DIST =  \
+	src/cpp/forceJHDF5load-jvmdisable.cpp
+@HDF5_TRUE@am__objects_1 = libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo
+@HDF5_TRUE@am_libscihdf5_forceload_disable_la_OBJECTS =  \
+@HDF5_TRUE@	$(am__objects_1)
+libscihdf5_forceload_disable_la_OBJECTS =  \
+	$(am_libscihdf5_forceload_disable_la_OBJECTS)
+libscihdf5_forceload_disable_la_LINK = $(LIBTOOL) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(libscihdf5_forceload_disable_la_CXXFLAGS) $(CXXFLAGS) \
+	$(libscihdf5_forceload_disable_la_LDFLAGS) $(LDFLAGS) -o $@
+@HDF5_TRUE@am_libscihdf5_forceload_disable_la_rpath = -rpath \
+@HDF5_TRUE@	$(pkglibdir)
+libscihdf5_forceload_la_LIBADD =
+am__libscihdf5_forceload_la_SOURCES_DIST = src/cpp/forceJHDF5load.cpp
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__objects_2 = libscihdf5_forceload_la-forceJHDF5load.lo
+@HDF5_TRUE@am_libscihdf5_forceload_la_OBJECTS = $(am__objects_2)
+libscihdf5_forceload_la_OBJECTS =  \
+	$(am_libscihdf5_forceload_la_OBJECTS)
+libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(libscihdf5_forceload_la_CXXFLAGS) $(CXXFLAGS) \
+	$(libscihdf5_forceload_la_LDFLAGS) $(LDFLAGS) -o $@
+@HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath = -rpath \
+@HDF5_TRUE@@NEED_JAVA_TRUE@	$(pkglibdir)
 libscihdf5_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -122,16 +150,20 @@ am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 	sci_gateway/cpp/sci_no_hdf5.cpp \
 	sci_gateway/cpp/sci_export_to_hdf5.cpp \
 	sci_gateway/cpp/sci_import_from_hdf5.cpp \
-	sci_gateway/c/gw_hdf5.c
-@HDF5_TRUE@am__objects_1 = libscihdf5_la-h5_fileManagement.lo \
+	sci_gateway/c/gw_hdf5.c src/jni/jhdf5load.hxx \
+	src/jni/jhdf5load.cpp src/jni/GiwsException.hxx \
+	src/jni/GiwsException.cpp
+@HDF5_TRUE@am__objects_3 = libscihdf5_la-h5_fileManagement.lo \
 @HDF5_TRUE@	libscihdf5_la-h5_writeDataToFile.lo \
 @HDF5_TRUE@	libscihdf5_la-h5_readDataFromFile.lo
-@HDF5_FALSE@am__objects_2 = libscihdf5_la-sci_no_hdf5.lo
-@HDF5_TRUE@am__objects_2 = libscihdf5_la-sci_export_to_hdf5.lo \
+@HDF5_FALSE@am__objects_4 = libscihdf5_la-sci_no_hdf5.lo
+@HDF5_TRUE@am__objects_4 = libscihdf5_la-sci_export_to_hdf5.lo \
 @HDF5_TRUE@	libscihdf5_la-sci_import_from_hdf5.lo
-@HDF5_TRUE@am__objects_3 = libscihdf5_la-gw_hdf5.lo
-am_libscihdf5_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+@HDF5_TRUE@am__objects_5 = libscihdf5_la-gw_hdf5.lo
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__objects_6 = libscihdf5_la-jhdf5load.lo \
+@HDF5_TRUE@@NEED_JAVA_TRUE@	libscihdf5_la-GiwsException.lo
+am_libscihdf5_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
+	$(am__objects_5) $(am__objects_6)
 libscihdf5_la_OBJECTS = $(am_libscihdf5_la_OBJECTS)
 libscihdf5_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(libscihdf5_la_CXXFLAGS) \
@@ -158,11 +190,13 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscihdf5_la_SOURCES)
-DIST_SOURCES = $(am__libscihdf5_la_SOURCES_DIST)
+SOURCES = $(libscihdf5_forceload_disable_la_SOURCES) \
+	$(libscihdf5_forceload_la_SOURCES) $(libscihdf5_la_SOURCES)
+DIST_SOURCES = $(am__libscihdf5_forceload_disable_la_SOURCES_DIST) \
+	$(am__libscihdf5_forceload_la_SOURCES_DIST) \
+	$(am__libscihdf5_la_SOURCES_DIST)
 DATA = $(libscihdf5_la_etc_DATA) $(libscihdf5_la_root_DATA) \
 	$(libscihdf5_la_sci_gateway_DATA)
-HEADERS = $(libscihdf5_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -170,6 +204,7 @@ ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 ANT = @ANT@
+ANTLR = @ANTLR@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -178,9 +213,12 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
+CHECKSTYLE = @CHECKSTYLE@
+COMMONS_BEANUTILS = @COMMONS_BEANUTILS@
 COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
@@ -241,11 +279,14 @@ JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
+JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
+JLATEXMATH = @JLATEXMATH@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
@@ -305,24 +346,26 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
-SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -385,7 +428,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -402,26 +444,55 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-@HDF5_TRUE@USEANT = 1
+
+# No GUI. Disable the Java build
+@GUI_TRUE@@HDF5_TRUE@USEANT = 1
 @HDF5_FALSE@HDF5_SOURCES = 
 @HDF5_TRUE@HDF5_SOURCES = src/c/h5_fileManagement.c \
 @HDF5_TRUE@src/c/h5_writeDataToFile.c \
 @HDF5_TRUE@src/c/h5_readDataFromFile.c
 
+@HDF5_TRUE@@NEED_JAVA_FALSE@HDF5_CPP_SOURCES = 
+@HDF5_TRUE@@NEED_JAVA_TRUE@HDF5_CPP_SOURCES = src/jni/jhdf5load.hxx \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/jhdf5load.cpp \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/GiwsException.hxx \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/GiwsException.cpp
+
+
+# This is due to an ugly hack for bug #5481
+@HDF5_TRUE@@NEED_JAVA_FALSE@FORCE_LOAD_SOURCES = 
+
+# This is due to an ugly hack for bug #5481
+@HDF5_TRUE@@NEED_JAVA_TRUE@FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
 @HDF5_FALSE@GATEWAY_C_SOURCES = 
 @HDF5_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 @HDF5_FALSE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 @HDF5_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
-@HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp 
+@HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp
 
+@HDF5_TRUE@FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
+@HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
+@HDF5_TRUE@libscihdf5_forceload_la_CXXFLAGS = $(libscihdf5_la_CXXFLAGS)
+@HDF5_TRUE@libscihdf5_forceload_la_CFLAGS = $(libscihdf5_la_CFLAGS)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_CXXFLAGS = $(libscihdf5_la_CXXFLAGS)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_CFLAGS = $(libscihdf5_la_CFLAGS)
+GIWS_WRAPPERS = src/jni/jhdf5load.giws.xml
+@GIWS_TRUE@BUILT_SOURCES = giws
 
 #### hdf5 : include files ####
 libscihdf5_la_CXXFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/jvm/includes/ \
+				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 
 libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
@@ -431,24 +502,26 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/localization/includes \
 				-I$(top_srcdir)/modules/operations/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
 				$(HDF5_CFLAGS)
 
 
 #### hdf5 : gateway declaration ####
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
-pkglib_LTLIBRARIES = libscihdf5.la
+pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
-# pb of order 
+# pb of order
 libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
 				$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 
 #### Target ######
 modulename = hdf5
@@ -461,16 +534,6 @@ libscihdf5_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscihdf5_la_etcdir = $(mydatadir)/etc
 libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
-#### hdf5 : include files ####
-libscihdf5_la_includedir = $(pkgincludedir)/hdf5
-libscihdf5_la_include_HEADERS = includes/gw_hdf5.h \
-includes/h5_attributeConstants.h \
-includes/h5_fileManagement.h \
-includes/h5_readDataFromFile.h \
-includes/h5_writeDataToFile.h \
-includes/dynlib_hdf5_scilab.h
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -482,7 +545,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -533,7 +596,8 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -598,6 +662,10 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscihdf5-forceload-disable.la: $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_DEPENDENCIES) 
+	$(libscihdf5_forceload_disable_la_LINK) $(am_libscihdf5_forceload_disable_la_rpath) $(libscihdf5_forceload_disable_la_OBJECTS) $(libscihdf5_forceload_disable_la_LIBADD) $(LIBS)
+libscihdf5-forceload.la: $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_DEPENDENCIES) 
+	$(libscihdf5_forceload_la_LINK) $(am_libscihdf5_forceload_la_rpath) $(libscihdf5_forceload_la_OBJECTS) $(libscihdf5_forceload_la_LIBADD) $(LIBS)
 libscihdf5.la: $(libscihdf5_la_OBJECTS) $(libscihdf5_la_DEPENDENCIES) 
 	$(libscihdf5_la_LINK) -rpath $(pkglibdir) $(libscihdf5_la_OBJECTS) $(libscihdf5_la_LIBADD) $(LIBS)
 
@@ -607,10 +675,14 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_forceload_la-forceJHDF5load.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-gw_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_fileManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_readDataFromFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-h5_writeDataToFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-jhdf5load.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_export_to_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_import_from_hdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscihdf5_la-sci_no_hdf5.Plo@am__quote@
@@ -685,6 +757,20 @@ libscihdf5_la-gw_hdf5.lo: sci_gateway/c/gw_hdf5.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
+libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo: src/cpp/forceJHDF5load-jvmdisable.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_forceload_disable_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo -MD -MP -MF $(DEPDIR)/libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.Tpo -c -o libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo `test -f 'src/cpp/forceJHDF5load-jvmdisable.cpp' || echo '$(srcdir)/'`src/cpp/forceJHDF5load-jvmdisable.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.Tpo $(DEPDIR)/libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/forceJHDF5load-jvmdisable.cpp' object='libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_forceload_disable_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_forceload_disable_la-forceJHDF5load-jvmdisable.lo `test -f 'src/cpp/forceJHDF5load-jvmdisable.cpp' || echo '$(srcdir)/'`src/cpp/forceJHDF5load-jvmdisable.cpp
+
+libscihdf5_forceload_la-forceJHDF5load.lo: src/cpp/forceJHDF5load.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_forceload_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_forceload_la-forceJHDF5load.lo -MD -MP -MF $(DEPDIR)/libscihdf5_forceload_la-forceJHDF5load.Tpo -c -o libscihdf5_forceload_la-forceJHDF5load.lo `test -f 'src/cpp/forceJHDF5load.cpp' || echo '$(srcdir)/'`src/cpp/forceJHDF5load.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_forceload_la-forceJHDF5load.Tpo $(DEPDIR)/libscihdf5_forceload_la-forceJHDF5load.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/forceJHDF5load.cpp' object='libscihdf5_forceload_la-forceJHDF5load.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_forceload_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_forceload_la-forceJHDF5load.lo `test -f 'src/cpp/forceJHDF5load.cpp' || echo '$(srcdir)/'`src/cpp/forceJHDF5load.cpp
+
 libscihdf5_la-sci_no_hdf5.lo: sci_gateway/cpp/sci_no_hdf5.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-sci_no_hdf5.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-sci_no_hdf5.Tpo -c -o libscihdf5_la-sci_no_hdf5.lo `test -f 'sci_gateway/cpp/sci_no_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_no_hdf5.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-sci_no_hdf5.Tpo $(DEPDIR)/libscihdf5_la-sci_no_hdf5.Plo
@@ -705,6 +791,20 @@ libscihdf5_la-sci_import_from_hdf5.lo: sci_gateway/cpp/sci_import_from_hdf5.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_import_from_hdf5.cpp' object='libscihdf5_la-sci_import_from_hdf5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-sci_import_from_hdf5.lo `test -f 'sci_gateway/cpp/sci_import_from_hdf5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_import_from_hdf5.cpp
+
+libscihdf5_la-jhdf5load.lo: src/jni/jhdf5load.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-jhdf5load.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-jhdf5load.Tpo -c -o libscihdf5_la-jhdf5load.lo `test -f 'src/jni/jhdf5load.cpp' || echo '$(srcdir)/'`src/jni/jhdf5load.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-jhdf5load.Tpo $(DEPDIR)/libscihdf5_la-jhdf5load.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/jhdf5load.cpp' object='libscihdf5_la-jhdf5load.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-jhdf5load.lo `test -f 'src/jni/jhdf5load.cpp' || echo '$(srcdir)/'`src/jni/jhdf5load.cpp
+
+libscihdf5_la-GiwsException.lo: src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -MT libscihdf5_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscihdf5_la-GiwsException.Tpo -c -o libscihdf5_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscihdf5_la-GiwsException.Tpo $(DEPDIR)/libscihdf5_la-GiwsException.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscihdf5_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscihdf5_la_CXXFLAGS) $(CXXFLAGS) -c -o libscihdf5_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -771,26 +871,6 @@ uninstall-libscihdf5_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" && rm -f $$files
-install-libscihdf5_la_includeHEADERS: $(libscihdf5_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscihdf5_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihdf5_la_includedir)"
-	@list='$(libscihdf5_la_include_HEADERS)'; test -n "$(libscihdf5_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscihdf5_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscihdf5_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscihdf5_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihdf5_la_include_HEADERS)'; test -n "$(libscihdf5_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscihdf5_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscihdf5_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -876,13 +956,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)" "$(DESTDIR)$(libscihdf5_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihdf5_la_etcdir)" "$(DESTDIR)$(libscihdf5_la_rootdir)" "$(DESTDIR)$(libscihdf5_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -907,6 +989,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -931,7 +1014,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscihdf5_la_etcDATA \
-	install-libscihdf5_la_includeHEADERS \
 	install-libscihdf5_la_rootDATA \
 	install-libscihdf5_la_sci_gatewayDATA
 
@@ -980,12 +1062,11 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscihdf5_la_etcDATA \
-	uninstall-libscihdf5_la_includeHEADERS \
 	uninstall-libscihdf5_la_rootDATA \
 	uninstall-libscihdf5_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
@@ -996,9 +1077,7 @@ uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscihdf5_la_etcDATA \
-	install-libscihdf5_la_includeHEADERS \
-	install-libscihdf5_la_rootDATA \
+	install-libscihdf5_la_etcDATA install-libscihdf5_la_rootDATA \
 	install-libscihdf5_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1006,7 +1085,6 @@ uninstall-am: uninstall-libscihdf5_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscihdf5_la_etcDATA \
-	uninstall-libscihdf5_la_includeHEADERS \
 	uninstall-libscihdf5_la_rootDATA \
 	uninstall-libscihdf5_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1018,10 +1096,12 @@ check-local: $(top_builddir)/scilab-bin
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
 check-code:
-	@if test -f build.xml; then \
+	if test -f build.xml; then \
 		$(ANT) checkstyle; \
-	fi;\
-	splint $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC)
+	fi
+	if test -x "$(SPLINT)"; then \
+		$(SPLINT) $(SPLINT_OPTIONS) -I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/ $(INCLUDE_FLAGS) $(CHECK_SRC); \
+	fi
 @NEED_JAVA_TRUE@java:
 # Some configurations needs to export JAVA_HOME in the current env
 @NEED_JAVA_TRUE@	@if test "$(JAVA_HOME)"; then export JAVA_HOME=$(JAVA_HOME); fi; \
@@ -1044,7 +1124,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1056,7 +1136,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1162,10 +1242,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

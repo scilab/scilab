@@ -53,9 +53,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 timer();A=rand(100,100);timer()
-	</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

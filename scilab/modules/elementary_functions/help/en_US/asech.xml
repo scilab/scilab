@@ -63,9 +63,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 asech(1)
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

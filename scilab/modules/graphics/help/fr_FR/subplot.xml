@@ -43,7 +43,7 @@ subplot(mnp)</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 subplot(221)
 plot2d()
 subplot(222)

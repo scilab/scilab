@@ -68,14 +68,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([1:10]);
 rcond(A)
 A(1,1)=0.000001;
 rcond(A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

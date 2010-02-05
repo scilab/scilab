@@ -12,10 +12,10 @@
 
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
-#include "FocusOnConsole.h"
+#include "dynlib_scilab_windows.h"
 #include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
-void setFocusOnConsole(void)
+SCILAB_WINDOWS_IMPEXP void setFocusOnConsole(void)
 {
 	if ( (getScilabMode() == SCILAB_NW) || (getScilabMode() == SCILAB_NWNI) )
 	{

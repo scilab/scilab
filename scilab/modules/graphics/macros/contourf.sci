@@ -10,23 +10,21 @@ function contourf(x,y,z,nv,style,strf,leg,rect,nax)
 	
 	[nout,nin]=argn(0);
 	
-	newstyle = get('figure_style')=='new'
-	
 	if nin == 0 then   // demo
 		t = -%pi:0.1:%pi;
 		m = sin(t)'*cos(t);
 		contourf(t,t,m);
 		return;
-	end
+  end
 
-if nin <= 8 then nax=[1,10,1,10];end 
+if nin <= 0 then x=1:10;end
+if nin <= 1 then y=1:10;end
+if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end
+if nin <= 3 then zmin=mini(z);zmax=maxi(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end
+if nin <= 5 then strf="121";end
+if nin <= 6 then leg=" ";end
 if nin <= 7 then rect=[0,0,1,1];end
-if nin <= 6 then leg=" ";end 
-if nin <= 5 then strf="121";end 
-if nin <= 3 then zmin=mini(z);zmax=maxi(z);nv = zmin + (1:10)*(zmax-zmin)/(11);end 
-if nin <= 2 then z=rand(size(x,'*'),size(y,'*'));end 
-if nin <= 1 then y=1:10;end 
-if nin <= 0 then x=1:10;end 
+if nin <= 8 then nax=[1,10,1,10];end
 if x==[] then x=1:size(z,'r');end 
 if y==[] then y=1:size(z,'c');end 
 
@@ -90,9 +88,8 @@ plot2d([mini(xx);maxi(xx)],[mini(yy);maxi(yy)],0,strf,leg,rect,nax);
 
 draw_min=1;
 H=[];
-[FA,IA]=sort(abs(Area));
+[FA,IA]=gsort(abs(Area));
 
-if newstyle then
   drawlater(); // postpon the drawing here
   a=gca();
   old_foreground = a.foreground;
@@ -114,24 +111,6 @@ if newstyle then
   end
   a.foreground = old_foreground;
   drawnow(); // draw all now!
-else
-  pat=xget('pattern');
-  for jj=IA',
-    nl=CS(2,I(jj));
-    lev1=CS(1,I(jj));
-    if (lev1 ~= minz | draw_min),
-      xp=CS(1,I(jj)+(1:nl));  
-      yp=CS(2,I(jj)+(1:nl)); 
-      pat=size(find( nv <= lev1),'*');
-      xset("pattern",pat);
-      xfpoly(xp,yp)
-    end;
-  end
-  
-  xset('pattern',pat);
-  if style(1)<>-1 then 
-    contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
-  end
-end
 
 endfunction
+

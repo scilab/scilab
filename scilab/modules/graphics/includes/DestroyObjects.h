@@ -26,56 +26,57 @@
 #ifndef __SCI_DESTROY__
 #define __SCI_DESTROY__
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "machine.h" /* C2F */
 
 
-int destroyGraphicsSons(sciPointObj * pthis);
-extern int destroyGraphicHierarchy(sciPointObj * pthis); /* DESTROY */
-void AllGraphWinDelete( void ) ;
+GRAPHICS_IMPEXP int destroyGraphicsSons(sciPointObj * pthis);
+GRAPHICS_IMPEXP int destroyGraphicHierarchy(sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP void AllGraphWinDelete( void ) ;
 
 #define SciGerase() { if( C2F(scigerase)() !=0 ) { Scierror(999,"%s :Requested figure cannot be created\n",fname) ; return 0 ; } }
-int C2F(scigerase)( void ) ;
+GRAPHICS_IMPEXP int C2F(scigerase)( void ) ;
 
-extern int DestroyFigure (sciPointObj * pthis); /* DESTROY */
-extern int DestroySubWin (sciPointObj * pthis); /* DESTROY */
-extern int deallocateText( sciPointObj * pthis ) ;
-extern int DestroyText (sciPointObj * pthis); /* DESTROY */
-extern int DestroyLegend (sciPointObj * pthis); /* DESTROY */
-int deallocatePolyline (sciPointObj * pthis);
-extern int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
-extern int DestroyArc (sciPointObj * pthis); /* DESTROY */
-extern int DestroyRectangle (sciPointObj * pthis); /* DESTROY */
-extern int DestroySurface (sciPointObj * pthis); /* DESTROY */
-extern int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
-extern int DestroyAxes (sciPointObj * pthis); /* DESTROY */
-extern int DestroyFec (sciPointObj * pthis); /* DESTROY */
-extern int DestroySegs (sciPointObj * pthis); /* DESTROY */
-extern int DestroyCompound (sciPointObj * pthis);
+GRAPHICS_IMPEXP int DestroyFigure (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroySubWin (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int deallocateText( sciPointObj * pthis ) ;
+GRAPHICS_IMPEXP int DestroyText (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyLegend (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int deallocatePolyline (sciPointObj * pthis);
+GRAPHICS_IMPEXP int DestroyPolyline (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyArc (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyRectangle (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroySurface (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyGrayplot (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyAxes (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyFec (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroySegs (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyCompound (sciPointObj * pthis);
 
-extern int sciUnCompound (sciPointObj * pobj); /* DESTROY */
+GRAPHICS_IMPEXP int sciUnCompound (sciPointObj * pobj); /* DESTROY */
 
-extern int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int sciDelGraphicObj (sciPointObj * pthis); /* DESTROY */
 
-extern int DestroyLabel (sciPointObj * pthis); /* DESTROY */
+GRAPHICS_IMPEXP int DestroyLabel (sciPointObj * pthis); /* DESTROY */
 
 
 /* free the user_data */
-extern void clearUserData( sciPointObj * pObj ) ;
+GRAPHICS_IMPEXP void clearUserData( sciPointObj * pObj ) ;
 
-extern void sciDeleteWindow( int winNum ) ;
+GRAPHICS_IMPEXP void sciDeleteWindow( int winNum ) ;
 
-extern int updateMerge( sciPointObj * pSubwin ) ;
+GRAPHICS_IMPEXP int updateMerge( sciPointObj * pSubwin ) ;
 
-int sciStandardDestroyOperations( sciPointObj * pThis ) ;
+GRAPHICS_IMPEXP int sciStandardDestroyOperations( sciPointObj * pThis ) ;
 
-void destroyGraphicPointer(void * pointer);
+GRAPHICS_IMPEXP void destroyGraphicPointer(void * pointer);
 
-void destroyGraphicStringArray(char ** strArray, int nbStrings);
+GRAPHICS_IMPEXP void destroyGraphicStringArray(char ** strArray, int nbStrings);
 
 /**
  * Destroy the relationShip used by an object
  */
-void destroyRelationShip(sciPointObj * pObj);
+GRAPHICS_IMPEXP void destroyRelationShip(sciPointObj * pObj);
 
 #endif /* __SCI_DESTROY__ */

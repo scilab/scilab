@@ -8,11 +8,23 @@
 
 function subplot(m,n,p)
 [lhs,rhs]=argn(0)
+
+if rhs<>3 & rhs<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "subplot", 1, 3));
+    return
+end
+
 if rhs==1 then
   p=modulo(m,10)
   n=modulo((m-p)/10,10)
   m=(m-p-10*n)/100
 end
+
+if m*n*p==0 then
+    error(msprintf(gettext("%s: Wrong value for input argument #%d: A %d digits integer with digits greater than %d expected.\n"),"subplot",1,3,0));
+    return
+end
+
 j=int((p-1)/n)
 i=p-1-n*j
 axes_bounds=[i/n,j/m,1/n,1/m];

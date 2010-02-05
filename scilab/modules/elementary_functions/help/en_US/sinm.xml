@@ -56,10 +56,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;2,4];
 sinm(A)+0.5*%i*(expm(%i*A)-expm(-%i*A))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -59,14 +59,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=[2.5 7.5 12.5 17.5]
 h=[0 1 2]
 fre=[.03 .12 .07;.02 .13 .11;.01 .13 .14;.01 .09 .14]
 rho=correl(x,h,fre)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -45,21 +45,6 @@ level-int=debug()</synopsis>
     sintático, não para scripts Scilab. Para usuários mais experientes do
     Scilab.</para>
 
-    <para>Para o valor -1 de <literal>level-int</literal> ,
-    <literal>debug</literal> define um nível especial de depuração dedicado à
-    instrulçao ScilabEval Tcl.</para>
-
-    <para>Ver também o depurador do <literal>Scipad</literal>,que é voltado
-    para depuração de scripts Scilab.</para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
-
-    <simplelist type="inline">
-      <member><link linkend="ScilabEval">ScilabEval</link></member>
-
-      <member><link linkend="scipad">scipad</link></member>
-    </simplelist>
-  </refsection>
 </refentry>

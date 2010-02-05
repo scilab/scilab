@@ -24,58 +24,59 @@
 #ifndef __SCI_DRAWINGS__
 #define __SCI_DRAWINGS__
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
 
 /*******************************************************/
 
-extern void sciRedrawFigure(void); /* DRAWINGS */
-void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
-extern void sciXbasc(void);  /* DRAWINGS */
-extern void sciXclear(void); /* DRAWINGS */
+GRAPHICS_IMPEXP void sciRedrawFigure(void); /* DRAWINGS */
+GRAPHICS_IMPEXP void sciClearFigure(sciPointObj * pFigure) ; /* DRAWINGS */
+GRAPHICS_IMPEXP void sciXbasc(void);  /* DRAWINGS */
+GRAPHICS_IMPEXP void sciXclear(void); /* DRAWINGS */
 
 
-extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
+GRAPHICS_IMPEXP void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * xmin   ,
                                    double      * xmax   ,
                                    double      * ymin   ,
                                    double      * ymax   ,
                                    double      * zmin   ,
                                    double      * zmax    ) ;
-extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
-extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
+GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
+GRAPHICS_IMPEXP BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
-extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
+GRAPHICS_IMPEXP int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, const double * grads, int nbsubtics_input); /* DRAWINGS */
 
-extern void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
-extern void DrawAxes(sciPointObj*); /* DRAWINGS */
+GRAPHICS_IMPEXP void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
+GRAPHICS_IMPEXP void DrawAxes(sciPointObj*); /* DRAWINGS */
 
-extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
+GRAPHICS_IMPEXP int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
 
 
 /* Other functions coming from Entities.c (old file) */
 
 
 /**DJ.Abdemouche 2003**/
-void sciDrawFigure( int numFigure ) ;
+GRAPHICS_IMPEXP void sciDrawFigure( int numFigure ) ;
 
 
 
 /**
  * Show the pixmap buffer of a figure
  */
-void showPixmap(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void showPixmap(sciPointObj * pFigure);
 
 /**
  * Clear the pixmap buffer of a figure
  */
-void clearPixmap(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void clearPixmap(sciPointObj * pFigure);
 
 /**
  * @return true if the figure contains some objects
  *         which needs to be displayed in 3D.
  */
-BOOL needsDisplay(sciPointObj * pFigure);
+GRAPHICS_IMPEXP BOOL needsDisplay(sciPointObj * pFigure);
 
 #endif /* __SCI_DRAWINGS__ */

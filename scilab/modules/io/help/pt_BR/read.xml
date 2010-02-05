@@ -100,12 +100,10 @@
 
     <para>Exemplos para <literal>format</literal>:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 (1x,e10.3,5x,3(f3.0))
 (10x,a20) 
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Quando format é o omitido, os dados são lidos utilizando-se o
     formato numérico livre: espaços em branco, vírgulas e barras podem ser
@@ -130,16 +128,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then unix('del foo');
 else unix('rm -f foo'); end
 A=rand(3,5); write('foo',A);
 B=read('foo',3,5)
 B=read('foo',-1,5)
 read(%io(1),1,1,'(a)')  // espera por entrada do usuário
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -34,6 +34,7 @@
 #include "core_math.h"
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
+#include "dynamic_menus.h"
 #include "Scierror.h"
 #undef Lstk
 #undef Infstk
@@ -53,7 +54,6 @@ static int c__0 = 0;
 extern int C2F(stackp)(int *,int *);
 extern int C2F(eqid)(int *,int *);
 extern int C2F(bexec)(char *,int *,int *);
-extern int C2F(getmen)(char *,int *,int *);
 extern int C2F(print)(int *,int *,int *);
 extern int C2F(createref1)(int *);
 extern int C2F(command)(int *,int *);

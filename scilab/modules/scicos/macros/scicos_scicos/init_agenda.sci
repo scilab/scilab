@@ -25,7 +25,7 @@ function [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
 nblk=size(clkptr,1)-1
 timevec=initexe(:,3)
 if timevec<>[] then
-  [timevec,indtime]=sort(-timevec)
+  [timevec,indtime]=gsort(-timevec)
   initexe=initexe(indtime,:)
 else
   initexe=[]

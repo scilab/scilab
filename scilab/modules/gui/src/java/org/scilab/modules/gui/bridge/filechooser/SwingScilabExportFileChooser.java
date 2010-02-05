@@ -21,11 +21,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import javax.swing.filechooser.FileFilter;
-
-import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.utils.ConfigManager;
+import org.scilab.modules.localization.Messages;
 
 /**
  * This is the son of the usual Scilab file chooser,
@@ -144,7 +143,10 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 					return;
 				}
 			}
-
+			
+			/* Bug 3849 fix */
+			ConfigManager.saveLastOpenedDirectory(new File(exportName).getParentFile().getPath());
+			
 			String extensionCombo = new String();
 			try {
 				// The try catch is necessary here when the user input the full
@@ -154,7 +156,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 				FileMask ft = (FileMask)super.getFileFilter();
 				//get the extension from the Filter
 				extensionCombo = ft.getExtensionFromFilter();
-				
+				if(extensionCombo==null) extensionCombo = allFiles;
 			}catch(java.lang.ClassCastException e){
 				extensionCombo = allFiles;
 			}

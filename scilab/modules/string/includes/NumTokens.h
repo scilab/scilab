@@ -13,11 +13,13 @@
 #ifndef __NUMTOKENS_H__
 #define __NUMTOKENS_H__
 
+#include "dynlib_string.h"
+
 /**
 * get position of a numeric token
 * @param[in] a string
 * @return a position
 */
-int NumTokens(char *string);
+STRING_IMPEXP int NumTokens(char *string);
 
 #endif /* __NUMTOKENS_H__ */ 

@@ -89,7 +89,8 @@ h.prop=val</synopsis>
 
     <para><literal>set</literal> também pode ser chamado com apenas uma
     propriedade como argumento. Neste caso, a propriedade deve ser uma das
-    seguintes: <variablelist>
+    seguintes: </para>
+    <variablelist>
         <varlistentry>
           <term>current_entity or hdl</term>
 
@@ -122,7 +123,7 @@ h.prop=val</synopsis>
             manipulador Axes.</para>
           </listitem>
         </varlistentry>
-      </variablelist></para>
+      </variablelist>
 
     <para><literal>set</literal> também pode ser chamado com manipuladores
     gráficos e com propriedades como argumentos. O manipulador deve ser de uma
@@ -136,29 +137,29 @@ h.prop=val</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   clf()
-   set("auto_clear","off") ;
-   // Exemple of a Plot 2D
-   x=[-.2:0.1:2*%pi]';
-   plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
-   a=get("current_axes");
-   p1=a.children.children(1);
-   p2=a.children.children(2);
-   // ajustando as propriedades nomeadas para os valores especificados nos objetos
-   set(p2,"foreground",13);
-   set(p2,"polyline_style",2);
-   set(a,'tight_limits',"on");
-   set(a,"box","off");
-   set(a,"sub_tics",[ 7 0 ]);
-   set(a,"y_location","middle")
-   set(p2,'thickness',2);
-   set(p1,'mark_mode',"on");
-   set(p1,'mark_style',3);
-   plot2d(x-2,x.^2/20);
-   p3= a.children(1).children;
-   set([a p1 p2 p3],"foreground",5)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+clf()
+set("auto_clear","off") ;
+// Exemple of a Plot 2D
+x=[-.2:0.1:2*%pi]';
+plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
+a=get("current_axes");
+p1=a.children.children(1);
+p2=a.children.children(2);
+// ajustando as propriedades nomeadas para os valores especificados nos objetos
+set(p2,"foreground",13);
+set(p2,"polyline_style",2);
+set(a,'tight_limits',"on");
+set(a,"box","off");
+set(a,"sub_tics",[ 7 0 ]);
+set(a,"y_location","middle")
+set(p2,'thickness',2);
+set(p1,'mark_mode',"on");
+set(p1,'mark_style',3);
+plot2d(x-2,x.^2/20);
+p3= a.children(1).children;
+set([a p1 p2 p3],"foreground",5)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

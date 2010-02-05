@@ -14,12 +14,15 @@
 #ifndef __GETDICTIONARYSETPROPERTIES_H__
 #define __GETDICTIONARYSETPROPERTIES_H__
 
+
+#include "dynlib_graphics.h"
+
 /**
 * get all "Set" Handle graphics properties name
 * @param[out] size of string matrix
 * @return a string matrix
 */
-char **getDictionarySetProperties(int *sizearray);
+GRAPHICS_IMPEXP char **getDictionarySetProperties(int *sizearray);
 
 #endif /* __GETDICTIONARYSETPROPERTIES_H__ */
 /*--------------------------------------------------------------------------*/

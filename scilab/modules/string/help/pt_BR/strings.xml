@@ -42,10 +42,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 ['esta','é'; 'uma matriz','2x2']
 "matrix"=="mat"+"rix"
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

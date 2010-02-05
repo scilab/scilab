@@ -124,7 +124,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Scilab function case
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -148,7 +148,7 @@ F=['      double precision function ffun(x)'
 mputl(F,TMPDIR+'/ffun.f')
 
 // compile the fortran code
-l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'ffun','f')
@@ -159,7 +159,7 @@ abs(exact-I)
 
 // C code case (C compiler required)
 // write down the C code
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
    '  double y,pi=3.14159265358979312;'
@@ -169,7 +169,7 @@ C=['#include &lt;math.h&gt;'
 mputl(C,TMPDIR+'/cfun.c')
 
 // compile the C code
-l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.f',[],'c',TMPDIR+'/Makefile');
 
 // incremental linking
 link(l,'cfun','c')
@@ -177,7 +177,7 @@ link(l,'cfun','c')
 //integrate the function
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>ordenamento decrescente</refpurpose>
+    <refpurpose>ordenamento decrescente (DEPRECATED see gsort)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -73,6 +73,8 @@
   <refsection>
     <title>Descrição</title>
 
+    <para> sort will be removed in Scilab 5.3. see gsort </para>
+
     <para>A função <literal>sort</literal> está obsoleta. Ela pode ser
     substituída por <link linkend="gsort">gsort</link>.</para>
 
@@ -116,8 +118,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 [s,p]=sort(rand(1,10));
 //p  é uma permutação aleatória de 1:10
 A=[1,2,5;3,4,2];
@@ -127,8 +128,7 @@ sort(v)
 sort(v')
 sort(v,'r')  //Não faz nada para vetores-linha
 sort(v,'c')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

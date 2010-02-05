@@ -82,15 +82,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //P tem duas classes recorrentes (com 2 e 1 estados) e 2 estados transientes
 P=genmarkov([2,1],2) 
 [M,Q]=eigenmarkov(P);
 P*Q-Q
 Q*M-P^20
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

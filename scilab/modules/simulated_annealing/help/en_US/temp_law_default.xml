@@ -115,13 +115,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-    // This function implements the simple geometric temperature law
-    function T = temp_law_default(T, step_mean, step_var)
-      _alpha = 0.9;
-      T = _alpha*T;
-    endfunction
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+// This function implements the simple geometric temperature law
+function T = temp_law_default(T, step_mean, step_var)
+  _alpha = 0.9;
+  T = _alpha*T;
+endfunction
+ ]]></programlisting>
   </refsection>
 
   <refsection>

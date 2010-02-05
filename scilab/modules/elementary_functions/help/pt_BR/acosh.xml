@@ -67,11 +67,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=[0,1,%i];
 cosh(acosh(x))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

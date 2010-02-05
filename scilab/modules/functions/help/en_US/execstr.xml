@@ -78,8 +78,7 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 execstr('a=1') // sets a=1.
 execstr('1+1') // does nothing (while evstr('1+1') returns 2)
 
@@ -110,8 +109,7 @@ if execstr('variable2;','errcatch')<>0 then
 else
    disp("execstr is happy");
 end
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

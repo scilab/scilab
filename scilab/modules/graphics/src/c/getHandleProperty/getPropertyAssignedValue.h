@@ -20,6 +20,7 @@
 #define _GET_PROPERTY_ASSIGNEMENT_VALUE_H_
 
 #include <stdlib.h> /* for size_t */
+#include "dynlib_graphics.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
@@ -27,78 +28,88 @@
  * return if a stack parameter is a Handle
  * @param type type of the parameter
  */
-BOOL isParameterHandle( int type ) ;
+GRAPHICS_IMPEXP BOOL isParameterHandle( int type ) ;
 
 /**
  * return if a stack parameter is a Handle
  * @param type type of the parameter
  */
-BOOL isParameterDoubleMatrix( int type ) ;
+GRAPHICS_IMPEXP BOOL isParameterDoubleMatrix( int type ) ;
 
 /**
  * return if a stack parameter is a tlist
  * @param type type of the parameter
  **/
-BOOL isParameterTlist( int type ) ;
+GRAPHICS_IMPEXP BOOL isParameterTlist( int type ) ;
 
 /**
  * return if a stack parameter is a string matrix
  * @param type type of the parameter
  */
-BOOL isParameterStringMatrix( int type ) ;
+GRAPHICS_IMPEXP BOOL isParameterStringMatrix( int type ) ;
 
 /**
  * retrieve a single double from the stack
  */
-double getDoubleFromStack( size_t stackPointer ) ;
+GRAPHICS_IMPEXP double getDoubleFromStack( size_t stackPointer ) ;
 
 /**
  * retrieve a double matrix from the scilab stack
  */
-double * getDoubleMatrixFromStack( size_t stackPointer ) ;
+GRAPHICS_IMPEXP double * getDoubleMatrixFromStack( size_t stackPointer ) ;
 
 /**
  * copy a double vector from the scilab stack
  */
-void copyDoubleVectorFromStack( size_t stackPointer, double dest[], int nbElement ) ;
+GRAPHICS_IMPEXP void copyDoubleVectorFromStack( size_t stackPointer, double dest[], int nbElement ) ;
 
 /**
  * copy a double vector from the scilab stack to an int array
  * with int cast for each parameter.
  */
-void copyDoubleVectorToIntFromStack( size_t stackPointer, int dest[], int nbElement ) ;
+GRAPHICS_IMPEXP void copyDoubleVectorToIntFromStack( size_t stackPointer, int dest[], int nbElement ) ;
 
 /**
  * create a copy of a vector (or Matrix) of double stored in the stack
  */
-double * createCopyDoubleVectorFromStack( size_t stackPointer, int nbElement ) ;
+GRAPHICS_IMPEXP double * createCopyDoubleVectorFromStack( size_t stackPointer, int nbElement ) ;
 
 /**
  * retrieve a string on from the scilab stack
  */
-char * getStringFromStack( size_t stackPointer ) ;
+GRAPHICS_IMPEXP char * getStringFromStack( size_t stackPointer ) ;
 
 /**
  * retrieve a string matrix on from the scilab stack
  */
-char ** getStringMatrixFromStack( size_t stackPointer ) ;
+GRAPHICS_IMPEXP char ** getStringMatrixFromStack( size_t stackPointer ) ;
 
 /**
  * create a copy of a stringMatrix which is in the stack
  */
-char ** createCopyStringMatrixFromStack( size_t stackPointer, int nbElement ) ;
+GRAPHICS_IMPEXP char ** createCopyStringMatrixFromStack( size_t stackPointer, int nbElement ) ;
 
 /**
  * retrieve a handle on from the Scilab stack
  */
-unsigned long getHandleFromStack( size_t stackPointer ) ;
+GRAPHICS_IMPEXP unsigned long getHandleFromStack( size_t stackPointer ) ;
 
 /**
  * compare the string stored in the stack with str
  * @return TRUE is the string are equal (using strcmp)
  *         FALSE otherwise
  */
-BOOL isStringParamEqual( size_t stackPointer, const char * str ) ;
+GRAPHICS_IMPEXP BOOL isStringParamEqual( size_t stackPointer, const char * str ) ;
+
+/**
+ * @return TRUE if the given parameter is 'on', %T, 'T', 1, ...
+ *         FALSE if the given parameter is 'off', %F, 'F', 0, ...
+ *         NOT_A_BOOLEAN_VALUE otherwise
+ */
+GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(size_t stackPointer, int valueType, int nbRow, int nbCol, char* propertyName);
+// with that we are sure to be nether equal to TRUE nor FALSE
+#define NOT_A_BOOLEAN_VALUE (2*FALSE) - TRUE
+
 /*------------------------------------------------------------------------------*/
 /* Tlist */
 typedef struct 
@@ -113,7 +124,7 @@ typedef struct
  * get the number of element of a tlist stored in the rhs
  * @param paramNum rank of the list within the Rhs parameters
  */
-int getStackListNbElement( int paramNum ) ;
+GRAPHICS_IMPEXP int getStackListNbElement( int paramNum ) ;
 
 /**
  * create a new instance of an object used to retrieve fields of a tlist
@@ -121,37 +132,37 @@ int getStackListNbElement( int paramNum ) ;
  * @param paramNum rank of the list within the Rhs parameters
  * @param nbElement number of element in the list
  */
-AssignedList * createAssignedList( int paramNum, int nbElement ) ;
+GRAPHICS_IMPEXP AssignedList * createAssignedList( int paramNum, int nbElement ) ;
 
 /**
  * destroy the object used to glance through a tlist
  */
-void destroyAssignedList( AssignedList * list ) ;
+GRAPHICS_IMPEXP void destroyAssignedList( AssignedList * list ) ;
 
 /**
  * return the number of element of a tlist
  */
-int getAssignedListNbElement( AssignedList * list ) ;
+GRAPHICS_IMPEXP int getAssignedListNbElement( AssignedList * list ) ;
 
 /**
  * set the current element to the first
  */
-void rewindAssignedList( AssignedList * list ) ;
+GRAPHICS_IMPEXP void rewindAssignedList( AssignedList * list ) ;
 
 /**
  * Return whether the current element of the list is a double matrix or not.
  */
-BOOL isListCurrentElementDoubleMatrix( AssignedList * list ) ;
+GRAPHICS_IMPEXP BOOL isListCurrentElementDoubleMatrix( AssignedList * list ) ;
 
 /**
 * Return whether the current element of the list is a string matrix or not.
 */
-BOOL isListCurrentElementStringMatrix( AssignedList * list ) ;
+GRAPHICS_IMPEXP BOOL isListCurrentElementStringMatrix( AssignedList * list ) ;
 
 /**
 * Return whether the current element of the list is an empty matrix or not.
 */
-BOOL isListCurrentElementEmptyMatrix( AssignedList * list ) ;
+GRAPHICS_IMPEXP BOOL isListCurrentElementEmptyMatrix( AssignedList * list ) ;
 
 /**
  * retrieve a field of a tlist
@@ -161,7 +172,7 @@ BOOL isListCurrentElementEmptyMatrix( AssignedList * list ) ;
  * @param[out] nbRow number of row of the returned matrix
  * @param[out] nbCol number of column of the returned matrix
  */
-double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol ) ;
 
 /**
 * retrieve a field of a tlist
@@ -171,7 +182,7 @@ double * getDoubleMatrixFromList( AssignedList * list, int rank, int * nbRow, in
 * @param[out] nbRow number of row of the returned matrix
 * @param[out] nbCol number of column of the returned matrix
 */
-char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int * nbCol ) ;
 
 
 /**
@@ -180,7 +191,7 @@ char ** getStringMatrixFromList( AssignedList * list, int rank, int * nbRow, int
  * @param[out]    nbRow number of row of the returned matrix
  * @param[out]    nbCol number of column of the returned matrix
  */
-double * getCurrentDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP double * getCurrentDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 
 /**
 * retrieve the current property of a tlist and move to the next
@@ -188,7 +199,7 @@ double * getCurrentDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
 * @param[out]    nbRow number of row of the returned matrix
 * @param[out]    nbCol number of column of the returned matrix
 */
-char ** getCurrentStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP char ** getCurrentStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 
 /**
  * create a copy of the current matrix in the tlist
@@ -197,7 +208,7 @@ char ** getCurrentStringMatrixFromList( AssignedList * list, int * nbRow, int * 
  * @param[out]    nbCol number of column of the returned matrix or -1 if an error occurred
  * @return the created array or NULL if the matrix is empty or an error occured
  */
-double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 
 /**
 * create a copy of the current matrix in the tlist
@@ -205,7 +216,7 @@ double * createCopyDoubleMatrixFromList( AssignedList * list, int * nbRow, int *
 * @param[out]    nbRow number of row of the returned matrix
 * @param[out]    nbCol number of column of the returned matrix
 */
-char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
+GRAPHICS_IMPEXP char ** createCopyStringMatrixFromList( AssignedList * list, int * nbRow, int * nbCol ) ;
 
 /*------------------------------------------------------------------------------*/
 #endif /* _GET_PROPERTY_ASSIGNEMENT_VALUE_H_ */

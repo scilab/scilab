@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intbez)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_bezout)(char *fname,unsigned long fname_len)
+int sci_bezout(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intbez)(id);

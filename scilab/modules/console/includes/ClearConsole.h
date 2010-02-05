@@ -13,13 +13,14 @@
 #ifndef __CLEARCONSOLE_H__
 #define __CLEARCONSOLE_H__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_console.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
 * Clear Java console
 * @return a boolean
 */
-BOOL ClearConsole(void);
+CONSOLE_IMPEXP BOOL ClearConsole(void);
 /*--------------------------------------------------------------------------*/
 #endif /*__CLEARCONSOLE_H__ */
 

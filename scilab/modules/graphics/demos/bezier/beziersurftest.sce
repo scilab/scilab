@@ -29,4 +29,5 @@ function beziersurftest
 endfunction
 
 beziersurftest();
+demo_viewCode("beziersurftest.sce");
 clear beziersurftest;

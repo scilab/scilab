@@ -41,8 +41,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 n=64;
 r=linspace(0,1,n)';
 g=linspace(1,0,n)';
@@ -51,8 +50,7 @@ cmap=[r g b];
 f=gcf(); f.color_map=cmap;
 plot3d1()
 f.color_map=get(sdf(),"color_map");
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

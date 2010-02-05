@@ -18,17 +18,15 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+for k=1:10,K=k;if k>2&k<=8 then continue,disp('hello'),end,k,end
 
-  for k=1:10,K=k;if k>2&k<=8 then continue,disp('hello'),end,k,end
-
-  for j=1:2
-    x=[];
-    for k=1:10,if k>j+1&k<=8 then continue,end,x=[x,k];end
-    x
-  end
- 
-  ]]></programlisting>
+for j=1:2
+  x=[];
+  for k=1:10,if k>j+1&k<=8 then continue,end,x=[x,k];end
+  x
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

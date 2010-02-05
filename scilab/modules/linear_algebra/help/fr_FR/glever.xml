@@ -66,9 +66,9 @@
     <para>
       par l'algorithme généralisé de Leverrier pour un faisceau de matrices.
     </para>
-    <programlisting><![CDATA[
-      (s*E-A)^-1 = (Bfs/chis) - Bis.
-      ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+(s*E-A)^-1 = (Bfs/chis) - Bis.
+ ]]></programlisting>
     <para><literal>chis</literal> = polynôme caractéristique (à une constante multiplicative près).
     </para>
     <para><literal>Bfs</literal>  = matrice polynomiale de numérateurs
@@ -90,11 +90,11 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
-    [Bfs,Bis,chis]=glever(F)
-    inv(F)-((Bfs/chis) - Bis)
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+[Bfs,Bis,chis]=glever(F)
+inv(F)-((Bfs/chis) - Bis)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -38,15 +38,19 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
+    <programlisting role="example"><![CDATA[ 
+//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
 date=struct('jour',25,'mois','DEC','annee',2006)
+
 // changer la valeur des champs
 date.jour=19;
 date.mois='AOU';
 date.annee=1973;
+
 // ajouter un champ 'semaine'
-date.semaine=32]]></programlisting>
-  </refsection>
+date.semaine=32
+ ]]></programlisting>
+</refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">

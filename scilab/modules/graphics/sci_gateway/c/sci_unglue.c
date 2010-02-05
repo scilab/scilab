@@ -16,7 +16,7 @@
 /* desc : interface for unglue routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_unglue.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "DestroyObjects.h"

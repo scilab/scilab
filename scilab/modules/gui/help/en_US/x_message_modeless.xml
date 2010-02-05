@@ -31,15 +31,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
- x_message_modeless(['This is a modeless message'
-                     'Scilab may continue computation'
-                     ' '
-                     'Click on ""Ok"" to close the message'])
- x_message_modeless('Now two message windows are opened')
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+x_message_modeless(['This is a modeless message'
+                    'Scilab may continue computation'
+                    ' '
+                    'Click on ""Ok"" to close the message'])
+x_message_modeless('Now two message windows are opened')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -51,7 +49,7 @@
         <link linkend="x_mdialog">x_mdialog</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
     </simplelist>
   </refsection>
