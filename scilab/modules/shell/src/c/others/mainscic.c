@@ -33,7 +33,7 @@
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
 #endif
-void initPlop();
+
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
@@ -57,9 +57,6 @@ int main(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
-  initPlop();
-  //  int *a=NULL;
-  //  *a=23;
 
   /* This bug only occurs under Linux 32 bits
    * See: http://wiki.scilab.org/Scilab_precision

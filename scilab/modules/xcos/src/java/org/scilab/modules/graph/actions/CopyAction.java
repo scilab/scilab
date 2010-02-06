@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,38 +18,29 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Copy manager
- * @author Bruno JOFFRET
  */
-public final class CopyAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public final class CopyAction extends SelectionDependantAction {
+	public static final String NAME = ScilabGraphMessages.COPY;
+	public static final String SMALL_ICON = "edit-copy.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_C;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private CopyAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.COPY, scilabGraph);
+	public CopyAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
-	
-	/**
-	 * Create a button for a graph toolbar
-	 * @param scilabGraph corresponding Scilab Graph
-	 * @return the button
-	 */
-    public static PushButton copyButton(ScilabGraph scilabGraph) {
-    	return createButton(ScilabGraphMessages.COPY, "edit-copy.png", new CopyAction(scilabGraph));
-    }
     
 	/**
 	 * Create a menu for a graph menubar
@@ -56,8 +48,7 @@ public final class CopyAction extends DefaultAction {
 	 * @return the menu
 	 */
     public static MenuItem copyMenu(ScilabGraph scilabGraph) {
-    	return createMenu(ScilabGraphMessages.COPY, null, new CopyAction(scilabGraph),
-    			KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    	return createMenu(scilabGraph, CopyAction.class);
     }
     
 	/**

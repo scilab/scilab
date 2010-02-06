@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,31 +13,31 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * @author Antoine ELIAS
- *
+ * Mirror a block
  */
-public class MirrorAction extends DefaultAction {
-
-    private static final long serialVersionUID = -6228416497044111945L;
+public class MirrorAction extends SelectionDependantAction {
+	public static final String NAME = XcosMessages.MIRROR;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_M;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
      * @param scilabGraph associated diagram
      */
     public MirrorAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.MIRROR, scilabGraph);
+	super(scilabGraph);
     }
 
     /**
@@ -45,15 +46,15 @@ public class MirrorAction extends DefaultAction {
      * @return the menu
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.MIRROR, null, new MirrorAction(scilabGraph),
-		KeyStroke.getKeyStroke(KeyEvent.VK_M, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), true));
+	return createMenu(scilabGraph, MirrorAction.class);
     }
 
-    /**
-     * Action !!
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 
 	    Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();

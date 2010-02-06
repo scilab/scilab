@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,12 +14,11 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -27,18 +26,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Open dialog to set block parameters
- * @author Vincent COUVERT
  */
-public class BlockParametersAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public class BlockParametersAction extends SelectionDependantAction {
+	public static final String NAME = XcosMessages.BLOCK_PARAMETERS;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_B;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public BlockParametersAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.BLOCK_PARAMETERS, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -47,15 +47,15 @@ public class BlockParametersAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.BLOCK_PARAMETERS, null, new BlockParametersAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_B, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, BlockParametersAction.class);
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
 		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
 		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());

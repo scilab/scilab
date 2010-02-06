@@ -54,11 +54,6 @@ AC_ARG_WITH(docbook,
 	FOP=$PACKAGE_JAR_FILE
 	AC_SUBST(FOP)
 
-	# MathML rendering solution
-	AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
-	JEUCLID_CORE=$PACKAGE_JAR_FILE
-	AC_SUBST(JEUCLID_CORE)
-
 	# Commons I/O library
 	AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
 	COMMONS_IO=$PACKAGE_JAR_FILE

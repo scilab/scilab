@@ -44,6 +44,7 @@ Xcos:
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
     - org.scilab.modules.graph is independent from Xcos and can be safely used.
+    - the actions are now only instanciated per graph.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -105,6 +106,8 @@ Xcos:
 * bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
                    limitation.
 
+* bug 6551 fixed - SaveAs action was not accessible
+
 Atoms:
 ======
 
@@ -131,6 +134,15 @@ Compilation:
 * Improved detection of Fedora/Redhat packages
 
 * Better detection of JOGL
+
+* Better check of the lib math (libm)
+
+* When two versions of the same jar libraries, in some cases, the system
+  could not detect any of them
+
+* bug 5496 fixed - When the option --disable-build-help was enabled, the 
+                   check/use of jeuclid was disabled. It was causing build 
+                   issue since jeuclid is now necessary for graphics.
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
@@ -165,8 +177,6 @@ Bug fixes:
                    was not displayed on Windows.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
-
-* bug 5362 fixed - help type pointed to "Type" online help
 
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
@@ -229,6 +239,10 @@ Bug fixes:
 
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
+* bug 6401 fixed - chfact() had trouble factoring 3X3 identity matrix.
+
+* bug 6412 fixed - the function sp2adj was not working.
+
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
@@ -248,6 +262,10 @@ Bug fixes:
 * bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
 
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
+
+* bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
+* bug 6558 fixed - Infinite value was not plotted even if it was possible.
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -2018,3 +2036,6 @@ Bug fixes:
 * bug 6468 fixed - wrong check in dnaupd.
 
 * bug 6495 fixed - in lqr, variable Q not defined.
+
+* bug 4785 fixed - tand(0) generated an error
+

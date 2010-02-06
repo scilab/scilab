@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,12 +14,11 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -26,18 +26,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Diagram closing management
- * @author Vincent COUVERT
  */
 public class CloseAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.CLOSE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_W;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public CloseAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CLOSE, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -46,15 +47,15 @@ public class CloseAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CLOSE, null, new CloseAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_W, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, CloseAction.class);
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		if (getGraph(null) instanceof SuperBlockDiagram) {
 			((SuperBlockDiagram) getGraph(null)).getContainer().closeBlockSettings();
 		} else {

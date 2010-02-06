@@ -56,4 +56,5 @@
 <PRIMITIVE gatewayId="27" primitiveId="23" primitiveName="mtlb_sparse" />
 <PRIMITIVE gatewayId="27" primitiveId="24" primitiveName="%msp_spget" />
 <PRIMITIVE gatewayId="27" primitiveId="25" primitiveName="%msp_full" />
+<PRIMITIVE gatewayId="27" primitiveId="26" primitiveName="ta2lpd" />
 </GATEWAY>
