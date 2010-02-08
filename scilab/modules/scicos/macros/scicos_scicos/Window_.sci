@@ -19,10 +19,25 @@
 // See the file ../license.txt
 //
 
-function XcosMenuNyquist()
-    syst=analyse(scs_m)
-    %sl=bloc2ss(syst)
-    xset('window',curwin+1);clf()
-    nyquist( %sl)
-    xset('window',curwin);
+function Window_()
+    Cmenu=[]
+    disablemenus()
+
+    params=scs_m.props;
+    params=do_window(params)
+    edited=or(params<>scs_m.props)
+    
+    if or(scs_m.props.wpar<>params.wpar) then
+      xset('alufunction',3);clf();xselect();xset('alufunction',6);
+      window_set_size()
+
+      scs_m.props.wpar=params.wpar
+      %wdm=scs_m.props.wpar
+      %wdm(5:6)=(params.wpar(1:2)./scs_m.props.wpar(1:2)).*%wdm(5:6)
+      scs_m.props.wpar(5)=%wdm(5);scs_m.props.wpar(6)=%wdm(6);
+
+      drawobjs(scs_m),
+      if pixmap then xset('wshow'),end
+    end
+    enablemenus()
 endfunction
