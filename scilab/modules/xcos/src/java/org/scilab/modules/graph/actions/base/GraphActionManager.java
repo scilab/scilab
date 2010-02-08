@@ -44,18 +44,19 @@ public final class GraphActionManager {
 	 *            the graph to work on
 	 * @param action
 	 *            the action class we are looking for.
+	 * @param <T> the type to work with.
 	 * @return the instance or null on error.
 	 */
-	public static DefaultAction getInstance(ScilabGraph graph, Class< ? extends DefaultAction> action) {
+	public static < T extends DefaultAction> T getInstance(ScilabGraph graph, Class<T> action) {
 		Set<DefaultAction> actionSet = getActionSet(graph);
 		
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
-				return defaultAction;
+				return (T) defaultAction;
 			}
 		}
 		
-		DefaultAction instance = null;
+		T instance = null;
 		try {
 			instance = action.getConstructor(ScilabGraph.class).newInstance(graph);
 			actionSet.add(instance);
@@ -106,14 +107,15 @@ public final class GraphActionManager {
 	 *            the graph to work on
 	 * @param action
 	 *            the action class we are looking for.
+	 * @param <T> the type to work with.
 	 * @return the instance or null if not found.
 	 */
-	public static DefaultAction get(ScilabGraph graph, Class< ? extends DefaultAction> action) {
+	public static  < T extends DefaultAction> T get(ScilabGraph graph, Class<T> action) {
 		Set<DefaultAction> actionSet = getActionSet(graph);
 
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
-				return defaultAction;
+				return (T) defaultAction;
 			}
 		}
 			
