@@ -224,28 +224,6 @@ public abstract class DefaultAction extends CallBack {
 
 	/**
 	 * Create a button for a graph toolbar
-	 * @param title name/tooltip of the button
-	 * @param icon the path the an icon file
-	 * @param listener action listener associated
-	 * @return the button
-	 */
-	@Deprecated
-	protected static PushButton createButton(String title, String icon, ActionListener listener) {
-		PushButton button = ScilabPushButton.createPushButton(); 
-		((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
-		if (icon == null) {
-			button.setText(title);
-			button.setToolTipText(title);
-		} else {
-			((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(
-					new ImageIcon(ICON_PATH + icon));
-		}
-		((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(title);
-		return button;
-	}
-
-	/**
-	 * Create a button for a graph toolbar
 	 * @param title label of the menu
 	 * @param icon the path the an icon file
 	 * @param listener action listener associated
@@ -255,27 +233,6 @@ public abstract class DefaultAction extends CallBack {
 	@Deprecated
 	protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
 		MenuItem menu = ScilabMenuItem.createMenuItem();
-		menu.setCallback(listener);
-		menu.setText(title);
-
-		if (keyStroke != null) {
-			((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
-		}
-
-		return menu;
-	}
-	
-	/**
-	 * Create a button for a graph toolbar
-	 * @param title label of the menu
-	 * @param icon the path the an icon file
-	 * @param listener action listener associated
-	 * @param keyStroke menu shortcut
-	 * @return the button
-	 */
-	@Deprecated
-	protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
-		CheckBoxMenuItem menu = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 		menu.setCallback(listener);
 		menu.setText(title);
 
