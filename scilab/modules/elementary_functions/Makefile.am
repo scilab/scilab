@@ -364,8 +364,7 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f \
-sci_gateway/fortran/sci_f_sort.f 
+sci_gateway/fortran/sci_f_exp.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
