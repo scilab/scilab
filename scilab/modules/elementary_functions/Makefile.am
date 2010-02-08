@@ -52,10 +52,6 @@ src/c/vmul.c \
 src/c/add_vector.c \
 src/c/sub_vector.c
 
-# List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = \
-src/cpp/elem_func.cpp
-
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
 src/fortran/slatec/d9b1mp.f \
@@ -389,7 +385,10 @@ sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f \
 sci_gateway/fortran/sci_f_sort.f 
 
-GATEWAY_CPP_SOURCES =  sci_gateway/cpp/sci_isequal.cpp
+GATEWAY_CPP_SOURCES =  \ 
+sci_gateway/cpp/sci_isequal.cpp \
+sci_gateway/cpp/elem_func_gw.cpp
+
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -438,7 +437,7 @@ pkglib_LTLIBRARIES = libscielementary_functions.la
 
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)

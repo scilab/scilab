@@ -373,7 +373,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-TYPES_CPP_SOURCES = src/cpp/types.cpp \
+TYPES_CPP_SOURCES = \
+			src/cpp/types.cpp \
 			src/cpp/int.cpp \
 			src/cpp/string.cpp \
 			src/cpp/double.cpp \
@@ -389,7 +390,7 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp \
 			src/cpp/list.cpp \
 			src/cpp/struct.cpp
 
-GATEWAY_CPP_SOURCES = src/cpp/types_gw.cpp \
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp \
 			sci_gateway/cpp/sci_struct.cpp
 
@@ -649,12 +650,12 @@ libscitypes_la-struct.lo: src/cpp/struct.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-struct.lo `test -f 'src/cpp/struct.cpp' || echo '$(srcdir)/'`src/cpp/struct.cpp
 
-libscitypes_la-types_gw.lo: src/cpp/types_gw.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-types_gw.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-types_gw.Tpo -c -o libscitypes_la-types_gw.lo `test -f 'src/cpp/types_gw.cpp' || echo '$(srcdir)/'`src/cpp/types_gw.cpp
+libscitypes_la-types_gw.lo: sci_gateway/cpp/types_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-types_gw.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-types_gw.Tpo -c -o libscitypes_la-types_gw.lo `test -f 'sci_gateway/cpp/types_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/types_gw.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-types_gw.Tpo $(DEPDIR)/libscitypes_la-types_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_gw.cpp' object='libscitypes_la-types_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/types_gw.cpp' object='libscitypes_la-types_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-types_gw.lo `test -f 'src/cpp/types_gw.cpp' || echo '$(srcdir)/'`src/cpp/types_gw.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-types_gw.lo `test -f 'sci_gateway/cpp/types_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/types_gw.cpp
 
 libscitypes_la-sci_list.lo: sci_gateway/cpp/sci_list.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-sci_list.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-sci_list.Tpo -c -o libscitypes_la-sci_list.lo `test -f 'sci_gateway/cpp/sci_list.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_list.cpp

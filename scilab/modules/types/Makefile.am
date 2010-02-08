@@ -10,7 +10,8 @@
 ##
 ##
 
-TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
+TYPES_CPP_SOURCES = \
+			src/cpp/types.cpp \
 			src/cpp/int.cpp \
 			src/cpp/string.cpp \
 			src/cpp/double.cpp \
@@ -26,7 +27,7 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/list.cpp \
 			src/cpp/struct.cpp
 
-GATEWAY_CPP_SOURCES	= src/cpp/types_gw.cpp \
+GATEWAY_CPP_SOURCES	= sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp \
 			sci_gateway/cpp/sci_struct.cpp
 
