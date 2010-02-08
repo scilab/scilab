@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -26,7 +26,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Mirror a block
  */
-public class MirrorAction extends DefaultAction {
+public class MirrorAction extends SelectionDependantAction {
 	public static final String NAME = XcosMessages.MIRROR;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_M;

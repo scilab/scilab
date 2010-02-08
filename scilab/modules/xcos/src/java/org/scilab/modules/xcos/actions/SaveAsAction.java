@@ -49,7 +49,7 @@ public final class SaveAsAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SaveAction.class);
+		return createMenu(scilabGraph, SaveAsAction.class);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public final class SaveAsAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(scilabGraph, SaveAction.class);
+		return createButton(scilabGraph, SaveAsAction.class);
 	}
 
 	/**

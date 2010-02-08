@@ -14,9 +14,10 @@ package org.scilab.modules.graph.actions.base;
 
 import org.scilab.modules.graph.ScilabGraph;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
-import com.mxgraph.util.mxEventSource.mxIEventListener;
+import com.mxgraph.view.mxGraphSelectionModel;
 
 /**
  * Common class for selection dependent actions.
@@ -27,38 +28,58 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 public abstract class SelectionDependantAction extends DefaultAction {
 
 	/**
-	 * Implement the listener to install on the graph
+	 * Enable the selection if there is at least a vertex in the selection.
 	 */
-	private class SelectionChangeListener implements mxIEventListener {
-		private ScilabGraph scilabGraph;
+	private final class SelectionDependantConstraint extends ActionConstraint {
 
 		/**
 		 * Default constructor
-		 * 
-		 * @param scilabGraph
-		 *            the associated graph
 		 */
-		public SelectionChangeListener(ScilabGraph scilabGraph) {
-			this.scilabGraph = scilabGraph;
+		public SelectionDependantConstraint() {
+			super();
 		}
 
 		/**
-		 * Enable or disable the action.
-		 * 
-		 * @param sender
-		 *            the sender
-		 * @param evt
-		 *            the event
-		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
-		 *      com.mxgraph.util.mxEventObject)
+		 * @param action the action
+		 * @param scilabGraph the current graph
+		 * @see org.scilab.modules.graph.actions.base.ActionConstraint#install(org.scilab.modules.graph.actions.base.DefaultAction,
+		 *      org.scilab.modules.graph.ScilabGraph)
+		 */
+		@Override
+		public void install(DefaultAction action, ScilabGraph scilabGraph) {
+			super.install(action, scilabGraph);
+			
+			scilabGraph.getSelectionModel().addListener(mxEvent.UNDO, this);
+		}
+		
+		/**
+		 * @param sender the sender
+		 * @param evt the event
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
 		 */
 		public void invoke(Object sender, mxEventObject evt) {
-			Object[] cells = scilabGraph.getSelectionCells();
-			setEnabled((cells != null) && (cells.length != 0));
+			mxGraphSelectionModel selection = (mxGraphSelectionModel) sender;
+			Object[] cells = selection.getCells();
+			
+			boolean vertexFound = false;
+			if (cells != null) {
+				for (Object object : cells) {
+					if (object instanceof mxCell) {
+						mxCell cell = (mxCell) object;
+						vertexFound = cell.isVertex();
+					}
+					
+					if (vertexFound) {
+						break;
+					}
+				}
+
+				setEnabled(vertexFound);
+			}
 		}
-
+		
 	}
-
+	
 	/**
 	 * Default constructor
 	 * 
@@ -67,11 +88,10 @@ public abstract class SelectionDependantAction extends DefaultAction {
 	 */
 	public SelectionDependantAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
-		setEnabled(false);
-
+		
 		if (scilabGraph != null) {
-			scilabGraph.getSelectionModel().addListener(mxEvent.UNDO,
-					new SelectionChangeListener(scilabGraph));
+			SelectionDependantConstraint c = new SelectionDependantConstraint();
+			c.install(this, scilabGraph);
 		}
 	}
 }

@@ -28,7 +28,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -41,7 +40,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Customize the mask of the {@link SuperBlock}.
  */
-public final class SuperblockMaskCustomizeAction extends DefaultAction {
+public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedAction {
 	public static final String NAME = XcosMessages.CUSTOMIZE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

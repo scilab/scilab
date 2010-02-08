@@ -20,8 +20,6 @@ import java.util.Set;
 
 import org.scilab.modules.graph.ScilabGraph;
 
-import com.mxgraph.model.mxCell;
-
 /**
  * Implement construction methods for Actions. 
  */
@@ -46,18 +44,19 @@ public final class GraphActionManager {
 	 *            the graph to work on
 	 * @param action
 	 *            the action class we are looking for.
+	 * @param <T> the type to work with.
 	 * @return the instance or null on error.
 	 */
-	public static DefaultAction getInstance(ScilabGraph graph, Class< ? extends DefaultAction> action) {
+	public static < T extends DefaultAction> T getInstance(ScilabGraph graph, Class<T> action) {
 		Set<DefaultAction> actionSet = getActionSet(graph);
 		
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
-				return defaultAction;
+				return (T) defaultAction;
 			}
 		}
 		
-		DefaultAction instance = null;
+		T instance = null;
 		try {
 			instance = action.getConstructor(ScilabGraph.class).newInstance(graph);
 			actionSet.add(instance);
@@ -108,17 +107,41 @@ public final class GraphActionManager {
 	 *            the graph to work on
 	 * @param action
 	 *            the action class we are looking for.
+	 * @param <T> the type to work with.
 	 * @return the instance or null if not found.
 	 */
-	public static DefaultAction get(ScilabGraph graph, Class< ? extends DefaultAction> action) {
+	public static  < T extends DefaultAction> T get(ScilabGraph graph, Class<T> action) {
 		Set<DefaultAction> actionSet = getActionSet(graph);
 
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
-				return defaultAction;
+				return (T) defaultAction;
 			}
 		}
 			
 		return null;
+	}
+	
+	/**
+	 * Enable or disable action on all registered graph.
+	 * @param actionKlass The action type to enable
+	 * @param enable the enable status
+	 */
+	public static void setEnable(Class< ? extends DefaultAction> actionKlass, boolean enable) {
+		// Handle null graph
+		for (DefaultAction action : nullGraphAction) {
+			if (actionKlass.isInstance(action)) {
+				action.setEnabled(enable);
+			}
+		}
+		
+		// Handle non-null graph
+		for (Set<DefaultAction> actions : perGraphAction.values()) {
+			for (DefaultAction action : actions) {
+				if (actionKlass.isInstance(action)) {
+					action.setEnabled(enable);
+				}
+			}
+		}
 	}
 }

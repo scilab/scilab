@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -29,7 +29,7 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 /**
  * View the diagram as a scilab tree
  */
-public final class ViewDiagramBrowserAction extends DefaultAction {
+public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 	public static final String NAME = XcosMessages.DIAGRAM_BROWSER;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

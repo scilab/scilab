@@ -64,7 +64,6 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
-import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -154,14 +153,16 @@ public class XcosDiagram extends ScilabGraph {
     private CheckBoxMenuItem gridMenu;
     private SetContextAction action;
     
-    protected mxIEventListener undoEnabler = new mxIEventListener()
-    {
-	public void invoke(Object source, mxEventObject evt) {
-		if (getParentTab() != null) {
-			((XcosTab) getParentTab()).setEnabledUndo(true);
+    protected mxIEventListener deleteLinkOnMultiPointLinkCreation = new mxIEventListener() {
+		public void invoke(Object sender, mxEventObject evt) {
+			if (waitPathAddEdge) {
+			    if (drawLink != null) {
+				getModel().remove(drawLink);
+			    }
+			    cancelDrawLinkAction();
+			}
 		}
-	}
-    };
+	};
 
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index) {	
@@ -421,12 +422,9 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram() {
 	super();
-	getModel().addListener(mxEvent.UNDO, undoEnabler);
-	getView().addListener(mxEvent.UNDO, undoEnabler);
-	// The association is inverted there (by the parameter)
-	new XcosShortCut(this);
+	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
+	
 	mxCodec codec = new mxCodec();
-
 	try {
 	    File uri = new File(System.getenv("SCI"));
 	    String xml = mxUtils.readFile(System.getenv("SCI") + "/modules/xcos/etc/Xcos-style.xml");
@@ -1718,7 +1716,6 @@ public class XcosDiagram extends ScilabGraph {
 	try {
 	    mxUtils.writeFile(xml, writeFile);
 	    isSuccess = true;
-	    resetUndoCounter();
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	    isSuccess = false;
@@ -1923,10 +1920,6 @@ public class XcosDiagram extends ScilabGraph {
 	if (!XcosTab.focusOnExistingFile(diagramFileName)) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
-	    
-	    if (getParentTab() != null) {
-		((XcosTab) getParentTab()).setActionsEnabled(false);
-	    }
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile, false);
@@ -1951,10 +1944,7 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    info(XcosMessages.EMPTY_INFO);
-	    if (getParentTab() != null) {
-		((XcosTab) getParentTab()).setActionsEnabled(true);
-	    }
-	    this.resetUndoManager();
+	    getUndoManager().clear();
 	}
     }
     
@@ -2204,85 +2194,6 @@ public class XcosDiagram extends ScilabGraph {
     public void setModified(boolean modified) {
 	super.setModified(modified);
 	updateTabTitle();
-    }
-
-    /**
-     * Revert an action
-     */
-    public void undo() {
-	super.undo();
-
-	if (getParentTab() != null) {
-	    if (getUndoManager().canUndo()) {
-		((XcosTab) getParentTab()).setEnabledUndo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledUndo(false);
-	    }
-	    ((XcosTab) getParentTab()).setEnabledRedo(true);
-	}
-
-	updateUndoModifiedState();
-	/*
-	 * if (undoManager.canRedo()){
-	 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
-	 * ((Xcos)getParentTab()).setEnabledRedo(false); }
-	 */
-	
-	if (waitPathAddEdge) {
-	    if (drawLink != null) {
-		getModel().remove(drawLink);
-	    }
-	    cancelDrawLinkAction();
-	}
-    }
-
-
-
-    /**
-     * Apply the previously reverted action
-     */
-    public void redo() {
-	super.redo();
-
-	updateUndoModifiedState();
-
-	if (getParentTab() != null) {
-	    if (getUndoManager().canUndo()) {
-		((XcosTab) getParentTab()).setEnabledUndo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledUndo(false);
-	    }
-	    if (getUndoManager().canRedo()) {
-		((XcosTab) getParentTab()).setEnabledRedo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledRedo(false);
-	    }
-	}
-    }
-
-    /**
-     * This function will reset the UndoManager in a stable state.
-     */
-    public void resetUndoManager() {
-	getUndoManager().clear();
-
-	resetUndoCounter();
-
-	if (getParentTab() != null) {
-	    ((XcosTab) getParentTab()).setEnabledRedo(false);
-	    ((XcosTab) getParentTab()).setEnabledUndo(false);
-	}
-    }
-
-    /**
-     * modify undo state
-     */
-    private void updateUndoModifiedState() {
-	if (isZeroUndoCounter()) {
-	    setModified(false);
-	} else {
-	    setModified(true);
-	}
     }
 
     /**

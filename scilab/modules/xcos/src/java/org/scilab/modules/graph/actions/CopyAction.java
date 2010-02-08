@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -58,5 +59,10 @@ public final class CopyAction extends SelectionDependantAction {
 	 */
     public void actionPerformed(ActionEvent e) {
     	TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(), e.getID(), e.getActionCommand()));
+    	
+    	// Enable the paste action
+    	ScilabGraph g = getGraph(e);
+    	PasteAction p = GraphActionManager.get(g, PasteAction.class);
+    	p.setEnabled(true);
     }
 }

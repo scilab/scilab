@@ -21,9 +21,9 @@ import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -32,7 +32,7 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 /**
  * Start the simulation
  */
-public class StartAction  extends DefaultAction {
+public class StartAction extends DefaultAction {
 	public static final String NAME = XcosMessages.START;
 	public static final String SMALL_ICON = "media-playback-start.png";
 	public static final int MNEMONIC_KEY = 0;
@@ -43,6 +43,7 @@ public class StartAction  extends DefaultAction {
      */
     public StartAction(ScilabGraph scilabGraph) {
     	super(scilabGraph);
+    	
     }
 
     /**
@@ -68,9 +69,7 @@ public class StartAction  extends DefaultAction {
      */
     public void actionPerformed(ActionEvent e) {
 	File temp;
-	((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
-	XcosTab.setStartEnabled(false);
-	((XcosDiagram) getGraph(null)).setReadOnly(true);
+	updateUI(true);
 	
 	try {
 	    temp = File.createTempFile("xcos",".h5");
@@ -83,17 +82,32 @@ public class StartAction  extends DefaultAction {
 	    try {
 			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-				    XcosTab.setStartEnabled(true);
-				    ((XcosDiagram) getGraph(null)).setReadOnly(false);
+					updateUI(true);
 				}
 			});
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();
+			updateUI(true);
 		}
 	} catch (IOException e1) {
 	    e1.printStackTrace();
-	    XcosTab.setStartEnabled(true);
+	    updateUI(true);
 	}
     }
+
+	/**
+	 * Update the UI depending on the action selected or not
+	 * @param started the started status
+	 */
+	public void updateUI(boolean started) {
+		GraphActionManager.setEnable(StartAction.class, !started);
+		GraphActionManager.setEnable(StopAction.class, started);
+		((XcosDiagram) getGraph(null)).setReadOnly(started);
+		
+		if (started) {
+			((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
+		} else {
+			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
+		}
+	}
 }

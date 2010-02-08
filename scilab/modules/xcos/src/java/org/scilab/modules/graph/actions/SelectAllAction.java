@@ -18,14 +18,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Selection management
  */
-public final class SelectAllAction extends DefaultAction {
+public final class SelectAllAction extends OneBlockDependantAction {
 	public static final String NAME = ScilabGraphMessages.SELECT_ALL;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_A;
