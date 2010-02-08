@@ -1,5 +1,4 @@
-
-Scicos:
+﻿Scicos:
 =======
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
 
@@ -184,6 +183,9 @@ Bug fixes:
 
 * bug 4543 fixed - Waitbar command seemed not to work properly with message
                    define by a string.
+
+* bug 4941 fixed - uigetdir & ugetfile lacked icons on top right when running
+                   on Windows 7.
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 
