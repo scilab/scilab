@@ -594,7 +594,7 @@
     <title>Graphics primitives</title>
     <variablelist>
       <varlistentry>
-        <term><link linkend="xbasc">xbasc</link></term>
+        <term><link linkend="clf">clf</link></term>
         <listitem>
           <para>Clear a graphics window and erase the associated recorded graphics</para>
         </listitem>
