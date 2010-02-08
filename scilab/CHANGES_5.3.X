@@ -48,6 +48,8 @@ Removed functions (previously declared as obsolete):
 
 * 'getf' replaced by 'exec'.
 
+* 'NumTokens' replaced by 'tokens'.
+
 * 'sort' replaced by 'gsort'.
  
 Bug fixes:
