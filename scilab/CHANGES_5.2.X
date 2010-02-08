@@ -50,6 +50,8 @@ Xcos:
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
+* bug 5095 fixed - Menu were not disabled when action were not possible.
+
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
                    were not available.
 
