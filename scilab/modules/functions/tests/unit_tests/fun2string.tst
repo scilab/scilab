@@ -111,7 +111,7 @@ ref=["function []=foo()";
      "endfunction"];
 mputl(ref,TMPDIR+'/foo.sci');
 warning('off');
-getf(TMPDIR+'/foo.sci');
+exec(TMPDIR+'/foo.sci');
 warning('on');
 if or(fun2string(foo,'foo')<>ref) then pause,end
 

@@ -45,6 +45,8 @@ Removed functions (previously declared as obsolete):
 * 'getcwd' replaced by 'pwd'.
 
 * 'xbasc' replaced by 'clf'.
+
+* 'getf' replaced by 'exec'.
  
 Bug fixes:
 ==========
