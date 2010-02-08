@@ -11,18 +11,18 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
-#ifndef __DYNLIB_TYPES_GW_H__
-#define __DYNLIB_TYPES_GW_H__
+#ifndef __DYNLIB_FUNCTIONS_GW_H__
+#define __DYNLIB_FUNCTIONS_GW_H__
 
 #ifdef _MSC_VER
-	#ifdef TYPES_GW_EXPORTS
-		#define TYPES_GW_IMPEXP __declspec(dllexport)
+	#ifdef FUNCTIONS_GW_EXPORTS
+		#define FUNCTIONS_GW_IMPEXP __declspec(dllexport)
 	#else
-		#define TYPES_GW_IMPEXP __declspec(dllimport)
+		#define FUNCTIONS_GW_IMPEXP __declspec(dllimport)
 	#endif
 #else
-	#define TYPES_GW_IMPEXP 
+	#define FUNCTIONS_GW_IMPEXP
 #endif
 
-#endif /* __DYNLIB_TYPES_GW_H__ */
+#endif /* __DYNLIB_FUNCTIONS_GW_H__ */
 /*--------------------------------------------------------------------------*/ 

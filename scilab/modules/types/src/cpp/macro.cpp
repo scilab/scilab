@@ -57,6 +57,11 @@ namespace types
 		return RealMacro; 
 	}
 
+	ast::SeqExp* Macro::body_get(void)
+	{
+		return m_body;
+	}
+
 	std::string Macro::toString(int _iPrecision, int _iLineLen)
 	{
 	  std::ostringstream ostr;

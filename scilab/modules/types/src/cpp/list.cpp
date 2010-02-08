@@ -58,7 +58,7 @@ namespace types
    */
   int List::size_get() 
   {
-    return m_plData->size();
+    return (int)m_plData->size();
   }
 
   /**

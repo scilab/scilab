@@ -27,7 +27,7 @@ namespace types
 										Bool(int _iRows, int _iCols, bool **_pbData);
 										~Bool();
 
-		Bool::Bool*		clone();
+		Bool*						clone();
 
 		/*data management*/
 		bool*						bool_get() const;

@@ -567,10 +567,12 @@ static int createCommonScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iCo
 /*--------------------------------------------------------------------------*/
 int createMatrixOfDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal)
 {
+	return createCommonMatrixDoubleFromInteger(_pvCtx, _iVar, 0, _iRows, _iCols, _piReal, NULL);
 }
 /*--------------------------------------------------------------------------*/
 int createMatrixOfComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg)
 {
+	return createCommonMatrixDoubleFromInteger(_pvCtx, _iVar, 1, _iRows, _iCols, _piReal, _piImg);
 }
 /*--------------------------------------------------------------------------*/
 static int createCommonMatrixDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int* _piReal, int* _piImg)

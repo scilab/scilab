@@ -52,11 +52,11 @@ namespace types
 		compute();
 	}
 
-	  ImplicitList::ImplicitList* ImplicitList::clone()
-	  {
-	    //FIXME : Implement me.
-	    return NULL;
-	  }
+	ImplicitList* ImplicitList::clone()
+	{
+		//FIXME : Implement me.
+		return NULL;
+	}
 
 	InternalType::RealType ImplicitList::start_type_get()
 	{

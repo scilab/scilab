@@ -22,7 +22,7 @@ static gw_generic_table Tab[] =
 {sci_winopen,"winopen"},
 {sci_winqueryreg,"winqueryreg"},
 {sci_findfileassociation,"findfileassociation"},
-{sci_dos,"dos"},
+{NULL, ""}, //dos
 {sci_mcisendstring,"mcisendstring"},
 {sci_oemtochar,"oemtochar"},
 {sci_chartooem,"chartooem"},
@@ -37,12 +37,6 @@ int gw_windows_tools(void)
 {  
 	Rhs = Max(0, Rhs);
 
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
-	}
-
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
 	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }

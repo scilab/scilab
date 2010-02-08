@@ -1,0 +1,27 @@
+LIBRARY    metanet.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; metanet
+; --------------------------------------- 
+	concom_
+	dmtree_
+	CheckGraphName
+	StripGraph
+	my_basename
+	my_dirname
+	gw_metanet
+	myhcreate
+	myhdestroy
+	myhsearch
+	loadg_
+	NodesToPath
+	prevn2p_
+	ns2p_
+	p2ns_
+	edge2st_
+	prevn2st_
+	saveg_
+	transc_
+

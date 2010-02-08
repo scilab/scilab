@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="types"
-	ProjectGUID="{64E090DA-DCB5-4F4D-93D7-E88DDEC9C2EF}"
-	RootNamespace="types"
+	Name="elem_func_gw"
+	ProjectGUID="{9881F0CE-A1AC-4744-B709-7C1453A77B95}"
+	RootNamespace="elem_func_gw"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -23,7 +23,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,13 +61,23 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -79,6 +89,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -86,7 +99,7 @@
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -108,8 +121,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -125,13 +138,23 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -143,6 +166,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -150,7 +176,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -173,8 +199,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -189,13 +215,25 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -207,6 +245,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -214,7 +255,7 @@
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -238,8 +279,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -254,13 +295,25 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/types.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib"
+				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -270,6 +323,9 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -285,63 +341,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\cpp\bool.cpp"
+				RelativePath="..\elem_func_gw.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\double.cpp"
+				RelativePath="..\..\..\sci_gateway\cpp\sci_cos2.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\float.cpp"
+				RelativePath="..\..\..\sci_gateway\cpp\sci_isequal.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\function.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\ImplicitList.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\int.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\list.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\macro.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\macrofile.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\matrixpoly.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\poly.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\string.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\struct.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\tostring_common.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\types.cpp"
+				RelativePath="..\..\..\sci_gateway\cpp\sci_sin2.cpp"
 				>
 			</File>
 		</Filter>
@@ -351,87 +363,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\includes\alltypes.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\anytype.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\bool.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\callable.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\container.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\double.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\float.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\function.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\ImplicitList.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\int.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\internal.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intt.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\list.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\macro.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\macrofile.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\matrixpoly.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\poly.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\string.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\struct.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\tostring_common.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\types.hxx"
+				RelativePath="..\..\..\includes\elem_func_gw.hxx"
 				>
 			</File>
 		</Filter>
@@ -441,8 +373,24 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath=".\libScilab_import.def"
+				>
+			</File>
+		</Filter>
 		<File
-			RelativePath="..\..\bin\lapack.lib"
+			RelativePath="..\..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\bin\libintl.lib"
 			>
 		</File>
 	</Files>

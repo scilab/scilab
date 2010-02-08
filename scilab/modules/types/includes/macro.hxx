@@ -40,6 +40,8 @@ namespace types
     
     Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
     
+		ast::SeqExp* body_get();
+
   private :
     std::list<symbol::Symbol>	*m_inputArgs;
     std::list<symbol::Symbol>	*m_outputArgs;

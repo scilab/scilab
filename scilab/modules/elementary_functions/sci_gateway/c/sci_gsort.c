@@ -461,7 +461,7 @@ int	gsort_int(int* _piKey, int * _piAddress, const char* _pcstProcess, const cha
 
 	if(Lhs == 2)
 	{
-		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		iRet = createMatrixOfDoubleFromInteger(_piKey, Rhs + 2, iRowsInd, iColsInd, piInd);
 		if(iRet)
 		{
 			FREE(piInd);

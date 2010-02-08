@@ -396,14 +396,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_exec.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_execstr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getf.c"
 				>
 			</File>

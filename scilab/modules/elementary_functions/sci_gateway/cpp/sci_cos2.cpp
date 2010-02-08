@@ -10,7 +10,7 @@
 *
 */
 
-#include "elem_func.hxx"
+#include "elem_func_gw.hxx"
 
 extern "C"
 {

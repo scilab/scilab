@@ -47,9 +47,9 @@ namespace types
 		CreateString(_iRows, _iCols);
 	}
 
-	String::String *String::clone()
+	String *String::clone()
 	{
-	  String::String *pstClone = new String::String(rows_get(), cols_get());
+	  String *pstClone = new String(rows_get(), cols_get());
 	  
 	  pstClone->string_set(m_pstData);
 

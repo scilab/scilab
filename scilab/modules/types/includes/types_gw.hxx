@@ -13,10 +13,12 @@
 #ifndef __TYPES_GW_HXX__
 #define __TYPES_GW_HXX__
 
+
+#include "dynlib_types_gw.h"
+
 #include "funcmanager.hxx"
 #include "context.hxx"
 
-#include "dynlib_types_gw.h"
 
 class TypesModule
 {

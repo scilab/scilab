@@ -22,6 +22,8 @@
 #include "localization.h"
 #include "api_oldstack.h"
 
+int func_comp(char* fname, int _iMini, int* _piKey);
+
 SciErr compare_list(int* _piKey, char* _pstName, int* _piAddress, int _iIsMini);
 SciErr compare_multiple_double(int* _piKey, char* _pstName, int _iIsMini);
 SciErr compare_double_inside(int* _piKey, int* _piAddress, int _iIsMini, int _iMode);

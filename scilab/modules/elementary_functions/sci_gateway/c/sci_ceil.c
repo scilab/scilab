@@ -277,7 +277,7 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 
 SciErr ceil_int(int* _piKey, int* _piAddress)
 {//No change for integer
-	SciErr sciErr;
+	SciErr sciErr;sciErr.iErr = 0;
 	LhsVar(1) = 1;
 	return sciErr;
 }

@@ -153,9 +153,7 @@ int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 
 int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 {
-	SciErr sciErr;
 	int i;
-	
 	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
@@ -174,11 +172,10 @@ int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal)
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		iRet = isreal_common(pdblImg[i], piCoeff[i], _dblRef, _piIsReal);
-		if(sciErr.iErr)
+		if(iRet)
 		{
 			freeAllocatedMatrixOfComplexPoly(iRows, iCols, piCoeff, pdblReal, pdblImg);
-			printError(&sciErr, 0);
-			return sciErr.iErr;
+			return iRet;
 		}
 
 		if(*_piIsReal == 0)

@@ -25,5 +25,6 @@ static int createCommonNamedScalarDouble(void* _pvCtx, char* _pstName, int _iCom
 static int getCommonNamedScalarDouble(void* _pvCtx, char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
 
 static int createCommonScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iReal, int _iImg);
+static int createCommonMatrixDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int* _piReal, int* _piImg);
 
 #endif /* __INTERNAL_DOUBLE_API__ */

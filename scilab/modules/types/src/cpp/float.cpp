@@ -60,7 +60,7 @@ namespace types
 		m_bComplex = false;
 		return;
 	}
-	
+
 	/*----------------------*/
 	/*				Float				*/
 	/*	Complex constructor	*/
@@ -68,7 +68,7 @@ namespace types
 	Float::Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg)
 	{
 		CreateFloat(_iRows, _iCols, _pfReal, _pfImg);
-//		m_bComplex = false;
+		//		m_bComplex = false;
 		return;
 	}
 
@@ -86,7 +86,7 @@ namespace types
 		{
 			/*alloc Real array*/
 			m_pfReal = new float[m_iSize];
-		
+
 			/*return it*/
 			*_pfReal = m_pfReal;
 		}
@@ -108,11 +108,11 @@ namespace types
 			m_pfImg = NULL;
 	}
 
-  Float::Float* Float::clone()
-	  {
-	    // FIXME : Implement me.
-	    return NULL;
-	  }
+	Float* Float::clone()
+	{
+		// FIXME : Implement me.
+		return NULL;
+	}
 
 	bool Float::isComplex()
 	{
@@ -427,11 +427,11 @@ namespace types
 
 	std::string Float::toString(int _iPrecision, int _iLineLen) 
 	{
-	  std::ostringstream ostr;
-	  // FIXME : Implement display method.
-	  ostr << "Float Values" << std::endl;
+		std::ostringstream ostr;
+		// FIXME : Implement display method.
+		ostr << "Float Values" << std::endl;
 
-	  return ostr.str();
+		return ostr.str();
 	}
 
 }

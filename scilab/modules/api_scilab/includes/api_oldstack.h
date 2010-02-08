@@ -25,21 +25,21 @@ static int api_fake_int = 0;
 #undef Top
 #define Top api_Top(_piKey)
 #endif
-API_SCILAB_IMPEXP int api_Top(int* _piKey);
+int api_Top(int* _piKey);
 
 /*  RHS  */
 #ifdef Rhs
 #undef Rhs
 #define Rhs api_Rhs(_piKey)
 #endif
-API_SCILAB_IMPEXP int api_Rhs(int* _piKey);
+int api_Rhs(int* _piKey);
 
 /*  LHS  */
 #ifdef Lhs
 #undef Lhs
 #define Lhs api_Lhs(_piKey)
 #endif
-API_SCILAB_IMPEXP int api_Lhs(int* _piKey);
+int api_Lhs(int* _piKey);
 
 /*  CheckRhs  */
 #ifdef CheckRhs
@@ -50,7 +50,7 @@ API_SCILAB_IMPEXP int api_Lhs(int* _piKey);
 		return 1; \
 	}
 #endif
-API_SCILAB_IMPEXP int api_CheckRhs(int _iMin, int _iMax, int* _piKey);
+int api_CheckRhs(int _iMin, int _iMax, int* _piKey);
 
 /*  CheckLhs  */
 #ifdef CheckLhs
@@ -61,14 +61,14 @@ API_SCILAB_IMPEXP int api_CheckRhs(int _iMin, int _iMax, int* _piKey);
 		return 1; \
 	}
 #endif
-API_SCILAB_IMPEXP int api_CheckLhs(int _iMin, int _iMax, int* _piKey);
+int api_CheckLhs(int _iMin, int _iMax, int* _piKey);
 
 //LhsVar(1) = Rhs + 1;
 #ifdef LhsVar
 #undef LhsVar
 #define LhsVar(x) *api_LhsVar(x)
 #endif
-API_SCILAB_IMPEXP int* api_LhsVar(int _iVal);
+int* api_LhsVar(int _iVal);
 
 #ifdef PutLhsVar
 #undef PutLhsVar
@@ -79,7 +79,7 @@ API_SCILAB_IMPEXP int* api_LhsVar(int _iVal);
 #undef OverLoad
 #define OverLoad(x) api_OverLoad(x)
 #endif
-API_SCILAB_IMPEXP void api_OverLoad(int _iVal);
+void api_OverLoad(int _iVal);
 
 #ifdef __cplusplus
 }

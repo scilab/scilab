@@ -54,6 +54,11 @@ namespace types
 		return RealMacroFile; 
 	}
 	
+	Macro* MacroFile::macro_get(void)
+	{
+		return m_pMacro;
+	}
+
 	std::string MacroFile::toString(int _iPrecision, int _iLineLen)
 	{
 	  std::ostringstream ostr;
@@ -68,8 +73,20 @@ namespace types
 	{
 		ReturnValue RetVal = Callable::OK;
 
-		//check excepted and input/output parameters numbers
+		parse();
+		if(m_pMacro)
+		{
+			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out);
+			return Val;
+		}
+		else
+		{
+			return Callable::Error;
+		}
+	}
 
+	bool MacroFile::parse(void)
+	{
 		if(m_pMacro == NULL)
 		{//load file, only for the first call
 			Parser::getInstance()->parseFile(m_stPath, ConfigVariable::getInstance()->get("SCI"));
@@ -118,15 +135,6 @@ namespace types
 				}
 			}
 		}
-
-		if(m_pMacro)
-		{
-			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out);
-			return Val;
-		}
-		else
-		{
-			return Callable::Error;
-		}
+		return true;
 	}
 }

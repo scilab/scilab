@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="elem_func_gw"
-	ProjectGUID="{9881F0CE-A1AC-4744-B709-7C1453A77B95}"
-	RootNamespace="elem_func_gw"
+	Name="types_gw"
+	ProjectGUID="{C2E5F4F6-5EE7-4B36-BFAC-4AC36BB41420}"
+	RootNamespace="types_gw"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,6 +61,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -68,7 +69,7 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\lib\$(ProjectName).lib"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -119,8 +120,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -136,6 +137,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -143,7 +145,7 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="..\..\lib\$(ProjectName).lib"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -195,8 +197,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -211,6 +213,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -220,7 +223,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\lib\$(ProjectName).lib"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -273,8 +276,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ELEM_FUNC_GW_EXPORTS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes;../../../../abstractSyntaxTree/includes;../../../../api_scilab/includes;../../../../elementary_functions/includes"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_GW_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -289,6 +292,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -298,7 +302,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\..\lib\$(ProjectName).lib"
+				ImportLibrary="$(TargetDir)$(TargetName).lib"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -333,19 +337,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\elem_func.cpp"
+				RelativePath="..\sci_list.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\sci_gateway\cpp\sci_cos2.cpp"
+				RelativePath="..\sci_struct.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\sci_gateway\cpp\sci_isequal.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\sci_gateway\cpp\sci_sin2.cpp"
+				RelativePath="..\types_gw.cpp"
 				>
 			</File>
 		</Filter>
@@ -355,7 +355,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\includes\elem_func.hxx"
+				RelativePath="..\..\..\includes\dynlib_types_gw.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\types_gw.hxx"
 				>
 			</File>
 		</Filter>
@@ -365,18 +369,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
-		<File
-			RelativePath="..\..\..\..\..\bin\blasplus.lib"
+		<Filter
+			Name="Libraries Dependencies"
 			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\..\bin\lapack.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\..\bin\libintl.lib"
-			>
-		</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

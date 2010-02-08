@@ -13,15 +13,17 @@
 #ifndef __YASPIO_HXX__
 #define __YASPIO_HXX__
 
+#include "dynlib_output_stream.h"
+
 typedef void (*YASP_OUTPUT)(char *text);
 typedef char *(*YASP_INPUT)(void);
 
-void setYaspOutputMethod(YASP_OUTPUT writer);
+OUTPUT_STREAM_IMPEXP void setYaspOutputMethod(YASP_OUTPUT writer);
 
-void setYaspInputMethod(YASP_INPUT reader);
+OUTPUT_STREAM_IMPEXP void setYaspInputMethod(YASP_INPUT reader);
 
-char *YaspRead();
+OUTPUT_STREAM_IMPEXP char *YaspRead();
 
-void YaspWrite(char* text);
+OUTPUT_STREAM_IMPEXP void YaspWrite(char* text);
 
 #endif /* __YASPIO_HXX__ */

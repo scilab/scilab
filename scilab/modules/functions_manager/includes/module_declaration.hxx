@@ -13,7 +13,7 @@
 #ifndef __MODULE_DECLARATION_HXX__
 #define __MODULE_DECLARATION_HXX__
 
-#include "../../elementary_functions/includes/elem_func.hxx"
+#include "../../elementary_functions/includes/elem_func_gw.hxx"
 #include "../../types/includes/types_gw.hxx"
 #include "../../boolean/includes/boolean_gw.hxx"
 #include "../../integer/includes/integer_gw.hxx"

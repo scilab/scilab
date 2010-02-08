@@ -1,0 +1,23 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+putlhsvar_
+checklhs_
+checkrhs_
+overload_
+ref2val_
+isanan_
+iArraySum
+Msgs
+;
+
+;elementary_functions
+inteye_
+dad_
+dmcopy_
+dmmul_
+dclmat_
+cerr_
+coef_

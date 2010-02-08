@@ -16,6 +16,7 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
+extern int C2F(inteye) (int *id);
 /*--------------------------------------------------------------------------*/
 int sci_eye(char *fname, int* _piKey)
 {

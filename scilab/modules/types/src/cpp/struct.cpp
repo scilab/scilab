@@ -62,7 +62,7 @@ namespace types
    */
   int Struct::size_get() 
   {
-    return m_plData->size();
+    return (int)m_plData->size();
   }
 
   /**

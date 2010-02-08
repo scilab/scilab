@@ -109,7 +109,7 @@ int sci_size(char *fname, int* _piKey)
 
 SciErr size_list(int* _piKey, int* _piAddress)
 {
-	SciErr sciErr;
+	SciErr sciErr;sciErr.iErr = 0;
 	//int iIndex			= 0;
 	//int iItemNumber		= 0;
 	//int *piItemType		= NULL;
@@ -202,7 +202,7 @@ SciErr size_matrix(int* _piKey, int* _piAddress, int _iMode)
 	}
 	else
 	{
-		int iRet = createScalarDoubleFromInteger(_piKey, Rhs + 1, &iRows);
+		int iRet = createScalarDoubleFromInteger(_piKey, Rhs + 1, iRows);
 		if(iRet)
 		{
 			SciErr sciErr;
@@ -210,7 +210,7 @@ SciErr size_matrix(int* _piKey, int* _piAddress, int _iMode)
 			return sciErr;
 		}
 
-		iRet = createScalarDoubleFromInteger(_piKey, Rhs + 2, &iCols);
+		iRet = createScalarDoubleFromInteger(_piKey, Rhs + 2, iCols);
 		if(iRet)
 		{
 			SciErr sciErr;
