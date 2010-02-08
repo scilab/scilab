@@ -261,7 +261,6 @@ src/fortran/ortran.f \
 src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
-src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rat.f \
 src/fortran/ribesl.f \
@@ -318,7 +317,6 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \

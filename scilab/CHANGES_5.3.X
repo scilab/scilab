@@ -47,6 +47,8 @@ Removed functions (previously declared as obsolete):
 * 'xbasc' replaced by 'clf'.
 
 * 'getf' replaced by 'exec'.
+
+* 'sort' replaced by 'gsort'.
  
 Bug fixes:
 ==========
