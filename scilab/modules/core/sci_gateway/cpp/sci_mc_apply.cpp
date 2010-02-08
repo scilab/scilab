@@ -40,6 +40,7 @@ extern "C" {
 }
 
 #include <cstdlib>
+#include <cstring>
 #include "mc_apply.hxx"
 
 #include <iostream>
@@ -60,7 +61,19 @@ extern "C" {
 
    function res= f(arg); res=2*arg; endfunction;
 
-   mc_apply([1, 2], f, 1);
+   mc_apply([1, 2], "f", 1);
+
+
+bug de scifunction : les macros doivent être appelées par leur nom :(
+pour la vérification qu'un nom est bien celui d'une macro :
+getmacroslist
+	et dans core/src/c/getvariablesname.c puis vérifier que le type est bien sci_XXX :( :( :(
+
+
+	[R1,...Rm]= mc_apply(Arg1,...,Argk, function, [type1,...,typem[,ncols1,...,ncolsm,[
+pos= find_arg_if(Test[, start_pos])
+
+penser à allouer plus de Rhs (y compris dummy) que de Lhs.
 
    *
    */
@@ -110,9 +123,13 @@ namespace {
 
 static int currentTop;
 static int n, k, m;
+
+static char* scilab_function_name=0;
+static unsigned long scilab_function_name_length=0;
+
 static int scilab_function=0;
 
-
+template<bool by_name>
 static void wrapper(double const* args, double * res) {
   
   SciErr err;
@@ -126,10 +143,14 @@ static void wrapper(double const* args, double * res) {
   int  sci_lhs = 1;
   //  fprintf(stderr, " Nbvars = %d\n", 	Nbvars);
   int saveNbvars= Nbvars;
+  Nbvars = 6; // sinon MALLOC incorrect Size Error File src/c/stack2.c Line 3311
     // r = scilabfoo(x)	
     // C2F(scifunction) call a scilab function
-
-  C2F(scifunction)(&sci_arg_pos, &scilab_function, &sci_lhs, &sci_rhs);
+  if(by_name){
+    C2F(scistring)(&sci_arg_pos, scilab_function_name, &sci_lhs, &sci_rhs, scilab_function_name_length);
+  } else {
+    C2F(scifunction)(&sci_arg_pos, &scilab_function, &sci_lhs, &sci_rhs);
+  }
   //    fprintf(stderr, " Nbvars = %d\n", 	Nbvars);
     // result r is now on first position on stack
     {
@@ -159,7 +180,7 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
   double* tmp;
   
   CheckRhs(3,3);// args, fun, res_size
-  CheckLhs(1,1);// res
+
 
   int type;
   SciErr err;
@@ -197,14 +218,17 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
   switch(type){
     case sci_strings: { // native function name
       char* funName = getStringArg(addr);
-      fprintf(stderr,"funName: %s\n",funName);
+      fprintf(stderr,"name: %s\n",funName);
     int found;
     found=SearchInDynLinks(funName, &function.to_load);
     if(found == -1) 
       { 
-	//fprintf(stderr," pas trouvé function:%s \n",funName);
+	fprintf(stderr," not dynamicLink function : %s should be a macro name \n",funName);
+	scilab_function_name= funName;
+	scilab_function_name_length= std::strlen(scilab_function_name);
+    function.wrapper = wrapper<true>;
 	//SciError( a pa trouvé);
-	return 1;
+
       }
     scilab_function= 0;
     break;
@@ -213,7 +237,7 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
   // get pointer on external function
     int m_fun, n_fun;
     GetRhsVar(2, EXTERNAL_DATATYPE, &m_fun, &n_fun, &scilab_function);
-    function.wrapper = wrapper;
+    function.wrapper = wrapper<false>;
     break;
   }
   default: {
@@ -244,13 +268,13 @@ int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len)
 	return 0;
       }
   }	
-  if(scilab_function) { // we have a macro
+  if(scilab_function || scilab_function_name) { // we have a macro
     mc_apply_n_process(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call);
   }else {
     mc_apply_n_threads(args_data, k*sizeof(double), n, res_data,  m*sizeof(double), function.to_call);
   }
   LhsVar(1) = res_pos;
-	
+  PutLhsVar();
   return 0;
 }
 

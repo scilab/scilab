@@ -61,7 +61,7 @@ void* mc_apply_n_process_worker(void const* const in, std::size_t in_size, std::
  *
  */
 
-template<typename In, typename Sz1, typename Sz2, typename Out, typename Sz3, typename F> Out mc_apply_n_process(In b, Sz1 in_size, Sz2 n, Out out, Sz3 out_size, F f, int nb_process){
+template<typename In, typename Sz1, typename Sz2, typename Out, typename Sz3, typename F> Out mc_apply_n_process(In b, Sz1 in_size, Sz2 n, Out out, Sz3 out_size, F f, int nb_process=0){
   // _worker takes a const nb_process that can be used as an array size on the stack.
   if(nb_process == 0) { nb_process = omp_get_num_procs() ; }
   if(n<nb_process) { nb_process = n ;}

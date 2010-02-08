@@ -51,3 +51,7 @@ exec loader.sce;
 args=[1,2];
 res=mc_apply(args,fun_name,2);
 if res<>[1,2;2,4] then pause,end
+
+function res= f(arg); res=2*arg; endfunction;
+args=[1,2];
+res= mc_apply(args, "f", 1);// "f" needed instead of f because of a scifunction() bug :(
