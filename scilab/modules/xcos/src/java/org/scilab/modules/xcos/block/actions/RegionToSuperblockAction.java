@@ -14,6 +14,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.SelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -62,13 +63,22 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
+/**
+ * Extract the selection to a new diagram and create a {@link SuperBlock} which
+ * contains this new diagram.
+ */
 
-public class RegionToSuperblockAction extends DefaultAction {
+public final class RegionToSuperblockAction extends SelectionDependantAction {
+	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
+	private static final String INTERFUNCTION_NAME = "SUPER_f";
 
-    /**
-     * @author Antoine ELIAS
-     *
-     */
+	/**
+	 * Any link which is broken by performing this action
+	 */
     private class BrokenLink {
 	private BasicLink link;
 	private BasicPort port;
@@ -133,10 +143,11 @@ public class RegionToSuperblockAction extends DefaultAction {
     }
 
     /**
+     * Default constructor
      * @param scilabGraph graph
      */
-    private RegionToSuperblockAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.REGION_TO_SUPERBLOCK, scilabGraph);
+    public RegionToSuperblockAction(ScilabGraph scilabGraph) {
+	super(scilabGraph);
     }
 
     /**
@@ -144,11 +155,15 @@ public class RegionToSuperblockAction extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.REGION_TO_SUPERBLOCK, null,
-		new RegionToSuperblockAction(scilabGraph), null);
+	return createMenu(scilabGraph, RegionToSuperblockAction.class);
     }
 
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	graph.info(XcosMessages.GENERATE_SUPERBLOCK);
@@ -197,8 +212,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	/*
 	 * Creating the superblock
 	 */
-	SuperBlock superBlock = (SuperBlock) BlockFactory.createBlock("SUPER_f");
-	superBlock.setStyle("SUPER_f");
+	SuperBlock superBlock = (SuperBlock) BlockFactory.createBlock(INTERFUNCTION_NAME);
+	superBlock.setStyle(INTERFUNCTION_NAME);
 	superBlock.getGeometry().setX((maxX + minX) / 2.0);
 	superBlock.getGeometry().setY((maxY + minY) / 2.0);
 
@@ -257,8 +272,8 @@ public class RegionToSuperblockAction extends DefaultAction {
 	 */
 	int midBlockIndex = blocksCopyWithoutSplitBlocks.size() / 2;
 	superBlock.setAngle(BlockPositioning.roundAngle(angle / blocksCopyWithoutSplitBlocks.size()));
-	superBlock.setFlip((flipped > midBlockIndex) ? true : false);
-	superBlock.setMirror((mirrored > midBlockIndex) ? true : false);
+	superBlock.setFlip(flipped > midBlockIndex);
+	superBlock.setMirror(mirrored > midBlockIndex);
 	
 	/*
 	 * Update the view
@@ -314,26 +329,7 @@ public class RegionToSuperblockAction extends DefaultAction {
 		    if (block.getChildAt(j) instanceof BasicPort) {
 			BasicPort port = (BasicPort) block.getChildAt(j);
 			if (port.getEdgeCount() > 0) {
-			    if (port.getEdgeAt(0) instanceof BasicLink) {
-				BasicLink link = (BasicLink) port.getEdgeAt(0);
-				BasicBlock otherSide = null;
-				if (link.getTarget() == port) {
-				    otherSide = (BasicBlock) link.getSource()
-					    .getParent();
-				} else {
-				    otherSide = (BasicBlock) link.getTarget()
-					    .getParent();
-				} // target == port
-
-				if (isInSelection(graph.getSelectionCells(), otherSide)) {
-				    graph.addSelectionCell(link);
-				} // isInSelection
-				
-				if (otherSide instanceof SplitBlock) {
-				    graph.addSelectionCell(otherSide);
-				} // otherSide is a SplitBlock
-
-			    } // BasicLink
+			    selectOtherSide(graph, port);
 			} // Edge > 0
 		    } // BasicPort
 		} // for child
@@ -356,6 +352,33 @@ public class RegionToSuperblockAction extends DefaultAction {
 	
 	return new ArrayList<XcosUIDObject>(Arrays.asList(typedCells));
     }
+
+	/**
+	 * @param graph the parent graph
+	 * @param port The port we are working on
+	 */
+	private void selectOtherSide(XcosDiagram graph, BasicPort port) {
+		if (port.getEdgeAt(0) instanceof BasicLink) {
+		BasicLink link = (BasicLink) port.getEdgeAt(0);
+		BasicBlock otherSide = null;
+		if (link.getTarget() == port) {
+		    otherSide = (BasicBlock) link.getSource()
+			    .getParent();
+		} else {
+		    otherSide = (BasicBlock) link.getTarget()
+			    .getParent();
+		} // target == port
+
+		if (isInSelection(graph.getSelectionCells(), otherSide)) {
+		    graph.addSelectionCell(link);
+		} // isInSelection
+		
+		if (otherSide instanceof SplitBlock) {
+		    graph.addSelectionCell(otherSide);
+		} // otherSide is a SplitBlock
+
+		} // BasicLink
+	}
     
     /**
      * Re-link the parent Graph

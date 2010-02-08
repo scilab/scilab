@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,11 +9,18 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function %i_mfprintf(id,fmt,varargin);
-for k=1:size(varargin)
-  if type(varargin(k))==8 then 
-    varargin(k)=double(varargin(k))
+function %i_mfprintf(id, fmt, varargin);
+
+  if type(id) == 8 then
+    id = int(id);
   end
-end
-mfprintf(id,fmt,varargin(:))
+
+  for k=1:size(varargin)
+    if type(varargin(k)) == 8 then 
+      varargin(k) = double(varargin(k))
+    end
+  end
+  
+  mfprintf(id, fmt, varargin(:));
+  
 endfunction

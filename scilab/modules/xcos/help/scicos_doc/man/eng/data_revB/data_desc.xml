@@ -4375,7 +4375,7 @@ The pair block is \htmladdnormallink{WFILE\_f}{WFILE_f.htm}.
 	<P>     A*X*(inv(In-D))*A-X+C=0</P>
 	<P>
          where A is an NxN matrix, it is the first input of the block,
-         C and D are two NxN symetrics matrices and are respectively the
+         C and D are two NxN symmetrics matrices and are respectively the
          second and third input of the RICC block. X represent the
          output of the block, it is also a NxN matrix.
         </P>

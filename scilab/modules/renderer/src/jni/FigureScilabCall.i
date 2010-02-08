@@ -1,6 +1,9 @@
 
 /* Swig file: FigureScilabCallGuiManagement.i */
-/*  swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/ FigureScilabCall.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.renderer.jni -outdir ../java/org/scilab/modules/renderer/jni/ FigureScilabCall.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 %module FigureScilabCall
 
 

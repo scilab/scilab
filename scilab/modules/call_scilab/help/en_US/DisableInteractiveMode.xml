@@ -25,7 +25,7 @@
     <refname>DisableInteractiveMode</refname>
 
     <refpurpose>Disables some features (plotting, gui creation, Tcl/Tk...) and
-    leave only the computing engine</refpurpose>
+    leaves only the computing engine</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -60,7 +60,7 @@ if (code!=0){
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link
       linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link> <link linkend="SendScilabJob">SendScilabJob</link>
       <link linkend="TerminateScilab">TerminateScilab</link>, <link

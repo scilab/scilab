@@ -16,6 +16,7 @@
 function this = neldermead_updatesimp ( this )
   simplex0 = optimsimplex_new ( );
   xopt = optimbase_get ( this.optbase , "-xopt" );
+  [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
   select this.restartsimplexmethod
   case "oriented" then
     [ simplex0 , this ] = optimsimplex_new ( "oriented" , this.simplexopt , costf_transposex , this );
@@ -64,7 +65,6 @@ function this = neldermead_updatesimp ( this )
   for i = 1:nbve
     this = neldermead_log (this,str(i));
   end
-  [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
   [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
   if ( hasbounds | hasnlcons ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));

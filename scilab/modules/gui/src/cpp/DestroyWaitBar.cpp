@@ -33,7 +33,7 @@ void DestroyWaitBar(sciPointObj * sciObj)
     }
   else
     {
-      sciprint(_("%s: Could not destroy this object.\n"), "DestroyWaitBar");
+		sciprint(const_cast<char*>(_("%s: Could not destroy this object.\n")), "DestroyWaitBar");
     }
 
 	sciStandardDestroyOperations(sciObj) ;

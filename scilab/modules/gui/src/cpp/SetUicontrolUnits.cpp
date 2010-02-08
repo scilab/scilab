@@ -26,7 +26,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          Scierror(999, _("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
       
@@ -55,7 +55,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
       else
         {
           /* Wrong string format */
-          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
+          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
 
@@ -64,7 +64,7 @@ int SetUicontrolUnits(sciPointObj* sciObj, size_t stackPointer, int valueType, i
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");
       return SET_PROPERTY_ERROR;
     }
 

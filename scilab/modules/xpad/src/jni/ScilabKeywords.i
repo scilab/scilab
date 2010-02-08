@@ -10,7 +10,10 @@
  *
  */
 /* ScilabKeywords.i */
-/* swig -java -package org.scilab.modules.xpad -outdir ../java/org/scilab/modules/xpad/ ScilabKeywords.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.xpad -outdir ../java/org/scilab/modules/xpad/ ScilabKeywords.i 
+ * Other: Use the option --enable-build-swig to the configure
+ */
 %module ScilabKeywords
 
 %{

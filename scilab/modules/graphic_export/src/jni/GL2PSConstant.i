@@ -1,5 +1,9 @@
 /* Swig file: GL2PSConstant.i */
-/*  swig -java -package org.scilab.modules.graphic_export.jni -outdir ../java/org/scilab/modules/graphic_export/jni/ GL2PSConstant.i */
+/**
+ * swig -java -package org.scilab.modules.graphic_export.jni -outdir ../java/org/scilab/modules/graphic_export/jni/ GL2PSConstant.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
+
 %module GL2PSConstant
 
 

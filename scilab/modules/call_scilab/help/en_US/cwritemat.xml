@@ -26,7 +26,7 @@
 
     <refpurpose>Write a single double or a matrix of double into Scilab memory
     using call_scilab. Note that it is the default datatype in
-    Scilab.Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_writing_API">API_Scilab: Double writing</link> for remplacement.</refpurpose>
+    Scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_writing_API">API_Scilab: Double writing</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -127,7 +127,8 @@ SendScilabJob("disp(B);"); /* Display A */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Double_management_reading_API">API_Scilab: Double reading</link>,<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,
+<link linkend="Double_management_reading_API">API_Scilab: Double reading</link>,<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="DoubleManagement_callscilab">Double Management</link>, <link
       linkend="creadmat">creadmat</link></member>

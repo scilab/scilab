@@ -83,7 +83,7 @@ int sci_dnaupd(char *fname,unsigned long fname_len)
       return 0;
     }
 
-  if (mIPNTR*nIPNTR!=11)
+  if (mIPNTR*nIPNTR!=14)
     {
       Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPNTR", 14);
       return 0;

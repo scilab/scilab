@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -94,6 +94,7 @@ function res = atomsIsInstalled(packages,section)
 		name    = packages(i,1);
 		version = packages(i,2);
 		section = packages(i,3);
+		res(i)  = %F;
 		
 		if packages(i,3) == "all" then
 			section = "";
@@ -113,21 +114,65 @@ function res = atomsIsInstalled(packages,section)
 			res(i) = or(packages_filtered == section);
 			
 		elseif ~isempty(version) & isempty(section) then
+			
 			// Filter on names
 			packages_filtered = installedpackages( find(installedpackages(:,1) == name) , 2 );
 			
-			// Check if the wanted version is present
-			res(i) = or(packages_filtered == version);
+			// Filter on versions
+			
+			//  + The packaging version is mentioned
+			if ~ isempty(strindex(version,"-")) then
+				res(i) = or(packages_filtered == version);
+			
+			//  + The packaging version is not mentioned
+			else
+				// Loop on installed versions
+				for j=1:size(packages_filtered,"*")
+					
+					if ~ isempty(strindex(packages_filtered(j),"-")) then
+						packages_filtered(j) = part(packages_filtered(j),1:strindex(packages_filtered(j),"-")-1);
+					end
+					
+					if version == packages_filtered(j) then
+						res(i) = %T;
+						break;
+					end
+					
+				end
+				
+			end
 			
 		else
 			// Filter on names
 			packages_filtered = installedpackages( find(installedpackages(:,1) == name) , [2 3] );
 			
-			// Filter on version
-			packages_filtered = packages_filtered( find(packages_filtered(:,1) == version) , 2 );
+			// Filter on section
+			packages_filtered = packages_filtered( find(packages_filtered(:,2) == section) , 1 );
 			
-			// Check if the wanted section is present
-			res(i) = or(packages_filtered == section);
+			// Filter on versions
+			
+			//  + The packaging version is mentioned
+			if ~ isempty(strindex(version,"-")) then
+				res(i) = or(packages_filtered == version);
+			
+			//  + The packaging version is not mentioned
+			else
+				// Loop on installed versions
+				for j=1:size(packages_filtered,"*")
+					
+					if ~ isempty(strindex(packages_filtered(j),"-")) then
+						packages_filtered(j) = part(packages_filtered(j),1:strindex(packages_filtered(j),"-")-1);
+					end
+					
+					if version == packages_filtered(j) then
+						res(i) = %T;
+						break;
+					end
+					
+				end
+				
+			end
+			
 		end
 		
 	end

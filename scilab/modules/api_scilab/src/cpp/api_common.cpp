@@ -26,6 +26,7 @@
 #include "stackinfo.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 
 /*Global structure for scilab 5.x*/
 extern "C"
@@ -381,7 +382,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 			return sciErr;
 		}
 
-		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
+		pstMode[0] = (char*)MALLOC(sizeof(char) * (iLen + 1)); //+1 for null termination
 		sciErr = getMatrixOfString(_pvCtx, piAddr2, &iRows2, &iCols2, &iLen, pstMode);
 		if(sciErr.iErr)
 		{
@@ -390,6 +391,7 @@ SciErr getProcessMode(void* _pvCtx, int _iPos, int* _piAddRef, int *_piMode)
 		}
 
 		iMode = (int)pstMode[0][0];
+		FREE(pstMode[0]);
 	}
 	else
 	{
@@ -631,6 +633,33 @@ int isRowVector(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+int isNamedRowVector(void* _pvCtx, char* _pstName)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(isNamedVarMatrixType(_pvCtx, _pstName) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_NAMED_ROW_VECTOR, _("%s: Unable to get argument dimension"), "isNamedRowVector");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if(iRows == 1 && iCols > 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 int isColumnVector(void* _pvCtx, int* _piAddress)
 {
 	SciErr sciErr;
@@ -663,9 +692,41 @@ int isColumnVector(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+int isNamedColumnVector(void* _pvCtx, char* _pstName)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(isNamedVarMatrixType(_pvCtx, _pstName) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_NAMED_COLUMN_VECTOR, _("%s: Unable to get argument dimension"), "isNamedColumnVector");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iCols == 1 && iRows > 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 int isVector(void* _pvCtx, int* _piAddress)
 {
 	return isRowVector(_pvCtx, _piAddress) || isColumnVector(_pvCtx, _piAddress);
+}
+/*--------------------------------------------------------------------------*/
+int isNamedVector(void* _pvCtx, char* _pstName)
+{
+	return isNamedRowVector(_pvCtx, _pstName) || isNamedColumnVector(_pvCtx, _pstName);
 }
 /*--------------------------------------------------------------------------*/
 int isScalar(void* _pvCtx, int* _piAddress)
@@ -688,6 +749,33 @@ int isScalar(void* _pvCtx, int* _piAddress)
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_IS_SCALAR, _("%s: Unable to get argument dimension"), "isScalar");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iCols == 1 && iRows == 1)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isNamedScalar(void* _pvCtx, char* _pstName)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(isNamedVarMatrixType(_pvCtx, _pstName) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_NAMED_SCALAR, _("%s: Unable to get argument dimension"), "isNamedScalar");
 		printError(&sciErr, 0);
 		return 0;
 	}
@@ -732,6 +820,33 @@ int isSquareMatrix(void* _pvCtx, int* _piAddress)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+int isNamedSquareMatrix(void* _pvCtx, char* _pstName)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(isNamedVarMatrixType(_pvCtx, _pstName) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_IS_NAMED_SQUARE, _("%s: Unable to get argument dimension"), "isNamedSquareMatrix");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iRows > 1 && iCols == iRows)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)
 {
 	SciErr sciErr;
@@ -751,7 +866,34 @@ int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)
 	sciErr = getVarDimension(_pvCtx, _piAddress, &iRows, &iCols);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_CHECK_VAR_DIMENSION, _("%s: Unable to get argument dimension"), "isSquareMatrix");
+		addErrorMessage(&sciErr, API_ERROR_CHECK_VAR_DIMENSION, _("%s: Unable to get argument dimension"), "checkVarDimension");
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if((_iRows == iRows || _iRows == -1) && (_iCols == iCols || _iCols == -1))
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int checkNamedVarDimension(void* _pvCtx, char* _pstName, int _iRows, int _iCols)
+{
+	SciErr sciErr;
+	int iRows = 0;
+	int iCols = 0;
+
+	if(isNamedVarMatrixType(_pvCtx, _pstName) == 0)
+	{
+		return 0;
+	}
+
+	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CHECK_NAMED_VAR_DIMENSION, _("%s: Unable to get argument dimension"), "checkNamedVarDimension");
 		printError(&sciErr, 0);
 		return 0;
 	}
@@ -786,7 +928,26 @@ int checkVarType(void* _pvCtx, int* _piAddress, int _iType)
 
 	return 0;
 }
+/*--------------------------------------------------------------------------*/
+int checkNamedVarType(void* _pvCtx, char* _pstName, int _iType)
+{
+	SciErr sciErr;
+	int iType = 0;
 
+	sciErr = getNamedVarType(_pvCtx, _pstName, &iType);
+	if(sciErr.iErr)
+	{
+		return 0;
+	}
+
+	if(iType == _iType)
+	{
+		return 1;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 int isEmptyMatrix(void* _pvCtx, int* _piAddress)
 {
 	if(checkVarType(_pvCtx, _piAddress, sci_matrix))
@@ -794,5 +955,60 @@ int isEmptyMatrix(void* _pvCtx, int* _piAddress)
 		return checkVarDimension(_pvCtx, _piAddress, 0, 0);
 	}
 	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isNamedEmptyMatrix(void* _pvCtx, char* _pstName)
+{
+	if(checkNamedVarType(_pvCtx, _pstName, sci_matrix))
+	{
+		return checkNamedVarDimension(_pvCtx, _pstName, 0, 0);
+	}
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createEmptyMatrix(void* _pvCtx, int _iVar)
+{
+	SciErr sciErr;
+	double dblReal = 1;
+
+	sciErr = createMatrixOfDouble(_pvCtx, _iVar, -1, -1, &dblReal);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
+{
+	SciErr sciErr;
+	double dblOne = 1;
+
+	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, -1, -1, &dblOne);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isNamedVarExist(void* _pvCtx, char* _pstName)
+{
+	SciErr sciErr;
+	int* piAddr = NULL;
+
+	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+	if(sciErr.iErr || piAddr == NULL)
+	{
+		return 0;
+	}
+
+	return 1;
 }
 /*--------------------------------------------------------------------------*/

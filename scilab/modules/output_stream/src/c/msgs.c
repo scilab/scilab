@@ -581,14 +581,14 @@ static int msg_7(int *n, int *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_8(int *n, int *ierr)
 {
-	sciprint(_("Warning: obsolete use of eye rand or ones.\n"));
+	sciprint(_("Warning: obsolete use of eye, rand, or ones.\n"));
 	C2F(showstack)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_9(int *n, int *ierr)
 {
-	sciprint(_("Rank defficient. rank = %d\n"),*ierr);
+	sciprint(_("Rank deficient. rank = %d\n"),*ierr);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1078,7 +1078,7 @@ static int msg_70(int *n, int *ierr)
 {
 	char localbuf[10];
 	strncpy(localbuf,BUF,10);
-	sciprint(_("At time: %s ,Too many iteration to achieve required precision.\n"),localbuf);
+	sciprint(_("At time: %s. Too many iteration to achieve required precision.\n"),localbuf);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1102,13 +1102,13 @@ static int msg_73(int *n, int *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_74(int *n, int *ierr)
 {
-	sciprint(_("Warning: integration not completed! check tolerance parameters or step size.\n"));
+	sciprint(_("Warning: integration not completed! Check tolerance parameters or step size.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_75(int *n, int *ierr)
 {
-	sciprint(_("Warning: Jacobian external is given, but\n not used!,  see %ODEOPTIONS(6).\n"));
+	sciprint(_("Warning: Jacobian external is given, but\n not used! See %ODEOPTIONS(6).\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1198,13 +1198,13 @@ static int msg_89(int *n, int *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_90(int *n, int *ierr)
 {
-	sciprint(_("Too many input/output ports for hilited block.\n"));
+	sciprint(_("Too many input/output ports for highlighted block.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_91(int *n, int *ierr)
 {
-	sciprint(_("Too many input/output entries for hilited block.\n"));
+	sciprint(_("Too many input/output entries for highlighted block.\n"));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

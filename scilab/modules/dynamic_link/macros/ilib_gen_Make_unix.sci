@@ -226,7 +226,7 @@ function ilib_gen_Make_unix(names,   ..
 	
 	if ierr <> 0 then
 	  if ( ilib_verbose() <> 0 ) then
-	    mprintf(gettext("%s: Error while modifing the reference Makefile:\n"),"ilib_gen_Make")
+	    mprintf(gettext("%s: Error while modifying the reference Makefile:\n"),"ilib_gen_Make")
 	    mprintf(msg + " " + stderr);
 	  end
 	  return;

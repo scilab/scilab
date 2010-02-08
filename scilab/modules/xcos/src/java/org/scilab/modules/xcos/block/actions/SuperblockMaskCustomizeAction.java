@@ -15,7 +15,7 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -28,7 +28,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -39,19 +38,22 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * @author Vincent COUVERT
- *
+ * Customize the mask of the {@link SuperBlock}.
  */
-public final class SuperblockMaskCustomizeAction extends DefaultAction {
-
+public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedAction {
+	public static final String NAME = XcosMessages.CUSTOMIZE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * Private constructor
 	 * 
 	 * @param scilabGraph
 	 *            the associated graph
 	 */
-	private SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CUSTOMIZE, scilabGraph);
+	public SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -62,8 +64,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 * @return the newly created menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CUSTOMIZE, null,
-				new SuperblockMaskCustomizeAction(scilabGraph), null);
+		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
 	}
 
 	/**
@@ -132,11 +133,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		}
 
 		/**
-		 * Construct the UI and install the listeners. NCSS: this is the UI
-		 * constructor
+		 * Construct the UI and install the listeners.
 		 */
 		private void initComponents() {
 
+			/* Construct the components */
 			mainPanel = new javax.swing.JPanel();
 			tabbedPane = new javax.swing.JTabbedPane();
 			varSettings = new javax.swing.JPanel();
@@ -161,6 +162,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+			/* Initialize the components */
 			mainPanel.setLayout(new java.awt.BorderLayout());
 			mainPanel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
@@ -194,28 +196,34 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					.createEmptyBorder(2, 2, 2, 2));
 			tableManagement.setLayout(new java.awt.GridLayout(5, 1));
 
+			/* Install the insert action */
 			insert.setMnemonic('n');
 			insert.setText(XcosMessages.MASK_INSERT);
 			tableManagement.add(insert);
 			insert.addActionListener(controler.insertActionListener);
 
+			/* Install the delete action */
 			delete.setMnemonic('l');
 			delete.setText(XcosMessages.MASK_DELETE);
 			tableManagement.add(delete);
 			delete.addActionListener(controler.deleteActionListener);
 
+			/* Install empty area */
 			tableManagement.add(buttonBlob);
 
+			/* Install the move-up action */
 			moveUp.setMnemonic('u');
 			moveUp.setText(XcosMessages.MASK_MOVEUP);
 			tableManagement.add(moveUp);
 			moveUp.addActionListener(controler.moveUpActionListener);
 
+			/* Install the move-down action */
 			moveDown.setMnemonic('w');
 			moveDown.setText(XcosMessages.MASK_MOVEDOWN);
 			tableManagement.add(moveDown);
 			moveDown.addActionListener(controler.moveDownActionListener);
 
+			/* add the table management */
 			customizeMainPanel.add(tableManagement);
 
 			varSettings.add(customizeMainPanel);
@@ -347,8 +355,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 			 */
 			public void exportToBlock() {
 				/** Data vectors are typed when parsing */
-				final Vector customModel = customizeTableModel.getDataVector();
-				final Vector valuesModel = valuesTableModel.getDataVector();
+				final List customModel = customizeTableModel.getDataVector();
+				final List valuesModel = valuesTableModel.getDataVector();
 
 				/* We have one content that is not a variable : Window Title */
 				final int nbOfVar = valuesModel.size() - 1;
@@ -359,15 +367,15 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 				final ScilabList polFields = new ScilabList();
 
 				/* Title */
-				varDesc[0][0] = (String) ((Vector) valuesModel.get(0)).get(1);
+				varDesc[0][0] = (String) ((List) valuesModel.get(0)).get(1);
 
 				/* Other fields */
 				for (int i = 0; i < nbOfVar; i++) {
-					values[i][0] = (String) ((Vector) valuesModel.get(i + 1))
+					values[i][0] = (String) ((List) valuesModel.get(i + 1))
 							.get(1);
-					varNames[i][0] = (String) ((Vector) customModel.get(i + 1))
+					varNames[i][0] = (String) ((List) customModel.get(i + 1))
 							.get(1);
-					varDesc[i + 1][0] = (String) ((Vector) customModel
+					varDesc[i + 1][0] = (String) ((List) customModel
 							.get(i + 1)).get(2);
 
 					/*
@@ -510,7 +518,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					Vector<Vector> data = model.customizeTableModel
+					List<List> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 0
@@ -519,8 +527,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						Vector current = (Vector) data.get(selectedRow);
-						Vector next = (Vector) data.get(selectedRow + 1);
+						List current = (List) data.get(selectedRow);
+						List next = (List) data.get(selectedRow + 1);
 
 						/* Inverting data */
 						data.set(selectedRow + 1, current);
@@ -545,7 +553,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					 * doesn't need to be checked as the operation doesn't
 					 * depend on it
 					 */
-					final Vector<Vector> data = model.customizeTableModel
+					final List<List> data = model.customizeTableModel
 							.getDataVector();
 
 					if (selectedRow > 1) {
@@ -553,8 +561,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 						 * doesn't need to be checked as the operation doesn't
 						 * depend on it
 						 */
-						Vector current = (Vector) data.get(selectedRow);
-						Vector next = (Vector) data.get(selectedRow - 1);
+						List current = (List) data.get(selectedRow);
+						List next = (List) data.get(selectedRow - 1);
 
 						/* Inverting data */
 						data.set(selectedRow - 1, current);

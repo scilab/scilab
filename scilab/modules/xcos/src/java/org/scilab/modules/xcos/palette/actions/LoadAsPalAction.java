@@ -13,19 +13,19 @@
 package org.scilab.modules.xcos.palette.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFileChooser;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.utils.SciFileFilter;
-import org.scilab.modules.xcos.palette.XcosPaletteManager;
+import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -36,15 +36,17 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * similar to {@link XcosPalette}.
  */
 public final class LoadAsPalAction extends DefaultAction {
-
-    private static final long serialVersionUID = 6292720188130217522L;
+	public static final String NAME = XcosMessages.OPEN;
+	public static final String SMALL_ICON = "document-open.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_O;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
      * @param scilabGraph associated Scilab Graph
      */
-    private LoadAsPalAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.OPEN, scilabGraph);
+    public LoadAsPalAction(ScilabGraph scilabGraph) {
+    	super(scilabGraph);
     }
 
     /**
@@ -53,8 +55,7 @@ public final class LoadAsPalAction extends DefaultAction {
      * @return the menu
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.LOAD_AS_PAL, null, new LoadAsPalAction(scilabGraph),
-		KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+    	return createMenu(scilabGraph, LoadAsPalAction.class);
     }
 
     /**
@@ -63,14 +64,15 @@ public final class LoadAsPalAction extends DefaultAction {
      * @return the button
      */
     public static PushButton createButton(ScilabGraph scilabGraph) {
-	return createButton(XcosMessages.OPEN, "document-open.png", new LoadAsPalAction(scilabGraph));
+    	return createButton(scilabGraph, LoadAsPalAction.class);
     }
 
-    /**
-     * Open file action
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 	/* Standard files */
@@ -94,6 +96,6 @@ public final class LoadAsPalAction extends DefaultAction {
 	    return;
 	}
 
-	XcosPaletteManager.loadUserPalette(fc.getSelection()[0]);
+	PaletteManager.getInstance().loadUserPalette(fc.getSelection()[0]);
     }
 }

@@ -107,7 +107,7 @@ public class BlockReader {
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
+		    currentBlock.setStyle("blockWithLabel;" + currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);
@@ -139,39 +139,13 @@ public class BlockReader {
 		    int endPortIndex = getEndPortIndex(link); // 7.1
 		    PortType endPortType = getEndPortType(link); // 5.1
 
-		    switch (startPortType) {
-		    case INPUT:
-			startingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case OUTPUT:
-			startingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case COMMAND:
-			startingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case CONTROL:
-			startingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    default:
-			break;
-		    }
+			startingPort = BasicBlockInfo.getAllTypedPorts(
+							indexedBlock.get(startBlockIndex), false,
+							startPortType.getKlass()).get(startPortIndex - 1);
 
-		    switch (endPortType) {
-		    case INPUT:
-			endingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case OUTPUT:
-			endingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case COMMAND:
-			endingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case CONTROL:
-			endingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    default:
-			break;
-		    }
+			endingPort = BasicBlockInfo.getAllTypedPorts(
+							indexedBlock.get(endBlockIndex), false,
+							endPortType.getKlass()).get(endPortIndex - 1);
 
 		    BasicPort[] startAndEnd = {startingPort, endingPort};
 		    linkPorts.add(startAndEnd);
@@ -1689,8 +1663,31 @@ public class BlockReader {
 	}
     };
 
-    private static enum PortType {
-	INPUT, OUTPUT, CONTROL, COMMAND
-    }
+	/**
+	 * Used internally to type ports
+	 */
+	private static enum PortType {
+		INPUT(InputPort.class), OUTPUT(OutputPort.class), CONTROL(
+				ControlPort.class), COMMAND(CommandPort.class);
+
+		private final Class< ? extends BasicPort> klass;
+
+		/**
+		 * Default cstr
+		 * 
+		 * @param klass
+		 *            the associated class
+		 */
+		private PortType(Class< ? extends BasicPort> klass) {
+			this.klass = klass;
+		}
+
+		/**
+		 * @return the associated data type
+		 */
+		public Class< ? extends BasicPort> getKlass() {
+			return klass;
+		}
+	}
 
 }

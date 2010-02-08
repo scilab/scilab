@@ -70,7 +70,7 @@ int intex8c(char *fname)
   /* execute the function */
 
   SciFunction(&ibegin,&lf,&mlhs,&mrhs);
-  /* check if an error has occured while running a_function */
+  /* check if an error has occurred while running a_function */
   if (Err > 0 ) return 0;
   
   /* output variables: 4 and 5 (created by a_function) and possibly 6

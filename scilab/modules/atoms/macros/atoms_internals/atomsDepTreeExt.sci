@@ -123,16 +123,16 @@ function [tree_out,version_out] = atomsDepTreeExt(name,version)
 			// List versions of the dependency we can test
 			
 			if this_dependency_dir     == "="  then
-				this_dependency_list = this_dependency_version;
+				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,this_dependency_version,%T,%T);
 			
 			elseif this_dependency_dir == "~"  then
 				this_dependency_list = atomsGetVersions(this_dependency_name);
 			
 			elseif this_dependency_dir == ">=" then
-				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version);
+				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,"",%T,%T);
 				
 			elseif this_dependency_dir == "<=" then
-				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version);
+				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version,%T,%T);
 			
 			elseif this_dependency_dir == ">" then
 				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,"",%F,%F);

@@ -664,7 +664,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JGRAPHX=$PACKAGE_JAR_FILE
 				AC_SUBST(JGRAPHX)
 
-				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.2.0.0],[mxGraph.VERSION])
+				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.2.0.7],[mxGraph.VERSION])
 
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -699,7 +699,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   # Provide known paths where distribs/OS can store JNI libs
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
-				   if test -z "JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
 				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on	
 					   # purpose to disable the cache
@@ -749,6 +749,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+
+				# MathML rendering solution
+				# Used in both graphic & help 
+				AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
+				JEUCLID_CORE=$PACKAGE_JAR_FILE
+				AC_SUBST(JEUCLID_CORE)
+
+
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
@@ -784,6 +792,27 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
 		ANTLR=$PACKAGE_JAR_FILE
 		AC_SUBST(ANTLR)
+
+		# Test NG (java unitary test)
+		AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
+		TESTNG=$PACKAGE_JAR_FILE
+		AC_SUBST(TESTNG)
+
+		# Qdox (parses declarations and Javadoc) - dependency of TestNG
+		AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
+		QDOX=$PACKAGE_JAR_FILE
+		AC_SUBST(QDOX)
+
+                # bsh (Java scripting environment) - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+                BSH=$PACKAGE_JAR_FILE
+                AC_SUBST(BSH)
+
+                # Junit - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+                JUNIT=$PACKAGE_JAR_FILE
+                AC_SUBST(JUNIT)
+
 
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -890,10 +919,14 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
-# Provided by math.h
-save_LDFLAGS="$LDFLAGS"
-LDFLAGS="$LDFLAGS -lm"
 
+# Check of the libm (lib math). Macro provided by libtool.
+save_LDFLAGS="$LDFLAGS"
+LT_LIB_M()
+
+# Provided by math.h
+
+LDFLAGS="$LDFLAGS $LIBM"
 AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
 
 AC_CHECK_FUNC([exp10],,[
@@ -906,7 +939,7 @@ AC_CHECK_FUNC([exp10],,[
 AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
-
+LIBS="$LIBS $LIBM"
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -1144,7 +1177,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1768,7 +1801,6 @@ if test $HELP_ENABLE = yes; then
    echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
    echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "  Commons I/O ............ = $COMMONS_IO"
    echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
@@ -1803,11 +1835,13 @@ echo "  JOGL ................ = $JOGL"
 echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
 echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
+echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
 
 echo ""
@@ -1815,6 +1849,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
+echo "  TestNG .............. = $TESTNG"
 echo "  splint .............. = $SPLINT"
 
 echo "" 

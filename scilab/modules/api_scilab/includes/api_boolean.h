@@ -68,6 +68,55 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
  */
 SciErr readNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
+/*shortcut functions*/
+
+/**
+ * check if the variable type is a boolean
+ * @param[in] _piAddress variable address
+ * @return 1 for true and 0 for false
+ */
+int isBooleanType(void* _pvCtx, int* _piAddress);
+
+/**
+ * check if the variable type is a boolean
+ * @param[in] _pstName variable name
+ * @return 1 for true and 0 for false
+ */
+int isNamedBooleanType(void* _pvCtx, char* _pstName);
+
+/**
+ * Get scalar boolean variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piBool return boolean value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getScalarBoolean(void* _pvCtx, int* _piAddress, int* _piBool);
+
+/**
+ * Get scalar boolean variable data
+ * @param[in] _pstName variable name
+ * @param[out] _piBool return boolean value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getNamedScalarBoolean(void* _pvCtx, char* _pstName, int* _piBool);
+
+/**
+ * Create scalar boolean
+ * @param[in] _iVar variable number
+ * @param[in] _iBool value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createScalarBoolean(void* _pvCtx, int _iVar, int _iBool);
+
+/**
+ * Create named scalar double
+ * @param[in] _pstName variable name
+ * @param[in] _iBool value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedScalarBoolean(void* _pvCtx, char* _pstName, int _iBool);
+
+
 #ifdef __cplusplus
 }
 #endif

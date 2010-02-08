@@ -15,7 +15,7 @@
 #include <string.h>
  
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
-#include "CallScilab.h" /* Provide functions to call Scilab engine */
+#include "call_scilab.h" /* Provide functions to call Scilab engine */
 
 /**
  * 
@@ -28,7 +28,7 @@
 #define TRUE 1
 #define FALSE 0
 /*------------------------------------------------------------*/
-/* See SCI/modules/core/includes/CallScilab.h */
+/* See SCI/modules/core/includes/call_scilab.h */
 /*------------------------------------------------------------*/
 static int first_example(void)
 {

@@ -58,21 +58,9 @@ function result = atomsRemove(packages,section)
 		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
 	end
 	
-	// Operating system detection
+	// Operating system detection + Architecture detection
 	// =========================================================================
-	
-	if ~MSDOS then
-		OSNAME  = unix_g("uname");
-		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
-		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
-		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
-	else
-		MACOSX  = %F;
-		LINUX   = %F;
-		SOLARIS = %F;
-		BSD     = %F;
-	end
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Verbose Mode ?
 	// =========================================================================
@@ -150,7 +138,7 @@ function result = atomsRemove(packages,section)
 			installed_details = atomsGetInstalledDetails(packages(i,:),section);
 			
 			if installed_details(3) == "allusers" then
-				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
 			end
 		
 		elseif (section=="user") & isempty(package_versions(i)) then
@@ -158,7 +146,7 @@ function result = atomsRemove(packages,section)
 			// Check if we have the right to remove at least one of the version
 			// of the package
 			if isempty(atomsGetInstalledVers(package_names(i),section)) then
-				error(msprintf(gettext("%s: You have not enought rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
+				error(msprintf(gettext("%s: You have not enough rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
 			end
 			
 		end
@@ -195,6 +183,7 @@ function result = atomsRemove(packages,section)
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
 		this_package_section   = remove_package_list(i,5);
+		
 		this_package_details   = atomsToolboxDetails([this_package_name this_package_version]);
 		this_package_insdet    = atomsGetInstalledDetails([this_package_name this_package_version],section);
 		this_package_directory = this_package_insdet(4);
@@ -265,19 +254,15 @@ function result = atomsRemove(packages,section)
 		// =====================================================================
 		atomsAutoloadDel([this_package_name this_package_version this_package_section]);
 		
-		// "Archive" installation
+		// Remove it from the DESCRIPTION_installed file
 		// =====================================================================
 		
-		if (isfield(this_package_details,"fromRepository")) & (this_package_details("fromRepository") == "0") then
-			
-			DESCRIPTION_file = atomsPath("system",this_package_insdet(3)) + "DESCRIPTION_archives";
-			
-			if ~ isempty(fileinfo(DESCRIPTION_file)) then
-				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
-				DESCRIPTION = atomsDESCRIPTIONrm(DESCRIPTION,this_package_name,this_package_version);
-				atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
-			end
-			
+		DESCRIPTION_file = atomsPath("system",this_package_insdet(3)) + "DESCRIPTION_installed";
+		
+		if ~ isempty(fileinfo(DESCRIPTION_file)) then
+			DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
+			DESCRIPTION = atomsDESCRIPTIONrm(DESCRIPTION,this_package_name,this_package_version);
+			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 		end
 		
 		// Del the package from the list of package to remove

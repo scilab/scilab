@@ -27,8 +27,8 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.DeleteAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -45,15 +45,22 @@ import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
-import org.scilab.modules.xcos.block.actions.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
-import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionBottom;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionCenter;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -78,8 +85,10 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
 public class BasicBlock extends XcosUIDObject {
-
-    private static final long serialVersionUID = 2189690915516168262L;
+	private static final long serialVersionUID = 2189690915516168262L;
+	private static final String INTERNAL_FILE_PREFIX = "xcos";
+	private static final String INTERNAL_FILE_EXTENSION = ".h5";
+	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
@@ -172,6 +181,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	public BasicBlock() {
 		super();
+		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
 	}
@@ -322,7 +332,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnU() {
+    public boolean isDependsOnU() {
 	return dependsOnU;
     }
 
@@ -336,7 +346,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return ?
      */
-    public boolean dependsOnT() {
+    public boolean isDependsOnT() {
 	return dependsOnT;
     }
 
@@ -491,56 +501,32 @@ public class BasicBlock extends XcosUIDObject {
     }
     
     /**
-     * @param port input port to add
+     * Add a port on the block.
+     * @param port The port to be added to the block
      */
-    public void addPort(InputPort port) {
+    public void addPort(BasicPort port) {
     	insert(port);
     	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllInputPorts(this, false).size());
+    	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
     }
 
-    /**
-     * @param port output port to add
-     */
-    public void addPort(OutputPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllOutputPorts(this, false).size());
-    }
+	/**
+	 * @return command ports initial state
+	 */
+	public ScilabDouble getAllCommandPortsInitialStates() {
+		final List<CommandPort> cmdPorts = BasicBlockInfo.getAllTypedPorts(
+				this, false, CommandPort.class);
+		if (cmdPorts.isEmpty()) {
+			return new ScilabDouble();
+		}
 
-    /**
-     * @param port command port to add
-     */
-    public void addPort(CommandPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllCommandPorts(this, false).size());
-    }
+		double[][] data = new double[cmdPorts.size()][1];
+		for (int i = 0; i < cmdPorts.size(); ++i) {
+			data[i][0] = cmdPorts.get(i).getInitialState();
+		}
 
-    /**
-     * @param port control port to add
-     */
-    public void addPort(ControlPort port) {
-    	insert(port);
-    	BlockPositioning.updateBlockView(this);
-    	port.setOrdering(BasicBlockInfo.getAllControlPorts(this, false).size());
-    }
-
-    /**
-     * @return command ports initial state
-     */
-    public ScilabDouble getAllCommandPortsInitialStates() {
-	if (BasicBlockInfo.getAllCommandPorts(this, false).isEmpty()) {
-	    return new ScilabDouble();
+		return new ScilabDouble(data);
 	}
-
-	double[][] data = new double[BasicBlockInfo.getAllCommandPorts(this, false).size()][1];
-	for (int i = 0; i < BasicBlockInfo.getAllCommandPorts(this, false).size(); ++i) {
-	    data[i][0] = BasicBlockInfo.getAllCommandPorts(this, false).get(i).getInitialState();
-	}
-
-	return new ScilabDouble(data);
-    }
 
     /**
      * @return name and type of the simulation function
@@ -570,8 +556,8 @@ public class BasicBlock extends XcosUIDObject {
      * @param modifiedBlock the new settings
      */
     public void doUpdateBlockSettings(BasicBlock modifiedBlock) {
-	setDependsOnT(modifiedBlock.dependsOnT());
-	setDependsOnU(modifiedBlock.dependsOnU());
+	setDependsOnT(modifiedBlock.isDependsOnT());
+	setDependsOnU(modifiedBlock.isDependsOnU());
 	setExprs(modifiedBlock.getExprs());
 
 	setRealParameters(modifiedBlock.getRealParameters());
@@ -584,86 +570,21 @@ public class BasicBlock extends XcosUIDObject {
 
 	setEquations(modifiedBlock.getEquations());
 
-
-	List< ? extends BasicPort> modifiedPorts = null;
-	List< ? extends BasicPort> ports = null;
-	
-	// Check if new input port have been added
-	modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllInputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((InputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    }
-	} else { // Check if input ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllInputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllInputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllInputPorts(this, false);
+		// Update the children according to the modified block children. We are
+		// working on the last index in order to simplify the List.remove()
+		// call.
+		final int oldChildCount = getChildCount();
+		final int newChildCount = modifiedBlock.getChildCount();
+		final int portStep = newChildCount - oldChildCount;
+		if (portStep > 0) {
+			for (int i = portStep - 1; i >= 0; i--) {
+				addPort((BasicPort) modifiedBlock.getChildAt(oldChildCount + i - 1));
+			}
+		} else {
+			for (int i = -portStep - 1; i >= 0; i--) {
+				removePort((BasicPort) getChildAt(newChildCount + i));
+			}
 		}
-	    }
-	}
-
-	// Check if new output port have been added
-	modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((OutputPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    }
-	} else { // Check if output ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllOutputPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllOutputPorts(this, false);
-		}
-	    }
-	}
-
-
-	// Check if new command port have been added
-	modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((CommandPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    }
-	} else { // Check if command ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllCommandPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllCommandPorts(this, false);
-		}
-	    }
-	}
-
-	// Check if new control port have been added
-	modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	ports = BasicBlockInfo.getAllControlPorts(this, false);
-	if (modifiedPorts.size() > ports.size()) {
-	    while (ports.size() < modifiedPorts.size()) {
-		addPort((ControlPort) modifiedPorts.get(ports.size()));
-		ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    }
-	} else { // Check if control ports have been removed
-	    modifiedPorts = BasicBlockInfo.getAllControlPorts(modifiedBlock, false);
-	    ports = BasicBlockInfo.getAllControlPorts(this, false);
-	    if (modifiedPorts.size() < ports.size()) {
-		while (ports.size() > modifiedPorts.size()) {
-		    removePort((BasicPort) ports.get(ports.size() - 1));
-		    ports = BasicBlockInfo.getAllControlPorts(this, false);
-		}
-	    }
-	}
 
 	/*
 	 * If the block is in a superblock then update it.
@@ -694,7 +615,7 @@ public class BasicBlock extends XcosUIDObject {
 	final File tempInput;
 	final File tempContext;
 	try {
-	    tempInput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempInput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR")));
 	    tempInput.deleteOnExit();
 
 	    // Write scs_m
@@ -740,7 +661,7 @@ public class BasicBlock extends XcosUIDObject {
 	// Write scs_m
 	File tempOutput;
 	try {
-	    tempOutput = File.createTempFile("xcos", ".h5", new File(System.getenv("TMPDIR")));
+	    tempOutput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR")));
 	    tempOutput.deleteOnExit();
 	    int fileId = H5Write.createFile(tempOutput.getAbsolutePath());
 	    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj(this));
@@ -762,7 +683,7 @@ public class BasicBlock extends XcosUIDObject {
 
 	// Write context
 	try {
-	    File tempContext = File.createTempFile("xcos", ".h5");
+	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION);
 	    tempContext.deleteOnExit();
 	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
@@ -781,38 +702,38 @@ public class BasicBlock extends XcosUIDObject {
      */
     public String getToolTipText() {
 	StringBuffer result = new StringBuffer();
-	result.append("<html>");
-	result.append("Block Name : " + getInterfaceFunctionName() + "<br>");
-	result.append("Simulation : " + getSimulationFunctionName() + "<br>");
+	result.append(XcosConstants.HTML_BEGIN);
+	result.append("Block Name : " + getInterfaceFunctionName() + XcosConstants.HTML_NEWLINE);
+	result.append("Simulation : " + getSimulationFunctionName() + XcosConstants.HTML_NEWLINE);
 
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    if (getIntegerParameters() != null) {
-		result.append("Integer parameters : " + getIntegerParameters() + "<br>");
+		result.append("Integer parameters : " + getIntegerParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	    
 	    if (getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
-		result.append("Real parameters : " + getRealParameters() + "<br>");
+		result.append("Real parameters : " + getRealParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	    
 	    if (getObjectsParameters() != null) {
-		result.append("Object parameters : " + getObjectsParameters() + "<br>");
+		result.append("Object parameters : " + getObjectsParameters() + XcosConstants.HTML_NEWLINE);
 	    }
 	} else {
-	    result.append("UID : " + getId() + "<br>");
-	    result.append("Block Style : " + getStyle() + "<br>");
-	    result.append("Flip : " + getFlip() + "<br>");
-	    result.append("Mirror : " + getMirror() + "<br>");
-	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + "<br>");
-	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + "<br>");
-	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + "<br>");
-	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + "<br>");
+	    result.append("UID : " + getId() + XcosConstants.HTML_NEWLINE);
+	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
+	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
+	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
+	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Output ports : " + BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Control ports : " + BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Command ports : " + BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + XcosConstants.HTML_NEWLINE);
 	}
 
-	result.append("x : " + getGeometry().getX() + "<br>");
-	result.append("y : " + getGeometry().getY() + "<br>");
-	result.append("w : " + getGeometry().getWidth() + "<br>");
-	result.append("h : " + getGeometry().getHeight() + "<br>");
-	result.append("</html>");
+	result.append("x : " + getGeometry().getX() + XcosConstants.HTML_NEWLINE);
+	result.append("y : " + getGeometry().getY() + XcosConstants.HTML_NEWLINE);
+	result.append("w : " + getGeometry().getWidth() + XcosConstants.HTML_NEWLINE);
+	result.append("h : " + getGeometry().getHeight() + XcosConstants.HTML_NEWLINE);
+	result.append(XcosConstants.HTML_END);
 	return result.toString();
     }
 
@@ -991,20 +912,20 @@ public class BasicBlock extends XcosUIDObject {
 		/*--- */
 		Menu alignMenu = ScilabMenu.createMenu();
 		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+		alignMenu.add(AlignBlockActionLeft.createMenu(graph));
+		alignMenu.add(AlignBlockActionCenter.createMenu(graph));
+		alignMenu.add(AlignBlockActionRight.createMenu(graph));
 		alignMenu.addSeparator();
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		alignMenu.add(AlignBlockActionTop.createMenu(graph));
+		alignMenu.add(AlignBlockActionMiddle.createMenu(graph));
+		alignMenu.add(AlignBlockActionBottom.createMenu(graph));
 		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
-		format.add(ColorAction.createMenu(graph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
+		format.add(BorderColorAction.createMenu(graph));
+		format.add(FilledColorAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -1029,9 +950,9 @@ public class BasicBlock extends XcosUIDObject {
 	if (getParentDiagram() != null) {
 	    isFlipped = flip;
 	    if (flip) {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "true");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
 	    } else {
-		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, "false");
+		mxUtils.setCellStyles(getParentDiagram().getModel(), new Object[] {this}, XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
 	    }
 	}
     }
@@ -1048,7 +969,7 @@ public class BasicBlock extends XcosUIDObject {
     /**
      * @return mirror value
      */
-    public boolean getMirror(){
+    public boolean getMirror() {
 	return isMirrored;
     }
     

@@ -14,7 +14,7 @@ package org.scilab.modules.renderer.utils.graphicEvents;
 
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
-import org.scilab.modules.renderer.jni.FigureScilabCall;
+import org.scilab.modules.renderer.FigureScilabCall;
 
 /**
  * A graphic event designed to use rotations for figures
