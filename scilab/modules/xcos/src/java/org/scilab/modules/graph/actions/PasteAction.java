@@ -21,25 +21,28 @@ import java.awt.event.KeyEvent;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.SelectionDependantAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Paste manager
+ * 
+ * This action is enabled by the {@link CutAction} and {@link CopyAction}.
  */
-public final class PasteAction extends SelectionDependantAction {
+public final class PasteAction extends DefaultAction {
 	public static final String NAME = ScilabGraphMessages.PASTE;
 	public static final String SMALL_ICON = "edit-paste.png";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_V;
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public PasteAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
+		setEnabled(false);
 	}
 
 	/**

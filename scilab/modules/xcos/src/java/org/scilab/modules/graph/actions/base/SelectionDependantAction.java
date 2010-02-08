@@ -13,6 +13,7 @@
 package org.scilab.modules.graph.actions.base;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
  * Common class for selection dependent actions.
@@ -32,7 +33,7 @@ public abstract class SelectionDependantAction extends DefaultAction {
 		super(scilabGraph);
 		
 		if (scilabGraph != null) {
-			SelectedNumberOfCellsConstraint c = new SelectedNumberOfCellsConstraint(1);
+			SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(BasicBlock.class);
 			c.install(this, scilabGraph);
 		}
 	}

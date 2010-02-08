@@ -8,7 +8,9 @@ Text editor:
 
 * bug 5649 fixed - The Editor did not undo properly after a find/replace.
 
-* bug 5651 fixed - closing find/replace box, remove highlights.
+* bug 5651 fixed - Closing find/replace box was not removing highlights.
+
+* bug 5650 fixed - Replace all was not working in some cases
 
 * bug 5707 fixed - cmd-e executed the wrong editor file.
 
