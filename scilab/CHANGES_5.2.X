@@ -1,4 +1,4 @@
-                Changes between version 5.2.0 and 5.2.1 of Scilab
+﻿                Changes between version 5.2.0 and 5.2.1 of Scilab
                 =================================================
 
 
@@ -174,6 +174,9 @@ Bug fixes:
 
 * bug 4543 fixed - Waitbar command seemed not to work properly with message
                    define by a string.
+
+* bug 4941 fixed - uigetdir & ugetfile lacked icons on top right when running
+                   on Windows 7.
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 
