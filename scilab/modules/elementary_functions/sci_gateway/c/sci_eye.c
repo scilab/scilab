@@ -14,7 +14,6 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 extern int C2F(inteye) (int *id);
 /*--------------------------------------------------------------------------*/

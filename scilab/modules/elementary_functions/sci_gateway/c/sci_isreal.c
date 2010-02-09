@@ -15,7 +15,6 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 int isreal_double(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal);
 int isreal_poly(int* _piKey, int* _piAddress, double _dblRef, int* _piIsReal);

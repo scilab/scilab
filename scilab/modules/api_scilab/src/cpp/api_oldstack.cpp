@@ -27,18 +27,22 @@ int api_Top(int* _piKey)
 
 int api_Rhs(int* _piKey)
 {
+	std::cout << "Rhs : ";
 	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
 	if(pStr == NULL)
 	{
+		std::cout << "pStr == NULL" << std::endl;
 		return 0;
 	}
 
 	if(pStr->m_pin == NULL)
 	{
+		std::cout << "pStr->m_pin == NULL" << std::endl;
 		return 0;
 	}
 
+	std::cout << (int)pStr->m_pin->size() << std::endl;
 	return (int)pStr->m_pin->size();
 }
 
@@ -61,6 +65,7 @@ int api_Lhs(int* _piKey)
 
 int api_CheckRhs(int _iMin, int _iMax, int* _piKey)
 {
+	std::cout << "Check Rhs : " << _iMin << " -> " << _iMax << std::endl;
 	int iRhs = api_Rhs(_piKey);
 
 	if(iRhs > _iMax || iRhs < _iMin)

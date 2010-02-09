@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "api_oldstack.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_ones(char *fname, int* _piKey)
 {

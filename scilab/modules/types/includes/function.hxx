@@ -68,6 +68,7 @@ namespace types
     typed_list* m_pin;
     typed_list* m_pout;
     int*	m_piRetCount;
+    char* m_pstName;
 
     GatewayStruct(){};
     ~GatewayStruct(){};

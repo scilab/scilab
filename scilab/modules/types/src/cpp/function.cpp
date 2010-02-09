@@ -74,6 +74,7 @@ namespace types
     pStr->m_pin = &in;
     pStr->m_pout = &out;
     pStr->m_piRetCount = &_iRetCount;
+    pStr->m_pstName = (char*)m_stName.c_str();
 
     int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
 

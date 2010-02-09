@@ -11,9 +11,10 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
+//#include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+
 /*--------------------------------------------------------------------------*/
 
 int sci_cos(char *fname, int* _piKey)

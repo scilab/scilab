@@ -27,6 +27,10 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "context.hxx"
+
+using namespace std;
+using namespace types;
 
 /*Global structure for scilab 5.x*/
 extern "C"
@@ -96,24 +100,25 @@ SciErr getNamedVarDimension(void* _pvCtx, char *_pstName, int* _piRows, int* _pi
 SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+	
+	GatewayStruct *pStr = (GatewayStruct*)_pvCtx;
+  typed_list* pIn = pStr->m_pin;
+  typed_list* pOut = pStr->m_pout;
+  int*	piRetCount = pStr->m_piRetCount;
+  char* pstName = pStr->m_pstName;
+
 	int iAddr			= 0;
 	int iValType	= 0;
 	/* we accept a call to getVarAddressFromPosition after a create... call */
-	if(_iVar > Rhs && _iVar > Nbvars)
+	if(_iVar > pIn->size())
 	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), ((StrCtx*)_pvCtx)->pstName, "getVarAddressFromPosition");
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pstName, "getVarAddressFromPosition");
 		return sciErr;
 	}
 
-	iAddr = iadr(*Lstk(Top - Rhs + _iVar));
-	iValType	= *istk(iAddr);
-	if(iValType < 0)
-	{
-		iAddr				= iadr(*istk(iAddr + 1));
-	}
+	InternalType* pIt = pIn[_iVar - 1];
 
-	*_piAddress		= istk(iAddr);
-	intersci_.ntypes[_iVar - 1] = '$' ;
+//	*_piAddress		= (int*)(pIn[_iVar - 1]);
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

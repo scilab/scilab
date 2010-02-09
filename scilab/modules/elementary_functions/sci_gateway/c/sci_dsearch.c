@@ -17,7 +17,6 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 static SciErr getMode(int* _piKey, int _iPos, char *_pcMode);
 

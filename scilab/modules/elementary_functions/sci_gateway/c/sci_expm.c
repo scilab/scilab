@@ -17,7 +17,6 @@
 #include "double.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "api_oldstack.h"
 
 #ifdef _MSC_VER
 /* BUG 3863 */
