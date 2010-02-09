@@ -66,7 +66,7 @@ import com.mxgraph.model.mxGeometry;
 /**
  * Transform selection to a new superblock.
  */
-public class RegionToSuperblockAction extends VertexSelectionDependantAction {
+public final class RegionToSuperblockAction extends VertexSelectionDependantAction {
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
