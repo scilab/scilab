@@ -114,9 +114,9 @@ namespace ast
 		}
 		else
 		{
-			char szError[bsiz];
+			char szError[4096];
 #ifdef _MSC_VER
-			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
+			sprintf_s(szError, 4096, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #else
 			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #endif
@@ -182,9 +182,9 @@ namespace ast
 		  } 
 		if (execHead->result_get() != NULL && !execHead->result_get()->isStruct())
 		  {
-		    char szError[bsiz];
+		    char szError[4096];
 #ifdef _MSC_VER
-		    sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+		    sprintf_s(szError, 4096, _("Attempt to reference field of non-structure array.\n"));
 #else
 		    sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
 #endif
@@ -207,9 +207,9 @@ namespace ast
 			  }
 			else 
 			  {
-			    char szError[bsiz];
+			    char szError[4096];
 #ifdef _MSC_VER
-			    sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+			    sprintf_s(szError, 4096, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
 #else
 			    sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
 #endif
@@ -218,9 +218,9 @@ namespace ast
 		      }
 		    else
 		      {
-			char szError[bsiz];
+			char szError[4096];
 #ifdef _MSC_VER
-			sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+			sprintf_s(szError, 4096, _("/!\\ Unmanaged FieldExp.\n"));
 #else
 			sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
 #endif
@@ -279,9 +279,9 @@ namespace ast
 			else if(Ret == Callable::Error)
 			{
 				std::ostringstream os;
-				char szError[bsiz];
+				char szError[4096];
 #ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("Function call failed\n"));
+				sprintf_s(szError, 4096, _("Function call failed\n"));
 #else
 				sprintf(szError, _("Function call failed\n"));
 #endif
@@ -342,9 +342,9 @@ namespace ast
 		else
 		{//result == NULL ,variable doesn't exist :(
 			std::ostringstream os;
-			char pst[bsiz];
+			char pst[4096];
 	#ifdef _MSC_VER
-			sprintf_s(pst, bsiz, _("Undefined variable %s.\n"), e.name_get());
+			sprintf_s(pst, 4096, _("Undefined variable %s.\n"), e.name_get());
 #else
 			sprintf(pst, _("Undefined variable %s.\n"), e.name_get());
 #endif
@@ -585,9 +585,9 @@ namespace ast
 					else if(Ret == Callable::Error)
 					{
 						std::ostringstream os;
-						char szError[bsiz];
+						char szError[4096];
 	#ifdef _MSC_VER
-						sprintf_s(szError, bsiz, _("Function call failed\n"));
+						sprintf_s(szError, 4096, _("Function call failed\n"));
 	#else
 						sprintf(szError, _("Function call failed\n"));
 	#endif
@@ -939,9 +939,9 @@ namespace ast
 		}
 		catch(int iPos)
 		{
-			char st[bsiz];
+			char st[4096];
 #ifdef _MSC_VER
-			sprintf_s(st, bsiz, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
+			sprintf_s(st, 4096, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
 #else
 			sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), "::", 1);
 #endif
@@ -1102,7 +1102,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 	int iTotalCombi					= 1;
 	ExecVisitor* execMeArg	= new ExecVisitor();
 
-	int *piTabSize					= new int[iProductElem];
+	int *piTa4096e					= new int[iProductElem];
 	(*_piMaxDim)						= new int[iProductElem];
 	piIndexList							= new int*[iProductElem];
 
@@ -1194,8 +1194,8 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 		double *pData = pDbl->real_get();
 
 //					std::vector<int> SubList;
-		piTabSize[k] = pDbl->size_get();
-		piIndexList[k] = new int[piTabSize[k]];
+		piTa4096e[k] = pDbl->size_get();
+		piIndexList[k] = new int[piTa4096e[k]];
 
 		(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
 		int iSize = pDbl->size_get();
@@ -1225,9 +1225,9 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 	delete execMeArg;
 
-	int iTabSize	= iTotalCombi * iProductElem;
-	*_piIndexSeq	= new int[iTabSize];
-	ExpandList(piIndexList, piTabSize, iProductElem, *_piIndexSeq);
+	int iTa4096e	= iTotalCombi * iProductElem;
+	*_piIndexSeq	= new int[iTa4096e];
+	ExpandList(piIndexList, piTa4096e, iProductElem, *_piIndexSeq);
 	return iTotalCombi;
 }
 
