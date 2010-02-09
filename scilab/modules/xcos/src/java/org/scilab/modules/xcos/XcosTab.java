@@ -305,116 +305,125 @@ public class XcosTab extends ScilabTab {
     }
     
 
-    /**
-     * Move cells with the arrow keys.
-     */
-    private class ArrowKeysListener implements KeyListener {
+	/**
+	 * Move cells with the arrow keys.
+	 */
+	private class ArrowKeysListener implements KeyListener {
 
-	private static final double DEFAULT_PIXEL_MOVE = 1;
-	private static final double MODIFIER_FACTOR = 10;
-	private static final int DEFAULT_DELAY = 800; // milliseconds
+		private static final double DEFAULT_PIXEL_MOVE = 1;
+		private static final double MODIFIER_FACTOR = 10;
+		private static final int DEFAULT_DELAY = 800; // milliseconds
 
-	private double xIncrement;
-	private double yIncrement;
-	private mxGraph graph;
+		private double xIncrement;
+		private double yIncrement;
+		private mxGraph graph;
 
-	private Timer repetitionTimer;
-	private ActionListener doMove = new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) {
-		if (graph != null) {
-		    Object[] cells = graph.getSelectionCells();
+		private Timer repetitionTimer;
+		private ActionListener doMove = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (graph != null) {
+					Object[] cells = graph.getSelectionCells();
 
-		    graph.getModel().beginUpdate();
-		    for (Object cell : cells) {
-			if (cell instanceof BasicBlock || cell instanceof BasicLink) {
-			    graph.translateCell(cell, xIncrement, yIncrement);
+					graph.getModel().beginUpdate();
+					for (Object cell : cells) {
+						if (cell instanceof BasicBlock
+								|| cell instanceof BasicLink) {
+							graph.translateCell(cell, xIncrement, yIncrement);
+						}
+					}
+					graph.getModel().endUpdate();
+					graph.refresh();
+				}
 			}
-		    }
-		    graph.getModel().endUpdate();
-		    graph.refresh();
+		};
+
+		/**
+		 * Constructor
+		 */
+		public ArrowKeysListener() {
+			repetitionTimer = new Timer(DEFAULT_DELAY, doMove);
+			repetitionTimer.setInitialDelay(0);
 		}
-	    }
-	};
 
-	/**
-	 * Constructor
-	 */
-	public ArrowKeysListener() {
-	    repetitionTimer = new Timer(DEFAULT_DELAY, doMove);
-	    repetitionTimer.setInitialDelay(0);
-	}
+		/**
+		 * Get the action parameters and start the action timer.
+		 * 
+		 * @param e
+		 *            key event
+		 */
+		public void keyPressed(KeyEvent e) {
+			double realMove;
+			boolean mustMove = true;
 
-	/** 
-	 * Get the action parameters and start the action timer.
-	 * @param e key event
-	 */
-	public void keyPressed(KeyEvent e) {
-	    double realMove;
-	    boolean mustMove = true;
-	    
-	    mxGraphComponent sourceDiagram = (mxGraphComponent) e.getSource();
-	    graph = sourceDiagram.getGraph();
-	    
-	    if (graph.isGridEnabled()) {
-		realMove = graph.getGridSize();
-	    } else {
-		realMove = DEFAULT_PIXEL_MOVE;
-			if (e.getModifiers() == Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) {
-				realMove *= MODIFIER_FACTOR;
+			mxGraphComponent sourceDiagram = (mxGraphComponent) e.getSource();
+			graph = sourceDiagram.getGraph();
+
+			if (graph.isGridEnabled()) {
+				realMove = graph.getGridSize();
+			} else {
+				realMove = DEFAULT_PIXEL_MOVE;
+				if (e.getModifiers() == Toolkit.getDefaultToolkit()
+						.getMenuShortcutKeyMask()) {
+					realMove *= MODIFIER_FACTOR;
+				}
 			}
-	    }
 
-	    switch (e.getKeyCode()) {
-	    case KeyEvent.VK_UP:
-		yIncrement = -realMove;
-		break;
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_UP:
+				yIncrement = -realMove;
+				break;
 
-	    case KeyEvent.VK_DOWN:
-		yIncrement = realMove;
-		break;
+			case KeyEvent.VK_DOWN:
+				yIncrement = realMove;
+				break;
 
-	    case KeyEvent.VK_RIGHT:
-		xIncrement = realMove;
-		break;
+			case KeyEvent.VK_RIGHT:
+				xIncrement = realMove;
+				break;
 
-	    case KeyEvent.VK_LEFT:
-		xIncrement = -realMove;
-		break;
+			case KeyEvent.VK_LEFT:
+				xIncrement = -realMove;
+				break;
 
-	    default:
-	    	mustMove = false;
-		break;
-	    }
+			default:
+				mustMove = false;
+				break;
+			}
 
-	    if (!mustMove) {
-	    	return;
-	    }
-	    
-	    if (!graph.isGridEnabled()) {
-		xIncrement *= sourceDiagram.getZoomFactor();
-		yIncrement *= sourceDiagram.getZoomFactor();
-	    }
+			if (!mustMove) {
+				return;
+			}
 
-	    repetitionTimer.start();
+			if (!graph.isGridEnabled()) {
+				xIncrement *= sourceDiagram.getZoomFactor();
+				yIncrement *= sourceDiagram.getZoomFactor();
+			}
+
+			repetitionTimer.start();
+		}
+
+		/**
+		 * Stop the action timer and clear parameters
+		 * 
+		 * @param e
+		 *            key event
+		 */
+		public void keyReleased(KeyEvent e) {
+			repetitionTimer.stop();
+			yIncrement = 0;
+			xIncrement = 0;
+			graph = null;
+		}
+
+		/**
+		 * Not used there
+		 * 
+		 * @param e
+		 *            Not used
+		 */
+		public void keyTyped(KeyEvent e) {
+		}
 	}
-
-	/** 
-	 * Stop the action timer and clear parameters 
-	 * @param e key event
-	 */
-	public void keyReleased(KeyEvent e) {
-	    repetitionTimer.stop();
-	    yIncrement = 0;
-	    xIncrement = 0;
-	    graph = null;
-	}
-
-	/**
-	 * Not used there
-	 * @param e Not used
-	 */
-	public void keyTyped(KeyEvent e) { }
-    }
 
     /**
      * Close the current diagram 
