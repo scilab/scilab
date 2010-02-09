@@ -16,6 +16,7 @@
 #include "macro.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
+#include "stack-def.h"
 #include "localization.h"
 #include "yaspio.hxx"
 
