@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.SelectionDependantAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -27,7 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Block flip handling
  */
-public class FlipAction extends SelectionDependantAction {
+public class FlipAction extends VertexSelectionDependantAction {
 	public static final String NAME = XcosMessages.FLIP;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_F;

@@ -13,28 +13,26 @@
 package org.scilab.modules.graph.actions.base;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
- * Common class for selection dependent actions.
+ * Common class for multi-selection dependent actions.
  * 
  * Children of this class will be activated when there something selected. If
  * not, the action will be disabled.
  */
-public abstract class SelectionDependantAction extends DefaultAction {
-
+public abstract class OneSelectionDependantAction extends DefaultAction {
 	/**
 	 * Default constructor
 	 * 
 	 * @param scilabGraph
-	 *            The associated graph
+	 *            the associated graph
 	 */
-	public SelectionDependantAction(ScilabGraph scilabGraph) {
+	public OneSelectionDependantAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
-		
+
 		if (scilabGraph != null) {
-			SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(BasicBlock.class);
-			c.install(this, scilabGraph);
+			SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(1);
+			constraint.install(this, scilabGraph);
 		}
 	}
 }

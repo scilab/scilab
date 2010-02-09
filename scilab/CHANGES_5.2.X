@@ -1,4 +1,4 @@
-                Changes between version 5.2.0 and 5.2.1 of Scilab
+﻿                Changes between version 5.2.0 and 5.2.1 of Scilab
                 =================================================
 
 
@@ -51,6 +51,8 @@ Xcos:
     - the actions are now only instanciated per graph.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
+
+* bug 5095 fixed - Menu were not disabled when action were not possible.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
                    were not available.
@@ -169,11 +171,19 @@ Scilab extensions:
 
 * API_Scilab: a presentation page of the feature have been added.
 
+Matlab binary files I/O:
+========================
+
+* Support for logical/boolean type added.
+
 Bug fixes:
 ==========
 
 * bug 4543 fixed - Waitbar command seemed not to work properly with message
                    define by a string.
+
+* bug 4941 fixed - uigetdir & ugetfile lacked icons on top right when running
+                   on Windows 7.
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 

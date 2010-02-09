@@ -17,7 +17,7 @@ refsx_sort =  [  5.    4.    3.    3.    2.    2.    2.    1. ];
 refsi_sort =  [  7.    8.    3.    6.    2.    4.    5.    1. ];
 refsx_gsort = [  5.    4.    3.    3.    2.    2.    2.    1. ];
 refsi_gsort = [  7.    8.    3.    6.    2.    4.    5.    1. ];
-[sx_sort, si_sort] = sort(x);
+[sx_sort, si_sort] = gsort(x);
 [sx_gsort, si_gsort] = gsort(x);
 if or(refsx_sort<>sx_sort) then bugmes();quit;end
 if or(refsi_sort<>si_sort) then bugmes();quit;end

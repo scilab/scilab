@@ -24,6 +24,33 @@ Tests:
 ======
 
 * Mechanism of unitary tests for Java code based on testng added and used
+
+Removed functions (previously declared as obsolete):
+====================================================
+
+* 'textprint', 'pol2tex' replaced by 'prettyprint'.
+
+* 'tk_savefile' replaced by 'uigetfile'.
+
+* 'tk_getdir' replaced by 'uigetdir'.
+
+* 'sci2excel' replaced by 'write_csv'.
+
+* 'excel2sci' replaced by 'read_csv'.
+
+* 'x_message_modeless' replaced by 'messagebox'.
+
+* 'sethomedirectory' replaced by 'SCIHOME'.
+
+* 'getcwd' replaced by 'pwd'.
+
+* 'xbasc' replaced by 'clf'.
+
+* 'getf' replaced by 'exec'.
+
+* 'NumTokens' replaced by 'tokens'.
+
+* 'sort' replaced by 'gsort'.
  
 Bug fixes:
 ==========

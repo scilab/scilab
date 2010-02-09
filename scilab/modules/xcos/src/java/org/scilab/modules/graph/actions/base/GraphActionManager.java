@@ -144,4 +144,31 @@ public final class GraphActionManager {
 			}
 		}
 	}
+	
+	/**
+	 * Get status action on all registered graph.
+	 * @param actionKlass The action type to enable
+	 * @return the status (true if all action are enabled, false otherwise)
+	 */
+	public static boolean getEnable(Class< ? extends DefaultAction> actionKlass) {
+		boolean result = true;
+		
+		// Handle null graph
+		for (DefaultAction action : nullGraphAction) {
+			if (actionKlass.isInstance(action)) {
+				result &= action.isEnabled();
+			}
+		}
+		
+		// Handle non-null graph
+		for (Set<DefaultAction> actions : perGraphAction.values()) {
+			for (DefaultAction action : actions) {
+				if (actionKlass.isInstance(action)) {
+					result &= action.isEnabled();
+				}
+			}
+		}
+		
+		return result;
+	}
 }

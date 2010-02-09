@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JColorChooser;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.SelectionDependantAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -30,7 +30,7 @@ import com.mxgraph.util.mxUtils;
 /**
  * Change the filled color of multiple blocks
  */
-public final class FilledColorAction extends SelectionDependantAction {
+public final class FilledColorAction extends VertexSelectionDependantAction {
 	public static final String NAME = XcosMessages.FILL_COLOR;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

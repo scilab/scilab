@@ -16,7 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.SelectionDependantAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -28,7 +28,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
-public final class BlockDocumentationAction extends SelectionDependantAction {
+public final class BlockDocumentationAction extends VertexSelectionDependantAction {
 	public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

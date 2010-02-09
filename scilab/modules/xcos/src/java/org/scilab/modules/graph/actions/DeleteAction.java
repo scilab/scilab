@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.SelectionDependantAction;
+import org.scilab.modules.graph.actions.base.OneSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -25,7 +25,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 /**
  * Delete manager
  */
-public final class DeleteAction extends SelectionDependantAction {
+public final class DeleteAction extends OneSelectionDependantAction {
 	public static final String NAME = ScilabGraphMessages.DELETE;
 	public static final String SMALL_ICON = "edit-delete.png";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_DELETE;

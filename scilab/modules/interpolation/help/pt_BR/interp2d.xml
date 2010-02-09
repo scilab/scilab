@@ -178,7 +178,7 @@ zz1 = interp2d(XX,YY, x, y, C, "C0");
 zz2 = interp2d(XX,YY, x, y, C, "by_zero");
 zz3 = interp2d(XX,YY, x, y, C, "periodic");
 zz4 = interp2d(XX,YY, x, y, C, "natural");
-xbasc()
+clf()
 subplot(2,2,1)
 plot3d(xx, yy, zz1, flag=[2 6 4])
 xtitle("Extrapolação com o outmode C0")

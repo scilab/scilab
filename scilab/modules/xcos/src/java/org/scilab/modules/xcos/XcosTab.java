@@ -60,6 +60,9 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
+import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
+import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -233,21 +236,6 @@ public class XcosTab extends ScilabTab {
      */
     public static List<XcosDiagram> getAllDiagrams() {
 	return diagrams;
-    }
-
-    /**
-     * @param status new status
-     */
-    public static void setStartEnabled(boolean status) {
-	for (int i = 0; i < startMenuItems.size(); i++) {
-	    startMenuItems.get(i).setEnabled(status);
-	    startPushButtons.get(i).setEnabled(status);
-	    startEnabled = status;
-
-	    stopMenuItems.get(i).setEnabled(!status);
-	    stopPushButtons.get(i).setEnabled(!status);
-	}
-
     }
 
     /**
@@ -428,10 +416,8 @@ public class XcosTab extends ScilabTab {
 
 	MenuItem startMenu = StartAction.createMenu(diagram);
 	startMenuItems.add(startMenu);
-	startMenu.setEnabled(startEnabled);
 	MenuItem stopMenu = StopAction.createMenu(diagram);
 	stopMenuItems.add(stopMenu);
-	stopMenu.setEnabled(startEnabled);
 
 	simulate.add(SetupAction.createMenu(diagram));
 	simulate.add(DebugLevelAction.createMenu(diagram));
@@ -470,13 +456,9 @@ public class XcosTab extends ScilabTab {
 
 	linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_HORIZONTAL,
-		mxConstants.ELBOW_HORIZONTAL));
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+	linkStyle.add(LinkStyleHorizontalAction.createMenu(diagram));
+	linkStyle.add(LinkStyleStraightAction.createMenu(diagram));
+	linkStyle.add(LinkStyleVerticalAction.createMenu(diagram));
 	format.add(linkStyle);
 	format.addSeparator();
 
@@ -557,8 +539,6 @@ public class XcosTab extends ScilabTab {
 	// START / STOP
 	startAction = StartAction.createButton(diagram);
 	stopAction = StopAction.createButton(diagram);
-	startAction.setEnabled(startEnabled);
-	stopAction.setEnabled(!startEnabled);
 	startPushButtons.add(startAction);
 	stopPushButtons.add(stopAction);
 
