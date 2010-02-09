@@ -15,7 +15,6 @@ package org.scilab.modules.graph.actions.base;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
