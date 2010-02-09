@@ -37,7 +37,6 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -45,7 +44,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Setup dialog for Xcos
  */
-public class SetupAction extends DefaultAction {
+public class SetupAction extends SimulationNotRunningAction {
 	public static final String NAME = XcosMessages.SETUP;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

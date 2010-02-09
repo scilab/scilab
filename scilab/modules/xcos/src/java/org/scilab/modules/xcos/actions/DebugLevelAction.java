@@ -35,7 +35,6 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -45,7 +44,7 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 /**
  * Set the debug level
  */
-public class DebugLevelAction extends DefaultAction {
+public class DebugLevelAction extends SimulationNotRunningAction {
 	public static final String NAME = XcosMessages.SET_DEBUG;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
