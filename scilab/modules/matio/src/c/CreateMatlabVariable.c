@@ -42,7 +42,14 @@ int CreateMatlabVariable(int stkPos, matvar_t *matVariable)
       CreateIntegerVariable(stkPos, I_CHAR, matVariable);
       break;
     case MAT_C_UINT8: /* 9 */
-      CreateIntegerVariable(stkPos, I_UCHAR, matVariable);
+      if (matVariable->isLogical != 0)
+        {
+          CreateBooleanVariable(stkPos, matVariable);
+        }
+      else
+        {
+          CreateIntegerVariable(stkPos, I_UCHAR, matVariable);
+        }
       break;
     case MAT_C_INT16: /* 10 */
       CreateIntegerVariable(stkPos, I_INT16, matVariable);
