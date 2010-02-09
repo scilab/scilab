@@ -239,21 +239,6 @@ public class XcosTab extends ScilabTab {
     }
 
     /**
-     * @param status new status
-     */
-    public static void setStartEnabled(boolean status) {
-	for (int i = 0; i < startMenuItems.size(); i++) {
-	    startMenuItems.get(i).setEnabled(status);
-	    startPushButtons.get(i).setEnabled(status);
-	    startEnabled = status;
-
-	    stopMenuItems.get(i).setEnabled(!status);
-	    stopPushButtons.get(i).setEnabled(!status);
-	}
-
-    }
-
-    /**
      * @param xcosDiagram diagram
      */
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
@@ -431,10 +416,8 @@ public class XcosTab extends ScilabTab {
 
 	MenuItem startMenu = StartAction.createMenu(diagram);
 	startMenuItems.add(startMenu);
-	startMenu.setEnabled(startEnabled);
 	MenuItem stopMenu = StopAction.createMenu(diagram);
 	stopMenuItems.add(stopMenu);
-	stopMenu.setEnabled(startEnabled);
 
 	simulate.add(SetupAction.createMenu(diagram));
 	simulate.add(DebugLevelAction.createMenu(diagram));
@@ -556,8 +539,6 @@ public class XcosTab extends ScilabTab {
 	// START / STOP
 	startAction = StartAction.createButton(diagram);
 	stopAction = StopAction.createButton(diagram);
-	startAction.setEnabled(startEnabled);
-	stopAction.setEnabled(!startEnabled);
 	startPushButtons.add(startAction);
 	stopPushButtons.add(stopAction);
 

@@ -43,7 +43,7 @@ public class StartAction extends DefaultAction {
      */
     public StartAction(ScilabGraph scilabGraph) {
     	super(scilabGraph);
-    	
+    	setEnabled(GraphActionManager.getEnable(StartAction.class));
     }
 
     /**
@@ -82,16 +82,16 @@ public class StartAction extends DefaultAction {
 	    try {
 			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					updateUI(true);
+					updateUI(false);
 				}
 			});
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();
-			updateUI(true);
+			updateUI(false);
 		}
 	} catch (IOException e1) {
 	    e1.printStackTrace();
-	    updateUI(true);
+	    updateUI(false);
 	}
     }
 
