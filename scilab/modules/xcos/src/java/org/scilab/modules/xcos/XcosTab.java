@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -309,7 +310,8 @@ public class XcosTab extends ScilabTab {
      */
     private class ArrowKeysListener implements KeyListener {
 
-	private static final double DEFAULT_PIXEL_MOVE = 5;
+	private static final double DEFAULT_PIXEL_MOVE = 1;
+	private static final double MODIFIER_FACTOR = 10;
 	private static final int DEFAULT_DELAY = 800; // milliseconds
 
 	private double xIncrement;
@@ -357,6 +359,9 @@ public class XcosTab extends ScilabTab {
 		realMove = graph.getGridSize();
 	    } else {
 		realMove = DEFAULT_PIXEL_MOVE;
+			if (e.getModifiers() == Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) {
+				realMove *= MODIFIER_FACTOR;
+			}
 	    }
 
 	    switch (e.getKeyCode()) {
