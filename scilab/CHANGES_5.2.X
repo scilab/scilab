@@ -169,6 +169,11 @@ Scilab extensions:
 
 * API_Scilab: a presentation page of the feature have been added.
 
+Matlab binary files I/O:
+========================
+
+* Support for logical/boolean type added.
+
 Bug fixes:
 ==========
 
