@@ -26,20 +26,27 @@ int CreateBooleanVariable(int stkPos, matvar_t *matVariable)
       nbRow = matVariable->dims[0];
       nbCol = matVariable->dims[1];
       
-      if ((intPtr = (int*) MALLOC(sizeof(int) * nbRow * nbCol)) == NULL)
+      if (nbRow*nbCol != 0)
         {
-          Scierror(999, _("%s: No more memory.\n"), "CreateBooleanVariable");
-          return FALSE;
-        }
+          if ((intPtr = (int*) MALLOC(sizeof(int) * nbRow * nbCol)) == NULL)
+            {
+              Scierror(999, _("%s: No more memory.\n"), "CreateBooleanVariable");
+              return FALSE;
+            }
+          
+          for (K = 0; K < nbRow*nbCol; K++)
+            {
+              intPtr[K] = ((unsigned char*)matVariable->data)[K];
+            }
       
-      for (K = 0; K < nbRow*nbCol; K++)
+          CreateVarFromPtr(stkPos, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &intPtr);
+          
+          FREE(intPtr);
+        }
+      else
         {
-          intPtr[K] = ((unsigned char*)matVariable->data)[K];
+          CreateVarFromPtr(stkPos, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &intPtr);
         }
-      
-      CreateVarFromPtr(stkPos, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &intPtr);
-  
-      FREE(intPtr);
 
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
