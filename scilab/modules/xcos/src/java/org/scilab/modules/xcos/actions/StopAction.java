@@ -39,6 +39,7 @@ public class StopAction extends DefaultAction {
 	 */
 	public StopAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
+		setEnabled(!GraphActionManager.getEnable(StartAction.class));
 	}
 
 	/**
