@@ -101,24 +101,30 @@ SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	
-	GatewayStruct *pStr = (GatewayStruct*)_pvCtx;
-  typed_list* pIn = pStr->m_pin;
-  typed_list* pOut = pStr->m_pout;
+	if(_pvCtx == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarAddressFromPosition");
+		return sciErr;
+	}
+
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  typed_list in = *pStr->m_pin;
+  typed_list out = *pStr->m_pout;
   int*	piRetCount = pStr->m_piRetCount;
   char* pstName = pStr->m_pstName;
 
 	int iAddr			= 0;
+
 	int iValType	= 0;
 	/* we accept a call to getVarAddressFromPosition after a create... call */
-	if(_iVar > pIn->size())
+	if(_iVar > in.size())
 	{
+		//manage case where _iVar > in.size(), then look in out to get recent create variable.
 		addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pstName, "getVarAddressFromPosition");
 		return sciErr;
 	}
 
-	InternalType* pIt = pIn[_iVar - 1];
-
-//	*_piAddress		= (int*)(pIn[_iVar - 1]);
+	*_piAddress		= (int*)in[_iVar - 1];
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -181,13 +187,70 @@ SciErr getVarAddressFromName(void* _pvCtx, char* _pstName, int** _piAddress)
 SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+
 	if(_piAddress == NULL)
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
 		return sciErr;
 	}
 
-	*_piType = _piAddress[0];
+	switch(((InternalType*)_piAddress)->getType())
+	{
+	case GenericType::RealDouble :
+		*_piType = sci_matrix;
+		break;
+	case GenericType::RealPoly :
+		*_piType = sci_poly;
+		break;
+	case GenericType::RealBool :
+		*_piType = sci_boolean;
+		break;
+	//case GenericType::RealSparse :
+	//	*_piType = sci_sparse;
+	//	break;
+	//case GenericType::RealBoolSparse :
+	//	*_piType = sci_boolean_sparse;
+	//	break;
+	//case GenericType::RealMatlabSparse :
+	//	*_piType = sci_matlab_sparse;
+	//	break;
+	case GenericType::RealInt :
+		*_piType = sci_ints;
+		break;
+	//case GenericType::RealHandle :
+	//	*_piType = sci_handles;
+	//	break;
+	case GenericType::RealString :
+		*_piType = sci_strings;
+		break;
+	case GenericType::RealMacroFile :
+		*_piType = sci_u_function;
+		break;
+	case GenericType::RealMacro :
+		*_piType = sci_c_function;
+		break;
+	case GenericType::RealList :
+		*_piType = sci_list;
+		break;
+	//case GenericType::RealTList :
+	//	*_piType = sci_tlist;
+	//	break;
+	//case GenericType::RealMList :
+	//	*_piType = sci_mlist;
+	//	break;
+	//case GenericType::RealPointer :
+	//	*_piType = sci_pointer;
+	//	break;
+	case GenericType::RealImplicitList :
+		*_piType = sci_implicit_poly;
+		break;
+	case GenericType::RealFunction :
+		*_piType = sci_intrinsic_function;
+		break;
+	default :
+		*_piType = 0;
+	}
+	
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -217,22 +280,24 @@ int isVarComplex(void* _pvCtx, int* _piAddress)
 	int iType			= 0;
 	int iComplex	= 0;
 
-	if(_piAddress == NULL)
-	{
-		return 0;
-	}
+	//if(_piAddress == NULL)
+	//{
+	//	addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
+	//	return sciErr;
+	//}
 
-	getVarType(_pvCtx, _piAddress, &iType);
-	switch(iType)
-	{
-	case sci_matrix :
-	case sci_poly :
-	case sci_sparse :
-		iComplex = _piAddress[3];
-		break;
-	default:
-		iComplex = 0;
-	}
+	//getVarType(_pvCtx, _piAddress, &iType);
+	//switch(iType)
+	//{
+	//case sci_matrix :
+	//	iComplex = ((InternalType*)_piAddress)->getAsDouble;
+	//case sci_poly :
+	//case sci_sparse :
+	//	
+	//	break;
+	//default:
+	//	iComplex = 0;
+	//}
 	return iComplex;
 }
 /*--------------------------------------------------------------------------*/
