@@ -229,11 +229,6 @@ static BOOL isValidURL(char *szURL)
 		dynlib_InternetCloseHandle(hiConnex);
 		return FALSE;
 	}
-	if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
-	{
-		dynlib_InternetCloseHandle(hiConnex);
-		return FALSE;
-	}
 
 	dynlib_HttpQueryInfo(hiDownload, HTTP_QUERY_STATUS_CODE|HTTP_QUERY_FLAG_NUMBER, &dwStatus, &dwStatusSize, &dwIndex);
 	dynlib_InternetCloseHandle(hiConnex);
