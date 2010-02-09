@@ -63,6 +63,7 @@ sci_gateway/c/sci_strtok.c \
 sci_gateway/c/sci_regexp.c
 
 
+
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
 
@@ -104,3 +105,4 @@ libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am
+
