@@ -33,6 +33,8 @@ Xcos:
 
 * Update to jgraphx version 1.2.0.7 has been performed.
 
+* Non applicable actions are now disabled and cannot be performed anymore.
+
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
        position and calculate placement according to it's default associated
