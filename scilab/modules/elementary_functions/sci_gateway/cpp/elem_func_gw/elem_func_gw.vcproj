@@ -345,15 +345,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\sci_gateway\cpp\sci_cos2.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\sci_gateway\cpp\sci_isequal.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\sci_gateway\cpp\sci_sin2.cpp"
 				>
 			</File>
 		</Filter>

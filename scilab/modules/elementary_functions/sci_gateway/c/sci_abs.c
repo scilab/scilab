@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "basic_functions.h"
+#include "api_oldstack.h"
 
 SciErr abs_double(int* _piKey, int* _piAddress);
 SciErr abs_poly(int* _piKey, int* _piAddress);

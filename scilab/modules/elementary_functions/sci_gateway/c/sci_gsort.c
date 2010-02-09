@@ -25,6 +25,7 @@
 #include "localization.h"
 #include "isanan.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 const char g_pcstProcessGlobal[] = "g";
 const char g_pcstProcessRow[] = "r";

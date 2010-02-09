@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define Ran1		siRandSave		//old C2F(com).ran[0]
 #define Ran2		siRandType		//old C2F(com).ran[1]

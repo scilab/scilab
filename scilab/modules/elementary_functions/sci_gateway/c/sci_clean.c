@@ -15,7 +15,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-
+#include "api_oldstack.h"
 
 /*Some call to other module ( polynomial et sparse*/
 extern int sci_cleanp(char *fname,unsigned long fname_len);

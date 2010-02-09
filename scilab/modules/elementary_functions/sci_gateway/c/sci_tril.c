@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 #include "Scierror.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int tril_matrix(int* _piAddress, int _iOffset, int* _piKey);

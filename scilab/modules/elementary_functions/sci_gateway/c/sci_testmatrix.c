@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 #include "Scierror.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define MAGI_LETTER		'm'
 #define FRK_LETTER		'f'

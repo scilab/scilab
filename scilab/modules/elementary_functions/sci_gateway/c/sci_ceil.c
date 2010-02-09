@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-
+#include "api_oldstack.h"
 
 SciErr ceil_double(int* _piKey, int* _piAddress);
 SciErr ceil_poly(int* _piKey, int* _piAddress);

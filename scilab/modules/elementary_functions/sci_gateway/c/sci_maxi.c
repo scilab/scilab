@@ -20,6 +20,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "api_oldstack.h"
 
 int func_comp(char* fname, int _iMini, int* _piKey);
 

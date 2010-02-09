@@ -23,7 +23,6 @@ static int api_fake_int = 0;
 /*  TOP  */
 #ifdef Top
 #undef Top
-#warning "Old stack interface Top"
 #define Top api_Top(_piKey)
 #endif
 int api_Top(int* _piKey);

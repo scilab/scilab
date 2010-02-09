@@ -17,6 +17,7 @@
 #include "../../core/src/c/parse.h"
 #include "Scierror.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_atan(char *fname, int*_piKey)

@@ -17,6 +17,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_number_properties(char *fname, int* _piKey)
