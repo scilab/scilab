@@ -339,5 +339,27 @@ int gw_dynamic_graphic_export(void)
 		&ptr_gw_graphic_export);
 }
 /*--------------------------------------------------------------------------*/
+/* ui_data module */
+#define UI_DATA_MODULE_NAME "ui_data"
+static DynLibHandle hUi_dataLib = NULL;
+static PROC_GATEWAY ptr_gw_ui_data = NULL;
+static char* dynlibname_ui_data = NULL;
+static char* gatewayname_ui_data = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_ui_data(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_ui_data == NULL)
+	{
+		dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
 
+	return gw_dynamic_generic(UI_DATA_MODULE_NAME,
+		&dynlibname_ui_data,
+		&gatewayname_ui_data,
+		&hUi_dataLib,
+		&ptr_gw_ui_data);
+}
+/*--------------------------------------------------------------------------*/
 

@@ -13,6 +13,13 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* ui_data gateway
+* ui_data is loaded dynamically at runtime
+* load gw_ui_data in SCI/modules/ui_data/sci_gateway/gw_ui_data.c
+*/
+int gw_dynamic_ui_data(void);
+
+/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c

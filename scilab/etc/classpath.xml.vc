@@ -155,4 +155,6 @@ The option is "disableUnderMode" and can be:
 	<load on="Xpad"/>
 </path>
 
+<path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
+
 </classpaths>
