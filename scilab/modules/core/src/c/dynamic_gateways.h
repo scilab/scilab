@@ -13,6 +13,13 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* graphic_objects gateway
+* graphic_objects is loaded dynamically at runtime
+* load gw_graphic_objects in SCI/modules/graphic_objects/sci_gateway/gw_graphic_objects.c
+*/
+int gw_dynamic_graphic_objects(void);
+
+/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c

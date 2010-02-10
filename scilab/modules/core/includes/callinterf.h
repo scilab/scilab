@@ -87,6 +87,9 @@
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
 
+/* ATTENTION : MERGE with editvar branch change id */
+/* 65 */						#include "dynamic_gateways.h" /* graphic_objects */
+
 /*-------------------------------------
  * long jump to stop interface computation
  * @param n
