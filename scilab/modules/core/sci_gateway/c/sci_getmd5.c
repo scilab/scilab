@@ -65,7 +65,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 					if (isdir(real_path))
 					{
 						Scierror(999,_("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
-						if (i>=1) freeArrayOfString(Output_Matrix, i);
+						freeArrayOfString(Output_Matrix, i);
 						freeArrayOfString(Input_Matrix, mn);
 						FREE(real_path); real_path = NULL;
 						return 0;
