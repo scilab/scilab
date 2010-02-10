@@ -96,13 +96,13 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
   scilabSparseT->n = scilabSparse->m;
   scilabSparseT->it = scilabSparse->it;
   scilabSparseT->nel =  scilabSparse->nel;
-  if (scilabSparseT->n == 0)
+  if (scilabSparseT->m == 0)
     {
       workArray = (int*) MALLOC(sizeof(int));
     }
   else
     {
-      workArray = (int*) MALLOC(sizeof(int) * scilabSparseT->n);
+      workArray = (int*) MALLOC(sizeof(int) * scilabSparseT->m);
     }
   if (workArray==NULL)
     {
@@ -110,7 +110,7 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
       return FALSE;
     }
   if (scilabSparseT->m != 0) {
-  scilabSparseT->mnel = (int*) MALLOC(sizeof(int) * scilabSparseT->m); // 111
+  scilabSparseT->mnel = (int*) MALLOC(sizeof(int) * scilabSparseT->m); 
   if (scilabSparseT->mnel==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
@@ -118,7 +118,7 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
     };
   }
   if (scilabSparseT->nel != 0) {
-  scilabSparseT->icol = (int*) MALLOC(sizeof(int) * scilabSparseT->nel); // 117
+  scilabSparseT->icol = (int*) MALLOC(sizeof(int) * scilabSparseT->nel); 
   if (scilabSparseT->icol==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
@@ -126,7 +126,7 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
     };
   }
   if (scilabSparseT->nel != 0) {
-  scilabSparseT->R = (double*) MALLOC(sizeof(double) * scilabSparseT->nel); //123
+  scilabSparseT->R = (double*) MALLOC(sizeof(double) * scilabSparseT->nel); 
   if (scilabSparseT->R==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
