@@ -399,21 +399,21 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	    	target = (BasicPort) link.getLink().getTarget();
 
 	    	if (link.getLink() instanceof ExplicitLink) {
-	    		source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, ExplicitOutputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof ImplicitLink) {
-	    		source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, ImplicitOutputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof CommandControlLink) {
-	    		source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, CommandPort.class).get(link.getPortNumber() - 1);
 	    	}
 	    } else {
 	    	source = (BasicPort) link.getLink().getSource();
 
 	    	if (link.getLink() instanceof ExplicitLink) {
-	    		target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ExplicitInputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof ImplicitLink) {
-	    		target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ImplicitInputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof CommandControlLink) {
-	    		target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ControlPort.class).get(link.getPortNumber() - 1);
 	    	}
 	    }
 
@@ -589,19 +589,6 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      */
     private boolean isInSelection(Object[] objs, Object item) {
 	return Arrays.asList(objs).contains(item);
-    }
-
-    /**
-     * @param breaks List of broken link in current selection
-     */
-    private void printBreakingLink(List<BrokenLink> breaks) {
-	System.err.println("breaks count : " + breaks.size());
-
-	for (BrokenLink brk : breaks) {
-	    System.err.println("Link : " + brk.getLink());
-	    System.err.println("OutGoing : " + brk.getOutGoing());
-	    System.err.println("Geometry : " + brk.getGeometry());
-	}
     }
 
     /**
