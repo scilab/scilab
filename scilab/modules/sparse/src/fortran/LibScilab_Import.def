@@ -37,6 +37,10 @@ getsmat_
 checkrhs_
 checklhs_
 formatnumber_
+copyobj_
+cremat_
+getscalar_
+getvectrow_
 ;
 ; elementary_functions
 unsfdcopy_

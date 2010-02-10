@@ -30,6 +30,7 @@ import com.mxgraph.view.mxGraphView;
 public class ScilabComponent extends mxGraphComponent {
 	private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
 	private static final double SCALE_MULTIPLIER = 1.1;
+	private boolean isReadOnly;
 
 	/**
 	 * Construct the component with the associated graph
@@ -159,18 +160,23 @@ public class ScilabComponent extends mxGraphComponent {
 	public void paint(Graphics g) {
 		super.paint(g);
 		
-		// Draw the foreground if read only
-		if (((ScilabGraph) getGraph()).isReadonly()) {
+		boolean currentReadOnly = ((ScilabGraph) getGraph()).isReadonly();
+		if (isReadOnly != currentReadOnly) {
+			isReadOnly = currentReadOnly;
 			
-			// Workaround for the jgraphx bufffer. We need to force a graph
-			// refresh in order to invalidate previous background.
-			refresh();
-			
-			Rectangle rect = getViewportBorderBounds();
-			Color tmp = g.getColor();
-			g.setColor(MASK_COLOR);
-			g.fillRect(rect.x, rect.y, rect.width, rect.height);
-			g.setColor(tmp);
+			// Draw the foreground if read only
+			if (currentReadOnly) {
+
+				// Workaround for the jgraphx bufffer. We need to force a graph
+				// refresh in order to invalidate previous background.
+				getGraph().getView().reload();
+
+				Rectangle rect = getViewportBorderBounds();
+				Color tmp = g.getColor();
+				g.setColor(MASK_COLOR);
+				g.fillRect(rect.x, rect.y, rect.width, rect.height);
+				g.setColor(tmp);
+			}
 		}
 	}
 }

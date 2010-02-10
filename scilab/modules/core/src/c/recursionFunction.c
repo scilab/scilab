@@ -80,10 +80,6 @@ int C2F(getrecursiongatewaytocall)(int *callID)
 		/* see execstr (intexecstr.f) */
 		gw = GW_FUNCTIONS_ID; /* gw_functions */
 		break;
-	case RECURSION_CALL_GETF:
-		/* see getf (intgetf.f) */
-		gw = GW_FUNCTIONS_ID; /* gw_functions */
-		break;
 	case RECURSION_CALL_SAVE:
 		/* see save (newsave.f) */
 		gw = GW_IO_ID; /* gw_io */

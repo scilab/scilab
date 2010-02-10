@@ -27,8 +27,8 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.DeleteAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -45,15 +45,22 @@ import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
-import org.scilab.modules.xcos.block.actions.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
-import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionBottom;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionCenter;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -61,6 +68,9 @@ import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -171,6 +181,7 @@ public class BasicBlock extends XcosUIDObject {
 	 */
 	public BasicBlock() {
 		super();
+		setDefaultValues();
 		setVisible(true);
 		setVertex(true);
 	}
@@ -712,10 +723,10 @@ public class BasicBlock extends XcosUIDObject {
 	    result.append("Block Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
 	    result.append("Flip : " + getFlip() + XcosConstants.HTML_NEWLINE);
 	    result.append("Mirror : " + getMirror() + XcosConstants.HTML_NEWLINE);
-	    result.append("Input ports : " + BasicBlockInfo.getAllInputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Output ports : " + BasicBlockInfo.getAllOutputPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Control ports : " + BasicBlockInfo.getAllControlPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
-	    result.append("Command ports : " + BasicBlockInfo.getAllCommandPorts(this, false).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Output ports : " + BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Control ports : " + BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + XcosConstants.HTML_NEWLINE);
+	    result.append("Command ports : " + BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + XcosConstants.HTML_NEWLINE);
 	}
 
 	result.append("x : " + getGeometry().getX() + XcosConstants.HTML_NEWLINE);
@@ -901,20 +912,20 @@ public class BasicBlock extends XcosUIDObject {
 		/*--- */
 		Menu alignMenu = ScilabMenu.createMenu();
 		alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+		alignMenu.add(AlignBlockActionLeft.createMenu(graph));
+		alignMenu.add(AlignBlockActionCenter.createMenu(graph));
+		alignMenu.add(AlignBlockActionRight.createMenu(graph));
 		alignMenu.addSeparator();
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
-		alignMenu.add(AlignBlockAction.createMenu(graph, XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+		alignMenu.add(AlignBlockActionTop.createMenu(graph));
+		alignMenu.add(AlignBlockActionMiddle.createMenu(graph));
+		alignMenu.add(AlignBlockActionBottom.createMenu(graph));
 		menuList.put(AlignBlockAction.class, alignMenu);
 		format.add(alignMenu);
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
-		format.add(ColorAction.createMenu(graph, XcosMessages.FILL_COLOR, mxConstants.STYLE_FILLCOLOR));
+		format.add(BorderColorAction.createMenu(graph));
+		format.add(FilledColorAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */

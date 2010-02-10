@@ -709,13 +709,6 @@
     <title>Primitivas gráficas</title>
 
     <variablelist>
-      <varlistentry>
-        <term>xbasc</term>
-
-        <listitem>
-          <para>limpa uma janela de gráficos</para>
-        </listitem>
-      </varlistentry>
 
       <varlistentry>
         <term>xclear</term>

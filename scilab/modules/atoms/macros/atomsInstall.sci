@@ -54,45 +54,9 @@ function result = atomsInstall(packages,section)
 	// =========================================================================
 	packages = stripblanks(packages);
 	
-	// Operating system detection
+	// Operating system detection + Architecture detection
 	// =========================================================================
-	
-	if ~MSDOS then
-		OSNAME  = unix_g("uname");
-		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
-		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
-		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
-	else
-		MACOSX  = %F;
-		LINUX   = %F;
-		SOLARIS = %F;
-		BSD     = %F;
-	end
-	
-	if MSDOS then
-		OSNAME = "windows";
-	elseif LINUX then
-		OSNAME = "linux";
-	elseif MACOSX then
-		OSNAME = "macosx";
-	elseif SOLARIS then
-		OSNAME = "solaris";
-	elseif BSD then
-		OSNAME = "bsd";
-	end
-	
-	// Architecture detection
-	// =========================================================================
-	
-	[dynamic_info,static_info] = getdebuginfo();
-	arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
-	
-	if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
-		ARCH = "64";
-	else
-		ARCH = "32";
-	end
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Verbose Mode ?
 	// =========================================================================
@@ -319,15 +283,17 @@ function result = atomsInstall(packages,section)
 			// Define the path of the downloaded file
 			// =================================================================
 			
-			if isfield(this_package_details,OSNAME+ARCH+"Name") then
-				OSTYPE = OSNAME+ARCH;
+			if isfield(this_package_details,"binaryName") then
+				fileprefix = "binary";
+			elseif isfield(this_package_details,OSNAME+ARCH+"Name") then
+				fileprefix = OSNAME+ARCH;
 			else
-				OSTYPE = OSNAME;
+				fileprefix = OSNAME;
 			end
 			
-			fileout = pathconvert(this_package_directory+this_package_details(OSTYPE+"Name"),%F);
-			filein  = this_package_details(OSTYPE+"Url");
-			filemd5 = this_package_details(OSTYPE+"Md5");
+			fileout = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
+			filein  = this_package_details(fileprefix+"Url");
+			filemd5 = this_package_details(fileprefix+"Md5");
 			
 			// Launch the download
 			// =================================================================

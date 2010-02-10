@@ -792,7 +792,7 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <term>-restarteps</term>
 
                     <listitem>
-                      <para>the absolute epsilon value used to check for
+                      <para>the relative epsilon value used to check for
                       optimality in the factorial O'Neill restart detection.
                       The default value is %eps.</para>
                     </listitem>
@@ -804,6 +804,9 @@ g_i(x) &lt;= 0, i = 1,nbineq
                     <listitem>
                       <para>the absolute step length used to check for
                       optimality in the factorial O'Neill restart detection.
+                      It is expected to be either a positive double or 
+                      a column vector of <literal>n</literal> positive doubles, where n is the number of 
+                      variables in the problem.
                       The default value is 1.0.</para>
                     </listitem>
                   </varlistentry>
@@ -2013,13 +2016,17 @@ alpha = alpha0 * sigma0 / nsg
   </refsection>
 
   <refsection>
-    <title>O'Neil factorial optimality test</title>
+    <title>O'Neill factorial optimality test</title>
 
-    <para>In "Algorithm AS47 - Function minimization using a simplex
-    procedure", R. O'Neil presents a fortran 77 implementation of the simplex
+    <para>
+    In "Algorithm AS47 - Function minimization using a simplex
+    procedure", R. O'Neill presents a fortran 77 implementation of the simplex
     method. A factorial test is used to check if the computed optimum point is
     a local minimum. If the -restartdetection option is set to "oneill", that
-    factorial test is used to see if a restart should be performed.</para>
+    factorial test is used to see if a restart should be performed.
+    O'Neill's factorial test requires <literal>2n</literal> function evaluations, where <literal>n</literal>
+    is the number of variables.
+    </para>
   </refsection>
 
   <refsection>

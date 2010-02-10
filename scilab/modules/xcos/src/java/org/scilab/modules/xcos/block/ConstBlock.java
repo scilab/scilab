@@ -35,7 +35,6 @@ public final class ConstBlock extends BasicBlock {
      */
     protected ConstBlock(String label) {
 	this();
-	setDefaultValues();
 	setValue(label);
     }
     
@@ -46,6 +45,7 @@ public final class ConstBlock extends BasicBlock {
     protected void setDefaultValues() {
     	super.setDefaultValues();
     	setInterfaceFunctionName("CONST_m");
+    	setSimulationFunctionName("cstblk4");
     	setValue("1");
     }
     

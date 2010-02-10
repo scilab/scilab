@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,7 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -26,18 +27,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * View Xcos documentation
- * @author Allan SIMON
  */
-public final class BlockDocumentationAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public final class BlockDocumentationAction extends VertexSelectionDependantAction {
+	public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private BlockDocumentationAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.BLOCK_DOCUMENTATION, scilabGraph);
+	public BlockDocumentationAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -46,7 +48,7 @@ public final class BlockDocumentationAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.BLOCK_DOCUMENTATION, null, new BlockDocumentationAction(scilabGraph));
+		return createButton(scilabGraph, BlockDocumentationAction.class);
 	}
 
 	/**
@@ -55,7 +57,7 @@ public final class BlockDocumentationAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.BLOCK_DOCUMENTATION, null, new BlockDocumentationAction(scilabGraph), null);
+		return createMenu(scilabGraph, BlockDocumentationAction.class);
 	}
 	
 	/**

@@ -1,9 +1,9 @@
 -->xset('wpos',0,0);xset('window',10);xset('wpos',605,0);xset('window',0);
--->xbasc(10);titlepage(['New Diagram edition';' '],10)
+-->clf(10);titlepage(['New Diagram edition';' '],10)
  -2,0,450,-1,'execstr(Edit_0(1))'//xclick
  1//tk_choose
 -->xset('window',1);xset('wpos',0,489);xset('window',0);
--->xbasc(10);titlepage(['Selection of the INPUT/OUTPUT';'palette';'to get some blocks'],10)
+-->clf(10);titlepage(['Selection of the INPUT/OUTPUT';'palette';'to get some blocks'],10)
  -2,0,450,-1,'execstr(Edit_0(5))'//xclick
  0,173.40222,36.077753,1,'void'//xclick
  191.87817,421.51899,-1//xgemouse
@@ -241,7 +241,7 @@
  149.23858,166.32911,-1//xgemouse
  150.25381,166.32911,-1//xgemouse
  150.25381,166.32911,0//xgemouse
--->xbasc(10);titlepage(['Block connection using';'Link menu';'and Align'],10)
+-->clf(10);titlepage(['Block connection using';'Link menu';'and Align'],10)
  -2,0,450,-1,'execstr(Edit_0(8))'//xclick
  0,170.55838,113.92405,0,'void'//xclick
  0,170.55838,168.60759//xclick
@@ -491,7 +491,7 @@
  359.39086,195.94937,-1//xgemouse
  360.40609,194.81013,-1//xgemouse
  361.42132,194.81013,0//xgemouse
--->xbasc(10);titlepage(['Setup simulation parameter';'and first run'],10)
+-->clf(10);titlepage(['Setup simulation parameter';'and first run'],10)
  -2,0,450,-1,'execstr(Simulate_0(1))'//xclick
  100//x_mdialog
  0.0001
@@ -505,14 +505,14 @@
  0.1
  o
  -2,0,450,-1,'execstr(Simulate_0(4))'//xclick
--->xbasc(10);titlepage(['Diagram Modification ';' '],10)
+-->clf(10);titlepage(['Diagram Modification ';' '],10)
  -2,0,450,-1,'execstr(Edit_0(10))'//xclick
  0,271.06599,95.696203,0,'void'//xclick
--->xbasc(10);titlepage(['Opening Linear palette ';'to get the + block'],10)
+-->clf(10);titlepage(['Opening Linear palette ';'to get the + block'],10)
  -2,0,450,-1,'execstr(Edit_0(1))'//xclick
  2//tk_choose
 -->xset('window',2);xset('wpos',585,483);xset('window',0);
--->xbasc(10);titlepage(['Updating diagram ..';' '],10)
+-->clf(10);titlepage(['Updating diagram ..';' '],10)
  -2,0,450,-1,'execstr(Edit_0(5))'//xclick
  0,196.04966,27.341772,2,'void'//xclick
  221.3198,389.62025,-1//xgemouse
@@ -614,9 +614,9 @@
  297.46193,97.974684,-1//xgemouse
  295.43147,97.974684,-1//xgemouse
  294.41624,97.974684,0//xgemouse
--->xbasc(10);titlepage(['New diagram ..';'simulation '],10)
+-->clf(10);titlepage(['New diagram ..';'simulation '],10)
  -2,0,450,-1,'execstr(Simulate_0(4))'//xclick
--->xbasc(10);titlepage(['Changing blocks aspect';'with Block.. menu'],10)
+-->clf(10);titlepage(['Changing blocks aspect';'with Block.. menu'],10)
  -2,0,450,-1,'execstr(Object_0(5))'//xclick
  0,172.58883,87.721519,0,'void'//xclick
  15//getcolor

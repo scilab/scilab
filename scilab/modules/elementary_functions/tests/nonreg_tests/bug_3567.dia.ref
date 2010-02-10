@@ -52,7 +52,7 @@ if or(ref_indices_3 <> indices_3) then bugmes();quit;end
 if or(ref_values <> values_4) then bugmes();quit;end
 if or(ref_indices <> indices_4) then bugmes();quit;end
 [values_gsort,indices_gsort] = gsort(c);
-[values_sort,indices_sort] = sort(c);
+[values_sort,indices_sort] = gsort(c);
 if or(values_gsort <> values_sort) then bugmes();quit;end
 if or(indices_gsort <> indices_sort) then bugmes();quit;end
 x = [3,1,5];

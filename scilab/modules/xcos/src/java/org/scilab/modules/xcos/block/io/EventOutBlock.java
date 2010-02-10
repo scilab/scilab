@@ -41,7 +41,6 @@ public final class EventOutBlock extends ContextUpdate {
 	 */
 	protected EventOutBlock(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 

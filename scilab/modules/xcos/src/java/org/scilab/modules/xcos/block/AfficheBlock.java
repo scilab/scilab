@@ -39,7 +39,6 @@ public final class AfficheBlock extends BasicBlock {
 	 */
 	protected AfficheBlock(String value) {
 		this();
-		setDefaultValues();
 		setValue(value);
 	}
 

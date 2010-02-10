@@ -137,8 +137,8 @@ PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
 uigetfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
 uigetfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
 uigetfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
-uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"", %t); 
-uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"", %f); 
+uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %t); 
+uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %f); 
 </programlisting>
   </refsection>
 

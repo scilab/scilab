@@ -146,7 +146,7 @@ x = linspace(a,b,n)';
 // plotando
 ye = sin(xd);
 ys = interp(xd, x, y, d);
-xbasc()
+clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="função exata@medidas experimentais (perturbação gaussiana)@spline ajustado")
 xtitle("Um spline de mínimos quadrados")

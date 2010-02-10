@@ -173,7 +173,7 @@ h=a.children
 h.data_mapping="direct";
    
 // um esboço 2D de uma matriz utilizando cores
-xbasc()
+clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
   

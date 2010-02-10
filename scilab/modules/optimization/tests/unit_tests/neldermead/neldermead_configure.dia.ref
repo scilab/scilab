@@ -144,3 +144,39 @@ computed = lasterror();
 expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
+//
+// Check -restartstep
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+// Check that -restartstep is forced to be of consistent length : 1 or n
+cmd = "nm = neldermead_configure(nm,''-restartstep'',[1 2 3]);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restartstep vector is expected to have 2 x 1 shape, but current shape is 1 x 3";
+assert_equal ( computed , expected );
+// Check that -restartstep is forced to be positive
+cmd = "nm = neldermead_configure(nm,''-restartstep'',[-1 2]'');";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restartstep vector is expected to be positive";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+//
+// Check -restarteps
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+// Check that -restarteps is forced to be a scalar double
+cmd = "nm = neldermead_configure(nm,''-restarteps'',[1 2]);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restarteps option is expected to be a scalar, but current shape is 1 x 2";
+assert_equal ( computed , expected );
+// Check that -restarteps is forced to be positive
+cmd = "nm = neldermead_configure(nm,''-restarteps'',-1);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restarteps option is expected to be positive";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);

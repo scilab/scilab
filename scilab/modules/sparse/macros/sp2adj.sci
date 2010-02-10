@@ -24,7 +24,7 @@ function [lp,ln,v]=sp2adj(A)
   if ij == [] then,
     lp=ones(n(2)+1,1);ln=[];v=[];
   else,
-    [lp,la,ln]=m6ta2lpd(ij(:,1)',ij(:,2)',N+1,N)
+    [lp,la,ln]=ta2lpd(ij(:,1)',ij(:,2)',N+1,N)
     lp=lp(:);ln=ln(:);
   end;
 endfunction

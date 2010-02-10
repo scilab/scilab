@@ -19,6 +19,7 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "FileExist.h"
+#include "getFullFilename.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
@@ -30,6 +31,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	int iType1 = 0;
 	char *pStVarOne = NULL;
 	char lib_filename[bsiz];
+	char *fullfilename = NULL;
 	int lenStVarOne = 0;
 
 	int len = 0;
@@ -106,16 +108,35 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	if ((int)strlen(pStVarOne) >= bsiz)
+	fullfilename = getFullFilename(pStVarOne);
+	if (fullfilename)
 	{
-		strncpy(lib_filename, pStVarOne, bsiz - 1);
-		lib_filename[bsiz - 1] = '\0';
+		if ((int)strlen(fullfilename) >= bsiz)
+		{
+			strncpy(lib_filename, fullfilename, bsiz - 1);
+			lib_filename[bsiz - 1] = '\0';
+		}
+		else
+		{
+			strcpy(lib_filename, fullfilename);
+		}
+
+		FREE(fullfilename);
+		fullfilename = NULL;
 	}
 	else
 	{
-		strcpy(lib_filename, pStVarOne);
+		if ((int)strlen(pStVarOne) >= bsiz)
+		{
+			strncpy(lib_filename, pStVarOne, bsiz - 1);
+			lib_filename[bsiz - 1] = '\0';
+		}
+		else
+		{
+			strcpy(lib_filename, pStVarOne);
+		}
 	}
-	
+
 	if (pStVarOne)
 	{
 		FREE(pStVarOne);

@@ -9,11 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //===========================================================
-function [y] = toolboxes(path,flag,force)
+function [y] = toolboxes(path)
 // INTERNAL macro should NOT used by users
 // toolboxes loading
 // path is a directory to explore for contribs
-// flag & force removed never managed
 //===========================================================
   global %toolboxes
   global %toolboxes_dir
@@ -30,11 +29,6 @@ function [y] = toolboxes(path,flag,force)
     path = SCI + filesep() + 'contrib';
   end
   
-  if rhs > 1 then
-    // Remove flag & force input arguments
-    warnobsolete("toolboxes", "5.3")
-  end
-
   cur_wd = pwd();
   chdir(path);
   files = listfiles('.');

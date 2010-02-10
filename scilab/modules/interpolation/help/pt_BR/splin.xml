@@ -228,7 +228,7 @@ d = splin(x, y);
 xx = linspace(a, b, m)';
 yyi = interp(xx, x, y, d);
 yye = runge(xx);
-xbasc()
+clf()
 plot2d(xx, [yyi yye], style=[2 5], leg="interpolação por@função exata")
 plot2d(x, y, -9)
 xtitle("Intepolação da função de Runge")
@@ -243,7 +243,7 @@ xx = linspace(a,b,m)';
 yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
 yf = interp(xx, x, y, splin(x,y,"fast"));
 ym = interp(xx, x, y, splin(x,y,"monotone"));
-xbasc()
+clf()
 plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
        leg="fast@monotone@spline not a knot")
 plot2d(x,y,-9, strf="000")  // para mostrar pontos de interpolação

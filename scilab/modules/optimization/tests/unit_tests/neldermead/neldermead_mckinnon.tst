@@ -416,4 +416,91 @@ restartnb = neldermead_get ( nm , "-restartnb" );
 assert_equal ( restartnb , 3 );
 nm = neldermead_destroy(nm);
 
+//
+// Test with auto-restart, low precision on simplex size and O'Neill restart method.
+// Uses oriented simplex for restart.
+// There is 1 restart and final status is "tolsize".
+// Configure the restartstep option: scalar case
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-maxiter",300);
+nm = neldermead_configure(nm,"-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","oneill");
+nm = neldermead_configure(nm,"-restartstep", 0.5 );
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [0.0;-0.5], 1e-1 );
+iterations = neldermead_get(nm,"-iterations");
+assert_equal ( ( iterations > 40 ) , %t );
+restartnb = neldermead_get ( nm , "-restartnb" );
+assert_equal ( restartnb , 1 );
+nm = neldermead_destroy(nm);
+
+//
+// Test with auto-restart, low precision on simplex size and O'Neill restart method.
+// Uses oriented simplex for restart.
+// There is 1 restart and final status is "tolsize".
+// Configure the restartstep option: column vector case
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-maxiter",300);
+nm = neldermead_configure(nm,"-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","oneill");
+nm = neldermead_configure(nm,"-restartstep", [0.5 0.1]');
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [0.0;-0.5], 1e-1 );
+iterations = neldermead_get(nm,"-iterations");
+assert_equal ( ( iterations > 40 ) , %t );
+restartnb = neldermead_get ( nm , "-restartnb" );
+assert_equal ( restartnb , 1 );
+nm = neldermead_destroy(nm);
+
+//
+// Test with auto-restart, low precision on simplex size and O'Neill restart method.
+// Uses oriented simplex for restart.
+// There is 1 restart and final status is "tolsize".
+// Configure the restarteps option
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",mckinnon3);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-maxiter",300);
+nm = neldermead_configure(nm,"-maxfunevals",500);
+nm = neldermead_configure(nm,"-simplex0method","given");
+nm = neldermead_configure(nm,"-coords0",coords0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-tolsimplexizemethod",%t);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
+nm = neldermead_configure(nm,"-restartflag",%t);
+nm = neldermead_configure(nm,"-restartdetection","oneill");
+nm = neldermead_configure(nm,"-restarteps", 0.1);
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [0.0;-0.5], 1e-1 );
+iterations = neldermead_get(nm,"-iterations");
+assert_equal ( ( iterations > 40 ) , %t );
+restartnb = neldermead_get ( nm , "-restartnb" );
+assert_equal ( restartnb , 1 );
+nm = neldermead_destroy(nm);
+
 

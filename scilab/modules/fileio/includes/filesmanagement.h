@@ -174,21 +174,21 @@ FILEIO_IMPEXP int GetIdFromFilename(char *filename);
 * @param[out] size of returned array
 * @return Array of Id
 */
-FILEIO_IMPEXP int *GetFilesIdUsed(int *sizeArrayReturned);
+FILEIO_IMPEXP double *GetFilesIdUsed(int *sizeArrayReturned);
 
 /**
 * Get Ids opened in Scilab
 * @param[out] size of returned array
 * @return Array of Id
 */
-FILEIO_IMPEXP int *GetSwapsUsed(int *sizeArrayReturned);
+FILEIO_IMPEXP double *GetSwapsUsed(int *sizeArrayReturned);
 
 /**
 * Get Modes used in Scilab
 * @param[out] size of returned array
 * @return Modes associated to Id
 */
-FILEIO_IMPEXP int *GetModesUsed(int *sizeArrayReturned);
+FILEIO_IMPEXP double *GetModesUsed(int *sizeArrayReturned);
 
 /**
 * Get Types used in Scilab

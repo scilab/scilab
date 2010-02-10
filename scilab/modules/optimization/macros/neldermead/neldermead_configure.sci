@@ -101,9 +101,32 @@ function this = neldermead_configure (this,key,value)
     this.restartmax = value;
   case "-restarteps" then
     assert_typereal ( value , "value" , 3 );
+    steprows = size ( value , "r" );
+    stepcols = size ( value , "c" );
+    if ( steprows * stepcols <> 1 ) then
+      errmsg = msprintf(gettext("%s: The restarteps option is expected to be a scalar, but current shape is %d x %d"),"neldermead_configure",steprows,stepcols);
+      error(errmsg);
+    end
+    if ( or( value <= 0 ) ) then
+      errmsg = msprintf(gettext("%s: The restarteps option is expected to be positive"),"neldermead_configure");
+      error(errmsg);
+    end
     this.restarteps = value;
   case "-restartstep" then
     assert_typereal ( value , "value" , 3 );
+    n = optimbase_cget ( this.optbase , "-numberofvariables" );
+    steprows = size ( value , "r" );
+    stepcols = size ( value , "c" );
+    if ( steprows * stepcols <> 1 ) then
+      if ( ( steprows <> n ) | ( stepcols <> 1 ) ) then
+        errmsg = msprintf(gettext("%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d"),"neldermead_configure",n,1,steprows,stepcols);
+        error(errmsg);
+      end
+    end
+    if ( or( value <= 0 ) ) then
+      errmsg = msprintf(gettext("%s: The restartstep vector is expected to be positive"),"neldermead_configure");
+      error(errmsg);
+    end
     this.restartstep = value;
   case "-kelleystagnationflag" then
     assert_typeboolean ( value , "value" , 3 )

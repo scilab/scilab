@@ -480,10 +480,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_NumTokens.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_part.c"
 				>
 			</File>

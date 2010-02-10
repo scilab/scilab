@@ -54,7 +54,7 @@ current_driver=driver()</synopsis>
     <para>Esta função seleciona um driver gráfico, ou, sem argumentos, retorna
     o nome do driver gráfico corrente. Na maioria das vezes, o usuário pode
     ignorar esta função e modificar o driver por uma chamada a funções de alto
-    nível como <literal>xbasc</literal>. O driver selecionado pode ser um dos
+    nível como <literal>clf</literal>. O driver selecionado pode ser um dos
     seguintes:</para>
 
     <variablelist>
@@ -129,7 +129,7 @@ convert -delay 10  img*.gif anim.gif
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="xbasc">xbasc</link></member>
+      <member><link linkend="clf">clf</link></member>
     </simplelist>
   </refsection>
 

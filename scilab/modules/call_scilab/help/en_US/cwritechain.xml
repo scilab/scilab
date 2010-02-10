@@ -123,7 +123,7 @@ SendScilabJob("disp(A);"); /* Display A */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,<link linkend="String_management_reading_API">API_Scilab: String reading</link>,  <link linkend="String_management_writing_API">API_Scilab: String writing</link>, 
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="String_management_reading_API">API_Scilab: String reading</link>,  <link linkend="String_management_writing_API">API_Scilab: String writing</link>, 
         <link linkend="SendScilabJob">SendScilabJob</link>
         <link linkend="StartScilab">StartScilab</link>
         <link linkend="creadchain">creadchains</link>

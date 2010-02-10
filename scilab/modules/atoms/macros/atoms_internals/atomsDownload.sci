@@ -11,21 +11,9 @@
 
 function atomsDownload(url_in,file_out,md5sum)
 	
-	// Operating system detection
+	// Operating system detection + Architecture detection
 	// =========================================================================
-	
-	if ~MSDOS then
-		OSNAME  = unix_g("uname");
-		MACOSX  = (strcmpi(OSNAME,"darwin") == 0);
-		LINUX   = (strcmpi(OSNAME,"linux")  == 0);
-		SOLARIS = (strcmpi(OSNAME,"sunos")  == 0);
-		BSD     = (regexp(OSNAME ,"/BSD$/") <> []);
-	else
-		MACOSX  = %F;
-		LINUX   = %F;
-		SOLARIS = %F;
-		BSD     = %F;
-	end
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Check input parameters number
 	// =========================================================================
@@ -92,7 +80,7 @@ function atomsDownload(url_in,file_out,md5sum)
 	elseif atomsGetConfig("downloadTool") == "curl" then
 		CURL=%T;
 	
-	elseif atomsGetConfig("downloadTool") == "httpdownload" then
+	elseif atomsGetConfig("downloadTool") == "httpdownload" & MSDOS then
 		HTTPDOWNLOAD=%T;
 	
 	else
@@ -200,7 +188,7 @@ function atomsDownload(url_in,file_out,md5sum)
 		
 		// Second try with httpdownload
 		
-		if HTTPDOWNLOAD | stat<>0 then
+		if ( HTTPDOWNLOAD | stat<>0 ) & MSDOS then
 			
 			imode = ilib_verbose();
 			ilib_verbose(0) ;
@@ -231,7 +219,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			url_pattern = "file://";
 		end
 		
-		file_in = pathconvert(part(url_in,length(url_pattern):length(url_in)),%F);
+		file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 		
 		if copyfile(file_in,file_out) <> 1 then
 			mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");

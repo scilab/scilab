@@ -65,5 +65,4 @@
 <PRIMITIVE gatewayId="21" primitiveId="28" primitiveName="strspn" />
 <PRIMITIVE gatewayId="21" primitiveId="29" primitiveName="strtod" />
 <PRIMITIVE gatewayId="21" primitiveId="30" primitiveName="regexp" />
-<PRIMITIVE gatewayId="21" primitiveId="31" primitiveName="NumTokens" />
 </GATEWAY>

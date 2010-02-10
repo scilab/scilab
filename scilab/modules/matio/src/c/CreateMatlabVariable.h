@@ -109,4 +109,14 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable);
  */
 int CreateDoubleVariable(int stkPos, matvar_t *matVariable);
 
+/*
+ * Create a Scilab Boolean variable on stack from a Matlab variable
+ * 
+ * @param stkPos position on the stack
+ * @param matVariable Matlab variable (See MATIO library)
+ *
+ * @return TRUE if the variable has been written without problem
+ */
+int CreateBooleanVariable(int stkPos, matvar_t *matVariable);
+
 #endif /* !__CREATEMATLABVARIABLE_H__ */

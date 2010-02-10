@@ -58,9 +58,6 @@ c            see exec (intexec.f)
 		else if (RECURSION_CALL_EXECSTR .eq. ir) then
 c            see execstr (intexecstr.f)
 			k = GW_FUNCTIONS_ID
-		else if (RECURSION_CALL_GETF .eq. ir) then
-c            see getf (intgetf.f)
-			k = GW_FUNCTIONS_ID
 		else if (RECURSION_CALL_SAVE .eq. ir) then
 c            see save (newsave.f)
 			k = GW_IO_ID

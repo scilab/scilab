@@ -24,6 +24,9 @@ public final class GeomAlgos {
 	public static final int RECTANGLE_NB_CORNERS = 4;
 	private static final int LAST_INDEX = 3;
 	
+	/** OpenGl maximum representable number (2^32) */
+	private static final float BIGGEST = 4294967296f;
+	
 	/**
 	 * Default constructor
 	 */
@@ -172,4 +175,38 @@ public final class GeomAlgos {
 				 || Double.isInfinite(zCoord) || Double.isNaN(zCoord));
 	}
 	
+	/**
+	 * Check if the 3 component of a 3D vector are not NaN.
+	 * @param xCoord X coordinate of the vector
+	 * @param yCoord Y coordinate of the vector
+	 * @param zCoord Z coordinate of the vector
+	 * @return true if the vector doesn't content any NaN value, false otherwise
+	 */
+	public static boolean isVector3DRepresentable(double xCoord, double yCoord, double zCoord) {
+		return !(Double.isNaN(xCoord) || Double.isNaN(yCoord) || Double.isNaN(zCoord));
+	}
+	
+	/**
+	 * Transform a double value to a representable OpenGl value
+	 * Because,
+	 * The maximum representable magnitude of a floating-point number
+	 * used to represent positional, normal, or texture coordinates must
+	 * be at least 2^32 
+	 * in :
+	 * http://www.opengl.org/registry/doc/glspec31.20090528.pdf
+	 * Chapter 2.1.1 Floating-Point Computation 
+	 * @param value the value to represents  
+	 * @return the representable OpenGl value
+	 */
+	public static float glRepresentable(double value) {
+		float f = (float) value;
+		if (Float.isInfinite(f)) {
+			if (f > 0) {
+				f = BIGGEST;
+			} else {
+				f = -BIGGEST;
+			}
+		}
+		return f;
+	}
 }

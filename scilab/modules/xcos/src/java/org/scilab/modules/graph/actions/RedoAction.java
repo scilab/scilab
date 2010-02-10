@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,27 +18,86 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.ActionConstraint;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxUndoManager;
+
 /**
  * Redo manager
- * @author Bruno JOFFRET
  */
 public class RedoAction extends DefaultAction {
+	public static final String NAME = ScilabGraphMessages.REDO;
+	public static final String SMALL_ICON = "edit-redo.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_Y;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * Manage enable modification
+	 */
+	private final class RedoConstraint extends ActionConstraint {
+		private final ScilabGraph scilabGraph;
+		
+		/**
+		 * Default constructor
+		 * @param scilabGraph the graph to work on
+		 */
+		public RedoConstraint(ScilabGraph scilabGraph) {
+			this.scilabGraph = scilabGraph;
+		}
 
+		/**
+		 * @param action
+		 *            the current action
+		 * @param scilabGraph
+		 *            the associated graph
+		 * @see org.scilab.modules.graph.actions.base.ActionConstraint#install(org.scilab.modules.graph.actions.base.DefaultAction,
+		 *      org.scilab.modules.graph.ScilabGraph)
+		 */
+		@Override
+		public void install(DefaultAction action, ScilabGraph scilabGraph) {
+			super.install(action, scilabGraph);
+			
+			registerAsListener(scilabGraph.getUndoManager());
+		}
+		
+		/**
+		 * @param manager the associated UndoManager 
+		 */
+		public void registerAsListener(mxUndoManager manager) {
+			manager.addListener(mxEvent.UNDO, this);
+			manager.addListener(mxEvent.REDO, this);
+			manager.addListener(mxEvent.ADD, this);
+			manager.addListener(mxEvent.CLEAR, this);
+		}
+		
+		/**
+		 * To be checked
+		 * @param sender the event sender
+		 * @param evt the current event
+		 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+		 */
+		public void invoke(Object sender, mxEventObject evt) {
+			boolean canRedo = scilabGraph.getUndoManager().canRedo();
+			super.setEnabled(canRedo);
+		}
+	}
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public RedoAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.REDO, scilabGraph);
+		super(scilabGraph);
+		
+		RedoConstraint c = new RedoConstraint(scilabGraph);
+		c.install(this, scilabGraph);
 	}
 
 	/**
@@ -46,7 +106,7 @@ public class RedoAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton redoButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.REDO, "edit-redo.png", new RedoAction(scilabGraph));
+		return createButton(scilabGraph, RedoAction.class);
 	}
 
 	/**
@@ -55,19 +115,21 @@ public class RedoAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem redoMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.REDO, null, new RedoAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, RedoAction.class);
 	}
 
 	/**
 	 * Action associated
-	 * @param e the event
+	 * 
+	 * @param e
+	 *            the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		getGraph(e).redo();
+		final ScilabGraph graph = getGraph(e);
+
+		graph.removeUndoHandler();
+		graph.getUndoManager().redo();
+		graph.registerUndoHandler();
 	}
-
-
-
 }

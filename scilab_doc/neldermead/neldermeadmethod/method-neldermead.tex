@@ -420,9 +420,6 @@ The algorithm is presented in figure \ref{algo-factorialtest}.
 \STATE $istorestart = FALSE$
 \FOR{$i = 1$ to $n$} 
   \STATE $\delta = step ( i ) * \epsilon$
-  \IF { $\delta == 0.0$ }
-    \STATE $\delta = \epsilon$
-  \ENDIF
   \STATE $x ( i ) = x ( i ) + \delta$
   \STATE $fv = f ( x ) $
   \IF { $ fv < fopt $}
@@ -442,8 +439,7 @@ The algorithm is presented in figure \ref{algo-factorialtest}.
 \label{algo-factorialtest}
 \end{figure}
 
-O'Neill's factorial test requires a large number of function evaluations, namely 
-$2^n$ function evaluations. In O'Neill's implementation, the parameter
+O'Neill's factorial test requires $2n$ function evaluations. In O'Neill's implementation, the parameter
 $\epsilon$ is set to the constant value $1.e-3$.
 In Scilab's implementation, this parameter can be customized, 
 thanks to the \scivar{-restarteps} option. Its default value is \scivar{\%eps},

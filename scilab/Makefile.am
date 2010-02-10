@@ -97,11 +97,11 @@ all-local: $(TARGETS_ALL)
 rootdir=$(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
-$(top_srcdir)/etc/modules.xml \
-$(top_srcdir)/etc/classpath.xml \
-$(top_srcdir)/etc/librarypath.xml \
 $(top_srcdir)/etc/toolboxes.xml \
-$(top_srcdir)/etc/jvm_options.xml
+$(top_builddir)/etc/jvm_options.xml \
+$(top_builddir)/etc/modules.xml \
+$(top_builddir)/etc/classpath.xml \
+$(top_builddir)/etc/librarypath.xml
 
 
 infofilesdir=$(pkgdatadir)/

@@ -64,17 +64,21 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		// We need to use GL_LINE_STRIP instead of GL_LINES
 		boolean previousValueIsNan = true;
 		for (int i = 0; i < nbLines; i++) {
-			if (GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
+			if (GeomAlgos.isVector3DRepresentable(xCoords[i], yCoords[i], zCoords[i])) {
 				if (previousValueIsNan) {
 					// new line sequence
 					// check if there are at least two consecutive valid values.
-					if (i < nbLines - 1 && GeomAlgos.isVector3DFinite(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1])) {
+					if (i < nbLines - 1 && GeomAlgos.isVector3DRepresentable(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1])) {
 						gl.glBegin(GL.GL_LINE_STRIP);
 						previousValueIsNan = false;
 					}
 				}
-				gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
-				
+
+				gl.glVertex3f(
+						GeomAlgos.glRepresentable(xCoords[i]),
+						GeomAlgos.glRepresentable(yCoords[i]),
+						GeomAlgos.glRepresentable(zCoords[i]));
+        
 			} else if (!previousValueIsNan) {
 				// stop recording
 				// end the last polyline

@@ -28,7 +28,7 @@ function Window_()
     edited=or(params<>scs_m.props)
     
     if or(scs_m.props.wpar<>params.wpar) then
-      xset('alufunction',3);xbasc();xselect();xset('alufunction',6);
+      xset('alufunction',3);clf();xselect();xset('alufunction',6);
       window_set_size()
 
       scs_m.props.wpar=params.wpar

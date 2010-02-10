@@ -72,11 +72,4 @@ ssprint(syslin('d',a,b,c,d))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
-
-    <simplelist type="inline">
-      <member><link linkend="texprint">texprint</link></member>
-    </simplelist>
-  </refsection>
 </refentry>

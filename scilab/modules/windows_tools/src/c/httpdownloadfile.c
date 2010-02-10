@@ -15,16 +15,33 @@
 #define _WIN32_IE 0x0501
 #include <windows.h>
 #include <wininet.h>
+#include <urlmon.h>
 #include "MALLOC.h"
 #include "httpdownloadfile.h"
 /* http://msdn2.microsoft.com/en-us/library/aa385098.aspx */
+/* http://msdn.microsoft.com/en-us/library/ms775123(VS.85).aspx */
 /*--------------------------------------------------------------------------*/
 #define MO 0x100000 /* Read 1 Mo by 1Mo. */
 #define OPENURL_MODE INTERNET_OPEN_TYPE_PRECONFIG
 static BOOL isValidURL(char * szURL);
 /*--------------------------------------------------------------------------*/
 static HINSTANCE WinINETDll = NULL;
+static HINSTANCE UrlmonDll = NULL;
 
+typedef HRESULT (WINAPI * URLDownloadToFilePROC)(LPUNKNOWN pCaller,
+												LPCTSTR szURL,
+												LPCTSTR szFileName,
+												DWORD dwReserved,
+												LPBINDSTATUSCALLBACK lpfnCB);
+
+static HRESULT dynlib_URLDownloadToFile(LPUNKNOWN pCaller,
+										LPCTSTR szURL,
+										LPCTSTR szFileName,
+										DWORD dwReserved,
+										LPBINDSTATUSCALLBACK lpfnCB);
+
+static httpdownloadfile_error_code urlDownloadFile(char * szURL,char * szSaveFilePath);
+/*--------------------------------------------------------------------------*/
 typedef  HINTERNET (WINAPI * InternetOpenUrlPROC) (HINTERNET hInternet,
 												   LPCTSTR lpszUrl,
 												   LPCTSTR lpszHeaders,
@@ -79,11 +96,25 @@ static BOOL dynlib_InternetReadFile(HINTERNET hFile,
 /*--------------------------------------------------------------------------*/
 void httpdownload(char * szURL,char * szSaveFilePath, double *ierr)
 {
-	*ierr = httpDownloadFile(szURL, szSaveFilePath);
+	*ierr = urlDownloadFile(szURL, szSaveFilePath);
+	if (*ierr != HTTP_DOWNLOAD_ERROR_OK)
+	{
+		// fails to download by standard way
+		// we try by another method
+		// last chance ...
+		*ierr = httpDownloadFile(szURL, szSaveFilePath);
+	}
+
 	if (WinINETDll)
 	{
 		FreeLibrary(WinINETDll);
 		WinINETDll = NULL;
+	}
+
+	if (UrlmonDll)
+	{
+		FreeLibrary(UrlmonDll);
+		UrlmonDll = NULL;
 	}
 }
 /*--------------------------------------------------------------------------*/
@@ -210,6 +241,32 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 	else return HTTP_DOWNLOAD_ERROR_INVALID_URL;
 }
 /*--------------------------------------------------------------------------*/
+httpdownloadfile_error_code urlDownloadFile(char * szURL,char * szSaveFilePath)
+{
+	HRESULT hr = dynlib_URLDownloadToFile(NULL, szURL, szSaveFilePath, 0, NULL);
+	switch (hr)
+	{
+		case S_OK:
+		{
+			return HTTP_DOWNLOAD_ERROR_OK;
+		}
+		break;
+
+		case E_OUTOFMEMORY:
+		{
+			return HTTP_DOWNLOAD_OUTOFMEMORY;
+		}
+		break;
+
+		case INET_E_DOWNLOAD_FAILURE: default:
+		{
+			return HTTP_DOWNLOAD_FAILURE;
+		}
+		break;
+	}
+	return HTTP_DOWNLOAD_FAILURE;
+}
+/*--------------------------------------------------------------------------*/
 static BOOL isValidURL(char *szURL)
 {
 	HINTERNET hiConnex = NULL;
@@ -229,11 +286,6 @@ static BOOL isValidURL(char *szURL)
 		dynlib_InternetCloseHandle(hiConnex);
 		return FALSE;
 	}
-	if(!(hiDownload = dynlib_InternetOpenUrl(hiConnex,szURL,szHeader,lstrlen(szHeader),INTERNET_FLAG_DONT_CACHE | INTERNET_FLAG_RELOAD | INTERNET_FLAG_PRAGMA_NOCACHE,0)))
-	{
-		dynlib_InternetCloseHandle(hiConnex);
-		return FALSE;
-	}
 
 	dynlib_HttpQueryInfo(hiDownload, HTTP_QUERY_STATUS_CODE|HTTP_QUERY_FLAG_NUMBER, &dwStatus, &dwStatusSize, &dwIndex);
 	dynlib_InternetCloseHandle(hiConnex);
@@ -242,6 +294,24 @@ static BOOL isValidURL(char *szURL)
 	/* HTTP OK */
 	if (dwStatus == HTTP_STATUS_OK )  return TRUE; 	
 	return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+static HRESULT dynlib_URLDownloadToFile(LPUNKNOWN pCaller,
+										LPCTSTR szURL,
+										LPCTSTR szFileName,
+										DWORD dwReserved,
+										LPBINDSTATUSCALLBACK lpfnCB)
+{
+	if (UrlmonDll == NULL) UrlmonDll = LoadLibrary ("urlmon.dll"); 
+	if (UrlmonDll)
+	{
+		URLDownloadToFilePROC dllURLDownloadToFile = (URLDownloadToFilePROC)GetProcAddress(UrlmonDll, "URLDownloadToFileA");
+		if (dllURLDownloadToFile)
+		{
+			return (HRESULT)(dllURLDownloadToFile)(pCaller, szURL, szFileName, dwReserved, lpfnCB);
+		}
+	}
+	return S_FALSE;
 }
 /*--------------------------------------------------------------------------*/
 HINTERNET dynlib_InternetOpenUrl(HINTERNET hInternet,

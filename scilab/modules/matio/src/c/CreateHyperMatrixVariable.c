@@ -55,6 +55,10 @@ int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int 
       integerMatrix.n = nbCol;
       CreateVarFromPtr(number + 2, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &nbRow, &nbCol, &integerMatrix);
     }
+  else if (strcmp(type, MATRIX_OF_BOOLEAN_DATATYPE) == 0)
+    {
+      CreateVarFromPtr(number + 2, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &realdata);
+    }
   else
     {
        if (iscomplex == 0)

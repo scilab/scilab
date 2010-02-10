@@ -96,7 +96,7 @@ alphabet=["a" "b" "c" "d" "e" "f" "g" ..
           "h" "i" "j" "k" "l" "m" "n" ..
           "o" "p" "q" "r" "s" "t" "u" ..
           "v" "w" "x" "y" "z"];
-xbasc()
+clf()
 plot2d([0;1],[0;2],0)
 xstring(0.1,1.8,alphabet)     // alfabeto
 xstring(0.1,1.6,alphabet,0,1) // alfabeto em uma caixa

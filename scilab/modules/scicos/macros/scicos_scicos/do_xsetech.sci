@@ -20,7 +20,7 @@
 //
 
 function do_xsetech(wdm)
-xset('alufunction',3);xbasc();xselect();
+xset('alufunction',3);clf();xselect();
 
 f_xsetech(wdm)
 

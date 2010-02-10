@@ -139,7 +139,7 @@ for(j = 0 ; j < rowB_ ; j++)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,<link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>, <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>,  <link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>, <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>,  <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritebmat">cwritebmat</link>, <link
       linkend="BooleanManagement_callscilab">Boolean
