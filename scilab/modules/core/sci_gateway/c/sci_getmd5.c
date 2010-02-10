@@ -152,7 +152,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,2);
+				Scierror(999,_("%s: Wrong value for input argument #%d: \"%s\" expected.\n"),fname,2,"string");
 			}
 		}
 		else
