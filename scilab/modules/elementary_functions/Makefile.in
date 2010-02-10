@@ -212,6 +212,7 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-pchim.lo
 am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-wpade.lo \
+	libscielementary_functions_la-util.lo \
 	libscielementary_functions_la-wcopy.lo \
 	libscielementary_functions_la-dgefa.lo \
 	libscielementary_functions_la-dgbfa.lo \
@@ -225,8 +226,7 @@ am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-wgeco.lo \
 	libscielementary_functions_la-wgefa.lo \
 	libscielementary_functions_la-wgesl.lo \
-	libscielementary_functions_la-dpofa.lo \
-	libscielementary_functions_la-util.lo
+	libscielementary_functions_la-dpofa.lo
 am__objects_3 = libscielementary_functions_la-balbak.lo
 am__objects_4 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
@@ -871,7 +871,7 @@ src/fortran/slatec/pchim.f
 
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
-	src/fortran/linpack/util.f \
+	src/fortran/linpack/util.f \
 	src/fortran/linpack/wcopy.f \
 	src/fortran/linpack/dgefa.f \
 	src/fortran/linpack/dgbfa.f \
@@ -885,8 +885,7 @@ LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
 	src/fortran/linpack/wgesl.f \
-	src/fortran/linpack/dpofa.f \
-	src/fortran/linpack/util.f
+	src/fortran/linpack/dpofa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -2186,6 +2185,9 @@ libscielementary_functions_la-dgesl.lo: src/fortran/linpack/dgesl.f
 libscielementary_functions_la-wpade.lo: src/fortran/linpack/wpade.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wpade.lo `test -f 'src/fortran/linpack/wpade.f' || echo '$(srcdir)/'`src/fortran/linpack/wpade.f
 
+libscielementary_functions_la-util.lo: src/fortran/linpack/util.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
+
 libscielementary_functions_la-wcopy.lo: src/fortran/linpack/wcopy.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wcopy.lo `test -f 'src/fortran/linpack/wcopy.f' || echo '$(srcdir)/'`src/fortran/linpack/wcopy.f
 
@@ -2227,9 +2229,6 @@ libscielementary_functions_la-wgesl.lo: src/fortran/linpack/wgesl.f
 
 libscielementary_functions_la-dpofa.lo: src/fortran/linpack/dpofa.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dpofa.lo `test -f 'src/fortran/linpack/dpofa.f' || echo '$(srcdir)/'`src/fortran/linpack/dpofa.f
-
-libscielementary_functions_la-util.lo: src/fortran/linpack/util.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
 
 libscielementary_functions_la-balbak.lo: src/fortran/eispack/balbak.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f

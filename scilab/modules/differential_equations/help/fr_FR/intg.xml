@@ -189,6 +189,6 @@ abs(exact-I)
     <title>Fonctions Utilisées</title>
 
     <para>Les programmes correspondants (dqag0.f et dqags.f de quadpack) se
-    trouvent dabs le repertoire routines/integ :</para>
+	    trouvent dabs le repertoire SCI/modules/differential_equations/src/fortran.</para>
   </refsection>
 </refentry>
