@@ -1,4 +1,4 @@
-﻿                Changes between version 5.2.0 and 5.2.1 of Scilab
+                Changes between version 5.2.0 and 5.2.1 of Scilab
                 =================================================
 
 
@@ -280,6 +280,8 @@ Bug fixes:
 * bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
 
 * bug 6558 fixed - Infinite value was not plotted even if it was possible.
+
+* bug 6586 fixed - getmd5() crashed if the file (1st input argument) didn't exist
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
