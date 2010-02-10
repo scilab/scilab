@@ -41,7 +41,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
 
 libscigraphic_objects_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \

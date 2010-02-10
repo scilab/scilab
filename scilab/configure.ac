@@ -1543,6 +1543,7 @@ modules/string/Makefile
 modules/time/Makefile
 modules/graphics/Makefile
 modules/graphic_export/Makefile
+modules/graphic_objects/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
