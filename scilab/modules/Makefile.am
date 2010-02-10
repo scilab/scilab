@@ -82,7 +82,8 @@ matio \
 atoms \
 hdf5 \
 xcos \
-xpad
+xpad \
+ui_data
 
 #umfpack
 
@@ -129,7 +130,8 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la
+	$(top_builddir)/modules/xpad/libscixpad.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -143,7 +145,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la
+	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la
 
 if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
