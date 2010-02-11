@@ -22,5 +22,5 @@ end
 // Add help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
-	add_module_help_chapter("boolean");
+	add_module_help_chapter("cacsd");
 end

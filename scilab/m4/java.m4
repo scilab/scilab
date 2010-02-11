@@ -815,7 +815,8 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 #	jar_resolved=`ls $jar 2>/dev/null`
 #	echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jar_resolved=`ls -r $jar 2>/dev/null`
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
           AC_JAVA_TRY_COMPILE([import $2;], , "no", [
@@ -828,7 +829,13 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 			
           ])
         fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then 
+        break
+      fi
       done
+	  # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi

@@ -30,7 +30,7 @@
 	<property name="src.dir"  location="src/java/" />
 
 	<!-- Where we can find the test sources -->
-	<property name="src.test.dir"  location="tests/unit_tests/" />
+	<property name="src.test.dir"  location="tests/java/" />
 	
 	<!-- Check style definitions -->
 	<property name = "checkstyle.config.file"      value = "${base.dir}/checkstyle/scilab_checkstyle_convention.xml" />

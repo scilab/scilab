@@ -146,7 +146,7 @@ src/fortran/slatec/pchim.f
 
 LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
-	src/fortran/linpack/util.f \
+	src/fortran/linpack/util.f \
 	src/fortran/linpack/wcopy.f \
 	src/fortran/linpack/dgefa.f \
 	src/fortran/linpack/dgbfa.f \
@@ -160,8 +160,7 @@ LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
 	src/fortran/linpack/wgesl.f \
-	src/fortran/linpack/dpofa.f \
-	src/fortran/linpack/util.f
+	src/fortran/linpack/dpofa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -283,7 +282,6 @@ src/fortran/ortran.f \
 src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
-src/fortran/wsort.f \
 src/fortran/wsqrt.f \
 src/fortran/rat.f \
 src/fortran/ribesl.f \
@@ -341,7 +339,6 @@ sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
 sci_gateway/c/sci_chinesehat.c \
-sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_isequal.f \
@@ -386,8 +383,7 @@ sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_chinesehat.f \
-sci_gateway/fortran/sci_f_exp.f \
-sci_gateway/fortran/sci_f_sort.f 
+sci_gateway/fortran/sci_f_exp.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

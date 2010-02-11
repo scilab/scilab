@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,41 +37,23 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Setup dialog dor Xcos
- * @author Allan SIMON
+ * Setup dialog for Xcos
  */
-public class SetupAction extends DefaultAction {
+public class SetupAction extends SimulationNotRunningAction {
+	public static final String NAME = XcosMessages.SETUP;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
-	private static final long serialVersionUID = 1L;
+	private static final DecimalFormatSymbols FORMAT_SYMBOL = new DecimalFormatSymbols();
+	private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00;0", FORMAT_SYMBOL);
 	
-	private boolean windowAlreadyExist;
-	private JFrame mainFrame;
-	private XcosDiagram diagram;
-	private JFormattedTextField integration;
-	private JFormattedTextField rts;
-	private JFormattedTextField integrator;
-	private JFormattedTextField integratorRel;
-	private JFormattedTextField toleranceOnTime;
-	private JFormattedTextField maxIntegrationTime;
-	private Choice   solverChoice;
-	private JSpinner maxStepSize;
-
-	private static final DecimalFormatSymbols formatSymbol = new DecimalFormatSymbols();
-	private static final DecimalFormat currentFormat = new DecimalFormat("0.0####E00;0", formatSymbol);
-	static {
-        	formatSymbol.setDecimalSeparator('.');
-        	currentFormat.setDecimalFormatSymbols(formatSymbol);
-        	currentFormat.setParseIntegerOnly(false);
-        	currentFormat.setParseBigDecimal(true);
-	}
-	
-	private static final InputVerifier validatePositiveDouble = new InputVerifier() {
+	private static final InputVerifier VALIDATE_POSITIVE_DOUBLE = new InputVerifier() {
 	    public boolean verify(javax.swing.JComponent arg0) {
 		boolean ret = false;
 		JFormattedTextField textField = (JFormattedTextField) arg0;
@@ -87,12 +70,31 @@ public class SetupAction extends DefaultAction {
 	    };
 	};
 	
+	static {
+    	FORMAT_SYMBOL.setDecimalSeparator('.');
+    	CURRENT_FORMAT.setDecimalFormatSymbols(FORMAT_SYMBOL);
+    	CURRENT_FORMAT.setParseIntegerOnly(false);
+    	CURRENT_FORMAT.setParseBigDecimal(true);
+	}
+	
+	private boolean windowAlreadyExist;
+	private JFrame mainFrame;
+	private XcosDiagram diagram;
+	private JFormattedTextField integration;
+	private JFormattedTextField rts;
+	private JFormattedTextField integrator;
+	private JFormattedTextField integratorRel;
+	private JFormattedTextField toleranceOnTime;
+	private JFormattedTextField maxIntegrationTime;
+	private Choice   solverChoice;
+	private JSpinner maxStepSize;
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph Associated Scilab Graph
 	 */
 	public SetupAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SETUP, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -101,7 +103,7 @@ public class SetupAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SETUP, null, new SetupAction(scilabGraph), null);
+		return createMenu(scilabGraph, SetupAction.class);
 	}
 
 	/**
@@ -138,33 +140,33 @@ public class SetupAction extends DefaultAction {
 		diagram = (XcosDiagram) getGraph(e);
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
-		integration = new JFormattedTextField(currentFormat);
-		integration.setInputVerifier(validatePositiveDouble);
+		integration = new JFormattedTextField(CURRENT_FORMAT);
+		integration.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		integration.setValue(new BigDecimal(diagram.getFinalIntegrationTime()));
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
-		rts = new JFormattedTextField(currentFormat);
-		rts.setInputVerifier(validatePositiveDouble);
+		rts = new JFormattedTextField(CURRENT_FORMAT);
+		rts.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		rts.setValue(new BigDecimal(diagram.getRealTimeScaling()));
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
-		integrator = new JFormattedTextField(currentFormat);
-		integrator.setInputVerifier(validatePositiveDouble);
+		integrator = new JFormattedTextField(CURRENT_FORMAT);
+		integrator.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		integrator.setValue(new BigDecimal(diagram.getIntegratorAbsoluteTolerance()));
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
-		integratorRel = new JFormattedTextField(currentFormat);
-		integratorRel.setInputVerifier(validatePositiveDouble);
+		integratorRel = new JFormattedTextField(CURRENT_FORMAT);
+		integratorRel.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		integratorRel.setValue(new BigDecimal(diagram.getIntegratorRelativeTolerance()));
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
-		toleranceOnTime = new JFormattedTextField(currentFormat);
-		toleranceOnTime.setInputVerifier(validatePositiveDouble);
+		toleranceOnTime = new JFormattedTextField(CURRENT_FORMAT);
+		toleranceOnTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		toleranceOnTime.setValue(new BigDecimal(diagram.getToleranceOnTime()));
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
-		maxIntegrationTime = new JFormattedTextField(currentFormat);
-		maxIntegrationTime.setInputVerifier(validatePositiveDouble);
+		maxIntegrationTime = new JFormattedTextField(CURRENT_FORMAT);
+		maxIntegrationTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
 		maxIntegrationTime.setValue(new BigDecimal(diagram.getMaxIntegrationTimeinterval()));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
