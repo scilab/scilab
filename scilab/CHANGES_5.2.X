@@ -1952,6 +1952,8 @@ Bug fixes:
 
 * bug 4773 fixed - Using "axes_reverse" produced a switch between the front and back color of a figure
 
+* bug 4785 fixed - tand(0) generated an error
+
 * bug 4789 fixed - Number of input arguments was not checked in ilib_functions (dynamic_link module)
 
 * bug 4792 fixed - Macro name too long
@@ -2055,5 +2057,4 @@ Bug fixes:
 
 * bug 6495 fixed - in lqr, variable Q not defined.
 
-* bug 4785 fixed - tand(0) generated an error
-
+* bug 6587 fixed - loadmatfile makes scilab hang on sparse matrix reading.

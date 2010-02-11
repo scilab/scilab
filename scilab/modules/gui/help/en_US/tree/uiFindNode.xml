@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uiFindNode">  <info>    <pubdate>$LastChangedDate$</pubdate>  </info>  <refnamediv>    <refname>uiFindNode</refname>    <refpurpose> Find node in Tree </refpurpose>  </refnamediv>  <refsynopsisdiv>    <title>Calling Sequence</title>    <synopsis>nodeList = uiFindNode(tree, node)</synopsis>
+    <synopsis>nodeList = uiFindNode(tree, position)</synopsis>
+    <synopsis>nodeList = uiFindNode(tree, property, value)</synopsis>  </refsynopsisdiv>  <refsection>    <title>Input parameters</title>    <variablelist>      <varlistentry>        <term>tree</term>        <listitem>          <para>Tree in which we find the node</para>        </listitem>      </varlistentry>
+      <varlistentry>        <term>node</term>        <listitem>          <para>the node we find</para>        </listitem>      </varlistentry>
+      <varlistentry>        <term>position</term>        <listitem>          <para>a string, which is the position of the node we find in the tree </para>        </listitem>      </varlistentry>
+      <varlistentry>        <term>property</term>        <listitem>          <para>a string, which finds node(s) by properties (label, icon or callback)</para>        </listitem>      </varlistentry>
+      <varlistentry>        <term>value</term>        <listitem>          <para>a string, which is the value of the property</para>        </listitem>      </varlistentry>	</variablelist>  </refsection>  <refsection>	<title>Output parameters</title>	<variablelist>	  <varlistentry>        <term>nodeList</term>        <listitem>          <para>a list of matching node(s)</para>        </listitem>      </varlistentry>    </variablelist>  </refsection>  <refsection>    <title>Description</title>    <para>
+    	Finds node(s) in a tree.
+    </para>  </refsection>  <refsection>    <title>Examples</title>    <programlisting role="example"><![CDATA[ 
+// We should create nodes(subTrees) before creating trees	leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')leaf32 = uiCreateNode('leaf 3.2', 'iconLeaf3.2', 'callbackLeaf3.2')node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')treeNode1 = uiCreateTree(node1, leaf11, leaf12)treeNode3 = uiCreateTree(node3, leaf31, leaf32)treeRoot = uiCreateTree(root, treeNode1, node2, treeNode3)
+
+// Creation of a node
+myNode = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
+
+// Find if treeRoot contains myNode
+result = uiFindNode(treeRoot, myNode)
+//will return 'result = list(node1)'
+
+// Find node at position '1.1'
+result = uiFindNode(treeRoot, '3.1')
+//will return 'result = list(leaf31)'
+
+// Find node where 'text' equals 'Node 2'
+result = uiFindNode(treeRoot, 'label', 'Node 2')
+//will return 'result = list(node2)' ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+      <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
+      <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
+      <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>
+      <member>        <link linkend="uiConcatTree">uiConcatTree</link>       </member>      <member>        <link linkend="uiEqualsTree">uiEqualsTree</link>       </member>      <member>        <link linkend="uiGetParentNode">uiGetParentNode</link>       </member>      <member>        <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>       </member>
+      <member>        <link linkend="uiGetNodePosition">uiGetNodePosition</link>       </member>
+    </simplelist>  </refsection></refentry>
