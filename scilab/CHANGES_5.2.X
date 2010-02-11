@@ -268,6 +268,8 @@ Bug fixes:
 
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
+                   
+* bug 6480 fixed - Added some info. about Calling convention used on windows. 
 
 * bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
