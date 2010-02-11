@@ -61,7 +61,7 @@ int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
 	strcat(pstMsg1, pstMsg4);
 	strcat(pstMsg1, pstMsg5);
 
-	return addErrorMessage(_psciErr, 17, pstMsg1);
+	return addErrorMessage(_psciErr, API_ERROR_NO_MORE_MEMORY, pstMsg1);
 }
 
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)

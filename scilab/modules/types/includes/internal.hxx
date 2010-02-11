@@ -90,7 +90,10 @@ namespace types
      ** \{
      */
 
-    /* String */
+    /* GenericType */
+    virtual GenericType* getAsGenericType(void) { return NULL; }
+
+		/* String */
     bool isString(void) { return (getType() == RealString); }
     virtual String* getAsString(void) { return NULL; }
 

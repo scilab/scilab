@@ -14,13 +14,17 @@
 #ifndef __FUNCTION_HXX__
 #define __FUNCTION_HXX__
 
-#include <string>
-#include "types.hxx"
-#include "callable.hxx"
 
 #ifdef _MSC_VER
 #pragma warning(disable: 4251)
 #endif
+
+#include <string>
+#include "types.hxx"
+#include "callable.hxx"
+
+#define MAX_OUTPUT_VARIABLE		64
+
 namespace types
 {
   class Function : public Callable
@@ -60,15 +64,17 @@ namespace types
     Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   private :
     OLDGW_FUNC m_pOldFunc;
+		InternalType* m_pTempOut[MAX_OUTPUT_VARIABLE];
   };
 
   class GatewayStruct
   {
   public :
-    typed_list* m_pin;
-    typed_list* m_pout;
+    typed_list* m_pIn;
+    InternalType** m_pOut;
     int*	m_piRetCount;
     char* m_pstName;
+		int* m_pOutOrder;
 
     GatewayStruct(){};
     ~GatewayStruct(){};

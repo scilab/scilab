@@ -38,7 +38,7 @@ namespace ast
 	public:
 		ExecVisitor()
 		{
-			_excepted_result = -1;
+			_excepted_result = 1;
 			_result.push_back(NULL);
 		}
 

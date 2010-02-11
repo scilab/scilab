@@ -13,15 +13,21 @@
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
-#include "api_internal_common.h"
-#include "api_double.h"
-#include "api_internal_double.h"
-#include "localization.h"
-
-
+#include <string.h>
+#include <stdlib.h>
+#include "machine.h"
 #include "call_scilab.h"
+#include "api_scilab.h"
+#include "api_internal_double.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
+#include "localization.h"
+#include "MALLOC.h"
+#include "context.hxx"
+
+using namespace std;
+using namespace types;
 
 /*******************************/
 /*   double matrix functions   */
@@ -86,11 +92,12 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int
 
 	if(_pdblReal != NULL)
 	{
-		*_pdblReal	= (double*)(_piAddress + 4);
+		*_pdblReal	= ((InternalType*)_piAddress)->getAsDouble()->real_get();
 	}
+
 	if(_iComplex && _pdblImg != NULL)
 	{
-		*_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
+		*_pdblImg		= ((InternalType*)_piAddress)->getAsDouble()->img_get();
 	}
 	return sciErr;
 }
@@ -133,22 +140,49 @@ SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCol
 SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int* piAddr			= NULL;
-
-	int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-	if (iMemSize > iFreeSpace)
+	
+	if(_pvCtx == NULL)
 	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
 		return sciErr;
 	}
 
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-	fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  typed_list in = *pStr->m_pIn;
+  InternalType** out = pStr->m_pOut;
+  int*	piRetCount = pStr->m_piRetCount;
+  char* pstName = pStr->m_pstName;
+
+	int iNewPos			= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
+	int iAddr				= *Lstk(iNewPos);
+	int* piAddr			= NULL;
+
+	Double* pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+	if(pDbl == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
+		return sciErr;
+	}
+
+	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	out[rhs - 1] = pDbl;
+	*_pdblReal = pDbl->real_get();
+	if(*_pdblReal == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
+		return sciErr;
+	}
+
+	if(_iComplex && _pdblImg != NULL)
+	{
+		*_pdblImg	= pDbl->img_get();
+		if(*_pdblImg == NULL)
+		{
+			addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
+			return sciErr;
+		}
+	}
+
 	return sciErr;
 }
 
@@ -246,8 +280,8 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+	int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int iSize					= _iRows * _iCols;
 	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
@@ -266,12 +300,13 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, char* _pstName, int _iRow
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (2) * 2);
 
-	Rhs = 0;
+	//Rhs = 0;
+	
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-	Rhs = iSaveRhs;
+	//Top = iSaveTop;
+	//Rhs = iSaveRhs;
 
 	return sciErr;
 }
@@ -280,8 +315,8 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+	int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int iSize					= _iRows * _iCols;
 	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
@@ -313,12 +348,12 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, char* _pstName, int _iCompl
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (_iComplex + 1) * 2);
 
-	Rhs = 0;
+	//Rhs = 0;
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-	Rhs = iSaveRhs;
+	//Top = iSaveTop;
+	//Rhs = iSaveRhs;
 
 	return sciErr;
 }

@@ -46,6 +46,9 @@ namespace types
 
     std::string DimToString();
 
+    /* GenericType */
+    GenericType* getAsGenericType(void) { return this; }
+
     /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
     virtual GenericType*	get(int _iPos) { return NULL; }
 

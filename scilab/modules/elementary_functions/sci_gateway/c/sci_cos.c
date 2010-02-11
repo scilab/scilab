@@ -32,21 +32,21 @@ int sci_cos(char *fname, int* _piKey)
 	double *pdblRealRet		= NULL;
 	double *pdblImgRet		= NULL;
 
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+	//CheckRhs(1,1);
+	//CheckLhs(1,1);
 
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
-		return 0;
+		return 1;
 	}
 
 	sciErr = getVarType(_piKey, piAddr, &iType);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);
-		return 0;
+		return 1;
 	}
 
 	if(iType != sci_matrix)
@@ -61,14 +61,14 @@ int sci_cos(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 0;
+			return 1;
 		}
 
 		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 0;
+			return 1;
 		}
 
 		for(i = 0 ; i < iCols * iRows ; i++)
@@ -82,14 +82,14 @@ int sci_cos(char *fname, int* _piKey)
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 0;
+			return 1;
 		}
 
 		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
-			return 0;
+			return 1;
 		}
 
 		for(i = 0 ; i < iCols * iRows ; i++)

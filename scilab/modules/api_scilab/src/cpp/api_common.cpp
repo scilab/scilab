@@ -17,14 +17,9 @@
 #include <stdlib.h>
 #include "machine.h"
 #include "call_scilab.h"
-#include "api_common.h"
+#include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_double.h"
-#include "api_int.h"
-#include "api_string.h"
 #include "stack-c.h"
-#include "stackinfo.h"
-#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "context.hxx"
@@ -57,8 +52,8 @@ SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	if(_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
 	{
-		*_piRows		= _piAddress[1];
-		*_piCols		= _piAddress[2];
+		*_piRows		= ((InternalType*)_piAddress)->getAsGenericType()->rows_get();
+		*_piCols		= ((InternalType*)_piAddress)->getAsGenericType()->cols_get();
 	}
 	else
 	{
@@ -108,8 +103,7 @@ SciErr getVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 	}
 
 	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-  typed_list in = *pStr->m_pin;
-  typed_list out = *pStr->m_pout;
+  typed_list in = *pStr->m_pIn;
   int*	piRetCount = pStr->m_piRetCount;
   char* pstName = pStr->m_pstName;
 
@@ -277,27 +271,28 @@ SciErr getNamedVarType(void* _pvCtx, char* _pstName, int* _piType)
 /*--------------------------------------------------------------------------*/
 int isVarComplex(void* _pvCtx, int* _piAddress)
 {
+	SciErr sciErr;
 	int iType			= 0;
 	int iComplex	= 0;
 
-	//if(_piAddress == NULL)
-	//{
-	//	addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
-	//	return sciErr;
-	//}
+	if(_piAddress == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getVarType");
+		return 0;
+	}
 
-	//getVarType(_pvCtx, _piAddress, &iType);
-	//switch(iType)
-	//{
-	//case sci_matrix :
-	//	iComplex = ((InternalType*)_piAddress)->getAsDouble;
-	//case sci_poly :
-	//case sci_sparse :
-	//	
-	//	break;
-	//default:
-	//	iComplex = 0;
-	//}
+	getVarType(_pvCtx, _piAddress, &iType);
+	switch(iType)
+	{
+	case sci_matrix :
+		iComplex = ((InternalType*)_piAddress)->getAsDouble()->isComplex();
+		break;
+	case sci_poly :
+		iComplex = ((InternalType*)_piAddress)->getAsPoly()->isComplex();
+	case sci_sparse :
+		//iComplex = ((InternalType*)_piAddress)->getAsSparse()->isComplex();
+		break;
+	}
 	return iComplex;
 }
 /*--------------------------------------------------------------------------*/
@@ -713,7 +708,7 @@ int isNamedRowVector(void* _pvCtx, char* _pstName)
 	{
 		return 0;
 	}
-
+ 
 	sciErr = getNamedVarDimension(_pvCtx, _pstName, &iRows, &iCols);
 	if(sciErr.iErr)
 	{

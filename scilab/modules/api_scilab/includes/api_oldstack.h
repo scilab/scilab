@@ -66,9 +66,9 @@ int api_CheckLhs(int _iMin, int _iMax, int* _piKey);
 //LhsVar(1) = Rhs + 1;
 #ifdef LhsVar
 #undef LhsVar
-#define LhsVar(x) *api_LhsVar(x)
+#define LhsVar(x) *api_LhsVar(x, _piKey)
 #endif
-int* api_LhsVar(int _iVal);
+int* api_LhsVar(int _iVal, void* _pvCtx);
 
 #ifdef PutLhsVar
 #undef PutLhsVar

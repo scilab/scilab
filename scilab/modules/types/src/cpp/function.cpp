@@ -68,23 +68,46 @@ namespace types
 
   Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out) 
   {
-    ReturnValue RetVal = Callable::OK;
+    ReturnValue retVal = Callable::OK;
     GatewayStruct* pStr = new GatewayStruct();
 
-    pStr->m_pin = &in;
-    pStr->m_pout = &out;
-    pStr->m_piRetCount = &_iRetCount;
-    pStr->m_pstName = (char*)m_stName.c_str();
+    pStr->m_pIn = &in;
+    pStr->m_pOut = m_pTempOut;
+		pStr->m_piRetCount = &_iRetCount;
+		pStr->m_pstName = (char*)m_stName.c_str();
+		pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
+		memset(pStr->m_pOutOrder, 0x00, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
+		memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));
 
-    int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
+		//call gateway
+		int iRet = m_pOldFunc((char*)m_stName.c_str(), (int*)pStr);
 
-    if(iRet != 0)
-      {
-	RetVal = Callable::Error;
-      }
+		if(iRet != 0)
+		{
+			retVal = Callable::Error;
+		}
+		else
+		{
+			//replace output argument in good order following m_pOutOrder
+			for(int i = 0 ; i < _iRetCount ; i++)
+			{
+				out.push_back(m_pTempOut[pStr->m_pOutOrder[i] - in.size() - 1]);
+				m_pTempOut[pStr->m_pOutOrder[i] - in.size() - 1] = NULL;
+			}
+		}
 
-    delete pStr;
-    return RetVal;
+		//clean temp output variable array
+		for(int i = 0 ; i < MAX_OUTPUT_VARIABLE ; i++)
+		{
+			if(m_pTempOut[i] != NULL)
+			{
+				delete m_pTempOut[i];
+			}
+		}
+
+		delete pStr->m_pOutOrder;
+		delete pStr;
+		return retVal;
   }
 
   std::string Function::toString(int _iPrecision, int _iLineLen)

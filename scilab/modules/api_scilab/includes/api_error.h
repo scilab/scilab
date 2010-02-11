@@ -26,6 +26,7 @@ extern "C" {
 #define API_ERROR_INVALID_POSITION												7
 #define API_ERROR_INVALID_COMPLEXITY											8
 #define API_ERROR_GET_DIMFROMVAR													9
+#define API_ERROR_NO_MORE_MEMORY													10
 
 #define API_ERROR_INVALID_NAME														50
 #define API_ERROR_NAMED_TYPE															51

@@ -27,7 +27,7 @@ int sci_size(char *fname, int* _piKey)
 {
 	SciErr sciErr;
 	int iType 	= 0;
-	int iMode		= 0;
+	int iMode		= BY_MTLB;
 	int* piAddr	= NULL;
 
 	/*check inputs*/
