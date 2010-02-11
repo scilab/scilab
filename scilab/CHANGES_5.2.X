@@ -114,6 +114,8 @@ Xcos:
 
 * bug 6551 fixed - SaveAs action was not accessible
 
+* bug 6578 fixed - The CONSTRAINT_f was not a recognized as a valid block.
+
 Atoms:
 ======
 
