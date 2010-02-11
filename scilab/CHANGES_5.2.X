@@ -259,6 +259,9 @@ Bug fixes:
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
+* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let me select
+                   either of those file extensions.
+
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
