@@ -20,6 +20,8 @@ Compilation:
 
 * Windows 2000 is no more supported as operating system.
 
+* tclsci module is dynamically loaded by Scilab.
+
 helptools:
 ==========
 

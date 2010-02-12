@@ -20,7 +20,7 @@
 #include "loadversion.h"
 #include "inisci-c.h"
 #include "Scierror.h"
-#include "withtk.h"
+#include "dynamic_tclsci.h"
 #include "localization.h"
 #include "with_pvm.h"
 #ifdef _MSC_VER

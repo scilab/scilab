@@ -15,7 +15,7 @@
 #include "gw_dynamic_generic.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-/* optimization module */
+/* helptools module */
 #define HELPTOOLS_MODULE_NAME "helptools"
 static DynLibHandle hHelptoolsLib = NULL;
 static PROC_GATEWAY ptr_gw_helptools = NULL;
