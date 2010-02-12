@@ -69,6 +69,8 @@ Bug fixes:
 
 * bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits.
 
+* bug 6516 fixed - fullfile did not remove blanks and not create a valid path.
+
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
 * bug 6549 fixed - genlib function had a behavior which was not consistent with the load function.
