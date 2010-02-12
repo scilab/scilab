@@ -4,7 +4,6 @@
 
 * bug 4705 fixed - scicos used a non existing file BEpsf
 
-               
                 Changes between version 5.2.0 and 5.2.1 of Scilab
                 =================================================
 
@@ -41,6 +40,8 @@ Xcos:
 * A rework to pass checkstyle metrics on the code has been started.
 
 * Update to jgraphx version 1.2.0.7 has been performed.
+
+* Non applicable actions are now disabled and cannot be performed anymore.
 
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
@@ -121,6 +122,8 @@ Xcos:
 
 * bug 6551 fixed - SaveAs action was not accessible
 
+* bug 6578 fixed - The CONSTRAINT_f was not a recognized as a valid block.
+
 Atoms:
 ======
 
@@ -177,6 +180,16 @@ Scilab extensions:
 * call_scilab: Complex examples have not been updated to use the new API Scilab.
 
 * API_Scilab: a presentation page of the feature have been added.
+
+Matlab binary files I/O:
+========================
+
+* Support for logical/boolean type added.
+
+Obsolete functions:
+===================
+
+* 'scilab_demos' obsolete see 'demo_gui'.
 
 Bug fixes:
 ==========
@@ -261,6 +274,9 @@ Bug fixes:
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
+* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let me select
+                   either of those file extensions.
+
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
@@ -270,6 +286,10 @@ Bug fixes:
 
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
+
+* bug 6471 fixed - help about 'file' had some errors.
+
+* bug 6480 fixed - Added some info. about Calling convention used on windows. 
 
 * bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
@@ -282,6 +302,8 @@ Bug fixes:
 * bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
 
 * bug 6558 fixed - Infinite value was not plotted even if it was possible.
+
+* bug 6586 fixed - getmd5() crashed if the file (1st input argument) didn't exist
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -912,7 +934,6 @@ Bug fixes:
 
                Changes between version 5.1.1 and 5.2.0-beta1 of Scilab
                =======================================================
->>>>>>> refs/remotes/origin/master
 
 
 Xcos:
@@ -1951,6 +1972,8 @@ Bug fixes:
 
 * bug 4773 fixed - Using "axes_reverse" produced a switch between the front and back color of a figure
 
+* bug 4785 fixed - tand(0) generated an error
+
 * bug 4789 fixed - Number of input arguments was not checked in ilib_functions (dynamic_link module)
 
 * bug 4792 fixed - Macro name too long
@@ -2054,5 +2077,4 @@ Bug fixes:
 
 * bug 6495 fixed - in lqr, variable Q not defined.
 
-* bug 4785 fixed - tand(0) generated an error
-
+* bug 6587 fixed - loadmatfile makes scilab hang on sparse matrix reading.

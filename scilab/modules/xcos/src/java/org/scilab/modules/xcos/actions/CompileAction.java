@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -29,7 +28,7 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 /**
  * Diagram compilation management
  */
-public class CompileAction extends DefaultAction {
+public class CompileAction extends SimulationNotRunningAction {
 	public static final String NAME = XcosMessages.COMPILE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

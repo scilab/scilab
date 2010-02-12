@@ -200,7 +200,7 @@ abs(exact-I)
     <title>Funções Utilizadas</title>
 
     <para>As rotinas associadas podem ser encontradas no diretório
-    routines/integ :</para>
+	    SCI/modules/differential_equations/src/fortran :</para>
 
     <para>dqag0.f e dqags.f de quadpack</para>
   </refsection>

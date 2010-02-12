@@ -65,7 +65,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 					if (isdir(real_path))
 					{
 						Scierror(999,_("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
-						freeArrayOfString(Output_Matrix, mn);
+						freeArrayOfString(Output_Matrix, i);
 						freeArrayOfString(Input_Matrix, mn);
 						FREE(real_path); real_path = NULL;
 						return 0;
@@ -85,7 +85,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 					else
 					{
 						Scierror(999, _("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
-						freeArrayOfString(Output_Matrix, mn);
+						freeArrayOfString(Output_Matrix,i);
 						freeArrayOfString(Input_Matrix, mn);
 						return 0;
 					}
@@ -135,7 +135,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 						if (Output_Matrix[i] == NULL)
 						{
 							freeArrayOfString(Input_Matrix, m1*n1);
-							freeArrayOfString(Output_Matrix, i);
+							freeArrayOfString(Output_Matrix,i);
 							Scierror(999,("%s: No more memory.\n"), fname);
 							return 0;
 						}
@@ -152,7 +152,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,2);
+				Scierror(999,_("%s: Wrong value for input argument #%d: \"%s\" expected.\n"),fname,2,"string");
 			}
 		}
 		else

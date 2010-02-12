@@ -25,17 +25,17 @@ import com.mxgraph.view.mxGraphSelectionModel;
  * Children of this class will be activated when there something selected. If
  * not, the action will be disabled.
  */
-public abstract class SelectionDependantAction extends DefaultAction {
+public abstract class VertexSelectionDependantAction extends DefaultAction {
 
 	/**
 	 * Enable the selection if there is at least a vertex in the selection.
 	 */
-	private final class SelectionDependantConstraint extends ActionConstraint {
+	private final class VertexSelectionDependantConstraint extends ActionConstraint {
 
 		/**
 		 * Default constructor
 		 */
-		public SelectionDependantConstraint() {
+		public VertexSelectionDependantConstraint() {
 			super();
 		}
 
@@ -86,11 +86,11 @@ public abstract class SelectionDependantAction extends DefaultAction {
 	 * @param scilabGraph
 	 *            The associated graph
 	 */
-	public SelectionDependantAction(ScilabGraph scilabGraph) {
+	public VertexSelectionDependantAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 		
 		if (scilabGraph != null) {
-			SelectionDependantConstraint c = new SelectionDependantConstraint();
+			VertexSelectionDependantConstraint c = new VertexSelectionDependantConstraint();
 			c.install(this, scilabGraph);
 		}
 	}

@@ -38,7 +38,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -46,7 +45,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Opens context settings Window
  */
-public class SetContextAction extends DefaultAction {
+public class SetContextAction extends SimulationNotRunningAction {
 	public static final String NAME = XcosMessages.SET_CONTEXT;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

@@ -482,7 +482,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
   <refsection>
     <title>Used Functions</title>
 
-    <para>The associated routines can be found in routines/integ directory
+    <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
     :</para>
 
     <para>lsode.f lsoda.f lsodar.f</para>
