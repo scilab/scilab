@@ -27,11 +27,6 @@ Compilation:
 
 * Windows 2000 is no more supported as operating system.
 
-Text rendering:
-===============
-
-* \textsuperscript LateX was not supported. (See bug #6573)
-
 Tests:
 ======
 
