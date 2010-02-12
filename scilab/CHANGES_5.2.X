@@ -65,6 +65,10 @@ Xcos:
 
 * bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored
                    into /tmp/ instead of TMPDIR
+        
+* bug 5578 fixed - Some Tree functions are not documented (iConcatTree, uiDeleteNode, 
+		   uiEqualsTree, uiFindNode, uiGetChildrenNode, uiGetNodePosition, 
+		   uiGetParentNode, uiInsertNode)
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
@@ -177,6 +181,11 @@ Matlab binary files I/O:
 ========================
 
 * Support for logical/boolean type added.
+
+Obsolete functions:
+===================
+
+* 'scilab_demos' obsolete see 'demo_gui'.
 
 Bug fixes:
 ==========
