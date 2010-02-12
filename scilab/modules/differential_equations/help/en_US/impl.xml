@@ -127,7 +127,7 @@ r = res(t,y,ydot)
 
     <para>If <literal>res</literal> is a character string, it refers to the
     name of a Fortran subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> for an example to do
     that.</para>
 
     <para><literal>res</literal> can also be a list: see the help of
@@ -148,7 +148,7 @@ r = adda(t,y,p)
 
     <para>If <literal>adda</literal> is a character string, it refers to the
     name of a Fortran subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> for an example to do
     that.</para>
 
     <para><literal>adda</literal> can also be a list: see the help of
@@ -169,7 +169,7 @@ j = jac(t,y,ydot)
 
     <para>If <literal>jac</literal> is a character string, it refers to the
     name of a Fortran subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> for an example to do
     that.</para>
 
     <para><literal>jac</literal> can also be a list: see the help of

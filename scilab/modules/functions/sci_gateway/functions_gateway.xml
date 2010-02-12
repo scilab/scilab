@@ -32,7 +32,6 @@
 <GATEWAY name="functions">
 <PRIMITIVE gatewayId="31" primitiveId="1" primitiveName="lib" />
 <PRIMITIVE gatewayId="31" primitiveId="2" primitiveName="deff" />
-<PRIMITIVE gatewayId="31" primitiveId="3" primitiveName="getf" />
 <PRIMITIVE gatewayId="31" primitiveId="4" primitiveName="exec" />
 <PRIMITIVE gatewayId="31" primitiveId="5" primitiveName="execstr" />
 <PRIMITIVE gatewayId="31" primitiveId="6" primitiveName="librarieslist" />

@@ -199,7 +199,7 @@ abs(exact-I)
   <refsection>
     <title>Used Functions</title>
 
-    <para>The associated routines can be found in routines/integ directory
+    <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
     :</para>
 
     <para>dqag0.f and dqags.f from quadpack</para>

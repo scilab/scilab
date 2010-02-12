@@ -29,8 +29,11 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
+import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
+import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -330,16 +333,16 @@ public abstract class BasicLink extends XcosUIDObject {
 	/*--- */
 	Menu format = ScilabMenu.createMenu();
 	format.setText(XcosMessages.FORMAT);
-	format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
+	format.add(BorderColorAction.createMenu(graph));
 	menu.add(format);
 	/*--- */
 	menu.getAsSimpleContextMenu().addSeparator();
 	/*--- */
 	Menu linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+	linkStyle.add(LinkStyleHorizontalAction.createMenu(graph));
+	linkStyle.add(LinkStyleStraightAction.createMenu(graph));
+	linkStyle.add(LinkStyleVerticalAction.createMenu(graph));
 
 
 	menu.add(linkStyle);

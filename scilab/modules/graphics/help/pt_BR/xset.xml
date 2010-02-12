@@ -96,7 +96,7 @@ xset()</synopsis>
           <para>alterna o modo de limpeza automática para gráficos entre "on"
           e "off" . Quando o modo de limpeza automática é "on", esboços
           sucessivos não são superpostos, ie, uma operação
-          <literal>xbasc()</literal> (a janela de gráficos é limpa e os
+          <literal>clf()</literal> (a janela de gráficos é limpa e os
           gráficos gravados associados são apagados) é realizada antes de cada
           função gráfica de alto-nível. O valor padrão é "off".</para>
         </listitem>
@@ -280,7 +280,7 @@ xset()</synopsis>
           enviados à janela de gráficos através do comando
           <literal>xset("wshow")</literal>. O pixmap é limpo com o comando
           <literal>xset("wwpc")</literal>. Note que o comando usual
-          <literal>xbasc()</literal> também limpa o pixmap.</para>
+          <literal>clf()</literal> também limpa o pixmap.</para>
         </listitem>
       </varlistentry>
 
