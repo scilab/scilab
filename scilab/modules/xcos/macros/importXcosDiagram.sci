@@ -29,6 +29,9 @@ function result = importXcosDiagram(xcosFile)
 		return;
 	end
 	
+	// getting the full path of the file
+	xcosFile = fullpath(xcosFile);
+
 	convertStatus = xcosDiagramToHDF5(xcosFile, h5File, %t);
 	if(convertStatus <> 0) then
 		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
