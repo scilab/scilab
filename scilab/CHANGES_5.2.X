@@ -149,8 +149,12 @@ Compilation:
 
 * Better check of the lib math (libm)
 
+* When --disable-build-help was given to the configure, some mandatory 
+  libraries (batik, fop & avalon framework) used by the graphic export features
+  were not checked. This was causing build failure.
+
 * When two versions of the same jar libraries, in some cases, the system
-  could not detect any of them
+  could not detect any of them.
 
 * bug 5496 fixed - When the option --disable-build-help was enabled, the 
                    check/use of jeuclid was disabled. It was causing build 

@@ -32,27 +32,12 @@ AC_ARG_WITH(docbook,
 	if test -z "$DOCBOOK_ROOT"; then
 		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
 	fi
-	# xml.apache.org SVG Library (under mandriva for example)
-	AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
-	BATIK=$PACKAGE_JAR_FILE
-
-	if test -z "$BATIK"; then
-		# Other other distribs
-		AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
-		BATIK=$PACKAGE_JAR_FILE
-	fi
-	AC_SUBST(BATIK)
 
 
 	# Saxon XSLT Processor
 	AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
 	SAXON=$PACKAGE_JAR_FILE
 	AC_SUBST(SAXON)
-
-	# XML to PDF/other Translator
-	AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
-	FOP=$PACKAGE_JAR_FILE
-	AC_SUBST(FOP)
 
 	# Commons I/O library
 	AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
@@ -74,14 +59,6 @@ AC_ARG_WITH(docbook,
 		XML_APIS_EXT=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(XML_APIS_EXT)
-
-
-
-
-	# Avalon Framework (PDF)
-	AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
-	AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
-	AC_SUBST(AVALON_FRAMEWORK)
 	
 
 AC_SUBST(DOCBOOK_ROOT)
