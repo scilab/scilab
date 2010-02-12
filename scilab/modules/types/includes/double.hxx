@@ -31,7 +31,7 @@ namespace types
 											Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
 		/*data management*/
-		GenericType*			get(int _iPos);
+		GenericType*			get_col_value(int _iPos);
 		double*						real_get() const;
 		double						real_get(int _iRows, int _iCols) const;
 		double*						img_get() const;

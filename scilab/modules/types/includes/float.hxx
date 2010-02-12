@@ -30,7 +30,7 @@ namespace types
 		Float* clone();
 
 		/*data management*/
-		GenericType*	get(int _iPos);
+		GenericType*	get_col_value(int _iPos);
 
 		float*				real_get() const;
 		float					real_get(int _iRows, int _iCols) const;

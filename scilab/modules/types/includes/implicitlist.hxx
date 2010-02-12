@@ -30,8 +30,6 @@ namespace types
 		InternalType*		m_poEnd;
 		int							m_iSize;
 
-		int							m_iElement;
-
 		InternalType::RealType		
 										m_eStartType;
 		InternalType::RealType		
@@ -41,6 +39,8 @@ namespace types
 		InternalType::RealType		
 										m_eOutType;
 		Int::IntType		m_eOutSubType;
+
+		bool m_bComputed;
 
 	public :
 		ImplicitList();

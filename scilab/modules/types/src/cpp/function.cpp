@@ -42,7 +42,7 @@ namespace types
   }
 
   Function* Function::getAsFunction(void)		
-  { 
+  {
     return this; 
   }
 

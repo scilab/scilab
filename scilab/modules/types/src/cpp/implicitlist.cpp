@@ -39,6 +39,7 @@ namespace types
 
 	ImplicitList::ImplicitList()
 	{
+		m_bComputed = false;
 	}
 
 	ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd)
@@ -85,6 +86,7 @@ namespace types
 		{
 			m_eStartType = m_poStart->getType();
 		}
+		m_bComputed = false;
 	}
 
 	InternalType* ImplicitList::step_get()
@@ -99,6 +101,7 @@ namespace types
 		{
 			m_eStepType = m_poStep->getType();
 		}
+		m_bComputed = false;
 	}
 
 	InternalType* ImplicitList::end_get()
@@ -113,6 +116,7 @@ namespace types
 		{
 			m_eEndType = m_poEnd->getType();
 		}
+		m_bComputed = false;
 	}
 
 	int ImplicitList::size_get()
@@ -122,9 +126,15 @@ namespace types
 
 	bool ImplicitList::compute()
 	{
+		if(m_bComputed == true)
+		{
+			return true;
+		}
+
 		m_iSize = -1;
 		if(computable() == true)
 		{
+			cout << "Compute ImplicitList size" << endl;
 			m_iSize = 0;
 			if(m_eOutType == RealDouble)
 			{
@@ -132,23 +142,26 @@ namespace types
 				double dblStep	= m_poStep->getAsDouble()->real_get(0,0);
 				double dblEnd		= m_poEnd->getAsDouble()->real_get(0,0);
 
+				//floor((end - start) / step) + 1;
 				if(dblStep > 0)
 				{
-					double dblTemp = dblStart;
-					while(dblTemp <= dblEnd)
-					{
-						m_iSize++;
-						dblTemp += dblStep;
-					}
+					m_iSize = (int)floor((dblEnd - dblStart) / dblStep) + 1;
+					//double dblTemp = dblStart;
+					//while(dblTemp <= dblEnd)
+					//{
+					//	m_iSize++;
+					//	dblTemp += dblStep;
+					//}
 				}
 				else if(dblStep < 0)
 				{
-					double dblTemp = dblEnd;
-					while(dblTemp <= dblStart)
-					{
-						m_iSize++;
-						dblTemp -= dblStep;
-					}
+					m_iSize = (int)floor((dblStart - dblEnd ) / (-dblStep)) + 1;
+				//	double dblTemp = dblEnd;
+				//	while(dblTemp <= dblStart)
+				//	{
+				//		m_iSize++;
+				//		dblTemp -= dblStep;
+				//	}
 				}
 			}
 			else //m_eOutType == RealInt
@@ -204,6 +217,7 @@ namespace types
 					}
 				}
 			}
+			m_bComputed = true;
 			return true;
 		}
 		else

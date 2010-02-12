@@ -50,7 +50,7 @@ namespace types
     GenericType* getAsGenericType(void) { return this; }
 
     /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
-    virtual GenericType*	get(int _iPos) { return NULL; }
+    virtual GenericType*	get_col_value(int _iPos) { return NULL; }
 
     bool isIdentity(void);
     virtual bool isAssignable(void) { return true; }

@@ -129,7 +129,7 @@ namespace types
 			return true;
 		}
 
-		T* get(int _iPos)
+		T* get_col_value(int _iPos)
 		{
 			return NULL;
 		}
@@ -382,9 +382,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			char* pData		= m_pint->get(_iPos);
+			char* pData		= m_pint->get_col_value(_iPos);
 			Int8 *pi			= new Int8(rows_get(), 1, pData);
 
 			delete pData;
@@ -496,9 +496,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			unsigned char* pData		= m_pint->get(_iPos);
+			unsigned char* pData		= m_pint->get_col_value(_iPos);
 			UInt8 *pi			= new UInt8(rows_get(), 1, pData);
 
 			delete pData;
@@ -611,9 +611,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			short* pData	= m_pint->get(_iPos);
+			short* pData	= m_pint->get_col_value(_iPos);
 			Int16 *pi			= new Int16(rows_get(), 1, pData);
 
 			delete pData;
@@ -725,9 +725,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			unsigned short* pData	= m_pint->get(_iPos);
+			unsigned short* pData	= m_pint->get_col_value(_iPos);
 			UInt16 *pi							= new UInt16(rows_get(), 1, pData);
 
 			delete pData;
@@ -840,9 +840,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			int* pData		= m_pint->get(_iPos);
+			int* pData		= m_pint->get_col_value(_iPos);
 			Int32 *pi			= new Int32(rows_get(), 1, pData);
 
 			delete pData;
@@ -954,9 +954,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			unsigned int* pData	= m_pint->get(_iPos);
+			unsigned int* pData	= m_pint->get_col_value(_iPos);
 			UInt32 *pi					= new UInt32(rows_get(), 1, pData);
 
 			delete pData;
@@ -1069,9 +1069,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			long long* pData	= m_pint->get(_iPos);
+			long long* pData	= m_pint->get_col_value(_iPos);
 			Int64 *pi					= new Int64(rows_get(), 1, pData);
 
 			delete pData;
@@ -1183,9 +1183,9 @@ namespace types
 			return m_pint->resize(_iNewRows, _iNewCols);
 		}
 
-		GenericType* get(int _iPos)
+		GenericType* get_col_value(int _iPos)
 		{
-			unsigned long long* pData	= m_pint->get(_iPos);
+			unsigned long long* pData	= m_pint->get_col_value(_iPos);
 			UInt64 *pi								= new UInt64(rows_get(), 1, pData);
 
 			delete pData;

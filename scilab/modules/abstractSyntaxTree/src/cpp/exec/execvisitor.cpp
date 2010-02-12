@@ -475,9 +475,14 @@ namespace ast
 		{
 			ExecVisitor *execBody = new ast::ExecVisitor();
 			ImplicitList* pVar = (ImplicitList*)execVar->result_get();
+			symbol::Symbol symbol = e.vardec_get().name_get();
+
+			InternalType *pIT = NULL;
+
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pVar->extract_value(i));
+				pIT = pVar->extract_value(i);
+				symbol::Context::getInstance()->put(symbol, *pIT);
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
 				{
@@ -498,7 +503,7 @@ namespace ast
 			GenericType* pVar = (GenericType*)execVar->result_get();
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
-				GenericType* pNew = pVar->get(i);
+				GenericType* pNew = pVar->get_col_value(i);
 				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())

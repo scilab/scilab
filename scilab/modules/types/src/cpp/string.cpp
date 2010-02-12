@@ -385,7 +385,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType* String::get(int _iPos)
+	GenericType* String::get_col_value(int _iPos)
 	{
 		String *ps = NULL;
 		if(_iPos < m_iCols)

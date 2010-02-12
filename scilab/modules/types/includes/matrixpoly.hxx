@@ -31,7 +31,7 @@ namespace types
 	  // FIXME : Should not return NULL
 	  MatrixPoly*		clone() { return NULL; }
 
-		GenericType*	get(int _iPos);
+		GenericType*	get_col_value(int _iPos);
 
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);

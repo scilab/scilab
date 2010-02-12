@@ -928,7 +928,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType*	Double::get(int _iPos)
+	GenericType*	Double::get_col_value(int _iPos)
 	{
 		Double *pdbl = NULL;
 		if(_iPos < m_iCols)
