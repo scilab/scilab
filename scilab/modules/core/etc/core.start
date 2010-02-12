@@ -8,15 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// load temporary functions needed by all others
 // =============================================================================
-if WITH_HELPTOOLS then
-	load(SCI+"/modules/helptools/macros/add_module_help_chapter.bin");
-	load(SCI+"/modules/helptools/macros/add_help_chapter.bin");
-end
-
-//Load functions libraries
+// Load functions libraries
 // =============================================================================
 load('SCI/modules/core/macros/lib');
 
@@ -27,8 +20,3 @@ if WITH_DEMOS then
 	add_demo(gettext("Introduction"),pathdemos);
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("core");
-end

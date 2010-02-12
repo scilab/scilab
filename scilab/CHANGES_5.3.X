@@ -20,6 +20,12 @@ Compilation:
 
 * Windows 2000 is no more supported as operating system.
 
+helptools:
+==========
+
+* %helps_modules (global variable in scilab) is defined only when 
+  scilab build help and no more at scilab's startup.
+  
 Tests:
 ======
 

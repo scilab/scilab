@@ -15,8 +15,3 @@ end
 load('SCI/modules/texmacs/macros/lib');
 clear with_texmacs;
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("texmacs");
-end

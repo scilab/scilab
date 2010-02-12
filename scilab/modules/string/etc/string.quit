@@ -8,8 +8,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Delete help chapter
 // =============================================================================
-if WITH_HELPTOOLS then
-	del_help_chapter("string",%t);
-end
