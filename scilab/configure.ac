@@ -774,6 +774,15 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				fi
 				AC_SUBST(BATIK)
 
+				# Commons I/O library
+				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+				COMMONS_IO=$PACKAGE_JAR_FILE
+				AC_SUBST(COMMONS_IO)
+
+				# XML graphics common
+				AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+				XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+				AC_SUBST(XMLGRAPHICS_COMMONS)
 
 				# Avalon Framework (PDF)
 				AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
@@ -1805,8 +1814,6 @@ if test $HELP_ENABLE = yes; then
    echo "Documentation building configuration:"
    echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
    echo "  Saxon XSLT ............. = $SAXON"
-   echo "  Commons I/O ............ = $COMMONS_IO"
-   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
@@ -1850,10 +1857,12 @@ fi
 
 echo ""
 if test ! -z "$JAVAC"; then
-echo "Documentation, graphic export"
+echo "Documentation, graphic export:"
 echo "  FOP (XML => PDF) .... = $FOP"
 echo "  Batik (SVG) ......... = $BATIK"
 echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
+echo "  Commons I/O ......... = $COMMONS_IO"
+echo "  XML graphics commons  = $XMLGRAPHICS_COMMONS"
 fi
 
 
