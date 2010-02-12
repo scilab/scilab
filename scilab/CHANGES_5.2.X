@@ -178,6 +178,11 @@ Matlab binary files I/O:
 
 * Support for logical/boolean type added.
 
+Obsolete functions:
+===================
+
+* 'scilab_demos' obsolete see 'demo_gui'.
+
 Bug fixes:
 ==========
 
