@@ -12,7 +12,7 @@ Documentation:
 ==============
 
 * It is now possible to use LaTeX inline in the documentation. Thanks to 
- Calixte Denizet for this feature.
+ Calixte Denizet for this feature. (See bug #4329)
 
 Xcos:
 =====
@@ -27,10 +27,15 @@ Compilation:
 
 * Windows 2000 is no more supported as operating system.
 
+Text rendering:
+===============
+
+* \textsuperscript LateX was not supported. (See bug #6573)
+
 Tests:
 ======
 
-* Mechanism of unitary tests for Java code based on testng added and used
+* Mechanism of unitary tests for Java code based on TestNG added and used
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -76,6 +81,4 @@ Bug fixes:
 * bug 6550 fixed - lib(".") returned a relative path in library variable created.
 
 * bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more) on the same file.
-
-* bug 6573 fixed - \textsuperscript LateX was not supported.
 
