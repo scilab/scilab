@@ -20,8 +20,6 @@ Source: modules\{#FILEIO}\sci_gateway\fileio_gateway.xml; DestDir: {app}\modules
 Source: modules\{#FILEIO}\etc\{#FILEIO}.quit; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\etc\fileio.start; DestDir: {app}\modules\{#FILEIO}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\help\addchapter.sce; DestDir: {app}\modules\{#FILEIO}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 ;Source: modules\{#FILEIO}\includes\*.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: bin\fileio.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

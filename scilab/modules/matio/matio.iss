@@ -24,8 +24,6 @@ Source: modules\{#MATIO}\changelog.txt; DestDir: {app}\modules\{#MATIO}; Compone
 Source: modules\{#MATIO}\etc\{#MATIO}.quit; DestDir: {app}\modules\{#MATIO}\etc; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\etc\{#MATIO}.start; DestDir: {app}\modules\{#MATIO}\etc; Components: {#COMPN_MATIO}
 ;
-Source: modules\{#MATIO}\help\addchapter.sce; DestDir: {app}\modules\{#MATIO}\help; Flags: recursesubdirs; Components:  {#COMPN_MATIO}
-;
 ;Source: modules\{#MATIO}\includes\*.h; DestDir: {app}\modules\{#MATIO}\includes; Components: {#COMPN_MATIO}
 ;
 Source: modules\{#MATIO}\macros\lib; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
