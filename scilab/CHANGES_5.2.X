@@ -134,6 +134,17 @@ Atoms:
                    
 * bug 6518 fixed - atomsRepositoryAdd() didn't accept local repositories.
 
+Text rendering:
+===============
+
+* Handles greek, cyrillic and complete unicode for latin alphabets characters 
+when using LaTeX in the graphics and documentation (See bug #5525)
+
+* \textsuperscript LateX was not supported. (See bug #6573)
+
+* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
+                   you use scilab in a terminal service session on Windows.
+
 Compilation:
 ============
 
@@ -226,9 +237,6 @@ Bug fixes:
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
 * bug 5673 fixed - Under Linux, dependency on GLIBC_2.7 removed
-
-* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
-                   you use scilab in a terminal service session on Windows.
 
 * bug 5687 fixed - When setting "figure_name" the window title was not set until
                    the window is "touched" with the mouse.
