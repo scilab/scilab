@@ -116,6 +116,8 @@ Xcos:
 
 * bug 6551 fixed - SaveAs action was not accessible
 
+* bug 6578 fixed - The CONSTRAINT_f was not a recognized as a valid block.
+
 Atoms:
 ======
 
@@ -177,6 +179,11 @@ Matlab binary files I/O:
 ========================
 
 * Support for logical/boolean type added.
+
+Obsolete functions:
+===================
+
+* 'scilab_demos' obsolete see 'demo_gui'.
 
 Bug fixes:
 ==========
@@ -261,6 +268,9 @@ Bug fixes:
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
+* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let me select
+                   either of those file extensions.
+
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
 * bug 6441 fixed - Callback of uimenus with option "Checked" is now executed 
@@ -270,6 +280,10 @@ Bug fixes:
 
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
+
+* bug 6471 fixed - help about 'file' had some errors.
+
+* bug 6480 fixed - Added some info. about Calling convention used on windows. 
 
 * bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
