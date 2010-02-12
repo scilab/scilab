@@ -371,7 +371,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType*	Float::get(int _iPos)
+	GenericType*	Float::get_col_value(int _iPos)
 	{
 		Float *pf = NULL;
 		if(_iPos < m_iCols)
