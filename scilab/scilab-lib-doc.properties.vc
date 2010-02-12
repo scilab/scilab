@@ -10,6 +10,9 @@ saxon.jar=${thirdparty.dir}/saxon.jar
 ; Reusable components used by Batik and FOP 
 fop.jar=${thirdparty.dir}/fop.jar
 
+; LaTeX plugin
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.8.8.jar
+
 ; A complete MathML rendering solution 
 jeuclid-core.jar=${thirdparty.dir}/jeuclid-core.jar
 
