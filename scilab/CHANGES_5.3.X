@@ -57,6 +57,8 @@ Removed functions (previously declared as obsolete):
 * 'NumTokens' replaced by 'tokens'.
 
 * 'sort' replaced by 'gsort'.
+
+* 'scilab_demos' replaced by 'demo_gui'.
  
 Bug fixes:
 ==========
