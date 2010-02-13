@@ -67,7 +67,7 @@ function packages = atomsGetTOOLBOXES(update)
 			
 			// Remove the existing file
 			// ----------------------------------------
-			if( fileinfo(file_out) <> [] ) then
+			if fileinfo(file_out) <> [] then
 				mdelete(file_out);
 			end
 			

@@ -80,7 +80,7 @@ function atomsDownload(url_in,file_out,md5sum)
 	elseif atomsGetConfig("downloadTool") == "curl" then
 		CURL=%T;
 	
-	elseif atomsGetConfig("downloadTool") == "httpdownload" then
+	elseif atomsGetConfig("downloadTool") == "httpdownload" & MSDOS then
 		HTTPDOWNLOAD=%T;
 	
 	else
@@ -188,7 +188,7 @@ function atomsDownload(url_in,file_out,md5sum)
 		
 		// Second try with httpdownload
 		
-		if HTTPDOWNLOAD | stat<>0 then
+		if ( HTTPDOWNLOAD | stat<>0 ) & MSDOS then
 			
 			imode = ilib_verbose();
 			ilib_verbose(0) ;
@@ -219,7 +219,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			url_pattern = "file://";
 		end
 		
-		file_in = pathconvert(part(url_in,length(url_pattern):length(url_in)),%F);
+		file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 		
 		if copyfile(file_in,file_out) <> 1 then
 			mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");

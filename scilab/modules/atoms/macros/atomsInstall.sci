@@ -282,15 +282,17 @@ function result = atomsInstall(packages,section)
 			// Define the path of the downloaded file
 			// =================================================================
 			
-			if isfield(this_package_details,OSNAME+ARCH+"Name") then
-				OSTYPE = OSNAME+ARCH;
+			if isfield(this_package_details,"binaryName") then
+				fileprefix = "binary";
+			elseif isfield(this_package_details,OSNAME+ARCH+"Name") then
+				fileprefix = OSNAME+ARCH;
 			else
-				OSTYPE = OSNAME;
+				fileprefix = OSNAME;
 			end
 			
-			fileout = pathconvert(this_package_directory+this_package_details(OSTYPE+"Name"),%F);
-			filein  = this_package_details(OSTYPE+"Url");
-			filemd5 = this_package_details(OSTYPE+"Md5");
+			fileout = pathconvert(this_package_directory+this_package_details(fileprefix+"Name"),%F);
+			filein  = this_package_details(fileprefix+"Url");
+			filemd5 = this_package_details(fileprefix+"Md5");
 			
 			// Launch the download
 			// =================================================================

@@ -6,7 +6,9 @@
 Text editor:
 ============
 
-* bug 5651 fixed - closing find/replace box, remove highlights.
+* bug 5651 fixed - Closing find/replace box was not removing highlights.
+
+* bug 5650 fixed - Replace all was not working in some cases
 
 * bug 5707 fixed - cmd-e executed the wrong editor file.
 
@@ -31,6 +33,8 @@ Xcos:
 
 * Update to jgraphx version 1.2.0.7 has been performed.
 
+* Non applicable actions are now disabled and cannot be performed anymore.
+
 * Refactoring:
     - The port position algorithm has been reworked to take in account default
        position and calculate placement according to it's default associated
@@ -44,8 +48,11 @@ Xcos:
     - Java package (eg namespace) has been added to reduce the number of classes
       per package and improve readability.
     - org.scilab.modules.graph is independent from Xcos and can be safely used.
+    - the actions are now only instanciated per graph.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
+
+* bug 5095 fixed - Menu were not disabled when action were not possible.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
                    were not available.
@@ -58,6 +65,10 @@ Xcos:
 
 * bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored
                    into /tmp/ instead of TMPDIR
+        
+* bug 5578 fixed - Some Tree functions are not documented (iConcatTree, uiDeleteNode, 
+		   uiEqualsTree, uiFindNode, uiGetChildrenNode, uiGetNodePosition, 
+		   uiGetParentNode, uiInsertNode)
 
 * bug 5595 fixed - On the susp demo, DSUPER blocks were not SuperBlocks.
 
@@ -67,6 +78,9 @@ Xcos:
 
 * bug 5627 fixed - It was not possible to place a port in a non-conventionnal
                    side.
+
+* bug 5640 fixed - When launching Xcos: Toolbar and menubar didn't appear 
+                   before the focus is on the Xcos window.
 
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
@@ -99,6 +113,13 @@ Xcos:
 * bug 6490 fixed - The multiple-point link didn't work accordingly to the 
                    zoom level.
 
+* bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
+                   limitation.
+
+* bug 6551 fixed - SaveAs action was not accessible
+
+* bug 6578 fixed - The CONSTRAINT_f was not a recognized as a valid block.
+
 Atoms:
 ======
 
@@ -113,6 +134,17 @@ Atoms:
                    
 * bug 6518 fixed - atomsRepositoryAdd() didn't accept local repositories.
 
+Text rendering:
+===============
+
+* Handles greek, cyrillic and complete unicode for latin alphabets characters 
+when using LaTeX in the graphics and documentation (See bug #5525)
+
+* \textsuperscript LateX was not supported. (See bug #6573)
+
+* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
+                   you use scilab in a terminal service session on Windows.
+
 Compilation:
 ============
 
@@ -126,8 +158,18 @@ Compilation:
 
 * Better detection of JOGL
 
-* When searching for Java packages files (jar), the oldest version was 
-  selected. Now, lastest version are now selected.
+* Better check of the lib math (libm)
+
+* When --disable-build-help was given to the configure, some mandatory 
+  libraries (batik, fop & avalon framework) used by the graphic export features
+  were not checked. This was causing build failure.
+
+* When two versions of the same jar libraries, in some cases, the system
+  could not detect any of them.
+
+* bug 5496 fixed - When the option --disable-build-help was enabled, the 
+                   check/use of jeuclid was disabled. It was causing build 
+                   issue since jeuclid is now necessary for graphics.
 
 * bug 5503 fixed - add /usr/lib/*/ and /usr/lib64/*/ in the search path when
                    looking for Java libraries (Fedora 12 for example)
@@ -137,6 +179,12 @@ Compilation:
 * bug 6453 fixed - ImplicitPointerConversions was triggered by some Debian/
                    Ubuntu check tools
 
+Scilab CLI:
+===========
+
+* With the option --texmacs, the mode NWNI was used. It has been changed to NW
+  to allow the use of graphic features.
+
 Scilab extensions:
 ==================
 
@@ -144,11 +192,24 @@ Scilab extensions:
 
 * API_Scilab: a presentation page of the feature have been added.
 
+Matlab binary files I/O:
+========================
+
+* Support for logical/boolean type added.
+
+Obsolete functions:
+===================
+
+* 'scilab_demos' obsolete see 'demo_gui'.
+
 Bug fixes:
 ==========
 
 * bug 4543 fixed - Waitbar command seemed not to work properly with message
                    define by a string.
+
+* bug 4941 fixed - uigetdir & ugetfile lacked icons on top right when running
+                   on Windows 7.
 
 * bug 4979 fixed - Use unzoom on an empty figure resulted to a warning message.
 
@@ -156,8 +217,6 @@ Bug fixes:
                    was not displayed on Windows.
 
 * bug 5140 fixed - 'Load into Scilab' did not work as expected.
-
-* bug 5362 fixed - help type pointed to "Type" online help
 
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
@@ -178,9 +237,6 @@ Bug fixes:
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
 * bug 5673 fixed - Under Linux, dependency on GLIBC_2.7 removed
-
-* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
-                   you use scilab in a terminal service session on Windows.
 
 * bug 5687 fixed - When setting "figure_name" the window title was not set until
                    the window is "touched" with the mouse.
@@ -220,7 +276,14 @@ Bug fixes:
 
 * bug 6400 fixed - Msecs was not correctly handled in datevec/datenum functions
 
+* bug 6401 fixed - chfact() had trouble factoring 3X3 identity matrix.
+
+* bug 6412 fixed - the function sp2adj was not working.
+
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
+
+* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let me select
+                   either of those file extensions.
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 
@@ -232,6 +295,10 @@ Bug fixes:
 * bug 6461 fixed - Scilab External function executed by scifunction may make
                    Scilab crash when they produce an error.
 
+* bug 6471 fixed - help about 'file' had some errors.
+
+* bug 6480 fixed - Added some info. about Calling convention used on windows. 
+
 * bug 6488 fixed - the API function 'createMatrixOfUnsignedInteger32' creates good Scilab type variable.
 
 * bug 6489 fixed - removed a wrong dependency on 'WININET.dll' (Windows).
@@ -239,6 +306,12 @@ Bug fixes:
 * bug 6491 fixed - libinter.h was not installed under Linux (SEP #35 updated)
 
 * bug 6521 fixed - 'getmd5' crashed with a wrong second input argument.
+
+* bug 6547 fixed - 'uigetdir' crashed Scilab when returning some "root" path.
+
+* bug 6558 fixed - Infinite value was not plotted even if it was possible.
+
+* bug 6586 fixed - getmd5() crashed if the file (1st input argument) didn't exist
 
 
                Changes between version 5.2.0-beta1 and 5.2.0 of Scilab
@@ -1907,6 +1980,8 @@ Bug fixes:
 
 * bug 4773 fixed - Using "axes_reverse" produced a switch between the front and back color of a figure
 
+* bug 4785 fixed - tand(0) generated an error
+
 * bug 4789 fixed - Number of input arguments was not checked in ilib_functions (dynamic_link module)
 
 * bug 4792 fixed - Macro name too long
@@ -2009,3 +2084,5 @@ Bug fixes:
 * bug 6468 fixed - wrong check in dnaupd.
 
 * bug 6495 fixed - in lqr, variable Q not defined.
+
+* bug 6587 fixed - loadmatfile makes scilab hang on sparse matrix reading.

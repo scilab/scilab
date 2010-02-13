@@ -13,7 +13,7 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
-function description_out = atomsDESCRIPTIONread(file_in,additionnal)
+function description_out = atomsDESCRIPTIONread(file_in,additional)
 	
 	// Check input parameters
 	// =========================================================================
@@ -29,9 +29,9 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 	end
 	
 	if rhs < 2 then
-		additionnal = struct();
+		additional = struct();
 	else
-		if type(additionnal) <> 17 then
+		if type(additional) <> 17 then
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONread",2));
 		end
 	end
@@ -40,6 +40,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 	// =========================================================================
 	
 	description_out = struct();
+	
+	// Operating system detection + Architecture detection
+	// =========================================================================
+	[OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 	
 	// Start Read the file
 	// =========================================================================	
@@ -123,11 +127,21 @@ function description_out = atomsDESCRIPTIONread(file_in,additionnal)
 			current_field                  = part(lines_in(i),1:current_field_length-1);
 			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
 			
+			// process binary files
+			if regexp(current_field,"/^(windows|linux|macosx|solaris|bsd)(32|64)?(Url|Name|Md5|Sha1|Id)$/","o")<>[] then
+				// This field doesn't concern this platform => Next line
+				if regexp(current_field,"/^"+OSNAME+ARCH+"/","o")==[] then
+					continue;
+				else
+					current_field = "binary"+part(current_field,length(OSNAME+ARCH)+1:length(current_field));
+				end
+			end
+			
 			// process URLs
-			if isfield(additionnal,"repository") & ..
+			if isfield(additional,"repository") & ..
 				( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
 				regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
-					current_value = additionnal("repository") + current_value;
+					current_value = additional("repository") + current_value;
 			end
 			
 			current_toolbox(current_field) = current_value;

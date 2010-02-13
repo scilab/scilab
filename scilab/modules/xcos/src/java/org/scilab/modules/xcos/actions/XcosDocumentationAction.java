@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,9 +14,10 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -23,18 +25,19 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * View Xcos documentation
- * @author Allan SIMON
  */
 public final class XcosDocumentationAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.XCOS_DOCUMENTATION;
+	public static final String SMALL_ICON = "help-browser.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_F1;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private XcosDocumentationAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.XCOS_DOCUMENTATION, scilabGraph);
+	public XcosDocumentationAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -43,7 +46,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.XCOS_DOCUMENTATION, "help-browser.png", new XcosDocumentationAction(scilabGraph));
+		return createButton(scilabGraph, XcosDocumentationAction.class);
 	}
 
 	/**
@@ -52,7 +55,7 @@ public final class XcosDocumentationAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.XCOS_DOCUMENTATION, null, new XcosDocumentationAction(scilabGraph), null);
+		return createMenu(scilabGraph, XcosDocumentationAction.class);
 	}
 	
 	/**

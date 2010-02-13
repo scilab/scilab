@@ -30,14 +30,14 @@ function nodeList = uiFindNode(tree, node, value)
 		end
 		
 		if (typeof(node) == 'Tree') then
-			
 			myNode = node;
 			isNode = %T;
 				
 		elseif (type(node) == 10) then
-			
-			myPosition = node;
-			isPosition = %T;
+			if rhs == 2
+				myPosition = node;
+				isPosition = %T;
+			end
 		else
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiFindNode",2));
 			return;				

@@ -76,8 +76,8 @@
     ou C) acceptant un ou deux arguments d'entrée supposés réels. Le résultat
     renvoyé par <literal>f</literal> peut par contre être réel ou complexe.
     Dans le cas d'un appel Fortran ou C, la fonction <literal> 'f' </literal>
-    doit être définie dans la fonction <literal>ffevalf</literal> (voir dans
-    le dossier <literal>SCIDIR/routines/default</literal>)</para>
+    doit être définie dans la fonction <literal>fevaltable.c</literal> (voir dans
+    le dossier <literal>SCI/modules/differential_equations/src/c</literal>)</para>
   </refsection>
 
   <refsection>

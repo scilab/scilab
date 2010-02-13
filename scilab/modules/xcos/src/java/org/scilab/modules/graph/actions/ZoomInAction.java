@@ -17,9 +17,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -28,18 +27,19 @@ import com.mxgraph.swing.util.mxGraphActions;
 
 /**
  * Zoom management
- * @author Bruno JOFFRET
  */
 public class ZoomInAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	public static final String NAME = ScilabGraphMessages.ZOOM_IN;
+	public static final String SMALL_ICON = "list-add.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_PLUS;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public ZoomInAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.ZOOM_IN, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ZoomInAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton zoominButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_IN, "list-add.png", new ZoomInAction(scilabGraph));
+		return createButton(scilabGraph, ZoomInAction.class);
 	}
 
 	/**
@@ -57,8 +57,7 @@ public class ZoomInAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem zoominMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.ZOOM_IN, null, new ZoomInAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_PLUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ZoomInAction.class);
 	}
 
 	/**

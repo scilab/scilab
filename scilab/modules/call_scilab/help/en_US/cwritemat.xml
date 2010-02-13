@@ -127,7 +127,7 @@ SendScilabJob("disp(B);"); /* Display A */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="API_scilab">API Scilab</link>,
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,
 <link linkend="Double_management_reading_API">API_Scilab: Double reading</link>,<link linkend="Double_management_writing_API">API_Scilab: Double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="DoubleManagement_callscilab">Double Management</link>, <link

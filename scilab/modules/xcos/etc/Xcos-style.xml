@@ -867,7 +867,9 @@
 				    op : &amp;&lt;"/>
   </add>
   <add as="TEXT_f" extend="Label">
-    <add as="displayedLabel" value="Text"/>
+    <!-- <add as="displayedLabel" value="Text"/>  -->
+    <add as="strokeColor" value="none"/>
+    <add as="fillColor" value="none"/>
   </add>
 
   <!-- USER-DEFINED FUNCTIONS -->
@@ -1093,8 +1095,8 @@
   <add as="DOLLAR_m" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/DOLLAR_m.gif"/>
   </add>
-  <add as="DIFF_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/DIFF_f.gif"/>
+  <add as="DIFF_f" extend="blockWithLabel">
+    <add as="displayedLabel" value="S"/>
   </add>
   <add as="DEMUX_f" extend="DEMUX"/>
   <add as="DEADBAND" extend="Icon">

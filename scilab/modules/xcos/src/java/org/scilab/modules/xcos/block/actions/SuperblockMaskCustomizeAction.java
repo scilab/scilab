@@ -28,7 +28,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -42,16 +41,20 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @author Vincent COUVERT
  *
  */
-public final class SuperblockMaskCustomizeAction extends DefaultAction {
-
+public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedAction {
+	public static final String NAME = XcosMessages.CUSTOMIZE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
 	/**
 	 * Private constructor
 	 * 
 	 * @param scilabGraph
 	 *            the associated graph
 	 */
-	private SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.CUSTOMIZE, scilabGraph);
+	public SuperblockMaskCustomizeAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -62,8 +65,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 * @return the newly created menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.CUSTOMIZE, null,
-				new SuperblockMaskCustomizeAction(scilabGraph), null);
+		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
 	}
 
 	/**
@@ -132,11 +134,11 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 		}
 
 		/**
-		 * Construct the UI and install the listeners. NCSS: this is the UI
-		 * constructor
+		 * Construct the UI and install the listeners.
 		 */
 		private void initComponents() {
 
+			/* Construct the components */
 			mainPanel = new javax.swing.JPanel();
 			tabbedPane = new javax.swing.JTabbedPane();
 			varSettings = new javax.swing.JPanel();
@@ -161,6 +163,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+			/* Initialize the components */
 			mainPanel.setLayout(new java.awt.BorderLayout());
 			mainPanel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
@@ -194,28 +197,34 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 					.createEmptyBorder(2, 2, 2, 2));
 			tableManagement.setLayout(new java.awt.GridLayout(5, 1));
 
+			/* Install the insert action */
 			insert.setMnemonic('n');
 			insert.setText(XcosMessages.MASK_INSERT);
 			tableManagement.add(insert);
 			insert.addActionListener(controler.insertActionListener);
 
+			/* Install the delete action */
 			delete.setMnemonic('l');
 			delete.setText(XcosMessages.MASK_DELETE);
 			tableManagement.add(delete);
 			delete.addActionListener(controler.deleteActionListener);
 
+			/* Install empty area */
 			tableManagement.add(buttonBlob);
 
+			/* Install the move-up action */
 			moveUp.setMnemonic('u');
 			moveUp.setText(XcosMessages.MASK_MOVEUP);
 			tableManagement.add(moveUp);
 			moveUp.addActionListener(controler.moveUpActionListener);
 
+			/* Install the move-down action */
 			moveDown.setMnemonic('w');
 			moveDown.setText(XcosMessages.MASK_MOVEDOWN);
 			tableManagement.add(moveDown);
 			moveDown.addActionListener(controler.moveDownActionListener);
 
+			/* add the table management */
 			customizeMainPanel.add(tableManagement);
 
 			varSettings.add(customizeMainPanel);

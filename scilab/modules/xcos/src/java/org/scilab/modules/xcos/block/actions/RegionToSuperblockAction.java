@@ -14,6 +14,7 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -62,9 +63,15 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 
-
-public class RegionToSuperblockAction extends DefaultAction {
-
+/**
+ * Transform selection to a new superblock.
+ */
+public final class RegionToSuperblockAction extends VertexSelectionDependantAction {
+	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
     /**
      * @author Antoine ELIAS
      *
@@ -133,10 +140,11 @@ public class RegionToSuperblockAction extends DefaultAction {
     }
 
     /**
+     * Default constructor
      * @param scilabGraph graph
      */
-    private RegionToSuperblockAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.REGION_TO_SUPERBLOCK, scilabGraph);
+    public RegionToSuperblockAction(ScilabGraph scilabGraph) {
+	super(scilabGraph);
     }
 
     /**
@@ -144,11 +152,15 @@ public class RegionToSuperblockAction extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.REGION_TO_SUPERBLOCK, null,
-		new RegionToSuperblockAction(scilabGraph), null);
+	return createMenu(scilabGraph, RegionToSuperblockAction.class);
     }
 
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	graph.info(XcosMessages.GENERATE_SUPERBLOCK);
