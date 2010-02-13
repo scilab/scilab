@@ -9,10 +9,7 @@
 
 function scilab_demos()
 	
-	global demolist // Demos list is defined in scilab.start
-	global demopath
-	
-	demopath = "";
-	demo_file_choice();
+	warnobsolete('demo_gui','5.3')
+	demo_gui()
 	
 endfunction

@@ -283,7 +283,7 @@ xtitle("Curvas de nível de |H1(0,z)|")
   <refsection>
     <title>Função Usada</title>
 
-    <para>Os códigos-fontes podem ser achados em routines/calelm</para>
+    <para>Os códigos-fontes podem ser achados em SCI/modules/special_functions/src/fortran/slatec e SCI/modules/special_functions/src/fortran</para>
 
     <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
     dbesy.f, zbesy.f, zbesh.f</para>
