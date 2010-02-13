@@ -69,7 +69,7 @@ int C2F(errmsg)(int *n,int *errtyp)
 		break;
 		case 2:
 		{
-			displayAndStoreError(("Invalid factor.\n"));
+			displayAndStoreError(_("Invalid factor.\n"));
 			*errtyp = 1;
 		}
 		break;
