@@ -145,6 +145,8 @@ when using LaTeX in the graphics and documentation (See bug #5525)
 * bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
                    you use scilab in a terminal service session on Windows.
 
+* bug 6603 fixed - Lines were too long in the help browser.
+
 Compilation:
 ============
 
