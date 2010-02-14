@@ -66,7 +66,7 @@ Xcos:
 * bug 5508 fixed - When loading a xcos project, hdf5 files used to be stored
                    into /tmp/ instead of TMPDIR
         
-* bug 5578 fixed - Some Tree functions are not documented (iConcatTree, uiDeleteNode, 
+* bug 5578 fixed - Some Tree functions were not documented (iConcatTree, uiDeleteNode, 
 		   uiEqualsTree, uiFindNode, uiGetChildrenNode, uiGetNodePosition, 
 		   uiGetParentNode, uiInsertNode)
 
