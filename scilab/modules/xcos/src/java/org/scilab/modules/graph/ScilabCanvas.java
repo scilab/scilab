@@ -17,13 +17,20 @@ import java.awt.Composite;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Hashtable;
-
 import java.util.Map;
 
+import net.sourceforge.jeuclid.swing.JMathComponent;
+
+import org.scilab.forge.jlatexmath.ParseException;
+import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphUtils;
+import org.scilab.modules.graph.view.SupportedLabelType;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxLightweightTextPane;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -192,5 +199,118 @@ public class ScilabCanvas extends mxInteractiveCanvas {
     private static boolean isNearHorizontalSide(double angle) {
     	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
+
+	/**
+	 * Draws the specified markup.
+	 * 
+	 * @param text
+	 *            Markup to be painted.
+	 * @param x
+	 *            X-coordinate of the text.
+	 * @param y
+	 *            Y-coordinate of the text.
+	 * @param w
+	 *            Width of the text.
+	 * @param h
+	 *            Height of the text.
+	 * @param style
+	 *            Style to be used for painting the text.
+	 */
+    @Override
+    protected void drawHtmlText(String text, int x, int y, int w, int h,
+    		Map<String, Object> style) {
+
+    	SupportedLabelType type = SupportedLabelType.getFromText(text);
+    	
+    	switch (type) {
+		case Latex:
+			try {
+				drawLatexText(ScilabGraphUtils.getTexIcon(text), x, y, w, h, style);
+	    	} catch (ParseException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+	    	}
+			break;
+			
+		case MathML:
+			try {
+				drawMathMLText(ScilabGraphUtils.getMathMLComponent(text), x, y, w, h, style);
+			} catch (SAXException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+			}
+			break;
+
+		default:
+			super.drawHtmlText(text, x, y, w, h, style);
+			break;
+		}
+    }
+
+	/**
+	 * Draws the specified Latex markup
+	 * 
+	 * @param icon Latex icon to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawLatexText(TeXIcon icon, int x, int y, int w, int h,
+			Map<String, Object> style) {
+
+		mxLightweightTextPane textRenderer = mxLightweightTextPane
+		.getSharedInstance();
+
+		if (textRenderer != null && rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+				
+				textRenderer.setIcon(icon);
+				textRenderer.setText("");
+				
+				g.scale(scale, scale);
+				rendererPane.paintComponent(g, textRenderer, rendererPane,
+						(int) (x / scale) + mxConstants.LABEL_INSET,
+						(int) (y / scale) + mxConstants.LABEL_INSET,
+						(int) (w / scale), (int) (h / scale), true);
+
+				// Restores the previous transformation
+				g.setTransform(at);
+				textRenderer.setIcon(null);
+			}
+		}
+	}
+	
+	/**
+	 * Draws the specified MathML markup
+	 * 
+	 * @param comp the component to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawMathMLText(JMathComponent comp, int x, int y, int w, int h,
+			Map<String, Object> style) {
+
+		mxLightweightTextPane textRenderer = mxLightweightTextPane
+		.getSharedInstance();
+
+		if (textRenderer != null && rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+				
+				g.scale(scale, scale);
+				rendererPane.paintComponent(g, comp, rendererPane,
+						(int) (x / scale) + mxConstants.LABEL_INSET,
+						(int) (y / scale) + mxConstants.LABEL_INSET,
+						(int) (w / scale), (int) (h / scale), true);
+				
+				// Restores the previous transformation
+				g.setTransform(at);
+			}
+		}
+	}
 }
 
