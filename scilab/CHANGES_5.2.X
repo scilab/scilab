@@ -112,6 +112,11 @@ Atoms:
 
 * atomsSetConfig("offLine","True"/"False") automatically calls atomsSystemUpdate()
   if its value has changed.
+  
+* Under Windows platforms, the internet connection is now based on the default 
+  browser configuration.
+
+* Various bugs when installing local packages have been fixed. 
 
 * bug 6383 fixed - A message displayed by atomsRemove() (when the module to
                    remove is loaded) was not correct.
