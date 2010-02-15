@@ -474,7 +474,7 @@ am__objects_7 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_conj.lo \
 	libscielementary_functions_la-sci_f_int.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
-	libscielementary_functions_la-sci_f_exp.lo 
+	libscielementary_functions_la-sci_f_exp.lo
 am__objects_8 =
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
@@ -599,6 +599,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@

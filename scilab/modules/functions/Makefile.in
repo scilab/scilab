@@ -125,8 +125,7 @@ am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_librarieslist.lo \
 	libscifunctions_la-sci_libraryinfo.lo
-am__objects_4 = intlib.lo intdeff.lo intexecstr.lo \
-	intexec.lo
+am__objects_4 = intlib.lo intdeff.lo intexecstr.lo intexec.lo
 am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscifunctions_la_OBJECTS = $(am_libscifunctions_la_OBJECTS)
@@ -243,6 +242,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@

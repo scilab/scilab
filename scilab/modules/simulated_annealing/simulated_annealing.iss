@@ -20,8 +20,6 @@ Source: modules\{#SIMANNEALING}\etc\{#SIMANNEALING}.start; DestDir: {app}\module
 ;
 Source: modules\{#SIMANNEALING}\demos\*.*; DestDir: {app}\modules\{#SIMANNEALING}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SIMANNEALING}\help\addchapter.sce; DestDir: {app}\modules\{#SIMANNEALING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#SIMANNEALING}\macros\lib; DestDir: {app}\modules\{#SIMANNEALING}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SIMANNEALING}\macros\names; DestDir: {app}\modules\{#SIMANNEALING}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#SIMANNEALING}\macros\*.bin; DestDir: {app}\modules\{#SIMANNEALING}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

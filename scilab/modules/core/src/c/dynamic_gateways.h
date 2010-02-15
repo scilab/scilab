@@ -13,6 +13,14 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* pvm gateway
+* pvm is loaded dynamically at runtime
+* load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
+*/
+int gw_dynamic_pvm(void);
+
+
+/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c

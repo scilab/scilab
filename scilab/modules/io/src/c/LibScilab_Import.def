@@ -24,3 +24,4 @@ createvarfromptr_
 intersci_
 putlhsvar_
 freeArrayOfString
+dynamic_setenvtcl

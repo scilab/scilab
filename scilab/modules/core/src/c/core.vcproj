@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_tclsci.c"
+				>
+			</File>
+			<File
 				RelativePath=".\eqid.c"
 				>
 			</File>
@@ -967,6 +971,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_tclsci.h"
 				>
 			</File>
 			<File

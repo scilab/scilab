@@ -769,10 +769,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-                                # JLaTeXMath
-                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
-                                JLATEXMATH=$PACKAGE_JAR_FILE
-                                AC_SUBST(JLATEXMATH)
+				# JLaTeXMath
+                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                JLATEXMATH=$PACKAGE_JAR_FILE
+                AC_SUBST(JLATEXMATH)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.8.8],[TeXFormula.VERSION])
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1801,6 +1803,7 @@ if test $HELP_ENABLE = yes; then
    echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
    echo "  FOP (XML => PDF) ....... = $FOP"
+   echo "  JLaTeXMath-FOP ......... = $JLATEXMATH_FOP"
    echo "  Commons I/O ............ = $COMMONS_IO"
    echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
