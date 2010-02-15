@@ -206,6 +206,8 @@ Obsolete functions:
 
 * 'scilab_demos' obsolete see 'demo_gui'.
 
+* 'with_gtk' obsolete see 'getversion'.
+
 Bug fixes:
 ==========
 
