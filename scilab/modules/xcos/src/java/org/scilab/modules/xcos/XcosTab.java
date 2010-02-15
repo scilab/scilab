@@ -60,6 +60,9 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
+import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
+import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -79,15 +82,21 @@ import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
-import org.scilab.modules.xcos.block.actions.AlignBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
-import org.scilab.modules.xcos.block.actions.ColorAction;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.RotateAction;
 import org.scilab.modules.xcos.block.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionBottom;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionCenter;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
+import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -230,21 +239,6 @@ public class XcosTab extends ScilabTab {
     }
 
     /**
-     * @param status new status
-     */
-    public static void setStartEnabled(boolean status) {
-	for (int i = 0; i < startMenuItems.size(); i++) {
-	    startMenuItems.get(i).setEnabled(status);
-	    startPushButtons.get(i).setEnabled(status);
-	    startEnabled = status;
-
-	    stopMenuItems.get(i).setEnabled(!status);
-	    stopPushButtons.get(i).setEnabled(!status);
-	}
-
-    }
-
-    /**
      * @param xcosDiagram diagram
      */
     public static void createTabFromDiagram(XcosDiagram xcosDiagram) {
@@ -278,22 +272,6 @@ public class XcosTab extends ScilabTab {
 	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
 	
 	xcosDiagram.setVisible(true);
-
-	/*
-	 * Superblock specific customizations
-	 */
-	if (xcosDiagram instanceof SuperBlockDiagram) {
-	    tab.setSimulationActionEnabled(false);
-	}
-
-	/*
-	 * Set buttons enabled
-	 */
-	tab.setActionsEnabled(true);
-
-	// Disabling undo/redo at startup
-	tab.setEnabledRedo(false);
-	tab.setEnabledUndo(false);
     }
     
     /**
@@ -346,7 +324,7 @@ public class XcosTab extends ScilabTab {
 		addToolBar(toolBar);
 		
 		/* Create the infoBar */
-		getAsSimpleTab().setInfoBar(ScilabTextBox.createTextBox());
+		addInfoBar(ScilabTextBox.createTextBox());
 		
 		window.addTab(this);
     }
@@ -438,10 +416,8 @@ public class XcosTab extends ScilabTab {
 
 	MenuItem startMenu = StartAction.createMenu(diagram);
 	startMenuItems.add(startMenu);
-	startMenu.setEnabled(startEnabled);
 	MenuItem stopMenu = StopAction.createMenu(diagram);
 	stopMenuItems.add(stopMenu);
-	stopMenu.setEnabled(startEnabled);
 
 	simulate.add(SetupAction.createMenu(diagram));
 	simulate.add(DebugLevelAction.createMenu(diagram));
@@ -464,37 +440,25 @@ public class XcosTab extends ScilabTab {
 	format.addSeparator();
 	alignMenu = ScilabMenu.createMenu();
 	alignMenu.setText(XcosMessages.ALIGN_BLOCKS);
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_LEFT, mxConstants.ALIGN_LEFT));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_CENTER, mxConstants.ALIGN_CENTER));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_RIGHT, mxConstants.ALIGN_RIGHT));
+	alignMenu.add(AlignBlockActionLeft.createMenu(diagram));
+	alignMenu.add(AlignBlockActionCenter.createMenu(diagram));
+	alignMenu.add(AlignBlockActionRight.createMenu(diagram));
 	alignMenu.addSeparator();
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_TOP, mxConstants.ALIGN_TOP));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_MIDDLE, mxConstants.ALIGN_MIDDLE));
-	alignMenu.add(AlignBlockAction.createMenu(diagram,
-		XcosMessages.ALIGN_BOTTOM, mxConstants.ALIGN_BOTTOM));
+	alignMenu.add(AlignBlockActionTop.createMenu(diagram));
+	alignMenu.add(AlignBlockActionMiddle.createMenu(diagram));
+	alignMenu.add(AlignBlockActionBottom.createMenu(diagram));
 	format.add(alignMenu);
 	format.addSeparator();
 
-	format.add(ColorAction.createMenu(diagram,
-		XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
-	format.add(ColorAction.createMenu(diagram, XcosMessages.FILL_COLOR,
-		mxConstants.STYLE_FILLCOLOR));
+	format.add(BorderColorAction.createMenu(diagram));
+	format.add(FilledColorAction.createMenu(diagram));
 	format.addSeparator();
 
 	linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_HORIZONTAL,
-		mxConstants.ELBOW_HORIZONTAL));
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
-	linkStyle.add(LinkStyleAction.createMenu(diagram,
-		XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+	linkStyle.add(LinkStyleHorizontalAction.createMenu(diagram));
+	linkStyle.add(LinkStyleStraightAction.createMenu(diagram));
+	linkStyle.add(LinkStyleVerticalAction.createMenu(diagram));
 	format.add(linkStyle);
 	format.addSeparator();
 
@@ -575,8 +539,6 @@ public class XcosTab extends ScilabTab {
 	// START / STOP
 	startAction = StartAction.createButton(diagram);
 	stopAction = StopAction.createButton(diagram);
-	startAction.setEnabled(startEnabled);
-	stopAction.setEnabled(!startEnabled);
 	startPushButtons.add(startAction);
 	stopPushButtons.add(stopAction);
 
@@ -635,68 +597,5 @@ public class XcosTab extends ScilabTab {
 	outline.addTab(outlineTab);
 	outline.setVisible(false);
 	outlineTab.setVisible(false);
-    }
-
-    /**
-     * @param status new status
-     */
-    public void setEnabledRedo(boolean status) {
-	if (actionsEnabled) {
-	redoAction.setEnabled(status);
-	}
-    }
-
-    /**
-     * @param status new status
-     */
-    public void setEnabledUndo(boolean status) {
-	if (actionsEnabled) {
-	undoAction.setEnabled(status);
-	}
-    }
-    
-    /**
-     * Enable or Disable simulation related actions
-     * @param state True if it have to be enabled, flase otherwise
-     */
-    public void setSimulationActionEnabled(boolean state) {
-	if (actionsEnabled) {
-    	simulate.setEnabled(state);
-    	startAction.setEnabled(state);
-    	stopAction.setEnabled(state);
-	}
-    }
-    
-    /**
-     * Enable or disable all actions
-     * @param status True if they have to be enabled, false otherwise
-     */
-    public void setActionsEnabled(boolean status) {
-	fileMenu.setEnabled(status);
-	edit.setEnabled(status);
-	view.setEnabled(status);
-	simulate.setEnabled(status);
-	format.setEnabled(status);
-	alignMenu.setEnabled(status);
-	linkStyle.setEnabled(status);
-	tools.setEnabled(status);
-	help.setEnabled(status);
-	openAction.setEnabled(status);
-	saveAction.setEnabled(status);
-	saveAsAction.setEnabled(status);
-	printAction.setEnabled(status);
-	newDiagramAction.setEnabled(status);
-	deleteAction.setEnabled(status);
-	undoAction.setEnabled(status);
-	redoAction.setEnabled(status);
-	fitDiagramToViewAction.setEnabled(status);
-	startAction.setEnabled(status);
-	stopAction.setEnabled(false);
-	zoomInAction.setEnabled(status);
-	zoomOutAction.setEnabled(status);
-	xcosDemonstrationAction.setEnabled(status);
-	xcosDocumentationAction.setEnabled(status);
-	
-	actionsEnabled = status;
     }
 }

@@ -43,7 +43,7 @@
         <link linkend="string">string</link>
       </member>
       <member>
-        <link linkend="pol2tex">pol2tex</link>
+        <member><link linkend="prettyprint">prettyprint</link></member>
       </member>
     </simplelist>
   </refsection>

@@ -13,7 +13,7 @@ function [tree]=sci_uigetdir(tree)
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 
-tree.name="tk_getdir"
+tree.name="uigetdir"
 
 tree.lhs(1).dims=list(1,Unknown)
 tree.lhs(1).type=Type(String,Real)

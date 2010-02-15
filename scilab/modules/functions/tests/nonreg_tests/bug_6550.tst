@@ -1,0 +1,34 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 6550 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=6550
+//
+// <-- Short Description -->
+// lib(".") used relative path in library variable created
+// =============================================================================
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+// =============================================================================
+cd TMPDIR
+mkdir('bug_6550');
+libdir = TMPDIR + '/bug_6550';
+save(libdir + '/myplus.bin', myplus);
+save(libdir + '/yourplus.bin', yourplus);
+//create the name file
+mputl(['myplus';'yourplus'], libdir + '/names');
+// =============================================================================
+cd(libdir);
+AAlib = lib('.');
+[f, p] = libraryinfo('AAlib');
+if pathconvert(p, %f, %f) <> pathconvert(libdir, %f, %f) then pause,end
+// =============================================================================
+BBlib = lib(libdir + '/../bug_6550/../bug_6550');
+[f, p] = libraryinfo('BBlib');
+if pathconvert(p, %f, %f) <> pathconvert(libdir, %f, %f) then pause,end
+// =============================================================================

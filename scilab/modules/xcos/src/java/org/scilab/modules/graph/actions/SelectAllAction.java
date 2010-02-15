@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,26 +17,26 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
 /**
  * Selection management
- * @author Vincent COUVERT
  */
-public final class SelectAllAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public final class SelectAllAction extends OneBlockDependantAction {
+	public static final String NAME = ScilabGraphMessages.SELECT_ALL;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_A;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
-	private SelectAllAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.SELECT_ALL, scilabGraph);
+	public SelectAllAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -44,10 +45,7 @@ public final class SelectAllAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.SELECT_ALL, null,
-				new SelectAllAction(scilabGraph), KeyStroke.getKeyStroke(
-						KeyEvent.VK_A, Toolkit.getDefaultToolkit()
-								.getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, SelectAllAction.class);
 	}
 	
 	/**

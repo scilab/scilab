@@ -601,10 +601,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_spones.c"
 				>
 			</File>

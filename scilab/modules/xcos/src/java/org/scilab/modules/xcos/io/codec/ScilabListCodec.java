@@ -54,8 +54,18 @@ public class ScilabListCodec  extends XcosObjectCodec {
      * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
      */
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-		mxCodec.setAttribute(node, SCILAB_CLASS, obj.getClass().getSimpleName());
-		
+		String type = "";
+		for (Class< ? extends Object> klass = obj.getClass(); klass != Object.class; klass = klass
+				.getSuperclass()) {
+			if (klass == ScilabMList.class || klass == ScilabTList.class
+					|| klass == ScilabList.class || klass.isArray()) {
+				type = klass.getSimpleName();
+				break;
+			}
+		}
+
+		assert !type.equals("");
+		mxCodec.setAttribute(node, SCILAB_CLASS, type);
 		return obj;
 	}
 	

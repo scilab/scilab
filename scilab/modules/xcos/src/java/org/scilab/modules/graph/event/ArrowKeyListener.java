@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph.event;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -30,7 +31,8 @@ import com.mxgraph.view.mxGraph;
  */
 public final class ArrowKeyListener implements KeyListener {
 
-	private static final double DEFAULT_PIXEL_MOVE = 5;
+	private static final double DEFAULT_PIXEL_MOVE = 1;
+	private static final double MODIFIER_FACTOR = 5;
 	private static final int DEFAULT_DELAY = 800; // milliseconds
 
 	/* Configuration variables */
@@ -114,6 +116,10 @@ public final class ArrowKeyListener implements KeyListener {
 			realMove = graph.getGridSize();
 		} else {
 			realMove = pixelMove;
+		}
+		
+		if (e.getModifiers() == Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) {
+			realMove *= MODIFIER_FACTOR;
 		}
 
 		switch (e.getKeyCode()) {
