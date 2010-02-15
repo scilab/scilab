@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -51,9 +51,6 @@ msgstr " la ligne entrée est plus longue que la taille du buffer : %d\n"
 
 msgid "\"unknown data\""
 msgstr "\"Donnée inconnue\""
-
-msgid "%: This method is NOT implemented.\n"
-msgstr "%: Cette méthode n'est PAS implémentée.\n"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -193,8 +190,12 @@ msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: Arrêt demandé par le simulateur (ind=0)\n"
 
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s: La matrice de colocation Th est singulière.\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -495,8 +496,8 @@ msgstr ""
 "%s: l'erreur relative entre deux itérations consécutives est au plus %s.\n"
 
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s: problème singulier ou asymétrique.\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -542,9 +543,8 @@ msgstr "%s: les dimensions de la fenêtre ont été réduites à moins de 2^16.\
 msgid "'o' format not allowed."
 msgstr "format 'o' non autorisé."
 
-msgid "A sparse matrix entry is defined with two differents values.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
-"Une entrée de matrice creuse est définie avec deux valeurs différentes.\n"
 
 msgid "Argument type must be boolean.\n"
 msgstr "Le type de l'argument doit être booléen.\n"
@@ -553,9 +553,8 @@ msgid "Arguments are :\n"
 msgstr "Les arguments sont:\n"
 
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
-"A l'instant: %s, Trop d'itération pour atteindre la précision demandée.\n"
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -564,10 +563,8 @@ msgstr "Mauvais appel de la primitive : %s\n"
 msgid "Bad conversion."
 msgstr "Mauvaise conversion"
 
-msgid "Binary direct acces files must be opened by 'file'.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
 msgstr ""
-"Les fichiers en accès binaire directs doivent être ouvert par la fonction "
-"'file'.\n"
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -637,10 +634,8 @@ msgstr "Nom d'entrée non trouvé.\n"
 msgid "Error while linking.\n"
 msgstr "Erreur pendant l'édition de liens.\n"
 
-msgid "Error while writing in file,(disk full or deleted file.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
-"Erreur pendant l'écriture dans le fichier, (disque plein ou fichier "
-"supprimé.\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "La variable Eye n'est pas définie dans ce contexte.\n"
@@ -899,10 +894,8 @@ msgstr "Pas encore implémenté dans Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Une variable nulle ne peut pas être utilisée ici.\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
-"Les opérandes des opérations / et \\ ne doivent pas contenir de NaN ou "
-"d'Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.\n"
@@ -942,12 +935,12 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quapro a rencontré des cycles sur un point dégénéré.\n"
 
 #, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "Rang défaillant. rang = %d\n"
-
-#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "Défaillance du rang : rang = %s - tol = %s.\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
 
 msgid "Real part\n"
 msgstr "Partie réelle\n"
@@ -1075,14 +1068,14 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "Trop de fonctions sont définies (nb maximum: %d).\n"
 
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "Trop de variables globales! , le nombre max est %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
 
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
 
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
 
 msgid "Too many linked routines.\n"
 msgstr "Trop de routines liées.\n"
@@ -1189,10 +1182,8 @@ msgstr "Attention: Le résultat est peut être inexact.\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
-"Attention: le Jacobien externe est donnée, mais\n"
-" pas utilisé!, voir %ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1213,11 +1204,9 @@ msgid "Warning: function is already compiled.\n"
 msgstr "Attention: la fonction est déjà compilée.\n"
 
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
-"Attention: intégration incomplète! vérifiez les paramètres de tolérance ou "
-"la taille du pas.\n"
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "Attention: intégration jusqu'à l'instant tcrit.\n"
@@ -1234,8 +1223,8 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Attention: utilisation obsolète de '=' à la place de '=='.\n"
 
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "Attention : utilisation obsolète de eye, rand ou ones.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"

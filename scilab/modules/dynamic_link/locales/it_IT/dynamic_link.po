@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-26 14:40+0000\n"
+"PO-Revision-Date: 2009-12-16 13:02+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -47,7 +47,7 @@ msgstr "   %s: Modifica del Makefile in TMPDIR.\n"
 
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
-msgstr ""
+msgstr "   %s: occorre eseguire la ricerca del compilatore (configure).\n"
 
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
@@ -59,7 +59,7 @@ msgstr "   %s: usa il compilatore trovato in precedenza.\n"
 
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
-msgstr "   %s: configurare : generare il Makefile.\n"
+msgstr "   %s: configure : genera il Makefile.\n"
 
 msgid "   Building shared library (be patient)\n"
 msgstr "   Creazione in corso della libreria condivisa (attendere)\n"
@@ -133,8 +133,8 @@ msgid "%s: Already loaded from library %s\n"
 msgstr "%s: È già caricato dalla libreria %s\n"
 
 #, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s: Si è verificato un errore durante la compilazione:\n"
+msgid "%s: An error occurred during the compilation:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -155,8 +155,8 @@ msgstr ""
 "dell'ingresso %d.\n"
 
 #, c-format
-msgid "%s: Error while modifing the reference Makefile:\n"
-msgstr "%s: Errore durante la modifica del Makefile di rirerimento:\n"
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
