@@ -13,14 +13,12 @@ Internationalization:
 Xcos:
 =====
 
-* The XML header of an xcos file is now checked before any other parsing.
+* Some checks on the loading of data files have been added.
 
 * Superblock masks can now be used and a new window is created when user wants 
   to configure the variable settings.
 
 * Some performance improvements under Linux
-
-* A rework to pass checkstyle metrics on the code has been started.
 
 * Update to jgraphx version 1.2.0.7 has been performed.
 
@@ -40,6 +38,7 @@ Xcos:
       per package and improve readability.
     - org.scilab.modules.graph is independent from Xcos and can be safely used.
     - the actions are now only instanciated per graph.
+    - A first check on checkstyle metrics on the code has been done.
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
@@ -80,8 +79,8 @@ Xcos:
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
-* bug 5674 fixed - The Signal.notify did not check if we are waiting for it
-                   (thus the next wait will block).
+* bug 5674 fixed - The Signal.notify did not check if we were waiting for it
+                   (thus the next wait was blocked).
 
 * bug 5701 fixed - The "AFFICH_m" block did not simulate anymore.
 
@@ -143,9 +142,11 @@ Example: xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά
 Text editor:
 ============
 
-* bug 5651 fixed - Closing find/replace box was not removing highlights.
+* bug 5649 fixed - The Editor did not undo properly after a find/replace.
 
 * bug 5650 fixed - Replace all was not working in some cases
+
+* bug 5651 fixed - Closing find/replace box was not removing highlights.
 
 * bug 5707 fixed - cmd-e executed the wrong editor file.
 
@@ -266,7 +267,7 @@ Bug fixes:
 * bug 5696 semi/fixed - There was a lack of feedback when SELinux was 
                    preventing Scilab to start under Fedora 12.
                    
-* bug 5699 fixed - FreePtr() is declared as a macro but it was not 
+* bug 5699 fixed - FreePtr() was declared as a macro but it was not 
                    exported on Windows.
 
 * bug 5700 fixed - Compilation under RHE4 was failing on the includes of
