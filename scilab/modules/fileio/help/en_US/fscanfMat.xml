@@ -21,8 +21,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>M=fscanfMat(filename);
-[M,text]=fscanfMat(filename);</synopsis>
+    <synopsis>M = fscanfMat(filename[, fmt]);
+[M,text]=fscanfMat(filename[, fmt]);</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -33,6 +33,14 @@
           <para>a character string giving the name of the  file  to  be scanned.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>fmt</term>
+        <listitem>
+          <para>a character string giving the format. This is an optional
+    parameter, the default value is <literal>"%lf"</literal></para>
+        </listitem>
+      </varlistentry>
+      
       <varlistentry>
         <term>M</term>
         <listitem>
@@ -55,7 +63,7 @@
     in <literal>text</literal> if requested and
     all the remaining lines must have the same number of columns (column 
     separator are assumed to be white spaces or tab characters). The
-    number of columns of the matrix will  follow the number 
+    number of columns of the matrix will follow the number 
     of columns found in the file and the number of lines is fetched by 
     detecting eof in the input file. This function can be used to read 
     back numerical data saved with the <literal>fprintfMat</literal>.</para>
@@ -73,6 +81,11 @@ for i=1:6 ,
 end
 mclose(fd);
 a1=fscanfMat(TMPDIR+'/Mat')
+
+A = ones(5,5) + 0.1;
+fprintfMat(TMPDIR+'/Matrix.txt',A,'%lg|blablabla|');
+B = fscanfMat(TMPDIR+'/Matrix.txt','%lg|blablabla|');
+A == B
  ]]></programlisting>
   </refsection>
   <refsection>

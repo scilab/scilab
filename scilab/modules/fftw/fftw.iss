@@ -29,8 +29,6 @@ Source: modules\{#FFTW}\sci_gateway\fftw_gateway.xml; DestDir: {app}\modules\{#F
 Source: modules\{#FFTW}\etc\{#FFTW}.quit; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 ;
-Source: modules\{#FFTW}\help\addchapter.sce; DestDir: {app}\modules\{#FFTW}\help; Flags: recursesubdirs; Components:  {#COMPN_FFTW}
-;
 ;Source: modules\{#FFTW}\demos\*.*; DestDir: {app}\modules\{#FFTW}\demos; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}

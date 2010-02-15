@@ -250,6 +250,7 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -424,7 +425,9 @@ sci_gateway/c/sci_ilib_verbose.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f 
 libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/io/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(srcdir)/src/c/ \

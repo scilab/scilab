@@ -30,8 +30,6 @@ Source: modules\{#SHELL}\includes\prompt.h; DestDir: {app}\modules\{#SHELL}\incl
 Source: modules\{#SHELL}\includes\scilines.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\includes\dynlib_shell.h; DestDir: {app}\modules\{#SHELL}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SHELL}\help\addchapter.sce; DestDir: {app}\modules\{#SHELL}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#SHELL}\etc\{#SHELL}.quit; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\etc\{#SHELL}.start; DestDir: {app}\modules\{#SHELL}\etc; Components: {#COMPN_SCILAB}
 ;

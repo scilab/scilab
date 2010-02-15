@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-05-27 18:59+0100\n"
-"PO-Revision-Date: 2009-11-27 16:10+0000\n"
+"PO-Revision-Date: 2010-02-12 20:46+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -92,10 +92,8 @@ msgstr " ----------------------------------------------------- \n"
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
 
-#
-# File: macros/scisptdemo.sci, line: 37
-msgid " For this demo the current stack size is not enought "
-msgstr " デモの現在のスタックサイズは、十分ではありません "
+msgid " For this demo the current stack size is not enough "
+msgstr " 現在のスタックサイズは、デモに十分ではありません "
 
 #
 # File: macros/cond2sp.sci, line: 94
@@ -296,12 +294,11 @@ msgid ""
 "Cholesky factorisation"
 msgstr "%s: 入力引数 #%d で不正な値: コレスキー分解法への明確な参照でなくてはなりません"
 
-#
-# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symetric positive definite"
-msgstr "%s: 入力引数 #%d で不正な値: 明確に対称でなくてはなりません"
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr "%s: 入力引数 #%d で不正な値: 正値定符号行列に対称でなくてはなりません。"
 
 #
 # File: sci_gateway/c/sci_taucs_chsolve.c, line: 87

@@ -52,6 +52,9 @@ import net.sourceforge.jeuclid.MutableLayoutContext;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.converter.Converter;
 
+import org.scilab.forge.jlatexmath.TeXConstants; 
+import org.scilab.forge.jlatexmath.TeXFormula;
+import java.awt.Color;
 
 /**
  * @TODO add comment
@@ -84,6 +87,8 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private File gs;
     private File ps2pdf;
 
+    private LaTeXElement latexElem = null;
+    private boolean isLatexConverted = true;
 
 	public void setVerbose(boolean verbose){
 		this.verbose=verbose;
@@ -91,6 +96,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
 	public void setPrintFormat(String printFormat){
 		this.printFormat=printFormat;
+	}
+    
+        public void setLatexConverted(boolean isLatexConverted){
+		this.isLatexConverted = isLatexConverted;
 	}
 
     // -----------------------------------------------------------------------
@@ -180,8 +189,14 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                              Attributes atts)
         throws SAXException {
         out.write('<');
+        
+        if ("latex".equals(localName)) {
+            latexElem = new LaTeXElement(atts, isLatexConverted);
+            return;
+        } 
+        
         out.write(qName);
-
+        
         boolean isImage = "imagedata".equals(localName);
         boolean isGraphicsFile = false;
 
@@ -304,6 +319,12 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     public void endElement(String uri, String localName, String qName)
         throws SAXException {
+        if ("latex".equals(localName)) {
+            latexElem.generate();
+            latexElem = null;
+            return;
+        }
+
         if ("imagedata".equals(localName) && mainOut != null) {
             String rootName = "graphics-" + graphicsCounter;
             String baseName = rootName + ".tmp";
@@ -358,6 +379,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     public void characters(char[] ch, int start, int length)
         throws SAXException {
+        if (latexElem != null) {
+            latexElem.setLaTeX(new String(ch, start, length));
+            return;
+        }
+        
         Helpers.escapeXML(ch, start, length, out);
     }
 
@@ -785,4 +811,84 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         }
         return 0;
     }
+
+    protected class LaTeXElement {
+        int size = 18;
+        Color fg = null, bg = null;
+        int disp = TeXConstants.STYLE_DISPLAY;
+        String code = "imagedata";
+        String LaTeX = "";
+        boolean exported;
+        String attribs;
+
+        protected LaTeXElement(Attributes attrs, boolean exported) {
+            this.exported = exported;
+            int n = attrs.getLength();
+            String fgS = "", bgS = "";
+            String dispS = "display";
+            String align = "center";
+            
+            for (int i = 0; i < n; i++) {
+                String attr = attrs.getValue(i);
+                String name = attrs.getLocalName(i);
+                if ("align".equals(name)) {
+                    code += " align=\'" + attr + "\'";
+                    align = attr;
+                } else if ("display".equals(name)) {
+                    if ("text".equals(attr)) {
+                        disp = TeXConstants.STYLE_TEXT;
+                    } else if ("script".equals(attr)) {
+                        disp = TeXConstants.STYLE_SCRIPT;
+                    } else if ("script_script".equals(attr)) {
+                        disp = TeXConstants.STYLE_SCRIPT_SCRIPT;
+                    }
+                    dispS = attr;
+                } else if ("size".equals(name)) {
+                    try {
+                        size = Integer.parseInt(attr);
+                    } catch (NumberFormatException e) {
+                        size = 16;
+                    }
+                } else if ("fg".equals(name)) {
+                    fg = Color.decode(attr);
+                    fgS = attr;
+                } else if ("bg".equals(name)) {
+                    bg = Color.decode(attr);
+                    bgS = attr;
+                }
+            }
+
+            attribs = " align='" + align + "'";
+            attribs += " size='" + size + "'";
+            attribs += " display='" + dispS + "'";
+            if (bg != null) {
+                attribs += " bg='" + bgS + "'";
+            }
+            if (fg != null) {
+                attribs += " fg='" + fgS + "'";
+            }   
+        }
+
+        protected void setLaTeX(String str) {
+            LaTeX += str;
+        }
+
+        protected void generate() {
+            if (exported) {
+                generatePNG();
+                return;
+            }
+            out.write("latex" + attribs  + " xmlns=\"http://forge.scilab.org/p/jlatexmath\"><![CDATA[" + LaTeX + "]]></latex>");
+        }
+            
+        
+        protected void generatePNG() {
+            TeXFormula tf = new TeXFormula(LaTeX);
+            File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
+            tf.createPNG(disp, size, f.getPath(), bg, fg);
+
+            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/>");
+        }
+    }
+
 }

@@ -55,6 +55,7 @@ public class BuildDocObject extends StyleSheet {
 	private String docbookPath;
 	private String styleDoc;
 	private ArrayList<String> specificArgs = new ArrayList<String>();
+	private boolean isLatexConverted = true;
 
     /**
      * Creator ... creates the BuildDocObject object
@@ -118,6 +119,7 @@ public class BuildDocObject extends StyleSheet {
      * @param format the format (among the list CHM, HTML, PDF, JH, PS)
 	 */
 	public void setExportFormat(String format) {
+
 		// Need to work with a String instead of a enum since it needs
 		// to be called from C/C++ and GIWS doesn't manage this type.
 		// Can be CHM, HTML, PDF, JavaHelp, Postscript
@@ -132,7 +134,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("shade.verbatim=1");
 			specificArgs.add("img.src.path=" + outputDirectory);
 			this.styleDoc = docbookPath + "/fo/docbook.xsl";
-
+			this.isLatexConverted = false;
 		} 
 
 		/* HTML Format */
@@ -220,7 +222,8 @@ public class BuildDocObject extends StyleSheet {
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
         copyConvert.setPrintFormat(this.format);
-		
+		copyConvert.setLatexConverted(isLatexConverted);
+	
         try {
             copyConvert.run(new File(masterXML), masterXMLTransformed);
         } catch (SAXParseException e) {
@@ -241,7 +244,9 @@ public class BuildDocObject extends StyleSheet {
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
             return null;
         }
+
 		return masterXMLTransformed.getAbsolutePath();
+
 	}
 
     /**
@@ -259,6 +264,31 @@ public class BuildDocObject extends StyleSheet {
 		return this.outputDirectory;
 	}
 
+/**
+ * Preprocess the extendedStyle.xsl file
+ * Basically, we load the xsl and replace STYLE_DOC by the actual path
+ * to the xsl file since docbook cannot replace env variables
+ * @return the path to the preprocessed file
+ */
+
+	private File generateExtendedStyle() {
+		String mainStyleDoc = SCI + "/modules/helptools/schema/extendedStyle.xsl";
+		try {
+			String contentMainStyleDoc = Helpers.loadString(new File(mainStyleDoc), "UTF-8");
+
+			/* STYLE_DOC is a predefined variable */
+			File tmpFileForURI = new File(this.styleDoc);
+			contentMainStyleDoc = contentMainStyleDoc.replaceAll("STYLE_DOC", tmpFileForURI.toURI().toString());
+
+			File temporaryStyleFile = File.createTempFile("style_",".xsl");
+
+			Helpers.saveString(contentMainStyleDoc, temporaryStyleFile, "UTF-8");
+			return temporaryStyleFile;
+		} catch (java.io.IOException e) {
+			System.err.println("Could not convert "+mainStyleDoc);
+			return null;
+		}
+	}
 
     /**
      * Launch the whole Saxon process 
@@ -283,6 +313,8 @@ public class BuildDocObject extends StyleSheet {
 			throw new FileNotFoundException(COULD_NOT_FIND_STYLE_DOC + this.styleDoc);
 		}
 
+		File processedStyle = generateExtendedStyle();
+
 		if (!new File(this.outputDirectory).isDirectory()) {
 			throw new FileNotFoundException("Could not find directory: " + this.outputDirectory);
 		}
@@ -300,7 +332,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 		//args.add("-t");
 		args.add(sourceDocProcessed);
-		args.add(this.styleDoc);
+		args.add(processedStyle.getAbsolutePath());
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
@@ -315,6 +347,7 @@ public class BuildDocObject extends StyleSheet {
 			/* Delete the master temp file to avoid to be shipped with the rest */
 			new File(sourceDocProcessed).delete();
 		}
+		processedStyle.delete();
 
 		return this.postProcess();
 

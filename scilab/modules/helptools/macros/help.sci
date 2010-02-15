@@ -17,7 +17,7 @@ else
   key = '';
 end
 
-if (fileinfo('SCI/modules/helptools/help') <> []) then
+if (findfiles('SCI/modules/helptools/jar','*_help.jar') <> []) then
   
   if getscilabmode() <> "NWNI" then
     
@@ -49,10 +49,7 @@ if (fileinfo('SCI/modules/helptools/help') <> []) then
     error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));
   end
 else
-
-  error(msprintf(gettext("%s: help module is not installed.\n"), "help"));
-
+  error(msprintf(gettext("%s: help file(.jar) is not installed.\n"), "help"));
 end
 
 endfunction
-

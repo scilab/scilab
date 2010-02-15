@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "TerminateCore.h"
 #include "../../../graphics/includes/TerminateGraphics.h"
-#include "../../../tclsci/includes/TerminateTclTk.h"
+#include "dynamic_tclsci.h"
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../jvm/includes/TerminateJVM.h"
 #ifdef _MSC_VER
@@ -36,7 +36,7 @@ int ExitScilab(void)
   
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-		TerminateTclTk();
+		dynamic_TerminateTclTk();
 		TerminateGraphics();
 		TerminateGUI();
 		TerminateJVM();
