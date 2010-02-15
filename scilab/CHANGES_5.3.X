@@ -18,7 +18,8 @@ Xcos:
 =====
 
 * The default palettes can now be manipulated by the user.
-* LaTeX formulas can be used on any TextBlock using the Scilab tag based description.
+* LaTeX formulas can be used on any TextBlock using the Scilab tag based 
+description.
 
 Compilation:
 ============
