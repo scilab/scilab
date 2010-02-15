@@ -2,18 +2,6 @@
                 =================================================
 
 
-
-Text editor:
-============
-
-* bug 5649 fixed - The Editor did not undo properly after a find/replace.
-
-* bug 5651 fixed - Closing find/replace box was not removing highlights.
-
-* bug 5650 fixed - Replace all was not working in some cases
-
-* bug 5707 fixed - cmd-e executed the wrong editor file.
-
 Internationalization:
 =====================
 
@@ -54,12 +42,12 @@ Xcos:
 
 * bug 4206 fixed - The CreateMask action didn't generate a valid submatrix.
 
-* bug 5095 fixed - Menu were not disabled when action were not possible.
+* bug 5095 fixed - Menus were not disabled when actions were not possible.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
                    were not available.
 
-* bug 5285 fixed - Scicos couldn't simulate modelica diagrams while it's 
+* bug 5285 fixed - Scicos could not simulate modelica diagrams while the 
                    filename contains space.
 
 * bug 5434 fixed - On the loading of Scicos files (cos and cosf files), some 
@@ -77,13 +65,13 @@ Xcos:
 * bug 5627 fixed - It was not possible to place a port in a non-conventionnal
                    side.
 
-* bug 5640 fixed - When launching Xcos: Toolbar and menubar didn't appear 
+* bug 5640 fixed - When launching Xcos: Toolbar and menubar did not appear 
                    before the focus is on the Xcos window.
 
 * bug 5660 fixed - An scicos block with negative simulation function type was 
                    not working (espacially the ESELECT_f block).
 
-* bug 5666 fixed - The CLKGOTO block wasn't valid anymore after setting
+* bug 5666 fixed - The CLKGOTO block was not valid anymore after setting
                    its parameters.
 
 * bug 5667 fixed - Simulation starts faster on Linux for huge diagram 
@@ -91,24 +79,24 @@ Xcos:
 
 * bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
-* bug 5674 fixed - The Signal.notify didn't check is we are waiting for it
+* bug 5674 fixed - The Signal.notify did not check if we are waiting for it
                    (thus the next wait will block).
 
-* bug 5701 fixed - The "AFFICH_m" block didn't simulate anymore.
+* bug 5701 fixed - The "AFFICH_m" block did not simulate anymore.
 
-* bug 6386 fixed - The Quit operation didn't work on SuperBlockDiagrams
+* bug 6386 fixed - The Quit operation did not work on SuperBlockDiagrams
                    properly.
 
-* bug 6414 fixed - Old Xcos diagrams without rotation fields didn't load.
+* bug 6414 fixed - Old Xcos diagrams without rotation fields did not load.
 
-* bug 6415 fixed - The SAWTOOTH_f block didn't allow parameters.
+* bug 6415 fixed - The SAWTOOTH_f block did not allow parameters.
 
 * bug 6463 fixed - The jgraphx library has been updated to 1.2.0.7.
 
 * bug 6474 fixed - demo_watertank.xcoscrashed when any block parameter dialog 
                    was closed the second time.
 
-* bug 6490 fixed - The multiple-point link didn't work accordingly to the 
+* bug 6490 fixed - The multiple-point link did not work accordingly to the 
                    zoom level.
 
 * bug 6540 fixed - We were unable to open a SuperBlock due to jgraphx serializer
@@ -123,14 +111,44 @@ Atoms:
 
 * atomsSetConfig("offLine","True"/"False") automatically calls atomsSystemUpdate()
   if its value has changed.
+  
+* Under Windows platforms, the internet connection is now based on the default 
+  browser configuration.
+
+* Various bugs when installing local packages have been fixed. 
 
 * bug 6383 fixed - A message displayed by atomsRemove() (when the module to
-                   remove is loaded) wasn't correct.
+                   remove is loaded) was not correct.
 
-* bug 6389 fixed - Atoms GUI : "Update" button just removed the selected module
-                   but didn't update it.
+* bug 6389 fixed - Atoms GUI: "Update" button just removed the selected module
+                   but did not update it.
                    
-* bug 6518 fixed - atomsRepositoryAdd() didn't accept local repositories.
+* bug 6518 fixed - atomsRepositoryAdd() did not accept local repositories.
+
+Text rendering:
+===============
+
+* Handles greek, cyrillic and complete unicode for latin alphabets characters 
+when using LaTeX in the graphics and documentation (See bug #5525)
+Example: xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
+
+* \textsuperscript LateX was not supported. (See bug #6573)
+
+* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
+                   you use scilab in a terminal service session on Windows.
+
+* bug 6603 fixed - Lines were too long in the help browser.
+
+Text editor:
+============
+
+* bug 5649 fixed - The Editor did not undo properly after a find/replace.
+
+* bug 5651 fixed - Closing find/replace box was not removing highlights.
+
+* bug 5650 fixed - Replace all was not working in some cases
+
+* bug 5707 fixed - cmd-e executed the wrong editor file.
 
 Compilation:
 ============
@@ -147,8 +165,12 @@ Compilation:
 
 * Better check of the lib math (libm)
 
+* When --disable-build-help was given to the configure, some mandatory 
+  libraries (batik, fop & avalon framework) used by the graphic export features
+  were not checked. This was causing build failure.
+
 * When two versions of the same jar libraries, in some cases, the system
-  could not detect any of them
+  could not detect any of them.
 
 * bug 5496 fixed - When the option --disable-build-help was enabled, the 
                    check/use of jeuclid was disabled. It was causing build 
@@ -171,9 +193,14 @@ Scilab CLI:
 Scilab extensions:
 ==================
 
-* call_scilab: Complex examples have not been updated to use the new API Scilab.
+* call_scilab: Complex examples had not been updated to use the new API Scilab.
 
-* API_Scilab: a presentation page of the feature have been added.
+* API_Scilab: A presentation page of the feature have been added.
+
+Packaging:
+==========
+
+* Scilab binaries are now shipped with Java JRE 1.6.0 b18
 
 Matlab binary files I/O:
 ========================
@@ -184,6 +211,8 @@ Obsolete functions:
 ===================
 
 * 'scilab_demos' obsolete see 'demo_gui'.
+
+* 'with_gtk' obsolete see 'getversion'.
 
 Bug fixes:
 ==========
@@ -204,9 +233,13 @@ Bug fixes:
 * bug 5413 fixed - help_from_sci was replacing the < > in the examples by
                    &gt; and &lt; causing issues in the build of documentation.
 
-* bug 5436 fixed - The export to svg does not work with bar graphs.
+* bug 5436 fixed - The export to svg did not work with bar graphs.
 
 * bug 5513 fixed - 'input' failed after Ctrl+C was typed.
+        
+* bug 5578 fixed - Some Tree functions were not documented (iConcatTree, uiDeleteNode, 
+		   uiEqualsTree, uiFindNode, uiGetChildrenNode, uiGetNodePosition, 
+		   uiGetParentNode, uiInsertNode)
 
 * bug 5659 fixed - emptystr changed the value of an input variable.
 
@@ -220,9 +253,6 @@ Bug fixes:
 * bug 5669 fixed - fminsearch: optimsimplex_new has been improved for "randbounds"
 
 * bug 5673 fixed - Under Linux, dependency on GLIBC_2.7 removed
-
-* bug 5679 fixed - Latex texts were not displayed (replaced by a black box) if
-                   you use scilab in a terminal service session on Windows.
 
 * bug 5687 fixed - When setting "figure_name" the window title was not set until
                    the window is "touched" with the mouse.
@@ -268,8 +298,8 @@ Bug fixes:
 
 * bug 6420 fixed - It was not possible to use ax.x_ticks with LaTex commands.
 
-* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let me select
-                   either of those file extensions.
+* bug 6436 fixed - uigetfile(["*.bin";"*.sce";"*.cos"]); did not let the user 
+                   select either of those file extensions.
 
 * bug 6437 fixed - fileext('plop') crashed Scilab on linux.
 

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-27 17:31+0000\n"
+"PO-Revision-Date: 2010-02-12 19:39+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -208,7 +208,7 @@ msgstr "%s: 現在のディレクトリ名を回復するよう試みている�
 # File: src/c/mgeti.c, line: 214
 #, c-format
 msgid "%s: Incorrect format.\n"
-msgstr "%s:  不正確なフォーマット\n"
+msgstr "%s: 不正確なフォーマット\n"
 
 #
 # File: src/c/do_xxprintf.c, line: 442
@@ -490,18 +490,11 @@ msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します�
 msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: ファイル記述子を想定します。\n"
 
-# File: macros/cd.sci, line: 13
-# File: macros/dir.sci, line: 18
-# File: macros/fileparts.sci, line: 17
-# File: macros/fileparts.sci, line: 22
-# File: macros/ls.sci, line: 23
-# File: sci_gateway/c/sci_fprintfMat.c, line: 44
-# File: sci_gateway/c/sci_fullpath.c, line: 66
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
-"nexpected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ファイル名、または、ファイル記述子を想定します。\n"
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ファイル名あるいはファイル記述子を想定します。\n"
 
 # File: macros/cd.sci, line: 13
 # File: macros/dir.sci, line: 18

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-24 20:05+0000\n"
+"PO-Revision-Date: 2010-02-13 11:19+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -37,27 +37,35 @@ msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d で性なサイズ: ブーリアンを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr "%s: 引数 %d で不正な型: 文字、または図形構造を想定します。"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr "%s: 引数 %d で不正な型: 図形構造を想定します"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 msgid "?"
-msgstr "?"
+msgstr "その他"
 
 msgid "A SuperBlock must be selected to generate code"
-msgstr ""
+msgstr "SuperBlockは、コードを生成するために選択されなくてはなりません"
 
 msgid "About Xcos"
 msgstr "Xcos情報"
 
 msgid "Add to"
-msgstr "加算"
+msgstr "追加"
 
 msgid "Add to new diagram"
 msgstr "新しい図形の追加"
@@ -94,7 +102,7 @@ msgstr "中央"
 
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
-msgstr ""
+msgstr "図形をクリックしてリンク点を加えてるか、あるいは互換の目標で終了してください"
 
 msgid "Close"
 msgstr "閉じる"
@@ -116,7 +124,7 @@ msgid "Compile"
 msgstr "コンパイル"
 
 msgid "Continuous time systems"
-msgstr ""
+msgstr "連続時間システム"
 
 msgid "Copy"
 msgstr "コピー"
@@ -137,10 +145,13 @@ msgid "Cut"
 msgstr "切り取り"
 
 msgid "Debug block calls without trace"
-msgstr ""
+msgstr "トレースしないデバッグ・ブロック"
 
 msgid "Default"
-msgstr "初期値"
+msgstr "デフォルト"
+
+msgid "Default values"
+msgstr "デフォルト値"
 
 msgid "Delete"
 msgstr "削除"
@@ -159,13 +170,13 @@ msgstr "図形 ブラウザー"
 
 msgid ""
 "Diagram has been modified since last save.<br/> Do you want to save it?"
-msgstr ""
+msgstr "図形は、最後の保存後に修正されました。<br/>保存しますか?"
 
 msgid "Discontinuities"
 msgstr "不連続性"
 
 msgid "Discrete time systems"
-msgstr ""
+msgstr "分離時間システム"
 
 msgid "Do you want a transparent background image?"
 msgstr "透明な背景イメージが欲しいですか?"
@@ -179,14 +190,17 @@ msgstr "ダンプ"
 msgid "Edit"
 msgstr "編集"
 
+msgid "Editable"
+msgstr "編集可"
+
 msgid "Electrical"
 msgstr "電気工学"
 
 msgid "Event handling"
-msgstr ""
+msgstr "イベント・ハンドリング"
 
 msgid "Execution trace and Debug"
-msgstr ""
+msgstr "実行トレースとデバッグ"
 
 msgid ""
 "Explicit data input port must be connected to explicit data output port"
@@ -219,7 +233,7 @@ msgid "Final integration time"
 msgstr "最終統合時間"
 
 msgid "Fit diagram to view"
-msgstr "適当な図形を表示"
+msgstr "最適図形を表示"
 
 msgid "Flip"
 msgstr "反転"
@@ -252,18 +266,21 @@ msgid "Image contains no data."
 msgstr "イメージはデータを含みません。"
 
 msgid "Implicit"
-msgstr "暗黙"
+msgstr "暗示"
 
 msgid ""
 "Implicit data input port must be connected to implicit data output port"
-msgstr "暗黙のデータ入力ポートは、暗黙のデータ出力ポートと繋がってなくてはいけません"
+msgstr "暗示のデータ入力ポートは、暗示のデータ出力ポートと繋がってなくてはいけません"
 
 msgid ""
 "Implicit data output port must be connected to implicit data input port"
-msgstr "暗黙のデータ出力ポートは、暗黙のデータ入力ポートと繋がってなくてはいけません"
+msgstr "暗示のデータ出力ポートは、暗示のデータ入力ポートと繋がってなくてはいけません"
 
 msgid "Import from XML"
 msgstr "XMLからインポート"
+
+msgid "Insert"
+msgstr "挿入"
 
 msgid "Integer"
 msgstr "整数"
@@ -280,29 +297,32 @@ msgstr "反転選択"
 msgid "Left"
 msgstr "左"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
-msgstr ""
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "明るいシミュレーション・トレース(別個、また連続的な部分スイッチ)"
 
 msgid "Link Style"
 msgstr "リンク・スタイル"
 
 msgid "Load as palette"
-msgstr ""
+msgstr "パレットとして取り込む"
 
 msgid "Loading diagram"
 msgstr "図形取り込み"
 
 msgid "Loading palettes"
-msgstr ""
+msgstr "パレットを取り込む"
 
 msgid "Loading user defined palettes"
-msgstr ""
+msgstr "ユーザ定義パレットの取り込み"
 
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
+msgid "Masked SuperBlock editor"
+msgstr "仮装スーパーブロック エディタ"
+
 msgid "Mathematical Operations"
-msgstr ""
+msgstr "数学的演算"
 
 msgid "Matrix"
 msgstr "行列"
@@ -314,22 +334,28 @@ msgid "Middle"
 msgstr "中間"
 
 msgid "Mirror"
-msgstr ""
+msgstr "ミラー"
+
+msgid "Move Down"
+msgstr "下へ"
+
+msgid "Move Up"
+msgstr "上へ"
 
 msgid "New"
-msgstr "新しい"
+msgstr "新規"
 
 msgid "New diagram"
-msgstr "新しい図形"
+msgstr "新規図形"
 
 msgid "New palette"
-msgstr "新しいパレット"
+msgstr "新規パレット"
 
 msgid "No block selected"
 msgstr "ブロックなし選択"
 
 msgid "No trace nor debug printing"
-msgstr ""
+msgstr "トレースもデバッグも印刷しません"
 
 msgid "Normal 100%"
 msgstr "100% 標準"
@@ -350,20 +376,20 @@ msgid "Paste"
 msgstr "貼り付け"
 
 msgid "Per block execution trace and Debug block calls"
-msgstr ""
+msgstr "ブロック実行当りのトレースとブロック呼び出しのデバッグをしてください"
 
 msgid "Port & Subsystem"
 msgstr "ポートとサブシステム"
 
 msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
-msgstr ""
+msgstr "ポートは既に接続されています、どうぞ接続されていないポートまたは妥当なリンクを選んで下さい。"
 
 msgid "Print"
 msgstr "印刷"
 
 msgid "Quit Xcos"
-msgstr ""
+msgstr "Xcosを抜ける"
 
 msgid "Real time scaling"
 msgstr "実時間スケール"
@@ -389,6 +415,12 @@ msgstr "右"
 msgid "Rotate"
 msgstr "循環"
 
+msgid "Rows"
+msgstr "行"
+
+msgid "Same command executed again"
+msgstr "再度同じコマンドを実行"
+
 msgid "Save"
 msgstr "保存"
 
@@ -405,7 +437,7 @@ msgid "Saving diagram"
 msgstr "図形保存"
 
 msgid "Scicos file"
-msgstr ""
+msgstr "Scicosファイル"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -416,7 +448,7 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' モジュールはインストールされていません。\n"
 
 msgid "Scilab file"
-msgstr ""
+msgstr "Scilabファイル"
 
 msgid "Select all"
 msgstr "全て選択"
@@ -427,8 +459,11 @@ msgstr "コンテキスト設定"
 msgid "Set Parameters"
 msgstr "パラメーター設定"
 
+msgid "Set block parameters"
+msgstr "ブロック・パラメータ設定"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
-msgstr ""
+msgstr "デバッグレベル設定 (0,1,2,3) <br/>scicos_debug(n)を実行します"
 
 msgid "Setup"
 msgstr "セットアップ"
@@ -497,26 +532,41 @@ msgstr "上位"
 msgid "UnGroup"
 msgstr "グループでない"
 
+msgid "Unable to communicate with the interpreter"
+msgstr "インタープリタと連携できません"
+
 msgid "Undo"
 msgstr "元に戻す"
 
-msgid "Unknow Diagram Version : "
+msgid "Unknown Diagram Version : "
 msgstr "未知の図形バージョン : "
 
 msgid "Untitled"
 msgstr "無題"
 
 msgid "User-Defined"
-msgstr ""
+msgstr "ユーザ-定義"
 
 msgid "User-Defined Functions"
 msgstr "ユーザ定義関数"
+
+msgid "Values"
+msgstr "値"
+
+msgid "Variable descriptions"
+msgstr "変数記述"
+
+msgid "Variable names"
+msgstr "変数名"
+
+msgid "Variable settings"
+msgstr "変数設定"
 
 msgid "Vertical"
 msgstr "垂直"
 
 msgid "View"
-msgstr "表示"
+msgstr "ビュー"
 
 msgid "View in Scicos"
 msgstr "Scicosの表示"
@@ -527,11 +577,14 @@ msgstr "表示ポート"
 msgid "Will try to continue..."
 msgstr "継続を試みます..."
 
+msgid "WinTitle"
+msgstr "ウインドウ・タイトル"
+
+msgid "Window title"
+msgstr "ウインドウ・タイトル"
+
 msgid "Xcos"
 msgstr "Xcos"
-
-msgid "Xcos 1.0"
-msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "Xcosデモ"
@@ -543,10 +596,7 @@ msgid "Xcos error"
 msgstr "Xcos エラー"
 
 msgid "Xcos file"
-msgstr ""
-
-msgid "Xcos version 1.0"
-msgstr "Xcos バージョン 1.0"
+msgstr "Xcosファイル"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
@@ -558,7 +608,7 @@ msgstr ""
 "ると、これらの命令は評価されます。(すなわち、OKをクリックすると常に図形がロードされて評価されます)"
 
 msgid "Zero crossing detection"
-msgstr ""
+msgstr "ゼロ交差の検出"
 
 msgid "Zoom In"
 msgstr "ズーム・イン"
