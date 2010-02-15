@@ -76,6 +76,8 @@ Bug fixes:
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum from Scilab.
 
+* bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
+
 * bug 6484 fixed - file did not return filenale of a opened fortran file.
 
 * bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits 
