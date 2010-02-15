@@ -126,7 +126,7 @@ Text rendering:
 
 * Handles greek, cyrillic and complete unicode for latin alphabets characters 
 when using LaTeX in the graphics and documentation (See bug #5525)
-Example: xstring(0.5,0.5,"$\overbrace{привет мир} \underbrace{γειά κόσμο}$")
+Example: xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
 
 * \textsuperscript LateX was not supported. (See bug #6573)
 
