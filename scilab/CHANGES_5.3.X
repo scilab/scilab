@@ -29,6 +29,8 @@ Compilation:
 
 * tclsci module is dynamically loaded by Scilab.
 
+* pvm module is dynamically loaded by Scilab.
+
 helptools:
 ==========
 

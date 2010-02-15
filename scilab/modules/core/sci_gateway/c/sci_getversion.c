@@ -98,9 +98,9 @@ static int getversion_no_rhs(void)
 		n1++;
 
 
-		if (withpvm())
+		if (with_module("pvm"))
 		{
-			Str[n1]=pvm;
+			Str[n1] = pvm;
 			n1++;
 		}
 

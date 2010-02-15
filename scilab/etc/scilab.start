@@ -49,6 +49,7 @@ ieee(0);
 %T = %t;
 %F = %f;
 
+%pvm = with_module('pvm');
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 args = sciargs();

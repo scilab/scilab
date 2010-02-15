@@ -15,6 +15,22 @@
 #include "gw_dynamic_generic.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
+/* pvm module */
+#define PVM_MODULE_NAME "pvm"
+static DynLibHandle hPvmLib = NULL;
+static PROC_GATEWAY ptr_gw_pvm = NULL;
+static char* dynlibname_pvm = NULL;
+static char* gatewayname_pvm = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_pvm(void)
+{
+	return gw_dynamic_generic(PVM_MODULE_NAME,
+		&dynlibname_pvm,
+		&gatewayname_pvm,
+		&hPvmLib,
+		&ptr_gw_pvm);
+}
+/*--------------------------------------------------------------------------*/
 /* helptools module */
 #define HELPTOOLS_MODULE_NAME "helptools"
 static DynLibHandle hHelptoolsLib = NULL;
