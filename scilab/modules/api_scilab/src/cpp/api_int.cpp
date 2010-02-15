@@ -13,14 +13,21 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
-#include "api_internal_common.h"
-#include "api_internal_int.h"
-#include "api_int.h"
-#include "localization.h"
-
+#include <string.h>
+#include <stdlib.h>
+#include "machine.h"
 #include "call_scilab.h"
+#include "api_scilab.h"
+#include "api_internal_int.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
+#include "localization.h"
+#include "MALLOC.h"
+#include "context.hxx"
+
+using namespace std;
+using namespace types;
 
 SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecision)
 {
@@ -31,13 +38,13 @@ SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
 		return sciErr;
 	}
 
-	if(_piAddress[0] != sci_ints)
+	if(!((InternalType*)_piAddress)->isInt())
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfIntegerPrecision", _("int matrix"));
 		return sciErr;
 	}
 
-	*_piPrecision = _piAddress[3];
+	*_piPrecision = ((InternalType*)_piAddress)->getAsInt()->getIntType();
 	return sciErr;
 }
 
@@ -109,10 +116,14 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
 		return sciErr;
 	}
 
-	*_piRows = _piAddress[1];
-	*_piCols = _piAddress[2];
+	sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_GET_INT, _("%s: Unable to get argument #%d"), "getMatrixOfInteger", getRhsFromAddress(_pvCtx, _piAddress));
+		return sciErr;
+	}
 
-	*_piData	= (void*)(_piAddress + 4);
+	*_piData	= (void*)((InternalType*)_piAddress)->getAsInt()->data_get();
 	return sciErr;
 }
 
@@ -261,7 +272,7 @@ SciErr allocMatrixOfInteger8(void* _pvCtx, int _iVar, int _iRows, int _iCols, ch
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr		= NULL;
 	char *pcData8	= NULL;
-	int iNewPos		= Top - Rhs + _iVar;
+	int iNewPos		= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -281,7 +292,7 @@ SciErr allocMatrixOfInteger16(void* _pvCtx, int _iVar, int _iRows, int _iCols, s
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr			= NULL;
 	short *psData16	= NULL;
-	int iNewPos			= Top - Rhs + _iVar;
+	int iNewPos			= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -301,7 +312,7 @@ SciErr allocMatrixOfInteger32(void* _pvCtx, int _iVar, int _iRows, int _iCols, i
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr		= NULL;
 	int *piData32	= NULL;
-	int iNewPos		= Top - Rhs + _iVar;
+	int iNewPos		= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -322,7 +333,7 @@ SciErr allocMatrixOfInteger64(void* _pvCtx, int _iVar, int _iRows, int _iCols, l
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr						= NULL;
 	long long *pllData64	= NULL;
-	int iNewPos						= Top - Rhs + _iVar;
+	int iNewPos						= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -343,7 +354,7 @@ SciErr allocMatrixOfUnsignedInteger8(void* _pvCtx, int _iVar, int _iRows, int _i
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr							= NULL;
 	unsigned char *pucData8	= NULL;
-	int iNewPos							= Top - Rhs + _iVar;
+	int iNewPos						= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -363,7 +374,7 @@ SciErr allocMatrixOfUnsignedInteger16(void* _pvCtx, int _iVar, int _iRows, int _
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr								= NULL;
 	unsigned short *pusData16	= NULL;
-	int iNewPos								= Top - Rhs + _iVar;
+	int iNewPos								= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -383,7 +394,7 @@ SciErr allocMatrixOfUnsignedInteger32(void* _pvCtx, int _iVar, int _iRows, int _
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr							= NULL;
 	unsigned int *puiData32	= NULL;
-	int iNewPos							= Top - Rhs + _iVar;
+	int iNewPos						= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -404,7 +415,7 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int *piAddr											= NULL;
 	unsigned long long *pullData64	= NULL;
-	int iNewPos											= Top - Rhs + _iVar;
+	int iNewPos											= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
 
 	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
 
@@ -420,29 +431,30 @@ SciErr allocMatrixOfUnsignedInteger64(void* _pvCtx, int _iVar, int _iRows, int _
 }
 #endif
 
-SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** pvData)
+SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** _pvData)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
 
-	int iRate				= (sizeof(double) / (_iPrecision % 10));
-	int iSize				= _iRows * _iCols;
-	int iDouble			= iSize / iRate;
-	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
-	int iTotalSize	= iDouble + iMod;
-
-	int iMemSize = iTotalSize + 2;
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-	if (iMemSize > iFreeSpace)
+	if(_pvCtx == NULL)
 	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfInteger");
 		return sciErr;
 	}
 
-	fillCommonMatrixOfInteger(_pvCtx, _piAddress, _iPrecision, _iRows, _iCols, pvData);
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
-	updateLstk(iNewPos, iAddr + 4, iTotalSize );
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  InternalType** out = pStr->m_pOut;
+
+	Int *pI = Int::createInt(_iRows, _iCols, (Int::IntType)_iPrecision);
+	if(pI == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfInteger");
+		return sciErr;
+	}
+
+	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	out[rhs - 1] = pI;
+
+	*_pvData = (void*)pI->data_get();
 	return sciErr;
 }
 
@@ -508,8 +520,8 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrec
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+  int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int *piAddr				= NULL;
 	void *pvData			= NULL;
 
@@ -540,12 +552,12 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrec
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + 4, iTotalSize);
 
-	Rhs = 0;
+	//Rhs = 0;
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-  Rhs = iSaveRhs;
+	//Top = iSaveTop;
+  //Rhs = iSaveRhs;
 
 	return sciErr;
 }

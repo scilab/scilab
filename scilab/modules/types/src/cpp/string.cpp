@@ -223,7 +223,6 @@ namespace types
 		{
 			ostringstream ostemp;
 			int iLastVal = 0;
-			ostemp << "!";
 			for(int i = 0 ; i < m_iCols ; i++)
 			{
 				int iLen = 0;

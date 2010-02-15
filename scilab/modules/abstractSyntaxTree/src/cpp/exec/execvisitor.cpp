@@ -481,19 +481,19 @@ namespace ast
 
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				pIT = pVar->extract_value(i);
-				symbol::Context::getInstance()->put(symbol, *pIT);
+				//pIT = pVar->extract_value(i);
+				//symbol::Context::getInstance()->put(symbol, *pIT);
 				e.body_get().accept(*execBody);
-				if(e.body_get().is_break())
-				{
-					break;
-				}
+				//if(e.body_get().is_break())
+				//{
+				//	break;
+				//}
 
-				if(e.body_get().is_return())
-				{
-					((Exp*)&e)->return_set();
-					break;
-				}
+				//if(e.body_get().is_return())
+				//{
+				//	((Exp*)&e)->return_set();
+				//	break;
+				//}
 			}
 			delete execBody;
 		}
@@ -669,10 +669,10 @@ namespace ast
 			Double *pdbl	= execMe->result_get()->getAsDouble();
 			Bool *pReturn	= new Bool(pdbl->rows_get(), pdbl->cols_get());
 			double *pR		= pdbl->real_get();
-			bool *pB			= pReturn->bool_get();
+			int *piB			= pReturn->bool_get();
 			for(int i = 0 ; i < pdbl->size_get() ; i++)
 			{
-				pB[i] = pR[i] == 0 ? true : false;
+				piB[i] = pR[i] == 0 ? 1 : 0;
 			}
 			result_set(pReturn);
 		}
@@ -680,12 +680,12 @@ namespace ast
 		{
 			Bool *pb			= execMe->result_get()->getAsBool();
 			Bool *pReturn	= new Bool(pb->rows_get(), pb->cols_get());
-			bool *pR			= pb->bool_get();
-			bool *pB			= pReturn->bool_get();
+			int *piR			= pb->bool_get();
+			int *piB			= pReturn->bool_get();
 
 			for(int i = 0 ; i < pb->size_get() ; i++)
 			{
-				pB[i] = !pR[i];
+				piB[i] = piR[i] == 1 ? 0 : 1;
 			}
 			result_set(pReturn);
 		}
@@ -1040,11 +1040,11 @@ bool bConditionState(ast::ExecVisitor *exec)
 	else if(((GenericType*)exec->result_get())->isBool())
 	{
 		Bool *pB		= (Bool*)exec->result_get();
-		bool *pData		= pB->bool_get();
+		int *piData	= pB->bool_get();
 
 		for(int i = 0 ; i < pB->size_get() ; i++)
 		{
-			if(pData[i] == false)
+			if(piData[i] == 0)
 			{
 				return false;
 				break;
@@ -1160,11 +1160,11 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			Bool *pB			= execMeArg->result_get()->getAsBool();
 			pDbl					= new Double(pB->rows_get(), pB->cols_get());
 			double* pdbl	= pDbl->real_get();
-			bool *pb			= pB->bool_get();
+			int *piB			= pB->bool_get();
 
 			for(int i = 0 ; i < pDbl->size_get() ; i++)
 			{
-				pdbl[i]			= pb[i] == true ? 1 : 0;
+				pdbl[i]			= piB[i] ? 1 : 0;
 			}
 			bDeleteDbl		= true;
 		}

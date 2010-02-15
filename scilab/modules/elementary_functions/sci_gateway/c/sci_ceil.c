@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "MALLOC.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"
@@ -138,7 +139,15 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 	double** pdblRealRet	= NULL;
 	double** pdblImgRet		= NULL;
 	int *piCoeff					= NULL;
-	char pstVarName[16];
+	char* pstVarName			= NULL;
+
+	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+	
+	pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
 
 	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
 	if(sciErr.iErr)
@@ -154,24 +163,24 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 			return sciErr;
 		}
 
-		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
+		piCoeff	= (int*)MALLOC(iRows * iCols * sizeof(int));
 		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblImg			= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblImgRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblReal		= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblImg			= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblImgRet	= (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblImg[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblImgRet[i]		= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblReal[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblImg[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblImgRet[i]		= (double*)MALLOC(sizeof(double) * piCoeff[i]);
 		}
 
 		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
@@ -195,25 +204,25 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 			return sciErr;
 		}
 
-		free(piCoeff);
+		FREE(piCoeff);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			free(pdblReal[i]);
-			free(pdblRealRet[i]);
+			FREE(pdblReal[i]);
+			FREE(pdblRealRet[i]);
 		}
-		free(pdblReal);
-		free(pdblRealRet);
+		FREE(pdblReal);
+		FREE(pdblRealRet);
 
 		if(isVarComplex(_piKey, _piAddress))
 		{
 			for(i = 0 ; i < iRows * iCols ; i++)
 			{
-				free(pdblImg[i]);
-				free(pdblImgRet[i]);
+				FREE(pdblImg[i]);
+				FREE(pdblImgRet[i]);
 			}
-			free(pdblImg);
-			free(pdblImgRet);
+			FREE(pdblImg);
+			FREE(pdblImgRet);
 		}
 	}
 	else
@@ -224,20 +233,20 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 			return sciErr;
 		}
 
-		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
+		piCoeff	= (int*)MALLOC(iRows * iCols * sizeof(int));
 		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL);
 		if(sciErr.iErr)
 		{
 			return sciErr;
 		}
 
-		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblReal		= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblReal[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)MALLOC(sizeof(double) * piCoeff[i]);
 		}
 
 		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
@@ -260,17 +269,18 @@ SciErr ceil_poly(int* _piKey, int* _piAddress)
 			return sciErr;
 		}
 
-		free(piCoeff);
+		FREE(piCoeff);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			free(pdblReal[i]);
-			free(pdblRealRet[i]);
+			FREE(pdblReal[i]);
+			FREE(pdblRealRet[i]);
 		}
-		free(pdblReal);
-		free(pdblRealRet);
+		FREE(pdblReal);
+		FREE(pdblRealRet);
 	}
 
+	FREE(pstVarName);
 	LhsVar(1) = Rhs + 1;
 	return sciErr;
 }

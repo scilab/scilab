@@ -32,8 +32,8 @@ int sci_cos(char *fname, int* _piKey)
 	double *pdblRealRet		= NULL;
 	double *pdblImgRet		= NULL;
 
-	//CheckRhs(1,1);
-	//CheckLhs(1,1);
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
 	if(sciErr.iErr)

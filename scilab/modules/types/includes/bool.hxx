@@ -22,19 +22,19 @@ namespace types
   class Bool : public GenericType
   {
   public :
-										Bool(bool _bReal);
+										Bool(int _bReal);
 										Bool(int _iRows, int _iCols);
-										Bool(int _iRows, int _iCols, bool **_pbData);
+										Bool(int _iRows, int _iCols, int **_piData);
 										~Bool();
 
 		Bool*						clone();
 
 		/*data management*/
-		bool*						bool_get() const;
-		bool						bool_get(int _iRows, int _iCols) const;
+		int*						bool_get() const;
+		int							bool_get(int _iRows, int _iCols) const;
 
-		bool						bool_set(bool *_pbData);
-		bool						bool_set(int _iRows, int _iCols, bool _bData);
+		bool						bool_set(int *_piData);
+		bool						bool_set(int _iRows, int _iCols, int _iData);
 
 
 		/*zero or one set filler*/
@@ -61,10 +61,10 @@ namespace types
   private :
 		/*clean values array*/
 		void						all_delete();
-		void						CreateBool(int _iRows, int _iCols, bool **_pbData);
+		void						CreateBool(int _iRows, int _iCols, int **_ibData);
 
   private :
-    bool*						m_pbData;
+    int*						m_piData;
   };
 }
 #endif /* ! __BOOL_HH__ */

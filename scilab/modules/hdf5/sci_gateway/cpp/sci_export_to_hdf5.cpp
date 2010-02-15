@@ -349,10 +349,19 @@ static bool export_poly(int* _piKey, int *_piVar, int _iH5File, char* _pstName)
 	int* piNbCoef				= NULL;
 	double** pdblReal		= NULL;
 	double** pdblImg		= NULL;
-	char pstVarName[64]	= {0};
+	char *pstVarName		= NULL;
 	int iVarNameLen			= 0;
 
 	SciErr sciErr = getPolyVariableName(_piKey, _piVar, pstVarName, &iVarNameLen);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return false;
+	}
+
+	pstVarName = (char*)MALLOC(sizeof(char) * (iVarNameLen + 1));
+
+	sciErr = getPolyVariableName(_piKey, _piVar, pstVarName, &iVarNameLen);
 	if(sciErr.iErr)
 	{
 		printError(&sciErr, 0);

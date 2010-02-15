@@ -13,17 +13,21 @@
 * still available and supported in Scilab 6.
 */
 
-#include "api_common.h"
-#include "api_double.h"
-#include "api_boolean.h"
-#include "api_internal_common.h"
-#include "api_internal_boolean.h"
-#include "localization.h"
-
-#include "Scierror.h"
+#include <string.h>
+#include <stdlib.h>
+#include "machine.h"
 #include "call_scilab.h"
+#include "api_scilab.h"
+#include "api_internal_boolean.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
+#include "localization.h"
+#include "MALLOC.h"
+#include "context.hxx"
 
+using namespace std;
+using namespace types;
 
 /********************************/
 /*   boolean matrix functions   */
@@ -55,7 +59,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 
 	if(_piBool)
 	{
-		*_piBool = _piAddress + 3;
+		*_piBool = ((InternalType*)_piAddress)->getAsBool()->bool_get();
 	}
 	return sciErr;
 }
@@ -63,23 +67,34 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int** _piBool)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int *piAddr	= NULL;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
 
-	int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
-	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-	if (iMemSize > iFreeSpace)
+	if(_pvCtx == NULL)
 	{
-		addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfBoolean");
 		return sciErr;
 	}
 
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-	fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, _piBool);
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  typed_list in = *pStr->m_pIn;
+  InternalType** out = pStr->m_pOut;
+  int*	piRetCount = pStr->m_piRetCount;
+  char* pstName = pStr->m_pstName;
 
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 3));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
+	Bool *pBool = new Bool(_iRows, _iCols);
+	if(pBool == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfBoolean");
+		return sciErr;
+	}
+
+	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	out[rhs - 1] = pBool;
+	*_piBool = pBool->bool_get();
+	if(*_piBool == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfBoolean");
+		return sciErr;
+	}
 
 	return sciErr;
 }
@@ -115,8 +130,8 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+	int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int* piBool				= NULL;
 	int *piAddr				= NULL;
 
@@ -146,12 +161,12 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, char* _pstName, int _iRows, int 
 
 	updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
 
-	Rhs = 0;
+	//Rhs = 0;
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-	Rhs = iSaveRhs;
+	//Top = iSaveTop;
+	//Rhs = iSaveRhs;
 	return sciErr;
 }
 

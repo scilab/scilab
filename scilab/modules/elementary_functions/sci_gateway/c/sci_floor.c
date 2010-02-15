@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "MALLOC.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"
@@ -141,7 +142,15 @@ SciErr floor_poly(int* _piKey, int* _piAddress)
 	double** pdblRealRet	= NULL;
 	double** pdblImgRet		= NULL;
 
-	char pstVarName[16];
+	char* pstVarName			= NULL;
+
+	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
 
 	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
 	if(sciErr.iErr)

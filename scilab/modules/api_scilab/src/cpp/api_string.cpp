@@ -16,22 +16,26 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-
+#include <stdlib.h>
+#include "machine.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
-#include "api_common.h"
-#include "api_internal_common.h"
-#include "api_string.h"
-#include "api_internal_string.h"
 #include "call_scilab.h"
+#include "api_scilab.h"
+#include "api_internal_string.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
+#include "api_oldstack.h"
 #include "localization.h"
+#include "MALLOC.h"
+#include "context.hxx"
 
-extern "C"
+extern "C" 
 {
-#include "code2str.h"
 #include "freeArrayOfString.h"
-};
+}
+
+using namespace std;
+using namespace types;
 /*--------------------------------------------------------------------------*/
 
 /*******************************/
@@ -76,20 +80,18 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 		return sciErr;
 	}
 
-	piOffset = _piAddress + 4;
+	String *pS = ((InternalType*)_piAddress)->getAsString();
 
 	//non cummulative length
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		_piLength[i] = piOffset[i + 1] - piOffset[i];
+		_piLength[i] = (int)strlen(pS->string_get(i));
 	}
 
 	if(_pstStrings == NULL || *_pstStrings == NULL)
 	{
 		return sciErr;
 	}
-
-	piData = piOffset + *_piRows * *_piCols + 1;
 
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
@@ -98,8 +100,8 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 			addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
 			return sciErr;
 		}
-		code2str(&_pstStrings[i], piData + iArraySum(_piLength, 0, i), _piLength[i]);
-		_pstStrings[i][_piLength[i]] = 0;
+
+		strcpy(_pstStrings[i], pS->string_get(i));
 	}
 	return sciErr;
 }
@@ -107,22 +109,25 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, char** _pstStrings)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int iTotalLen		= 0;
-	int *piAddr			= NULL;
 
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  InternalType** out = pStr->m_pOut;
 
-	sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
-	if(sciErr.iErr)
+	String* pS = new String(_iRows, _iCols);
+	if(pS == NULL)
 	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_STRING, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfString");
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
 		return sciErr;
 	}
 
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2)), (iTotalLen + 1) / (sizeof(double) / sizeof(int)));
+	for(int i = 0 ; i < pS->size_get() ; i++)
+	{
+		pS->string_set(i, _pstStrings[i]);
+	}
+
+	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	out[rhs - 1] = pS;
+
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -157,7 +162,6 @@ SciErr fillMatrixOfString(void* _pvCtx, int* _piAddress, int _iRows, int _iCols,
 		}
 
 		int iLen = (int)strlen(_pstStrings[i]);
-		str2code(piData + iOffset, &_pstStrings[i]);
 		iOffset += iLen;
 		piData[iOffset] = 0;
 		piOffset[i + 1] = piOffset[i] + iLen;
@@ -171,16 +175,14 @@ SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-	int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+	int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int *piAddr				= NULL;
 
 	int iTotalLen	= 0;
 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-	Top = Top + Nbvars + 1;
 
-	getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
 
 	//write matrix information
 	sciErr = fillMatrixOfString(_pvCtx, piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
@@ -192,14 +194,10 @@ SciErr createNamedMatrixOfString(void* _pvCtx, char* _pstName, int _iRows, int _
 
 	//update "variable index"
 
-	updateLstk(Top, sadr(iadr(*Lstk(Top)) + 5 + _iRows * _iCols), iTotalLen);
 
-	Rhs = 0;
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-	Rhs = iSaveRhs;
 	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

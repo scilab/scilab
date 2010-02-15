@@ -64,11 +64,11 @@ int sci_int8(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = int8_from_double(piAddr, _piKey);
+		iRet = int8_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = int8_from_int(piAddr, _piKey);
+		iRet = int8_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -115,11 +115,11 @@ int sci_uint8(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = uint8_from_double(piAddr, _piKey);
+		iRet = uint8_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = uint8_from_int(piAddr, _piKey);
+		iRet = uint8_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -166,11 +166,11 @@ int sci_int16(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = int16_from_double(piAddr, _piKey);
+		iRet = int16_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = int16_from_int(piAddr, _piKey);
+		iRet = int16_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -217,11 +217,11 @@ int sci_uint16(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = uint16_from_double(piAddr, _piKey);
+		iRet = uint16_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = uint16_from_int(piAddr, _piKey);
+		iRet = uint16_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -268,11 +268,11 @@ int sci_int32(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = int32_from_double(piAddr, _piKey);
+		iRet = int32_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = int32_from_int(piAddr, _piKey);
+		iRet = int32_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -319,11 +319,11 @@ int sci_uint32(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = uint32_from_double(piAddr, _piKey);
+		iRet = uint32_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = uint32_from_int(piAddr, _piKey);
+		iRet = uint32_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -370,11 +370,11 @@ int sci_int64(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = int64_from_double(piAddr, _piKey);
+		iRet = int64_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = int64_from_int(piAddr, _piKey);
+		iRet = int64_from_int(_piKey, piAddr);
 	}
 	else
 	{
@@ -421,11 +421,11 @@ int sci_uint64(char *fname, int* _piKey)
 
 	if(isDoubleType(_piKey, piAddr))
 	{
-		iRet = uint64_from_double(piAddr, _piKey);
+		iRet = uint64_from_double(_piKey, piAddr);
 	}
 	else if(isIntegerType(_piKey, piAddr))
 	{
-		iRet = uint64_from_int(piAddr, _piKey);
+		iRet = uint64_from_int(_piKey, piAddr);
 	}
 	else
 	{

@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "MALLOC.h"
 #include "basic_functions.h"
 #include "sciprint.h"
 #include "localization.h"
@@ -580,7 +581,15 @@ SciErr matrix_poly(int* _piKey, int* _piAddress, int _iRowsRet, int _iColsRet)
 	int* piCoeff			= NULL;
 	double **pdblReal	= NULL;
 	double **pdblImg	= NULL;
-	char pstVarName[16];
+	char* pstVarName	= NULL;
+
+	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
+	{
+		return sciErr;
+	}
+
+	pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
 
 	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
 	if(sciErr.iErr)

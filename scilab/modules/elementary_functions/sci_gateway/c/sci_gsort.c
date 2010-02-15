@@ -260,8 +260,10 @@ int	gsort_string(int* _piKey, int * _piAddress, const char* _pcstProcess, const 
 			FREE(piInd);
 			return iRet;
 		}
+		LhsVar(2) = Rhs + 2;
 	}
 	
+	LhsVar(1) = Rhs + 1;
 	FREE(piInd);
 	return 0;
 }

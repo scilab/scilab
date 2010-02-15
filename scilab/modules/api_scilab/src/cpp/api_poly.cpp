@@ -13,18 +13,21 @@
  * still available and supported in Scilab 6.
  */
 
-#include "api_common.h"
-#include "api_internal_common.h"
-#include "api_internal_poly.h"
-#include "api_poly.h"
-#include "localization.h"
-
-#include "MALLOC.h"
+#include <string.h>
+#include <stdlib.h>
+#include "machine.h"
 #include "call_scilab.h"
+#include "api_scilab.h"
+#include "api_internal_poly.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
-extern "C" {
-#include "code2str.h"
-};
+#include "api_oldstack.h"
+#include "localization.h"
+#include "MALLOC.h"
+#include "context.hxx"
+
+using namespace std;
+using namespace types;
 
 SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
@@ -37,33 +40,19 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 		return sciErr;
 	}
 
-	if(_piAddress[0] != sci_poly)
+	if(!((InternalType*)_piAddress)->isPoly())
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPolyVariableName", _("polynomial matrix"));
 		return sciErr;
 	}
 
-	*_piVarNameLen = 4;
-	pstVarName = (char*)MALLOC(sizeof(char) * 5);
-	code2str(&pstVarName, &_piAddress[4], *_piVarNameLen);
-	for(int i = 0 ; i < *_piVarNameLen ; i++)
+	if(_pstVarName == NULL || *_piVarNameLen == 0)
 	{
-		if(pstVarName[i] == ' ')
-		{
-			memset(pstVarName + i, 0x00, *_piVarNameLen - i);
-			*_piVarNameLen = i;
-			break;
-		}
-	}
-	pstVarName[4] = 0;
-
-	if(_pstVarName == NULL)
-	{
-		return sciErr;
+		*_piVarNameLen = (int)((InternalType*)_piAddress)->getAsPoly()->var_get().size();
+		return sciErr; //No error
 	}
 
-	strcpy(_pstVarName, pstVarName);
-	
+	strcpy(_pstVarName, ((InternalType*)_piAddress)->getAsPoly()->var_get().c_str());
 	return sciErr;
 }
 
@@ -125,29 +114,24 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 		return sciErr;
 	}
 
-	piOffset = _piAddress + 8; //4 for header and 4 for variable name
-	for(int i = 0 ; i < iSize ; i++)
-	{
-		_piNbCoef[i]	= piOffset[i + 1] - piOffset[i];
-	}
+	MatrixPoly *pMP = ((InternalType*)_piAddress)->getAsPoly();
+	pMP->rank_get(_piNbCoef);
 
 	if(_pdblReal == NULL)
 	{
 		return sciErr;
 	}
 
-	pdblReal = (double*)(piOffset + iSize + 1 + ((iSize + 1) % 2 == 0 ? 0 : 1 ));
 	for(int i = 0 ; i < iSize ; i++)
 	{
-		memcpy(_pdblReal[i], pdblReal + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
+		memcpy(_pdblReal[i], pMP->poly_get(i)->coef_real_get(), sizeof(double) * pMP->poly_get(i)->rank_get());
 	}
 
 	if(_iComplex == 1)
 	{
-		pdblImg = pdblReal + piOffset[iSize] - 1;
 		for(int i = 0 ; i < iSize ; i++)
 		{
-			memcpy(_pdblImg[i], pdblImg + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
+			memcpy(_pdblImg[i], pMP->poly_get(i)->coef_img_get(), sizeof(double) * _piNbCoef[i]);
 		}
 	}
 	return sciErr;
@@ -166,22 +150,40 @@ SciErr createComplexMatrixOfPoly(void* _pvCtx, int _iVar, char* _pstVarName, int
 SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int *piAddr				= NULL;
-	int iSize					= _iRows * _iCols;
-	int iNewPos				= Top - Rhs + _iVar;
-	int iAddr					= *Lstk(iNewPos);
-	int iTotalLen			= 0;
-
-	getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-	sciErr = fillCommonMatrixOfPoly(_pvCtx, piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
-	if(sciErr.iErr)
+	if(_pvCtx == NULL)
 	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_POLY, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
+		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
 		return sciErr;
 	}
 
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 4 + 4 + iSize + 1);
-	updateLstk(iNewPos, iAddr + 4 + 4 + iSize + 1, iTotalLen);
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  InternalType** out = pStr->m_pOut;
+
+	MatrixPoly* pP = new MatrixPoly(_pstVarName, _iRows, _iCols, _piNbCoef);
+	if(pP == NULL)
+	{
+		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
+		return sciErr;
+	}
+
+	if(_iComplex)
+	{
+		pP->complex_set(true);
+	}
+
+	int rhs = _iVar - api_Rhs((int*)_pvCtx);
+	out[rhs - 1] = pP;
+
+	for(int i = 0 ; i < pP->size_get() ; i++)
+	{
+		Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
+		pD->real_set(_pdblReal[i]);
+		if(_iComplex)
+		{
+			pD->img_set(_pdblImg[i]);
+		}
+		pP->poly_set(i, pD);
+	}
 
 	return sciErr;
 }
@@ -216,7 +218,7 @@ SciErr fillCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, char* _pstVarName, 
 	piVarName[1] = 40;
 	piVarName[2] = 40;
 	piVarName[3] = 40;
-	str2code(piVarName, &_pstVarName);
+	//str2code(piVarName, &_pstVarName);
 
 	piOffset = _piAddress + 8; //4 for header and 4 for variable name
 	piOffset[0] = 1;
@@ -259,8 +261,8 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVar
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
+  int iSaveRhs			= api_Rhs((int*)_pvCtx);
+	int iSaveTop			= api_Top((int*)_pvCtx);
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
@@ -281,12 +283,12 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, char* _pstName, char* _pstVar
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + 4, iTotalLen);
 
-	Rhs = 0;
+	//Rhs = 0;
 	//Add name in stack reference list
 	createNamedVariable(iVarID);
 
-	Top = iSaveTop;
-  Rhs = iSaveRhs;
+	//Top = iSaveTop;
+  //Rhs = iSaveRhs;
 
 	return sciErr;
 }

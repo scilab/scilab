@@ -651,11 +651,12 @@ SciErr getDimFromNamedVar(void* _pvCtx, char* _pstName, int* _piVal)
 int getRhsFromAddress(void* _pvCtx, int* _piAddress)
 {
 	int i = 0;
-	int* piAddr = NULL;
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+  typed_list in = *pStr->m_pIn;
+
 	for(i = 0 ; i < Rhs ; i++)
 	{
-		getVarAddressFromPosition(_pvCtx, i + 1, &piAddr);
-		if(_piAddress == piAddr)
+		if(_piAddress == (int*)in[i])
 		{
 			return i + 1;
 		}
@@ -1036,7 +1037,7 @@ int createEmptyMatrix(void* _pvCtx, int _iVar)
 	SciErr sciErr;
 	double dblReal = 1;
 
-	sciErr = createMatrixOfDouble(_pvCtx, _iVar, -1, -1, &dblReal);
+	sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -1052,7 +1053,7 @@ int createNamedEmptyMatrix(void* _pvCtx, char *_pstName)
 	SciErr sciErr;
 	double dblOne = 1;
 
-	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, -1, -1, &dblOne);
+	sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblOne);
 	if(sciErr.iErr)
 	{
 		addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");

@@ -153,10 +153,6 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, int _iComplex, int _iR
   int*	piRetCount = pStr->m_piRetCount;
   char* pstName = pStr->m_pstName;
 
-	int iNewPos			= api_Top((int*)_pvCtx) - api_Rhs((int*)_pvCtx) + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int* piAddr			= NULL;
-
 	Double* pDbl = new Double(_iRows, _iCols, _iComplex == 1);
 	if(pDbl == NULL)
 	{
