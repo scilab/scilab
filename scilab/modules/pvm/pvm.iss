@@ -26,8 +26,6 @@ Source: bin\nopvm.dll; DestDir: {app}\bin; DestName: pvm.dll; Components: {#COMP
 ;Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;
-;Source: modules\{#PVM}\help\addchapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components:  {#COMPN_PVM}
-;
 ;Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

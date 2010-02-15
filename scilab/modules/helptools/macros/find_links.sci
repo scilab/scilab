@@ -98,6 +98,12 @@ function t=getlink(name,absolute_path,path)
 	
 	global %helps;
 	global %helps_modules;
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
 	%HELPS=[%helps_modules;%helps];
 	
 	name=stripblanks(name)

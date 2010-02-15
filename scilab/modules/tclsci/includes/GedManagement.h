@@ -17,14 +17,13 @@
 #ifndef __GEDMANAGEMENT_H_
 #define __GEDMANAGEMENT_H_
 /*--------------------------------------------------------------------------------*/
-#include "dynlib_tclsci.h"
 
 /* close the graphic editor linked with the window figureId */
-TCLSCI_IMPEXP int sciDestroyGed( int figureId ) ;
+int sciDestroyGed( int figureId ) ;
 /*--------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------*/
 /* return true if ged is opened on the window figureId */
-TCLSCI_IMPEXP int isGedOpenedOn( int figureId ) ;
+int isGedOpenedOn( int figureId ) ;
 /*--------------------------------------------------------------------------------*/
 #endif /* __GEDMANAGEMENT_H_ */

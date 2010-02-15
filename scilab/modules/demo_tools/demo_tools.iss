@@ -28,8 +28,6 @@ Source: modules\{#DEMO_TOOLS}\etc\{#DEMO_TOOLS}.start; DestDir: {app}\modules\{#
 ;
 Source: modules\{#DEMO_TOOLS}\images\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\images; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#DEMO_TOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#DEMO_TOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#DEMO_TOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#DEMO_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#DEMO_TOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#DEMO_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#DEMO_TOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#DEMO_TOOLS}\macros; Components: {#COMPN_SCILAB}
