@@ -70,6 +70,8 @@ Removed functions (previously declared as obsolete):
 * 'sort' replaced by 'gsort'.
 
 * 'scilab_demos' replaced by 'demo_gui'.
+
+* 'with_gtk' replaced by 'getversion'.
  
 Bug fixes:
 ==========
@@ -78,7 +80,7 @@ Bug fixes:
 
 * bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
 
-* bug 6484 fixed - file did not return filenale of a opened fortran file.
+* bug 6484 fixed - file did not return filename of a opened fortran file.
 
 * bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits 
                    Windows.
