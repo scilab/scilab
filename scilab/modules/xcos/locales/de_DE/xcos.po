@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-08 08:36+0000\n"
+"PO-Revision-Date: 2010-01-07 15:43+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -42,6 +42,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: falscher Typ für Argument %d: Zeichenkette oder Diagrammstruktur erwartet"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr "%s: falscher Typ für Argument %d: Diagrammstruktur erwartet"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -96,6 +105,8 @@ msgstr "Zentriert"
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
+"Klicken Sie auf das Diagramm, um einen Zeigerpunkt hinzuzufügen, oder auf "
+"ein kompatibles Ziel um zu beenden."
 
 msgid "Close"
 msgstr "Schließen"
@@ -145,6 +156,9 @@ msgstr "suche Fehler in den Blockaufrufen ohne Spur"
 msgid "Default"
 msgstr "Voreinstellung"
 
+msgid "Default values"
+msgstr "Voreinstellungen"
+
 msgid "Delete"
 msgstr "Löschen"
 
@@ -183,6 +197,9 @@ msgstr "Speicherauszug"
 
 msgid "Edit"
 msgstr "Bearbeiten"
+
+msgid "Editable"
+msgstr "Editierbar"
 
 msgid "Electrical"
 msgstr "Elektrisch"
@@ -278,6 +295,9 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importieren nach XML"
 
+msgid "Insert"
+msgstr "Einfügen"
+
 msgid "Integer"
 msgstr "Integer"
 
@@ -293,9 +313,8 @@ msgstr "Auswahl umkehren"
 msgid "Left"
 msgstr "Links"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
-"leichte Simulationsspur (diskrete und kontinuierliche Teilumschaltung)"
 
 msgid "Link Style"
 msgstr "Stil des Links"
@@ -315,6 +334,9 @@ msgstr "Lade vom Benutzer definierte Palette"
 msgid "Lookup Tables"
 msgstr "Tabellen ansehen"
 
+msgid "Masked SuperBlock editor"
+msgstr "maskierter Superblock Editor"
+
 msgid "Mathematical Operations"
 msgstr "mathematische Operationen"
 
@@ -329,6 +351,12 @@ msgstr "Mittig"
 
 msgid "Mirror"
 msgstr "Spiegel"
+
+msgid "Move Down"
+msgstr "Nach unten verschieben"
+
+msgid "Move Up"
+msgstr "Nach oben verschieben"
 
 msgid "New"
 msgstr "Neu"
@@ -405,6 +433,12 @@ msgstr "Rechts"
 msgid "Rotate"
 msgstr "Rotieren"
 
+msgid "Rows"
+msgstr "Reihen"
+
+msgid "Same command executed again"
+msgstr ""
+
 msgid "Save"
 msgstr "Speichern"
 
@@ -442,6 +476,9 @@ msgstr "Kontext setzen"
 
 msgid "Set Parameters"
 msgstr "Setzte Parameter"
+
+msgid "Set block parameters"
+msgstr ""
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -514,11 +551,14 @@ msgstr "Oben"
 msgid "UnGroup"
 msgstr "nicht gruppieren"
 
+msgid "Unable to communicate with the interpreter"
+msgstr ""
+
 msgid "Undo"
 msgstr "Rückgängig machen"
 
-msgid "Unknow Diagram Version : "
-msgstr "unbekannte Diagrammversion "
+msgid "Unknown Diagram Version : "
+msgstr ""
 
 msgid "Untitled"
 msgstr "Unbenannt"
@@ -528,6 +568,18 @@ msgstr "Benutzerdefiniert"
 
 msgid "User-Defined Functions"
 msgstr "Benutzerdefinierte Funktionen"
+
+msgid "Values"
+msgstr "Werte"
+
+msgid "Variable descriptions"
+msgstr "Variablenbeschreibungen"
+
+msgid "Variable names"
+msgstr "Variablennamen"
+
+msgid "Variable settings"
+msgstr "Variableneinstellungen"
 
 msgid "Vertical"
 msgstr "Vertikal"
@@ -544,11 +596,14 @@ msgstr "Aktuelle Ansicht"
 msgid "Will try to continue..."
 msgstr "Versuche fortzufahren"
 
+msgid "WinTitle"
+msgstr "Fenstertitel"
+
+msgid "Window title"
+msgstr "Fenstertitel"
+
 msgid "Xcos"
 msgstr "Xcos"
-
-msgid "Xcos 1.0"
-msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "Xcos Demos"
@@ -561,9 +616,6 @@ msgstr "Xcos Fehler"
 
 msgid "Xcos file"
 msgstr "Xcos Datei"
-
-msgid "Xcos version 1.0"
-msgstr "Xcos version 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "

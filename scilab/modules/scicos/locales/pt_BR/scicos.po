@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -40,14 +40,6 @@ msgstr "%s: Não se consegue achar arquivos MO na seguinte localização: %s.\n"
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
 msgstr "%s: O diagrama não compila na passagem %d.\n"
-
-#, c-format
-msgid ""
-"%s: Diagram does not compile in pass %d.\n"
-"'),"
-msgstr ""
-"%s: O diagrama não compila na passagem %d.\n"
-"'),"
 
 #, c-format
 msgid "%s: Error : the following command line failed to execute: %s.\n"

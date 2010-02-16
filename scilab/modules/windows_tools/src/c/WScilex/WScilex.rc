@@ -48,7 +48,7 @@ IDI_ICON_GRAPH          ICON                    "..\\resources\\Graph.ICO"
 IDI_ICON_SAV            ICON                    "..\\resources\\SAV.ICO"
 IDI_ICON_SCE            ICON                    "..\\resources\\SCE.ICO"
 IDI_ICON_SCI            ICON                    "..\\resources\\SCI.ICO"
-IDI_ICON_SCILAB         ICON                    "..\\..\\..\\..\\..\\icons\\scilab.ico"
+IDI_ICON_SCILAB         ICON                    "..\\resources\\scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////

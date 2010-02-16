@@ -18,6 +18,8 @@ Xcos:
 =====
 
 * The default palettes can now be manipulated by the user.
+* LaTeX formulas can be used on any TextBlock using the Scilab tag based 
+description.
 
 Compilation:
 ============
@@ -37,11 +39,6 @@ helptools:
 * %helps_modules (global variable in scilab) is defined only when 
   scilab build help and no more at scilab's startup.
   
-Text rendering:
-===============
-
-* \textsuperscript LateX was not supported. (See bug #6573)
-
 Tests:
 ======
 
@@ -75,13 +72,17 @@ Removed functions (previously declared as obsolete):
 * 'sort' replaced by 'gsort'.
 
 * 'scilab_demos' replaced by 'demo_gui'.
+
+* 'with_gtk' replaced by 'getversion'.
  
 Bug fixes:
 ==========
 
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum from Scilab.
 
-* bug 6484 fixed - file did not return filenale of a opened fortran file.
+* bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
+
+* bug 6484 fixed - file did not return filename of a opened fortran file.
 
 * bug 6511 fixed - mseek and mtell did not manage files > 2 Gbytes on 64 bits 
                    Windows.
