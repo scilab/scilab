@@ -39,6 +39,11 @@ AC_ARG_WITH(docbook,
 	SAXON=$PACKAGE_JAR_FILE
 	AC_SUBST(SAXON)
 
+    # JLaTeXMath FOP
+    AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
+    JLATEXMATH_FOP=$PACKAGE_JAR_FILE
+    AC_SUBST(JLATEXMATH_FOP)
+
 AC_SUBST(DOCBOOK_ROOT)
 
 ])
