@@ -471,7 +471,7 @@ mputl(f_code,TMPDIR+'/myfun.f')
 
 // 7-2/ compiles it. You need a fortran compiler !
 names = ["myfun" "mydfun"]
-flibname = ilib_for_link(names,"myfun.o",[],"f");
+flibname = ilib_for_link(names,"myfun.f",[],"f");
 
 // 7-3/ link it to scilab (see link help page)
 link(flibname,names,"f") 
@@ -510,7 +510,7 @@ mputl(c_code,TMPDIR+'/myfunc.c')
 
 // 8-2/ compiles it. You need a C compiler !
 names = ["myfunc" "mydfunc"]
-clibname = ilib_for_link(names,"myfunc.o",[],"c");
+clibname = ilib_for_link(names,"myfunc.c",[],"c");
 
 // 8-3/ link it to scilab (see link help page)
 link(clibname,names,"c") 
