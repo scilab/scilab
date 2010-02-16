@@ -529,6 +529,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_isequal.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_isequalbitwise.c"
 				>
 			</File>

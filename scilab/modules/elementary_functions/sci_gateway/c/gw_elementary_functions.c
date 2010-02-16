@@ -63,7 +63,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //number_properties
 	{NULL, ""}, //nearfloat
 	{NULL, ""}, //dsearch
-	{NULL, ""},
+	{NULL, ""}, //isequal
 	{C2F(sci_spones),"spones"},
 	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
