@@ -139,6 +139,7 @@ abs(exact-I)
 
 // caso de código FORTRAN (compilador FORTRAN requerido)
 // escreve o código FORTRAN
+cd TMPDIR;
 F=['      double precision function ffun(x)'
    '      double precision x,pi'
    '      pi=3.14159265358979312d+0'
@@ -148,7 +149,7 @@ F=['      double precision function ffun(x)'
 mputl(F,TMPDIR+'/ffun.f')
 
 // compile o código FORTRAN
-l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f');
 
 // linking incremental
 link(l,'ffun','f')
@@ -169,7 +170,7 @@ C=['#include <math.h>'
 mputl(C,TMPDIR+'/cfun.c')
 
 // compile o código C
-l=ilib_for_link('cfun','cfun.c',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.c',[],'c');
 
 // linking incremental
 link(l,'cfun','c')
