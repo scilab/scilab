@@ -77,10 +77,10 @@ Xcos:
 * bug 5667 fixed - Simulation starts faster on Linux for huge diagram 
                    (hdf5 export issue).
 
-* bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
-
 * bug 5674 fixed - The Signal.notify did not check if we were waiting for it
                    (thus the next wait was blocked).
+
+* bug 5683 fixed - Xcos code updated to work with jgraphx >= 1.2.0.X
 
 * bug 5701 fixed - The "AFFICH_m" block did not simulate anymore.
 
