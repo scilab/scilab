@@ -39,17 +39,6 @@ AC_ARG_WITH(docbook,
 	SAXON=$PACKAGE_JAR_FILE
 	AC_SUBST(SAXON)
 
-	# XML API EXT (conversion of a SVG => PNG)
-	AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
-	XML_APIS_EXT=$PACKAGE_JAR_FILE
-
-	if test -z "$XML_APIS_EXT"; then
-		# Other other distribs (Ex: Fedora/Redhat)
-		AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
-		XML_APIS_EXT=$PACKAGE_JAR_FILE
-	fi
-	AC_SUBST(XML_APIS_EXT)
-
 AC_SUBST(DOCBOOK_ROOT)
 
 ])
