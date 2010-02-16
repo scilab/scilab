@@ -66,7 +66,7 @@ if or(ref_values <> values_4) then pause,end
 if or(ref_indices <> indices_4) then pause,end
 
 [values_gsort,indices_gsort] = gsort(c);
-[values_sort,indices_sort] = sort(c);
+[values_sort,indices_sort] = gsort(c);
 if or(values_gsort <> values_sort) then pause,end
 if or(indices_gsort <> indices_sort) then pause,end
 

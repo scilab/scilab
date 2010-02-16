@@ -162,7 +162,6 @@ int sci_xcosDiagramToHDF5(char *fname, int* _piKey)
 	bForceWrite = piForceWrite[0] ? true : false;
 
 	int iRet = Xcos::xcosDiagramToHDF5(getScilabJavaVM(), pstXcosFile, pstH5File, bForceWrite);
-	printf("Xcos::xcosDiagramToHDF5 : %d\n", iRet);
 
 	if(iRet != 0)
 	{

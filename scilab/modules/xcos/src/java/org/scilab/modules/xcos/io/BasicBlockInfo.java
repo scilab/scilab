@@ -312,46 +312,6 @@ public final class BasicBlockInfo {
 
 	return obj;
     }
-
-    @Deprecated
-    public static List<InputPort> getAllInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, InputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ExplicitInputPort> getAllExplicitInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ExplicitInputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ImplicitInputPort> getAllImplicitInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ImplicitInputPort.class);
-    }
-    
-    @Deprecated
-    public static List<OutputPort> getAllOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, OutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ExplicitOutputPort> getAllExplicitOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ExplicitOutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ImplicitOutputPort> getAllImplicitOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ImplicitOutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ControlPort> getAllControlPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ControlPort.class);
-    }
-    
-    @Deprecated
-    public static List<CommandPort> getAllCommandPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, CommandPort.class);
-    }
     
 	/**
 	 * @param block

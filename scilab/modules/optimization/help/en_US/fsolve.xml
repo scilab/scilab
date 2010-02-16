@@ -210,7 +210,7 @@ a*xres+b
 [xres]=fsolve([100;100],fsol1,fsolj1);
 a*xres+b
 
-// See routines/default/Ex-fsolve.f
+// See SCI/modules/optimization/sci_gateway/fortran/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
  ]]></programlisting>

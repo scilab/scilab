@@ -800,10 +800,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_spones.c"
 				>
 			</File>
@@ -969,10 +965,6 @@
 			</File>
 			<File
 				RelativePath=".\wsign.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wsort.c"
 				>
 			</File>
 			<File
@@ -1512,10 +1504,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_spones.f"
 				>
 			</File>
@@ -1677,10 +1665,6 @@
 			</File>
 			<File
 				RelativePath=".\wsign.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wsort.f"
 				>
 			</File>
 			<File

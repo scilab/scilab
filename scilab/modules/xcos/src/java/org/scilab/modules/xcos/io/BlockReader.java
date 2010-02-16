@@ -107,7 +107,7 @@ public class BlockReader {
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
+		    currentBlock.setStyle("blockWithLabel;" + currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);
@@ -1249,7 +1249,7 @@ public class BlockReader {
 	if (modelFields.get(15) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(15))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock, false);
+		    .getAllTypedPorts(newBlock, false, CommandPort.class);
 	    if (modelFields.get(15).getHeight() >= modelFields.get(15)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {
@@ -1585,7 +1585,7 @@ public class BlockReader {
 	if (modelFields.get(17) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(17))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock, false);
+		    .getAllTypedPorts(newBlock, false, CommandPort.class);
 	    if (modelFields.get(17).getHeight() >= modelFields.get(17)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {

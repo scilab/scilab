@@ -17,6 +17,13 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
+static int sci_getf(char *fname,unsigned long fname_len)
+{
+	// Because we do not want change order in gateway
+	// empty function
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
 	{NULL ,""}, //lib

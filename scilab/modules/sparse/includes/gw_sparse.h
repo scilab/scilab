@@ -41,6 +41,7 @@ int C2F(sci_bfinit) (char *fname,unsigned long fname_len);
 int C2F(sci_msparse) (char *fname,unsigned long fname_len);
 int C2F(sci_mspget) (char *fname,unsigned long fname_len);
 int C2F(sci_mfull) (char *fname,unsigned long fname_len);
+int C2F(scita2lpd) (char *fname,unsigned long fname_len);
 
 //YaSp
 int C2F(sci_spmin) (char *fname, int* _piKey);

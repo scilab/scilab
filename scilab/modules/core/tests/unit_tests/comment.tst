@@ -251,10 +251,10 @@ t=['function a=foo'
   'endfunction'];
 
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
 
@@ -274,10 +274,10 @@ t=['//sdffgfgfgggg'
    'endfunction'];
 
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
 warning('on');

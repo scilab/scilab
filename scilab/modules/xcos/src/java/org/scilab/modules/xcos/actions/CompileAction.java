@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
@@ -27,18 +27,19 @@ import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterExcept
 
 /**
  * Diagram compilation management
- * @author Allan SIMON
  */
-public class CompileAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public class CompileAction extends SimulationNotRunningAction {
+	public static final String NAME = XcosMessages.COMPILE;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public CompileAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.COMPILE, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -47,14 +48,15 @@ public class CompileAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.COMPILE, null, new CompileAction(scilabGraph), null);
+		return createMenu(scilabGraph, CompileAction.class);
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
 			Thread launchMe = new Thread() {
 				public void run() {
