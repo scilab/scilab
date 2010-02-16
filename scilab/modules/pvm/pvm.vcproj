@@ -542,10 +542,6 @@
 				RelativePath=".\src\c\varpack.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\with_pvm.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -566,10 +562,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\sci_pvm.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\with_pvm.h"
 				>
 			</File>
 		</Filter>

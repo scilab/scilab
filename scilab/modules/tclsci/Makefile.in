@@ -116,7 +116,7 @@ libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciacti
 am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 	src/c/GedManagement.c src/c/TCL_Global.c src/c/InitTclTk.c \
 	src/c/ScilabEval.c src/c/setenvtcl.c src/c/InitializeTclTk.c \
-	src/c/TerminateTclTk.c src/c/withtk.c src/c/setvar.c \
+	src/c/TerminateTclTk.c src/c/setvar.c \
 	src/c/TCL_ArrayDim.c src/c/TCL_ArrayExist.c \
 	src/c/TCL_ArrayGetVar.c src/c/TCL_ArraySize.c \
 	src/c/TCL_Command.c src/c/GlobalTclInterp.c \
@@ -141,7 +141,6 @@ am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
 @TCLTK_TRUE@	libscitclsci_la-setenvtcl.lo \
 @TCLTK_TRUE@	libscitclsci_la-InitializeTclTk.lo \
 @TCLTK_TRUE@	libscitclsci_la-TerminateTclTk.lo \
-@TCLTK_TRUE@	libscitclsci_la-withtk.lo \
 @TCLTK_TRUE@	libscitclsci_la-setvar.lo \
 @TCLTK_TRUE@	libscitclsci_la-TCL_ArrayDim.lo \
 @TCLTK_TRUE@	libscitclsci_la-TCL_ArrayExist.lo \
@@ -438,7 +437,6 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@src/c/setenvtcl.c \
 @TCLTK_TRUE@src/c/InitializeTclTk.c \
 @TCLTK_TRUE@src/c/TerminateTclTk.c \
-@TCLTK_TRUE@src/c/withtk.c \
 @TCLTK_TRUE@src/c/setvar.c \
 @TCLTK_TRUE@src/c/TCL_ArrayDim.c \
 @TCLTK_TRUE@src/c/TCL_ArrayExist.c \
@@ -830,7 +828,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setenvtcl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-setvar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitclsci_la-withtk.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -908,13 +905,6 @@ libscitclsci_la-TerminateTclTk.lo: src/c/TerminateTclTk.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateTclTk.c' object='libscitclsci_la-TerminateTclTk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-TerminateTclTk.lo `test -f 'src/c/TerminateTclTk.c' || echo '$(srcdir)/'`src/c/TerminateTclTk.c
-
-libscitclsci_la-withtk.lo: src/c/withtk.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-withtk.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-withtk.Tpo -c -o libscitclsci_la-withtk.lo `test -f 'src/c/withtk.c' || echo '$(srcdir)/'`src/c/withtk.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitclsci_la-withtk.Tpo $(DEPDIR)/libscitclsci_la-withtk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/withtk.c' object='libscitclsci_la-withtk.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -c -o libscitclsci_la-withtk.lo `test -f 'src/c/withtk.c' || echo '$(srcdir)/'`src/c/withtk.c
 
 libscitclsci_la-setvar.lo: src/c/setvar.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitclsci_la_CFLAGS) $(CFLAGS) -MT libscitclsci_la-setvar.lo -MD -MP -MF $(DEPDIR)/libscitclsci_la-setvar.Tpo -c -o libscitclsci_la-setvar.lo `test -f 'src/c/setvar.c' || echo '$(srcdir)/'`src/c/setvar.c

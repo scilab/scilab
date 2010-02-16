@@ -12,7 +12,6 @@ src/c/ScilabEval.c \
 src/c/setenvtcl.c \
 src/c/InitializeTclTk.c \
 src/c/TerminateTclTk.c \
-src/c/withtk.c \
 src/c/setvar.c \
 src/c/TCL_ArrayDim.c \
 src/c/TCL_ArrayExist.c \

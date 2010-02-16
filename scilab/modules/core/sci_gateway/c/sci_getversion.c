@@ -22,7 +22,6 @@
 #include "Scierror.h"
 #include "dynamic_tclsci.h"
 #include "localization.h"
-#include "with_pvm.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
