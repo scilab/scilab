@@ -23,7 +23,7 @@ function [ok,modelicac,translator,xml2modelica] = Modelica_execs()
   ok = %f;
 
   MODELICAC_FILENAME = 'modelicac';
-  TRANSLATOR_FILENAME = 'translator';
+  TRANSLATOR_FILENAME = 'modelicat';
   XML2MODELICA_FILENAME = 'XML2Modelica';
 
   if MSDOS then

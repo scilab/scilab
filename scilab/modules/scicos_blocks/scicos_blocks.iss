@@ -32,7 +32,7 @@ Source: modules\{#SCICOS_BLOCKS}\includes\scicos_block4.h; DestDir: {app}\module
 ;
 ;
 Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
-Source: bin\translator.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\modelicat.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 Source: bin\xml2modelica.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\macros\lib; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}

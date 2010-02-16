@@ -28,10 +28,9 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
 // - the flat xml  file in  outpath+name+'f_relations.xml'
 
   // TO DO : rename filename too generic
+  TRANSLATOR_FILENAME = 'modelicat';
   if MSDOS then
-    TRANSLATOR_FILENAME = 'translator.exe';
-  else
-    TRANSLATOR_FILENAME = 'translator';
+    TRANSLATOR_FILENAME = TRANSLATOR_FILENAME + '.exe';
   end
 
   mlibs = pathconvert(_Modelica_libs,%f,%t);

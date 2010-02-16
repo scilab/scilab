@@ -34,7 +34,7 @@ CAMLP4=camlp4
 OCAMLYACC=ocamlyacc
 OCAMLLEX=ocamllex
 RM=del
-EXEC=translator.exe
+EXEC=modelicat.exe
 
 all::
 	$(OCAMLC) -g -I ..\parsing -I ..\compilation -I ..\instantiation -I ..\exceptionHandling -c ..\compilation\types.ml

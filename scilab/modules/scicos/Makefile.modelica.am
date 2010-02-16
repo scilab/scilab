@@ -187,7 +187,7 @@ generate-lexer_translator: $(LEXER_SRC_translator)
 	$(OCAMLLEX) $(<)
 
 translator: generate-parser_translator generate-lexer_translator $(MLS_SPECIFIC_PRE_translator:.ml=.cmo)  $(MLS_translator:.ml=.mli) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmo)  $(MLS_translator:.ml=.cmx) 
-	$(OCAMLOPT) -o translator $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
+	$(OCAMLOPT) -o modelicat $(INCLUDE_translator) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_translator:.ml=.cmx) $(MLS_translator:.ml=.cmx) 
 
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
