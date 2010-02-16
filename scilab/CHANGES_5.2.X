@@ -330,6 +330,8 @@ Bug Fixes:
 
 * bug 6586 fixed - getmd5() crashed if the file (1st input argument) did not exist.
 
+* bug 6613 fixed - example of 'schur' failed.
+
 
                Changes between Versions 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
