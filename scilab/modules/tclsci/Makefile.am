@@ -5,8 +5,7 @@
 
 if TCLTK
 
-TCLSCI_C_SOURCES = src/c/GedManagement.c \
-src/c/TCL_Global.c \
+TCLSCI_C_SOURCES = src/c/TCL_Global.c \
 src/c/InitTclTk.c \
 src/c/ScilabEval.c \
 src/c/setenvtcl.c \

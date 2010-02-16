@@ -379,10 +379,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\GedManagement.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\GlobalTclInterp.c"
 				>
 			</File>
@@ -509,10 +505,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\GedManagement.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\GlobalTclInterp.h"
 				>
 			</File>
@@ -522,10 +514,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\InitializeTclTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Messages.h"
 				>
 			</File>
 			<File
@@ -569,15 +557,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\TclEvents.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\TerminateTclTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Thread_Wrapper.h"
 				>
 			</File>
 		</Filter>
