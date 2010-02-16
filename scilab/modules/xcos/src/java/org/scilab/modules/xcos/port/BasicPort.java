@@ -27,7 +27,7 @@ public abstract class BasicPort extends XcosUIDObject {
 	 * orientation semantics are valid when there is no rotation/mirror/flip
 	 * applied to the block.
 	 */
-	public static enum Orientation {
+	public enum Orientation {
 		/** The port is on the left (west) side of the block */
 		WEST,
 		/** The port is on the top (north) side of the block */
