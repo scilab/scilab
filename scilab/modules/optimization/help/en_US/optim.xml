@@ -580,10 +580,11 @@ C=['#include <math.h>'
    '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
    '  }'
    '}'];
+cd TMPDIR;
 mputl(C,TMPDIR+'/rosenc.c')
 
 // compile the C code
-l=ilib_for_link('rosenc','rosenc.c',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenc','rosenc.c',[],'c');
 
 // incremental linking
 link(l,'rosenc','c')
@@ -628,11 +629,11 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
     '      endif'
     '      return'
     '      end'];
-
+cd TMPDIR;
 mputl(F,TMPDIR+'/rosenf.f')
 
 // compile the Fortran code
-l=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('rosenf','rosenf.f',[],'f');
 
 // incremental linking
 link(l,'rosenf','f')
@@ -718,10 +719,11 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
                '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
                '      return'
                '      end'];
+cd TMPDIR;
 mputl(fortransource,TMPDIR+'/rosenf.f')
 
 // compile the C code
-libpath=ilib_for_link('rosenf','rosenf.f',[],'f',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenf','rosenf.f',[],'f');
 
 // incremental linking
 linkid=link(libpath,'rosenf','f');
