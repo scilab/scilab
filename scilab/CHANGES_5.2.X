@@ -332,6 +332,9 @@ Bug Fixes:
 
 * bug 6613 fixed - example of 'schur' failed.
 
+* bug 6619 fixed - In demo Graphics/Misc
+                   Changing the colormap was drawing the 2 right subplot with a black box.
+
 
                Changes between Versions 5.2.0-beta1 and 5.2.0 of Scilab
                ==========================================================
