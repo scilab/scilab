@@ -131,6 +131,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 			freeArrayOfString(pStVarOne, m1 * n1);
 
 			callXcos(pStFullFilenames, m1 * n1);
+			loadOnUseClassPath("xcos_block_rendering");
 
 			freeArrayOfString(pStFullFilenames, m1 * n1);
 		}
