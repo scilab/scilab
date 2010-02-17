@@ -12,6 +12,7 @@
 
 package org.scilab.modules.graph.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Map;
@@ -23,6 +24,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import net.sourceforge.jeuclid.swing.JMathComponent;
 
+import org.apache.batik.bridge.BridgeContext;
+import org.apache.batik.bridge.DocumentLoader;
+import org.apache.batik.bridge.GVTBuilder;
+import org.apache.batik.bridge.UserAgent;
+import org.apache.batik.bridge.UserAgentAdapter;
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.gvt.GraphicsNode;
+import org.apache.batik.util.XMLResourceDescriptor;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -49,6 +58,11 @@ public final class ScilabGraphUtils extends mxUtils {
 	private static Map<String, JMathComponent> generatedMathMLComponents = new WeakHashMap<String, JMathComponent>();
 	
 	/**
+	 * Cache for the generated SVG components
+	 */
+	private static Map<File, GraphicsNode> generatedSVGComponents = new WeakHashMap<File, GraphicsNode>();
+	
+	/**
 	 * Table conversion between escaped/unescaped HTML symbols
 	 */
 	private static final String [][] HTML_ESCAPE_TABLE =
@@ -64,8 +78,8 @@ public final class ScilabGraphUtils extends mxUtils {
 	      {"&Auml;"   , "Ä" },
 	      {"&Acirc;"  , "Â" },
 	      {"&aring;"  , "å" },
-	      {"&Aring;"  , "Å" }, 
-	      {"&aelig;"  , "æ" }, 
+	      {"&Aring;"  , "Å" },
+	      {"&aelig;"  , "æ" },
 	      {"&AElig;"  , "Æ" },
 	      {"&ccedil;" , "ç" },
 	      {"&Ccedil;" , "Ç" },
@@ -77,7 +91,7 @@ public final class ScilabGraphUtils extends mxUtils {
 	      {"&Ecirc;"  , "Ê" },
 	      {"&euml;"   , "ë" },
 	      {"&Euml;"   , "Ë" },
-	      {"&iuml;"   , "ï" }, 
+	      {"&iuml;"   , "ï" },
 	      {"&Iuml;"   , "Ï" },
 	      {"&ocirc;"  , "ô" },
 	      {"&Ocirc;"  , "Ô" },
@@ -140,6 +154,7 @@ public final class ScilabGraphUtils extends mxUtils {
 				doc = builder.parse(new InputSource(new StringReader(escapedText)));
 				comp = new JMathComponent();
 				comp.setDocument(doc.getFirstChild());
+				generatedMathMLComponents.put(text, comp);
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -148,6 +163,37 @@ public final class ScilabGraphUtils extends mxUtils {
 		}
 		
 		return comp;
+	}
+
+	/**
+	 * Return a cached or a new instance of a {@link GraphicsNode} generated
+	 * from the SVG file.
+	 * 
+	 * @param filename the file to parse
+	 * @return the corresponding graphic node
+	 */
+	public static GraphicsNode getSVGComponent(File filename) {
+		GraphicsNode node;
+		
+		node = generatedSVGComponents.get(filename);
+		if (node == null) {
+			try {
+				String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
+				SAXSVGDocumentFactory df = new SAXSVGDocumentFactory(xmlParser);
+				Document doc = df.createDocument(filename.getPath());
+				UserAgent userAgent = new UserAgentAdapter();
+				DocumentLoader loader = new DocumentLoader(userAgent);
+				BridgeContext ctx = new BridgeContext(userAgent, loader);
+				ctx.setDynamicState(BridgeContext.DYNAMIC);
+				GVTBuilder builder = new GVTBuilder();
+				
+				node = builder.build(ctx, doc);
+				generatedSVGComponents.put(filename, node);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return node;
 	}
 	
 	/**
