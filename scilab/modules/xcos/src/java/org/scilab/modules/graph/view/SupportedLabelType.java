@@ -128,7 +128,7 @@ public enum SupportedLabelType {
 			// Removing the first and last char (tag)
 			escapedText.delete(0, 1);
 			int length = escapedText.length();
-			escapedText.delete(length - 2, length - 1);
+			escapedText.delete(length - 1, length);
 			break;
 
 		default:
