@@ -119,7 +119,7 @@ namespace types
 		m_bComputed = false;
 	}
 
-	int ImplicitList::size_get()
+	long long ImplicitList::size_get()
 	{
 		return m_iSize;
 	}
@@ -141,27 +141,7 @@ namespace types
 				double dblStep	= m_poStep->getAsDouble()->real_get(0,0);
 				double dblEnd		= m_poEnd->getAsDouble()->real_get(0,0);
 
-				//floor((end - start) / step) + 1;
-				if(dblStep > 0)
-				{
-					m_iSize = (int)floor((dblEnd - dblStart) / dblStep) + 1;
-					//double dblTemp = dblStart;
-					//while(dblTemp <= dblEnd)
-					//{
-					//	m_iSize++;
-					//	dblTemp += dblStep;
-					//}
-				}
-				else if(dblStep < 0)
-				{
-					m_iSize = (int)floor((dblStart - dblEnd ) / (-dblStep)) + 1;
-				//	double dblTemp = dblEnd;
-				//	while(dblTemp <= dblStart)
-				//	{
-				//		m_iSize++;
-				//		dblTemp -= dblStep;
-				//	}
-				}
+				m_iSize = (long long)floor(abs(dblEnd - dblStart) / abs(dblStep)) + 1;
 			}
 			else //m_eOutType == RealInt
 			{
@@ -171,24 +151,11 @@ namespace types
 					unsigned long long ullStep	= convert_unsigned_input(m_poStep);
 					unsigned long long ullEnd		= convert_unsigned_input(m_poEnd);
 
-					if(ullStep > 0)
-					{
-						unsigned long long ullTemp = ullStart;
-						while(ullTemp <= ullEnd)
-						{
-							m_iSize++;
-							ullTemp += ullStep;
-						}
-					}
-					else if(ullStep < 0) //Signed
-					{
-						unsigned long long ullTemp = ullEnd;
-						while(ullTemp <= ullStart)
-						{
-							m_iSize++;
-							ullTemp -= ullStep;
-						}
-					}
+#ifdef _MSC_VER
+					m_iSize = (long long)floor( (double)(_abs64(ullEnd - ullStart) / _abs64(ullStep)) ) + 1;
+#else
+					m_iSize = (long long)floor( (double)(llabs(ullEnd - ullStart) / llabs(ullStep)) ) + 1;
+#endif
 				}
 				else //Signed
 				{
@@ -196,24 +163,11 @@ namespace types
 					long long llStep	= convert_input(m_poStep);
 					long long llEnd		= convert_input(m_poEnd);
 
-					if(llStep > 0)
-					{
-						long long llTemp = llStart;
-						while(llTemp <= llEnd)
-						{
-							m_iSize++;
-							llTemp += llStep;
-						}
-					}
-					else if(llStep < 0)
-					{
-						long long llTemp = llEnd;
-						while(llTemp <= llStart)
-						{
-							m_iSize++;
-							llTemp -= llStep;
-						}
-					}
+#ifdef _MSC_VER
+					m_iSize = (long long)floor( (double)(_abs64(llEnd - llStart) / _abs64(llStep)) ) + 1;
+#else
+					m_iSize = (long long)floor( (double)(llabs(llEnd - llStart) / llabs(llStep)) ) + 1;
+#endif
 				}
 			}
 			m_bComputed = true;
@@ -360,7 +314,7 @@ namespace types
 		{
 			if(m_eOutType == RealInt)
 			{
-				Int *pI	= Int::createInt(1, m_iSize, m_eOutSubType);
+				Int *pI	= Int::createInt(1, (int)m_iSize, m_eOutSubType);
 
 				for(int i = 0 ; i < m_iSize ; i++)
 				{
@@ -371,7 +325,7 @@ namespace types
 			}
 			else //RealDouble
 			{
-				Double* pD				= new Double(1, m_iSize);
+				Double* pD				= new Double(1, (int)m_iSize);
 				extract_matrix(pD->real_get());
 				pIT = pD;
 			}

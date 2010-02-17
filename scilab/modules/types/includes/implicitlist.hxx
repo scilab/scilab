@@ -28,7 +28,7 @@ namespace types
 		InternalType*		m_poStart;
 		InternalType*		m_poStep;
 		InternalType*		m_poEnd;
-		int							m_iSize;
+		long long				m_iSize; //can be a big value
 
 		InternalType::RealType		
 										m_eStartType;
@@ -77,7 +77,7 @@ namespace types
 		InternalType::RealType 
 									end_type_get();
 
-		int						size_get();
+		long long			size_get();
 
 		//extract single value in a InternalType
 		InternalType* extract_value(int _iOccur); //Single value
