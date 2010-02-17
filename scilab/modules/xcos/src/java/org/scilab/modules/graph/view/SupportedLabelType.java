@@ -79,7 +79,7 @@ public enum SupportedLabelType {
 	 * @return the type of the label
 	 */
 	public static SupportedLabelType getFromHTML(String html) {
-		if (html.charAt(0) == '<') {
+		if (html.length() > 0 && html.charAt(0) == '<') {
 
 			StringBuilder content;
 			content = new StringBuilder(mxUtils.getBodyMarkup(html, false));
