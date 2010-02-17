@@ -1051,7 +1051,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos-Ant", "modules\xcos\sr
 		{9B6500B0-66F6-44F0-910D-47A1435B4E02} = {9B6500B0-66F6-44F0-910D-47A1435B4E02}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "translator", "modules\scicos\src\translator\translator.vcproj", "{9E0DE362-60A0-4584-9FF1-BB537DA94F40}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modelicat", "modules\scicos\src\translator\translator.vcproj", "{9E0DE362-60A0-4584-9FF1-BB537DA94F40}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml2modelica", "modules\scicos\src\xml2modelica\xml2modelica.vcproj", "{7CF15086-6DED-4F83-9C40-C4951FD373B3}"
 EndProject
@@ -1127,10 +1127,10 @@ Global
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release|Win32.Build.0 = Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release|x64.ActiveCfg = Release|x64
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release|x64.Build.0 = Release|x64
-		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|Win32.Build.0 = Debug|Win32
-		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|x64.ActiveCfg = Debug|x64
-		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|x64.Build.0 = Debug|x64
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|Win32.ActiveCfg = Release|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|Win32.Build.0 = Release|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|x64.ActiveCfg = Release|x64
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug|x64.Build.0 = Release|x64
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release|Win32.ActiveCfg = Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release|Win32.Build.0 = Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release|x64.ActiveCfg = Release|x64
