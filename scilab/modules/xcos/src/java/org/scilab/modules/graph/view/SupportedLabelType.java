@@ -125,8 +125,10 @@ public enum SupportedLabelType {
     		// Removing blank
 			ScilabGraphUtils.removeBlanks(escapedText);
 			
-			// Removing the first char (tag)
+			// Removing the first and last char (tag)
 			escapedText.delete(0, 1);
+			int length = escapedText.length();
+			escapedText.delete(length - 2, length - 1);
 			break;
 
 		default:

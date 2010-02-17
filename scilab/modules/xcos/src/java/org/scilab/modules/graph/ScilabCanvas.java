@@ -14,13 +14,17 @@ package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
 import java.awt.Composite;
+import java.awt.Image;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.Hashtable;
 import java.util.Map;
 
 import net.sourceforge.jeuclid.swing.JMathComponent;
 
+import org.apache.batik.gvt.GraphicsNode;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.modules.graph.utils.ScilabConstants;
@@ -310,6 +314,44 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 				// Restores the previous transformation
 				g.setTransform(at);
 			}
+		}
+	}
+	
+	/**
+	 * Draws an image for the given parameters.
+	 * This function handle all the awt supported {@link Image} plus the SVG
+	 * format.
+	 * 
+	 * @param x X-coordinate of the image.
+	 * @param y Y-coordinate of the image.
+	 * @param w Width of the image.
+	 * @param h Height of the image.
+	 * @param image URL of the image.
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(int, int, int, int, java.lang.String)
+	 */
+	@Override
+	protected void drawImage(int x, int y, int w, int h, String image) {
+		if (image.endsWith(".svg")) {
+			File f = new File(image);
+			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
+			
+			// Translate
+			g.translate(x, y);
+			
+			// Scale
+			Rectangle2D bounds = node.getBounds();
+			double sx = h / bounds.getHeight();
+			double sy = w / bounds.getWidth();
+			AffineTransform scale = new AffineTransform(new double[] {
+					  sx,  0.0,
+					 0.0,   sy
+			});
+			node.setTransform(scale);
+			
+			// Paint
+			node.paint(g);
+		} else {
+			super.drawImage(x, y, w, h, image);
 		}
 	}
 }
