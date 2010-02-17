@@ -33,7 +33,7 @@ public enum SupportedLabelType {
 	/**
 	 * Pattern to match the &lt;br&gt; HTML tag
 	 */
-	private static final Pattern brPattern = Pattern.compile("<br>\\p{Blank}*");
+	private static final Pattern BR_PATTERN = Pattern.compile("<br>\\p{Blank}*");
 	
 	/**
 	 * Get the {@link SupportedLabelType} for the label.
@@ -75,11 +75,11 @@ public enum SupportedLabelType {
 	 * 
 	 * The {@value SupportedLabelType#HTML} is used as default. 
 	 * 
-	 * @param text The HTML string to parse
+	 * @param html The HTML string to parse
 	 * @return the type of the label
 	 */
 	public static SupportedLabelType getFromHTML(String html) {
-		if (html.charAt(0) == '<') {
+		if (html.length() > 0 && html.charAt(0) == '<') {
 
 			StringBuilder content;
 			content = new StringBuilder(mxUtils.getBodyMarkup(html, false));
@@ -116,7 +116,7 @@ public enum SupportedLabelType {
 			ScilabGraphUtils.unescape(escapedText, 0);
 			
 			// Removing <br>
-    		Matcher m = brPattern.matcher(escapedText);
+    		Matcher m = BR_PATTERN.matcher(escapedText);
     		while (m.find()) {
     			escapedText.replace(m.start(), m.end(), "");
     			m.reset();

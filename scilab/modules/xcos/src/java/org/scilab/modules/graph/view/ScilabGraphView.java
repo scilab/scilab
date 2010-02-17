@@ -19,6 +19,7 @@ import net.sourceforge.jeuclid.swing.JMathComponent;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
@@ -75,6 +76,12 @@ public class ScilabGraphView extends mxGraphView {
 				state.setHeight(((h + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
 				labelBounds = state;
 			} catch (ParseException e) {
+				// popup an error
+				// FIXME: use a ScilabGraphTab instead of null there
+				ScilabModalDialog.show(null, e.getLocalizedMessage());
+				
+				// Set a non-rendering label on the model
+				// label will be printed (state contains the value)
 				mxCell c = (mxCell) cell;
 				c.setValue(((String) c.getValue()).substring(1));
 				labelBounds = getDefaultBounds(state, cell, style, label);
@@ -95,6 +102,12 @@ public class ScilabGraphView extends mxGraphView {
 				state.setHeight(((h + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
 				labelBounds = state;
 			} catch (SAXException e) {
+				// popup an error
+				// FIXME: use a ScilabGraphTab instead of null there
+				ScilabModalDialog.show(null, e.getLocalizedMessage());
+				
+				// Set a non-rendering label on the model
+				// label will be printed (state contains the value)
 				mxCell c = (mxCell) cell;
 				c.setValue(((String) c.getValue()).substring(1));
 				labelBounds = getDefaultBounds(state, cell, style, label);
@@ -122,7 +135,12 @@ public class ScilabGraphView extends mxGraphView {
 		mxRectangle labelBounds;
 		mxRectangle vertexBounds;
 		
-		vertexBounds = (!graph.getModel().isEdge(cell)) ? state	: null;
+		if (!graph.getModel().isEdge(cell)) {
+			vertexBounds = state;
+		} else {
+			vertexBounds = null;
+		}
+
 		labelBounds = mxUtils.getLabelPaintBounds(label, style, graph
 				.isHtmlLabel(cell), state.getAbsoluteOffset(), vertexBounds,
 				scale);
