@@ -22,6 +22,7 @@ extern "C"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getFullFilename.h"
+#include "loadOnUseClassPath.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_Xcos(char *fname,unsigned long fname_len)
@@ -32,6 +33,7 @@ int sci_Xcos(char *fname,unsigned long fname_len)
 	if (Rhs == 0)
 	{
 		callXcos(NULL, 0);
+		loadOnUseClassPath("xcos_block_rendering");
 	}
 	else
 	{

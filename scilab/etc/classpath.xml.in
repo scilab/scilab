@@ -61,7 +61,27 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="@JGRAPHX@" load="onUse">
-        <load on="xcos"/>
+	<load on="xcos"/>
+</path>
+
+<!-- Xcos block rendering -->
+<path value="@JLATEXMATH@" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="@JEUCLID_CORE@" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="@BATIK@" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="@XML_APIS_EXT@" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="@COMMONS_IO@" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="@XMLGRAPHICS_COMMONS@" load="onUse">
+	<load on="xcos_block_rendering"/>
 </path>
 
 <!-- Temp. loaded at startup -->

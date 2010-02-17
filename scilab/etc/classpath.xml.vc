@@ -64,6 +64,26 @@ The option is "disableUnderMode" and can be:
         <load on="xcos"/>
 </path>
 
+<!-- Xcos block rendering -->
+<path value="$SCILAB/thirdparty/jlatexmath-0.8.9.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.3.1.jar" load="onUse">
+	<load on="xcos_block_rendering"/>
+</path>
+
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
@@ -76,7 +96,6 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
-	<load on="XCos"/>
 </path>
 <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -129,13 +148,11 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
 </path>	
 
 <path value="$SCILAB/thirdparty/jlatexmath-fop-0.8.9.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
 </path>	
 
 <!-- helptools module doc generation -->
