@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void logicalop_i8(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void logicalop_i8(scicos_block *block,int flag)
 {
   int i,m,n,nin,k,j,l;
   int *ipar;
@@ -256,3 +258,4 @@ void logicalop_i8(scicos_block *block,int flag)
 	     break;
 	}
 }
+/*--------------------------------------------------------------------------*/ 

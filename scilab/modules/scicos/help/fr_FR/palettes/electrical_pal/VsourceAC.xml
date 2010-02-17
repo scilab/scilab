@@ -124,7 +124,7 @@ zéro.
         <para>
           <emphasis role="bold">Frequency (Hz)</emphasis>
         </para>
-        <para> Frequency de la tension sinosoidale</para>
+        <para> Fréquence de la tension sinosoidale</para>
         <para> Propriétés : Type 'vec' de taille -1</para>
       </listitem>
     </itemizedlist>

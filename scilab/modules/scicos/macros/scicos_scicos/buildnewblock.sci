@@ -1,7 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>   - 2007
+//                      - Alan Layec <alan.layec@inria.fr>  - 2007
 //                      - Allan CORNET - 2008
 //                      - Rachid Djenidi
 //                      - Simone Mannori
@@ -23,273 +23,199 @@
 // See the file ../license.txt
 //
 
-function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cflags)
+function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cflags)
+//Copyright INRIA
 
 //** buildnewblock : generates Makefiles for
-//                   the generated C code of a Scicos block,
+//                   the generated C code of a scicos block,
 //                   compile and link it in Scilab
 //
-// Input :
-//         blknam : a prefix
-//
+// Input : blknam : a prefix
 //         files : files to be compiled
-//
 //         filestan : files to be compiled and included in
 //                    the standalone code
-//
+//         filesint : files to be compiled and included in
+//                    the interfacing of standalone code
 //         libs : a vector of string of object files
-//                to include in the building process
-//
+//                    to include in the building process
 //         rpat     : a target directory
-//
 //         ldflags  : linker flags
-//
 //         cflags   : C compiler flags
 //
 // Output :  ok : a flag to say if build is ok
 //
+// Authors : Rachid Djenidi
+//           Alan Layec, 28 Juin 2007
+//                 "cosmetic comments" (looks like
+//                                      Simone's comments)
+//                 add lhs parameters, rewritte
+//
+
 
   //** check rhs paramaters
-  [lhs,rhs] = argn(0);
+  [lhs,rhs]=argn(0);
 
   if rhs <= 1 then files    = blknam, end
   if rhs <= 2 then filestan = '', end
-  if rhs <= 3 then libs     = '', end
-  if rhs <= 4 then rpat     = TMPDIR, end
-  if rhs <= 5 then ldflags  = '', end
-  if rhs <= 6 then cflags   = '', end
+  if rhs <= 3 then filesint = '', end //##
+  if rhs <= 4 then libs     = '', end
+  if rhs <= 5 then rpat     = TMPDIR, end
+  if rhs <= 6 then ldflags  = '', end
+  if rhs <= 7 then cflags   = '', end
 
+  //** ?? Ask Ramin
+  [fd,ierr]=mopen(rpat+'/'+blknam+'f.f','r')
+  if ierr==0 then
+    mclose(fd)
+    files=[files,blknam+'f']
+  end
+
+  //## define a variable to know if with use
+  //## a scilab interfacing function for the standalone
+  with_int = %f;
+
+  //** adjust path and name of object files
+  //   to include in the building process
+  if (libs ~= emptystr()) then
+    libs=pathconvert(libs,%f,%t)
+  end
+
+  //** def make file name
+  Makename=rpat+'/'+'Makefile_'+blknam;
+  //** otherlibs treatment
+  [ok,libs,for_link]=link_olibs(libs,rpat)
+  if ~ok then
+    ok=%f;
+    message(['sorry compiling problem';lasterror()]);
+    return;
+  end
+
+  //** generate txt of makefile and get wright name
+  //   of the Makefile file
+  [Makename2,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags);
+
+  //** write text of the Makefile in the file called Makename
+  ierr=execstr('mputl(txt,Makename2)','errcatch')
+  if ierr<>0 then
+    message(['Can''t write '+Makename2;lasterror()])
+    ok=%f
+    return
+  end
+
+  //** unlink if necessary
+  [a,b]=c_link(blknam);
+  while a
+    ulink(b);
+    [a,b]=c_link(blknam);
+  end
+
+  //** save path in case of error in ilib_compile
+  oldpath=pwd();
+
+
+  //** compile Makefile
+  chdir(TMPDIR)
+ 
+  if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+    //** Binary version
+    cflags = cflags+" -I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
+  else	  
+    //** it is a source version 
+    cflags = cflags+" -I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
+  end
   
   if MSDOS then
-    //**------------ Windows ----------------------------------------------
-    //** on Windows we keep the old way : "hard coded" makefile (.mak)
-    if ~haveacompiler() then
-      ok = %f;
-      message([_("Sorry compiling problem");_("A compatible C compiler required.")]);
-      return 
-    end
-
-    //** Try to open a file 
-    [fd,ierr] = mopen(rpat+'/'+blknam+'f.f','r') 
-  
-    if ierr==0 then
-      mclose(fd); 
-      files = [files,blknam+'f']
-    end
-
-    //** adjust path and name of object files
-    //** to include in the building process
-    if (libs ~= emptystr()) then
-    
-      // MODELICAC on windows does not support '\' at the end of path
-      // TO DO: Fix MODELICAC
-      libs = pathconvert(libs,%f,%t);
-    end
-
-    //** def make file name
-    Makename = rpat+'/'+blknam+'_Makefile';
-
-    //** otherlibs treatment
-    [ok, libs, for_link] = link_olibs(libs,rpat)
-    if ~ok then
-      ok = %f;
-      message(["Sorry compiling problem";lasterror()]);
-      return;
-    end
-
-    //** generate txt of makefile and get right name
-    //** of the Makefile file
-    [Makename2, txt] = gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags);
-
-    //** write text of the Makefile in the file called Makename
-    ierr = execstr("mputl(txt,Makename2)",'errcatch')
-    if ierr<>0 then
-      message(["Can''t write "+Makename2;lasterror()])
-      ok = %f
-      return
-    end
-
-    //** unlink if necessary
-    [a,b] = c_link(blknam);
-    while a
-      ulink(b);
-      [a,b]=c_link(blknam);
-    end
-
-    //** save path in case of error in ilib_compile
-    oldpath=pwd();
-
-    //** compile Makefile
-    ierr=execstr('libn=ilib_compile(''lib''+blknam,Makename)','errcatch')
-    if ierr<>0 then
-      ok = %f;
-      chdir(oldpath);
-      message(["sorry compiling problem";lasterror()]);
-      return;
-    end
-
-    //** link scicos generated code in scilab
-    // MODELICAC on windows does not support '\' at the end of path
-    // TO DO: Fix MODELICAC
-    libn = pathconvert(libn,%f,%t)
-    ierr = execstr('libnumber=link(libn)','errcatch')
-    ierr = execstr('link(libnumber,blknam,''c'')','errcatch')
-    if ierr<>0 then
-      ok = %f;
-      message(["sorry link problem";lasterror()]);
-      return;
-    end
-
-    //** generate text of the loader file
-    [txt] = gen_loader(blknam,for_link)
-
-    //** write text of the loader in file
-    ierr = execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
-    if ierr<>0 then
-      message(["Can''t write "+blknam+"_loader.sce";lasterror()])
-      ok = %f ;
-      return
-    end
-  
+  ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'',''makelib'',''loader.sce'','''','''',cflags)','errcatch')
   else
-    //**------------ Linux / Unix  -------------------------------------------
-    //** on Linux Scilab 5 uses an "autotools" based mechanism
+  ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch')
+  end
 
-    //** the input parameters are : "blknam", "files", "filestan", "libs", "rpat", "ldflags", cflags
-    //** "blknam" : a prefix (the name 
-    //** "files" : files to be compiled
-    //** "filestan" : files to be compiled and included in the standalone code
-    //** "libs" : a vector of string of object files "exteral lib(s)" to include in the building process
-    //** "rpat" : a target directory
-    //** "ldflags"  : linker flags
-    //** "cflags"  : C compiler flags
+  if ierr<>0 then
+    ok=%f;
+    chdir(oldpath);
+    disp(['sorry compiling problem';lasterror()]);
+    return;
+  end
 
-    //** save path in case of error
-    oldpath = pwd(); //** current working path 
+  //** link scicos generated code in scilab
+  libn=pathconvert(libn,%f,%t)
+  //## ierr=execstr('libnumber=link(libn)','errcatch')
+  //## ierr=execstr('link(libnumber,blknam,''c'')','errcatch')
+  ierr=execstr('link(libn,blknam,''c'')','errcatch')
 
-    //** For this revision (22/03/2008) Scicos Super Block and Modelica are handled in a slight different 
-    //** ways, so the code is splitted in two branches. 
-    //** We plan to remove these differences - in a second phase - modifing the upper levels routines. 
+  if ierr<>0 then
+    ok=%f;
+    // message(['sorry link problem';lasterror()]);
+    disp(lasterror());
+    return;
+  end
+
+  //## generate makefile for interfacing function of the standalone
+  if filesint<>'' then
+     //## def name of interf func and
+     //## name of interf librabry derived from name of superblock
+     l_blknam=length(blknam)
+     l_blknam=(l_blknam>17)*17 + (l_blknam<=17)*l_blknam
+     blknamint='int'+part(blknam,1:l_blknam)
+     Makename=rpat+'/'+'Makefile_'+blknamint;
+
+     //## generate txt of makefile of the Makefile
+     [Makename2,txt]=gen_make(blknamint,filesint,'',libs,Makename,ldflags,cflags);
+
+     //## write text of the Makefile in the file called Makename
+     ierr=execstr('mputl(txt,Makename2)','errcatch')
+     if ierr<>0 then
+       message(['Can''t write '+Makename2;lasterror()])
+       ok=%f
+       return
+     end
+
+     //## unlink if necessary
+     //## with addinter, this is the interfacing function of table
+     //## that is used as reference
+     [a,b]=c_link(blknamint+'_sci');
+     while a
+       ulink(b);
+       [a,b]=c_link(blknamint+'_sci');
+     end
      
-    //** the switch is done looking inside at "filestan" : it is empty for Modelica ;) 
-    //** BEWARE: "ilib_for_link" does NOT provide support for "standalone" applications !
+     //## compile Makefile
+     // ierr=execstr('libn=ilib_compile(''lib''+blknamint,Makename)','errcatch')
 
-    if filestan=="" then
-      //** --------------------------- MODELICA ---------------------------------------
-      //** Special note for Modelica : this code override some settings 
-      //**
-      // 
-       //** change dir to the TEMPDIR  
-       chdir(TMPDIR);
+     // ilib_compile needs 3 arguments
+     if MSDOS then
+     ierr=execstr('libn = ilib_compile(''lib''+blknamint,''Makelib'',files)','errcatch')
+     else
+     ierr=execstr('libn = ilib_compile(''lib''+blknamint,Makename,files)','errcatch')
+     end
 
-       entry_names = blknam ;
-       file_names = files + ".c"  ; //** the new ilib_for_link accept .c extension 
-       libs = libs ;
-       flag = "c" ; //** "C" entry point / "C" source code  
-       makename = "Makelib" ;
-       loadername = "loader.sce" ;
-       libname = "";
-       ldflags = ldflags ;
-       //** BEWARE: default directory for source and binary versions are different ! 
-       //** if this dir exist means that someone has installed a Scilab binary version 
-       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-          //** Binary version
-	  cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
-       else	  
-          //** it is a source version 
-          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
-       end
+     if ierr<>0 then
+       ok=%f;
+       chdir(oldpath);
+       message(['sorry compiling problem';lasterror()]);
+       return;
+     end
 
-       fflags = ""; //** no additional Fortran flags 
-       cc = "";     //** default "C" compiler 
-  
-       disp("Compile and link Modelica generated C code"); 
+     //##add scilab interfacing function
+     txt='addinter(libn,blknamint+''_sci'',blknam);'
+     execstr(txt);
 
-       libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
+     //## if succes then with_int becomes true
+     with_int=%t;
+  end
 
-       exec("loader.sce"); //** load the shared library 
+  //** generate text of the loader file
+  [txt]=gen_loader(blknam,for_link,with_int)
 
-    else
-     //** -------------- Scicos Super Block Compilation ---------------------------------------
-     //** 
-       //** change dir to the TEMPDIR  
-       chdir(TMPDIR);
- 
-       //** Copy all the source generated file in the TMPDIR because 
-       //** TMPDIR is the "ilib_for_link" default 
-       cmd_line = "cp "+rpat+"/*"+" "+"." ;
-       unix(cmd_line); 
-
-       //** prepare the parameters 
-       //** BEWARE : some settings are "hard coded" 
-
-       entry_names = [files(1), files(1)+"_actuator", files(1)+"_sensor"]; 
-       
-       file_names = files + ".c"  ;
-       libs = libs ;
-       flag = "c" ; //** "C" entry point / "C" source code  
-       makename = "Makelib" ;
-       loadername = "loader.sce" ;
-       libname = "";
-       ldflags = ldflags ;
-       //** BEWARE: default directory for source and binary versions are different ! 
-       //** if this dir exist means that someone has installed a binary version 
-       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-          //** Binary version
-          //** NB you must add "/../../" because the default path is "<scilab>/share/scilab/" so you need
-          //**    to remount two positions :) 
-	      //** disp(".bin");
-          cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"+"  "+..
-                   "-I"+SCI+"/../../include/scilab/dynamic_link/"+"  "+..
-                   "-I"+SCI+"/../../include/scilab/scicos/"; 
-       else	  
-          //** it is a source version 
-          //** disp(".source");
-          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"+"  "+..
-                   "-I"+SCI+"/modules/dynamic_link/includes/"+"  "+..
-                   "-I"+SCI+"/modules/scicos/includes/"; 
-       end
-
-       fflags = ""; //** no additional Fortran flags 
-       cc = "";     //** default "C" compiler 
-    
-      message(["BEWARE: if you want to reload this simulation,", ...
-               "you need to MANUALLY reload - for each Compiled Super Block - ",...
-               "the shared library using ''exec loader.sce'' AND",...
-               "the interfacing function ''*.sci''              ",...
-               "in the corresponding directory ", ...
-               "   _BEFORE_ ",...
-               "running ''scicos();'' "]);  
-
-      disp("Compile and link Scicos generated C code"); 
-
-       libn = ilib_for_link(entry_names, file_names, libs, flag, makename, loadername, libname, ldflags, cflags, fflags, cc); 
-     
-      //** This is just a patch because "ilib_for_link" has some issues outside "TMPDIR"
-      //** copy the shared library and the loader where the Scicos code generated is 
-      //** 
-      //** change dir to the permanent directory   
-      chdir(rpat);
-
-      cmd_line = "cp "+TMPDIR+"/"+"lib"+files(1)+".*"+" "+"." ;
-      unix(cmd_line); 
-  
-      cmd_line = "cp "+TMPDIR+"/"+"loader.sce"+" "+"." ;
-      unix(cmd_line);
-      
-      exec("loader.sce"); //** load the shared library 
-
-      //**--------------------------------------------------------------------- 
- 
-  end 
-
-
-  chdir(oldpath); //** restore the old current working directory 
-  
-  end 
+  //** write text of the loader in file
+  ierr=execstr('mputl(txt,rpat+''/''+blknam+''_loader.sce'')','errcatch')
+  if ierr<>0 then
+    message(['Can''t write '+blknam+'_loader.sce';lasterror()])
+    ok=%f
+    return
+  end
 
 endfunction
-//**------------------------------------------------------------------------------------------------
 
 //** convpathforwin : convert path that only include
 //                    a single '\' in a '\\'
@@ -302,6 +228,7 @@ endfunction
 //
 // Author : Alan Layec, 30 Juin 2007
 //
+//Copyright INRIA
 function txt = convpathforwin(path)
   txt=''
   for j=1:length(path)
@@ -323,8 +250,6 @@ function txt = convpathforwin(path)
     txt=txt+part(path,j);
   end
 endfunction
-//**------------------------------------------------------------------------------------------
-
 //** exportlibforlcc : export a lcc.lib file from
 //                     an existing dll
 //
@@ -341,6 +266,7 @@ endfunction
 //
 // Author : Alan Layec, 1 Jul 2007
 //
+//Copyright INRIA
 function [ok] = exportlibforlcc(libs,rpat)
 
   //** get lhs,rhs nb paramaters
@@ -404,7 +330,6 @@ function [ok] = exportlibforlcc(libs,rpat)
   end
 
 endfunction
-//**-----------------------------------------------------------------------------------
 
 //** gen_loader : generates the Scilab script for defining the
 //                newly created block into Scilab.
@@ -420,59 +345,105 @@ endfunction
 //                 change calling sequence of gen_loader
 //                 rewritte
 //
-function SCode=gen_loader(blknam,for_link)
+//Copyright INRIA
+function SCode=gen_loader(blknam,for_link,with_int)
 
   //** check rhs paramaters
   [lhs,rhs]=argn(0);
 
   if rhs <= 1 then for_link=[], end
+  if rhs <= 2 then with_int=%f, end
 
   SCode=['//** Exec file used to load the ""compiled"" block into Scilab'
+         ''
+         '//@@ Define the name of the block'
          'blknam='+sci2exp(blknam)+';';
+         ''
          '//** Get the absolute path of this loader file'
          'DIR=get_absolute_file_path(blknam+''_loader.sce'');'
+         ''
          '//** Define Makefile name'
-         'Makename = DIR+blknam+''_Makefile'';'
+         'Makename=DIR+''Makefile_''+blknam;'
+         ''
          '//** Unlink if necessary'
          '[a,b]=c_link(blknam);'
          'while a'
          '  ulink(b);'
          '  [a,b]=c_link(blknam);'
          'end';
+         ''
          '//** Run Makefile'
          'libn=ilib_compile('+sci2exp('lib'+blknam)+',Makename);'
+         ''
          '//** Adjust path name of object files'
          'if MSDOS then'
          '  fileso=strsubst(libn,''/'',''\'');'
          'else'
          '  fileso=strsubst(libn,''\'',''/'');'
-         'end';]
+         'end';
+         '']
 
   if for_link<>[] then
     SCode=[SCode
            '//** Link otherlibs'
-           for_link]
+           for_link
+           '']
   end
 
   SCode=[SCode
-         ''
          '//** Link block routine in scilab'
          'link(fileso,blknam,''c'');'
+         ''
          '//** Load the gui function';
          'if fileinfo(DIR+blknam+''_c.sci'')<>[] then'
-         '  exec(DIR+blknam+''_c.sci'');'
-         'end']
+         '  getf(DIR+blknam+''_c.sci'');'
+         'end'
+         '']
+
+  if with_int then
+    SCode=[SCode
+           '//## Define name of interf lib"
+           'l_blknam=length(blknam);'
+           'l_blknam=(l_blknam>17)*17 + (l_blknam<=17)*l_blknam;'
+           'blknamint=''int''+part(blknam,1:l_blknam);'
+           'Makename=DIR+''Makefile_''+blknamint;'
+           ''
+           '//** Unlink if necessary'
+           '[a,b]=c_link(blknamint+''_sci'');'
+           'while a'
+           '  ulink(b);'
+           '  [a,b]=c_link(blknam+''_sci'');'
+           'end';
+           ''
+           '//** Run Makefile'
+           'libn=ilib_compile('+sci2exp('lib'+blknamint)+',Makename);'
+           ''
+           '//** Adjust path name of object files'
+           'if MSDOS then'
+           '  fileso=strsubst(libn,''/'',''\'');'
+           'else'
+           '  fileso=strsubst(libn,''\'',''/'');'
+           'end';
+           ''
+           '//## link and add scilab function of the standalone.'
+           'addinter(fileso,blknamint+''_sci'',blknam);'
+           '']
+  end
 
   SCode=[SCode;
+         '//@@ clear the used variabe'
          'clear blknam'
+         'clear l_blknam'
+         'clear blknamint'
          'clear Makename'
          'clear DIR'
          'clear fileso'
          'clear libn'
+         'clear a'
+         'clear b'
          '']
 
 endfunction
-//**-------------------------------------------------------------------------------------
 
 //** gen_make_lccwin32 : generate text of the Makefile
 //              for scicos code generator for
@@ -491,37 +462,28 @@ endfunction
 // Alan , 29 Juin 2007, common for generation of Scicos
 //                      blocks and THE modelica Scicos block
 //
+//Copyright INRIA
 function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
 
   WSCI=strsubst(SCI,'/','\')
 
   T=["# generated by builder.sce: Please do not edit this file"
      "# ------------------------------------------------------"
-     "SCIDIR            = "+SCI
-     "SCIDIR1           = "+WSCI
-     "DUMPEXTS          = """+WSCI+"\bin\dumpexts"""
-     "SCIIMPLIB         = """+SCIHOME+"\lcclib\LibScilab.lib"""
-     "SCILIBS           = """+SCIHOME+"\lcclib\LibScilab.lib"""
-     "SCICOSCLIB        = """+SCIHOME+"\lcclib\scicos.lib"""
-     "SCICOSFLIB        = """+SCIHOME+"\lcclib\scicos_f.lib"""
-     "SCICOS_BLOCKSCLIB = """+SCIHOME+"\lcclib\scicos_blocks.lib"""
-     "SCICOS_BLOCKSFLIB = """+SCIHOME+"\lcclib\scicos_blocks_f.lib"""
+     "SCIDIR       = "+SCI
+     "SCIDIR1      = "+WSCI
+     "DUMPEXTS     = """+WSCI+"\bin\dumpexts"""
+     "SCIIMPLIB    = """+WSCI+"\bin\LibScilablcc.lib"""
+     "SCILIBS      = """+WSCI+"\bin\LibScilablcc.lib"""
      "LIBRARY      = lib"+blknam
      "CC           = lcc"
      "LINKER       = lcclnk"
      "OTHERLIBS    = "+libs
      "LINKER_FLAGS = -dll -nounderscores"
-     "INCLUDES     = -I"""+WSCI+"\libs\f2c""" 
+     "INCLUDES     = -I"""+WSCI+"\routines\f2c""" 
      "CC_COMMON    = -DWIN32 -DSTRICT -DFORDLL -D__STDC__ $(INCLUDES)"
      "CC_OPTIONS   = $(CC_COMMON)"
-     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + .. 
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + cflags
-     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" "
+     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\routines"" "+cflags
+     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\routines"""
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
 
@@ -538,9 +500,8 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
      ascii(9)+"@echo Creation of dll $(LIBRARY).dll and import lib from ..."
      ascii(9)+"@echo $(OBJS)"
      ascii(9)+"@$(DUMPEXTS) -o ""$(LIBRARY).def"" ""$*"" $(OBJS)"
-     ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(OTHERLIBS) "+ ..
-              " $(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) " + ..
-              " $(SCILAB_LIBS) $*.def -o "+ ..
+     ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(OTHERLIBS) "+...
+              " $(XLIBSBIN) $(TERMCAPLIB) $*.def -o "+...
               " $(LIBRARY).dll"
      ".c.obj:"
      ascii(9)+"@echo ------------- Compile file $< --------------"
@@ -574,18 +535,16 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
     T=[T;
        "standalone: $(OBJSSTAN) "
         ascii(9)+"$(LINKER) $(LINKER_FLAGS) $(OBJSSTAN)"+...
-                 "$(OTHERLIBS) $(SCILIBS) "+ .. 
-                 "$(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) " + ..
-                 "/out:standalone.exe "];
+                 "$(OTHERLIBS) $(SCILIBS)  /out:standalone.exe "]
   end
 endfunction
-//**----------------------------------------------------------------------------------------------------
+
 
 //** gen_make : generate text of the Makefile
 //              for scicos code generator
 //              That's a wrapper for
 //                 gen_make_lccwin32
-//                 gen_make_msvc
+//                 gen_make_win32
 //                 gen_make_unix
 //
 // Input : blknam   : name of the Scicos block to compile
@@ -605,6 +564,7 @@ endfunction
 //
 // Alan Layec, 28 Juin 2007
 //
+//Copyright INRIA
 function [Makename,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cflags)
 
   //** check rhs paramaters
@@ -613,29 +573,33 @@ function [Makename,txt]=gen_make(blknam,files,filestan,libs,Makename,ldflags,cfl
   if rhs <= 1 then files    = blknam, end
   if rhs <= 2 then filestan = '', end
   if rhs <= 3 then libs     = '', end
-  if rhs <= 4 then Makename = blknam+'_Makefile', end
+  if rhs <= 4 then Makename = 'Makefile_'+blknam, end
   if rhs <= 5 then ldflags  = '', end
   if rhs <= 6 then cflags   = '', end
 
   //** generate Makefile for LCC compilator
- 
-   if MSDOS then
-     if findmsvccompiler() <> 'unknown' then 
-       txt=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags);
-       Makename = strsubst(Makename,'/','\')+'.mak';
-     else
-       if findlcccompiler() <> %F then 
-         txt=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags);
-         Makename = strsubst(Makename,'/','\')+'.lcc';
-       end
-     end
-   else
-   	txt=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags);
-   end
-    
-endfunction
-//**---------------------------------------------------------------------------------------------
+  if with_lcc()==%T then
 
+    txt=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
+    Makename = strsubst(Makename,'/','\')+'.lcc'
+
+  //** generate Makefile for Crosoft compilator
+  elseif getenv('WIN32','NO')=='OK' then
+
+    txt=gen_make_win32(blknam,files,filestan,libs,ldflags,cflags)
+    select COMPILER;
+      case 'VC++' then
+        Makename = strsubst(Makename,'/','\')+'.mak'
+    end
+
+  //** unix case
+  else
+
+    txt=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags)
+
+  end
+
+endfunction
 
 //** gen_make_unix : generate text of the Makefile
 //              for scicos code generator for cc/gcc
@@ -650,10 +614,12 @@ endfunction
 //
 // Output : T : the text of the makefile
 //
-// Alan Layec, 28 Juin 2007
-// Alan , 29 Juin 2007, common for generation of Scicos
-//                      blocks and THE modelica Scicos block
+// 28 Juin 2007  : rewritte
+// 29 Juin 2007  : common for generation of Scicos
+//                 blocks and the modelica Scicos block
+// 23 Avril 2008 : remove f77 for standalone application
 //
+//Copyright INRIA
 function T=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags)
 
   T=["# generated by builder.sce: Please do not edit this file"
@@ -681,15 +647,15 @@ function T=gen_make_unix(blknam,files,filestan,libs,ldflags,cflags)
   if filestan<>'' then
     T=[T;
        "standalone: $(OBJSSTAN) "
-        ascii(9)+"f77 $(FFLAGS) -o $@  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)"]
+       "#"+ascii(9)+"f77 $(FFLAGS) -o $@  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)"
+       ascii(9)+"gcc $(CFLAGS) -lm -o $@  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)"]
   end
 
 endfunction
-//**--------------------------------------------------------------------------------------------
 
-//** gen_make_msvc : generate text of the Makefile
+//** gen_make_win32 : generate text of the Makefile
 //              for scicos code generator for
-//              Ms VS compilers
+//              Mswin32 compilers
 //
 // Input : blknam     : name of the library
 //         files    : files to be compiled
@@ -704,51 +670,28 @@ endfunction
 // Alan , 29 Juin 2007, common for generation of Scicos
 //                      blocks and THE modelica Scicos block
 //
-// Allan CORNET, Juillet 2008, DIGITEO
-// support build on x64 plateforms with VS
-function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
+//Copyright INRIA
+function T=gen_make_win32(blknam,files,filestan,libs,ldflags,cflags)
 
-  WSCI=strsubst(SCI,'/','\');
-  if win64() then
-    LINKER_FLAGS_MACHINE =  "/NOLOGO /machine:x64";
-    CC_COMMON = "-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES)";
-    CC_OPTIONS = "$(CC_COMMON) -Od -Gd -W3";
-  else
-    LINKER_FLAGS_MACHINE =  "/NOLOGO /machine:ix86";
-    CC_COMMON = "-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES)";
-    CC_OPTIONS = "$(CC_COMMON) -Od  -GB -Gd -W3";
-  end
-  
+  WSCI=strsubst(SCI,'/','\')
 
   T=["# generated by builder.sce: Please do not edit this file"
      "# ------------------------------------------------------"
      "SCIDIR       = "+SCI
      "SCIDIR1      = "+WSCI
-     "DUMPEXTS     = """+WSCI+"/bin/dumpexts"""
-     "SCIIMPLIB    = """+WSCI+"/bin/LibScilab.lib"""
-     "SCILIBS      = """+WSCI+"/bin/LibScilab.lib"""
-     "SCICOSCLIB      = """+WSCI+"/bin/scicos.lib"""
-     "SCICOSFLIB      = """+WSCI+"/bin/scicos_f.lib"""
-     "SCICOS_BLOCKSCLIB      = """+WSCI+"/bin/scicos_blocks.lib"""
-     "SCICOS_BLOCKSFLIB      = """+WSCI+"/bin/scicos_blocks_f.lib"""
+     "DUMPEXTS     = """+WSCI+"\bin\dumpexts"""
+     "SCIIMPLIB    = """+WSCI+"\bin\LibScilab.lib"""
+     "SCILIBS      = """+WSCI+"\bin\LibScilab.lib"""
      "LIBRARY      = lib"+blknam
      "CC           = cl"
      "LINKER       = link"
      "OTHERLIBS    = "+libs
-     "LINKER_FLAGS = "+LINKER_FLAGS_MACHINE
-     "INCLUDES     = -I"""+WSCI+"/libs/f2c"""
-     "CC_COMMON    = "+CC_COMMON
-     "CC_OPTIONS   = "+CC_OPTIONS
-     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + .. 
-                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" " + ..
-                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + cflags
-                     
-                     
-     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
-                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" "
+     "LINKER_FLAGS = /NOLOGO /machine:ix86"
+     "INCLUDES     = -I"""+WSCI+"\routines\f2c"""
+     "CC_COMMON    = -D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES)"
+     "CC_OPTIONS   = $(CC_COMMON) -Od -Gd -W3"
+     "CFLAGS       = $(CC_OPTIONS) -DFORDLL -I"""+WSCI+"\routines"" "+cflags
+     "FFLAGS       = $(FC_OPTIONS) -DFORDLL -I"""+WSCI+"\routines"""
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
 
@@ -765,16 +708,15 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
      ascii(9)+"@echo Creation of dll $(LIBRARY).dll and import lib from ..."
      ascii(9)+"@echo $(OBJS)"
      ascii(9)+"@$(DUMPEXTS) -o ""$*.def"" ""$*.dll"" $**"
-     ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) " + .. 
-              "$(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) $(OTHERLIBS) "+ ..
-              "$(SCILAB_LIBS) /nologo /dll /out:""$*.dll"""+...
+     ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(OTHERLIBS) "+...
+              "$(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:""$*.dll"""+...
               " /implib:""$*.lib"" /def:""$*.def"""
      ".c.obj:"
      ascii(9)+"@echo ------------- Compile file $< --------------"
      ascii(9)+"$(CC) $(CFLAGS) $< "
      ".f.obj:"
      ascii(9)+"@echo ----------- Compile file $*.f (using f2c) -------------"
-     ascii(9)+"@"""+WSCI+"/bin/f2c.exe"" $(FFLAGS) $*.f "
+     ascii(9)+"@"""+WSCI+"\bin\f2c.exe"" $(FFLAGS) $*.f "
      ascii(9)+"@$(CC) $(CFLAGS) $*.c "
      ascii(9)+"@del $*.c "
      "clean::"
@@ -800,10 +742,369 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
   if filestan<>'' then
     T=[T;
        "standalone: $(OBJSSTAN) "
-        ascii(9)+"$(LINKER) $(LINKER_FLAGS)  $(OBJSSTAN)"+ ..
-                 " $(OTHERLIBS) $(SCILIBS) " + ..
-                 "$(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) " + ..
-                 "/out:standalone.exe "];
+        ascii(9)+"$(LINKER) $(LINKER_FLAGS)  $(OBJSSTAN)"+...
+                 " $(OTHERLIBS) $(SCILIBS)  /out:standalone.exe "]
+  end
+
+endfunction
+
+
+//** link_olibs   : links otherlibs in scilab
+//                  for scicos C generated block
+//
+// Input : libs   : a matrix of string containing path+name
+//                 of the libraries
+//
+//         rpat   : a target directory for temporary generated files
+//
+// Output : ok    : a boolean variable to say if job has succed
+//          libs  : a matrix of string containing path+name
+//                  of the libraries
+//          for_link : a vector of strings with link cmd
+//                     for exec or for loader.sce
+//
+// Author : Alan Layec, 1 Jul 2007
+//
+//Copyright INRIA
+function [ok,libs,for_link]=link_olibs(libs,rpat)
+
+  //** get lhs,rhs nb paramaters
+  [lhs,rhs]=argn(0);
+
+  //** decl and set local variables
+  ok=%t
+  x=''
+  xlibs=[]
+  for_link=[]
+
+  //** get out from this function if
+  //   there is nothing to do
+  if libs=='' | libs==[] then return, end
+
+  //** LCC
+  if with_lcc()==%T then
+    //** add lcc.lib
+    //   for compatibility with dll of
+    //   msvc
+    libs=libs(:)';
+    for x=libs
+      //** extract path, name and extension of libs
+      [path,fname,extension]=fileparts(x);
+      if rhs <= 1 then
+        rpat = path
+      end
+      if (extension == '') then
+        //** search dll
+        if fileinfo(x+'.dll')<>[] then
+          if fileinfo(x+'lcc.lib')==[] then
+            //** export lcc.lib
+            message(['I will try to export a '+x+'lcc.lib']);
+            ok=exportlibforlcc(x,rpat)
+            if ~ok then
+              message(['Can''t export a '+path+fname+'lcc.lib';
+                         'Please try to do your own lcc.lib file with';
+                         'the xx scilab function or change the path';
+                         'of your library '+x+'.dll']);
+              ok=%f;
+              return
+            end
+          end
+          for_link=[for_link;x+'.dll']
+          link(for_link($));
+          xlibs=[xlibs;x+'lcc.lib']
+
+        //** search DLL
+        elseif fileinfo(x+'.DLL')<>[] then
+          if fileinfo(x+'lcc.lib')==[] then
+            //** export lcc.lib
+            message(['I will try to export a '+x+'lcc.lib']);
+            ok=exportlibforlcc(x,rpat)
+            if ~ok then
+              message(['Can''t export a '+path+fname+'lcc.lib';
+                         'Please try to do your own lcc.lib file with';
+                         'the xx scilab function or change the path';
+                         'of your library '+x+'.dll']);
+              ok=%f;
+              return
+            end
+          end
+          for_link=[for_link;x+'.DLL']
+          link(for_link($));
+          xlibs=[xlibs;x+'lcc.lib']
+
+        else
+          //** no extension
+          //   no .dll exists
+          //   do something here please ?
+          ok=%f
+          pause
+        end
+      elseif fileinfo(x)==[] then
+        message(['Can''t include '+x;
+                   'That file doesn''t exist';
+                   lasterror()])
+        ok=%f
+        return
+      //** extension assume that user know what he does
+      else
+        //** compiled object (.obj)
+        //** compiled object doesn't need to be linked
+        if extension=='.obj' | extension=='.OBJ'  then
+          xlibs=[xlibs;x]
+        //** library (.dll)
+        elseif extension=='.dll' | extension=='.DLL' then
+          for_link=[for_link;x]
+          link(for_link($));
+          if fileinfo(path+fname+'lcc.lib')==[] then
+            //** export lcc.lib
+            message(['I will try to export a '+path+fname+'lcc.lib']);
+            ok=exportlibforlcc(path+fname,rpat)
+            if ~ok then
+              message(['Can''t export a '+path+fname+'lcc.lib';
+                         'Please try to do your own lcc.lib file with';
+                         'the xx scilab function or change the path';
+                         'of your library '+x+'.dll']);
+              ok=%f;
+              return
+            end
+          end
+          xlibs=[xlibs;path+fname+'lcc.lib']
+
+        //** library (.lib)
+        elseif extension=='.lib' | extension=='.ilib' then
+          if fileinfo(path+fname+'.dll')<>[] then
+            for_link=[for_link;path+fname+'.dll']
+            link(for_link($));
+          elseif fileinfo(path+fname+'.DLL')<>[] then
+            for_link=[for_link;path+fname+'.DLL']
+            link(for_link($));
+          else
+            //link(x);
+            message(['I don''t know what to do !';
+                      'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+          xlibs=[xlibs;x]
+        else
+          //link(x);
+          message(['I don''t know what to do !';
+                     'Please report to alan.layec@inria.fr';])
+          ok=%f
+          pause
+        end
+      end
+    end
+
+  //** MSVC
+  elseif getenv('WIN32','NO')=='OK' then
+    //** add .lib or .ilib
+    libs=libs(:)';
+    for x=libs
+      [path,fname,extension]=fileparts(x);
+      if (extension == '') then
+        //** search ilib
+        if fileinfo(x+'.ilib')<>[] then
+          //** search dll
+          if fileinfo(x+'.dll')<>[] then
+            for_link=[for_link;x+'.dll']
+            link(for_link($));
+          //** search DLL
+          elseif fileinfo(x+'.DLL')<>[] then
+            for_link=[for_link;x+'.DLL']
+            link(for_link($));
+          //** no .dll, .DLL
+          else
+            message(['I cant''t find a dll !';
+                       'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+          xlibs=[xlibs;x+'.ilib']
+        //** search lib
+        elseif fileinfo(x+'.lib')<>[] then
+          //** search dll
+          if fileinfo(x+'.dll')<>[] then
+            for_link=[for_link;x+'.dll']
+            link(for_link($));
+          //** search DLL
+          elseif fileinfo(x+'.DLL')<>[] then
+            for_link=[for_link;x+'.DLL']
+            link(for_link($));
+          //** no .dll, .DLL
+          else
+            message(['I cant''t find a dll !';
+                       'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+          xlibs=[xlibs;x+'.lib']
+        else
+          //** no extension
+          //   no .lib, no .ilib exists
+          //   do something here please ?
+          message(['I don''t know what to do !';
+                     'Please report to alan.layec@inria.fr';])
+          ok=%f
+          pause
+        end
+      elseif fileinfo(x)==[] then
+        message(['Can''t include '+x;
+                   'That file doesn''t exist';
+                   lasterror()])
+        ok=%f
+        return
+      //** extension assume that user know what he does
+      else
+        //** compiled object (.obj)
+        //** compiled object doesn't need to be linked
+        if extension=='.obj' | extension=='.OBJ'  then
+          xlibs=[xlibs;x]
+        //** library (.dll)
+        elseif extension=='.dll' | extension=='.DLL' then
+          for_link=[for_link;x]
+          link(for_link($));
+          if fileinfo(path+fname+'.ilib')<> [] then
+            xlibs=[xlibs;path+fname+'.ilib']
+          elseif fileinfo(path+fname+'.lib')<> [] then
+            xlibs=[xlibs;path+fname+'.lib']
+          else
+            //link(x);
+            message(['I don''t know what to do !';
+                      'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+        //** library (.lib)
+        elseif extension=='.lib' | extension=='.ilib' then
+          if fileinfo(path+fname+'.dll')<>[] then
+            for_link=[for_link;path+fname+'.dll']
+            link(for_link($));
+          elseif fileinfo(path+fname+'.DLL')<>[] then
+            for_link=[for_link;path+fname+'.DLL']
+            link(for_link($));
+          else
+            //link(x);
+            message(['I don''t know what to do !';
+                      'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+          xlibs=[xlibs;x]
+        else
+          //link(x);
+          message(['I don''t know what to do !';
+                     'Please report to alan.layec@inria.fr';])
+          ok=%f
+          pause
+        end
+      end
+    end
+
+  //** Unix
+  else
+    //** add .a
+    //   for compatibility test if we have already a .a
+    libs=libs(:)';
+    for x=libs
+      [path,fname,extension]=fileparts(x);
+      //** no extension. Assume that's a so library
+      if (extension == '') then
+       if fileinfo(path+fname+'.so')<>[] then
+        for_link=[for_link;x+'.so']
+        link(for_link($));
+       elseif fileinfo(path+fname+'.SO')<>[] then
+        for_link=[for_link;x+'.SO']
+        link(for_link($));
+       else
+         //link(x);
+         message(['I don''t know what to do !';
+                    'Please report to alan.layec@inria.fr';])
+         ok=%f
+         pause
+       end
+       if fileinfo(x+'.a')<>[] then
+         xlibs=[xlibs;x+'.a']
+       elseif fileinfo(x+'.A')<>[] then
+         xlibs=[xlibs;x+'.A']
+       else
+         //link(x);
+         message(['I don''t know what to do !';
+                    'Please report to alan.layec@inria.fr';])
+         ok=%f
+         pause
+       end
+      elseif fileinfo(x)==[] then
+        message(['Can''t include '+x;
+                   'That file doesn''t exist';
+                   lasterror()])
+        ok=%f
+        return
+      //** extension assume that user know what he does
+      else
+        //** compiled object (.o)
+        //** compiled object doesn't need to be linked
+        if extension=='.o' | extension=='.O'  then
+          xlibs=[xlibs;x]
+        //** library (.so)
+        elseif extension=='.so' | extension=='.SO' then
+          for_link=[for_link;x]
+          link(for_link($));
+          if fileinfo(path+fname+'.a')<> [] then
+            xlibs=[xlibs;path+fname+'.a']
+          elseif fileinfo(path+fname+'.A')<> [] then
+            xlibs=[xlibs;path+fname+'.A']
+          else
+            //link(x);
+            message(['I don''t know what to do !';
+                      'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+        //** library (.a)
+        elseif extension=='.a' | extension=='.A' then
+          if fileinfo(path+fname+'.so')<>[] then
+            for_link=[for_link;path+fname+'.so']
+            link(for_link($));
+          elseif fileinfo(path+fname+'.SO')<>[] then
+            for_link=[for_link;path+fname+'.SO']
+            link(for_link($));
+          else
+            //link(x);
+            message(['I don''t know what to do !';
+                      'Please report to alan.layec@inria.fr';])
+            ok=%f
+            pause
+          end
+          xlibs=[xlibs;x]
+        else
+          //link(x);
+          message(['I don''t know what to do !';
+                    'Please report to alan.layec@inria.fr';])
+          ok=%f
+          pause
+        end
+      end
+    end
+  end
+
+  //** add double quote for include in
+  //   Makefile
+  libs=xlibs
+  if MSDOS then
+      libs='""'+libs+'""'
+   else
+     libs=''''+libs+''''
+   end
+
+  //** return link cmd for for_link
+  if for_link <> [] then
+    for_link = 'link(""'+for_link+'"");';
+  end
+
+  //** concatenate libs for Makefile
+  if size(libs,1)<>1 then
+    libs = strcat(libs,' ')
   end
 
 endfunction

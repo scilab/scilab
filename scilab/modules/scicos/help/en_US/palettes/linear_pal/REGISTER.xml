@@ -198,22 +198,7 @@ register is shifted one step.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_i32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_i16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_i8.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_ui32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_ui16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/delay4_ui8.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/delay4.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

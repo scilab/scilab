@@ -220,10 +220,7 @@ Output port size is given by the size of <emphasis role="bold">A</emphasis> and 
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/rndblk_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/rndblkz_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/rndblk_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

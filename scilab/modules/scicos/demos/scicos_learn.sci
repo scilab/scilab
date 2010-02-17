@@ -112,10 +112,6 @@ deff('GrabScope_()',..
       'Cmenu=''Replot'''])
 
 
-//deff('Comment_()',..
-//     ['txt=x_dialog([''Enter comments''],'''');'
-//      'Cmenu=''Replot'''])
-
 deff('Comment_()',..
      ['txt=x_dialog([''Enter comments''],'''');'
       'Cmenu=''Open/Set'''])

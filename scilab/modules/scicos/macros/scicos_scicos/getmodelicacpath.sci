@@ -11,13 +11,16 @@
 //
 function compilerpath = getmodelicacpath()
 
+MODELICAC_FILENAME = 'modelicac';
+
 compilerpath = "";
 
 if MSDOS then
   // --- WINDOWS ---
+  MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
   defaultPath = SCI + "/bin/";
   
-  if isfile(defaultPath + "modelicac.exe") then
+  if isfile(defaultPath + MODELICAC_FILENAME) then
     compilerpath = defaultPath;
   else
     compilerpath = "";
@@ -30,7 +33,7 @@ else
   if isdir(SCI+"/modules/core/includes/") then
     defaultPath = SCI + "/modules/scicos/";
     
-    if isfile(defaultPath + "modelicac") then
+    if isfile(defaultPath + MODELICAC_FILENAME) then
       compilerpath = defaultPath;
     else
       compilerpath = "";
@@ -41,7 +44,7 @@ else
   if compilerpath=="" & isdir(SCI+"/../../include/scilab/") then
     defaultPath = SCI + "/../../bin/";
     
-    if isfile(defaultPath + "modelicac") then
+    if isfile(defaultPath + MODELICAC_FILENAME) then
       compilerpath = defaultPath;
     else
       compilerpath = "";
@@ -52,7 +55,7 @@ else
   if compilerpath=="" & isdir("/usr/include/scilab/") then
     defaultPath = "/usr/bin/";
     
-    if isfile(defaultPath + "modelicac") then
+    if isfile(defaultPath + MODELICAC_FILENAME) then
       compilerpath = defaultPath;
     else
       compilerpath = "";
@@ -61,3 +64,4 @@ else
 
 end
 endfunction
+

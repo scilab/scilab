@@ -38,7 +38,7 @@ for i=n:-1:1
     dx=xf/7;
     dy=yf/7;
 
-    if %pt<>[] then
+    if %pt<>[] then //??? what this test means??
       xxx=rotate([pt(1);pt(2)],...
                  -o.graphics.theta*%pi/180,...
                  [orig(1)+sz(1)/2;orig(2)+sz(2)/2]);

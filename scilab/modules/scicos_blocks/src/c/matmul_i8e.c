@@ -18,12 +18,16 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
-# include <math.h>
-# include <stdio.h>
-extern int sciprint();
-void matmul_i8e(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#include <stdio.h>
+#include "sciprint.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "localization.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void matmul_i8e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)) {
   char *u1,*u2,*y; 
@@ -43,14 +47,15 @@ void matmul_i8e(scicos_block *block,int flag)
        for (l=0;l<nu2;l++)
 	    {for(j=0;j<mu1;j++)
 	        {D=0;
+	        jl=j+l*mu1;
 	        for(i=0;i<nu1;i++)
 		   {ji=j+i*mu1;
-		    jl=j+l*mu1;
+		    
 		    il=i+l*nu1;
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
 		    if ((D>((k/2)-1)) |(D<-((k/2))))
-		        {sciprint("overflow error");
+		        {sciprint(_("overflow error"));
 			 set_block_error(-4);
 			 return;}
 		    else {y[jl]=(char)(D);}
@@ -58,3 +63,4 @@ void matmul_i8e(scicos_block *block,int flag)
 		 }
 	     }
 }
+/*--------------------------------------------------------------------------*/ 

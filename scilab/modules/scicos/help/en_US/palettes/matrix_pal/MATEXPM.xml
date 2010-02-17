@@ -208,10 +208,7 @@ y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_expm.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_expm.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_expm.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

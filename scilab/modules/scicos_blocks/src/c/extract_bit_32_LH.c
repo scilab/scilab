@@ -18,13 +18,15 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void extract_bit_32_LH(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void extract_bit_32_LH(scicos_block *block,int flag)
 {
-   int i,maxim;
-   long *y,*u,ref,n;
+   int i = 0,maxim = 0;
+   long *y = NULL,*u = NULL,ref = 0,n = 0;
    y=Getint32OutPortPtrs(block,1);
    u=Getint32InPortPtrs(block,1);
    maxim=32;
@@ -34,3 +36,4 @@ void extract_bit_32_LH(scicos_block *block,int flag)
         ref=ref+n;}
    *y=(*u)&(ref);
 }
+/*--------------------------------------------------------------------------*/ 

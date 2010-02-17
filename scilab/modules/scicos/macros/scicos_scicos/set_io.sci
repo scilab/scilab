@@ -127,9 +127,7 @@ function [model,...
     err__,...
      ko]=extract__(in#)
  if ~ko then
-    message('set_io : '+...
-             str__err(err__,...
-                       'in'))
+    messagebox('set_io : '+ str__err(err__,'in') , 'modal')
      ok=%f
       return, end
  [out,..
@@ -137,9 +135,7 @@ function [model,...
     err__,...
      ko]=extract__(out#)
  if ~ko then
-    message('set_io : '+...
-              str__err(err__,...
-                        'out'))
+    messagebox('set_io : '+ str__err(err__, 'out') ,'modal')
      ok=%f
       return, end
 
@@ -147,8 +143,7 @@ function [model,...
   nclkin=size(clkin,1)
  if nclkin>0 then
    if mini(clkin)<1 then
-     message('set_io : '+...
-              'Event input ports sizes must be positive')
+     messagebox('set_io : ' + 'Event input ports sizes must be positive','modal')
       ok=%f
        return, end
  end
@@ -156,8 +151,7 @@ function [model,...
   nclkout=size(clkout,1)
  if nclkout>0 then
    if mini(clkout)<1 then
-     message('set_io : '+...
-              'Event output ports sizes must be positive')
+     messagebox('set_io : '+ 'Event output ports sizes must be positive','modal')
       ok=%f
        return, end
  end
@@ -193,8 +187,7 @@ function [model,...
   n=size(in(:,1),'*') //given number of input port
  if n1>n then
 //    if or(ip1(n+1:$)>0) then
-//      message('set_io : '+...
-//               'Connected ports cannot be suppressed')
+//      messagebox('set_io : '+'Connected ports cannot be suppressed','modal')
 //       ok=%f
 //        return, end
    ip1=ip1(1:n)
@@ -205,8 +198,8 @@ function [model,...
   n=size(out(:,1),'*')
  if n1>n then
 //    if or(op1(n+1:$)>0) then
-//      message('set_io : '+...
-//               'Connected ports cannot be suppressed')
+//      messagebox('set_io : '+...
+//               'Connected ports cannot be suppressed', 'modal')
 //       ok=%f
 //        return, end
    op1=op1(1:n)
@@ -218,8 +211,8 @@ function [model,...
   n=size(clkin,'*')
  if n1>n then
 //    if or(cip1(n+1:$)>0) then
-//      message('set_io : '+...
-//               'Connected ports cannot be suppressed')
+//      messagebox('set_io : '+...
+//               'Connected ports cannot be suppressed','modal')
 //       ok=%f
 //        return, end
    cip1=cip1(1:n)
@@ -230,8 +223,8 @@ function [model,...
   n=size(clkout,'*')
  if n1>n then
 //    if or(cop1(n+1:$)>0) then
-//      message('set_io : '+...
-//               'Connected ports cannot be suppressed')
+//      messagebox('set_io : '+...
+//               'Connected ports cannot be suppressed','modal')
 //       ok=%f
 //        return, end
    cop1=cop1(1:n)
@@ -248,8 +241,8 @@ function [model,...
 //     k=find(ip1<>0) //connected links
 //      k=k(find(k<=kk))
 //    if or(graphics.in_implicit(k)<>in_impl(k)) then
-//      message('set_io : '+...
-//               'Connected ports types cannot be changed')
+//      messagebox('set_io : '+...
+//               'Connected ports types cannot be changed','modal')
 //       ok=%f
 //        return, end
  else
@@ -262,8 +255,8 @@ function [model,...
 //     k=find(op1<>0) //connected links
 //      k=k(find(k<=kk))
 //    if or(graphics.out_implicit(k)<>out_impl(k)) then
-//      message('set_io : '+...
-//               'Connected ports types cannot be changed')
+//      messagebox('set_io : '+...
+//               'Connected ports types cannot be changed','modal')
 //       ok=%f
 //        return, end
  else

@@ -20,17 +20,35 @@
 */
 
 /*--------------------------------------------------------------------------*/
-/* INRIA 2008 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "scicos-def.h"
+#include "scicos.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_phase_simulation)(char *fname,unsigned long fname_len)
+extern COSIM_struct C2F(cosim);
+/*--------------------------------------------------------------------------*/
+int sci_phase_simulation(char *fname,unsigned long fname_len)
 {
-	intphasesim(fname,fname_len);
-	C2F(putlhsvar)();
+	int isrun = C2F(cosim).isrun;
+
+	if (!isrun) 
+	{
+		Scierror(999, _("%s: scicosim is not running.\n"),fname);
+	}
+	else 
+	{
+		int one = 1, l1 = 0;
+
+		CheckRhs(-1,0);
+		CheckLhs(1,1);
+		CreateVar(1, MATRIX_OF_INTEGER_DATATYPE,(one=1,&one),(one=1,&one),&l1);
+		*istk(l1) = get_phase_simulation();
+		LhsVar(1) = 1;
+		C2F(putlhsvar)();
+	}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

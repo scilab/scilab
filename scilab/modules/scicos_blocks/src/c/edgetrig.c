@@ -18,12 +18,14 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-extern void sciprint();
-
-void edgetrig(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "sciprint.h"
+#include "localization.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void edgetrig(scicos_block *block,int flag)
 {
   double z= block->z[0],u=block->inptr[0][0];
   if(flag==2||flag==6){
@@ -47,8 +49,9 @@ void edgetrig(scicos_block *block,int flag)
   }else if (flag==4) {
     if (block->ng>0){
       set_block_error(-1);
-      sciprint("Trigger block must have discrete time input.");
+      sciprint(_("Trigger block must have discrete time input."));
       return;
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

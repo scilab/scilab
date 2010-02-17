@@ -46,7 +46,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="include;include/sundials;src/cvode;src/ida;src/kinsol;src/nvec_ser;src/sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -131,7 +131,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="include;include/sundials;src/cvode;src/ida;src/kinsol;src/nvec_ser;src/sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -219,7 +219,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="include;include/sundials;src/cvode;src/ida;src/kinsol;src/nvec_ser;src/sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -310,7 +310,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../output_stream/includes;../../../scicos_sundials_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib"
+				AdditionalIncludeDirectories="include;include/sundials;src/cvode;src/ida;src/kinsol;src/nvec_ser;src/sundials"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_SUNDIALS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -380,51 +380,67 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\cvode.c"
+				RelativePath=".\src\cvode\cvode.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cvode_dense.c"
+				RelativePath=".\src\cvode\cvode_dense.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cvode_io.c"
+				RelativePath=".\src\cvode\cvode_io.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ida.c"
+				RelativePath=".\src\ida\ida.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_dense.c"
+				RelativePath=".\src\ida\ida_dense.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_ic.c"
+				RelativePath=".\src\ida\ida_ic.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_io.c"
+				RelativePath=".\src\ida\ida_io.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nvector_serial.c"
+				RelativePath=".\src\kinsol\kinsol.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_dense.c"
+				RelativePath=".\src\kinsol\kinsol_dense.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_math.c"
+				RelativePath=".\src\kinsol\kinsol_io.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_nvector.c"
+				RelativePath=".\src\nvec_ser\nvector_serial.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_smalldense.c"
+				RelativePath=".\src\sundials\sundials_dense.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\sundials\sundials_extension.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\sundials\sundials_math.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\sundials\sundials_nvector.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\sundials\sundials_smalldense.c"
 				>
 			</File>
 		</Filter>
@@ -433,63 +449,83 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\cvode.h"
+				RelativePath=".\include\cvode\cvode.h"
 				>
 			</File>
 			<File
-				RelativePath=".\cvode_dense.h"
+				RelativePath=".\include\cvode\cvode_dense.h"
 				>
 			</File>
 			<File
-				RelativePath=".\cvode_dense_impl.h"
+				RelativePath=".\src\cvode\cvode_dense_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\cvode_impl.h"
+				RelativePath=".\src\cvode\cvode_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ida.h"
+				RelativePath=".\include\ida\ida.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_dense.h"
+				RelativePath=".\include\ida\ida_dense.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_dense_impl.h"
+				RelativePath=".\src\ida\ida_dense_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ida_impl.h"
+				RelativePath=".\src\ida\ida_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\nvector_serial.h"
+				RelativePath=".\include\kinsol\kinsol.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_config.h"
+				RelativePath=".\include\kinsol\kinsol_dense.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_dense.h"
+				RelativePath=".\src\kinsol\kinsol_dense_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_math.h"
+				RelativePath=".\src\kinsol\kinsol_impl.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_nvector.h"
+				RelativePath=".\include\nvector\nvector_serial.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_smalldense.h"
+				RelativePath=".\include\sundials\sundials_config.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sundials_types.h"
+				RelativePath=".\include\sundials\sundials_dense.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\sundials\sundials_extension.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\sundials\sundials_math.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\sundials\sundials_nvector.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\sundials\sundials_smalldense.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\sundials\sundials_types.h"
 				>
 			</File>
 		</Filter>

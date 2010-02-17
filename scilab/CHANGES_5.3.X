@@ -17,7 +17,14 @@ Documentation:
 Xcos:
 =====
 
+* modelica compiler 1.12.1
+
+* bug 4156 fixed - scicos defines some temp. variables on stack without remove.
+
+* bug 4705 fixed - scicos used a non existing file BEpsf
+
 * The default palettes can now be manipulated by the user.
+
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based 
 description.
 

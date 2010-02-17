@@ -96,6 +96,8 @@
 Un événement est généré lorsque l'unique entrée de ce bloc traverse
 la valeur zéro lors d'un front descendant.
 
+
+
 </para>
   </refsection>
   <refsection id="Propriétéspardéfaut_POSTONEG_f">

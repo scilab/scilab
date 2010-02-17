@@ -18,20 +18,17 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-
 #include "core_math.h"
-
 #include "scicos.h"
-
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /*------------------------------------------------
  *     Scicos block simulator 
  *     A set of elementary blocks 
  *------------------------------------------------*/
-
-#define Min(x,y)	(((x)<(y))?(x):(y))
-#define Max(x,y)	(((x)>(y))?(x):(y))
 
 /*------------------------------------------------
  *     Scicos block simulator 
@@ -41,12 +38,12 @@
  *     DB(i)=rpar(i) 
  *------------------------------------------------*/
 
-void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec, 
+SCICOS_BLOCKS_IMPEXP void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec, 
 	    ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
             int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
             double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  int i;
+  int i = 0;
   
   for ( i=0 ; i < *nu ; i++ ) 
     {
@@ -56,3 +53,4 @@ void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec,
 	y[i] = Max(0.00,u[i]-rpar[i]/2.00);
     }
 }
+/*--------------------------------------------------------------------------*/ 

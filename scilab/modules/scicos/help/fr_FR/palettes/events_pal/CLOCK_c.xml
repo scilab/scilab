@@ -104,7 +104,7 @@
     <title>Description</title>
     <para>
 Ce bloc est un super-bloc construit grâce au bloc
-
+<link linkend="EVTDLY_c">EVTDLY_c</link>
 qui 
 est rebouclé sur lui-même.
 </para>

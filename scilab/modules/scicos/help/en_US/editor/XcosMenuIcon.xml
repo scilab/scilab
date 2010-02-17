@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuIcon">
+  <refnamediv>
+    <refname>Icon</refname>
+    <refpurpose>Menu: Edit the graphic instructions that draw the block icon</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This menu allows to edit the Scilab instructions used to draw
+      the picture that appear inside the block shape.
+    </para>
+    <para>
+      
+      To change the icon of a block, select first this menu item,
+      click next on the desired block. A dialog appear that allows
+      you to enter Scilab instructions used to draw the icon.
+      </para>
+      <para>
+      You may use the <link linkend="XcosMenuIconEditor">Icon
+      Editor</link> menu to generate the Scilab instructions. The
+      bottom left coordinates of the icon is given by the
+      <literal>orig=[x,y]</literal> variable while the width and
+      height are given by the array
+      <literal>sz=[width,height]</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuIconEditor">Icon Editor</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

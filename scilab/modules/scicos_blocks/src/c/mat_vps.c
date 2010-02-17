@@ -18,35 +18,40 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "machine.h" /* C2F */
+#include "../../../linear_algebra/includes/issymmetric.h"
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dlacpy)();
 extern int C2F(dgeev)();
 extern int C2F(zlaset)();
-extern int C2F(issymmetric)();
 extern int C2F(dsyev)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{         double *LA;
-          double *LVR;
-          double *dwork;
-          double *dwork1;
+{         
+	double *LA;
+	double *LVR;
+	double *dwork;
+	double *dwork1;
 } mat_vps_struct ;
-void mat_vps(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_vps(scicos_block *block,int flag)
 {
- double *u;
- double *y1;
- double *y2;
- int nu;
- int info;
- int i,lwork,lwork1,j,ij,ji;
- int symmetric;
- mat_vps_struct *ptr;
+ double *u = NULL;
+ double *y1 = NULL;
+ double *y2 = NULL;
+ int nu = 0;
+ int info = 0;
+ int i = 0,lwork = 0,lwork1 = 0,j = 0,ij = 0,ji = 0;
+ int symmetric = 0;
+ mat_vps_struct *ptr = NULL;
  
  nu =GetInPortRows(block,1);
  u=GetRealInPortPtrs(block,1);
@@ -126,3 +131,4 @@ else
 	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

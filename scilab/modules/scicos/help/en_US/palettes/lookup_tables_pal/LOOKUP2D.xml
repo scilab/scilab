@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="LOOKUP2D">
+  <refnamediv>
+    <refname>LOOKUP2D</refname>
+    <refpurpose>2D Lookup table</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/LOOKUP2D_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_LOOKUP2D">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="LOOKUP2D">2D Lookup table</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_LOOKUP2D">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_LOOKUP2D">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_LOOKUP2D">Dialog box</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_LOOKUP2D">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_LOOKUP2D">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_LOOKUP2D">Computational function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_LOOKUP2D">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_LOOKUP2D">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_LOOKUP2D">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Lookup_Tables_pal">Lookup_Tables - Lookup Tables palette</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_LOOKUP2D">
+    <title>Description</title>
+    <para>
+The 2-D Lookup Table block realizes an approximation of a function z=f(x,y) given x, y, z data points. The first input port corresponds to the first table dimension, x. The Row index input values parameter is a 1-by-m vector of x data points, the Column index input values parameter is a 1-by-n vector of y data points.  The table data parameter should be an m-by-n matrix of z data points. Both the row and column vectors must be strictly monotonically increasing (i.e., the value of the next element in the vector is greater than the value of the preceding element).  
+</para>
+    <para>
+The block generates output based on the input values using one of these methods selected from the Lookup method parameter list.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Dialogbox_LOOKUP2D">
+    <title>Dialog box</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/LOOKUP2D_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Row index input values</emphasis>
+        </para>
+        <para> The row values for the table, entered as a row or column vector. The vector values must be strictly monotonic increasing.</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Column index input values</emphasis>
+        </para>
+        <para> The column values for the table, entered as a row or column vector. The vector values must be strictly monotonic increasing.</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Table data</emphasis>
+        </para>
+        <para> Output value table. The matrix size must match the dimensions used in the row index vector and the column index vector.</para>
+        <para> Properties : Type 'matrix' of size [-1,-1]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Lookup method(1..5)</emphasis>
+        </para>
+        <para> Specify the lookup method:</para>
+        <para> 1)Interpolation-extrapolation (Bilinear) method: Performs a bilinear interpolation when inputs are inside the table range and uses a bilinear extrapolation using two endpoints of the table if inputs are outside the table input ranges.</para>
+        <para> 2)Interpolation-endvalues (Bilinear) method: Performs a bilinear interpolation when inputs are inside the table range and uses table endvalues if if inputs are outside the table input ranges.</para>
+        <para> 3)InputNearest: This method does not interpolate or extrapolate. Instead, the elements in row and column vectors nearest the current inputs are found. The corresponding element in the table is then used as the output.</para>
+        <para> 4)InputBelow: This method does not interpolate or extrapolate. Instead, the elements in row and column vectors below the current inputs are found. The corresponding element in the table is then used as the output.</para>
+        <para> 5)InputAbove: This method does not interpolate or extrapolate. Instead, the elements in row and column vectors above the current inputs are found. The corresponding element in the table is then used as the output.</para>
+        <para> Properties : Type 'vec' of size 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Launch graphic window(y/n)?</emphasis>
+        </para>
+        <para> If set to 'y', clicking on OK, the 3D plot of the table will be shown. This parameter is automatically reset to 'n'.</para>
+        <para> Properties : Type 'str' of size 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_LOOKUP2D">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> yes</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">lookup2d</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_LOOKUP2D">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_LOOKUP2D">
+    <title>Computational function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/lookup2d.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_LOOKUP2D">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="LOOKUP_c">LOOKUP_c - 1D Lookup table (Scicos Block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_LOOKUP2D">
+    <title>Authors</title>
+    <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

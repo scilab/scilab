@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
-#include <memory.h>
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
-
+#include "machine.h"
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-
-void dsslti4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void dsslti4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
      
@@ -36,7 +39,7 @@ void dsslti4(scicos_block *block,int flag)
   rpar(nx*nx+1:nx*nx+nx*nu)=B
   rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C */
   
-  int un=1,lb,lc,ld;
+  int un=1,lb = 0,lc = 0,ld = 0;
   int nz=block->nz;
   double* z=block->z;
   double* rpar=block->rpar;
@@ -44,7 +47,7 @@ void dsslti4(scicos_block *block,int flag)
   double* u=block->inptr[0];
   int* outsz=block->outsz;
   int* insz=block->insz;
-  double *w;
+  double *w = NULL;
   
   lb=nz*nz;
   
@@ -80,5 +83,5 @@ void dsslti4(scicos_block *block,int flag)
     scicos_free(*block->work);
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 

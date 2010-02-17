@@ -121,7 +121,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
 	end
 
-      oldPath = pwd();
+	  oldPath = pwd();
+
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
 	  cmd = "make "

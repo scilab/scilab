@@ -18,59 +18,64 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-void summation_z(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void summation_z(scicos_block *block,int flag)
 {
- double *ur;
- double *ui;
- int *ipar;
- int nu,mu;
- double *yr;
- double *yi;
- int j,k;
+	double *ur = NULL;
+	double *ui = NULL;
+	int *ipar = NULL;
+	int nu = 0,mu = 0;
+	double *yr = NULL;
+	double *yi = NULL;
+	int j = 0,k = 0;
 
- yr=GetRealOutPortPtrs(block,1);
- yi=GetImagOutPortPtrs(block,1);
- mu=GetInPortRows(block,1);
- nu=GetInPortCols(block,1);
+	yr=GetRealOutPortPtrs(block,1);
+	yi=GetImagOutPortPtrs(block,1);
+	mu=GetInPortRows(block,1);
+	nu=GetInPortCols(block,1);
 
- if(flag==1)
- {
-  if (GetNin(block)==1)
-  {
-   ur=GetRealInPortPtrs(block,1);
-   ui=GetImagInPortPtrs(block,1);
-    yr[0]=0.0;
-    yi[0]=0.0;
-     for (j=0;j<mu*nu;j++) 
-     {
-      yr[0]=yr[0]+ur[j];
-      yi[0]=yi[0]+ui[j];
-     }
-   }
-  else
-  {
-   for (j=0;j<mu*nu;j++)
-   {
-    yr[j]=0.0;
-    yi[j]=0.0;
-    for (k=1;k<GetNin(block)+1;k++) 
-    {
-     ur=GetRealInPortPtrs(block,k);
-     ui=GetImagInPortPtrs(block,k);
-     ipar=GetIparPtrs(block);
-     if(ipar[k-1]>0)
-     {
-      yr[j]=yr[j]+ur[j];
-      yi[j]=yi[j]+ui[j];
-     }
-     else
-     {
-      yr[j]=yr[j]-ur[j];
-      yi[j]=yi[j]-ui[j];
-     }
-    }
-   }
-  }
- }
+	if(flag==1)
+	{
+		if (GetNin(block)==1)
+		{
+			ur=GetRealInPortPtrs(block,1);
+			ui=GetImagInPortPtrs(block,1);
+			yr[0]=0.0;
+			yi[0]=0.0;
+			for (j=0;j<mu*nu;j++) 
+			{
+				yr[0]=yr[0]+ur[j];
+				yi[0]=yi[0]+ui[j];
+			}
+		}
+		else
+		{
+			for (j=0;j<mu*nu;j++)
+			{
+				yr[j]=0.0;
+				yi[j]=0.0;
+				for (k=1;k<GetNin(block)+1;k++) 
+				{
+					ur=GetRealInPortPtrs(block,k);
+					ui=GetImagInPortPtrs(block,k);
+					ipar=GetIparPtrs(block);
+					if(ipar[k-1]>0)
+					{
+						yr[j]=yr[j]+ur[j];
+						yi[j]=yi[j]+ui[j];
+					}
+					else
+					{
+						yr[j]=yr[j]-ur[j];
+						yi[j]=yi[j]-ui[j];
+					}
+				}
+			}
+		}
+	}
 }
+/*--------------------------------------------------------------------------*/ 
