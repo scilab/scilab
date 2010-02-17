@@ -31,9 +31,9 @@ Source: modules\{#SCICOS_BLOCKS}\includes\scicos_block.h; DestDir: {app}\modules
 Source: modules\{#SCICOS_BLOCKS}\includes\scicos_block4.h; DestDir: {app}\modules\{#SCICOS_BLOCKS}\includes; Components: {#COMPN_XCOS}
 ;
 ;
-Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
-Source: bin\modelicat.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
-Source: bin\xml2modelica.exe; DestDir: {app}\bin; Components: {#COMPN_SCICOS}
+Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\modelicat.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\xml2modelica.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\macros\lib; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\names; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
@@ -41,7 +41,7 @@ Source: modules\{#SCICOS_BLOCKS}\macros\*.bin; DestDir: {app}\modules\{#SCICOS_B
 Source: modules\{#SCICOS_BLOCKS}\macros\*.sci; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.mo; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-Source: modules\{#SCICOS_BLOCKS}\macros\*.moc; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+;Source: modules\{#SCICOS_BLOCKS}\macros\*.moc; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\blocks\*.h5; DestDir: {app}\modules\{#SCICOS_BLOCKS}\blocks; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 
