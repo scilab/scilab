@@ -11,7 +11,6 @@
 #define PVM "pvm"
 
 ;Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\nopvm.dll; DestDir: {app}\bin; DestName: pvm.dll; Components: {#COMPN_SCILAB}
 
 ;
 ;Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
