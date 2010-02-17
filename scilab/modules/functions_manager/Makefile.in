@@ -85,7 +85,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_manager_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscifunctions_manager_la_LIBADD =
+libscifunctions_manager_la_DEPENDENCIES = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
 	libscifunctions_manager_la-configvariable.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
@@ -225,6 +225,7 @@ LEXLIB = @LEXLIB@
 LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -395,7 +396,7 @@ libscifunctions_manager_la_CXXFLAGS = -I$(top_builddir)/modules/types/includes/ 
 						$(XML_FLAGS)
 
 # Commented in order to avoid a cyclic dep
-#libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 libscifunctions_manager_la_includedir = $(pkgincludedir)/Types
 libscifunctions_manager_la_include_HEADERS = 
 

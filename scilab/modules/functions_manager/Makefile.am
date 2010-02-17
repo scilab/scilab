@@ -32,8 +32,8 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-Iincludes/ \
 						-Isrc/cpp \
 						$(XML_FLAGS)
-# Commented in order to avoid a cyclic dep
-#libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+
+libscifunctions_manager_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 libscifunctions_manager_la_includedir=$(pkgincludedir)/Types
 
