@@ -49,8 +49,8 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("log", &sci_log, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("log1p", &sci_log1p, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("matrix", &sci_scimatrix, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("maxi", &sci_maxi, MODULE_NAME));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("mini", &sci_mini, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("max", &sci_maxi, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("min", &sci_mini, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("nearfloat", &sci_nearfloat, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("number_properties", &sci_number_properties, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("ones", &sci_ones, MODULE_NAME));
@@ -61,6 +61,7 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sign", &sci_sign, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("size", &sci_size, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sqrt", &sci_sqrt, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sum", &sci_sum, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("tan", &sci_tan, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("testmatrix", &sci_testmatrix, MODULE_NAME));

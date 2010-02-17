@@ -481,19 +481,19 @@ namespace ast
 
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				//pIT = pVar->extract_value(i);
-				//symbol::Context::getInstance()->put(symbol, *pIT);
+				pIT = pVar->extract_value(i);
+				symbol::Context::getInstance()->put(symbol, *pIT);
 				e.body_get().accept(*execBody);
-				//if(e.body_get().is_break())
-				//{
-				//	break;
-				//}
+				if(e.body_get().is_break())
+				{
+					break;
+				}
 
-				//if(e.body_get().is_return())
-				//{
-				//	((Exp*)&e)->return_set();
-				//	break;
-				//}
+				if(e.body_get().is_return())
+				{
+					((Exp*)&e)->return_set();
+					break;
+				}
 			}
 			delete execBody;
 		}

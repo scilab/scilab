@@ -224,3 +224,66 @@ EXTERN_OP int iMultiComplexPolyByComplexPoly(
 	}
 	return 0;
 }
+
+int iDotMultiplyRealMatrixByRealMatrix(
+		double* _pdblReal1, 
+		double* _pdblReal2, 
+		double* _pdblRealOut, int _iRowsOut, int _iColsOut)
+{
+	int i = 0;
+
+	for(i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+	{
+		_pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+	}
+	return 0;
+}
+
+int iDotMultiplyRealMatrixByComplexMatrix(
+		double* _pdblReal1, 
+		double* _pdblReal2, double* _pdblImg2,
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+{
+	int i = 0;
+
+	for(i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+	{
+		_pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+		_pdblImgOut[i] = _pdblReal1[i] * _pdblImg2[i];
+	}
+	return 0;
+}
+
+int iDotMultiplyComplexMatrixByRealMatrix(
+		double* _pdblReal1, double* _pdblImg1, 
+		double* _pdblReal2, 
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+{
+	int i = 0;
+
+	for(i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+	{
+		_pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+		_pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
+	}
+	return 0;
+}
+
+int iDotMultiplyComplexMatrixByComplexMatrix(
+		double* _pdblReal1, double* _pdblImg1,
+		double* _pdblReal2, double* _pdblImg2,
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+{
+	int i = 0;
+
+	for(i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+	{
+		_pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+		_pdblRealOut[i] += _pdblImg1[i] * _pdblImg2[i];
+
+		_pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
+		_pdblImgOut[i] += _pdblReal1[i] * _pdblImg2[i];
+	}
+	return 0;
+}
+

@@ -28,8 +28,7 @@ static gw_generic_table Tab[] = {
   {NULL, ""}  //syredi
 };
 
-int
-gw_signal_processing(void)
+int gw_signal_processing(void)
 {  
   callFunctionFromGateway(Tab, GWTABLE_LENGTH(Tab));
   return 0;

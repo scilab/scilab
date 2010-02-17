@@ -133,6 +133,14 @@ int sci_gsort(char *fname, int* _piKey)
 		return 1;
 	}
 
+	LhsVar(1) = Rhs + 1;
+
+	if(Lhs == 2)
+	{
+		LhsVar(2) = Rhs + 2;
+	}
+
+	PutLhsVar();
 	return 0;
 } 
 
@@ -260,10 +268,8 @@ int	gsort_string(int* _piKey, int * _piAddress, const char* _pcstProcess, const 
 			FREE(piInd);
 			return iRet;
 		}
-		LhsVar(2) = Rhs + 2;
 	}
 	
-	LhsVar(1) = Rhs + 1;
 	FREE(piInd);
 	return 0;
 }

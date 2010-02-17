@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-static SciErr getMode(int* _piKey, int _iPos, char *_pcMode);
+static int getMode(int* _piKey, int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
 int sci_dsearch(char *fname, int* _piKey)
@@ -88,10 +88,9 @@ int sci_dsearch(char *fname, int* _piKey)
 	//get ch
 	if(Rhs == 3)
 	{
-		sciErr = getMode(_piKey, 3, &cMode);
-		if(sciErr.iErr)
+		int iRet = getMode(_piKey, 3, &cMode);
+		if(iRet)
 		{
-			printError(&sciErr, 0);
 			return 0;
 		}
 	}
@@ -240,7 +239,7 @@ int sci_dsearch(char *fname, int* _piKey)
 	return 0;
 }
 
-static SciErr getMode(int* _piKey, int _iPos, char *_pcMode)
+static int getMode(int* _piKey, int _iPos, char *_pcMode)
 {
 	SciErr sciErr;
 	int iRows			= 0;
@@ -248,36 +247,39 @@ static SciErr getMode(int* _piKey, int _iPos, char *_pcMode)
 	int iMode			= 0;
 	int* piAddr		= NULL;
 
-	int iLen						= 0;
-	char pstMode[1][2]	= {""};
+	int iLen			= 0;
+	char *pstMode	= NULL;
 
 	sciErr = getVarAddressFromPosition(_piKey, _iPos, &piAddr);
 	if(sciErr.iErr)
 	{
-		return sciErr;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 
 	sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
 	if(sciErr.iErr)
 	{
-		return sciErr;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	if(iRows == 1 && iCols == 1)
 	{
-		sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, (char**)pstMode);
-		if(sciErr.iErr)
+		int iRet = getAllocatedSingleString(_piKey, piAddr, &pstMode);
+		//sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, &pstMode);
+		if(iRet)
 		{
-			return sciErr;
+			return iRet;
 		}
 
-		*_pcMode = pstMode[0][0];
+		*_pcMode = pstMode[0];
 	}
 	else
 	{
 		Error(89);
 	}
-	return sciErr;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

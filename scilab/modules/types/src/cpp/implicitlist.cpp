@@ -134,7 +134,6 @@ namespace types
 		m_iSize = -1;
 		if(computable() == true)
 		{
-			cout << "Compute ImplicitList size" << endl;
 			m_iSize = 0;
 			if(m_eOutType == RealDouble)
 			{

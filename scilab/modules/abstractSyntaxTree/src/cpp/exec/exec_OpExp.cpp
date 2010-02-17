@@ -362,6 +362,27 @@ namespace ast
 
 				break;
 			}
+		case OpExp::dottimes :
+			{
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+				{
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
+
+					
+					int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
+					if(iResult)
+					{
+						std::ostringstream os;
+						os << _("Inconsistent row/column dimensions.\n");
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						throw os.str();
+					}
+
+					result_set(pResult);
+				}
+				break;
+			}
 		case OpExp::eq :
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)

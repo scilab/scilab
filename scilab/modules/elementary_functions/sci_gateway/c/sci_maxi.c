@@ -47,18 +47,11 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 	SciErr sciErr;
 	int i;
 	int iMode				= 0;
-	int iMini				= 0;
 	int iType1			= 0;
 	int iModeActive = 0;
 	int *piAddr1		= NULL;
 
 	CheckLhs(1,2);
-
-	//mini or maxi
-	if(Fin == 17)
-	{//mini
-		iMini = 1;
-	}
 
 	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
 	if(sciErr.iErr)
@@ -117,7 +110,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 	case sci_matrix :
 		if(Rhs == 1 || (Rhs == 2 && iModeActive))
 		{
-			sciErr = compare_double_inside(_piKey, piAddr1, iMini, iMode);
+			sciErr = compare_double_inside(_piKey, piAddr1, _iMini, iMode);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -150,7 +143,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 					return 0;
 				}
 			}
-			sciErr = compare_multiple_double(_piKey, fname, iMini);
+			sciErr = compare_multiple_double(_piKey, fname, _iMini);
 			if(sciErr.iErr)
 			{
 				printError(&sciErr, 0);
@@ -159,7 +152,7 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 		}
 		break;
 	case sci_list :
-		sciErr = compare_list(_piKey, fname, piAddr1, iMini);
+		sciErr = compare_list(_piKey, fname, piAddr1, _iMini);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);

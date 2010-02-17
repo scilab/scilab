@@ -23,4 +23,6 @@ EXTERN_OP int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixP
 EXTERN_OP int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPolyOut);
 EXTERN_OP int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly** _pPolyOut);
 
+EXTERN_OP int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**	 _pDoubleOut);
+
 #endif /* __TYPES_MULTI_H__ */
