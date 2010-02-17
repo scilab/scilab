@@ -34,13 +34,9 @@ Source: modules\{#TCLSCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TCLSC
 ;
 Source: modules\{#TCLSCI}\tcl\*.*; DestDir: {app}\modules\{#TCLSCI}\tcl; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
-Source: bin\notclsci.dll; DestDir: {app}\bin; DestName: tclsci.dll; Components: not ({#COMPN_TCLSCI})
-;
 Source: bin\tclsci.dll; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tcl85.dll; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
-Source: bin\tcl85.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 Source: bin\tk85.dll; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
-Source: bin\tk85.lib; DestDir: {app}\bin; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\tests\*.*; DestDir: {app}\modules\{#TCLSCI}\tests; Flags: recursesubdirs; Components:  {#COMPN_TCLSCI} and {#COMPN_TESTS}
 ;
