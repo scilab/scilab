@@ -13,6 +13,7 @@
 package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
+import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Image;
 import java.awt.Stroke;
@@ -22,14 +23,14 @@ import java.io.File;
 import java.util.Hashtable;
 import java.util.Map;
 
-import net.sourceforge.jeuclid.swing.JMathComponent;
+import javax.swing.Icon;
 
 import org.apache.batik.gvt.GraphicsNode;
-import org.scilab.forge.jlatexmath.ParseException;
-import org.scilab.forge.jlatexmath.TeXIcon;
+import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
+import org.scilab.modules.jvm.LoadClassPath;
 import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
@@ -230,14 +231,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		case Latex:
 			try {
 				drawLatexText(ScilabGraphUtils.getTexIcon(text), x, y, w, h, style);
-	    	} catch (ParseException e) {
+	    	} catch (RuntimeException e) {
 				super.drawHtmlText(text, x, y, w, h, style);
 	    	}
 			break;
 			
 		case MathML:
 			try {
-				drawMathMLText(ScilabGraphUtils.getMathMLComponent(text), x, y, w, h, style);
+				drawMathMLText(MathMLRenderUtils.getMathMLComponent(text), x, y, w, h, style);
 			} catch (SAXException e) {
 				super.drawHtmlText(text, x, y, w, h, style);
 			}
@@ -259,7 +260,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param h Height of the text.
 	 * @param style Style to be used for painting the text.
 	 */
-	protected void drawLatexText(TeXIcon icon, int x, int y, int w, int h,
+	protected void drawLatexText(Icon icon, int x, int y, int w, int h,
 			Map<String, Object> style) {
 
 		mxLightweightTextPane textRenderer = mxLightweightTextPane
@@ -295,7 +296,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param h Height of the text.
 	 * @param style Style to be used for painting the text.
 	 */
-	protected void drawMathMLText(JMathComponent comp, int x, int y, int w, int h,
+	protected void drawMathMLText(Component comp, int x, int y, int w, int h,
 			Map<String, Object> style) {
 
 		mxLightweightTextPane textRenderer = mxLightweightTextPane
@@ -332,6 +333,8 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	@Override
 	protected void drawImage(int x, int y, int w, int h, String image) {
 		if (image.endsWith(".svg")) {
+			LoadClassPath.loadOnUse("xcos_block_rendering");
+			
 			File f = new File(image);
 			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
 			
