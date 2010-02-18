@@ -522,6 +522,9 @@ case $OS in
 		# in the source tree version. This does not occur in the binary
 		# thanks to the previous declaration on ../../lib/scilab
 		# See bug #4949
+		if test -d "$SCI/modules/scicos_blocks/.libs/"; then
+			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos_blocks/.libs/
+		fi
 		if test -d "$SCI/modules/scicos/.libs/"; then
 			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos/.libs/
 		fi
