@@ -42,6 +42,8 @@ Xcos:
 
 * bug 4206 fixed - The CreateMask action did not generate a valid submatrix.
 
+* bug 4599 fixed - It is possible create many different variables with the same name in the same scope!!
+
 * bug 5095 fixed - Menus were not disabled when actions were not possible.
 
 * bug 5165 fixed - The CreateMask/RemoveMask/CustomizeMask actions
