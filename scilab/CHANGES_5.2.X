@@ -12,6 +12,9 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope!!
 
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+Ctrl+Wheel was not working for zooming.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
