@@ -1,5 +1,15 @@
+                Changes between Versions 5.2.1 and 5.2.2 of Scilab
+                ==================================================
+
+
+Compilation:
+============
+
+* Fix a build problem on exp10 (mainly under Gentoo)
+
+
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
-                =================================================
+                ==================================================
 
 
 
