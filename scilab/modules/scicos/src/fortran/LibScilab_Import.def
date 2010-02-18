@@ -4,6 +4,7 @@ LIBRARY    Libscilab.dll
 EXPORTS
 ;
 ;core
+adre_
 intersci_
 createvar_
 checkrhs_

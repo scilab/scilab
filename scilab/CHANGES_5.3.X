@@ -40,6 +40,8 @@ Compilation:
 
 * pvm module is dynamically loaded by Scilab.
 
+* fix many warnings detected by Intel Fortran 11.1.051 and more on Windows.
+
 helptools:
 ==========
 
