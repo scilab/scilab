@@ -65,7 +65,7 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 	 * @return the newly created menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
+		return createMenu(scilabGraph, SuperblockMaskCustomizeAction.class);
 	}
 
 	/**
