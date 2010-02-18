@@ -169,7 +169,7 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 						{
 							CloseHandle(haFile);
 							dynlib_InternetCloseHandle(hiConnex);
-							return FALSE;
+							return HTTP_DOWNLOAD_OUTOFMEMORY;
 						}
 					}
 					else
@@ -179,7 +179,7 @@ httpdownloadfile_error_code httpDownloadFile(char * szURL,char * szSaveFilePath)
 						{
 							CloseHandle(haFile);
 							dynlib_InternetCloseHandle(hiConnex);
-							return FALSE;
+							return HTTP_DOWNLOAD_OUTOFMEMORY;
 						}
 					}
 
