@@ -12,12 +12,12 @@
 
 package org.scilab.modules.graph.view;
 
+import java.awt.Component;
 import java.util.Map;
 
-import net.sourceforge.jeuclid.swing.JMathComponent;
+import javax.swing.Icon;
 
-import org.scilab.forge.jlatexmath.ParseException;
-import org.scilab.forge.jlatexmath.TeXIcon;
+import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.xml.sax.SAXException;
@@ -68,14 +68,14 @@ public class ScilabGraphView extends mxGraphView {
 			 * scaled generated image values.
 			 */
 			try {
-				TeXIcon icon = ScilabGraphUtils.getTexIcon(label);
+				Icon icon = ScilabGraphUtils.getTexIcon(label);
 				w = icon.getIconWidth();
 				h = icon.getIconHeight();
 				
 				state.setWidth(((w + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
 				state.setHeight(((h + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
 				labelBounds = state;
-			} catch (ParseException e) {
+			} catch (Exception e) {
 				// popup an error
 				// FIXME: use a ScilabGraphTab instead of null there
 				ScilabModalDialog.show(null, e.getLocalizedMessage());
@@ -94,7 +94,7 @@ public class ScilabGraphView extends mxGraphView {
 			 * scaled generated image values.
 			 */
 			try {
-				JMathComponent comp = ScilabGraphUtils.getMathMLComponent(label);
+				Component comp = MathMLRenderUtils.getMathMLComponent(label);
 				w = comp.getWidth();
 				h = comp.getHeight();
 				

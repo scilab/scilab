@@ -14,15 +14,10 @@ package org.scilab.modules.graph.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import net.sourceforge.jeuclid.swing.JMathComponent;
+import javax.swing.Icon;
 
 import org.apache.batik.bridge.BridgeContext;
 import org.apache.batik.bridge.DocumentLoader;
@@ -38,8 +33,6 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 import org.scilab.modules.graph.view.SupportedLabelType;
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.util.mxUtils;
 
@@ -48,19 +41,14 @@ import com.mxgraph.util.mxUtils;
  */
 public final class ScilabGraphUtils extends mxUtils {
 	/**
-	 * Cache for the generated latex icons
-	 */
-	private static Map<String, TeXIcon> generatedLatexIcons = new WeakHashMap<String, TeXIcon>();
-	
-	/**
-	 * Cache for the generated MathML components
-	 */
-	private static Map<String, JMathComponent> generatedMathMLComponents = new WeakHashMap<String, JMathComponent>();
-	
-	/**
 	 * Cache for the generated SVG components
 	 */
 	private static Map<File, GraphicsNode> generatedSVGComponents = new WeakHashMap<File, GraphicsNode>();
+	
+	/**
+	 * Cache for the generated latex icons
+	 */
+	private static Map<String, TeXIcon> generatedLatexIcons = new WeakHashMap<String, TeXIcon>();
 	
 	/**
 	 * Table conversion between escaped/unescaped HTML symbols
@@ -111,60 +99,7 @@ public final class ScilabGraphUtils extends mxUtils {
 	      {"&copy;"   , "\u00ae" },
 	      {"&euro;"   , "\u20a0" }
 	};
-
 	
-	/**
-	 * Return a cached or a new instance of a TexIcon generated from the text.
-	 * @param text the latex formula
-	 * @return the TeXIcon
-	 * @throws ParseException when the text is not a valid formula
-	 */
-	public static TeXIcon getTexIcon(String text) throws ParseException {
-		TeXIcon icon;
-		String escapedText = SupportedLabelType.Latex.escape(text);
-		
-		icon = generatedLatexIcons.get(escapedText);
-		if (icon == null) {
-			TeXFormula tex = new TeXFormula(escapedText);
-    		icon = tex.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
-    		generatedLatexIcons.put(escapedText, icon);
-		}
-		return icon;
-	}
-	
-	/**
-	 * Return a cached or a new instance of a JMathComponent generated from
-	 * text.
-	 * @param text the MathML formula
-	 * @return the {@link JMathComponent} instance
-	 * @throws SAXException when the text is not a valid XML file
-	 */
-	public static JMathComponent getMathMLComponent(String text) throws SAXException {
-		String escapedText = SupportedLabelType.MathML.escape(text);
-		
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder;
-		Document doc;
-		JMathComponent comp;
-		
-		comp = generatedMathMLComponents.get(text);
-		if (comp == null) {
-			try {
-				builder = factory.newDocumentBuilder();
-				doc = builder.parse(new InputSource(new StringReader(escapedText)));
-				comp = new JMathComponent();
-				comp.setDocument(doc.getFirstChild());
-				generatedMathMLComponents.put(text, comp);
-			} catch (ParserConfigurationException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return comp;
-	}
-
 	/**
 	 * Return a cached or a new instance of a {@link GraphicsNode} generated
 	 * from the SVG file.
@@ -194,6 +129,25 @@ public final class ScilabGraphUtils extends mxUtils {
 			}
 		}
 		return node;
+	}
+	
+	/**
+	 * Return a cached or a new instance of a TexIcon generated from the text.
+	 * @param text the latex formula
+	 * @return the TeXIcon
+	 * @throws ParseException when the text is not a valid formula
+	 */
+	public static Icon getTexIcon(String text) throws ParseException {
+		TeXIcon icon;
+		String escapedText = SupportedLabelType.Latex.escape(text);
+		
+		icon = generatedLatexIcons.get(escapedText);
+		if (icon == null) {
+			TeXFormula tex = new TeXFormula(escapedText);
+    		icon = tex.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
+    		generatedLatexIcons.put(escapedText, icon);
+		}
+		return icon;
 	}
 	
 	/**
