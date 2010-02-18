@@ -140,7 +140,7 @@ namespace ast
 					//manage error
 					std::ostringstream os;
 					os << _("Submatrix incorrectly defined.\n");
-					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				delete piMaxDim;
@@ -156,7 +156,7 @@ namespace ast
 				{
 					std::ostringstream os;
 					os << "Lhs != Rhs";
-					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				
@@ -227,7 +227,7 @@ namespace ast
 			{//Houston ...
 				std::ostringstream os;
 				os << "unknow script form";
-				os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+				os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 				throw os.str();
 			}
 		}

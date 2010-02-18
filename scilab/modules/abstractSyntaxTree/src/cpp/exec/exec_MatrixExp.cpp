@@ -76,7 +76,7 @@ namespace ast
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
-							os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
+							os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
 							throw os.str();
 						}
 
@@ -97,7 +97,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
+						os << ((Location)(*row)->location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 

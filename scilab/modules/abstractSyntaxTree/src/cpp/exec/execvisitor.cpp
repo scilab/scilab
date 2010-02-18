@@ -336,6 +336,7 @@ namespace ast
 					std::ostringstream os;
 					os << "inconsistent row/column dimensions";
 					os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+								os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				result_set(pOut);
