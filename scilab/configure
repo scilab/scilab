@@ -740,6 +740,10 @@ JAVA_DEBUG_OPTIONS
 JAVA_HOME
 JAVA_JNI_LIBS
 JAVA_JNI_INCLUDE
+JUNIT
+BSH
+QDOX
+TESTNG
 ANTLR
 COMMONS_BEANUTILS
 CHECKSTYLE
@@ -768,6 +772,14 @@ HDF5_TRUE
 HDF5_ENABLE
 HDF5_LIBS
 HDF5_CFLAGS
+BUILD_PARSER_FALSE
+BUILD_PARSER_TRUE
+yacc_present
+YFLAGS
+YACC
+LEXLIB
+LEX_OUTPUT_ROOT
+LEX
 NM
 USE_DYNAMIC_STACK_FALSE
 USE_DYNAMIC_STACK_TRUE
@@ -917,6 +929,7 @@ with_javasci
 with_gui
 enable_build_swig
 enable_build_giws
+enable_build_parser
 with_hdf5
 with_hdf5_include
 with_hdf5_library
@@ -973,6 +986,8 @@ FFLAGS
 CXX
 CXXFLAGS
 CCC
+YACC
+YFLAGS
 XMKMF
 MATIO_CFLAGS
 MATIO_LIBS
@@ -1625,6 +1640,7 @@ Optional Features:
   --enable-build-giws     Regenerate C/C++ => Java wrappers produces by Giws
                           (A Java Development Kit (JDK) is mandatory for this
                           option)
+  --enable-build-parser   Regenerate code for the parser (Lex & YACC)
   --disable-nls           do not use Native Language Support
   --disable-build-localization
                           Disable the localization build
@@ -1711,6 +1727,11 @@ Some influential environment variables:
   FFLAGS      Fortran 77 compiler flags
   CXX         C++ compiler command
   CXXFLAGS    C++ compiler flags
+  YACC        The `Yet Another C Compiler' implementation to use. Defaults to
+              the first program found out of: `bison -y', `byacc', `yacc'.
+  YFLAGS      The list of arguments that will be passed by default to $YACC.
+              This script will default YFLAGS to the empty string to avoid a
+              default value of `-d' given by some make applications.
   XMKMF       Path to xmkmf, Makefile generator for X Window System
   MATIO_CFLAGS
               C compiler flags for MATIO, overriding pkg-config
@@ -5580,6 +5601,12 @@ if test "${enable_build_giws+set}" = set; then :
 fi
 
 
+# Check whether --enable-build-parser was given.
+if test "${enable_build_parser+set}" = set; then :
+  enableval=$enable_build_parser;
+fi
+
+
 
 ################################################
 ########## compilator & misc programs detection
@@ -9412,6 +9439,275 @@ fi
 
 
 
+###############################
+### Regenerate the parser files
+### Flex & Yacc
+###############################
+
+if test "$enable_build_parser" != no; then
+
+   for ac_prog in flex lex
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_LEX+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$LEX"; then
+  ac_cv_prog_LEX="$LEX" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_LEX="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+LEX=$ac_cv_prog_LEX
+if test -n "$LEX"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $LEX" >&5
+$as_echo "$LEX" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$LEX" && break
+done
+test -n "$LEX" || LEX=":"
+
+if test "x$LEX" != "x:"; then
+  cat >conftest.l <<_ACEOF
+%%
+a { ECHO; }
+b { REJECT; }
+c { yymore (); }
+d { yyless (1); }
+e { yyless (input () != 0); }
+f { unput (yytext[0]); }
+. { BEGIN INITIAL; }
+%%
+#ifdef YYTEXT_POINTER
+extern char *yytext;
+#endif
+int
+main (void)
+{
+  return ! yylex () + ! yywrap ();
+}
+_ACEOF
+{ { ac_try="$LEX conftest.l"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
+$as_echo "$ac_try_echo"; } >&5
+  (eval "$LEX conftest.l") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking lex output file root" >&5
+$as_echo_n "checking lex output file root... " >&6; }
+if test "${ac_cv_prog_lex_root+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+
+if test -f lex.yy.c; then
+  ac_cv_prog_lex_root=lex.yy
+elif test -f lexyy.c; then
+  ac_cv_prog_lex_root=lexyy
+else
+  as_fn_error "cannot find output from $LEX; giving up" "$LINENO" 5
+fi
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_prog_lex_root" >&5
+$as_echo "$ac_cv_prog_lex_root" >&6; }
+LEX_OUTPUT_ROOT=$ac_cv_prog_lex_root
+
+if test -z "${LEXLIB+set}"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking lex library" >&5
+$as_echo_n "checking lex library... " >&6; }
+if test "${ac_cv_lib_lex+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+
+    ac_save_LIBS=$LIBS
+    ac_cv_lib_lex='none needed'
+    for ac_lib in '' -lfl -ll; do
+      LIBS="$ac_lib $ac_save_LIBS"
+      cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+`cat $LEX_OUTPUT_ROOT.c`
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_lex=$ac_lib
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+      test "$ac_cv_lib_lex" != 'none needed' && break
+    done
+    LIBS=$ac_save_LIBS
+
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_lex" >&5
+$as_echo "$ac_cv_lib_lex" >&6; }
+  test "$ac_cv_lib_lex" != 'none needed' && LEXLIB=$ac_cv_lib_lex
+fi
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether yytext is a pointer" >&5
+$as_echo_n "checking whether yytext is a pointer... " >&6; }
+if test "${ac_cv_prog_lex_yytext_pointer+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  # POSIX says lex can declare yytext either as a pointer or an array; the
+# default is implementation-dependent.  Figure out which it is, since
+# not all implementations provide the %pointer and %array declarations.
+ac_cv_prog_lex_yytext_pointer=no
+ac_save_LIBS=$LIBS
+LIBS="$LEXLIB $ac_save_LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#define YYTEXT_POINTER 1
+`cat $LEX_OUTPUT_ROOT.c`
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_prog_lex_yytext_pointer=yes
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_save_LIBS
+
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_prog_lex_yytext_pointer" >&5
+$as_echo "$ac_cv_prog_lex_yytext_pointer" >&6; }
+if test $ac_cv_prog_lex_yytext_pointer = yes; then
+
+$as_echo "#define YYTEXT_POINTER 1" >>confdefs.h
+
+fi
+rm -f conftest.l $LEX_OUTPUT_ROOT.c
+
+fi
+   if test -z "$LEX" -o "$LEX" = ":"; then
+	  as_fn_error "No implementation of Lex (flex, lex) detected. Please install it (package flex)" "$LINENO" 5
+   fi
+
+   for ac_prog in 'bison -y' byacc
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_YACC+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$YACC"; then
+  ac_cv_prog_YACC="$YACC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_YACC="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+YACC=$ac_cv_prog_YACC
+if test -n "$YACC"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $YACC" >&5
+$as_echo "$YACC" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$YACC" && break
+done
+test -n "$YACC" || YACC="yacc"
+
+   if test -z "$YACC"; then
+	  as_fn_error "No implementation of Yacc (bison, yacc) detected. Please install it (package bison)" "$LINENO" 5
+  fi
+# Actually, AC_PROG_YACC is lying. It sometimes put yacc into $YACC even it
+# hasn't been able to find it.
+#  AC_CHECK_PROG(YACC_PRESENT, $YACC, AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)]) )
+
+   # Extract the first word of "$YACC", so it can be a program name with args.
+set dummy $YACC; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_yacc_present+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$yacc_present"; then
+  ac_cv_prog_yacc_present="$yacc_present" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_yacc_present=""yes""
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_yacc_present" && ac_cv_prog_yacc_present=""no""
+fi
+fi
+yacc_present=$ac_cv_prog_yacc_present
+if test -n "$yacc_present"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $yacc_present" >&5
+$as_echo "$yacc_present" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+   if test "x$yacc_present" != "xyes"; then
+      as_fn_error "No implementation of Yacc (bison, yacc) detected. Please install it (package bison)" "$LINENO" 5
+   fi
+
+fi
+ if test "$enable_build_parser" != no; then
+  BUILD_PARSER_TRUE=
+  BUILD_PARSER_FALSE='#'
+else
+  BUILD_PARSER_TRUE='#'
+  BUILD_PARSER_FALSE=
+fi
+
 
 #################
 ## HDF5
@@ -9840,7 +10136,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 9843 "configure"
+// #line 10139 "configure"
 
 
 public class conftest {
@@ -9900,7 +10196,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9903 "configure"
+// #line 10199 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9958,7 +10254,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9961 "configure"
+// #line 10257 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9997,7 +10293,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10000 "configure"
+// #line 10296 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11247,7 +11543,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11250 "configure"
+// #line 11546 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -11334,7 +11630,7 @@ $as_echo_n "checking minimal version (1.2.0.7) of jgraphx... " >&6; }
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11337 "configure"
+// #line 11633 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -11398,7 +11694,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11401 "configure"
+// #line 11697 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11499,7 +11795,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11502 "configure"
+// #line 11798 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11600,7 +11896,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11603 "configure"
+// #line 11899 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11702,7 +11998,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11705 "configure"
+// #line 12001 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11803,7 +12099,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11806 "configure"
+// #line 12102 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12004,7 +12300,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12007 "configure"
+// #line 12303 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12160,7 +12456,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12163 "configure"
+// #line 12459 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12261,7 +12557,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12264 "configure"
+// #line 12560 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12363,7 +12659,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12366 "configure"
+// #line 12662 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12464,7 +12760,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12467 "configure"
+// #line 12763 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -12567,7 +12863,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12570 "configure"
+// #line 12866 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -12670,7 +12966,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12673 "configure"
+// #line 12969 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12772,7 +13068,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12775 "configure"
+// #line 13071 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -12873,7 +13169,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12876 "configure"
+// #line 13172 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -12980,7 +13276,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12983 "configure"
+// #line 13279 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -13081,7 +13377,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13084 "configure"
+// #line 13380 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -13182,7 +13478,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13185 "configure"
+// #line 13481 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -13260,6 +13556,411 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar antlr used
     fi
 
 		ANTLR=$PACKAGE_JAR_FILE
+
+
+		# Test NG (java unitary test)
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking testng" >&5
+$as_echo_n "checking testng... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/testng.jar" "$jardir/libtestng.jar" "$jardir/libtestng-java.jar" "$jardir/testng*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13582 "configure"
+import org.testng.TestNG;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar testng used by TestNG - Unit tests (looking for package org.testng.TestNG)" "$LINENO" 5
+	  fi
+    fi
+
+		TESTNG=$PACKAGE_JAR_FILE
+
+
+		# Qdox (parses declarations and Javadoc) - dependency of TestNG
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking qdox" >&5
+$as_echo_n "checking qdox... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/qdox.jar" "$jardir/libqdox.jar" "$jardir/libqdox-java.jar" "$jardir/qdox*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13683 "configure"
+import com.thoughtworks.qdox.tools.QDoxTester;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar qdox used by Parses declarations and Javadoc  (looking for package com.thoughtworks.qdox.tools.QDoxTester)" "$LINENO" 5
+	  fi
+    fi
+
+		QDOX=$PACKAGE_JAR_FILE
+
+
+                # bsh (Java scripting environment) - dependency of TestNG
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking bsh" >&5
+$as_echo_n "checking bsh... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/bsh.jar" "$jardir/libbsh.jar" "$jardir/libbsh-java.jar" "$jardir/bsh*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13784 "configure"
+import bsh.Console;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar bsh used by Java scripting environment (looking for package bsh.Console)" "$LINENO" 5
+	  fi
+    fi
+
+                BSH=$PACKAGE_JAR_FILE
+
+
+                # Junit - dependency of TestNG
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking junit" >&5
+$as_echo_n "checking junit... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/junit.jar" "$jardir/libjunit.jar" "$jardir/libjunit-java.jar" "$jardir/junit*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13885 "configure"
+import junit.framework.Assert;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar junit used by Unitary tests (looking for package junit.framework.Assert)" "$LINENO" 5
+	  fi
+    fi
+
+                JUNIT=$PACKAGE_JAR_FILE
+
 
 
 	else
@@ -21370,7 +22071,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 21373 "configure"
+#line 22074 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -21682,7 +22383,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 21685 "configure"
+#line 22386 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -22264,7 +22965,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22267 "configure"
+// #line 22968 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -22365,7 +23066,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22368 "configure"
+// #line 23069 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -22468,7 +23169,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22471 "configure"
+// #line 23172 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -22569,7 +23270,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22572 "configure"
+// #line 23273 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -22670,7 +23371,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22673 "configure"
+// #line 23374 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -22771,7 +23472,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22774 "configure"
+// #line 23475 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -22872,7 +23573,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22875 "configure"
+// #line 23576 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -22973,7 +23674,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22976 "configure"
+// #line 23677 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -23078,7 +23779,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 23081 "configure"
+// #line 23782 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -29349,7 +30050,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29352 "configure"
+#line 30053 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29455,7 +30156,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29458 "configure"
+#line 30159 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -35477,7 +36178,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/xpad/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/abstractSyntaxTree/Makefile modules/parse/Makefile modules/symbol/Makefile modules/types/Makefile modules/functions_manager/Makefile modules/system_env/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/operations/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/xpad/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -35664,6 +36365,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${USE_DYNAMIC_STACK_TRUE}" && test -z "${USE_DYNAMIC_STACK_FALSE}"; then
   as_fn_error "conditional \"USE_DYNAMIC_STACK\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILD_PARSER_TRUE}" && test -z "${BUILD_PARSER_FALSE}"; then
+  as_fn_error "conditional \"BUILD_PARSER\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HDF5_TRUE}" && test -z "${HDF5_FALSE}"; then
@@ -36800,6 +37505,12 @@ do
     "libs/hashtable/Makefile") CONFIG_FILES="$CONFIG_FILES libs/hashtable/Makefile" ;;
     "libs/libst/Makefile") CONFIG_FILES="$CONFIG_FILES libs/libst/Makefile" ;;
     "contrib/Makefile") CONFIG_FILES="$CONFIG_FILES contrib/Makefile" ;;
+    "modules/abstractSyntaxTree/Makefile") CONFIG_FILES="$CONFIG_FILES modules/abstractSyntaxTree/Makefile" ;;
+    "modules/parse/Makefile") CONFIG_FILES="$CONFIG_FILES modules/parse/Makefile" ;;
+    "modules/symbol/Makefile") CONFIG_FILES="$CONFIG_FILES modules/symbol/Makefile" ;;
+    "modules/types/Makefile") CONFIG_FILES="$CONFIG_FILES modules/types/Makefile" ;;
+    "modules/functions_manager/Makefile") CONFIG_FILES="$CONFIG_FILES modules/functions_manager/Makefile" ;;
+    "modules/system_env/Makefile") CONFIG_FILES="$CONFIG_FILES modules/system_env/Makefile" ;;
     "modules/helptools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/helptools/Makefile" ;;
     "modules/helptools/macros/xmlfiletohtml.sci") CONFIG_FILES="$CONFIG_FILES modules/helptools/macros/xmlfiletohtml.sci" ;;
     "modules/data_structures/Makefile") CONFIG_FILES="$CONFIG_FILES modules/data_structures/Makefile" ;;
@@ -38901,6 +39612,7 @@ echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
+echo "  TestNG .............. = $TESTNG"
 echo "  splint .............. = $SPLINT"
 
 echo ""
@@ -38934,6 +39646,15 @@ echo "  PCRE_CFLAGS ........ = $PCRE_CFLAGS"
 echo "  PCRE_LIBS .......... = $PCRE_LIBS"
 echo "  PCRE_VERSION ....... = $PCRE_VERSION"
 
+echo ""
+echo "Regenerate Scilab's parser"
+if test "$enable_build_parser" != no; then
+echo "  YACC ............... = $YACC"
+echo "  LEX ................ = $LEX"
+echo "  YFLAGS ............. = $YFLAGS"
+else
+echo "  Regenerate parser disabled (will use embedded sources)"
+fi
 
 echo ""
 echo "SWIG Configuration:"

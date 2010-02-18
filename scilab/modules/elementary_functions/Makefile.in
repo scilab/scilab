@@ -403,8 +403,7 @@ am__objects_5 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rybesl.lo \
 	libscielementary_functions_la-old_pythag.lo \
 	libscielementary_functions_la-sdot.lo
-am__objects_6 = libscielementary_functions_la-sci_isequal.lo \
-	libscielementary_functions_la-sci_matrix.lo \
+am__objects_6 = libscielementary_functions_la-sci_matrix.lo \
 	libscielementary_functions_la-sci_prod.lo \
 	libscielementary_functions_la-sci_expm.lo \
 	libscielementary_functions_la-sci_size.lo \
@@ -452,7 +451,9 @@ am__objects_6 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_gsort.lo \
 	libscielementary_functions_la-sci_chinesehat.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo
-am__objects_7 = libscielementary_functions_la-sci_f_isequal.lo \
+am__objects_7 = libscielementary_functions_la-sci_isequal.lo \
+	libscielementary_functions_la-elem_func_gw.lo
+am__objects_8 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
 	libscielementary_functions_la-sci_f_prod.lo \
@@ -495,16 +496,15 @@ am__objects_7 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
 	libscielementary_functions_la-sci_f_chinesehat.lo \
 	libscielementary_functions_la-sci_f_exp.lo
-am__objects_8 =
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
-libscielementary_functions_la_LINK = $(LIBTOOL) --tag=F77 \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libscielementary_functions_la_FFLAGS) $(FFLAGS) \
+libscielementary_functions_la_LINK = $(LIBTOOL) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libscielementary_functions_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -518,6 +518,15 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -626,6 +635,9 @@ JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -721,6 +733,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -775,6 +789,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
 src/c/vfinite.c \
@@ -824,9 +839,6 @@ src/c/vmul.c \
 src/c/add_vector.c \
 src/c/sub_vector.c
 
-
-# List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
 src/fortran/slatec/d9b1mp.f \
@@ -1063,7 +1075,7 @@ src/fortran/rybesl.f \
 src/fortran/old_pythag.f \
 src/fortran/sdot.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
+GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_matrix.c \
 sci_gateway/c/sci_prod.c \
 sci_gateway/c/sci_expm.c \
@@ -1157,6 +1169,10 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f
 
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_isequal.cpp \
+sci_gateway/cpp/elem_func_gw.cpp
+
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
@@ -1181,7 +1197,12 @@ libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/symbol/includes \
+	-I$(top_srcdir)/modules/types/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 	-I$(top_builddir)/modules/operations/includes
 
 
@@ -1195,7 +1216,7 @@ libscielementary_functions_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
+libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -1282,7 +1303,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1379,6 +1400,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-cupro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-dmsum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-dsearch.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-elem_func_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-exp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-expm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-eye.Plo@am__quote@
@@ -1820,13 +1842,6 @@ libscielementary_functions_la-sub_vector.lo: src/c/sub_vector.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sub_vector.lo `test -f 'src/c/sub_vector.c' || echo '$(srcdir)/'`src/c/sub_vector.c
 
-libscielementary_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo $(DEPDIR)/libscielementary_functions_la-sci_isequal.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isequal.c' object='libscielementary_functions_la-sci_isequal.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
-
 libscielementary_functions_la-sci_matrix.lo: sci_gateway/c/sci_matrix.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_matrix.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_matrix.Tpo -c -o libscielementary_functions_la-sci_matrix.lo `test -f 'sci_gateway/c/sci_matrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matrix.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_matrix.Tpo $(DEPDIR)/libscielementary_functions_la-sci_matrix.Plo
@@ -2162,6 +2177,41 @@ libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isequalbitwise.c' object='libscielementary_functions_la-sci_isequalbitwise.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
+
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+libscielementary_functions_la-sci_isequal.lo: sci_gateway/cpp/sci_isequal.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo $(DEPDIR)/libscielementary_functions_la-sci_isequal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_isequal.cpp' object='libscielementary_functions_la-sci_isequal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp
+
+libscielementary_functions_la-elem_func_gw.lo: sci_gateway/cpp/elem_func_gw.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-elem_func_gw.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-elem_func_gw.Tpo -c -o libscielementary_functions_la-elem_func_gw.lo `test -f 'sci_gateway/cpp/elem_func_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/elem_func_gw.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-elem_func_gw.Tpo $(DEPDIR)/libscielementary_functions_la-elem_func_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/elem_func_gw.cpp' object='libscielementary_functions_la-elem_func_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-elem_func_gw.lo `test -f 'sci_gateway/cpp/elem_func_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/elem_func_gw.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
