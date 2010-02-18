@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-23 17:01+0000\n"
+"PO-Revision-Date: 2010-02-12 19:44+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
@@ -31,7 +31,7 @@ msgstr "%s: #%d と一致した親ノード。\n"
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
 msgid "%s: An error occurred: %s.\n"
-msgstr "%s: エラーが起こりました: %s.\n"
+msgstr "%s: エラーが起きました: %s.\n"
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 289
@@ -194,13 +194,13 @@ msgstr "%s: 入力引数の数が不正です: 少なくとも %d を想定し�
 # File: macros/x_choices.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数で不正な数値です: %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_helpbrowser.c, line: 143
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数で不正な数値です: %d または %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
 
 #
 # File: macros/addmenu.sci, line: 180
@@ -208,13 +208,13 @@ msgstr "%s: 入力引数で不正な数値です: %d または %d を想定し�
 # File: macros/xgetfile.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数値です: %3$d への %2$d を想定します。\n"
+msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_uigetcolor.c, line: 38
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数で不正な数値です: %d または %d を想定します。\n"
+msgstr "%s: 出力引数の数が不正です: %d または %d を想定します。\n"
 
 #
 # File: macros/x_choices.sci, line: 75
@@ -850,6 +850,11 @@ msgid ""
 "exist.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 'グラフィック・ウインドウ番号 %d' は存在しません。\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 明確な '%s' ハンドルを想定します。\n"
+
 #
 # File: sci_gateway/c/sci_toolbar.c, line: 56
 #, c-format
@@ -898,7 +903,7 @@ msgstr "%s: NWNIモードでは利用できない関数です。\n"
 # File: scilab_fake_localization_file.c, line: 39
 # File: scilab_fake_localization_file.c, line: 73
 msgid "&?"
-msgstr "&?"
+msgstr "その他(&?)"
 
 msgid "&Abort"
 msgstr "中断(&A)"
@@ -1207,10 +1212,10 @@ msgid "Add color in listbox"
 msgstr "リストボックスで色を加える"
 
 msgid "All %s files"
-msgstr ""
+msgstr "全ての %s ファイル"
 
 msgid "All Scilab files"
-msgstr ""
+msgstr "全てのScilabファイル"
 
 msgid "All files"
 msgstr "ファイル全て"
@@ -1305,12 +1310,12 @@ msgstr "コンソールクリア(&C)"
 #
 # File: scilab_fake_localization_file.c, line: 64
 msgid "Clear Console"
-msgstr "コンソールクリア(o)"
+msgstr "コンソールクリア"
 
 #
 # File: scilab_fake_localization_file.c, line: 63
 msgid "Clear History"
-msgstr "ヒストリークリア(H)"
+msgstr "ヒストリークリア"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
@@ -1346,7 +1351,7 @@ msgid "Control Plot3d"
 msgstr "Plot3d コントロール"
 
 msgid "Copy"
-msgstr "コピー(C)"
+msgstr "コピー"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
@@ -1355,18 +1360,18 @@ msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
 
 msgid "Cut"
-msgstr "切り取り(u)"
+msgstr "切り取り"
 
 #
 # File: scilab_fake_localization_file.c, line: 47
 msgid "Display selection"
 msgstr "表示選択"
 
-msgid "Do you relly want to quit Scilab?"
-msgstr "Scilabを抜けますか?"
+msgid "Do you really want to quit Scilab?"
+msgstr "本当にScilabを抜けますか?"
 
 msgid "Edit in the Scilab Text Editor"
-msgstr "Scilabテキスト・エディターのエディット"
+msgstr "Scilabテキスト・エディタの編集"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "カプセル化なしのポストスクリプト・イメージ(EPS)"
@@ -1613,7 +1618,7 @@ msgid "PPM image"
 msgstr "RPM イメージ"
 
 msgid "Paste"
-msgstr "貼り付け(P)"
+msgstr "貼り付け"
 
 msgid "Please enter a color name first."
 msgstr "最初に色名を入力してください。"
@@ -1662,6 +1667,9 @@ msgstr "SVG イメージ"
 # File: etc/main_menubar.xml, line: 11
 msgid "Save and execute"
 msgstr "保存して実行"
+
+msgid "Scicos files"
+msgstr "Scicos ファイル"
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Scilab と ATOMS の Web サイト(&A)"
@@ -1727,24 +1735,24 @@ msgid "Scilab Multiple Values Request"
 msgstr "Scilab 複合値要求"
 
 msgid "Scilab SCE files"
-msgstr ""
+msgstr "Scilab SCE ファイル"
 
 msgid "Scilab SCI files"
-msgstr ""
+msgstr "Scilab SCI ファイル"
 
 msgid "Scilab binary files"
-msgstr ""
+msgstr "Scilabライブラリファイル"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
 msgid "Select All"
-msgstr "全て選択(S)"
+msgstr "全て選択"
 
 #
 # File: etc/main_menubar.xml, line: 59
 # File: etc/main_toolbar.xml, line: 39
 msgid "Select a directory"
-msgstr "ディレクトリを指定してください"
+msgstr "ディレクトリを選択"
 
 #
 # File: etc/graphics_menubar.xml, line: 41
@@ -1775,7 +1783,7 @@ msgstr "ファイルを選択してロード"
 # File: etc/main_menubar.xml, line: 23
 # File: etc/main_toolbar.xml, line: 11
 msgid "Select a file to open with Scilab text editor"
-msgstr "ファイルを選んでScilabテキスト・エディターで開いて下さい"
+msgstr "ファイルを選んでScilabテキスト・エディタで開く"
 
 #
 # File: etc/graphics_menubar.xml, line: 23
@@ -1786,7 +1794,7 @@ msgstr "ファイルを選択して出力"
 #
 # File: scilab_fake_localization_file.c, line: 56
 msgid "Selected colors"
-msgstr "色選択(S)"
+msgstr "色選択"
 
 #, c-format
 msgid "Selected colors are: %s."
@@ -2173,10 +2181,10 @@ msgid ""
 msgstr "'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
 msgid "Xcos"
-msgstr ""
+msgstr "Xcos"
 
 msgid "Xcos files"
-msgstr ""
+msgstr "Xcosファイル"
 
 msgid "Yes"
 msgstr "はい"
@@ -2205,15 +2213,13 @@ msgstr "チェック"
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: 何も無いカスケード・メニューを見つけました。"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 167
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"警告: "
-"以前の警告にも関わらず、Scilabで高度なグラフィック能力を使いました。更に情報が必要な場合には\"\"キャンバスの使い方\"\"を入力します。\")"
+"disp(\"警告: 以前の警告にも関わらず, 高度なグラフィック能力でScilabを使いました。より多くの情報は \"\"help "
+"usecanvas\"\" を入力してください。\")"
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 142

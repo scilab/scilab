@@ -49,11 +49,15 @@ a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
     <title>Description LaTeX </title>
 <para>Le rendu est basé sur la bibliothèque Java JLaTeXMath. Il s'agit d'une implémentation du mode mathématique de LaTeX. L'ensemble des commandes LaTeX de base sont gérées (s'il en manque une, n'hésitez pas à soumettre un rapport de bug), par contre celles de TeX, comme <literal>\over</literal> ne le sont pas.
 </para>
+
+    <para>Depuis Scilab 5.2.1, le grec, le cyrillique et l'intégralité de l'unicode pour les alphabets latin sont gérés dans les graphiques Scilab.</para>
+
     <programlisting role="example">
 xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
 xtitle('$\big(\bigg)$')
 xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
 xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
+xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
 </programlisting>
 <para>JLaTeXMath fournit plusieurs polices utilisables avec les commandes <literal>\mathbb</literal>, <literal>\mathscr</literal>, <literal>\mathcal</literal>, <literal>\mathbf</literal>, <literal>\mathit</literal>, <literal>\mathsf</literal>, <literal>\mathtt</literal>, <literal>\mathfrak</literal>, <literal>\mathds</literal>, <literal>\mathrm</literal>, ainsi que leurs versions grasses quand elles existent activables avec la commande <literal>\boldsymbol</literal> :
 </para>
