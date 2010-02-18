@@ -37,9 +37,9 @@ public enum SupportedLabelType {
 	private static final Pattern BR_PATTERN = Pattern.compile("<br>\\p{Blank}*");
 	
 	/** The '$' symbol is used to tag a LaTeX expression */
-	private static final String LATEX_TAG = "$";
+	private static final char LATEX_TAG = '$';
 	/** The '^' symbol is used to tag a LaTeX expression */
-	private static final String MATHML_TAG = "^";
+	private static final char MATHML_TAG = '^';
 	/** The id used on classpath.xml to load MathML JARs */
 	private static final String CLASSPATH_MATHML_NAME = "xcos_mathml_rendering";
 	
@@ -59,9 +59,11 @@ public enum SupportedLabelType {
 	 */
 	public static SupportedLabelType getFromText(String text) {
 		if (text.length() > 0) {
-			if (text.startsWith(LATEX_TAG) && text.endsWith(LATEX_TAG)) {
+			if ((text.charAt(0) == LATEX_TAG) && (
+					text.charAt(text.length() - 1) == LATEX_TAG)) {
 	    		return Latex;
-	    	} else if (text.startsWith(MATHML_TAG) && text.endsWith(MATHML_TAG)) {
+	    	} else if ((text.charAt(0) == MATHML_TAG) && (
+					text.charAt(text.length() - 1) == MATHML_TAG)) {
 	    		LoadClassPath.loadOnUse(CLASSPATH_MATHML_NAME);
 	    		return MathML;
 	    	}
@@ -91,10 +93,12 @@ public enum SupportedLabelType {
 			content = new StringBuilder(mxUtils.getBodyMarkup(html, false));
 			
 			ScilabGraphUtils.removeBlanks(content);
-						
-			if (html.startsWith(LATEX_TAG) && html.endsWith(LATEX_TAG)) {
+			
+			if ((content.charAt(0) == LATEX_TAG) && (
+					content.charAt(content.length() - 1) == LATEX_TAG)) {
 	    		return Latex;
-	    	} else if (html.startsWith(MATHML_TAG) && html.endsWith(MATHML_TAG)) {
+	    	} else if ((content.charAt(0) == MATHML_TAG) && (
+					content.charAt(content.length() - 1) == MATHML_TAG)) {
 	    		LoadClassPath.loadOnUse(CLASSPATH_MATHML_NAME);
 	    		return MathML;
 	    	}
