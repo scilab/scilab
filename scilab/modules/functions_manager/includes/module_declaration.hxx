@@ -19,5 +19,6 @@
 #include "../../integer/includes/integer_gw.hxx"
 #include "../../core/includes/core_gw.hxx"
 #include "../../io/includes/io_gw.hxx"
+#include "../../functions/includes/functions_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

@@ -19,4 +19,5 @@
     <module name="boolean" activate="yes"/>
     <module name="integer" activate="yes"/>
     <module name="io" activate="yes"/>
+    <module name="functions" activate="yes"/>
 </modules>

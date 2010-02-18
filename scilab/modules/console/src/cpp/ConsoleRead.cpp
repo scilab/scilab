@@ -12,8 +12,14 @@
 
 /*--------------------------------------------------------------------------*/
 #include "ConsoleRead.hxx"
+
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
+
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 using namespace  org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 static char *line = NULL;
@@ -22,7 +28,7 @@ char *ConsoleRead(void)
 {
 	if (line) {delete line; line = NULL;}
 	line = CallScilabBridge::readLine(getScilabJavaVM());
-	return line;
+	return strdup(line);
 }
 /*--------------------------------------------------------------------------*/
 

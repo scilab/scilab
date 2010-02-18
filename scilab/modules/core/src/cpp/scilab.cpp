@@ -266,12 +266,6 @@ static void banner()
 	YaspWrite("\n");
 	YaspWrite(line);
 	YaspWrite("\n");
-
-#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
-	YaspWritesciprint("\n\n");
-	YaspWritesciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
-	YaspWritesciprint("   ");
-#endif
 }
 
 /*
@@ -289,10 +283,9 @@ static int interactiveMain (void)
 
 	while (!exit)
 	{
+		//set prompt value
 		C2F(setprlev)(&pause);
 
-		//std::cout << "[" << Parser::getInstance()->getControlStatus()
-		//	  << "]" << std::endl;
 		if (pParser->getControlStatus() == Parser::AllControlClosed) 
 		{
 			if(command)
