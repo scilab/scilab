@@ -382,7 +382,7 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f
 
-GATEWAY_CPP_SOURCES =  \ 
+GATEWAY_CPP_SOURCES =  \
 sci_gateway/cpp/sci_isequal.cpp \
 sci_gateway/cpp/elem_func_gw.cpp
 
