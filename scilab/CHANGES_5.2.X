@@ -7,6 +7,11 @@ Compilation:
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
+Bug Fixes:
+==========
+
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!!
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
@@ -51,8 +56,6 @@ Xcos:
     - A first check on checkstyle metrics on the code has been done.
 
 * bug 4206 fixed - The CreateMask action did not generate a valid submatrix.
-
-* bug 4599 fixed - It is possible create many different variables with the same name in the same scope!!
 
 * bug 5095 fixed - Menus were not disabled when actions were not possible.
 
