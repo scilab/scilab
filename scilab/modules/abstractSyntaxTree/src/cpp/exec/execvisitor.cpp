@@ -302,44 +302,49 @@ namespace ast
 		{//a(xxx) with a variable, extraction
 
 			//get symbol of variable
+			InternalType *pIT = NULL;
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
-				InternalType *pOut			= NULL;
-				ExecVisitor* execMeArg	= new ast::ExecVisitor();
-				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
-				int iArgDim							= (int)e.args_get().size();
-				bool bSeeAsVector				= iArgDim == 1;
-
-				//Create list of indexes
-				//std::vector<std::vector<int>> IndexList;
-
-				int *piIndexSeq		= NULL;
-				int *piMaxDim			= NULL;
-				int *piDimSize		= new int[iArgDim];
-				int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
-
-				switch(pIT->getType())
-				{
-				case InternalType::RealDouble :
-					pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-					break;
-				case InternalType::RealInt :
-					pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
-					break;
-				default :
-					break;
-				}
-
-				if(pOut == NULL)
-				{
-					std::ostringstream os;
-					os << "inconsistent row/column dimensions";
-					os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
-					throw os.str();
-				}
-				result_set(pOut);
+				pIT = symbol::Context::getInstance()->get(Var->name_get());
 			}
+			else
+			  {
+			    pIT = execFunc->result_get();
+			  }
+			InternalType *pOut			= NULL;
+			ExecVisitor* execMeArg	= new ast::ExecVisitor();
+			int iArgDim							= (int)e.args_get().size();
+			bool bSeeAsVector				= iArgDim == 1;
+			
+			//Create list of indexes
+			//std::vector<std::vector<int>> IndexList;
+			
+			int *piIndexSeq		= NULL;
+			int *piMaxDim			= NULL;
+			int *piDimSize		= new int[iArgDim];
+			int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+			
+			switch(pIT->getType())
+			  {
+			  case InternalType::RealDouble :
+			    pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+			    break;
+			  case InternalType::RealInt :
+			    pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+			    break;
+			  default :
+			    break;
+			  }
+			
+			if(pOut == NULL)
+			  {
+			    std::ostringstream os;
+			    os << "inconsistent row/column dimensions";
+			    os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+			    throw os.str();
+			  }
+			result_set(pOut);
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
