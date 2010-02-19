@@ -433,7 +433,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		# Solaris 10 x86
           machine=i386
           ;;
-		sun*)
+		sun*|sparc64)
        # Sun
           machine=sparc
           ;;
