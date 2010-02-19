@@ -338,18 +338,35 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			File f = new File(image);
 			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
 			
-			// Translate
-			g.translate(x, y);
-			
 			// Scale
 			Rectangle2D bounds = node.getBounds();
-			double sx = h / bounds.getHeight();
-			double sy = w / bounds.getWidth();
-			AffineTransform scale = new AffineTransform(new double[] {
-					  sx,  0.0,
-					 0.0,   sy
+			
+			double sh = h / bounds.getHeight();
+			double sw = w / bounds.getWidth();
+			double tx = x;
+			double ty = y;
+			
+//			double ratio;
+//			if (sh > sw) {
+//				ratio = sw;
+//				ty = ty + ((h - (bounds.getHeight() * ratio)) / 2); 
+//			} else {
+//				ratio = sh;
+//				tx = tx + ((w - (bounds.getWidth() * ratio)) / 2);
+//			}
+//			
+//			AffineTransform scaleTransform = new AffineTransform(new double[] {
+//			       ratio,   0.0,
+//			         0.0,  ratio
+//			});
+			AffineTransform scaleTransform = new AffineTransform(new double[] {
+			          sw,   0.0,
+			         0.0,     sh
 			});
-			node.setTransform(scale);
+			node.setTransform(scaleTransform);
+			
+			// Translate
+			g.translate(tx, ty);
 			
 			// Paint
 			node.paint(g);
