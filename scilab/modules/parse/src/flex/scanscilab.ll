@@ -328,7 +328,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(VARINT);
 }
 
@@ -349,7 +349,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(NUM);
 }
 
@@ -369,7 +369,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(ID);
 }
 

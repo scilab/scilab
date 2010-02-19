@@ -16,8 +16,11 @@ namespace ast
 {
   static int level = -1;
 
-  static void DEBUG_START_NODE(void)
+  static void DEBUG_START_NODE(const Exp &e)
   {
+    Location loc = e.location_get();
+    std::cout << loc.first_line << "." << loc.first_column << std::endl;
+    std::cout << loc.last_line << "." << loc.last_column << std::endl;
     ++level;
   }
 
@@ -42,7 +45,7 @@ namespace ast
 
   void DebugVisitor::visit (const MatrixExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec MatrixExp");
     std::list<MatrixLineExp *>::const_iterator	i;
     for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
@@ -54,7 +57,7 @@ namespace ast
 
   void DebugVisitor::visit (const MatrixLineExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec MatrixLineExp");
     std::list<Exp *>::const_iterator	i;
     for (i = e.columns_get().begin() ; i != e.columns_get().end() ; ++i)
@@ -67,7 +70,7 @@ namespace ast
 
   void DebugVisitor::visit (const CellExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec CellExp");
     std::list<MatrixLineExp *>::const_iterator	i;
     for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
@@ -83,28 +86,28 @@ namespace ast
    ** \{ */
   void DebugVisitor::visit (const StringExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec StringExp : "+e.value_get());
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const CommentExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec CommentExp : "+e.comment_get());
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const IntExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec IntExp : "+e.value_get());
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const FloatExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     std::ostringstream stream;
     stream << e.value_get();
     DEBUG("Exec FloatExp : "+stream.str());
@@ -113,7 +116,7 @@ namespace ast
 
   void DebugVisitor::visit (const DoubleExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     std::ostringstream stream;
     stream << e.value_get();
     DEBUG("Exec DoubleExp : "+stream.str());
@@ -122,7 +125,7 @@ namespace ast
 
   void DebugVisitor::visit (const BoolExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     std::ostringstream stream;
     stream << e.value_get();
     DEBUG("Exec BoolExp : "+stream.str());
@@ -131,7 +134,7 @@ namespace ast
 
   void DebugVisitor::visit (const NilExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec NilExp");
     DEBUG_END_NODE();
   }
@@ -141,28 +144,28 @@ namespace ast
    ** \{ */
   void DebugVisitor::visit (const SimpleVar &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec SimpleVar : "+e.name_get().name_get());
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const ColonVar &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ColonVar");
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const DollarVar &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec DollarVar");
     DEBUG_END_NODE();
   }
 
   void DebugVisitor::visit (const ArrayListVar &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ArrayListVar");
     std::list<Var *>::const_iterator	i;
     for (i = e.vars_get().begin() ; i != e.vars_get().end() ; ++i)
@@ -178,7 +181,7 @@ namespace ast
 
   void DebugVisitor::visit (const FieldExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec FieldExp");
     // FIXME
     {
@@ -190,7 +193,7 @@ namespace ast
 
   void DebugVisitor::visit(const OpExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec OpExp");
     // FIXME
     {
@@ -203,7 +206,7 @@ namespace ast
 
   void DebugVisitor::visit(const LogicalOpExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec LogicalOpExp");
     // FIXME
     {
@@ -216,7 +219,7 @@ namespace ast
 
 	void DebugVisitor::visit (const AssignExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec AssignExp");
     //FIXME
     {
@@ -228,7 +231,7 @@ namespace ast
 
   void DebugVisitor::visit(const CallExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec CallExp");
     e.name_get().accept (*this);
     // FIXME
@@ -245,7 +248,7 @@ namespace ast
 
   void DebugVisitor::visit (const IfExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec IfExp");
     // FIXME
     {
@@ -261,7 +264,7 @@ namespace ast
 
   void DebugVisitor::visit (const TryCatchExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec TryCatchExp");
     // FIXME
     {
@@ -273,7 +276,7 @@ namespace ast
 
   void DebugVisitor::visit (const WhileExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec WhileExp");
     // FIMXE
       e.test_get().accept (*this);
@@ -283,7 +286,7 @@ namespace ast
 
   void DebugVisitor::visit (const ForExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ForExp");
     e.vardec_get().accept(*this);
     e.body_get().accept (*this);
@@ -292,7 +295,7 @@ namespace ast
 
   void DebugVisitor::visit (const BreakExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec BreakExp");
     // FIXME
     DEBUG_END_NODE();
@@ -300,7 +303,7 @@ namespace ast
 
   void DebugVisitor::visit (const ReturnExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ReturnExp");
     // FIXME
     /*
@@ -314,7 +317,7 @@ namespace ast
 
   void DebugVisitor::visit (const SeqExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec SeqExp");
     std::list<Exp *>::const_iterator	i;
     for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
@@ -330,7 +333,7 @@ namespace ast
 
   void DebugVisitor::visit (const ArrayListExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ArrayListExp");
     std::list<Exp *>::const_iterator	i;
     for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
@@ -342,7 +345,7 @@ namespace ast
 
  void DebugVisitor::visit (const AssignListExp  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec AssignListExp");
     std::list<Exp *>::const_iterator	i;
     for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
@@ -357,7 +360,7 @@ namespace ast
    ** \{ */
   void DebugVisitor::visit (const NotExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec NotExp");
     e.exp_get().accept (*this);
     DEBUG_END_NODE();
@@ -365,7 +368,7 @@ namespace ast
 
   void DebugVisitor::visit (const TransposeExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec TransposeExp");
     e.exp_get().accept (*this);
     DEBUG_END_NODE();
@@ -377,10 +380,10 @@ namespace ast
   /** \brief Visit Var declarations. */
   void DebugVisitor::visit (const VarDec  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec VarDec");
     {
-      DEBUG_START_NODE();
+      DEBUG_START_NODE(e);
       DEBUG("Exec Symbol : "+e.name_get().name_get());
       DEBUG_END_NODE();
     }
@@ -390,7 +393,7 @@ namespace ast
 
   void DebugVisitor::visit (const FunctionDec  &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec FunctionDec");
     // FIXME
 
@@ -414,7 +417,7 @@ namespace ast
    ** \{ */
   void DebugVisitor::visit(const ListExp &e)
   {
-    DEBUG_START_NODE();
+    DEBUG_START_NODE(e);
     DEBUG("Exec ListExp");
     e.start_get().accept(*this);
     e.step_get().accept(*this);

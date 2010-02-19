@@ -1326,7 +1326,7 @@ YY_RULE_SETUP
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(VARINT);
 }
 	YY_BREAK
@@ -1349,7 +1349,7 @@ YY_RULE_SETUP
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(NUM);
 }
 	YY_BREAK
@@ -1371,7 +1371,7 @@ YY_RULE_SETUP
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(ID);
 }
 	YY_BREAK
