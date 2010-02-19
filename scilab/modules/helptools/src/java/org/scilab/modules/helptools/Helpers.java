@@ -82,7 +82,7 @@ public final class Helpers {
 	}
 
 	public static String getTemporaryNameFo(String baseDirectory) {
-		return baseDirectory+"/__doc.fo";
+		return baseDirectory + "/__doc.fo";
 	}
 
     public static String getFileExtension(File file) {
@@ -190,7 +190,7 @@ public final class Helpers {
 	 */
     public static void deleteDirectory(File dir) {
 
-        String files[] = dir.list();
+        String[] files = dir.list();
         if (files == null) {
             files = new String[0];
         }
