@@ -867,11 +867,13 @@ operation :
 variable rightOperand			{ 
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
+					  $2->location_set(@$);
 					  $$ = $2;
 					}
 | functionCall rightOperand		{ 
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
+					  $2->location_set(@$);
 					  $$ = $2;
 					}
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
