@@ -8,5 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function r=with_gtk()
+  warnobsolete("getversion", "5.2.2");
   r=%F;
 endfunction

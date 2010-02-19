@@ -466,12 +466,12 @@ f_code = ["      subroutine myfun(m,n,x,param,f)"
           "         df(i,2) = -x(1)*param(i)*df(i,1)"
           "      enddo"
           "      end ! subroutine dfun"];
-
+cd TMPDIR;
 mputl(f_code,TMPDIR+'/myfun.f')
 
 // 7-2/ compiles it. You need a fortran compiler !
 names = ["myfun" "mydfun"]
-flibname = ilib_for_link(names,"myfun.o",[],"f",TMPDIR+"/Makefile");
+flibname = ilib_for_link(names,"myfun.o",[],"f");
 
 // 7-3/ link it to scilab (see link help page)
 link(flibname,names,"f") 
@@ -489,7 +489,7 @@ c_code = ["#include <math.h>"
           "{"
           "  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
           "  int i;"
-          "  for ( i = 0 ; i &lt; *m ; i++ )"
+          "  for ( i = 0 ; i < *m ; i++ )"
           "    f[i] = param[2*(*m)+i]*( x[0]*exp(-x[1]*param[i]) - param[(*m)+i] );"
           "  return;"
           "}"
@@ -498,7 +498,7 @@ c_code = ["#include <math.h>"
           "{"
           "  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
           "  int i;"
-          "  for ( i = 0 ; i &lt; *m ; i++ )"
+          "  for ( i = 0 ; i < *m ; i++ )"
           "    {"
           "      df[i] = param[2*(*m)+i]*exp(-x[1]*param[i]);"
           "      df[i+(*m)] = -x[0]*param[i]*df[i];"
@@ -510,7 +510,7 @@ mputl(c_code,TMPDIR+'/myfunc.c')
 
 // 8-2/ compiles it. You need a C compiler !
 names = ["myfunc" "mydfunc"]
-clibname = ilib_for_link(names,"myfunc.o",[],"c",TMPDIR+"/Makefile");
+clibname = ilib_for_link(names,"myfunc.o",[],"c");
 
 // 8-3/ link it to scilab (see link help page)
 link(clibname,names,"c") 

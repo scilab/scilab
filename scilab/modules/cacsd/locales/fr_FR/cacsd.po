@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -437,15 +437,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Square system expected.\n"
-"'),"
-msgstr ""
-"%s :  Mauvaise dimension pour l'argument d'entrée n°%d : Système carré "
-"attendu.\n"
-"'),"
-
-#, c-format
-msgid ""
 "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr ""
 "%s : Mauvaise dimension pour l'argument d'entrée n°%d : la dimension de la "
@@ -511,12 +502,6 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Système linéaire "
-"dynamique.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
@@ -530,13 +515,6 @@ msgid ""
 msgstr ""
 "%s : Mauvais type pour l'argument d'entrée n°%d : Un système linéaire "
 "dynamique ou un vecteur ligne de flottants attendus.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Espace d'état linéaire "
-"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
@@ -657,13 +635,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
-msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Pôles imaginaires purs "
-"non attendus.\n"
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Pôles imaginaires purs "
@@ -711,10 +682,8 @@ msgstr ""
 "identifier.\n"
 
 #, c-format
-msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Système propre "
-"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"

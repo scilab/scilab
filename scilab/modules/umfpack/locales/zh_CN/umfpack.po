@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
@@ -63,8 +63,8 @@ msgstr " ----------------------------------------------------- \n"
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
 
-msgid " For this demo the current stack size is not enought "
-msgstr " 目前的栈大小无法满足本demo的需求 "
+msgid " For this demo the current stack size is not enough "
+msgstr ""
 
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
@@ -192,8 +192,9 @@ msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be symetric positive definite"
-msgstr "%s：输入参数#%d的值错误：必须是对称正定。"
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
 
 #, c-format
 msgid ""

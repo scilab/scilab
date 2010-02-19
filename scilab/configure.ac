@@ -789,6 +789,17 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
 				AC_SUBST(AVALON_FRAMEWORK)
 
+	# XML API EXT (conversion of a SVG => PNG)
+				AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
+				XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+				if test -z "$XML_APIS_EXT"; then
+					# Other other distribs (Ex: Fedora/Redhat)
+					AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+					XML_APIS_EXT=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(XML_APIS_EXT)
+
 				################ END Mandatory for graphic_export features #####
 
 
@@ -942,12 +953,7 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
-
-AC_CHECK_FUNC([exp10],,[
-				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
-				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
-				])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164

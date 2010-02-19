@@ -51,12 +51,15 @@ a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
     base commands are handle (don't hesitate to submit a bug report if
     missing). On the contrary, TeX commands, like <literal>\over are not
     supported.</literal></para>
+    
+    <para>Since Scilab 5.2.1, greek, cyrillic and complete unicode for latin alphabets characters are handled in the Scilab graphics</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[
 xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
 xtitle('$\big(\bigg)$')
 xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
 xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
+xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
  ]]></programlisting>
 
     <para>JLaTeXMath provides several fonts with the commands
