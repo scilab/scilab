@@ -371,8 +371,11 @@ fi
 					"ppc")
 						proc="ppc"
 						;;
-					"alpha")  
+					"alpha")
 						proc="alpha"
+						;;
+					"sparc64")
+						proc="sparc"
 						;;
 					*)
 						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
