@@ -67,12 +67,24 @@ void Parser::parse(char *command)
   yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
 	TCHAR szFile[] = TEXT("command.temp");
-	fopen_s(&yyin, "command.temp", "w");
+	fopens_s(&yyin, "command.temp", "w");
 	fwrite(command, 1, strlen(command), yyin);
 	fclose(yyin);
 	fopen_s(&yyin, "command.temp", "r");
-#else
+#endif
+
+#ifdef __APPLE__
+	yyin = fopen("command.temp", "w");
+	fwrite(command, 1, strlen(command), yyin);
+	fclose(yyin);
+	yyin = fopen("command.temp", "r");
+#endif
+
+
+#ifndef _MSC_VER
+#ifndef __APPLE__
   yyin = fmemopen(command, strlen(command), "r");
+#endif
 #endif
 
   Parser::getInstance()->disableStrictMode();
@@ -93,6 +105,7 @@ void Parser::parse(char *command)
 /** \brief put the asked line in codeLine */
 char *Parser::getCodeLine(int line, char **codeLine) {
 #ifndef _MSC_VER
+#ifndef __APPLE__
    size_t len = 0;
    int i = 0;
 
@@ -105,6 +118,7 @@ char *Parser::getCodeLine(int line, char **codeLine) {
      {
        getline(codeLine, &len, yyin);
      }
+#endif
 #endif
    return *codeLine;
 }
