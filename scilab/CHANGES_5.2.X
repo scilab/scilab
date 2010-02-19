@@ -10,11 +10,12 @@ the startup script
 * Unknown arguments are now accepted. This allows user to access to them
 throught sciargs
 
-
 Compilation:
 ============
 
 * Fix a build problem on exp10 (mainly under Gentoo)
+
+* Support of GNU/Linux sparc64 
 
 Xcos:
 =====
