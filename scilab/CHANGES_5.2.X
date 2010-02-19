@@ -1,19 +1,32 @@
                 Changes between Versions 5.2.1 and 5.2.2 of Scilab
                 ==================================================
 
+Scilab:
+=======
+
+* Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
+the startup script
+
+* Unknown arguments are now accepted. This allows user to access to them
+throught sciargs
+
 
 Compilation:
 ============
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
-Bug Fixes:
-==========
-
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!!
+Xcos:
+=====
 
 * bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
 Ctrl+Wheel was not working for zooming.
+
+
+Bug Fixes:
+==========
+
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
