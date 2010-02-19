@@ -28,6 +28,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -41,7 +42,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @author Vincent COUVERT
  *
  */
-public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedAction {
+public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public static final String NAME = XcosMessages.CUSTOMIZE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
@@ -412,6 +413,28 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 				ScilabString varDesc;
 				
 				ScilabType rawExprs = getBlock().getExprs();
+				
+				// Xcos from Scilab 5.2.0 version
+				// so set default values
+				if (rawExprs instanceof ScilabDouble) {
+					rawExprs = new ScilabList() {
+						{
+							add(new ScilabDouble());
+							add(new ScilabList() {
+								{
+									add(new ScilabDouble());
+									add(new ScilabString(
+											XcosMessages.MASK_DEFAULTWINDOWNAME));
+									add(new ScilabList() {
+										{
+											add(new ScilabDouble());
+										}
+									});
+								}
+							});
+						}
+					};
+				}
 				DefaultTableModel customModel = customizeTableModel;
 				DefaultTableModel valuesModel = valuesTableModel;
 
