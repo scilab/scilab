@@ -100,7 +100,7 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 			// create a textRenderer with the a font of the same fmaily has the requested font
 			// but with a font size within the array
 			Font defaultFont = font.deriveFont(fontSize);
-			res = new TextRenderer(defaultFont, false, false, null, true);
+			res = new TextRenderer(defaultFont, true, false, null, true);
 			// direct rendering. Some report says that enabling
 			// vertex arrays may sometime slow down text rendering.
 			res.setUseVertexArrays(false);

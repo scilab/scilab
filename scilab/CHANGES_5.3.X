@@ -53,6 +53,11 @@ Tests:
 
 * Mechanism of unitary tests for Java code based on TestNG added and used
 
+Text Rendering:
+===============
+
+* Antialiasing activated by default to render text
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
