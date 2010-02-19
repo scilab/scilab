@@ -446,6 +446,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
 		  ;;
+	    sh*)
+	  	  machine=sh
+		  ;;
     esac
 
 	AC_MSG_LOG([Looking for JNI libs with $machine as machine hardware name])

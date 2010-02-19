@@ -377,6 +377,9 @@ fi
 					"sparc64")
 						proc="sparc"
 						;;
+					sh*)
+						proc="sh"
+						;;
 					*)
 						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
 						;;
