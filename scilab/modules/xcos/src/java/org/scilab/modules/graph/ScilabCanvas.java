@@ -346,19 +346,6 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			double tx = x;
 			double ty = y;
 			
-//			double ratio;
-//			if (sh > sw) {
-//				ratio = sw;
-//				ty = ty + ((h - (bounds.getHeight() * ratio)) / 2); 
-//			} else {
-//				ratio = sh;
-//				tx = tx + ((w - (bounds.getWidth() * ratio)) / 2);
-//			}
-//			
-//			AffineTransform scaleTransform = new AffineTransform(new double[] {
-//			       ratio,   0.0,
-//			         0.0,  ratio
-//			});
 			AffineTransform scaleTransform = new AffineTransform(new double[] {
 			          sw,   0.0,
 			         0.0,     sh
