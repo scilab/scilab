@@ -1135,12 +1135,14 @@ YY_RULE_SETUP
 case 29:
 YY_RULE_SETUP
 {
+	scan_step();
   return scan_throw(SEMI);
 }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 {
+	scan_step();
   return scan_throw(COMMA);
 }
 	YY_BREAK
