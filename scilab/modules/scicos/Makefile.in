@@ -889,6 +889,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@sci_gateway/fortran/sci_vec2var.f
 
 @SCICOS_FALSE@libsciscicos_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
+@SCICOS_FALSE@-I$(top_srcdir)/modules/api_scilab/includes \
 @SCICOS_FALSE@-I$(top_srcdir)/modules/scicos/includes
 
 
