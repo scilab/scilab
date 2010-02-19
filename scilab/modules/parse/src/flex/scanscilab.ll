@@ -208,10 +208,12 @@ assign			"="
 
 
 <INITIAL,MATRIX>{semicolon}		{
+	scan_step();
   return scan_throw(SEMI);
 }
 
 <INITIAL,MATRIX>{comma}			{
+	scan_step();
   return scan_throw(COMMA);
 }
 
