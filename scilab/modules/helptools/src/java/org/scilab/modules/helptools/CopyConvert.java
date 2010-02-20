@@ -427,7 +427,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             }
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting TeX '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -439,7 +439,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             baseName = rootName + "_mml.png";
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting MathML '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -451,7 +451,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             baseName = rootName + "_svg.png";
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting SVG '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -463,7 +463,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             // Just copy the file ---
 
             File outFile = new File(outDir, baseName);
-            if (!outFile.exists()) {
+            if (!outFile.exists() || outFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Copying '" + graphicsFile + "' to '"
                            + outFile + "'...");
 
@@ -816,17 +816,16 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         int size = 18;
         Color fg = null, bg = null;
         int disp = TeXConstants.STYLE_DISPLAY;
-        String code = "imagedata";
+        String code = "imageobject><imagedata";
         String LaTeX = "";
         boolean exported;
-        String attribs;
+        String attribs, align = "";
 
         protected LaTeXElement(Attributes attrs, boolean exported) {
             this.exported = exported;
             int n = attrs.getLength();
             String fgS = "", bgS = "";
             String dispS = "display";
-            String align = "center";
             
             for (int i = 0; i < n; i++) {
                 String attr = attrs.getValue(i);
@@ -834,7 +833,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 if ("align".equals(name)) {
                     code += " align=\'" + attr + "\'";
                     align = attr;
-                } else if ("display".equals(name)) {
+                } else if ("style".equals(name)) {
                     if ("text".equals(attr)) {
                         disp = TeXConstants.STYLE_TEXT;
                     } else if ("script".equals(attr)) {
@@ -860,7 +859,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
             attribs = " align='" + align + "'";
             attribs += " size='" + size + "'";
-            attribs += " display='" + dispS + "'";
+            attribs += " style='" + dispS + "'";
             if (bg != null) {
                 attribs += " bg='" + bgS + "'";
             }
@@ -880,14 +879,14 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             }
             out.write("latex" + attribs  + " xmlns=\"http://forge.scilab.org/p/jlatexmath\"><![CDATA[" + LaTeX + "]]></latex>");
         }
-            
-        
+                  
         protected void generatePNG() {
             TeXFormula tf = new TeXFormula(LaTeX);
-            File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
-            tf.createPNG(disp, size, f.getPath(), bg, fg);
+	    File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
+	    reportInfo("Converting LaTeX formula to " + f + "'...");
+            tf.createPNG(disp, size, f.getPath(), bg, fg);	    
 
-            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/>");
+            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/></imageobject>");
         }
     }
 

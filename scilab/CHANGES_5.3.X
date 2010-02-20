@@ -14,6 +14,9 @@ Documentation:
 * It is now possible to use LaTeX inline in the documentation. Thanks to 
  Calixte Denizet for this feature. (See bug #4329)
 
+* bug 6630 fixed - JavaHelp does not update existing image files when building help.
+
+
 Xcos:
 =====
 

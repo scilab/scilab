@@ -313,7 +313,12 @@ public class BuildDocObject extends StyleSheet {
 			throw new FileNotFoundException(COULD_NOT_FIND_STYLE_DOC + this.styleDoc);
 		}
 
-		File processedStyle = generateExtendedStyle();
+		String path = styleDoc;
+		File processedStyle = null;
+		if (!isLatexConverted) {
+		    processedStyle = generateExtendedStyle();
+		    path = processedStyle.getAbsolutePath();
+		}
 
 		if (!new File(this.outputDirectory).isDirectory()) {
 			throw new FileNotFoundException("Could not find directory: " + this.outputDirectory);
@@ -332,7 +337,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 		//args.add("-t");
 		args.add(sourceDocProcessed);
-		args.add(processedStyle.getAbsolutePath());
+		args.add(path);
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
@@ -347,7 +352,10 @@ public class BuildDocObject extends StyleSheet {
 			/* Delete the master temp file to avoid to be shipped with the rest */
 			new File(sourceDocProcessed).delete();
 		}
-		processedStyle.delete();
+		
+		if (processedStyle != null) {
+		    processedStyle.delete();
+		}
 
 		return this.postProcess();
 
