@@ -37,6 +37,9 @@ Xcos:
 * bug 6576 fixed - Specifying the debug level was not working when two diagrams 
   were openned.
 
+* bug 6657 fixed - The importXcosDiagram call with specific parameters was 
+  crashing scilab.
+
 
 Bug Fixes:
 ==========
