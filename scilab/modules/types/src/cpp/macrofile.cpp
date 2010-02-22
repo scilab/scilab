@@ -89,7 +89,7 @@ namespace types
 	{
 		if(m_pMacro == NULL)
 		{//load file, only for the first call
-			Parser::getInstance()->parseFile(m_stPath, ConfigVariable::getInstance()->get("SCI"));
+			Parser::getInstance()->parseFile(m_stPath, "parse macro file");
 			//find FunctionDec
 			FunctionDec* pFD = NULL;
 

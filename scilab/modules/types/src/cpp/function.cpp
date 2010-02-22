@@ -13,6 +13,7 @@
 
 #include <sstream>
 #include "function.hxx"
+#include "core_math.h"
 
 namespace types
 {
@@ -71,6 +72,7 @@ namespace types
     ReturnValue retVal = Callable::OK;
     GatewayStruct* pStr = new GatewayStruct();
 
+		_iRetCount = Max(1, _iRetCount);
     pStr->m_pIn = &in;
     pStr->m_pOut = m_pTempOut;
 		pStr->m_piRetCount = &_iRetCount;
