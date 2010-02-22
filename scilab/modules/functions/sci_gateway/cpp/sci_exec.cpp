@@ -34,9 +34,9 @@ extern "C"
 }
 
 
-#define EXEC_MODE_SILENT		0xFFFF
-#define EXEC_MODE_VERBOSE		0x0001
-#define EXEC_MODE_PROMPT		0x0002
+#define EXEC_MODE_MUTE			0xFFFFFFFF //-1)
+#define EXEC_MODE_VERBOSE		0x00000001 //(1)
+#define EXEC_MODE_PROMPT		0x00000002 //(2)
 
 using namespace types;
 using namespace ast;
@@ -44,6 +44,7 @@ using namespace std;
 
 bool checkPrompt(int _iMode, int _iCheck);
 void printLine(char* _stPrompt, char* _stLine);
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer, int _iMode);
 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -168,75 +169,61 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 	std::ifstream file(in[0]->getAsString()->string_get(0));
 
 	char str[1024];
-	char strLastLine[1024];
-	int currentLine = -1; //no data in str
+	int iCurrentLine = -1; //no data in str
 	for(j = LExp.begin() ; j != LExp.end() ; j++)
 	{
 		try
 		{
-			if(checkPrompt(iMode, EXEC_MODE_VERBOSE))
+			if(checkPrompt(iMode, EXEC_MODE_MUTE))
 			{
-				Exp *currentExp = (*j);
-				Location loc = currentExp->location_get();
-				
-				//positionning file curser at loc.first_line
-				{
-					//strange case, current position is after the wanted position
-					if(currentLine > loc.first_line)
-					{
-						//reset line counter and restart reading at the start of the file.
-						currentLine = -1;
-						file.seekg( 0, ios_base::beg );
-					}
+				//manage mute option
 
-					//bypass previous lines
-					for(int i = currentLine ; i < loc.first_line - 1; i++)
-					{
-						currentLine++;
-						file.getline(str, 1024);
-					}
-				}
-
-				////start is at position 1 so read the new line
-				////for the first read, str is empty, so fill it
-				//if(loc.first_column == 1)
-				//{
-				//	currentLine++;
-				//	file.getline(str, 1024);
-				//}
-
-				printLine(stPrompt, str + (loc.first_column - 1));
-
-				//print other full lines
-				for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
-				{
-					currentLine++;
-					file.getline(str, 1024);
-					printLine(stPrompt, str);
-				}
-
-				if(loc.last_line > loc.first_line)
-				{
-					//last line
-					file.getline(str, 1024);
-					currentLine++;
-
-					strncpy(strLastLine, str, loc.last_column);
-					printLine(stPrompt, strLastLine);
-				}
+				//save previous output function
+				//YASP_INPUT old_out = getYaspInputMethod();
+				//setYaspOutputMethod(
+				(*j)->mute();
 			}
-
-
-			//manage mute option
-			//getYaspInputMethod
+			else if(checkPrompt(iMode, EXEC_MODE_VERBOSE))
+			{
+				printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
+			}
 
 			//excecute script
 			ExecVisitor execMe;
 			(*j)->accept(execMe);
+
+			//update ans variable.
+			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+			{
+				symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe.result_get());
+				if((*j)->is_verbose() && !checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
+				{
+					std::ostringstream ostr;
+					ostr << "ans = " << std::endl;
+					ostr << std::endl;
+					ostr << execMe.result_get()->toString(10,75) << std::endl;
+					YaspWrite((char *)ostr.str().c_str());
+				}
+			}
+
+			if(!checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
+			{
+				YaspWrite("\n");
+			}
+
 		}
 		catch(std::string st)
 		{
-			Function::Error;
+			//print last line
+			if(checkPrompt(iMode, EXEC_MODE_MUTE))
+			{
+				printExp(&file, *j, stPrompt, &iCurrentLine, str, iMode);
+			}
+
+			//print error
+			YaspWrite(const_cast<char*>(st.c_str()));
+			file.close();
+			return Function::Error;
 		}
 	}
 
@@ -247,6 +234,70 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 bool checkPrompt(int _iMode, int _iCheck)
 {
 	return ((_iMode & _iCheck) == _iCheck);
+}
+
+void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, char* _pstPreviousBuffer, int _iMode)
+{
+	char strLastLine[1024];
+	//case 1, exp is on 1 line and take the entire line
+
+	//case 2, exp is multiline 
+
+	//case 3, exp is part of a line.
+	//ex : 3 exp on the same line a = 1; b = 2; c = 3;
+
+	//case 4, exp is multiline but start and/or finish in the middle of a line
+	//ex : 
+	//a = 10;for i = 1 : a
+	//	a
+	//end, b = 1;
+
+	Location loc = _pExp->location_get();
+
+	//positionning file curser at loc.first_line
+	{
+		//strange case, current position is after the wanted position
+		if(*_piLine > loc.first_line)
+		{
+			//reset line counter and restart reading at the start of the file.
+			*_piLine = -1;
+			_pFile->seekg( 0, ios_base::beg );
+		}
+
+		//bypass previous lines
+		for(int i = *_piLine ; i < loc.first_line - 1; i++)
+		{
+			(*_piLine)++;
+			_pFile->getline(_pstPreviousBuffer, 1024);
+		}
+	}
+
+	if(loc.first_line == loc.last_line)
+	{//1 line
+		strncpy(strLastLine, _pstPreviousBuffer + (loc.first_column - 1), loc.last_column - (loc.first_column - 1));
+		strLastLine[loc.last_column - (loc.first_column - 1)] = 0;
+		printLine(_pstPrompt, strLastLine);
+	}
+	else
+	{//multiline
+		printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1));
+
+		//print other full lines
+		for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
+		{
+			(*_piLine)++;
+			_pFile->getline(_pstPreviousBuffer, 1024);
+			printLine(_pstPrompt, _pstPreviousBuffer);
+		}
+
+		//last line
+		_pFile->getline(_pstPreviousBuffer, 1024);
+		(*_piLine)++;
+
+		strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
+		strLastLine[loc.last_column] = 0;
+		printLine(_pstPrompt, strLastLine);
+	}
 }
 
 void printLine(char* _stPrompt, char* _stLine)
