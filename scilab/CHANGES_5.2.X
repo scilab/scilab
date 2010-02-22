@@ -2146,3 +2146,7 @@ Bug fixes:
 * bug 6495 fixed - in lqr, variable Q not defined.
 
 * bug 6587 fixed - loadmatfile makes scilab hang on sparse matrix reading.
+
+* bug 6632 fixed - nm_contour failed with respect to vector orientation.
+
+
