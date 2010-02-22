@@ -20,10 +20,13 @@ Compilation:
 Xcos:
 =====
 
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-Ctrl+Wheel was not working for zooming.
-
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
+
+* bug 6501 fixed - The border color and fill default color was not set 
+  when changing it.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+  Ctrl+Wheel was not working for zooming.
 
 
 Bug Fixes:
