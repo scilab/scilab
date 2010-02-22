@@ -34,6 +34,9 @@ Xcos:
 * bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
   Ctrl+Wheel was not working for zooming.
 
+* bug 6576 fixed - Specifying the debug level was not working when two diagrams 
+  were openned.
+
 
 Bug Fixes:
 ==========
