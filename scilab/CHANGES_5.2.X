@@ -5,7 +5,10 @@ Scilab:
 =======
 
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
-the startup script
+the startup script. 
+
+* Clear separation in the help between users and developers arguments in
+the Scilab startup script
 
 * Bug 6633 fixed - Unknown arguments are now accepted with option -a. This 
 allows user to access to them throught the Scilab function sciargs:
