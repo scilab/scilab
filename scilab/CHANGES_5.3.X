@@ -8,6 +8,14 @@ Core:
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
 
+
+FFTW:
+=====
+
+* On Windows, Scilab can use FFTW3 wrapper of Intel Math Kernel Library.
+  Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
+  installation.
+
 Documentation:
 ==============
 
