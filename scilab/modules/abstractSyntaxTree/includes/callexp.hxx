@@ -37,14 +37,14 @@ namespace ast
 	     Exp& name,
 	     std::list<Exp *>& args) :
       Exp (location),
-      _name (name),
+      _name (&name),
       _args (&args)
     {
     }
 
     virtual ~CallExp ()
     {
-			delete &_name;
+			delete _name;
 			std::list<Exp *>::const_iterator i;
 			for(i = _args->begin() ; i != _args->end() ; i++)
 			{
@@ -72,12 +72,17 @@ namespace ast
   public:
     const Exp&	name_get() const
     {
-      return _name;
+      return *_name;
     }
 
     Exp&	name_get()
     {
-      return _name;
+      return *_name;
+    }
+
+    void name_set (Exp *name)
+    {
+      _name = name;
     }
 
     const std::list<Exp *>&	args_get() const
@@ -91,7 +96,7 @@ namespace ast
     }
 
   protected:
-    Exp&		_name;
+    Exp*		_name;
     std::list<Exp *>*	_args;
   };
 
