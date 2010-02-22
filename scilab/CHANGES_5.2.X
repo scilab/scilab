@@ -19,21 +19,24 @@ Compilation:
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
-* Support of GNU/Linux sparc64 
+* Support of GNU/Linux sparc64 and sh4
 
 Xcos:
 =====
 
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-Ctrl+Wheel was not working for zooming.
-
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
+
+* bug 6501 fixed - The border color and fill default color was not set 
+  when changing it.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+  Ctrl+Wheel was not working for zooming.
 
 
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
