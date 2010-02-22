@@ -37,7 +37,11 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
 {
   yylloc.first_line = yylloc.last_line = 1;
   yylloc.first_column = yylloc.last_column = 1;
+#ifdef _MSC_VER
+	fopen_s(&yyin, fileName.c_str (), "r");
+#else
   yyin = fopen(fileName.c_str (), "r");
+#endif
 
   if (!yyin)
     {
@@ -67,7 +71,7 @@ void Parser::parse(char *command)
   yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
 	TCHAR szFile[] = TEXT("command.temp");
-	fopens_s(&yyin, "command.temp", "w");
+	fopen_s(&yyin, "command.temp", "w");
 	fwrite(command, 1, strlen(command), yyin);
 	fclose(yyin);
 	fopen_s(&yyin, "command.temp", "r");
