@@ -376,6 +376,8 @@ Bug Fixes:
 
 * bug 6586 fixed - getmd5() crashed if the file (1st input argument) did not exist.
 
+* bug 6641 fixed - 'hist3d' did not handle correctly optionals arguments.
+
 * bug 6613 fixed - example of 'schur' failed.
 
 * bug 6619 fixed - In demo Graphics/Misc
