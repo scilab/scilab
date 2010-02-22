@@ -22,6 +22,9 @@ Xcos:
 
 * modelica compiler 1.12.1
 
+* Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
+  retrieve JAVA_HOME
+
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
 
 * bug 4705 fixed - scicos used a non existing file BEpsf
