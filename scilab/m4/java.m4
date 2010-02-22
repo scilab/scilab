@@ -433,7 +433,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		# Solaris 10 x86
           machine=i386
           ;;
-		sun*)
+		sun*|sparc64)
        # Sun
           machine=sparc
           ;;
@@ -445,6 +445,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 		  ;;
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
+		  ;;
+	    sh*)
+	  	  machine=sh
 		  ;;
     esac
 
