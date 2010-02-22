@@ -48,6 +48,8 @@ public class BuildDocObject extends StyleSheet {
 	private static final String GRAPHICSIZE_EXTENSION_0 = "graphicsize.extension=0";
 	private static final String TOC_SECTION_DEPTH_3 = "toc.section.depth=3";
 	private static final String SECTION_AUTOLABEL_1 = "section.autolabel=1";
+	private static final String USE_ID_AS_FILENAME = "use.id.as.filename=1";
+	private static final String GENERATE_TOC = "\"generate.toc= \"";
 	
 	private String outputDirectory;
 	private String format;
@@ -139,7 +141,7 @@ public class BuildDocObject extends StyleSheet {
 
 		/* HTML Format */
 		if (format.equalsIgnoreCase("HTML")) {
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(USE_ID_AS_FILENAME);
 			specificArgs.add("html.stylesheet=html.css");
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
@@ -162,11 +164,11 @@ public class BuildDocObject extends StyleSheet {
 		
         /* CHM Format */
 		if (format.equalsIgnoreCase("CHM")) {
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(USE_ID_AS_FILENAME);
 			specificArgs.add("html.stylesheet=htmlhelp.css");
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
-			specificArgs.add("\"generate.toc= \"");
+			specificArgs.add(GENERATE_TOC);
 			this.styleDoc = docbookPath + "/htmlhelp/htmlhelp.xsl";
 
 			/* Copy the css file for thr HTML pages */
@@ -188,8 +190,8 @@ public class BuildDocObject extends StyleSheet {
 			// JavaHelp
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
-			specificArgs.add("\"generate.toc= \"");
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(GENERATE_TOC);
+			specificArgs.add(USE_ID_AS_FILENAME);
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
 		this.format = format;

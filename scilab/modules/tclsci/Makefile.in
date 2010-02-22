@@ -114,14 +114,13 @@ libscitclsci_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciacti
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscitclsci_la_SOURCES_DIST = src/notclsci/notclsci.c \
-	src/c/TCL_Global.c src/c/InitTclTk.c \
-	src/c/ScilabEval.c src/c/setenvtcl.c src/c/InitializeTclTk.c \
-	src/c/TerminateTclTk.c src/c/setvar.c \
-	src/c/TCL_ArrayDim.c src/c/TCL_ArrayExist.c \
-	src/c/TCL_ArrayGetVar.c src/c/TCL_ArraySize.c \
-	src/c/TCL_Command.c src/c/GlobalTclInterp.c \
-	src/c/TCL_getErrorLine.c sci_gateway/c/sci_opentk.c \
-	sci_gateway/c/sci_TCL_SetVar.c \
+	src/c/TCL_Global.c src/c/InitTclTk.c src/c/ScilabEval.c \
+	src/c/setenvtcl.c src/c/InitializeTclTk.c \
+	src/c/TerminateTclTk.c src/c/setvar.c src/c/TCL_ArrayDim.c \
+	src/c/TCL_ArrayExist.c src/c/TCL_ArrayGetVar.c \
+	src/c/TCL_ArraySize.c src/c/TCL_Command.c \
+	src/c/GlobalTclInterp.c src/c/TCL_getErrorLine.c \
+	sci_gateway/c/sci_opentk.c sci_gateway/c/sci_TCL_SetVar.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
 	sci_gateway/c/sci_TCL_UnsetVar.c \

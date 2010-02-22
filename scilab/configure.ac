@@ -976,12 +976,7 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
-
-AC_CHECK_FUNC([exp10],,[
-				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
-				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
-				])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164

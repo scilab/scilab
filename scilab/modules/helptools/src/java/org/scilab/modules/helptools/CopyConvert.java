@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Hussein SHAFIE
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -57,10 +58,7 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import java.awt.Color;
 
 /**
- * @TODO add comment
- *
- * @param inFile
- * @param outFile
+ * Preprocess before building the documentation
  */
 public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
@@ -90,12 +88,22 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private LaTeXElement latexElem = null;
     private boolean isLatexConverted = true;
 
-	public void setVerbose(boolean verbose){
-		this.verbose=verbose;
+    /**
+     * Enables the verbose mode
+     *
+     * @param verbose true if enable
+	 */
+	public void setVerbose(boolean verbose) {
+		this.verbose = verbose;
 	}
 
-	public void setPrintFormat(String printFormat){
-		this.printFormat=printFormat;
+    /**
+     * Set the print format 
+     *
+     * @param printFormat  The print format
+	 */
+	public void setPrintFormat(String printFormat) {
+		this.printFormat = printFormat;
 	}
     
         public void setLatexConverted(boolean isLatexConverted){
@@ -104,9 +112,15 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     // -----------------------------------------------------------------------
 
-    public void run(File inFile, File outFile)
+    /**
+     * Run the copy/convert process
+     *
+     * @param inFile Input file
+     * @param outFile Output file
+	 */
+    public void run(File inFile, File outputFile)
         throws SAXParseException, SAXException, IOException {
-        outFile = outFile.getCanonicalFile();
+		File outFile = outputFile.getCanonicalFile();
         outDir = outFile.getParentFile();
         if (!outDir.isDirectory() && !outDir.mkdirs()) {
             throw new IOException("Cannot create directory '" + outDir + "'");
@@ -124,7 +138,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             parser = factory.newSAXParser();
         } catch (Exception e) {
             throw new SAXParseException(
-                "Cannot create a properly configured SAX parser: " + Helpers.reason(e),locator);
+                "Cannot create a properly configured SAX parser: " + Helpers.reason(e), locator);
         }
 
         inScopePrefixes = new ArrayList<String[]>();
@@ -141,10 +155,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             if (out.checkError()) {
                 throw new IOException("Error writing '" + outFile + "'");
 			}
-		} catch (SAXException e){
-			if (locator!=null){
-				throw new SAXParseException("Cannot parse " + inFile + " " + Helpers.reason(e),locator);
-			}else{
+		} catch (SAXException e) {
+			if (locator != null) {
+				throw new SAXParseException("Cannot parse " + inFile + " " + Helpers.reason(e), locator);
+			} else {
 				throw new SAXException("Cannot parse " + inFile + " " + Helpers.reason(e));
 			}
         } finally {
@@ -156,6 +170,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // ContentHandler
     // -----------------------------------------------------------------------
 
+    /**
+     * Set the document Locator
+     *
+     * @param locator  The locator
+	 */
     public void setDocumentLocator(Locator locator) {
         this.locator = locator;
     }
@@ -354,8 +373,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             mainOut = null;
 
             if (extractedFile != null) {
-                reportInfo("Extracted embedded graphics from '"+extractedFile+"' to '"
-                           + extractedFile + "'.");
+                reportInfo("Extracted embedded graphics from '" + extractedFile + "' to '" + extractedFile + "'.");
 
                 String converted = copyConvertGraphics(extractedFile);
                 if (converted != null) {
@@ -643,10 +661,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private boolean convertMathML(File inFile, File outFile) {
 		MutableLayoutContext context = new LayoutContextImpl(LayoutContextImpl
                 .getDefaultLayoutContext());
-		context.setParameter(Parameter.ANTIALIAS,"true");
+		context.setParameter(Parameter.ANTIALIAS, "true");
 		// Workaround a XEP problem. FOP 1 is OK.
-		context.setParameter(Parameter.MATHBACKGROUND,"#FFFFFF");
-		context.setParameter(Parameter.MATHSIZE,"18");
+		context.setParameter(Parameter.MATHBACKGROUND, "#FFFFFF");
+		context.setParameter(Parameter.MATHSIZE, "18");
 
         try {
             Converter.getInstance().convert(inFile, outFile, "image/png", context);
