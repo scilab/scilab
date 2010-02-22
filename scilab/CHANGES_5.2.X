@@ -24,6 +24,8 @@ Compilation:
 Xcos:
 =====
 
+* bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
+
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
