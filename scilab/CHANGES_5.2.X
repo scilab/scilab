@@ -17,6 +17,9 @@ Compilation:
 
 * Support of GNU/Linux sparc64 
 
+* Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
+  retrieve JAVA_HOME
+
 Xcos:
 =====
 
