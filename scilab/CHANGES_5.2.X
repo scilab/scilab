@@ -5,17 +5,21 @@ Scilab:
 =======
 
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
-the startup script
+the startup script. 
 
-* Unknown arguments are now accepted. This allows user to access to them
-throught sciargs
+* Clear separation in the help between users and developers arguments in
+the Scilab startup script
+
+* Bug 6633 fixed - Unknown arguments are now accepted with option -a. This 
+allows user to access to them throught the Scilab function sciargs:
+scilab -nwni -a 2 3
 
 Compilation:
 ============
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
-* Support of GNU/Linux sparc64 
+* Support of GNU/Linux sparc64 and sh4
 
 Xcos:
 =====
@@ -32,7 +36,7 @@ Xcos:
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab

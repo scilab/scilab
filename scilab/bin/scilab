@@ -557,39 +557,42 @@ do_scilex()
 do_help()
 {
 	echo "Usage:"
-	echo     "scilab <options>"
+	echo     "scilab <arguments>"
 	echo     " "
-	echo     "      Possible options are:"
+	echo     "      Possible arguments are:"
 	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
 	echo     "      -d Display      : equivalent to display Display."
-	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-	echo     "                        define the variable SCILAB_GDB_OPT to add custom options to gdb."
-	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
-	echo     "                        valgrind (and override the existing valgrind options)."
-	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
-	echo     "                        callgrind (and override the existing callgrind options)."
-	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
 	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-	echo     "                        -e and -f options are mutually exclusive."
+	echo     "                        -e and -f arguments are mutually exclusive."
 	echo     "      -f File         : execute the scilab script given in File argument."
-	echo     "                        -e and -f options are mutually exclusive."
+	echo     "                        -e and -f arguments are mutually exclusive."
 	echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-	echo     "      -mem N          : set the initial stacksize, for use with -ns option."
+	echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
 	echo     "      -nb             : do not display the Scilab banner at starting time."
-	echo     "      -ns             : do not execute scilab.start startup file. This option will disable many features in Scilab (Only use if you know what you are doing)."
+	echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 	echo     "      -nw             : start Scilab without dedicated Scilab Window."
-	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."
+	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
+	echo     "      -a              : accept all extra arguments and make available through sciargs"
 	echo     "      -version        : print product version and exit."
 	echo     "      -h/--help       : display help about this command."
 	echo     "      --texmacs       : reserved for TeXMacs."
-        echo     " "
+	echo     " "
+	echo     "Developer arguments:"
+	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+	echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+	echo     "                        valgrind (and override the existing valgrind arguments)."
+	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+	echo     "                        callgrind (and override the existing callgrind arguments)."
+	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+	echo     " "
 	echo     "      All these arguments can be retrieved by the Scilab function sciargs."
-        echo     " "
+	echo     " "
 	exit
 }
 
@@ -696,6 +699,9 @@ if test "$rest" = "yes"; then
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;
+	  -a) # Accept extra arguments
+		  extraarg=1
+		  ;;
       -debug)
           DEBUG="-debug"
           ;;
@@ -715,10 +721,18 @@ if test "$rest" = "yes"; then
           do_help
           ;;
 		*)
-		  # Do nothing. Gives unknown args to Scilab binaries.
+			foundUnknownArg=1
+		  # Do nothing. Gives unknown args to Scilab binaries if -a is provided
 		  ;;
     esac
   done
+
+
+# If the argument -a is not provided (extraarg) and we found unknown args
+# fail and provide help
+  if test -z "$extraarg" -a -n "$foundUnknownArg"; then
+	  do_help
+  fi
 
   if test -n "$DEBUG"; then
 	  start_debug "$@" $MORE_OPT
