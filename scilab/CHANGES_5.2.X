@@ -7,8 +7,9 @@ Scilab:
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
 the startup script
 
-* Unknown arguments are now accepted. This allows user to access to them
-throught sciargs
+* Unknown arguments are now accepted with option -a. This allows user to access
+to them throught the Scilab function sciargs:
+scilab -nwni -a 2 3
 
 Compilation:
 ============

@@ -585,6 +585,7 @@ do_help()
 	echo     "      -nw             : start Scilab without dedicated Scilab Window."
 	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
+	echo     "      -a              : accept all extra arguments and make available through sciargs"
 	echo     "      -version        : print product version and exit."
 	echo     "      -h/--help       : display help about this command."
 	echo     "      --texmacs       : reserved for TeXMacs."
@@ -697,6 +698,9 @@ if test "$rest" = "yes"; then
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;
+	  -a) # Accept extra arguments
+		  extraarg=1
+		  ;;
       -debug)
           DEBUG="-debug"
           ;;
@@ -716,10 +720,18 @@ if test "$rest" = "yes"; then
           do_help
           ;;
 		*)
-		  # Do nothing. Gives unknown args to Scilab binaries.
+			foundUnknownArg=1
+		  # Do nothing. Gives unknown args to Scilab binaries if -a is provided
 		  ;;
     esac
   done
+
+
+# If the option -a is not provided (extraarg) and we found unknown args
+# fail and provide help
+  if test -z "$extraarg" -a -n "$foundUnknownArg"; then
+	  do_help
+  fi
 
   if test -n "$DEBUG"; then
 	  start_debug "$@" $MORE_OPT
