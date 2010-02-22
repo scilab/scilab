@@ -19,7 +19,7 @@ Compilation:
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
-* Support of GNU/Linux sparc64 
+* Support of GNU/Linux sparc64 and sh4
 
 Xcos:
 =====
@@ -33,7 +33,7 @@ Ctrl+Wheel was not working for zooming.
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
