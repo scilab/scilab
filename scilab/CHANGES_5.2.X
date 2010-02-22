@@ -379,12 +379,12 @@ Bug Fixes:
 
 * bug 6586 fixed - getmd5() crashed if the file (1st input argument) did not exist.
 
-* bug 6641 fixed - 'hist3d' did not handle correctly optionals arguments.
-
 * bug 6613 fixed - example of 'schur' failed.
 
 * bug 6619 fixed - In demo Graphics/Misc
                    Changing the colormap was drawing the 2 right subplot with a black box.
+
+* bug 6641 fixed - 'hist3d' did not handle correctly optionals arguments. (Thanks to Kose for the patch).
 
 
                Changes between Versions 5.2.0-beta1 and 5.2.0 of Scilab
