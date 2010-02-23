@@ -28,12 +28,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -57,7 +62,10 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -67,12 +75,12 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -96,7 +104,9 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -2210,6 +2220,70 @@ public class XcosDiagram extends ScilabGraph {
 	return action;
     }
 
+    /**
+     * Evaluate the current context
+     * 
+     * @return The resulting data. Keys are variable names and Values are 
+     *         evaluated values. 
+     */
+	public Map<String, String> evaluateContext() {
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			StringBuilder str = new StringBuilder();
+			str.append('[');
+			for (String s : getContext()) {
+				str.append('\"');
+				str.append(s);
+				str.append("\" ");
+			}
+			str.append(']');
+				
+			final File temp = File.createTempFile("xcos_ctx", ".h5", 
+						new File(System.getenv("TMPDIR")));
+			
+			XcosInterpreterManagement.synchronousScilabExec(
+						"vars = script2var(" + str.toString() + ", struct());" +
+						"export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
+			
+			ScilabList list = new ScilabList();
+			try {
+				int handle = H5Read.openFile(temp.getAbsolutePath());
+				if (handle >= 0) {
+					H5Read.readDataFromFile(handle, list);
+				}
+			} catch (HDF5LibraryException e) {
+				info("The HDF5 library is not loaded");
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				info("Unable to open file");
+				e.printStackTrace();
+			} catch (HDF5Exception e) {
+				info("The HDF5 file is not valid");
+				e.printStackTrace();
+			}
+
+			// We are starting at 2 because a struct is composed of
+			//     - the fields names (ScilabString)
+			//     - the dimension
+			//     - variables values...
+			for (int index = 2; index < list.size(); index++) {
+				String key = ((ScilabString) list.get(0)).getData()[0][index];
+				String value = list.get(index).toString();
+				
+				result.put(key, value);
+			}
+			
+		} catch (IOException e) {
+			info("Unable to create file");
+			e.printStackTrace();
+		} catch (InterpreterException e) {
+			info("Unable to evaluate the contexte");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+    
     /**
      * @param uid block ID
      * @return block

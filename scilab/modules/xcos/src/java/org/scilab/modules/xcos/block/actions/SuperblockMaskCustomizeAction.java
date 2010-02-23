@@ -15,9 +15,12 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -26,6 +29,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -92,7 +96,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	 * Frame used to customize fields and variables default values. DAC: this
 	 * class is tightly coupled to Swing
 	 */
-	private static class CustomizeFrame extends JFrame {
+	private class CustomizeFrame extends JFrame {
 		private CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
@@ -273,6 +277,16 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
 			cancelButton.requestFocusInWindow();
 			setResizable(false);
+			
+			/* Evaluate the context and set up the variable name selection */
+			TableColumn vars = varCustomizeTable.getColumnModel().getColumn(1);
+			JComboBox validVars = new JComboBox();
+			XcosDiagram graph = (XcosDiagram) getGraph(null);
+			Map<String, String> context = graph.evaluateContext();
+			for (String key : context.keySet()) {
+				validVars.addItem(key);
+			}
+			vars.setCellEditor(new DefaultCellEditor(validVars));
 		}
 
 		/**
@@ -741,7 +755,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new CustomizeFrame().setVisible(true);
+				new SuperblockMaskCustomizeAction(null).new CustomizeFrame()
+					.setVisible(true);
 			}
 		});
 	}
