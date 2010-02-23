@@ -44,6 +44,8 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
+#include "GiwsException.hxx"
+
 namespace org_scilab_modules_graph_utils {
 
 class Signal {
