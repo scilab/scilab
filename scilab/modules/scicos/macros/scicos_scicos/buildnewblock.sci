@@ -6,6 +6,8 @@
 //                      - Rachid Djenidi
 //                      - Simone Mannori
 //
+//  Copyright (C) DIGITEO - Allan CORNET - 2010                
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
@@ -51,7 +53,6 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
 //                 add lhs parameters, rewritte
 //
 
-
   //** check rhs paramaters
   [lhs,rhs]=argn(0);
 
@@ -76,7 +77,7 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
 
   //** adjust path and name of object files
   //   to include in the building process
-  if (libs ~= emptystr()) then
+  if (libs ~= emptystr() & libs <> []) then
     libs=pathconvert(libs,%f,%t)
   end
 
@@ -124,28 +125,21 @@ function [ok]=buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
     cflags = cflags+" -I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
   end
   
-  if MSDOS then
-  ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'',''makelib'',''loader.sce'','''','''',cflags)','errcatch')
-  else
-  ierr=execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch')
-  end
+  ierr = execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''','''',cflags)','errcatch');
 
-  if ierr<>0 then
+  if ierr <> 0 then
     ok=%f;
     chdir(oldpath);
-    disp(['sorry compiling problem';lasterror()]);
+    disp(['sorry compiling problem'; lasterror()]);
     return;
   end
 
   //** link scicos generated code in scilab
-  libn=pathconvert(libn,%f,%t)
-  //## ierr=execstr('libnumber=link(libn)','errcatch')
-  //## ierr=execstr('link(libnumber,blknam,''c'')','errcatch')
-  ierr=execstr('link(libn,blknam,''c'')','errcatch')
+  libn = pathconvert(libn,%f,%t)
+  ierr = execstr('link(fullpath(libn),blknam,''c'')','errcatch')
 
   if ierr<>0 then
-    ok=%f;
-    // message(['sorry link problem';lasterror()]);
+    ok = %f;
     disp(lasterror());
     return;
   end
