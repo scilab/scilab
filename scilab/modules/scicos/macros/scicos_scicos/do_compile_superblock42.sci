@@ -731,11 +731,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
     if ok then    
       //@@ 13/12/08,
       //@@ add a test for %scicos_libs
-      if MSDOS then
-	target_lib = rpat+'\lib'+rdnom+'.dll'
-      else
-	target_lib =  rpat+'/lib'+rdnom+'.so'
-      end
+      target_lib = rpat + '/lib' + rdnom + getdynlibext();
       ind = find(libs==target_lib)
       if ind<>[] then
 	mess=msprintf(_(' Warning. You want to link an external library\n'+..
@@ -929,11 +925,8 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
       XX=update_block(XX)
 
       //## update %scicos_libs if needed
-      if MSDOS then
-        libnam=rpat+'\lib'+rdnom+'.dll'
-      else
-        libnam=rpat+'/lib'+rdnom+'.so'
-      end
+      libnam = rpat + '/lib' + rdnom + getdynlibext();
+
       if exists('%scicos_libs') then
         if find(libnam==%scicos_libs)==[] then
           %scicos_libs=[%scicos_libs,libnam];
