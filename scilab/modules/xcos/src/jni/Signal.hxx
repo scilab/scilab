@@ -36,17 +36,15 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_XCOS_UTILS_SIGNAL__
-#define __ORG_SCILAB_MODULES_XCOS_UTILS_SIGNAL__
+#ifndef __ORG_SCILAB_MODULES_GRAPH_UTILS_SIGNAL__
+#define __ORG_SCILAB_MODULES_GRAPH_UTILS_SIGNAL__
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
-namespace org_scilab_modules_xcos_utils {
+namespace org_scilab_modules_graph_utils {
 
 class Signal {
 private:
@@ -106,7 +104,7 @@ static void notify(JavaVM * jvm_, char * ID);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/xcos/utils/Signal";
+                return "org/scilab/modules/graph/utils/Signal";
                 }
                 
 };
