@@ -92,6 +92,7 @@ am_libsciabstractSyntaxTree_la_OBJECTS =  \
 	libsciabstractSyntaxTree_la-libAst.lo \
 	libsciabstractSyntaxTree_la-printvisitor.lo \
 	libsciabstractSyntaxTree_la-debugvisitor.lo \
+	libsciabstractSyntaxTree_la-mutevisitor.lo \
 	libsciabstractSyntaxTree_la-shortcutvisitor.lo \
 	libsciabstractSyntaxTree_la-execvisitor.lo \
 	libsciabstractSyntaxTree_la-exec_OpExp.lo \
@@ -396,6 +397,7 @@ pkglib_LTLIBRARIES = libsciabstractSyntaxTree.la
 libsciabstractSyntaxTree_la_SOURCES = src/cpp/libAst.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
+				src/cpp/mutevisitor.cpp \
 				src/cpp/shortcutvisitor.cpp \
 				src/cpp/exec/execvisitor.cpp \
 				src/cpp/exec/exec_OpExp.cpp \
@@ -531,6 +533,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-exec_OpExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-execvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testConstExp-testConstExp.Po@am__quote@
@@ -578,6 +581,13 @@ libsciabstractSyntaxTree_la-debugvisitor.lo: src/cpp/debugvisitor.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/debugvisitor.cpp' object='libsciabstractSyntaxTree_la-debugvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-debugvisitor.lo `test -f 'src/cpp/debugvisitor.cpp' || echo '$(srcdir)/'`src/cpp/debugvisitor.cpp
+
+libsciabstractSyntaxTree_la-mutevisitor.lo: src/cpp/mutevisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-mutevisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Tpo -c -o libsciabstractSyntaxTree_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/mutevisitor.cpp' object='libsciabstractSyntaxTree_la-mutevisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-mutevisitor.lo `test -f 'src/cpp/mutevisitor.cpp' || echo '$(srcdir)/'`src/cpp/mutevisitor.cpp
 
 libsciabstractSyntaxTree_la-shortcutvisitor.lo: src/cpp/shortcutvisitor.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-shortcutvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Tpo -c -o libsciabstractSyntaxTree_la-shortcutvisitor.lo `test -f 'src/cpp/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/shortcutvisitor.cpp

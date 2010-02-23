@@ -16,6 +16,7 @@ pkglib_LTLIBRARIES 	= libsciabstractSyntaxTree.la
 libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
+				src/cpp/mutevisitor.cpp \
 				src/cpp/shortcutvisitor.cpp \
 				src/cpp/exec/execvisitor.cpp \
 				src/cpp/exec/exec_OpExp.cpp \
