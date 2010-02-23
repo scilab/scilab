@@ -30,6 +30,7 @@ public abstract class SpecialTextObjectGL {
 
     /**
      * Return a byte-buffer used to draw content
+     * @return byte-buffer 
      */
     public Buffer getBuffer() {
 		if (buffer != null) {
@@ -41,6 +42,7 @@ public abstract class SpecialTextObjectGL {
     
     /**
      * Return the height of the content
+     * @return height
      */
     public float getHeight() {
 		return height;
@@ -48,6 +50,7 @@ public abstract class SpecialTextObjectGL {
     
     /**
      * Return the width of the content
+     * @return width
      */
     public float getWidth() {
 		return width;
@@ -55,6 +58,7 @@ public abstract class SpecialTextObjectGL {
     
     /**
      * Return the texture's name associated to this label
+     * @return the texture object
      */
     public Texture getTexture() {
 		return texture;
@@ -62,7 +66,7 @@ public abstract class SpecialTextObjectGL {
 
     /**
      * Set the texture's name associated to this label
-     * @param id of the texture got with GL
+     * @param t texture used by GL
      */
     public void setTexture(Texture t) {
 		texture = t;
@@ -72,6 +76,7 @@ public abstract class SpecialTextObjectGL {
 
     /**
      * Return the isColored property
+     * @return isColored property
      */
     public boolean getIsColored() {
 		return isColored;
@@ -88,14 +93,14 @@ public abstract class SpecialTextObjectGL {
     /**
      * Set the color of the content
      * @param color the color of the content
-     * Return true if the color changed
+     * @return true if the color changed
      */
     public abstract boolean setColor(Color color);
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
-     * Return true if the font size changed
+     * @return true if the font size changed
      */
     public abstract boolean setFontSize(float fontSize);
 
@@ -104,7 +109,11 @@ public abstract class SpecialTextObjectGL {
      */
     public abstract void makeImage();
 
-    /* Convert an ARGB pixmap into RGBA pixmap */
+    /**
+     * Convert an ARGB pixmap into RGBA pixmap
+     * @param pix pixmap ARGB data
+     * @return pixmap RGBA data 
+     */
     protected static byte[] ARGBtoRGBA(int[] pix) {
 		byte[] bytes = new byte[pix.length * 4];
 		int p, r, g, b, a;

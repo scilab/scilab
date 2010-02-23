@@ -275,9 +275,8 @@ detect_java_vm() {
 	if test -z "$JAVA_HOME"; then
         case $OS in
             *darwin* | *Darwin*)
-                    # Apple thinks and does things different (it would be too easy otherwise)
-		    # They provide a script which returns the JAVA_HOME path
-		    JAVA_HOME=$(/usr/libexec/java_home)
+                    # Seems to be always that under Mac OS X. Don't hesitate to submit a bug report if it is not the case.
+		    JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
                     LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
 		    if test $SCIVERBOSE -ne 0; then
 			echo "Using default Mac OS X vm: $JAVA_HOME"
