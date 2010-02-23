@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io.codec;
+package org.scilab.modules.graph.io;
 
 
 import java.util.Map;

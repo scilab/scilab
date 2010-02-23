@@ -12,6 +12,12 @@
 
 package org.scilab.modules.xcos.io;
 
+import org.scilab.modules.graph.io.ScilabBooleanCodec;
+import org.scilab.modules.graph.io.ScilabDoubleCodec;
+import org.scilab.modules.graph.io.ScilabIntegerCodec;
+import org.scilab.modules.graph.io.ScilabListCodec;
+import org.scilab.modules.graph.io.ScilabObjectCodec;
+import org.scilab.modules.graph.io.ScilabStringCodec;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
@@ -23,12 +29,6 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
-import org.scilab.modules.xcos.io.codec.ScilabBooleanCodec;
-import org.scilab.modules.xcos.io.codec.ScilabDoubleCodec;
-import org.scilab.modules.xcos.io.codec.ScilabIntegerCodec;
-import org.scilab.modules.xcos.io.codec.ScilabListCodec;
-import org.scilab.modules.xcos.io.codec.ScilabObjectCodec;
-import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.Orientation;
