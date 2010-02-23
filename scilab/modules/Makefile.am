@@ -21,8 +21,8 @@ operations \
 output_stream \
 action_binding \
 arnoldi \
-functions_manager \
 elementary_functions \
+functions_manager \
 string \
 api_scilab \
 dynamic_link \
