@@ -81,10 +81,10 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	try {
 			final File tempOutput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 			final File tempInput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m

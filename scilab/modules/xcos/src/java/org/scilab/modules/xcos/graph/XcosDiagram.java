@@ -2243,7 +2243,7 @@ public class XcosDiagram extends ScilabGraph {
 			str.append(']');
 				
 			final File temp = File.createTempFile("xcos_ctx", ".h5", 
-						new File(System.getenv("TMPDIR")));
+						XcosConstants.TMPDIR);
 			
 			XcosInterpreterManagement.synchronousScilabExec(
 						"vars = script2var(" + str.toString() + ", struct());" +
