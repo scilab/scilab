@@ -17,6 +17,7 @@
 #include "functions_gw.hxx"
 #include "setenvvar.hxx"
 #include "execvisitor.hxx"
+#include "mutevisitor.hxx"
 #include "yaspio.hxx"
 
 #include <iostream>
@@ -177,11 +178,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			if(checkPrompt(iMode, EXEC_MODE_MUTE))
 			{
 				//manage mute option
-
-				//save previous output function
-				//YASP_INPUT old_out = getYaspInputMethod();
-				//setYaspOutputMethod(
 				(*j)->mute();
+				MuteVisitor mute;
+				(*j)->accept(mute);
 			}
 			else if(checkPrompt(iMode, EXEC_MODE_VERBOSE))
 			{
