@@ -17,7 +17,6 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
@@ -31,17 +30,18 @@ import org.scilab.modules.xcos.io.codec.ScilabListCodec;
 import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
 public class XcosCodec extends mxCodec {
@@ -159,6 +159,8 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(commandPortCodec);
 	XcosObjectCodec controltPortCodec = new BasicPortCodec(new ControlPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(controltPortCodec);
+	mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
+	
     }
     
     public XcosCodec() {
