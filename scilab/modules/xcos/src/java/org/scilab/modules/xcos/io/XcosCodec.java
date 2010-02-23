@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.io.codec.ScilabBooleanCodec;
 import org.scilab.modules.xcos.io.codec.ScilabDoubleCodec;
 import org.scilab.modules.xcos.io.codec.ScilabIntegerCodec;
 import org.scilab.modules.xcos.io.codec.ScilabListCodec;
+import org.scilab.modules.xcos.io.codec.ScilabObjectCodec;
 import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -95,19 +96,19 @@ public class XcosCodec extends mxCodec {
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
-	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
+	ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
-	XcosObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+	ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
 	mxCodecRegistry.register(scilabBooleanCodec);
-	XcosObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+	ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
 	mxCodecRegistry.register(scilabDoubleCodec);
-	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+	ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
 	mxCodecRegistry.register(scilabIntegerCodec);
 
 
 
     //
-	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
+	ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
 
 

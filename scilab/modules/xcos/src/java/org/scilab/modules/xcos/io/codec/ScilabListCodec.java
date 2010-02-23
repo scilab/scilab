@@ -18,7 +18,6 @@ import java.util.Map;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
@@ -26,7 +25,7 @@ import com.mxgraph.io.mxCodec;
 /**
  * Define serialization for a {@link ScilabList} instance.
  */
-public class ScilabListCodec  extends XcosObjectCodec {
+public class ScilabListCodec  extends ScilabObjectCodec {
 
     
     private static final String SCILAB_CLASS = "scilabClass";

@@ -15,8 +15,6 @@ package org.scilab.modules.xcos.io.codec;
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
-import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -28,7 +26,7 @@ import com.mxgraph.io.mxCodecRegistry;
 /**
  * Define serialization for a {@link ScilabString} instance.
  */
-public class ScilabStringCodec extends XcosObjectCodec {
+public class ScilabStringCodec extends ScilabObjectCodec {
 
     
     private static final String VALUE = "value";
