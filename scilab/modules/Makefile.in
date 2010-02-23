@@ -152,7 +152,7 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
-	functions_manager elementary_functions string api_scilab \
+	elementary_functions functions_manager string api_scilab \
 	dynamic_link fileio history_manager spreadsheet tclsci \
 	localization renderer shell completion console graphic_export \
 	gui jvm graphics optimization symbolic randlib statistics \
@@ -440,7 +440,7 @@ yacc_present = @yacc_present@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 SUBDIRS = core operations output_stream action_binding arnoldi \
-	functions_manager elementary_functions string api_scilab \
+	elementary_functions functions_manager string api_scilab \
 	dynamic_link fileio history_manager spreadsheet tclsci \
 	localization renderer shell completion console graphic_export \
 	gui jvm graphics optimization symbolic randlib statistics \
