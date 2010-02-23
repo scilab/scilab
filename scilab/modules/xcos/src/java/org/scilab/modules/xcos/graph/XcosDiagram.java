@@ -1050,12 +1050,13 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseClicked(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    		double scale = getView().getScale();
 
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
     			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-    			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
-    			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
+    			textBlock.getGeometry().setX((e.getX() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
+    			textBlock.getGeometry().setY((e.getY() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
     			addCell(textBlock);
     			return;
     		}
@@ -1070,7 +1071,7 @@ public class XcosDiagram extends ScilabGraph {
     				block.openBlockSettings(buildEntireContext());
     			}
     			if (cell instanceof BasicLink) {
-    				((BasicLink) cell).insertPoint(e.getX(), e.getY());
+    				((BasicLink) cell).insertPoint(e.getX() / scale, e.getY() / scale);
     			}
     			getModel().endUpdate();
     			refresh();
@@ -1170,10 +1171,11 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseReleased(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
-
+    		double scale = getView().getScale();
+    		
     		if (SwingUtilities.isLeftMouseButton(e)) {
     			if (waitSplitRelease) {
-    				dragSplitPos = new mxPoint(e.getX(), e.getY());
+    				dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     				waitSplitRelease = false;
     				addSplitEdge(splitLink, splitPort);
     			} else if (waitPathRelease) {
@@ -1187,7 +1189,8 @@ public class XcosDiagram extends ScilabGraph {
     					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
     					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
     						geoBlock.getY() + geoPort.getCenterY());
-    					mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+    					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
+    					mxPoint point = getPointPosition(lastPoint, click);
 
     					getModel().beginUpdate();
     					drawLink.getGeometry().setTargetPoint(point);
@@ -1209,7 +1212,7 @@ public class XcosDiagram extends ScilabGraph {
     						if (error == null) {
     							if (cell instanceof BasicLink && cell != drawLink) { //no loop
     								//draw link with a SplitBlock
-    								dragSplitPos = new mxPoint(e.getX(), e.getY());
+    								dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     								addSplitEdge((BasicLink) cell, drawLink);
     							} else {
     								getModel().setTerminal(drawLink, cell, false);
@@ -1231,10 +1234,11 @@ public class XcosDiagram extends ScilabGraph {
     							setSelectionCell(drawLink);
     						}
     					} else {
+    						mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
     						if (!e.isControlDown()) {
-    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), click));
     						} else {
-    							geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+    							geo.setTargetPoint(click);
     						}
     					}
     					getModel().endUpdate();
@@ -1264,8 +1268,8 @@ public class XcosDiagram extends ScilabGraph {
 		final double origX = origin.getX();
 		final double origY = origin.getY();
 
-		final double clickX = click.getX() / scale;
-		final double clickY = click.getY() / scale;
+		final double clickX = click.getX();
+		final double clickY = click.getY();
 
 		final boolean signX = clickX > origX;
 		final boolean signY = clickY > origY;
