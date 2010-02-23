@@ -14,7 +14,7 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
-import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
