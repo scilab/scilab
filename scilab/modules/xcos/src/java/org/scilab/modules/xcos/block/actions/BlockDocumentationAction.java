@@ -17,12 +17,12 @@ import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosDialogs;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -68,7 +68,7 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
 	public void actionPerformed(ActionEvent e) {
 		BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
 		if (selectedBlock != null) {
-			XcosInterpreterManagement.requestScilabExec("help " + selectedBlock.getInterfaceFunctionName());
+			ScilabInterpreterManagement.requestScilabExec("help " + selectedBlock.getInterfaceFunctionName());
 		} else {
 			XcosDialogs.noBlockSelected((XcosDiagram) getGraph(e));
 		}

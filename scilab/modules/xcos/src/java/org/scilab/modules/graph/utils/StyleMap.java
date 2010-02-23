@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.graph.utils;
 
 import java.util.HashMap;
 import java.util.Map;
