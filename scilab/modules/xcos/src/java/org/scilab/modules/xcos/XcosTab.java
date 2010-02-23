@@ -59,6 +59,7 @@ import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.InitModelicaAction;
 import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
 import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
@@ -423,6 +424,7 @@ public class XcosTab extends ScilabTab {
 	simulate.add(DebugLevelAction.createMenu(diagram));
 	simulate.add(SetContextAction.createMenu(diagram));
 	simulate.add(CompileAction.createMenu(diagram));
+	simulate.add(InitModelicaAction.createMenu(diagram));
 	simulate.add(startMenu);
 	simulate.add(stopMenu);
 
