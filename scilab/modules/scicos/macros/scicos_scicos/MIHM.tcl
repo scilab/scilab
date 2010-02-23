@@ -431,7 +431,7 @@ proc Compile { WindowsID } {
     set is_square [get_model_info $WindowsID ]
 
     if { $is_square =="false" } {
-    	set dlg "Please relax or fix varaible(s) or parameter(s) to get a square problem!"
+    	set dlg "Please relax or fix variable(s) or parameter(s) to get a square problem!"
 	tk_messageBox -icon error -type ok -title "$Model_name is not square" -message $dlg
 	Compute_finished nok $WindowsID 
 	return
@@ -887,7 +887,7 @@ proc button_Quit { WindowsID } {
     global EnableQuit
     if { $EnableQuit == "no" } { tk_messageBox -icon question -type ok -title "Computing..."  -message "Please wait until the end of the simulation:"; return }
     
-    set answer [tk_messageBox -icon question -type yesno -title "Exit?"  -message "Are you sure to quite? \n\rYou will lose the settings if you do not save the XML file"]
+    set answer [tk_messageBox -icon question -type yesno -title "Exit?"  -message "Are you sure you want to quit? \n\rYou will lose the settings if you do not save the XML file"]
     if { $answer eq "yes" } {      
 	ScilabEval "clearglobal('icpr')"
 	set need_compile true
@@ -904,7 +904,7 @@ proc ParameterEmbedding { WindowsID } {
     set msg1 "Parameter Embeding option:"
     set msg2 "\nSetting the parameter embedding option lets the user to change the parametrs and call the solver without regenerating the code."
     set msg3 "\nIn a code without embedded parameters, parameters are replaced by their numerical values. Hence the code is smaller and is more likely to converg."
-    set msg4 "\nSo it is recommanded to use the parameter embedded option once you achieve the solution and want to test it with other parameetr values."
+    set msg4 "\nSo it is recommanded to use the parameter embedded option once you achieve the solution and want to test it with other parameter values."
     tk_messageBox -icon question -type ok -title Help  -message "$msg1$msg2$msg3$msg4"
     set need_compile true
 
