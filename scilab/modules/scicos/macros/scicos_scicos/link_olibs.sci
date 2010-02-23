@@ -42,7 +42,7 @@
 //
 function [ok,libs,for_link] = link_olibs(libs,rpat)
 
-  pause
+
 
   //** get lhs,rhs nb paramaters
   [lhs,rhs]=argn(0);
