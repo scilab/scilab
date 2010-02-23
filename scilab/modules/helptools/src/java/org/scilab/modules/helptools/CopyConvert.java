@@ -107,7 +107,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
      * Run the copy/convert process
      *
      * @param inFile Input file
-     * @param outFile Output file
+     * @param outputFile Output file
 	 */
     public void run(File inFile, File outputFile)
         throws SAXParseException, SAXException, IOException {
