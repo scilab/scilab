@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JColorChooser;
 
@@ -63,7 +65,30 @@ public final class FilledColorAction extends VertexSelectionDependantAction {
 	//if no cells are selected : Do nothing
 	if (selectedCells.length == 0) { return; }
 
-	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, null);
+	// Get the selected cells statistics values
+	Map<String, Integer> colorStats = new HashMap<String, Integer>();
+	for (Object object : selectedCells) {
+		String color = (String) graph.getCellStyle(object).get(mxConstants.STYLE_FILLCOLOR);
+		if (colorStats.containsKey(color)) {
+			colorStats.put(color, colorStats.get(color) + 1);
+		} else {
+			colorStats.put(color, 1);
+		}
+	}
+	
+	// Getting the most present color
+	String color = "#FF0000";
+	int max = 0;
+	for (String key : colorStats.keySet()) {
+		int current = colorStats.get(key);
+		if (current > max) {
+			color = key;
+			max = current;
+		}
+	}
+	
+	// Apply the most common color as the default color
+	Color newColor = JColorChooser.showDialog(getGraph(null).getAsComponent(), NAME, mxUtils.parseColor(color));
 
 	if (newColor != null) {
 	    graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, mxUtils.hexString(newColor));
