@@ -36,7 +36,7 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms.
 */
 
-namespace org_scilab_modules_xcos_utils {
+namespace org_scilab_modules_graph_utils {
 
 // Returns the current env
 
@@ -68,7 +68,9 @@ JNIEnv * curEnv = getCurrentEnv();
 
 localClass = curEnv->FindClass( this->className().c_str() ) ;
 if (localClass == NULL) {
-  throw GiwsException::JniClassNotFoundException(curEnv, this->className());
+std::cerr << "Could not get the Class " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
@@ -77,23 +79,31 @@ this->instanceClass = static_cast<jclass>(curEnv->NewGlobalRef(localClass));
 curEnv->DeleteLocalRef(localClass);
 
 if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 
 constructObject = curEnv->GetMethodID( this->instanceClass, construct.c_str() , param.c_str() ) ;
 if(constructObject == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not retrieve the constructor of the class " << this->className() << " with the profile : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 localInstance = curEnv->NewObject( this->instanceClass, constructObject ) ;
 if(localInstance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not instantiate the object " << this->className() << " with the constructor : " << construct << param << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
  
 this->instance = curEnv->NewGlobalRef(localInstance) ;
 if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 /* localInstance not needed anymore */
 curEnv->DeleteLocalRef(localInstance);
@@ -114,12 +124,18 @@ jclass localClass = curEnv->GetObjectClass(JObj);
         curEnv->DeleteLocalRef(localClass);
 
         if (this->instanceClass == NULL) {
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a Global Ref of " << this->className() <<  std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
 
         this->instance = curEnv->NewGlobalRef(JObj) ;
         if(this->instance == NULL){
-throw GiwsException::JniObjectCreationException(curEnv, this->className());
+
+std::cerr << "Could not create a new global ref of " << this->className() << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
         }
         /* Methods ID set to NULL */
         voidnotifyjstringID=NULL; 
@@ -131,13 +147,17 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 
 void Signal::synchronize() {
 if (getCurrentEnv()->MonitorEnter(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "Signal");
+std::cerr << "Fail to enter monitor." << std::endl;
+exit(EXIT_FAILURE);
+
 }
 }
 
 void Signal::endSynchronize() {
 if ( getCurrentEnv()->MonitorExit(instance) != JNI_OK) {
-throw GiwsException::JniMonitorException(getCurrentEnv(), "Signal");
+
+std::cerr << "Fail to exit monitor." << std::endl;
+exit(EXIT_FAILURE);
 }
 }
 // Method(s)
@@ -150,14 +170,17 @@ jclass cls = curEnv->FindClass( className().c_str() );
 
 jmethodID voidnotifyjstringID = curEnv->GetStaticMethodID(cls, "notify", "(Ljava/lang/String;)V" ) ;
 if (voidnotifyjstringID == NULL) {
-throw GiwsException::JniMethodNotFoundException(curEnv, "notify");
+std::cerr << "Could not access to the method " << "notify" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
 }
 
 jstring ID_ = curEnv->NewStringUTF( ID );
 
                          curEnv->CallStaticVoidMethod(cls, voidnotifyjstringID ,ID_);if (curEnv->ExceptionCheck()) {
-throw GiwsException::JniCallMethodException(curEnv);
+curEnv->ExceptionDescribe() ;
 }
+
 }
 
 }
