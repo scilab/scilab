@@ -218,7 +218,7 @@ proc MIHM_Init { {WindowsID -1 } } {
     #############
     set WindowsID_new [sciGUICreate $WindowsID "GUIM" ]
     set w [sciGUIName $WindowsID_new]
-    wm title $w "Scicos Modelica initialization window ($WindowsID_new)"
+    wm title $w "Xcos Modelica initialization window ($WindowsID_new)"
     wm protocol $w WM_DELETE_WINDOW "button_Quit $WindowsID_new"    
     #--------------------------------------------------
     set root $w
@@ -927,7 +927,7 @@ proc JacobianEnabling { WindowsID } {
 
 #=======================================================================
 proc button_HelpWindow  { WindowsID }   { 
-    set messegedlg "Modelica initialization GUI,\n\rThis version is used to initialize pure static Modelica models.\rREF: Initialization of Modelica Models in Scicos, M. Najafi, R. Nikoukhah.\r2008 Modelica Conference, Bielefeld, Germany.  \n\rKeep us posted: scicos@inria.fr\r"
+    set messegedlg "Modelica initialization GUI,\n\rThis version is used to initialize pure static Modelica models.\rREF: Initialization of Modelica Models in Scicos, M. Najafi, R. Nikoukhah.\r2008 Modelica Conference, Bielefeld, Germany.\r"
     tk_messageBox -icon question -type ok -title Help  -message "$messegedlg"
 }
 
