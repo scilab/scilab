@@ -290,7 +290,7 @@ namespace types
 		double *pCoefI = coef_get()->img_get();
 		for(int i = m_iRank - 1; i >= 0 ; i--)
 		{
-			if(abs(pCoefR[i]) <= dblEps && (pCoefI != NULL ? abs(pCoefI[i]) : 0) <= dblEps)
+			if(fabs(pCoefR[i]) <= dblEps && (pCoefI != NULL ? fabs(pCoefI[i]) : 0) <= dblEps)
 			{
 				iNewRank--;
 			}
@@ -307,7 +307,7 @@ namespace types
 	std::string Poly::toString(int _iPrecision, int _iLineLen)
 	{
 	  std::ostringstream ostr;
-	 
+
 	  // FIXME : implement this.
 	  ostr << "FIXME : implement Poly::toString" << std::endl;
 
@@ -330,7 +330,7 @@ namespace types
 
 		toStringInternal(m_pdblCoef->img_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
 	}
-	
+
 	void Poly::toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
 	{
 		ostringstream ostemp;
@@ -375,7 +375,7 @@ namespace types
 					Add_Space(&ostemp, 12); //take from scilab ... why not ...
 				}
 				AddDoubleValue(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
-			
+
 				if(i != 0)
 				{
 					ostemp << _szVar;
@@ -458,4 +458,4 @@ namespace types
 	}
 }
 
- 
+

@@ -141,7 +141,7 @@ namespace types
 				double dblStep	= m_poStep->getAsDouble()->real_get(0,0);
 				double dblEnd		= m_poEnd->getAsDouble()->real_get(0,0);
 
-				m_iSize = (long long)floor(abs(dblEnd - dblStart) / abs(dblStep)) + 1;
+				m_iSize = (long long)floor(fabs(dblEnd - dblStart) / fabs(dblStep)) + 1;
 			}
 			else //m_eOutType == RealInt
 			{

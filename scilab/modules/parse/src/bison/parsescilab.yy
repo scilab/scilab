@@ -43,7 +43,6 @@
 %}
 
 //%pure-parser
-%define "location_type" "Location"
 %locations
 %verbose
 %debug
@@ -230,7 +229,7 @@
 %type <t_string_exp>	implicitCallable
 
  // Function Call
-%type <t_exp>		functionCall
+%type <t_call_exp>	functionCall
 %type <t_call_exp>	specificFunctionCall
 %type <t_call_exp>	recursiveFunctionCall
 %type <t_call_exp>	simpleFunctionCall
@@ -465,7 +464,6 @@ simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | specificFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | recursiveFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | LPAREN functionCall RPAREN	%prec FUNCTIONCALL	{ $$ = $2; }
-| NOT functionCall					{ $$ = new ast::NotExp(@$, *$2); }
 ;
 
 /*
@@ -867,11 +865,13 @@ operation :
 variable rightOperand			{ 
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
+					  $2->location_set(@$);
 					  $$ = $2;
 					}
 | functionCall rightOperand		{ 
 					  delete &($2->left_get());
 					  $2->left_set(*$1);
+					  $2->location_set(@$);
 					  $$ = $2;
 					}
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
@@ -953,10 +953,19 @@ listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@
 /* Variables */
 variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
+| NOT functionCall			%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
-| variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| variable DOT functionCall				{ 
+							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get())); 
+							  $3->location_set(@$);
+							  $$ = $3;
+}
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
+| functionCall DOT functionCall				{ 
+							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get())); 
+							  $3->location_set(@$);
+							  $$ = $3;
+}
 | variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }

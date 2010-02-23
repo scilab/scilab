@@ -283,9 +283,9 @@ namespace ast
 				std::ostringstream os;
 				char szError[bsiz];
 #ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("Function call failed\n"));
+				sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-				sprintf(szError, _("Function call failed\n"));
+				sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
 #endif
 				throw string(szError);
 			}
@@ -598,11 +598,11 @@ namespace ast
 					{
 						std::ostringstream os;
 						char szError[bsiz];
-	#ifdef _MSC_VER
-						sprintf_s(szError, bsiz, _("Function call failed\n"));
-	#else
-						sprintf(szError, _("Function call failed\n"));
-	#endif
+#ifdef _MSC_VER
+						sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+#else
+						sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+#endif
 						throw string(szError);
 					}
 				}
