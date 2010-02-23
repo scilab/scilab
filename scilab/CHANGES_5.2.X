@@ -46,6 +46,8 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
+* bug 6557 fixed - The legend order of the plzr function was incorrect.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
