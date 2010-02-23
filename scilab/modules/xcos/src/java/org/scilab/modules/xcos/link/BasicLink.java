@@ -29,12 +29,11 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.block.actions.BorderColorAction;
-import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
 import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
 import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -46,7 +45,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
@@ -362,8 +360,9 @@ public abstract class BasicLink extends XcosUIDObject {
 	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
     	// Pre-conditions
-    	assert from != null;
-    	assert to != null;
+    	if (to == null || from == null) {
+    		throw new NullPointerException();
+    	}
     	
     	BasicLink instance;
     	

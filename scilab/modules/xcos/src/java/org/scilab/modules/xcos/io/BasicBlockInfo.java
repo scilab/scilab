@@ -25,7 +25,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -351,8 +351,8 @@ public final class BasicBlockInfo {
      * @param block The block we are working on
      * @return Lists of ports where key are BasicPort.Orientation
      */
-    public static Map<BasicPort.Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
-    	EnumMap<BasicPort.Orientation, List<BasicPort>> map = new EnumMap<BasicPort.Orientation, List<BasicPort>>(BasicPort.Orientation.class);
+    public static Map<Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
+    	EnumMap<Orientation, List<BasicPort>> map = new EnumMap<Orientation, List<BasicPort>>(Orientation.class);
     	List<BasicPort> northPorts = new ArrayList<BasicPort>();
     	List<BasicPort> southPorts = new ArrayList<BasicPort>();
     	List<BasicPort> eastPorts = new ArrayList<BasicPort>();

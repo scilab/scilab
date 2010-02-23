@@ -13,8 +13,8 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.Orientation;
 
 /**
  * The Ground block has only one specificity : it's port position.

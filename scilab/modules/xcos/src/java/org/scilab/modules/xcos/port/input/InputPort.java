@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.port.input;
 
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.Orientation;
 
 /**
  * An input port acts as a protection barrier between a link and the internal functions of

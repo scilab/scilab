@@ -50,14 +50,9 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 	public static final int MNEMONIC_KEY = 0;
 	public static final int ACCELERATOR_KEY = 0;
 
-	/*
-	 * FIXME: these following fields must be graph dependent instead of static.
-	 * Imagine the situation when Xcos has 2 diagrams opened and perform the
-	 * action.
-	 */
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JList debugList;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JList debugList;
 
 	/**
 	 * @author Allan SIMON
@@ -117,7 +112,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 	/**
 	 * @param diagramArgu diagram
 	 */
-	public static void debugLevel(XcosDiagram diagramArgu){
+	public void debugLevel(XcosDiagram diagramArgu){
 
 		diagram = diagramArgu;
 
