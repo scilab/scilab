@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io;
 
 import org.scilab.modules.graph.io.ScilabBooleanCodec;
 import org.scilab.modules.graph.io.ScilabDoubleCodec;
+import org.scilab.modules.graph.io.ScilabGraphCodec;
 import org.scilab.modules.graph.io.ScilabIntegerCodec;
 import org.scilab.modules.graph.io.ScilabListCodec;
 import org.scilab.modules.graph.io.ScilabObjectCodec;
@@ -134,10 +135,10 @@ public class XcosCodec extends mxCodec {
 	
 	// Diagram
 	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile", "multiplicities"};
-	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), diagramIgnore, refs, null);
+	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "container"};
-	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
+	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 
 	//Link 
