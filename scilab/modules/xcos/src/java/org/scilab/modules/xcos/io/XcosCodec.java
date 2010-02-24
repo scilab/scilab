@@ -138,7 +138,7 @@ public class XcosCodec extends mxCodec {
 	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 	String[] refsSuperBlockDiagram = {"parent", "source", "target","container"};
-	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile"};
+	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "opened"};
 	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refsSuperBlockDiagram, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 

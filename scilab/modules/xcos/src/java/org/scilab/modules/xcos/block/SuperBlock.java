@@ -150,8 +150,6 @@ public final class SuperBlock extends BasicBlock {
 				getChild().setVisible(true);
 				
 			} else {
-
-				System.out.println("set visible");
 				getChild().setVisible(true);
 			}
 			getChild().updateCellsContext();
