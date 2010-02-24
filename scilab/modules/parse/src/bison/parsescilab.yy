@@ -990,16 +990,12 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 /* variable (, variable)+ */
 variableFields :
 variableFields COMMA variable		{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $1->exps_get().push_back($3);
+					  $$ = $1;
 					}
 | variableFields COMMA functionCall	{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $1->exps_get().push_back($3);
+					  $$ = $1;
 					}
 | variable COMMA variable		{
 					  ast::exps_t *tmp = new ast::exps_t;
