@@ -51,6 +51,7 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -123,10 +124,11 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	@Override
 	public void openBlockSettings(String[] context) {
+		
 		if (getParentDiagram() instanceof PaletteDiagram) {
 			return;
 		}
-
+		
 		if (getChild() == null
 				&& getSimulationFunctionType().compareTo(
 						SimulationFunctionType.DEFAULT) != 0) {
@@ -135,26 +137,31 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 
-		if (isMasked()) {
-			super.openBlockSettings(context);
-		} else {
-			if (createChildDiagram()) {
+			if (createChildDiagram() || ! getChild().isOpened() ) {
+
+				child.installSuperBlockListeners();
+				child.installListeners();
+				child.setChildrenParentDiagram();
+				updateAllBlocksColor();
 				getChild().setModifiedNonRecursively(false);
 				XcosTab.createTabFromDiagram(getChild());
 				XcosTab.showTabFromDiagram(getChild());
+				getChild().setOpened(true);
+				getChild().setVisible(true);
+				
 			} else {
+
+				System.out.println("set visible");
 				getChild().setVisible(true);
 			}
-
 			getChild().updateCellsContext();
-		}
+		//}
 	}
 
 	/**
 	 * 
 	 */
 	public void closeBlockSettings() {
-
 		// Do not ask the user, the diagram is saved and closed
 		if (getChild().isModified()) {
 			setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
@@ -171,19 +178,15 @@ public final class SuperBlock extends BasicBlock {
 			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
 					.getCorrespondingUIElement(getChild().getParentTab()
 							.getParentWindowId());
-			xcosWindow.removeTab(getChild().getParentTab());
-			getChild().getViewPort().close();
-			getChild().setOpened(false);
-			XcosTab.closeDiagram(getChild());
-			if (getParentDiagram().isOpened()
-					&& !getParentDiagram().isVisible()) {
-				getParentDiagram().closeDiagram();
-			}
+			
+			//xcosWindow.removeTab(getChild().getParentTab());
+			//getChild().getViewPort().close();
+			
+			getChild().setVisible(false);
 		}
-
+		
 		child.removeListener(null);
 		setLocked(false);
-		child = null;
 	}
 
 	/**
@@ -227,6 +230,7 @@ public final class SuperBlock extends BasicBlock {
 		return createChildDiagram(false);
 	}
 
+	
 	/**
 	 * @param generatedUID does we need to generated a new unique ID
 	 * @return status
@@ -237,6 +241,7 @@ public final class SuperBlock extends BasicBlock {
 			child.installListeners();
 			child.loadDiagram(BlockReader.convertMListToDiagram(
 					(ScilabMList) getRealParameters(), false));
+			
 			child.installSuperBlockListeners();
 			child.setChildrenParentDiagram();
 			updateAllBlocksColor();

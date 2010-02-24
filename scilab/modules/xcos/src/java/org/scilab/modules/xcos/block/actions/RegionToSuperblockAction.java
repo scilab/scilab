@@ -242,7 +242,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Update block with real parameters
 	 */
 	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
-	superBlock.createChildDiagram();
+	superBlock.setChild(diagram);
 	
 	/*
 	 * Update the parent
