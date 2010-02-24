@@ -52,7 +52,11 @@ src/translator/parsing/parsing.a
 src/translator/parsing/*.cmxa
 src/translator/translation/*.cmi
 src/translator/translation/*.cmx
-
+src/translator/compilation/compilation.cma
+src/translator/exceptionHandling/exceptionHandling.cma
+src/translator/instantiation/instantiation.cma
+src/translator/parsing/lexer.ml
+src/translator/parsing/parser.ml
 src/translator/compilation/nameResolve.cmo
 src/translator/compilation/types.cmo
 src/translator/exceptionHandling/errorDico.cmo
