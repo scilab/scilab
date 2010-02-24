@@ -39,6 +39,10 @@ Xcos:
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based 
 description.
 
+* builnewblock.sci rewritten to use scilab dynamic link module tools.
+
+* bug 6661 fixed - "Code Generation" menu failed.
+
 Compilation:
 ============
 
