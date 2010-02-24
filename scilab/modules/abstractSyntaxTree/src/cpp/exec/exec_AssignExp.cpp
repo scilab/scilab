@@ -168,16 +168,16 @@ namespace ast
 					pIT = pTemp;
 				}
 
-				//const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
-				//if(pReturn)
-				//{//ReturnExp so, put the value in the previous scope
-				//	symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
-				//	((AssignExp*)&e)->break_set();
-				//}
-				//else
-				//{
+				const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
+				if(pReturn)
+				{//ReturnExp so, put the value in the previous scope
+					symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
+					((AssignExp*)&e)->break_set();
+				}
+				else
+				{
 					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
-				//}
+				}
 
 				if(e.is_verbose())
 				{

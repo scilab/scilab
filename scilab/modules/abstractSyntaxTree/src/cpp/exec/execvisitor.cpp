@@ -536,13 +536,14 @@ namespace ast
 	{
 		if(e.is_global() == false)
 		{//return(x)
-			ExecVisitor execVar;
-			e.exp_get().accept(execVar);
+			ExecVisitor* execVar = new ExecVisitor();
+			e.exp_get().accept(*execVar);
 			
-			for(int i = 0 ; i < execVar.result_size_get() ; i++)
+			for(int i = 0 ; i < execVar->result_size_get() ; i++)
 			{
-				result_set(i, execVar.result_get(i));
+				result_set(i, execVar->result_get(i)->clone());
 			}
+			delete execVar;
 		}
 		((Exp*)&e)->return_set();
 	}
@@ -612,6 +613,7 @@ namespace ast
 					symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe->result_get());
 					if((*i)->is_verbose())
 					{
+						//TODO manage multiple returns
 						std::ostringstream ostr;
 						ostr << "ans = " << std::endl;
 						ostr << std::endl;
@@ -647,7 +649,7 @@ namespace ast
 			ExecVisitor *execArg = new ExecVisitor();
 			(*it)->accept(*execArg);
 			//execArg->result_get()->IncreaseRef();
-			result_set(i, execArg->result_get());
+			result_set(i, execArg->result_get()->clone());
 			delete execArg;
 			//result_get(i)->DecreaseRef();
 			i++;
