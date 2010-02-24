@@ -306,13 +306,10 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec ReturnExp", e);
-    // FIXME
-    /*
       if (!e.is_global())
       {
-      e.exp_get().accept(*this);
+	e.exp_get().accept(*this);
       }
-    */
     DEBUG_END_NODE();
   }
 
