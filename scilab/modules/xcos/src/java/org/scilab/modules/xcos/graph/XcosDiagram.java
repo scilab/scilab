@@ -47,6 +47,8 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -104,9 +106,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosFileType;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -2243,9 +2243,9 @@ public class XcosDiagram extends ScilabGraph {
 			str.append(']');
 				
 			final File temp = File.createTempFile("xcos_ctx", ".h5", 
-						new File(System.getenv("TMPDIR")));
+						XcosConstants.TMPDIR);
 			
-			XcosInterpreterManagement.synchronousScilabExec(
+			ScilabInterpreterManagement.synchronousScilabExec(
 						"vars = script2var(" + str.toString() + ", struct());" +
 						"export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
 			

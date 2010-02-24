@@ -12,6 +12,13 @@
 
 package org.scilab.modules.xcos.io;
 
+import org.scilab.modules.graph.io.ScilabBooleanCodec;
+import org.scilab.modules.graph.io.ScilabDoubleCodec;
+import org.scilab.modules.graph.io.ScilabGraphCodec;
+import org.scilab.modules.graph.io.ScilabIntegerCodec;
+import org.scilab.modules.graph.io.ScilabListCodec;
+import org.scilab.modules.graph.io.ScilabObjectCodec;
+import org.scilab.modules.graph.io.ScilabStringCodec;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
@@ -23,11 +30,6 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
-import org.scilab.modules.xcos.io.codec.ScilabBooleanCodec;
-import org.scilab.modules.xcos.io.codec.ScilabDoubleCodec;
-import org.scilab.modules.xcos.io.codec.ScilabIntegerCodec;
-import org.scilab.modules.xcos.io.codec.ScilabListCodec;
-import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.Orientation;
@@ -110,19 +112,19 @@ public class XcosCodec extends mxCodec {
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
-	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
+	ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
-	XcosObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+	ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
 	mxCodecRegistry.register(scilabBooleanCodec);
-	XcosObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+	ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
 	mxCodecRegistry.register(scilabDoubleCodec);
-	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+	ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
 	mxCodecRegistry.register(scilabIntegerCodec);
 
 
 
     //
-	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
+	ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
 
 
@@ -147,9 +149,9 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
+	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refs, null);
+	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 
 	//Link 

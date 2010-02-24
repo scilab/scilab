@@ -18,13 +18,17 @@ import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
+/**
+ * Launch the modelica compiler configuration TCL UI
+ */
 public class InitModelicaAction extends DefaultAction {
     public static final String NAME = XcosMessages.INIT_MODELICA;
     public static final String SMALL_ICON = "";
@@ -66,14 +70,14 @@ public class InitModelicaAction extends DefaultAction {
 
 	try {
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
-	    temp = File.createTempFile("xcos", ".h5");
+	    temp = File.createTempFile("xcos", ".h5", XcosConstants.TMPDIR);
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
 	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
 	    + "xcosConfigureModelica();"
 	    + "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {
-		XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+		ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 		    public void actionPerformed(ActionEvent arg0) {
 			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		    }

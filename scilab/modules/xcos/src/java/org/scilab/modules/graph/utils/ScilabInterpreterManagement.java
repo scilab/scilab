@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.utils;
+package org.scilab.modules.graph.utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,11 +24,12 @@ import java.util.concurrent.Executors;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Implements useful methods to communicate with the Scilab interpreter.
  */
-public final class XcosInterpreterManagement extends InterpreterManagement {
+public final class ScilabInterpreterManagement extends InterpreterManagement {
 
 	private static ExecutorService executor = Executors.newSingleThreadExecutor();
 	private static Set<String> runningTasks = Collections.synchronizedSet(new HashSet<String>());
@@ -37,7 +38,7 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 	private static final String CLOSE = "\");";
 
 	/** This class is a static singleton, thus it must not be instantiated */
-	private XcosInterpreterManagement() { }
+	private ScilabInterpreterManagement() { }
 	
 	/**
 	 * Throw when there is a problem to communicate with the scilab interpreter.
@@ -103,7 +104,7 @@ public final class XcosInterpreterManagement extends InterpreterManagement {
 		final String uidDesc = Integer.toString(uid);
 		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
 		final ActionEvent event = new ActionEvent(
-				XcosInterpreterManagement.class, uid, command);
+				ScilabInterpreterManagement.class, uid, command);
 
 		if (runningTasks.contains(uidDesc)) {
 			throw new InterpreterException(XcosMessages.SCILAB_SAMECOMMAND);

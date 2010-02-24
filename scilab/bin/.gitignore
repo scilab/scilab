@@ -8,6 +8,7 @@
 *.tlb
 *.def
 *.log
+*.jnilib
 WScilex_pure.ini
 Scilex_pure.ini
 *.pgd

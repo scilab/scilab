@@ -35,11 +35,11 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Set the debug level
@@ -176,7 +176,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
 				try {
-					XcosInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
+					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
 				} catch (InterpreterException e1) {
 					e1.printStackTrace();
 				}
