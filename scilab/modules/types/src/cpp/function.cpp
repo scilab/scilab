@@ -78,7 +78,7 @@ namespace types
 		pStr->m_piRetCount = &_iRetCount;
 		pStr->m_pstName = (char*)m_stName.c_str();
 		pStr->m_pOutOrder = new int[_iRetCount < 1 ? 1 : _iRetCount];
-		memset(pStr->m_pOutOrder, 0x00, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
+		memset(pStr->m_pOutOrder, 0xFF, (_iRetCount < 1 ? 1 : _iRetCount) * sizeof(int));
 		memset(pStr->m_pOut, 0x00, MAX_OUTPUT_VARIABLE * sizeof(InternalType*));
 
 		//call gateway
@@ -93,8 +93,15 @@ namespace types
 			//replace output argument in good order following m_pOutOrder
 			for(int i = 0 ; i < _iRetCount ; i++)
 			{
-				out.push_back(m_pTempOut[pStr->m_pOutOrder[i] - in.size() - 1]);
-				m_pTempOut[pStr->m_pOutOrder[i] - in.size() - 1] = NULL;
+				//take care about return value count
+				if(pStr->m_pOutOrder[i] == -1)
+				{
+					break;
+				}
+
+				int iPos = (int)(pStr->m_pOutOrder[i] - in.size() - 1);
+				out.push_back(m_pTempOut[iPos]);
+				m_pTempOut[iPos] = NULL;
 			}
 		}
 
