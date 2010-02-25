@@ -259,7 +259,8 @@ namespace ast
 				execVar[j]->result_get()->IncreaseRef();
 			}
 			
-			Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+			int iRetCount = Max(1, expected_size_get());
+			Function::ReturnValue Ret = pCall->call(in, iRetCount, out);
 			
 			if(Ret == Callable::OK)
 			{
@@ -332,6 +333,9 @@ namespace ast
 				break;
 			case InternalType::RealInt :
 				pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
+			case InternalType::RealString :
+				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
 			default :
 				break;
