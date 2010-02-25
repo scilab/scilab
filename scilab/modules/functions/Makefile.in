@@ -120,13 +120,13 @@ am__objects_1 = libscifunctions_la-getmacroslist.lo \
 am__objects_2 = whereis.lo
 am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
-	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_librarieslist.lo \
 	libscifunctions_la-sci_libraryinfo.lo
 am__objects_4 = intlib.lo intdeff.lo intexecstr.lo intexec.lo
 am__objects_5 = libscifunctions_la-functions_gw.lo \
 	libscifunctions_la-sci_exec.lo \
 	libscifunctions_la-sci_functionlist.lo \
+	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_execstr.lo
 am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5)
@@ -424,7 +424,6 @@ FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
-sci_gateway/c/sci_whereis.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c
 
@@ -432,6 +431,7 @@ GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/functions_gw.cpp \
 sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
+sci_gateway/cpp/sci_whereis.cpp \
 sci_gateway/cpp/sci_execstr.cpp
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intlib.f \
@@ -717,13 +717,6 @@ libscifunctions_la-sci_deff.lo: sci_gateway/c/sci_deff.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_deff.lo `test -f 'sci_gateway/c/sci_deff.c' || echo '$(srcdir)/'`sci_gateway/c/sci_deff.c
 
-libscifunctions_la-sci_whereis.lo: sci_gateway/c/sci_whereis.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-sci_whereis.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo $(DEPDIR)/libscifunctions_la-sci_whereis.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_whereis.c' object='libscifunctions_la-sci_whereis.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/c/sci_whereis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_whereis.c
-
 libscifunctions_la-sci_librarieslist.lo: sci_gateway/c/sci_librarieslist.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(libscifunctions_la_CFLAGS) $(CFLAGS) -MT libscifunctions_la-sci_librarieslist.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_librarieslist.Tpo -c -o libscifunctions_la-sci_librarieslist.lo `test -f 'sci_gateway/c/sci_librarieslist.c' || echo '$(srcdir)/'`sci_gateway/c/sci_librarieslist.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_librarieslist.Tpo $(DEPDIR)/libscifunctions_la-sci_librarieslist.Plo
@@ -779,6 +772,13 @@ libscifunctions_la-sci_functionlist.lo: sci_gateway/cpp/sci_functionlist.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_functionlist.cpp' object='libscifunctions_la-sci_functionlist.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_la-sci_functionlist.lo `test -f 'sci_gateway/cpp/sci_functionlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_functionlist.cpp
+
+libscifunctions_la-sci_whereis.lo: sci_gateway/cpp/sci_whereis.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_la-sci_whereis.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/cpp/sci_whereis.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_whereis.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_la-sci_whereis.Tpo $(DEPDIR)/libscifunctions_la-sci_whereis.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_whereis.cpp' object='libscifunctions_la-sci_whereis.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_la-sci_whereis.lo `test -f 'sci_gateway/cpp/sci_whereis.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_whereis.cpp
 
 libscifunctions_la-sci_execstr.lo: sci_gateway/cpp/sci_execstr.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_la-sci_execstr.lo -MD -MP -MF $(DEPDIR)/libscifunctions_la-sci_execstr.Tpo -c -o libscifunctions_la-sci_execstr.lo `test -f 'sci_gateway/cpp/sci_execstr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_execstr.cpp
