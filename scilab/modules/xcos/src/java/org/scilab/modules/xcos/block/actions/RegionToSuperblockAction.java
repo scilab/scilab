@@ -24,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -169,7 +169,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/*
 	 * Update selection and return it.
 	 */
-	List<XcosUIDObject> selectedCells = updateForNotSelectedLinks(graph);
+	List<ScilabGraphUniqueObject> selectedCells = updateForNotSelectedLinks(graph);
 	
 	/*
 	 * Sort the selected cells to avoid misplacement
@@ -181,9 +181,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 */
 	Object[] cellArrays = getGraph(null).cloneCells(selectedCells.toArray());
 	Collection<Object> cells = Arrays.asList(cellArrays);
-	XcosUIDObject[] typedCells = new XcosUIDObject[cellArrays.length];
+	ScilabGraphUniqueObject[] typedCells = new ScilabGraphUniqueObject[cellArrays.length];
 	cells.toArray(typedCells);
-	List<XcosUIDObject> cellsCopy = Arrays.asList(typedCells);
+	List<ScilabGraphUniqueObject> cellsCopy = Arrays.asList(typedCells);
 	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
 	    translationMatrix[i] = selectedCells.get(i);
@@ -297,9 +297,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param cellsCopy list of selected cells
      * @return list of blocks
      */
-    private List<BasicBlock> getBlocks(List<XcosUIDObject> cellsCopy) {
+    private List<BasicBlock> getBlocks(List<ScilabGraphUniqueObject> cellsCopy) {
 	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
-	for (XcosUIDObject cell : cellsCopy) {
+	for (ScilabGraphUniqueObject cell : cellsCopy) {
 	    if (cell instanceof BasicBlock) {
 		if (!(cell instanceof SplitBlock)) {
 		    list.add((BasicBlock) cell);
@@ -314,12 +314,12 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param graph parent diagram
      * @return new selected list
      */
-    private List<XcosUIDObject> updateForNotSelectedLinks(XcosDiagram graph) {
+    private List<ScilabGraphUniqueObject> updateForNotSelectedLinks(XcosDiagram graph) {
 
 	graph.getModel().beginUpdate();
 
 	for (int i = 0; i < graph.getSelectionCells().length; i++) {
-	    XcosUIDObject current = (XcosUIDObject) graph.getSelectionCells()[i];
+	    ScilabGraphUniqueObject current = (ScilabGraphUniqueObject) graph.getSelectionCells()[i];
 	    if (current instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock) current;
 		for (int j = 0; j < block.getChildCount(); j++) {
@@ -363,10 +363,10 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	
 	Object[] selectedCells = graph.getSelectionCells();
 	Collection<Object> cells = Arrays.asList(selectedCells);
-	XcosUIDObject[] typedCells = new XcosUIDObject[selectedCells.length];
+	ScilabGraphUniqueObject[] typedCells = new ScilabGraphUniqueObject[selectedCells.length];
 	cells.toArray(typedCells);
 	
-	return new ArrayList<XcosUIDObject>(Arrays.asList(typedCells));
+	return new ArrayList<ScilabGraphUniqueObject>(Arrays.asList(typedCells));
     }
     
     /**
@@ -538,7 +538,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<XcosUIDObject> copiedCells) {
+    private List<BrokenLink> getBrokenLinks(List<ScilabGraphUniqueObject> objs, List<ScilabGraphUniqueObject> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	int objsLength = objs.size();
@@ -598,12 +598,12 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param blocks list of blocks
      * @return integer list of max values
      */
-    private List<Integer> getMaxBlocksValues(List<XcosUIDObject> blocks) {
+    private List<Integer> getMaxBlocksValues(List<ScilabGraphUniqueObject> blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
-	for (XcosUIDObject cell : blocks) {
+	for (ScilabGraphUniqueObject cell : blocks) {
 	    if (cell instanceof ContextUpdate) {
 	    if (cell instanceof ExplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {

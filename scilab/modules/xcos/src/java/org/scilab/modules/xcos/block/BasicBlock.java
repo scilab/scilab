@@ -25,6 +25,7 @@ import java.util.Map;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
@@ -46,7 +47,6 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
@@ -84,7 +84,7 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
-public class BasicBlock extends XcosUIDObject {
+public class BasicBlock extends ScilabGraphUniqueObject {
 	private static final long serialVersionUID = 2189690915516168262L;
 	private static final String INTERNAL_FILE_PREFIX = "xcos";
 	private static final String INTERNAL_FILE_EXTENSION = ".h5";

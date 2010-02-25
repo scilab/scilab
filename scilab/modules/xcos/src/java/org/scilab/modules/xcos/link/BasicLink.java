@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
@@ -28,7 +29,6 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
 import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
 import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
@@ -48,7 +48,7 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
-public abstract class BasicLink extends XcosUIDObject {
+public abstract class BasicLink extends ScilabGraphUniqueObject {
 
 	private static final long serialVersionUID = 8557979393361216098L;
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);

@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.xcos.XcosUIDObject;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
@@ -20,7 +20,7 @@ import com.mxgraph.model.mxGeometry;
 /**
  * Common implementation of any Port.
  */
-public abstract class BasicPort extends XcosUIDObject {
+public abstract class BasicPort extends ScilabGraphUniqueObject {
 
 	private static final long serialVersionUID = -5022701071026919015L;
     private static final int DEFAULT_DATALINES = -1;
