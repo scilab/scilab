@@ -8,6 +8,14 @@ Core:
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
 
+
+FFTW:
+=====
+
+* On Windows, Scilab can use FFTW3 wrapper of Intel Math Kernel Library.
+  Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
+  installation.
+
 Documentation:
 ==============
 
@@ -33,6 +41,13 @@ Xcos:
 
 * LaTeX formulas can be used on any TextBlock using the Scilab tag based 
 description.
+
+* builnewblock.sci rewritten to use scilab dynamic link module tools.
+
+* bug 6661 fixed - "Code Generation" menu failed.
+
+* bug 6672 fixed - "Code generation" failed if superblock had 
+                   some gain blocks.
 
 Compilation:
 ============

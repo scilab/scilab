@@ -38,19 +38,34 @@
  *     DB(i)=rpar(i) 
  *------------------------------------------------*/
 
-SCICOS_BLOCKS_IMPEXP void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec, 
-	    ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
-            int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
-            double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
+SCICOS_BLOCKS_IMPEXP void dband (int *flag, int *nevprt, double*t, double*xd,
+								 double *x, int *nx, double*z, int *nz,
+								 double *tvec, int *ntvec, double *rpar,
+								 int *nrpar, int *ipar, int *nipar, double*u,
+								 int *nu, double *y, int *ny)
 {
-  int i = 0;
-  
-  for ( i=0 ; i < *nu ; i++ ) 
-    {
-      if ( u[i] < 0 ) 
-	y[i] = Min(0.00,u[i]+rpar[i]/2.00);
-      else  
-	y[i] = Max(0.00,u[i]-rpar[i]/2.00);
-    }
+	int i = 0;
+
+	for ( i = 0 ; i < *nu ; i++ ) 
+	{
+		if ( u[i] < 0 ) 
+		{
+			y[i] = Min(0.00, u[i] + rpar[i] / 2.00);
+		}
+		else  
+		{
+			y[i] = Max(0.00, u[i] - rpar[i] / 2.00);
+		}
+	}
+}
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void C2F(dband) (int *flag, int *nevprt, double*t, double*xd,
+								 double *x, int *nx, double*z, int *nz,
+								 double *tvec, int *ntvec, double *rpar,
+								 int *nrpar, int *ipar, int *nipar, double*u,
+								 int *nu, double *y, int *ny)
+{
+	dband (flag, nevprt, t, xd,	x, nx, z, nz, tvec, ntvec, rpar,
+		nrpar, ipar, nipar, u, nu, y, ny);
 }
 /*--------------------------------------------------------------------------*/ 

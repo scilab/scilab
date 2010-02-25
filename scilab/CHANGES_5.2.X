@@ -20,21 +20,34 @@ Compilation:
 
 * Fix a build problem on exp10 (mainly under Gentoo)
 
-* Support of GNU/Linux sparc64 
+* Support of GNU/Linux sparc64 and sh4
 
 Xcos:
 =====
 
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-Ctrl+Wheel was not working for zooming.
+* bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
+
+* bug 6501 fixed - The border color and fill default color was not set 
+  when changing it.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+  Ctrl+Wheel was not working for zooming.
+
+* bug 6576 fixed - Specifying the debug level was not working when two diagrams 
+  were openned.
+
+* bug 6657 fixed - The importXcosDiagram call with specific parameters was 
+  crashing scilab.
 
 
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope!
+* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
+
+* bug 6557 fixed - The legend order of the plzr function was incorrect.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
@@ -372,6 +385,8 @@ Bug Fixes:
 
 * bug 6619 fixed - In demo Graphics/Misc
                    Changing the colormap was drawing the 2 right subplot with a black box.
+
+* bug 6641 fixed - 'hist3d' did not handle correctly optionals arguments. (Thanks to Kose for the patch).
 
 
                Changes between Versions 5.2.0-beta1 and 5.2.0 of Scilab
@@ -2146,3 +2161,7 @@ Bug fixes:
 * bug 6495 fixed - in lqr, variable Q not defined.
 
 * bug 6587 fixed - loadmatfile makes scilab hang on sparse matrix reading.
+
+* bug 6632 fixed - nm_contour failed with respect to vector orientation.
+
+

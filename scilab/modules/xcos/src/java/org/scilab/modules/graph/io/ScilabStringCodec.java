@@ -1,22 +1,20 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
- *
+ * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at
+ * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-package org.scilab.modules.xcos.io.codec;
+package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
-import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -26,9 +24,9 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
 /**
- * Define serialization for a {@link ScilabBoolean} instance.
+ * Define serialization for a {@link ScilabString} instance.
  */
-public class ScilabBooleanCodec extends XcosObjectCodec {
+public class ScilabStringCodec extends ScilabObjectCodec {
 
     
     private static final String VALUE = "value";
@@ -45,10 +43,8 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	 * @param idrefs Optional array of fieldnames to be converted to/from references.
 	 * @param mapping Optional mapping from field- to attributenames.
      */
-    public ScilabBooleanCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
-    {
+    public ScilabStringCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
 	super(template, exclude, idrefs, mapping);
-
     }
 
 	/**
@@ -65,22 +61,22 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     	String name = mxCodecRegistry.getName(obj);
 	Node node = enc.getDocument().createElement(name);
 
-	ScilabBoolean scilabBoolean = (ScilabBoolean) obj;
-	mxCodec.setAttribute(node, WIDTH, scilabBoolean.getWidth());
-	mxCodec.setAttribute(node, HEIGHT, scilabBoolean.getHeight());
+	ScilabString scilabString = (ScilabString) obj;
+	mxCodec.setAttribute(node, WIDTH, scilabString.getWidth());
+	mxCodec.setAttribute(node, HEIGHT, scilabString.getHeight());
 
-	for (int i = 0; i < scilabBoolean.getHeight(); ++i) {
-	    for (int j = 0; j < scilabBoolean.getWidth(); ++j) {
+	for (int i = 0; i < scilabString.getHeight(); ++i) {
+	    for (int j = 0; j < scilabString.getWidth(); ++j) {
 		Node data = enc.getDocument().createElement(DATA);
 		mxCodec.setAttribute(data, LINE, i);
 		mxCodec.setAttribute(data, COLUMN, j);
-		mxCodec.setAttribute(data, VALUE, scilabBoolean.getData()[i][j]);
+		mxCodec.setAttribute(data, VALUE, scilabString.getData()[i][j]);
 		node.appendChild(data);
 	    }
 	}
 	return node;
     }
-    
+
     /**
      * Parses the given node into the object or returns a new object
 	 * representing the given node.
@@ -95,7 +91,6 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     public Object decode(mxCodec dec, Node node, Object into) {
 	Object obj = null;
 	try {
-
 	    if (!(node instanceof Element)) { return null; }
 	    obj = cloneTemplate(node);
 
@@ -114,9 +109,11 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
 	    int height = Integer.parseInt(attrs.item(heightXMLPosition).getNodeValue());
 	    int width = Integer.parseInt(attrs.item(widthXMLPosition).getNodeValue());
 
-	    boolean[][] data = parseData(node, height, width);
+	    String[][] data = new String[height][width];
+	    NodeList allValues = node.getChildNodes();
+	    fillData(data, allValues);
 
-	    ((ScilabBoolean) obj).setData(data);
+	    ((ScilabString) obj).setData(data);
 	} catch (UnrecognizeFormatException e) {
 	    e.printStackTrace();
 	}
@@ -124,40 +121,29 @@ public class ScilabBooleanCodec extends XcosObjectCodec {
     }
 
 	/**
-	 * Parse the node data and return them.
-	 * @param node The node we are working on
-	 * @param height the height of the data
-	 * @param width the width of the data
-	 * @return the data
-	 * @throws UnrecognizeFormatException when the data cannot be parsed.
+	 * Fill the data from the node values 
+	 * @param data where to put data
+	 * @param allValues the parsed values
+	 * @throws UnrecognizeFormatException when the values are not recognized
 	 */
-	private boolean[][] parseData(Node node, int height, int width)
+	private void fillData(String[][] data, NodeList allValues)
 			throws UnrecognizeFormatException {
-		boolean[][] data = new boolean[height][width];
-	    NodeList allValues = node.getChildNodes();
-	    for (int i = 0; i < allValues.getLength(); ++i) {
-	    	int lineXMLPosition = -1;
-	    	int columnXMLPosition = -1;
-	    	int valueXMLPosition = -1;
-	    	NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
-	    	for (int j = 0; j < dataAttributes.getLength(); j++) {
-	    		Node attr = dataAttributes.item(j);
-	    		if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
-	    		if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
-	    		if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
-	    	}
+		for (int i = 0; i < allValues.getLength(); ++i) {
+		int lineXMLPosition = -1;
+		int columnXMLPosition = -1;
+		int valueXMLPosition = -1;
+		NamedNodeMap dataAttributes = allValues.item(i).getAttributes();
+		for (int j = 0; j < dataAttributes.getLength(); j++) {
+		    Node attr = dataAttributes.item(j);
+		    if (attr.getNodeName().compareToIgnoreCase(LINE) == 0) { lineXMLPosition = j; }
+		    if (attr.getNodeName().compareToIgnoreCase(COLUMN) == 0) { columnXMLPosition = j; }
+		    if (attr.getNodeName().compareToIgnoreCase(VALUE) == 0) { valueXMLPosition = j; }
+		}
 
-	    	if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
-	    	int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
-	    	int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
-	    	
-	    	if (dataAttributes.item(valueXMLPosition).getNodeValue().compareToIgnoreCase("false") == 0) {
-	    		data[line][column] = false;
-	    	} else {
-	    		data[line][column] = true;
-	    	}
-
+		if (lineXMLPosition == -1 || columnXMLPosition == -1 || valueXMLPosition == -1) { throw new UnrecognizeFormatException(); }
+		int line = Integer.parseInt(dataAttributes.item(lineXMLPosition).getNodeValue());
+		int column = Integer.parseInt(dataAttributes.item(columnXMLPosition).getNodeValue());
+		data[line][column] = dataAttributes.item(valueXMLPosition).getNodeValue();
 	    }
-		return data;
 	}
 }

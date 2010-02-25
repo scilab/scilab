@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io;
+package org.scilab.modules.graph.io;
 
 import java.awt.Color;
 import java.util.Map;
@@ -23,16 +23,16 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxObjectCodec;
 
 /**
- * Default codec for the diagram component
+ * Default codec for the graph component
  */
-public class XcosDiagramCodec extends mxObjectCodec {
+public class ScilabGraphCodec extends mxObjectCodec {
 	private static final String BACKGROUND = "background";
 
 	/**
 	 * Default constructor
 	 * @param template the object template
 	 */
-	public XcosDiagramCodec(Object template) {
+	public ScilabGraphCodec(Object template) {
 		super(template);
 	}
 	
@@ -43,10 +43,10 @@ public class XcosDiagramCodec extends mxObjectCodec {
 	 * @param idrefs Optional array of fieldnames to be converted to/from references.
 	 * @param mapping Optional mapping from field- to attributenames.
 	 */
-	public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs,
-			Map<String, String> mapping) {
+	public ScilabGraphCodec(Object template, String[] exclude, String[] idrefs,
+			Map<String, String> mapping)
+	{
 		super(template, exclude, idrefs, mapping);
-		
 	}
 
 	/**

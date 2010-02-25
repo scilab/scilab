@@ -18,10 +18,20 @@ XML2Modelica
 xml2modelica.exe
 src/xml2modelica/*.cmi
 src/xml2modelica/*.cmo
+src/xml2modelica/linenum.cmx
+src/xml2modelica/modelicaCodeGenerator.cmx
+src/xml2modelica/stringLexer.cmx
+src/xml2modelica/stringParser.cmx
+src/xml2modelica/xML2Modelica.cmx
+src/xml2modelica/xMLLexer.cmx
+src/xml2modelica/xMLParser.cmx
+src/xml2modelica/xMLTree.cmx
+
+
 
 #translator
-translator
-translator.exe
+modelicat
+modelicat.exe
 src/translator/compilation/compilation.a
 src/translator/compilation/*.cmxa
 src/translator/compilation/*.cmi
@@ -42,6 +52,24 @@ src/translator/parsing/parsing.a
 src/translator/parsing/*.cmxa
 src/translator/translation/*.cmi
 src/translator/translation/*.cmx
+src/translator/compilation/compilation.cma
+src/translator/exceptionHandling/exceptionHandling.cma
+src/translator/instantiation/instantiation.cma
+src/translator/parsing/lexer.ml
+src/translator/parsing/parser.ml
+src/translator/compilation/nameResolve.cmo
+src/translator/compilation/types.cmo
+src/translator/exceptionHandling/errorDico.cmo
+src/translator/exceptionHandling/exceptHandler.cmo
+src/translator/exceptionHandling/msgDico.cmo
+src/translator/instantiation/instantiation.cmo
+src/translator/translation/codeGeneration.cmo
+src/translator/translation/libraryManager.cmo
+src/translator/translation/translator.cmo
+src/translator/translation/versiondate.cmo
+
+
+
 
 #
 #generated .def files (windows)

@@ -21,6 +21,8 @@ import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
@@ -29,7 +31,6 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 
 /**
  * Xcos entry point class 
@@ -50,7 +51,7 @@ public final class Xcos {
     /** Palette creation */
     static {
 	/* load scicos libraries (macros) */
-	XcosInterpreterManagement.requestScilabExec("loadScicosLibs();");
+	ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
     }
 
     /**
