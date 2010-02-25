@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  */
 public final class StyleMap extends HashMap<String, String> {
 	
-	private static final Pattern P = Pattern.compile("(\\w+)(=(\\w+))?;?");
+	private static final Pattern P = Pattern.compile("(\\w+)(=(\\p{ASCII}+))?;?");
 	private static final int KEY_GROUP = 1;
 	private static final int VALUE_GROUP = 3;
 	

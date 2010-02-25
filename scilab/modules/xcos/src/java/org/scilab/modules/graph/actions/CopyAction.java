@@ -61,8 +61,6 @@ public final class CopyAction extends VertexSelectionDependantAction {
     	TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(), e.getID(), e.getActionCommand()));
     	
     	// Enable the paste action
-    	ScilabGraph g = getGraph(e);
-    	PasteAction p = GraphActionManager.get(g, PasteAction.class);
-    	p.setEnabled(true);
+    	GraphActionManager.setEnable(PasteAction.class, true);
     }
 }

@@ -78,11 +78,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		    ((BasicBlock) obj).setSimulationFunctionType(type);
 		}
 	    }
-
-	    if (obj instanceof SuperBlock) {
-		((SuperBlock) obj).setChild(null);
-	    }
-
+	    
 	    NamedNodeMap attrs = node.getAttributes();
 	    for (int i = 0; i < attrs.getLength(); i++) {
 		Node attr = attrs.item(i);
