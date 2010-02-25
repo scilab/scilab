@@ -344,6 +344,10 @@
 				RelativePath="..\..\sci_gateway\cpp\sci_functionlist.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\sci_whereis.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

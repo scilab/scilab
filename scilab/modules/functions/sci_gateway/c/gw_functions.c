@@ -33,7 +33,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //execstr
 	{sci_librarieslist,"librarieslist"},
 	{sci_libraryinfo,"libraryinfo"},
-	{sci_whereis,"whereis"}
+	{NULL, ""} //whereis
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)
