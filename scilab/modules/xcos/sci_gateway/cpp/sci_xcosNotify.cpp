@@ -26,7 +26,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_xcos_utils;
+using namespace org_scilab_modules_graph_utils;
 /*--------------------------------------------------------------------------*/
 int sci_xcosNotify(char *fname,unsigned long fname_len)
 {

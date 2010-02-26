@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-25 15:22+0000\n"
+"PO-Revision-Date: 2010-02-13 11:20+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -93,20 +93,25 @@ msgid "%s: Empty function (use -function option)."
 msgstr "%s: 空関数(-function オプション使用)"
 
 #, c-format
-msgid "%s: Expected boolean but got %s instead"
-msgstr "%s: ブーリアンを期待しましたが %s を代わりに得ました"
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgstr "%1$s: 入力 #%3$d で変数 %2$s にブーリアンを想定しました、しかし %4$s を代わりに得ました。"
 
 #, c-format
-msgid "%s: Expected function but got %s instead"
-msgstr "%s: 関数を期待しましたが %s を代わりに得ました"
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgstr "%1$s: 入力 #%3$d で変数 %2$s に関数を想定しました、しかし %4$s を代わりに得ました。"
 
 #, c-format
-msgid "%s: Expected real variable but got %s instead"
-msgstr "%s: 実変数を期待しましたが %s を代わりに得ました"
+msgid ""
+"%s: Expected real variable for variable %s at input #%d, but got %s instead."
+msgstr "%1$s: 入力 #%3$d で変数 %2$s に実変数を想定しました、しかし %4$s を代わりに得ました。"
 
 #, c-format
-msgid "%s: Expected string variable but got %s instead"
-msgstr "%s: 文字列変数を期待しましたが %s を代わりに得ました"
+msgid ""
+"%s: Expected string variable for variable %s at input #%d, but got %s "
+"instead."
+msgstr "%1$s: 入力 #%3$d の変数 %2$s で文字を想定しました、しかし、代わりに %4$s を得ました。"
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -238,9 +243,21 @@ msgstr "%s: boundsmaxベクトルは、行の行列と予想されます、し�
 
 #, c-format
 msgid ""
+"%s: The boundsmax vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr "%s: boundsmaxベクトルは、%d 列を持っていると予想します、しかし、現在の形は、%d x %d です"
+
+#, c-format
+msgid ""
 "%s: The boundsmin vector is expected to be a row matrix, but current shape "
 "is %d x %d"
 msgstr "%s: boundsminベクトルは、行の行列と予想されます、しかし、現在の形は %d x %d です"
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr "%s: boundsminベクトルは、%d 列を持っていると予想します、しかし、現在の形は、%d x %d です"
 
 #
 # File: sci_gateway/c/sci_qld.c, line: 154
@@ -266,13 +283,20 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a row matrix, but current shape is %d x "
-"%d"
-msgstr "%s: lenベクトルは、行の行列と予想します、しかし、現在の形は、%d x %d です"
+"%d."
+msgstr "%s: lenベクトルは、列行列と予想します、しかし、現在の形は、%d x %dです。"
 
 #, c-format
 msgid ""
 "%s: The len vector is expected to be a scalar, but current shape is %d x %d"
 msgstr "%s: lenベクトルは、スカラーと予想します、しかし、現在の形は、%d x %d です"
+
+#, c-format
+msgid ""
+"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
+"is %d x %d while current shape of len is %d x %d."
+msgstr ""
+"%s: lenベクトルは、x0点で一貫しませんでした。現在のlenの形が %d x %d である間、現在のxoの形は、%d x %d です。"
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -357,6 +381,12 @@ msgid ""
 msgstr "%s: x0ベクトルは、行の行列と予想します、しかし、現在の形は、%d x %d です"
 
 #, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d."
+msgstr "%s: x0ベクトルは、列行列と予想されます、しかし、現在の形は、%d x %d です。"
+
+#, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr "%s: 多すぎる反復(%d 以上)。\n"
 
@@ -382,7 +412,7 @@ msgstr "%1$s: %3$s オプション の想定しない負の値 %2$s"
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 0 から 7 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 0 から 7 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -390,14 +420,14 @@ msgstr "%s: 入力引数で不正な数値: 0 から 7 が予想されたので 
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 1 から 3 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 1 から 3 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
-msgstr "%s: 入力引数で不正な数値: 2 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 2 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -405,7 +435,7 @@ msgstr "%s: 入力引数で不正な数値: 2 が予想されたので %d を提
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 2 から 3 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 2 から 3 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -413,7 +443,7 @@ msgstr "%s: 入力引数で不正な数値: 2 から 3 が予想されたので 
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 1 から 4 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 1 から 4 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -421,7 +451,7 @@ msgstr "%s: 入力引数で不正な数値: 1 から 4 が予想されたので 
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 2 から 5 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 2 から 5 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -429,7 +459,7 @@ msgstr "%s: 入力引数で不正な数値: 2 から 5 が予想されたので 
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 2 から 6 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 2 から 6 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -437,7 +467,7 @@ msgstr "%s: 入力引数で不正な数値: 2 から 6 が予想されたので 
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 6 から 7 が予想されたので %d を提供します。"
+msgstr "%s: 入力引数の数が不正です: 6 から 7 が予想されたので %d を提供します。"
 
 #
 # File: macros/derivative.sci, line: 37
@@ -445,7 +475,7 @@ msgstr "%s: 入力引数で不正な数値: 6 から 7 が予想されたので 
 msgid ""
 "%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
 "expected."
-msgstr "%s: 入力引数で不正な数値: 3 から 5 が予想されたので %d を提供します。"
+msgstr "%s: 出力引数の数が不正です: 3 から 5 が予想されたので %d を提供します。"
 
 #, c-format
 msgid ""
@@ -515,19 +545,19 @@ msgstr "%s: 行列の分母は、平方でなくてはなりません。\n"
 # File: macros/derivative.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of arguments : %d expected while %d given"
-msgstr "%1$s: 入力引数で不正な数値: %3$d が与えられるので %2$d を想定します。"
+msgstr "%1$s: 入力引数の数が不正です: %3$d が与えられるので %2$d を想定します。"
 
 #
 # File: macros/fit_dat.sci, line: 78
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数(s)の不正な数値です。\n"
+msgstr "%s: 入力引数の数が不正です。\n"
 
 #
 # File: macros/derivative.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数で不正な数値: %d から %d が想定されます。\n"
+msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
 
 #
 # File: macros/karmarkar.sci, line: 28
@@ -567,7 +597,7 @@ msgstr "%s: 入力引数 #%d で不正な型: N-次元配列 を想定します�
 # File: macros/derivative.sci, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
-msgstr "%s: 入力引数 #%s で不整な型: 外を想定します。\n"
+msgstr "%s: 入力引数 #%s で不正な型: 外部を想定します。\n"
 
 #
 # File: macros/karmarkar.sci, line: 39

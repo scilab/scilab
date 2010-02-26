@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="BuildMacros"
 	ProjectGUID="{66F2FB48-5D68-4445-A856-119F685A371B}"
+	RootNamespace="BuildMacros"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -29,7 +30,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
-				ReBuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
 				PreprocessorDefinitions=""
@@ -51,7 +52,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
-				ReBuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
 				PreprocessorDefinitions=""
@@ -73,7 +74,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
-				ReBuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
 				PreprocessorDefinitions=""
@@ -95,7 +96,7 @@
 			<Tool
 				Name="VCNMakeTool"
 				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
-				ReBuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
+				ReBuildCommandLine="call cleanmacros.bat&#x0D;&#x0A;&quot;$(SolutionDir)bin\scilex&quot; -ns -nwni -f &quot;$(ProjectDir)buildmacros.sce&quot;&#x0D;&#x0A;"
 				CleanCommandLine="cleanmacros.bat"
 				Output=""
 				PreprocessorDefinitions=""

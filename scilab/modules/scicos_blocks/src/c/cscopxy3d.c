@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cscopxy3d.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CSCOPXY3D is a scope in 2D which draw its input as a XYZ scope, there is no animation, everything is keep in memory instead of CANIMXY3D
    \see CSCOPXY3D.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -34,29 +36,34 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int * ipar; //Integer Parameters
-  int color_number; //Flag on Color
-  int * color   ;
-  int * line_size;
-  int animed;
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int * ipar = NULL; //Integer Parameters
+  int color_number = 0; //Flag on Color
+  int * color =  0 ;
+  int * line_size = NULL;
+  int animed = 0;
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int nipar;
-  double * rpar; //Reals parameters
-  double xmin, xmax, ymin, ymax, zmin, zmax,alpha, theta; //Ymin and Ymax are vectors here
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
+  int nipar = 0;
+  double * rpar = NULL; //Reals parameters
+  double xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0, zmin = 0.0, zmax = 0.0,alpha = 0.0, theta = 0.0; //Ymin and Ymax are vectors here
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
   int dimension = 3;
-  int i;
-  int size=0;
+  int i = 0;
+  int size = 0;
+  char *label = NULL;
   scoGraphicalObject ShortDraw;
   scoGraphicalObject LongDraw;
 
@@ -66,6 +73,7 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
   win = ipar[0];
   color_number = ipar[1];
   buffer_size = ipar[2];
+  label = GetLabelPtrs(block);
   color = (int*)scicos_malloc(color_number*sizeof(int));
   line_size = (int*)scicos_malloc(color_number*sizeof(int));
   for(i = 0 ; i < color_number ; i++)
@@ -103,7 +111,7 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
     {
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->alpha = alpha;
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = theta;	
-      scoAddTitlesScope(*pScopeMemory,"x","y","z");
+      scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
       
 	
       for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory,0) ; i++)
@@ -127,12 +135,13 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
   scicos_free(color);
   scicos_free(line_size);
 }
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cscopxy3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cscopxy3d(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cscopxy3d(scicos_block * block, int flag)
 {
   /* Declarations*/
   int i;
@@ -214,3 +223,4 @@ void cscopxy3d(scicos_block * block, int flag)
       //free the memory which is allocated at each turn by some variables
     }
 }
+/*--------------------------------------------------------------------------*/ 

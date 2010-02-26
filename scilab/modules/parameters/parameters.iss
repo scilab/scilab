@@ -18,8 +18,6 @@ Source: modules\{#PARAMETERS}\changelog.txt; DestDir: {app}\modules\{#PARAMETERS
 Source: modules\{#PARAMETERS}\etc\{#PARAMETERS}.quit; DestDir: {app}\modules\{#PARAMETERS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\etc\{#PARAMETERS}.start; DestDir: {app}\modules\{#PARAMETERS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#PARAMETERS}\help\addchapter.sce; DestDir: {app}\modules\{#PARAMETERS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#PARAMETERS}\macros\lib; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\names; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\*.bin; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

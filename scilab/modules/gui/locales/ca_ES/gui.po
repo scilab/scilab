@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -557,6 +557,11 @@ msgstr ""
 "número %d no existeix.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
@@ -900,8 +905,8 @@ msgstr "Retalla"
 msgid "Display selection"
 msgstr "Selecció de vista"
 
-msgid "Do you relly want to quit Scilab?"
-msgstr "Voleu sortir de l'Scilab?"
+msgid "Do you really want to quit Scilab?"
+msgstr ""
 
 msgid "Edit in the Scilab Text Editor"
 msgstr "Edita a l'editor de text de l'Scilab"
@@ -1105,6 +1110,9 @@ msgstr "Imatge SVG"
 
 msgid "Save and execute"
 msgstr "Desa i executa"
+
+msgid "Scicos files"
+msgstr ""
 
 msgid "Scilab &ATOMS Web Site"
 msgstr "Pàgina web de l'&ATOMS d'Scilab"
@@ -1522,13 +1530,10 @@ msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: S'ha trobat un menú en cascada buit."
 
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"Avís: Malgrat els missatges anteriors, heu escollit utilitzar el "
-"Scilab amb capacitats gràfiques avançades. Escriviu \"\"help usecanvas\"\" "
-"per més informació.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-01-30 18:01+0100\n"
 
@@ -60,11 +60,6 @@ msgstr " 輸入行長度超過緩衝區長度: %d\n"
 # File: src/c/errmsg.c, line: 1614
 msgid "\"unknown data\""
 msgstr "\"未知數據\""
-
-#
-# File: src/c/errmsg.c, line: 929
-msgid "%: This method is NOT implemented.\n"
-msgstr "%: 此法未實做 (implemented).\n"
 
 #
 # File: src/c/errmsg.c, line: 463
@@ -227,11 +222,13 @@ msgstr "%s: 模擬時之初始常數發生問題.\n"
 msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: 模擬器要求停止 (ind=0)\n"
 
-#
-# File: src/c/errmsg.c, line: 1419
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s:  colocation 矩陣為奇異.\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -546,11 +543,9 @@ msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 633
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s: 奇異或非對稱問題.\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1404
@@ -607,10 +602,8 @@ msgstr "%s: window 尺寸限制小於 2^16.\n"
 msgid "'o' format not allowed."
 msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 1198
-msgid "A sparse matrix entry is defined with two differents values.\n"
-msgstr "稀疏矩陣之實體是由兩個不同數值定義.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 1166
@@ -623,10 +616,8 @@ msgstr "參數型態須為  boolean.\n"
 msgid "Arguments are :\n"
 msgstr "參數為 :\n"
 
-#
-# File: src/c/msgs.c, line: 1045
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
 
 #
@@ -638,10 +629,8 @@ msgstr "錯誤的呼叫基本函數 (primitive): %s\n"
 msgid "Bad conversion."
 msgstr ""
 
-#
-# File: src/c/errmsg.c, line: 1327
-msgid "Binary direct acces files must be opened by 'file'.\n"
-msgstr "二元直接存取檔 (Binary direct acces files)  必須以 'file' 開啟.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 694
@@ -740,10 +729,8 @@ msgstr "輸入名稱找不到.\n"
 msgid "Error while linking.\n"
 msgstr "聯結 (linking) 時錯誤.\n"
 
-#
-# File: src/c/errmsg.c, line: 1435
-msgid "Error while writing in file,(disk full or deleted file.\n"
-msgstr "寫入檔案時錯誤,(硬碟已滿或檔案已清除.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 129
@@ -1124,7 +1111,7 @@ msgstr "未在  scilab 中實作 (implemented)...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "此處不能使用空 (Null) 變數 .\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
 
 #
@@ -1180,16 +1167,14 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quapro 在退化點上遇到 cycles.\n"
 
 #
-# File: src/c/msgs.c, line: 562
-#, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "矩陣秩缺陷. rank = %d\n"
-
-#
 # File: src/c/msgs.c, line: 793
 #, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "矩陣秩缺陷 (Rank deficient) : rank = %s  - tol = %s .\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 770
@@ -1375,21 +1360,15 @@ msgstr ""
 msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "定義過多函數 (最多 #:%d).\n"
 
-#
-# File: src/c/errmsg.c, line: 1430
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "全域變數太多! , 最高數為 %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
 
-#
-# File: src/c/msgs.c, line: 1171
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "所選擇之方塊之輸入/輸出實體(entries)太多.\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
 
-#
-# File: src/c/msgs.c, line: 1165
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "所選擇之方塊之輸入/輸出埠 (ports)太多.\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
 
 #
 # File: src/c/errmsg.c, line: 814
@@ -1540,11 +1519,9 @@ msgstr "警告:\n"
 msgid "Warning:  Result may be inaccurate.\n"
 msgstr "警告:  計算結果可能不正確.\n"
 
-#
-# File: src/c/msgs.c, line: 1075
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
 
 #
@@ -1568,10 +1545,8 @@ msgstr ""
 msgid "Warning: function is already compiled.\n"
 msgstr ""
 
-#
-# File: src/c/msgs.c, line: 1069
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
 
@@ -1590,10 +1565,8 @@ msgstr "警告: 載入之檔案為舊版 Scilab 或不同硬體架構之 Scilab 
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "警告: 用法 '=' 已廢棄，改用 '=='.\n"
 
-#
-# File: src/c/msgs.c, line: 555
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "警告: 用法  eye rand或 ones 已廢棄.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
 
 #
 # File: src/c/msgs.c, line: 1093

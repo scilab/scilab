@@ -1,24 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
-
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 open Num
 
@@ -44,7 +44,7 @@ and nature =
   | ArcHyperbolicTangent of t
   | ArcSine of t
   | ArcTangent of t
-  | BlackBox of string * t list
+  | BlackBox of string * argument list
   | BooleanValue of bool
   | Constant of string
   | Cosine of t
@@ -54,10 +54,12 @@ and nature =
   | Exponential of t
   | Floor of t
   | Greater of t * t
+  | GreaterEqual of t * t
   | HyperbolicCosine of t
   | HyperbolicSine of t
   | HyperbolicTangent of t
   | If of t * t * t
+  | Integer of int32
   | Logarithm of t
   | Multiplication of t list
   | Not of t
@@ -65,19 +67,49 @@ and nature =
   | Or of t list
   | Parameter of int
   | PartialDerivative of t * t
+  | Pre of t
   | RationalPower of t * num
   | Sign of t
   | Sine of t
+  | String of string
   | Tangent of t
   | TimeVariable
   | Variable of int
 
+and argument =
+  | ScalarArgument of t
+  | ArrayArgument of int list (* dimensions *) * t array (* flatten array *)
 
 (* Node utilities *)
 
 let nature node = node.nature
 
 let hash node = node.hash
+
+(* Argument utilities *)
+
+let argument_hash = function
+  | ScalarArgument node -> node.hash
+  | ArrayArgument (dims, nodes) ->
+      (Hashtbl.hash dims lxor
+      Array.fold_left
+        (fun acc node -> acc lsl 2 + node.hash)
+        0x32fb7a88
+        nodes) land max_int
+
+(* Array utilities *)
+
+let eq_array nodes nodes' =
+  let l = Array.length nodes in
+  let rec eq_array_from i =
+    i = l || nodes.(i) == nodes'.(i) && eq_array_from (i + 1) in
+  l = Array.length nodes' && eq_array_from 0
+
+let exists_array p xs =
+  let l = Array.length xs in
+  let rec exists_array_from i =
+    i < l && (p xs.(i) || exists_array_from (i + 1)) in
+  exists_array_from 0
 
 (* List utilities *)
 
@@ -224,14 +256,26 @@ let arcTangentNodeSet =
   in NodeSet.create 101 equal hash create
 
 let blackBoxNodeSet =
-  let equal (string, nodeList) node = match node.nature with
-    | BlackBox (name, nodes) -> name = string && eq_list nodeList nodes
+  let rec same_arguments args args' = match args, args' with
+    | [], [] -> true
+    | [], _ :: _ | _ :: _, [] -> false
+    | ScalarArgument node :: args, ScalarArgument node' :: args'
+      when node == node' -> same_arguments args args'
+    | ArrayArgument (dims, nodes) :: args,
+      ArrayArgument (dims', nodes') :: args'
+      when dims = dims' && eq_array nodes nodes' ->
+        same_arguments args args'
+    | _ -> false in
+  let equal (string, argList) node = match node.nature with
+    | BlackBox (name, args) -> name = string && same_arguments argList args
     | _ -> invalid_arg "Argument mismatch."
-  and hash (string, nodes) =
+  and hash (string, args) =
     (GraphNodeSet.hash string +
-    List.fold_left (fun sum elt -> (sum lsl 3) + elt.hash) 0x20a0 nodes) land
-    max_int
-  and create (string, nodes) hash = create_node (BlackBox (string, nodes)) hash
+    List.fold_left
+      (fun sum arg -> (sum lsl 3) + argument_hash arg)
+      0x20a0
+      args) land max_int
+  and create (string, args) hash = create_node (BlackBox (string, args)) hash
   in NodeSet.create 101 equal hash create
 
 let constantNodeSet =
@@ -302,6 +346,17 @@ let greaterNodeSet =
   and create (node1, node2) hash = create_node (Greater (node1, node2)) hash
   in NodeSet.create 101 equal hash create
 
+let greaterEqualNodeSet =
+  let equal (node1, node2) node = match node.nature with
+    | GreaterEqual (leftHandNode, rightHandNode) ->
+        leftHandNode == node1 && rightHandNode == node2
+    | _ -> invalid_arg "Argument mismatch."
+  and hash (node1, node2) =
+    (node1.hash lsl 18) lxor (node2.hash + 0x11e02c02)
+  and create (node1, node2) hash =
+    create_node (GreaterEqual (node1, node2)) hash
+  in NodeSet.create 101 equal hash create
+
 let hyperbolicCosineNodeSet =
   let equal node1 node = match node.nature with
     | HyperbolicCosine node -> node == node1
@@ -337,6 +392,14 @@ let ifNodeSet =
     (node3.hash + 0x5d403a30)
   and create (node1, node2, node3) hash =
     create_node (If (node1, node2, node3)) hash
+  in NodeSet.create 101 equal hash create
+
+let integerNodeSet =
+  let equal i node = match node.nature with
+    | Integer i' -> i' = i
+    | _ -> invalid_arg "Argument mismatch."
+  and hash i = (Hashtbl.hash i lsl 2) lxor 0x11bf004
+  and create i hash = create_node (Integer i) hash
   in NodeSet.create 101 equal hash create
 
 let logarithmNodeSet =
@@ -417,6 +480,14 @@ let partialDerivativeNodeSet =
     create_node (PartialDerivative (node1, node2)) hash
   in NodeSet.create 101 equal hash create
 
+let preNodeSet =
+  let equal node1 node = match node.nature with
+    | Pre node -> node == node1
+    | _ -> invalid_arg "Argument mismatch."
+  and hash node1 = (node1.hash lsl 5) lxor 0x100050f0
+  and create node1 hash = create_node (Pre node1) hash
+  in NodeSet.create 101 equal hash create
+
 let rationalPowerNodeSet =
   let equal (node1, num) node = match node.nature with
     | RationalPower (argumentNode, num')  ->
@@ -441,6 +512,14 @@ let sineNodeSet =
     | _ -> invalid_arg "Argument mismatch."
   and hash node1 = (node1.hash lsl 6) lxor 0x8a8f00
   and create node1 hash = create_node (Sine node1) hash
+  in NodeSet.create 101 equal hash create
+
+let stringNodeSet =
+  let equal s node = match node.nature with
+    | String s' -> s' = s
+    | _ -> invalid_arg "Argument mismatch."
+  and hash s = (Hashtbl.hash s lsl 6) lxor 0x38a8f002
+  and create s hash = create_node (String s) hash
   in NodeSet.create 101 equal hash create
 
 let tangentNodeSet =
@@ -537,6 +616,9 @@ let create_floor node =  NodeSet.find_or_add node floorNodeSet
 
 let create_greater node node' = NodeSet.find_or_add (node, node') greaterNodeSet
 
+let create_greater_equal node node' =
+  NodeSet.find_or_add (node, node') greaterEqualNodeSet
+
 let create_hyperbolicCosine node =
   NodeSet.find_or_add node hyperbolicCosineNodeSet
 
@@ -547,6 +629,8 @@ let create_hyperbolicTangent node =
 
 let create_if node node' node'' =
   NodeSet.find_or_add (node, node', node'') ifNodeSet
+
+let create_integer i = NodeSet.find_or_add i integerNodeSet
 
 let create_logarithm node = NodeSet.find_or_add node logarithmNodeSet
 
@@ -572,12 +656,16 @@ let create_parameter i = NodeSet.find_or_add i parameterNodeSet
 let create_partialDerivative node node' =
   NodeSet.find_or_add (node, node') partialDerivativeNodeSet
 
+let create_pre node = NodeSet.find_or_add node preNodeSet
+
 let create_rationalPower node num =
   NodeSet.find_or_add (node, num) rationalPowerNodeSet
 
 let create_sign node = NodeSet.find_or_add node signNodeSet
 
 let create_sine node = NodeSet.find_or_add node sineNodeSet
+
+let create_string s = NodeSet.find_or_add s stringNodeSet
 
 let create_tangent node = NodeSet.find_or_add node tangentNodeSet
 
@@ -661,8 +749,8 @@ and symbolic_derivative node' =
   and ( / ) = symbolic_div
   and ( ** ) = symbolic_rationalPower
   in match node'.nature with
-    | Number _ | Constant _ | DiscreteVariable _ | Floor _ | Parameter _ |
-      Sign _ -> zero
+    | Integer _ | Number _ | Constant _ | DiscreteVariable _ | Floor _ |
+      Parameter _ | Sign _ | BlackBox (_, []) -> zero
     | BlackBox _ | PartialDerivative _| Variable _ ->
         create_derivative node' one_num
     | Addition nodes ->
@@ -695,13 +783,14 @@ and symbolic_derivative node' =
     | Multiplication (node :: nodes) ->
         let mult = create_multiplication nodes in
         symbolic_derivative node * mult + node * symbolic_derivative mult
+    | Pre node -> create_pre (symbolic_derivative node)
     | RationalPower (node, num) ->
         symbolic_derivative node * create_number num * node ** pred_num num
     | Sine node -> symbolic_derivative node * symbolic_cos node
     | Tangent node -> symbolic_derivative node * (one + node' ** two_num)
     | TimeVariable -> one
-    | And _ | BooleanValue _ | Equality _ | Not _ | Or _ | Greater _ ->
-        invalid_arg "symbolic_derivative"
+    | And _ | BooleanValue _ | Equality _ | Not _ | Or _ | Greater _ |
+      GreaterEqual _ | String _ -> invalid_arg "symbolic_derivative"
 
 and symbolic_div node node' =
   if node' == zero then raise (Infinite_result "Division by zero.")
@@ -719,8 +808,9 @@ and symbolic_exp node =
   else if node == one then e
   else create_exponential node
 
-and symbolic_ge node node' =
-  symbolic_or (symbolic_gt node node') (symbolic_eq node node')
+and symbolic_ge node node' = match node.nature, node'.nature with
+  | Number num, Number num' -> create_booleanValue (ge_num num num')
+  | _ -> create_greater_equal node node'
 
 and symbolic_gt node node' = match node.nature, node'.nature with
   | Number num, Number num' -> create_booleanValue (gt_num num num')
@@ -764,6 +854,7 @@ and symbolic_min node node' = symbolic_if (symbolic_gt node node') node' node
 and symbolic_minus node =
   if node == zero then zero
   else match node.nature with
+    | Integer i -> create_integer (Int32.neg i)
     | Number num -> create_number (minus_num num)
     | Addition nodes ->
         create_addition (
@@ -794,28 +885,14 @@ and symbolic_partial_derivative_with step var node' =
   and ( * ) = symbolic_mult
   and ( / ) = symbolic_div
   and ( ** ) = symbolic_rationalPower in
-  let partial_blackBox_derivatives s args =
-    let dx_of_x x = step * (symbolic_if (symbolic_gt one (symbolic_abs x)) one (symbolic_abs x)) in
-    let rec augmented_arguments_list = function
-      | [] -> []
-      | arg :: args ->
-          (arg + dx_of_x arg :: args) :: List.map (fun aug_args -> arg :: aug_args) (augmented_arguments_list args)
-    and partial_derivatives aug_argss =
-      List.map2
-        (fun aug_args arg -> (create_blackBox s aug_args - create_blackBox s args) / dx_of_x arg)
-        aug_argss
-        args
-    in
-    partial_derivatives (augmented_arguments_list args)
-  in
   let rec partial_derivative node =
     if node == var then one
     else match node.nature with
-      | Number _ | Constant _ | Derivative _ | DiscreteVariable _ | Floor _ |
-        Parameter _ | Sign _ | TimeVariable | Variable _ -> zero
-      | BlackBox (s, nodes) ->
-          let dfs = partial_blackBox_derivatives s nodes in
-          List.fold_left2 (fun acc node df -> acc + partial_derivative node * df) zero nodes dfs
+      | Integer _ | Number _ | Constant _ | Derivative _ | DiscreteVariable _ |
+        Floor _ | Parameter _ | Sign _ | TimeVariable | Variable _ |
+        BlackBox (_, []) -> zero
+      | BlackBox _ ->
+          let node' = replace var (var + step) node in (node' - node) / step
       | PartialDerivative _ ->
           create_partialDerivative var node
       | Addition nodes ->
@@ -838,7 +915,7 @@ and symbolic_partial_derivative_with step var node' =
       | HyperbolicCosine node' -> partial_derivative node' * symbolic_sinh node'
       | HyperbolicSine node' -> partial_derivative node' * symbolic_cosh node'
       | HyperbolicTangent node' ->
-          partial_derivative node' * (one - node' ** two_num)
+          partial_derivative node' * (one - node ** two_num)
       | If (cond, node', node'') ->
           symbolic_if cond (partial_derivative node') (partial_derivative node'')
       | Logarithm node' -> partial_derivative node' / node'
@@ -847,17 +924,24 @@ and symbolic_partial_derivative_with step var node' =
       | Multiplication (node' :: nodes) ->
           let mult = create_multiplication nodes in
           partial_derivative node' * mult + node' * partial_derivative mult
+      | Pre node' -> create_pre (partial_derivative node')
       | RationalPower (node', num) ->
           partial_derivative node' * create_number num * node' ** pred_num num
       | Sine node' -> partial_derivative node' * symbolic_cos node'
       | Tangent node' -> partial_derivative node' * (one + node ** two_num)
-      | And _ | BooleanValue _ | Equality _ | Not _ | Or _ | Greater _ ->
+      | And _ | BooleanValue _ | Equality _ | Not _ | Or _ | Greater _ |
+        GreaterEqual _ | String _ ->
           invalid_arg "partial_derivative : Invalid argument."
   in partial_derivative node'
 
 and symbolic_power node node' = match node'.nature with
+  | Integer i -> symbolic_rationalPower node (num_of_int (Int32.to_int i))
   | Number num' -> symbolic_rationalPower node num'
   | _ -> create_exponential (symbolic_mult node' (symbolic_log node))
+
+and symbolic_pre node = match node.nature with
+  | Number _ -> node
+  | _ -> create_pre node
 
 and symbolic_rationalPower node num' =
   if node == zero && num' = zero_num then
@@ -1100,17 +1184,20 @@ and output out_channel node =
   let mult_precedence = 50 in
   let rec precedence node = match node.nature with
     | Addition [] | And [] | BooleanValue _ | Constant _ | DiscreteVariable _ |
-      Multiplication [] | Or [] | Parameter _ | TimeVariable | Variable _ ->
+      Multiplication [] | Or [] | Parameter _ | TimeVariable | Variable _ |
+      String _ ->
         1000
     | ArcCosine _ | ArcHyperbolicCosine _ | ArcHyperbolicSine _ |
       ArcHyperbolicTangent _ | ArcSine _ | ArcTangent _ | BlackBox _ |
       Cosine _ | Derivative _ | Exponential _ | Floor _ | HyperbolicCosine _ |
       HyperbolicSine _ | HyperbolicTangent _ | If _ | Logarithm _ | Not _ |
-      PartialDerivative _ | Sign _ | Sine _| Tangent _ -> 10000
+      PartialDerivative _ | Pre _ | Sign _ | Sine _| Tangent _ -> 10000
     | Addition _ -> 10
     | And _ -> 5
     | Equality _ -> 3
     | Multiplication _ -> mult_precedence
+    | Integer i when i < 0l -> 75
+    | Integer _ -> 1000
     | Number (Ratio _) -> mult_precedence
     | Number num when lt_num num zero_num -> 75
     | Number (Int _) | Number (Big_int _)  -> 1000
@@ -1118,6 +1205,7 @@ and output out_channel node =
     | RationalPower (_, num) when lt_num num zero_num -> mult_precedence
     | RationalPower _ -> 100
     | Greater _ -> 9
+    | GreaterEqual _ -> 9
   and output'' node = match node.nature with
     | Addition [] -> output_char' '0'
     | Addition nodes' ->
@@ -1170,11 +1258,9 @@ and output out_channel node =
         output_string' "atanh"; output' (precedence node) node'
     | ArcSine node' -> output_string' "asin"; output' (precedence node) node'
     | ArcTangent node' -> output_string' "atan"; output' (precedence node) node'
-    | BlackBox (name, node' :: nodes') ->
-      output_string' name; output_char' '('; output' 0 node';
-      List.iter (fun elt -> output_string' ", "; output' 0 elt) nodes';
-      output_char' ')'
-    | BlackBox _ -> invalid_arg "Invalid black box node"
+    | BlackBox (name, args) ->
+        output_string' name;
+        output_char' '('; output_arguments args; output_char' ')'
     | BooleanValue b -> output_string' (if b then "true" else "false")
     | Constant s -> output_string' s
     | Cosine node' -> output_string' "cos"; output' (precedence node) node'
@@ -1254,7 +1340,12 @@ and output out_channel node =
             output_char' ')'
       end
     | Not node' -> output_string' "not"; output' (precedence node) node'
-    | Number num -> output_string' (string_of_num num)
+    | Integer i -> output_string' (Printf.sprintf "%ld" i)
+    | Number num ->
+        let s = string_of_float (float_of_num num) in
+        if String.contains s '.' then output_string' s
+        else output_string' (s ^ ".")
+    | String s ->  output_string' (Printf.sprintf "\"%s\"" s)
     | Or [] -> output_string' "false"
     | Or (node' :: nodes') ->
         output' (precedence node) node';
@@ -1266,6 +1357,7 @@ and output out_channel node =
     | PartialDerivative (node', node'') ->
         output_string' "pder("; output' 0 node'';
         output_string' ", "; output' 0 node'; output_char' ')'
+    | Pre node' -> output_string' "pre"; output' (precedence node) node'
     | RationalPower (node', num) when ge_num num zero_num ->
         output' (precedence node) node'; output_string' " ^ ";
         begin match num with
@@ -1290,6 +1382,9 @@ and output out_channel node =
     | Greater (node', node'') ->
         output' (precedence node) node'; output_string' " > ";
         output' (precedence node) node''
+    | GreaterEqual (node', node'') ->
+        output' (precedence node) node'; output_string' " >= ";
+        output' (precedence node) node''
     | Tangent node' -> output_string' "tan"; output' (precedence node) node'
     | TimeVariable -> output_string' "time"
     | Variable i -> output_string' "variable("; output_int' i; output_char' ')'
@@ -1300,56 +1395,152 @@ and output out_channel node =
     if precedence node <= prec then begin
       output_string' "(";  output'' node; output_string' ")"
     end else output'' node
-  in output' 0 node
+  and output_arguments args =
+    let rec output_arguments' = function
+      | [] -> ()
+      | [arg] -> output_argument arg
+      | arg :: args ->
+          output_argument arg; output_string' ", "; output_arguments' args in
+    output_char' '('; output_arguments' args; output_char' ')'
+  and output_argument arg =
+    match arg with
+    | ScalarArgument node -> output' 0 node
+    | ArrayArgument (dims, nodes) -> output_array_argument dims nodes
+  and output_array_argument dims nodes =
+    let rec repeat n printf i =
+      if n = 0 then i
+      else if n = 1 then printf i
+      else
+        let i = printf i in
+        output_string' ", ";
+        repeat (n - 1) printf i in
+    let rec output_array_argument' dim dims i = match dims with
+      | [] -> repeat dim (fun i -> output' 0 nodes.(i); i + 1) i
+      | dim' :: dims ->
+          repeat
+            dim
+            (fun i ->
+              output_char' '{';
+              let i = output_array_argument' dim' dims i in
+              output_char' '}'; i)
+            i in
+    match dims with
+    | [] -> assert false
+    | dim :: dims ->
+        output_char' '{';
+        let _ = output_array_argument' dim dims 0 in ();
+        output_char' '}' in
+  output' 0 node
 
 
 (* Symbolic manipulation helpers *)
 
 and exists p node =
+  let exists_in_argument = function
+    | ScalarArgument node -> exists p node
+    | ArrayArgument (_, nodes) -> exists_array p nodes in
   p node || match node.nature with
     | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> false
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> false
     | ArcCosine node | ArcHyperbolicCosine node |
       ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
       ArcTangent node | Cosine node | Derivative (node, _) |
       Exponential node | Floor node | HyperbolicCosine node |
       HyperbolicSine node | HyperbolicTangent node | Logarithm node |
-      Not node | RationalPower (node, _) | Sign node | Sine node |
+      Not node | Pre node | RationalPower (node, _) | Sign node | Sine node |
       Tangent node -> exists p node
     | Equality (node1, node2) | Greater (node1, node2) |
-      PartialDerivative (node1, node2) -> exists p node1 || exists p node2
+      GreaterEqual (node1, node2) | PartialDerivative (node1, node2) ->
+        exists p node1 || exists p node2
     | If (node1, node2, node3) ->
         exists p node1 || exists p node2 || exists p node3
-    | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
-      Or nodes -> List.exists (exists p) nodes
+    | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
+        List.exists (exists p) nodes
+    | BlackBox (_, args) -> List.exists exists_in_argument args
 
 and is_subnode_of node node' = exists (fun node -> node == node') node
 
-and variables_of node = match node.nature with
-  | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
-    TimeVariable -> []
-  | Variable _ -> [node]
+and assignable_parameters_of node =
+  let assignable_parameters_of_argument = function
+    | ScalarArgument node -> assignable_parameters_of node
+    | ArrayArgument (_, nodes) ->
+        Array.fold_left
+          (fun acc node -> union (assignable_parameters_of node) acc)
+          []
+          nodes in
+  match node.nature with
+  | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Pre _ |
+    Variable _ | TimeVariable | Integer _ | String _ -> []
+  | Parameter _ -> [node]
   | ArcCosine node | ArcHyperbolicCosine node |
     ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
     ArcTangent node | Cosine node | Derivative (node, _) |
     Exponential node | Floor node | HyperbolicCosine node |
     HyperbolicSine node | HyperbolicTangent node | Logarithm node |
     Not node | RationalPower (node, _) | Sign node | Sine node |
+    Tangent node -> assignable_parameters_of node
+  | Equality (node1, node2) | Greater (node1, node2) |
+    GreaterEqual (node1, node2) | PartialDerivative (node1, node2) |
+    If (_, node1, node2) ->
+      union
+        (assignable_parameters_of node1)
+        (assignable_parameters_of node2)
+  | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
+      List.fold_left
+        (fun acc node -> union (assignable_parameters_of node) acc)
+        []
+        nodes
+  | BlackBox (_, args) ->
+      List.fold_left
+        (fun acc arg -> union (assignable_parameters_of_argument arg) acc)
+        []
+        args
+
+and variables_of node =
+  let variables_of_argument = function
+    | ScalarArgument node -> variables_of node
+    | ArrayArgument (_, nodes) ->
+        Array.fold_left
+          (fun acc node -> union (variables_of node) acc)
+          []
+          nodes in
+  match node.nature with
+  | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
+    TimeVariable | Integer _ | String _ -> []
+  | Variable _ -> [node]
+  | ArcCosine node | ArcHyperbolicCosine node |
+    ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
+    ArcTangent node | Cosine node | Derivative (node, _) |
+    Exponential node | Floor node | HyperbolicCosine node |
+    HyperbolicSine node | HyperbolicTangent node | Logarithm node |
+    Not node | Pre node | RationalPower (node, _) | Sign node | Sine node |
     Tangent node -> variables_of node
   | Equality (node1, node2) | Greater (node1, node2) |
-    PartialDerivative (node1, node2) ->
+    GreaterEqual (node1, node2) | PartialDerivative (node1, node2) ->
       union (variables_of node1) (variables_of node2)
   | If (node1, node2, node3) ->
       union
         (variables_of node1)
         (union (variables_of node2) (variables_of node3))
-  | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
-    Or nodes ->
+  | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
       List.fold_left (fun acc node -> union (variables_of node) acc) [] nodes
+  | BlackBox (_, args) ->
+      List.fold_left
+        (fun acc arg -> union (variables_of_argument arg) acc)
+        []
+        args
 
-and assignable_variables_of node = match node.nature with
+and assignable_variables_of node =
+  let assignable_variables_of_argument = function
+    | ScalarArgument node -> assignable_variables_of node
+    | ArrayArgument (_, nodes) ->
+        Array.fold_left
+          (fun acc node -> union (assignable_variables_of node) acc)
+          []
+          nodes in
+  match node.nature with
   | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
-    TimeVariable -> []
+    Pre _ | TimeVariable | Integer _ | String _ -> []
   | Variable _ -> [node]
   | ArcCosine node | ArcHyperbolicCosine node |
     ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
@@ -1359,35 +1550,88 @@ and assignable_variables_of node = match node.nature with
     RationalPower (node, _) | Sign node | Sine node | Tangent node ->
       assignable_variables_of node
   | Equality (node1, node2) | Greater (node1, node2) |
-    PartialDerivative (node1, node2) ->
+    GreaterEqual (node1, node2) | PartialDerivative (node1, node2) ->
       union (assignable_variables_of node1) (assignable_variables_of node2)
   | If (_, node1, node2) ->
       union (* intersection is too pessimistic (since v.1.1.4. *)
         (assignable_variables_of node1)
         (assignable_variables_of node2)
-  | Addition nodes | BlackBox (_, nodes) | Multiplication nodes ->
+  | Addition nodes | Multiplication nodes ->
       List.fold_left
         (fun acc node -> union (assignable_variables_of node) acc)
         []
         nodes
+  | BlackBox (_, args) ->
+      List.fold_left
+        (fun acc arg -> union (assignable_variables_of_argument arg) acc)
+        []
+        args
   | And _ | Or _ | Not _ -> []
 
-and derivatives_of node = match node.nature with
+and derivatives_of node =
+  let derivatives_of_argument = function
+    | ScalarArgument node -> derivatives_of node
+    | ArrayArgument (_, nodes) ->
+        Array.fold_left
+          (fun acc node -> union (derivatives_of node) acc)
+          []
+          nodes in
+  match node.nature with
   | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
-    TimeVariable | Variable _ -> []
+    TimeVariable | Variable _ | Integer _ | String _ -> []
   | ArcCosine node' | ArcHyperbolicCosine node' |
     ArcHyperbolicSine node' | ArcHyperbolicTangent node' | ArcSine node' |
     ArcTangent node' | Cosine node' | Exponential node' | Floor node' |
     HyperbolicCosine node' | HyperbolicSine node' | HyperbolicTangent node' |
-    Logarithm node' | Not node' | RationalPower (node', _) | Sign node' |
-    Sine node' | Tangent node' -> derivatives_of node'
+    Logarithm node' | Not node' | Pre node' | RationalPower (node', _) |
+    Sign node' | Sine node' | Tangent node' -> derivatives_of node'
   | Derivative _ -> [node]
-  | Equality (node1, node2) | Greater (node1, node2) | If (_, node1, node2) |
+  | Equality (node1, node2) | Greater (node1, node2) |
+    GreaterEqual (node1, node2) | If (_, node1, node2) |
     PartialDerivative (node1, node2) ->
       union (derivatives_of node1) (derivatives_of node2)
-  | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
-    Or nodes ->
+  | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
       List.fold_left (fun acc node -> union (derivatives_of node) acc) [] nodes
+  | BlackBox (_, args) ->
+      List.fold_left
+        (fun acc arg -> union (derivatives_of_argument arg) acc)
+        []
+        args
+
+and inputs_of node =
+  let inputs_of_argument = function
+    | ScalarArgument node -> inputs_of node
+    | ArrayArgument (_, nodes) ->
+        Array.fold_left
+          (fun acc node -> union (inputs_of node) acc)
+          []
+          nodes in
+  match node.nature with
+  | BooleanValue _  | Constant _ | Variable _ | Number _ | Parameter _ |
+    TimeVariable | Integer _ | String _ -> []
+  | DiscreteVariable i when i < 0 -> [node]
+  | DiscreteVariable _ -> []
+  | ArcCosine node | ArcHyperbolicCosine node |
+    ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
+    ArcTangent node | Cosine node | Derivative (node, _) |
+    Exponential node | Floor node | HyperbolicCosine node |
+    HyperbolicSine node | HyperbolicTangent node | Logarithm node |
+    Not node | Pre node | RationalPower (node, _) | Sign node | Sine node |
+    Tangent node -> inputs_of node
+  | Equality (node1, node2) | Greater (node1, node2) |
+    GreaterEqual (node1, node2) | PartialDerivative (node1, node2) ->
+      union (inputs_of node1) (inputs_of node2)
+  | If (node1, node2, node3) ->
+      union
+        (inputs_of node1)
+        (union (inputs_of node2) (inputs_of node3))
+  | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
+      List.fold_left (fun acc node -> union (inputs_of node) acc) [] nodes
+  | BlackBox (_, args) ->
+      List.fold_left
+        (fun acc arg -> union (inputs_of_argument arg) acc)
+        []
+        args
 
 and invert_if_possible_with_respect_to node left right =
   let not_null node = match node.nature with
@@ -1409,7 +1653,7 @@ and invert_if_possible_with_respect_to node left right =
   if node == left then Some right
   else match left.nature with
     | BlackBox _ | Cosine _ | Derivative _ | Floor _ | HyperbolicCosine _ |
-      PartialDerivative _ | Sign _ | Sine _ | Tangent _ -> None
+      PartialDerivative _ | Pre _ | Sign _ | Sine _ | Tangent _ -> None
     | Addition nodes ->
         begin match invert_addition_if_possible nodes with
           | None -> None
@@ -1456,30 +1700,37 @@ and invert_if_possible_with_respect_to node left right =
         invert_if_possible_with_respect_to
           node
           node'
-          (symbolic_rationalPower right (minus_num num))
+          (symbolic_rationalPower right (one_num // num))
     | RationalPower _ -> None
     | And _ | Constant _ | BooleanValue _ | Equality _ | Greater _ |
-      DiscreteVariable _ | Not _ | Number _ | Or _ | Parameter _ |
-      TimeVariable | Variable _ ->
+      GreaterEqual _ | DiscreteVariable _ | Not _ | Number _ | Or _ |
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ ->
         invalid_arg "invert_if_possible_with_respect_to"
 
 and exists_except_in_conditions p node =
+  let exists_except_in_conditions_argument = function
+    | ScalarArgument node -> exists_except_in_conditions p node
+    | ArrayArgument (_, nodes) ->
+        exists_array (exists_except_in_conditions p) nodes in
   p node || match node.nature with
     | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> false
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> false
     | ArcCosine node | ArcHyperbolicCosine node |
       ArcHyperbolicSine node | ArcHyperbolicTangent node | ArcSine node |
       ArcTangent node | Cosine node | Derivative (node, _) |
       Exponential node | Floor node | HyperbolicCosine node |
       HyperbolicSine node | HyperbolicTangent node | Logarithm node |
-      Not node | RationalPower (node, _) | Sign node | Sine node |
+      Not node | Pre node | RationalPower (node, _) | Sign node | Sine node |
       Tangent node -> exists_except_in_conditions p node
-    | Equality (node1, node2) | Greater (node1, node2) | If (_, node1, node2) |
+    | Equality (node1, node2) | Greater (node1, node2) |
+      GreaterEqual (node1, node2) | If (_, node1, node2) |
       PartialDerivative (node1, node2) ->
         exists_except_in_conditions p node1 ||
         exists_except_in_conditions p node2
-    | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
-      Or nodes -> List.exists (exists_except_in_conditions p) nodes
+    | And nodes | Addition nodes | Multiplication nodes | Or nodes ->
+        List.exists (exists_except_in_conditions p) nodes
+    | BlackBox (_, args) ->
+        List.exists exists_except_in_conditions_argument args
 
 and inversion_difficulty node left right =
   let is_derivative_of_node node' = match node'.nature with
@@ -1498,7 +1749,11 @@ and inversion_difficulty node left right =
     | _ -> 2
 
 and replace node node' node'' =
-  let rec rewrite node'' =
+  let rec rewrite_argument = function
+    | ScalarArgument node -> ScalarArgument (rewrite node)
+    | ArrayArgument (dims, nodes) ->
+        ArrayArgument (dims, Array.map rewrite nodes)
+  and rewrite node'' =
     if node'' == node then node'
     else match node''.nature with
     | Addition nodes -> apply_addition (List.map rewrite nodes)
@@ -1509,13 +1764,14 @@ and replace node node' node'' =
     | ArcHyperbolicTangent node -> symbolic_atanh (rewrite node)
     | ArcSine node -> symbolic_asin (rewrite node)
     | ArcTangent node -> symbolic_atan (rewrite node)
-    | BlackBox (s, nodes) -> apply_blackBox s (List.map rewrite nodes)
+    | BlackBox (s, args) -> apply_blackBox s (List.map rewrite_argument args)
     | Cosine node -> symbolic_cos (rewrite node)
     | Derivative (node, num) -> symbolic_derive (rewrite node) num
     | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
     | Exponential node -> symbolic_exp (rewrite node)
     | Floor node -> symbolic_floor (rewrite node)
     | Greater (node, node') -> symbolic_gt (rewrite node) (rewrite node')
+    | GreaterEqual (node, node') -> symbolic_ge (rewrite node) (rewrite node')
     | HyperbolicCosine node -> symbolic_cosh (rewrite node)
     | HyperbolicSine node -> symbolic_sinh (rewrite node)
     | HyperbolicTangent node -> symbolic_tanh (rewrite node)
@@ -1527,63 +1783,12 @@ and replace node node' node'' =
     | Or nodes -> apply_or (List.map rewrite nodes)
     | PartialDerivative (node, node') ->
         create_partialDerivative (rewrite node) (rewrite node')
+    | Pre node -> symbolic_pre (rewrite node)
     | RationalPower (node, num) -> symbolic_rationalPower (rewrite node) num
     | Sign node -> symbolic_sgn (rewrite node)
     | Sine node -> symbolic_sin (rewrite node)
     | Tangent node -> symbolic_tan (rewrite node)
     | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> node''
+      Parameter _ | TimeVariable | Variable _ | Integer _ | String _ -> node''
   in
   rewrite node''
-
-(*and replace node node' node'' =
-  let rec rewrite node =
-    if node.count = !global_count then
-      node.replacement
-    else
-      let node' = replace' node in
-      node.count <- !global_count;
-      node.replacement <- node';
-      node'
-  and replace' node = match node.nature with
-    | Addition nodes -> apply_addition (List.map rewrite nodes)
-    | And nodes -> apply_and (List.map rewrite nodes)
-    | ArcCosine node -> symbolic_acos (rewrite node)
-    | ArcHyperbolicCosine node -> symbolic_acosh (rewrite node)
-    | ArcHyperbolicSine node -> symbolic_asinh (rewrite node)
-    | ArcHyperbolicTangent node -> symbolic_atanh (rewrite node)
-    | ArcSine node -> symbolic_asin (rewrite node)
-    | ArcTangent node -> symbolic_atan (rewrite node)
-    | BlackBox (s, nodes) -> apply_blackBox s (List.map rewrite nodes)
-    | Cosine node -> symbolic_cos (rewrite node)
-    | Derivative (node, num) -> symbolic_derive (rewrite node) num
-    | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
-    | Exponential node -> symbolic_exp (rewrite node)
-    | Floor node -> symbolic_floor (rewrite node)
-    | Greater (node, node') -> symbolic_gt (rewrite node) (rewrite node')
-    | HyperbolicCosine node -> symbolic_cosh (rewrite node)
-    | HyperbolicSine node -> symbolic_sinh (rewrite node)
-    | HyperbolicTangent node -> symbolic_tanh (rewrite node)
-    | If (node, node', node'') ->
-        symbolic_if (rewrite node) (rewrite node') (rewrite node'')
-    | Logarithm node -> symbolic_log (rewrite node)
-    | Multiplication nodes -> apply_multiplication (List.map rewrite nodes)
-    | Not node -> symbolic_not (rewrite node)
-    | Or nodes -> apply_or (List.map rewrite nodes)
-    | PartialDerivative (node, node') ->
-        create_partialDerivative (rewrite node) (rewrite node')
-    | RationalPower (node, num) -> symbolic_rationalPower (rewrite node) num
-    | Sign node -> symbolic_sgn (rewrite node)
-    | Sine node -> symbolic_sin (rewrite node)
-    | Tangent node -> symbolic_tan (rewrite node)
-    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> node.replacement
-  in
-  incr global_count;
-  assert (!global_count <> 0);
-  node.count <- !global_count;
-  node.replacement <- node';
-  let rewritten_node = rewrite node'' in
-  node.replacement <- node;
-  rewritten_node
-*)

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -50,9 +50,6 @@ msgstr " línea de entrada más larga que el tamaño de buffer: %d\n"
 
 msgid "\"unknown data\""
 msgstr "\"datos desconocidos\""
-
-msgid "%: This method is NOT implemented.\n"
-msgstr "%: Este método NO esta implementado.\n"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -190,8 +187,12 @@ msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: Parada pedida por el simulador (ind=0)\n"
 
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s: La matriz de colocación es singular.\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -499,8 +500,8 @@ msgstr ""
 "%s: el error relativo entre dos iteraciones consecutivas es como mucho %s.\n"
 
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s: problema singular o asimétrico.\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -546,9 +547,8 @@ msgstr ""
 msgid "'o' format not allowed."
 msgstr "El formato 'o' no está permitido."
 
-msgid "A sparse matrix entry is defined with two differents values.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
 msgstr ""
-"Una entrada de matriz dispersa se define con dos valores diferentes.\n"
 
 msgid "Argument type must be boolean.\n"
 msgstr "El tipo de argumento debe ser booleano.\n"
@@ -557,10 +557,8 @@ msgid "Arguments are :\n"
 msgstr "Los argumentos son :\n"
 
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
 msgstr ""
-"En el tiempo: %s ,Demasiadas iteraciones para alcanzar la precisión "
-"deseada.\n"
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -569,8 +567,8 @@ msgstr "Llamada incorrecta a la primitiva: %s\n"
 msgid "Bad conversion."
 msgstr "Mala conversión."
 
-msgid "Binary direct acces files must be opened by 'file'.\n"
-msgstr "Archivos de acceso binario directo deben ser abiertos por 'file'.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -639,9 +637,8 @@ msgstr "Nombre de entrada no encontrado.\n"
 msgid "Error while linking.\n"
 msgstr "Error mientras se enlazaba.\n"
 
-msgid "Error while writing in file,(disk full or deleted file.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
-"Error mientras se escribía en el archivo (disco lleno o archivo eliminado).\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "Variable identidad (eye) no definida en este contexto.\n"
@@ -897,10 +894,8 @@ msgstr "No implementado en Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "No se puede usar la variable null aquí.\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
 msgstr ""
-"Operandos de operaciones / y \\ no deben contener NaN (Not a Number) de "
-"infinito.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim para: se alcanzó el número máximo de llamadas a f.\n"
@@ -939,12 +934,12 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quapro encontró ciclos en un punto degenerado.\n"
 
 #, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "Rango deficiente. rango = %d\n"
-
-#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "Rango deficiente : rango = %s - tol = %s.\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
 
 msgid "Real part\n"
 msgstr "Parte real\n"
@@ -1072,14 +1067,14 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "Hay demasiadas funciones definidas (máximo #:%d).\n"
 
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "Demasiadas variables globales! el número máximo es %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
 
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "Demasiados entradas de entrada/salida por bloque resaltado.\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
 
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "Demasiados puertos de entrada/salida por bloque resaltado.\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
 
 msgid "Too many linked routines.\n"
 msgstr "Demasiadas rutinas enlazadas.\n"
@@ -1185,10 +1180,8 @@ msgstr "Advertencia: Los resultados pueden ser inexactos.\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
-"Advertencia: se dio un jacobiano externo, pero\n"
-" no se usará!,  vea %ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1208,11 +1201,9 @@ msgid "Warning: function is already compiled.\n"
 msgstr "Advertencia: la función ya fue compilada.\n"
 
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
-"Advertencia: integración incompleta! revise los parámetros de tolerancia o "
-"el tamaño del paso.\n"
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "Advertencia: se integra hasta tcrit.\n"
@@ -1228,8 +1219,8 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Advertencia: use obsoleto de '=' en lugar de '=='.\n"
 
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "Advertencia: use obsoleto de identidad aleatoria, o unos.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"

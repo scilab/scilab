@@ -123,6 +123,11 @@ blocks to gather events in a single link.
           <link linkend="SampleCLK">SampleCLK - Sample Time Clock</link>
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="VirtualCLK0">VirtualCLK0 - Triggered Always Active Blocks</link>
+        </para>
+      </listitem>
     </itemizedlist>
   </refsection>
 </refentry>

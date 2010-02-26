@@ -11,7 +11,6 @@
 #define PVM "pvm"
 
 ;Source: bin\pvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\nopvm.dll; DestDir: {app}\bin; DestName: pvm.dll; Components: {#COMPN_SCILAB}
 
 ;
 ;Source: modules\{#PVM}\changelog.txt; DestDir: {app}\modules\{#PVM}; Components: {#COMPN_PVM}
@@ -25,8 +24,6 @@ Source: bin\nopvm.dll; DestDir: {app}\bin; DestName: pvm.dll; Components: {#COMP
 ;
 ;Source: modules\{#PVM}\etc\{#PVM}.quit; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\etc\{#PVM}.start; DestDir: {app}\modules\{#PVM}\etc; Components: {#COMPN_PVM}
-;
-;Source: modules\{#PVM}\help\addchapter.sce; DestDir: {app}\modules\{#PVM}\help; Flags: recursesubdirs; Components:  {#COMPN_PVM}
 ;
 ;Source: modules\{#PVM}\macros\buildmacros.sce; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}
 ;Source: modules\{#PVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#PVM}\macros; Components: {#COMPN_PVM}

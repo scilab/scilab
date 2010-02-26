@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void atan_blk(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void atan_blk(scicos_block *block,int flag)
 {
-  int j;
+  int j = 0;
   if(flag==1){
     for (j=0;j<block->insz[0];j++) {
       block->outptr[0][j]=atan(block->inptr[0][j]);
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

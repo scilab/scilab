@@ -83,6 +83,7 @@ return;end
 //
 // 05/02/07 -Alan- : update to %20 rhs parameters
 //
+// Copyright INRIA
 [%lhs,%rhs]=argn(0)
 
 %nn=prod(size(%lables))
@@ -110,7 +111,7 @@ while %t do
     end
   end
 
-  [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context);
+  [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context,%typ);
 
   %noooo=0
   for %kk=1:%nn
@@ -149,7 +150,7 @@ while %t do
 	%noooo=-%kk,break,
       end
       if %ierr<>0 then %noooo=-%kk;break,end
-      if type(%vv)>2 then %noooo=-%kk,break,end
+      if (type(%vv)>2 & type(%vv)<>8) then %noooo=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssss=string(%sz(1))
       %nnnnn=prod(size(%vv))
@@ -218,6 +219,8 @@ while %t do
 	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
 	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
+    case 'gen'
+      //accept all
     else
       error('Incorrect type :'+%typ(2*%kk-1))
     end
@@ -225,14 +228,14 @@ while %t do
     clear %vv
   end
   if %noooo>0 then 
-    message(['answer given for  '+%lables(%noooo);
+    messagebox(['answer given for  '+%lables(%noooo);
              'has invalid dimension: ';
-             'waiting for dimension  '+%ssss])
+             'waiting for dimension  '+%ssss],'modal')
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
-    message(['answer given for  '+%lables(-%noooo);
-             'has incorrect type :'+ %typ(-2*%noooo-1)])
+    messagebox(['answer given for  '+%lables(-%noooo);
+             'has incorrect type :'+ %typ(-2*%noooo-1)],'modal')
     %ini=%str
     %ok=%f;break
   else

@@ -64,9 +64,8 @@ optim(list(costfunc,a1,b1,c1),....
     conveniente para acelerar computações.</para>
 
     <para>TO nome da rotina é fornecido para a primitiva de alto nível como um
-    string. A seqüência de chamamento da rotina também é imposta. Exemplos são
-    dados no diretório <literal>routines/default</literal> (ver o arquivo
-    <literal>README</literal>).</para>
+    string. A seqüência de chamamento da rotina também é imposta. 
+    </para>
 
     <para>Rotinas FORTRAN ou C podem ser dinamicamente linkadas ("ligadas,
     conectadas") (ver <literal>link</literal>)</para>

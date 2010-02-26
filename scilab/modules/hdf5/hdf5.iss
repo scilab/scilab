@@ -32,8 +32,6 @@ Source: modules\{#HDF5}\sci_gateway\hdf5_gateway.xml; DestDir: {app}\modules\{#H
 ;
 ;Source: modules\{#HDF5}\includes\*.h; DestDir: {app}\modules\{#HDF5}\includes; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HDF5}\help\addchapter.sce; DestDir: {app}\modules\{#HDF5}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#HDF5}\etc\{#HDF5}.quit; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HDF5}\etc\{#HDF5}.start; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
 ;

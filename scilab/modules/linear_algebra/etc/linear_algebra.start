@@ -11,8 +11,3 @@
 // =============================================================================
 load('SCI/modules/linear_algebra/macros/lib');
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("linear_algebra");
-end

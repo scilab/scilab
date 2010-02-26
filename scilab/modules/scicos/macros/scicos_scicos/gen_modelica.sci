@@ -52,12 +52,12 @@ function txt=gen_modelica(scs_m,name)
   for k=1:size(blklst)
     o=blklst(k);
     if and(getfield(1,o)<>'equations')
-      message('block numbered '+string(k)+' is not a Modelica block')
+      messagebox('block numbered '+string(k)+' is not a Modelica block','modal')
       txt=[]
       return
     end
     if typeof(o.equations)<>'modelica' then 
-      message('block numbered '+string(k)+' is not a Modelica block')
+      messagebox('block numbered '+string(k)+' is not a Modelica block','modal')
       txt=[]
       return
     end

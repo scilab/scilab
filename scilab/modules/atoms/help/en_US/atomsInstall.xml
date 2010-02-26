@@ -24,8 +24,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(modules[,section])
-	</synopsis>
+    result = atomsInstall(modules[,section])
+    result = atomsInstall(file)
+  </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -82,6 +83,36 @@
 				</listitem>
       </varlistentry>
       
+			<varlistentry>
+        <term>file</term>
+        <listitem>
+					
+          <para>
+						mx1 Matrix of strings:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- File-system path -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">File-system path</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
+      </varlistentry>
+			
 			<varlistentry>
         <term>section</term>
 				
@@ -208,8 +239,12 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
+		
+		<para>
+			<emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
+		</para>
+		
     <programlisting role="example"><![CDATA[
-
 // Display some additionnal informations
 atomsSetConfig("Verbose","True");
 
@@ -230,15 +265,44 @@ atomsInstall(["toolbox_5"],"user");
 
 // Install a module in the allusers section
 // (write access on SCI directory is needed):
-atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"],"allusers");
+atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"], ..
+             "allusers");
 
 // Get the list of installed modules:
 disp( atomsGetInstalled() );
 
 // Cleaning :)
-atomsRemove(["toolbox_1";"toolbox_2";"toolbox_3";"toolbox_4";"toolbox_5";"toolbox_6"]);
+atomsRemove(["toolbox_1"; ..
+             "toolbox_2"; ..
+             "toolbox_3"; ..
+             "toolbox_4"; ..
+             "toolbox_5"; ..
+             "toolbox_6"]);
 
-]]></programlisting>
+]]>
+</programlisting>
+		
+		<para>
+			<emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
+			installing modules from the central repository, you can also install
+			modules directly from your own machine.
+		</para>
+		
+    <programlisting role="example"><![CDATA[
+// Display some additionnal informations
+atomsSetConfig("Verbose","True");
+
+// Install a module
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip");
+
+// Get the list of installed modules:
+disp( atomsGetInstalled() );
+
+// Cleaning :)
+atomsRemove("toolbox_7");
+]]>
+</programlisting>
+
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

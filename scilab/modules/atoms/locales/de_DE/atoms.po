@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -86,8 +86,8 @@ msgid "%s: ''%s'' isn''t installed.\n"
 msgstr "%s: '%s' ist nicht installiert.\n"
 
 #, c-format
-msgid "%s: An error accured while loading ''%s-%s''.\n"
-msgstr "%s: ein Fehler ist während des Ladens von '%s - %s' aufgetreten\n"
+msgid "%s: An error occurred while loading ''%s-%s''.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
@@ -618,16 +618,12 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: You have not enought rights to remove any version of the package %s.\n"
+"%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
-"%s: Sie haben keine ausreichende Berechtigung, um jede Version des Pakets %s "
-"zu entfernen.\n"
 
 #, c-format
-msgid "%s: You have not enought rights to remove the package %s (%s).\n"
+msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
-"%s: Sie haben keine ausreichende Berechtigung, um das Paket %s (%s) zu "
-"entfernen.\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -669,8 +665,8 @@ msgstr "Atoms Fehler"
 msgid "Author(s)"
 msgstr "Autor(en)"
 
-msgid "Automaticaly Installed"
-msgstr "automatisch installiert"
+msgid "Automatically Installed"
+msgstr ""
 
 msgid "Bytes"
 msgstr "Bytes"
@@ -729,8 +725,11 @@ msgstr "Unterstüze(r)"
 msgid "Modules"
 msgstr "Module"
 
-msgid "No Atoms module available. Check your Internet connection."
-msgstr "keine Atoms Module verfügbar. Überprüfen Sie die Internetverbindung."
+msgid "No Atoms module is available. Please, check your Internet connection."
+msgstr ""
+
+msgid "No Atoms module is available: your repository list is empty."
+msgstr ""
 
 msgid "No module selected"
 msgstr "Keine Module ausgewählt"

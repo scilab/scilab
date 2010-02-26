@@ -2,17 +2,12 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/ 
+#include "gw_scicos.h"
 #include "Scierror.h"
-#include "noscicos.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_scicos(void)
 {
 	Scierror(999,"Scicos interface not installed.\n");
 	return 0;
 }
-/*--------------------------------------------------------------------------*/ 
-int haltscicos(char *name, int *win, int *entry,long int name_len)
-{
-	return 0;
-} 
 /*--------------------------------------------------------------------------*/ 

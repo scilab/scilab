@@ -21,22 +21,22 @@
 
 function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
                               N,Ninitiale,impl_type,type_meth,oper)
-// Cette fonction conserne la g�n�ration du code de la la fonction de calcul du bloc EDP //
-// entr�es :                                                                             //
-//           - equations : vecteurs de chaine de caract�res corespond aux �quation ODE   //
-//                         ou DAE g�n�r�es selon les diff�rentes methodes de             //
-//                         discr�tisation.                                               //
-//           - impl_type : entier correspond au type des �quation DAE (implicites)       //
-//                         ( -1 pour les syst�mes alg�briques, 1 pour les syst�mes       //
-//                         alg�bro-diff�rentiels).                                       //
+// Cette fonction conserne la génération du code de la la fonction de calcul du bloc EDP //
+// entrées :                                                                             //
+//           - equations : vecteurs de chaine de caractères corespond aux équation ODE   //
+//                         ou DAE générées selon les différentes méthodes de             //
+//                         discrétisation.                                               //
+//           - impl_type : entier correspond au type des équations DAE (implicites)       //
+//                         ( -1 pour les systèmes algébriques, 1 pour les systèmes       //
+//                         algébro-différentiels).                                       //
 // sortie :                                                                              //
-//           - Code : vecteur de chaine de carat�res qui renvoi le code du bloc �        //
+//           - Code : vecteur de chaine de caratères qui renvoi le code du bloc à        //
 //                    imprimer par la suite dans le fichier .c                           //
 // pour plus d'information voir les fonctions de calcul des blocs Scicos de type 4       //
 // (explicite) et de type 10004 (implicite).                                             //
 //---------------------------------------------------------------------------------------//
 
-  Code=['#include '"'+SCI+'/modules/scicos_blocks/scicos_block.h'"'
+  Code=['#include <scicos_block.h>'
         '#include <math.h>'
         ' '       
         'void  '+rdnom+'(scicos_block *block,int flag)'
@@ -75,28 +75,28 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
         equations
         ' }else if (flag == 1){'];
   if (type_meth == 3 & (find(oper == 2) ~= [] | find(oper == 4) ~= [])) then      
-    sorties1=['   /* la premi�re sortie */ '
+    sorties1=['   /* la première sortie */ '
               '   for (i=0;i<'+string(N)+';i++){'
               '     outptr[0][i]=x[i+'+string(N)+'];'
               '   }']; 
-    sorties2=['   /* la deuxi�me sortie */ '];
+    sorties2=['   /* la deuxième sortie */ '];
     for i=1:size(eq_pts_mes,'*')
       sorties2=[sorties2
                '   outptr[1]['+string(i-1)+']='+eq_pts_mes(i)+';'];
     end
   else
     if (kbc(1) == 1) & (DF_type == 0 | DF_type == 1) then
-    sorties1=['   /* la premi�re sortie */ '
+    sorties1=['   /* la première sortie */ '
               '   for (i=1;i<'+string(Ninitiale)+';i++){'
              '     outptr[0][i]=x[i];'
              '   }']; 
     else
-      sorties1=['   /* la premi�re sortie */ '
+      sorties1=['   /* la première sortie */ '
                 '   for (i=0;i<'+string(Ninitiale)+';i++){'
                 '     outptr[0][i]=x[i];'
                 '   }']; 
     end
-    sorties2=['   /* la deuxi�me sortie */ '];
+    sorties2=['   /* la deuxième sortie */ '];
     for i=1:size(eq_pts_mes,'*')
       sorties2=[sorties2
                '   outptr[1]['+string(i-1)+']='+eq_pts_mes(i)+';'];

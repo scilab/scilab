@@ -10,5 +10,4 @@ thispath = get_absolute_file_path("demo_watertank.dem.sce");
 
 //Open the cosf file with xcos
 xcos(thispath+"/demo_watertank.cosf");
-
 clear thispath;

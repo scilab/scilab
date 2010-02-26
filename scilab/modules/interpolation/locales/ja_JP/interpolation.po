@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-24 19:16+0000\n"
+"PO-Revision-Date: 2010-02-13 14:57+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -29,7 +29,7 @@ msgstr "%s: %s は、実 %d-次 次元配列でなければなりません。\n"
 # File: sci_gateway/c/sci_cshep2d.c, line: 81
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr "%s: 重複した節、または、全ての直線節(ier = %d)\n"
+msgstr "%s: 重複したノード、または、全ての直線ノード(ier = %d)\n"
 
 #
 # File: sci_gateway/c/sci_splin.c, line: 83
@@ -43,11 +43,9 @@ msgstr "%s: スプライン制限のために、端点勾配を与えなくて�
 msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr "%s: %d 次のグリッド横軸は、厳密な増加順序ではありません。\n"
 
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 83
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s: 適合のための十分な地点ではありません。\n"
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: 適合のための点が足りません。\n"
 
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 126
@@ -89,14 +87,14 @@ msgstr "%s: 警告: 最小の正方行列の階数落ちです。\n"
 # File: sci_gateway/c/sci_splin.c, line: 96
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数(s)で不正な数です。\n"
+msgstr "%s: 入力引数の数が不正です。\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 43
 # File: sci_gateway/c/sci_splin.c, line: 96
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr "%s: 入力引数の不正な数: %d と %d の間でなくてはなりません。\n"
+msgstr "%s: 入力引数の数が不正です: %d と %d の間でなくてはなりません。\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 80
@@ -306,4 +304,4 @@ msgstr "入力引数 #%d で不正な型: 実多次元配列を想定します�
 # File: src/c/interpolation.c, line: 120
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
-msgstr "入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgstr "入力引数 #%d で不正な型: 文字を想定します。\n"

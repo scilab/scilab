@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * ...
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,14 +20,19 @@
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
 #include "StringConvert.h"
+#include "BOOL.h"
+/*--------------------------------------------------------------------------*/
+#define EOL "\n"
+#define DEFAULT_FPRINTF_FORMAT "%lf"
 /*--------------------------------------------------------------------------*/
 int sci_fprintfMat(char *fname,unsigned long fname_len)
 {
 	int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3 = 0,i = 0,j = 0,mS = 0,nS = 0;
-	FILE  *f;
+	FILE  *f = NULL;
 	char *filename = NULL;
 	char **Str2 = NULL;
 	char *Format = NULL;
+
 	Nbvars = 0;
 	CheckRhs(1,4);
 	CheckLhs(1,1);
@@ -35,7 +40,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
 	if (GetType(1) == sci_strings)
 	{
 		char *filename2 = NULL;
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
+		GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);/* file name */
 
 		/* BUG 3714 */
 		filename = cstk(l1);
@@ -49,11 +54,11 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
 	if (GetType(2) == sci_matrix)
 	{
 		#define COMPLEXPART 1
-		int *header=NULL;
+		int *header = NULL;
 		int Cmplx;
 
 		header = (int *) GetData(2);
-		Cmplx=header[3];
+		Cmplx = header[3];
 
 		if (Cmplx != COMPLEXPART)
 		{
@@ -79,7 +84,7 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Format = "%f";
+		Format = DEFAULT_FPRINTF_FORMAT;
 	}
 
 	if ( Rhs >= 4 )
@@ -93,11 +98,11 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
 	#define MODEFD "w"
 	#endif
 
-	wcfopen(f , filename,MODEFD);
+	wcfopen(f , filename, MODEFD);
 
 	if ( f == (FILE *)0 )
 	{
-		Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
+		Scierror(999, _("%s: Cannot open file %s.\n"), fname, filename);
 		return 0;
 	}
 
@@ -110,18 +115,21 @@ int sci_fprintfMat(char *fname,unsigned long fname_len)
 	{
 		for ( j = 0 ; j < n2 ; j++)
 		{
-			fprintf(f,Format,*stk(l2+i + m2*j));
-			fprintf(f," ");
+			fprintf(f, Format, *stk(l2+i + m2*j));
+			fprintf(f, " ");
 		}
 
-		fprintf(f,"\n");
+		fprintf(f, EOL);
 	}
+
 	fclose(f);
-	LhsVar(1)=0 ; /** no return value **/
+	LhsVar(1) = 0 ; /** no return value **/
+
 	if ( Rhs >= 4)
 	{
-		freeArrayOfString(Str2,mS*nS);
+		freeArrayOfString(Str2, mS*nS);
 	}
+
 	PutLhsVar();
 	return 0;
 }

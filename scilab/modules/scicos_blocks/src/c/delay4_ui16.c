@@ -18,18 +18,21 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void delay4_ui16(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void delay4_ui16(scicos_block *block,int flag)
 {
   /* Copyright INRIA
    
      Scicos block simulator
      Ouputs nx*dt delayed input */
 
-  unsigned short *y,*u,*oz;
-  int nz,mz;
-  int i;
+  unsigned short *y = NULL,*u = NULL,*oz = NULL;
+  int nz = 0 ,mz = 0;
+
   
   u=Getuint16InPortPtrs(block,1);
   y=Getuint16OutPortPtrs(block,1);
@@ -40,6 +43,7 @@ void delay4_ui16(scicos_block *block,int flag)
   if ((flag==1)||(flag==6)||(flag==4)){
     y[0]=oz[0];
   }else if (flag == 2){
+    int i = 0;
     /*  shift buffer */
     for (i=0; i<=(mz*nz)-2; i++){
       oz[i]=oz[i+1];
@@ -48,3 +52,4 @@ void delay4_ui16(scicos_block *block,int flag)
     oz[(mz*nz)-1]=u[0];
   }
 }
+/*--------------------------------------------------------------------------*/ 

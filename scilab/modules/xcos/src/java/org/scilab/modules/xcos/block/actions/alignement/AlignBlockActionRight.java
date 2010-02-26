@@ -22,7 +22,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 public final class AlignBlockActionRight extends AlignBlockAction {
 	public static final String NAME = XcosMessages.ALIGN_RIGHT;
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "go-last.png";
 	public static final int MNEMONIC_KEY = 0;
 	public static final int ACCELERATOR_KEY = 0;
 	

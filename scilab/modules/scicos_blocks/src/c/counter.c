@@ -18,13 +18,16 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void counter(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void counter(scicos_block *block,int flag)
 {
-  double *y,*z;
-  int *ipar;
+  double *y = NULL,*z = NULL;
+  int *ipar = NULL;
   y=GetRealOutPortPtrs(block,1);
   z=GetDstate(block);
   ipar=GetIparPtrs(block);
@@ -34,3 +37,4 @@ void counter(scicos_block *block,int flag)
   else if (flag==2) 
     {*z=(1+(int)*z)%(*(ipar+1)-*(ipar+2)+1);}
 } 
+/*--------------------------------------------------------------------------*/ 

@@ -1,28 +1,29 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 module type CODEGENERATOR =
   sig
     val generate_code: string -> string -> string -> Optimization.model -> bool
-      -> unit
+      -> bool -> string option * string option -> unit
   end
 
 module type S =
@@ -36,9 +37,12 @@ module Make(G: CODEGENERATOR): S =
   struct
 
     let sccs_id =
-      "@(#)Modelicac - Copyright (C) 2003-2004 TNI-Valiosys, 2005 Imagine"
+      "@(#)Modelicac Copyright (C)\n\
+        2003-2004 TNI-Valiosys,\n\
+        2005-2007 Imagine,\n\
+        2007-2009 LMS-Imagine"
 
-    let version = "1.7.3"
+    let version = "1.12.1"
 
     let path = ref ""
 
@@ -50,6 +54,12 @@ module Make(G: CODEGENERATOR): S =
 
     let with_jac = ref false
 
+    let only_outputs = ref false
+
+    let init_in = ref None
+
+    let init_out = ref None
+
     let trace = ref None
 
     let gen_xml = ref false
@@ -58,18 +68,32 @@ module Make(G: CODEGENERATOR): S =
 
     let output = ref ""
 
-    let input = ref ""
+    let inputs = ref []
 
     let max_simplifs = ref max_int
 
     let add_lib_path s =
       directories := !directories @ [s]
 
-    let trace_filename s =
-      trace := Some s
+    let set_init_in s =
+      if !init_in <> None then
+        failwith "set_init_in: More than one init_in specified";
+      init_in := Some s
 
-    let check_filename () =
-      if Filename.check_suffix !input "mo" then ()
+    let set_init_out s =
+      if !init_out <> None then
+        failwith "set_init_out: More than one init_out specified";
+      init_out := Some s
+
+(*
+    let trace_filename s =
+      if !trace <> None then
+        failwith "trace_filename: More than one trace file specified";
+      trace := Some s
+*)
+
+    let check_filename filename =
+      if Filename.check_suffix filename "mo" then ()
       else failwith "check_filename: Filename suffix must be 'mo'"
 
     let set_path s =
@@ -80,9 +104,7 @@ module Make(G: CODEGENERATOR): S =
       if !output <> "" then failwith "set_output: More than one output specified";
       output := s
 
-    let set_input s =
-      if !input <> "" then failwith "set_input: More than one input specified";
-      input := s
+    let set_input s = inputs := s :: !inputs
 
     let set_max_simplifs i =
       max_simplifs := i
@@ -91,20 +113,21 @@ module Make(G: CODEGENERATOR): S =
       no_parameter_removal := true;
       keep_variables := true
 
-    let construct_output_filename () =
+    let construct_output_filename id =
       if !output = "" then begin
-        output := Filename.chop_suffix !input "mo";
+        if !gen_xml then
+          output := Printf.sprintf "%s.xml" id
+        else
+          output := Printf.sprintf "%s.c" id;
+        (*output := Filename.chop_suffix !input "mo";*)
         if !compile_only then
-          output := !output ^ "moc"
+          output := Printf.sprintf "%s.moc" id
       end;
       !output
 
     let parse_args () =
       Arg.parse
-        [("-L", Arg.String add_lib_path,
-          "<directory>  Add <directory> to the list of directories to be searched \
-          while linking");
-        ("-c", Arg.Set compile_only, "compile only (do not instantiate)");
+        [("-c", Arg.Set compile_only, "compile only (do not instantiate)");
         ("-o", Arg.String set_output,
           "<outputfile>  Set output file name to <outputfile>");
         ("-hpath", Arg.String set_path,
@@ -117,29 +140,57 @@ module Make(G: CODEGENERATOR): S =
           "Same as -keep-all-variables -no-parameter-removal");
         ("-max-simplifs", Arg.Int set_max_simplifs,
           "<passes> Max number of simplifications");
-        ("-jac", Arg.Set with_jac, "Generate symbolic jacobian matrix");
+        ("-jac", Arg.Set with_jac,
+          "Generate symbolic jacobian matrix
+          (may have no effect depending on target)");
+        ("-only-outputs", Arg.Set only_outputs,
+          "Generate code only for declared outputs
+          (may have no effect depending on target)");
+        ("-with-init-in", Arg.String set_init_in,
+          "<init_input_file>
+          Generate initialization code and use
+          <init_input_file> to get input data
+          (may have no effect depending on target)");
+        ("-with-init-out", Arg.String set_init_out,
+          "<init_output_file>
+          Generate initialization code and use
+          <init_output_file> to generate output data
+          (may have no effect depending on target)");
+(*
         ("-trace", Arg.String trace_filename,
-          "<filename> Generate tracing information for external function calls into \
-          <filename>");
+          "<filename>
+          Generate tracing information for
+          external function calls into <filename>");
+*)
         ("-xml", Arg.Set gen_xml,
-          "Generate an XML version of the model instead of target code")]
+          "Generate an XML version of the model
+          instead of target code");
+        ("-L", Arg.String add_lib_path,
+          "<directory>
+          Add <directory> to the list of directories to be
+          searched in while linking")]
         set_input
         ("usage: modelicac [-c] [-o <outputfile>] <inputfile> [other options]")
 
-    let run () =
-      parse_args ();
-      check_filename ();
-      let ic = open_in !input in
-      Printf.printf "Input file name = %s\n" !input; flush stdout;
+    let compile filename =
+      check_filename filename;
+      let ic = open_in filename in
+      Printf.printf "Input file name = %s\n" filename; flush stdout;
       let lexbuf = Lexing.from_channel ic in
       Printf.printf "Parsing..."; flush stdout;
-      let tree = Parser.parse !input Lexer.token lexbuf in
+      let tree = Parser.parse filename Lexer.token lexbuf in
       Printf.printf " OK\nPrecompiling..."; flush stdout;
-      let root = Precompilation.precompile tree in
+      Precompilation.precompile tree
+
+    let run () =
+      parse_args ();
+      let roots = match !inputs with
+        | [] -> failwith "No input file name specified"
+        | _ -> List.map compile !inputs in
       Printf.printf " OK\nCompiling..."; flush stdout;
       Compilation.paths := !directories;
-      let cu = Compilation.compile_main_class root in
-      let filename = construct_output_filename () in
+      let id, cu = Compilation.compile_main_class roots in
+      let filename = construct_output_filename id in
       if !compile_only then begin
         Printf.printf " OK\nSaving..."; flush stdout;
         Compilation.write_class_file filename cu
@@ -175,7 +226,7 @@ module Make(G: CODEGENERATOR): S =
               Printf.printf "\nOptimizing remaining equations..."; flush stdout;
               Optimization.perform_simplifications !max_simplifs model;
               Printf.printf
-                " OK\n%d variable(s) remaining."
+                "\n%d variable(s) remaining."
                 (Array.fold_left
                   (fun n variable ->
                     if not variable.Optimization.solved then n + 1 else n)
@@ -192,7 +243,14 @@ module Make(G: CODEGENERATOR): S =
             end;
             Printf.printf "Generating code..."; flush stdout;
             if !gen_xml then XMLCodeGeneration.generate_XML filename fun_name model
-            else G.generate_code !path filename fun_name model !with_jac
+            else
+              G.generate_code
+                !path
+                filename
+                fun_name model
+                !with_jac
+                !only_outputs
+                (!init_in, !init_out)
         | Compilation.CompiledFunction _ ->
             failwith "Attempt to generate code for a function"
       end;

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-14 16:45+0000\n"
+"PO-Revision-Date: 2009-12-30 08:27+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -91,7 +91,7 @@ msgstr ""
 
 #, c-format
 msgid "%02d-%02d-%04d"
-msgstr ""
+msgstr "%02d-%02d-%04d"
 
 #
 # File: macros/xmltoformat.sci, line: 499
@@ -111,7 +111,7 @@ msgstr "%s: %s は構築できませんでした。"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s: ファイル %s を開けません。\n"
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
@@ -148,7 +148,7 @@ msgstr "%s: Javaスタック %s の実行。\n"
 
 #, c-format
 msgid "%s: File skipped %s."
-msgstr ""
+msgstr "%s: ファイル %s はスキップされました 。"
 
 #
 # File: macros/clean_help.sci, line: 44
@@ -159,19 +159,19 @@ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しい�
 
 #, c-format
 msgid "%s: Processing file: %s\n"
-msgstr ""
+msgstr "%s: 加工ファイル: %s\n"
 
 #, c-format
 msgid "%s: Processing file: %s to %s\n"
-msgstr ""
+msgstr "%1$s: 加工ファイル: %3$s への %2$s\n"
 
 #, c-format
 msgid "%s: Reading from directory %s\n"
-msgstr ""
+msgstr "%s: ディレクトリ　%s からの読み込み\n"
 
 #, c-format
 msgid "%s: Scilab 5.0 or more is required.\n"
-msgstr ""
+msgstr "%s: Scilab5.0以上が必要です。\n"
 
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
@@ -183,7 +183,7 @@ msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされ�
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgstr "%s: ファイル %s は存在しません。\n"
 
 #
 # File: macros/help.sci, line: 42
@@ -250,7 +250,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
 
 #
 # File: macros/help.sci, line: 24
@@ -362,7 +362,7 @@ msgstr "%s: ファイル生成なし。\n"
 
 #, c-format
 msgid "%s: processed %i files.\n"
-msgstr ""
+msgstr "%s: 加工された %i ファイル。\n"
 
 #
 # File: macros/clean_help.sci, line: 112

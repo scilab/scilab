@@ -18,19 +18,19 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void mat_reshape(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_reshape(scicos_block *block,int flag)
 {
-  double *u1;
-  double *y;
+	double *u1 = GetRealInPortPtrs(block,1);
+	double *y = GetRealOutPortPtrs(block,1);
 
-  int i,xu,vu;
+	int i = 0;
+	int xu = GetOutPortRows(block,1);
+	int vu = GetOutPortCols(block,1);
 
-  xu=GetOutPortRows(block,1);
-  vu=GetOutPortCols(block,1);
-  u1=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
-
-  for (i=0;i<xu*vu;i++) *(y+i)=*(u1+i);
+	for (i=0;i<xu*vu;i++) *(y+i)=*(u1+i);
 }
+/*--------------------------------------------------------------------------*/ 

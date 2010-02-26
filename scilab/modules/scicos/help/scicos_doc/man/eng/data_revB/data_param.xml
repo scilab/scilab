@@ -546,7 +546,7 @@
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Altitude du piquage d entr�e 1: ze1 (m)</PARAM_NAME>
+	<PARAM_NAME>Altitude du piquage d entrée 1: ze1 (m)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Altitude of the first input port
@@ -557,7 +557,7 @@
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Altitude du piquage d entr�e 2: ze2 (m)</PARAM_NAME>
+	<PARAM_NAME>Altitude du piquage d entrée 2: ze2 (m)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Altitude of the second input port
@@ -601,7 +601,7 @@
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Temp�rature initiale du fluide : T0 (K)</PARAM_NAME>
+	<PARAM_NAME>Température initiale du fluide : T0 (K)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Temperature of fluid in the tank
@@ -612,7 +612,7 @@
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Si &gt;0, masse volumique impos�e du fluide : p_rho (kg/m3)</PARAM_NAME>
+	<PARAM_NAME>Si &gt;0, masse volumique imposée du fluide : p_rho (kg/m3)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Density of fluid
@@ -850,6 +850,117 @@
   \item {\bf time dependence }\\
         Create a signal that specifies the time dependence.\\
 	Properties : Type 'str' of size 1
+\end{itemize}
+</FILE>
+
+<FILE name='CBLOCK4' type='LATEX'>
+%automatically generated, please edit
+\begin{itemize}
+
+  %simulation function   toto
+  \item {\bf Simulation function}\\
+        Name of the function to be generated and loaded.\\
+	Properties : Type 'str' of size 1
+
+  %input ports sizes   1
+  \item {\bf Input ports sizes}\\
+        Number and size of regular input ports. \\
+	Properties : Type 'mat' of size [-1,2]
+
+  %input ports type   1
+  \item {\bf Input ports type}\\
+        Set the datatype of the regular input ports. \\
+	Properties : Type 'vec' of size -1
+
+  %output port sizes   1
+  \item {\bf Output port sizes}\\
+        Number and size of regular output ports. \\
+	Properties : Type 'mat' of size [-1,2]
+
+  %output ports type   1
+  \item {\bf Output ports type}\\
+        Set the datatype of the regular output ports. \\
+	Properties : Type 'vec' of size -1
+
+  %input event ports sizes   []
+  \item {\bf Input event ports sizes}\\
+        a vector of ones, size of event input
+	ports. The size of the vector gives the number of event
+	input ports.\\
+	Properties : Type 'vec' of size -1
+
+  %output events ports sizes   []
+  \item {\bf Output events ports sizes}\\
+        a vector of ones, size of event
+	output ports. The size of the vector gives the number of of event
+	output ports. \\
+	Properties : Type 'vec' of size -1
+
+  %initial continuous state   []
+  \item {\bf Initial continuous state}\\
+        A column vector of Initial State
+	Conditions.  \\
+	Properties : Type 'vec' of size -1
+
+  %initial discrete state   []
+  \item {\bf Initial discrete state}\\
+        A column vector Initial discrete  Conditions.\\
+	Properties : Type 'vec' of size -1
+
+  %initial object state list()
+  \item {\bf Initial object state}\\
+        A Scilab list that defines the initial object state (oz).\\
+	Properties : Type 'lis' of size -1
+
+  %Real parameters vector   []
+  \item {\bf Real parameters vector}\\
+        column vector. Any parameters used 
+	in the block can be defined here as a column vector.  \\
+	Properties : Type 'vec' of size -1
+
+  %Integer parameters vector   []
+  \item {\bf Integer parameters vector}\\
+        column vector. Any integer
+	parameters used in the block can be defined here as a column
+	vector. \\
+	Properties : Type 'vec' of size -1
+
+  %object parameters list  list()
+  \item {\bf Object parameters list  }\\
+        A Scilab list that defines the list of 
+        the Object parameters (opar).\\
+	Properties : Type 'lis' of size -1
+
+  %number of modes   0
+  \item {\bf Number of modes}\\
+        Number of Right hand side functions in the
+	system. \\
+	Properties : Type 'vec' of size 1
+
+  %number of zero\_crossings   0
+  \item {\bf Number of zero\_crossings}\\
+        Number of zero-crossing surfaces\\
+	Properties : Type 'vec' of size 1
+
+  %initial firing vector ($<$0 for no firing)   []
+  \item {\bf Initial firing vector }\\
+        vector. Size of this vector corresponds
+	to the number of event outputs. The value of the i-th entry
+	specifies the time of the preprogrammed event firing on the i-th
+	output event port. If less than zero, no event is preprogrammed.\\
+	Properties : Type 'vec' of size sum(\%7)
+
+  %direct feedthrough (y or n)   y
+  \item {\bf Direct feedthrough }\\
+        character "y" or "n", specifies if block
+	has a direct input to output feedthrough. \\
+	Properties : Type 'vec' of size 1
+
+  %time dependence (y or n)   n
+  \item {\bf Time dependence }\\
+        Time dependance : character "y" or "n",
+	specifies if block output depends explicitly on time. \\
+	Properties : Type 'vec' of size 1
 \end{itemize}
 </FILE>
 
@@ -1492,15 +1603,74 @@
   </PARAM>
 </FILE>
 
-<FILE name='CONSTRAINT_f' type='LATEX'>
-%automatically generated, please edit
-\begin{itemize}
+<FILE name='CONSTRAINT2_c' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
 
-  %Set number of constraints   1
-  \item {\bf Set number of constraints}\\
-        no of algebraic relations to be defined. \\
-	Properties : Type 'vec' of size 1
-\end{itemize}
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial guess values of states x</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+             Initial value of the states  used as initial guess to help the
+    solver to converge toward the desired solution.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial guess values of derivative x'</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+            Initial guess value of the derivatives of states used as initial guess to help the
+    solver to converge toward the desired solution specially at the
+    beginning of the simulation.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Id(i)=1: if x'(i) is present in the feedback, else Id(i)=0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+            The elemenets of this vector indicate if the derivative of the
+    corresponding state has been used in the feedback path, i.e., if
+    it exists in the function f(x',x)=0.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='CONSTRAINT_c' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial guess values</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+        Initial value of the state  used as initial guess to help the
+    solver to converge toward the desired solution.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='CONST_f' type='LATEX'>
@@ -2253,32 +2423,75 @@
 </PARAM>
 </FILE>
 
+<FILE name='DIFF_c' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial state</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      Initial value of the state used as initial guess to help the
+      solver to converge toward the solution. This is specially useful
+      at the beginning of the simulation.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial Derivative</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      Initial value of the state derivatives used as initial guess to help the
+      solver. The very first output of the block is the initial
+      derivative vector.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='DIFF_f' type='XML'>
   <PARAM>
     <PARAM_INDENT>
-      <PARAM_ITEM>
-	<PARAM_NAME>Initial state</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The initial continuous state.
-	  </SP>
-	  <SP>
-	    Properties : Type 'vec' of size 1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-	<PARAM_NAME>Initial Derivative</PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    The initial derivative state.
-	  </SP>
-	  <SP>
-	    Properties : Type 'vec' of size 1.
-	  </SP>
-	</PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial state</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      Initial value of the state used as initial guess to help the
+      solver to converge toward the solution. This is specially useful
+      at the beginning of the simulation.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial Derivative</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      Initial value of the state derivatives used as initial guess to help the
+      solver. The very first output of the block is the initial
+      derivative vector.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -3077,6 +3290,14 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 </PARAM>
 </FILE>
 
+<FILE name='Flowmeter' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='GAINBLK' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -3213,6 +3434,62 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 \end{itemize}
 </FILE>
 
+<FILE name='GEN_SQR' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Minimum Value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The Lower bound of the generator.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Maximum Value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The upper bound of the generator.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Initial Value( 1= Minimum Value 2= Maximum Value)</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      When this parameter is set to 1, the initial value of the signal will be the lower bound. When it is set to 2, the initial value will be the upper bound. In else case, it generates an error.
+      </SP>
+      <SP>
+      Properties : Type 'pol' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Period (sec)</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The period of the square wave.
+      </SP>
+      <SP>
+      Properties : Type 'pol' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='GOTO' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -3319,6 +3596,14 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
 
 </PARAM_INDENT>
 </PARAM>
+</FILE>
+
+<FILE name='Ground_g' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
@@ -3783,6 +4068,219 @@ The same as \htmladdnormallink{FROMWSB}{FROMWSB.htm} block.
         block inputs. Valid choices are the operators from the list. \\
 	Properties : Type 'vec' of size 1
 \end{itemize}
+</FILE>
+
+<FILE name='LOOKUP2D' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Row index input values</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+            The row values for the table, entered as a row or column vector.
+       The vector values must be strictly monotonic increasing.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Column index input values</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+                  The column values for the table, entered as a row or column vector.
+       The vector values must be strictly monotonic increasing.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Table data</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+           Output value table. The matrix size must match the dimensions
+    used in the row index vector and the column index vector.
+      </SP>
+      <SP>
+      Properties : Type 'matrix' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Lookup method(1..5)</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      Specify the lookup method:
+      </SP>
+      <SP>
+      1)Interpolation-extrapolation (Bilinear) method: Performs a bilinear interpolation when inputs are inside the
+    table range and  uses a bilinear extrapolation using two
+    endpoints of the table if inputs are outside the table input ranges.
+      </SP>
+      <SP>
+      2)Interpolation-endvalues (Bilinear) method: Performs a bilinear interpolation when inputs are inside the
+    table range and  uses table endvalues if if inputs are outside the table input ranges.
+      </SP>
+      <SP>
+      3)InputNearest: This method does not interpolate or
+    extrapolate. Instead, the elements in row and column vectors nearest the current
+    inputs are found. The corresponding element in the table is then used as
+    the output.
+
+      </SP>
+      <SP>
+      4)InputBelow: This method does not interpolate or
+    extrapolate. Instead, the elements in row and column vectors below the current
+    inputs are found. The corresponding element in the table is then used as
+    the output.
+      </SP>
+      <SP>
+      5)InputAbove: This method does not interpolate or
+    extrapolate. Instead, the elements in row and column vectors above the current
+    inputs are found. The corresponding element in the table is then used as
+    the output.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Launch graphic window(y/n)?</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+           If set to 'y', clicking on OK, the 3D plot of the table will be
+    shown. This parameter is automatically reset to 'n'.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='LOOKUP_c' type='LATEX'>
+\begin{itemize}
+
+\item  {\bf Spline Interpolation method (0..9):} accepted values $0,
+    1, 2, 3, 4, 5, 6, 7, 8, 9$.
+
+  This parameter defines the spline method for interpolating the
+    points. The Signal builder block computes a linear or a cubic
+    spline or sub-spline $S$ which interpolates the $(x_i,y_i)$
+    points, i.e., we have $S(x_i)=y_i$ for all $i=1,..,n$.  Several
+    kind of splines may be computed by selecting the appropriate
+    spline method:
+
+\begin{itemize}
+
+\item {\bf 0: "Zero order method (Use Input Below)"}.  This method
+    does not interpolate or extrapolate. Instead, the element in x
+    nearest and below the current input is found, i.e., for $t_{i}
+    \leq t < t_{i+1}$, $y(t)=y_{i}$. The corresponding element in y is
+    then used as the output. If there is no element in x below the
+    current input, then the nearest element is found.
+
+\item {\bf 1: "Linear interpolation method"}.  This is the default
+method; it performs linear interpolation of the inputs. If a value
+matches the block's input, the output is the corresponding element in
+the output vector. If no value matches the block's input, then the
+block performs linear interpolation between the two appropriate
+elements of the table to determine an output value, i.e., for $t_i
+\leq t < t_{i+1}$, $y(t)=y_i+(t-t_i)(y_{i+1}-y_i)/(t_{i+1}-t_i)$.  If
+the block input is less than the first or greater than the last input
+vector element, then the block extrapolates using the first two or
+last two points.
+
+\item {\bf 2: "Order 2 method"}. The interpolation is done by passing
+    2-order polynomials between $(x_i,y_i)$ and
+    $(x_{i+1},y_{i+1})$. The Derivative at $(x_i,y_i)$ is identical
+    for two adjacent polynomials. The derivative at $(x_1,y_1)$
+    can be selected arbitrary, so it is selected such that the sum of
+    derivatives at all points be minimum. This condition provides a
+    less fluctuated signal.
+
+\item {\bf 3:"not\_a\_knot"}. The cubic spline is computed by using the
+    following conditions (considering $n$ points $x_1,...,x_n$):
+    $$S^{(3)}(x_2^-) = S^{(3)}(x_2^+)$$ $$S^{(3)}(x_{n-1}^-) =
+    S^{(3)}(x_{n-1}^+)$$
+
+\item {\bf 4:"periodic"}. A periodic cubic spline is computed ($y$
+    must verify $y_1=y_n$) by using the conditions:  \\$$S^{'}(x_1) =
+    S^{'}(x_n)$$ \\$$S^{''}(x_1) = S^{''}(x_n)$$.\\ In this case the value
+    of $y_n$ is ignored and $y_1$ is used instead. Note that in order
+    to generate a periodic signal, {\it Periodic} flag should be
+    activated.
+
+\item {\bf 5:"monotone"}. In this case a sub-spline ($S$ is only one
+    continuously differentiable) is computed such that $S$ is monotone
+    on each interval: \\ if $y_i \le y_{i+1}$, $S$ is increasing on
+    $[x_i, x_{i+1}]$. \\ if $y_i \> y_{i+1}$, $S$ is decreasing on
+    $[x_i, x_{i+1}]$.
+
+\item {\bf 6:"clamped"}. In this case the cubic spline is computed by
+    using the end points derivatives which are set to zero, i.e.,
+    $$S^{'}(x_1) = S^{'}(x_n)=0$$
+
+\item {\bf 7:"fast"}. In this case a sub-spline is computed by using a
+    simple local scheme for the derivative at $x_i$ of the
+    interpolation polynomial of $(x_{i-1},y_{i-1})$, $(x_{i},y_{i})$,
+    $(x_{i+1},y_{i+1})$, except for the end points (derivative at
+    these points are computed from the 3 left most points and the 3
+    right most points).
+
+\item {\bf 8: "Zero order method (Use Input-above)"}. 
+This method does not interpolate or extrapolate. Instead, the element
+in x nearest and above the current input is found, i.e., for $t_{i}
+    \leq t < t_{i+1}$, $y(t)=y_{i+1}$.. The corresponding
+element in y is then used as the output. If there is no element in x
+above the current input, then the nearest element is found.
+
+\item {\bf 9: "Zero order method (Use Input-nearest)"}. This method
+ does not interpolate or extrapolate. Instead, the element in x
+ nearest the current input is found. The corresponding element in y is
+ then used as the output.
+
+\end{itemize}
+
+\item {\bf x:} Abscissa data vector (X-axis). This vector can be
+   either a row or a column vector of double data.   Further mor it
+   should be monotonic increasing. This vector can
+   be also defined in the Scicos context. The data vector can be
+   specified by mathematical formula.
+
+\item {\bf y:} Ordinate data vector (Y-axis). This vector can be
+   either a row or a column vector of double data. Not that the size
+   of X and Y vector should be the same. This vector can be also
+   defined in the Scicos context. The data vector can also be
+   specified by formula.
+
+
+\item {\bf Extrapolate method (0,1):} 
+If the block input is less
+than the first or greater than the last input vector element, then 
+
+\begin{itemize}
+\item: {\bf 0}  the block uses the first  or last  point as output.
+\item: {\bf 1}  the block extrapolates using the first two or last two points.
+\end{itemize}
+
+\item {\bf Launch graphic window(y/n)?:} If {\bf y} is selected, by
+   clicking on {\bf OK} button, a graphical window is launched. In
+   this 2D graphical window, the user can edit data points: 
+\end{itemize}
+
 </FILE>
 
 <FILE name='LOOKUP_f' type='XML'>
@@ -4495,6 +4993,98 @@ end Example;
 </PARAM>
 </FILE>
 
+<FILE name='MPBLOCK' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Input variables:       </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 1.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Input variables types: </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 2.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Output variables:      </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 3.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Output variables types:</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 4.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Parameters in Modelica:</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 5.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Parameters properties: </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 6.
+      </SP>
+      <SP>
+      Properties : Type 'vec' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Model name in packages:</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The parameter description 7.
+      </SP>
+      <SP>
+      Properties : Type 'str' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='MUX' type='LATEX'>
 %automatically generated, please edit
 \begin{itemize}
@@ -4574,6 +5164,12 @@ end Example;
 <PARAM>
 
 </PARAM>
+</FILE>
+
+<FILE name='ModelicaBlocks' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='Modulo_Count' type='LATEX'>
@@ -4800,6 +5396,14 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
   </PARAM>
 </FILE>
 
+<FILE name='PAL_f' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='PDE' type='LATEX'>
 \begin{itemize}
 
@@ -4821,7 +5425,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
         type : in the manual mode we can give the method type
         (Finite differences, finite elements or finite volumes).
 
-        degr� : method degre (1 or 2 for the FD and FE methods,
+        degré : method degre (1 or 2 for the FD and FE methods,
         1 for the FV method).
 
         Nombre de noeuds : to give the number of the nodal points.
@@ -4842,6 +5446,12 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
         A getvalue box to give the block name's.
 
 \end{itemize}
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='XML'>
+  <PARAM>
+
+  </PARAM>
 </FILE>
 
 <FILE name='PID' type='XML'>
@@ -5073,6 +5683,62 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 </PARAM>
 </FILE>
 
+<FILE name='PULSE_SC' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Phase delay (secs):</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The offset of the block. It must be less than Frequency*(1-(Pulse_width/100)).
+      </SP>
+      <SP>
+      Properties : Type 'pol' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Pulse Width (% of period):</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The pulse width. It can take values from 1 to 100.
+      </SP>
+      <SP>
+      Properties : Type 'pol' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Period (secs):</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The Period of the signal.
+      </SP>
+      <SP>
+      Properties : Type 'pol' of size -1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Amplitude:</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      The amplitude of the pulse. It can support all scicos types.
+      </SP>
+      <SP>
+      Properties : Type 'mat' of size [-1,-1].
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='PerteDP' type='XML'>
   <PARAM>
     <PARAM_INDENT>
@@ -5088,7 +5754,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Diam�tre interne du tube : D (m)</PARAM_NAME>
+	<PARAM_NAME>Diamètre interne du tube : D (m)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Pipe diameter
@@ -5110,7 +5776,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Altitude entr�e tuyauterie : z1 (m)</PARAM_NAME>
+	<PARAM_NAME>Altitude entrée tuyauterie : z1 (m)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Altitude of the first port (z1)
@@ -5132,7 +5798,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Si &gt;0, masse volumique impos�e fu fluide : p_rho (kg/m3)</PARAM_NAME>
+	<PARAM_NAME>Si &gt;0, masse volumique imposée fu fluide : p_rho (kg/m3)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Fluid density
@@ -5180,7 +5846,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Enthalpie sp�cifique de la source : H0 (J/kg)</PARAM_NAME>
+	<PARAM_NAME>Enthalpie spécifique de la source : H0 (J/kg)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Specific Enthaly of the thermohydraulic source.
@@ -5191,7 +5857,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>1:temp�rature fix�e - 2:enthalpie fix�e : option_temperature</PARAM_NAME>
+	<PARAM_NAME>1:température fixée - 2:enthalpie fixée : option_temperature</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Temperature option. 1: fixed temperature - 2: fixed enthalpy
@@ -5440,7 +6106,7 @@ EMax	& 40	  & if x > EMax, the exp(x) function is linearized\\
 \begin{itemize}
 
   %Operator: == (0), ~= (1), $<$ (2), $<$= (3), $>$= (4), $>$ (5)   2
-  \item {\bf Operator: == }\\
+  \item {\bf Operator: }\\
         Designate the relational operator used to
         compare the two inputs.  \\
 	Properties : Type 'vec' of size 1
@@ -6381,7 +7047,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>Enthalpie sp�cifique de la source : H0 (J/kg)</PARAM_NAME>
+	<PARAM_NAME>Enthalpie spécifique de la source : H0 (J/kg)</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Specific enthalpie of  the thermohydraulic source
@@ -6392,7 +7058,7 @@ that of \htmladdnormallink{CURVE\_c}{CURVE_c.htm} block.
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-	<PARAM_NAME>1:temp�rature fix�e - 2:enthalpie fix�e : option_temperature</PARAM_NAME>
+	<PARAM_NAME>1:température fixée - 2:enthalpie fixée : option_temperature</PARAM_NAME>
 	<PARAM_DESCRIPTION>
 	  <SP>
 	    Temperature option. 1: fixed temperature - 2: fixed enthalpy
@@ -6760,6 +7426,14 @@ integer between Min value and the Max value) divided by this Normalization facto
 </PARAM>
 </FILE>
 
+<FILE name='VirtualCLK0' type='XML'>
+  <PARAM>
+    <PARAM_INDENT>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='VoltageSensor' type='XML'>
 <PARAM>
 <PARAM_INDENT>
@@ -7024,6 +7698,83 @@ integer between Min value and the Max value) divided by this Normalization facto
 \end{itemize}
 </FILE>
 
+<FILE name='callblk' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>blk</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      scicos_block scilab structure
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>flag</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      computational function calling flag
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>time</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      simulator time
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>errmsg</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      a string that gives the error message to be displayed for the user
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>TXT</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       a vector of strins that gives the path and name of the Scicos blocks interfacing function.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       the target path for the gif icons
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
 <FILE name='create_palette' type='XML'>
   <PARAM>
   <PARAM_INDENT>
@@ -7070,6 +7821,66 @@ integer between Min value and the Max value) divided by this Normalization facto
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='data2sig' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>A</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+        vector,matrix or hypermatrix(with 3 dimensions)
+        of real/complex or integers numbers.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>step</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+        an optional argument that gives the time step
+        for the output time field.
+        If not given, then the time step is 1.
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>B</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      a scilab structure that defines a signal :
+      </SP>
+        <PARAM_INDENT>
+          <PARAM_ITEM>
+            <PARAM_NAME>B.values</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>
+                A input.
+              </SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+
+          <PARAM_ITEM>
+            <PARAM_NAME>B.time</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>
+                the samples time in the form of
+                a columun vector. The size of that
+                vector is given by the A input.
+              </SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+
+        </PARAM_INDENT>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -7328,7 +8139,7 @@ integer between Min value and the Max value) divided by this Normalization facto
 
   %input ports sizes   1
   \item {\bf Input ports sizes}\\
-        Number of regular input ports. \\
+        Number and size of regular input ports. \\
 	Properties : Type 'mat' of size [-1,2]
 
   %input ports type   1
@@ -7337,8 +8148,8 @@ integer between Min value and the Max value) divided by this Normalization facto
 	Properties : Type 'vec' of size -1
 
   %output port sizes   1
-  \item {\bf Iutput port sizes}\\
-        Number of regular input ports. \\
+  \item {\bf Output port sizes}\\
+        Number and size of regular output ports. \\
 	Properties : Type 'mat' of size [-1,2]
 
   %output ports type   1
@@ -7373,7 +8184,7 @@ integer between Min value and the Max value) divided by this Normalization facto
 
   %initial object state list()
   \item {\bf Initial object state}\\
-        A Scilab list that defined the initial object state (oz).\\
+        A Scilab list that defines the initial object state (oz).\\
 	Properties : Type 'lis' of size -1
 
   %Real parameters vector   []
@@ -7391,7 +8202,7 @@ integer between Min value and the Max value) divided by this Normalization facto
 
   %object parameters list  list()
   \item {\bf Object parameters list  }\\
-        A Scilab list that defined the list of 
+        A Scilab list that defines the list of 
         the Object parameters (opar).\\
 	Properties : Type 'lis' of size -1
 
@@ -7403,7 +8214,7 @@ integer between Min value and the Max value) divided by this Normalization facto
 
   %number of zero\_crossings   0
   \item {\bf Number of zero\_crossings}\\
-        No. of zero-crossings\\
+        Number of zero-crossing surfaces.\\
 	Properties : Type 'vec' of size 1
 
   %initial firing vector ($<$0 for no firing)   []
@@ -7735,6 +8546,32 @@ integer between Min value and the Max value) divided by this Normalization facto
 	</PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
+  </PARAM>
+</FILE>
+
+<FILE name='model2blk' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>blk</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      a scicos_block structure
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>model</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      a scicos_model structure
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+  </PARAM_INDENT>
   </PARAM>
 </FILE>
 
@@ -8233,6 +9070,60 @@ integer between Min value and the Max value) divided by this Normalization facto
       \item 1  : a differential state.
     \end{itemize}
 \end{itemize}
+</FILE>
+
+<FILE name='sig2data' type='XML'>
+  <PARAM>
+  <PARAM_INDENT>
+    <PARAM_ITEM>
+    <PARAM_NAME>B</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+      a scilab structure that defines a signal :
+      </SP>
+        <PARAM_INDENT>
+          <PARAM_ITEM>
+            <PARAM_NAME>B.values</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>
+                B data
+              </SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+
+          <PARAM_ITEM>
+            <PARAM_NAME>B.time</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>
+                the samples time in the form of
+                a columun vector.
+              </SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+
+        </PARAM_INDENT>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+        the field B.values
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>t</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP>
+        the field B.time
+      </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
 </FILE>
 
 <FILE name='steadycos' type='XML'>

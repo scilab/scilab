@@ -19,6 +19,10 @@ package org.scilab.modules.renderer.utils.textRendering;
  */
 public class SpecialTextException extends Exception {
     
+	/**
+	 * Constructor
+	 * @param msg message
+	 */
     public SpecialTextException(String msg) {
 	super(msg);
     }

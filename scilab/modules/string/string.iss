@@ -29,8 +29,6 @@ Source: modules\{#STRING}\sci_gateway\string_gateway.xml; DestDir: {app}\modules
 Source: modules\{#STRING}\etc\{#STRING}.quit; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#STRING}\etc\{#STRING}.start; DestDir: {app}\modules\{#STRING}\etc; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#STRING}\help\addchapter.sce; DestDir: {app}\modules\{#STRING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 ;Source: modules\{#STRING}\includes\*.h; DestDir: {app}\modules\{#STRING}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\macros\buildmacros.sce; DestDir: {app}\modules\{#STRING}\macros; Components: {#COMPN_SCILAB}

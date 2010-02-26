@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.port.output;
 
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.Orientation;
 
 /**
  * An output port acts as a protection barrier between the internal functions of

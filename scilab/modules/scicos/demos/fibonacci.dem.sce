@@ -10,4 +10,5 @@ thispath = get_absolute_file_path("fibonacci.dem.sce");
 
 // Open the cosf file with xcos
 xcos(thispath+"/Fibonacci.cosf");
+
 clear thispath;

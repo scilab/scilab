@@ -36,6 +36,7 @@ dtosci_
 ierode_
 str2sci
 syncexec
+mkmlist_
 
 ;
 ; elementary_functions

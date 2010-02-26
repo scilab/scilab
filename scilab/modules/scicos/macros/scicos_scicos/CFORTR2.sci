@@ -19,11 +19,12 @@
 // See the file ../license.txt
 //
 
-function [ok,tt]=CFORTR2(funam,tt)
+function [ok,tt,cancel]=CFORTR2(funam,tt)
 
-//** this function provide a skeleton for C/FORTRAN Scicos blocks
+//
+cancel=%f
 
-if tt==[] then //** if the block is empty, put the skeleton inside 
+if tt==[] then
   
   textmp=[
 	  '#include <math.h>';
@@ -122,27 +123,42 @@ else
   textmp=tt;
 end
 
-//** After the editing, try to compile and load the lib 
+tt = textmp
+ok   = %t
+//## set param of scstxtedit
+ptxtedit=scicos_txtedit(clos = 0,...
+          typ  = "Cfunc",...
+          head = ['Function definition in C';
+                  'Here is a skeleton of the functions which';
+                  ' you shoud edit.']);
 
-while %t 
-  [txt] = x_dialog(['Function definition in C';
-		    'Here is a skeleton of the functions which';
-                    'you shoud edit'],..
-	  	    textmp);
-  
-  if txt<>[] then
-    tt = txt
-    [ok] = scicos_block_link(funam,tt,'c'); //** compile, link and load the shared library 
-    if ok then
-      textmp = txt;
-    end
+while 1==1
+
+  [txt,Quit] = scstxtedit(textmp,ptxtedit);
+
+  if ptxtedit.clos==1 then
     break;
-  else
-    ok = %f;
-    break  ;
-  end 
- 
-end
+  end
 
+  if txt<>[] then
+    [libss,ok,cancel]=get_dynamic_lib_dir(txt,funam,'c')
+
+    if ~cancel & ok then
+      [ok]=scicos_block_link(funam,txt,'c',libss)
+      if ok then
+        ptxtedit.clos=1
+        tt=txt
+        ok = %t;
+      end
+      textmp=txt;
+    end
+  end
+
+  if Quit==1 then
+    ok = %f;
+    cancel =%t;
+    break;
+  end
+end
 
 endfunction

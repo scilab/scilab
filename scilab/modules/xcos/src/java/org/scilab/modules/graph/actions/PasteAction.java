@@ -42,7 +42,8 @@ public final class PasteAction extends DefaultAction {
 	 */
 	public PasteAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
-		setEnabled(false);
+		
+		setEnabled(TransferHandler.getPasteAction().isEnabled());
 	}
 
 	/**

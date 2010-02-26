@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.palette.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -21,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import org.flexdock.plaf.common.border.ShadowBorder;
 import org.scilab.modules.xcos.palette.PaletteBlock;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
@@ -35,9 +35,7 @@ public final class PaletteBlockView extends JLabel {
 	private static final int DEFAULT_FONT_SIZE = 12;
 	private static final int DEFAULT_ICON_TEXT_GAP = 5;
 	
-	private static final Border SELECTED_BORDER = BorderFactory
-			.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),
-					BorderFactory.createLineBorder(Color.BLACK));
+	private static final Border SELECTED_BORDER = new ShadowBorder();
 	
 	private static final Border NON_SELECTED_BORDER = BorderFactory
 			.createEmptyBorder();

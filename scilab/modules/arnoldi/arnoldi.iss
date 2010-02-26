@@ -33,8 +33,6 @@ Source: modules\{#ARNOLDI}\sci_gateway\arnoldi_gateway.xml; DestDir: {app}\modul
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.quit; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\etc\{#ARNOLDI}.start; DestDir: {app}\modules\{#ARNOLDI}\etc; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\help\addchapter.sce; DestDir: {app}\modules\{#ARNOLDI}\help; Flags: recursesubdirs; Components: {#COMPN_ARNOLDI}
-;
 ;
 ;Source: modules\{#ARNOLDI}\includes\*.h; DestDir: {app}\modules\{#ARNOLDI}\includes; Components: {#COMPN_ARNOLDI}
 ;

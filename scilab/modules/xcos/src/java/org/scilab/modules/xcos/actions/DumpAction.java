@@ -20,12 +20,12 @@ import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Dump the graph into scilab.
@@ -70,7 +70,7 @@ public class DumpAction extends DefaultAction {
 	    temp.deleteOnExit();
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 	    try {
-			XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+			ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
 				+ "deletefile(\"" + temp.getAbsolutePath() + "\");");
 		} catch (InterpreterException e1) {
 			e1.printStackTrace();

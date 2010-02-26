@@ -250,6 +250,10 @@ public final class XcosMessages {
     /* Interpreter errors */
     public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
     public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
+
+    /* Modelica Compiler */
+    public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
+    public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
     
 // CSON: JavadocVariable
 // CSON: LineLength

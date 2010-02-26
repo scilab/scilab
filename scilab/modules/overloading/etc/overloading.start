@@ -12,8 +12,3 @@
 // =============================================================================
 load('SCI/modules/overloading/macros/lib');
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("overloading");
-end

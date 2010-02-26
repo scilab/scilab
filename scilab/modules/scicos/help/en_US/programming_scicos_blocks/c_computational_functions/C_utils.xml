@@ -68,7 +68,7 @@
   <refsection id="Description_C_utils">
     <title>Description</title>
     <para>
-The 
+The <link linkend="scicos_block4_rout">scicos_block4.h</link>
 header provides some utilities
 functions to interact with the simulator in the C computational functions.
 </para>
@@ -109,7 +109,7 @@ functions to interact with the simulator in the C computational functions.
         <para>
           <emphasis role="bold">int get_block_number();</emphasis>
         </para>
-        <para> That function returns an integer : the block index in the compiled structure. Each block in the simulated diagram have a single index, and blocks are numbered from 1 to nblk (the total number of blocks in the compiled structure). </para>
+        <para> That function returns an integer : the block index in the compiled structure. Each block in the simulated diagram has a single index, and blocks are numbered from 1 to nblk (the total number of blocks in the compiled structure). </para>
       </listitem>
       <listitem>
         <para>

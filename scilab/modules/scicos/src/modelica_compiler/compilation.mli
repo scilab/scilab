@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 (** This module performs the compilation of a subset of the Modelica language.
 *)
@@ -56,32 +57,56 @@ and compiled_subscript = Indefinite | Definite of compiled_expression
 
 and parameter =
     IntegerParameter of parameter_attributes
+  | StringParameter of parameter_attributes
   | RealParameter of parameter_attributes
 
 and parameter_attributes = {
   pat_dimensions : compiled_subscript array;
   pat_comment : string;
   pat_value : compiled_expression option;
+  pat_infos: variable_infos
 }
 
 and variable =
-    DiscreteVariable of variable_attributes
+    IntegerVariable of variable_attributes
+  | StringVariable of variable_attributes
+  | DiscreteVariable of variable_attributes
   | RealVariable of variable_attributes
   | CompoundVariable of compiled_class Lazy.t * variable_attributes
 
-and variable_attributes = {
-  vat_dimensions : compiled_subscript array;
-  vat_nature : nature;
-  vat_inout : inout;
-  vat_comment : string;
-  vat_modifications : compiled_modification list;
-}
+and variable_attributes =
+  {
+    vat_dimensions : compiled_subscript array;
+    vat_nature : nature;
+    vat_inout : inout;
+    vat_comment : string;
+    vat_modifications : compiled_modification list;
+    vat_infos: variable_infos
+  }
 
 and compiled_component = Parameter of parameter | Variable of variable
 
 and nature = Flow | Potential
 
-and inout = Input | Output | Both
+and inout =
+  | Input
+  | Output
+  | Both
+
+and variable_infos =
+  {
+    var_name: string;
+    title: string;
+    unit: string;
+    quantity: string;
+    min: string;
+    max: string;
+    port_name: string;
+    port_type: string;
+    order: int;
+    io: int;
+    weight: float
+  }
 
 and compiled_equation =
     CompiledEquality of compiled_expression * compiled_expression
@@ -98,17 +123,24 @@ and compiled_when_expression =
 
 and compiled_expression =
   | Abs of compiled_expression
+  | Acos of compiled_expression
+  | Acosh of compiled_expression
   | Addition of compiled_expression * compiled_expression
   | And of compiled_expression * compiled_expression
+  | Asin of compiled_expression
+  | Asinh of compiled_expression
+  | Atan of compiled_expression
+  | Atanh of compiled_expression
   | Boolean of bool
   | Cardinality of compiled_expression
   | Cos of compiled_expression
+  | Cosh of compiled_expression
   | Der of compiled_expression
   | Division of compiled_expression * compiled_expression
   | Equals of compiled_expression * compiled_expression
   | Exp of compiled_expression
   | ExternalFunctionCall of string list * compiled_class Lazy.t *
-    compiled_expression list
+    compiled_argument list
   | Floor of compiled_expression
   | GreaterEqualThan of compiled_expression * compiled_expression
   | GreaterThan of compiled_expression * compiled_expression
@@ -125,9 +157,11 @@ and compiled_expression =
   | NotEquals of compiled_expression * compiled_expression
   | Or of compiled_expression * compiled_expression
   | Power of compiled_expression * compiled_expression
+  | Pre of compiled_expression
   | Real of float
   | Reference of compiled_reference
   | Sin of compiled_expression
+  | Sinh of compiled_expression
   | Sqrt of compiled_expression
   | String of string
   | Subtraction of compiled_expression * compiled_expression
@@ -136,11 +170,15 @@ and compiled_expression =
   | Time
   | Vector of compiled_expression array
 
+and compiled_argument =
+  | ScalarArgument of compiled_expression
+  | ArrayArgument of int list * compiled_expression array
+
 val paths : string list ref
 (** Global variable used to store the paths where to find compiled Modelica
 classes. *)
 
-val read_class_file : string -> compiled_unit
+(*val read_class_file : string -> compiled_unit*)
 (** [read_class_file name] finds then loads the compiled class named [name].
 A compiled Modelica class named "Class" is usually stored in a file named
 "Class.moc". The search is performed in the file system using
@@ -151,6 +189,6 @@ val write_class_file : string -> compiled_unit -> unit
 named [name]. See {!Compilation.read_class_file} for more information about file
 naming conventions. *)
 
-val compile_main_class : Precompilation.precompiled_class -> compiled_unit
+val compile_main_class : Precompilation.precompiled_class list -> string * compiled_unit
 (** [compile_main_class pcl] yields the compiled Modelica class associated to
 [pcl]. *)

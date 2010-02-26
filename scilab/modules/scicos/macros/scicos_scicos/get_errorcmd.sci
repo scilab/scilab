@@ -22,7 +22,7 @@
 
 function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 //** get_errorcmd : return a Scicos_commands strings
-//** to select/highlight and display error messages for block
+//** to select/hilite and display error messages for block
 //** defined by his main scs_m path.
 //** If the block is included in a super block, the editor
 //** will open the correspondig windows by the use of the
@@ -54,6 +54,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 //** output : cmd  : the Scicos_commands strings
 //**
 //** Alan, 11/10/07 : Initial rev
+//Copyright INRIA
 
   //** first generate an empty cmd
   cmd=[]
@@ -90,9 +91,9 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 
     spec_err='The modelica block returns the error :';
     //** create cmd
-    cmd=['message(['''+title_err+''';'+...
+    cmd=['messagebox(['''+title_err+''';'+...
             ''''+spec_err+''';'+...
-            strcat(''''+mess_err+'''',";")+']);']
+            strcat(''''+mess_err+'''',";")+'],''modal'');']
 
   //** ************************
   //** all other type of blocks
@@ -119,35 +120,28 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
 
     if spec_err=='csuper block' then
         //** update spec_err
-        spec_err='The highlighted '+spec_err+' returns the error :';
+        spec_err='The hilited '+spec_err+' returns the error :';
         //**
-        //scf(curwin)
+        scf(curwin)
         //** call bad_connection
         bad_connection(path,...
                       [title_err;spec_err;mess_err],0,1,0,-1,0,1)
         //** create cmd
         cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
-             'Select=['+string(blk)+',curwin];'+...
-             'xcosShowBlockWarning('+string(blk)+');'+...
-             'xcosClearBlockWarning('+string(blk)+');']
+             'hilite_obj('+string(blk)+');'+...
+             'unhilite_obj('+string(blk)+');']
     else
       //** update spec_err
-      spec_err='The highlighted '+spec_err+' returns the error :';
+      spec_err='The hilited '+spec_err+' returns the error :';
       //** create cmd
       cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
-           'Select=['+string(blk)+',curwin];'+...
-           'xcosShowBlockWarning('+string(blk)+');'+...
-           'message(['''+title_err+''';'+...
+           'hilite_obj('+string(blk)+');'+...
+           'messagebox(['''+title_err+''';'+...
               ''''+spec_err+''';'+...
-              strcat(''''+mess_err+'''',";")+']);'+...
-           'xcosClearBlockWarning('+string(blk)+');']
+              strcat(''''+mess_err+'''',";")+'],''modal'');'+...
+           'unhilite_obj('+string(blk)+');']
     end
 
   end
 
- //execude cmd error ( bug 5437 )
-  for i = 1 : size(cmd, "*")
-      execstr(cmd(i))
-  end
-  cmd = [];
 endfunction

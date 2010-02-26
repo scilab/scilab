@@ -28,8 +28,6 @@ Source: modules\{#CACSD}\sci_gateway\cacsd_gateway.xml; DestDir: {app}\modules\{
 Source: modules\{#CACSD}\etc\{#CACSD}.quit; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\etc\{#CACSD}.start; DestDir: {app}\modules\{#CACSD}\etc; Components: {#COMPN_CACSD}
 ;
-Source: modules\{#CACSD}\help\addchapter.sce; DestDir: {app}\modules\{#CACSD}\help; Flags: recursesubdirs; Components: {#COMPN_CACSD}
-;
 ;
 ;Source: modules\{#CACSD}\includes\*.h; DestDir: {app}\modules\{#CACSD}\includes; Components: {#COMPN_CACSD}
 ;

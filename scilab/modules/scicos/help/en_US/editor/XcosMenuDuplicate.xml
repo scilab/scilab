@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuDuplicate">
+  <refnamediv>
+    <refname>Duplicate</refname>
+    <refpurpose>Menu: Makes a Copy of selected block or text in the active editor window.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      To duplicate a block in the active editor Scicos window you can:
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>.</term>
+        <listitem>
+          <para>
+	    Either, select the Duplicate menu item, then click (with
+	    left button) on the to-be-copied block in Scicos windows
+	    or in a palette), and finally click left where you want
+	    the copy be placed in the active editor Scicos window (the
+	    lower left corner of the block is placed at the selected
+	    point).
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>.</term>
+        <listitem>
+          <para>Or <link linkend="XcosSelect">select</link> first the
+          object to be copied and then activating the
+          <literal>Duplicate</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>In both cases, right click cancel the copy action.</para>
+    
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuCopy">Copy</link> </member>
+      <member> <link linkend="XcosMenuPaste">Paste</link> </member>
+      <member> <link linkend="XcosMenuUndo">Undo</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

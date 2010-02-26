@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -134,8 +134,8 @@ msgid "%s: Already loaded from library %s\n"
 msgstr "%s : Déjà chargé à partir de la bibliothèque %s\n"
 
 #, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s : Une erreur est survenue lors de la compilation :\n"
+msgid "%s: An error occurred during the compilation:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -156,8 +156,8 @@ msgstr ""
 "atteint.\n"
 
 #, c-format
-msgid "%s: Error while modifing the reference Makefile:\n"
-msgstr "%s : Erreur pendant la modification du Makefile de référence :\n"
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
@@ -394,3 +394,11 @@ msgstr "] : %d librairie.\n"
 #, c-format
 msgid "stderr: %s\n"
 msgstr "stderr: %s\n"
+
+#, c-format
+#~ msgid "%s: An error occured during the compilation:\n"
+#~ msgstr "%s : Une erreur est survenue lors de la compilation :\n"
+
+#, c-format
+#~ msgid "%s: Error while modifing the reference Makefile:\n"
+#~ msgstr "%s : Erreur pendant la modification du Makefile de référence :\n"

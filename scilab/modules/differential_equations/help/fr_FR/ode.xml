@@ -488,6 +488,6 @@ ode("stiff",[0;1],0,1,f,Jacobian)
     <title>Fonctions Utilisées</title>
 
     <para>Les sous programmes associés se trouvent dans le repertoire
-    routines/integ: lsode.f lsoda.f lsodar.f</para>
+	    SCI/modules/differential_equations/src/fortran: lsode.f lsoda.f lsodar.f</para>
   </refsection>
 </refentry>

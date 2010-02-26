@@ -18,14 +18,17 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void bit_clear_32(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void bit_clear_32(scicos_block *block,int flag)
 {
-  int n,m,i;
-  long *opar;
-  long *u,*y;
+  int n = 0,m = 0,i = 0;
+  long *opar = NULL;
+  long *u = NULL,*y = NULL;
   opar=Getint32OparPtrs(block,1);
   u=Getint32InPortPtrs(block,1);
   y=Getint32OutPortPtrs(block,1);
@@ -33,3 +36,4 @@ void bit_clear_32(scicos_block *block,int flag)
   n=GetInPortCols(block,1);
   for (i=0;i<m*n;i++) *(y+i)=((*(u+i))&(*opar));
 }
+/*--------------------------------------------------------------------------*/ 

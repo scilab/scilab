@@ -128,7 +128,7 @@ r = res(t,y,ydot)
 
     <para>Se <literal>res</literal> for um string, ele se refere a uma
     subrotina FORTRAN ou uma função C. Ver
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> para um
     exemplo.</para>
 
     <para><literal>res</literal> também pode ser uma lista, ver a ajuda de
@@ -149,7 +149,7 @@ r = adda(t,y,p)
 
     <para>Se <literal>adda</literal> for um string, ele se refere a uma
     subrotina FORTRAN ou uma função C. Ver
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> para um
     exemplo.</para>
 
     <para><literal>adda</literal> também pode ser uma lista, ver a ajuda de
@@ -170,7 +170,7 @@ j = jac(t,y,ydot)
 
     <para>Se <literal>jac</literal> for um string, ele se refere a uma
     subrotina FORTRAN ou uma função C. Ver
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal> para um
     exemplo.</para>
 
     <para><literal>jac</literal> também pode ser uma lista, ver a ajuda de

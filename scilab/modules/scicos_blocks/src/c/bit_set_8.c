@@ -18,14 +18,17 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void bit_set_8(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void bit_set_8(scicos_block *block,int flag)
 {
-  int n,m,i;
-  char *opar;
-  char *u,*y;
+  int n = 0,m = 0,i = 0;
+  char *opar = NULL;
+  char *u = NULL,*y = NULL;
   opar=Getint8OparPtrs(block,1);
   u=Getint8InPortPtrs(block,1);
   y=Getint8OutPortPtrs(block,1);
@@ -33,3 +36,4 @@ void bit_set_8(scicos_block *block,int flag)
   m=GetInPortRows(block,1);
   for(i=0;i<m*n;i++) *(y+i)=((*(u+i))|(*opar));
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cfscope.c
    \author Benoit Bayol
@@ -26,37 +27,46 @@
    \brief CFSCOPE This scope has no input port because it displays the values on the designated link
    \see CFSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
+#include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+extern int C2F(getouttb)();
+/*--------------------------------------------------------------------------*/ 
 /** \fn cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
 
-  double *rpar;
-  int *ipar, nipar;   
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;   
 
-  double period;
-  int i;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int buffer_size;
+  double period = 0.;
+  int i = 0;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int buffer_size = 0;
   int win_pos[2];
   int win_dim[2];
-  int win;
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
-  double dt;
-  int nbr_of_curves;
-  int color_flag;
-  int * colors;
+  int win = 0;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
+  double dt = 0.;
+  int nbr_of_curves = 0;
+  int color_flag = 0;
+  int * colors = NULL;
+  char *label = NULL;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -68,6 +78,7 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   period = rpar[3];
   ymin  = rpar[1];
   ymax = rpar[2];
+  label = GetLabelPtrs(block);
 
   dimension = 2;
   win_pos[0] = ipar[11];
@@ -101,31 +112,31 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
       
   /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
       scoAddCoupleOfPolylines(*pScopeMemory,colors);
       scicos_free(colors);
     }
 }
+/*--------------------------------------------------------------------------*/ 
 
-extern int C2F(getouttb)();
 /** \fn void cfscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cfscope(scicos_block * block,int flag)
+SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * sortie;
-  int  *  index_of_view;
-  double t;
-  int nbr_of_curves;
-  int *ipar;
-  int i,j;
-  int NbrPtsShort;
+  double * sortie = NULL;
+  int  *  index_of_view = NULL;
+  double t  = 0.;
+  int nbr_of_curves = 0;
+  int *ipar = NULL;
+  int i = 0,j = 0;
+  int NbrPtsShort = 0;
 
   switch(flag)
     {
@@ -211,3 +222,4 @@ void cfscope(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

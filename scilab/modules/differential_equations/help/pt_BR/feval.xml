@@ -87,8 +87,8 @@
     dois ou mais argumentos supostos reais. O resultado retornado por
     <literal>f</literal> pode ser real ou complexo. No caso de uma chamada
     FORTRAN, a função <literal> 'f' </literal> deve ser definida na subrotina
-    <literal>ffeval.f</literal> (no diretório
-    <literal>SCIDIR/routines/default</literal>)</para>
+    <literal>fevaltable.c</literal> (no diretório
+    <literal>SCI/modules/differential_equations/src/c</literal>)</para>
   </refsection>
 
   <refsection>

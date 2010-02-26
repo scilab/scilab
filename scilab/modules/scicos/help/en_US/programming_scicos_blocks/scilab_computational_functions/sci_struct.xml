@@ -111,12 +111,12 @@ two right hand side arguments and one left hand side argument, as the following 
 
 </para>
     <para>
-When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named  rhs/lhs arguments) from his own internal C reprensation of a block structure (see 
+When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named  rhs/lhs arguments) from his own internal C reprensation of a block structure (see <link linkend="C_struct">C_struct</link>
 for more details about the C structure of scicos
 blocks).
 </para>
     <para>
-That scilab structure is a scilab typed list variable that have the following fields :
+That scilab structure is a scilab typed list variable that has the following fields :
 </para>
     <para>
 

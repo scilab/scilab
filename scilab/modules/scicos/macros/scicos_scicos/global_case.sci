@@ -27,7 +27,7 @@ function [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
     for i=1:size(index,'*')
 	 indexx=find((sco_mat(index(:),3)==sco_mat(index(i),3))&(sco_mat(index(:),5)==sco_mat(index(i),5)))
          if size(indexx,'*')>1 then
-	    message(["Error In Compilation";"You cannot have multiple global GOTO with the same tag"])
+	    messagebox(["Error In Compilation";"You cannot have multiple global GOTO with the same tag"],"modal")
 	    ok=%f
 	    return
 	 end

@@ -48,12 +48,14 @@ public class TeXObjectGL extends SpecialTextObjectGL {
      * @param content the LaTeX code
      * @param color the color of the content
      * @param fontSize the size of the font
+     * @throws SpecialTextException if the string is not a LaTeX expression
      */
     public TeXObjectGL(String content, Color color, float fontSize) throws SpecialTextException {
-		if (content.endsWith("$"))
-			content = content.substring(1, content.length()-1);
-		else
+		if (content.endsWith("$")) {
+			content = content.substring(1, content.length() - 1);
+		} else {
 			throw new SpecialTextException("Not a LaTeX expression");
+		}
 	
 		try {
 			formula = new TeXFormula(content);
@@ -71,6 +73,10 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 		makeImage();
     }
 
+    /**
+     * Copy constructor
+     * @param t TeXObjectGL to copy 
+     */
     public TeXObjectGL(TeXObjectGL t) {
 	this.width = t.width;
 	this.height = t.height;
@@ -112,6 +118,7 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 		return false;
     }
     
+
     public void makeImage() {
 		texi.setInsets(new Insets(1, 1, 1, 1));
 		width = texi.getIconWidth();
@@ -132,7 +139,7 @@ public class TeXObjectGL extends SpecialTextObjectGL {
 		AffineTransform gt = new AffineTransform();
 		gt.translate(0, height);
 		gt.scale(1, -1d);
-		g2d.transform (gt);
+		g2d.transform(gt);
 	
 		texi.paintIcon(COMPONENT, (Graphics) g2d, 0, 0);
 	

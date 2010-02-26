@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 open Precompilation
 
@@ -41,7 +42,7 @@ type compilation_context =
   | ClassContext of compilation_context * compiled_class Lazy.t
   | ForContext of compilation_context * string
   | ModificationContext of compilation_context * compiled_class Lazy.t
-  | TopLevelContext
+  | TopLevelContext of (string * compiled_unit) list
 
 and compiled_unit =
   | CompiledClass of compiled_class Lazy.t
@@ -76,16 +77,20 @@ and compiled_subscript =
 
 and parameter =
   | IntegerParameter of parameter_attributes
+  | StringParameter of parameter_attributes
   | RealParameter of parameter_attributes
 
 and parameter_attributes =
   {
     pat_dimensions: compiled_subscript array;
     pat_comment: string;
-    pat_value: compiled_expression option
+    pat_value: compiled_expression option;
+    pat_infos: variable_infos
   }
 
 and variable =
+  | IntegerVariable of variable_attributes
+  | StringVariable of variable_attributes
   | DiscreteVariable of variable_attributes
   | RealVariable of variable_attributes
   | CompoundVariable of compiled_class Lazy.t * variable_attributes
@@ -96,7 +101,8 @@ and variable_attributes =
     vat_nature: nature;
     vat_inout: inout;
     vat_comment: string;
-    vat_modifications: compiled_modification list
+    vat_modifications: compiled_modification list;
+    vat_infos: variable_infos
   }
 
 and compiled_component =
@@ -111,6 +117,21 @@ and inout =
   | Input
   | Output
   | Both
+
+and variable_infos =
+  {
+    var_name: string;
+    title: string;
+    unit: string;
+    quantity: string;
+    min: string;
+    max: string;
+    port_name: string;
+    port_type: string;
+    order: int;
+    io: int;
+    weight: float
+  }
 
 and compiled_equation =
   | CompiledEquality of compiled_expression * compiled_expression
@@ -127,17 +148,24 @@ and compiled_when_expression =
 
 and compiled_expression =
   | Abs of compiled_expression
+  | Acos of compiled_expression
+  | Acosh of compiled_expression
   | Addition of compiled_expression * compiled_expression
   | And of compiled_expression * compiled_expression
+  | Asin of compiled_expression
+  | Asinh of compiled_expression
+  | Atan of compiled_expression
+  | Atanh of compiled_expression
   | Boolean of bool
   | Cardinality of compiled_expression
   | Cos of compiled_expression
+  | Cosh of compiled_expression
   | Der of compiled_expression
   | Division of compiled_expression * compiled_expression
   | Equals of compiled_expression * compiled_expression
   | Exp of compiled_expression
   | ExternalFunctionCall of string list * compiled_class Lazy.t *
-    compiled_expression list
+    compiled_argument list
   | Floor of compiled_expression
   | GreaterEqualThan of compiled_expression * compiled_expression
   | GreaterThan of compiled_expression * compiled_expression
@@ -154,9 +182,11 @@ and compiled_expression =
   | NotEquals of compiled_expression * compiled_expression
   | Or of compiled_expression * compiled_expression
   | Power of compiled_expression * compiled_expression
+  | Pre of compiled_expression
   | Real of float
   | Reference of compiled_reference
   | Sin of compiled_expression
+  | Sinh of compiled_expression
   | Sqrt of compiled_expression
   | String of string
   | Subtraction of compiled_expression * compiled_expression
@@ -164,6 +194,10 @@ and compiled_expression =
   | Tanh of compiled_expression
   | Time
   | Vector of compiled_expression array
+
+and compiled_argument =
+  | ScalarArgument of compiled_expression
+  | ArrayArgument of int list * compiled_expression array
 
 
 (* Marshaling *)
@@ -188,6 +222,11 @@ let read_class_file f =
           | Sys_error _ -> read_class_file' ss
   in read_class_file' !paths
 
+let rec last = function
+  | [] -> failwith "last"
+  | [x] -> x
+  | _ :: xs -> last xs
+
 let write_class_file f cu =
   let oc = open_out_bin f
   and flags = [Marshal.Closures] in
@@ -202,36 +241,57 @@ let create_filename name ext =
   let prefix, base = create_name [] name in
   List.fold_right Filename.concat prefix (base ^ ext)
 
+let rec get_compiled_class ctx name =
+  let name' = last name in
+  match ctx with
+  | ClassContext (ctx', _) | ForContext (ctx', _) |
+    ModificationContext (ctx', _) -> get_compiled_class ctx' name
+  | TopLevelContext funcs when List.mem_assoc name' funcs ->
+      List.assoc name' funcs
+  | TopLevelContext funcs ->
+      let f = create_filename name ".moc" in
+      read_class_file f
+
 
 (* Compilation *)
 
-let rec compile_main_class pcl = match pcl.public_classes with
-  | [] -> failwith "compile_main_class: No main class declared"
-  | [(_, pcl)] ->
-      begin match pcl.class_kind with
-        | ParseTree.Function ->
-            CompiledFunction (compile_compound_class TopLevelContext pcl)
-        | ParseTree.Class ->
-            CompiledClass (compile_compound_class TopLevelContext pcl)
-        | _ ->
-            failwith
-              "compile_main_class: Only external functions and classes allowed"
-      end
-  | _ -> failwith "compile_main_class: More than one class declared at toplevel"
+let rec compile_main_class pcls =
+  let add_class (cls, funcs) (id, pcl) = match pcl.class_kind with
+    | ParseTree.Function -> cls, (id, pcl) :: funcs
+    | ParseTree.Class | ParseTree.Model -> (id, pcl) :: cls, funcs
+    | _ ->
+        failwith "compile_main_class: Only external functions, models and \
+          classes allowed" in
+  let pcls =
+    List.flatten (List.map (function pcl -> pcl.public_classes) pcls) in
+  match List.fold_left add_class ([], []) pcls with
+  | [], _ -> failwith "compile_main_class: No main class declared"
+  | [id, pcl], funcs ->
+      let compile_function (id, pcl) =
+        id,
+        CompiledFunction (compile_compound_class (TopLevelContext []) pcl) in
+      let funcs' = List.map compile_function funcs in
+      id, CompiledClass (compile_compound_class (TopLevelContext funcs') pcl)
+  | _ :: _, _ ->
+      failwith "compile_main_class: More than one class declared at toplevel"
 
 and compile_compound_class ctx pcl =
   let rec ctx' = ClassContext (ctx, lccl)
   and defined_equs = lazy (compile_equation_clauses ctx' pcl.equs)
   and lccl = lazy
     {
-      ccl_public_cpnts = lazy (
-        List.map
-          (fun (id, cpnt) -> id, lazy (compile_component ctx' cpnt))
-          pcl.public_cpnts);
+      ccl_public_cpnts = lazy (compile_components ctx' 0 pcl.public_cpnts);
       ccl_initial_equs = lazy (fst (Lazy.force defined_equs));
-      ccl_equs = lazy (snd (Lazy.force defined_equs));
+      ccl_equs = lazy (snd (Lazy.force defined_equs))
     }
   in lccl
+
+and compile_components ctx i cpnts =
+  match cpnts with
+  | [] -> []
+  | (id, cpnt) :: cpnts ->
+      (id, lazy (compile_component ctx i id cpnt)) ::
+      compile_components ctx (i + 1) cpnts
 
 and compile_equation_clauses ctx equ_clauses =
   let rec compile_equation_clauses' init_equs equs = function
@@ -414,6 +474,10 @@ and compile_expression ctx expr =
         let cexpr = compile_expression' expr in
         Der cexpr
     | ParseTree.FunctionCall
+      ([("pre", [||])], Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Pre cexpr
+    | ParseTree.FunctionCall
       ([("floor", [||])], Some (ParseTree.ArgList ([expr] , None))) ->
         let cexpr = compile_expression' expr in
         Floor cexpr
@@ -445,44 +509,89 @@ and compile_expression ctx expr =
         let cexpr = compile_expression' expr in
         Abs cexpr
     | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("cos", [||])],
-      Some (ParseTree.ArgList ([expr] , None))) ->
-        let cexpr = compile_expression' expr in
-        Cos cexpr
-    | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("exp", [||])],
-      Some (ParseTree.ArgList ([expr] , None))) ->
-        let cexpr = compile_expression' expr in
-        Exp cexpr
-    | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("log", [||])],
-      Some (ParseTree.ArgList ([expr] , None))) ->
-        let cexpr = compile_expression' expr in
-        Log cexpr
-    | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("sin", [||])],
+      ([("sin", [||])],
       Some (ParseTree.ArgList ([expr] , None))) ->
         let cexpr = compile_expression' expr in
         Sin cexpr
     | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("sqrt", [||])],
+      ([("cos", [||])],
       Some (ParseTree.ArgList ([expr] , None))) ->
         let cexpr = compile_expression' expr in
-        Sqrt cexpr
+        Cos cexpr
     | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("tan", [||])],
+      ([("tan", [||])],
       Some (ParseTree.ArgList ([expr] , None))) ->
         let cexpr = compile_expression' expr in
         Tan cexpr
     | ParseTree.FunctionCall
-      ([("Modelica", [||]); ("Math", [||]); ("tanh", [||])],
+      ([("asin", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Asin cexpr
+    | ParseTree.FunctionCall
+      ([("acos", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Acos cexpr
+    | ParseTree.FunctionCall
+      ([("atan", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Atan cexpr
+    | ParseTree.FunctionCall
+      ([("sinh", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Sinh cexpr
+    | ParseTree.FunctionCall
+      ([("cosh", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Cosh cexpr
+    | ParseTree.FunctionCall
+      ([("tanh", [||])],
       Some (ParseTree.ArgList ([expr] , None))) ->
         let cexpr = compile_expression' expr in
         Tanh cexpr
+    | ParseTree.FunctionCall
+      ([("asinh", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Asinh cexpr
+    | ParseTree.FunctionCall
+      ([("acosh", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Acosh cexpr
+    | ParseTree.FunctionCall
+      ([("atanh", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Atanh cexpr
+    | ParseTree.FunctionCall
+      ([("exp", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Exp cexpr
+    | ParseTree.FunctionCall
+      ([("log", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Log cexpr
+    | ParseTree.FunctionCall
+      ([("log10", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Division (Log cexpr, Log (Real 10.))
+    | ParseTree.FunctionCall
+      ([("sqrt", [||])],
+      Some (ParseTree.ArgList ([expr] , None))) ->
+        let cexpr = compile_expression' expr in
+        Sqrt cexpr
     | ParseTree.FunctionCall (path, Some (ParseTree.ArgList (exprs , None))) ->
         let cexprs = List.map compile_expression' exprs
         and name, lccl = get_function_from path
-        in ExternalFunctionCall (name, lccl, cexprs)
+        in ExternalFunctionCall (name, lccl, List.map to_argument cexprs)
     | ParseTree.FunctionCall _ ->
         failwith "compile_expression: invalid function call"
     | ParseTree.GreaterEqualThan (expr, expr') ->
@@ -551,8 +660,7 @@ and compile_expression ctx expr =
           | _ -> failwith "compile_expression: invalid function reference")
         path
     in
-    let f = create_filename name ".moc" in
-    let cu = read_class_file f in
+    let cu = get_compiled_class ctx name in
     match cu with
       | CompiledFunction lccl -> name, lccl
       | CompiledClass _ ->
@@ -574,9 +682,22 @@ and compile_expression ctx expr =
     cexpr, cexpr'
   in compile_expression' expr
 
+and to_argument cexpr =
+  let rec array_dimensions = function
+    | Vector cexprs -> Array.length cexprs :: array_dimensions cexprs.(0)
+    | _ -> [] in
+  let rec flatten = function
+    | Vector cexprs ->
+        Array.fold_right (fun cexpr acc -> flatten cexpr @ acc) cexprs []
+    | cexpr -> [cexpr] in
+  match cexpr with
+  | Vector _ ->
+      ArrayArgument (array_dimensions cexpr, Array.of_list (flatten cexpr))
+  | _ -> ScalarArgument cexpr
+
 and compile_component_reference ctx cpnt_ref =
   let rec compile_reference' ctx' level level' cpnt_ref = match ctx' with
-    | TopLevelContext -> raise Not_found
+    | TopLevelContext _ -> raise Not_found
     | ClassContext (ctx'', lccl) ->
         compile_component_path ctx ctx' level cpnt_ref
     | ModificationContext (ctx'', lccl) ->
@@ -614,13 +735,12 @@ and compile_component_path ctx ctx' level cpnt_ref =
   in match ctx' with
     | ClassContext (_, lccl) | ModificationContext (_, lccl) ->
         compile_component_path_in lccl cpnt_ref
-    | TopLevelContext | ForContext _ ->
+    | TopLevelContext _ | ForContext _ ->
         assert false (* Never applied to this kind of context *)
 
 and compile_subscripts ctx subscripts =
   let rec compile_subscript = function
-    | ParseTree.All ->
-        failwith "compile_subscripts: ranges not allowed"
+    | ParseTree.All -> Indefinite
     | ParseTree.Subscript expr ->
         Definite (compile_expression ctx expr)
   in Array.map compile_subscript subscripts
@@ -689,44 +809,66 @@ and compile_component_modification ctx modif = match ctx, modif with
       and modif = Modification (cpnt_ref, modifs, None) in
       let cmodif = compile_modification ctx' modif in
       CompiledModification ((id, cs), [cmodif], cexpr_opt)
-  | (TopLevelContext | ClassContext _), _ ->
+  | (TopLevelContext _ | ClassContext _), _ ->
       assert false (* Never applied to this kind of context *)
   | _ -> raise InvalidModification
 
 and compile_base_type_variable_modifications ctx = function
   | [] -> []
-  | Modification ([("start", [||])], [], Some expr) :: modifs ->
+  | Modification (["start", [||]], [], Some expr) :: modifs ->
       let cexpr = compile_expression ctx expr in
       CompiledModification (("start", [||]), [], Some cexpr) ::
       compile_base_type_variable_modifications ctx modifs
-  | _ ->
-      failwith "compile_base_type_variable_modifications: invalid modification"
+  | Modification (["unit", [||]], [], Some expr) :: modifs ->
+      let cexpr = compile_expression ctx expr in
+      CompiledModification (("unit", [||]), [], Some cexpr) ::
+      compile_base_type_variable_modifications ctx modifs
+  | Modification (["quantity", [||]], [], Some expr) :: modifs ->
+      let cexpr = compile_expression ctx expr in
+      CompiledModification (("quantity", [||]), [], Some cexpr) ::
+      compile_base_type_variable_modifications ctx modifs
+  | Modification (["min", [||]], [], Some expr) :: modifs ->
+      let cexpr = compile_expression ctx expr in
+      CompiledModification (("min", [||]), [], Some cexpr) ::
+      compile_base_type_variable_modifications ctx modifs
+  | Modification (["max", [||]], [], Some expr) :: modifs ->
+      let cexpr = compile_expression ctx expr in
+      CompiledModification (("max", [||]), [], Some cexpr) ::
+      compile_base_type_variable_modifications ctx modifs
+  | _ :: modifs ->
+      compile_base_type_variable_modifications ctx modifs
+      (*failwith "compile_base_type_variable_modifications: invalid modification"*)
 
-and compile_component ctx pcpnt = match pcpnt.variability with
-  | Some ParseTree.Parameter -> Parameter (compile_parameter ctx pcpnt)
-  | Some ParseTree.Discrete | None -> Variable (compile_variable ctx pcpnt)
+and compile_component ctx i id pcpnt = match pcpnt.variability with
+  | Some ParseTree.Parameter -> Parameter (compile_parameter ctx i id pcpnt)
+  | Some ParseTree.Discrete | None -> Variable (compile_variable ctx i id pcpnt)
   | _ -> failwith "compile_component: only variables and parameters allowed"
 
-and compile_parameter ctx pcpnt =
+and compile_parameter ctx i id pcpnt =
+  let cmodifs = match pcpnt.class_name, snd pcpnt.modification with
+    | ["Integer"], _ | ["Real"], _ | ["String"], _ ->
+        compile_base_type_variable_modifications ctx (fst pcpnt.modification)
+    | _ -> [] in
   let attrs =
     {
       pat_dimensions = compile_subscripts ctx pcpnt.subscripts;
       pat_comment = compile_comment pcpnt.comment;
       pat_value =
-        opt_map (compile_expression ctx) (snd pcpnt.modification)
+        opt_map (compile_expression ctx) (snd pcpnt.modification);
+      pat_infos = compile_infos i id pcpnt.comment cmodifs
     }
   in match pcpnt.class_name with
     | ["Integer"] -> IntegerParameter attrs
     | ["Real"] -> RealParameter attrs
+    | ["String"] -> StringParameter attrs
     | _ -> failwith "compile_parameter: only base types allowed"
 
-and compile_variable ctx pcpnt =
+and compile_variable ctx i id pcpnt =
   let cmodifs = match pcpnt.class_name, snd pcpnt.modification with
-    | ["Integer"], None | ["Real"], None ->
+    | ["Integer"], None | ["Real"], None | ["String"], None ->
         compile_base_type_variable_modifications ctx (fst pcpnt.modification)
     | name, None ->
-        let f = create_filename name ".moc" in
-        let cu = read_class_file f in
+        let cu = get_compiled_class ctx name in
         begin match cu with
           | CompiledClass lccl ->
               let ctx' = ModificationContext (ctx, lccl) in
@@ -744,14 +886,16 @@ and compile_variable ctx pcpnt =
       vat_nature = compile_nature pcpnt.flow;
       vat_inout = compile_inout pcpnt.inout;
       vat_comment = compile_comment pcpnt.comment;
-      vat_modifications = cmodifs
+      vat_modifications = start_modifications cmodifs;
+      vat_infos = compile_infos i id pcpnt.comment cmodifs
     }
   in match pcpnt.class_name, pcpnt.variability with
     | ["Real"], Some ParseTree.Discrete -> DiscreteVariable attrs
     | ["Real"], None -> RealVariable attrs
+    | ["Integer"], None -> IntegerVariable attrs
+    | ["String"], None -> StringVariable attrs
     | name, None ->
-        let f = create_filename name ".moc" in
-        let cu = read_class_file f in
+        let cu = get_compiled_class ctx name in
         begin match cu with
           | CompiledClass lccl -> CompoundVariable (lccl, attrs)
           | CompiledFunction _ ->
@@ -759,17 +903,126 @@ and compile_variable ctx pcpnt =
         end
     | _ -> failwith "compile_variable: invalid variable declaration"
 
+and start_modifications cmodifs = match cmodifs with
+  | [] -> []
+  | (CompiledModification (("start", _), _, _) as cmodif) :: cmodifs' ->
+      cmodif :: start_modifications cmodifs'
+  | _ :: cmodifs' -> start_modifications cmodifs'
+
 and compile_nature = function
   | Some ParseTree.Flow -> Flow
   | None -> Potential
 
-and compile_inout = function
+and compile_inout inout = match inout with
   | Some ParseTree.Input -> Input
   | Some ParseTree.Output -> Output
   | None -> Both
 
 and compile_comment = function
-  | ParseTree.Comment (ParseTree.StringComment ss, None) ->
+  | ParseTree.Comment (ParseTree.StringComment ss, _) ->
       List.fold_left ( ^ ) "" ss
-  | ParseTree.Comment (_, Some _) ->
-      failwith "compile_comment: Annotations not allowed"
+  (*| ParseTree.Comment (_, Some _) ->
+      failwith "compile_comment: Annotations not allowed"*)
+
+and compile_infos i id cmt cmodifs =
+  let weight, port_name, port_type = match cmt with
+    | ParseTree.Comment (_, Some ann) -> compile_annotation ann
+    | _ -> 1.0, "", "" in
+  let port_name = match port_name with
+    | "" -> id
+    | _ -> port_name in
+  let rec modif_infos (unit, qt, min, max) cmodifs = match cmodifs with
+    | [] -> unit, qt, min, max
+    | (CompiledModification (("unit", _), _, Some (String s)))
+      :: cmodifs' ->
+        modif_infos (s, qt, min, max) cmodifs'
+    | (CompiledModification (("quantity", _), _, Some (String s)))
+      :: cmodifs' ->
+        modif_infos (unit, s, min, max) cmodifs'
+    | (CompiledModification (("min", _), _, Some (String s)))
+      :: cmodifs' ->
+        modif_infos (unit, qt, s, max) cmodifs'
+    | (CompiledModification (("max", _), _, Some (String s)))
+      :: cmodifs' ->
+        modif_infos (unit, qt, min, s) cmodifs'
+    | _ :: cmodifs' -> modif_infos (unit, qt, min, max) cmodifs' in
+  let unit, qt, min, max = modif_infos ("null", "", "", "") cmodifs in
+  {
+    var_name = id;
+    title = id;
+    unit = unit;
+    quantity = qt;
+    min = min;
+    max = max;
+    port_name = port_name;
+    port_type = port_type;
+    order = i;
+    io = 1;
+    weight = weight
+  }
+
+and compile_annotation ann =
+  let rec compile_port_arguments (weight, port_name, port_type) args =
+    match args with
+    | [] -> weight, port_name, port_type
+    | ParseTree.ElementModification
+        (_, _, ["port_name", [||]],
+         ParseTree.Eq (ParseTree.Reference [id, [||]]), _) :: args' ->
+        compile_port_arguments (weight, id, port_type) args'
+    | ParseTree.ElementModification
+        (_, _, ["port_type", [||]],
+         ParseTree.Eq (ParseTree.Reference [id, [||]]), _) :: args' ->
+        compile_port_arguments (weight, port_name, id) args'
+    | _ :: args' ->
+        compile_port_arguments (weight, port_name, port_type) args'
+  and compile_initialization_arguments (weight, port_name, port_type) args =
+    match args with
+    | [] -> weight, port_name, port_type
+    | ParseTree.ElementModification
+        (_, _, ["weight", [||]],
+         ParseTree.Eq (ParseTree.Real s), _) :: args' ->
+        compile_initialization_arguments
+          (float_of_string s, port_name, port_type)
+          args'
+    | _ :: args' ->
+        compile_initialization_arguments
+          (weight, port_name, port_type)
+          args' in
+  let compile_port_annotation modif = match modif with
+    | ParseTree.Modification (ParseTree.ClassModification args, None) ->
+        compile_port_arguments (1.0, "", "") args
+    | _ -> 1.0, "", "" in
+  let compile_initialization_annotation modif = match modif with
+    | ParseTree.Modification (ParseTree.ClassModification args, None) ->
+        compile_initialization_arguments (1.0, "", "") args
+    | _ -> 1.0, "", "" in
+  let compile_imagine_annotation_argument (weight, port_name, port_type) arg =
+    match arg with
+    | ParseTree.ElementModification (_, _, ["port", [||]], modif, _) ->
+        compile_port_annotation modif
+    | ParseTree.ElementModification (_, _, ["initialization", [||]], modif, _) ->
+        compile_initialization_annotation modif
+    | _ -> weight, port_name, port_type in
+  let compile_imagine_annotation modif = match modif with
+    | ParseTree.Modification (ParseTree.ClassModification args, None) ->
+        List.fold_left compile_imagine_annotation_argument (1.0, "", "") args
+    | _ -> 1.0, "", "" in
+  let compile_scicos_annotation_argument (weight, port_name, port_type) arg =
+    match arg with
+    | ParseTree.ElementModification (_, _, ["initialization", [||]], modif, _) ->
+        compile_initialization_annotation modif
+    | _ -> weight, port_name, port_type in
+  let compile_scicos_annotation modif = match modif with
+    | ParseTree.Modification (ParseTree.ClassModification args, None) ->
+        List.fold_left compile_scicos_annotation_argument (1.0, "", "") args
+    | _ -> 1.0, "", "" in
+  let compile_argument arg = match arg with
+    | ParseTree.ElementModification (_, _, ["__imagine", [||]], modif, _) ->
+        compile_imagine_annotation modif
+    | ParseTree.ElementModification (_, _, ["__scicos", [||]], modif, _) ->
+        compile_scicos_annotation modif
+    | _ -> 1.0, "", "" in
+  match ann with
+  | ParseTree.Annotation (ParseTree.ClassModification [arg]) ->
+      compile_argument arg
+  | _ -> 1.0, "", ""

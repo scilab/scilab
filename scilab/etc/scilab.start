@@ -49,6 +49,7 @@ ieee(0);
 %T = %t;
 %F = %f;
 
+%pvm = with_module('pvm');
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 args = sciargs();
@@ -87,14 +88,13 @@ clear demolist;
 // loads modules ======================================================
 
 modules = getmodules();
-WITH_HELPTOOLS = ((with_module("helptools"))  & (getscilabmode() <> "NWNI"));
 WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
 
 for i=1:size(modules,"*")
   exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
-clear modules i add_demo add_help_chapter add_module_help_chapter WITH_HELPTOOLS WITH_DEMOS
+clear modules i add_demo WITH_DEMOS
 
 // Create some configuration variables ================================
 home = getenv("HOME",SCI);

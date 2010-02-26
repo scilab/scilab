@@ -18,13 +18,14 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/
 #include "MALLOC.h"  /* malloc */
-
+#include "scicos_malloc.h"
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/
 void * scicos_malloc(size_t size)
 {
+  if (size==0) return NULL;
   return MALLOC(size);
 }
-
+/*--------------------------------------------------------------------------*/

@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -27,7 +28,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Create a mask for the {@link SuperBlock}
  */
-public final class SuperblockMaskCreateAction extends SuperBlockSelectedAction {
+public final class SuperblockMaskCreateAction extends DefaultAction {
 	public static final String NAME = XcosMessages.CREATE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

@@ -18,9 +18,11 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
-
+#include "sciblk2.h"
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/
 extern int C2F(scierr)();
 extern void C2F(itosci)();
 extern void C2F(dtosci)();
@@ -32,25 +34,20 @@ extern void C2F(list2vars)();
 extern void C2F(ltopadj)();
 extern void C2F(scifunc)();
 extern void C2F(mklist)();
-
-void 
-sciblk2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-
-int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
+/*--------------------------------------------------------------------------*/
+void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *nx, double z[], int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
+	       int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout)
 
 {
-    int k;
-    double *y;
-    double *u;
+    int k = 0;
+    double *y = NULL;
+    double *u = NULL;
     /*int nev,ic;*/
-    int one=1,skip;
-    int nu,ny;
-    int nu2,ny2;
-    int mlhs=5,mrhs=8;
-    int ltop;
+    int one=1,skip = 0;
+    int nu = 0,ny = 0;
+    int nu2 = 0,ny2 = 0;
+    int mlhs = 5,mrhs = 8;
+    int ltop = 0;
 
 
     C2F(itosci)(flag,&one,&one);
@@ -188,3 +185,4 @@ double *inptr[],*outptr[],*t;
  err: 
     *flag=-1;
 }
+/*--------------------------------------------------------------------------*/

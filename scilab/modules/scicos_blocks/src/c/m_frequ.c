@@ -18,21 +18,23 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
+#include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-void m_frequ(scicos_block *block,int flag)
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block,int flag)
 {
-  double *mat;
-  double *Dt;
-  double *off;
-  long *icount;
-  double t;
-  long long *counter;
-  int m;
+  double *mat = NULL;
+  double *Dt = NULL;
+  double *off = NULL;
+  long *icount = NULL;
+  double t = 0.0;
+  long long *counter = NULL;
+  int m = 0;
   mat=GetRealOparPtrs(block,1);
   Dt=GetRealOparPtrs(block,2);
   off=GetRealOparPtrs(block,3);
@@ -47,10 +49,9 @@ void m_frequ(scicos_block *block,int flag)
                 set_block_error(-16);
                 return;
               }
-              counter=*block->work;
-              if (*icount!=0) (*counter)=(int)mat[0];
-              else *counter=0;
-              (*(counter+1))=*icount;
+			  counter=*block->work;
+			  *counter=*icount;
+			  (*(counter+1))=0;
               break;
              }
 
@@ -74,3 +75,4 @@ void m_frequ(scicos_block *block,int flag)
    default : break;
   }
 }
+/*--------------------------------------------------------------------------*/ 

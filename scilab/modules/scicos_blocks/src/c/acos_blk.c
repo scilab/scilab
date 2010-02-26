@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void acos_blk(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void acos_blk(scicos_block *block,int flag)
 {
-  int j;
+  int j = 0;
   if(flag==1){
     for (j=0;j<block->insz[0];j++) {
       block->outptr[0][j]=acos(block->inptr[0][j]);
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

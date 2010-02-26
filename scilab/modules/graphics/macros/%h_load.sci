@@ -305,34 +305,24 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	x_ticks_locations=mget(sz,'dl',fd)'
 	lz=mget(sz,characterFormat,fd) // x_ticks.label
 	x_ticks_labels=[];for ks=1:sz,x_ticks_labels(ks)=ascii(mget(lz(ks),characterFormat,fd));end
-      else
-	x_ticks_labels=[];
-	x_ticks_locations=[];
-      end
 	set(a,'x_ticks',tlist(ticks,x_ticks_locations,x_ticks_labels))
+      end
 
       sz=mget(1,'sl',fd) // y_ticks.locations
       if sz>0 then
 	y_ticks_locations=mget(sz,'dl',fd)'
 	lz=mget(sz,characterFormat,fd) // y_ticks.label
 	y_ticks_labels=[];for ks=1:sz,y_ticks_labels(ks)=ascii(mget(lz(ks),characterFormat,fd));end
-      else
-	y_ticks_labels=[];
-	y_ticks_locations=[];
+	set(a,'y_ticks',tlist(ticks,y_ticks_locations,y_ticks_labels))
       end
-      set(a,'y_ticks',tlist(ticks,y_ticks_locations,y_ticks_labels))
-
+    
       sz=mget(1,'sl',fd) // z_ticks.locations
       if sz>0 then
 	z_ticks_locations=mget(sz,'dl',fd)'
 	lz=mget(sz,characterFormat,fd) // z_ticks.labels
 	z_ticks_labels=[];for ks=1:sz,z_ticks_labels(ks)=ascii(mget(lz(ks),characterFormat,fd));end
-      else
-	z_ticks_labels=[];
-	z_ticks_locations=[];
+	set(a,'z_ticks',tlist(ticks,z_ticks_locations,z_ticks_labels))
       end
-      set(a,'z_ticks',tlist(ticks,z_ticks_locations,z_ticks_labels))
-
       set(a,"auto_ticks"           , auto_ticks)
     end
     if is_higher_than([4 1 2 0]) then

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2009-11-16 16:21+0000\n"
+"PO-Revision-Date: 2010-02-12 20:46+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -70,11 +70,6 @@ msgstr " バッファ・サイズよりも長い入力行: %d\n"
 # File: src/c/errmsg.c, line: 1645
 msgid "\"unknown data\""
 msgstr "\"未知のデータ\""
-
-#
-# File: src/c/errmsg.c, line: 944
-msgid "%: This method is NOT implemented.\n"
-msgstr "%s: この方法は装備されていません。\n"
 
 #
 # File: src/c/errmsg.c, line: 477
@@ -251,11 +246,13 @@ msgstr "%s: シュミレーションの最初の固定値は問題です。\n"
 msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: シミュレーターから停止要求(ind=0)\n"
 
-#
-# File: src/c/errmsg.c, line: 1440
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s: 関連度行列は単独です。\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr "%s: コロケーション行列は特異です。\n"
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr "%s: この方法は装備されていません。\n"
 
 #, c-format
 msgid ""
@@ -267,11 +264,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
+msgstr "%s: 型 %s はハンドルではありません: 関数 %s2%s 定義"
 
 #, c-format
 msgid "%s: Wrong export format: %s"
-msgstr ""
+msgstr "%s: エクスポートフォーマットが違います: %s"
 
 #
 # File: src/c/errmsg.c, line: 924
@@ -281,39 +278,39 @@ msgstr "%s: 入力引数が不正です。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。"
 
 #
 # File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: 入力引数で不正な数値です。\n"
+msgstr "%s: 入力引数の数が不正です。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
+msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定します。"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が不正です: 最小の %d を想定します。\n"
 
 #
 # File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s: 入力引数で不正な数: 最大で %d を想定します。\n"
+msgstr "%s: 入力引数の数が不正です: 最大で %d を想定します。\n"
 
 #
 # File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-msgstr "%s: 入力引数で不正な数: データはフォーマットに適合しません。\n"
+msgstr "%s: 入力引数の数が不正です: データはフォーマットに適合しません。\n"
 
 #
 # File: src/c/errmsg.c, line: 570
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: 出力引数で不正な番号です。\n"
+msgstr "%s: 出力引数の数が不正です。\n"
 
 #
 # File: src/c/errmsg.c, line: 1085
@@ -347,7 +344,7 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定しま�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d の型が不正: ブーリアンを想定します。\n"
 
 #
 # File: src/c/errmsg.c, line: 1107
@@ -448,7 +445,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
 
 #
 # File: src/c/errmsg.c, line: 843
@@ -461,6 +458,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: 入力引数 #%d で不正な値: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' または ''%s'' "
+"を想定します。\n"
 
 #
 # File: src/c/errmsg.c, line: 1085
@@ -619,11 +618,9 @@ msgstr "%s: 入力点でひとつの問題があります。\n"
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr "%s: 繰り返し連続する２の間で %s の関係エラーです。\n"
 
-#
-# File: src/c/errmsg.c, line: 648
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s: 特異または非対称問題です。\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr "%s: 特異または非対称問題。\n"
 
 #
 # File: src/c/errmsg.c, line: 1425
@@ -682,10 +679,8 @@ msgstr "%s: ウインドウ次元が 2^16 よりも少なく設定されてい�
 msgid "'o' format not allowed."
 msgstr "'o' フォーマットは許されませんでした。"
 
-#
-# File: src/c/errmsg.c, line: 1219
-msgid "A sparse matrix entry is defined with two differents values.\n"
-msgstr "疎行列入力は、２つの違った値で定義されています。\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr "疎行列入力は２つの異なる価値で定義されます。\n"
 
 #
 # File: src/c/errmsg.c, line: 1187
@@ -698,11 +693,9 @@ msgstr "引数型はブーリアンでなければなりません。\n"
 msgid "Arguments are :\n"
 msgstr "引数です:\n"
 
-#
-# File: src/c/msgs.c, line: 1081
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-msgstr "現在: %s , 正確に成し遂げるためには多すぎる繰り返しです。\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr "時間に: %s, 多すぎる反復は正確を必要とします。\n"
 
 #
 # File: src/c/errmsg.c, line: 217
@@ -713,10 +706,8 @@ msgstr "最初の呼び出し不正: %s\n"
 msgid "Bad conversion."
 msgstr "悪い変換です。"
 
-#
-# File: src/c/errmsg.c, line: 1348
-msgid "Binary direct acces files must be opened by 'file'.\n"
-msgstr "バイナリーの直接参照ファイルは、「ファイル」によって開かれなくてはいけません。\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr "バイナリーの直接アクセス・ファイルは、'file' で開かれなくてはいけません。\n"
 
 #
 # File: src/c/msgs.c, line: 729
@@ -745,7 +736,7 @@ msgstr "収束問題...\n"
 #
 # File: src/c/errmsg.c, line: 904
 msgid "Degenerate starting point.\n"
-msgstr "悪化している開始点\n"
+msgstr "悪化した開始点\n"
 
 #
 # File: src/c/errmsg.c, line: 467
@@ -815,10 +806,8 @@ msgstr "入力名が見つかりません。\n"
 msgid "Error while linking.\n"
 msgstr "リンク中にエラー\n"
 
-#
-# File: src/c/errmsg.c, line: 1456
-msgid "Error while writing in file,(disk full or deleted file.\n"
-msgstr "ファイルの書き込み中にエラー、(ディスクが一杯か、または、ファイル削除)\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr "ファイルの書き込み中にエラー: ディスクが一杯 か ファイルが削除されました。\n"
 
 #
 # File: src/c/errmsg.c, line: 140
@@ -1210,10 +1199,8 @@ msgstr "Scilab で実施されませんでした...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL 変数は、ここで使うことはできません。\n"
 
-#
-# File: src/c/errmsg.c, line: 1271
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-msgstr "/ のオペレータ、または、\\ オペレータ は　InfのNaNを含んではいけません。\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr "/ のオペランドと \\ の操作 で Inf の NaN を含んではいけません。\n"
 
 #
 # File: src/c/msgs.c, line: 638
@@ -1266,16 +1253,14 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "Quaproは縮退点で周期に衝突します。\n"
 
 #
-# File: src/c/msgs.c, line: 591
-#, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "階数落ち、階級 = %d\n"
-
-#
 # File: src/c/msgs.c, line: 829
 #, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "不完全なランク : rank = %s  - tol = %s .\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr "不完全な Rank です。 rank = %d\n"
 
 #
 # File: src/c/msgs.c, line: 806
@@ -1410,7 +1395,7 @@ msgstr "このデータ型は、すでに定義されます。\n"
 #
 # File: src/c/errmsg.c, line: 520
 msgid "This variable is not valid in fort.\n"
-msgstr "この変数は、砦で妥当ではありません。\n"
+msgstr "この変数は、現在妥当ではありません。\n"
 
 #
 # File: src/c/errmsg.c, line: 787
@@ -1420,7 +1405,7 @@ msgstr "あまりにもscilabにとって複雑です、とても長いコント
 #
 # File: src/c/errmsg.c, line: 225
 msgid "Too complex recursion! (recursion tables are full)\n"
-msgstr "とても複雑な回帰!(回帰テーブルが満ちています)\n"
+msgstr "とても複雑な回帰!(回帰テーブルの限界)\n"
 
 #
 # File: src/c/errmsg.c, line: 546
@@ -1435,7 +1420,7 @@ msgstr "文字列が大きすぎます。\n"
 #
 # File: src/c/errmsg.c, line: 792
 msgid "Too large, can't be displayed.\n"
-msgstr "とても大きく、表示できませんでした。\n"
+msgstr "とても大きいため表示できませんでした。\n"
 
 #
 # File: src/c/errmsg.c, line: 264
@@ -1445,12 +1430,12 @@ msgstr "':' が多すぎます\n"
 #
 # File: src/c/errmsg.c, line: 515
 msgid "Too many arguments in fort (max 30).\n"
-msgstr "砦で引数が多すぎます(最大 30)\n"
+msgstr "現在の引数が多すぎます(最大 30)\n"
 
 #
 # File: src/c/errmsg.c, line: 1527
 msgid "Too many commands defined.\n"
-msgstr "多すぎる命令が定義されました。\n"
+msgstr "命令の定義が多すぎます。\n"
 
 #
 # File: src/c/errmsg.c, line: 172
@@ -1461,23 +1446,17 @@ msgstr "変数が多すぎます!\n"
 # File: src/c/errmsg.c, line: 782
 #, c-format
 msgid "Too many functions are defined (maximum #:%d).\n"
-msgstr "多すぎる関数定義です(最大 #:%d)\n"
+msgstr "関数定義が多すぎます(最大 #:%d)\n"
 
-#
-# File: src/c/errmsg.c, line: 1451
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "多すぎるグローバル変数! 最大数は %d です。\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr "多すぎる全体変数です! 最大数は %d です。\n"
 
-#
-# File: src/c/msgs.c, line: 1207
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "勾配ブロックの多すぎる入出力の投入です。\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr "強調されたブロックの多すぎる入出力参加です。\n"
 
-#
-# File: src/c/msgs.c, line: 1201
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "勾配ブロックの多すぎる入出力の部品です。\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr "強調されたブロックの多すぎる入出力ポートです。\n"
 
 #
 # File: src/c/errmsg.c, line: 829
@@ -1641,14 +1620,12 @@ msgstr "警告:\n"
 msgid "Warning:  Result may be inaccurate.\n"
 msgstr "警告: 結果は不正確かもしれません。\n"
 
-#
-# File: src/c/msgs.c, line: 1111
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
-"警告: 外部の与えられたヤコビアン、しかし、\n"
-"使われていません、%ODEOPTIONS(６)を見てください!\n"
+"警告: ヤコビアン外観を与えます、しかし\n"
+"使われません! %ODEOPTIONS(6) を見てください。\n"
 
 #
 # File: src/c/msgs.c, line: 1117
@@ -1673,12 +1650,10 @@ msgstr ""
 msgid "Warning: function is already compiled.\n"
 msgstr "警告: 関数は既にコンパイルされています。\n"
 
-#
-# File: src/c/msgs.c, line: 1105
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
-msgstr "警告: 統合は完成できませんでした! 許容パラメーターまたはステップ・サイズをチェックしてください。\n"
+msgstr "警告: 統合は完成しませんでした! 許容パラメーターまたはステップ・サイズを調べて下さい。\n"
 
 #
 # File: src/c/msgs.c, line: 1099
@@ -1699,10 +1674,8 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "警告: '==' ではなく、 使われなくなった '=' が使われています。\n"
 
-#
-# File: src/c/msgs.c, line: 584
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "警告: 乱数行列単位は、使われなくなった使用です。\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr "警告: eye, rand, また ones は枯れた使い方です。\n"
 
 #
 # File: src/c/msgs.c, line: 1129

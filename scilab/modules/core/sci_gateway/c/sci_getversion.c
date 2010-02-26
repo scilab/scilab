@@ -20,9 +20,8 @@
 #include "loadversion.h"
 #include "inisci-c.h"
 #include "Scierror.h"
-#include "withtk.h"
+#include "dynamic_tclsci.h"
 #include "localization.h"
-#include "with_pvm.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -98,9 +97,9 @@ static int getversion_no_rhs(void)
 		n1++;
 
 
-		if (withpvm())
+		if (with_module("pvm"))
 		{
-			Str[n1]=pvm;
+			Str[n1] = pvm;
 			n1++;
 		}
 

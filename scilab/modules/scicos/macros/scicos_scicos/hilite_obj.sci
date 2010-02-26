@@ -78,10 +78,7 @@ function hilite_obj(k,win)
  end
 
  //** update the display
- //** draw(gh_curwin.children);
  drawnow()
- //** show_pixmap() ; //** not useful on Scilab 5
- //**----------------------------------------------------------------
 
  //**----------------------------------------------------------------
  if rhs>1 then //** if the function have been called with two arguments

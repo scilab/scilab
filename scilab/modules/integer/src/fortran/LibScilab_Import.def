@@ -3,30 +3,34 @@
 
 EXPORTS
 
- ref2val_
- dset_
- iset_
- int2db_
- setfunnam_
- checkval_
- getsmat_
- getscalar_
- crewimat_
- funnam_
- recu_
- cvname_
- indxgc_
- indxg_
- cha1_
- getorient_
- mtlbsel_
- checkrhs_
- checklhs_
- adre_
- unsfdcopy_
- iop_
- mtlbc_
+ errgst_
+ intersci_
  vstk_
  stack_
- gettype_
  com_
+ recu_
+ iop_
+ cha1_
+ adre_
+ mtlbc_
+ setfunnam_
+ ref2val_
+ indxgc_
+ cvname_
+ getsmat_
+ checkval_
+ getscalar_
+ crewimat_
+ checkrhs_
+ checklhs_
+ unsfdcopy_
+ dset_
+ iset_
+ funnam_
+ int2db_
+ mtlbsel_
+ getorient_
+ gettype_
+ indxg_
+ 
+ 

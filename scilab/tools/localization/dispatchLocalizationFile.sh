@@ -10,7 +10,7 @@ if test $# -ne 1; then
 	echo "here https://translations.launchpad.net/scilab/trunk/+export "
 	echo "and dispatch them into Scilab source tree"
 	echo ""
-	echo "Syntax : $0 <path_to_launchpad_localization_file"
+	echo "Syntax : $0 <path_to_launchpad_localization_file>"
 	exit -1
 fi
 

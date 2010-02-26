@@ -73,7 +73,7 @@ function syst=analyse(scs_m)
 	  case 'OUT_f' then
 	  nb=nb-1
 	else
-	  message('Non linear systems are not implemented yet')
+	  messagebox('Non linear systems are not implemented yet','modal')
 	  syst(nb)=list('transfer',o.gui_name)
 	  corresp(k)=nb
 	end

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -187,8 +187,8 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Winkelwert muß sich im Satz {%s} "
 "befinden.\n"
 
-msgid "Arma identifcation"
-msgstr "Arma Identifikation"
+msgid "Arma identification"
+msgstr ""
 
 msgid "Signal Processing"
 msgstr "Signal-Verarbeitung"
@@ -196,8 +196,8 @@ msgstr "Signal-Verarbeitung"
 msgid "Spectral power"
 msgstr "Spektrale Kraft"
 
-msgid "Theoritical value"
-msgstr "theoretischer Wert"
+msgid "Theoretical value"
+msgstr ""
 
 msgid "Using macro mese"
 msgstr "verwende Makro Mese"

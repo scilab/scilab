@@ -21,7 +21,7 @@
 // See the file ../license.txt
 //
 
-function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
+function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
 //** Edition of a link from an output block to an input  block
 
 //** 28/11/08: Preparation of the "SL" operation
@@ -29,7 +29,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
 //** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
 //** BEWARE: "d9" state is not yet tested after Replot removal
-
+  if argn(2)<4 then smart=%f,end
+  
   outin = ['out','in']
   //----------- get link origin --------------------------------------
   //------------------------------------------------------------------
@@ -121,9 +122,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     i_ImplIndx = find(graphics1.in_implicit=='I');
 
     if xout==[] then
-        xcosShowBlockWarning(kfrom);
-        message("This block has no output port"); 
-        xcosClearBlockWarning(kfrom);
+        hilite_obj(kfrom);
+        messagebox("This block has no output port",'modal'); 
+        unhilite_obj(kfrom);
       return ; //** EXIT 
     end
 
@@ -146,22 +147,22 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
     if typo==1  then // regular output port
       port_number = k ;
       if op(port_number)<>0 then
-          xcosShowBlockWarning(kfrom)
-           message(["Selected port is already connected.";..
+          hilite_obj(kfrom)
+           messagebox(["Selected port is already connected.";..
                     "To start a link off another link, place the cursor";..
-                    "on the split point and double click, or type l."])
-          xcosClearBlockWarning(kfrom); 
+                    "on the split point and double click, or type l."],'modal')
+          unhilite_obj(kfrom); 
         return
       end
       typpfrom='out'
     elseif (typo==2 & k<=size(op,'*')) then // implicit  output port
       port_number = k ; 
       if op(port_number)<>0 then
-          xcosShowBlockWarning(kfrom);
-          message(["Selected port is already connected.";..
+          hilite_obj(kfrom);
+          messagebox(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
-                   "on the split point and double click, or type l."])
-          xcosClearBlockWarning(kfrom); 
+                   "on the split point and double click, or type l."],'modal')
+          unhilite_obj(kfrom); 
         return
       end
       typpfrom='out'
@@ -170,22 +171,22 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       k = k-size(op,'*')-size(cop,'*'); 
       port_number = i_ImplIndx(k)
       if impi(port_number)<>0 then
-          xcosShowBlockWarning(kfrom) ; 
-          message(["Selected port is already connected.";..
+          hilite_obj(kfrom) ; 
+          messagebox(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
-                   "on the split point and double click, or type l."])
-          xcosClearBlockWarning(kfrom) ;
+                   "on the split point and double click, or type l."],'modal')
+          unhilite_obj(kfrom) ;
         return
       end
       typpfrom='in'
     else // event output port
       port_number = k - size(op,'*') ;
       if cop(port_number)<>0 then
-          xcosShowBlockWarning(kfrom);
-          message(["Selected port is already connected.";..
+          hilite_obj(kfrom);
+          messagebox(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
-                   "on the split point and double click, or type l."])
-          xcosClearBlockWarning(kfrom);
+                   "on the split point and double click, or type l."],'modal')
+          unhilite_obj(kfrom);
         return ; 
       end
       typpfrom = 'evtout' ;
@@ -247,7 +248,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       gh_figure = gcf();
       //** focus has changed OR active window has been closed
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win, Cmenu] = resume(curwin,'Quit'); 
+        [%win, Cmenu] = resume(curwin,'XcosMenuQuit'); 
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
@@ -299,8 +300,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
       //** check connection
       if xin==[] then
-         xcosShowBlockWarning(kto)
-          message("This block has no input port.");
+         hilite_obj(kto)
+          messagebox("This block has no input port.",'modal');
          p_size = size(gh_axes.children);
          d_size = p_size(1) - o_size(1);
          if d_size > 0 then
@@ -310,7 +311,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
          if %scicos_debug_gr then
            disp("d2");   //** Debug
          end
-         xcosClearBlockWarning(kto);
+         unhilite_obj(kto);
          drawnow(); //** update the diagram 
          return;      //** EXIT point : link failed ! 
       end
@@ -328,10 +329,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
       //** check connection for "type"
       if typo<>typi
-        xcosShowBlockWarning(kto)
-        message(["Selected ports don''t have the same type"
+        hilite_obj(kto)
+        messagebox(["Selected ports don''t have the same type"
                  "The port at the origin of the link has type "+string(typo);
-                 "the port at the end has type "+string(typin(k))+'.'])
+                 "the port at the end has type "+string(typin(k))+'.'],'modal')
           p_size = size(gh_axes.children)
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
@@ -341,7 +342,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
           if %scicos_debug_gr then
              disp("d3"); //** Debug
           end
-          xcosClearBlockWarning(kto)
+          unhilite_obj(kto)
           drawnow(); 
           return; //** EXIT point from the function
       end
@@ -350,10 +351,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
       if typi==1  then // regular input port
         port_number = k ;
         if ip(port_number)<>0 then
-             xcosShowBlockWarning(kto)
-             message(["Selected port is already connected.";..
+             hilite_obj(kto)
+             messagebox(["Selected port is already connected.";..
                       "To start a link off another link, place the cursor";..
-                      "on the split point and double click, or type l."]),
+                      "on the split point and double click, or type l."],'modal'),
              p_size = size(gh_axes.children); 
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
@@ -363,7 +364,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
              if %scicos_debug_gr then
                disp("d4");//** Debug
              end
-             xcosClearBlockWarning(kto);
+             unhilite_obj(kto);
              drawnow();
            return
         end
@@ -396,12 +397,12 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         end
 
         if need_warning then
-            xcosShowBlockWarning(kto)
-            message(["Warning :";
+            hilite_obj(kto)
+            messagebox(["Warning :";
                      "Selected ports don''t have the same size";
                      "The port at the origin of the link has size " + sci2exp(szout);
-                     "the port at the end has size " + sci2exp(szin)+"."])
-            xcosClearBlockWarning(kto)
+                     "the port at the end has size " + sci2exp(szin)+"."],'modal')
+            unhilite_obj(kto)
         end
 
         // get port data type
@@ -412,23 +413,23 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
             tt_typ=['double';'complex';'int32';'int16';
                     'int8';'uint32';'uint16';'uint8']
 
-            xcosShowBlockWarning(kto)
-            message(["Warning :";
+            hilite_obj(kto)
+            messagebox(["Warning :";
                      "Selected ports don''t have the same data type";
                      "The port at the origin of the link has datatype "+...
                       tt_typ(szouttyp)+' ('+sci2exp(szouttyp)+')';
                      "the port at the end has datatype "+...
-                      tt_typ(szintyp)+' ('+sci2exp(szintyp)+')'+'.'])
-            xcosClearBlockWarning(kto);
+                      tt_typ(szintyp)+' ('+sci2exp(szintyp)+')'+'.'],'modal')
+            unhilite_obj(kto);
           end
         end
 
       elseif typi==2 & k<=size(ip,'*') then // implicit "input" port
         port_number = k
         if ip(port_number)<>0 then
-           message(["Selected port is already connected.";..
+           messagebox(["Selected port is already connected.";..
                     "To start a link off another link, place the cursor";..
-                    "on the split point and double click."]),
+                    "on the split point and double click."],'modal'),
            p_size = size(gh_axes.children)
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -445,10 +446,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         szin = getportsiz(o2,port_number,'in')
 
         if szin<>szout & mini([szin szout])>0 then
-          message(["Warning :';
+          messagebox(["Warning :';
                    "Selected ports don''t have the same size";
                    "The port at the origin of the link has size "+string(szout);
-                   "the port at the end has size "+string(szin)])
+                   "the port at the end has size "+string(szin)],'modal')
         end
 
       elseif (typi==2 & k>size(ip,'*')+size(cip,'*')) then // implicit "output" port
@@ -457,9 +458,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         port_number = o_ImplIndx(k)  //RN: explicit outputs are excluded
                                      //    in the computation of k
         if impo(port_number)<>0 then
-           message(["Selected port is already connected.";..
+           messagebox(["Selected port is already connected.";..
                     "To start a link off another link, place the cursor";..
-                    "on the split point and double click"]),
+                    "on the split point and double click"],'modal'),
            p_size = size(gh_axes.children);
            d_size = p_size(1)-o_size(1);
            if d_size > 0 then
@@ -476,10 +477,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         szin=getportsiz(o2,port_number,'out')
 
         if szin<>szout & mini([szin szout])>0 then
-          message(["Warning :";
+          messagebox(["Warning :";
                    "Selected ports don''t have the same  size";
                    "The port at the origin of the link has size " + string(szout);
-                   "the port at the end has size " + string(szin)+'.'])
+                   "the port at the end has size " + string(szin)+'.'],'modal')
         end
 
       //** otherwise is an event input port
@@ -488,10 +489,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         port_number = k-size(ip,'*');
 
         if cip(port_number)<>0 then
-            xcosShowBlockWarning(kto)
-            message(["Selected port is already connected.";..
+            hilite_obj(kto)
+            messagebox(["Selected port is already connected.";..
                      "To start a link off another link, place the cursor";..
-                     "on the split point and double click."]),
+                     "on the split point and double click."],'modal'),
             p_size = size(gh_axes.children); 
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
@@ -501,7 +502,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
             if %scicos_debug_gr then
               disp("d7");//** Debug
             end
-            xcosClearBlockWarning(kto)
+            unhilite_obj(kto)
             drawnow();
             return; //** Exit point
         end
@@ -509,10 +510,10 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
         typpto = 'evtin'; 
         szin = getportsiz(o2,port_number,'evtin'); 
         if szin<>szout & mini([szin szout])>0 then
-          message(["Warning :";
+          messagebox(["Warning :";
                    "Selected ports don''t have the same  size"
                    "The port at the origin of the link has size " + string(szout);
-                   "the port at the end has size " + string(szin)+'.'])
+                   "the port at the end has size " + string(szin)+'.'],'modal')
         end
 
       end
@@ -556,7 +557,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       //active window has been closed
-      [%win,Cmenu] = resume(curwin,'Quit')
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
   end
 
   // make last segment horizontal or vertical
@@ -565,9 +566,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
   nx = prod(size(xl))
 
   if from==to then
-      message(["Selected port is already connected.";..
+      messagebox(["Selected port is already connected.";..
                "To start a link off another link, place the cursor";..
-               "on the split point and double click"]),
+               "on the split point and double click"],'modal'),
       p_size = size(gh_axes.children)
       d_size = p_size(1)-o_size(1);
       if d_size > 0 then
@@ -734,6 +735,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   //** add new link in objects structure
   nx = size(scs_m.objs)+1 ;
+  
+  if smart then lk=scicos_route(lk,scs_m),end
+  
   scs_m.objs($+1) = lk ;
 
   drawlater(); 

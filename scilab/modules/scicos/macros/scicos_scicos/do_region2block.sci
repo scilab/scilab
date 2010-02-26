@@ -30,13 +30,13 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
 
   win = %win;
   xc = %pt(1); yc = %pt(2);
-  %pt = [] ;
+  %pt=[] ;
   
   scs_m_save = scs_m
   nc_save    = needcompile;
   
   //** block select function 
-  [scs_mb, rect, prt] = get_region2(xc,yc,win) ; //** see file "get_region2.sci"
+  [scs_mb, rect, prt, is_flip] = get_region2(xc,yc,win) ; //** see file "get_region2.sci"
 
   if rect==[] then //** if no rectangle 
     return
@@ -58,6 +58,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   sup = SUPER_f('define')
   sup.graphics.orig   = [rect(1)+rect(3)/2-20, rect(2)+rect(4)/2-20]
   sup.graphics.sz     = [40 40]
+  sup.graphics.flip   = or(is_flip)
   
   sup.model.in        = 1
   sup.model.out       = 1
@@ -67,8 +68,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   
   // open the superblock in editor
   [ok,sup] = adjust_s_ports(sup) //** looks OK because works on specific 'Block'
-  
-  //** prepare the object that we need to destroy 
+  // detruire la region
   del=[]
   
   for k=1:lstsize(scs_m.objs)
@@ -94,9 +94,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
   
   needreplay = replayifnecessary() ;
 
-  //** from here you are in drawlater mode () ; 
-  drawlater(); 
-
+  drawlater();
   [scs_m,DEL] = do_delete2(scs_m,del,%t) ; //** VERY dangerous here !
 
   // add super block
@@ -270,8 +268,7 @@ function [%pt,scs_m] = do_region2block(%pt,scs_m)
     nnk=nnk+1
   end
   
-  drawnow(); //** at the end of the operation the diagram is updated 
-
-  [scs_m_save,nc_save,enable_undo,edited,needcompile,needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay)
+  [scs_m_save,nc_save,enable_undo,edited,needcompile,..
+   needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay)
 
 endfunction

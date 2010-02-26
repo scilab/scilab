@@ -18,15 +18,20 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void tan_blk(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void tan_blk(scicos_block *block,int flag)
 {
-  int j;
-  if(flag==1){
-    for (j=0;j<block->insz[0];j++) {
-      block->outptr[0][j]=tan(block->inptr[0][j]);
-    }
-  }
+
+	if(flag==1)
+	{
+		int j= 0;
+		for (j=0;j<block->insz[0];j++) {
+			block->outptr[0][j]=tan(block->inptr[0][j]);
+		}
+	}
 }
+/*--------------------------------------------------------------------------*/ 

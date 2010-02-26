@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-11 15:30+0000\n"
+"PO-Revision-Date: 2010-01-30 09:43+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -45,6 +45,14 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -100,6 +108,8 @@ msgstr "Al centro"
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
+"Fare un clic sul diagramma per aggiungere un punto di collegamento o su un "
+"obbiettivo compatibile per terminare"
 
 msgid "Close"
 msgstr "_Chiudi"
@@ -149,6 +159,9 @@ msgstr ""
 msgid "Default"
 msgstr "Predefinito"
 
+msgid "Default values"
+msgstr "Valori predefiniti"
+
 msgid "Delete"
 msgstr "Eli_mina"
 
@@ -187,6 +200,9 @@ msgstr "Lascia"
 
 msgid "Edit"
 msgstr "_Modifica"
+
+msgid "Editable"
+msgstr "Modificabile"
 
 msgid "Electrical"
 msgstr "Elettrico"
@@ -282,6 +298,9 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa da XML"
 
+msgid "Insert"
+msgstr "Inserisci"
+
 msgid "Integer"
 msgstr "Intero"
 
@@ -297,7 +316,7 @@ msgstr "Inverti la selezione"
 msgid "Left"
 msgstr "A sinistra"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
 msgid "Link Style"
@@ -318,6 +337,9 @@ msgstr "Caricamento in corso dei pannelli definiti dall'utente"
 msgid "Lookup Tables"
 msgstr "Tabelle di controllo"
 
+msgid "Masked SuperBlock editor"
+msgstr ""
+
 msgid "Mathematical Operations"
 msgstr "Operazioni matematiche"
 
@@ -332,6 +354,12 @@ msgstr "Al centro"
 
 msgid "Mirror"
 msgstr ""
+
+msgid "Move Down"
+msgstr "Sposta in basso"
+
+msgid "Move Up"
+msgstr "Sposta su"
 
 msgid "New"
 msgstr "_Nuovo"
@@ -408,6 +436,12 @@ msgstr "A destra"
 msgid "Rotate"
 msgstr "_Ruota"
 
+msgid "Rows"
+msgstr "Righe"
+
+msgid "Same command executed again"
+msgstr ""
+
 msgid "Save"
 msgstr "Salva"
 
@@ -424,7 +458,7 @@ msgid "Saving diagram"
 msgstr "Salvataggio del diagramma"
 
 msgid "Scicos file"
-msgstr ""
+msgstr "Un file di Scicos"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -436,7 +470,7 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
 
 msgid "Scilab file"
-msgstr ""
+msgstr "Un file di Scilab"
 
 msgid "Select all"
 msgstr "_Seleziona tutto"
@@ -446,6 +480,9 @@ msgstr "Imposta il _contesto"
 
 msgid "Set Parameters"
 msgstr "Imposta i _parametri"
+
+msgid "Set block parameters"
+msgstr ""
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -517,11 +554,14 @@ msgstr "In alto"
 msgid "UnGroup"
 msgstr "Dividi"
 
+msgid "Unable to communicate with the interpreter"
+msgstr ""
+
 msgid "Undo"
 msgstr "_Annulla"
 
-msgid "Unknow Diagram Version : "
-msgstr "Versione di diagramma sconosciuta: "
+msgid "Unknown Diagram Version : "
+msgstr ""
 
 msgid "Untitled"
 msgstr "Senza titolo"
@@ -531,6 +571,18 @@ msgstr "Definito dall'utente"
 
 msgid "User-Defined Functions"
 msgstr "Funzioni definite dall'utente"
+
+msgid "Values"
+msgstr "Valori"
+
+msgid "Variable descriptions"
+msgstr "Descrizioni di variabile"
+
+msgid "Variable names"
+msgstr "Nomi di variabile"
+
+msgid "Variable settings"
+msgstr "Impostazioni di variabile"
 
 msgid "Vertical"
 msgstr "Verticale"
@@ -547,11 +599,14 @@ msgstr "Area visibile"
 msgid "Will try to continue..."
 msgstr ""
 
+msgid "WinTitle"
+msgstr ""
+
+msgid "Window title"
+msgstr "Titolo della finestra"
+
 msgid "Xcos"
 msgstr "Xcos"
-
-msgid "Xcos 1.0"
-msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "_Demo di Xcos"
@@ -563,10 +618,7 @@ msgid "Xcos error"
 msgstr "Errore di Xcos"
 
 msgid "Xcos file"
-msgstr ""
-
-msgid "Xcos version 1.0"
-msgstr "Xcos versione 1.0"
+msgstr "Un file di Xcos"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "

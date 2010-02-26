@@ -211,10 +211,7 @@ y=2215
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_det.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_det.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_det.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

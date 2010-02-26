@@ -43,10 +43,10 @@
   <refsection id="Description_lincos">
     <title>Description</title>
     <para>
-Construct a linear state-space system by linearizing a model given as a Scicos diagram.  
+Construit un système d'espace d'état linéaire en linéarisant un modèle donné sous la forme d'un diagramme Scicos.  
 </para>
     <para>
-The output is a Scilab data structure of type continuous-time state-space linear system.  
+La sortie de cette fonction est structure de donnée Scilab de type système linéaire d'espace d'état à temps continu (continuous-time state-space linear system).  
 </para>
     <para>
 </para>

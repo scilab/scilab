@@ -16,8 +16,12 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -26,8 +30,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
@@ -40,7 +46,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Customize the mask of the {@link SuperBlock}.
  */
-public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedAction {
+public final class SuperblockMaskCustomizeAction extends DefaultAction {
 	public static final String NAME = XcosMessages.CUSTOMIZE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;
@@ -64,7 +70,7 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 	 * @return the newly created menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, SuperblockMaskCreateAction.class);
+		return createMenu(scilabGraph, SuperblockMaskCustomizeAction.class);
 	}
 
 	/**
@@ -90,7 +96,7 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 	 * Frame used to customize fields and variables default values. DAC: this
 	 * class is tightly coupled to Swing
 	 */
-	private static class CustomizeFrame extends JFrame {
+	private class CustomizeFrame extends JFrame {
 		private CustomizeFrameControler controler;
 
 		private javax.swing.JPanel buttonBlob;
@@ -271,6 +277,16 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 
 			cancelButton.requestFocusInWindow();
 			setResizable(false);
+			
+			/* Evaluate the context and set up the variable name selection */
+			TableColumn vars = varCustomizeTable.getColumnModel().getColumn(1);
+			JComboBox validVars = new JComboBox();
+			XcosDiagram graph = (XcosDiagram) getGraph(null);
+			Map<String, String> context = graph.evaluateContext();
+			for (String key : context.keySet()) {
+				validVars.addItem(key);
+			}
+			vars.setCellEditor(new DefaultCellEditor(validVars));
 		}
 
 		/**
@@ -411,6 +427,28 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 				ScilabString varDesc;
 				
 				ScilabType rawExprs = getBlock().getExprs();
+				
+				// Xcos from Scilab 5.2.0 version
+				// so set default values
+				if (rawExprs instanceof ScilabDouble) {
+					rawExprs = new ScilabList() {
+						{
+							add(new ScilabDouble());
+							add(new ScilabList() {
+								{
+									add(new ScilabDouble());
+									add(new ScilabString(
+											XcosMessages.MASK_DEFAULTWINDOWNAME));
+									add(new ScilabList() {
+										{
+											add(new ScilabDouble());
+										}
+									});
+								}
+							});
+						}
+					};
+				}
 				DefaultTableModel customModel = customizeTableModel;
 				DefaultTableModel valuesModel = valuesTableModel;
 
@@ -717,7 +755,8 @@ public final class SuperblockMaskCustomizeAction extends SuperBlockSelectedActio
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new CustomizeFrame().setVisible(true);
+				new SuperblockMaskCustomizeAction(null).new CustomizeFrame()
+					.setVisible(true);
 			}
 		});
 	}

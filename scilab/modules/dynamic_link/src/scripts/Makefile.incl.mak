@@ -42,6 +42,7 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/output_stream/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
+-I"$(SCIDIR)/modules/dynamic_link/includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
 -I"$(SCIDIR)/modules/windows_tools/includes" \
@@ -98,7 +99,7 @@ RCVARS=-r -DWIN32
 # SCILAB_LIBS is used by the binary version of Scilab for linking external codes
 SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libf2c.lib" "$(SCIDIR1)/bin/lapack.lib" \
-"$(SCIDIR1)/bin/scicos.lib" "$(SCIDIR1)/bin/intersci.lib" \
+"$(SCIDIR1)/bin/intersci.lib" \
 "$(SCIDIR1)/bin/output_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
 "$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \

@@ -140,7 +140,7 @@ if ok then
                              cin,cout,...
                              in_implicit,out_implicit)
 else
-  message(mess)
+  messagebox(mess,"modal")
 end
 
 if ok then

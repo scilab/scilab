@@ -12,8 +12,3 @@ if (getscilabmode()<>'NWNI') then
   load('SCI/modules/jvm/macros/lib');
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("jvm");
-end

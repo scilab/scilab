@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuContext">
+  <refnamediv>
+    <refname>Context</refname>
+    <refpurpose>Menu: Defines diagram symbolic parameter values.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      When you select this menu item you obtain a dialog to enter
+      any Scilab instructions for defining symbolic Scicos parameters
+      used in block definitions or to do whatever you want.
+    </para>
+    <para>
+      These instructions will be evaluated each time the diagram is
+      loaded.
+    </para>
+    <para>
+      The symbolic parameters defined in a main Diagram context or in
+      a Super Block context can be used in all the lower hierachical
+      levels. If a lower hierachical level redefines a symbolic
+      parameter the new value applies only to the lower hierachical
+      levels.
+    </para>
+   
+    <para>
+	If you change the value of a symbolic Scicos parameters in the
+	context, all the blocks are updated (<link
+	linkend="XcosMenuEval">Eval</link> is automatically performed).
+    </para>
+  </refsection>
+  <refsection>
+    <title>Remark</title>
+    <para>
+      Even if it may work, it is not a good idea to use the Scilab
+      variables to define symbolic parameters:  particular values of
+      symbolic parameters may change some diagram properties such as
+      input output direct transfert and consequently imply a
+      recompilation of the diagram (see <link linkend="XcosMenuCompile">Compile</link>).
+
+    </para>
+    <para>
+      Moreover, defining the symbolic parameters in the context,
+      insure that the Scicos diagram do not rely on external
+      data. Once the diagram has been saved it contains all the
+      informations to be run. The top level context data can also be
+      used by <link linkend="scicos_simulate">scicos_simulate</link>
+      to define batch simulation context.
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuEval">Eval</link> </member>
+      <member> <link linkend="XcosMenuDefinedVariables">Available_Parameters</link> </member>
+      <member> <link linkend="scicos_simulate">scicos_simulate</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

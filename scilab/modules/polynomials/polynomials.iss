@@ -31,8 +31,6 @@ Source: modules\{#POLYNOMIALS}\sci_gateway\polynomials_gateway.xml; DestDir: {ap
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.quit; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_POLY}
 ;
-Source: modules\{#POLYNOMIALS}\help\addchapter.sce; DestDir: {app}\modules\{#POLYNOMIALS}\help; Flags: recursesubdirs; Components:  {#COMPN_POLY}
-;
 ;Source: modules\{#POLYNOMIALS}\includes\*.h; DestDir: {app}\modules\{#POLYNOMIALS}\includes; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\macros\buildmacros.sce; DestDir: {app}\modules\{#POLYNOMIALS}\macros; Components: {#COMPN_POLY}

@@ -63,22 +63,17 @@ That palette contains nonlinear functions.
       </listitem>
       <listitem>
         <para>
+          <link linkend="CONSTRAINT_c">CONSTRAINT_c - Algebraic Constraint</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link linkend="EXPBLK_m">EXPBLK_m - Exp</link>
         </para>
       </listitem>
       <listitem>
         <para>
           <link linkend="EXPRESSION">EXPRESSION - Mathematical expression</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="INTRP2BLK_f">INTRP2BLK_f - 2D interpolation</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="INTRPLBLK_f">INTRPLBLK_f - Interpolation</link>
         </para>
       </listitem>
       <listitem>

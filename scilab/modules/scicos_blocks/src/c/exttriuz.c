@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void exttriuz(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void exttriuz(scicos_block *block,int flag)
 {
-  double *ur;
-  double *ui;
-  double *yr;
-  double *yi;
-  int nu,mu,i,j,ij;
+  double *ur = NULL;
+  double *ui = NULL;
+  double *yr = NULL;
+  double *yi = NULL;
+  int nu = 0,mu = 0,i = 0,j = 0,ij = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
@@ -43,3 +46,4 @@ void exttriuz(scicos_block *block,int flag)
 		 *(yr+ij)=0;
 		 *(yi+ij)=0;}}
 }
+/*--------------------------------------------------------------------------*/ 

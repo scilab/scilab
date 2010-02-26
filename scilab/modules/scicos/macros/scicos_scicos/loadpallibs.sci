@@ -24,7 +24,7 @@ function loadpallibs()
    if ~(exists('scicos_pal_libs')) then
       // this is for make tests
       [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
-       %scicos_display_mode, modelica_libs,scicos_pal_libs,..
+       modelica_libs,scicos_pal_libs,..
        %scicos_gif,%scicos_contrib ] = initial_scicos_tables(); 
    end
    for d = scicos_pal_libs 

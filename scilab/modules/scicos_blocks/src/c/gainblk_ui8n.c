@@ -18,17 +18,20 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-void gainblk_ui8n(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void gainblk_ui8n(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)){
-  int i,j,l,ji,jl,il;
-  unsigned char *u,*y;
-  int mu,ny,my,mo,no;
-  unsigned char *opar;
-  double k,D,C,t;
+  int i = 0,j = 0,l = 0,ji = 0,jl = 0,il = 0;
+  unsigned char *u = NULL,*y = NULL;
+  int mu = 0,ny = 0,my = 0,mo = 0,no = 0;
+  unsigned char *opar = NULL;
+  double k = 0.,D = 0.,C = 0.,t = 0.;
 
   mo=GetOparSize(block,1,1);
   no=GetOparSize(block,1,2);
@@ -53,9 +56,10 @@ void gainblk_ui8n(scicos_block *block,int flag)
      for (l=0;l<ny;l++)
 	 {for (j=0;j<my;j++)
 	      {D=0;
+		   jl=j+l*my;
 	       for (i=0;i<mu;i++)
 		   {ji=j+i*my;
-		    jl=j+l*my;
+		    
 		    il=i+l*mu;
 		    C=(double)(opar[ji])*(double)(u[il]);
 		    D=D + C;}
@@ -69,3 +73,4 @@ void gainblk_ui8n(scicos_block *block,int flag)
   }
  }
 }
+/*--------------------------------------------------------------------------*/ 

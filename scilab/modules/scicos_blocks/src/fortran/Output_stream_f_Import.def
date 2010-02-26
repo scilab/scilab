@@ -1,0 +1,7 @@
+	LIBRARY    output_stream_f.dll
+
+
+EXPORTS
+;
+;output_stream_f
+fmttyp_ 

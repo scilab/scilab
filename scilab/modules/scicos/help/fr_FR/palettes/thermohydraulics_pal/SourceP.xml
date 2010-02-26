@@ -224,7 +224,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Source.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

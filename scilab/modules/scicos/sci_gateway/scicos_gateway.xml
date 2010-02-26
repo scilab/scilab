@@ -50,6 +50,12 @@
 <PRIMITIVE gatewayId="45" primitiveId="24" primitiveName="buildouttb" />
 <PRIMITIVE gatewayId="45" primitiveId="25" primitiveName="permutobj" />
 <PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="end_scicosim" />
-<PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="sci_haltscicos" />
-<!-- =================== -->
+<PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="coserror" />
+<PRIMITIVE gatewayId="45" primitiveId="28" primitiveName="sci_haltscicos" />
+  <!-- =================== -->  
+<PRIMITIVE gatewayId="45" primitiveId="29" primitiveName="data2sig" />
+<PRIMITIVE gatewayId="45" primitiveId="30" primitiveName="sig2data" />
+<PRIMITIVE gatewayId="45" primitiveId="31" primitiveName="model2blk" />
+<PRIMITIVE gatewayId="45" primitiveId="32" primitiveName="callblk" />
+  <!-- =================== -->
 </GATEWAY>

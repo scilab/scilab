@@ -20,15 +20,27 @@ function result = importXcosDiagram(xcosFile)
 	result = %f;
 	rhs = argn(2);
 	
-	if(rhs == 1) then //save hdf5 file with xcos filename, just change extension
-		//change file extension
+	if(rhs == 1) then 
+		//save hdf5 file with xcos filename, just change extension
 		[path,fname,extension] = fileparts(xcosFile);
 		h5File = TMPDIR + filesep() + fname + ".h5";
+		// open the file to check for permissions
+		[a, err] = mopen(xcosFile, "r");
+		if (err <> 0) then
+			error(msprintf(gettext("Unable to open %s"), xcosFile));
+			return;
+		end
+		// construct a full path string
+		xcosFile = get_absolute_file_path(xcosFile) + xcosFile;
+		mclose(a);
 	else
 		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importXcosDiagram", 1));
 		return;
 	end
 	
+	// getting the full path of the file
+	xcosFile = fullpath(xcosFile);
+
 	convertStatus = xcosDiagramToHDF5(xcosFile, h5File, %t);
 	if(convertStatus <> 0) then
 		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
@@ -38,6 +50,9 @@ function result = importXcosDiagram(xcosFile)
 		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
 		return;
 	end
+
+	// deleting the temporary file
+	mdelete(h5File);
 	
 	//return scs_m in Scilab environment
 	result = %t;

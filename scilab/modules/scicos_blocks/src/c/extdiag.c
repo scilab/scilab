@@ -18,22 +18,17 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
-void extdiag(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void extdiag(scicos_block *block,int flag)
 {
-  double *u1;
-  double *y;
+  double *u1 = NULL;
+  double *y = NULL;
 
-  int mu,nu,i,ii;
+  int mu = 0,nu = 0,i = 0,ii = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
@@ -44,3 +39,4 @@ void extdiag(scicos_block *block,int flag)
 	{ii=i+i*mu;
 	 *(y+ii)=*(u1+ii);}
 }
+/*--------------------------------------------------------------------------*/ 

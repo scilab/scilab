@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file bouncexy.c
    \author Benoit Bayol
@@ -35,26 +36,31 @@
 #include "scicos_block4.h"
 #include "ObjectStructure.h"
 #include "DrawingBridge.h"
-
+#include "scicos.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   scoGraphicalObject pAxes;
   scoGraphicalObject pTemp;
-  double * z;
-  double *rpar;
-  int *ipar, nipar;  
-  int i,j;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int win;
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
-  int * colors;
-  int imode;
-  double * size_balls;
+  double * z = NULL;
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;  
+  int i = 0,j = 0;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int win = 0;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
+  int * colors = NULL;
+  int imode = 0;
+  double * size_balls = NULL;
   double radius_max;
 
   /*Retrieving Parameters*/
@@ -122,21 +128,21 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   scicos_free(size_balls);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void bouncexy(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void bouncexy(scicos_block * block,int flag)
+SCICOS_BLOCKS_IMPEXP void bouncexy(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * z;
-  double t;
-  int i;
-  double * u1, *u2;
-  double * size_balls;
+  double * z = NULL;
+  double t = 0.;
+  int i = 0;
+  double * u1 = NULL, *u2 = NULL;
+  double * size_balls = NULL;
   switch(flag) 
     {
     case Initialization:
@@ -197,3 +203,4 @@ void bouncexy(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

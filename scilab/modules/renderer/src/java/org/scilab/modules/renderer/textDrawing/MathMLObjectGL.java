@@ -41,12 +41,12 @@ import org.xml.sax.SAXException;
  */
 public class MathMLObjectGL extends SpecialTextObjectGL {
     
-    private JEuclidView jev;
-    
-    private final static Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
+    private static final Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
 
-    private final static String MMLBEGIN = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\"><math mode=\"display\" xmlns=\"http://www.w3.org/1998/Math/MathML\">";
-    private final static String MMLEND = "</math>";
+    private static final String MMLBEGIN = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\"><math mode=\"display\" xmlns=\"http://www.w3.org/1998/Math/MathML\">";
+    private static final String MMLEND = "</math>";
+    
+    private JEuclidView jev;
     
     private Document doc;
     private MutableLayoutContext parameters;
@@ -56,6 +56,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      * @param content the MathML code
      * @param color the color of the content
      * @param fontSize the size of the font
+     * @throws SpecialTextException if the string isn't in MathML format
      */
     public MathMLObjectGL(String content, Color color, float fontSize) throws SpecialTextException {
 	        this.parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
@@ -64,12 +65,16 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		this.jev = new JEuclidView((Node) contentToDocument(MMLBEGIN + content + MMLEND), parameters, TEMPGRAPHIC); 
 		this.isColored = false;
 		makeImage();
-		if(content.contains("color") || content.contains("background") ||
-			content.contains("mathcolor") || content.contains("mathbackground")){
+		if (content.contains("color") || content.contains("background")
+				|| content.contains("mathcolor") || content.contains("mathbackground")) {
 		    this.isColored = true;
 		}
     }
 
+    /**
+     * Copy constructor.
+     * @param m MathMLObjectGL object to copy
+     */
     public MathMLObjectGL(MathMLObjectGL m) {
           	this.doc = m.doc;
 		this.jev = m.jev;
@@ -79,7 +84,8 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
     }
 
 	/**
-	 * Return the Jeuclid View 
+	 * Return the Jeuclid View
+	 * @return Jeuclid View
 	 */
 	public JEuclidView getJev() {
 		return jev;
@@ -115,7 +121,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		return false;
     }
     
-    /*
+    /**
      * Update the current graphic
      */
     private void update() {
@@ -129,6 +135,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
      *
      * @param content The content when want to transform
      * @return the document
+     * @throws SpecialTextException if the string isn't in MathML format
      */
     private Document contentToDocument(final String content) throws SpecialTextException {
 	        try {
@@ -143,6 +150,7 @@ public class MathMLObjectGL extends SpecialTextObjectGL {
 		return doc;
     }
     
+
 
     public void makeImage() {
 	        this.width = (int) Math.ceil(jev.getWidth()) + 2;

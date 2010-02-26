@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>fprintfMat</refname>
-    <refpurpose> Write a matrix in a file.  </refpurpose>
+    <refpurpose> Write a matrix in a file.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -41,8 +41,8 @@
       <varlistentry>
         <term>format</term>
         <listitem>
-          <para>a character string, a C like format. This is an optional
-    parameter, the default value is <literal>"%f"</literal></para>
+          <para>a character string, a C like format.This is an optional
+    parameter, the default value is <literal>"%lf"</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -203,7 +203,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/bit_set_32.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/bit_set_32.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/bit_set_16.c</para>

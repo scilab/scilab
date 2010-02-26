@@ -456,13 +456,16 @@ function demo_update_misc()
 		my_figure.color_map = whitecolormap(128);
 	end
 	
-	// Background
+	// Gray background for 3d axes
 	
-	my_plot_4_axes = my_figure.children(1); // knot
-	my_plot_2_axes = my_figure.children(3); // plot3d
-	
-	my_plot_2_axes.background = color(240,240,240);
-	my_plot_4_axes.background = color(240,240,240);
+	for i = 1:size(my_figure.children,"*"),
+		child = my_figure.children(i);
+		if child.type=="Axes" then
+			if child.view=="3d" then
+				child.background = color(240,240,240);
+			end
+		end
+	end
 	
 	// Plot
 	

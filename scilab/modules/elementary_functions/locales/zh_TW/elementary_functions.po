@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2008-04-26 11:56+0100\n"
 
@@ -54,9 +54,8 @@ msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
-"expected.\n"
-msgstr "%s: 第 %d 輸入參數錯誤: 應為非負整數之純量/矩陣/超矩陣(hypermatrix) .\n"
+"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
+msgstr ""
 
 #
 # File: macros/bitxor.sci, line: 24
@@ -273,9 +272,9 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: cell 之所有內容皆應相同
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
-"integers expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為非負整數之純量/矩陣/超矩陣.\n"
+"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
@@ -305,8 +304,8 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,''%s'',%d or 應為 ''%s''\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s''.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

@@ -17,8 +17,3 @@ if (sciargs()<>'-nouserstartup') then
 	historymanager('off');
 end
 
-// Delete help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	del_help_chapter("history_manager",%t);
-end

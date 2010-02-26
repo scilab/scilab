@@ -93,7 +93,7 @@
   <refsection id="Description_AFFICH_m">
     <title>Description</title>
     <para>
-Pendant la simulation, ce bloc affiche sur le diagramme 
+Pendant la simulation, ce bloc affiche sur le diagramme
 la valeur lue sur son unique port d'entrée.
 
 </para>

@@ -55,7 +55,7 @@ function hilite_path(path,mess,with_intermediates)
       hilite_obj(path($))
     end
   end
-  message(mess)
+  messagebox(mess,'modal')
 
   for k=1:size(opened_windows,'*') //** close opened_windows
     //** select the opened_windows(k) and get the handle

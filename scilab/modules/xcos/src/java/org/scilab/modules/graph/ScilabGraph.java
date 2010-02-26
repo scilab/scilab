@@ -20,6 +20,7 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.view.ScilabGraphView;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
@@ -30,6 +31,7 @@ import com.mxgraph.util.mxUndoManager;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxGraphView;
 
 /**
  * Represent the base diagram of Xcos.
@@ -286,5 +288,14 @@ public class ScilabGraph extends mxGraph {
 	 */
 	public final mxUndoManager getUndoManager() {
 		return undoManager;
+	}
+	
+	/**
+	 * @return the newly allocated graph
+	 * @see com.mxgraph.view.mxGraph#createGraphView()
+	 */
+	@Override
+	protected mxGraphView createGraphView() {
+		return new ScilabGraphView(this);
 	}
 }

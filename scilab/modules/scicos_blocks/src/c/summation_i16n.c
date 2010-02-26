@@ -18,46 +18,51 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-#include "scicos_block4.h"
 #include <stdio.h>
-
-void summation_i16n(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void summation_i16n(scicos_block *block,int flag)
 {
- if((flag==1)|(flag==6)) {
-    int j,k;
-    int nu,mu,nin;
-    short *y;
-    int *ipar;
-    double *rpar;
-    short *u;
+	if((flag==1)|(flag==6)) 
+	{
+		int j = 0,k = 0;
+		short *y = Getint16OutPortPtrs(block,1);
+		int nu = GetInPortRows(block,1);
+		int mu = GetInPortCols(block,1);
+		int *ipar=GetIparPtrs(block);
+		double *rpar=GetRparPtrs(block);
+		int nin = GetNin(block);
 
-    y=Getint16OutPortPtrs(block,1);
-    nu=GetInPortRows(block,1);
-    mu=GetInPortCols(block,1);
-    ipar=GetIparPtrs(block);
-    rpar=GetRparPtrs(block);
-    nin=GetNin(block);
-
-    if (nin==1){
-      y[0]=0;
-      u=Getint16InPortPtrs(block,1);
-      for (j=0;j<nu*mu;j++) {
-	y[0]=y[0]+u[j];
-      }
-    }
-    else {
-      for (j=0;j<nu*mu;j++) {
-        y[j]=0;
-	for (k=0;k<nin;k++) {
-	  u=Getint16InPortPtrs(block,k+1);
-          if(ipar[k]>0){
-	     y[j]=y[j]+u[j];
-	    }
-	  else{
-	     y[j]=y[j]-u[j];}
-      }
-    }
-   }
-  }
+		if (nin==1)
+		{
+			short *u=Getint16InPortPtrs(block,1);
+			y[0]=0;
+			for (j=0;j<nu*mu;j++) 
+			{
+				y[0]=y[0]+u[j];
+			}
+		}
+		else 
+		{
+			for (j=0;j<nu*mu;j++) 
+			{
+				y[j]=0;
+				for (k=0;k<nin;k++) 
+				{
+					short *u=Getint16InPortPtrs(block,k+1);
+					if(ipar[k]>0)
+					{
+						y[j]=y[j]+u[j];
+					}
+					else
+					{
+						y[j]=y[j]-u[j];}
+				}
+			}
+		}
+	}
 }
+/*--------------------------------------------------------------------------*/ 

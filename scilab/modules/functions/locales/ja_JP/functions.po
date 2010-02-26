@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-10-23 16:57+0000\n"
+"PO-Revision-Date: 2010-02-13 16:18+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -27,13 +27,13 @@ msgstr "%s: メモリの割り当てに失敗しました。\n"
 # File: macros/recompilefunction.sci, line: 44
 #, c-format
 msgid "%s is already compiled for profiling, nothing to do!"
-msgstr "%s は、プロファイルのため既にコンパイルされました、なにもする必要はありません!"
+msgstr "%s は、プロファイルのため既にコンパイル済です、なにもする必要はありません!"
 
 #
 # File: macros/recompilefunction.sci, line: 40
 #, c-format
 msgid "%s is already compiled, nothing to do!"
-msgstr "%s は既にコンパイルされました、なにもする必要はありません!"
+msgstr "%s は既にコンパイル済です、なにもする必要はありません!"
 
 #
 # File: macros/recompilefunction.sci, line: 24
@@ -79,7 +79,7 @@ msgstr "%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つ�
 # File: macros/genlib_old.sci, line: 153
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s:  書くためのファイル %s を開くことができません。\n"
+msgstr "%s: 書き込みのためのファイル %s を開くことができません。\n"
 
 #
 # File: macros/getd.sci, line: 55
@@ -231,7 +231,7 @@ msgstr "%s: 入力引数 #%d で不正な値: Scilab 関数の名前を想定し
 # File: macros/bytecode.sci, line: 29
 #, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
-msgstr "%s: 入力引数(s)で不正な値(s)です。\n"
+msgstr "%s: 入力引数で不正な値です。\n"
 
 #
 # File: macros/plotprofile.sci, line: 44
@@ -254,7 +254,7 @@ msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- [%s] の作成(マクロ) --\n"
 
 msgid "?"
-msgstr "?"
+msgstr "その他"
 
 #
 # File: macros/check_gateways.sci, line: 18

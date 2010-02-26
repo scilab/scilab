@@ -23,11 +23,12 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
+#include "machine.h" /* C2F */
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcurblk)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_curblock)(char *fname,unsigned long fname_len)
+int sci_curblock(char *fname,unsigned long fname_len)
 {
 	C2F(intcurblk)();
 	return 0;

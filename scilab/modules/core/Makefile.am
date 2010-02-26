@@ -82,7 +82,8 @@ src/c/recursionFunction.c \
 src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c \
-src/c/eqid.c
+src/c/eqid.c \
+src/c/dynamic_tclsci.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp
 

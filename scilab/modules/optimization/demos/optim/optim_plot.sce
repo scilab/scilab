@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - Digiteo - Michael Baudin
+// Copyright (C) 2009-2010 - Digiteo - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,7 +9,24 @@
 
 mprintf("Running optimization...\n");
 
-// 1. Define rosenbrock
+//
+// 1. Define rosenbrock for contouring
+function f = rosenbrockC ( x1 , x2 )
+  x = [x1 x2];
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+x0 = [-1.2 1.0];
+xopt = [1.0 1.0];
+//
+// 2. Draw the contour of Rosenbrock's function
+xdata = linspace(-2,2,100);
+ydata = linspace(-2,2,100);
+mprintf("Draw contours...\n");
+contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
+plot(x0(1) , x0(2) , "b.")
+plot(xopt(1) , xopt(2) , "r*")
+//
+// 3. Define Rosenbrock for optimization
 function [ f , g , ind ] = rosenbrock ( x , ind )
   if ((ind == 1) | (ind == 4)) then
     f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -22,36 +39,12 @@ function [ f , g , ind ] = rosenbrock ( x , ind )
     plot ( x(1) , x(2) , "g." )
   end
 endfunction
-x0 = [-1.2 1.0];
-xopt = [1.0 1.0];
-// 2. Draw the contour of Rosenbrock's function
-mprintf("Draw contours...\n");
-xmin = -2.0
-xmax = 2.0
-stepx = 0.1
-ymin = -1.0
-ymax = 2.0
-stepy = 0.1
-nx = 100
-ny = 100
-stepx = (xmax - xmin)/nx;
-xdata = xmin:stepx:xmax;
-stepy = (ymax - ymin)/ny;
-ydata = ymin:stepy:ymax;
-for ix = 1:length(xdata)
-    for iy = 1:length(ydata)
-      x = [xdata(ix) ydata(iy)];
-      [ f , g , ind ] = rosenbrock ( x , 4 );
-      zdata ( ix , iy ) = f;
-    end
-end
-f = scf();
-contour ( xdata , ydata , zdata , [1 10 100 500 1000])
-plot(x0(1) , x0(2) , "b.")
-plot(xopt(1) , xopt(2) , "r*")
-// 3. Plot the optimization process, during optimization
+//
+// 4. Plot the optimization process, during optimization
 mprintf("Plot points during optimization...\n");
 [ fopt , xopt ] = optim ( rosenbrock , x0 , imp = -1)
+
+
 //
 // Load this script into the editor
 //

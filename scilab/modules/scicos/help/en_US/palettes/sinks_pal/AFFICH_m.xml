@@ -94,7 +94,7 @@
     <title>Description</title>
     <para>
 This block displays the value of its unique input inside the block (in
-the diagram) during simulation.  
+the diagram) during simulation.
 
 </para>
   </refsection>

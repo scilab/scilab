@@ -11,4 +11,5 @@ thispath = get_absolute_file_path("kalman.dem.sce");
 // Open the cosf file with xcos
 xcos(thispath+"/Kalman.cosf");
 
+
 clear thispath;

@@ -18,13 +18,17 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void cumsum_r(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void cumsum_r(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  int nu,mu,i,j,ij;
+  double *u = NULL;
+  double *y = NULL;
+  int nu = 0,mu = 0,i = 0,j = 0,ij = 0;
+
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
 
@@ -39,4 +43,5 @@ void cumsum_r(scicos_block *block,int flag)
 	   {ij=i+j*mu;
 	    y[ij]=u[ij]+y[ij-1];}}
 }
+/*--------------------------------------------------------------------------*/ 
 

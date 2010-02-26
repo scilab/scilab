@@ -26,15 +26,15 @@ m=min(i,j)
 k=min(find(path_objective(1:m)<>path(1:m)))
 if k==[] then
   if i<j then 
-    Cmenu='Quit'
+    Cmenu='XcosMenuQuit'
   elseif j<i then
-    Cmenu='OpenSet'
+    Cmenu='XcosMenuOpenSet'
     Select=[path_objective(j+1),curwin]
   else
-    disp('pas possible'),pause
+    mprintf("Find_Next_Step: Impossible step\n"),pause
   end
 else
-  Cmenu='Quit'
+  Cmenu='XcosMenuQuit'
 end
 endfunction
 

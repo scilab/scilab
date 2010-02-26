@@ -210,7 +210,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_reshape.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_reshape.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_reshape.c</para>

@@ -10,4 +10,5 @@ thispath = get_absolute_file_path("inverted_pend.dem.sce");
 
 // Open the cosf file with xcos
 xcos(thispath+"/Inverted_pendulum.cosf");
+
 clear thispath;

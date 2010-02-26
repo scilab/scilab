@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2009-10-07 16:29+0000\n"
+"PO-Revision-Date: 2010-02-12 19:39+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -59,7 +59,7 @@ msgstr "%s: これ以上メモリがありません。\n"
 # File: sci_gateway/c/sci_fftw.c, line: 98
 #, c-format
 msgid "%s: Wrong number of input arguments: %d not expected.\n"
-msgstr "%s: 入力引数で不正な番号: %d でないと想定します。\n"
+msgstr "%s: 入力引数の不正な数です: %d でないと想定します。\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 197
@@ -87,12 +87,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 実、または複素数を想定�
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_fftw.c, line: 187
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: n次元配列 を想定します。\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: N-次元配列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_fftw.c, line: 211

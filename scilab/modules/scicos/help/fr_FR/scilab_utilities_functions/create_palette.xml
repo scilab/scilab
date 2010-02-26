@@ -55,7 +55,7 @@ Cette fonction génére une palette si Path est une chaîne de caractères indiq
     <title>Paramètres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">Path :</emphasis> une chaîne de caractères qui donne le chemein du répertoire contenant des fonctions d'interfaçage de blocs Scicos.</para>
+        <para><emphasis role="bold">Path :</emphasis> une chaîne de caractères qui donne le chemin du répertoire contenant des fonctions d'interfaçage de blocs Scicos.</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">routines :</emphasis> un vecteur de chaînes de caractères contenat les noms des fonctions de calcul utilisées dans les blocs Scicos.</para>
@@ -72,5 +72,19 @@ Cette fonction génére une palette si Path est une chaîne de caractères indiq
         <para> SCI/modules/scicos/macros/scicos_utils/create_palette.sci</para>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="Voiraussi_create_palette">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="create_gif">create_gif - Crée des icones gif de blocs Scicos (Fonction Scilab)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_create_palette">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">RN/AL</emphasis> - INRIA</para>
   </refsection>
 </refentry>

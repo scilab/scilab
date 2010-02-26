@@ -14,5 +14,3 @@ l=3;
 ph=0.1; 
 scs_m = scs_m.objs(5).model.rpar;
 [X,U,Y,XP] = steadycos(scs_m,[],[],[],[],1,1:$);
- 
- Compile and link Scicos C BLOCK code   

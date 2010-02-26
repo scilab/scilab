@@ -30,13 +30,13 @@ function block=tkscaleblk(block,flag)
       pos=point2pixel(1000,o)
       pos(1)=pos(1)+width2pixel(1000,sz(1)) // widget position 
       geom='wm geometry $w +'+string(pos(1))+'+'+ string(pos(2));
-      title=block.label
-      if title==[] then title="TK source",end
+      titled=block.label
+      if titled==[] then titled="TK source",end
       tit='wm title $w Scale'+blknb // write block label
       bounds=block.rpar(1:2)
       bnds='-from '+string(bounds(1))+' -to '+string(bounds(2))
       cmd='-command ""f'+blknb+' $w.frame.scale""'
-      lab='-label ""'+title+'""';
+      lab='-label ""'+titled+'""';
       L='-length 100'
       I='-tickinterval '+string((bounds(2)-bounds(1))/4)
       scale=strcat(['scale $w.frame.scale -orient vertical',..
@@ -62,7 +62,5 @@ function block=tkscaleblk(block,flag)
   elseif flag==1 then // evaluate output during simulation
     block.outptr(1)=evstr(TCL_GetVar('y'+blknb))/block.rpar(3);
   end
-endfunction ///\withPrompt{}
-
-
-
+endfunction
+///\withPrompt{}

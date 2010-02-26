@@ -24,7 +24,7 @@ function reg=get_inside2(SelectRegion)
   [ox,oy,w,h,win]=SelectRegion(:)
   kc=find(win==windows(:,2))
   if kc==[] then
-    message('This window is not an active palette')
+    messagebox('This window is not an active palette','modal')
     return
   elseif windows(kc,1)<0 then //click dans une palette
     kpal=-windows(kc,1)
@@ -34,7 +34,7 @@ function reg=get_inside2(SelectRegion)
   elseif slevel>1 then
     execstr('scs_m=scs_m_'+string(windows(kc,1)))
   else
-    message('This window is not an active palette')
+    messagebox('This window is not an active palette','modal')
     return
   end
   [keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h)
@@ -51,7 +51,7 @@ function reg=get_inside2(SelectRegion)
 		    'CLKOUT_f'
                     'INIMPL_f'
 		    'OUTIMPL_f']) then
-	message('Input/Output ports are not allowed in the region.')
+	messagebox('Input/Output ports are not allowed in the region.','modal')
 	prt=[];rect=[];return
       end
     end

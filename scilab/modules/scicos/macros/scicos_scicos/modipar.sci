@@ -103,6 +103,12 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
 	    std0(nek+sel)=std0(sel)
 	  end
 	end
+
+        if nek<0 then 
+            st($+nek+1:$)=[],st0($+nek+1:$)=[],
+            if Impl then std($+nek+1:$)=[],std0($+nek+1:$)=[],end
+        end    
+
 	xptr(kc+1:$)=xptr(kc+1:$)+nek
 	st(xptr(kc):xptr(kc+1)-1)=statek(:),
 	st0(xptr(kc):xptr(kc+1)-1)=statek(:),
@@ -119,6 +125,11 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
 	  dst(nek+sel)=dst(sel)
 	  dst0(nek+sel)=dst0(sel)
 	end
+
+        if nek<0 then 
+            dst($+nek+1:$)=[],dst0($+nek+1:$)=[],
+        end    
+
 	zptr(kc+1:$)=zptr(kc+1:$)+nek
 	dst(zptr(kc):zptr(kc+1)-1)=dstatek(:)
 	dst0(zptr(kc):zptr(kc+1)-1)=dstatek(:)
@@ -129,20 +140,20 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
           nek=-(ozptr(kc+1)-ozptr(kc))
         elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks type 5 | 10005
           if lstsize(odstatek)>0 then
-            nek=1-(ozptr(kc+1)-ozptr(kc)) //nombre d'�tats suppl�mentaires
+            nek=1-(ozptr(kc+1)-ozptr(kc)) //nombre d'états supplémentaires
           else
             nek=-(ozptr(kc+1)-ozptr(kc))
           end
-        elseif ((fun(2)==4) | (fun(2)==10004)) then // C blocks type 4 | 10004
+        elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then // C blocks type 4 | 10004
           nek=lstsize(odstatek)-(ozptr(kc+1)-ozptr(kc))
         else // other C and sci blocks
           nek=-(ozptr(kc+1)-ozptr(kc))
         end
         sel=ozptr(kc+1):ozptr($)-1
+
         if nek<>0&sel<>[] then
           while lstsize(odst)<max(nek+sel), odst($+1)=[], end
           while lstsize(odst0)<max(nek+sel), odst0($+1)=[], end
-//          if nek>0 then sel=fftshift(sel), end
           if nek>0 then sel=gsort(sel), end
           for j=sel
             odst(j+nek)=odst(j)
@@ -150,18 +161,30 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
           end
         end
         ozptr(kc+1:$)=ozptr(kc+1:$)+nek;
+
         if ((type(odstatek)==15) & (type(fun)==15)) then
           if ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
             if lstsize(odstatek)>0 then
               odst(ozptr(kc))=odstatek;
               odst0(ozptr(kc))=odstatek;
             end
-          elseif ((fun(2)==4) | (fun(2)==10004)) then  // C blocks
+          elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then  // C blocks
             for j=1:lstsize(odstatek)
               odst(ozptr(kc)+j-1)=odstatek(j);
               odst0(ozptr(kc)+j-1)=odstatek(j);
             end
           end
+        end
+
+        //## rebuild odst list if nek < 0
+        if nek < 0 then
+          n_odst = list(); n_odst0 = list();
+          for j=1:max(ozptr)-1
+            n_odst(j)=odst(j);
+            n_odst0(j)=odst0(j);
+          end
+          odst = n_odst; odst0 = n_odst0;
+          clear n_odst; clear n_odst0;
         end
 
 	//Change real parameters
@@ -170,8 +193,13 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
 	if nek<>0&sel<>[] then
 	  rpar(nek+sel)=rpar(sel)
 	end
+
+        if nek<0 then 
+            rpar($+nek+1:$)=[]
+        end    
+
 	rpptr(kc+1:$)=rpptr(kc+1:$)+nek
-	rpar(rpptr(kc):rpptr(kc+1)-1)=rpark,
+	rpar(rpptr(kc):rpptr(kc+1)-1)=rpark(:),
 
 	//Change integer parameters
 	if type(ipark)==1 then   //scifunc
@@ -180,28 +208,32 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
 	  if nek<>0&sel<>[] then
 	    ipar(nek+sel)=ipar(sel)
 	  end
+
+          if nek<0 then 
+              ipar($+nek+1:$)=[]
+          end    
+
 	  ipptr(kc+1:$)=ipptr(kc+1:$)+nek
-	  ipar(ipptr(kc):ipptr(kc+1)-1)=ipark,
+	  ipar(ipptr(kc):ipptr(kc+1)-1)=ipark(:),
 	end
         //Change objects parameters
         if ((type(opark)<>15) | ...
            (type(fun)<>15)) then //old sci blocks or odstatek not a list
-          neopark=-(opptr(kc+1)-opptr(kc))
+          nek=-(opptr(kc+1)-opptr(kc))
         elseif ((fun(2)==5) | (fun(2)==10005)) then // sciblocks
           if lstsize(opark)>0 then
-            nek=1-(opptr(kc+1)-opptr(kc)) //nombre de param�tres suppl�mentaires
+            nek=1-(opptr(kc+1)-opptr(kc)) //nombre de paramï¿½tres supplï¿½mentaires
           else
             nek=-(opptr(kc+1)-opptr(kc))
           end
-        elseif ((fun(2)==4) | (fun(2)==10004)) then //C blocks
+        elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then //C blocks
           nek=lstsize(opark)-(opptr(kc+1)-opptr(kc))
         else // other C and sci blocks
-          nek=-(ozptr(kc+1)-ozptr(kc))
+          nek=-(opptr(kc+1)-opptr(kc))
         end
         sel=opptr(kc+1):opptr($)-1
         if nek<>0&sel<>[] then
           while lstsize(opar)<max(nek+sel), opar($+1)=[], end
-  //        if nek>0 then sel=fftshift(sel), end
         if nek>0 then sel=gsort(sel), end
           for j=sel, opar(j+nek)=opar(j); end
         end
@@ -211,10 +243,21 @@ function [%state0,state,sim,ok]=modipar(newparameters,%state0,state,sim,scs_m,co
            if lstsize(opark)>0 then
              opar(opptr(kc))=opark;
            end
-          elseif ((fun(2)==4) | (fun(2)==10004)) then //C blocks
+          elseif ((fun(2)==4) | (fun(2)==10004) | (fun(2)==2004)) then //C blocks
             for j=1:lstsize(opark), opar(opptr(kc)+j-1)=opark(j), end
           end
         end
+        //## rebuild opar list if nek < 0
+        if nek < 0 then
+          n_opar = list();
+          for j=1:max(opptr)-1
+            n_opar(j)=opar(j);
+          end
+          opar = n_opar;
+          clear n_opar;
+        end
+
+
 	//Change simulation routine
 	if type(sim('funs')(kc))<>13 then   //scifunc
 	  sim('funs')(kc)=fun(1);

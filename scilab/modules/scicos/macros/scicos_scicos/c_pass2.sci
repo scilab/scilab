@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
+function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 // cor    ; correspondance table with initial block ordering
 //
 // bllst: list with nblk elts where nblk denotes number of blocks.
@@ -53,21 +53,26 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 // clkconnect: same as connectmat but for clock scicopaths.
 //
 // define some constants
-  
+  if argn(2) <6 then flag="verbose",end
   show_trace=%f
-  if show_trace then disp('c_pass1:'+string(timer())),end
+  if show_trace then mprintf('c_pass1:'+string(timer())),end
 
-  show_pause=%f
-
-  show_comment=%f
+  show_pause=%f;
+  show_comment=%f;
 
   if bllst==list() then
-    message(['No block can be activated'])
+    messagebox(_('No block can be activated'),"modal","error")
     cpr=list()
     ok=%f;
     return
   end
   
+  //correction of clkconnect.. Must be done before
+  clkconnect(find(clkconnect(:,2)==0),2)=1;
+  
+
+
+
   if exists('%scicos_solver')==0 then %scicos_solver=0,end
 
   clkptr=1,cliptr=1,typ_l=[],
@@ -77,8 +82,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,..
    typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
                                                 connectmat,clkconnect)
-
-  if show_trace then disp('c_pass20:'+string(timer())),end
+  if show_trace then mprintf('c_pass20:'+string(timer())),end
   if ~ok then 
       cpr=list()
       return
@@ -87,16 +91,13 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   
   [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 			   typ_l,typ_zx,outoin,outoinptr,clkptr)
-  
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,typ_r,..
 				 typ_l,outoin,outoinptr,tblock,typ_cons,clkptr)
-
 
 
   [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
    dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,..
 	connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
-
 
   if ~ok then 
     cpr=list()
@@ -104,11 +105,11 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   end
 
   if show_pause then 
-    disp('fin de paksazi')
+    mprintf('fin de paksazi')
     pause
   end
 
-  if show_trace then disp('c_pass31:'+string(timer())),end
+  if show_trace then mprintf('c_pass31:'+string(timer())),end
 
   //extract various info from bllst
   [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
@@ -116,26 +117,28 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l);
   typ_z0=typ_z;
+ 
 
+  
   if ~ok then
-    message('Problem in port size or type');
+    messagebox(_('Problem in port size or type.'),"modal","error");
     cpr=list()
     return,
   end
 
-  if show_trace then disp('c_pass41:'+string(timer())),end
-
+  if show_trace then mprintf('c_pass41:'+string(timer())),end
+ 
   //form a matrix which gives destinations of each block
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   //
-  if show_trace then disp('c_pass50:'+string(timer())),end
+  if show_trace then mprintf('c_pass50:'+string(timer())),end
   
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
 
-  if show_trace then disp('c_pass501:'+string(timer())),end
+  if show_trace then mprintf('c_pass501:'+string(timer())),end
 
   // Set execution scheduling tables 
   [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,..
@@ -147,7 +150,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return,
   end
 
-  if show_trace then disp('c_pass51:'+string(timer())),end
+  if show_trace then mprintf('c_pass51:'+string(timer())),end
   //form scicos arguments
 
   nb=size(typ_z,'*');
@@ -163,11 +166,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
                      // utiliser pour la generation de code
 	
   if xptr($)==1 & zcptr($)>1 then
-    message(['No continuous-time state. Thresholds are ignored; this '; ..
-	     'may be OK if you don''t generate external events with them.'; ..
-	     'If you want to reactivate the thresholds, the you need'; ..
-	     'to include a block with continuous-time state in your diagram.'; ..
-	     'You can for example include DUMMY CLSS block (linear palette).']);
+    mess=msprintf(_('No continuous-time state. Thresholds are ignored; this \n'+..
+		'may be OK if you don''t generate external events with them.\n'+..
+		'If you want to reactivate the thresholds, the you need\n\n'+..
+		'to include a block with continuous-time state in your diagram.\n'+..
+		'You can for example include DUMMY CLSS block (linear palette).'))
+    messagebox(mess,"modal","error");
   end
 
   subscr=[]
@@ -184,7 +188,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   //initialize agenda
   [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
-  if show_trace then disp('c_pass61:'+string(timer())),end
+  if show_trace then mprintf('c_pass61:'+string(timer())),end
 
   //mod=0*ones(modptr($)-1,1)
 
@@ -194,8 +198,8 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
-    message(['Diagram contains implicit blocks,'
-	     'compiling for implicit Solver'])
+    messagebox(msprintf(_('Diagram contains implicit blocks,\n'+..
+	     'compiling for implicit Solver.')),"modal","info")
     %scicos_solver=100
   end
   if %scicos_solver==100 then xc0=[xc0;xcd0],end
@@ -212,7 +216,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 
-  if show_trace then disp('c_pass71:'+string(timer())),end
+  if show_trace then mprintf('c_pass71:'+string(timer())),end
 
 endfunction
 
@@ -523,7 +527,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
   zz=get_clocks(clkconnect,clkptr)  
   //testing event algebraic loops
   ok=is_alg_event_loop(typ_l,clkconnect)
-  if ~ok then message('Algebraic loop on events.');return ,end
+  if ~ok then messagebox(_('Algebraic loop on events.'),"modal","error");return ,end
   
 
   ok=%t
@@ -549,7 +553,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  primary0=[]
 	end
 
-	if  show_comment then disp('Processing blk '+string(blk)+' port"+...
+	if  show_comment then mprintf('Processing blk '+string(blk)+' port"+...
 				   " '+string(port)),end
 	  
 	  if primary0<>[] then  // delete redundant links
@@ -561,7 +565,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 
             [balg,vec]=ini_ordo3(primary)
             if balg then 
-    	      message('Algebraic loop.'),
+    	      messagebox(_('Algebraic loop.'),"modal","error"),
     	      ok=%f
     	      return
             end  
@@ -584,7 +588,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
                if bouclalg then break,end
             end
    
-            if show_comment&bouclalg then disp('found intersect'),end
+            if show_comment&bouclalg then mprintf('found intersect'),end
 
             if ~bouclalg then
 	      [bouclalg,Vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
@@ -592,10 +596,10 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		clkconnect,connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,..
                 corinv,clkptr,cliptr,critev)
 	      if bouclalg then
-                if show_comment then disp('found non convergence'),pause,end
+                if show_comment then mprintf('found non convergence'),pause,end
                 i=lp(1)  // first typ_l
                 if i==[] then 
-                  message('Algebraic loop.')
+                  messagebox(_('Algebraic loop.'),"modal","error")
                   ok=%f
                   return
                 end
@@ -615,7 +619,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		nblock=nblock+1
 		clkconnect(f,3)=nblock
 		if  show_comment then   
-                    disp('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
+                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
                 end
 		[typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
 		 corinv,clkptr,cliptr,critev]=duplicate_block(bl,typ_l,clkconnect,..
@@ -641,7 +645,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		xx= clkconnect(f,:)
 		for jj=2:nout
                     if  show_comment then  
-                       disp('No block duplication but link between '+string(blk)+..
+                       mprintf('No block duplication but link between '+string(blk)+..
                             ' and '+string(bli)+'replaced with links from '+..
                                                  string(bl)+' to '+string(bli)),
                     end
@@ -658,13 +662,13 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	    //  [fblks2,fblksptr2]=event_activates(clkconnect,clkptr)
 	    //  [eblks2,eblksptr2]=event_depend_on(clkconnect,cliptr)
 	      //but then it must be updated
-            //  if norm(eblksptr-eblksptr2)>0 then disp('roro2');pause,end	
-            //  if norm(fblksptr-fblksptr2)>0 then disp('soso2');pause,end	
-            //  if norm(eblks-eblks2)>0 then disp('roro');pause,end	
-            //  if norm(fblks-fblks2)>0 then disp('soso');pause,end	
+            //  if norm(eblksptr-eblksptr2)>0 then mprintf('roro2');pause,end	
+            //  if norm(fblksptr-fblksptr2)>0 then mprintf('soso2');pause,end	
+            //  if norm(eblks-eblks2)>0 then mprintf('roro');pause,end	
+            //  if norm(fblks-fblks2)>0 then mprintf('soso');pause,end	
 
 	      
-	      if ~modif then message('Algebraic loop.'),ok=%f,return,end
+	      if ~modif then messagebox(_('Algebraic loop.'),"modal","error"),ok=%f,return,end
 	    else
 	      primary0=primary0(k);
 	      prt0=prt0(k)
@@ -674,8 +678,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
         	lordclk(clkptr(blk)+port-1)=[primary0(In),prt0(In)]
 
 		if  show_comment then  
-                      disp('for blk port '+string(blk)+' '+string(port)+..
-                               ' ordclk is'),disp(lordclk(clkptr(blk)+port-1)),
+                      mprintf('for blk port '+string(blk)+' '+string(port)+..
+                               ' ordclk is'),mprintf(lordclk(clkptr(blk)+port-1)),
                 end
 	      else
 		cord=[primary0(In),prt0(In)]
@@ -694,8 +698,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      J=clkptr(blk)+port-1
 	      lordclk(J)=[]
 	      if  show_comment then   
-                  disp('for blk port '+string(blk)+' '+string(port)+..
-                                  ' ordclk is'), disp(lordclk(J)),
+                  mprintf('for blk port '+string(blk)+' '+string(port)+..
+                                  ' ordclk is'), mprintf(lordclk(J)),
               end
 	    else
 	      cord=[]
@@ -761,8 +765,8 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
 	f=find(par1==parents(:,1))
 	if size(f,2)==n_out then
 	  if show_comment then
-	    disp('del_inutile:')
-	    disp('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
+	    mprintf('del_inutile:')
+	    mprintf('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
                  ' sont supprim�s')
 	    pause
 	  end
@@ -834,7 +838,7 @@ function [bouclalg,vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
     counter2=counter2+1
     if (counter2>n_p+1) then
       bouclalg=%t
-      //      disp('Algebraic Loop detection.')
+      //      mprintf('Algebraic Loop detection.')
       break
     end
   end  
@@ -868,7 +872,7 @@ function [bouclalg,vec]=ini_ordo3(primary)
     counter2=counter2+1
     if (counter2>n_p+1) then
       bouclalg=%t
-      //      disp('Algebraic Loop detection.')
+      //      mprintf('Algebraic Loop detection.')
       break
     end
   end  
@@ -881,7 +885,7 @@ function  vec=update_vec3(vec,wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr)
     g0=g0prim(g0primptr(i):g0primptr(i+1)-1)
     g=gprim(gprimptr(i):gprimptr(i+1)-1)
     // detecting algebraic loops within a single cluster
-    //disp([px,py,size(blks,'*')])
+    //mprintf([px,py,size(blks,'*')])
     vec(w)=max(vec(w))
     if (g0 ~= []) then
       vec(w(1))=max(vec(w(1)),max(vec(g0))+1)
@@ -922,7 +926,7 @@ function [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
     wprimptr($+1)=wprimptr($)+size(w,'*')
     
     px=blksptr(w(1));py=blksptr(w(1)+1)-1
-    //disp([px,py,size(blks,'*')])
+    //mprintf([px,py,size(blks,'*')])
     g0prim=[g0prim;blks(px:py)]
     g0primptr($+1)=g0primptr($)+size(px:py,2)
   
@@ -986,7 +990,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   end
   //
   if ~ok then 
-    message('Algebrique  loop detected; cannot be compiled.');
+    messagebox(_('Algebraic loop.'),"modal","error");
     iord=[],oord=[],zord=[],critev=[]
     return,
   end
@@ -1028,7 +1032,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   typ_z(ext_cord)=-typ_z(ext_cord)
   typ_z=-min(typ_z,0)
   
-  if ~ok then disp('serious bug, report.');pause;end
+  if ~ok then mprintf('serious bug, report.');pause;end
   // ext_cord=ext_cord(n+1:$);
 
   typ_z_save=typ_z
@@ -1089,7 +1093,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
     for i=1:nb
       if vec(i)==j-1&typ_l(i)<>-1 then 
 	if j==nb+2 then 
-	  message('algebrique loop detected');ok=%f;ord=[];return;
+	  messagebox(_('Algebraic loop.'),"modal","error");ok=%f;ord=[];return;
 	end
 	if typ_l(i)==1 then
 	  fini=%f;
@@ -1103,7 +1107,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
 	    end
 	  end
 	end
-	vec(kk)=j*ones(kk) ;   //disp(vec)
+	vec(kk)=j*ones(kk) ;   //mprintf(vec)
       end
     end
     if fini then break;end
@@ -1151,6 +1155,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
           ozptr,typ_mod,rpptr,ipptr,opptr,xc0,xcd0,xd0,oxd0,rpar,..
           ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
           bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l)
+
   ok=%t
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
@@ -1196,9 +1201,9 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     end
     if funtyp(i,1)>999&funtyp(i,1)<10000 then
       if ~c_link(funs(i)) then
-	messagebox(['A C or Fortran block is used but not linked';
-		   'You can save your compiled diagram and load it';
-		   'This will automatically link the C or Fortran function'],"modal","info");
+	messagebox(msprintf(_('A C or Fortran block is used but not linked.\n'+..
+		   'You can save your compiled diagram and load it.\n'+..
+		   'This will automatically link the C or Fortran function.')),"modal","error")
       end
     end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -1237,7 +1242,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         else
           ozptr(i+1)=ozptr(i);
         end
-      elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004))  //C blocks : extract
+      elseif ((funtyp(i,1)==4)    | (funtyp(i,1)==10004) |...
+              (funtyp(i,1)==2004) | (funtyp(i,1)==12004))  //C blocks : extract
         ozsz=lstsize(ll.odstate);
         if ozsz>0 then
           for j=1:ozsz, oxd0($+1)=ll.odstate(j), end;
@@ -1256,8 +1262,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     //mod
     typ_mod(i)=ll.nmode;
     if typ_mod(i)<0 then
-      message('Number of modes in block '+string(i)+'cannot b"+...
-	      " e determined')
+      messagebox(msprintf(_('Number of modes in block #%d cannot be determined.'),i),"modal","error")
       ok=%f
     end
 
@@ -1287,7 +1292,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         else
          opptr(i+1)=opptr(i);
         end
-     elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004)) then //C blocks : extract
+     elseif ((funtyp(i,1)==4)    | (funtyp(i,1)==10004) |...
+             (funtyp(i,1)==2004) | (funtyp(i,1)==12004)) then //C blocks : extract
        oparsz=lstsize(ll.opar);
        if oparsz>0 then
          for j=1:oparsz, opar($+1)=ll.opar(j), end;
@@ -1306,8 +1312,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     //    typ_z(i)=ll.blocktype=='z'
     typ_z(i)=ll.nzcross
     if typ_z(i)<0 then
-      message('Number of zero crossings in block '+string(i)+'cannot b"+...
-	      " e determined')
+      messagebox(msprintf(_('Number of zero crossings in block #i cannot be determined.'),i),"modal","error")
       ok=%f
     end
     typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
@@ -1316,7 +1321,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
 				
     typ_m(i)=ll.blocktype=='m'
     //
-    if ~typ_l(i)&ll.evtout<>[] then  
+    if ll.evtout<>[] then  
       ll11=ll.firing
       prt=find(ll11>=zeros(ll11))
       nprt=prod(size(prt))
@@ -1329,7 +1334,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
       labels=[labels;' ']
     end
   end
-
+  
   clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
 
   con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
@@ -1467,7 +1472,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
     for i=1:nb
       if vec(i)==j-1 then 
 	if j==nb+2 then 
-	  message('algebrique loop detected');ok=%f;ord=[];return;
+	  messagebox(_('algebraic loop.'),"modal","error");ok=%f;ord=[];return;
 	end
 	for k=outoinptr(i):outoinptr(i+1)-1
 	  ii=outoin(k,1);
@@ -1897,8 +1902,8 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
         if ok then return, end //if ok is set true then exit adjust_inout
      end
      //if failed then display message
-     message(['Not enough information to find port sizes';
-              'I try to find the problem']);
+     messagebox(msprintf(_('Not enough information to find port sizes.\n'+..
+              'I try to find the problem.')),"modal","info");
 
      //%%%%% pass 2 %%%%%//
      //Alan 19/01/07 : Warning  : Behavior have changed, To Be more Tested
@@ -2016,9 +2021,9 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
      //if failed then display message
      if ~findflag then 
-        message(['I cannot find a link with undetermined size';
-                 'My guess is that you have a block with unconnected';
-                 'undetermined output ports']);
+        messagebox(msprintf(_('I cannot find a link with undetermined size.\n'+..
+			      'My guess is that you have a block with unconnected \n'+..
+			      'undetermined output ports.')),"modal","error");
         ok=%f;return;
      end
   end
@@ -2031,82 +2036,140 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
 // path_in  : Path of the "to block" in scs_m
 //!
 
-    //** save the current figure handle
-    //gh_wins = gcf();
+  //** save the current figure handle
+  gh_wins = gcf();
 
-    if path_in==-1 then
-        xcosShowBlockWarning(path_out);
-        message(['One of this block''s outputs has negative size';
-            'Please check.'])
-        xcosClearBlockWarning(path_out);
-        ninnout=0
-        return
+  if path_in==-1 then
+    hilite_obj(path_out);
+    messagebox(msprintf(_('One of this block''s outputs has a negative size.\n'+..
+	     'Please check.')),"modal","error")
+    unhilite_obj(path_out);
+    ninnout=0
+    return
+  end
+
+  if path_in==-2 then
+    hilite_obj(path_out);
+    messagebox(msprintf(_('The input port #%d of this block have a negative size.\n'+..
+	     'Please check.'),prt_out),"modal","error")
+    unhilite_obj(path_out);
+    ninnout=0
+    return
+  end
+
+  lp=mini(size(path_out,'*'),size(path_in,'*'))
+  k=find(path_out(1:lp)<>path_in(1:lp))
+  path=path_out(1:k(1)-1) // common superbloc path
+  if (k <> []) then
+    path_out=path_out(k(1)) // "from" block number
+    path_in=path_in(k(1))   // "to" block number
+  end
+  if isdef('Code_gene_run') then
+    mxwin=maxi(winsid())
+    path=path+1 // Consider locally compiled superblock as a superblock
+    for k=1:size(path,'*')
+      //hilite_obj(all_scs_m.objs(numk(k)))
+      hilite_obj(numk(k))
+      scs_m=all_scs_m.objs(numk(k)).model.rpar;
+      scs_show(scs_m,mxwin+k)
     end
+    //hilite_obj(scs_m.objs(path_out))
+    hilite_obj(path_out)
+    //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
+    if or(path_in<>path_out) then hilite_obj(path_in),end
+    mess=msprintf(_('Hilited block(s) have connected ports \n'+..
+		    'with  sizes that cannot be determined by the context.\n'+..
+		    'What is the size of this link?'))
 
-    if path_in==-2 then
-        xcosShowBlockWarning(path_out);
-        message(['The input port '+string(prt_out)+' of this block have a negative size.';
-            'Please check.'])
-        xcosClearBlockWarning(path_out);
-        ninnout=0
-        return
+    if flagg==1 then
+      ninnout=evstr(dialog(mess,'[1,1]'))
+    else 
+      ninnout=evstr(dialog(mess,'1'))
     end
-
-    lp=mini(size(path_out,'*'),size(path_in,'*'))
-    k=find(path_out(1:lp)<>path_in(1:lp))
-    path=path_out(1:k(1)-1) // common superbloc path
-    if (k <> []) then
-        path_out=path_out(k(1)) // "from" block number
-        path_in=path_in(k(1))   // "to" block number
+	      
+    for k=size(path,'*'):-1:1,
+      //** select the mxwin+k window and get the handle
+      gh_del = scf(mxwin+k);
+      //** delete the window
+      delete(gh_del)
     end
+    //scs_m=null()
+    //unhilite_obj(all_scs_m.objs(numk(1)))
 
-    msg = ['Hilited block(s) have connected ports ';
-        'with  sizes that cannot be determined by the context';
-        'what is the size of this link'];
+    //** restore the active window
+    scf(gh_wins);
 
-    field = '1';
-    if flagg == 1 then
-        field = '[1,1]';
-    end
-    if isdef('Code_gene_run') then
-        mxwin=maxi(winsid())
-        path=path+1 // Consider locally compiled superblock as a superblock
-        for k=1:size(path,'*')
-            xcosShowBlockWarning(numk(k))
-            scs_m=all_scs_m.objs(numk(k)).model.rpar;
-            scs_show(scs_m,mxwin+k)
+    unhilite_obj(numk(1))
+  else
+    if path==[] then
+      kk=path_out
+      if or(path_in<>path_out) then kk=[kk;path_in], end
+      if prt_in<>[] & prt_out<>[] then
+        if prt_in >0 & prt_out >0 then
+          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
+              scs_m.objs(path_in).graphics.pin(prt_in) then 
+                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
+          end
         end
-    
-        xcosShowBlockWarning(path_out)
-        if or(path_in<>path_out) then xcosShowBlockWarning(path_in),end
-        ninnout=evstr(dialog(msg,field))
-
-        for k=size(path,'*'):-1:1,
-            //** select the mxwin+k window and get the handle
-            gh_del = scf(mxwin+k);
-            //** delete the window
-            delete(gh_del)
-        end
-        
-
-        //** restore the active window
-        //scf(gh_wins);
-
-        xcosClearBlockWarning(numk(1))
+      end
+      hilite_obj(kk)
+      if flagg==1 then
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  sizes that cannot be determined by the context';
+	    'what is the size of this link'],'[1,1]'))
+      else
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  types that cannot be determined by the context';
+	    'what is the size of this link'],'1'))
+      end
+      unhilite_obj(kk)
     else
-        kk=path_out
-        if or(path_in<>path_out) then kk=[kk;path_in], end
-        if prt_in<>[] & prt_out<>[] then
-            if prt_in >0 & prt_out >0 then
-                if scs_m.objs(path_out).graphics.pout(prt_out) == ...
-                    scs_m.objs(path_in).graphics.pin(prt_in) then 
-                    kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
-                end
-            end
+      mxwin=maxi(winsid())
+      kk=[];
+      for k=1:size(path,'*')
+	//hilite_obj(scs_m.objs(path(k)))
+        hilite_obj(path(k))
+	scs_m=scs_m.objs(path(k)).model.rpar;
+	scs_show(scs_m,mxwin+k)
+      end
+      //hilite_obj(scs_m.objs(path_out))
+      kk=[path_out]
+      //if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
+      if or(path_in<>path_out) then kk=[kk;path_in], end
+      if prt_in<>[] & prt_out<>[] then
+        if prt_in >0 & prt_out >0 then
+          if scs_m.objs(path_out).graphics.pout(prt_out) == ...
+              scs_m.objs(path_in).graphics.pin(prt_in) then 
+                kk=[kk;scs_m.objs(path_out).graphics.pout(prt_out)]
+          end
         end
+      end
+      hilite_obj(kk)
+      if flagg==1 then
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  sizes that cannot be determined by the context';
+	    'what is the size of this link'],'[1,1]'))
+      else
+	ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
+	    'with  types that cannot be determined by the context';
+	    'what is the size of this link'],'1'))
+      end
+      
+      //for k=size(path,'*'):-1:1,xdel(mxwin+k),end //TOBEDONE
+      for k=size(path,'*'):-1:1,
+        //** select the mxwin+k window and get the handle
+        gh_del = scf(mxwin+k);
+        //** delete the window
+        delete(gh_del)
+      end
+      //scs_m=null()
+      //** restore the active window
+      scf(gh_wins);
 
-        ninnout = errorDiagramPath(path, kk, msg, field, %t);
+      //unhilite_obj(scs_m.objs(path(1)))
+      unhilite_obj(path(1))
     end
+  end
 endfunction
 
 function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
@@ -2128,7 +2191,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   for k=ind'
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
-  if show_trace then disp('c_pass4444:'+string(timer())),end
+  if show_trace then mprintf('c_pass4444:'+string(timer())),end
   ind1=find(typ_cons)
   ind=[ind;ind1(:)]
   exe_cons=[ind,zeros(ind)]
@@ -2139,7 +2202,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   
   exe_cons=[exe_cons;r]
 
-  if show_trace then disp('c_pass4445:'+string(timer())),end
+  if show_trace then mprintf('c_pass4445:'+string(timer())),end
 
   [clkr,clkc]=size(clkconnect);
   mm=max(clkconnect(:,2))+1;
@@ -2168,7 +2231,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
   // end of  temoprary fix
-  if show_trace then disp('c_pass4446:'+string(timer())),end 
+  if show_trace then mprintf('c_pass4446:'+string(timer())),end 
 endfunction
 
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
@@ -2243,8 +2306,9 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
     sizenin=size(ll.in,'*');
     if (size(ll.dep_ut,'*') <> 2) then
       if ( size(ll.dep_ut(1:$-1),'*') <> sizenin) then
-	messagebox(['the dep_ut size of the '+ll.sim(1)+' block is not correct';
-	           'it should be colonn of size '+string(sizenin+1)],"modal","error");
+	messagebox(msprintf(_('the dep_ut size of the %s block is not correct.\n'+..
+			      'It should be a colon vector of size %d.'),..
+			    ll.sim(1),sizenin+1),"modal","error");
 	ok=%f;   
       end
     end
@@ -2269,7 +2333,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
   
     //
   end
-  if show_trace then disp('c_pass22222222:'+string(timer())),end //'
+  if show_trace then mprintf('c_pass22222222:'+string(timer())),end //'
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
 
@@ -2540,8 +2604,8 @@ for hhjj=1:length(bllst)+1
     if ok then return, end //if ok is set true then exit adjust_typ
   end
   //if failed then display message
-  message(['Not enough information to find port type';..
-	   'I will try to find the problem']);
+  messagebox(msprintf(_('Not enough information to find port type.\n'+..
+			'I will try to find the problem.')),"modal","info");
   findflag=%f 
   for jj=1:nlnk 
     nouttyp=bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
@@ -2576,10 +2640,11 @@ for hhjj=1:length(bllst)+1
   end
   //if failed then display message
   if ~findflag then 
-    message(['I cannot find a link with undetermined size';
-	'My guess is that you have a block with unconnected';
-	'undetermined types']);
+    messagebox(msprintf(_('I cannot find a link with undetermined size.\n'+..
+			  'My guess is that you have a block with unconnected \n'+..
+			  'undetermined types.')),"modal","error");
     ok=%f;return;
   end
 end
 endfunction
+

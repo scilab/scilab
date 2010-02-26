@@ -21,7 +21,7 @@
 
 function AboutScicos_()
   Cmenu=[] ; %pt=[];
-    message([strsubst(get_scicos_version(),"scicos","Scicos -")+"-";...
+    messagebox([strsubst(get_scicos_version(),"scicos","Scicos -")+"-";...
              "For more information visit:";...
-	     "     www.scicos.org      "]);
+	     "     www.scicos.org      "],"modal");
 endfunction

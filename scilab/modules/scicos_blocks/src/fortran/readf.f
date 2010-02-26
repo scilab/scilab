@@ -138,6 +138,7 @@ c     buffered and masked read
       integer lunit,ipar(*),ierr
       double precision z(*)
       double precision tmp(100)
+      integer fmttyp
 c
       ievt=ipar(3)
       N=ipar(4)
@@ -163,6 +164,7 @@ c     unformatted read
  12      continue
       else
 c     formatted read
+         if (fmttyp(ipar(5+ipar(1)),ipar(2)).ne.1) GOTO 100
          call cvstr(ipar(2),ipar(5+ipar(1)),buf,1)
          do 14 i=1,N
             read(lunit,buf(1:lfmt),err=100,end=20) (tmp(j),j=1,mm)

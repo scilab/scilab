@@ -18,15 +18,18 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void logic(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void logic(scicos_block *block,int flag)
 {
-    char *u,*y;
+    char *u = NULL,*y = NULL;
     char inp,num;
-    int i,nin,nout,mo;
-    char *opar;
+    int i  = 0,nin = 0,nout = 0,mo = 0;
+    char *opar = NULL;
     nin=GetNin(block);
     nout=GetNout(block);
     opar=Getint8OparPtrs(block,1);
@@ -57,3 +60,4 @@ void logic(scicos_block *block,int flag)
 	}
     }
 }
+/*--------------------------------------------------------------------------*/ 

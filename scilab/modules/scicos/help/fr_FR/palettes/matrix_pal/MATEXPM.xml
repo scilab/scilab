@@ -196,7 +196,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_expm.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_expm.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_expm.c</para>

@@ -19,8 +19,3 @@ if WITH_DEMOS then
 	clear pathdemos ;
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("cacsd");
-end

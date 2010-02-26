@@ -20,17 +20,24 @@
 */
 
 /*--------------------------------------------------------------------------*/
-/* INRIA 2008 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
+#include "scicos.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scicos_time)(char *fname,unsigned long fname_len)
+int sci_scicos_time(char *fname,unsigned long fname_len)
 {
-	inttimescicos(fname,fname_len);
+	int un = 1,l1 = 0;
+
+	CheckRhs(-1, 0);
+	CheckLhs(1, 1);
+
+	CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE,(un=1,&un),(un=1,&un),&l1);
+
+	*stk(l1) = get_scicos_time();
+
+	LhsVar(1) = 1;
 	C2F(putlhsvar)();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -221,7 +221,7 @@ This block is used to implement SR and JK flip-flops.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logic.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/logic.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

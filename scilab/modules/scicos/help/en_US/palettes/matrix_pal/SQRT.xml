@@ -196,10 +196,7 @@ input matrix. It supported real and complex data types.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_sqrt.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_sqrt.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_sqrt.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

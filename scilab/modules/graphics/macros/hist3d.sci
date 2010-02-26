@@ -15,8 +15,8 @@ if ~isdef('theta','local') then theta = 35; end;
 if ~isdef('alpha','local') then alpha = 45; end;
 if ~isdef('leg','local') then leg = 'X@Y@Z'; end;
 if ~isdef('flags','local') then flags = [2 1 4]; end;
-  
-def=list(35,45,'X@Y@Z',[2 1 4]);
+
+def=list(theta,alpha,leg,flags);
 [lhs,rhs]=argn(0)
 if rhs<=0 then  //demo
   s_mat=['hist3d(10*rand(10,10));';]
@@ -63,12 +63,7 @@ xx=matrix(x(matrix(indx,1,nnl*nnc)),nnl,nnc);
 yy=matrix(y(matrix(indy,1,nnl*nnc)),nnl,nnc);
 zz=matrix(f,1,nl*nc).*.[c,d,b,b,a,a];
 
-select rhs 
-case 1 then plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),bnds) 
-case 2 then plot3d(xx,yy,zz,theta,def(2),def(3),def(4),bnds) 
-case 3 then plot3d(xx,yy,zz,theta,alpha,def(3),def(4),bnds) 
-case 4 then plot3d(xx,yy,zz,theta,alpha,leg,def(4),bnds) 
-case 5 then plot3d(xx,yy,zz,theta,alpha,leg,flags,bnds) 
-case 6 then plot3d(xx,yy,zz,theta,alpha,leg,flags,ebox) 
-end
+if ~isdef('ebox','local') then ebox = bnds; else 'ebox = ebox'; end;
+plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),ebox)
+
 endfunction

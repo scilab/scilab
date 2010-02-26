@@ -36,12 +36,6 @@ if MSDOS then
   clear findmsvccompiler
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("dynamic_link");
-end
-
 // Add demos
 // =============================================================================
 if WITH_DEMOS then

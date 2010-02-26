@@ -1,4 +1,4 @@
-<package name="org.scilab.modules.xcos.utils">
+<package name="org.scilab.modules.graph.utils">
   <object name="Signal">  
     <method name="notify" returnType="void" modifier="static">
       <parameter name="ID" type="String"/>

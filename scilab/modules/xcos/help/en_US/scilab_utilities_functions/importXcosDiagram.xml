@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="importXcosDiagram"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>importXcosDiagram</refname>
+
+    <refpurpose>Import an Xcos diagram on Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[result]=importXcosDiagram(filename)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection id="Module_importXcosDiagram">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_importXcosDiagram">
+    <title>Description</title>
+
+    <para>Import an Xcos file into Scilab.</para>
+
+    <programlisting role="example"> 
+[result]=importXcosDiagram(filename)
+ </programlisting>
+  </refsection>
+
+  <refsection id="Parameters_importXcosDiagram">
+    <title>Parameters</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">result :</emphasis> The status of the
+        operation.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">filename :</emphasis> The Xcos file to
+        load.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_importXcosDiagram">
+    <title>Authors</title>
+
+    <para><emphasis role="bold">Clément David</emphasis> - DIGITEO</para>
+  </refsection>
+</refentry>

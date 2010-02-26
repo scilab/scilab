@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -50,9 +50,6 @@ msgstr " 输入行的长度超过了缓冲大小：%d\n"
 
 msgid "\"unknown data\""
 msgstr "\"未知数据\""
-
-msgid "%: This method is NOT implemented.\n"
-msgstr "%：该方法尚未实现。\n"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -182,8 +179,12 @@ msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s：仿真器请求停止（ind=0）。\n"
 
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s：Th colocation矩阵是奇异的。\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -443,8 +444,8 @@ msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s：奇异或非对称问题。\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -487,8 +488,8 @@ msgstr "%s：窗口维数已被设置为少于2^16。\n"
 msgid "'o' format not allowed."
 msgstr "不允许使用 'o' 格式。"
 
-msgid "A sparse matrix entry is defined with two differents values.\n"
-msgstr "稀疏矩阵的入口被定义为两个不同的值。\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
 
 msgid "Argument type must be boolean.\n"
 msgstr "参数的类型必须为布尔型。\n"
@@ -497,8 +498,8 @@ msgid "Arguments are :\n"
 msgstr "参数是：\n"
 
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-msgstr "在时间：%s，达到所需的精度需要太多迭代。\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -507,8 +508,8 @@ msgstr "错误的元语（primitive）调用：%s\n"
 msgid "Bad conversion."
 msgstr "错误的转换。"
 
-msgid "Binary direct acces files must be opened by 'file'.\n"
-msgstr "二进制直接读文件必须以'file'方式打开。\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -571,8 +572,8 @@ msgstr "未找到入口名。\n"
 msgid "Error while linking.\n"
 msgstr "连接时错误。\n"
 
-msgid "Error while writing in file,(disk full or deleted file.\n"
-msgstr "写入文件时错误，磁盘已满或已删除文件。\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr ""
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "单位阵变量在上下文中没有定义。\n"
@@ -819,8 +820,8 @@ msgstr "在Scilab中尚未实现...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "此处不可使用空变量（null）。\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-msgstr "操作符 / 和 \\ 的操作对象必须不能包含 NaN of Inf。\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "优化停止：已经达到了调用f的最大次数。\n"
@@ -855,12 +856,12 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr ""
 
 #, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "秩不足。rank = %d\n"
-
-#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "秩（rank）不足：rand = %s - tol = %s。\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
 
 msgid "Real part\n"
 msgstr "实数部分\n"
@@ -980,14 +981,14 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "定义的函数太多（最大数目:%d）\n"
 
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "太多全局变量！最大数目是%d。\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
 
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "hilited block的输入/输出接口太多。\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
 
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "hilited block的输入/输出端口太多。\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
 
 msgid "Too many linked routines.\n"
 msgstr "链接的routine太多。\n"
@@ -1089,10 +1090,8 @@ msgstr "警告：结果可能不精确。\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
-"警告：已给定外部的雅可比，\n"
-"但是没有使用！参考 %ODEOPTIONS(6)。\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1110,9 +1109,9 @@ msgid "Warning: function is already compiled.\n"
 msgstr "警告：函数已经被编译。\n"
 
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
-msgstr "警告：积分没有完成！请检查容忍参数（tolerance parameters）或步长。\n"
+msgstr ""
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "警告：积分达到tcrit。\n"
@@ -1127,8 +1126,8 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "警告：'='用法已过时，应该是'=='。\n"
 
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "警告：过时的eye rand或ones用法。\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"

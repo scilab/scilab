@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-24 23:31+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 20:14+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -35,8 +35,8 @@ msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr "%s: Сетка абсцисс размерности %d не является строго возрастающей.\n"
 
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s: Недостаточно точек для подгонки.\n"
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: Не достаточно точек для подбора.\n"
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"

@@ -20,35 +20,38 @@
 //
 
 function [scs_m] = do_block(%pt,scs_m)
-//
-//
-//** 18 Sept 2006
-//**
-//
 // do_block - edit a block icon
+//** win = %win; //** just for memo: '%win' is the clicked window
 //
 //** 02/12/06 : use of objects permutation in gh_curwin.children.children()
+//** 25/06/2009 : Serge Steer, remove links,  text and object which are
+//   not in the current window out of the selection
 
-  //** win = %win; //** just for memo: '%win' is the clicked window
-
-  if Select==[] then //** No object is selected
-
-    xc = %pt(1); yc = %pt(2); %pt=[]; //** acquire mouse coordinate
-    K = getblock(scs_m,[xc;yc]) ; //** look from a clicked object
-    if K==[] then return, end //** if no object --> EXIT
-
-  else //** if the object is selected
-
-    K = Select(:,1)'; %pt=[]
-    //** Filter out the multiple object selected cases
-    if size(K,'*')>1|%win<>Select(1,2) then
-      message("Only one block can be selected in current window for this operation.") ;
-      return ; //** EXIT
-    end
+  K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+				      
+  if K==[] then
+    K = getblock(scs_m, %pt(:))
   end
+   				      
+  if K==[] then
+    messagebox(_("No selected block in the current Scicos window."),'error','modal')
+    return
+  end
+   
+  if size(K,'*')>1 then
+    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
+    return
+  end    
+  o=scs_m.objs(K)
+  if typeof(o)<>'Block' then
+    messagebox(_("Only  blocks can be selected for this operation."),'error','modal')
+    return
+  end    
+ 
+ 
+  gh_curwin = scf(%win) ;  gh_axes = gca(); 
 
-
-  gr_i = scs_m.objs(K).graphics.gr_i ; //** isolate the graphics command string 'gr_i'
+  gr_i = o.graphics.gr_i ; //** isolate the graphics command string 'gr_i'
 
   if type(gr_i)==15 then //** ? boh
     [gr_i,coli] = gr_i(1:2)
@@ -59,8 +62,6 @@ function [scs_m] = do_block(%pt,scs_m)
   if gr_i==[] then gr_i=' ',end
 
   //** Acquire the current clicked window figure and axis handles
-  gh_curwin = scf(%win) ;
-  gh_axes = gca(); 
   while %t do
     //** use a dialog box to get input
     gr_i = dialog(['Give scilab instructions to draw block';
@@ -75,7 +76,6 @@ function [scs_m] = do_block(%pt,scs_m)
     mac = null(); deff('[]=mac()', gr_i, 'n')
 
     if check_mac(mac) then
-      o = scs_m.objs(K)
       o.graphics.gr_i = list(gr_i,coli) ; //** update the graphic command string
       scs_m.objs(K) = o ; //** update the data structure
 
@@ -84,9 +84,7 @@ function [scs_m] = do_block(%pt,scs_m)
       gr_k   = get_gri(K, o_size(1)) ; //** compute the index in the graphics data structure 
       drawlater() ;
          update_gr(gr_k, o);
-         //** draw(gh_curwin.children); //** re-draw the graphic object and show on screen
          drawnow();
-         //** show_pixmap() ; //** not useful on Scilab 5 
       break; //** exit from the while loop
     end
 

@@ -13,12 +13,6 @@
 load("SCI/modules/gui/macros/lib");
 load("SCI/modules/gui/macros/tree/lib");
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("gui");
-end
-
 // Add demo
 // =============================================================================
 if WITH_DEMOS then

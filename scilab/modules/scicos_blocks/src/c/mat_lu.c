@@ -18,40 +18,37 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgetrf)();
 extern int C2F(dlaswp)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          double *dwork;
-	  double *IL;
-	  double *IU;
+{         
+	int *ipiv;
+    double *dwork;
+	double *IL;
+	double *IU;
 } mat_lu_struct ;
-void mat_lu(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_lu(scicos_block *block,int flag)
 {
- double *u;
- double *y1;
- double *y2;
- int mu;
- int nu;
- int info;
- int i,j,l,ij,ik;
- mat_lu_struct *ptr;
+ double *u = NULL;
+ double *y1 = NULL;
+ double *y2 = NULL;
+ int mu = 0;
+ int nu = 0;
+ int info = 0;
+ int i = 0,j = 0,l = 0,ij = 0,ik = 0;
+ mat_lu_struct *ptr = NULL;
  
  mu =GetInPortRows(block,1);
  nu =GetInPortCols(block,1);
@@ -133,3 +130,4 @@ else
  	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

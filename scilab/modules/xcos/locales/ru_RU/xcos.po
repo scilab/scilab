@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-12-13 12:44+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2010-02-12 20:30+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -41,6 +41,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась строка или структура диаграммы"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr "%s: Неверный тип параметра %d: ожидалась структура диаграммы"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -94,6 +103,8 @@ msgstr "По центру"
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
+"Нажмите левую кнопку мыши на диаграмме для добавления узла связи или на "
+"совместимой цели для завершения"
 
 msgid "Close"
 msgstr "Закрыть"
@@ -142,6 +153,9 @@ msgstr "Вызовы блока отладки без трассировки"
 msgid "Default"
 msgstr "По умолчанию"
 
+msgid "Default values"
+msgstr "Значения по умолчанию"
+
 msgid "Delete"
 msgstr "Удалить"
 
@@ -178,6 +192,9 @@ msgstr "Дамп"
 
 msgid "Edit"
 msgstr "Правка"
+
+msgid "Editable"
+msgstr "Изменяемый"
 
 msgid "Electrical"
 msgstr "Электрические блоки"
@@ -273,6 +290,9 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Импортировать из XML"
 
+msgid "Insert"
+msgstr "Вставить"
+
 msgid "Integer"
 msgstr "Целые числа"
 
@@ -288,8 +308,8 @@ msgstr "Инвертировать выделение"
 msgid "Left"
 msgstr "По левому краю"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
-msgstr "Трассировка только блоков интегрирования"
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Стиль соединений"
@@ -309,6 +329,9 @@ msgstr "Загружаются пользовательские палитры"
 msgid "Lookup Tables"
 msgstr "Задание табличных значений"
 
+msgid "Masked SuperBlock editor"
+msgstr "Редактор маскированного суперблока"
+
 msgid "Mathematical Operations"
 msgstr "Математические операции"
 
@@ -323,6 +346,12 @@ msgstr "По середине"
 
 msgid "Mirror"
 msgstr "Отразить по горизонтали"
+
+msgid "Move Down"
+msgstr "Переместить вниз"
+
+msgid "Move Up"
+msgstr "Переместить вверх"
 
 msgid "New"
 msgstr "Создать"
@@ -398,6 +427,12 @@ msgstr "По правому краю"
 msgid "Rotate"
 msgstr "Вращать"
 
+msgid "Rows"
+msgstr "Строки"
+
+msgid "Same command executed again"
+msgstr ""
+
 msgid "Save"
 msgstr "Сохранить"
 
@@ -435,6 +470,9 @@ msgstr "Задать переменные окружения"
 
 msgid "Set Parameters"
 msgstr "Параметры моделирования"
+
+msgid "Set block parameters"
+msgstr "Задать параметры блока"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -507,11 +545,14 @@ msgstr "По верхнему краю"
 msgid "UnGroup"
 msgstr "Разгруппировать"
 
+msgid "Unable to communicate with the interpreter"
+msgstr "Невозможно связаться с интерпретатором"
+
 msgid "Undo"
 msgstr "Отменить"
 
-msgid "Unknow Diagram Version : "
-msgstr "Неизвестная версия диаграммы: "
+msgid "Unknown Diagram Version : "
+msgstr "Неизвестная версия диаграммы : "
 
 msgid "Untitled"
 msgstr "Безымянная диаграмма"
@@ -521,6 +562,18 @@ msgstr "Определённые пользователем"
 
 msgid "User-Defined Functions"
 msgstr "Пользовательские функции"
+
+msgid "Values"
+msgstr "Значения"
+
+msgid "Variable descriptions"
+msgstr "Описания переменных"
+
+msgid "Variable names"
+msgstr "Имена переменных"
+
+msgid "Variable settings"
+msgstr "Настройки переменных"
 
 msgid "Vertical"
 msgstr "Вертикальный"
@@ -537,11 +590,14 @@ msgstr "Окно просмотра"
 msgid "Will try to continue..."
 msgstr "Попытаюсь продолжить..."
 
+msgid "WinTitle"
+msgstr "WinTitle"
+
+msgid "Window title"
+msgstr "Заголовок окна"
+
 msgid "Xcos"
 msgstr "Xcos"
-
-msgid "Xcos 1.0"
-msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "Примеры Xcos"
@@ -554,9 +610,6 @@ msgstr "Ошибка Xcos"
 
 msgid "Xcos file"
 msgstr "Файл Xcos"
-
-msgid "Xcos version 1.0"
-msgstr "Xcos версия 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "

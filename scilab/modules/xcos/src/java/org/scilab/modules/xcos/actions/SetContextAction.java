@@ -55,6 +55,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 	private JFrame mainFrame;
 	private JTextArea contextArea;
 	private boolean windowAlreadyExist;
+	private String[] context;
 	
 	/**
 	 * Constructor
@@ -88,7 +89,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 	 * Window creation
 	 * @param e the event
 	 */
-	public void setContextBox(ActionEvent e) {
+	protected void setContextBox(ActionEvent e) {
 		
 		/** Avoid to have this window created two times */
 		if (windowAlreadyExist) {
@@ -187,7 +188,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 				/** Test for modifications */
 				String[] oldContext = diagram.getContext();
 				boolean modified = false;
-				/* I more or less lines --> modified */
+				/* If more or less lines --> modified */
 				if (oldContext.length != i) {
 					modified = true;
 				} else {
@@ -200,10 +201,12 @@ public class SetContextAction extends SimulationNotRunningAction {
 				}
 				if (modified) {
 					if (i == 0) { /* Empty context */
-						diagram.setContext(new String[]{""});
+						context = new String[]{""};
 					} else {
-						diagram.setContext(contextList.toArray(new String[i]));
+						context = contextList.toArray(new String[i]);
 					}
+					
+					diagram.setContext(context);
 					diagram.setModified(true);
 				}
 				windowAlreadyExist = false;

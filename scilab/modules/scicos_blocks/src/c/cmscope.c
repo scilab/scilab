@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmscope.c
    \author Benoit Bayol
@@ -26,7 +27,9 @@
    \brief CMSCOPE is a typical scope which links its input to the simulation time
    \see CMSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
+#include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -34,31 +37,36 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i; //As usual
-  int * ipar; //Integer Parameters
-  int * colors; //Colors
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
+  int * colors = NULL; //Colors
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int inherited_events;
-  int nipar;
+  int inherited_events = 0;
+  int nipar = 0;
   int dimension = 2;
-  double * rpar; //Reals parameters
-  double dt; //Time++
-  double * period; //Refresh Period of the scope is a vector here
-  double * ymin,* ymax; //Ymin and Ymax are vectors here
-  double * xmin, *xmax;
-  int nbr_period;
-  int * number_of_curves_by_subwin;
-  int number_of_subwin;
-  int nbr_total_curves;
+  double * rpar = NULL; //Reals parameters
+  double dt = 0.; //Time++
+  double * period = NULL; //Refresh Period of the scope is a vector here
+  double * ymin = NULL,* ymax = NULL; //Ymin and Ymax are vectors here
+  double * xmin = NULL, *xmax = NULL;
+  int nbr_period = 0;
+  int * number_of_curves_by_subwin = NULL;
+  int number_of_subwin = 0;
+  int nbr_total_curves = 0;
+  char *label = NULL;
 
 
   rpar = GetRparPtrs(block);
@@ -71,6 +79,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   win_pos[1] = ipar[4];
   win_dim[0] = ipar[5];
   win_dim[1] = ipar[6];
+  label = GetLabelPtrs(block);
   nbr_total_curves = 0;
   //Don't forget malloc for 'type *'
   number_of_curves_by_subwin = (int*)scicos_malloc(number_of_subwin*sizeof(int));
@@ -129,7 +138,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, xmin, xmax, ymin, ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
 
   /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
   /* 	scoAddPolylineLineStyle(*pScopeMemory,colors); */
@@ -143,26 +152,26 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scicos_free(xmin);
   scicos_free(xmax);
 
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+  /* use only single buffering to be sure to draw on the screen */
+  sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmscope(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cmscope(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP cmscope(scicos_block * block, int flag)
 {
   /* Declarations */
-  ScopeMemory * pScopeMemory;
-  int NbrPtsShort;
-  double * u1;
-  double t; //get_scicos_time()
+  ScopeMemory * pScopeMemory = NULL;
+  int NbrPtsShort = 0;
+  double * u1 = NULL;
+  double t = 0.; //get_scicos_time()
   scoGraphicalObject pShortDraw;
-  int i,j;
+  int i = 0,j = 0;
 
-  double d_current_real_time ; 
+  double d_current_real_time = 0. ; 
 
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below
@@ -256,3 +265,4 @@ void cmscope(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

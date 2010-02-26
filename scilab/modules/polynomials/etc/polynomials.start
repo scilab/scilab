@@ -17,12 +17,6 @@ load('SCI/modules/polynomials/macros/lib');
 %z = poly(0,'z');
 $  = poly(0,'$')
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("polynomials");
-end
-
 // Add demo
 // =============================================================================
 if WITH_DEMOS then

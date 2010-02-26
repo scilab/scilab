@@ -185,7 +185,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+          <emphasis role="bold">- port 1 : size [-1,0] / type -1</emphasis>
         </para>
       </listitem>
       <listitem>
@@ -223,10 +223,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_cath.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_cath.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_cath.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

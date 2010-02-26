@@ -38,7 +38,7 @@
     válidos apenas para os solucionadores de EDOs <literal>lsode</literal>,
     <literal>lsoda</literal> e <literal>lsodar</literal>. Para mais detalhes,
     pode se consultar os comentários dos códigos das subrotinas FORTRAN
-    <literal>routines/integ/lsod*.f</literal>.</para>
+    <literal>SCI/modules/differential_equations/src/fortran/lsod*.f</literal>.</para>
 
     <variablelist>
       <varlistentry>

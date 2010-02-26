@@ -10,12 +10,6 @@
 
 if %fftw then 
 	
-	// Delete help chapter
-	// =========================================================================
-	if WITH_HELPTOOLS then
-		del_help_chapter("elementary_functions",%t);
-	end
-	
 	if ( fftwlibraryisloaded() ) then
 		disposefftwlibrary();
 	end

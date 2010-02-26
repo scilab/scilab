@@ -23,8 +23,6 @@ Source: modules\{#IO}\sci_gateway\io_gateway.xml; DestDir: {app}\modules\{#IO}\s
 Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\help\addchapter.sce; DestDir: {app}\modules\{#IO}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 ;Source: modules\{#IO}\includes\*.h; DestDir: {app}\modules\{#IO}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\macros\buildmacros.sce; DestDir: {app}\modules\{#IO}\macros; Components: {#COMPN_SCILAB}

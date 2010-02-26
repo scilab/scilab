@@ -4,6 +4,9 @@
 EXPORTS
 ;
 ;core
+intersci_
+errgst_
+adre_
 getsmat_
 getwimat_
 putid_

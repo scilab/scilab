@@ -1,24 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
-
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 (* Datatypes *)
 
@@ -34,18 +34,26 @@ and instantiated_component =
   | InstantiatedVariable of instantiated_variable
 
 and instantiated_parameter =
-  | InstantiatedIntegerParameter of string * parameter_kind * typed_expression
-  | InstantiatedRealParameter of string * parameter_kind * typed_expression
+  | InstantiatedIntegerParameter of string * parameter_kind *
+      typed_expression * Compilation.variable_infos
+  | InstantiatedStringParameter of string * parameter_kind *
+      typed_expression * Compilation.variable_infos
+  | InstantiatedRealParameter of string * parameter_kind * typed_expression *
+       Compilation.variable_infos
 
 and parameter_kind =
   | Main
   | Sub
 
 and instantiated_variable =
+  | InstantiatedIntegerVariable of string * Compilation.inout *
+    typed_expression * Compilation.variable_infos
+  | InstantiatedStringVariable of string * Compilation.inout *
+    typed_expression * Compilation.variable_infos
   | InstantiatedDiscreteVariable of string * Compilation.inout *
-    typed_expression
+    typed_expression * Compilation.variable_infos
   | InstantiatedRealVariable of string * Compilation.inout *
-    Compilation.nature * typed_expression
+    Compilation.nature * typed_expression * Compilation.variable_infos
   | InstantiatedCompoundVariable of string * typed_expression
 
 and equation =
@@ -78,17 +86,26 @@ and expression_type =
 
 and expression =
   | Abs of typed_expression
+  | Acos of typed_expression
+  | Acosh of typed_expression
   | Addition of typed_expression * typed_expression
   | And of typed_expression * typed_expression
+  | Asin of typed_expression
+  | Asinh of typed_expression
+  | Atan of typed_expression
+  | Atanh of typed_expression
   | Boolean of bool
   | Cardinality of typed_expression
   | CompoundElement of instantiated_class
   | Cos of typed_expression
+  | Cosh of typed_expression
   | Der of typed_expression
   | Division of typed_expression * typed_expression
   | Equals of typed_expression * typed_expression
   | Exp of typed_expression
-  | ExternalFunctionCall of string list * typed_expression list
+  | ExternalFunctionCall of
+      string list * expression_type list * expression_type list *
+      typed_argument list
   | Floor of typed_expression
   | GreaterEqualThan of typed_expression * typed_expression
   | GreaterThan of typed_expression * typed_expression
@@ -106,8 +123,10 @@ and expression =
   | Or of typed_expression * typed_expression
   | ParameterValue of int * reference
   | Power of typed_expression * typed_expression
+  | Pre of typed_expression
   | Real of float
   | Sin of typed_expression
+  | Sinh of typed_expression
   | Sqrt of typed_expression
   | String of string
   | Subtraction of typed_expression * typed_expression
@@ -117,6 +136,10 @@ and expression =
   | VariableStart of int * reference
   | VariableValue of int * reference
   | Vector of typed_expression array
+
+and typed_argument =
+  | ScalarArgument of typed_expression
+  | ArrayArgument of int list * typed_expression array
 
 and reference = (string * int array) list
 
@@ -137,6 +160,7 @@ let string_of_expression  iexpr =
     | Some expr -> string_of_expression'' expr
   and string_of_expression'' = function
     | Abs iexpr -> "(abs " ^ string_of_expression' iexpr ^ ")"
+    | Acos iexpr -> "(cos " ^ string_of_expression' iexpr ^ ")"
     | Addition (iexpr, iexpr') ->
         "(" ^
         string_of_expression' iexpr ^
@@ -166,7 +190,7 @@ let string_of_expression  iexpr =
         string_of_expression' iexpr' ^
         ")"
     | Exp iexpr -> "(exp " ^ string_of_expression' iexpr ^ ")"
-    | ExternalFunctionCall (name, iexprs) -> "<funcall>"
+    | ExternalFunctionCall (name, _, _, iexprs) -> "<funcall>"
     | GreaterEqualThan (iexpr, iexpr') ->
         "(" ^
         string_of_expression' iexpr ^
@@ -270,7 +294,8 @@ let separate_parameters_from_variables cpnts =
 let separate_inputs_from_others vars =
   let rec partition inputs others = function
     | [] -> List.rev inputs, List.rev others
-    | ((Compilation.DiscreteVariable attrs | Compilation.RealVariable attrs)
+    | ((Compilation.IntegerVariable attrs | Compilation.StringVariable attrs |
+      Compilation.DiscreteVariable attrs | Compilation.RealVariable attrs)
       as var) :: vars when attrs.Compilation.vat_inout = Compilation.Input ->
         partition (var :: inputs) others vars
     | var :: vars -> partition inputs (var :: others) vars
@@ -279,7 +304,8 @@ let separate_inputs_from_others vars =
 let separate_outputs_from_others vars =
   let rec partition outputs others = function
     | [] -> List.rev outputs, List.rev others
-    | ((Compilation.DiscreteVariable attrs | Compilation.RealVariable attrs)
+    | ((Compilation.IntegerVariable attrs | Compilation.StringVariable attrs |
+      Compilation.DiscreteVariable attrs | Compilation.RealVariable attrs)
       as var) :: vars when attrs.Compilation.vat_inout = Compilation.Output ->
         partition (var :: outputs) others vars
     | var :: vars -> partition outputs (var :: others) vars
@@ -328,8 +354,17 @@ and instantiate_main_parameter ctx modifs = function
           tex_type = IntegerType [||];
           tex_expression = Some (Integer Int32.zero)
         }
-      and make comment ivalue =
-        InstantiatedIntegerParameter (comment, Main, ivalue)
+      and make comment ivalue pat_infos =
+        InstantiatedIntegerParameter (comment, Main, ivalue, pat_infos)
+      in initialize_parameter ctx default modifs attrs make
+  | Compilation.StringParameter attrs ->
+      let default =
+        {
+          tex_type = StringType [||];
+          tex_expression = Some (String "")
+        }
+      and make comment ivalue pat_infos =
+        InstantiatedStringParameter (comment, Main, ivalue, pat_infos)
       in initialize_parameter ctx default modifs attrs make
   | Compilation.RealParameter attrs ->
       let default =
@@ -337,8 +372,8 @@ and instantiate_main_parameter ctx modifs = function
           tex_type = RealType [||];
           tex_expression = Some (Real 0.0)
         }
-      and make comment ivalue =
-        InstantiatedRealParameter (comment, Main, ivalue)
+      and make comment ivalue pat_infos =
+        InstantiatedRealParameter (comment, Main, ivalue, pat_infos)
       in initialize_parameter ctx default modifs attrs make
 
 and instantiate_class ctx modifs ccl =
@@ -387,8 +422,19 @@ and instantiate_parameter ctx modifs = function
           tex_type = IntegerType [||];
           tex_expression = Some (Integer Int32.zero)
         }
-      and make comment ivalue =
-        InstantiatedIntegerParameter (comment, Sub, ivalue)
+      and make comment ivalue pat_infos =
+        InstantiatedIntegerParameter
+          (comment, Sub, ivalue, pat_infos)
+      in initialize_parameter ctx default modifs attrs make
+  | Compilation.StringParameter attrs ->
+      let default =
+        {
+          tex_type = StringType [||];
+          tex_expression = Some (String "")
+        }
+      and make comment ivalue pat_infos =
+        InstantiatedStringParameter
+          (comment, Sub, ivalue, pat_infos)
       in initialize_parameter ctx default modifs attrs make
   | Compilation.RealParameter attrs ->
       let default =
@@ -396,17 +442,18 @@ and instantiate_parameter ctx modifs = function
           tex_type = RealType [||];
           tex_expression = Some (Real 0.0)
         }
-      and make comment ivalue =
-        InstantiatedRealParameter (comment, Sub, ivalue)
+      and make comment ivalue pat_infos =
+        InstantiatedRealParameter (comment, Sub, ivalue, pat_infos)
       in initialize_parameter ctx default modifs attrs make
 
 and initialize_parameter ctx default modifs attrs make =
   let comment = attrs.Compilation.pat_comment
   and cdims = attrs.Compilation.pat_dimensions
-  and value_opt = attrs.Compilation.pat_value in
+  and value_opt = attrs.Compilation.pat_value
+  and pat_infos = attrs.Compilation.pat_infos in
   let dims = Array.map (compute_subscript ctx) cdims in
   let ivalue = calculate_initial_value ctx dims default modifs value_opt in
-  make comment ivalue
+  make comment ivalue pat_infos
 
 
 and calculate_initial_value ctx dims default modifs value_opt =
@@ -437,14 +484,35 @@ and calculate_initial_value ctx dims default modifs value_opt =
     | _ -> failwith "calculate_initial_value: invalid modification"
 
 and instantiate_variable ctx modifs = function
+    | Compilation.IntegerVariable attrs ->
+      let default =
+        {
+          tex_type = IntegerType [||];
+          tex_expression = None
+        }
+      and make comment inout flow ivalue vat_infos =
+        InstantiatedIntegerVariable
+          (comment, inout, ivalue, vat_infos)
+      in initialize_base_type_variable ctx default modifs attrs make
+    | Compilation.StringVariable attrs ->
+      let default =
+        {
+          tex_type = StringType [||];
+          tex_expression = None
+        }
+      and make comment inout flow ivalue vat_infos =
+        InstantiatedStringVariable
+          (comment, inout, ivalue, vat_infos)
+      in initialize_base_type_variable ctx default modifs attrs make
     | Compilation.DiscreteVariable attrs ->
       let default =
         {
           tex_type = RealType [||];
           tex_expression = None
         }
-      and make comment inout flow ivalue =
-        InstantiatedDiscreteVariable (comment, inout, ivalue)
+      and make comment inout flow ivalue vat_infos =
+        InstantiatedDiscreteVariable
+          (comment, inout, ivalue, vat_infos)
       in initialize_base_type_variable ctx default modifs attrs make
     | Compilation.RealVariable attrs ->
       let default =
@@ -452,8 +520,9 @@ and instantiate_variable ctx modifs = function
           tex_type = RealType [||];
           tex_expression = None
         }
-      and make comment inout flow ivalue =
-        InstantiatedRealVariable (comment, inout, flow, ivalue)
+      and make comment inout flow ivalue vat_infos =
+        InstantiatedRealVariable
+          (comment, inout, flow, ivalue, vat_infos)
       in initialize_base_type_variable ctx default modifs attrs make
     | Compilation.CompoundVariable (lccl, attrs) ->
         initialize_compound_variable ctx modifs lccl attrs
@@ -497,8 +566,7 @@ and init_array dims ctx modifs modifs' ccl =
 
 and merge_modifications modifs modifs' =
   let rec add_modif_to modifs modif = match modifs, modif with
-    | Compilation.CompiledModification (field, inners, cexpr_opt) as modif' ::
-      modifs',
+    | Compilation.CompiledModification (field, inners, cexpr_opt) :: modifs',
       Compilation.CompiledModification (field', inners', cexpr_opt')
       when field = field' ->
         let inners'' = merge_modifications inners inners'
@@ -519,6 +587,7 @@ and initialize_base_type_variable ctx default modifs attrs make =
   and inout = attrs.Compilation.vat_inout
   and flow = attrs.Compilation.vat_nature
   and cdims = attrs.Compilation.vat_dimensions
+  and vat_infos = attrs.Compilation.vat_infos
   and value_opt = match attrs.Compilation.vat_modifications with
     | [Compilation.CompiledModification (("value", [||]), [], cexpr_opt)] |
       [Compilation.CompiledModification (("start", [||]), [], cexpr_opt)] ->
@@ -528,7 +597,7 @@ and initialize_base_type_variable ctx default modifs attrs make =
   in
   let dims = Array.map (compute_subscript ctx) cdims in
   let ivalue = calculate_initial_value ctx dims default modifs value_opt in
-  make comment inout flow ivalue
+  make comment inout flow ivalue vat_infos
 
 and create_array dims default =
   let rec create_array' i value =
@@ -675,16 +744,42 @@ and instantiate_when_equations ctx cequs =
     | _ -> failwith "instantiate_when_equations: type error"
   in List.rev_map instantiate_when_equation cequs
 
+and instantiate_argument ctx = function
+  | Compilation.ScalarArgument cexpr ->
+      ScalarArgument (instantiate_expression ctx cexpr)
+  | Compilation.ArrayArgument (dims, cexprs) ->
+      ArrayArgument (dims, Array.map (instantiate_expression ctx) cexprs)
+
 and instantiate_expression ctx = function
   | Compilation.Abs cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Abs iexpr)
             }
         | _ -> failwith "instantiate_expression: type error on abs"
+      end
+  | Compilation.Acos cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Acos iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on acos"
+      end
+  | Compilation.Acosh cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Acosh iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on acosh"
       end
   | Compilation.Addition (cexpr, cexpr') ->
       let iexpr = instantiate_expression ctx cexpr
@@ -714,6 +809,46 @@ and instantiate_expression ctx = function
             }
         | _ -> failwith "instantiate_expression: type error on and"
       end
+  | Compilation.Asin cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Asin iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on asin"
+      end
+  | Compilation.Asinh cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Asinh iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on asinh"
+      end
+  | Compilation.Atan cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Atan iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on atan"
+      end
+  | Compilation.Atanh cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Atanh iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on atanh"
+      end
   | Compilation.Boolean b ->
       {
         tex_type = BooleanType [||];
@@ -732,17 +867,27 @@ and instantiate_expression ctx = function
   | Compilation.Cos cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Cos iexpr)
             }
         | _ -> failwith "instantiate_expression: type error on cos"
       end
+  | Compilation.Cosh cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Cosh iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on cosh"
+      end
   | Compilation.Der cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Der iexpr)
@@ -780,17 +925,22 @@ and instantiate_expression ctx = function
             }
         | _ -> failwith "instantiate_expression: type error on equals"
       end
-  | Compilation.ExternalFunctionCall (name, lccl, cexprs) ->
-      let iexprs = List.map (instantiate_expression ctx) cexprs in
-      let tex_type = check_function_type ctx lccl iexprs in
+  | Compilation.ExternalFunctionCall (name, lccl, cargs) ->
+      let iargs = List.map (instantiate_argument ctx) cargs in
+      let input_types, output_types = check_function_type ctx lccl iargs in
+      let tex_type = match output_types with
+        | [] -> failwith ""
+        | [t] -> t
+        | ts -> CartesianProduct ts in
       {
         tex_type = tex_type;
-        tex_expression = Some (ExternalFunctionCall (name, iexprs))
+        tex_expression =
+          Some (ExternalFunctionCall (name, input_types, output_types, iargs))
       }
   | Compilation.Exp cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Exp iexpr)
@@ -859,7 +1009,7 @@ and instantiate_expression ctx = function
   | Compilation.Log cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Log iexpr)
@@ -1064,6 +1214,16 @@ and instantiate_expression ctx = function
             }
         | _ -> failwith "instantiate_expression: type error on ^"
       end
+  | Compilation.Pre cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Pre iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on pre"
+      end
   | Compilation.Real f ->
       {
         tex_type = RealType [||];
@@ -1082,17 +1242,27 @@ and instantiate_expression ctx = function
   | Compilation.Sin cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Sin iexpr)
             }
         | _ -> failwith "instantiate_expression: type error on sin"
       end
+  | Compilation.Sinh cexpr ->
+      let iexpr = instantiate_expression ctx cexpr in
+      begin match iexpr.tex_type with
+        | RealType dims | IntegerType dims ->
+            {
+              tex_type = RealType dims;
+              tex_expression = Some (Sinh iexpr)
+            }
+        | _ -> failwith "instantiate_expression: type error on sinh"
+      end
   | Compilation.Sqrt cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Sqrt iexpr)
@@ -1124,7 +1294,7 @@ and instantiate_expression ctx = function
   | Compilation.Tan cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Tan iexpr)
@@ -1134,7 +1304,7 @@ and instantiate_expression ctx = function
   | Compilation.Tanh cexpr ->
       let iexpr = instantiate_expression ctx cexpr in
       begin match iexpr.tex_type with
-        | RealType dims ->
+        | RealType dims | IntegerType dims ->
             {
               tex_type = RealType dims;
               tex_expression = Some (Tanh iexpr)
@@ -1154,12 +1324,13 @@ and instantiate_expression ctx = function
       }
 
 and check_function_type ctx lccl iexprs =
-  let compare_input_types iexpr tex_type =
-    iexpr.tex_type = tex_type ||
-    match iexpr.tex_type, tex_type with
-      | IntegerType dims, RealType dims' when dims = dims' -> true
-      | _ -> false
-  and extract_type = function
+  let extract_type = function
+    | Compilation.IntegerVariable { Compilation.vat_dimensions = cdims } ->
+        let dims = Array.map (compute_subscript ctx) cdims in
+        IntegerType dims
+    | Compilation.StringVariable { Compilation.vat_dimensions = cdims } ->
+        let dims = Array.map (compute_subscript ctx) cdims in
+        StringType dims
     | Compilation.DiscreteVariable { Compilation.vat_dimensions = cdims } ->
         let dims = Array.map (compute_subscript ctx) cdims in
         RealType dims
@@ -1175,17 +1346,9 @@ and check_function_type ctx lccl iexprs =
   let outputs, others = separate_outputs_from_others others in
   match pars, others with
     | [], [] ->
-        let input_types = List.map extract_type inputs in
-        begin try
-          if List.for_all2 compare_input_types iexprs input_types then
-            begin match List.map extract_type outputs with
-              | [] -> failwith "check_function_type: no return value"
-              | [t] -> t
-              | ts -> CartesianProduct ts
-            end
-          else failwith "check_function_type: type error"
-        with _ -> failwith "check_function_type: type error"
-        end
+        let input_types = List.map extract_type inputs
+        and output_types = List.map extract_type outputs in
+        input_types, output_types
     | _ -> failwith "check_function_type: invalid function declaration"
 
 and instantiate_if_alternatives ctx tex_type alts =
@@ -1282,14 +1445,21 @@ and search_into_parameter ctx s cs level path ipar =
   let ics = Array.map (compute_subscript ctx) cs in
   match path, ipar with
   | ([] | [("value", [||])] | [("start", [||])]),
-    InstantiatedIntegerParameter (_, _, iexpr) ->
+    InstantiatedIntegerParameter (_, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = IntegerType dims;
         tex_expression = Some (ParameterValue (level, [(s, ics)]))
       }
   | ([] | [("value", [||])] | [("start", [||])]),
-    InstantiatedRealParameter (_, _, iexpr) ->
+    InstantiatedStringParameter (_, _, iexpr, _) ->
+      let dims = find_subvector_dims ics iexpr in
+      {
+        tex_type = StringType dims;
+        tex_expression = Some (ParameterValue (level, [(s, ics)]))
+      }
+  | ([] | [("value", [||])] | [("start", [||])]),
+    InstantiatedRealParameter (_, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = RealType dims;
@@ -1300,25 +1470,37 @@ and search_into_parameter ctx s cs level path ipar =
 and search_into_variable ctx s cs level path ivar =
   let ics = Array.map (compute_subscript ctx) cs in
   match path, ivar with
-  | ([] | [("value", [||])]), InstantiatedDiscreteVariable (_, _, iexpr) ->
+  | ([] | [("value", [||])]), InstantiatedIntegerVariable (_, _, iexpr, _) ->
+      let dims = find_subvector_dims ics iexpr in
+      {
+        tex_type = IntegerType dims;
+        tex_expression = Some (VariableValue (level, [(s, ics)]))
+      }
+  | ([] | [("value", [||])]), InstantiatedStringVariable (_, _, iexpr, _) ->
+      let dims = find_subvector_dims ics iexpr in
+      {
+        tex_type = StringType dims;
+        tex_expression = Some (VariableValue (level, [(s, ics)]))
+      }
+  | ([] | [("value", [||])]), InstantiatedDiscreteVariable (_, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = RealType dims;
         tex_expression = Some (VariableValue (level, [(s, ics)]))
       }
-  | ([] | [("value", [||])]), InstantiatedRealVariable (_, _, _, iexpr) ->
+  | ([] | [("value", [||])]), InstantiatedRealVariable (_, _, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = RealType dims;
         tex_expression = Some (VariableValue (level, [(s, ics)]))
       }
-  | [("start", [||])], InstantiatedDiscreteVariable (_, _, iexpr) ->
+  | [("start", [||])], InstantiatedDiscreteVariable (_, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = RealType dims;
         tex_expression = Some (VariableStart (level, [(s, ics)]))
       }
-  | [("start", [||])], InstantiatedRealVariable (_, _, _, iexpr) ->
+  | [("start", [||])], InstantiatedRealVariable (_, _, _, iexpr, _) ->
       let dims = find_subvector_dims ics iexpr in
       {
         tex_type = RealType dims;
@@ -1365,8 +1547,7 @@ and search_into_compound_variable ctx s ics level path iexpr =
     | _ -> failwith "search_into_compound_variable: compilation error"
 
 and compute_subscript ctx = function
-  | Compilation.Indefinite ->
-      failwith "compute_subscript: invalid subscript"
+  | Compilation.Indefinite -> -1
   | Compilation.Definite cexpr ->
       begin match evaluate_integer_expression ctx cexpr with
         | Integer i when Int32.to_int i >= 0 -> Int32.to_int i
@@ -1448,7 +1629,7 @@ and flatten_instantiated_class path icl =
 and collect_flows icpnts =
   let collect_flow flows = function
     | s, InstantiatedVariable
-      (InstantiatedRealVariable (_, _, Compilation.Flow, _)) ->
+      (InstantiatedRealVariable (_, _, Compilation.Flow, _, _)) ->
         [{
           tex_type = RealType [||];
           tex_expression = Some (VariableValue (0, [(s, [||])]))
@@ -1464,35 +1645,47 @@ and flatten_components path icpnts =
         flatten_variable icpnts iinit_equs iequs s ivar
   and flatten_parameter icpnts s = function
     | InstantiatedIntegerParameter (cmt, kind,
-      ({ tex_type = IntegerType dims } as iexpr)) ->
+      ({ tex_type = IntegerType dims } as iexpr), pat_infos) ->
         let make iexpr =
           InstantiatedParameter
-            (InstantiatedIntegerParameter (cmt, kind, iexpr))
+            (InstantiatedIntegerParameter (cmt, kind, iexpr, pat_infos))
         in
         let ipars = flatten_component_tree make path s iexpr in
         icpnts @ ipars
-    | InstantiatedRealParameter (cmt, kind,
-      ({ tex_type = (IntegerType dims | RealType dims) } as iexpr)) ->
+    | InstantiatedStringParameter (cmt, kind,
+      ({ tex_type = StringType dims } as iexpr), pat_infos) ->
         let make iexpr =
-          InstantiatedParameter (InstantiatedRealParameter (cmt, kind, iexpr))
+          InstantiatedParameter
+            (InstantiatedStringParameter (cmt, kind, iexpr, pat_infos))
+        in
+        let ipars = flatten_component_tree make path s iexpr in
+        icpnts @ ipars
+    | InstantiatedRealParameter
+        (cmt,
+         kind,
+         ({ tex_type = (IntegerType dims | RealType dims) } as iexpr),
+         pat_infos) ->
+        let make iexpr =
+          InstantiatedParameter
+            (InstantiatedRealParameter (cmt, kind, iexpr, pat_infos))
         in
         let ipars = flatten_component_tree make path s iexpr in
         icpnts @ ipars
     | _ -> failwith "flatten_parameter: type error"
   and flatten_variable icpnts iinit_equs iequs s = function
     | InstantiatedDiscreteVariable (cmt, inout,
-      ({ tex_type = (IntegerType dims | RealType dims) } as iexpr)) ->
+      ({ tex_type = (IntegerType dims | RealType dims) } as iexpr), infos) ->
         let make iexpr =
           InstantiatedVariable (
-            InstantiatedDiscreteVariable (cmt, inout, iexpr))
+            InstantiatedDiscreteVariable (cmt, inout, iexpr, infos))
         in
         let ivars = flatten_component_tree make path s iexpr in
         icpnts @ ivars, iinit_equs, iequs
     | InstantiatedRealVariable (cmt, inout, flow,
-      ({ tex_type = (IntegerType dims | RealType dims) } as iexpr)) ->
+      ({ tex_type = (IntegerType dims | RealType dims) } as iexpr), infos) ->
         let make iexpr =
           InstantiatedVariable
-            (InstantiatedRealVariable (cmt, inout, flow, iexpr))
+            (InstantiatedRealVariable (cmt, inout, flow, iexpr, infos))
         in
         let ivars = flatten_component_tree make path s iexpr in
         icpnts @ ivars, iinit_equs, iequs
@@ -1610,6 +1803,8 @@ and update_expression path = function
 
 and update_expression' path = function
   | Abs iexpr -> Abs (update_typed_expression path iexpr)
+  | Acos iexpr -> Acos (update_typed_expression path iexpr)
+  | Acosh iexpr -> Acosh (update_typed_expression path iexpr)
   | Addition (iexpr, iexpr') ->
       let iexpr = update_typed_expression path iexpr
       and iexpr' = update_typed_expression path iexpr' in
@@ -1618,10 +1813,15 @@ and update_expression' path = function
       let iexpr = update_typed_expression path iexpr
       and iexpr' = update_typed_expression path iexpr' in
       And (iexpr, iexpr')
+  | Asin iexpr -> Asin (update_typed_expression path iexpr)
+  | Asinh iexpr -> Asinh (update_typed_expression path iexpr)
+  | Atan iexpr -> Atan (update_typed_expression path iexpr)
+  | Atanh iexpr -> Atanh (update_typed_expression path iexpr)
   | Boolean _ as iexpr -> iexpr
   | Cardinality iexpr -> Cardinality (update_typed_expression path iexpr)
   | CompoundElement _ as iexpr -> iexpr
   | Cos iexpr -> Cos (update_typed_expression path iexpr)
+  | Cosh iexpr -> Cosh (update_typed_expression path iexpr)
   | Der iexpr -> Der (update_typed_expression path iexpr)
   | Division (iexpr, iexpr') ->
       let iexpr = update_typed_expression path iexpr
@@ -1632,9 +1832,9 @@ and update_expression' path = function
       and iexpr' = update_typed_expression path iexpr' in
       Equals (iexpr, iexpr')
   | Exp iexpr -> Exp (update_typed_expression path iexpr)
-  | ExternalFunctionCall (name, iexprs) ->
-      let iexprs = List.map (update_typed_expression path) iexprs in
-      ExternalFunctionCall (name, iexprs)
+  | ExternalFunctionCall (name, in_types, out_types, iargs) ->
+      let iargs = List.map (update_typed_argument path) iargs in
+      ExternalFunctionCall (name, in_types, out_types, iargs)
   | Floor iexpr -> Floor (update_typed_expression path iexpr)
   | GreaterEqualThan (iexpr, iexpr') ->
       let iexpr = update_typed_expression path iexpr
@@ -1688,8 +1888,10 @@ and update_expression' path = function
       let iexpr = update_typed_expression path iexpr
       and iexpr' = update_typed_expression path iexpr' in
       Power (iexpr, iexpr')
+  | Pre iexpr -> Pre (update_typed_expression path iexpr)
   | Real _ as iexpr -> iexpr
   | Sin iexpr -> Sin (update_typed_expression path iexpr)
+  | Sinh iexpr -> Sinh (update_typed_expression path iexpr)
   | Sqrt iexpr -> Sqrt (update_typed_expression path iexpr)
   | String _ as iexpr -> iexpr
   | Subtraction (iexpr, iexpr') ->
@@ -1705,6 +1907,11 @@ and update_expression' path = function
       VariableValue (level, update_reference level path iref)
   | Vector iexprs ->
       Vector (Array.map (update_typed_expression path) iexprs)
+
+and update_typed_argument path = function
+  | ScalarArgument iexpr -> ScalarArgument (update_typed_expression path iexpr)
+  | ArrayArgument (dims, iexprs) ->
+      ArrayArgument (dims, Array.map (update_typed_expression path) iexprs)
 
 and update_reference level path =
   let rec to_string = function
@@ -1807,6 +2014,12 @@ and flatten_typed_expression' iexpr'' = function
   | Abs iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Abs iexpr) iexpr
+  | Acos iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Acos iexpr) iexpr
+  | Acosh iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Acosh iexpr) iexpr
   | Addition (iexpr, iexpr') ->
       let iexpr = flatten_typed_expression iexpr
       and iexpr' = flatten_typed_expression iexpr' in
@@ -1815,6 +2028,18 @@ and flatten_typed_expression' iexpr'' = function
       let iexpr = flatten_typed_expression iexpr
       and iexpr' = flatten_typed_expression iexpr' in
       array_map2 (fun iexpr iexpr' -> And (iexpr, iexpr')) iexpr iexpr'
+  | Asin iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Asin iexpr) iexpr
+  | Asinh iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Asinh iexpr) iexpr
+  | Atan iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Atan iexpr) iexpr
+  | Atanh iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Atanh iexpr) iexpr
   | Boolean _ -> iexpr''
   | Cardinality iexpr ->
       let iexpr = flatten_typed_expression iexpr in
@@ -1823,6 +2048,9 @@ and flatten_typed_expression' iexpr'' = function
   | Cos iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Cos iexpr) iexpr
+  | Cosh iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Cosh iexpr) iexpr
   | Der iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Der iexpr) iexpr
@@ -1838,12 +2066,15 @@ and flatten_typed_expression' iexpr'' = function
   | Exp iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Exp iexpr) iexpr
-  | ExternalFunctionCall (name, [iexpr]) ->
-      let iexpr = flatten_typed_expression iexpr in
-      array_map (fun iexpr -> ExternalFunctionCall (name, [iexpr])) iexpr
-  | ExternalFunctionCall (name, iexprs) ->
-      let iexprs = List.map flatten_typed_expression iexprs in
-      { iexpr'' with tex_expression = Some (ExternalFunctionCall (name, iexprs)) }
+(*  | ExternalFunctionCall (name, [iarg]) ->
+      let iarg = flatten_typed_argument iarg in
+      array_map (fun iarg -> ExternalFunctionCall (name, [iarg])) iarg*)
+  | ExternalFunctionCall (name, in_types, out_types, iargs) ->
+      let iargs = List.map flatten_typed_argument iargs in
+      { iexpr'' with
+        tex_expression =
+          Some (ExternalFunctionCall (name, in_types, out_types, iargs))
+      }
   | Floor iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Floor iexpr) iexpr
@@ -1907,10 +2138,16 @@ and flatten_typed_expression' iexpr'' = function
       let iexpr = flatten_typed_expression iexpr
       and iexpr' = flatten_typed_expression iexpr' in
       { iexpr'' with tex_expression = Some (Power (iexpr, iexpr')) }
+  | Pre iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Pre iexpr) iexpr
   | Real _ -> iexpr''
   | Sin iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Sin iexpr) iexpr
+  | Sinh iexpr ->
+      let iexpr = flatten_typed_expression iexpr in
+      array_map (fun iexpr -> Sinh iexpr) iexpr
   | Sqrt iexpr ->
       let iexpr = flatten_typed_expression iexpr in
       array_map (fun iexpr -> Sqrt iexpr) iexpr
@@ -1933,6 +2170,11 @@ and flatten_typed_expression' iexpr'' = function
       let make iref = VariableValue (level, iref) in
       expand_identifier iexpr''.tex_type make level iref
   | Vector _ -> iexpr''
+
+and flatten_typed_argument = function
+  | ScalarArgument iexpr -> ScalarArgument (flatten_typed_expression iexpr)
+  | ArrayArgument (dims, iexprs) ->
+      ArrayArgument (dims, Array.map flatten_typed_expression iexprs)
 
 and flatten_multiplication iexpr iexpr' iexpr'' =
   let extract_subvector = function
@@ -2262,11 +2504,53 @@ and evaluate_cardinalities ss iequs =
           tex_type = RealType [||];
           tex_expression = Some (Abs iexpr)
         }
+    | Acos iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Acos iexpr)
+        }
+    | Acosh iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Acosh iexpr)
+        }
+    | Asin iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Asin iexpr)
+        }
+    | Asinh iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Asinh iexpr)
+        }
+    | Atan iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Atan iexpr)
+        }
+    | Atanh iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Atanh iexpr)
+        }
     | Cos iexpr ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in
         {
           tex_type = RealType [||];
           tex_expression = Some (Cos iexpr)
+        }
+    | Cosh iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Cosh iexpr)
         }
     | Der iexpr ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in
@@ -2310,11 +2594,23 @@ and evaluate_cardinalities ss iequs =
           tex_type = RealType [||];
           tex_expression = Some (Not iexpr)
         }
+    | Pre iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Pre iexpr)
+        }
     | Sin iexpr ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in
         {
           tex_type = RealType [||];
           tex_expression = Some (Sin iexpr)
+        }
+    | Sinh iexpr ->
+        let iexpr = evaluate_cardinalities_in_expression iexpr in
+        {
+          tex_type = RealType [||];
+          tex_expression = Some (Sinh iexpr)
         }
     | Sqrt iexpr ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in
@@ -2334,12 +2630,15 @@ and evaluate_cardinalities ss iequs =
           tex_type = RealType [||];
           tex_expression = Some (Tanh iexpr)
         }
-    | ExternalFunctionCall (name, [iexpr]) ->
+(*    | ExternalFunctionCall (name, [iexpr]) ->
         let iexpr = evaluate_cardinalities_in_expression iexpr in
-        { iexpr'' with tex_expression = Some (ExternalFunctionCall (name, [iexpr])) }
-    | ExternalFunctionCall (name, iexprs) ->
-        let iexprs = List.map evaluate_cardinalities_in_expression iexprs in
-        { iexpr'' with tex_expression = Some (ExternalFunctionCall (name, iexprs)) }
+        { iexpr'' with tex_expression = Some (ExternalFunctionCall (name, [iexpr])) }*)
+    | ExternalFunctionCall (name, in_types, out_types, iargs) ->
+        let iargs = List.map evaluate_cardinalities_in_argument iargs in
+        { iexpr'' with
+          tex_expression =
+            Some (ExternalFunctionCall (name, in_types, out_types, iargs))
+        }
     | If (iif_exprs, iexpr) ->
         { iexpr'' with tex_expression = Some (If (
           List.map
@@ -2349,4 +2648,10 @@ and evaluate_cardinalities ss iequs =
               iexpr, iexpr')
             iif_exprs,
           evaluate_cardinalities_in_expression iexpr)) }
-  in List.rev_map evaluate_cardinalities_in_equation iequs
+  and evaluate_cardinalities_in_argument = function
+    | ScalarArgument iexpr ->
+        ScalarArgument (evaluate_cardinalities_in_expression iexpr)
+    | ArrayArgument (dims, iexprs) ->
+        ArrayArgument
+          (dims, Array.map evaluate_cardinalities_in_expression iexprs) in
+  List.rev_map evaluate_cardinalities_in_equation iequs

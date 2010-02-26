@@ -20,55 +20,39 @@
 //
 
 function pwindow_set_size(gh_window)
-//** Physical window set size 
-
-  rhs = argn(2) ; //** get the number of right side arguments  
+//  Set the physical figure size according to a given diagram
+//  The "figure_size" controls ONLY the dimension of the physical window:
+//        the dimension of the graphics canvas  is the "axes_size"
+//        parameters ! 
+// This function is called for creating the window when a diagram is opened.
   
-  if rhs==0 then //** without arguments (default) assume ... 
-     //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = scf(gh_current_window) ; //** get the handle of the current graphics window
-     gh_axes = gca();
-  else //** the arguments is explicit 
-     //** It is NOT possible to modify [gh_current_window] directly outside [scicos_new]
-     gh_curwin = scf(gh_window) ; //** get the handle of the current graphics window     
-     gh_axes = gca();
-  end        
-//
+  //** get the handle of the  graphics window     
+  if argn(2)==0 then gh_window=gh_current_window;end
+  gh_curwin = scf(gh_window) ; 
+  gh_axes = gca();
+  
+  //** get the coordinate of the rectangle that include all the graphics object
+  //  rect(1),rect(4)            rect(3),rect(4)   
+  //	   +--------------------------+
+  //       |                          |	   
+  //	   |                          |	   
+  //       +--------------------------+
+  //  rect(1),rect(2)            rect(3),rect(2)
+  rect = dig_bound(scs_m); 
 
-  rect = dig_bound(scs_m); //** acquire the coordinate of the rectangle that
-                           //** include all the graphics object
 
-//			   
-//  rect(1),rect(4)            rect(3),rect(4)   
-//	   +--------------------------+
-//         |                          |	   
-//	   |                          |	   
-//         +--------------------------+
-//  rect(1),rect(2)            rect(3),rect(2)
-			     
-  if rect<>[] then //** if defined  
+  if rect<>[] then //non empty diagram
     %diag_size = [rect(3)-rect(1), rect(4)-rect(2)]; //** real size of the real diagram
-    %wsiz = [max(400,%diag_size(1)), max(300, %diag_size(2))]; //** minimum size for menus
-  else
-    %wsiz = [600/%zoom, 400/%zoom]; //** default values for empty diagram
+    %wsiz = [max(400,%diag_size(1)), max(300, %diag_size(2))]; //** 400=minimum size for menus
+  else // empty diagram (default values)
+    %wsiz = [600/%zoom, 400/%zoom]; 
   end
  
   //** Scale the window to the correct zoom factor and limit the maximum size 
   %wdd = min(933, %zoom*%wsiz(1)) + 30 ;
   %hdd = min(700, %zoom*%wsiz(2)) + 30 ;
-  
-  
-  //** NO difference using JAVA :)
-  //** if ~MSDOS then
-  //**  %hdd=%hdd+50
-  //** end
     
-  //** set the the size of the phisical window on the screen (in pixel)
-  //** with minimum w,h values  
-  gh_curwin.figure_size = [ max(400,%wdd) max(300,%hdd) ] ; //** 
+  //** set the the size of the physical window on the screen (in pixel)
+  gh_curwin.figure_size = [ max(400,%wdd) max(300,%hdd) ] ; 
 
-  //** N.B. : The "figure_size" controls ONLY the dimension of the phisical window:
-  //**        the "real"dimension of the graphics window (relative to the zoom and factor is the)
-  //**        "axes_size" parameters !
-  
 endfunction

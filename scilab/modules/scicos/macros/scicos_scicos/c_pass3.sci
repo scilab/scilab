@@ -22,13 +22,18 @@
 //
 
 function [cpr,ok]=c_pass3(scs_m,cpr)
+
 // reconstruct the block list structure
+
 bllst=list();
 corinv=cpr.corinv;
 sim=cpr.sim;
+
 for k=1:size(corinv)
   if type(corinv(k))==1 then
+
     if corinv(k)>size(%cpr.cor) then ok=%f;cpr=list();return;end
+
     if size(corinv(k),'*')==1 then
       bllst(k)=scs_m.objs(corinv(k)).model;
     else
@@ -38,25 +43,26 @@ for k=1:size(corinv)
   else
 
     //-Alan/Masoud 19/12/06-
+
     //We force here update of parameters for THE modelica block
 
     if findinlistcmd(cpr.corinv,size(cpr.cor),'>')<>list() then ok=%f;return; end
+
     [%state0,state,sim]=modipar(corinv(k),%state0,cpr.state,sim,scs_m,cpr.cor);
     cpr.state=state;
-
     m=scicos_model();
-
     //here it is assumed that modelica blocs have only scalar inputs/outputs
-    m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k));
-    m.out=ones(1,sim.outptr(k+1)-sim.outptr(k));
+
+    m.in=ones(sim.inpptr(k+1)-sim.inpptr(k),1);
+    m.out=ones(sim.outptr(k+1)-sim.outptr(k),1);
     if sim.funtyp(k)<10000 then
       n=(sim.xptr(k+1)-sim.xptr(k))
     else
       n=2*(sim.xptr(k+1)-sim.xptr(k))
     end
+
     m.state=cpr.state.x(sim.xptr(k)+(0:n-1));
     m.dstate=cpr.state.z(sim.zptr(k):sim.zptr(k+1)-1);
-
     m.rpar=sim.rpar(sim.rpptr(k):sim.rpptr(k+1)-1);
     m.ipar=sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1);
     m.label='';
@@ -65,15 +71,18 @@ for k=1:size(corinv)
     bllst(k)=m;
   end
 end
-//
 
-[inpptr,outptr,inplnk,outlnk,clkptr]=..
-    sim(['inpptr','outptr','inplnk','outlnk','clkptr'])
+//
+[inpptr,outptr,inplnk,outlnk,clkptr]= sim(['inpptr','outptr','inplnk','outlnk','clkptr'])
+
 // computes undetermined port sizes
+
 [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
+
 if ~ok then return; end
 
 [lnksz,lnktyp]=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
+
 //
 xptr=1;zptr=1;ozptr=1;rpptr=1;ipptr=1;opptr=1;
 xc0=[];xcd0=[];xd0=[];oxd0=list();
@@ -83,10 +92,13 @@ funs=list();
 for i=1:length(bllst)
   ll=bllst(i)
   labels=[labels;ll.label];
-
   //fun and funtype
   if type(ll.sim)==15 then
-    funs(i)=ll.sim(1)
+    if ll.sim(1)<>"scifunc" then
+      funs(i)=ll.sim(1)  // replace except for compiled scifunc
+    else
+      funs(i)=%cpr.sim.funs(i)
+    end
     funtyp(i,1)=ll.sim(2);
   else
     funs(i)=ll.sim;
@@ -113,7 +125,6 @@ for i=1:length(bllst)
   end
   xd0=[xd0;xd0k];
   zptr=[zptr;zptr($)+size(xd0k,'*')]
-
   //object discrete state
   if type(ll.odstate)==15 then
     if ((funtyp(i,1)==5) | (funtyp(i,1)==10005)) then //sciblocks : don't extract
@@ -123,7 +134,7 @@ for i=1:length(bllst)
       else
         ozptr=[ozptr;ozptr($)];
       end
-    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004))  //C blocks : extract
+    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004) | (funtyp(i,1)==2004))  //C blocks : extract
       ozsz=lstsize(ll.odstate);
       if ozsz>0 then
         for j=1:ozsz, oxd0($+1)=ll.odstate(j), end;
@@ -147,7 +158,6 @@ for i=1:length(bllst)
   end
   rpar=[rpar;rpark]
   rpptr=[rpptr;rpptr($)+size(rpark,'*')]
-
   //ipar
   if type(ll.ipar)==1 then
     ipar=[ipar;ll.ipar(:)]
@@ -165,7 +175,7 @@ for i=1:length(bllst)
        else
          opptr=[opptr;opptr($)];
        end
-    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004)) then //C blocks : extract
+    elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004) | (funtyp(i,1)==2004)) then //C blocks : extract
       oparsz=lstsize(ll.opar);
       if oparsz>0 then
         for j=1:oparsz, opar($+1)=ll.opar(j), end;
@@ -180,7 +190,6 @@ for i=1:length(bllst)
     //add an error message here please !
     opptr=[opptr;opptr($)];
   end
-
   //
   if ll.evtout<>[] then
     ll11=ll.firing
@@ -195,16 +204,16 @@ for i=1:length(bllst)
     end
   end
 end
+
 //initialize agenda
+
 [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
 
 sim.funtyp=funtyp
 sim.funs=funs
-
 sim.xptr=xptr
 sim.zptr=zptr
 sim.ozptr=ozptr
-
 sim.inpptr=inpptr
 sim.outptr=outptr
 sim.inplnk=inplnk
@@ -218,16 +227,18 @@ sim.opptr=opptr
 sim.clkptr=clkptr
 sim.labels=labels
 cpr.sim=sim;
-
 outtb=list();
+
 outtb=buildouttb(lnksz,lnktyp);
 
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
+
 if max(funtyp)>10000 &%scicos_solver==0 then
-  message(['Diagram contains Implicit blocks,'
-	   'Compiling for implicit Solver'])
+  messagebox(['Diagram contains Implicit blocks,'
+    'Compiling for implicit Solver'],'modal')
   %scicos_solver=100
 end
+
 if %scicos_solver==100 then xc0=[xc0;xcd0],end
 
 nb=size(clkptr,'*')-1;
@@ -242,4 +253,5 @@ state.evtspt=evtspt;
 state.pointi=pointi;
 state.outtb=outtb
 cpr.state=state
+
 endfunction

@@ -4,7 +4,7 @@
 This document describes the Modelica compiler Modelicac.
 Modelicac is a tool that compiles a subset of the Modelica 2.0 language (see
 section 4). This subset allows the description of continuous-time physical
-models that can be simulated under the Scicos environment.
+models that can be simulated under AMESim.
 
 
 2. How to compile Modelicac
@@ -36,7 +36,7 @@ is the entry point of the documentation.
 
 Modelicac compiles Modelica files whose name ends by ".mo".
 The modelicac command, when invoked with the appropriate options, may produce:
-- A C file containing a function suitable to be called by the Scicos tool in
+- A C file containing a function suitable to be called by AMESim in
   order to perform a model simulation;
 - A "*.moc" file which is the format of a precompiled Modelica class stored for
   later instantiation.
@@ -69,9 +69,13 @@ Other options include:
 -jac: Generate analytic jacobian matrix code.
 -no-parameter-removal: Do not remove any parameter
 -no-simplifs: Same as -keep-all-variables -no-parameter-removal
--trace <filename>: Generate tracing information for external function calls
-                   into <filename>
 -xml: Generate an XML version of the model instead of target code
+-with-init-in <filename>: Generate code for 'separate initialization' mode
+                          (where initialization data is loaded from
+                          <filename>)
+-with-init-out <filename>: Generate code for 'separate initialization' mode
+                           (where initialization data is saved in
+                           <filename>)
 
 Examples
 -------
@@ -80,7 +84,7 @@ Examples
 | Modelicac invokation         | Result                                        |
 +------------------------------+-----------------------------------------------+
 | modelicac foo.mo             | Produces a file named "foo.c" containing a    |
-|                              | C function named "foo" to be called by Scicos.|
+|                              | C function named "foo" to be called by AMESim.|
 +------------------------------+-----------------------------------------------+
 | modelicac -c foo.mo          | Produces a file named "foo.moc" containing a  |
 |                              | precompiled class named "foo".                |
@@ -149,27 +153,31 @@ Restrictions on expressions
  - selection of subarrays is restricted to numerical arrays ;
  - array concatenation (using "[" and "]") is not allowed.
 
-Restrictions on external function definitions (to be implemented)
------------------------------------------------------------------
- Only functions taking zero or several Real scalars and returning exactly one
+Restrictions on external function definitions
+---------------------------------------------
+ Only functions taking zero or more Integer scalars, String scalars,
+Real scalars or Real arrays and returning exactly one
 Real scalar are supported.
- External functions must be declared in a separate file (one file per function).
-This file contains the prototype of the corresponding C function with the same
-name. For example:
+ External functions must be declared in the Modelica file that
+contains models that use them.
+The compiler assumes a corresponding C function with the same
+name to be provided by the simulation environment. For example:
 
 function Blackbox
-  input Real u;
-  output Rea y;
+  input Real u[:];
+  output Real y;
 external;
 end Blackbox;
 
- This function can be called from another modelica file using the following
-syntax (assuming Blackbox.mo to be defined in ./Foo/Bar):
+ This function can be called from a Modelica model using the following
+syntax:
 
-...Blackbox(42)...
+...Blackbox(u)...
 
-Modelicac assumes that both ./Foo/Bar/Blackbox.h and ./Foo/Bar/Blackbox.c exist
-(see "-hpath" option) and contain the C code corresponding to a C function with
-the following signature:
+ The corresponding C function is declared with the following signature:
 
-double blackbox(double u);
+double blackbox(double *, int );
+
+(the last argument will be the size of the array whose first element
+is pointed to by the first argument, as specified in the Modelica
+Language Specification)

@@ -227,16 +227,7 @@ y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_vps.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_vpv.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_vps.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_vpv.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_vps.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

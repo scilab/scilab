@@ -237,11 +237,10 @@ file(action,unit)
                     <term>a</term>
 
                     <listitem>
-                      <para>é 1 se o arquivo foi aberto pelo modo "b"
-                      (binário)</para>
+                      <para>1 significa "r" (leitura), 2 significa "w"
+                      (escrita) e 3 significa "a" (anexação)</para>
                     </listitem>
                   </varlistentry>
-
                   <varlistentry>
                     <term>b</term>
 
@@ -250,13 +249,12 @@ file(action,unit)
                       (atualização)</para>
                     </listitem>
                   </varlistentry>
-
                   <varlistentry>
                     <term>c</term>
 
                     <listitem>
-                      <para>1 significa "r" (leitura), 2 significa "w"
-                      (escrita) e 3 significa "a" (anexação)</para>
+                      <para>é 1 se o arquivo foi aberto pelo modo "b"
+                      (binário)</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>

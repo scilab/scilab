@@ -20,11 +20,11 @@ import java.io.IOException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * View the diagram as a scilab tree
@@ -64,7 +64,7 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp
 					.getAbsolutePath());
 			try {
-				XcosInterpreterManagement
+				ScilabInterpreterManagement
 						.synchronousScilabExec("import_from_hdf5(\""
 								+ temp.getAbsolutePath() + "\");"
 								+ "tree_show(scs_m);" + "deletefile(\""

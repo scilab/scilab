@@ -196,7 +196,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_diag.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_diag.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_diag.c</para>

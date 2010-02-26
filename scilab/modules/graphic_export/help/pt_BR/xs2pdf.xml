@@ -89,7 +89,7 @@ xs2pdf(0,filename);
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member>figure_size property</member>
+      <member><link linkend="figure_properties">figure_size property</link></member>
 
       <member><link linkend="toprint">toprint</link></member>
 

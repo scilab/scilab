@@ -29,7 +29,7 @@ function [ this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin , xmax 
   ydata = ymin:stepy:ymax;
   for ix = 1:length(xdata)
     for iy = 1:length(ydata)
-      experiment = [xdata(ix) ydata(iy)];
+      experiment = [xdata(ix) ydata(iy)]';
       [ this.nmbase , fiexp ] = neldermead_function ( this.nmbase , experiment );
       zdata ( ix , iy ) = fiexp;
     end

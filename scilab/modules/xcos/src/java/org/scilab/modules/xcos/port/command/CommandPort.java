@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.port.command;
 
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.Orientation;
 
 /**
  * A command port acts generate execution ticks to another block.

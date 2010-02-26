@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -32,9 +32,6 @@ msgstr "%s: cit_f é mandatória"
 #, c-format
 msgid "%s: error - wrong accept type"
 msgstr "%s: erro - tipo errado de aceitação"
-
-msgid "Simulated Annealing"
-msgstr ""
 
 msgid "optim_sa: sa_f is mandatory"
 msgstr "optim_sa: sa_f é mandatória"

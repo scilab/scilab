@@ -1,0 +1,11 @@
+<!ELEMENT jvm_options ( option+ ) >
+
+<!ATTLIST META 
+CATEGORY 	CDATA 	"Scilab jvm_options"
+VERSION_SCI 	CDATA 	"5.3"
+VERSION_DOC 	CDATA 	"1.0"
+AUTHOR 	CDATA 	"Allan CORNET DIGITEO 2010"
+
+<!ELEMENT option EMPTY >
+<!ATTLIST option value CDATA #REQUIRED >
+

@@ -21,8 +21,8 @@
 
 function systexport(scs_m, exp_dir, exp_format)
 
-  do_export(scs_m, fullfile(exp_dir, scs_m.props.title(1)), 0, exp_format)
-
+  do_export(scs_m, fullfile(exp_dir, scs_m.props.title(1)), 0, exp_format) 
+  
   for k = 1:lstsize(scs_m.objs)
     o = scs_m.objs(k)
     if typeof(o) == 'Block' then

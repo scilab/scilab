@@ -18,18 +18,19 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-void deriv(scicos_block *block,int flag)
+#include "MALLOC.h"
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void deriv(scicos_block *block,int flag)
 { 
-  double* rw;
-  double t,dt;
-  int i;
+  double* rw = NULL;
+  double t = 0.,dt = 0.;
+  int i = 0;
   if (flag == 4){/* the workspace is used to store previous values */
     if ((*block->work=
 	 scicos_malloc(sizeof(double)*2*(1+block->insz[0])))== NULL ) {
@@ -65,4 +66,4 @@ void deriv(scicos_block *block,int flag)
     }
   }
 }
-  
+/*--------------------------------------------------------------------------*/   

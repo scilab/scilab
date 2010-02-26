@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuSetup">
+  <refnamediv>
+    <refname>Setup</refname>
+    <refpurpose>Menu: Set simulation related parameters.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      In the main Scicos window, clicking on the Setup menu item
+      invokes a dialog box that allows you to change
+      integration parameters:
+      </para><para>
+      - Final integration time (integration ends at
+      this time, it always starts from 0),
+      </para><para>
+      - Real time scaling (forces real time simulation
+      by setting Scicos unit of time to 1 second),
+      </para><para>
+      - Absolute and relative error tolerances (solver properties),
+      </para><para>
+      - Time tolerance (the smallest time interval for which
+      the ode solver is used to update continuous states),
+      </para><para>
+      - Max integration time interval (the maximum time interval
+      for each call to solver, it must be reduced if the error
+      message "too many calls" is encountered),
+      </para><para>
+      - Solver (choose the numerical solver to be used),
+      </para><para>
+      Max step size (max time step taken by solver).
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuRun">Run</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

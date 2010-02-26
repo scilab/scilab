@@ -18,13 +18,17 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void evtvardly(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void evtvardly(scicos_block *block,int flag)
 { 
-  if (flag==3){
+  if (flag==3)
+  {
     block->evout[0]=block->inptr[0][0];
   }
 }
+/*--------------------------------------------------------------------------*/ 
 

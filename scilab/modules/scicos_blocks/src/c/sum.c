@@ -18,31 +18,28 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
+/*--------------------------------------------------------------------------*/ 
+#include "dynlib_scicos_blocks.h"
 
-/* Element wise som */
-
-void 
-sum(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-     int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
-     int *nin,outsz[],*nout;
-     double x[],xd[],z[],tvec[],rpar[];
-     double *inptr[],*outptr[],*t;
+SCICOS_BLOCKS_IMPEXP void sum(int *flag,int *nevprt,double *t,double xd[],double x[],int *nx,double z[],int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
+	       int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout)
 {
-    int k,i,n;
-    double *y;
-    double *u;
+	int n = outsz[0]; /* insz[0]==insz[1] .. ==insz[*nin]== outsz[0] */
 
-    n=outsz[0]; /* insz[0]==insz[1] .. ==insz[*nin]== outsz[0] */
+	double *y=(double *)outptr[0];
 
-    y=(double *)outptr[0];
+	int i = 0;
+	for (i=0;i<n;i++) 
+	{
+		int k = 0;
 
-    for (i=0;i<n;i++) {
-      y[i]=0.0;
-      for (k=0;k<*nin;k++) {
-	u=(double *)inptr[k];
-	y[i]=y[i]+u[i]*rpar[k];
-      }
-    }
+		y[i] = 0.0;
+
+		for (k=0;k<*nin;k++) 
+		{
+			double *u=(double *)inptr[k];
+			y[i]=y[i]+u[i]*rpar[k];
+		}
+	}
 }
+/*--------------------------------------------------------------------------*/ 

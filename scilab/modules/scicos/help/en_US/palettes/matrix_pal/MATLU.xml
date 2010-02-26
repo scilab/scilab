@@ -199,10 +199,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_lu.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_lu.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_lu.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

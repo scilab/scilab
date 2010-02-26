@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) {date_debut_1}-{date_fin_1} - {organisme 1} - {auteur 1} 
- * Copyright (C) {date_debut_2}-{date_fin_2} - {organisme 2} - {auteur 2}
  * ...
  * 
  * This file must be used under the terms of the CeCILL.
@@ -20,17 +18,6 @@
 #ifndef _MSC_VER
   int XTKsocket=0;
 #endif
-/*--------------------------------------------------------------------------*/
-BOOL withtk(void)
-{
-	return FALSE;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(withtk)(int *rep)
-{
-	*rep =0;
-	return 0;
-}
 /*--------------------------------------------------------------------------*/
 int CloseTCLsci(void)
 {

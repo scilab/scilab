@@ -12,8 +12,7 @@ src/c/scipvmf77.c \
 src/c/varpack.c \
 src/c/pvm_grp.c \
 src/c/pvm_send.c \
-src/c/pvm_info.c \
-src/c/with_pvm.c
+src/c/pvm_info.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_pvm_get_timer.c \
 sci_gateway/c/sci_pvm_gettid.c \

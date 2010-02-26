@@ -19,13 +19,15 @@
 // See the file ../license.txt
 //
 
-function [palettes,windows] = do_load_as_palette(palettes, windows)
+function [palettes,windows] = do_load_as_palette(palettes, windows,scs_m)
 //** 
 //**    
 //**   
-  [ok,scs_m,cpr,edited] = do_load() ;
-  
-  if ~ok then return, end //** if fail --> Exit 
+  if argn(2) < 3 then
+    [ok,scs_m,cpr,edited] = do_load([],'palette') ;
+    if ~ok then return,end //** if fail --> Exit 
+  end
+
 
   maxpal = -mini([-200;windows(:,1)]) ; //** look for the last valid palette 
    

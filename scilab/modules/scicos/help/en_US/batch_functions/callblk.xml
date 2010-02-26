@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="callblk">
+  <refnamediv>
+    <refname>callblk</refname>
+    <refpurpose>Call scicos computational function from scilab prompt</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[blk]=callblk(blk,flag,time)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_callblk">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_callblk">
+    <title>Description</title>
+    <para>
+This function allows to call a computational function from a Scicos <link linkend="sci_struct">block</link>
+structure. The fields of that structure must be properly informed before use it with <emphasis role="bold">callblk</emphasis>.
+</para>
+    <para>
+A simplified flowchart of how work <emphasis role="bold">callblk</emphasis> is shown in the following figure:
+
+
+</para>
+    <para>
+From the input structure <emphasis role="bold">blk_in</emphasis>, a C scicos_blocks structure is allocated and informed, the pointer
+of the comptational function is found, and the computational function is then called with the C structure
+and the parameter <emphasis role="bold">flag</emphasis>. Finally an output scilab structure <emphasis role="bold">blk_out</emphasis> is created with the values
+contained in the C structure.
+</para>
+    <para><emphasis role="bold">callblk</emphasis> can be used to do prototypes of code generator and simulator in Scilab language.
+
+</para>
+    <programlisting role="example"><![CDATA[
+[blk]=callblk(blk,flag,time)
+]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_callblk">
+    <title>Parameters</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">blk :</emphasis> scicos_block scilab structure</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">flag :</emphasis> computational function calling flag</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">time :</emphasis> simulator time</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Example_callblk">
+    <title>Example</title>
+    <programlisting role="example"><![CDATA[
+//Use of scope of fibo.cosf in Scilab
+//15/07/08, AL
+load SCI/macros/scicos/lib;
+exec('SCI/demos/scicos/fibo.cosf',-1);
+[ierr,scicos_ver,scs_m]=update_version(scs_m);
+omod=scs_m.objs(10).model; //scope is the obj(10)
+omod.in=1; //update in (because -1)
+bl=model2blk(omod); //get a computational blk struct
+// init
+bl=callblk(bl,4,0);
+// run
+Tfin=120;
+for i=0:1:Tfin*100
+t=i/100;
+//update regular input
+bl.inptr(1)=0.55+cos(2*%pi/(15)*t)/10;
+bl=callblk(bl,2,t); //calblk with flag=2
+end
+// finish
+bl=callblk(bl,5,t);
+]]></programlisting>
+  </refsection>
+  <refsection id="SeeAlso_callblk">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="model2blk">model2blk - Create a scicos_block structure from a scicos model (Scilab Function)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_callblk">
+    <title>Authors</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

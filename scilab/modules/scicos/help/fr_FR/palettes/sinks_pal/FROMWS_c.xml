@@ -88,7 +88,7 @@
   <refsection id="Description_FROMWS_c">
     <title>Description</title>
     <para>
-This block is used in 
+This block is used in <link linkend="FROMWSB">FROMWSB</link>
 superblock.  
 </para>
     <para>
@@ -104,7 +104,7 @@ superblock.
       </inlinemediaobject>
     </para>
     <para>
-The same as 
+The same as <link linkend="FROMWSB">FROMWSB</link>
 block.
 
 </para>

@@ -35,8 +35,6 @@ Source: modules\{#TIME}\sci_gateway\time_gateway.xml; DestDir: {app}\modules\{#T
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\addchapter.sce; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\buildmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}

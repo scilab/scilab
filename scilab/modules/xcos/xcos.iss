@@ -32,8 +32,6 @@ Source: modules\{#XCOS}\etc\{#XCOS}.start; DestDir: {app}\modules\{#XCOS}\etc; C
 Source: modules\{#XCOS}\etc\Xcos-style.xml; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\xcosConfiguration.xml; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#XCOS}\help\addchapter.sce; DestDir: {app}\modules\{#XCOS}\help; Flags: recursesubdirs; Components:  {#COMPN_XCOS}
-;
 Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}

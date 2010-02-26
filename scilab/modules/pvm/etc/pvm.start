@@ -7,17 +7,11 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if %pvm then
+if with_module('pvm') then
 	
 	// Load  functions libraries
 	// =========================================================================
 	load('SCI/modules/pvm/macros/lib');
-
-	// Add help chapter
-	// =========================================================================
-	if WITH_HELPTOOLS then
-		add_module_help_chapter("pvm");
-	end
 	
 	// Add demos
 	// =========================================================================
@@ -28,10 +22,8 @@ if %pvm then
 	end
 	
 	if MSDOS then
-		if %pvm then
-			configure_pvm()
-			clear configure_pvm
-		end
+		configure_pvm()
+		clear configure_pvm
 	end
 	
 end

@@ -18,21 +18,22 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
-extern double asinh(double x);
-extern double acosh(double x);
 extern double atanh(double x);
 #endif
-
-void atanh_blk(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void atanh_blk(scicos_block *block,int flag)
 {
-  int j;
+  int j = 0;
   if(flag==1){
     for (j=0;j<block->insz[0];j++) {
       block->outptr[0][j]=atanh(block->inptr[0][j]);
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

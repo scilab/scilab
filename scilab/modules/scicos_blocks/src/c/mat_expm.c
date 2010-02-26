@@ -18,28 +18,32 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dexpm1)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{	  int *iwork;
-          double *dwork;
+{	  
+	int *iwork;
+	double *dwork;
 } mat_exp_struct ;
-void mat_expm(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu;
- int ierr;
- mat_exp_struct *ptr;
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0;
+ int ierr = 0;
+ mat_exp_struct *ptr = NULL;
 
  nu =GetInPortCols(block,1);
  u=GetRealInPortPtrs(block,1);
@@ -82,3 +86,4 @@ else
 	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

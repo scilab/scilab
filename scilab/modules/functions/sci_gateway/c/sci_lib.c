@@ -11,6 +11,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "stack-c.h"
 #include "gw_functions.h"
 #include "api_scilab.h"
@@ -20,6 +21,9 @@
 #include "machine.h"
 #include "FileExist.h"
 #include "getFullFilename.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
@@ -108,7 +112,16 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	fullfilename = getFullFilename(pStVarOne);
+	/* getfullfilename only if we need */
+	if (strchr(pStVarOne, '.') != NULL)
+	{
+		fullfilename = getFullFilename(pStVarOne);
+	}
+	else
+	{
+		fullfilename = strdup(pStVarOne);
+	}
+
 	if (fullfilename)
 	{
 		if ((int)strlen(fullfilename) >= bsiz)

@@ -7,4 +7,5 @@
 
 thispath = get_absolute_file_path("modelica_bouncing_ball.dem.sce");
 xcos(thispath+"/BouncingBall_Modelica.cosf");
+
 clear thispath;

@@ -34,6 +34,10 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.MimeConstants;
 import org.apache.fop.apps.FormattingResults;
+import org.xml.sax.SAXException;
+
+import org.scilab.forge.jlatexmath.fop.JLaTeXMathElementMapping;
+import org.scilab.forge.jlatexmath.fop.JLaTeXMathXMLHandler;
 
 /**
  * This class manages the build of the PDF file
@@ -68,8 +72,12 @@ public final class BuildPDF {
 		}
 
 		try {
-			FopFactory fopFactory = FopFactory.newInstance();
-			// Step 3: Construct fop with desired output format
+                    FopFactory fopFactory = FopFactory.newInstance();
+                        fopFactory.addElementMapping(new JLaTeXMathElementMapping());
+                        fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
+                        fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/fopconf.xml"));
+                        
+                        // Step 3: Construct fop with desired output format
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
 			Fop fop;
 			if (format.equalsIgnoreCase("PS")) {
@@ -104,6 +112,8 @@ public final class BuildPDF {
 		} catch (TransformerException e) {
 			System.out.println(e.getLocalizedMessage());
 		} catch (IOException e) {
+			System.out.println(e.getLocalizedMessage());
+		} catch (SAXException e) {
 			System.out.println(e.getLocalizedMessage());
 		}
 			

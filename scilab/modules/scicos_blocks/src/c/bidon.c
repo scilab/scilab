@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
-
-void bidon(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void bidon(scicos_block *block,int flag)
 /*------------------------------------------------
  *     Scicos block simulator 
  *     does nothing 
@@ -29,3 +30,4 @@ void bidon(scicos_block *block,int flag)
 {
   //** do nothing :) 
 }
+/*--------------------------------------------------------------------------*/ 

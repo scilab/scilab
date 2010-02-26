@@ -15,11 +15,6 @@ if (getscilabmode() <> 'NWNI') then
 	load(SCI+"/modules/graphic_export/macros/lib");
 end
 
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("graphic_export");
-end
 
 // global variable for export
 // =============================================================================

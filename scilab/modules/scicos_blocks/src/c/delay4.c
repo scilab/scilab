@@ -18,9 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
-
-void delay4(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void delay4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
    
@@ -45,5 +47,5 @@ void delay4(scicos_block *block,int flag)
     z[nz-1]=u[0];
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
     

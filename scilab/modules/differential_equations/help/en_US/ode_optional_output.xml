@@ -27,7 +27,7 @@
       <literal>iw</literal>.
       These are valid only for the <literal>lsode</literal> 
       <literal>lsoda</literal> and  <literal>lsodar</literal> ode solver.
-	For more details, one can look at the solvers fortran code comments in <literal>routines/integ/lsod*.f</literal>.
+      For more details, one can look at the solvers fortran code comments in <literal>SCI/modules/differential_equations/src/fortran/lsod*.f</literal>.
       </para>
     <variablelist>
       <varlistentry>

@@ -172,7 +172,7 @@ function path=save_csuper(scs_m,fpath,gr_i,sz)
   path=stripblanks(fpath)+'/'+nam+'.sci'
   [u,err]=file('open',path,'unknown')
   if err<>0 then
-    message(path+': Directory or file write access denied')
+    messagebox(path+': Directory or file write access denied','modal')
     return
   end
   write(u,txt,'(a)')

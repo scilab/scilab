@@ -45,7 +45,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   clkin=int(clkin(:));nclkin=size(clkin,1);
   if nclkin>0 then
     if mini(clkin)<1 then
-      message('Event input ports sizes must be positive')
+      messagebox('Event input ports sizes must be positive','modal')
       ok=%f
       return
     end
@@ -55,7 +55,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   clkout=int(clkout(:));nclkout=size(clkout,1);
   if nclkout>0 then
     if mini(clkout)<1 then
-      message('Event output ports sizes must be positive')
+      messagebox('Event output ports sizes must be positive','modal')
       ok=%f
       return
     end
@@ -70,7 +70,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   n1=size(in1(:,1),'*');n=size(in(:,1),'*')
   if n1>n then
     if or(ip1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
+      messagebox('Connected ports cannot be suppressed','modal')
       ok=%f
       return
     end
@@ -82,7 +82,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   n1=size(out1,'*');n=size(out,'*')
   if n1>n then
     if or(op1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
+      messagebox('Connected ports cannot be suppressed','messagebox')
       ok=%f
       return
     end
@@ -94,7 +94,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   n1=size(clkin1,'*');n=size(clkin,'*')
   if n1>n then
     if or(cip1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
+      messagebox('Connected ports cannot be suppressed','modal')
       ok=%f
       return
     end
@@ -106,7 +106,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
   n1=size(clkout1,'*');n=size(clkout,'*')
   if n1>n then
     if or(cop1(n+1:$)>0) then
-      message('Connected ports cannot be suppressed')
+      messagebox('Connected ports cannot be suppressed','modal')
       ok=%f
       return
     end
@@ -124,7 +124,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
     k=find(ip1<>0) //connected links
     k=k(find(k<=kk));
     if or(graphics.in_implicit(k)<>in_impl(k)) then
-      message('Connected ports types cannot be changed')
+      messagebox('Connected ports types cannot be changed','modal')
       ok=%f
       return
     end
@@ -139,7 +139,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
     k=find(op1<>0) //connected links
     k=k(find(k<=kk));
     if or(graphics.out_implicit(k)<>out_impl(k)) then
-      message('Connected ports types cannot be changed')
+      messagebox('Connected ports types cannot be changed','modal')
       ok=%f
       return
     end

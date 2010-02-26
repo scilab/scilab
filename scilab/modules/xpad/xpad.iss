@@ -37,8 +37,6 @@ Source: modules\{#XPAD}\macros\buildmacros.sce; DestDir: {app}\modules\{#XPAD}\m
 Source: modules\{#XPAD}\macros\buildmacros.bat; DestDir: {app}\modules\{#XPAD}\macros; Components: {#COMPN_XPAD}
 Source: modules\{#XPAD}\macros\cleanmacros.bat; DestDir: {app}\modules\{#XPAD}\macros; Components: {#COMPN_XPAD}
 ;
-Source: modules\{#XPAD}\help\addchapter.sce; DestDir: {app}\modules\{#XPAD}\help; Flags: recursesubdirs; Components:  {#COMPN_XPAD}
-;
 ;Source: modules\{#XPAD}\includes\*.h; DestDir: {app}\modules\{#XPAD}\includes; Components: {#COMPN_XPAD}
 ;
 ;

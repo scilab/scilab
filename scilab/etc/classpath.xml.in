@@ -61,7 +61,7 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="@JGRAPHX@" load="onUse">
-        <load on="xcos"/>
+	<load on="XCos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
@@ -76,6 +76,12 @@ The option is "disableUnderMode" and can be:
 <path value="@JEUCLID_CORE@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
+	<load on="xcos_mathml_rendering"/>
+</path>
+
+<path value="@JLATEXMATH_FOP@" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 <path value="@FOP@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -88,10 +94,12 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="@XML_APIS_EXT@" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <!-- PDF doc generation -->
@@ -99,6 +107,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="xcos"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
@@ -106,6 +115,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="@AVALON_FRAMEWORK@" load="onUse">
 	<load on="documentationGeneration"/>
@@ -113,8 +123,10 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="@JLATEXMATH@" load="onUse">
-		<load on="graphics_latex_textrendering"/>
-		<load on="pdf_ps_eps_graphic_export"/>
+  	<load on="documentationGeneration"/>
+	<load on="graphics_latex_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <!-- helptools module doc generation -->

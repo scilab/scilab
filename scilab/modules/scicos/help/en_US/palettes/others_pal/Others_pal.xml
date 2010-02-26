@@ -61,17 +61,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="c_block">c_block - C language</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CBLOCK">CBLOCK - New C</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="CONSTRAINT_f">CONSTRAINT_f - Constraint</link>
+          <link linkend="CBLOCK4">CBLOCK4 - CBLOCK4 : dynamically linked C block</link>
         </para>
       </listitem>
       <listitem>
@@ -116,7 +106,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="MBLOCK">MBLOCK - Modelica generic block</link>
+          <link linkend="PAL_f">PAL_f - Palette block</link>
         </para>
       </listitem>
       <listitem>

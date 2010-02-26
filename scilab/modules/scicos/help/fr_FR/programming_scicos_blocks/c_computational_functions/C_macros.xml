@@ -93,7 +93,7 @@
   <refsection id="Description_C_macros">
     <title>Description</title>
     <para>
-The following C macros are avialable by including the file 
+The following C macros are avialable by including the file <link linkend="scicos_block4_rout">scicos_block4.h</link>
 in a C computational function.
 </para>
     <para>

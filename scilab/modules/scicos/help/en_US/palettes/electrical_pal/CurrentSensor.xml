@@ -157,7 +157,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Electrical/CurrentSensor.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Electrical.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

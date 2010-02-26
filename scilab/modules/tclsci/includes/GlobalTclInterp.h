@@ -15,44 +15,43 @@
 
 #include <tcl.h>
 #include <tk.h>
-#include "dynlib_tclsci.h"
 #include "BOOL.h"
 
 
 /*
 ** Initialize the global interpreter.
 */
-TCLSCI_IMPEXP void initTclInterp(void);
+void initTclInterp(void);
 
 /*
 ** Delete the global interpreter.
 */
-TCLSCI_IMPEXP void deleteTclInterp(void);
+void deleteTclInterp(void);
 
 /*
 ** Get the Global Interpreter
 */
-TCLSCI_IMPEXP Tcl_Interp *getTclInterp(void);
+Tcl_Interp *getTclInterp(void);
 
 /*
 ** Release Tcl Interp after use.
 */
-TCLSCI_IMPEXP void releaseTclInterp(void);
+void releaseTclInterp(void);
 
 /*
 ** Get the Global Interpreter
 ** without any Control
 */
-TCLSCI_IMPEXP Tcl_Interp *requestTclInterp(void);
+Tcl_Interp *requestTclInterp(void);
 
 /*
 ** Check if global interp exists.
 */
-TCLSCI_IMPEXP BOOL existsGlobalInterp(void);
+BOOL existsGlobalInterp(void);
 
 /*
 ** Check if slave interp exists.
 */
-TCLSCI_IMPEXP BOOL existsSlaveInterp(char *name);
+BOOL existsSlaveInterp(char *name);
 
 #endif /* !__GLOBALTCLINTERP_H___ */

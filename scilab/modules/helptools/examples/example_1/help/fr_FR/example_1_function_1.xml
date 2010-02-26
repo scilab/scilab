@@ -75,7 +75,7 @@
   </refsection>
   
   <refsection>
-    <title>Example of MathML inclusion : Inline</title>
+    <title>Exemple d'inclusion MathML : Inline</title>
     <para>
       <informalequation>
         <mediaobject>
@@ -227,9 +227,19 @@
       </informalequation>
     </para>
   </refsection>
+
+  <refsection>
+    <title>Exemple of LaTeX inclusion : Inline</title>
+    <para>
+      <latex><![CDATA[
+\phi_n(\kappa) = \frac{1}{4\pi^2\kappa^2} \int_0^\infty \frac{\sin(\kappa R)}{\kappa R}  \frac{\partial}{\partial R}\left[ R^2\frac{\partial D_n(R)}{\partial R}\right]\,dR
+ ]]>
+	  </latex>
+	</para>
+  </refsection>
   
   <refsection>
-    <title>Examples</title>
+    <title>Exemples</title>
     <programlisting role="example"><![CDATA[
     
 // Commentaires

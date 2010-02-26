@@ -27,13 +27,32 @@ if prod(size(info))==0 then
   info = list(' ')
 end
 
-new_info = x_dialog('Set Diagram informations',info(1))
+//new_info = x_dialog('Set Diagram informations',info(1))
 
-if new_info==[] then 
-  ok = %f
-else
-  ok = %t
-  new_info = list(new_info)
+//## set param of scstxtedit
+ptxtedit=scicos_txtedit(clos = 0,...
+          typ  = "scsminfo",...
+          head = ['Set Diagram informations']);
+
+while 1==1
+
+  [txt,Quit] = scstxtedit(info(1),ptxtedit);
+
+  if ptxtedit.clos==1 then
+    break;
+  end
+
+  if txt==[]|Quit==1 then
+    new_info=[]
+    ok = %f
+    break;
+  else
+    ok = %t
+    new_info = list(txt)
+    ptxtedit.clos=1
+  end
+
 end
 
 endfunction
+

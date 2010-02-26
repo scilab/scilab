@@ -87,8 +87,8 @@
     on one or two arguments which are supposed to be real. The result returned
     by <literal>f</literal> can be real or complex. In case of a Fortran call,
     the function <literal> 'f' </literal> must be defined in the subroutine
-    <literal>ffeval.f</literal> (in directory
-    <literal>SCIDIR/routines/default</literal>)</para>
+    <literal>fevaltable.c</literal> (in directory
+    <literal>SCI/modules/differential_equations/src/c</literal>)</para>
   </refsection>
 
   <refsection>

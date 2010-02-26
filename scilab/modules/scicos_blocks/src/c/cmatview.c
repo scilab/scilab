@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmatview.c
    \author Benoit Bayol
@@ -26,6 +27,9 @@
    \brief CMATVIEW is a scope that connects a matrix to a grayplot. The values of the matrix are the values at the nodes
   \see CMATVIEW.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#include <stdlib.h>
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
@@ -34,26 +38,29 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-#include <math.h>
-#include <stdlib.h>
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i; //As usual
-  int * ipar; //Integer Parameters
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
   int dimension = 2;
-  double * rpar; //Reals parameters
-  double  ymin, ymax; //Ymin and Ymax are vectors here
-  double  xmin, xmax;
-  int number_of_curves_by_subwin;
-  int number_of_subwin;
-  double * mat;
-  int size_mat;
+  double * rpar = NULL; //Reals parameters
+  double  ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
+  double  xmin = 0., xmax = 0.;
+  int number_of_curves_by_subwin = 0;
+  int number_of_subwin = 0;
+  double * mat = NULL;
+  int size_mat = 0;
+  char *label = NULL;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -75,6 +82,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   ymin = 0;
 
   number_of_curves_by_subwin = 1;
+  label = GetLabelPtrs(block);
 
   /*Allocating memory*/
 
@@ -88,28 +96,28 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
       sciSetColormap(scoGetPointerScopeWindow(*pScopeMemory), mat , size_mat/3, 3);
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
       scoAddGrayplotForShortDraw(*pScopeMemory,0,0,GetInPortSize(block,1,1),GetInPortSize(block,1,2));
     }
   scicos_free(mat);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmatview(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cmatview(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, int flag)
 {
   /* Declarations */
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * u1;
-  double alpha,beta;
-  int i,j;
-  double * rpar;
-  int dim_i, dim_j;
+  double * u1 = NULL;
+  double alpha = 0.,beta = 0.;
+  int i = 0, j = 0;
+  double * rpar = NULL;
+  int dim_i = 0, dim_j = 0;
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below
  
@@ -181,3 +189,4 @@ void cmatview(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

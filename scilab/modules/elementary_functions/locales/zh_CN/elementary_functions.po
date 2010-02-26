@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -43,9 +43,8 @@ msgstr "%s：输入参数#%d错误：应该为一个无符号整数。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
-"expected.\n"
-msgstr "%s：输入参数#%d错误：应该为无符号整数类型的标量/矩阵/超矩阵。\n"
+"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -227,9 +226,9 @@ msgstr "%s：输入参数#%d的类型错误：所有Cell的内容应该为同一
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
-"integers expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为无符号整数标量、矩阵或超矩阵。\n"
+"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
@@ -253,8 +252,8 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为%d、\"%s\"、%d或\"%s\"。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
-msgstr "%s：输入参数#%d的值错误：应该为\"%s\"。\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

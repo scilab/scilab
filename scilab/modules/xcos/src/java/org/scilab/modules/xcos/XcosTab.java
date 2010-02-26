@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
-import org.scilab.modules.xcos.actions.LinkStyleAction;
+import org.scilab.modules.xcos.actions.InitModelicaAction;
 import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
 import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
 import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
@@ -97,7 +96,6 @@ import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionLeft;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
@@ -105,7 +103,6 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
-import com.mxgraph.util.mxConstants;
 
 /**
  * Xcos tab operations
@@ -113,8 +110,6 @@ import com.mxgraph.util.mxConstants;
  * This class implement specific operation of an Xcos Tab.
  */
 public class XcosTab extends ScilabTab {
-
-    private static final long serialVersionUID = -290453474673387812L;
     private static final Size WIN_SIZE = new Size(600, 500);
     
     /*
@@ -124,12 +119,6 @@ public class XcosTab extends ScilabTab {
     private static Map<Integer, AfficheBlock> afficheBlocks = new HashMap<Integer, AfficheBlock>();
 
     private static List<Menu> recentsMenus = new ArrayList<Menu>();
-    private static List<MenuItem> startMenuItems = new ArrayList<MenuItem>();
-    private static List<MenuItem> stopMenuItems = new ArrayList<MenuItem>();
-    private static List<PushButton> startPushButtons = new ArrayList<PushButton>();
-    private static List<PushButton> stopPushButtons = new ArrayList<PushButton>();
-
-    private static boolean startEnabled = true;
     
     /*
      * Instance fields
@@ -163,8 +152,6 @@ public class XcosTab extends ScilabTab {
     private PushButton zoomOutAction;
     private PushButton xcosDemonstrationAction;
     private PushButton xcosDocumentationAction;
-    
-    private boolean actionsEnabled;
 
     /**
      * Default constructor
@@ -174,7 +161,6 @@ public class XcosTab extends ScilabTab {
 	super(XcosMessages.XCOS);
 
 	this.diagram = diagram;
-	this.actionsEnabled = false;
 
 	initComponents();
 
@@ -269,8 +255,6 @@ public class XcosTab extends ScilabTab {
      */
     public static void showTabFromDiagram(XcosDiagram xcosDiagram) {
 	assert xcosDiagram.isOpened();
-	XcosTab tab = (XcosTab) xcosDiagram.getParentTab();
-	
 	xcosDiagram.setVisible(true);
     }
     
@@ -415,14 +399,13 @@ public class XcosTab extends ScilabTab {
 	menuBar.add(simulate);
 
 	MenuItem startMenu = StartAction.createMenu(diagram);
-	startMenuItems.add(startMenu);
 	MenuItem stopMenu = StopAction.createMenu(diagram);
-	stopMenuItems.add(stopMenu);
 
 	simulate.add(SetupAction.createMenu(diagram));
 	simulate.add(DebugLevelAction.createMenu(diagram));
 	simulate.add(SetContextAction.createMenu(diagram));
 	simulate.add(CompileAction.createMenu(diagram));
+	simulate.add(InitModelicaAction.createMenu(diagram));
 	simulate.add(startMenu);
 	simulate.add(stopMenu);
 
@@ -539,8 +522,6 @@ public class XcosTab extends ScilabTab {
 	// START / STOP
 	startAction = StartAction.createButton(diagram);
 	stopAction = StopAction.createButton(diagram);
-	startPushButtons.add(startAction);
-	stopPushButtons.add(stopAction);
 
 	toolBar.add(startAction);
 	toolBar.add(stopAction);

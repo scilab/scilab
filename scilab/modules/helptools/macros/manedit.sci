@@ -46,6 +46,12 @@ function path = get_item_xml_path(manitem)
 	
 	global %helps
 	global %helps_modules;
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
 	%HELPS=[%helps_modules;%helps];
 	
 	for k=1:size(%HELPS(:,1),'*')

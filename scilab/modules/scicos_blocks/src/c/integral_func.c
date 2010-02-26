@@ -18,11 +18,14 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void  integral_func(scicos_block *block,int flag)
-{int i;
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void  integral_func(scicos_block *block,int flag)
+{
+	int i = 0;
   if (flag==0){
     if(block->ng>0){
       for(i=0;i<block->nx;++i) {
@@ -64,3 +67,4 @@ void  integral_func(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

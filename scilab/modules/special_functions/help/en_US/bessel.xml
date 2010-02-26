@@ -296,7 +296,8 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   <refsection>
     <title>Used Functions</title>
 
-    <para>The source codes can be found in routines/calelm</para>
+    <para>The source codes can be found in SCI/modules/special_functions/src/fortran/slatec and
+	    SCI/modules/special_functions/src/fortran</para>
 
     <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
     dbesy.f, zbesy.f, zbesh.f</para>

@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -32,9 +34,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /** Implement the default mouse listener for the block */
 public final class PaletteBlockMouseListener implements MouseListener {
@@ -105,7 +105,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			help.setCallback(new CallBack(e.toString()) {
 				public void callBack() {
 					try {
-						XcosInterpreterManagement.synchronousScilabExec("help " + control.getModel().getName());
+						ScilabInterpreterManagement.synchronousScilabExec("help " + control.getModel().getName());
 					} catch (InterpreterException e) {
 						e.printStackTrace();
 					}

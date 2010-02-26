@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block.io;
 import java.io.File;
 import java.io.IOException;
 
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -26,8 +28,6 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * @author Clement DAVID
@@ -134,7 +134,7 @@ public abstract class ContextUpdate extends BasicBlock {
 	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
 
 		try {
-			XcosInterpreterManagement.synchronousScilabExec(cmd);
+			ScilabInterpreterManagement.synchronousScilabExec(cmd);
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}

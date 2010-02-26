@@ -93,6 +93,8 @@ courant qui passe à travers. Si le courant positif <emphasis role="bold">entre<
 port noir, il est consideré positif. La résistance ohmique de ce
 composant est zéro.
 
+
+
 </para>
   </refsection>
   <refsection id="Propriétéspardéfaut_CurrentSensor">
@@ -153,7 +155,7 @@ composant est zéro.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Electrical/CurrentSensor.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Electrical.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

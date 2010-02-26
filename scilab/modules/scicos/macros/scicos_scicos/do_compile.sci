@@ -56,14 +56,14 @@ end
 IN=-gsort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   ok=%f;%cpr=list()
-  message("Input ports are not numbered properly.")
+  messagebox("Input ports are not numbered properly.","modal")
   return
 end
 
 OUT=-gsort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   ok=%f;%cpr=list()
-  message("Output ports are not numbered properly.")
+  messagebox("Output ports are not numbered properly.","modal")
   return
 end
 

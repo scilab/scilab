@@ -40,6 +40,6 @@ if with_modelica_compiler() then
   mclose(fd);
     
   // generate moc files
-  exec("../../src/scripts/genmoc.sce");
+  //exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

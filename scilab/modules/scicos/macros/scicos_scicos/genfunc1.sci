@@ -73,7 +73,7 @@ if no>0 then
       if ~and(w) then 
 	k1=find(~w)
 	w=[];for k=1:size(k1,'*'),w=[w;'y'+string(k)+' (size: '+string(out(k))+')'],end
-	message('You did not define '+strcat(w,',')+' !')
+	messagebox('You did not define '+strcat(w,',')+' !','modal')
       else
 	break
       end
@@ -103,7 +103,7 @@ if nx>0 then
       if or(vars(5)=='xd') then
 	break,
       else
-	message('You did not define xd !')
+	messagebox('You did not define xd !','modal')
       end
     end
   end

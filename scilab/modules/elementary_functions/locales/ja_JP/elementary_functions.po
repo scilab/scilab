@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-11-29 07:11+0000\n"
+"PO-Revision-Date: 2010-02-12 19:36+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
@@ -63,19 +63,10 @@ msgstr "%s: 引数 #%d が不正: 明確な整数を想定します。\n"
 msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr "%s: 入力引数 #%d が不正: 符号なし整数を想定します。\n"
 
-#
-# File: macros/bitand.sci, line: 55
-# File: macros/bitand.sci, line: 62
-# File: macros/bitcmp.sci, line: 56
-# File: macros/bitget.sci, line: 63
-# File: macros/bitget.sci, line: 70
-# File: macros/bitor.sci, line: 56
-# File: macros/bitor.sci, line: 63
 #, c-format
 msgid ""
-"%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
-"expected.\n"
-msgstr "%s: 入力引数 #%d が不正: 符号なし整数のスカラー/行列/正方行列を想定します。\n"
+"%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
+msgstr "%s: 入力引数 #%d が不正です: 符号なし整数の スカラー/行列 を想定します。\n"
 
 #
 # File: macros/acosh.sci, line: 30
@@ -454,16 +445,11 @@ msgid ""
 "contents"
 msgstr "%s: 入力引数 #%d で不正な型: 全てのセル内容で同じ型を想定します。"
 
-#
-# File: macros/bitset.sci, line: 51
-# File: macros/bitset.sci, line: 58
-# File: macros/bitxor.sci, line: 54
-# File: macros/bitxor.sci, line: 62
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
-"integers expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 符号なし整数のスカラー/行列/正方行列を想定します。\n"
+"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 符号なし整数の スカラー/行列 を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_gsort.c, line: 277
@@ -502,10 +488,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
 msgstr "%s: 入力引数 #%d で不正な値: %d,''%s'',%d または ''%s'' を想定します。\n"
 
-#
-# File: macros/lex_sort.sci, line: 30
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
 
 #
@@ -677,7 +661,7 @@ msgstr "%s: 入力引数 #%d で不正な値: [''g'' ''r'' ''c''] を想定し�
 msgid ""
 "%s: Wrong value for input argument(s): Valid base %d representations "
 "expected.\n"
-msgstr "%s: 入力引数(s)で不正な値: 適切な基礎 %d 代表を想定します。\n"
+msgstr "%s: 入力引数で不正な値: 適切な基礎 %d 代表を想定します。\n"
 
 #
 # File: macros/toeplitz.sci, line: 23
@@ -693,7 +677,7 @@ msgstr "警告: 関数 %s は廃れました。\n"
 
 #, c-format
 msgid "WARNING: Please use %s instead.\n"
-msgstr "警告:  どうぞ代わりに %s を使って下さい。\n"
+msgstr "警告: どうぞ代わりに %s を使って下さい。\n"
 
 #, c-format
 msgid "WARNING: This function will be permanently removed in Scilab %s.\n"

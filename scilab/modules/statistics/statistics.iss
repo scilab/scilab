@@ -29,8 +29,6 @@ Source: modules\{#STATS}\sci_gateway\statistics_gateway.xml; DestDir: {app}\modu
 Source: modules\{#STATS}\etc\{#STATS}.quit; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\etc\{#STATS}.start; DestDir: {app}\modules\{#STATS}\etc; Components: {#COMPN_STATS}
 ;
-Source: modules\{#STATS}\help\addchapter.sce; DestDir: {app}\modules\{#STATS}\help; Flags: recursesubdirs; Components:  {#COMPN_STATS}
-;
 Source: modules\{#STATS}\macros\lib; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\names; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}
 Source: modules\{#STATS}\macros\*.bin; DestDir: {app}\modules\{#STATS}\macros; Components: {#COMPN_STATS}

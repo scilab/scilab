@@ -230,7 +230,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'R'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E+08
+            <para><emphasis role="bold">Default value :</emphasis> 1.000D+08
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -256,7 +256,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Electrical/Diode.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Electrical.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

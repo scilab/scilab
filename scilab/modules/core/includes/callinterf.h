@@ -61,9 +61,9 @@
 /* 37 */						#include "dynamic_gateways.h" /* statistics */
 /* 38 */						#include "dynamic_gateways.h" /* randlib */
 /* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
-/* 40 */						#include "../../tclsci/includes/gw_tclsci.h"
+/* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
-/* 42 */						#include "../../pvm/includes/gw_pvm.h"
+/* 42 */						#include "dynamic_gateways.h" /* pvm */
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 /* 45 */						#include "dynamic_gateways.h" /* scicos */

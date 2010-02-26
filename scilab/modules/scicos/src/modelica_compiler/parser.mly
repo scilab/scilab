@@ -1,23 +1,24 @@
-/*  Scicos
-*
-*  Copyright (C) INRIA - S. FURIC
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
+/*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ */
 
 /*
  * Parser
@@ -654,13 +655,8 @@ let parse filename token_fun lexbuf =
   try stored_definition_eof token_fun lexbuf with
     | Parsing.Parse_error ->
         let linenum, linebeg =
-          Linenum.for_position filename (Lexing.lexeme_start lexbuf)
-        and linenum', linebeg' =
-          Linenum.for_position filename (Lexing.lexeme_end lexbuf)
-        in
-        let first_char = Lexing.lexeme_start lexbuf - linebeg
-        and first_char' = Lexing.lexeme_end lexbuf - linebeg'
-        in
+          Linenum.for_position filename (Lexing.lexeme_start lexbuf) in
+        let first_char = Lexing.lexeme_start lexbuf - linebeg in
         Printf.eprintf
           "Syntax error at line %d, characters %d to %d\n"
           linenum

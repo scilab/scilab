@@ -73,4 +73,18 @@ This function generates a palette if Path is a string indicating the directoy in
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="SeeAlso_create_palette">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="create_gif">create_gif - Create gif icon of scicos blocks gui (Scilab Function)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_create_palette">
+    <title>Authors</title>
+    <para><emphasis role="bold">RN/AL</emphasis> - INRIA</para>
+  </refsection>
 </refentry>

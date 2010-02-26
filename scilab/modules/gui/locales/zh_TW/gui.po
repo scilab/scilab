@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-14 06:19+0000\n"
+"PO-Revision-Date: 2009-12-28 10:05+0000\n"
 "Last-Translator: TzuYuan Lin <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -435,6 +435,11 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: '編號 %d 之圖形' 不存在.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
 
@@ -560,7 +565,7 @@ msgid "&Load..."
 msgstr "載入(&L)"
 
 msgid "&Mailing lists"
-msgstr ""
+msgstr "郵件(&M) 列表"
 
 msgid "&Matlab to Scilab translator"
 msgstr "Matlab 轉 Scilab 工具(&M)"
@@ -655,10 +660,10 @@ msgid "Add color in listbox"
 msgstr "在 listbox 中加入顏色"
 
 msgid "All %s files"
-msgstr ""
+msgstr "所有 %s 檔案"
 
 msgid "All Scilab files"
-msgstr ""
+msgstr "所有 Scilab 檔案"
 
 msgid "All files"
 msgstr "所有檔案"
@@ -702,7 +707,7 @@ msgstr ""
 "\n"
 
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 msgid "C&lose"
 msgstr "關閉(&L)"
@@ -759,10 +764,10 @@ msgid "Copy"
 msgstr "複製"
 
 msgid "Copyright (c) 1989-2007 (ENPC)"
-msgstr ""
+msgstr "版權所有 (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
-msgstr ""
+msgstr "版權所有 (c) 1989-2009 (INRIA)"
 
 msgid "Cut"
 msgstr "剪下"
@@ -770,11 +775,11 @@ msgstr "剪下"
 msgid "Display selection"
 msgstr "選擇顯示器"
 
-msgid "Do you relly want to quit Scilab?"
-msgstr "您確定要離開 Scilab?"
+msgid "Do you really want to quit Scilab?"
+msgstr ""
 
 msgid "Edit in the Scilab Text Editor"
-msgstr ""
+msgstr "在 Scilab 文字編輯器中編輯"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "封裝 PostScript(EPS) 影像"
@@ -798,7 +803,7 @@ msgid "Error. A signal has been caught.\n"
 msgstr "錯誤. 捕捉到一錯誤訊號.\n"
 
 msgid "Execute into Scilab"
-msgstr ""
+msgstr "在 Scilab 中執行"
 
 msgid "Execution done.\n"
 msgstr "結束執行.\n"
@@ -828,7 +833,7 @@ msgid "File already exists"
 msgstr "檔案已經存在"
 
 msgid "Forward"
-msgstr ""
+msgstr "往前"
 
 msgid "GIF image"
 msgstr "GIF 影像"
@@ -840,13 +845,13 @@ msgid "Help Browser"
 msgstr "線上文件瀏覽器"
 
 msgid "Help about '"
-msgstr ""
+msgstr "關於說明 '"
 
 msgid "Help about a selected text"
-msgstr ""
+msgstr "關於文字選擇的說明"
 
 msgid "Help on a selected keyword"
-msgstr ""
+msgstr "所選的關鍵字說明"
 
 msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
@@ -904,7 +909,7 @@ msgid "No color selected."
 msgstr "未選定顏色"
 
 msgid "No text selected"
-msgstr ""
+msgstr "未選擇文字"
 
 msgid "OK"
 msgstr "確定"
@@ -972,8 +977,11 @@ msgstr "SVG 影像"
 msgid "Save and execute"
 msgstr "儲存和執行"
 
-msgid "Scilab &ATOMS Web Site"
+msgid "Scicos files"
 msgstr ""
+
+msgid "Scilab &ATOMS Web Site"
+msgstr "Scilab &ATOMS 網站"
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab 範例(&D)"
@@ -1022,13 +1030,13 @@ msgid "Scilab Multiple Values Request"
 msgstr "Scilab 多值選單"
 
 msgid "Scilab SCE files"
-msgstr ""
+msgstr "Scilab SCE 檔案"
 
 msgid "Scilab SCI files"
-msgstr ""
+msgstr "Scilab SCI 檔案"
 
 msgid "Scilab binary files"
-msgstr ""
+msgstr "Scilab 二進位檔案"
 
 msgid "Select All"
 msgstr "全選"
@@ -1090,7 +1098,7 @@ msgid "Sub-menu 2-2"
 msgstr "子選單 2-2"
 
 msgid "The Scilab Consortium (DIGITEO)"
-msgstr ""
+msgstr "Scilab 集團組織 (DIGITEO)"
 
 msgid "Tree Overview"
 msgstr "樹狀式概覽"
@@ -1295,10 +1303,10 @@ msgid ""
 msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
 
 msgid "Xcos"
-msgstr ""
+msgstr "Xcos"
 
 msgid "Xcos files"
-msgstr ""
+msgstr "Xcos 檔案"
 
 msgid "Yes"
 msgstr "是"
@@ -1324,12 +1332,10 @@ msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: 找到一空的串聯選單 (cascading menu)."
 
 msgid ""
-"disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+"disp(\"WARNING: Despite of our previous warning, you chose to use Scilab "
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"警告: 不管前一個警告訊息, 您仍在 Scilab 選擇使用進階繪圖功能. 鍵入 \"\"help usecanvas\"\" "
-"取得更多的訊息.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your configuration limitations, Scilab switched in a "

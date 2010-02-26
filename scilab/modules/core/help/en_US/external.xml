@@ -46,8 +46,8 @@ optim(list(costfunc,a1,b1,c1),....
     <para>
     The name of the routine is given to the high-level primitive
     as a character string. The calling sequence of the routine 
-    is also imposed. Examples are given in the <literal>routines/default</literal> directory 
-    (see the <literal>README</literal> file).</para>
+    is also imposed.  
+    </para>
     <para>
     External Fortran or C routines can also be dynamically linked (see <literal>link</literal>)</para>
   </refsection>

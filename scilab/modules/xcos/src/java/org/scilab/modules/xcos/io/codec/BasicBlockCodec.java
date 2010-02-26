@@ -14,11 +14,11 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
-import org.scilab.modules.xcos.utils.StyleMap;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -78,11 +78,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		    ((BasicBlock) obj).setSimulationFunctionType(type);
 		}
 	    }
-
-	    if (obj instanceof SuperBlock) {
-		((SuperBlock) obj).setChild(null);
-	    }
-
+	    
 	    NamedNodeMap attrs = node.getAttributes();
 	    for (int i = 0; i < attrs.getLength(); i++) {
 		Node attr = attrs.item(i);

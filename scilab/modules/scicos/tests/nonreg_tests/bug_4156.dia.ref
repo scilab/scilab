@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 4156 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4156
+//
+// <-- Short Description -->
+// 
+//scicos_pal , %scicos_menu ,  %scicos_short ,
+//%scicos_help, %scicos_display_mode, scicos_pal_libs ,
+//%scicos_lhb_list, %CmenuTypeOneVector , %scicos_gif
+//%scicos_contrib  variables should not be defined at scilab startup but only when you launch scicos
+if isdef("scicos_pal") then bugmes();quit;end
+if isdef("%scicos_menu") then bugmes();quit;end
+if isdef("%scicos_short") then bugmes();quit;end
+if isdef("%scicos_help") then bugmes();quit;end
+if isdef("%scicos_display_mode") then bugmes();quit;end
+if isdef("modelica_libs") then bugmes();quit;end
+if isdef("scicos_pal_libs") then bugmes();quit;end
+if isdef("%scicos_lhb_list") then bugmes();quit;end
+if isdef("%CmenuTypeOneVector") then bugmes();quit;end
+if isdef("%scicos_gif") then bugmes();quit;end
+if isdef("%scicos_contrib") then bugmes();quit;end
+if isdef("%scicos_libs") then bugmes();quit;end

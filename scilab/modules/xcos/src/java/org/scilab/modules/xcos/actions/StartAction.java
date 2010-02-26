@@ -22,12 +22,12 @@ import java.io.IOException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Start the simulation
@@ -80,7 +80,7 @@ public class StartAction extends DefaultAction {
 	    				+ "xcos_simulate(scs_m);"
 	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {
-			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+			ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					updateUI(false);
 				}

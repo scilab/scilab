@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -152,7 +152,7 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr ""
 
-msgid "Arma identifcation"
+msgid "Arma identification"
 msgstr ""
 
 msgid "Signal Processing"
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Spectral power"
 msgstr ""
 
-msgid "Theoritical value"
+msgid "Theoretical value"
 msgstr ""
 
 msgid "Using macro mese"

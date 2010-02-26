@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.event.ActionEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -26,7 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Remove the {@link SuperBlock} mask.
  * @see SuperBlock#unmask()
  */
-public final class SuperblockMaskRemoveAction extends SuperBlockSelectedAction {
+public final class SuperblockMaskRemoveAction extends DefaultAction {
 	public static final String NAME = XcosMessages.REMOVE;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = 0;

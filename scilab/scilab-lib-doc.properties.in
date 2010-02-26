@@ -10,6 +10,9 @@ saxon.jar=@SAXON@
 ; Reusable components used by Batik and FOP 
 fop.jar=@FOP@
 
+; LaTeX plugin
+jlatexmath-fop.jar=@JLATEXMATH_FOP@
+
 ; A complete MathML rendering solution 
 jeuclid-core.jar=@JEUCLID_CORE@
 

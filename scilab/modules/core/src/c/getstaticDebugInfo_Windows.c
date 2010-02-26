@@ -22,7 +22,7 @@
 #include "getstaticDebugInfo_Windows.h"
 #include "localization.h"
 #include "version.h"
-#include "withtk.h"
+#include "dynamic_tclsci.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 /*--------------------------------------------------------------------------*/
 extern BOOL BuildWithVS8ExpressF2C(void);

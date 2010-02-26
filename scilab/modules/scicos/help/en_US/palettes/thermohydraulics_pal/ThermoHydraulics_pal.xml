@@ -64,6 +64,11 @@ components such as pressure source, pipe, control valves, etc.
       </listitem>
       <listitem>
         <para>
+          <link linkend="Flowmeter">Flowmeter - Flowmeter</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link linkend="PerteDP">PerteDP - Thermal-hydraulic pipe</link>
         </para>
       </listitem>

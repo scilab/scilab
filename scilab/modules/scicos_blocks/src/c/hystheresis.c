@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void  hystheresis(scicos_block *block,int flag)
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void  hystheresis(scicos_block *block,int flag)
 {
   if (flag==1){
     if (get_phase_simulation()==1||block->ng==0) {
@@ -57,3 +59,4 @@ void  hystheresis(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

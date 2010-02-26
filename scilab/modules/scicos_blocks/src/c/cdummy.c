@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h> /* sin */
 #include "scicos_block.h"
-
-void cdummy(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void cdummy(scicos_block *block,int flag)
 /*------------------------------------------------
  *     Scicos block simulator 
  *     Dummy state space x'=sin(t)
@@ -30,3 +32,4 @@ void cdummy(scicos_block *block,int flag)
   if (flag == 0)
     block->xd[0] = sin(get_scicos_time());
 }
+/*--------------------------------------------------------------------------*/ 

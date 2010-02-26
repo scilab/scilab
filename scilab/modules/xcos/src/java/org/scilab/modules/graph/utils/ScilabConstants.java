@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graph.utils;
 
+import java.io.File;
+
 import com.mxgraph.util.mxConstants;
 
 /**
@@ -51,7 +53,7 @@ public class ScilabConstants extends mxConstants {
     /**
      * The tmp directory
      */
-    public static final String TMPDIR = "TMPDIR";
+    public static final File TMPDIR = new File(System.getenv("TMPDIR"));
     
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }

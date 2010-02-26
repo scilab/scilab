@@ -86,9 +86,13 @@
 
     <itemizedlist>
       <listitem>
-        <para>with Scilab "<literal>link</literal>" command (incremental
-        "soft" linking) during the Scilab session.(see
+        <para>with Scilab "<literal>link</literal>" command (dynamical
+        linking) during the Scilab session.(see
         <literal>link</literal>)</para>
+
+        <para>On Windows, C functions must use cdecl calling convention name
+        (see options in your C compiler(default calling convention for x86 C
+        compilers)).</para>
       </listitem>
     </itemizedlist>
 
@@ -194,13 +198,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 //Example 1 with  a simple C code
-f1=['#include <math.h>'
+f1=['#include &lt;math.h&gt;'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
     '{'
     '   int i;'
-    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
@@ -251,7 +255,7 @@ exec loader.sce
 a=[1,2,3;4,5,6];b= %pi;
 [m,n]=size(a);
 c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>

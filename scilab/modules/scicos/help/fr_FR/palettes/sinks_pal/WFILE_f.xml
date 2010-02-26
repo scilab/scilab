@@ -107,7 +107,7 @@ Chaque enregistrement à la forme suivante :
 </para>
 <para>Ce bloc ne gere pas les noms de fichier au format UTF.</para>
     <para>
-Ce bloc fonctionne de paire avec le bloc .
+Ce bloc fonctionne de paire avec le bloc <link linkend="RFILE_f">RFILE_f</link>.
 
 </para>
   </refsection>

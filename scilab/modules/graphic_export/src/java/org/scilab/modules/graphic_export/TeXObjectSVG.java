@@ -79,7 +79,7 @@ public class TeXObjectSVG extends TeXObjectGL {
 		ByteArrayOutputStream buf = new ByteArrayOutputStream();
 		
 		try {
-			g2d.stream(new OutputStreamWriter(buf), true);
+		    g2d.stream(new OutputStreamWriter(buf, "UTF-8"), true, true);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

@@ -198,7 +198,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/qzrnd.f</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/qzrnd.f (Type 0)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/fortran/qztrn.f</para>

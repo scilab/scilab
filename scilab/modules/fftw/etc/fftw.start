@@ -18,12 +18,6 @@ if %fftw then
 		librarynamefftw3 = librarynamefftw+".3";
 	end
 	
-	// Add help chapter
-	// =============================================================================
-	if WITH_HELPTOOLS then
-		add_module_help_chapter("fftw");
-	end
-	
 	if ( loadfftwlibrary(librarynamefftw3) | loadfftwlibrary(librarynamefftw)) then
 		//Load  functions libraries
 		//load('SCI/modules/fftw/macros/lib');

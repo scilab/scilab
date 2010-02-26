@@ -140,7 +140,7 @@ linked before simulation.
         <para>
           <emphasis role="bold">Input ports sizes</emphasis>
         </para>
-        <para> Number of regular input ports.</para>
+        <para> Number and size of regular input ports.</para>
         <para> Properties : Type 'mat' of size [-1,2] </para>
       </listitem>
       <listitem>
@@ -152,9 +152,9 @@ linked before simulation.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Iutput port sizes</emphasis>
+          <emphasis role="bold">Output port sizes</emphasis>
         </para>
-        <para> Number of regular input ports.</para>
+        <para> Number and size of regular output ports.</para>
         <para> Properties : Type 'mat' of size [-1,2] </para>
       </listitem>
       <listitem>
@@ -196,7 +196,7 @@ linked before simulation.
         <para>
           <emphasis role="bold">Initial object state</emphasis>
         </para>
-        <para> A Scilab list that defined the initial object state (oz).</para>
+        <para> A Scilab list that defines the initial object state (oz).</para>
         <para> Properties : Type 'lis' of size -1 </para>
       </listitem>
       <listitem>
@@ -217,7 +217,7 @@ linked before simulation.
         <para>
           <emphasis role="bold">Object parameters list  </emphasis>
         </para>
-        <para> A Scilab list that defined the list of the Object parameters (opar).</para>
+        <para> A Scilab list that defines the list of the Object parameters (opar).</para>
         <para> Properties : Type 'lis' of size -1 </para>
       </listitem>
       <listitem>
@@ -231,7 +231,7 @@ linked before simulation.
         <para>
           <emphasis role="bold">Number of zero_crossings</emphasis>
         </para>
-        <para> No. of zero-crossings</para>
+        <para> Number of zero-crossing surfaces.</para>
         <para> Properties : Type 'vec' of size 1 </para>
       </listitem>
       <listitem>
