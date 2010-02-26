@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -43,6 +43,14 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -145,6 +153,9 @@ msgstr "Crides a blocs de depuració sense traces"
 msgid "Default"
 msgstr "Predeterminat"
 
+msgid "Default values"
+msgstr ""
+
 msgid "Delete"
 msgstr "Suprimeix"
 
@@ -183,6 +194,9 @@ msgstr "Bolca"
 
 msgid "Edit"
 msgstr "Edita"
+
+msgid "Editable"
+msgstr ""
 
 msgid "Electrical"
 msgstr "Elèctric"
@@ -278,6 +292,9 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa de XML"
 
+msgid "Insert"
+msgstr ""
+
 msgid "Integer"
 msgstr "Enter"
 
@@ -293,8 +310,8 @@ msgstr "Inverteix la selecció"
 msgid "Left"
 msgstr "Esquerra"
 
-msgid "Light Simulation trace (Discrete and Continous part switches)"
-msgstr "Traca de la simulació (interruptors de parts discretes i contínues)"
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Estil dels enllaços"
@@ -314,6 +331,9 @@ msgstr "S'està carregant les paletes d'usuari"
 msgid "Lookup Tables"
 msgstr "Taules de cerca"
 
+msgid "Masked SuperBlock editor"
+msgstr ""
+
 msgid "Mathematical Operations"
 msgstr "Operacions matemàtiques"
 
@@ -328,6 +348,12 @@ msgstr "Centre"
 
 msgid "Mirror"
 msgstr "Inverteix"
+
+msgid "Move Down"
+msgstr ""
+
+msgid "Move Up"
+msgstr ""
 
 msgid "New"
 msgstr "Nou"
@@ -404,6 +430,12 @@ msgstr "Dreta"
 msgid "Rotate"
 msgstr "Gira"
 
+msgid "Rows"
+msgstr ""
+
+msgid "Same command executed again"
+msgstr ""
+
 msgid "Save"
 msgstr "Desa"
 
@@ -442,6 +474,9 @@ msgstr "Contexte"
 
 msgid "Set Parameters"
 msgstr "Indiqueu els paràmetres"
+
+msgid "Set block parameters"
+msgstr ""
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
@@ -514,11 +549,14 @@ msgstr "Superior"
 msgid "UnGroup"
 msgstr "Desagrupa"
 
+msgid "Unable to communicate with the interpreter"
+msgstr ""
+
 msgid "Undo"
 msgstr "Desfés"
 
-msgid "Unknow Diagram Version : "
-msgstr "Versió de diagrama desconeguda : "
+msgid "Unknown Diagram Version : "
+msgstr ""
 
 msgid "Untitled"
 msgstr "Sense títol"
@@ -528,6 +566,18 @@ msgstr "Definit per l'usuari"
 
 msgid "User-Defined Functions"
 msgstr "Funcions definides per l'usuari"
+
+msgid "Values"
+msgstr ""
+
+msgid "Variable descriptions"
+msgstr ""
+
+msgid "Variable names"
+msgstr ""
+
+msgid "Variable settings"
+msgstr ""
 
 msgid "Vertical"
 msgstr "Vertical"
@@ -544,11 +594,14 @@ msgstr "Finestra de visualització"
 msgid "Will try to continue..."
 msgstr "S'intenta continuar..."
 
+msgid "WinTitle"
+msgstr ""
+
+msgid "Window title"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
-
-msgid "Xcos 1.0"
-msgstr "Xcos 1.0"
 
 msgid "Xcos Demos"
 msgstr "Mostres de Xcos"
@@ -561,9 +614,6 @@ msgstr "Error de Xcos"
 
 msgid "Xcos file"
 msgstr "Fitxer d'Xcos"
-
-msgid "Xcos version 1.0"
-msgstr "Versió de Xcos 1.0"
 
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=DERIV(job,arg1,arg2)
+function [x,y,typ] = DERIV(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -41,9 +41,18 @@ case 'define' then
   model.dep_ut=[%t %f]
   
   exprs=[]
-  gr_i=['xstringb(orig(1),orig(2),''  du/dt  '',sz(1),sz(2),''fill'');']
+  gr_i=['xstringb(orig(1),orig(2),'' du/dt   '',sz(1),sz(2),''fill'');'
+        'txt=''s'';'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;']
   x=standard_define([2 2],model,exprs,gr_i)
-  x.graphics.id='s'
 end
 endfunction
+
 

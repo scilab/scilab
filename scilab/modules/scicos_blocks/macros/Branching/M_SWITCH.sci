@@ -41,14 +41,23 @@ case 'set' then
 	list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     nin=int(nin);base=int(base);
-    if nin<2 then
-      message('Number of inputs must be >=2 ')
+    if nin<1 then
+      message('Number of inputs must be >=1 ')
      elseif ~((base==1)|(base==0)) then
       message('base indexing must be 1 or 0')
     elseif ~((rule==1)|(rule==0)|(rule==2)|(rule==3)) then
       message('incorrect rounding rule')
     else
-      [model,graphics,ok]=check_io(model,graphics,[1;-ones(nin,1)],-1,[],[])
+      if nin==1 then
+	in=[1 1;-1 1];out=[1 1];
+      else
+	in1=[1;-ones(nin,1)];in2=[1;-2*ones(nin,1)];
+	in=[in1 in2];out=[-1 -2];
+      end
+      it=[-1;-2*ones(nin,1)];
+      ot=-2;
+      [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
+      //[model,graphics,ok]=check_io(model,graphics,[1;-ones(nin,1)],-1,[],[])
       if ok then
 	graphics.exprs=exprs;
 	model.ipar=[base;rule],

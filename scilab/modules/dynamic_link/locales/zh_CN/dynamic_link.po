@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -127,8 +127,8 @@ msgid "%s: Already loaded from library %s\n"
 msgstr "%s：已经从库 %s 中装载\n"
 
 #, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s：在编译中发生一个错误：\n"
+msgid "%s: An error occurred during the compilation:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -147,8 +147,8 @@ msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr "%s：无法打开共享文件。已经达到最大入口数 %d。\n"
 
 #, c-format
-msgid "%s: Error while modifing the reference Makefile:\n"
-msgstr "%s：修改 reference Makefile 时发生错误：\n"
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"

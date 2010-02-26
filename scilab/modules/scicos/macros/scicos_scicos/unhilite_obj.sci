@@ -88,9 +88,7 @@ function unhilite_obj(k,win)
  end
 
  //** update the display
- //** draw(gh_curwin.children);
  drawnow();  
- //** show_pixmap();
  //**----------------------------------------------------------------
 
  //**----------------------------------------------------------------

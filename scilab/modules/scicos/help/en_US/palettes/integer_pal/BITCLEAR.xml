@@ -203,13 +203,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/bit_clear_32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/bit_clear_16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/bit_clear_8.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/bit_clear_32.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

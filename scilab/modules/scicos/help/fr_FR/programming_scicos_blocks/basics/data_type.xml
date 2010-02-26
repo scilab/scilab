@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="data_type">
+  <refnamediv>
+    <refname>data_type</refname>
+    <refpurpose>Types de données Scicos</refpurpose>
+  </refnamediv>
+  <refsection id="Contenu_data_type">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="data_type">data_type - Types de données Scicos</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Module_data_type">Module</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_data_type">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_data_type">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Module_data_type">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_data_type">
+    <title>Description</title>
+    <para>Description</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Type dans l'éditeur</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Numéro dans l'éditeur</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Type C</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Numéro C</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">real</td>
+        <td align="left">1</td>
+        <td align="left">double</td>
+        <td align="left">10</td>
+      </tr>
+      <tr>
+        <td align="left">complex</td>
+        <td align="left">2</td>
+        <td align="left">double</td>
+        <td align="left">11</td>
+      </tr>
+      <tr>
+        <td align="left">int32</td>
+        <td align="left">3</td>
+        <td align="left">long</td>
+        <td align="left">84</td>
+      </tr>
+      <tr>
+        <td align="left">int16</td>
+        <td align="left">4</td>
+        <td align="left">short</td>
+        <td align="left">82</td>
+      </tr>
+      <tr>
+        <td align="left">int8</td>
+        <td align="left">5</td>
+        <td align="left">char</td>
+        <td align="left">81</td>
+      </tr>
+      <tr>
+        <td align="left">uint32</td>
+        <td align="left">6</td>
+        <td align="left">unsigned long</td>
+        <td align="left">814</td>
+      </tr>
+      <tr>
+        <td align="left">uint16</td>
+        <td align="left">7</td>
+        <td align="left">unsigned short</td>
+        <td align="left">812</td>
+      </tr>
+      <tr>
+        <td align="left">uint8</td>
+        <td align="left">8</td>
+        <td align="left">unsigned char</td>
+        <td align="left">811</td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection id="Auteurs_data_type">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

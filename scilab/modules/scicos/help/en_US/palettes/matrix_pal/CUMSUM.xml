@@ -222,22 +222,7 @@ B=[12;15;18]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsum_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsum_r.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsum_c.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsumz_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsumz_r.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsumz_c.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/cumsum_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -63,7 +63,7 @@ function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
 
         if type(path)==15 then //** modelica block
           spec_err='The modelica block returns the error :';
-          message([title_err;spec_err;str_err]);
+          messagebox([title_err;spec_err;str_err],'modal');
 
         else //** all other type of blocks
           obj_path=path(1:$-1)
@@ -92,7 +92,7 @@ function [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
                          [title_err;spec_err;str_err],0,1,0,-1,0,1)
         end
       else//** simulateur error
-        message(['End problem:';str_err])
+        messagebox(['End problem:';str_err],'modal')
       end
     end
     //**---------------------------------

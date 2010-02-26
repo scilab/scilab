@@ -19,12 +19,11 @@
 // See the file ../license.txt
 //
 
-//19 sept 2007
-
 function [x,y,typ]=TOWS_c(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
+  varnam=string(arg1.graphics.exprs(2))
   standard_draw(arg1)
 case 'getinputs' then
   [x,y,typ]=standard_inputs(arg1)
@@ -70,7 +69,6 @@ case 'set' then
           model.blocktype = 'd';
         end
         model.ipar=[nz;length(varnam);str2code(varnam)]
-        graphics.id=string(varnam)
         graphics.exprs=exprs
         x.graphics=graphics;
         x.model=model;
@@ -97,11 +95,18 @@ case 'define' then
   model.blocktype = 'd';
   model.firing    = [];
   model.dep_ut    = [%f %f];
-
-  gr_i=['txt=[''To workspace''];';
-        'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
+  gr_i=['xstringb(orig(1),orig(2),''To workspace'',sz(1),sz(2),''fill'')'
+        'txt=varnam;'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;']
   exprs=[string(nz),string(varnam),string(herit)]
   x=standard_define([3.5 2],model,exprs,gr_i)
-  x.graphics.id=string(varnam)
 end
 endfunction
+

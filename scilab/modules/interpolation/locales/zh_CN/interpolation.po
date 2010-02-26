@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,8 +34,8 @@ msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr "%s：第%d维的网格横坐标不是严格递增排序。\n"
 
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s：点太少无法匹配。\n"
+msgid "%s: Not enough points for the fit.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"

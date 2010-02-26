@@ -275,8 +275,9 @@ detect_java_vm() {
 	if test -z "$JAVA_HOME"; then
         case $OS in
             *darwin* | *Darwin*)
-                    # Seems to be always that under Mac OS X. Don't hesitate to submit a bug report if it is not the case.
-		    JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
+                    # Apple thinks and does things different (it would be too easy otherwise)
+		    # They provide a script which returns the JAVA_HOME path
+		    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
                     LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
 		    if test $SCIVERBOSE -ne 0; then
 			echo "Using default Mac OS X vm: $JAVA_HOME"
@@ -371,8 +372,14 @@ fi
 					"ppc")
 						proc="ppc"
 						;;
-					"alpha")  
+					"alpha")
 						proc="alpha"
+						;;
+					"sparc64")
+						proc="sparc"
+						;;
+					sh*)
+						proc="sh"
 						;;
 					*)
 						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
@@ -392,7 +399,7 @@ fi
 						proc="i386"
 						;;
 				# check for the 64 bits syntax
-					"sparc")
+					"sparc"|"sparc64")
 						proc="sparc"
 						;;
 					*)
@@ -522,6 +529,9 @@ case $OS in
 		# in the source tree version. This does not occur in the binary
 		# thanks to the previous declaration on ../../lib/scilab
 		# See bug #4949
+		if test -d "$SCI/modules/scicos_blocks/.libs/"; then
+			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos_blocks/.libs/
+		fi
 		if test -d "$SCI/modules/scicos/.libs/"; then
 			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos/.libs/
 		fi
@@ -551,38 +561,42 @@ do_scilex()
 do_help()
 {
 	echo "Usage:"
-	echo     "scilab <options>"
+	echo     "scilab <arguments>"
 	echo     " "
-	echo     "      Possible options are:"
+	echo     "      Possible arguments are:"
 	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
 	echo     "      -d Display      : equivalent to display Display."
-	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-	echo     "                        define the variable SCILAB_GDB_OPT to add custom options to gdb."
-	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
-	echo     "                        valgrind (and override the existing valgrind options)."
-	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
-	echo     "                        callgrind (and override the existing callgrind options)."
-	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
 	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-	echo     "                        -e and -f options are mutually exclusive."
+	echo     "                        -e and -f arguments are mutually exclusive."
 	echo     "      -f File         : execute the scilab script given in File argument."
-	echo     "                        -e and -f options are mutually exclusive."
+	echo     "                        -e and -f arguments are mutually exclusive."
 	echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-	echo     "      -mem N          : set the initial stacksize, for use with -ns option."
+	echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
 	echo     "      -nb             : do not display the Scilab banner at starting time."
-	echo     "      -ns             : do not execute scilab.start startup file. This option will disable many features in Scilab (Only use if you know what you are doing)."
+	echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 	echo     "      -nw             : start Scilab without dedicated Scilab Window."
-	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."
+	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
+	echo     "      -a              : accept all extra arguments and make available through sciargs"
 	echo     "      -version        : print product version and exit."
+	echo     "      -h/--help       : display help about this command."
 	echo     "      --texmacs       : reserved for TeXMacs."
-        echo     " "
+	echo     " "
+	echo     "Developer arguments:"
+	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+	echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+	echo     "                        valgrind (and override the existing valgrind arguments)."
+	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+	echo     "                        callgrind (and override the existing callgrind arguments)."
+	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+	echo     " "
 	echo     "      All these arguments can be retrieved by the Scilab function sciargs."
-        echo     " "
+	echo     " "
 	exit
 }
 
@@ -689,6 +703,9 @@ if test "$rest" = "yes"; then
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;
+	  -a) # Accept extra arguments
+		  extraarg=1
+		  ;;
       -debug)
           DEBUG="-debug"
           ;;
@@ -704,11 +721,22 @@ if test "$rest" = "yes"; then
       -electric-fence)
           ELECTRIC_FENCE="-electric-fence"
           ;;
-      *)
+      -h|--help)
           do_help
           ;;
+		*)
+			foundUnknownArg=1
+		  # Do nothing. Gives unknown args to Scilab binaries if -a is provided
+		  ;;
     esac
   done
+
+
+# If the argument -a is not provided (extraarg) and we found unknown args
+# fail and provide help
+  if test -z "$extraarg" -a -n "$foundUnknownArg"; then
+	  do_help
+  fi
 
   if test -n "$DEBUG"; then
 	  start_debug "$@" $MORE_OPT

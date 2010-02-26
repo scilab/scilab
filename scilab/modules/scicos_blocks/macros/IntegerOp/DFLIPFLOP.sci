@@ -20,6 +20,7 @@
 //
 
 function [x,y,typ]=DFLIPFLOP(job,arg1,arg2)
+// Copyright INRIA
   x=[];y=[],typ=[]
   select job
    case 'plot' then
@@ -1778,15 +1779,43 @@ function [x,y,typ]=DFLIPFLOP(job,arg1,arg2)
     	model.firing=%f
     	model.dep_ut=[%t %f]
     	model.rpar=scs_m
-    	gr_i=['[x,y,typ]=standard_inputs(o) ';
-	  'dd=sz(1)/8,de=6*sz(1)/8';
-	  'xstring(orig(1)+dd,y(1)-4,''D'')';
-	  'xstring(orig(1)+dd,y(2)-4,''clk'')';
-	  'xstring(orig(1)+dd,y(3)-4,''en'')';
-	  '[x,y,typ]=standard_outputs(o) ';
-	  'xstring(orig(1)+de,y(1)-4,''Q'')';
-	  'xstring(orig(1)+5*dd,y(2)-4,''!Q'')']
+        gr_i=['[x,y,typ]=standard_inputs(o) ';
+              'dd=sz(1)/8,de=5.5*sz(1)/8';
+              'if ~exists(''%zoom'') then %zoom=1, end;'
+              'txt=''D'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')';
+              'txt=''clk'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''en'';'
+              'rectstr=stringbox(txt,orig(1)+dd,y(3)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+dd,y(3)-4,txt,w,h,''fill'')';
+              '[x,y,typ]=standard_outputs(o) ';
+              'txt=''Q'';'
+              'rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')';
+              'txt=''!Q'';'
+              'rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')';
+              'txt=''D FLIP-FLOP'';'
+              'style=5;'
+              'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+              'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+              'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+              'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+              'e=gce();'
+              'e.font_style=style;']
     	x=standard_define([2 3],model,[],gr_i)
-    	x.graphics.id="D FLIP-FLOP"
   end
 endfunction

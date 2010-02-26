@@ -19,12 +19,12 @@
 // See the file ../license.txt
 //
 
-function [%pt,%win,o] = get_selection(Select,%pt,%win)
+function [win,o,%pt] = get_selection(Select)
 
-  num = Select(1); win=Select(2)
+  num = Select(1,1); win=Select(1,2)
   
   kc = find(win==windows(:,2))
-  
+
   //**----------------------------------------------
   if kc==[] then
     
@@ -44,7 +44,6 @@ function [%pt,%win,o] = get_selection(Select,%pt,%win)
   
   end //**----------------------------------------
   
-  
   if num>size(scs_m.objs) then
      o = []; return // no longer exists
   end
@@ -53,22 +52,20 @@ function [%pt,%win,o] = get_selection(Select,%pt,%win)
   
   if typeof(o)=="Block" then
     o = disconnect_ports(o)
-    [orig,sz] = (o.graphics.orig,o.graphics.sz)
-    %pt = orig(:)+sz(:)/2
-  
-  elseif typeof(o)=="Text"  then  
-    [orig,sz] = (o.graphics.orig,o.graphics.sz)
-    %pt = orig(:)+sz(:)/2
-  
-  elseif typeof(o)=="Link" then  
-    %pt = [(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] // middle of first
-                                                    // segment
-  else
-    o = []  // perhaps deleted
-
+  elseif typeof(o)=="Deleted" then  
+    o = []  
   end
   
-  %win = win
+  if argn(1)==3 then
+    if or(typeof(o)==["Block" "Text"]) then
+      [orig,sz] = (o.graphics.orig,o.graphics.sz)
+      %pt = orig(:)+sz(:)/2
+    elseif typeof(o)=="Link" then  
+      %pt = [(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] // middle of first segment
+    
+    end
+  end
+
 
 endfunction
 

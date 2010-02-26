@@ -20,7 +20,7 @@ import java.util.Map;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
+import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
@@ -128,7 +128,7 @@ public final class BlockPositioning {
      * @param block The block we have to work on.
      */
     public static void updatePortsPosition(BasicBlock block) {
-		final Map<BasicPort.Orientation, List<BasicPort>> ports = BasicBlockInfo
+		final Map<Orientation, List<BasicPort>> ports = BasicBlockInfo
 				.getAllOrientedPorts(block);
 
 		beginUpdate(block);

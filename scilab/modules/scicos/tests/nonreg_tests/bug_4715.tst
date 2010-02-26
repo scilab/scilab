@@ -20,4 +20,4 @@ global AA
 Info = scicos_simulate(scs_m,list(),%scicos_context,'nw');
 res = AA;
 clearglobal AA;
-if abs(res-1.56012845688924151)>1d-10 then pause,end
+if abs(res-1.56012845688924151)>1d-3 then pause,end

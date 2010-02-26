@@ -30,7 +30,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	global %helps;
 	global %helps_modules;
-	%HELPS=[%helps_modules;%helps];
+	
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
+	
+	%HELPS = [%helps_modules; %helps];
 	
 	SCI_long = pathconvert(getlongpathname(SCI),%F,%F);
 	

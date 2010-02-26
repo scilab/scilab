@@ -93,6 +93,7 @@
 
     <simplelist type="inline">
       <member><link linkend="typeof">typeof</link></member>
+      <member><link linkend="inttype">inttype</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 (** This module provides the data structures and functions that are necessary
 to perform the symbolic manipulations involved in the transformation of Modelica
@@ -41,7 +42,7 @@ type nature =
     | ArcHyperbolicTangent of t
     | ArcSine of t
     | ArcTangent of t
-    | BlackBox of string * t list (* BlackBox (name, expressions) *)
+    | BlackBox of string * argument list
     | BooleanValue of bool
     | Constant of string
     | Cosine of t
@@ -51,10 +52,12 @@ type nature =
     | Exponential of t
     | Floor of t
     | Greater of t * t
+    | GreaterEqual of t * t
     | HyperbolicCosine of t
     | HyperbolicSine of t
     | HyperbolicTangent of t
     | If of t * t * t
+    | Integer of int32
     | Logarithm of t
     | Multiplication of t list
     | Not of t
@@ -62,14 +65,20 @@ type nature =
     | Or of t list
     | Parameter of int
     | PartialDerivative of t * t (* PartialDerivative (variable, expression) *)
+    | Pre of t
     | RationalPower of t * num
     | Sign of t
     | Sine of t
+    | String of string
     | Tangent of t
     | TimeVariable
     | Variable of int
 (** The type of the nature of an expression. *)
 
+and argument =
+  | ScalarArgument of t
+  | ArrayArgument of int list (* dimensions *) * t array (* flatten array *)
+(** The type of the arguments of functions. *)
 
 (* Node utilities *)
 
@@ -180,9 +189,9 @@ val create_arcTangent: t -> t
 (** [create_arcTangent expr] returns an object representing the arc tangent of
 the expression represented by [expr]. *)
 
-val create_blackBox: string -> t list -> t
-(** [create_blackBox name exprs] returns an object representing a black box
-function application expression. [name] is the name of the function and [exprs]
+val create_blackBox: string -> argument list -> t
+(** [create_blackBox name args] returns an object representing a black box
+function application expression. [name] is the name of the function and [args]
 is the list of the object representing the arguments of the function. *)
 
 val create_booleanValue: bool -> t
@@ -222,6 +231,11 @@ val create_greater: t -> t -> t
 'greater than' relation involving the expressions represented by [expr] and
 [expr'] in that order. *)
 
+val create_greater_equal: t -> t -> t
+(** [create_greater_equal expr expr'] returns an object representing the
+'greater than' relation involving the expressions represented by [expr] and
+[expr'] in that order. *)
+
 val create_hyperbolicCosine: t -> t
 (** [create_hyperbolicCosine expr] returns an object representing the hyperbolic
 cosine of the expression represented by [expr]. *)
@@ -240,8 +254,11 @@ condition is the expression represented by [expr] and first alternative the
 expression represented by [expr'] and second alternative the expression
 represented by [expr'']. *)
 
+val create_integer: int32 -> t
+(** [create_integer i] returns an object representing the integer [i]. *)
+
 val create_logarithm: t -> t
-(** [create_integerPart expr] returns an object representing the logarithm of the
+(** [create_logarithm expr] returns an object representing the logarithm of the
 expression represented by [expr]. *)
 
 val create_multiplication: t list -> t
@@ -271,6 +288,10 @@ partial derivative of the expression represented by [expr'] with respect to the
 variable represented by [expr]. If [expr] does not represent a variable,
 Invalid_argument is raised. *)
 
+val create_pre: t -> t
+(** [create_pre expr] returns an object representing the 'previous value' of
+the expression represented by [expr]. *)
+
 val create_rationalPower: t -> num -> t
 (** [create_rationalPower expr num] returns an object representing the expression
 represented by [expr] raised to the power of the rational number represented by
@@ -284,6 +305,9 @@ expression represented by [expr]
 val create_sine: t -> t
 (** [create_sine expr] returns an object representing the sine of the expression
 represented by [expr]. *)
+
+val create_string: string -> t
+(** [create_string s] returns an object representing the string [s]. *)
 
 val create_tangent: t -> t
 (** [create_tangent expr] returns an object representing the tangent of the
@@ -340,10 +364,10 @@ val symbolic_atanh: t -> t
 (** [symbolic_abs expr] returns an object that represents the result of applying
 the hyperbolic arc tangent function to the expression represented by [expr]. *)
 
-val symbolic_blackBox: string -> t list -> t
-(** [symbolic_blackBox name exprs] returns an object that represents the
+val symbolic_blackBox: string -> argument list -> t
+(** [symbolic_blackBox name args] returns an object that represents the
 result of applying the black box function named [name] to the expressions
-represented by the objects of the list [exprs]. *)
+represented by the objects of the list [args]. *)
 
 val symbolic_cos: t -> t
 (** [symbolic_cos expr] returns an object that represents the result of applying
@@ -476,6 +500,10 @@ raising the expression represented by [expr] to the power of the expression
 represented by [expr']. Raise Infinite_result if both [expr] and [num] represent
 zero.*)
 
+val symbolic_pre: t -> t
+(** [symbolic_pre expr] returns an object that represents the result of
+applying the 'pre' operator to the expression represented by [expr]. *)
+
 val symbolic_rationalPower: t -> num -> t
 (** [symbolic_rationalPower expr num] returns an object that represents the
 result of raising the expression represented by [expr] to the power of the
@@ -526,10 +554,10 @@ val apply_and: t list -> t
 the 'and' function to the expressions represented by the objects in the list
 [exprs]. *)
 
-val apply_blackBox: string -> t list -> t
-(** [apply_blackBox name exprs] returns an object that represents the result
+val apply_blackBox: string -> argument list -> t
+(** [apply_blackBox name args] returns an object that represents the result
 of applying the black box function named [name] to the expressions represented
-by the objects in the list [exprs]. *)
+by the objects in the list [args]. *)
 
 val apply_max: t list -> t
 (** [apply_max exprs] returns an object that represents the result of applying
@@ -565,6 +593,11 @@ val is_subnode_of: t -> t -> bool
 (** [is_subnode_of node node'] returns [true] if [node'] appears as a subnode
 in the internal representation of [node] viewed as a tree. *)
 
+val assignable_parameters_of: t -> t list
+(** [assignable_parameters_of node] returns the parameters that, considered as
+variables, might be selected by the Hungarian method applied to [node] as a
+list of symbolic expressions. *)
+
 val variables_of: t -> t list
 (** [variables_of node] returns the variables that appear in [node] as a list of
 symbolic expressions. *)
@@ -576,6 +609,10 @@ by the Hungarian method applied to [node] as a list of symbolic expressions. *)
 val derivatives_of: t -> t list
 (** [derivatives_of node] returns the derivatives that appear in [node] as a list
 of symbolic expressions. *)
+
+val inputs_of: t -> t list
+(** [inputs_of node] returns the inputs that appear in [node] as a list of
+symbolic expressions. *)
 
 val invert_if_possible_with_respect_to: t -> t -> t -> t option
 (** [invert_if_possible_with_respect_to node left right] returns [Some node'] if

@@ -18,20 +18,22 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-void mat_sum(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_sum(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  int nu,mu,i;
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-
-  u=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
+	int i = 0;
+	int mu = GetInPortRows(block,1);
+	int nu = GetInPortCols(block,1);
+	double *u = GetRealInPortPtrs(block,1);
+	double *y = GetRealOutPortPtrs(block,1);
   
-  y[0]=0.0;
-  for(i=0;i<nu*mu;i++)
-       {y[0]=u[i]+y[0];}
+	y[0] = 0.0;
+	for(i=0; i<nu*mu; i++)
+	{
+		y[0]=u[i]+y[0];
+	}
 }
+/*--------------------------------------------------------------------------*/ 

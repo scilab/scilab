@@ -24,13 +24,13 @@ function scicos_pal=update_scicos_pal(path,name,fname)
 
   inde=find(scicos_pal(:,1)==name);
   if size(inde,'*')>=2 then 
-    message(['More than one palette named '+name;
-	     'This is not allowed, do an Pal Editor to correct'])
+    messagebox(['More than one palette named '+name;
+	     'This is not allowed, do an Pal Editor to correct'],'modal')
     return
   end
   if inde<>[] then
-    if message(['The palette '+name+' already exists';
-		   'Do you want to replace it?'],['Yes','No'])==2 then 
+    if messagebox(['The palette '+name+' already exists';
+		   'Do you want to replace it?'],'modal',['Yes','No'])==2 then 
       return;
     else
       scicos_pal(inde,2)=fname

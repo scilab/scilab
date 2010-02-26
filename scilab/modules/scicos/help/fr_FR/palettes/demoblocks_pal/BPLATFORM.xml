@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -21,34 +21,24 @@
  * 
  * See the file ./license.txt
  -->
-<refentry version="5.0-subset Scilab" xml:id="BPLATFORM"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="BPLATFORM">
   <refnamediv>
     <refname>BPLATFORM</refname>
 
     <refpurpose>Afficheur d'une balle sur un plateau</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Block Screenshot</title>
-
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../images/BPLATFORM_blk.gif"
-                     valign="middle"></imagedata>
+          <imagedata fileref="../../../images/BPLATFORM_blk.gif" align="center" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+    </para>
   </refsection>
-
   <refsection id="Contenu_BPLATFORM">
     <title>Contenu</title>
-
     <itemizedlist>
       <listitem>
         <para>
@@ -56,7 +46,6 @@
           plateau</link>
         </para>
       </listitem>
-
       <listitem>
         <itemizedlist>
           <listitem>
@@ -64,29 +53,21 @@
               <xref linkend="Palette_BPLATFORM">Palette</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
-              <xref linkend="Bo&#238;tededialogue_BPLATFORM">Bo&#238;te de
-              dialogue</xref>
+              <xref linkend="Boîtededialogue_BPLATFORM">Boîte de dialogue</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
-              <xref
-              linkend="Propri&#233;t&#233;spard&#233;faut_BPLATFORM">Propri&#233;t&#233;s
-              par d&#233;faut</xref>
+              <xref linkend="Propriétéspardéfaut_BPLATFORM">Propriétés par défaut</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
-              <xref linkend="Fonctiondinterface_BPLATFORM">Fonction
-              d'interface</xref>
+              <xref linkend="Fonctiondinterface_BPLATFORM">Fonction d'interface</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
               <xref linkend="Auteurs_BPLATFORM">Auteurs</xref>
@@ -96,117 +77,85 @@
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Palette_BPLATFORM">
     <title>Palette</title>
-
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DemoBlocks_pal">DemoBlocks - Palette
-          DemoBlocks</link>
+          <link linkend="DemoBlocks_pal">DemoBlocks - Palette DemoBlocks</link>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
-  <refsection id="Bo&#238;tededialogue_BPLATFORM">
-    <title>Bo&#238;te de dialogue</title>
-
+  <refsection id="Boîtededialogue_BPLATFORM">
+    <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../images/BPLATFORM_gui.gif"
-                     valign="middle" />
+          <imagedata fileref="../../../images/BPLATFORM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-
-  <refsection id="Propri&#233;t&#233;spard&#233;faut_BPLATFORM">
-    <title>Propri&#233;t&#233;s par d&#233;faut</title>
-
+  <refsection id="Propriétéspardéfaut_BPLATFORM">
+    <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
       </listitem>
-
       <listitem>
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">d&#233;tection de passage &#224;
-        z&#233;ro:</emphasis> non</para>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
       </listitem>
-
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
-
       <listitem>
         <para>
-          <emphasis role="bold">entr&#233;e r&#233;guli&#232;res:</emphasis>
+          <emphasis role="bold">entrée régulières:</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
-
         <para>
           <emphasis role="bold">- port 2 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">nombre des entr&#233;es
-        &#233;v&#232;nementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">nombre des sorties
-        &#233;v&#232;nementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">poss&#232;de un &#233;tat
-        continu:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">poss&#232;de un &#233;tat
-        discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">poss&#232;de un &#233;tat
-        objet:</emphasis> non</para>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
       </listitem>
-
       <listitem>
         <para>
           <emphasis role="bold">nom de la fonction de calcul:</emphasis>
-
           <emphasis role="italic">bplatform2</emphasis>
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Fonctiondinterface_BPLATFORM">
     <title>Fonction d'interface</title>
-
     <itemizedlist>
       <listitem>
-        <para>SCI/modules/scicos_blocks/macros/Misc/BPLATFORM.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Misc/BPLATFORM.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
-
   <refsection id="Auteurs_BPLATFORM">
     <title>Auteurs</title>
-
     <para><emphasis role="bold">M. Najafi</emphasis> - INRIA</para>
   </refsection>
 </refentry>

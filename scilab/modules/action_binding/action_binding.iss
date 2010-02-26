@@ -34,8 +34,6 @@ Source: modules\{#ACTION_BINDING}\version.xml; DestDir: {app}\modules\{#ACTION_B
 ;
 ;Source: modules\{#ACTION_BINDING}\includes\*.h; DestDir: {app}\modules\{#ACTION_BINDING}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ACTION_BINDING}\help\addchapter.sce; DestDir: {app}\modules\{#ACTION_BINDING}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#ACTION_BINDING}\etc\{#ACTION_BINDING}.quit; DestDir: {app}\modules\{#ACTION_BINDING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#ACTION_BINDING}\etc\{#ACTION_BINDING}.start; DestDir: {app}\modules\{#ACTION_BINDING}\etc; Components: {#COMPN_SCILAB}
 ;
