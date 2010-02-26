@@ -128,7 +128,17 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof] = c_pass1(scs_m
   end
   nb=size(corinvt)
   nl=size(links_table,1)/2
-  links_table=[links_table(:,1:3) matrix([1;1]*(1:nl),-1,1) links_table(:,4) ];
+  
+  // Check if size match !
+  if(size(links_table(:,1:3), "r") == size(matrix([1;1]*(1:nl),-1,1), "r") ...
+     & size(matrix([1;1]*(1:nl),-1,1), "r") == size(links_table(:,4), "r"))
+    links_table=[links_table(:,1:3) matrix([1;1]*(1:nl),-1,1) ...
+		 links_table(:,4) ];
+  else
+    cmat=[],ccmat=[],cor=[],corinv=[]
+    return,
+  end
+  
 
   imp=find(ind<0)
   reg(imp)=[]

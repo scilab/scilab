@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io;
+package org.scilab.modules.graph.io;
 
 import java.awt.Color;
 import java.util.Map;
@@ -22,14 +22,14 @@ import org.w3c.dom.Node;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxObjectCodec;
 
-public class XcosDiagramCodec extends mxObjectCodec {
+public class ScilabGraphCodec extends mxObjectCodec {
 
-	public XcosDiagramCodec(Object template) {
+	public ScilabGraphCodec(Object template) {
 		super(template);
 	}
 	
 	
-	public XcosDiagramCodec(Object template, String[] exclude, String[] idrefs,
+	public ScilabGraphCodec(Object template, String[] exclude, String[] idrefs,
 			Map<String, String> mapping)
 	{
 		super(template, exclude, idrefs, mapping);

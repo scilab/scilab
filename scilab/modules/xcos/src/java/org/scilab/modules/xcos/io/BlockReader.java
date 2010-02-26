@@ -816,7 +816,7 @@ public class BlockReader {
 		    newBlock.setId(uid.getData()[0][0]);
 		}
 	    } else {
-		newBlock.setId();
+		newBlock.generateId();
 	    }
 	}
 	return newBlock;

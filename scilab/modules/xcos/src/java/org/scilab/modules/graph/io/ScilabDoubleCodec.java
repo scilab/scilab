@@ -10,13 +10,11 @@
  *
  */
 
-package org.scilab.modules.xcos.io.codec;
+package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.xcos.io.XcosObjectCodec;
-import org.scilab.modules.xcos.io.XcosObjectCodec.UnrecognizeFormatException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -28,7 +26,7 @@ import com.mxgraph.io.mxCodecRegistry;
 /**
  * Define serialization for a {@link ScilabDouble} instance.
  */
-public class ScilabDoubleCodec extends XcosObjectCodec {
+public class ScilabDoubleCodec extends ScilabObjectCodec {
 
 	private static final String COLUMN = "column";
 	private static final String LINE = "line";

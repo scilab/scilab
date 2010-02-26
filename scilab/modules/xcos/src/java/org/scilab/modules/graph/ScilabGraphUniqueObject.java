@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos;
+package org.scilab.modules.graph;
 
 import java.rmi.server.UID;
 
@@ -18,33 +18,38 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 
 /**
- * @author Bruno JOFRET
- *
+ * Implement a unique object.
+ * 
+ * All cells in a ScilabGraph must follow this signature in order to be unique
+ * in the graph.
  */
-public class XcosUIDObject extends mxCell implements Comparable<XcosUIDObject> {
+public abstract class ScilabGraphUniqueObject extends mxCell implements Comparable<ScilabGraphUniqueObject> {
 
     private static final long serialVersionUID = -2915277403393545917L;
 
     /**
      * Constructor
      */
-    public XcosUIDObject() {
+    public ScilabGraphUniqueObject() {
 	super();
 	setId((new UID()).toString());
     }
 
     /**
-     * 
+     * Generate a new UID for this cell
      */
-    public void setId() {
+    public void generateId() {
 	setId(new UID().toString());
     }
 
-    public void setId(String UID) {
-	super.setId(UID);
-    }
-
-    public int compareTo(XcosUIDObject o) {
+    /**
+     * Compare this object with another one.
+     * 
+     * @param o the object to compare to.
+     * @return True if instance are the same; False otherwise.
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    public int compareTo(ScilabGraphUniqueObject o) {
 	mxGeometry source = getGeometry();
 	mxGeometry target = o.getGeometry();
 	
