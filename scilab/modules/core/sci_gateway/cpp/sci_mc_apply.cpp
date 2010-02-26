@@ -122,6 +122,13 @@ struct scilab_var {
   virtual  ~scilab_var(){}
 };
 
+
+struct scilab_c_function : virtual scilab_var {
+  virtual  std::size_t element_size() const {return sizeof(int);}
+  int nb_lhs;
+  int nb_rhs;
+};
+
 struct scilab_matrix : virtual scilab_var {
   virtual void debug()const{ std::cerr<<" matrix type:"<<get_type()<<" nrows:"<<nrows<<"ncols:"<<ncols<<std::endl ;}
 
@@ -158,6 +165,7 @@ struct scilab_matrix : virtual scilab_var {
 
 bool is_function_or_string(scilab_var const&  var){ 
   bool res;
+  std::cerr<<"in is_function_or_string type :"<<var.get_type()<<std::endl;
   switch(var.get_type()){
   case sci_c_function : { res= true; break;}
   case sci_strings : { 
@@ -248,6 +256,7 @@ struct scilab_allocated_concrete_var : virtual scilab_allocated_var,  ScilabVar 
     char** as_char_ptr_ptr;
 
     void* opaque;
+    int as_sci_c_function;
   }data_ptr;
 
   virtual ~scilab_allocated_concrete_var<ScilabVar>(){}
@@ -266,11 +275,23 @@ template<> void scilab_allocated_concrete_var<scilab_int8_matrix>::read_from_sta
 template<> void scilab_allocated_concrete_var<scilab_string_matrix>::read_from_stack(){
   getAllocatedMatrixOfString(pvApiCtx, addr, &nrows, &ncols, &data_ptr.as_char_ptr_ptr);
 }
+template<> void scilab_allocated_concrete_var<scilab_c_function>::read_from_stack(){
+  double* unused;
+  // c'est n'imp : macro qui fait return 0 et position nécessaire :(
+  //  int ref(
+	  //  GetRhsVar(1, EXTERNAL_DATATYPE, &nb_lhs, &nb_rhs, &data_ptr.as_sci_c_function);
+}
 
 
 template<> bool scilab_allocated_concrete_var<scilab_string_matrix>::function_name_or_ptr()const{
   return ncols == 1 && nrows == 1 ;
 }
+template<> bool scilab_allocated_concrete_var<scilab_c_function>::function_name_or_ptr()const{
+  return true;
+}
+template<>  void const* scilab_allocated_concrete_var<scilab_c_function>::data_chunk(std::size_t i) const {  return 0; }
+template<>  void * scilab_allocated_concrete_var<scilab_c_function>::data_chunk(std::size_t i) {  return 0; }
+
 
 template<> void scilab_allocated_concrete_var<scilab_complex_matrix>::read_from_stack(){
   double* unused;
@@ -333,7 +354,11 @@ scilab_allocated_var* scilab_allocated_var::get(int pos){
     res = new scilab_allocated_concrete_var<scilab_string_matrix>(addr);
     break;
   }
-  default : { std::cerr<<"unimplemented type in scilab_var fatory !!!\n";}
+  case sci_c_function : {
+    res = new scilab_allocated_concrete_var<scilab_c_function>(addr);
+    break;
+  }
+  default : { std::cerr<<"unimplemented type in scilab_allocated_var fatory !!!\n";}
   }
   return res;
 }
@@ -521,7 +546,7 @@ struct wrapper {
     int  sci_lhs = scilab_function_lhs_models.size();
 
     std::size_t dummy_vars(0);
-    for( ;sci_rhs+dummy_vars < sci_lhs; ++dummy_vars){
+    for( ;sci_rhs+dummy_vars < sci_lhs+max_safety_lhs; ++dummy_vars){
       //      std::cerr<<"alloc dummy var";
       scilab_allocated_concrete_var<scilab_real_matrix> dummy(scilab_real_matrix());
     }
@@ -570,6 +595,9 @@ struct wrapper {
   
     //  std::cerr<<"calling a native compiled function "<<(*(double*)*res)<<std::endl;
   }
+
+
+  static unsigned int const max_safety_lhs = 20; // we prealloc as much scilab var more than requested lhs in case the scilab macro call back returns more thant requested.
 
   std::size_t function_rhs, n;
   sizes_container args_sizes, args_nb, res_sizes;
