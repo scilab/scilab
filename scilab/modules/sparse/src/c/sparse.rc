@@ -64,12 +64,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "umfpack module"
+            VALUE "FileDescription", "sparse module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "umfpack module"
+            VALUE "InternalName", "sparse module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
-            VALUE "OriginalFilename", "umfpack.dll"
-            VALUE "ProductName", "umfpack module"
+            VALUE "OriginalFilename", "sparse.dll"
+            VALUE "ProductName", "sparse module"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END

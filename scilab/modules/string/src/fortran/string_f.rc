@@ -64,12 +64,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "umfpack module"
+            VALUE "FileDescription", "string_f module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "umfpack module"
+            VALUE "InternalName", "string_f module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
-            VALUE "OriginalFilename", "umfpack.dll"
-            VALUE "ProductName", "umfpack module"
+            VALUE "OriginalFilename", "string_f.dll"
+            VALUE "ProductName", "string_f module"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END
