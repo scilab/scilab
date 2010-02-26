@@ -218,8 +218,7 @@ hl=legend([h,] strings [,pos] [,boxed])
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=linspace(0,%pi,20);
 a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
 
@@ -230,8 +229,7 @@ e.children(2).line_style=4;
 e3=e.children(3);e3.line_mode='on';e3.mark_background=5;
 
 hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

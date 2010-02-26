@@ -65,7 +65,7 @@ barhomogenize([h[,'style'[,'width']]])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // First example: creation of 1 yellow bar (i.e 1 polyline with polyline_style=6) and 3 bars (i.e 3 polylines with polyline_style=6) 
 subplot(2,3,1)
 xtitle('ex1: creation of 1 yellow bar and 3 bars ')
@@ -111,7 +111,7 @@ barhomogenize();
 // change the style and the width
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

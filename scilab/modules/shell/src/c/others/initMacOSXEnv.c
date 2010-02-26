@@ -14,7 +14,7 @@
 #include "realmain.h"
 #include "initMacOSXEnv.h"
 
-#ifdef __APPLE__
+#if defined(__APPLE__) && !defined(WITHOUT_GUI)
 #include <pthread.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <sys/stat.h>
@@ -22,7 +22,7 @@
 #endif
 
 
-#ifdef __APPLE__
+#if defined(__APPLE__) && !defined(WITHOUT_GUI)
 
 typedef struct {
   int   no_startup_flag_l;

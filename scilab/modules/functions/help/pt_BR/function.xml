@@ -36,13 +36,11 @@
   <refsection>
     <title>Descrição</title>
 
-    <programlisting>
-
-function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;
-&lt;statements&gt;
+    <programlisting role = ""><![CDATA[ 
+function <lhs_arguments>=<function_name><rhs_arguments>
+<statements>
 endfunction
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Onde</para>
 
@@ -110,7 +108,7 @@ endfunction
           script (ver exec). Para compatibilidade com versões Scilab antigas,
           as funções podem ser definidas em um arquivo script contendo apenas
           definições de funções podem ser "carregadas" no Scilab através da
-          função <literal>getf</literal>.</para>
+          função <literal>exec</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -127,8 +125,7 @@ endfunction
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //definição inline (ver functions)
 function [x,y]=myfct(a,b)
 x=a+b
@@ -151,13 +148,9 @@ endfunction
 
 foo(%pi/3)
 
-
 // definição em um arquivo script (ver exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
-
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -168,7 +161,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
 
       <member><link linkend="exec">exec</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
     </simplelist>
   </refsection>
 </refentry>

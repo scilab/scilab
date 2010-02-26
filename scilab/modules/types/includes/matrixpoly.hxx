@@ -11,7 +11,7 @@
 */
 
 #ifndef __MATRIXPOLY_HH__
-#define __MATRIXPOLY_HH____MATRIXPOLY_HH__
+#define __MATRIXPOLY_HH__
 
 #include "types.hxx"
 
@@ -28,7 +28,10 @@ namespace types
 									MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
 		virtual				~MatrixPoly();
 
-		GenericType*	get(int _iPos);
+	  // FIXME : Should not return NULL
+	  MatrixPoly*		clone() { return NULL; }
+
+		GenericType*	get_col_value(int _iPos);
 
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);

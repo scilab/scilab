@@ -50,10 +50,10 @@ Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant 
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 scicos_debug(level)
 level=scicos_debug()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_scicos_debug">
     <title>Paramètres</title>

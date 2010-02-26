@@ -44,23 +44,42 @@ BOOL removedir(char *path)
 #ifdef _MSC_VER
 		{
 			wchar_t *pstPath = to_wide_string(path);
-			if(pstPath != NULL)
+			if(pstPath)
 			{
-				DeleteDirectory(pstPath);
+				removedirW(pstPath);
 				FREE(pstPath);
+				pstPath = NULL;
 			}
 		}
 #else
 		DeleteDirectory(path);
 #endif
-
 		if (!isdir(path)) return TRUE;
 	}
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
+BOOL removedirW(wchar_t *pathW)
+{
+	if (isdirW(pathW))
+	{
 #ifdef _MSC_VER
-//static int DeleteDirectory(char *refcstrRootDirectory)
+		DeleteDirectory(pathW);
+#else
+		char *path = wide_string_to_UTF8(pathW);
+		if (path)
+		{
+			DeleteDirectory(path);
+			FREE(path);
+			path = NULL;
+		}
+#endif
+		if (!isdirW(pathW)) return TRUE;
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/ 
+#ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
 #define DEFAULT_PATTERN L"%s/*.*"
@@ -173,6 +192,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 		if (isdir(filename)) {
 			/* Delete recursively */
 			DeleteDirectory(filename);
+			if (filename) {FREE(filename);filename=NULL;}
 		} else {
 			/* Not a directory... It must be a file (at least, I hope it is a file */
 			if (remove(filename) != 0) {
@@ -184,6 +204,9 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 	if (rmdir(refcstrRootDirectory) != 0) {
 		sciprint(_("Warning: Could not remove directory %s: %s\n"),refcstrRootDirectory, strerror(errno));
 	}
+	
+	if (dir) {FREE(dir);dir = NULL;}
+
 	return 0;
 }
 #endif

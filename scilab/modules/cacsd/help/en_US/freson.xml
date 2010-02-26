@@ -28,7 +28,7 @@
       <varlistentry>
         <term>h</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,14 +47,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
 fr=freson(h)
 bode(h)
 g=20*log(abs(repfreq(h,fr)))/log(10)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -414,8 +414,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //EXIBIÇÃO
 deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
 tlist('tab',['a','b'],['x';'y'],rand(2,2))
@@ -427,8 +426,7 @@ deff('x=%c_a_s(a,b)','x=a+string(b)')
 //FUNÇÃO
 deff('x=%c_sin(a)','x=''sin(''+a+'')''')
 sin('2*x')
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

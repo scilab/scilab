@@ -16,7 +16,7 @@
 /* desc : interface for xarrows routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xarrows.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "localization.h"
@@ -65,7 +65,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     flag = 0;
   }
   
-  Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  Objsegs (style,flag,mn2,stk(l1),stk(l2),NULL,arsize);
   
   sciDrawObj(sciGetCurrentObj());
 

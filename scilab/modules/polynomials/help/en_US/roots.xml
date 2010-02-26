@@ -66,14 +66,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
 spec(A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -112,7 +110,7 @@ spec(A)
     <title>Used Functions</title>
 
     <para>The rpoly.f source codes can be found in the directory
-    routines/control of a Scilab source distribution. In the case where the
+	    SCI/modules/polynomials/src/fortran of a Scilab source distribution. In the case where the
     companion matrix is used, the eigenvalue computation is perfomed using
     DGEEV and ZGEEV LAPACK codes.</para>
   </refsection>

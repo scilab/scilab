@@ -16,7 +16,7 @@
 /* desc : interface for xname routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xname.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"

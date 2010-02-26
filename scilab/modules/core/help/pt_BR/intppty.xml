@@ -56,11 +56,9 @@ intppty(fun)</synopsis>
     <para> No primeiro modo, que é o padrão, os argumentos são passados por
     valor. A sintaxe é a seguinte:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 foo(A,1+2)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>o argumento associado a <literal>A</literal> será passado por
     valores (uma cópia de <literal>A</literal> é feita antes de
@@ -73,11 +71,9 @@ foo(A,1+2)
     Scilab que a interface com o número <literal>fun</literal> pode manipular
     argumentos passados por referência. A sintaxe é a seguinte:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 foo(A,1+2)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>O argumento associado a <literal>A</literal> será passado por
     referência e o argumento associado a <literal>1+2</literal> será passado

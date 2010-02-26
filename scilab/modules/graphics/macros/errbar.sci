@@ -28,7 +28,11 @@ function []=errbar(x,y,em,ep)
 		plot2d(x,y);
 		errbar(x,y,0.05*ones(x),0.03*ones(x));
 		return;
-	end
+  else
+    if rhs<4 then
+      error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "errbar", 4));
+    end
+  end
 	
 	xselect();
 	[n1,n2] = size(x);

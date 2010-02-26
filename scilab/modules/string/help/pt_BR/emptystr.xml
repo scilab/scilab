@@ -84,11 +84,9 @@ s=emptystr(m,n)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=emptystr();for k=1:10, x=x+','+string(k);end
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

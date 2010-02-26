@@ -164,21 +164,18 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+a.data_bounds=[-10,-10;10,10];
+champ(-5:5,-5:5,rand(11,11),rand(11,11))
 
-   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
-   a.data_bounds=[-10,-10;10,10];
-   champ(-5:5,-5:5,rand(11,11),rand(11,11))
+c=a.children
 
-   c=a.children
-
-   c.colored="on";
-   c.thickness=2;
-   c.data // exibindo um tlist do tipo "scichampdata"
-   a.data_bounds=[-5,-5;5,5];
-
- 
-  </programlisting>
+c.colored="on";
+c.thickness=2;
+c.data // exibindo um tlist do tipo "scichampdata"
+a.data_bounds=[-5,-5;5,5];
+ ]]></programlisting>
   </refsection>
 
   <refsection>

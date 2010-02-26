@@ -45,8 +45,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=['1','2';'a','b']
 W=trianfml([A,string(eye(2,2))])
 U=W(:,3:4)
@@ -55,8 +54,7 @@ A=evstr(A)
 U=evstr(U)
 U*A
 evstr(W(:,1:2))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -76,9 +76,9 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 dlgamma(0.5)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

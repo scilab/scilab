@@ -88,39 +88,35 @@
     of the <literal>(A,B)</literal> pair.</para>
     <para>
     The pair <literal>(Bc, Ac)</literal> is in staircase controllable form.</para>
-    <programlisting><![CDATA[
-
-                        |B |sI-A      *  . . .  *      *       |
-                        | 1|    11       .      .      .       |
-                        |  |  A    sI-A    .    .      .       |
-                        |  |   21      22    .  .      .       |
-                        |  |        .     .     *      *       |
-     [U'BV|sI - U'AU] = |0 |     0    .     .                  |
-                        |  |            A     sI-A     *       |
-                        |  |             p,p-1    pp           |
-                        |  |                                   |
-                        |0 |         0          0   sI-A       |
-                        |  |                            p+1,p+1|
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+                   |B |sI-A      *  . . .  *      *       |
+                   | 1|    11       .      .      .       |
+                   |  |  A    sI-A    .    .      .       |
+                   |  |   21      22    .  .      .       |
+                   |  |        .     .     *      *       |
+[U'BV|sI - U'AU] = |0 |     0    .     .                  |
+                   |  |            A     sI-A     *       |
+                   |  |             p,p-1    pp           |
+                   |  |                                   |
+                   |0 |         0          0   sI-A       |
+                   |  |                            p+1,p+1|
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Reference</title>
     <para>
-    Slicot library (see ab01od in SCIDIR/routines/slicot).</para>
+	    Slicot library (see ab01od in SCI/modules/cacsd/src/slicot).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
 A=W("A");B=W("B");
 [n,U]=contr(A,B);n
 A1=U'*A*U;
 spec(A1(n+1:$,n+1:$))  //uncontrollable modes
 spec(A+B*rand(3,5))    
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

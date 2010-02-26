@@ -140,10 +140,10 @@ The equivalent of MATDET in Scilab is "det"
   </refsection>
   <refsection id="Example_MATDET">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 U=[1 0 63;2 -2 5;9 9 4]
 y=2215
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATDET">
     <title>Default properties</title>

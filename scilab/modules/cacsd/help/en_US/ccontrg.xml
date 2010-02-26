@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (linear system in state-space representation)</para>
+          <para> <literal>syslin</literal> list (linear system in state-space representation)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,12 +55,10 @@
     <para>
     P contains the parameters of plant realization <literal>(A,B,C,D)</literal>
     (<literal>syslin</literal> list) with</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
                             ( C2 )          ( D21  D22)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>r(1)</literal> and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)</para>
   </refsection>
   <refsection>

@@ -10,6 +10,7 @@
 *
 */
 
+#include <sstream>
 #include "float.hxx"
 
 namespace types
@@ -59,7 +60,7 @@ namespace types
 		m_bComplex = false;
 		return;
 	}
-	
+
 	/*----------------------*/
 	/*				Float				*/
 	/*	Complex constructor	*/
@@ -67,7 +68,7 @@ namespace types
 	Float::Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg)
 	{
 		CreateFloat(_iRows, _iCols, _pfReal, _pfImg);
-//		m_bComplex = false;
+		//		m_bComplex = false;
 		return;
 	}
 
@@ -85,7 +86,7 @@ namespace types
 		{
 			/*alloc Real array*/
 			m_pfReal = new float[m_iSize];
-		
+
 			/*return it*/
 			*_pfReal = m_pfReal;
 		}
@@ -105,6 +106,12 @@ namespace types
 		}
 		else
 			m_pfImg = NULL;
+	}
+
+	Float* Float::clone()
+	{
+		// FIXME : Implement me.
+		return NULL;
 	}
 
 	bool Float::isComplex()
@@ -364,7 +371,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType*	Float::get(int _iPos)
+	GenericType*	Float::get_col_value(int _iPos)
 	{
 		Float *pf = NULL;
 		if(_iPos < m_iCols)
@@ -416,6 +423,15 @@ namespace types
 			return false;
 		}
 		return true;
+	}
+
+	std::string Float::toString(int _iPrecision, int _iLineLen) 
+	{
+		std::ostringstream ostr;
+		// FIXME : Implement display method.
+		ostr << "Float Values" << std::endl;
+
+		return ostr.str();
 	}
 
 }

@@ -65,16 +65,14 @@
   <refsection>
     <title>Ver Também</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X1=rand(5,2);X2=rand(5,3);
 P=proj(X1,X2);
 norm(P^2-P,1)
 trace(P)    // Este é dim(X2)
 [Q,M]=fullrf(P);
 svd([Q,X2])   // span(Q) = span(X2)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

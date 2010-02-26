@@ -20,7 +20,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W

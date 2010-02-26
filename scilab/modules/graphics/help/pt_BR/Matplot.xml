@@ -352,14 +352,12 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 Matplot([1 2 3;4 5 6])
 clf()
 // desenhando o mapa de cores corrente
 Matplot((1:xget("lastpattern")))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

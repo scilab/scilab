@@ -73,7 +73,7 @@
       <varlistentry>
         <term>z</term>
         <listitem>
-          <para>: <literal>z=[y(1),....,y(N)]</literal></para>
+          <para> <literal>z=[y(1),....,y(N)]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -84,11 +84,11 @@
     simulation of an n-dimensional armax process 
     <literal>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</literal>
     </para>
-    <programlisting><![CDATA[
-       A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  => A(z)=Id)
-       B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 => B(z)=[])
-       D(z)= Id+d1*z+...+d_t z^t;  ( t=0  => D(z)=Id)
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  => A(z)=Id)
+B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 => B(z)=[])
+D(z)= Id+d1*z+...+d_t z^t;  ( t=0  => D(z)=Id)
+ ]]></programlisting>
     <para>
     z et e are in  <literal>R^n</literal> et u in <literal>R^m</literal></para>
   </refsection>

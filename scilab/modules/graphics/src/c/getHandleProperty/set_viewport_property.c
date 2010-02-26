@@ -33,19 +33,19 @@ int set_viewport_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"viewport") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "viewport");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s does not exist for this handle.\n"), "viewport") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"viewport");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Argument must be a vector of size %d.\n"),4);
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "viewport", 2);
     return SET_PROPERTY_ERROR ;
   }
 

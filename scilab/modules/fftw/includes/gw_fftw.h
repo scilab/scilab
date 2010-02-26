@@ -13,18 +13,18 @@
 #ifndef __GW_FFTW__
 #define __GW_FFTW__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
-#include "sci_get_fftw_wisdom.h"
-#include "sci_fftw_flags.h"
-#include "sci_loadfftwlibrary.h"
-#include "sci_set_fftw_wisdom.h"
-#include "sci_fftw_forget_wisdom.h"
-#include "sci_fftw.h"
-#include "sci_fftwlibraryisloaded.h"
-#include "sci_disposefftwlibrary.h"
+#include "dynlib_fftw.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_fftw(void);
+FTTW_SCILAB_IMPEXP int gw_fftw(void);
+FTTW_SCILAB_IMPEXP int sci_disposefftwlibrary(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw_flags(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw_forget_wisdom(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftwlibraryisloaded(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_get_fftw_wisdom(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_loadfftwlibrary(char *fname,unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_set_fftw_wisdom(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_FFTW__ */
 /*--------------------------------------------------------------------------*/

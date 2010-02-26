@@ -89,13 +89,11 @@ wavwrite(y, Fs, nbits, wavfile)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
-  A=matrix(1:6,2,3);
-  wavwrite(A/6,TMPDIR+'/foo.wav');
-  B=wavread(TMPDIR+'/foo.wav');
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+A=matrix(1:6,2,3);
+wavwrite(A/6,TMPDIR+'/foo.wav');
+B=wavread(TMPDIR+'/foo.wav');
+ ]]></programlisting>
   </refsection>
 
   <refsection>

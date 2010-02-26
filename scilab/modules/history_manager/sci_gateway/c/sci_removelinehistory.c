@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_removelinehistory)(char *fname,unsigned long fname_len)
+int sci_removelinehistory(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(Rhs,0);
 	CheckRhs(1,1);

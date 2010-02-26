@@ -139,9 +139,9 @@
     algorithme du type méthode hybride de Powell. La Jacobienne peut être
     fournie (c'est fortement conseillé).</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 0 = fct(x) 
-      </programlisting>
+ ]]></programlisting>
 
     <para><literal>fct</literal> est une fonction "externe" Cette fonction
     renvoie <literal>v=fct(x)</literal> pour <literal>x</literal>
@@ -149,25 +149,25 @@
 
     <para>La séquence d'appel de <literal>fct</literal> est :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 [v]=fct(x).
-      </programlisting>
+ ]]></programlisting>
 
     <para>Si <literal>fct</literal> est une chaîne de caractères, elle désigne
     le nom d'une subroutine Fortran ou C liée dynamiquement à Scilab, avec
     comme liste d'appel Fortran :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 fct(n,x,v,iflag)
 integer n,iflag
 double precision x(n),v(n)
-      </programlisting>
+ ]]></programlisting>
 
     <para>ou alors pour une routine C :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 fct(int *n, double x[],double v[],int *iflag)
-      </programlisting>
+ ]]></programlisting>
 
     <para>(voir <literal>link</literal>).</para>
 
@@ -177,9 +177,9 @@ fct(int *n, double x[],double v[],int *iflag)
 
     <para>La séquence d'appel de <literal>jac</literal> est :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 [v]=jac(x).
-      </programlisting>
+ ]]></programlisting>
 
     <para>Si <literal>jac</literal> est une chaîne de caractères, elle désigne
     le nom d'une subroutine Fortran ou C liée dynamiquement à Scilab. Les
@@ -190,7 +190,7 @@ fct(int *n, double x[],double v[],int *iflag)
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // un exemple simple
 a=[1,7;2,8];b=[10;11];
 deff('[y]=fsol1(x)','y=a*x+b');
@@ -199,10 +199,11 @@ deff('[y]=fsolj1(x)','y=a');
 a*xres+b
 [xres]=fsolve([100;100],fsol1,fsolj1);
 a*xres+b
-// voir routines/default/Ex-fsolve.f
+
+// voir SCI/modules/optimization/sci_gateway/fortran/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -212,8 +213,6 @@ a*xres+b
       <member><link linkend="external">external</link></member>
 
       <member><link linkend="qpsolve">qpsolve</link></member>
-
-      <member><link linkend="linpro">linpro</link></member>
 
       <member><link linkend="optim">optim</link></member>
     </simplelist>

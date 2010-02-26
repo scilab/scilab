@@ -37,11 +37,9 @@ intppty(fun)</synopsis>
     <para>
     In the first and default way, the arguments are passed by value.
     With the following syntax:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 foo(A,1+2)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     the argument associated with <literal>A</literal> will be passed by value (a copy
     of <literal>A</literal> is made before <literal>foo</literal> is called, and
@@ -53,11 +51,9 @@ foo(A,1+2)
     done). <literal>intppty(fun)</literal> with <literal>fun&gt;0</literal> tells Scilab that the
     interface with number <literal>fun</literal> can handle arguments passed by
     reference. With the following syntax:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 foo(A,1+2)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     the argument associated with <literal>A</literal> will be passed by reference, and
     the argument associated with <literal>1+2</literal> will be passed by value.</para>

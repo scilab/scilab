@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,18 +35,18 @@ int set_axes_bounds_property( sciPointObj * pobj, size_t stackPointer, int value
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"axes_bounds") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "axes_bounds");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_bounds") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
   if ( nbRow * nbCol != 4 )
   {
-    Scierror(999, _("Wrong size for argument #%d: %d elements expected.\n"),2,4);
+    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "axes_bounds", 4);
     return SET_PROPERTY_ERROR ;
   }
   

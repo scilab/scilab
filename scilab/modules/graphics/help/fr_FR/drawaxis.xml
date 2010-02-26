@@ -122,7 +122,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d(1:10,1:10,1,"020")
 // axe horizontal
 drawaxis(x=2:7,y=4,dir='u',tics='v')

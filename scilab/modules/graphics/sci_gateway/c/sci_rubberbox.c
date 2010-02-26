@@ -14,7 +14,7 @@
 /* file: sci_rubberbox.c                                                  */
 /* desc : interface for rubberbox routine                                 */
 /*------------------------------------------------------------------------*/
-#include "sci_rubberbox.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"

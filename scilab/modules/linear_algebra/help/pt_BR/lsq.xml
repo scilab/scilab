@@ -94,8 +94,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //Construindo os dados
 x=(1:10)';
 
@@ -116,9 +115,7 @@ b=rand(4,1);
 X1=lsq(A,b)
 X2=A\b
 [A*X1-b, A*X2-b] //os resíduos são os mesmos
-
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

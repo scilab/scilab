@@ -7,9 +7,6 @@
 # Please see in SCI/tools/localization for localization management
 #
 
-SLATEC_SOURCES = src/fortran/slatec/dtensbs.f \
-src/fortran/slatec/pchim.f
-
 INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
 src/fortran/dspfit.f \
 src/fortran/cshep2d.f
@@ -43,7 +40,7 @@ pkglib_LTLIBRARIES = libsciinterpolation.la
 
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciinterpolation_la_SOURCES = $(SLATEC_SOURCES) $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -71,9 +68,5 @@ libsciinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 ####�interpolation : gateway declaration ####
 libsciinterpolation_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
-
-####�interpolation : include files ####
-libsciinterpolation_la_includedir=$(pkgincludedir)/interpolation
-libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -70,11 +70,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   recompilefunction("asinh","p")
-   [flist,compiled,profilable,called] = listfunctions();
-   flist(profilable)
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+recompilefunction("asinh","p")
+[flist,compiled,profilable,called] = listfunctions();
+flist(profilable)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -83,7 +83,7 @@
         <link linkend="function">function</link>
       </member>
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="deff">deff</link>

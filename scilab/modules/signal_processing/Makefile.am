@@ -5,8 +5,7 @@
 
 SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
 
-SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
-src/fortran/degree.f \
+SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
 src/fortran/parcha.f \
 src/fortran/ouch.f \
 src/fortran/dfftbi.f \
@@ -72,29 +71,21 @@ src/fortran/dfftmx.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_remez.c \
 sci_gateway/c/sci_rpem.c \
 sci_gateway/c/sci_corr.c \
-sci_gateway/c/sci_ffir.c \
-sci_gateway/c/sci_fiir.c \
 sci_gateway/c/sci_amell.c \
 sci_gateway/c/gw_signal.c \
 sci_gateway/c/sci_delip.c \
 sci_gateway/c/sci_fft.c \
 sci_gateway/c/sci_syredi.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_delip.f \
-sci_gateway/fortran/sci_fft.f \
-sci_gateway/fortran/sci_syredi.f \
-sci_gateway/fortran/sci_remez.f \
-sci_gateway/fortran/sci_rpem.f \
-sci_gateway/fortran/sci_corr.f \
-sci_gateway/fortran/sci_fiir.f \
-sci_gateway/fortran/sci_amell.f \
-sci_gateway/fortran/bgetx.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
 					-I$(top_srcdir)/modules/output_stream/includes \
 					-I$(top_srcdir)/modules/dynamic_link/includes \
+					-I$(top_srcdir)/modules/api_scilab/includes \
+					-I$(top_srcdir)/modules/statistics/includes \
 					-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la

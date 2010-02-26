@@ -39,12 +39,12 @@ whos -name nam</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 lines(0) 	
 whos()
 whos -type boolean
 whos -name %
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

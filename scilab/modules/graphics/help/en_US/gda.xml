@@ -48,35 +48,32 @@ a = get("default_axes")</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-     
-    a=gda() // get the handle of the model axes 
-    // set its' properties
-    a.box="off";
-    a.foreground=2;
-    a.labels_font_size=3;
-    a.labels_font_color=5;
-    a.sub_tics=[5 5 3];
-    a.x_location="top";
+    <programlisting role="example"><![CDATA[ 
+a=gda() // get the handle of the model axes 
+// set its' properties
+a.box="off";
+a.foreground=2;
+a.labels_font_size=3;
+a.labels_font_color=5;
+a.sub_tics=[5 5 3];
+a.x_location="top";
 
-    //now used the model axes for drawing
-    subplot(211) //create an axes entity
-    plot2d() 
+//now used the model axes for drawing
+subplot(211) //create an axes entity
+plot2d() 
 
-   // set other model's properties
-    a.background=color('gray')
-    a.grid=[5 5 5];
-    subplot(212)
-    t=0:0.1:5*%pi; 
-    plot2d(sin(t),cos(t)) 
-
+// set other model's properties
+a.background=color('gray')
+a.grid=[5 5 5];
+subplot(212)
+t=0:0.1:5*%pi; 
+plot2d(sin(t),cos(t)) 
  
-    set(a,"default_values",1); // return to the  default values of the model
-                               // see sda() function
-    clf()
-    plot2d(sin(t),cos(t))
-
-  ]]></programlisting>
+set(a,"default_values",1); // return to the  default values of the model
+                           // see sda() function
+clf()
+plot2d(sin(t),cos(t))
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

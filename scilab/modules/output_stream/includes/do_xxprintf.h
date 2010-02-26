@@ -14,6 +14,7 @@
 #define __DO_XXPRINTF_H__
 
 #include <stdio.h>
+#include "dynlib_output_stream.h"
 
 #define VPTR void * 
 #define RET_END -2
@@ -24,6 +25,6 @@
 #define MISMATCH -4
 #define NOT_ENOUGH_ARGS -5
 
-int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcnt, int lcount, char **strv);
+OUTPUT_STREAM_IMPEXP int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcnt, int lcount, char **strv);
 
 #endif /* __DO_XXPRINTF_H__ */

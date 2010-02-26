@@ -55,35 +55,32 @@
   <PRIMITIVE gatewayId="13" primitiveId="25" primitiveName="delbpt" />
   <PRIMITIVE gatewayId="13" primitiveId="26" primitiveName="dispbpt" />
   <PRIMITIVE gatewayId="13" primitiveId="27" primitiveName="funcprot" />
-  <PRIMITIVE gatewayId="13" primitiveId="28" primitiveName="whereis" />
-  <PRIMITIVE gatewayId="13" primitiveId="29" primitiveName="where" />
-  <PRIMITIVE gatewayId="13" primitiveId="30" primitiveName="havewindow" />
-  <PRIMITIVE gatewayId="13" primitiveId="31" primitiveName="stacksize" />
-  <PRIMITIVE gatewayId="13" primitiveId="32" primitiveName="mtlb_mode" />
-  <PRIMITIVE gatewayId="13" primitiveId="33" primitiveName="clear" />
-  <PRIMITIVE gatewayId="13" primitiveId="34" primitiveName="what" />
-  <PRIMITIVE gatewayId="13" primitiveId="35" primitiveName="sciargs" />
-  <PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="ieee" />
-  <PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="typename" />
-  <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="global" />
-  <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="clearglobal" />
-  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="isglobal" />
-  <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="gstacksize" />
-  <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="intppty" />
-  <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="lasterror" />
-  <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="getversion" />
-  <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="macr2tree" />
-  <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="getos" />
-  <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="banner" />
-  <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="getmemory" />
-  <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="getmd5" />
-  <PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="getmodules" />
-  <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="with_module" />
-  <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="librarieslist" />
-  <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="libraryinfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="getdebuginfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="readgateway" />
-  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="exit" />
+  <PRIMITIVE gatewayId="13" primitiveId="28" primitiveName="where" />
+  <PRIMITIVE gatewayId="13" primitiveId="29" primitiveName="havewindow" />
+  <PRIMITIVE gatewayId="13" primitiveId="30" primitiveName="stacksize" />
+  <PRIMITIVE gatewayId="13" primitiveId="31" primitiveName="mtlb_mode" />
+  <PRIMITIVE gatewayId="13" primitiveId="32" primitiveName="clear" />
+  <PRIMITIVE gatewayId="13" primitiveId="33" primitiveName="what" />
+  <PRIMITIVE gatewayId="13" primitiveId="34" primitiveName="sciargs" />
+  <PRIMITIVE gatewayId="13" primitiveId="35" primitiveName="ieee" />
+  <PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="typename" />
+  <PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="global" />
+  <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="clearglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="isglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="gstacksize" />
+  <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="intppty" />
+  <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="lasterror" />
+  <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="getversion" />
+  <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="macr2tree" />
+  <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="getos" />
+  <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="banner" />
+  <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="getmemory" />
+  <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="getmd5" />
+  <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="getmodules" />
+  <PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="with_module" />
+  <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="getdebuginfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="readgateway" />
+  <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="exit" />
   <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
   
 </GATEWAY>

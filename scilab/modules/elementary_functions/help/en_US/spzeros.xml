@@ -91,9 +91,9 @@ sp=spzeros(A)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 sum(spzeros(1000,1000))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

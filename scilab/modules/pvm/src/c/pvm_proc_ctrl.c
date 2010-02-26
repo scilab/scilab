@@ -30,7 +30,7 @@
      use HeapAlloc and VirtualAlloc (for scilab stack)
      Correction Bug 1576
      n=10000
-     xbasc();
+     clf();
      plot2d([0,1],[0,n],0)
      xpols=[zeros(1,n); ones(2,n); zeros(1,n)];
      ypols=[2:n+1; 2:n+1; 1:n; 1:n];
@@ -225,10 +225,10 @@ char *scipvm_error_msg(int err)
     case PvmNotImpl:     return _("Function not implemented");     break;
     case PvmDSysErr:     return _("Pvmd system error");     break;
     case PvmBadVersion:  return _("Pvmd-pvmd protocol mismatch");     break;
-    case PvmOutOfRes:    return _("Out of ressources");     break;
+    case PvmOutOfRes:    return _("Out of resources");     break;
     case PvmDupHost:     return _("Host already configured (Duplicate host)");     break;
     case PvmCantStart:   return _("Failed to exec new slave pvmd");     break;
-    case PvmAlready:     return _("Already oing operation");     break;
+    case PvmAlready:     return _("Already doing operation");     break;
     case PvmNoTask:      return _("No such task");     break;
 #ifdef PVM_MAJOR_VERSION 
     case PvmNotFound:    return _("PVM not found");     break;

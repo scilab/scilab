@@ -12,9 +12,10 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __INTIALIZESHELL_H__
 #define __INTIALIZESHELL_H__
+#include "dynlib_shell.h"
 #include "BOOL.h"
 
-BOOL InitializeShell(void);
+SHELL_IMPEXP BOOL InitializeShell(void);
 
 #endif /* __INTIALIZESHELL_H__ */
 /*--------------------------------------------------------------------------*/ 

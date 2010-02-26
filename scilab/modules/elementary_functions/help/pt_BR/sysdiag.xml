@@ -62,17 +62,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
- s=poly(0,'s')
- sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
- sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
-
- s=poly(0,'s')
- sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
- sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s')
+sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+ ]]></programlisting>
   </refsection>
 
   <refsection>

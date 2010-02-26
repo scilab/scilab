@@ -31,15 +31,17 @@ int api_Rhs(int* _piKey)
 
 	if(pStr == NULL)
 	{
+		std::cout << "pStr == NULL" << std::endl;
 		return 0;
 	}
 
-	if(pStr->m_pin == NULL)
+	if(pStr->m_pIn == NULL)
 	{
+		std::cout << "pStr->m_pin == NULL" << std::endl;
 		return 0;
 	}
 
-	return (int)pStr->m_pin->size();
+	return (int)pStr->m_pIn->size();
 }
 
 int api_Lhs(int* _piKey)
@@ -83,12 +85,27 @@ int api_CheckLhs(int _iMin, int _iMax, int* _piKey)
 	return 1;
 }
 
-int* api_LhsVar(int _iVal)
+int* api_LhsVar(int _iVal, void* _pvCtx)
 {
-	return &api_fake_int;
+	//do nothing but don't crash
+	if(_pvCtx == NULL)
+	{
+		return &api_fake_int;
+	}
+
+	GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+
+	//do nothing but don't crash
+	if(_iVal > *pStr->m_piRetCount)
+	{
+		return &api_fake_int;
+	}
+	
+	int* pVal = &(pStr->m_pOutOrder[_iVal - 1]);
+	return pVal;
 }
 
 void api_OverLoad(int _iVal)
 {
-	sciprint("call overload %d\n", _iVal);
+	sciprint((char*)"call overload %d\n", _iVal);
 }

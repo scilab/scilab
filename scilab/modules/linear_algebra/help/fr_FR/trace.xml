@@ -44,7 +44,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=rand(3,3);
 trace(A)-sum(spec(A))
  ]]></programlisting>

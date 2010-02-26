@@ -37,7 +37,7 @@ clearglobal('nam1', ..,'namn')</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 global a b c
 a=1;b=2;c=3;
 who('global')

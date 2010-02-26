@@ -18,7 +18,7 @@
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 extern TYPE_struct C2F(typnams);
-extern C2F(addtypename)(); /* fortran subroutine */
+extern int C2F(addtypename)(int *, char*, int *,int); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 static BOOL isTypeNameAlreadyExist(char *name);
 /*--------------------------------------------------------------------------*/
@@ -106,7 +106,7 @@ int addNamedType(char *name,int val)
 {
 	int ierr = 0;
 	if (isTypeNameAlreadyExist(name)) ierr = -1;
-	else C2F(addtypename)(&val,name,&ierr,strlen(name));
+	else C2F(addtypename)(&val,name,&ierr,(int)strlen(name));
 	return ierr;
 }
 /*--------------------------------------------------------------------------*/

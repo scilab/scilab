@@ -43,8 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -63,14 +64,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fftw.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fftwtmp.def &gt;nul&#x0D;&#x0A;copy ..\fftw_header.def+fftwtmp.def  ..\fftw.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="fftw.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -145,14 +146,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fftw.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fftwtmp.def &gt;nul&#x0D;&#x0A;copy ..\fftw_header.def+fftwtmp.def  ..\fftw.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="fftw.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -207,10 +208,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -230,14 +232,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fftw.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fftwtmp.def &gt;nul&#x0D;&#x0A;copy ..\fftw_header.def+fftwtmp.def  ..\fftw.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="fftw.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -300,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -320,14 +322,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n fftw.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fftwtmp.def &gt;nul&#x0D;&#x0A;copy ..\fftw_header.def+fftwtmp.def  ..\fftw.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scilab_Windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Scilab_Windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib scilab_windows.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="fftw.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -437,6 +439,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\dynlib_fftw.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fftw3.h"
 				>
 			</File>
@@ -454,38 +460,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_disposefftwlibrary.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fftw.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fftw_flags.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fftw_forget_wisdom.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fftwlibraryisloaded.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_get_fftw_wisdom.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_loadfftwlibrary.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_set_fftw_wisdom.h"
 				>
 			</File>
 			<File
@@ -514,10 +488,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\fftw_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

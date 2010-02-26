@@ -116,7 +116,15 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>inteiro (tempo inicial). kvect : vetor de inteiros</para>
+          <para>inteiro (tempo inicial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kvect</term>
+
+        <listitem>
+          <para>vetor de inteiros.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -335,17 +343,17 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
 
         <para>No caso Fortran:</para>
 
-        <programlisting>
-	      subroutine fex(n,t,y,ml,mu,J,nrpd) 
-	      integer n,ml,mu,nrpd
-	      double precision t,y(*),J(*)
-	      </programlisting>
+        <programlisting role = ""><![CDATA[ 
+subroutine fex(n,t,y,ml,mu,J,nrpd) 
+integer n,ml,mu,nrpd
+double precision t,y(*),J(*)
+ ]]></programlisting>
 
         <para>No caso C:</para>
 
-        <programlisting>
-	      void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
-	      </programlisting>
+        <programlisting role = ""><![CDATA[ 
+void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
+ ]]></programlisting>
 
         <para><literal>jac(n,t,y,ml,mu,J,nrpd)</literal>. Na maior parte dos
         casos, você não tem que se referir a <literal>ml</literal>,
@@ -376,58 +384,56 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    // ----------  EDO simples de uma dimensão (função externa do Scilab)
-    // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
-    function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
-    y0=0;t0=0;t=0:0.1:%pi;
-    y=ode(y0,t0,t,f)
-    plot(t,y)
+    <programlisting role="example"><![CDATA[ 
+// ----------  EDO simples de uma dimensão (função externa do Scilab)
+// dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,f)
+plot(t,y)
 
-    // ---------- EDO simples de uma dimensão (função externa codificada em C)
-    ccode=['#include &lt;math.h&gt;'
-	   'void myode(int *n,double *t,double *y,double *ydot)'
-	   '{'
-	   '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
-	   '}']
-    mputl(ccode,TMPDIR+'/myode.c') //criando o arquivo C
-    ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
-    exec(TMPDIR+'/loader.sce') //linking incremental
-    y0=0;t0=0;t=0:0.1:%pi;
-    y=ode(y0,t0,t,'myode');
+// ---------- EDO simples de uma dimensão (função externa codificada em C)
+ccode=['#include <math.h>'
+       'void myode(int *n,double *t,double *y,double *ydot)'
+       '{'
+       '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
+       '}']
+mputl(ccode,TMPDIR+'/myode.c') //criando o arquivo C
+ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
+exec(TMPDIR+'/loader.sce') //linking incremental
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,'myode');
 	
-    // ---------- Simulação de dx/dt = A x(t) + B u(t) com u(t)=sin(omega*t),
-    // x0=[1;0]
-    // solução x(t) desejada em t=0.1, 0.2, 0.5 ,1.
-    // A e a função u são passados para a função do lado direito em uma lista. 
-    // B e omega são passados como variáveis globais
-    function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
-    function ut=u(t),ut=sin(omega*t),endfunction
-    A=[1 1;0 2];B=[1;1];omega=5;
-    ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+// ---------- Simulação de dx/dt = A x(t) + B u(t) com u(t)=sin(omega*t),
+// x0=[1;0]
+// solução x(t) desejada em t=0.1, 0.2, 0.5 ,1.
+// A e a função u são passados para a função do lado direito em uma lista. 
+// B e omega são passados como variáveis globais
+function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
+function ut=u(t),ut=sin(omega*t),endfunction
+A=[1 1;0 2];B=[1;1];omega=5;
+ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
-    // ---------- Integração com notação matricial da equação diferencial de Ricatti
-    // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
-    // Solução em t=[1,2] 
-    function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
-    A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
-    t0=0;t=0:0.1:%pi;
-    X=ode(eye(A),0,t,ric)
-    //
-    // ---------- Notação matricial, computação de exp(A)
-    A=[1,1;0,2];
-    function xdot=f(t,x),xdot=A*x;,endfunction 
-    ode(eye(A),0,1,f)
-    ode("adams",eye(A),0,1,f)
+// ---------- Integração com notação matricial da equação diferencial de Ricatti
+// Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
+// Solução em t=[1,2] 
+function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
+A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+t0=0;t=0:0.1:%pi;
+X=ode(eye(A),0,t,ric)
 
-    // ---------- Notação de matriz, computação de exp(A) com matriz rígida, Jacobian fornecida
-    A=[10,0;0,-1];
-    function xdot=f(t,x),xdot=A*x,endfunction 
-    function J=Jacobian(t,y),J=A,endfunction 
-    ode("stiff",[0;1],0,1,f,Jacobian)
-    
-  </programlisting>
+// ---------- Notação matricial, computação de exp(A)
+A=[1,1;0,2];
+function xdot=f(t,x),xdot=A*x;,endfunction 
+ode(eye(A),0,1,f)
+ode("adams",eye(A),0,1,f)
+
+// ---------- Notação de matriz, computação de exp(A) com matriz rígida, Jacobian fornecida
+A=[10,0;0,-1];
+function xdot=f(t,x),xdot=A*x,endfunction 
+function J=Jacobian(t,y),J=A,endfunction 
+ode("stiff",[0;1],0,1,f,Jacobian)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -481,7 +487,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
     <title>Funções Utilizadas</title>
 
     <para>As rotinas associadas podem ser encontradas no diretório
-    routines/integ:</para>
+	    SCI/modules/differential_equations/src/fortran:</para>
 
     <para>lsode.f lsoda.f lsodar.f</para>
   </refsection>

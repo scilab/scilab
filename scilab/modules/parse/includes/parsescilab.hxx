@@ -93,29 +93,31 @@
      CASE = 308,
      FUNCTION = 309,
      ENDFUNCTION = 310,
-     CLASS = 311,
-     ENDCLASS = 312,
-     PROPERTY = 313,
-     FOR = 314,
-     WHILE = 315,
-     DO = 316,
-     BREAK = 317,
-     TRY = 318,
-     CATCH = 319,
-     RETURN = 320,
-     STR = 321,
-     ID = 322,
-     VARINT = 323,
-     VARFLOAT = 324,
-     NUM = 325,
-     PATH = 326,
-     COMMENT = 327,
-     BLOCKCOMMENT = 328,
-     TOPLEVEL = 329,
-     HIGHLEVEL = 330,
-     UPLEVEL = 331,
-     LISTABLE = 332,
-     FUNCTIONCALL = 333
+     HIDDENFUNCTION = 311,
+     HIDDEN = 312,
+     CLASS = 313,
+     ENDCLASS = 314,
+     PROPERTY = 315,
+     FOR = 316,
+     WHILE = 317,
+     DO = 318,
+     BREAK = 319,
+     TRY = 320,
+     CATCH = 321,
+     RETURN = 322,
+     STR = 323,
+     ID = 324,
+     VARINT = 325,
+     VARFLOAT = 326,
+     NUM = 327,
+     PATH = 328,
+     COMMENT = 329,
+     BLOCKCOMMENT = 330,
+     TOPLEVEL = 331,
+     HIGHLEVEL = 332,
+     UPLEVEL = 333,
+     LISTABLE = 334,
+     FUNCTIONCALL = 335
    };
 #endif
 /* Tokens.  */
@@ -173,29 +175,31 @@
 #define CASE 308
 #define FUNCTION 309
 #define ENDFUNCTION 310
-#define CLASS 311
-#define ENDCLASS 312
-#define PROPERTY 313
-#define FOR 314
-#define WHILE 315
-#define DO 316
-#define BREAK 317
-#define TRY 318
-#define CATCH 319
-#define RETURN 320
-#define STR 321
-#define ID 322
-#define VARINT 323
-#define VARFLOAT 324
-#define NUM 325
-#define PATH 326
-#define COMMENT 327
-#define BLOCKCOMMENT 328
-#define TOPLEVEL 329
-#define HIGHLEVEL 330
-#define UPLEVEL 331
-#define LISTABLE 332
-#define FUNCTIONCALL 333
+#define HIDDENFUNCTION 311
+#define HIDDEN 312
+#define CLASS 313
+#define ENDCLASS 314
+#define PROPERTY 315
+#define FOR 316
+#define WHILE 317
+#define DO 318
+#define BREAK 319
+#define TRY 320
+#define CATCH 321
+#define RETURN 322
+#define STR 323
+#define ID 324
+#define VARINT 325
+#define VARFLOAT 326
+#define NUM 327
+#define PATH 328
+#define COMMENT 329
+#define BLOCKCOMMENT 330
+#define TOPLEVEL 331
+#define HIGHLEVEL 332
+#define UPLEVEL 333
+#define LISTABLE 334
+#define FUNCTIONCALL 335
 
 
 

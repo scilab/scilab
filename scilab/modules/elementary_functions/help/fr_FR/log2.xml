@@ -46,9 +46,9 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 2.^(log2([1,%i,-1,-%i]))
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -1,59 +1,71 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-//#include "stack-c.h"
+#include "stack-c.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "basic_functions.h"
 #include "api_oldstack.h"
 
-int abs_double(int* _piAddress, int* _piKey);
-int abs_poly(int* _piAddress, int* _piKey);
-int abs_sparse(int* _piAddress, int* _piKey);
+SciErr abs_double(int* _piKey, int* _piAddress);
+SciErr abs_poly(int* _piKey, int* _piAddress);
+SciErr abs_sparse(int* _piKey, int* _piAddress);
 
+/*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 int sci_abs(char *fname, int* _piKey)
 {
-	int iRet			= 0;
+	SciErr sciErr;
+	int iType			= 0;
 	int* piAddr		= NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
 	{
 	case sci_matrix:
-		iRet = abs_double(piAddr, _piKey);
+		sciErr = abs_double(_piKey, piAddr);
 		break;
 	case sci_poly:
-		iRet = abs_poly(piAddr, _piKey);
+		sciErr = abs_poly(_piKey, piAddr);
 		break;
 	case sci_sparse:
-		iRet = abs_sparse(piAddr, _piKey);
+		sciErr = abs_sparse(_piKey, piAddr);
 		break;
 	default:
 		OverLoad(1);
 		break;
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;
@@ -62,10 +74,10 @@ int sci_abs(char *fname, int* _piKey)
 }
 
 /*Absolute value for a double*/
-int abs_double(int* _piAddress, int* _piKey)
+SciErr abs_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
 	double *pdblReal		= NULL;
@@ -73,15 +85,20 @@ int abs_double(int* _piAddress, int* _piKey)
 
 	double* pdblRealRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblRealRet[i] = dabsz(pdblReal[i], pdblImg[i]);
@@ -89,69 +106,87 @@ int abs_double(int* _piAddress, int* _piKey)
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblRealRet[i] = dabss(pdblReal[i]);
 		}
 	}
-	return 0;
+	return sciErr;
 }
 
 /*Absolute value for a polynomial ( absolute value of each coefficient )*/
-int abs_poly(int* _piAddress, int* _piKey)
+SciErr abs_poly(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i,j;
 	int iLen							= 0;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
 	int *piCoeff					= NULL;
-	char pstVarName[16];
+	char* pstVarName			= NULL;
 
 	double** pdblReal			= NULL;
 	double** pdblImg			= NULL;
 	double** pdblRealRet	= NULL;
 
-	iRet = getPolyVariableName(_piAddress, pstVarName, &iLen);
-	if(iRet)
+	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
+	}
+	
+	pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
+
+	sciErr = getPolyVariableName(_piKey, _piAddress, pstVarName, &iLen);
+	if(sciErr.iErr)
+	{
+		return sciErr;
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL, NULL);
-		if(iRet)
+		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
-		if(iRet)
+		piCoeff	= (int*)MALLOC(iRows * iCols * sizeof(int));
+		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblImg			= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblReal		= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblImg			= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblImg[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblReal[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblImg[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)MALLOC(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		sciErr = getComplexMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			for(j = 0 ; i < piCoeff[i] ; j++)
@@ -160,36 +195,40 @@ int abs_poly(int* _piAddress, int* _piKey)
 			}
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, _piKey);
+		sciErr = createMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 	else
 	{
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL);
-		if(iRet)
+		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, NULL, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL);
-		if(iRet)
+		piCoeff	= (int*)MALLOC(iRows * iCols * sizeof(int));
+		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, NULL);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
-		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblReal		= (double**)MALLOC(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblReal[i]			= (double*)MALLOC(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)MALLOC(sizeof(double) * piCoeff[i]);
 		}
 
-		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfPoly(_piKey, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -200,39 +239,39 @@ int abs_poly(int* _piAddress, int* _piKey)
 			}
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, _piKey);
+		sciErr = createMatrixOfPoly(_piKey, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 
-	if(iRet)
-	{
-		return 1;
-	}
-
-	free(piCoeff);
+	FREE(pstVarName);
+	FREE(piCoeff);
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		free(pdblReal[i]);
-		free(pdblRealRet[i]);
+		FREE(pdblReal[i]);
+		FREE(pdblRealRet[i]);
 	}
-	free(pdblReal);
-	free(pdblRealRet);
+	FREE(pdblReal);
+	FREE(pdblRealRet);
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			free(pdblImg[i]);
+			FREE(pdblImg[i]);
 		}
-		free(pdblImg);
+		FREE(pdblImg);
 	}
-	return 0;
+	return sciErr;
 }
 
 /*Absolute value for a sparse ( absolute value of each element )*/
-int abs_sparse(int* _piAddress, int* _piKey)
+SciErr abs_sparse(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
 	int iNbItem					= 0;
@@ -247,46 +286,50 @@ int abs_sparse(int* _piAddress, int* _piKey)
 	double *pdblImg			= NULL;
 	double *pdblRealRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		pdblRealRet = (double*)malloc(sizeof(double) * iNbItem);
+		pdblRealRet = (double*)MALLOC(sizeof(double) * iNbItem);
 
 		for(i = 0 ; i < iNbItem ; i++)
 		{
 			pdblRealRet[i] = dabsz(pdblReal[i], pdblImg[i]);
 		}
 
-		iRet = createSparseMatrix(Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
+		sciErr = createSparseMatrix(_piKey, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 	else
 	{
-		iRet = getSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
-		if(iRet)
+		sciErr = getSparseMatrix(_piKey, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		pdblRealRet = (double*)malloc(sizeof(double) * iNbItem);
+		pdblRealRet = (double*)MALLOC(sizeof(double) * iNbItem);
 
 		for(i = 0 ; i < iNbItem ; i++)
 		{
 			pdblRealRet[i] = dabss(pdblReal[i]);
 		}
 
-		iRet = createSparseMatrix(Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
+		sciErr = createSparseMatrix(_piKey, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
 	}
 
-	if(iRet)
-	{
-		return 1;
-	}
-	return 0;
+	return sciErr;
 }
 
 /*--------------------------------------------------------------------------*/

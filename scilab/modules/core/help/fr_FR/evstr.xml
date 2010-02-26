@@ -85,12 +85,12 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    a=1; b=2; Z=['a','b'] ; evstr(Z) 
-
-    a=1; b=2; Z=list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-    evstr(Z)
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=1; b=2; Z=['a','b'];
+evstr(Z) 
+a=1; b=2; Z=list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

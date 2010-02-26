@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="optimplotfunccount" 
+          xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>optimplotfunccount</refname>
+
+    <refpurpose>Plot the number of function evaluations of an optimization algorithm</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      optimplotfunccount ( x , optimValues , state )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      This function creates and updates a plot of the number of function evaluations, depending on the 
+      number of iterations. It is a pre-defined plot function which should be used as 
+      an option of the "PlotFcns" option.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Example</title>
+
+    <para>
+      In the following example, we use the <literal>optimplotfunccount</literal> function
+      for use with the <literal>fminsearch</literal> function.
+    </para>
+
+    <programlisting role="example"><![CDATA[ 
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "PlotFcns" , optimplotfunccount );
+[x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+    
+      <member>
+        <link linkend="optimset">optimset</link>
+      </member>
+      
+      <member>
+        <link linkend="fminsearch">fminsearch</link>
+      </member>
+      
+      <member>
+        <link linkend="optimplotx">optimplotx</link>
+      </member>
+      
+      <member>
+        <link linkend="optimplotfval">optimplotfval</link>
+      </member>
+      
+    </simplelist>
+  </refsection>
+
+</refentry>

@@ -180,3 +180,7 @@ sciIsAutomaticallyRedrawn
 sciSetFontStyle
 sciGetGridFront
 sciGetIsDisplayingLines
+sciGetMarkForegroundColor
+sciGetMarkBackgroundColor
+sciGetBackgroundColor
+sciGetForegroundColor

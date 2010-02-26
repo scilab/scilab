@@ -48,8 +48,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Example of how to use the hank macro for 
 //building a Hankel matrix from multidimensional 
 //data (covariance or Markov parameters e.g.)
@@ -64,16 +63,14 @@
 //being the transposition in scilab)
 //
 //we take here d=2 and n=64
-//
+
 c=rand(2,2*64)
-//
+
 //generate the hankel matrix H (with 4 bloc-rows and 5 bloc-columns)
 //from the data in c
-//
+
 H=hank(4,5,c);
-//
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

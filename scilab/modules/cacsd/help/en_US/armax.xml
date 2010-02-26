@@ -86,20 +86,16 @@
     <para>
     armax is used to identify the coefficients of a n-dimensional 
     ARX process</para>
-    <programlisting><![CDATA[
-
-   A(z^-1)y= B(z^-1)u + sig*e(t)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A(z^-1)y= B(z^-1)u + sig*e(t)
+ ]]></programlisting>
     <para>
     where e(t) is a n-dimensional white noise with variance I.
     sig  an nxn matrix and A(z) and B(z):</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
 B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     for the method see Eykhoff in trends and progress in system identification, page 96.
     with  
@@ -113,8 +109,7 @@ B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //-Ex1- Arma model : y(t) = 0.2*u(t-1)+0.01*e(t-1)
 ny=1,nu=1,sig=0.01;
 Arma=armac(1,[0,0.2],[0,1],ny,nu,sig)  //defining the above arma model
@@ -140,8 +135,7 @@ y=arsimul(Arma2,u); // y = output of Arma2 with input u
 // y(t) + a1*y(t-1) + a2 *y(t-2) =  sig*e(t)
 Arma1est=armax(2,-1,y,[]);
 [A,B,D]=arma2p(Arma1est)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

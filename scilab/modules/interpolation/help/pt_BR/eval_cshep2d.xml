@@ -83,14 +83,14 @@
     <para>Esta é a rotina de avaliação para a função de interpolação cúbica de
     Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto é :</para>
 
-    <programlisting>
-      zp(i) = S(xp(i),yp(i))   
-      dzpdx(i) = dS/dx(xp(i),yp(i))
-      dzpdy(i) = dS/dy(xp(i),yp(i))  
-      d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
-      d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
-      d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
-         </programlisting>
+    <programlisting role = ""><![CDATA[ 
+zp(i) = S(xp(i),yp(i))   
+dzpdx(i) = dS/dx(xp(i),yp(i))
+dzpdy(i) = dS/dy(xp(i),yp(i))  
+d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
+d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
+d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -108,7 +108,7 @@
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // ver seção de exemplos em cshep2d
 
 // este exemplo mostra o comportamento longe dos pontos de interpolação...
@@ -127,13 +127,13 @@ zp = eval_cshep2d(xp,yp,S);
 [xf,yf,zf] = genfac3d(xx,xx,zp);
 color = 2*ones(1,size(zf,2));
 // índices correspondentes à faceta na região de interpolação
-ind=find( mean(xf,"r")&gt;0 &amp; mean(xf,"r")&lt;1 &amp; mean(yf,"r")&gt;0 &amp; mean(yf,"r")&lt;1 );
+ind=find( mean(xf,"r")>0 & mean(xf,"r")<1 & mean(yf,"r")>0 & mean(yf,"r")<1 );
 color(ind)=3;
-xbasc();
+clf();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["região de extrapolação","região de interpolação"],[2 3],1)
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

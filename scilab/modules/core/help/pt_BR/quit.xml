@@ -53,25 +53,24 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-      // Saindo do Scilab
-      function foo(x),if x then quit,end,endfunction
-      foo(%t) //quits scilab
+    <programlisting role="example"><![CDATA[ 
+// Saindo do Scilab
+function foo(x),if x then quit,end,endfunction
+foo(%t) //quits scilab
 
-      //terminando instrução iniciada num contexto de pausa
-      function foo(x),if x then quit,end,endfunction
-      pause
-      foo(%t) //retorna ao nível de prompt principal
+//terminando instrução iniciada num contexto de pausa
+function foo(x),if x then quit,end,endfunction
+pause
+foo(%t) //retorna ao nível de prompt principal
 
-      function foo1(x),
-        mprintf('P1\n')
-        if x then pause, mprintf('P2\n'),end,
-        mprintf('P3\n')
-      endfunction
+function foo1(x),
+  mprintf('P1\n')
+  if x then pause, mprintf('P2\n'),end,
+  mprintf('P3\n')
+endfunction
      
-      foo1(%t) //enter com quit no prompt seguinte
-
-  </programlisting>
+foo1(%t) //enter com quit no prompt seguinte
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing <literal>[A,B,C,D]</literal>.</para>
+          <para> <literal>syslin</literal> list containing <literal>[A,B,C,D]</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -67,13 +67,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
 ss2tf(dscr(tf2ss(Sys),0.1))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,8 +18,8 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL isDrive(const char *strname)
 {
-	BOOL bOK=FALSE;
-	#ifdef _MSC_VER
+	BOOL bOK = FALSE;
+#ifdef _MSC_VER
 	if (strname)
 	{
 		if ( ((strlen(strname) == 2) || (strlen(strname) == 3)) && (strname[1]== ':') )
@@ -39,7 +38,34 @@ BOOL isDrive(const char *strname)
 			}
 		}
 	}
-	#endif
+#endif
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/ 
+BOOL isDriveW(const wchar_t *wcstrname)
+{
+	BOOL bOK = FALSE;
+#ifdef _MSC_VER
+	if (wcstrname)
+	{
+		if ( ((wcslen(wcstrname) == 2) || (wcslen(wcstrname) == 3)) && (wcstrname[1]== L':') )
+		{
+			if (wcslen(wcstrname) == 3)
+			{
+				if ( (wcstrname[2]!= L'\\') && (wcstrname[2]!= L'/') )
+				{
+					return FALSE;
+				}
+			}
+
+			if ( ( wcstrname[0] >= L'A' && wcstrname[0] <= L'Z' ) || ( wcstrname[0] >= L'a' && wcstrname[0] <= L'z' ) )
+			{
+				bOK = TRUE;
+			}
+		}
+	}
+#endif
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/ 
+

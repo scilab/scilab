@@ -181,16 +181,13 @@ dt=getdate(x)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 w=getdate()
 mprintf("Ano:%d,Mês:%d,Dia:%d",w(1),w(2),w(6));
 
 x=getdate("s")
 getdate(x)
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -25,18 +25,21 @@
     <refname>Boolean management</refname>
 
     <refpurpose>How to manage Scilab's boolean read and write process using
-    call_scilab</refpurpose>
+    call_scilab and api_scilab</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
     <para>This help describes how boolean and matrix of booleans can be handle
-    through the Call Scilab API.</para>
+    through the <link linkend="call_scilab">Call Scilab API</link> and <link linkend="api_scilab">api Scilab</link>.</para>
 
     <para>There are several functions which can be used to read / write from
     the memory of Scilab. These functions are described in dedicated
     pages.</para>
+
+	<para>Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+</para>
   </refsection>
 
   <refsection>
@@ -49,43 +52,57 @@
  *    F F F T ]
  * Note that it is done column by column
  */ 
- int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
- int rowB=2, colB=4; /* Size of the matrix */
- char variableNameB[] = "B";
- C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
+int rowB=2, colB=4; /* Size of the matrix */
+char variableNameB[] = "B";
 
- printf("Display from Scilab of B:\n");
- SendScilabJob("disp(B);"); /* Display B */
+/* Write it into Scilab's memory */
+createNamedMatrixOfBoolean(pvApiCtx, variableNameB, rowB, colB, B);
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); 
+ */
+
+printf("Display from Scilab of B:\n");
+SendScilabJob("disp(B);"); /* Display B */
  ]]></programlisting>
 
     <programlisting role="example"><![CDATA[ 
 /* Read the previously declared matrix of boolean B */
- int rowB_ = 0, colB_ = 0, lp_ = 0;
- int i = 0, j = 0;
- int *matrixOfBooleanB = NULL; /* Int instead of double */
+int rowB_ = 0, colB_ = 0, lp_ = 0;
+int i = 0, j = 0;
+int *matrixOfBooleanB = NULL; /* Int instead of double */
 
- char variableToBeRetrievedB[] = "B";
+char variableToBeRetrievedB[] = "B";
 
- /* First, retrieve the size of the matrix */
- C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+/* First, retrieve the size of the matrix */
+readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL);
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+ */
 
- /* Alloc the memory */
- matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
+/* Alloc the memory */
+matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
- /* Load the matrix */
- C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+/* Load the matrix */
+readNamedMatrixOfBoolean(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfBooleanB);
+/*
+ * Prior to Scilab 5.2:
+ * C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+ */
 
- printf("\n");
- printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
- for(j = 0 ; j < rowB_ ; j++)
+printf("\n");
+printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+for(j = 0 ; j < rowB_ ; j++)
+{
+ for(i = 0 ; i < colB_ ; i++)
  {
-  for(i = 0 ; i < colB_ ; i++)
-  {
-   /* Display the formated matrix ... the way the user expects */
-   printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
-  }
-  printf("\n"); /* New row of the matrix */
+  /* Display the formated matrix ... the way the user expects */
+  printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
  }
+ printf("\n"); /* New row of the matrix */
+}
  ]]></programlisting>
   </refsection>
 
@@ -93,13 +110,20 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="cwritechain">cwritebmat</link>, <link
-      linkend="creadchain">creadbmat</link>, <link
+<link linkend="api_scilab">api Scilab</link>,<link linkend="call_scilab">call_scilab</link>,
+      <member><link linkend="boolean_reading_API">API_Scilab: Boolean reading</link>,
+      <link linkend="boolean_writing_API">API_Scilab: Boolean writing</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
-      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
-      linkend="StringManagement_callscilab">String Management</link></member>
+      linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>,  <link
+      linkend="ComplexManagement_callscilab">Call_Scilab: Complex Management</link>, <link
+      linkend="StringManagement_callscilab">Call_Scilab: String Management</link>, <link
+      linkend="Double_management_reading_API">API_Scilab: Double Reading</link>, <link
+      linkend="Double_management_writing_API">API_Scilab: Double Writing</link>, <link
+      linkend="String_management_reading_API">API_Scilab: String Reading</link>, <link
+      linkend="String_management_writing_API">API_Scilab: String Writing</link>
+</member>
+
     </simplelist>
   </refsection>
 

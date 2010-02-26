@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,18 +30,19 @@
 /*------------------------------------------------------------------------*/
 int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if( sciGetEntityType(pobj) != SCI_POLYLINE )
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_vector");
+    return SET_PROPERTY_ERROR ;
+  }
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"interp_color_vector") ;
+    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "interp_color_vector");
     return SET_PROPERTY_ERROR ;
   }
 
-  if( sciGetEntityType(pobj) != SCI_POLYLINE )
-  {
-    Scierror(999, _("%s can only be set on %s objects.\n"),"interp_color_vector","Polyline");
-    return SET_PROPERTY_ERROR ;
-  }
+
 
   if( ( nbCol == 3 && sciGetNbPoints(pobj) == 3 ) || 
       ( nbCol == 4 && sciGetNbPoints(pobj) == 4 ) )

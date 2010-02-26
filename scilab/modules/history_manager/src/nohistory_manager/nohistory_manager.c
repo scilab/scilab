@@ -11,6 +11,7 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include "gw_history_manager.h"
 #include "HistoryManager.h"
 #include "InitializeHistoryManager.h"
 #include "TerminateHistoryManager.h"

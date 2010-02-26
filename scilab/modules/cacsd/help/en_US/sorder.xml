@@ -183,7 +183,7 @@ printw,ldwork,Ri))</synopsis>
       <varlistentry>
         <term>printw</term>
         <listitem>
-          <para>:(optional) switch for printing the warning messages.</para>
+          <para>(optional) switch for printing the warning messages.</para>
           <variablelist>
             <varlistentry>
               <term>=  </term>
@@ -207,8 +207,7 @@ printw,ldwork,Ri))</synopsis>
         <term>ldwork</term>
         <listitem>
           <para>(optional) the workspace size. Default : computed by the formulas</para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 nr = 2*( m + l )*s
 LDWORK = ( t - 2*s + 3 + 64 )*nr
 if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
@@ -216,8 +215,7 @@ if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
 else
    LDWORK = MIN( LDWORK, MAX( 2*nr, CSIZE/2 ) )
 end if
-   
-          ]]></programlisting>
+ ]]></programlisting>
           <para>
     LDWORK = MAX( minimum workspace size needed, LDWORK ) where CSIZE is the cache size in double precision words.
   </para>
@@ -274,15 +272,13 @@ end if
       [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);</para>
     <para>
     For f blocks (data sequences Yj, Uj, j = 1 : f):</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
 for j = 2 : f - 1
    R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
 end
 [R,n,sval,rcnd] = sorder(meth,alg,jobd,3,conct,s,Yf,Uf,tol);
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     sorder preprocesses the input-output data for estimating the matrices 
     of a linear time-invariant dynamical system, using Cholesky or (fast)
@@ -290,12 +286,10 @@ end
     N4SID), and then estimates the order of a discrete-time realization.</para>
     <para>
     The model structure is :</para>
-    <programlisting><![CDATA[
-
-      x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
-      y(k)   = Cx(k) + Du(k) + e(k),
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
     <para>
     where  
     x(k)  is the  n-dimensional state vector (at time k),</para>

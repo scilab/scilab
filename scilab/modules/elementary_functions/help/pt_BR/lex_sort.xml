@@ -80,12 +80,10 @@
     <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produz o mesmo
     resultado que a seguinte seqüência de instruções:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [N,k]=lex_sort(M(:,sel) [,'unique']);
 N=M(k,:)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>O flag (indicador) <literal>'unique'</literal> deve ser fornecido
     caso deseje-se reter apenas linhas únicas no resultado. Perceba que
@@ -96,16 +94,13 @@ N=M(k,:)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 M=round(2*rand(20,3));
 
 lex_sort(M)
 lex_sort(M,'unique')
 [N,k]=lex_sort(M,[1 3],'unique')
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

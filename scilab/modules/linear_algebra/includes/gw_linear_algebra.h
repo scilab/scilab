@@ -13,8 +13,9 @@
 
 #ifndef __GW_LINEAR_ALGEBRA__
 #define __GW_LINEAR_ALGEBRA__
+#include "dynlib_linear_algebra.h"
 #include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 #define SCI_DOUBLE 1
 #define STRING  10
@@ -26,35 +27,35 @@
 #define YES 1
 #define NO 0
 /*--------------------------------------------------------------------------*/
-int gw_linear_algebra(void);
+LINEAR_ALGEBRA_IMPEXP int gw_linear_algebra(void);
 /*--------------------------------------------------------------------------*/
-int C2F(intbackslash)(char *fname,unsigned long fname_len);
-int C2F(invnew)(char *fname,unsigned long fname_len);
-int C2F(intslash)(char *fname,unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(intbackslash)(char *fname,unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(invnew)(char *fname,unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(intslash)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 /* used in 'eig' */
-int sci_dsyev(char *fname, unsigned long fname_len);
-int sci_dgeev(char *fname, unsigned long fname_len);
-int sci_zgeev(char *fname, unsigned long fname_len);
-int sci_zheev(char *fname, unsigned long fname_len);
-int sci_dggev(char *fname, unsigned long fname_len);
-int sci_zggev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_dsyev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_dgeev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_zgeev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_zheev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_dggev(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(intbalanc)(char *fname,unsigned long fname_len);
-int C2F(intschur)(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len);
 
 //YaSp
-int C2F(intchol)(char *fname, int* _piKey);
-int C2F(intbdiagr)(char *fname, int* _piKey);
-int C2F(intsvd)(char *fname, int* _piKey);
-int C2F(intrcond)(char *fname, int* _piKey);
-int C2F(intqr)(char *fname, int* _piKey);
-int C2F(intlu)(char *fname, int* _piKey);
-int C2F(intlsq)(char *fname, int* _piKey);
-int C2F(intinv)(char *fname, int* _piKey);
-int C2F(inthess)(char *fname, int* _piKey);
-int C2F(inteig) (char *fname, int* _piKey);
-int C2F(intdet)(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_chol(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_bdiagr(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_svd(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_rcond(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_qr(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_lu(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_lsq(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_inv(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_hess(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_eig(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_det(char *fname, int* _piKey);
+LINEAR_ALGEBRA_IMPEXP int sci_balanc(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA__ */

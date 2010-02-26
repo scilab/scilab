@@ -14,6 +14,7 @@
 #ifndef __ZZLEDT_H__
 #define __ZZLEDT_H__
 
+#include "dynlib_shell.h"
 
 /**
 * line editor
@@ -25,7 +26,7 @@
 * @param mode
 * @param dummy1 (fortran)
 */
-void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,int *menusflag,int * modex,long int dummy1);
+SHELL_IMPEXP void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,int *menusflag,int * modex,long int dummy1);
 
 #endif /* __ZZLEDT_H__ */
 /*--------------------------------------------------------------------------*/

@@ -35,7 +35,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list</para>
+          <para> <literal>syslin</literal> list</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,11 +43,9 @@
   <refsection>
     <title>Description</title>
     <para><literal>obsv_mat</literal> returns the observability matrix:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 O=[C; CA; CA^2;...; CA^(n-1) ]
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

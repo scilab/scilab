@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;label=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,it,exprs]=getvalue('Set parameters Block',..
+    [ok,it,exprs]=scicos_getvalue('Set parameters Block',..
 	    ['Datatype(1=real double 2=Complex 3=int32 ...)'],list('vec',1),label)
     if ~ok then break,end
     if ((it<1)|(it>8)) message ("Datatype is not supported");ok=%f;end

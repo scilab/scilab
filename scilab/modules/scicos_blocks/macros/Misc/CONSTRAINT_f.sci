@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,num,exprs]=getvalue('Set Constraint block parameters',..
+    [ok,num,exprs]=scicos_getvalue('Set Constraint block parameters',..
 	'Set number of constraints',list('vec',1),exprs)
     if ~ok then break,end
     if num<=0 then

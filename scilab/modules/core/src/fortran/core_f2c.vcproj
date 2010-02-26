@@ -6,6 +6,7 @@
 	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	RootNamespace="core_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -431,10 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\eqid.c"
-				>
-			</File>
-			<File
 				RelativePath=".\errmgr.c"
 				>
 			</File>
@@ -723,10 +720,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_whereis.c"
-				>
-			</File>
-			<File
 				RelativePath=".\seteol.c"
 				>
 			</File>
@@ -932,10 +925,6 @@
 			</File>
 			<File
 				RelativePath=".\dtosci.f"
-				>
-			</File>
-			<File
-				RelativePath=".\eqid.f"
 				>
 			</File>
 			<File
@@ -1224,10 +1213,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_whereis.f"
 				>
 			</File>
 			<File

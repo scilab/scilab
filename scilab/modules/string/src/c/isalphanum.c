@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - Allan CORNET - 2009
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,13 +18,16 @@
 #include "isalphanum.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-BOOL *isalphanum(char *input_string)
+BOOL *isalphanumW(wchar_t *input_string, int *returnedSize)
 {
 	BOOL *returnedValues = NULL;
+	*returnedSize = 0;
+
 	if (input_string)
 	{
 		int i = 0;
-		int length_input_string = (int)strlen(input_string);
+		int length_input_string = (int)wcslen(input_string);
+		*returnedSize= length_input_string;
 
 		if (length_input_string > 0)
 		{
@@ -32,7 +36,7 @@ BOOL *isalphanum(char *input_string)
 			{
 				for (i = 0;i < length_input_string; i++)
 				{
-					if ( isalnum(input_string[i]) ) returnedValues[i] = TRUE;
+					if ( iswalnum(input_string[i]) ) returnedValues[i] = TRUE;
 					else returnedValues[i] = FALSE;
 				}
 			}

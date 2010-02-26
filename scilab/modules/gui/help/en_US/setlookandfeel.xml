@@ -36,7 +36,7 @@ bok=setlookandfeel(lnf)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 currentlnf = getlookandfeel();
 
 // Look and feel Windows Classic
@@ -73,8 +73,7 @@ sleep(3000);
 
 // restore previous look and feel
 setlookandfeel(currentlnf)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

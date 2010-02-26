@@ -68,7 +68,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=1;
 isdef('A')
 clear A
@@ -87,7 +87,7 @@ function go()
   level1()
 endfunction
 go()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

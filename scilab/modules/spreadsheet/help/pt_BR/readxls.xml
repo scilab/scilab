@@ -79,19 +79,19 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
-    // algumas operações básicas sobre Sheets
-    typeof(Sheets)
-    s1=Sheets(1) //obtendo a primeira folha
-    typeof(s1)
-    s1.value //obtendo o campo do valor da primeira folha
-    s1.text  //obtendo o campo do texto da primeira folha
-    s1(2,:)  //obtendo a segunda linha da folha
-    typeof(s1(2,:))
+    <programlisting role="example"><![CDATA[ 
+Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
+// algumas operações básicas sobre Sheets
+typeof(Sheets)
+s1=Sheets(1) //obtendo a primeira folha
+typeof(s1)
+s1.value //obtendo o campo do valor da primeira folha
+s1.text  //obtendo o campo do texto da primeira folha
+s1(2,:)  //obtendo a segunda linha da folha
+typeof(s1(2,:))
 
-    editvar s1
- </programlisting>
+editvar s1
+ ]]></programlisting>
   </refsection>
 
   <refsection>

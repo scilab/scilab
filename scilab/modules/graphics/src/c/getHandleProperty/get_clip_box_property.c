@@ -41,7 +41,7 @@ int get_clip_box_property( sciPointObj * pobj )
 	else
   { 
 		/* error in retriveing clipping */
-		Scierror(999, _("%s property does not exist for this handle.\n"),"clip_box");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
 		return -1;
   }
 }

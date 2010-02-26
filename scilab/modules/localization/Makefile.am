@@ -17,6 +17,10 @@ if NEED_JAVA
 LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
 endif
 
+if IS_MACOSX
+LOCALIZATION_C_SOURCES += src/c/getLocaleInfo_Apple.c
+endif
+
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
@@ -41,11 +45,8 @@ pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 if IS_MACOSX
-libscilocalization_la_LDFLAGS += -lintl
-endif
-
-if IS_MACOSX
-libscilocalization_la_LDFLAGS += -lintl
+libscilocalization_la_LDFLAGS += -lintl -framework Cocoa
+libscilocalization_la_CFLAGS += -lintl -framework Cocoa
 endif
 
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
@@ -74,12 +75,9 @@ libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 
 
 ####localization : include files ####
-libscilocalization_la_includedir=$(pkgincludedir)/localization
+libscilocalization_la_includedir=$(pkgincludedir)
 libscilocalization_la_include_HEADERS = includes/localization.h \
-includes/gw_localization.h \
-includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
-includes/TerminateLocalization.h \
 includes/charEncoding.h
 
 if GUI

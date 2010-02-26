@@ -54,7 +54,7 @@ for i=1:5:100
           xclick();
           xdel();
     end  
-    xbasc();
+    clf();
 end;
 
 

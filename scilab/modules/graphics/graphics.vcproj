@@ -43,8 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -63,7 +64,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -71,7 +72,7 @@
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile="graphics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -127,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -146,7 +147,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -154,7 +155,7 @@
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile="graphics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -209,9 +210,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -231,7 +233,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -239,7 +241,7 @@
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile="graphics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -301,7 +303,7 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -321,7 +323,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n graphics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphicstmp.def &gt;nul&#x0D;&#x0A;copy ..\graphics_header.def+graphicstmp.def  ..\graphics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Gui_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scigui.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)scilab_windows_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilab_windows.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -329,7 +331,7 @@
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
-				ModuleDefinitionFile="graphics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -1010,6 +1012,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Interaction.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\loadTextRenderingAPI.c"
 				>
 			</File>
 			<File
@@ -1931,6 +1937,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\dynlib_graphics.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Fec.h"
 				>
 			</File>
@@ -2023,270 +2033,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_addcb.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_champ.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_clear_pixmap.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_contour2di.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_copy.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_delete.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_demo.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_draw.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_drawaxis.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_drawlater.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_drawnow.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fec.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_geom3d.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_get.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_glue.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_grayplot.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_is_handle_valid.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_Legend.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_matplot.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_matplot1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_move.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_newaxes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_param3d.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_param3d1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_plot2d.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_plot2d1.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_plot3d.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_relocate_handle.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_rotate_axes.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_rubberbox.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_set.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_show_pixmap.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_show_window.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_showalluimenushandles.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_StringBox.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_swap_handles.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_unglue.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_unzoom.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_winsid.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xarc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xarcs.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xarrows.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xchange.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xclick.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xdel.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xfarcs.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xfpoly.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xfpolys.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xget.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xgetech.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xgetmouse.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xgraduate.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xgrid.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xlfont.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xname.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xpoly.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xpolys.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xrect.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xrects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xsegs.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xset.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xsetech.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xstring.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xstringb.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xtitle.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_zoom_rect.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sciCall.h"
 				>
 			</File>
@@ -2343,7 +2089,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\XsetXgetParameters.h"
+				RelativePath=".\src\c\XsetXgetParameters.h"
 				>
 			</File>
 		</Filter>
@@ -2358,10 +2104,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\graphics_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

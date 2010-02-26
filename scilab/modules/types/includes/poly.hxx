@@ -28,8 +28,10 @@ namespace types
 									Poly(double** _pdblCoefR, int _iRank);
 									Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
 									Poly(Double** _poCoefR, int _iRank);
-		virtual				~Poly();
+									~Poly();
 
+	  // FIXME : Should not return NULL;
+	  Poly*					clone() { return NULL; }
 
 		Poly*					getAsSinglePoly(void);
 		/*Config management*/
@@ -50,6 +52,8 @@ namespace types
 		void					CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
 		void					toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 		void					toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+
+		std::string			toString(int _iPrecision, int _iLineLen);
 
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);

@@ -24,11 +24,11 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
-       function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
-       <instructions>
-        endfunction
-   ]]></programlisting>
+    <programlisting><![CDATA[ 
+function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
+  <instructions>
+endfunction
+ ]]></programlisting>
     <para>  où</para>
     <variablelist>
       <varlistentry>
@@ -68,7 +68,7 @@
       <varlistentry>
         <term>&lt;instructions&gt;</term>
         <listitem>
-          <para>une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>getf</literal>.</para>
+          <para>une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>exec</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,7 +80,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // définition en ligne
 function [x,y]=myfct(a,b)
 x=a+b
@@ -103,11 +103,8 @@ endfunction
 
 foo(%pi/3)
 
-
 // définition dans un script
 exec SCI/modules/elementary_functions/macros/asinh.sci;
-
-
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -118,9 +115,6 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
       </member>
       <member>
         <link linkend="exec">exec</link>
-      </member>
-      <member>
-        <link linkend="getf">getf</link>
       </member>
     </simplelist>
   </refsection>

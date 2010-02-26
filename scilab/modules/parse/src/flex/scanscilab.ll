@@ -110,12 +110,20 @@ assign			"="
 %%
 
 "if"		{
-  Parser::getInstance()->pushControlStatus(Parser::WithinIf);
-  return scan_throw(IF);
+	Parser::getInstance()->pushControlStatus(Parser::WithinIf);
+	return scan_throw(IF);
 }
 "then"		return scan_throw(THEN);
-"else"		return scan_throw(ELSE);
-"elseif"	return scan_throw(ELSEIF);
+"else" {
+	Parser::getInstance()->popControlStatus();
+	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
+	return scan_throw(ELSE);
+}
+"elseif" {
+	Parser::getInstance()->popControlStatus();
+	Parser::getInstance()->pushControlStatus(Parser::WithinElseIf);
+	return scan_throw(ELSEIF);
+}
 "end"		{
   Parser::getInstance()->popControlStatus();
   return scan_throw(END);
@@ -125,27 +133,48 @@ assign			"="
 "case"		return scan_throw(CASE);
 
 
-"function"	return scan_throw(FUNCTION);
-"endfunction"	return scan_throw(ENDFUNCTION);
-
+"function" {
+	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	return scan_throw(FUNCTION);
+}
+"endfunction" {
+	Parser::getInstance()->popControlStatus();
+	return scan_throw(ENDFUNCTION);
+}
+"#function"	{
+	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	return scan_throw(HIDDENFUNCTION);
+}
+"hidden"	return scan_throw(HIDDEN);
 
 "class"		return scan_throw(CLASS);
 "endclass"	return scan_throw(ENDCLASS);
 "property"	return scan_throw(PROPERTY);
 
 
-"for"		{
+"for" {
   Parser::getInstance()->pushControlStatus(Parser::WithinFor);
   return scan_throw(FOR);
 }
 
-"while"		return scan_throw(WHILE);
+"while"	{
+	Parser::getInstance()->pushControlStatus(Parser::WithinWhile);
+	return scan_throw(WHILE);
+}
+
 "do"		return scan_throw(DO);
 "break"		return scan_throw(BREAK);
 
 
-"try"		return scan_throw(TRY);
-"catch"		return scan_throw(CATCH);
+"try" {
+	Parser::getInstance()->pushControlStatus(Parser::WithinTry);
+	return scan_throw(TRY);
+}
+
+"catch" {
+	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
+	return scan_throw(CATCH);
+}
 "return"	return scan_throw(RETURN);
 
 
@@ -184,10 +213,12 @@ assign			"="
 
 
 <INITIAL,MATRIX>{semicolon}		{
+	scan_step();
   return scan_throw(SEMI);
 }
 
 <INITIAL,MATRIX>{comma}			{
+	scan_step();
   return scan_throw(COMMA);
 }
 
@@ -304,7 +335,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(VARINT);
 }
 
@@ -325,7 +356,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(NUM);
 }
 
@@ -345,7 +376,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(ID);
 }
 

@@ -49,10 +49,8 @@ case "set" then
   
  while %t do
     [ln,fun] = where();  
-    if or(fun == "clickin") then // cas standard
-      gh_old_win = gcf();
+    if ~or(fun == "do_eval") then // cas standard
        [xx, yy, ok, gc] = edit_curv(xx, yy, 'axy', [' ',' ',' '], gc);
-      scf(gh_old_win);
     else
       ok = %t; 
     end // no need anymore to overload edit_curv in do_eval

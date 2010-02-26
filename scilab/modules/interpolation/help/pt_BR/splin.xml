@@ -97,10 +97,10 @@
           <para>este é o caso padrão, o spline cúbico é computado sob as
           seguintes condições (considerando n pontos x1,...,xn):</para>
 
-          <programlisting>
-    s'''(x2-) = s'''(x2+)
-    s'''(x{n-1}-) = s'''(x{n-1}+)
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s'''(x2-) = s'''(x2+)
+s'''(x{n-1}-) = s'''(x{n-1}+)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -112,10 +112,10 @@
           extremidades do intervalo que devem ser fornecidas como último
           argumento <literal>der</literal>:</para>
 
-          <programlisting>
-    s'(x1) = der(1)
-    s'(xn) = der(2)
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s'(x1) = der(1)
+s'(xn) = der(2)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -125,10 +125,10 @@
         <listitem>
           <para>o spline cúbico é computado sob as seguintes condições:</para>
 
-          <programlisting>
-    s''(x1) = 0
-    s''(xn) = 0
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s''(x1) = 0
+s''(xn) = 0
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -140,10 +140,10 @@
           deve verificar <emphasis>y1=yn</emphasis>) sob as seguintes
           condições:</para>
 
-          <programlisting>
-    s'(x1) = s'(xn)
-    s''(x1) = s''(xn)
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s'(x1) = s'(xn)
+s''(x1) = s''(xn)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -156,10 +156,10 @@
           para os <emphasis>di</emphasis> tais que s é monótono em cada
           intervalo:</para>
 
-          <programlisting>
-    if y(i) &lt;= y(i+1)  s é crescente em [x(i), x(i+1)] 
-    if y(i) &gt;= y(i+1)  s é decrescente em [x(i), x(i+1)] 
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+if y(i) <= y(i+1)  s é crescente em [x(i), x(i+1)] 
+if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)] 
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -218,7 +218,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1
 deff("y=runge(x)","y=1 ./(1 + x.^2)")
 a = -5; b = 5; n = 11; m = 400;
@@ -228,7 +228,7 @@ d = splin(x, y);
 xx = linspace(a, b, m)';
 yyi = interp(xx, x, y, d);
 yye = runge(xx);
-xbasc()
+clf()
 plot2d(xx, [yyi yye], style=[2 5], leg="interpolação por@função exata")
 plot2d(x, y, -9)
 xtitle("Intepolação da função de Runge")
@@ -243,13 +243,13 @@ xx = linspace(a,b,m)';
 yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
 yf = interp(xx, x, y, splin(x,y,"fast"));
 ym = interp(xx, x, y, splin(x,y,"monotone"));
-xbasc()
+clf()
 plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
        leg="fast@monotone@spline not a knot")
 plot2d(x,y,-9, strf="000")  // para mostrar pontos de interpolação
 xtitle("Vários splines e sub-splines em dados aleatórios")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

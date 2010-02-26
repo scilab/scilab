@@ -46,7 +46,8 @@ state1=historymanager()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[displayhistory()
+    <programlisting role="example"><![CDATA[ 
+displayhistory()
 backupstate=historymanager()
 historymanager('off')
 displayhistory()
@@ -54,9 +55,7 @@ historymanager('on')
 loadhistory()
 displayhistory()
 historymanager(backupstate)
-
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

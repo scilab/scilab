@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -22,12 +22,12 @@
 /*--------------------------------------------------------------------------*/
 int sci_number_properties(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int i;
 	int iRet				= 0;
 
 	int iRows				= 0;
 	int iCols				= 0;
-	int* piLen			= NULL;
 	char **pstData	= NULL;
 	int* piAddr			= NULL;
 
@@ -39,46 +39,17 @@ int sci_number_properties(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(getVarType(piAddr) != sci_strings)
-	{
-		Err = 1;
-		Error(55);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	iRet = getMatrixOfString(piAddr, &iRows, &iCols, NULL, NULL);
+	iRet = getAllocatedMatrixOfString(_piKey, piAddr, &iRows, &iCols, &pstData);
 	if(iRet)
 	{
-		return 1;
-	}
-
-	if(iRows != 1 || iCols != 1)
-	{
-		return 1;
-	}
-	
-	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-	iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, NULL);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	pstData	= (char**)malloc(sizeof(char*) * iRows * iCols);
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+1 for null termination
-	}
-
-	iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, pstData);
-	if(iRet)
-	{
+		freeAllocatedMatrixOfString(iRows, iCols, pstData);
 		return 1;
 	}
 
@@ -143,24 +114,17 @@ int sci_number_properties(char *fname, int* _piKey)
 
 	if(bBoolFlag)
 	{
-		iRet = createMatrixOfBoolean(Rhs + 1, 1, 1, &bRet, _piKey);
+		iRet = createScalarBoolean(_piKey, Rhs + 1, bRet);
 	}
 	else
 	{
-		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblRet, _piKey);
+		iRet = createScalarDouble(_piKey, Rhs + 1, dblRet);
 	}
 
 	if(iRet)
 	{
 		return 1;
 	}
-
-	free(piLen);
-	for(i = 0 ; i < iRows * iCols ; i++)
-	{
-		free(pstData[i]);
-	}
-	free(pstData);
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();

@@ -6,6 +6,7 @@
 	ProjectGUID="{E6552427-01DD-4C12-823C-09AD46F77FAD}"
 	RootNamespace="functions_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -412,11 +413,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.c"
+				RelativePath="..\..\sci_gateway\fortran\intlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.c"
+				RelativePath=".\whereis.c"
 				>
 			</File>
 		</Filter>
@@ -448,11 +449,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
+				RelativePath="..\..\sci_gateway\fortran\intlib.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.f"
+				RelativePath=".\whereis.f"
 				>
 			</File>
 		</Filter>

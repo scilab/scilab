@@ -32,18 +32,20 @@ value = winqueryreg('rootkey', 'subkey')</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[if MSDOS then
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
   len=size(mousechar);
   for k=1:len(1)
     setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
-     if (mousechar(k)=='') then mousechar(k)='default';,end
-     str = sprintf('%s = %s', mousechar(k), string(setting));
-     disp(str);
+    if (mousechar(k)=='') then mousechar(k)='default';,end
+    str = sprintf('%s = %s', mousechar(k), string(setting));
+    disp(str);
   end
-end]]></programlisting>
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Auteurs</title>

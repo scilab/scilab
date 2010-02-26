@@ -32,9 +32,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    getshell()
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+getshell()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

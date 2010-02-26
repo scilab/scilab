@@ -102,7 +102,7 @@ public class SciInputParsingManager implements InputParsingManager {
 		int caretPos = getCaretPosition();
 
 		String lineToParse = wholeLine.substring(0, caretPos);
-		if ( lineToParse.length() > 0 ) {
+		if (lineToParse.length() > 0) {
 			returnLine = Completion.getPartLevel(lineToParse);
 		}
 		return returnLine;
@@ -120,7 +120,7 @@ public class SciInputParsingManager implements InputParsingManager {
 		int caretPos = getCaretPosition();
 		
 		String lineToParse = wholeLine.substring(0, caretPos);
-		if ( lineToParse.length() > 0 ) {
+		if (lineToParse.length() > 0) {
 			returnLine = Completion.getFilePartLevel(lineToParse);
 		}
 		return returnLine;

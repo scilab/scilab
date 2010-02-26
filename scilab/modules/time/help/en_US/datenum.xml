@@ -54,7 +54,7 @@ N = datenum(Y, M, D, H, MI, S)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // N = datenum()	
 datenum()
 
@@ -83,7 +83,7 @@ Hours = grand(5,10,'uin',0,23)
 Minutes = grand(5,10,'uin',0,59)
 Seconds = grand(5,10,'uin',0,59)
 datenum(Years,Months,Days,Hours,Minutes,Seconds)
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

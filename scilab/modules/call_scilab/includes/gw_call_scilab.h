@@ -12,13 +12,13 @@
 #ifndef __GW_CALL_SCILAB__
 #define __GW_CALL_SCILAB__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "api_common.h"
+#include "api_scilab.h"
+#include "dynlib_call_scilab.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_call_scilab(void);
+CALL_SCILAB_IMPEXP int gw_call_scilab(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_fromjava)(char *fname,unsigned long fname_len);
-int C2F(sci_fromc)(char *fname,unsigned long fname_len);
+CALL_SCILAB_IMPEXP int sci_fromjava(char *fname,unsigned long fname_len);
+CALL_SCILAB_IMPEXP int sci_fromc(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CALL_SCILAB__ */
 /*--------------------------------------------------------------------------*/

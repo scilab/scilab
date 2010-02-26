@@ -83,12 +83,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //exemplo simples
 scf(0);
 plot2d();
 xs2fig(0,'foo.fig');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

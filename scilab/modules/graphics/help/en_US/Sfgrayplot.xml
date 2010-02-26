@@ -68,12 +68,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
     plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
     from the grid (here with n1=5, n2=3):</para>
-    <programlisting><![CDATA[
-             _____________
-             | /| /| /| /|
-             |/_|/_|/_|/_| 
-             | /| /| /| /| 
-             |/_|/_|/_|/_|]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></programlisting>
     <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (but
        you must know (or compute) the min and max values).</para>
     <para>Instead of Sfgrayplot, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be
@@ -82,39 +83,39 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // example #1: plot 4 surfaces
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
-xbasc()
+clf()
 xset("colormap",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 drawlater() ;
 subplot(2,2,1)
-   colorbar(-1,1,[1,64])
-   Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
-   xtitle("f(x,y) = x*y")
+  colorbar(-1,1,[1,64])
+  Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x*y")
 subplot(2,2,2)
-   colorbar(-1,1,[65,128])
-   Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
-   xtitle("f(x,y) = x^2-y^2")
+  colorbar(-1,1,[65,128])
+  Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^2-y^2")
 subplot(2,2,3)
-   colorbar(-1,2,[65,128])
-   Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
-   xtitle("f(x,y) = x^3+y^2")
+  colorbar(-1,2,[65,128])
+  Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^3+y^2")
 subplot(2,2,4)
-   colorbar(0,2,[1,64])
-   Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
-   xtitle("f(x,y) = x^2+y^2")
+  colorbar(0,2,[1,64])
+  Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x^2+y^2")
 drawnow() ;
 xselect()
 
 // example #2: plot surf3 and add some contour lines 
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",hotcolormap(128))
@@ -129,7 +130,7 @@ xselect()
 // example #3: plot surf3 and use zminmax and colout optional arguments
 //             to restrict the plot for -0.5<= z <= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",jetcolormap(128))
@@ -141,8 +142,7 @@ fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
 drawnow() ;
 xselect()
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

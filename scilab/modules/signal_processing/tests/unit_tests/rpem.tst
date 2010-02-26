@@ -9,27 +9,25 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// RPEM unit tests
+// 'rpem' unit tests
 
 test_path = pathconvert(SCI + '/modules/signal_processing/tests/unit_tests');
 
 // requires test_utilities.sci
 exec(test_path + 'test_utilities.sci');
 
-format(25);
-
 n = 2;
-theta=zeros(1,3*n);
-p=eye(3*n,3*n);
-phi=theta;
-psi=theta;
-l=theta;
-w0=list(theta, p, l, phi, psi);
-u0=[1 2 3 4];
-y0=[5 2 7 3];
-lambda=[1 1 1];
-kappa=[1 1 1];
-c=500;
+theta = zeros(1,3*n);
+p = eye(3*n,3*n);
+phi = theta;
+psi = theta;
+l = theta;
+w0 = list(theta, p, l, phi, psi);
+u0 = [1 2 3 4];
+y0 = [5 2 7 3];
+lambda = [1 1 1];
+kappa = [1 1 1];
+c = 500;
 
 // test 1 ****************************************************************
 load(test_path + 'rpem_ref1.dat', 'w1_ref1', 'v_ref1');

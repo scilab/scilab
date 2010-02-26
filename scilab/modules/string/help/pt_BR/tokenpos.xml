@@ -81,13 +81,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 str='Isto é um string';
 kdf=tokenpos(str)
 first=part(str,kdf(1,1):kdf(1,2))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

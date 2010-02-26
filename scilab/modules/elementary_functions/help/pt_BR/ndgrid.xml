@@ -60,10 +60,10 @@
     i=1,..,nx e j=1,..,ny . Neste caso, esta função pode computar as duas
     matrizes <literal>X,Y</literal> de tamanho nx x ny tais que : </para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
       X(i,j) = x(i)   para todo i em [1,nx]
       Y(i,j) = y(j)       e j em [1,ny]
-     </programlisting>
+ ]]></programlisting>
 
     <para>e a avaliação pode ser feita com <literal>Z=f(X,Y)</literal> (sob a
     condição de que <literal>f</literal> foi codificada para a avaliação em
@@ -76,27 +76,27 @@
     comprimentos nx, ny e nz, <literal>X,Y,Z</literal> são 3 hipermatrizes de
     tamanho nx x ny x nz tais que : </para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
       X(i,j,k) = x(i)  
       Y(i,j,k) = y(j)   para todo (i,j,k) in [1,nx]x[1,ny]x[1,nz]
       Z(i,j,k) = z(k)
-     </programlisting>
+ ]]></programlisting>
 
     <para>No caso geral de m argumentos de entrada <literal>x1, x2, ..,
     xm</literal>, os m argumentos de saída <literal>X1, X2, .., Xm</literal>
     são hipermatrizes de tamanho <emphasis>nx1 x nx2 x ... x nxm</emphasis> e
     :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
     Xj(i1,i2,...,ij,...,im) = xj(ij)   
     for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // criando um grid 2d simples
 nx = 40; ny = 40;
 x = linspace(-1,1,nx);
@@ -106,7 +106,7 @@ y = linspace(-1,1,ny);
 //deff("z=f(x,y)","z=128*x.^2 .*(1-x).^2 .*y.^2 .*(1-y).^2");
 deff("z=f(x,y)","z=x.^2 + y.^3")
 Z = f(X,Y);
-xbasc()
+clf()
 plot3d(x,y,Z, flag=[2 6 4]); xselect()
 
 // criando um grid 3d simples
@@ -127,10 +127,10 @@ for j=1:ny
                      matrix(Z(:,j,:),[nx,nz]));
    XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
 end
-xbasc()
+clf()
 plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
 xtitle("A 3d grid !"); xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

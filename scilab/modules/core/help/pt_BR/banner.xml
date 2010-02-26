@@ -31,8 +31,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">clc();banner()
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+clc();banner()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

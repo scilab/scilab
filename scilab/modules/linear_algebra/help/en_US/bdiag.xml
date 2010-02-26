@@ -59,11 +59,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     performs the block-diagonalization of matrix <literal>A</literal>.  bs
     gives the structure of the blocks (respective sizes of the
@@ -79,14 +77,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Real case: 1x1 and 2x2 blocks
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+
 //Complex case: complex 1x1 blocks
 [ab,x,bs]=bdiag(a+%i*0);ab
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

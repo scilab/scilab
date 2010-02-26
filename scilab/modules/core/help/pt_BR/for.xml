@@ -47,8 +47,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // laços "for" tradicionais
 n=5;
 for i = 1:n, for j = 1:n, a(i,j) = 1/(i+j-1);end;end
@@ -62,8 +61,7 @@ for j=1:n,v=a(:,j), write(6,v),end
 
 //laço em listas de entradas
 for l=list(1,2,'example'); l,end 
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

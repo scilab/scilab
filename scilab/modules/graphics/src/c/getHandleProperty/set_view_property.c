@@ -33,14 +33,14 @@ int set_view_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"view") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "view");
     return SET_PROPERTY_ERROR ;
   }
 
   /* DJ.A 2003 */
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"view");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
     return  SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_view_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
   }
   else
   {
-    Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_view_property",2,"2d","3d") ;
+    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "view", "'2d'", "'3d'");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

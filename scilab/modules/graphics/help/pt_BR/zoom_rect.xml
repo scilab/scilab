@@ -90,44 +90,42 @@ zoom_rect(h,rect)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    clf()
-    x=0:0.01:6*%pi;
-    plot2d(x,sin(x^2))
-    zoom_rect([16,-1,18,1])
-    //mais zoom
-    zoom_rect([16,0,16.2,1])
-    //de volta ao original
-    unzoom()
-    // ajustando o zoom através de axes_properties
-    a=gca();
-    a.zoom_box=[16,0,16.2,1];
-    a.zoom_box=[];
+    <programlisting role="example"><![CDATA[ 
+clf()
+x=0:0.01:6*%pi;
+plot2d(x,sin(x^2))
+zoom_rect([16,-1,18,1])
+//mais zoom
+zoom_rect([16,0,16.2,1])
+//de volta ao original
+unzoom()
+// ajustando o zoom através de axes_properties
+a=gca();
+a.zoom_box=[16,0,16.2,1];
+a.zoom_box=[];
 
-    //ajustando zoom de sub-esboços
-    clf()
-    x=0:0.01:6*%pi;
-    subplot(211)
-    plot2d(x,cos(x))
-    subplot(212)
-    plot2d(x,cos(2*x))
-    rect=[3 -2 7 10]; //um retângulo especificado nas coordenadas dos eixos correntes (os últimos)
-    zoom_rect(rect) 
-    unzoom()
-    //ajustando os eixos subjascentes globais como sendo os correntes
-    f=gcf();set('current_axes',f.children($)) 
-    rect=[0.4 0 0.6 1] //um retângulo especificado em razão do tamanho da janela
-    zoom_rect(rect) 
-    rect=[0.4 0.2 0.6 0.8]; //um retângulo especificado em razão do tamanho da janela
-    zoom_rect(rect)
+//ajustando zoom de sub-esboços
+clf()
+x=0:0.01:6*%pi;
+subplot(211)
+plot2d(x,cos(x))
+subplot(212)
+plot2d(x,cos(2*x))
+rect=[3 -2 7 10]; //um retângulo especificado nas coordenadas dos eixos correntes (os últimos)
+zoom_rect(rect) 
+unzoom()
+//ajustando os eixos subjascentes globais como sendo os correntes
+f=gcf();set('current_axes',f.children($)) 
+rect=[0.4 0 0.6 1] //um retângulo especificado em razão do tamanho da janela
+zoom_rect(rect) 
+rect=[0.4 0.2 0.6 0.8]; //um retângulo especificado em razão do tamanho da janela
+zoom_rect(rect)
 
-    // ampliação interativa sob a figura corrente
-    zoom_rect();
-    // ou
-    zoom_rect(gcf());
- 
-
-</programlisting>
+// ampliação interativa sob a figura corrente
+zoom_rect();
+// ou
+zoom_rect(gcf());
+ ]]></programlisting>
   </refsection>
 
   <refsection>

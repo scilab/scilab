@@ -14,6 +14,7 @@
 #define __WITHTK_H__
 
 #include "machine.h" /* C2F */
+#include "dynlib_tclsci.h"
 #include "BOOL.h" /* BOOL*/
 
 /** 
@@ -21,13 +22,13 @@
 * @param rep 1 (WITH) or 0 (WITHOUT)
 * @return 0
 */
-int C2F(withtk)(int *rep);
+TCLSCI_IMPEXP int C2F(withtk)(int *rep);
 
 /** 
 * check if it is with TCL/TK
 * @return TRUE or FALSE
 */
-BOOL withtk(void);
+TCLSCI_IMPEXP BOOL withtk(void);
 
 #endif /* _WITHTK_H__ */
 /*--------------------------------------------------------------------------*/ 

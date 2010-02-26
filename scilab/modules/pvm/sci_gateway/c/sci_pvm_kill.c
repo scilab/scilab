@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_kill, fin = 18
  ******************************************/
-int intspvm_kill(char *fname,unsigned long fname_len)
+int sci_pvm_kill(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mn1,un=1,mn2,l2,i;
   CheckRhs(1,1);

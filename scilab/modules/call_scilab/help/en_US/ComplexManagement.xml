@@ -37,6 +37,9 @@
     <para>There are several functions which can be used to read / write from
     the memory of Scilab. These functions are described in dedicated
     pages.</para>
+
+    <para>Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).</para>
+
   </refsection>
 
   <refsection>
@@ -50,12 +53,25 @@
  * Note that it is done column by column
  */ 
 
-double B[]={1,3,4,9,2,8,3,2,1,0,-1,0,1/2,42,0,0};   /* Declare the matrix */
+
+double B[]={1,3,4,9,2,8,3,2};
+double B_img[]={1,0.233,-1,-0.2,0.5,42,-23,123};   /* Declare the matrix */
+
+/*
+ * Prior to Scilab 5.2:
+ * double B[]={1,3,4,9,2,8,3,2,1,0.233,-1,-0.2,0.5,42,-23,123};
+*/
+
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
 
-C2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+/* Write it into Scilab's memory */
+createNamedComplexMatrixOfDouble(pvApiCtx,variableNameB,rowB,colB, B, B_img);
 
+/*
+ * Prior to Scilab 5.2:
+ * 2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB));
+ */
 printf("\n");
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display B */
@@ -66,16 +82,28 @@ int rowB_ = 0, colB_ = 0, lp_ = 0;
 int i = 0,j = 0;
 
 double *matrixOfComplexB = NULL;
+double *matrixOfComplexB_img = NULL;
 char variableToBeRetrievedB[] = "B";
 
 /* First, retrieve the size of the matrix */
-C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, NULL, NULL);
+
+/*
+ * Prior to Scilab 5.2:
+ * C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+ */
 
 /* Alloc the memory */
-matrixOfComplexB = (double*)malloc((rowB_*colB_*2)*sizeof(double));
+matrixOfComplexB = (double*)malloc((rowB_*colB_)*sizeof(double));
+matrixOfComplexB_img = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 /* Load the matrix */
-C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrievedB, &rowB_, &colB_, matrixOfComplexB, matrixOfComplexB_img);
+
+/*
+ * Prior to Scilab 5.2:
+ * C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+ */
 
 printf("\n");
 printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
@@ -85,7 +113,8 @@ for(j = 0 ; j < rowB_ ; j++)
    {
     /* Display the formated matrix ... the way the user
      * expect */
-    printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB[(rowB_*colB_)+(i * rowB_ + j)]);
+	printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB_img[i * rowB_ + j]);
+
    }
   printf("\n"); /* New row of the matrix */
  }
@@ -96,13 +125,18 @@ for(j = 0 ; j < rowB_ ; j++)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="cwritecmat">cwritecmat</link>, <link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="cwritecmat">cwritecmat</link>, <link
       linkend="creadcmat">creadcmat</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
-      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
-      linkend="StringManagement_callscilab">String Management</link></member>
+      linkend="ComplexManagement_callscilab">Call_Scilab: Complex Management</link>, <link
+      linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>, <link
+      linkend="StringManagement_callscilab">Call_Scilab: String Management</link>, <link
+      linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>, <link
+      linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>, <link
+      linkend="String_management_reading_API">API_Scilab: String Reading</link>, <link
+      linkend="String_management_writing_API">API_Scilab: String Writing</link>
+	  </member>
     </simplelist>
   </refsection>
 

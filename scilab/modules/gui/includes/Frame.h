@@ -15,13 +15,13 @@
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
-
+#include "dynlib_gui.h"
 /**
  * Create a new Frame in Scilab GUIs
  *
  * @param sciObj the corresponding Scilab object
  */
-void createFrame(sciPointObj* sciObj);
+GUI_IMPEXP void createFrame(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a Frame in Scilab GUIs
@@ -29,13 +29,13 @@ void createFrame(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsFrameParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsFrameParent(sciPointObj* sciObj);
 
 /**
  * Request the focus for a Scilab Frame
  *
  * @param sciObj the corresponding Scilab object
  */
-void requestFrameFocus(sciPointObj* sciObj);
+GUI_IMPEXP void requestFrameFocus(sciPointObj* sciObj);
 
 #endif /* !__FRAME_H__ */

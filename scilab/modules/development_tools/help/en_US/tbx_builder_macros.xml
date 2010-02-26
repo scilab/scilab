@@ -37,10 +37,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // Recommended usage
 tbx_builder_macros(get_absolute_file_path('builder.sce'))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

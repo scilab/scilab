@@ -15,6 +15,7 @@
 #define __WNDTHREAD_H__
 
 #include "BOOL.h" /* BOOL */
+#include "dynlib_scilab_windows.h"
 
 /* format for title of hidden windows */
 #define FORMAT_TITLE_HIDDEN_WINDOWS "%s hidden window (%d)"
@@ -28,19 +29,20 @@
 * disabled on -NWNI mode
 * @return TRUE or FALSE
 */
-BOOL CreateScilabHiddenWndThread(void);
+SCILAB_WINDOWS_IMPEXP BOOL CreateScilabHiddenWndThread(void);
 
 /**
 * get current title for scilab hidden window
 * example : scilab-5.0 hidden window (0)
 */
-char *getCurrentTitleScilabHiddenWindow(void);
+SCILAB_WINDOWS_IMPEXP char *getCurrentTitleScilabHiddenWindow(void);
 
 /**
 * get current scilab id
 * return a Id : must be (>= 0)
 * -1 if we have a problem
 */
-int getCurrentScilabId(void);
+SCILAB_WINDOWS_IMPEXP int getCurrentScilabId(void);
+
 #endif /* __WNDTHREAD_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -12,13 +12,13 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __MSEEK_H__
 #define __MSEEK_H__
-
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
 * seek function 
 */
-void C2F(mseek) (int *fd, int *offset, char *flag, int *err);
+FILEIO_IMPEXP void C2F(mseek) (int *fd, int *offset, char *flag, int *err);
 
 #endif /* __MSEEK_H__ */
 /*--------------------------------------------------------------------------*/

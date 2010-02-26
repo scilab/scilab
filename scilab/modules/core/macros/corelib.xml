@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<scilablib name="corelib">
+  <macro name="add_demo" file="add_demo.sci"/>
+  <macro name="check_modules_xml" file="check_modules_xml.sci"/>
+  <macro name="check_versions" file="check_versions.sci"/>
+  <macro name="edit" file="edit.sci"/>
+  <macro name="getshell" file="getshell.sci"/>
+  <macro name="OS_Version" file="OS_Version.sci"/>
+  <macro name="perl" file="perl.sci"/>
+  <macro name="scilab_demos" file="scilab_demos.sci"/>
+  <macro name="sethomedirectory" file="sethomedirectory.sci"/>
+  <macro name="toolboxes" file="toolboxes.sci"/>
+  <macro name="typeof" file="typeof.sci"/>
+  <macro name="ver" file="ver.sci"/>
+  <macro name="whereami" file="whereami.sci"/>
+  <macro name="whos" file="whos.sci"/>
+  <macro name="who_user" file="who_user.sci"/>
+  <macro name="with_atlas" file="with_atlas.sci"/>
+  <macro name="with_gtk" file="with_gtk.sci"/>
+  <macro name="with_javasci" file="with_javasci.sci"/>
+  <macro name="with_macros_source" file="with_macros_source.sci"/>
+  <macro name="with_texmacs" file="with_texmacs.sci"/>
+  <macro name="with_tk" file="with_tk.sci"/>
+</scilablib>

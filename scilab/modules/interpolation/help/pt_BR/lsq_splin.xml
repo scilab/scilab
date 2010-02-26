@@ -80,13 +80,13 @@
     pontos de interrupção <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>
     então, o spline resultante s é tal que:</para>
 
-    <programlisting>
-     _m_                               _m_                       
-     \                           2     \                           2
-     /   wd(k) (s(xd(k)) - yd(k))  &lt;=  /   wd(k) (f(xd(k)) - yd(k))    
-     ---                               ---  
-     k=1                               k=1
-          </programlisting>
+    <programlisting role = ""><![CDATA[ 
+_m_                               _m_                       
+\                           2     \                           2
+/   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))    
+---                               ---  
+k=1                               k=1
+ ]]></programlisting>
 
     <para>para todo <emphasis>f em S</emphasis>, i.e., realiza o mínimo da
     soma de todos os erros quadrados sobre todas as funções de
@@ -128,7 +128,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // este é um exemplo artificial, onde os dados xd e yd
 // são contruídos a partir de uma função seno perturbada
 a = 0; b = 2*%pi;
@@ -146,12 +146,12 @@ x = linspace(a,b,n)';
 // plotando
 ye = sin(xd);
 ys = interp(xd, x, y, d);
-xbasc()
+clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="função exata@medidas experimentais (perturbação gaussiana)@spline ajustado")
 xtitle("Um spline de mínimos quadrados")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -63,6 +63,7 @@ libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
 includes/addinter.h \
 includes/dynamic_link.h \
 includes/gw_dynamic_link.h \
+includes/dynlib_dynamic_link.h \
 includes/ilib_verbose.h 
 
 #### dynamic_link : compilation scripts ####

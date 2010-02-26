@@ -46,7 +46,7 @@ int gw_slicot(void)
 		#ifndef _DEBUG
 		_try
 		{
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
+			(*(Tab[Fin-1].f))((char*)Tab[Fin-1].name,Tab[Fin-1].F);
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{

@@ -49,18 +49,17 @@ plot2d3(x,y &lt;,opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // compare the following with plot2d1
 x=[0:0.1:2*%pi]';
 plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
-// In New graphics only
 clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
-e.children(3).polyline_style=3;]]></programlisting>
+e.children(3).polyline_style=3;
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

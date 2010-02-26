@@ -121,8 +121,13 @@ x=fft(a,1,dim,incr)</synopsis>
         <literal>j1</literal> lies in <literal>1:dim(1),</literal> <literal>j2</literal> in
         <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
         <literal>fft</literal> as follows</para>
-          <programlisting><![CDATA[incrk=1; x=a; for k=1:p x=fft(x ,-1,dim(k),incrk)
-        incrk=incrk*dim(k) end]]></programlisting>
+          <programlisting role  = ""><![CDATA[ 
+incrk=1; x=a;
+for k=1:p 
+  x=fft(x ,-1,dim(k),incrk)
+  incrk=incrk*dim(k) 
+end
+ ]]></programlisting>
           <para>where <literal>dimk</literal> is the dimension of the current variable
         w.r.t which one is integrating and <literal>incrk</literal> is the increment
         which separates two successive <literal>jk</literal> elements in
@@ -137,31 +142,29 @@ x=fft(a,1,dim,incr)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-  //Comparison with explicit formula
-  //----------------------------------
-  a=[1;2;3];n=size(a,'*');
-  norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
-  norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
+    <programlisting role="example"><![CDATA[ 
+//Comparison with explicit formula
+//----------------------------------
+a=[1;2;3];n=size(a,'*');
+norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
+norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
  
-  //Frequency components of a signal
-  //----------------------------------
-  // build a noides signal sampled at 1000hz  containing to pure frequencies 
-  // at 50 and 70 Hz
-  sample_rate=1000;
-  t = 0:1/sample_rate:0.6;
-  N=size(t,'*'); //number of samples
-  s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+//Frequency components of a signal
+//----------------------------------
+// build a noides signal sampled at 1000hz  containing to pure frequencies 
+// at 50 and 70 Hz
+sample_rate=1000;
+t = 0:1/sample_rate:0.6;
+N=size(t,'*'); //number of samples
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
   
-  y=fft(s);
-  //the fft response is symetric we retain only the first N/2 points
-  f=sample_rate*(0:(N/2))/N; //associated frequency vector
-  n=size(f,'*')
-  clf()
-  plot2d(f,abs(y(1:n)))
- 
-  ]]></programlisting>
+y=fft(s);
+//the fft response is symmetric we retain only the first N/2 points
+f=sample_rate*(0:(N/2))/N; //associated frequency vector
+n=size(f,'*')
+clf()
+plot2d(f,abs(y(1:n)))
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

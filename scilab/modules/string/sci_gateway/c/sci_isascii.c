@@ -1,15 +1,16 @@
 
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA - Allan CORNET
+* Copyright (C) INRIA - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*----------------------------------------------------------------------------*/
 #include <string.h>
@@ -22,25 +23,44 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+#include "api_scilab.h"
 #ifndef _MSC_VER
 #define iswascii(x) isascii(wctob(x))
 #endif
 /*----------------------------------------------------------------------------*/
-static int isasciiStrings(char *fname);
-static int isasciiMatrix(char *fname);
+static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne);
+static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne);
 /*----------------------------------------------------------------------------*/
-int sci_isascii(char *fname,unsigned long fname_len)
+int sci_isascii(char *fname, int* _piKey)
 {
+	SciErr sciErr;
+	int *piAddressVarOne = NULL;
+	int iType1		= 0;
+
 	CheckRhs(1,1);
 	CheckLhs(0,1);
 
-	if (GetType(1) == sci_matrix)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		isasciiMatrix(fname);
+		printError(&sciErr, 0);
+		return 0;
 	}
-	else if (GetType(1) == sci_strings)
+
+	sciErr = getVarType(_piKey, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		isasciiStrings(fname);
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if (iType1 == sci_matrix)
+	{
+		return isasciiMatrix(fname, _piKey, piAddressVarOne);
+	}
+	else if (iType1 == sci_strings)
+	{
+		return isasciiStrings(fname, _piKey, piAddressVarOne);
 	}
 	else
 	{
@@ -49,106 +69,221 @@ int sci_isascii(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int isasciiMatrix(char *fname)
+static int isasciiMatrix(char *fname, int* _piKey, int *piAddressVarOne)
 {
-	int Row_Num = 0,Col_Num = 0,Stack_Pos = 0;
-	int outIndex = 0 ;
-	int len = 0;
-	/*When input vector of int ascii codes  */
-	GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&Row_Num,&Col_Num,&Stack_Pos);
-	len = Row_Num * Col_Num ;
+	SciErr sciErr;
+	int m1 = 0, n1 = 0;
+	double *pdVarOne = NULL;
 
-	if (len != 0)
+	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	if(sciErr.iErr)
 	{
-		int x = 0;
-		int *Input_IntMatrix = NULL;
-		int *Output_BooleanMatrix = NULL;
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-		Input_IntMatrix = istk(Stack_Pos);
-		outIndex = 0 ;
-		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE,&Row_Num,&Col_Num,&outIndex);
-		Output_BooleanMatrix = istk(outIndex);
-		for (x = 0; x < len; x++) 
+	if (m1 * n1 > 0)
+	{
+		BOOL *bOutputMatrix = NULL;
+		sciErr = getMatrixOfDouble(_piKey, piAddressVarOne, &m1, &n1, &pdVarOne);
+		if(sciErr.iErr)
 		{
-			if (isascii(Input_IntMatrix[x])) Output_BooleanMatrix[x] = (int)TRUE;
-			else Output_BooleanMatrix[x] = (int)FALSE;
+			printError(&sciErr, 0);
+			return 0;
 		}
-		LhsVar(1) = Rhs+1 ;
+
+		bOutputMatrix = (BOOL*)MALLOC(sizeof(BOOL)* (m1 * n1));
+		if (bOutputMatrix)
+		{
+			int nbElems = m1 * n1;
+			int i = 0;
+			for (i = 0; i < nbElems; i++)
+			{
+				int iVal = (int)pdVarOne[i];
+
+				if (isascii(iVal)) bOutputMatrix[i] = (int)TRUE;
+				else bOutputMatrix[i] = (int)FALSE;
+			}
+
+			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, m1, n1, bOutputMatrix);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(1) = Rhs + 1;
+			C2F(putlhsvar)();
+
+			if (bOutputMatrix)
+			{
+				FREE(bOutputMatrix);
+				bOutputMatrix = NULL;
+			}
+		}
+		else
+		{
+			Scierror(999,_("%s : Memory allocation error.\n"), fname);
+			return 0;
+		}
+	}
+	else
+	{
+		/* returns [] */
+		m1 = 0;
+		n1 = 0;
+
+		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, m1, n1, NULL);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		LhsVar(1) = Rhs + 1;
 		C2F(putlhsvar)();
 	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int isasciiStrings(char *fname)
+static int isasciiStrings(char *fname, int* _piKey, int *piAddressVarOne)
 {
-	char **Input_StringMatrix = NULL;
-	int x = 0,y = 0,Row_Num = 0,Col_Num = 0;
+	SciErr sciErr;
+	int m1 = 0, n1 = 0;
+	wchar_t **pwcStVarOne = NULL;
+	int *lenStVarOne = NULL;
 
-	int Length_Output_Matrix = 0;
-	int *Output_BooleanMatrix = NULL;
-	int nbOutput_IntMatrix = 0;
-	int numRow = 1;
-
-	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-
-	Length_Output_Matrix = 0;
-	for (x = 0;x < Row_Num*Col_Num;x++) 
+	sciErr = getVarDimension(_piKey, piAddressVarOne, &m1, &n1);
+	if(sciErr.iErr)
 	{
-		wchar_t* wcInput = to_wide_string(Input_StringMatrix[x]);
-		if (wcInput)
-		{
-			Length_Output_Matrix = Length_Output_Matrix + (int)wcslen(wcInput);
-			FREE(wcInput); wcInput = NULL;
-		}
-		else
-		{
-			Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
-		}
-	}
-
-	if (Length_Output_Matrix != 0) 
-	{
-		Output_BooleanMatrix = (int*)MALLOC(sizeof(int)*(Length_Output_Matrix));
-	}
-	else Output_BooleanMatrix = (int*)MALLOC(sizeof(int));
-
-	if (Output_BooleanMatrix == NULL)
-	{
-		freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-		Scierror(999,_("%s: No more memory.\n"),fname);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	for (x = 0; x < Row_Num*Col_Num; x++) 
+	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
+
+	if (lenStVarOne)
 	{
-		wchar_t* wcInput = to_wide_string(Input_StringMatrix[x]);
-		if (wcInput)
+		BOOL *bOutputMatrix = NULL;
+		int i = 0;
+		int lengthAllStrings = 0;
+
+		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		if(sciErr.iErr)
 		{
-			for (y = 0;y < (int)wcslen(wcInput); y++)
+			if (lenStVarOne)
 			{
-				if (iswascii(wcInput[y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
-				else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
-				nbOutput_IntMatrix++;
+				FREE(lenStVarOne);
+				lenStVarOne = NULL;
 			}
-			FREE(wcInput); wcInput = NULL;
+
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		pwcStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*)*(m1 * n1));
+		for (i = 0; i < (m1 * n1); i++)
+		{
+			lengthAllStrings = lengthAllStrings + lenStVarOne[i];
+
+			pwcStVarOne[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i]+1));
+
+			if (pwcStVarOne[i] == NULL)
+			{
+				if (lenStVarOne)
+				{
+					FREE(lenStVarOne);
+					lenStVarOne = NULL;
+				}
+
+				freeArrayOfWideString(pwcStVarOne, m1 * n1);
+				Scierror(999,_("%s : Memory allocation error.\n"), fname);
+				return 0;
+			}
+		}
+
+		sciErr = getMatrixOfWideString(_piKey, piAddressVarOne,&m1,&n1,lenStVarOne,pwcStVarOne);
+		if(sciErr.iErr)
+		{
+			if (lenStVarOne)
+			{
+				FREE(lenStVarOne);
+				lenStVarOne = NULL;
+			}
+
+			freeArrayOfWideString(pwcStVarOne, m1 * n1);
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		bOutputMatrix = (BOOL*)MALLOC(sizeof(BOOL) * lengthAllStrings);
+		if (bOutputMatrix)
+		{
+			int mOut = 0;
+			int nOut = 0;
+			int x = 0;
+
+			for (i = 0; i < (m1 * n1); i++)
+			{
+				int j = 0;
+				wchar_t* wcInput = pwcStVarOne[i];
+				int len = (int)wcslen(wcInput);
+
+				for (j = 0; j < len; j++)
+				{
+					if (iswascii(wcInput[j]))
+					{
+						bOutputMatrix[x] = (int)TRUE;
+					}
+					else
+					{
+						bOutputMatrix[x] = (int)FALSE;
+					}
+					x++;
+				}
+			}
+
+			mOut = 1;
+			nOut = lengthAllStrings;
+
+			sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, mOut, nOut, bOutputMatrix);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			LhsVar(1) = Rhs + 1;
+			C2F(putlhsvar)();
+
+			if (lenStVarOne)
+			{
+				FREE(lenStVarOne);
+				lenStVarOne = NULL;
+			}
+			freeArrayOfWideString(pwcStVarOne, m1 * n1);
+			if (bOutputMatrix)
+			{
+				FREE(bOutputMatrix);
+				bOutputMatrix = NULL;
+			}
 		}
 		else
 		{
-			for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
+			if (lenStVarOne)
 			{
-				if (isascii(Input_StringMatrix[x][y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
-				else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
-				nbOutput_IntMatrix++;
+				FREE(lenStVarOne);
+				lenStVarOne = NULL;
 			}
+			freeArrayOfWideString(pwcStVarOne, m1 * n1);
+			Scierror(999,_("%s : Memory allocation error.\n"), fname);
 		}
 	}
-
-	freeArrayOfString(Input_StringMatrix,Row_Num*Col_Num);
-	CreateVarFromPtr(Rhs + 1,MATRIX_OF_BOOLEAN_DATATYPE,&numRow,&nbOutput_IntMatrix,&Output_BooleanMatrix);
-
-	LhsVar(1) = Rhs + 1 ;
-	C2F(putlhsvar)();
-	if (Output_BooleanMatrix) { FREE(Output_BooleanMatrix); Output_BooleanMatrix = NULL;}
+	else
+	{
+		Scierror(999,_("%s : Memory allocation error.\n"), fname);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+

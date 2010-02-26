@@ -39,12 +39,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  displayhistory()
-  removelinehistory(historysize()-2)
-  displayhistory()
-
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+displayhistory()
+removelinehistory(historysize()-2)
+displayhistory()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

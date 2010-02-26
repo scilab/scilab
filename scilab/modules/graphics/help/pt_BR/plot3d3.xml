@@ -308,21 +308,18 @@ plot3d3(X,Y,Z, &lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
 Y = cos(u)'*sin(v);
 Z = sin(u)'*ones(v);
 plot3d3(X,Y,Z);
- // apenas no novo modo de gráficos
+// apenas no novo modo de gráficos
 e=gce(); // obtendo a entidade corrente
 e.visible='off';
 e.visible='on'; // de volta à visão da malha
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

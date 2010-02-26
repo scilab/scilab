@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -13,42 +14,47 @@
 #ifndef __FUNCTION_HXX__
 #define __FUNCTION_HXX__
 
-#include <string>
-#include <cstdio>
-#include "types.hxx"
-#include "callable.hxx"
-#include <map>
 
 #ifdef _MSC_VER
 #pragma warning(disable: 4251)
 #endif
+
+#include <string>
+#include "types.hxx"
+#include "callable.hxx"
+
+#define MAX_OUTPUT_VARIABLE		64
+
 namespace types
 {
   class Function : public Callable
   {
   public :
-    Function * 	getAsFunction(void);
-    RealType getType(void) { return RealFunction; }
-
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
     typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
-
-    void					whoAmI();
-    virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
-
+    
     Function():Callable() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    virtual ~Function();
-    //private:
- 
+    ~Function();
+  
+    //FIXME : Should not return NULL
+    Function* clone() { return NULL; }
+
     static Function *createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
     static Function *createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
 
+    Function * 	getAsFunction(void);
+    RealType getType(void) { return RealFunction; }
 
- public :
-    std::string			m_szName;
-    GW_FUNC					m_pFunc;
-    std::string			m_szModule;
+    void					whoAmI();
+
+    std::string toString(int _iPrecision, int _iLineLen);
+
+    virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+
+
+  private :
+    GW_FUNC			m_pFunc;
   };
 
   class WrapFunction : public Function
@@ -58,18 +64,21 @@ namespace types
     Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   private :
     OLDGW_FUNC m_pOldFunc;
+		InternalType* m_pTempOut[MAX_OUTPUT_VARIABLE];
   };
 
-	class GatewayStruct
-	{
-	public :
-		typed_list* m_pin;
-		typed_list* m_pout;
-		int*	m_piRetCount;
+  class GatewayStruct
+  {
+  public :
+    typed_list* m_pIn;
+    InternalType** m_pOut;
+    int*	m_piRetCount;
+    char* m_pstName;
+		int* m_pOutOrder;
 
-		GatewayStruct(){};
-		~GatewayStruct(){};
-	};
+    GatewayStruct(){};
+    ~GatewayStruct(){};
+  };
 }
 
 

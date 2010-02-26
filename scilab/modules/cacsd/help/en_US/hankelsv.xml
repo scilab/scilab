@@ -29,7 +29,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list representing the linear system (state-space).</para>
+          <para> <literal>syslin</literal> list representing the linear system (state-space).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,14 +50,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([-1,-2,-3]);
 sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
 [Q,M]=pbig(W,nk2(2)-%eps,'c');
 slr=projsl(sl,Q,M);hankelsv(slr)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -49,12 +49,12 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=sprand(10,12,0.1);
 sp=spones(A)
 B = A~=0
 bool2s(B)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

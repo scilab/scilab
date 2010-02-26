@@ -25,10 +25,13 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#include "HandleManagement.h"
+#include "GraphicSynchronizerInterface.h"
+#include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
@@ -45,15 +48,11 @@ int xs2file(char * fname, ExportFileType fileType )
 		CheckRhs(2,2);
 	}
 
-	if (GetType(1) != sci_matrix)
+	if (GetType(1) != sci_matrix && GetType(1) != sci_handles)
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: An Integer expected.\n"),fname, 1);
-		return 0;
-	}
-
-	if (!IsAScalar(1))
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: An Integer expected.\n"),fname, 1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: An integer or a handle expected.\n"),fname, 1);
+	  LhsVar(1) = 0;
+	  C2F(putlhsvar)();
 		return 0;
 	}
 
@@ -66,19 +65,62 @@ int xs2file(char * fname, ExportFileType fileType )
 		int out_n = 0;
 		int m1 = 0, n1 = 0, l1 = 0;
 		int figurenum = -1;
+    sciPointObj* figurePtr = NULL;
 		int status = 0;
 
-		/* get figure number */
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		figurenum = *istk(l1);
+		/* get handle by figure number */
+    if(GetType(1) == sci_matrix)
+    {
+  		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+      if(m1*n1 != 1)
+      {
+        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname, 1);        
+			  LhsVar(1) = 0;
+			  C2F(putlhsvar)();
+			  return 0;
+      }
 
-		if (!sciIsExistingFigure(figurenum))
-		{
-			Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, figurenum);
-			LhsVar(1) = 0;
-			C2F(putlhsvar)();
-			return 0;
-		}
+	  	figurenum = *istk(l1);
+		  if (!sciIsExistingFigure(figurenum))
+		  {
+			  Scierror(999, "%s: Input argument #%d must be a valid figure_id.\n",fname, 1);
+			  LhsVar(1) = 0;
+			  C2F(putlhsvar)();
+			  return 0;
+		  }
+      figurePtr = getFigureFromIndex(figurenum);
+    }
+    /* check given handle */
+    if(GetType(1) == sci_handles)
+    {
+      GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
+      if(m1*n1 != 1)
+      {
+        Scierror(999,_("%s: Wrong size for input argument #%d: A graphic handle expected.\n"),fname, 1);        
+			  LhsVar(1) = 0;
+			  C2F(putlhsvar)();
+			  return 0;
+      }
+      figurePtr = sciGetPointerFromHandle(getHandleFromStack(l1));
+
+      if(figurePtr == NULL)
+      {
+			  Scierror(999, "%s: Input argument #%d must be a valid handle.\n",fname, 1);
+			  LhsVar(1) = 0;
+			  C2F(putlhsvar)();
+			  return 0;        
+      }
+      startFigureDataReading(figurePtr);
+      if(sciGetEntityType(figurePtr)!=SCI_FIGURE)
+      {
+			  Scierror(999, "%s: Input argument #%d must be a handle on a figure.\n", fname, 1);
+			  LhsVar(1) = 0;
+			  C2F(putlhsvar)();
+			  return 0;        
+      }
+      endFigureDataReading(figurePtr);
+    }
+
 		/* get file name */
 		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&fileName);
 		if (m1*n1 == 1)
@@ -129,12 +171,10 @@ int xs2file(char * fname, ExportFileType fileType )
 			}
 
 			/* Replaces SCI, ~, HOME, TMPDIR by the real path */
-			lout = PATH_MAX + FILENAME_MAX;
-			real_filename = (char*)MALLOC(sizeof(char)*lout);
-			C2F(cluni0)(fileName[0], real_filename, &out_n, (long)strlen(fileName[0]), lout);
+			real_filename = expandPathVariable(fileName[0]);
 
 			/* Call the function for exporting file */
-			status = exportToFile(getFigureFromIndex(figurenum), real_filename, fileType, orientation);
+			status = exportToFile(figurePtr, real_filename, fileType, orientation);
 
 			/* free pointers no more used */
 			if (real_filename){FREE(real_filename);real_filename = NULL;}

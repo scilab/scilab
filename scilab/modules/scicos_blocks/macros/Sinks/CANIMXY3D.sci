@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=getvalue(..
+    [ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue(..
 	'Set Scope parameters',..
 	['Number of curves';
 	'color (>0) or mark (<0)';

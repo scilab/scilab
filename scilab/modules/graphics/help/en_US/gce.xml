@@ -40,22 +40,19 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   
-    a=gca() //get the handle of the newly created axes
-    a.data_bounds=[1,1;10,10];
-    a.axes_visible = 'on' ;
-    for i=1:5
-      xfrect(7-i,9-i,3,3);
-      e=gce();
-      e.background=i;
-     end
-    delete(); // delete current entity
-    delete(gce()); // delete current entity
-    delete(gcf()); // delete current figure
-     
-
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=gca() //get the handle of the newly created axes
+a.data_bounds=[1,1;10,10];
+a.axes_visible = 'on' ;
+for i=1:5
+  xfrect(7-i,9-i,3,3);
+  e=gce();
+  e.background=i;
+end
+delete(); // delete current entity
+delete(gce()); // delete current entity
+delete(gcf()); // delete current figure
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

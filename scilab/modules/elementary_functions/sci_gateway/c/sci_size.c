@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -18,48 +18,68 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-int size_matrix(int* _piAddress, int _iMode, int* _piKey);
-int size_list(int* _piAddress, int* _piKey);
+SciErr size_matrix(int* _piKey, int* _piAddress, int _iMode);
+SciErr size_list(int* _piKey, int* _piAddress);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
 int sci_size(char *fname, int* _piKey)
 {
-	int iRet = 0;
-
+	SciErr sciErr;
+	int iType 	= 0;
+	int iMode		= BY_MTLB;
 	int* piAddr	= NULL;
-
-	int iMode = -1;
 
 	/*check inputs*/
 	CheckRhs(1,2);
 	CheckLhs(1,1000000);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	if(Rhs > 1)
 	{
 		int* piAddr2 = NULL;
 
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getProcessMode(piAddr2, piAddr, &iMode);
-		if(iRet)
+		sciErr = getProcessMode(_piKey, 2, piAddr, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	switch(getVarType(piAddr))
+
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
 	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
+	{
+	case sci_list  :
+	case sci_tlist :
+	case sci_mlist :
+		if(Rhs != 1)
+		{
+			Error(39);
+			return 0;
+		}
+		sciErr = size_list(_piKey, piAddr);
+		break;
 	case sci_matrix :
 	case sci_poly :
 	case sci_boolean :
@@ -67,29 +87,14 @@ int sci_size(char *fname, int* _piKey)
 	case sci_boolean_sparse :
 	case sci_ints :
 	case sci_strings :
-		if(Rhs == 2 && Lhs != 1)
-		{
-			Error(41);
-			return 1;
-		}
-
-		iRet = size_matrix(piAddr, iMode, _piKey);
-		break;
-	case sci_list :
-	case sci_tlist :
-	case sci_mlist :
-		if(Rhs != 1 || Lhs != 1)
-		{
-			Error(39);
-			return 1;
-		}
-		iRet = size_list(piAddr, _piKey);
+		sciErr = size_matrix(_piKey, piAddr, iMode);
 		break;
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
 	PutLhsVar();
@@ -102,8 +107,9 @@ int sci_size(char *fname, int* _piKey)
 
 	}
 
-int size_list(int* _piAddress, int* _piKey)
+SciErr size_list(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;sciErr.iErr = 0;
 	//int iIndex			= 0;
 	//int iItemNumber		= 0;
 	//int *piItemType		= NULL;
@@ -142,12 +148,13 @@ int size_list(int* _piAddress, int* _piKey)
 	//pReturnData[0] = iItemNumber;
 	//LhsVar(1) = Rhs + 1;
 	//PutLhsVar();
-	return 0;
+	return sciErr;
 }
 
-int size_matrix(int* _piAddress, int _iMode, int* _piKey)
+SciErr size_matrix(int* _piKey, int* _piAddress, int _iMode)
 {
-	int iRet		= 0;
+	SciErr sciErr;
+	//int iRet		= 0;
 	int iRows		= 0;
 	int iCols		= 0;
 
@@ -156,10 +163,10 @@ int size_matrix(int* _piAddress, int _iMode, int* _piKey)
 
 	double pdblReal[2] = {0,0};
 
-	iRet = getVarDimension(_piAddress, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarDimension(_piKey, _piAddress, &iRows, &iCols);
+	if(sciErr.iErr)
 	{
-		return 1;
+		return sciErr;
 	}
 
 	if(Lhs == 1)
@@ -185,32 +192,64 @@ int size_matrix(int* _piAddress, int _iMode, int* _piKey)
 			break;
 		}
 		
-		iRet = createMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, pdblReal, _piKey);
-		if(iRet)
+		sciErr = createMatrixOfDouble(_piKey, Rhs + 1, iRowsOut, iColsOut, pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
 		LhsVar(1) = Rhs + 1;
 	}
 	else
 	{
-		iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &iRows, _piKey);
+		int iRet = createScalarDoubleFromInteger(_piKey, Rhs + 1, iRows);
 		if(iRet)
 		{
-			return 1;
+			SciErr sciErr;
+			sciErr.iErr = iRet;
+			return sciErr;
 		}
 
-		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, 1, 1, &iCols, _piKey);
+		iRet = createScalarDoubleFromInteger(_piKey, Rhs + 2, iCols);
 		if(iRet)
 		{
-			return 1;
+			SciErr sciErr;
+			sciErr.iErr = iRet;
+			return sciErr;
 		}
 
 		LhsVar(1) = Rhs + 1;
 		LhsVar(2) = Rhs + 2;
 	}
 
-	return 0;
+	//	if(Rhs == 1)
+	//	{
+	//		iRet = allocMatrixOfDouble(Rhs + 1, 1, 2, &pdblVal);
+	//	}
+	//	else
+	//	{
+	//		double* pdblVal		= NULL;
+	//
+	//		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblVal);
+	//		if(iRet)
+	//		{
+	//			return 1;
+	//		}
+
+	//		switch(_iMode)
+	//		{
+	//			case BY_ROWS :
+	//				pdblVal[0] = iCols;
+	//				break;
+	//			case BY_COLS :
+	//				pdblVal[0] = iRows;
+	//				break;
+	//			default : //BY_ALL
+	//				pdblVal[0] = iRows * iCols;
+	//				break;
+	//		}
+	//	}
+	//}
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

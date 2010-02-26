@@ -36,14 +36,14 @@
       <varlistentry>
         <term>extraction</term>
         <listitem>
-          <para>: <literal>[x,y,z...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
+          <para> <literal>[x,y,z...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
 				<literal>[x,y,z]=L(:)</literal> extracts all the elements.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>insertion at index i</term>
         <listitem>
-          <para>:  <literal>L(i)=a</literal> (note that it is not an error to use <literal>L(i)=a</literal>
+          <para>  <literal>L(i)=a</literal> (note that it is not an error to use <literal>L(i)=a</literal>
 				with <emphasis>i &gt; 1 + size(L)</emphasis> but some list entries are then undefined
 				and their extraction gives raise to an error).</para>
         </listitem>
@@ -51,26 +51,26 @@
       <varlistentry>
         <term>append an element in queue</term>
         <listitem>
-          <para>:  <literal>L($+1)=e</literal>.</para>
+          <para>  <literal>L($+1)=e</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>append an element in head</term>
         <listitem>
-          <para>:  <literal>L(0)=e</literal>. (note that after this operation <literal>e</literal> is
+          <para>  <literal>L(0)=e</literal>. (note that after this operation <literal>e</literal> is
 				at index 1, the initial elements being shifted on the right).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>deletion</term>
         <listitem>
-          <para>: <literal>L(i)=null()</literal> removes the i-th element of the list <literal>L</literal>.</para>
+          <para> <literal>L(i)=null()</literal> removes the i-th element of the list <literal>L</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>concatenation of two lists</term>
         <listitem>
-          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+          <para> <literal>L3 = lstcat(L1,L2)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -102,7 +102,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "hello"
@@ -112,7 +112,7 @@ l(3) = null()
 lbis = list("gewurtz", "caipirina" ,"debug")
 lter = lstcat(l,lbis)
 size(lter) - size(lbis) - size(l)  // must be zero
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

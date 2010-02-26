@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Commonlyusedblocks_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Commonlyusedblocks_pal</refname>
+
+    <refpurpose>Commonly used blocks palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/CommonlyUsedBlocks_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Commonlyusedblocks_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Commonlyusedblocks_pal">
+    <title>Description</title>
+
+    <para>In the Commonly used blocks palette, you can find blocks from other
+    palettes that most models use.</para>
+  </refsection>
+
+  <refsection id="Blocks_Commonlyusedblocks_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ANDBLK">ANDBLK - Activation and</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f - Sum</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CONST_m">CONST_m - Constant</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CONVERT">CONVERT - CONVERT Data Type
+          Conversion</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DEMUX">DEMUX - Demultiplexer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_f">DOLLAR_f - Delay operator</link>
+        </para>
+      </listitem>
+	  
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
+        </para>
+      </listitem>
+	  
+      <listitem>
+        <para>
+          <link linkend="IN_f">IN_f - Input Port</link>
+        </para>
+      </listitem>
+
+      
+      <listitem>
+        <para>
+          <link linkend="LOGICAL_OP">LOGICAL_OP - Logical operation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MUX">MUX - Multiplexer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NRMSOM_f">NRMSOM_f - Merge data</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Output Port</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT - Product</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RELATIONALOP">RELATIONALOP — Relational
+          operation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SATURATION">SATURATION - Saturation</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH2_m">SWITCH2_m - Switch2</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f - Text</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

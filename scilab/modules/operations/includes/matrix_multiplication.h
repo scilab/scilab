@@ -32,7 +32,7 @@ EXTERN_OP int iMultiRealMatrixByComplexMatrix(
 
 EXTERN_OP int iMultiComplexMatrixByRealMatrix(
 		double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
-		double *_pdblReal2,							int _iRows2, int _iCols2,
+		double *_pdblReal2,		int _iRows2, int _iCols2,
 		double *_pdblRealOut,	double *_pdblImgOut);
 
 EXTERN_OP int iMultiRealScalarByRealMatrix(
@@ -76,5 +76,25 @@ EXTERN_OP int iMultiComplexPolyByComplexPoly(
 		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
 		double *_pdblReal2,	double *_pdblImg2, int _iRank2,
 		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
+
+EXTERN_OP int iDotMultiplyRealMatrixByRealMatrix(
+		double* _pdblReal1, 
+		double* _pdblReal2, 
+		double* _pdblRealOut, int _iRowsOut, int _iColsOut);
+
+EXTERN_OP int iDotMultiplyRealMatrixByComplexMatrix(
+		double* _pdblReal1, 
+		double* _pdblReal2, double* _pdblImg2,
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
+
+EXTERN_OP int iDotMultiplyComplexMatrixByRealMatrix(
+		double* _pdblReal1, double* _pdblImg1, 
+		double* _pdblReal2, 
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
+
+EXTERN_OP int iDotMultiplyComplexMatrixByComplexMatrix(
+		double* _pdblReal1, double* _pdblImg1,
+		double* _pdblReal2, double* _pdblImg2,
+		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
 
 #endif /* __MATRIX_MULT__ */

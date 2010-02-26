@@ -55,10 +55,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 z1 = imult(%inf)
 z2 = %i * %inf
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

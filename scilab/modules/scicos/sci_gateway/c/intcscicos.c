@@ -2671,7 +2671,7 @@ int CopyVarFromlistentry(int lw, int *header, int i)
  *            SCSUINT8   : uint8
  *            SCSUINT16  : uint16
  *            SCSUINT32  : uint32
- *            SCSUNKNOW  : Unknow type
+ *            SCSUNKNOW  : Unknown type
  *
  * Output parameters : int (<1000), error flag
  *                     (0 if no error)

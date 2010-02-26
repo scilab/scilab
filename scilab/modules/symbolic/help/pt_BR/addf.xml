@@ -59,14 +59,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 addf('0','1')
 addf('1','a')
 addf('1','2')
 'a'+'b'
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

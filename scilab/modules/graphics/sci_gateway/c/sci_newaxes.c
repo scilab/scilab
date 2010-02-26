@@ -16,7 +16,7 @@
 /* desc : interface for newaxes routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_newaxes.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "Scierror.h"

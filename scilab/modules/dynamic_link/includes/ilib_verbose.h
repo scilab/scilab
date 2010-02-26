@@ -14,6 +14,7 @@
 #ifndef __ILIB_VERBOSE_H__
 #define __ILIB_VERBOSE_H__
 
+#include "dynlib_dynamic_link.h"
 #include "BOOL.h"
 #include "machine.h"
 
@@ -28,19 +29,19 @@ typedef enum {
 * @param[in] level
 * @return TRUE if level is modified
 */
-BOOL setIlibVerboseLevel(ilib_verbose_level _level);
+DYNAMIC_LINK_IMPEXP BOOL setIlibVerboseLevel(ilib_verbose_level _level);
 
 /**
 * get verbose level for dynamic link functions
 * @return level
 */
-ilib_verbose_level getIlibVerboseLevel(void);
+DYNAMIC_LINK_IMPEXP ilib_verbose_level getIlibVerboseLevel(void);
 
 /**
 * get verbose level for dynamic link functions (for fortran external subroutines)
 * @param[out] level
 */
-int C2F(getilibverboselevel)(int *_level);
+DYNAMIC_LINK_IMPEXP int C2F(getilibverboselevel)(int *_level);
 
 #endif /* __ILIB_VERBOSE_H__ */
 /*---------------------------------------------------------------------------*/

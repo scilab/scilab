@@ -63,7 +63,7 @@ endif
 
 # List of the c files
 libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
-libsciconsole_disable_la_CFLAGS = -Iincludes/
+libsciconsole_disable_la_CFLAGS = -I$(srcdir)/includes/
 
 
 # Includes need for the compilation
@@ -71,8 +71,8 @@ libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/modules/api_sci
 
 # Includes need for the compilation
 libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
-				-Iincludes/ \
-				-Isrc/c/ \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
@@ -99,29 +99,8 @@ libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_b
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/GuiManagement.i
-
-#### console : include files ####
-libsciconsole_la_includedir=$(pkgincludedir)/console
-libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
-includes/ClearConsolePart.h \
-includes/ConsolePrintf.h \
-includes/ConsoleRead.h \
-includes/GetCharWithoutOutput.h \
-includes/InitializeConsole.h \
-includes/PromptToHome.h \
-includes/ScilabLinesUpdate.h \
-includes/SetConsolePrompt.h \
-includes/ClearConsole.hxx \
-includes/ClearConsolePart.hxx \
-includes/ConsoleIsWaitingForInput.h \
-includes/ConsoleIsWaitingForInput.hxx \
-includes/ConsolePrintf.hxx \
-includes/ConsoleRead.hxx \
-includes/GetCharWithoutOutput.hxx \
-includes/PromptToHome.hxx \
-includes/ScilabLinesUpdate.hxx \
-includes/SetConsolePrompt.hxx
+SWIG_WRAPPERS = src/jni/GuiManagement.i \
+	src/jni/DropFiles.i
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1

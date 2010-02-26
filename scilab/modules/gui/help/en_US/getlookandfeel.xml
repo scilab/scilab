@@ -34,7 +34,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 currentlnf = getlookandfeel();
 
 // Look and feel CDE/Motif
@@ -48,8 +48,7 @@ setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
 sleep(3000);
 
 setlookandfeel(currentlnf)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

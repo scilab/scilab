@@ -27,9 +27,10 @@ namespace types
 									Float(int _iRows, int _iCols, float **_pfReal);
 									Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
 
+		Float* clone();
 
 		/*data management*/
-		GenericType*	get(int _iPos);
+		GenericType*	get_col_value(int _iPos);
 
 		float*				real_get() const;
 		float					real_get(int _iRows, int _iCols) const;
@@ -63,6 +64,7 @@ namespace types
 
 		/*Internal "constructor*/
 		void					CreateFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
+		std::string		toString(int _iPrecision, int _iLineLen);
 
 		bool					operator==(const InternalType& it);
 		bool					operator!=(const InternalType& it);

@@ -35,13 +35,13 @@ int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"hidden_axis_color") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "hidden_axis_color");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"hidden_axis_color") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -51,7 +51,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int
   }
   else
   {
-    Scierror(999, _("Color outside of color map boundaries.\n"));
+    Scierror(999, _("Wrong value for '%s' property: Must be a valid color index.\n"), "hidden_axis_color");
     return SET_PROPERTY_ERROR ;
   }
 

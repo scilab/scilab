@@ -300,7 +300,7 @@ namespace types
 	}
 
 	/*--------------*/
-	/*	getAsUInt		*/
+	/*	getAsDouble		*/
 	/*--------------*/
 	Double* Double::getAsDouble(void)
 	{
@@ -928,7 +928,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType*	Double::get(int _iPos)
+	GenericType*	Double::get_col_value(int _iPos)
 	{
 		Double *pdbl = NULL;
 		if(_iPos < m_iCols)
@@ -1161,4 +1161,88 @@ namespace types
 		return pdbl;
 	}
 
+	Double* Double::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+	{
+		Double *pOut	= NULL;
+		int iRowsOut	= 0;
+		int iColsOut	= 0;
+
+		//check input param
+
+		if(	_bAsVector && _piMaxDim[0] > size_get() ||
+				_bAsVector == false && _piMaxDim[0] > rows_get() ||
+				_bAsVector == false && _piMaxDim[1] > cols_get())
+		{
+			return NULL;
+		}
+
+		if(_bAsVector)
+		{//a([])
+			if(rows_get() == 1)
+			{
+				iRowsOut	= 1;
+				iColsOut	= _piDimSize[0];
+			}
+			else
+			{
+				iRowsOut	= _piDimSize[0];
+				iColsOut	= 1;
+			}
+		}
+		else
+		{//a([],[])
+			iRowsOut	= _piDimSize[0];
+			iColsOut	= _piDimSize[1];
+		}
+
+		pOut							= new Double(iRowsOut, iColsOut, isComplex());
+		double* pdblReal	= pOut->real_get();
+		double* pdblImg		= pOut->img_get();
+
+
+		if(_bAsVector)
+		{
+			if(isComplex())
+			{
+				for(int i = 0 ; i < _iSeqCount ; i++)
+				{
+					pdblReal[i] = m_pdblReal[_piSeqCoord[i] - 1];
+					pdblImg[i]	= m_pdblImg[_piSeqCoord[i] - 1];
+				}
+			}
+			else
+			{
+				for(int i = 0 ; i < _iSeqCount ; i++)
+				{
+					pdblReal[i] = m_pdblReal[_piSeqCoord[i] - 1];
+				}
+			}
+		}
+		else
+		{
+			int iRowIn = rows_get();
+			if(isComplex())
+			{
+				for(int i = 0 ; i < _iSeqCount ; i++)
+				{
+					int iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
+					int iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+					pdblReal[iOutIndex] = m_pdblReal[iInIndex];
+					pdblImg[iOutIndex]	= m_pdblImg[iInIndex];
+				}
+			}
+			else
+			{
+				for(int i = 0 ; i < _iSeqCount ; i++)
+				{
+					//convert vertical indexes to horizontal indexes
+					int iOutIndex				= (i % iColsOut) * iRowsOut + (i / iColsOut);
+					int iInIndex				= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+					pdblReal[iOutIndex] = m_pdblReal[iInIndex];
+				}
+			}
+		}
+		
+		return pOut;
+	}
 }

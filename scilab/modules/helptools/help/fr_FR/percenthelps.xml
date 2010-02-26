@@ -22,9 +22,9 @@
     <title>Description</title>
     <para><literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 répertoire_du_chapitre    titre_du_chapitre
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     Par exemple, nous avons le chapitre "graphics". 
     <literal>%helps(2,:)</literal>.
@@ -50,9 +50,9 @@ répertoire_du_chapitre    titre_du_chapitre
   </para>
     <para>
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 <BR><A HREF="item.html">item</A> - description rapide
-   ]]></programlisting>
+ ]]></programlisting>
     <para><literal>item</literal> est l'article de la liste d'aide, c'est-à-dire que la commande <literal>help item</literal> affiche le contenu du fichier <literal>item.html</literal>.
   </para>
     <para>

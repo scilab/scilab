@@ -49,13 +49,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 mkdir(TMPDIR+'/niv1');
 mkdir(TMPDIR+'/niv1/niv2');
 mputl(' ',TMPDIR+'/niv1/test.txt');
 cd(TMPDIR+'/niv1/niv2');
 fullpath('../test.txt')
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

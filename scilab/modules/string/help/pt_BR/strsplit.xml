@@ -78,11 +78,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    S='strsplit divide um string em um vetor de strings';
-    strsplit(S,[15 25 30])
-    ind=strindex(S,' ')
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+S='strsplit divide um string em um vetor de strings';
+strsplit(S,[15 25 30])
+ind=strindex(S,' ')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

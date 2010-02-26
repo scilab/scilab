@@ -56,18 +56,18 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
-    // some basic operations on Sheets
-    typeof(Sheets)
-    s1=Sheets(1) //get the first sheet
-    typeof(s1)
-    s1.value //get the first sheet value field
-    s1.text  //get the first sheet text field
-    s1(2,:)  //get the 2 row of the sheet
-    typeof(s1(2,:))
+    <programlisting role="example"><![CDATA[ 
+Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
+// some basic operations on Sheets
+typeof(Sheets)
+s1=Sheets(1) //get the first sheet
+typeof(s1)
+s1.value //get the first sheet value field
+s1.text  //get the first sheet text field
+s1(2,:)  //get the 2 row of the sheet
+typeof(s1(2,:))
 
-    editvar s1
+editvar s1
  ]]></programlisting>
   </refsection>
   <refsection>

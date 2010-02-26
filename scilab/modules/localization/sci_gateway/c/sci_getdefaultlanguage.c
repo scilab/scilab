@@ -15,7 +15,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdefaultlanguage)(char *fname,unsigned long fname_len)
+int sci_getdefaultlanguage(char *fname,unsigned long fname_len)
 {
 	static int n1 = 0,m1 = 0,l1 = 0;
 	

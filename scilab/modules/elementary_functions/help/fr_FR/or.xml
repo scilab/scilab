@@ -48,9 +48,9 @@ or(A,'c'), or(A,2)</synopsis>
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 or([%t %t %f])
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

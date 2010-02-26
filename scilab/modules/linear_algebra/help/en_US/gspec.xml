@@ -28,12 +28,10 @@
     <para>
     This function is now included in the <literal>spec</literal> function.
     the calling syntax must be replaced by</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 [al,be]=spec(A,E)
 [al,be,Z]=spec(A,E)
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

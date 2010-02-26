@@ -43,9 +43,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 ~[%t %t %f]
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

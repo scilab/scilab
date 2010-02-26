@@ -38,6 +38,6 @@ Source: modules\{#MODULE_API_SCILAB}\macros\cleanmacros.bat; DestDir: {app}\modu
 ;
 Source: modules\{#MODULE_API_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#MODULE_API_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-;Source: modules\{#MODULE_API_SCILAB}\tests\*.*; DestDir: {app}\modules\{#MODULE_API_SCILAB}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+Source: modules\{#MODULE_API_SCILAB}\tests\*.*; DestDir: {app}\modules\{#MODULE_API_SCILAB}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

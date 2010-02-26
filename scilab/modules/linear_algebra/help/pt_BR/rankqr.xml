@@ -114,12 +114,10 @@
 
     <para>A rotina usa uma fatoração QR com pivoteamento de colunas:</para>
 
-    <programlisting>
-
-        A * P = Q * R,  onde  R = [ R11 R12 ],
-                                   [  0  R22 ]
-
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+A * P = Q * R,  onde  R = [ R11 R12 ],
+                          [  0  R22 ]
+ ]]></programlisting>
 
     <para>com <literal>R11</literal> definida como a maior submatriz regente
     cujo número de condição estimado é menor que <literal>1/RCOND</literal>. A
@@ -143,12 +141,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

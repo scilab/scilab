@@ -19,49 +19,50 @@
 #ifndef _GET_CURRENT_OBJECTS_H_
 #define _GET_CURRENT_OBJECTS_H_
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 /**
  * Returns the pointer to the current selected figure. 
  */
-sciPointObj * sciGetCurrentFigure( void ) ;
+GRAPHICS_IMPEXP sciPointObj * sciGetCurrentFigure( void ) ;
 
 /**
  * To know if a figure is the selected one.
  */
-BOOL sciIsCurrentFigure(sciPointObj * pFigure);
+GRAPHICS_IMPEXP BOOL sciIsCurrentFigure(sciPointObj * pFigure);
 
 /**
  * Modify the current figure pointeR.
  */
-int sciInitCurrentFigure( sciPointObj * mafigure ) ;
+GRAPHICS_IMPEXP int sciInitCurrentFigure( sciPointObj * mafigure ) ;
 
 /**
  * Modify the current figure if needed.
  */
-int sciSetCurrentFigure( sciPointObj * mafigure ) ;
+GRAPHICS_IMPEXP int sciSetCurrentFigure( sciPointObj * mafigure ) ;
 /*-----------------------------------------------------------------------------*/
 /**
  * Get the current Object
  */
-sciPointObj * sciGetCurrentObj( void ) ;
+GRAPHICS_IMPEXP sciPointObj * sciGetCurrentObj( void ) ;
 
 /**
  * Modify the current object pointer.
  */
-void sciSetCurrentObj( sciPointObj * pobj ) ;
+GRAPHICS_IMPEXP void sciSetCurrentObj( sciPointObj * pobj ) ;
 
 /**
  * @return TRUE if the object is the current one, false otherwise
  */
-BOOL sciIsCurrentObject(sciPointObj * pobj);
+GRAPHICS_IMPEXP BOOL sciIsCurrentObject(sciPointObj * pobj);
 
 /**
  * Return the handle on the current object
  */
-long sciGetCurrentHandle( void ) ;
+GRAPHICS_IMPEXP long sciGetCurrentHandle( void ) ;
 /*-----------------------------------------------------------------------------*/
-sciPointObj * sciGetCurrentSubWin( void ) ;
+GRAPHICS_IMPEXP sciPointObj * sciGetCurrentSubWin( void ) ;
 /*-----------------------------------------------------------------------------*/
 
 #endif /* _GET_CURRENT_OBJECTS_H_ */

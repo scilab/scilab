@@ -25,7 +25,10 @@ Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODU
 Source: modules\{#MODULE_CALL_SCILAB}\readme.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\version.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\CallScilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\includes\dynlib_call_scilab.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\call_scilab_gateway.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
@@ -34,7 +37,7 @@ Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.start; DestDir: 
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\examples\*.*; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\examples; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-;Source: modules\{#MODULE_CALL_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\macros\buildmacros.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\macros\buildmacros.bat; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}

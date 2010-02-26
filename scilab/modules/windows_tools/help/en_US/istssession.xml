@@ -31,13 +31,15 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[if MSDOS then
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
   if istssession() then
     disp('Scilab from a ms terminal service session.');
   else
     disp('Scilab standard session.');
   end
-end]]></programlisting>
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

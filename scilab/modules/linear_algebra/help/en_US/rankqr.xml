@@ -87,12 +87,10 @@ rank-deficient, and estimate its effective rank using incremental
 condition estimation.</para>
     <para>
 The routine uses a QR factorization with column pivoting:</para>
-    <programlisting><![CDATA[
-
-        A * P = Q * R,  where  R = [ R11 R12 ],
-                                   [  0  R22 ]
-
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A * P = Q * R,  where  R = [ R11 R12 ],
+                           [  0  R22 ]
+ ]]></programlisting>
     <para>
 with <literal>R11</literal> defined as the largest leading submatrix whose
 estimated condition number is less than <literal>1/RCOND</literal>.  The
@@ -114,12 +112,10 @@ estimate of the condition number of <literal>R(1:RANK,1:RANK)</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

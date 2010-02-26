@@ -17,7 +17,9 @@
 
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
+
 #include <stdlib.h>
+#include "dynlib_graphics.h"
 #include "BOOL.h"
 #include "core_math.h"
 
@@ -76,9 +78,9 @@
 #define M_PI 3.14159265358979323846 
 #endif
 
-double Mini(const double vect[], int n) ;
+GRAPHICS_IMPEXP double Mini(const double vect[], int n) ;
 
-double Maxi(const double vect[], int n) ;
+GRAPHICS_IMPEXP double Maxi(const double vect[], int n) ;
 
 
 
@@ -89,48 +91,48 @@ double Maxi(const double vect[], int n) ;
 /* 2D algorithms                                                        */
 /************************************************************************/
 /* perform the rotation of point from to point dest with angle in radian  */
-void rotate2D( double from[2], double center[2], double angle, double dest[2] ) ;
+GRAPHICS_IMPEXP void rotate2D( double from[2], double center[2], double angle, double dest[2] ) ;
 
 /* perform the rotation of point from to point to. */
 /* the angle is directly given with its sine and cosine for speed */
-void rotate2Dim( double from[2]   ,
+GRAPHICS_IMPEXP void rotate2Dim( double from[2]   ,
                  double center[2] ,
                  double cosAngle  ,
                  double sinAngle  ,
                  double dest[2]    ) ;
 
 /* perform the translation of point from to point dest with vector trans */
-void translate2D( double from[2], double trans[2], double dest[2] ) ;
+GRAPHICS_IMPEXP void translate2D( double from[2], double trans[2], double dest[2] ) ;
 
 /* perform the translation of point from to point dest with vector trans given in pixels.*/
-void iTranslate2D( int from[2], int trans[2], int dest[2] ) ;
+GRAPHICS_IMPEXP void iTranslate2D( int from[2], int trans[2], int dest[2] ) ;
 
 /**
  * Normalize a 2d vector.
  */
-void normalize2d( double vect[2] ) ;
+GRAPHICS_IMPEXP void normalize2d( double vect[2] ) ;
 
 /**
  * Normalize a 2d vector in pixels coordinates.
  */
-void iNormalize2d( int vect[2] ) ;
+GRAPHICS_IMPEXP void iNormalize2d( int vect[2] ) ;
 
 /**
  * Perform the substraction of vect1 and vect2 and store it in res
  */
-void vectSubstract2D(const double vect1[2], const double vect2[], double res[2]);
+GRAPHICS_IMPEXP void vectSubstract2D(const double vect1[2], const double vect2[], double res[2]);
 
 /**
  * substraction of two vector
  * @param res result of v1 + v2
  */
-void vectAdd2D(const double v1[2], const double v2[2], double res[2]);
+GRAPHICS_IMPEXP void vectAdd2D(const double v1[2], const double v2[2], double res[2]);
 
 /**
  * Multiply a vector by a scalar
  * @param res scalar.v
  */
-void scalarMult2D(const double v[2], const double scalar, double res[2]);
+GRAPHICS_IMPEXP void scalarMult2D(const double v[2], const double scalar, double res[2]);
 
 /**
  * return the scalar product of two 2d vectors.
@@ -150,13 +152,13 @@ void scalarMult2D(const double v[2], const double scalar, double res[2]);
 /**
  * Compute wether the point lies within the triangle defined by A, B and C
  */
-BOOL isPointInTriangle(const double point[2], const double a[2],
+GRAPHICS_IMPEXP BOOL isPointInTriangle(const double point[2], const double a[2],
                        const double b[2], const double c[2]);
 
 /**
  * Compute wether p1 and p2 are on the same side of line (A,B).
  */
-BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
+GRAPHICS_IMPEXP BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
                          const double a[2], const double b[2]);
 
 /************************************************************************/
@@ -172,7 +174,7 @@ BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
  * Cross product of two vector
  * @param res v1^v2
  */
-void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
+GRAPHICS_IMPEXP void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
 
 /**
  * Square norm of a 3D vector
@@ -188,41 +190,42 @@ void crossProduct( const double v1[3], const double v2[3], double res[3] ) ;
  * substraction of two vector
  * @param res result of v1 - v2
  */
-void vectSubstract3D(const double v1[3], const double v2[3], double res[3]);
+GRAPHICS_IMPEXP void vectSubstract3D(const double v1[3], const double v2[3], double res[3]);
 
 /**
  * substraction of two vector
  * @param res result of v1 + v2
  */
-void vectAdd3D(const double v1[3], const double v2[3], double res[3]);
+GRAPHICS_IMPEXP void vectAdd3D(const double v1[3], const double v2[3], double res[3]);
 
 /**
  * Multiply a vector by a scalar
  * @param res scalar.v
  */
-void scalarMult3D(const double v[3], double scalar, double res[3]);
+GRAPHICS_IMPEXP void scalarMult3D(const double v[3], double scalar, double res[3]);
 
 /**
  * Normalize a 3D vector
  */
-void normalize3D( double vect[3] ) ;
+GRAPHICS_IMPEXP void normalize3D( double vect[3] ) ;
 
 /**
  * Set a 4x4 matrix to identity.
  */
-void setToIdentity(double mat4D[4][4]);
+GRAPHICS_IMPEXP void setToIdentity(double mat4D[4][4]);
 
 /**
  * Compute the product mat4D*vect3D and store the result in res.
  */
-void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3]);
+GRAPHICS_IMPEXP void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3]);
 
 /*----------------------------------------------------------------------------*/
 
 /* check if two values can be considered equal given an accurracy */
 /* the x == y test is put to avoid division by 0 */
-#define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
+#define SAFE_EQUAL2(x,y,acc) ( Abs( (x) - (y) ) / Max( Abs( (x) + (y) ), EPSILON ) < (acc) )
 
+#define SAFE_EQUAL(x,y,acc) ( (x) == (y) ) || ( Abs( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
 /* test if a value if lesser than an other or just sligthy greater */
 #define SAFE_LT(x,y,acc) ( (x) == (y) || ( (x) - (y) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )
 #define SAFE_GT(x,y,acc) ( (x) == (y) || ( (y) - (x) ) < (acc) * Max( Abs( (x) ), Abs( (y) ) ) )

@@ -52,15 +52,12 @@ y=msd(x,'c') or m=msd(x,2)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-
+    <programlisting role="example"><![CDATA[ 
 x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
 m=msd(x)
 m=msd(x,'r')
 m=msd(x,'c')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

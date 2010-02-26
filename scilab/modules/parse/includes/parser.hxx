@@ -59,7 +59,10 @@ public:
     WithinWhile,
     WithinIf,
     WithinElse,
-    WithinElseIf
+    WithinElseIf,
+    WithinTry,
+    WithinCatch,
+    WithinFunction
   };
 
 public:

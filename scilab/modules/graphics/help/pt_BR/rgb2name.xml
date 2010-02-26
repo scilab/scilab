@@ -87,15 +87,13 @@ names=rgb2name(rgb)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 rgb2name(255,128,128)
 rgb2name([255 215 0])
 // retorna a cor de número 10 do mapa de cores corrente acha seu nome
 cmap=get(gcf(),"color_map");
 rgb2name(cmap(10,:)*255)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

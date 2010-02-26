@@ -33,6 +33,11 @@ int C2F(error)(int *n);
 */
 void SciError(int n);
 
+/**
+* Stroe error number
+* @param n error code
+*/
+void SciStoreError(int n);
 
 #endif /* __ERROR_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -14,9 +14,10 @@
 #ifndef __INITIALIZEHISTORYMANAGER_H__
 #define __INITIALIZEHISTORYMANAGER_H__
 
+#include "dynlib_history_manager.h"
 #include "BOOL.h" /* BOOL */
 
-BOOL InitializeHistoryManager(void);
+HISTORY_MANAGER_IMPEXP BOOL InitializeHistoryManager(void);
 
 #endif /* __INITIALIZEHISTORYMANAGER_H__ */
 /*--------------------------------------------------------------------------*/

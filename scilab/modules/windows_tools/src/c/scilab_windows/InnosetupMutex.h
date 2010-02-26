@@ -14,17 +14,19 @@
 #ifndef __INNOSETUPMUTEX_H__
 #define __INNOSETUPMUTEX_H__
 
+#include "dynlib_scilab_windows.h"
+
 /*--------------------------------------------------------------------------*/
 /**
 * Create a named Mutex used by Innosetup
 * http://www.vincenzo.net/isxkb/index.php?title=Application_considerations 
 */
-void createInnosetupMutex(void);
+SCILAB_WINDOWS_IMPEXP void createInnosetupMutex(void);
 
 /**
 * Close named Mutex used by Innosetup
 */
-void closeInnosetupMutex(void);
+SCILAB_WINDOWS_IMPEXP void closeInnosetupMutex(void);
 /*--------------------------------------------------------------------------*/
 
 #endif /* __INNOSETUPMUTEX_H__ */

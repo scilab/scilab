@@ -16,7 +16,7 @@
 /* desc : interface for winsid routine                                    */
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
-#include "sci_winsid.h"
+#include "gw_graphics.h"
 #include "MALLOC.h"
 #include "WindowList.h"
 #include "Scierror.h"

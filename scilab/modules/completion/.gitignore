@@ -9,6 +9,7 @@ src/nocompletion/nocompletion.def
 tests/utilities/libcompletion_c.c
 tests/utilities/libcompletion_c.so
 tests/utilities/loader.sce
+tests/utilities/cleaner.sce
 tests/utilities/completion_c.c
 tests/utilities/completion_c.def
 tests/utilities/completion_c.dll

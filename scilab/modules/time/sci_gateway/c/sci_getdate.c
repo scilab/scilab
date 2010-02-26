@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,9 +35,9 @@
 /*--------------------------------------------------------------------------*/
 int sci_getdate(char *fname, int* _piKey)
 {
-  int n1 = 0,m1 = 0;
+	SciErr sciErr;
+  int n1 = 0,m1 = 0, type = 0;
   int * p1_in_address = NULL;
-  int res = 0;
   int i=0;
   double *DATEMATRIX=NULL;
 
@@ -63,22 +63,22 @@ int sci_getdate(char *fname, int* _piKey)
 	  C2F(convertdate)(&dt,DATEMATRIX);
 	  m1=1;
 	  n1=10;
-	  res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX, _piKey);
+	  sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEMATRIX);
 	}
 
     }
   else /* Rhs == 1 */
     {
-      getVarAddressFromPosition(1, &p1_in_address, _piKey);
-
-      if (getVarType(p1_in_address) == sci_strings)
+      sciErr = getVarAddressFromPosition(_piKey, 1, &p1_in_address);
+			sciErr = getVarType(_piKey, p1_in_address, &type);
+      if (type == sci_strings)
 	{
 	  char *Param1=NULL;
 	  int size_Param1 = 0;
 
-	  res = getMatrixOfString(p1_in_address, &m1, &n1, &size_Param1, NULL);
+	  sciErr = getMatrixOfString(_piKey, p1_in_address, &m1, &n1, &size_Param1, NULL);
 	  Param1 = (char *)MALLOC(size_Param1*sizeof(char));
-	  res = getMatrixOfString(p1_in_address, &m1, &n1, &size_Param1, &Param1);
+	  sciErr = getMatrixOfString(_piKey, p1_in_address, &m1, &n1, &size_Param1, &Param1);
 
 	  if (strcmp("s",Param1)==0)
 	    {
@@ -88,7 +88,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      DATEMATRIX[0]=(int)dt;
 	      m1=1;
 	      n1=1;
-	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX, _piKey);
+	      sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEMATRIX);
 	      if (Param1) FREE(Param1);
 	    }
 	  else
@@ -100,7 +100,7 @@ int sci_getdate(char *fname, int* _piKey)
 	}
       else
 	{
-	  if ( getVarType(p1_in_address) == sci_matrix )
+	  if ( type == sci_matrix )
 	    {
 	      int li=0;
 	      int k=0;
@@ -110,7 +110,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      double *DATEARRAY=NULL;
 	      double *DATEARRAYtmp=NULL;
 
-	      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &param);
+	      sciErr = getMatrixOfDouble(_piKey, p1_in_address, &m1, &n1, &param);
 
 	      l=10*m1*n1;
 	      DATEARRAY=(double *)MALLOC( (l)*sizeof(double) );
@@ -137,7 +137,7 @@ int sci_getdate(char *fname, int* _piKey)
 	      n1=10;
 	      DATEARRAYtmp=DATEARRAY;
 	      DATEARRAY = transposeMatrixDouble(n1,m1,DATEARRAY);
-	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEARRAY, _piKey);
+	      sciErr = createMatrixOfDouble(_piKey, Rhs+1, m1, n1, DATEARRAY);
 
 	      LhsVar(1)=Rhs+1;
 	      C2F(putlhsvar)();

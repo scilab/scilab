@@ -29,9 +29,11 @@ halt('a message')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[halt('Press a key')
+    <programlisting role="example"><![CDATA[ 
+halt('Press a key')
 
-halt()]]></programlisting>
+halt()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

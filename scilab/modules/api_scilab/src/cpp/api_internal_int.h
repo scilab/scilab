@@ -13,10 +13,12 @@
 #define __INTERNAL_INT_API__
 
 //internal
-int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
-int allocCommonMatrixOfInteger(int _iVar, int _iPrecision, int _iRows, int _iCols, void** _pvData, int* _piKey);
-int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
-int createCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _piData);
-int readCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
+SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
+SciErr allocCommonMatrixOfInteger(void* _pvCtx, int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData);
+SciErr fillCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
+SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _piData);
+SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
 
+static int getCommonScalarInteger(void* _pvCtx, int* _piAddress, int _iPrec, void** _pvData);
+static int getCommandNamedScalarInteger(void* _pvCtx, char* _pstName, int _iPrec, void** _pvData);
 #endif /* __INTERNAL_INT_API__ */

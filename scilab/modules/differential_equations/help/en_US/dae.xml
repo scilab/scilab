@@ -130,16 +130,16 @@
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[ 
 list(res,p1,p2,...)
- </programlisting>
+ ]]></programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>res</literal> is now</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[ 
 r=res(t,y,ydot,p1,p2,...)
- </programlisting>
+ ]]></programlisting>
 
                 <para><literal>res</literal> still returns the residual value
                 as a function of <literal>(t,x,xdot,x1,x2,...)</literal>, and
@@ -249,16 +249,16 @@ r=res(t,y,ydot,p1,p2,...)
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[  
 list(jac,p1,p2,...)               
- </programlisting>
+ ]]></programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>jac</literal> is now</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[ 
 r=jac(t,x,xdot,p1,p2,...)      
- </programlisting>
+ ]]></programlisting>
 
                 <para><literal>jac</literal> still returns
                 <literal>dg/dx+cj*dg/dxdot</literal> as a function of
@@ -333,16 +333,16 @@ r=jac(t,x,xdot,p1,p2,...)
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[  
 list(surface,p1,p2,...)
- </programlisting>
+ ]]></programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>surface</literal> is now</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[ 
 r=surface(t,x,p1,p2,...)
- </programlisting>
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -430,10 +430,10 @@ r=surface(t,x,p1,p2,...)
     <link linkend="dassl">dassl</link> and <link linkend="dasrt">dasrt</link>
     function designed for implicit differential equations integration.</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 g(t,x,xdot)=0
 x(t0)=x0  and   xdot(t0)=xdot0
- </programlisting>
+ ]]></programlisting>
 
     <para>If <literal>xdot0</literal> is not given in the<literal>
     initial</literal> argument, the dae function tries to compute it solving
@@ -452,7 +452,7 @@ x(t0)=x0  and   xdot(t0)=xdot0
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Example with Scilab  code
 function [r,ires]=chemres(t,y,yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
@@ -478,7 +478,7 @@ y=dae([x0,xd0],0,4d10,chemres,chemjac); // with jacobian
 
 //example with C code (c compiler needed) --------------------------------------------------
 //-1- create the C codes in TMPDIR - Vanderpol equation, implicit form
-code=['#include &lt;math.h&gt;'
+code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
       '{res[0] = yd[0] - y[1];'
       ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
@@ -493,7 +493,7 @@ code=['#include &lt;math.h&gt;'
       '{ groot[0] = y[0];}']
 mputl(code,TMPDIR+'/t22.c') 
 //-2- compile and load them
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce')
 //-3- run
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
@@ -512,7 +512,7 @@ t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
 plot(yy(1,1),yy(2,1),'r+')
 xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

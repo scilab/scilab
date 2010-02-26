@@ -72,14 +72,16 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          endif
 c
          if(lhs.eq.2) then
-            jm=istk(irc1+m1+im)
-            im=im+1
-            ii=0
-            do 62 i=0,m1-1
-               ii=ii+istk(irc1+i)
-               if(ii.ge.im) goto 63
- 62         continue
- 63         im=i+1
+            if (nel1.ne.0) then
+               jm=istk(irc1+m1+im)
+               im=im+1
+               ii=0
+               do 62 i=0,m1-1
+                  ii=ii+istk(irc1+i)
+                  if(ii.ge.im) goto 63
+ 62            continue
+ 63            im=i+1
+            endif
          endif
 c
          istk(il1)=1
@@ -98,12 +100,18 @@ c
                return
             endif
             istk(il2)=1
-            istk(il2+1)=1
-            istk(il2+2)=1
-            istk(il2+3)=0
             l=sadr(il2+4)
-            stk(l)=im+(jm-1)*m1
-            lstk(top+1)=l+1
+            istk(il2+3)=0
+            if (nel1.ne.0) then
+               istk(il2+1)=1
+               istk(il2+2)=1
+               stk(l)=im+(jm-1)*m1
+               lstk(top+1)=l+1
+            else
+               istk(il2+1)=0
+               istk(il2+2)=0
+               lstk(top+1)=l+1
+            endif
          endif
          return
       endif

@@ -37,22 +37,20 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-import javax.swing.JTextPane;
-
 
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -69,6 +67,7 @@ import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
+import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabel;
@@ -99,13 +98,14 @@ import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PrinterHelper;
+import org.scilab.modules.gui.utils.ScilabAboutBox;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
-import org.scilab.modules.gui.utils.PrinterHelper;
 import org.scilab.modules.gui.waitbar.ScilabWaitBar;
 import org.scilab.modules.gui.waitbar.WaitBar;
 import org.scilab.modules.gui.widget.Widget;
@@ -114,6 +114,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
+
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -159,6 +160,8 @@ public class CallScilabBridge {
 	
 	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
 	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
+	
+	private static final String CONSOLE = "Console";
 
 	/**
 	 * Constructor
@@ -2065,9 +2068,15 @@ public class CallScilabBridge {
 	 */
 	public static void searchKeyword(String[] helps, String keyword, String language, boolean fullText) {
 		if (fullText) {
-			ScilabHelpBrowser.createHelpBrowser(helps, language).fullTextSearch(keyword);
+			HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+			if (helpBrowser != null) {
+				helpBrowser.fullTextSearch(keyword);
+			}
 		} else {
-			ScilabHelpBrowser.createHelpBrowser(helps, language).searchKeywork(keyword);
+			HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+			if (helpBrowser != null) {
+				helpBrowser.searchKeywork(keyword);
+			}
 		}
 	}
 
@@ -2092,6 +2101,13 @@ public class CallScilabBridge {
 	}
 
 	/**
+	 * Open a Browser on ATOMS Web Site
+	 */
+	public static void openAtomsScilabWebSite() {
+		WebBrowser.openUrl("http://atoms.scilab.org/");
+	}
+
+	/**
 	 * Open a Browser on Contributions Web Site
 	 */
 	public static void openContributionsWebSite() {
@@ -2102,14 +2118,14 @@ public class CallScilabBridge {
 	 * Open a Browser on Bugzilla Web Site
 	 */
 	public static void openBugzillaWebSite() {
-		WebBrowser.openUrl("http://bugzilla.scilab.org/index.cgi");
+		WebBrowser.openUrl("http://bugzilla.scilab.org/");
 	}
 
 	/**
-	 * Open a Browser on Newsgroup Web Site
+	 * Open a Browser on Mailing List Archives
 	 */
-	public static void openNewsgroupWebSite() {
-		WebBrowser.openUrl("http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab");
+	public static void openMailingListWebSite() {
+		WebBrowser.openUrl("http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists");
 	}
 
 	/***************************/
@@ -2123,6 +2139,13 @@ public class CallScilabBridge {
 	 */
 	public static void selectAllConsoleContents() {
 		ScilabConsole.getConsole().selectAll();
+	}
+	
+	/**
+	 * Select all the console contents
+	 */
+	public static void helpOnTheKeyword() {
+		ScilabConsole.getConsole().helpOnTheKeyword();
 	}
 
 	/**
@@ -2243,11 +2266,11 @@ public class CallScilabBridge {
 			e.printStackTrace();
 		}
 		if (strInputSelected != null) {
-			printString(strInputSelected, new String("Console"));
+			printString(strInputSelected, new String(CONSOLE));
 		} else if (strOutputSelected != null) {
-			printString(strOutputSelected, new String("Console"));
+			printString(strOutputSelected, new String(CONSOLE));
 		} else {
-			printString(textToPrint, new String("Console"));
+			printString(textToPrint, new String(CONSOLE));
 		}
 	}
 	
@@ -2817,5 +2840,11 @@ public class CallScilabBridge {
 	public static boolean useCanvasForDisplay() {
             return SwingScilabCanvasImpl.isGLCanvasEnabled();
 	}
-
+	
+	/**
+	 * Display Scilab about box
+	 */
+	public static void scilabAboutBox() {
+		ScilabAboutBox.displayAndWait();
+	}
 }

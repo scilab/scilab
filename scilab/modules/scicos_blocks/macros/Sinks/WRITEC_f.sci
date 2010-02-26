@@ -40,7 +40,7 @@ case 'set' then
   fname=exprs(2)
   frmt=exprs(3)
   while %t do
-    [ok,in,fname1,frmt1,N,swap,exprs]=getvalue(..
+    [ok,in,fname1,frmt1,N,swap,exprs]=scicos_getvalue(..
 	'Set WRITEC block parameters',..
 	['Input size';
 	'Output file name';

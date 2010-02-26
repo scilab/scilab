@@ -145,7 +145,7 @@ function r=check_set_ports()
   r=%f
   funcprot(0)
   exec('SCI/modules/scicos/macros/scicos_scicos/setvalue.sci')
-  getvalue=setvalue;
+  scicos_getvalue=setvalue;
   alreadyran=%f;  %scicos_prob=%f
   for i=1:nb
     if and(Blocs(i)~=["SUPER_f" "func_block" "scifunc_block" "GENERAL_f" "SOM_f" "CURV_f" "LOOKUP_f"]) then 

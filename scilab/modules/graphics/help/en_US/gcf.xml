@@ -39,25 +39,23 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    
-    f=gcf(); // Create a figure
-    f.figure_size= [610,469]/2;
-    f.figure_name= "Foo";
+    <programlisting role="example"><![CDATA[ 
+f=gcf(); // Create a figure
+f.figure_size= [610,469]/2;
+f.figure_name= "Foo";
 
-    f=figure(); // Create a figure
-    h=uicontrol(f,"style","listbox","position", [10 10 150 160]); // Create a listbox
-    set(h, "string", "item 1|item 2|item3");// fill the list
-    set(h, "value", [1 3]); // select item 1 and 3 in the list
-    gcf()
+f=figure(); // Create a figure
+h=uicontrol(f,"style","listbox","position", [10 10 150 160]); // Create a listbox
+set(h, "string", "item 1|item 2|item3");// fill the list
+set(h, "value", [1 3]); // select item 1 and 3 in the list
+gcf()
 
-    scf(0); // Make graphic window 0 the current figure
-    gcf()  // Return the graphic handle of the current figure
+scf(0); // Make graphic window 0 the current figure
+gcf()  // Return the graphic handle of the current figure
 
-    figure(f) // Make window f the current figure
-    gcf() // Return the graphic handle of the current figure
-
-  ]]></programlisting>
+figure(f) // Make window f the current figure
+gcf() // Return the graphic handle of the current figure
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

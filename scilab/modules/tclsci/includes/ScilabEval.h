@@ -13,6 +13,8 @@
 #ifndef __SCILABEVAL__
 #define __SCILABEVAL__
 
+#include "dynlib_tclsci.h"
+
 /**
  * @TODO add comment
  *
@@ -22,7 +24,7 @@
  * @param argv  
  * @return <ReturnValue>
  */
-int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+TCLSCI_IMPEXP  int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 
 #endif /* __SCILABEVAL__ */
 /*--------------------------------------------------------------------------*/ 

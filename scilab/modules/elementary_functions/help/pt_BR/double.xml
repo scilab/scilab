@@ -73,12 +73,10 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=int8([0 12 140])
 double(x)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

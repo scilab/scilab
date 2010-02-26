@@ -13,6 +13,9 @@
 #ifndef __ADDINTER_H__
 #define  __ADDINTER_H__
 
+#include "dynlib_dynamic_link.h"
+#include "machine.h"
+
 /** 
 * the first dynamic interface is at position 500+1 
 */
@@ -32,7 +35,7 @@
 * Remove interface in scilab
 * @param[in] id of interface
 */
-void RemoveInterf(int id);
+DYNAMIC_LINK_IMPEXP void RemoveInterf(int id);
 
 /**
 * Add a interface in Scilab
@@ -42,6 +45,11 @@ void RemoveInterf(int id);
 * @param[in] sizefcts size of fcts array
 * @return a int id of interface (-1 failed)
 */
-int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts);
+DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts);
+
+/**
+* TO DO: comments 
+*/
+DYNAMIC_LINK_IMPEXP void C2F(userlk)(int *k);
 
 #endif /*  __ADDINTER_H__ */

@@ -610,14 +610,6 @@
 
     <variablelist>
       <varlistentry>
-        <term><link linkend="xaxis">xaxis</link></term>
-
-        <listitem>
-          <para>dessine un axe</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term><link linkend="graduate">graduate</link></term>
 
         <listitem>
@@ -843,7 +835,7 @@
 
     <variablelist>
       <varlistentry>
-        <term><link linkend="xbasc">xbasc</link></term>
+        <term><link linkend="clf">clf</link></term>
 
         <listitem>
           <para>efface une fenêtre graphique et les graphiques

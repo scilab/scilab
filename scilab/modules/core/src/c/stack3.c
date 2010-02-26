@@ -21,7 +21,7 @@
 #include <string.h>
 #include "stack-c.h"
 
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -848,7 +848,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 {
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
-	int iAddrOffset		= 0;
 
 	if(iValType < 0)
 	{
@@ -1515,7 +1514,6 @@ int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolDat
 {
 	int iNewPos			= Top - Rhs + _iNewVal;
 	//int iNewPos			= Top + _iNewVal;
-	int iIndex			= 0;
 	int iAddrBase		= iadr(*Lstk(iNewPos));
 	int iAddrRealData	= 0;
 
@@ -1540,7 +1538,6 @@ int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalE
 {
 	int iNewPos			= Top - Rhs + _iNewVal;
 	//int iNewPos			= Top + _iNewVal;
-	int iIndex			= 0;
 	int iAddrBase		= iadr(*Lstk(iNewPos));
 	int iAddElemByRow	= 0;
 	int iAddrColByRow	= 0;
@@ -1617,7 +1614,6 @@ int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pE
 
 int* iGetAddressFromItemPos(int *_piParent, int _iItemPos)
 {
-	int iValType		= _piParent[0];
 	int iItemCount		= _piParent[1];
 	int *piOffset		= _piParent + 2;
 
@@ -1642,10 +1638,8 @@ int iGetAddressFromItemNumber(int _iVar, int _iItemNumber)
 {
 	int	iItemCount		= 0;
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
-	int iValType		= *istk(iAddrBase);
 	int iAddrOffset		= iAddrBase + 2;
 	int iAddrItem		= 0;
-	int iIndex			= 0;
 	int *piOffset		= istk(iAddrOffset);
 
 	iItemCount			= *istk(iAddrBase + 1);
@@ -1763,10 +1757,8 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 //Get SubList reference
 int* iGetListItemList(int _iVar, int* _piParentList, int _iItemPos)
 {
-	int iIndex			= 0;
 	int *piChild		= NULL;
 
-	int *piItemPos		= 0;
 
 	if(_piParentList == NULL)
 	{//parent is the current list
@@ -1934,7 +1926,6 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	int iAddrOffset		= 0;
 	int iAddrData		= 0;
 	int iIndex			= 0;
-	char *pToto			= NULL;
 
 	*_piRows			= *istk(_iAddr + 1);
 	*_piCols			= *istk(_iAddr + 2);
@@ -1983,7 +1974,6 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 
 /*void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
-	int iIndex = 0;
 
 	int iTwo	= 2;
 	int iOne	= 1;
@@ -2006,7 +1996,6 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 }
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
 {
-	int iIndex = 0;
 	doublecomplex *poComplex = (doublecomplex*)MALLOC(sizeof(doublecomplex) * _iSize);
 	int iTwo	= 2;
 	int iOne	= 1;
@@ -2149,7 +2138,6 @@ int iListAllocComplexMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, in
 	int iItemNumber		= _piParent[1];
 	int *piItemPos		= &_piParent[2];
 	int iIndex			= 0;
-	int iStart			= 0;
 	int* piItemAddr		= NULL;
 
 	if(iType != sci_list && iType != sci_tlist && iType != sci_mlist)

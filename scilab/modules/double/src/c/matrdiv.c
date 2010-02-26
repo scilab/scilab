@@ -100,52 +100,52 @@ int matrdiv()
 			return 0;
 		}
 
-		//Check if A and B matrices contains Inf or NaN's
-		if(iComplex1)
-		{
-			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-			{
-				if(finite(pReal1[iIndex]) == 0 || finite(pImg1[iIndex]) == 0)
-				{
-					Error(229);
-					return 0;
-				}
-			}
-		}
-		else
-		{
-			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-			{
-				if(finite(pReal1[iIndex]) == 0)
-				{
-					Error(229);
-					return 0;
-				}
-			}
-		}
+		////Check if A and B matrices contains Inf or NaN's
+		//if(iComplex1)
+		//{
+		//	for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
+		//	{
+		//		if(finite(pReal1[iIndex]) == 0 || finite(pImg1[iIndex]) == 0)
+		//		{
+		//			Error(229);
+		//			return 0;
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
+		//	{
+		//		if(finite(pReal1[iIndex]) == 0)
+		//		{
+		//			Error(229);
+		//			return 0;
+		//		}
+		//	}
+		//}
 
-		if(iComplex2)
-		{
-			for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
-			{
-				if(finite(pReal2[iIndex]) == 0 || finite(pImg2[iIndex]) == 0)
-				{
-					Error(229);
-					return 0;
-				}
-			}
-		}
-		else
-		{
-			for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
-			{
-				if(finite(pReal2[iIndex]) == 0)
-				{
-					Error(229);
-					return 0;
-				}
-			}
-		}
+		//if(iComplex2)
+		//{
+		//	for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
+		//	{
+		//		if(finite(pReal2[iIndex]) == 0 || finite(pImg2[iIndex]) == 0)
+		//		{
+		//			Error(229);
+		//			return 0;
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	for(iIndex = 0 ; iIndex < iRows2 * iCols2 ; iIndex++)
+		//	{
+		//		if(finite(pReal2[iIndex]) == 0)
+		//		{
+		//			Error(229);
+		//			return 0;
+		//		}
+		//	}
+		//}
 
 		if(iSize2 != 1 /*&& iSize1 != 1*/)
 		{

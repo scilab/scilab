@@ -67,7 +67,6 @@ C     ..
 C     .. Executable Statements ..
       seed1 = 1234567890
       seed2 = 123456789
-C      lphr = lennob(phrase)
       lphr = phrasel
       IF (lphr.LT.1) RETURN
       DO 30,i = 1,lphr

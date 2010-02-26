@@ -21,7 +21,6 @@
 #include "scilabmode.h"
 #include "getcommandlineargs.h"
 #include "texmacs.h"
-#include "x_main.h"
 #include "Thread_Wrapper.h"
 #include "core_math.h"
 #include "setgetlanguage.h"
@@ -58,6 +57,7 @@ int main(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
+
   /* This bug only occurs under Linux 32 bits
    * See: http://wiki.scilab.org/Scilab_precision
    */
@@ -78,34 +78,6 @@ fpsetmask(0);
   setScilabMode(SCILAB_STD);
 #endif
 
-#ifdef DO_NOT_BUILD_THIS
-  //Desactivated since it is breaking Scilab GUI when not launched from a tty
-  if(!isatty(fileno(stdin))) { 
-
-	  /* if not an interactive terminal 
-	   * then, we are disabling the banner 
-	   * Since the banner is disabled in the scilab script checking 
-	   * with the function sciargs is -nb is present, I add this argument
-	   * by hand
-	   */
-
-	char** pNewArgv = (char**)malloc((argc + 1) * sizeof(char*));
-
-	for(i = 0 ; i < argc ; i++)
-	{
-		pNewArgv[i] = (char*)malloc((strlen(argv[i]) + 1) * sizeof(char));
-		strcpy(pNewArgv[i], argv[i]);
-	}
-	pNewArgv[i] = (char*)malloc((strlen("-nb") + 1) * sizeof(char));
-	strcpy(pNewArgv[i],"-nb");
-	setCommandLineArgs(pNewArgv, argc+1);
-  }else{
-	  setCommandLineArgs(argv, argc);
-  }
-#endif
-
-  setCommandLineArgs(argv, argc);
-	  
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
   {
@@ -150,7 +122,7 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"--texmacs") == 0)
       {
-      	setScilabMode(SCILAB_NWNI);
+      	setScilabMode(SCILAB_NW);
       	settexmacs();
       }
       else if ( strcmp(argv[i],"-nogui") == 0)
@@ -160,6 +132,29 @@ fpsetmask(0);
       else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
 
+
+  if(!isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD) {
+
+	  /* if not an interactive terminal
+	   * then, we are disabling the banner
+	   * Since the banner is disabled in the scilab script checking
+	   * with the function sciargs is -nb is present, I add this argument
+	   * by hand
+	   */
+
+	char** pNewArgv = (char**)malloc((argc + 1) * sizeof(char*));
+
+	for(i = 0 ; i < argc ; i++)
+	{
+		pNewArgv[i] = (char*)malloc((strlen(argv[i]) + 1) * sizeof(char));
+		strcpy(pNewArgv[i], argv[i]);
+	}
+	pNewArgv[i] = (char*)malloc((strlen("-nb") + 1) * sizeof(char));
+	strcpy(pNewArgv[i],"-nb");
+	setCommandLineArgs(pNewArgv, argc+1);
+  }else{
+	  setCommandLineArgs(argv, argc);
+  }
 
 #ifndef WITH_GUI
   if(getScilabMode() != SCILAB_NWNI)
@@ -172,8 +167,14 @@ fpsetmask(0);
 #ifndef __APPLE__
   return realmain(no_startup_flag,initial_script,initial_script_type,memory);
 #else
-  /* Mac OS X doesn't work the same way as Microsoft Windows or GNU/Linux */
+#ifdef WITHOUT_GUI
+  /* Do not use this function when building scilab-bin under Mac OS X
+   * not that this function is however used by scilab-cli-bin under Mac OS X */
+  return realmain(no_startup_flag,initial_script,initial_script_type,memory);
+#else
+  /* The Mac OS X Java/Swing integration doesn't work the same way as Microsoft Windows or GNU/Linux */
   return initMacOSXEnv(no_startup_flag,initial_script,initial_script_type,memory);
+#endif
 #endif
 }
 /*--------------------------------------------------------------------------*/

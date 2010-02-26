@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -43,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../libs/libxml2/libxml;../../libs/libxml2"
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
@@ -202,6 +203,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				AdditionalIncludeDirectories="../../libs/libxml2/libxml;../../libs/libxml2"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"

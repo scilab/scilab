@@ -57,12 +57,12 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 lstsize(list(1,'aqsdf'))
 x=ssrand(3,2,4);
 [ny,nu]=size(x)
 lstsize(x)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

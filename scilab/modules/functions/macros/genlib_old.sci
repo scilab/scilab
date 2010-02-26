@@ -59,7 +59,7 @@ function genlib_old(nam,path,force,verbose,names)
   
   names_changed=%t
   if updatelib then
-    if and(sort(names)==sort(old_names)) then names_changed=%f,end
+    if and(gsort(names)==gsort(old_names)) then names_changed=%f,end
   end
 
   modified=%f
@@ -71,7 +71,7 @@ function genlib_old(nam,path,force,verbose,names)
       if verbose then 
 	mprintf(gettext("%s: %s file compilation forced\n"),"genlib_old",names(i)+".sci");
       end
-      // getf sci file and save functions it defines as a .bin file
+      // exec sci file and save functions it defines as a .bin file
       getsave(scif);
     end  
   else
@@ -133,7 +133,7 @@ function getsave(fl)
   prot=funcprot();funcprot(0)
   nold=size(who('get'),'*')
 
-  ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
+  ierr=execstr('exec(fl)','errcatch') // get functions defined in file 'fl'
   if ierr<>0 then
     clear ierr
     mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib_old",fl,lasterror())

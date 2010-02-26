@@ -13,7 +13,8 @@
 #define __ERRO_H__
 
 #include "machine.h"
+#include "dynlib_output_stream.h"
 
-int C2F(erro)(char *str,unsigned int str_len);
+OUTPUT_STREAM_IMPEXP int C2F(erro)(char *str,unsigned int str_len);
 
 #endif /* !__ERRO_H__ */

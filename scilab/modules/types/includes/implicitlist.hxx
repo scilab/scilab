@@ -28,9 +28,7 @@ namespace types
 		InternalType*		m_poStart;
 		InternalType*		m_poStep;
 		InternalType*		m_poEnd;
-		int							m_iSize;
-
-		int							m_iElement;
+		long long				m_iSize; //can be a big value
 
 		InternalType::RealType		
 										m_eStartType;
@@ -42,13 +40,17 @@ namespace types
 										m_eOutType;
 		Int::IntType		m_eOutSubType;
 
+		bool m_bComputed;
+
 	public :
 		ImplicitList();
 		virtual ~ImplicitList();
 		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
+		ImplicitList* clone();
+
 		ImplicitList* getAsImplicitList(void) { return this; }
-		virtual				RealType getType(void) { return RealImplicitList; }
+		RealType getType(void) { return RealImplicitList; }
 
 		RealType			getOutputType();
 		Int::IntType	getOutputSubType();
@@ -75,7 +77,7 @@ namespace types
 		InternalType::RealType 
 									end_type_get();
 
-		int						size_get();
+		long long			size_get();
 
 		//extract single value in a InternalType
 		InternalType* extract_value(int _iOccur); //Single value

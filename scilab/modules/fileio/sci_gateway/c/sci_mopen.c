@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "PATH_MAX.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "mopen.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -29,12 +29,10 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	int m1 = 0, n1 = 0, l1 = 0;
 	int m2 = 0, n2 = 0, l2 = 0;
 	int m3 = 0, n3 = 0, l3 = 0;
-	int l4 = 0, l5 = 0, err = 0;
+	int l4 = 0, l5 = 0, err = 3;
 	int swap = 1, one = 1;
 	char *status = NULL;
-	char filename[PATH_MAX + FILENAME_MAX];
-	int out_n = 0;
-	long int lout = 0;
+	char *filename = NULL;
 
 	Nbvars = 0;
 	CheckRhs(1,3);
@@ -90,35 +88,65 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l4);
 	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &one,&one, &l5);
 
-	lout = PATH_MAX + FILENAME_MAX;
-	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
+	filename = expandPathVariable(cstk(l1));
+	if (filename)
+	{
+		C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
+	}
 
-	C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
-
-	if (err >  0)
+	if (err > (int)MOPEN_NO_ERROR)
 	{
 		if ( Lhs == 1)
 		{
-			if ( err == 1) 
+			switch (err)
 			{
-				Error(66);/* no more logical units */
-				return 0;
-			}
-			else if ( err == 2)
-			{
-				Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
-				return 0;
-			}
-			else
-			{
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return 0;
+				case (int)MOPEN_NO_MORE_LOGICAL_UNIT : 
+				{
+					Error(66);/* no more logical units */
+					FREE(filename);
+					filename = NULL;
+					return 0;
+				}
+				case (int)MOPEN_CAN_NOT_OPEN_FILE:
+				{
+					Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
+					FREE(filename);
+					filename = NULL;
+					return 0;
+				}
+				case (int)MOPEN_NO_MORE_MEMORY:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
+				case (int)MOPEN_INVALID_FILENAME:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: invalid filename.\n"),fname);
+					return 0;
+				}
+				case (int)MOPEN_INVALID_STATUS:
+				{
+					FREE(filename);
+					filename = NULL;
+					Scierror(999,_("%s: invalid status.\n"),fname);
+					return 0;
+				}
 			}
 		}
 		else
 		{
 			*stk(l5) = - err;
 		}
+	}
+
+	if (filename)
+	{
+		FREE(filename);
+		filename = NULL;
 	}
 
 	LhsVar(1) = Rhs + 1;

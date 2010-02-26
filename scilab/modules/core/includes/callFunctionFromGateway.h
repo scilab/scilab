@@ -13,17 +13,19 @@
 #ifndef __CALLFUNCTIONFROMGATEWAY_H__
 #define __CALLFUNCTIONFROMGATEWAY_H__
 
+#define SIZE_CURRENT_GENERIC_TABLE(tab) sizeof(tab) / sizeof(gw_generic_table)
 
 typedef int (*function_Interf)(char *fname,unsigned long l);
 
 /** 
  * See SCI/modules/<module_name>/sci_gateway/c/gw_<module_name>.c for example 
 */
+
 typedef struct functions_table_struct {
 	function_Interf f; /** the function itself **/
-	char *name;      /** its name in Scilab **/
+	char const * const name;      /** its name in Scilab **/
+	/* char const * const , to remove some warnings -Wall (linux) */
 } gw_generic_table;
-
 
 /**
 * call a function associated to a number "Fin-1"

@@ -65,12 +65,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 bool2s([%t %t %f %t])
 bool2s([2.3 0 10 -1])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

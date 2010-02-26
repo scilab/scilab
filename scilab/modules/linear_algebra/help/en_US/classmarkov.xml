@@ -55,16 +55,14 @@
     <title>Description</title>
     <para>
     Returns a permutation vector <literal>perm</literal> such that</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
                [      ...      ]
                [0 0       Mrr 0]
                [* *        *  Q]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Each <literal>Mii</literal> is a Markov matrix of dimension <literal>rec(i)  i=1,..,r</literal>.
     <literal>Q</literal> is sub-Markov matrix of dimension <literal>tr</literal>.
@@ -75,14 +73,12 @@ M(perm,perm) = [M11 0 0 0 0   0]
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

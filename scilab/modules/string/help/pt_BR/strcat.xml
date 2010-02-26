@@ -98,7 +98,7 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 strcat(string(1:10),',')
 strcat(["a","b"])
 strcat(["a","b"],'|')
@@ -106,7 +106,7 @@ strcat('A')
 strcat('A','B')
 strcat(['A','B'])
 strcat(['A','B'],'')
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

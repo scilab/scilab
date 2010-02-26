@@ -46,10 +46,12 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+
 // définition de la fonction d'affichage
 deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
+
 // définition de la fonction d'extraction
 deff('r=%V_e(i,M)',..
 'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
@@ -70,6 +72,7 @@ deff('r=%V_e(varargin)',[
     'r=mlist(H,M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))'])
 
 M(:,2)
+
 // tableau multidimensionnel
 str=['a','b','c','d','e','f','g','h'];
 n=hypermat([2,2,2],str);

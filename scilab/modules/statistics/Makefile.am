@@ -1,10 +1,12 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
+### Copyright (C) 2009 - DIGITEO - Vincent LIARD
 ##########
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
-src/c/ipmpar1.c
+src/c/ipmpar1.c \
+src/c/sci_string_matrix.c
 
 STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
 src/dcdflib/alngam.f \
@@ -117,9 +119,5 @@ libscistatistics_la_etc_DATA = etc/statistics.quit etc/statistics.start
 libscistatistics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics_gateway.xml
 
-
-#### statistics : include files ####
-libscistatistics_la_includedir=$(pkgincludedir)/statistics
-libscistatistics_la_include_HEADERS = includes/gw_statistics.h
 
 include $(top_srcdir)/Makefile.incl.am

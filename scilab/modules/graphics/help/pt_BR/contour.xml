@@ -71,23 +71,19 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                 fornece o número de níveis igualmente espaçados de zmin a zmax
                 como segue:</para>
 
-                <programlisting>
-
- z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
-   
-                </programlisting>
+                <programlisting role = ""><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
 
                 <para>Note que os níveis <literal>zmin</literal> e
                 <literal>zmax</literal> não são desenhados (genericamente eles
                 são reduzidos a pontos) mas podem ser adicionados através
                 de</para>
 
-                <programlisting>
-
- [im,jm] = find(z == zmin);     // ou zmax 
- plot2d(x(im)',y(jm)',-9,"000")
-   
-                </programlisting>
+                <programlisting role = ""><![CDATA[ 
+[im,jm] = find(z == zmin);     // ou zmax 
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -396,24 +392,20 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 
 contour(t,t,my_surface,10)
 // mudando o formato da impressão dos níveis
 xset("fpf","%.1f")
-xbasc()
+clf()
 contour(t,t,my_surface,10)
 // 3D
-xbasc()
+clf()
 z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
-//
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

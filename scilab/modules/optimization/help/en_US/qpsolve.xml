@@ -147,7 +147,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -155,7 +155,7 @@ C1= [1,-1,1,0,3,1;
      2,5,3,0,1,0];
 b1=[1;2;3];
 
-//C2*x &lt;= b2 (2 inequality constraints)
+//C2*x <= b2 (2 inequality constraints)
 C2=[0,1,0,1,2,-1;
     -1,0,2,1,1,0];
 b2=[-1;2.5];
@@ -173,7 +173,7 @@ b=[b1;b2];
 me=3;
 [x,iact,iter,f]=qpsolve(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -196,16 +196,16 @@ me=3;
 
     <para>Let r be</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 r=min(m,n)
- </programlisting>
+ ]]></programlisting>
 
     <para>Then the memory required by qpsolve during the computations
     is</para>
 
-    <programlisting> 
+    <programlisting role =""><![CDATA[ 
 2*n+r*(r+5)/2 + 2*m +1
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

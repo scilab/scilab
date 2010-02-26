@@ -14,6 +14,8 @@
 #ifndef __MEN_SUTILS_H__
 #define __MEN_SUTILS_H__
 
+#include "dynlib_string.h"
+
 /**
 * Converts a Scilab String coded as int array
 * into a C string [ the C string is allocated with MALLOC ]
@@ -22,7 +24,7 @@
 * @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
-void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
+STRING_IMPEXP void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
 
 
 /**
@@ -35,7 +37,7 @@ void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr);
 * @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
-void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr);
+STRING_IMPEXP void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr);
 
 /**
 * Converts a Scilab array of 
@@ -50,7 +52,7 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
 * @param[out] C string converted from int array
 * @param[out] error code 0 = OK , 1 = Problem
 */
-void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr);
+STRING_IMPEXP void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr);
 
 #endif /*  __MEN_SUTILS_H__ */
 /*--------------------------------------------------------------------------*/ 

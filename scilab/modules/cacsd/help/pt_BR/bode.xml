@@ -45,7 +45,7 @@ bode(frq, repf [,comments])</synopsis>
         <term>sl</term>
 
         <listitem>
-          <para>: <literal>syslin</literal> lista (sistema linear SISO ou
+          <para> <literal>syslin</literal> lista (sistema linear SISO ou
           SIMO) em tempo contínuo ou discreto </para>
         </listitem>
       </varlistentry>
@@ -148,8 +148,7 @@ bode(frq, repf [,comments])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 tit='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
@@ -157,8 +156,7 @@ bode(h,0.01,100,tit);
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 clf()
 bode([h1;h],0.01,100,['h1';'h'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

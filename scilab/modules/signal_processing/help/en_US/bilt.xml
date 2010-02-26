@@ -70,21 +70,22 @@
 
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
-    pl=roots(Hlp.den);
-    zr=roots(Hlp.num);
-    gn=coeff(Hlp.num,degree(Hlp.num))/coeff(Hlp.den,degree(Hlp.den));
-    z=poly(0,'z');
-    a=0.3;
-    num=z-a;
-    den=1-a*z;
-    [npl,nzr,ngn] = bilt(pl,zr,gn,num,den)
+    <programlisting role="example"><![CDATA[ 
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+pl=roots(Hlp.den);
+zr=roots(Hlp.num);
+gn=coeff(Hlp.num,degree(Hlp.num))/coeff(Hlp.den,degree(Hlp.den));
+z=poly(0,'z');
+a=0.3;
+num=z-a;
+den=1-a*z;
+[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)
 
-    Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
-    //comparison with horner
-    horner(Hlp,num/den)
-  ]]></programlisting>
+Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
+
+//comparison with horner
+horner(Hlp,num/den)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

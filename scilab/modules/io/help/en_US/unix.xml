@@ -49,7 +49,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 if ~MSDOS then
   unix("ls $SCI/demos");
 end
@@ -64,7 +64,7 @@ function wd=directory()
 endfunction
 
 wd=directory()
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

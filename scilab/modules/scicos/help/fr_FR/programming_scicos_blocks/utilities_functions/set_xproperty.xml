@@ -47,9 +47,9 @@ Cette fonction permet de définir un vecteur indiquant le type (algébrique ou d
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 set_xproperty(xprop)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_set_xproperty">
     <title>Paramètres</title>

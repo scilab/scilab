@@ -61,8 +61,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 clf()
 a1=newaxes(); 
 a1.axes_bounds=[0,0,1.0,0.5];
@@ -77,8 +76,7 @@ legend('sinh')
 sca(a1); //tornando os primeiros eixos os eixos correntes
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

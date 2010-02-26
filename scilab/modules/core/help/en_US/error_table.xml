@@ -205,7 +205,7 @@
 
     <para>87 "Unobservable system."</para>
 
-    <para>88 "sfact: singular or assymetric problem."</para>
+    <para>88 "sfact: singular or asymmetric problem."</para>
 
     <para>* 89 "Wrong size for argument %d."</para>
 
@@ -423,7 +423,7 @@
 
     <para>241 "File '%s' does not exist or read access denied."</para>
 
-    <para>242 "Binary direct acces files must be opened by 'file'."</para>
+    <para>242 "Binary direct access files must be opened by 'file'."</para>
 
     <para>243 "C file logical unit not allowed here."</para>
 

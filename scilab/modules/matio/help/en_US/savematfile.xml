@@ -25,7 +25,10 @@
 savematfile('filename', 'var1', 'var2', ...)
 savematfile('filename', '-struct', 's')
 savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
-savematfile(..., 'format')
+savematfile(..., '-v4')
+savematfile(..., '-v6')
+savematfile(..., '-v7')
+savematfile(..., '-v7.3')
 savematfile filename var1 var2 ...</synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -81,7 +84,21 @@ savematfile filename var1 var2 ...</synopsis>
             <varlistentry>
               <term>"-v6"</term>
               <listitem>
-                <para>A format that MATLAB Version 6 and earlier can open (default)</para>
+                <para>A format that MATLAB Version 6 and earlier can open</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v7"</term>
+              <listitem>
+                <para>A format that MATLAB Version 7 and earlier can
+                open (default)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>"-v7.3"</term>
+              <listitem>
+                <para>A format that MATLAB Version 7.3 and earlier can
+                open</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -112,6 +129,18 @@ savematfile filename var1 var2 ...</synopsis>
     <para>
     saves variables in a Matlab MAT-file from Scilab. The Scilab data types are
     converted into the Matlab equivalents.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+A = rand(10,10);
+B = sprand(100,100,0.1);
+savematfile('test_matfile.mat','A','B','-v6');
+clear;
+loadmatfile('test_matfile.mat');
+disp(A)
+disp(B)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

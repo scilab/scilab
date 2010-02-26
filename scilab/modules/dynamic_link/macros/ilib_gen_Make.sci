@@ -12,6 +12,12 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 //------------------------------------
 // generate a Makefile for gateway
 
+  [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_Make"));
+    return
+  end
+  
   if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='', cc='';end
   for i=1:size(files,'*') // compatibility scilab 4.x
     [path_f, file_f, ext_f] = fileparts(files(i));
@@ -46,11 +52,21 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
       
   comp_target = COMPILER;
   if with_lcc() == %T then
-  	Makename = makename+'.lcc'
-  	ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
+    Makename = makename + '.lcc';
+    ilib_gen_Make_lcc(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
   else if getenv('WIN32','NO')=='OK' then
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
     select comp_target
-     case 'VC++'   then Makename = makename+'.mak'
+     case 'VC++'   then Makename = makename + '.mak';
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
      case 'gcc' then 
       Makename = makename; 
@@ -78,6 +94,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   FILES_SRC = '';
   OBJS = '';
   OBJS_WITH_PATH = '';
+  FORTRAN_RUNTIME = '';
   OTHERLIBS = '';
   CC = '';
   CFLAGS = cflags;
@@ -167,6 +184,16 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   
   OBJS = strcat(OBJS_MATRIX, ' ');
   OBJS_WITH_PATH =  strcat(OBJS_WITH_PATH_MATRIX, ' ');
+
+  if ( or(fileext(FILES_SRC_MATRIX) == '.f90') | or(fileext(FILES_SRC_MATRIX) == '.f') ) then
+    if findmsifortcompiler() <> 'unknown' then
+      if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then
+        FORTRAN_RUNTIME = 'libifcoremd.lib libmmd.lib';
+      else
+        FORTRAN_RUNTIME = 'libifcoremdd.lib libmmdd.lib';
+      end
+    end
+  end
   
   for x=libs(:)'
      if OTHERLIBS <> '' then
@@ -188,6 +215,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FILES_SRC__", FILES_SRC);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS__", OBJS);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS_WITH_PATH__", OBJS_WITH_PATH);
+  MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FORTRAN_RUNTIME__", FORTRAN_RUNTIME);
   MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OTHERSLIBS__", OTHERLIBS);
   
   if CC <> '' then
@@ -312,37 +340,32 @@ function ilib_gen_Make_lcc(name,table,files,libs,Makename,with_gateway,ldflags,c
   end
   OTHERLIBS = strsubst(OTHERLIBS,'/',filesep());
 
-  try
-    MAKEFILE_LCC = mgetl(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC');
-  catch
+  ierr = execstr("MAKEFILE_LCC = mgetl(SCI+''/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'');", "errcatch");
+  if ierr <> 0 then
     MAKEFILE_LCC = '';
-  end
+    warning(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'+ ' ' + _('not found.') );
+  else
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LDFLAGS__" , LDFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCI__" , SCIDIR);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCIDIR1__" , SCIDIR1);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LCCLIBDIR__" , LCCLIBDIR);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LIBRARY__" , LIBRARY);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FILES_SRC__" , FILES_SRC);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OTHERSLIBS__" , OTHERLIBS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__CFLAGS__" , CFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXCFLAGS__" , MEXCFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FFLAGS__" , FFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXFFLAGS__" , MEXFFLAGS);
+    MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OBJS__" , OBJS);
 
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LDFLAGS__" , LDFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCI__" , SCIDIR);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__SCIDIR1__" , SCIDIR1);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LCCLIBDIR__" , LCCLIBDIR);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__LIBRARY__" , LIBRARY);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FILES_SRC__" , FILES_SRC);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OTHERSLIBS__" , OTHERLIBS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__CFLAGS__" , CFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXCFLAGS__" , MEXCFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__FFLAGS__" , FFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__MEXFFLAGS__" , MEXFFLAGS);
-  MAKEFILE_LCC = strsubst(MAKEFILE_LCC , "__OBJS__" , OBJS);
-  
-  if ( MAKEFILE_LCC <> '') then
     fd = mopen(Makename, "wt");
     mputl(MAKEFILE_LCC, fd);
     mclose(fd);
-    
     if ilib_verbose() > 1 then
       disp(mgetl(Makename));
     end
-  else
-    // TEMPLATE_MAKEFILE.LCC not found
-    warning(SCI+'/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC'+ _('not found.') );
+
   end
- 
+
 endfunction
 //---------------------------------------------------------------------------------------

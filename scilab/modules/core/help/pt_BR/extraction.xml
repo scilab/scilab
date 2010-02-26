@@ -349,8 +349,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // CASO DE MATRIZES
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -384,9 +383,7 @@ dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2)('a')
 dts(2)('b')(1,2)
 [a,b]=dts(2)(['a','b'])
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -15,7 +15,7 @@
 #ifndef __GETSCILABJNIENV_H__
 #define __GETSCILABJNIENV_H__
 
-#include "jni.h" /* JNIEnv */
+#include <jni.h> /* JNIEnv */
 
 /**
 * returns Scilab JNIEnv

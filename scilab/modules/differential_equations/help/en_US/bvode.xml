@@ -766,26 +766,26 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 subroutine fsub(x,zu,f)
 double precision zu(*), f(*),x 
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 void fsub(double *x, double *zu, double *f)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 function f=fsub(x,zu,parameters)
-]]></programlisting>
+ ]]></programlisting>
 
                
             </listitem>
@@ -847,26 +847,26 @@ function f=fsub(x,zu,parameters)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 subroutine dfsub(x,zu,df)
 double precision zu(*), df(*),x
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 void dfsub(double *x, double *zu, double *df)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 function df=dfsub(x,zu,parameters)
-]]></programlisting>
+ ]]></programlisting>
 
                
             </listitem>
@@ -986,11 +986,11 @@ function df=dfsub(x,zu,parameters)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 subroutine gsub(i,zu,g)
 double precision zu(*), g(*)
 integer i
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
              
@@ -998,17 +998,17 @@ integer i
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 void gsub(int *i, double *zu, double *g)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
              
             <listitem>
               <para>And in Scilab</para>
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 function g=gsub(i,zu,parameters)
-]]></programlisting>
+ ]]></programlisting>
             <para>Note that in contrast to <literal>f</literal> in <literal>fsub</literal>, here only one value per call is returned in <literal>g</literal>.</para>
             </listitem>
 
@@ -1070,26 +1070,26 @@ function g=gsub(i,zu,parameters)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 subroutine dgsub(i,zu,dg)
 double precision zu(*), dg(*)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 void dgsub(int *i, double *zu, double *dg)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab </para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 function dg=dgsub(i,zu,parameters)
-]]></programlisting>
+ ]]></programlisting>
 
                
             </listitem>
@@ -1115,26 +1115,26 @@ function dg=dgsub(i,zu,parameters)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 subroutine guess(x,zu,dmval)
 double precision x,z(*), dmval(*)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 void fsub(double *x, double *zu, double *dmval)
-]]></programlisting>
+ ]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab </para>
 
-              <programlisting><![CDATA[
+              <programlisting><![CDATA[ 
 function [dmval,zu]=fsub(x,parameters)
-]]></programlisting>
+ ]]></programlisting>
 
                
             </listitem>
@@ -2171,10 +2171,8 @@ M=sum(m);
 x_low=1;x_up=2; // the x limits
 zeta=[x_low,x_low,x_up,x_up]; //two constraints (on the value of u and its second derivative) on each bound.
 
-
 //The external functions
 //Theses functions are called by the solver with zu=[u(x);u'(x);u''(x);u'''(x)]
-
 
 // - The function which computes the right hand side of the differential equation
 function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
@@ -2222,7 +2220,6 @@ function zu=trusol(x)
   zu(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)
 endfunction
 
-
 fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 
 //    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
@@ -2239,7 +2236,7 @@ zu([1,3],[1 $]) //should be zero
 plot(xpoints,zu(1,:)) // the evolution of the solution u
 zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
 norm(zu-zu1)
-	]]></programlisting>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
@@ -2250,7 +2247,7 @@ function [z,lhS]=zstart(x)
   lhS=[0;1];
 endfunction
 zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
-	  ]]></programlisting>
+ ]]></programlisting>
 
          
       </listitem>
@@ -2576,10 +2573,8 @@ M=sum(m);
 x_low=0;x_up=1; // the x limits
 zeta=[x_low,x_low, x_up x_up]; //two  constraints on each bound.
 
-
 //The external functions
 //Theses functions are called by the solver with zu=[u1(x);u1'(x);u2(x);u2'(x)]
-
 
 // - The function which computes the right hand side of the differential equation
 function f=fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
@@ -2621,7 +2616,6 @@ function dg=dgsub2(i,z)
   end
 endfunction
 
-
 gam=1.1
 eps=1d-3
 dmu=eps
@@ -2651,7 +2645,7 @@ function [zu,dmval]=guess2(x,gam),
    dcons=gam*(1-3*x^2/2)
    d2cons=-3*gam*x
    dmval=zeros(2,1)
-   if x&gt;xt then
+   if x>xt then
      zu=[0 0 -cons -dcons]
      dmval(2)=-d2cons
    else
@@ -2664,13 +2658,13 @@ ipar(9)=1;//iguess
 zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
         fsub2,dfsub2,gsub2,dgsub2,guess2);
 scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and psi
-]]></programlisting>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
         <para>An eigenvalue problem:</para>
 
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 // y''(x)=-la*y(x)
 // BV: y(0)=y'(0); y(1)=0
 // Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
@@ -2705,7 +2699,7 @@ zeta=[a a b];
 N=101;
 x=linspace(a,b,N)';
 
-// We have s(n)-(n+1/2)*pi -&gt; 0 for n to infinity.
+// We have s(n)-(n+1/2)*pi -> 0 for n to infinity.
 la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
 
 z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
@@ -2714,13 +2708,13 @@ clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)'])
-      ]]></programlisting>
+ ]]></programlisting>
       </listitem>
 
       <listitem>
          <para>A boundary value problem with more than one solution.</para>
 
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
 // This boundary value problem has more than one solution.
@@ -2781,7 +2775,7 @@ xtitle('Two different solutions','x',' ')
 subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
-      ]]></programlisting>
+ ]]></programlisting>
 
          
       </listitem>
@@ -2789,7 +2783,7 @@ xtitle(' ','x',' ')
       <listitem>
         <para>A multi-point boundary value problem.</para>
 
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
@@ -2820,7 +2814,7 @@ y=x.^3/6+x.^2-x./6+1
 endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
-      ]]></programlisting>
+ ]]></programlisting>
       </listitem>
     </itemizedlist>
   </refsection>

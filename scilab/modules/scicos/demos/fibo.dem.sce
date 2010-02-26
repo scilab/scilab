@@ -6,5 +6,9 @@
 //
 
 thispath = get_absolute_file_path("fibo.dem.sce");
-scicos_demostration(thispath+"/fibo.cos");
+// scicos_demostration(thispath+"/fibo.cos");
+
+// Open the cosf file with xcos
+xcos(thispath+"/fibo.cosf");
+
 clear thispath;

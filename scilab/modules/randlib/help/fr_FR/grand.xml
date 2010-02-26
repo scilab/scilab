@@ -120,10 +120,10 @@ S=grand(action [,q1,....,ql])</synopsis>
           <para>   : <literal>Y=grand(m,n,'bet',A,B)</literal> génère des nombres aléatoires suivant 
      la loi beta de paramètres <literal>A</literal> and <literal>B</literal>. 
      La densité de cette loi est (<literal>0 &lt; x &lt; 1</literal>) :</para>
-          <programlisting><![CDATA[
-          A-1    B-1
-         x   (1-x)   / beta(A,B)  ( beta(A,B) = gamma(A+B) / (gamma(A) gamma(B)) )
-     ]]></programlisting>
+          <programlisting><![CDATA[ 
+ A-1    B-1
+x   (1-x)   / beta(A,B)  ( beta(A,B) = gamma(A+B) / (gamma(A) gamma(B)) )
+ ]]></programlisting>
           <para><literal>A</literal> et <literal>B</literal> devant être des réels &gt; 10^(-37).
      Fonction(s) associée(s) : <link linkend="cdfbet">cdfbet</link>.</para>
         </listitem>
@@ -197,10 +197,10 @@ S=grand(action [,q1,....,ql])</synopsis>
           <para>   : <literal>Y=grand(m,n,'gam',shape,scale)</literal> génère des nombres aléatoires suivant la loi
      gamma de paramètres <literal>shape</literal> (réel &gt; 0) et <literal>scale</literal> 
       (réel &gt; 0). La densité est :</para>
-          <programlisting><![CDATA[
-               shape  (shape-1)   -scale x
-          scale       x          e          /  gamma(shape)
-     ]]></programlisting>
+          <programlisting><![CDATA[ 
+     shape  (shape-1)   -scale x
+scale       x          e          /  gamma(shape)
+ ]]></programlisting>
           <para>Fonction(s) associée(s) : <link linkend="gamma">gamma</link>, <link linkend="cdfgam">cdfgam</link>.</para>
         </listitem>
       </varlistentry>
@@ -474,7 +474,7 @@ S=grand(action [,q1,....,ql])</synopsis>
             <varlistentry>
               <term>for fsultra</term>
               <listitem>
-                <para>:  <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
+                <para>  <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
        l'intervalle<literal>[0,37]</literal>, son deuxième (drapeau) doit être 0 ou 1, le troisième un
        entier de [1,2^32[ et les 37 composantes suivantes, des entiers de [0,2^32[) ; il est recommandé
        d'utiliser l'autre procédure d'initialisation (plus simple) avec deux entiers <literal>s1</literal> et 

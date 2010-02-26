@@ -86,13 +86,11 @@ y=rat(x [,tol])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 [n,d]=rat(%pi)
 [n,d]=rat(%pi,1.d-12)
 n/d-%pi
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

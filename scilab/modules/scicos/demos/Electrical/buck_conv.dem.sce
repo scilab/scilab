@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("buck_conv.dem.sce");
-scicos_demostration(thispath+"/DC_DC_Buck_Converter.cosf");
+xcos(thispath+"/DC_DC_Buck_Converter.cosf");
 clear thispath;

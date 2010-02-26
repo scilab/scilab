@@ -11,6 +11,7 @@
  */
 
 #include "AddFunctionInTable.h"
+#include "dynlib_signal_processing.h"
 #include "machine.h"
 /***********************************
 * corr ( dgetx dgety )
@@ -25,8 +26,8 @@ typedef void (*dgetyf)(ARGS_dgety);
 
 /**************** dgetx ***************/
 extern void C2F(corexx)(ARGS_dgetx);
-void C2F(dgetx)(ARGS_dgetx);
-void C2F(setdgetx)(char *name, int *rep);
+SIGNAL_PROCESSING_IMPEXP void C2F(dgetx)(ARGS_dgetx);
+SIGNAL_PROCESSING_IMPEXP void C2F(setdgetx)(char *name, int *rep);
 
 FTAB FTab_dgetx[] =
 {
@@ -36,8 +37,8 @@ FTAB FTab_dgetx[] =
 
 /**************** dgety ***************/
 extern void C2F(corexy)(ARGS_dgety);
-void C2F(dgety)(ARGS_dgety);
-void C2F(setdgety)(char *name, int *rep);
+SIGNAL_PROCESSING_IMPEXP void C2F(dgety)(ARGS_dgety);
+SIGNAL_PROCESSING_IMPEXP void C2F(setdgety)(char *name, int *rep);
 
 FTAB FTab_dgety[] =
 {

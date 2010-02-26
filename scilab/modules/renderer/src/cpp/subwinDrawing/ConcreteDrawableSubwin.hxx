@@ -235,9 +235,8 @@ protected:
   /*---------------------------------------------------------------------*/
 
 private:
-
   /**
-   * Modify range if it includes 0
+   * Modify the range for include 0
    */
   void addZeroInRange(double range[2]);
 

@@ -57,13 +57,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 ldivf('c','d')
 ldivf('1','2')
 ldivf('a','0')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

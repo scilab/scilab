@@ -13,16 +13,17 @@
 #include <string.h>
 #include <stdlib.h>
 #include "stack-c.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "vect_or.h"
-#include "api_common.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 #include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 /* SCILAB function : or */
 /*--------------------------------------------------------------------------*/
 int sci_or(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet			= 0;
 	int iMode			= 0;
 
@@ -39,13 +40,14 @@ int sci_or(char *fname, int* _piKey)
 	CheckLhs(1,1);
 
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr1) != sci_boolean)
+	if(!isBooleanType(_piKey, piAddr1))
 	{
 		OverLoad(1);
 		return 0;
@@ -53,20 +55,15 @@ int sci_or(char *fname, int* _piKey)
 
 	if(Rhs == 2)
 	{
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getProcessMode(_piKey, 2, piAddr1, &iMode);
+		if(sciErr.iErr)
 		{
-			return 1;
-		}
-
-		iRet = getProcessMode(piAddr2, piAddr1, &iMode);
-		if(iRet)
-		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
-	iRet = getMatrixOfBoolean(piAddr1, &iRows, &iCols, &piBool1);
+	sciErr = getMatrixOfBoolean(_piKey, piAddr1, &iRows, &iCols, &piBool1);
 	if(iRet)
 	{
 		return 1;
@@ -75,13 +72,13 @@ int sci_or(char *fname, int* _piKey)
 	switch(iMode)
 	{
 	case BY_ALL : 
-		piBool3 = (int*)malloc(sizeof(int));
+		piBool3 = (int*)MALLOC(sizeof(int));
 		break;
 	case BY_ROWS : 
-		piBool3 = (int*)malloc(sizeof(int) * iCols);
+		piBool3 = (int*)MALLOC(sizeof(int) * iCols);
 		break;
 	case BY_COLS : 
-		piBool3 = (int*)malloc(sizeof(int) * iRows);
+		piBool3 = (int*)MALLOC(sizeof(int) * iRows);
 		break;
 	}
 
@@ -90,13 +87,27 @@ int sci_or(char *fname, int* _piKey)
 	switch(iMode)
 	{
 	case BY_ALL : 
-		iRet = createMatrixOfBoolean(Rhs + 1, 1, 1, piBool3, _piKey);
+		iRet = createScalarBoolean(_piKey, Rhs + 1, piBool3);
+		if(iRet)
+		{
+			return 0;
+		}
 		break;
 	case BY_ROWS : 
-		iRet = createMatrixOfBoolean(Rhs + 1, 1, iCols, piBool3, _piKey);
+		sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, 1, iCols, piBool3);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 		break;
 	case BY_COLS : 
-		iRet = createMatrixOfBoolean(Rhs + 1, iRows, 1, piBool3, _piKey);
+		sciErr = createMatrixOfBoolean(_piKey, Rhs + 1, iRows, 1, piBool3);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
 		break;
 	}
 

@@ -39,7 +39,6 @@ src/c/timer.c \
 src/c/stack2.c \
 src/c/xscion.c \
 src/c/SetScilabEnvironment.c \
-src/c/hashtable_core.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/with_module.c \
@@ -63,8 +62,6 @@ src/c/expr.c \
 src/c/getcommandlineargs.c \
 src/c/syncexec.c \
 src/c/callFunctionFromGateway.c \
-src/c/librarieslist.c \
-src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
 src/c/freeArrayOfString.c \
@@ -84,13 +81,12 @@ src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
 src/c/typename.c \
 src/c/inittypenames.c \
-src/c/funcprot.c
-
+src/c/funcprot.c \
+src/c/eqid.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
 endif
-
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
@@ -182,7 +178,6 @@ src/fortran/clause.f \
 src/fortran/compcl.f \
 src/fortran/termf.f \
 src/fortran/expsum.f \
-src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \
@@ -191,7 +186,10 @@ src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
 src/fortran/isinstring.f
 
-CORE_CPP_SOURCES = src/cpp/core_gw.cpp
+CORE_CPP_SOURCES = \
+src/cpp/core_gw.cpp \
+src/cpp/hashtable_core.cpp
+
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -218,7 +216,6 @@ sci_gateway/c/sci_funcprot.c \
 sci_gateway/c/sci_newfun.c \
 sci_gateway/c/sci_warning.c \
 sci_gateway/c/sci_dispbpt.c \
-sci_gateway/c/sci_whereis.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
@@ -251,8 +248,6 @@ sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
-sci_gateway/c/sci_librarieslist.c \
-sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
@@ -264,7 +259,6 @@ sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
 sci_gateway/fortran/sci_useascommand.f \
-sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
@@ -304,13 +298,17 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 
 libscicore_la_CPPFLAGS = \
 		 	-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/cpp/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
-			-I$(top_srcdir)/modules/types/includes/
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/libs/MALLOC/includes/ 
 
 # Used by sci_getdebuginfo:
 if TCLTK
@@ -352,57 +350,25 @@ libscicore_la_xmldir = $(mydatadir)/xml
 libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
 #### core : include files ####
-libscicore_la_includedir=$(pkgincludedir)/core
+libscicore_la_includedir=$(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/BOOL.h \
-includes/callFunctionFromGateway.h \
-includes/callinter.h \
-includes/callinterf.h \
-includes/commandwords.h \
 includes/core_math.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
-includes/Funtab.h \
 includes/getcommandlineargs.h \
-includes/GetExceptionCode.h \
-includes/getfunctionslist.h \
 includes/getmemory.h \
-includes/getmodules.h \
-includes/getvariablesname.h \
-includes/GetXmlFileEncoding.h \
-includes/gw_core.h \
-includes/gw_user.h \
-includes/gw_user2.h \
-includes/inffic.h \
-includes/inisci-c.h \
-includes/InitializeCore.h \
-includes/intmacr2tree.h \
-includes/isanan.h \
-includes/IsAScalar.h \
-includes/islittleendian.h \
-includes/librarieslist.h \
-includes/libraryinfo.h \
-includes/loadversion.h \
+includes/getos.h \
 includes/machine.h \
-includes/machine.h.in \
-includes/machine.h.vc \
-includes/Os_specific.h \
-includes/PARAMS.h \
+includes/mode_exec.h \
 includes/PATH_MAX.h \
-includes/realmain.h \
-includes/returnanan.h \
-includes/returnProperty.h \
-includes/returnPropertyList.h \
 includes/SCIHOME.h \
 includes/scilabDefaults.h \
 includes/scilabmode.h \
-includes/scimem.h \
+includes/scisparse.h \
 includes/sciquit.h \
-includes/scirun.h \
 includes/setgetSCIpath.h \
-includes/SetScilabEnvironment.h \
-includes/sigbas.h \
 includes/stack-c.h \
 includes/stack-def.h \
 includes/stack.h \
@@ -411,22 +377,7 @@ includes/stack2.h \
 includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
-includes/stamp-h1 \
-includes/syncexec.h \
-includes/scisparse.h \
-includes/texmacs.h \
-includes/timerEvents.h \
-includes/tmpdir.h \
 includes/version.h \
-includes/warningmode.h \
-includes/x_main.h \
-includes/xscion.h \
-includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h \
-includes/getos.h \
-includes/mode_exec.h \
-includes/transposeMatrix.h \
-includes/recursionFunction.h
+includes/warningmode.h
 
 include $(top_srcdir)/Makefile.incl.am

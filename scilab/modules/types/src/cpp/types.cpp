@@ -16,17 +16,17 @@
 namespace types
 {
 	/*commun functions*/
-	int GenericType::cols_get() const
+	int GenericType::cols_get()
 	{
 		return m_iCols;
 	}
 
-	int GenericType::rows_get() const
+	int GenericType::rows_get()
 	{
 		return m_iRows;
 	}
 
-	int GenericType::size_get() const
+	int GenericType::size_get()
 	{
 		return m_iSize;
 	}
@@ -46,5 +46,4 @@ namespace types
 		}
 		return false;
 	}
-
 }

@@ -24,20 +24,23 @@
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>sleep</literal>Sleep suspend Scilab durant la duree specifie en
+    <para><literal>sleep</literal>Sleep suspend Scilab durant la durée specifiée en
     millisecondes.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    tic;sleep(6000);toc
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+tic;sleep(6000);toc
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="xpause">xpause</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
       </member>
     </simplelist>
   </refsection>

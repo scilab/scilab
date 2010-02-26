@@ -17,65 +17,83 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-
 /*Some call to other module ( polynomial et sparse*/
-extern int C2F(sci_cleanp) (char *fname, int* _piKey);
-extern int C2F(sci_spclean) (char *fname, int* _piKey);
+extern int sci_cleanp(char *fname,unsigned long fname_len);
+extern int C2F(sci_spclean) (char *fname,unsigned long fname_len);
+extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
-int clean_double(int* _piAddress, int* _piKey);
-int clean_poly(int* _piAddress, int* _piKey);
-int clean_sparse(int* _piAddress, int* _piKey);
+SciErr clean_double(int* _piKey, int* _piAddress);
+int clean_poly(int* _piKey, int* _piAddress);
+int clean_sparse(int* _piKey, int* _piAddress);
 
-int sci_clean(char *fname, int* _piKey)
+int sci_clean(char *fname, int*_piKey)
 {
-	int iRet			= 0;
+	SciErr sciErr;
 
-	int* piAddr1					= NULL;
+	int* piAddr1		= NULL;
+	int iType				= 0;
 
 	CheckRhs(1,3);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	switch(getVarType(piAddr1))
-	{
-	case sci_matrix : 
-		iRet = clean_double(piAddr1, _piKey);
-		break;
-	case sci_poly : 
-		iRet = clean_poly(piAddr1, _piKey);
-		break;
-	case sci_sparse :
-		iRet = clean_sparse(piAddr1, _piKey);
-		break;
-	default :
-//		OverLoad(1);
+		printError(&sciErr, 0);
 		return 0;
 	}
+
+	sciErr = getVarType(_piKey, piAddr1, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	switch(iType)
+	{
+	case sci_matrix :
+		sciErr = clean_double(_piKey, piAddr1);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		PutLhsVar();
+		break;
+	case sci_poly :
+		clean_poly(_piKey, piAddr1);
+		break;
+	case sci_sparse :
+		clean_sparse(_piKey, piAddr1);
+		break;
+	default :
+		OverLoad(1);
+		return 0;
+	}
+
 	return 0;
 }
 
-int clean_poly(int* _piAddress, int* _piKey)
+int clean_poly(int* _piKey, int* _piAddress)
 {
-	C2F(sci_cleanp)("clean", _piKey);
+	sci_cleanp("clean", 5);
 	return 0;
 }
 
-int clean_sparse(int* _piAddress, int* _piKey)
+int clean_sparse(int* _piKey, int* _piAddress)
 {
-	C2F(sci_spclean)("clean", _piKey);
+	C2F(ref2val)();
+	C2F(sci_spclean)("clean", 5);
 	return 0;
 }
 
-int clean_double(int* _piAddress, int* _piKey)
+SciErr clean_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet							= 0;
 
 	int iRows1						= 0;
 	int iCols1						= 0;
@@ -103,83 +121,65 @@ int clean_double(int* _piAddress, int* _piKey)
 
 	if(Rhs == 3)
 	{
-		iRet = getVarAddressFromPosition(3, &piAddr3, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 3, &piAddr3);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		if(getVarType(piAddr3) != sci_matrix)
+		sciErr = getMatrixOfDouble(_piKey, piAddr3, &iRows3, &iCols3, &pdblReal3);
+		if(sciErr.iErr)
 		{
-			Error(52);
-			return 0;
+			return sciErr;
 		}
 
-		if(isVarComplex(piAddr3))
-		{
-			Error(52);
-			return 0;
-		}
-
-		iRet = getMatrixOfDouble(piAddr3, &iRows3, &iCols3, &pdblReal3);
-		if(iRet)
-		{
-			return 1;
-		}
 		if(iRows3 != 1 || iCols3 != 1)
 		{
 			Error(60);
-			return 0;
+			return sciErr;
 		}
 		dblEpsR = pdblReal3[0];
 	}
 
 	if(Rhs >= 2)
 	{
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
 
-		if(getVarType(piAddr2) != sci_matrix)
+		sciErr = getMatrixOfDouble(_piKey, piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(sciErr.iErr)
 		{
-			Error(52);
-			return 0;
+			return sciErr;
 		}
 
-		if(isVarComplex(piAddr2))
-		{
-			Error(52);
-			return 0;
-		}
-
-		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
-		if(iRet)
-		{
-			return 1;
-		}
 		if(iRows2 != 1 || iCols2 != 1)
 		{
 			Error(60);
-			return 0;
+			return sciErr;
 		}
 		dblEpsA = pdblReal2[0];
-
-
 	}
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
+
 
 		dblNorm = wasums(iRows1 * iCols1, pdblReal1, pdblImg1);
 
-		allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet, _piKey);
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
+		{
+			return sciErr;
+		}
+
 
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
 		for(i = 0 ; i < iRows1 * iCols1 ; i++)
@@ -193,21 +193,23 @@ int clean_double(int* _piAddress, int* _piKey)
 		int iOne	= 1;
 		int iSize1	= 0;
 
-		iRet = getMatrixOfDouble(_piAddress, &iRows1, &iCols1, &pdblReal1);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows1, &iCols1, &pdblReal1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
+
 
 		iSize1			= iRows1 * iCols1;
 		dblNorm			= C2F(dasum)(&iSize1, pdblReal1, &iOne);
 
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows1, iCols1, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			return sciErr;
 		}
+
 
 		for(i = 0 ; i < iRows1 * iCols1 ; i++)
 		{
@@ -216,7 +218,6 @@ int clean_double(int* _piAddress, int* _piKey)
 	}
 
 	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-	return 0;
+	return sciErr;
 }
 /*--------------------------------------------------------------------------*/

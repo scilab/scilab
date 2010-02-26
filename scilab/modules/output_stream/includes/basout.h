@@ -15,7 +15,8 @@
 #define __BASOUT_H__
 
 #include "machine.h" /* C2F */
+#include "dynlib_output_stream.h"
 
-int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters);
+OUTPUT_STREAM_IMPEXP int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters);
 
 #endif /* __BASOUT_H__ */

@@ -55,7 +55,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // première sous-fenêtre
 xsetech([0,0,1.0,0.5])
 plot2d()
@@ -68,7 +68,7 @@ xsetech([0,0,1.0,0.5])
 // recupération de l'échelle 
 xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
-xbasc();
+clf();
  ]]></programlisting>
   </refsection>
   <refsection>

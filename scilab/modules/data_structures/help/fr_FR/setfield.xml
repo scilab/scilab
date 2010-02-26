@@ -45,12 +45,11 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 l=list(1,'qwerw',%s)
 l(1)='change'
 l(0)='ajoute'
 l(6)=['un de plus';'ajoute']
-//
 
 a=hypermat([2,2,2],rand(1:2^3));// les hypermatrices sont des mlist
 setfield(3,1:8,a);a // affectation du champ

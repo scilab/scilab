@@ -13,19 +13,21 @@
 #ifndef __GETPARTLINE_H__
 #define __GETPARTLINE_H__
 
+#include "dynlib_completion.h"
+
 /**
 * pre parsing current line to search with completion
 * @param[in] current line
 * @return word to find with completion
 */
-char *getPartLevel(char *line);
+COMPLETION_IMPEXP char *getPartLevel(char *line);
 
 /**
 * pre parsing current line to search with completion (file)
 * @param[in] current line
 * @return word to find with completion
 */
-char *getFilePartLevel(char *line);
+COMPLETION_IMPEXP char *getFilePartLevel(char *line);
 
 
 #endif /* __GETPARTLINE_H__ */

@@ -90,12 +90,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff("y=foo(x)","y=x"); // define a função foo como a função identidade.
 foo("toto")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

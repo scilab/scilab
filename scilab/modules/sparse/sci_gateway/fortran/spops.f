@@ -11,6 +11,11 @@ c
 c     operations on sparse matrices
       include 'stack.h'
       integer op
+Cc (DLL Intel Fortran)
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
+cDEC$ ENDIF
+      
       common /mtlbc/ mmode
 c     
       integer iadr,sadr

@@ -77,19 +77,17 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 txt=fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="edit">edit</link></member>
 

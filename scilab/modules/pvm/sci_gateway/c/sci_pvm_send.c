@@ -23,7 +23,7 @@
 /******************************************
  * SCILAB function : pvm_send, fin = 22
  ******************************************/
-int intspvm_send (char *fname,unsigned long fname_len)
+int sci_pvm_send (char *fname,unsigned long fname_len)
 {
   int *Ipack,*header,address;
   int m1,n1,l1,mn1,m3,n3,l3,un=1,l4,size,l5,used,ierr;
@@ -50,7 +50,7 @@ int intspvm_send (char *fname,unsigned long fname_len)
   switch (ierr ) { 
   case 1: Scierror(999,_("%s: work space (stacksize) is too small d\n"),fname);
     return 0;
-  case 2: Scierror(999,_("%s: Unknow type or not yet implemented\n"),fname);
+  case 2: Scierror(999,_("%s: Unknown type or not yet implemented\n"),fname);
     return 0; 
   }
 

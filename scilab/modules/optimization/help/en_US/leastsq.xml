@@ -273,13 +273,13 @@
           <link linkend="link">link</link>). The generic calling sequences for
           this routine are:</para>
 
-          <programlisting> 
+          <programlisting role = ""><![CDATA[ 
 In Fortran:    subroutine fun(m, n, x, params, y)
                integer m,n
                double precision x(n), params(*), y(m)
 
 In C:          void fun(int *m, int *n, double *x, double *params, double *y)
-         </programlisting>
+ ]]></programlisting>
 
           <para>where <literal>n</literal> is the dimension of vector
           <literal>x</literal>, <literal>m</literal> the dimension of vector
@@ -330,13 +330,13 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
           must be linked to Scilab). The calling sequences for this routine
           are nearly the same than for <literal>fun</literal>:</para>
 
-          <programlisting> 
+          <programlisting role = ""><![CDATA[ 
 In Fortran:    subroutine dfun(m, n, x, params, y)
                integer m,n
                double precision x(n), params(*), y(m,n)
 
 In C:          void fun(int *m, int *n, double *x, double *params, double *y)
-         </programlisting>
+ ]]></programlisting>
 
           <para>in the C case <emphasis>dfun(i,j)=dfi/dxj</emphasis> must be
           stored in <literal>y[m*(j-1)+i-1]</literal>.</para>
@@ -365,7 +365,7 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // We will show different calling possibilities of leastsq on one (trivial) example
 // which is non linear but doesn't really need to be solved with leastsq (applying
 // log linearizes the model and the problem may be solved with linear algebra). 
@@ -413,7 +413,7 @@ endfunction
 // a small graphic (before showing other calling features)
 tt = linspace(0,1.1*max(tm),100)';
 yy = yth(tt, xopt);
-xbasc()
+clf()
 plot2d(tm, ym, style=-2)
 plot2d(tt, yy, style = 2)
 legend(["measure points", "fitted curve"]);
@@ -484,7 +484,7 @@ link(flibname,names,"f")
 // 8- last example: fun and dfun in C
 
 // 8-1/ Let 's Scilab write the C code (in the TMPDIR directory):
-c_code = ["#include &lt;math.h&gt;"
+c_code = ["#include <math.h>"
           "void myfunc(int *m,int *n, double *x, double *param, double *f)"
           "{"
           "  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
@@ -517,7 +517,7 @@ link(clibname,names,"c")
 
 // 8-4/ ready for the leastsq call
 [f,xopt, gropt] = leastsq(list("myfunc",m,tm,ym,wm),"mydfunc",x0)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -535,8 +535,6 @@ link(clibname,names,"c")
       <member><link linkend="external">external</link></member>
 
       <member><link linkend="qpsolve">qpsolve</link></member>
-
-      <member><link linkend="linpro">linpro</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -17,12 +17,13 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.60)
+AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:1:0
+SCILAB_LIBRARY_VERSION=5:2:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -61,7 +62,7 @@ AC_SYS_LARGEFILE
 # See http://wiki.debian.org/RpathIssue
 AC_RELOCATABLE
 AC_RELOCATABLE_LIBRARY
-
+AC_LIB_RPATH
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
@@ -438,7 +439,7 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -533,6 +534,16 @@ case "$CC" in
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+	 case "$host" in
+	      i386-apple-darwin*)
+		CC=" $CC -arch i386 "
+		CXX=" $CXX -arch i386 "
+		;;
+	      x86_64-apple-darwin*)
+                CC=" $CC -arch x86_64 "
+                CXX=" $CXX -arch x86_64 "
+                ;;
+	esac
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -678,6 +689,13 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
 		if test "$with_gui" != no; then
 
+				# jgraphx
+				AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
+				JGRAPHX=$PACKAGE_JAR_FILE
+				AC_SUBST(JGRAPHX)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.2.0.7],[mxGraph.VERSION])
+
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				FLEXDOCK=$PACKAGE_JAR_FILE
@@ -687,13 +705,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
 				LOOKS=$PACKAGE_JAR_FILE
 
-				# Named differently under Opensuse
+				# Named differently under ArchLinux
 				if test -z "$LOOKS"; then
-				    AC_JAVA_CHECK_PACKAGE([looks2],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+					AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
 					LOOKS=$PACKAGE_JAR_FILE
 				fi
-				AC_SUBST(LOOKS)
-
 				AC_SUBST(LOOKS)
 
 				#  Skin Look and Feel
@@ -706,6 +722,42 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JOGL=$PACKAGE_JAR_FILE
 				AC_SUBST(JOGL)
 
+				if test "$MACOSX" = 1; then
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
+				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
+				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+				   	   LDFLAGS="$LDFLAGS -lGL "
+					   # the space after "jogl" in the following line is on	
+					   # purpose to disable the cache
+				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
+					   [JOGL_LIBS="-ljogl -lGL"],
+					   [AC_MSG_ERROR(["libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - or libGL are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])])
+				   fi
+
+				   LDFLAGS=$LDFLAGS_save
+				fi
+
+				# JoGL Native <=> Java connector
+				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
+				GLUEGEN_RT=$PACKAGE_JAR_FILE
+				AC_SUBST(GLUEGEN_RT)
+
+				if test "$MACOSX" = 1; then
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
+				else
+				   LDFLAGS_save=$LDFLAGS
+				   # Provide known paths where distribs/OS can store JNI libs
+				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
+				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
+				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   LDFLAGS=$LDFLAGS_save
+				fi
+
 				# Jhall
 				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
@@ -717,11 +769,6 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				fi
 				AC_SUBST(JHALL)
 
-				# JoGL Native <=> Java connector
-				AC_JAVA_CHECK_PACKAGE([gluegen-rt],[com.sun.gluegen.runtime.CPU],[Scilab 3D rendering])
-				GLUEGEN_RT=$PACKAGE_JAR_FILE
-				AC_SUBST(GLUEGEN_RT)
-
 				# Console API
 				AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
 				JROSETTA_API=$PACKAGE_JAR_FILE
@@ -731,6 +778,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
+
+
+				# MathML rendering solution
+				# Used in both graphic & help 
+				AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
+				JEUCLID_CORE=$PACKAGE_JAR_FILE
+				AC_SUBST(JEUCLID_CORE)
+
 
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
@@ -744,9 +799,51 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
+                                # JLaTeXMath
+                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                                JLATEXMATH=$PACKAGE_JAR_FILE
+                                AC_SUBST(JLATEXMATH)
+
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
 		fi
+
+		# Checkstyle (code checking)
+		AC_JAVA_CHECK_PACKAGE([checkstyle],[com.puppycrawl.tools.checkstyle.CheckStyleTask],[Checkstyle - code checking],"yes")
+		CHECKSTYLE=$PACKAGE_JAR_FILE
+		AC_SUBST(CHECKSTYLE)
+
+		# Commons beanutils (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([commons-beanutils],[org.apache.commons.beanutils.Converter],[Bean utility],"yes")
+		COMMONS_BEANUTILS=$PACKAGE_JAR_FILE
+		AC_SUBST(COMMONS_BEANUTILS)
+
+		# antlr (dependency of checkstyle)
+		AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
+		ANTLR=$PACKAGE_JAR_FILE
+		AC_SUBST(ANTLR)
+
+		# Test NG (java unitary test)
+		AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
+		TESTNG=$PACKAGE_JAR_FILE
+		AC_SUBST(TESTNG)
+
+		# Qdox (parses declarations and Javadoc) - dependency of TestNG
+		AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
+		QDOX=$PACKAGE_JAR_FILE
+		AC_SUBST(QDOX)
+
+                # bsh (Java scripting environment) - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+                BSH=$PACKAGE_JAR_FILE
+                AC_SUBST(BSH)
+
+                # Junit - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+                JUNIT=$PACKAGE_JAR_FILE
+                AC_SUBST(JUNIT)
+
+
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
 		if test "$ac_java_jvm_name" != ""; then
@@ -852,10 +949,14 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
-# Provided by math.h
-save_LDFLAGS="$LDFLAGS"
-LDFLAGS="$LDFLAGS -lm"
 
+# Check of the libm (lib math). Macro provided by libtool.
+save_LDFLAGS="$LDFLAGS"
+LT_LIB_M()
+
+# Provided by math.h
+
+LDFLAGS="$LDFLAGS $LIBM"
 AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
 
 AC_CHECK_FUNC([exp10],,[
@@ -868,7 +969,7 @@ AC_CHECK_FUNC([exp10],,[
 AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
-
+LIBS="$LIBS $LIBM"
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -923,6 +1024,7 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 
 # gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
 AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.16])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -1013,8 +1115,22 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
+if test $HDF5_ENABLE = yes;  then
+   if test "$MACOSX" = 1; then
+   	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
+   else
+      LDFLAGS_save=$LDFLAGS
+   # Provide known paths where distribs/OS can store JNI libs
+   	 LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
+   # -lpthread because of packaging bug in jhdf5
+      AC_CHECK_LIB([jhdf5], [h5JNIFatalError], [JHDF5_LIBS="-ljhdf5"],
+   	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+      LDFLAGS=$LDFLAGS_save
+    fi
+fi #HDF5_ENABLE
+
 #################
-## ocaml which only called with using Scicos
+## ocaml which only called when using Scicos
 #################
 
 		if test "$with_ocaml" != no; then
@@ -1091,7 +1207,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1104,8 +1220,8 @@ if test "$enable_build_localization" != no; then
    AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
-   AC_PATH_PROG(MSGFMT, msgfmt, no)
-   AC_PATH_PROG(XGETTEXT, xgettext, no)
+#   AC_PATH_PROG(MSGFMT, msgfmt, no)
+#   AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
 	  AC_ERROR([The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
@@ -1163,7 +1279,10 @@ AC_PCRE()
 
 WITH_TKSCI=no
 if test "$with_tk" != no; then
-
+   if test "$MACOSX" = "1"; then
+      AC_MSG_ERROR([Due to technical constraints, Tcl/Tk must be disabled under Mac OS X (--without-tk)])
+   fi
+   
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
@@ -1314,18 +1433,6 @@ fi
 AC_SUBST(JAVASCI_ENABLE)
 
 ##############################################################
-## Scipad module
-##############################################################
-
-SCIPAD_ENABLE=yes
-
-if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
-   SCIPAD_ENABLE=no
-fi
-
-AC_SUBST(SCIPAD_ENABLE)
-
-##############################################################
 ## demo_tools module
 ##############################################################
 
@@ -1380,6 +1487,11 @@ AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = xxxx)
 AC_C_CONST()
 AC_C_INLINE()
 
+
+########## 
+##### Code quality
+##########
+AC_PATH_PROG(SPLINT, splint, no)
 
 #######################
 ###### Creation of the header file (machine.h)
@@ -1457,7 +1569,6 @@ modules/arnoldi/Makefile
 modules/interpolation/Makefile
 modules/intersci/Makefile
 modules/localization/Makefile
-modules/metanet/Makefile
 modules/cacsd/Makefile
 modules/boolean/Makefile
 modules/integer/Makefile
@@ -1491,7 +1602,6 @@ modules/maple2scilab/Makefile
 modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
-modules/scipad/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1502,13 +1612,15 @@ modules/parameters/Makefile
 modules/matio/Makefile
 modules/operations/Makefile
 modules/atoms/Makefile
+modules/xcos/Makefile
+modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
 scilab.pc
 etc/modules.xml
 etc/classpath.xml
-modules/jvm/etc/jvm_options.xml
+etc/jvm_options.xml
 scilab-lib.properties
 scilab-lib-doc.properties
 ])
@@ -1597,25 +1709,25 @@ echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warn
 
 echo ""
 echo "Compiler Configuration:"
-echo "Intel (--with-intelcompilers) .... =		$with_intelcompilers"
-echo "GNU gcc (--with-gcc) ............. =		$with_gcc"
-echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
-echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
+echo "  Intel (--with-intelcompilers) .... =		$with_intelcompilers"
+echo "  GNU gcc (--with-gcc) ............. =		$with_gcc"
+echo "  GNU Fortran 77 (--with-g77) ...... =		$with_g77"
+echo "  GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--without-pvm) .......................... = $with_pvm"
-echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
-echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
-echo "Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
-echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
-echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
-echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
-echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
-echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
-echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
-echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Use FFTW (--without-fftw) ........................ = $with_fftw"
-echo "Use MATIO (--without-matio) ...................... = $with_matio"
+echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
+echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
+echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "  Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
+echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
+echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
+echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
+echo "  TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
+echo "  TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
+echo "  Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
+echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
+echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
+echo "  Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
@@ -1626,9 +1738,9 @@ if test $SCICOS_ENABLE = yes; then
    echo ""
 if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
-   echo "OCAMLC ............. = $OCAMLC"
-   echo "OCAMLOPT ........... = $OCAMLOPT"
-   echo "OCAMLDEP ........... = $OCAMLDEP"
+   echo "  OCAMLC ............. = $OCAMLC"
+   echo "  OCAMLOPT ........... = $OCAMLOPT"
+   echo "  OCAMLDEP ........... = $OCAMLDEP"
 else
 	echo "Will not build Modelica compiler"
 fi
@@ -1640,9 +1752,9 @@ fi
 echo ""
 if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
-   echo "PVM Architecture ... = $PVM_ARCH"
-   echo "PVM INCLUDE ........ = $PVM_INCLUDE"
-   echo "PVM LIBS ........... = $PVM_LIB"
+   echo "  PVM Architecture ... = $PVM_ARCH"
+   echo "  PVM INCLUDE ........ = $PVM_INCLUDE"
+   echo "  PVM LIBS ........... = $PVM_LIB"
 else
    echo "Not using PVM"
 fi
@@ -1650,8 +1762,8 @@ fi
 echo ""
 if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
-   echo "FFTW LIBS .......... = $FFTW3_LIB"
-   echo "FFTW CFLAGS ........ = $FFTW3_CFLAGS"
+   echo "  FFTW LIBS .......... = $FFTW3_LIB"
+   echo "  FFTW CFLAGS ........ = $FFTW3_CFLAGS"
 else
    echo "Not using FFTW"
 fi
@@ -1659,8 +1771,8 @@ fi
 echo ""
 if test $MATIO_ENABLE = yes;  then
    echo "MATIO Configuration:"
-   echo "MATIO LIBS .......... = $MATIO_LIBS"
-   echo "MATIO CFLAGS ........ = $MATIO_CFLAGS"
+   echo "  MATIO LIBS .......... = $MATIO_LIBS"
+   echo "  MATIO CFLAGS ........ = $MATIO_CFLAGS"
 else
    echo "Not using MATIO"
 fi
@@ -1668,12 +1780,12 @@ fi
 echo ""
 if test $UMFPACK_ENABLE = yes;  then
    echo "UMFPACK Configuration:"
-   echo "UMFPACK LIBS ....... = $UMFPACK_LIB"
-   echo "UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
+   echo "  UMFPACK LIBS ....... = $UMFPACK_LIB"
+   echo "  UMFPACK CFLAGS ..... = $UMFPACK_CFLAGS"
    if test $SUITESPARSE = yes; then
-      echo "UMFPACK SUITESPARSE  = Yes"
+      echo "  UMFPACK SUITESPARSE  = Yes"
    else
-      echo "UMFPACK SUITESPARSE  = No"
+      echo "  UMFPACK SUITESPARSE  = No"
    fi
 else
    echo "Not using UMFPACK"
@@ -1682,28 +1794,28 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-echo "BLAS LIBS ............. = $BLAS_LIBS"
-echo "BLAS TYPE ............. = $BLAS_TYPE"
-echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-echo "LAPACK TYPE ........... = $LAPACK_TYPE"
+echo "  BLAS LIBS ............. = $BLAS_LIBS"
+echo "  BLAS TYPE ............. = $BLAS_TYPE"
+echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 
 #if test "$with_mpi" = yes; then
 #   echo "MPI Configuration:"
-#   echo "MPI LIBS ........... = $MPILIBS"
-#   echo "MPI C Compiler ..... = $MPICC"
-#   echo "MPI C++ Compiler ... = $MPICXX"
-#   echo "MPI F77 Compiler ... = $MPIF77"
+#   echo "  MPI LIBS ........... = $MPILIBS"
+#   echo "  MPI C Compiler ..... = $MPICC"
+#   echo "  MPI C++ Compiler ... = $MPICXX"
+#   echo "  MPI F77 Compiler ... = $MPIF77"
 #else
 #   echo "Not using MPI"
 #fi
 
 #if test "$with_openmpi" != "no"; then
 #   echo "OpenMPI Configuration:"
-#   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "OpenMPI F77 Compiler ... = $MPIF77"
+#   echo "  OpenMPI LIBS ........... = $OPENMPI_LIBS"
+#   echo "  OpenMPI C Compiler ..... = $OPENMPI_CC"
+#   echo "  OpenMPI F77 Compiler ... = $MPIF77"
 #else
 #   echo "Not using MPI"
 #fi
@@ -1711,24 +1823,24 @@ echo ""
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then
    echo "Gettext/localization configuration:"
-   echo "xgettext ............... = $XGETTEXT"
-   echo "msgfmt  ................ = $MSGFMT"
-   echo "msgfmt_opts ............ = $MSGFMT_OPTS"
-   echo "msgcat  ................ = $MSGCAT"
+   echo "  xgettext ............... = $XGETTEXT"
+   echo "  msgfmt  ................ = $MSGFMT"
+   echo "  msgfmt_opts ............ = $MSGFMT_OPTS"
+   echo "  msgcat  ................ = $MSGCAT"
 else
    echo "Won't generate localization files"
 fi
 
 echo ""
 if test $HELP_ENABLE = yes; then
-   echo "Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "Batik (SVG) ............ = $BATIK"
-   echo "Saxon XSLT ............. = $SAXON"
-   echo "FOP (XML => PDF) ....... = $FOP"
-   echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
-   echo "Commons I/O ............ = $COMMONS_IO"
-   echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
-   echo "XML commons external ... = $XML_APIS_EXT"
+   echo "Documentation building configuration:"
+   echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
+   echo "  Batik (SVG) ............ = $BATIK"
+   echo "  Saxon XSLT ............. = $SAXON"
+   echo "  FOP (XML => PDF) ....... = $FOP"
+   echo "  Commons I/O ............ = $COMMONS_IO"
+   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi
@@ -1757,12 +1869,25 @@ echo "Java dependencies:"
 if test ! -z "$JAVAC"; then
 echo "  Flexdock ............ = $FLEXDOCK"
 echo "  JOGL ................ = $JOGL"
-echo "  Jhall  .............. = $JHALL"
+echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
+echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
+echo "  JGraph X ............ = $JGRAPHX"
+echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
+
+echo ""
+echo "Code quality (optional):"
+echo "  Checkstyle .......... = $CHECKSTYLE"
+echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
+echo "  Antlr ............... = $ANTLR"
+echo "  TestNG .............. = $TESTNG"
+echo "  splint .............. = $SPLINT"
 
 echo "" 
 echo "TCL/TK configuration:"
@@ -1784,6 +1909,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
    echo "  HDF5 Java ........... = $JHDF5"
+   echo "  JHDF5 LIBS (JNI) .... = $JHDF5_LIBS"
 else
    echo "Not using HDF5"
 fi

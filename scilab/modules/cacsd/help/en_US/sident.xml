@@ -216,17 +216,15 @@ Ci,printw))</synopsis>
     <para>
     SIDENT function for computing a discrete-time state-space realization
     (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.</para>
-    <programlisting><![CDATA[
-
-                 [A,C,B,D] = sident(meth,1,s,n,l,R)
-   [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
-                     [A,C] = sident(meth,2,s,n,l,R)
-                         B = sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
-         [B,K,Q,Ry,S,rcnd] = sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
-                     [B,D] = sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
-       [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+              [A,C,B,D] = sident(meth,1,s,n,l,R)
+[A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
+                  [A,C] = sident(meth,2,s,n,l,R)
+                      B = sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
+      [B,K,Q,Ry,S,rcnd] = sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
+                  [B,D] = sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
+    [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
+ ]]></programlisting>
     <para>
     SIDENT computes a state-space realization (A,B,C,D) and the Kalman
     predictor gain K of a discrete-time system, given the system
@@ -235,12 +233,10 @@ Ci,printw))</synopsis>
     (MOESP, N4SID, or their combination).</para>
     <para>
        The model structure is :</para>
-    <programlisting><![CDATA[
-
-         x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
-         y(k)   = Cx(k) + Du(k) + e(k),
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
     <para>
        where  
     x(k)  is the  n-dimensional state vector (at time k),</para>
@@ -266,8 +262,7 @@ Ci,printw))</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -289,9 +284,7 @@ SYS1=syslin(1,A,B,C,D);
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
-
-
+clf();plot2d((1:nsmp)',[Y',Y1'])
 
 METH = 2;
 [R,N1,SVAL] = findR(S,Y',U',METH);
@@ -303,9 +296,8 @@ SYS1=syslin(1,A,B,C,D)
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- 
-  ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

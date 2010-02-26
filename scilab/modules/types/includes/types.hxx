@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *  Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __TYPES_HH__
-#define __TYPES_HH__
+#ifndef __TYPES_HXX__
+#define __TYPES_HXX__
 
 #include <vector>
 #include <iostream>
@@ -25,71 +25,37 @@ namespace types
   /*
   ** Type
   */
-	class GenericType : public InternalType
+  class GenericType : public InternalType
   {
 
-	protected :
-		int m_iRows;
-		int m_iCols;
-		int m_iSize;
-
-  public :
-
   protected :
-    GenericType() {}
-		virtual ~GenericType() {}
+    int m_iRows;
+    int m_iCols;
+    int m_iSize;
+
+    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0) {}
+    virtual ~GenericType() {}
+
   public :
     void whoAmI(void) { std::cout << "types::GenericType"; }
+    
+    /*commun functions*/
+    int cols_get();
+    int rows_get();
+    int size_get();
 
-		/*sub Type management*/
-    /* String */
-    bool isString(void) { return (getType() == RealString); }
+    std::string DimToString();
 
-    /* Double */
-    bool isDouble(void) { return (getType() == RealDouble); }
+    /* GenericType */
+    GenericType* getAsGenericType(void) { return this; }
 
-    /* Float */
-    bool isFloat(void) { return (getType() == RealFloat); }
-
-    /* Int */
-    bool isInt(void) { return (getType() == RealInt); }
-
-    /* UInt */
-    bool isUInt(void) { return (getType() == RealUInt); }
-
-    /* Bool */
-    bool isBool(void) { return (getType() == RealBool); }
-
-    /* Function */
-    bool isFunction(void) { return (getType() == RealFunction); }
-
-    /* Macro */
-    bool isMacro(void) { return (getType() == RealMacro); }
-
-    /* MacroFile */
-		bool isMacroFile(void) { return (getType() == RealMacroFile); }
-
-		/*common functions*/
-		int cols_get() const;
-		int rows_get() const;
-		int size_get() const;
-
-		std::string DimToString();
-
-		virtual GenericType*	get(int _iPos){return NULL;};
+    /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
+    virtual GenericType*	get_col_value(int _iPos) { return NULL; }
 
     bool isIdentity(void);
     virtual bool isAssignable(void) { return true; }
 
-		virtual RealType getType(void) { return RealGeneric; }
-  protected :
+    virtual RealType getType(void) { return RealGeneric; }
   };
-
-
-  /*
-  ** List of types
-  */
-  typedef std::vector<InternalType *> typed_list;
-
 }
-#endif /* !__TYPES_HH__ */
+#endif /* !__TYPES_HXX__ */

@@ -39,7 +39,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple Java example 
+    <programlisting role="example"><![CDATA[ 
+// A simple Java example 
 // Filename: DisplayPI.java
 
 import javasci.Scilab;
@@ -48,7 +49,8 @@ public class DisplayPI {
 public static void main(String []args){
 Scilab.Exec("disp(%pi);");
 }
-}</programlisting>
+}
+ ]]></programlisting>
   </refsection>
 
   <refsection>

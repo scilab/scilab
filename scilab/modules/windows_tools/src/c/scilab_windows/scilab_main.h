@@ -14,6 +14,7 @@
 #ifndef __SCILAB_MAIN__H__
 #define __SCILAB_MAIN__H__
 
+#include "dynlib_scilab_windows.h"
 #include "realmain.h" /* InitScriptType */
 
 /**
@@ -24,7 +25,7 @@
 * @param[in] size path
 * @param[in] stacksize
 */
-void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory);
+SCILAB_WINDOWS_IMPEXP void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory);
 
 #endif /* __SCILAB_MAIN__H__ */
 /*--------------------------------------------------------------------------*/ 

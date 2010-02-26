@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{0AC1142C-0EFF-4406-9E5D-6111A7A8F614}"
 	RootNamespace="nographics"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -42,9 +43,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOGRAPHICS_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -62,14 +64,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nographics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nographicstmp.def &gt;nul&#x0D;&#x0A;copy ..\nographics_header.def+nographicstmp.def  ..\nographics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nographics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -125,8 +127,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOGRAPHICS_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -144,14 +146,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nographics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nographicstmp.def &gt;nul&#x0D;&#x0A;copy ..\nographics_header.def+nographicstmp.def  ..\nographics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nographics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -206,11 +208,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOGRAPHICS_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -228,14 +231,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nographics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nographicstmp.def &gt;nul&#x0D;&#x0A;copy ..\nographics_header.def+nographicstmp.def  ..\nographics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nographics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -298,8 +301,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOGRAPHICS_EXPORTS"
+				AdditionalIncludeDirectories="../../includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/intl;../../../../libs/hashtable;../../../api_scilab/includes;../c/getHandleProperty;../../../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -317,14 +320,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n nographics.dll %%f &gt;nul&#x0D;&#x0A;copy *.def nographicstmp.def &gt;nul&#x0D;&#x0A;copy ..\nographics_header.def+nographicstmp.def  ..\nographics.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="../../../../bin/libintl.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="nographics.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"

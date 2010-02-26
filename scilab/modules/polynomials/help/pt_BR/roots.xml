@@ -65,14 +65,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // avaliações por polinômios característicos
 spec(A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -114,7 +112,7 @@ spec(A)
     <title> Funções Utilizadas </title>
 
     <para>O código fonte de rpoly.f pode ser achado no diretório
-    routines/control de uma distribuição fonte do Scilab. A computação de
+	    SCI/modules/polynomials/src/fortran de uma distribuição fonte do Scilab. A computação de
     autovalores é feita utilizando-se os códigos do LAPACK DGEEV e ZGEEV.
     </para>
   </refsection>

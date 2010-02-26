@@ -58,8 +58,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 
@@ -70,7 +69,7 @@ xpoly(x,y,"lines",1) // by default closed
 // News graphics only
 e=gce(); // get the current entity (the last created: here the polyline)
 e.closed = 'off' // the polyline is now open
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

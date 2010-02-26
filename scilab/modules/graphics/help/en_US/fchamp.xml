@@ -97,8 +97,7 @@ fchamp(f,t,xr,yr,&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff("[xdot] = derpol(t,x)",..
         ["xd1 = x(2)";..
          "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
@@ -108,8 +107,7 @@ yf= -1:0.1:1;
 fchamp(derpol,0,xf,yf)
 clf()
 fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="C_macros">
+  <refnamediv>
+    <refname>C_macros</refname>
+    <refpurpose>Utilities C macros</refpurpose>
+  </refnamediv>
+  <refsection id="Contents_C_macros">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="C_macros">C_macros - Utilities C macros</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Module_C_macros">Module</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_C_macros">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Inputsoutputs_C_macros">Inputs/outputs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Events_C_macros">Events</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Parameters_C_macros">Parameters</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Statesandwork_C_macros">States and work</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_macros">Zero crossing surfaces and modes</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_C_macros">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Module_C_macros">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_C_macros">
+    <title>Description</title>
+    <para>
+The following C macros are avialable by including the file 
+in a C computational function.
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Inputsoutputs_C_macros">
+    <title>Inputs/outputs</title>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Macro</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">GetNin(blk)</td>
+        <td align="left">Get number of regular input port.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetInPortRows(blk,x)</td>
+        <td align="left">Get number of rows (first dimension) of regular input port number
+x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetInPortCols(blk,x)</td>
+        <td align="left">Get number of columns (second dimension) of regular input port number
+x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetInPortSize(blk,x,y)</td>
+        <td align="left">Get regular input port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetInType(blk,x)</td>
+        <td align="left">Get type of regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetInPortPtrs(blk,x)</td>
+        <td align="left">Get regular input port pointer of port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetRealInPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of real part of regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetImagInPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of imaginary part of regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint8InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int8 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint16InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int16 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint32InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int32 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint8InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint8 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint16InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint16 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint32InPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint32 typed regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetSizeOfIn(blk,x)</td>
+        <td align="left">Get the sizeof of the regular input port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNout(blk)</td>
+        <td align="left">Get number of regular output port.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOutPortRows(blk,x)</td>
+        <td align="left">Get number of rows (first dimension) of regular output port number
+x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOutPortCols(blk,x)</td>
+        <td align="left">Get number of columns (second dimension) of regular output port number
+x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOutPortSize(blk,x,y)</td>
+        <td align="left">Get regular output port size number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOutType(blk,x)</td>
+        <td align="left">Get type of regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOutPortPtrs(blk,x)</td>
+        <td align="left">Get regular output port pointer of port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetRealOutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of real part of regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetImagOutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of imaginary part of regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint8OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int8 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint16OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int16 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint32OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of int32 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint8OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint8 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint16OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint16 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint32OutPortPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint32 typed regular output port number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetSizeOfOut(blk,x)</td>
+        <td align="left">Get the sizeof of the regular output port number x.
+</td>
+      </tr>
+    </informaltable>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Events_C_macros">
+    <title>Events</title>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Macro</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">GetNevIn(blk)</td>
+        <td align="left">Get the input event number.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNevOut(blk)</td>
+        <td align="left">Get number of event output port.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNevOutPtrs(blk)</td>
+        <td align="left">Get pointer of event output register.
+</td>
+      </tr>
+    </informaltable>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Parameters_C_macros">
+    <title>Parameters</title>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Macro</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">GetNipar(blk)</td>
+        <td align="left">Get number of integer parameters.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetIparPtrs(blk)</td>
+        <td align="left">Get pointer of the integer parameters register
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNrpar(blk)</td>
+        <td align="left">Get number of real parameters.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetRparPtrs(blk)</td>
+        <td align="left">Get pointer of the real parameters register.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNopar(blk)</td>
+        <td align="left">Get number of object parameters.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOparType(blk,x)</td>
+        <td align="left">Get type of object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOparSize(blk,x,y)</td>
+        <td align="left">Get size of object parameters number x. (y=1 for the first dimension,
+y=2 for the second dimension)
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOparPtrs(blk,x)</td>
+        <td align="left">Get pointer of object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetRealOparPtrs(blk,x)</td>
+        <td align="left">Get pointer of real object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetImagOparPtrs(blk,x)</td>
+        <td align="left">Get pointer of imaginary part of object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint8OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of int8 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint16OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of int16 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint32OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of int32 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint8OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint8 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint16OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint16 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint32OparPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint32 typed object parameters number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetSizeOfOpar(blk,x)</td>
+        <td align="left">Get the sizeof of the object parameters number x.
+</td>
+      </tr>
+    </informaltable>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Statesandwork_C_macros">
+    <title>States and work</title>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Macro</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">GetNstate(blk)</td>
+        <td align="left">Get number of continuous state.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetState(blk)</td>
+        <td align="left">Get pointer of the continuous state register.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetDstate(blk)</td>
+        <td align="left">Get number of discrete state.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNdstate(blk)</td>
+        <td align="left">Get pointer of the discrete state register.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNoz(blk)</td>
+        <td align="left">Get number of object state.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOzType(blk,x)</td>
+        <td align="left">Get type of object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOzSize(blk,x,y)</td>
+        <td align="left">Get size of object state number x. (y=1 for the first dimension, y=2
+for the second dimension)
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetOzPtrs(blk,x)</td>
+        <td align="left">Get pointer of object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetRealOzPtrs(blk,x)</td>
+        <td align="left">Get pointer of real object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetImagOzPtrs(blk,x)</td>
+        <td align="left">Get pointer of imaginary part of object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint8OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of int8 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint16OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of int16 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getint32OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of int32 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint8OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint8 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint16OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint16 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">Getuint32OzPtrs(blk,x)</td>
+        <td align="left">Get pointer of uint32 typed object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetSizeOfOz(blk,x)</td>
+        <td align="left">Get the sizeof of the object state number x.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetWorkPtrs(blk)(blk)</td>
+        <td align="left">Get the pointer of the Work array.
+</td>
+      </tr>
+    </informaltable>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Zerocrossingsurfacesandmodes_C_macros">
+    <title>Zero crossing surfaces and modes</title>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Macro</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">GetNg(blk)</td>
+        <td align="left">Get number of zero crossing surface.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetGPtrs(blk)</td>
+        <td align="left">Get pointer of the zero crossing register.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetNmode(blk)</td>
+        <td align="left">Get number of modes.
+</td>
+      </tr>
+      <tr>
+        <td align="left">GetModePtrs(blk)</td>
+        <td align="left">Get pointer of the mode register.
+</td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection id="Authors_C_macros">
+    <title>Authors</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

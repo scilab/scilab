@@ -26,12 +26,10 @@
     <title>Description</title>
     <para>
     Given a spectral density matrix <literal>phi(s)</literal>:</para>
-    <programlisting><![CDATA[
-
-                 -1                   -1
-     R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+            -1                   -1
+R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+ ]]></programlisting>
     <para><literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such 
     that  <literal>W(s)=W0+L*(s*I-A)^-1*B</literal>  is a
     spectral factor of of <literal>PHI(s)</literal>, i.e.</para>
@@ -41,8 +39,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
 W1=syslin('c',A,B,C,D);
 phi=gtild(W1,'c')+W1;
@@ -53,8 +50,7 @@ clean(phis-horner(phis,-s)');   //check this is 0...
 W=syslin('c',A,B,L,W0)
 Ws=ss2tf(W);
 horner(Ws,-s)*Ws
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

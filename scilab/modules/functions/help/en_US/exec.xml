@@ -73,8 +73,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     : stops + prompts + echoes : useful mode for demos.</para>
     <para><literal>exec(fun [,mode])</literal> executes function  <literal>fun</literal> as a script: no
     input nor output argument nor specific variable environment. This form
-    is more efficient, because script code may be pre-compiled (see getf,
-    comp). This method for script evaluation allows to store scripts as
+    is more efficient, because script code may be pre-compiled (see comp). This method for script evaluation allows to store scripts as
     function in libraries.</para>
     <para>
     If an error is encountered while executing, if 'errcatch' flag is
@@ -89,10 +88,10 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // create a script file
 mputl('a=1;b=2',TMPDIR+'/myscript')
+
 // execute it
 exec(TMPDIR+'/myscript')
 whos -name "a "
@@ -106,20 +105,16 @@ foo(1)
 //    it is destroyed when foo returns
 whos -name "a "
 
-
 x=1 //create x to make it known by the script foo
 exec(foo)
+
 // a and y are created in the current environment
 whos -name "a "
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member>
-        <link linkend="getf">getf</link>
-      </member>
       <member>
         <link linkend="execstr">execstr</link>
       </member>

@@ -79,14 +79,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then
   scf(0);
   plot2d();
   //Exportando para EMF
   xs2emf(0,'foo.emf');
 end
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

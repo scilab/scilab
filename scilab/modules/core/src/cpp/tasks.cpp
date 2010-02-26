@@ -17,8 +17,11 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "debugvisitor.hxx"
+#include "configvariable.hxx"
 
 #include "yaspio.hxx"
+
+#define SCILAB_START "/etc/scilab.start"
 
 timer _timer;
 
@@ -35,11 +38,17 @@ Parser::ParserStatus parseFileTask(bool timed, const char* file_name, const char
 	std::cerr << "*** Processing " << file_name << " file..." << std::endl;
 #endif
 
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		Parser::getInstance()->parseFile(file_name, prog_name);
+		_timer.start();
 	}
-	if (timed) { _timer.check("Parsing"); }
+
+	Parser::getInstance()->parseFile(file_name, prog_name);
+
+	if(timed)
+	{
+		_timer.check("Parsing");
+	}
 
 	return (Parser::getInstance()->getExitStatus());
 }
@@ -55,11 +64,17 @@ Parser::ParserStatus parseCommandTask(bool timed, char *command)
 	std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
 #endif
 
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		Parser::getInstance()->parse(command);
+		_timer.start();
 	}
-	if (timed) { _timer.check("Parsing"); }
+
+	Parser::getInstance()->parse(command);
+
+	if(timed && Parser::getInstance()->getControlStatus() == Parser::AllControlClosed)
+	{
+		_timer.check("Parsing");
+	}
 
 	return (Parser::getInstance()->getExitStatus());
 }
@@ -71,15 +86,21 @@ Parser::ParserStatus parseCommandTask(bool timed, char *command)
 */
 void dumpAstTask(bool timed)
 {
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		ast::DebugVisitor debugMe = *new ast::DebugVisitor();
-		if (Parser::getInstance()->getTree())
-		  {
-		    Parser::getInstance()->getTree()->accept(debugMe);
-		  }
+		_timer.start();
 	}
-	if (timed) { _timer.check("AST Dump"); }
+
+	ast::DebugVisitor debugMe;
+	if (Parser::getInstance()->getTree())
+	{
+		Parser::getInstance()->getTree()->accept(debugMe);
+	}
+
+	if(timed)
+	{
+		_timer.check("AST Dump");
+	}
 }
 
 /*
@@ -89,12 +110,18 @@ void dumpAstTask(bool timed)
 */
 void printAstTask(bool timed)
 {
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
-		Parser::getInstance()->getTree()->accept(printMe);
+		_timer.start();
 	}
-	if (timed) { _timer.check("Pretty Print"); }
+
+	ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
+	Parser::getInstance()->getTree()->accept(printMe);
+
+	if(timed)
+	{
+		_timer.check("Pretty Print");
+	}
 }
 
 
@@ -105,22 +132,26 @@ void printAstTask(bool timed)
 */
 void execAstTask(bool timed)
 {
-	ast::ExecVisitor *execMe = new ast::ExecVisitor();
-
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		try
-		{
-			Parser::getInstance()->getTree()->accept(*execMe);
-		}
-		catch(string sz)
-		{
-		  YaspWrite((char *) sz.c_str());
-		  YaspWrite("\n");
-		}
-		delete execMe;
+		_timer.start();
 	}
-	if (timed) { _timer.check("Execute AST"); }
+
+	try
+	{
+		ast::ExecVisitor execMe;
+		Parser::getInstance()->getTree()->accept(execMe);
+	}
+	catch(string sz)
+	{
+	  YaspWrite((char *) sz.c_str());
+	  YaspWrite("\n");
+	}
+
+	if(timed)
+	{
+		_timer.check("Execute AST");
+	}
 }
 
 
@@ -131,9 +162,35 @@ void execAstTask(bool timed)
 */
 void dumpStackTask(bool timed)
 {
-	if (timed) { _timer.start(); }
+	if(timed)
 	{
-		symbol::Context::getInstance()->print();
+		_timer.start();
 	}
-	if (timed) { _timer.check("Dumping Stack"); }
+
+	symbol::Context::getInstance()->print();
+
+	if(timed)
+	{
+		_timer.check("Dumping Stack");
+	}
+}
+
+/*
+** Execute scilab.start
+**
+*/
+void execScilabStartTask(void)
+{
+	Parser* pParse = Parser::getInstance();
+	string stSCI = ConfigVariable::getInstance()->get("SCI");
+	stSCI += SCILAB_START;
+	pParse->parseFile(stSCI, "");
+
+	if(pParse->getExitStatus() != Parser::Succeded)
+	{
+		YaspWrite("Failed to parse scilab.start");
+		return;
+	}
+
+	execAstTask(false);
 }

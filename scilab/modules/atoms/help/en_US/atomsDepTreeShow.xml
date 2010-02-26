@@ -11,12 +11,9 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsDepTreeShow">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
   <refnamediv>
     <refname>atomsDepTreeShow</refname>
-    <refpurpose>Show the dependency tree of an external module</refpurpose>
+    <refpurpose>Show the dependency tree of a module</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -24,7 +21,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsDepTreeShow(name[,version])
+	  atomsDepTreeShow(module)
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -33,31 +30,54 @@
   <refsection>
     <title>Parameters</title>
     <variablelist>
-      <varlistentry>
-        <term>name</term>
+			<varlistentry>
+        <term>module</term>
         <listitem>
+					
           <para>
-			Matrix of strings : External module name
-		  </para>
-        </listitem>
+						1x1 or 1x2 Matrix of strings:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								the most recent	version is used
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
-          <para>
-			Matrix of strings : External module version. This is an optional parameter.
-			If it's not defined, the most recent version of the module is used.
-		  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>result</term>
-        <listitem>
-          <para>
-			Matrix of Booleans
-		  </para>
-        </listitem>
-      </varlistentry>
+			
     </variablelist>
   </refsection>
   <!-- ===================================================================== -->
@@ -73,10 +93,10 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsDepTreeShow("toolbox_6")
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

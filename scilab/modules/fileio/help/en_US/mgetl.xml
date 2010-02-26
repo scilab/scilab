@@ -29,7 +29,7 @@
       <varlistentry>
         <term>file_desc</term>
         <listitem>
-          <para>:a character string giving the file name or a logical unit returned by mopen</para>
+          <para>a character string giving the file name or a logical unit returned by mopen</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,8 +63,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 mgetl('SCI/etc/scilab.start',5)
 
 mgetl SCI/modules/elementary_functions/macros/erf.sci
@@ -72,8 +71,7 @@ mgetl SCI/modules/elementary_functions/macros/erf.sci
 fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

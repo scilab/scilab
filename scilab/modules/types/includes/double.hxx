@@ -31,7 +31,7 @@ namespace types
 											Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
 		/*data management*/
-		GenericType*			get(int _iPos);
+		GenericType*			get_col_value(int _iPos);
 		double*						real_get() const;
 		double						real_get(int _iRows, int _iCols) const;
 		double*						img_get() const;
@@ -56,11 +56,12 @@ namespace types
 		string						toString(int _iPrecision, int _iLineLen);
 
 		Double*						clone();
-		bool							resize(int _iNewRows, int _iNewCols);
 		bool							append(int _iRows, int _iCols, Double *_poSource);
 
+		bool							resize(int _iNewRows, int _iNewCols);
 		bool							insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
 		static Double*		insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
+		Double*						extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
 
 		bool							operator==(const InternalType& it);

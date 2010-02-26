@@ -67,8 +67,20 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-// </programlisting>
+    <programlisting role="example"><![CDATA[ 
+x = -1:0.1:1;
+y = -1:0.1:1;
+
+[X,Y] = meshgrid(x,y);
+
+for i=1:size(X,1)
+  for j=1:size(X,2)
+    Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
+  end
+end
+
+surf(X,Y,Z)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

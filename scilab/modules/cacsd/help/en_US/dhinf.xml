@@ -154,23 +154,19 @@
     <para><literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
      To compute the matrices of an H-infinity (sub)optimal n-state
   controller</para>
-    <programlisting><![CDATA[
-
-         | AK | BK |
-     K = |----|----|,
-         | CK | DK |
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+    | AK | BK |
+K = |----|----|,
+    | CK | DK |
+ ]]></programlisting>
     <para>
     for the discrete-time system</para>
-    <programlisting><![CDATA[
-
-         | A  | B1  B2  |   | A | B |
-     P = |----|---------| = |---|---|,
-         | C1 | D11 D12 |   | C | D | 
-         | C2 | D21 D22 |
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+    | A  | B1  B2  |   | A | B |
+P = |----|---------| = |---|---|,
+    | C1 | D11 D12 |   | C | D | 
+    | C2 | D21 D22 |
+ ]]></programlisting>
     <para>
     and for a given value of gamma, where B2 has column size of the
     number of control inputs (ncon) and C2 has row size of the number
@@ -183,8 +179,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //example from Niconet report SLWN1999-12
 //Hinf
 A=[-0.7  0    0.3  0   -0.5 -0.1
@@ -214,8 +209,7 @@ ncon=2
 nmeas=2
 gam=111.30;
 [AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

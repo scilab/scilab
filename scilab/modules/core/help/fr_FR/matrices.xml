@@ -12,12 +12,12 @@
     <para>
     Les matrices sont les objets de base dans Scilab. Elles peuvent être définies de la façon suivante :
   </para>
-    <programlisting><![CDATA[
+    <programlisting role = ""><![CDATA[ 
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
    em1,em2,...,emn];
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     Les termes <literal>eij</literal> peuvent être des nombres complexes ou réels, des polynômes,
     des fraction rationnelles, des chaînes de caractères ou des booléens.
@@ -28,7 +28,7 @@ E=[e11,e12,...,e1n;
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
 s=poly(0,'s');E=[s,s^2;1,1+s]

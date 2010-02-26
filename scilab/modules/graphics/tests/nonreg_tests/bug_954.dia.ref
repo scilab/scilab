@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 954 -->
 //
 // <-- Bugzilla URL -->
@@ -85,14 +86,15 @@ Warning:  Result may be inaccurate.
 TT=TT(1:size(XX,2));
 K=XX($,:)+XX(2,:).*(XX(3,:)-XX(4,:)).^2;
 xset('window',0);
-xbasc();
+clf();
 plot2d(TT',K');
 xset('window',1);
-xbasc();
+clf();
 plot2d(TT',XX(2,:)');
 xset('window',2);
-xbasc();
+clf();
 plot2d(TT',XX(1,:)');
+DrawableObjectJoGL::endDrawing: No more memory.
 // Test #2
 clear
 scf();

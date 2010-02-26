@@ -30,5 +30,5 @@ function [nk,W]=hankelsv(sl,tol)
   end,
   [sla,sls,d]=dtsi(sl);
   lc=ctr_gram(sls),lo=obs_gram(sls),W=lc*lo;
-  nk=sort(real(spec(W)));
+  nk=gsort(real(spec(W)));
 endfunction

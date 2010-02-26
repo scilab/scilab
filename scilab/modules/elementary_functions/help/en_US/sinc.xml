@@ -67,10 +67,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=linspace(-10,10,3000);
 plot2d(x,sinc(x))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

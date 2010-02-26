@@ -108,7 +108,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         h.info_message = info_message ;
         h.tag = tag ;
       end
-
       h.figure_name=figure_name
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
@@ -141,6 +140,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     load_user_data(fd); // user_data
   case "Axes"
+    // Hack to determine whether %h_load has been called by the %h_copy macro
+    // in which case a new Axes object is created
+    [lnums, fnames]=where();
+    ind=grep(fnames, '%h_copy');
+
+    if(ind<>[]) then
+    	newaxes();
+    end;
+
     a=gca() ;
     titl=a.title ;
     x_label=a.x_label ;
@@ -1338,6 +1346,23 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than( [5 1 2 0] ) then // 5.2 and higher
       h.checked = toggle(mget(1,"c",fd)); // Checked
     end
+    if is_higher_than( [5 1 1 0] ) then // 5.1.2 and higher
+      // children
+      nbChildren = mget(1,"il",fd) ;
+      for k = 1 : nbChildren
+	htmp = load_graphichandle(fd) ;
+	set(htmp, "Parent", h);
+      end
+    end
+
+  case "uicontextmenu"
+      h = uicontextmenu();
+      // children
+      nbChildren = mget(1,"il",fd) ;
+      for k = 1 : nbChildren
+	htmp = load_graphichandle(fd) ;
+	set(htmp, "Parent", h);
+      end
 
   case "uicontrol"
     if is_higher_than( [4 1 2 0] ) then

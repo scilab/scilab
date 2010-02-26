@@ -22,8 +22,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-#define GUI_TAB_SIZE 35
-static gw_generic_table Tab[GUI_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 	{sci_x_dialog,"x_dialog"},
 	{sci_x_choose,"x_choose"},
@@ -58,8 +57,9 @@ static gw_generic_table Tab[GUI_TAB_SIZE]=
 	{sci_toprint,"toprint"},
 	{sci_uigetfile,"uigetfile"},
 	{sci_usecanvas,"usecanvas"},
-	{sci_displaytree,"displaytree"},
-	{sci_uiputfile,"uiputfile"}
+	{sci_displaytree,"uiDisplayTree"},
+	{sci_uiputfile,"uiputfile"},
+        {sci_about,"about"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -68,7 +68,7 @@ int gw_gui(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "GUI");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "GUI");
 		return 0;
 	}
 
@@ -90,7 +90,7 @@ int gw_gui(void)
           }
 
 
-	callFunctionFromGateway(Tab,GUI_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
 	return 0;
 }

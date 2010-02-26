@@ -29,7 +29,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list containing the matrices <literal>(A,B2,C,D2)</literal>.</para>
+          <para> <literal>syslin</literal> list containing the matrices <literal>(A,B2,C,D2)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -80,33 +80,27 @@
     <literal>Sys</literal> is a linear system {A,B2,C,D2} with one input and two outputs 
     ( i.e.  Sys: u--&gt;(z,y) ), part the following system defined from <literal>Sys</literal>
     and <literal>B1,D1</literal>:</para>
-    <programlisting><![CDATA[
-
-  xdot =  A x + B1  w + B2  u
-     z = C1 x + D11 w + D12 u
-     y = C2 x + D21 w + D22 u
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
     <para>
     outputs of Sys are partitioned into (z,y) where z is to be zeroed,
     i.e. the matrices C and D2 are:</para>
-    <programlisting><![CDATA[
-
-     C=[C1;C2]         D2=[D12;D22]
-     C1=C(zeroed,:)    D12=D2(zeroed,:)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+C=[C1;C2]         D2=[D12;D22]
+C1=C(zeroed,:)    D12=D2(zeroed,:)
+ ]]></programlisting>
     <para>
     The matrix <literal>D1</literal> is partitioned similarly as <literal>D1=[D11;D21]</literal>
     with <literal>D11=D1(zeroed,:)</literal>.
     The control is u=Fx+Gw and one  looks for matriced <literal>F,G</literal> such that the 
     closed loop system: w--&gt;z given by</para>
-    <programlisting><![CDATA[
-
-  xdot= (A+B2*F)  x + (B1 + B2*G) w
-    z = (C1+D12F) x + (D11+D12*G) w
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  z = (C1+D12F) x + (D11+D12*G) w
+ ]]></programlisting>
     <para>
     has zero transfer transfer function.</para>
     <para><literal>flag='ge'</literal>no stability constraints.
@@ -115,20 +109,17 @@
     <literal>beta</literal>.</para>
     <para>
     Closed is a realization of the <literal>w--&gt;y</literal> closed loop system</para>
-    <programlisting><![CDATA[
-
-  xdot= (A+B2*F)  x + (B1 + B2*G) w
-    y = (C2+D22*F) x + (D21+D22*G) w
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  y = (C2+D22*F) x + (D21+D22*G) w
+ ]]></programlisting>
     <para>
     Stability (resp. pole placement) requires stabilizability 
     (resp. controllability) of (A,B2).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 rand('seed',0);nx=6;nz=3;nu=2;ny=1;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B2=[1,2;0,3;0,4;0,5;0,0;0,0];
 C1=[zeros(nz,nz),eye(nz,nz)];D12=[0,1;0,2;0,3];
@@ -151,8 +142,7 @@ D1=[D11;rand(ny,size(B1,2))];
 [Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',my_alpha,my_beta);
 closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
 ss2tf(closed)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

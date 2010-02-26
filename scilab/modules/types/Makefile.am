@@ -10,7 +10,8 @@
 ##
 ##
 
-TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
+TYPES_CPP_SOURCES = \
+			src/cpp/types.cpp \
 			src/cpp/int.cpp \
 			src/cpp/string.cpp \
 			src/cpp/double.cpp \
@@ -27,11 +28,17 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/class.cpp \
 			src/cpp/ooutils.cpp \
 			src/cpp/macrofile.cpp \
-			src/cpp/macro.cpp
+			src/cpp/macro.cpp \
+			src/cpp/list.cpp \
+			src/cpp/struct.cpp
+
+GATEWAY_CPP_SOURCES	= sci_gateway/cpp/types_gw.cpp \
+			sci_gateway/cpp/sci_list.cpp \
+			sci_gateway/cpp/sci_struct.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
 
-libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
+libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../elementary_functions/includes \
@@ -41,7 +48,8 @@ libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../output_stream/includes \
 				-I../parse/includes \
 				-I../system_env/includes \
-				-Isrc/cpp
+				-I ../functions_manager/includes \
+				-I src/cpp
 
 libscitypes_la_includedir=$(pkgincludedir)/Types
 

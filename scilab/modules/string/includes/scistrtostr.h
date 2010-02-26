@@ -14,6 +14,8 @@
 #ifndef __SCSTRTOSTR_H__
 #define __SCSTRTOSTR_H__
 
+#include "dynlib_string.h"
+
 /*!
 * \brief
 * Converts a Scilab array of  String coded as int array
@@ -38,6 +40,6 @@
 * 
 
 */
-int SciStrtoStr (int *Scistring, int *nstring, int *ptrstrings, char **strh);
+STRING_IMPEXP int SciStrtoStr (int *Scistring, int *nstring, int *ptrstrings, char **strh);
 
 #endif /* __SCSTRTOSTR_H__ */

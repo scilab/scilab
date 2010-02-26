@@ -43,7 +43,7 @@
     <title>Description</title>
     <para>
     To use <literal>profile</literal> the Scilab function must have been prepared for
-    profiling (see getf).</para>
+    profiling (see exec).</para>
     <para>
     For such function, When such a function is executed the systems counts
     how many time each line is executed and how may cpu time is spend for
@@ -60,8 +60,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //define function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -72,21 +71,23 @@ deff('x=foo(n)',['if n==0 then'
                  '    x=x+s(1)'
                  '  end'
                  'end'],'p')
+
 //call the function
 foo(10)
+
 //get execution profiles
 profile(foo)
+
 //call the function
 foo(20)
 profile(foo) //execution profiles are cumulated
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="getf">getf</link>
+        <link linkend="exec">exec</link>
       </member>
       <member>
         <link linkend="deff">deff</link>

@@ -137,10 +137,10 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
   </refsection>
   <refsection id="Example_MATDIAG">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 if the input of the block is U=ones(5,1) then the output is:
 y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATDIAG">
     <title>Default properties</title>

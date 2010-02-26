@@ -12,7 +12,9 @@
 
 package org.scilab.modules.gui.helpbrowser;
 
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.bridge.ScilabBridge;
+import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -60,7 +62,15 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			
 			instance = new ScilabHelpBrowser(helps, language);
 			
-			helpTab = ScilabTab.createTab("Help Browser");
+			if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
+				if (ScilabConsole.getConsole().getInfoBar().getText().equals(Messages.gettext("Loading help browser..."))) {
+					// An error occured
+					ScilabConsole.getConsole().getInfoBar().setText("");
+					return null;
+				}
+			}
+			
+			helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"));
 			helpTab.addMember(instance);
 			 /* Action when the Browser tab is closed */
 			helpTab.setCallback(ScilabCallBack
@@ -185,5 +195,14 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 	 */
 	public void setVisible(boolean newVisibleState) {
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Get associated InfoBar
+	 * @return the infobar of the parent tab
+	 * @see org.scilab.modules.gui.uielement.ScilabUIElement#getInfoBar()
+	 */
+	public TextBox getInfoBar() {
+		return helpTab.getInfoBar();
 	}
 }

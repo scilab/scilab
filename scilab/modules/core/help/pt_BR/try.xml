@@ -67,22 +67,19 @@ end</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 
- file_path=TMPDIR+'/wrong
- try
-    u=mopen(file_path,'r')
-    x=mget(10,'c',u)
-  catch
-    disp(['o arquivo '+file_path+ ' não pode ser lido',
-          'usando valores padrões para x'])
-    x=1:10
-  end 
-  [error_message,error_number]=lasterror(%t)
- 
-
- 
-  </programlisting>
+file_path=TMPDIR+'/wrong
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['o arquivo '+file_path+ ' não pode ser lido',
+        'usando valores padrões para x'])
+  x=1:10
+end 
+[error_message,error_number]=lasterror(%t)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

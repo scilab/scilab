@@ -14,11 +14,15 @@
 #ifndef __SETSCILABENVIRONMENTVARIABLES_H__
 #define __SETSCILABENVIRONMENTVARIABLES_H__
 
+#include "dynlib_scilab_windows.h"
+
 /**
 * Set Some environment variables for Scilab (Windows)
 * @param[in] default path of scilab
 */
-void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
+SCILAB_WINDOWS_IMPEXP void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
+
+SCILAB_WINDOWS_IMPEXP void SciEnvForWindows(void);
 
 #endif /* __SETSCILABENVIRONMENTVARIABLES_H__ */
 /*--------------------------------------------------------------------------*/ 

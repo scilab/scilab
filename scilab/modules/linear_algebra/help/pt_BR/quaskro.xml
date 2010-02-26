@@ -99,18 +99,14 @@
     Z</literal> que põem o feixe <literal>F=s*E -A</literal> na forma
     triangular superior:</para>
 
-    <programlisting>
-
-
+    <programlisting role = ""><![CDATA[ 
            | sE(eps)-A(eps) |        X       |      X     |
            |----------------|----------------|------------|
            |        O       | sE(inf)-A(inf) |      X     |
 Q(sE-A)Z = |=================================|============|
            |                                 |            |
            |                O                | sE(r)-A(r) |
-
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>As dimensões dos blocos são dadas por:</para>
 

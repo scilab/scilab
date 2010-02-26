@@ -64,6 +64,7 @@ public final class ConfigManager {
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
 	private static final String COLORPREFIX = "#";
 	private static final String MAXOUTPUTSIZE = "MaxOutputSize";
+	private static final String LASTOPENEDDIR = "LastOpenedDirectory";
 	
 	private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 	
@@ -88,9 +89,13 @@ public final class ConfigManager {
 	 */
 	public static void createUserCopy() {
 		File fileConfig = new File(USER_CONFIG_FILE);
-		if ( !fileConfig.exists() || (fileConfig.length() == 0) ) {
+		if (!fileConfig.exists() || (fileConfig.length() == 0)) {
 			/* Create a local copy of the configuration file */
-			copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
+			try {
+			    copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
+			} catch (FileNotFoundException e) {
+			    System.out.println(ERROR_READ + USER_CONFIG_FILE);
+			}
 		}
 	}
 	
@@ -111,6 +116,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -139,27 +145,19 @@ public final class ConfigManager {
 		
 		/* Save changes */
 		writeDocument();
-		
+		}
 	}
 	
     /**
      * Copy a file
      * @param in src file
      * @param out dest file
+     * @throws FileNotFoundException 
      */
-	private static void copyFile(File in, File out) {
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(in);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(out);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	private static void copyFile(File in, File out) throws FileNotFoundException {
+		FileInputStream fis = new FileInputStream(in);
+		FileOutputStream fos = new FileOutputStream(out);;
+
 		byte[] buf = new byte[BUFSIZE];
 		int i = 0;
 		try {
@@ -182,6 +180,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -191,9 +190,9 @@ public final class ConfigManager {
 		Element maxOutputSize = (Element) allPositionElements.item(0);
 		if (maxOutputSize != null) {
 			return Integer.parseInt(maxOutputSize.getAttribute(VALUE));
-		} else {
-			return DEFAULT_MAXOUTPUTSIZE;
 		}
+		}
+		return DEFAULT_MAXOUTPUTSIZE;
 	}
 	
 	/**
@@ -205,6 +204,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -219,12 +219,10 @@ public final class ConfigManager {
 			if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
 					&& y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
 				return new Position(x, y);
-			} else {
-				return new Position(0, 0);
 			}
-		} else {
-			return new Position(0, 0);
 		}
+		}
+		return new Position(0, 0);
 	}
 	
 	/**
@@ -236,6 +234,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -255,6 +254,7 @@ public final class ConfigManager {
 		
 		/* Save changes */
 		writeDocument();
+		}
 	}
 	
 	/**
@@ -266,6 +266,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -285,6 +286,7 @@ public final class ConfigManager {
 		
 		/* Save changes */
 		writeDocument();
+		}
 	}
 	
 	/**
@@ -296,6 +298,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -305,9 +308,74 @@ public final class ConfigManager {
 		Element mainWindowSize = (Element) allSizeElements.item(0);
 		if (mainWindowSize != null) {
 			return new Size(Integer.parseInt(mainWindowSize.getAttribute(WIDTH)), Integer.parseInt(mainWindowSize.getAttribute(HEIGHT)));
-		} else {
-			return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		}
+		}
+		return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	}
+	
+	/**
+	 * Save the Last Opened Directory in Scilab
+	 * @param the directory's path
+	 */
+	
+	public static void saveLastOpenedDirectory(String path ){
+		/* Load file */
+		readDocument();
+		
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+		
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
+		Element lastOpenedDir = (Element) allSizeElements.item(0);
+		
+		lastOpenedDir.setAttribute(VALUE, path);
+		
+		writeDocument();
+		}
+	}
+	
+	/**
+	 * Get the Last Opened Directory in Scilab
+	 * @return the directory's path
+	 */
+	
+	public static String getLastOpenedDirectory(){
+		/* Load file */
+		/*System.getProperty("user.dir") if no path*/
+		readDocument();
+		String path = new String() ;
+		
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+		
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+		
+		NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
+		Element lastOpenedDir = (Element) allSizeElements.item(0);
+		
+		if (lastOpenedDir != null){
+		
+			path = lastOpenedDir.getAttribute(VALUE);
+			
+			if (path.length() == 0){
+				path = System.getProperty("user.dir") ;
+			}
+		}else{
+			Element newLastOpenedDir =  document.createElement(LASTOPENEDDIR);
+			path = System.getProperty("user.dir") ;
+			newLastOpenedDir.setAttribute("useCache","true");
+			newLastOpenedDir.setAttribute(VALUE, path);
+			
+			scilabProfile.appendChild(newLastOpenedDir);
+			
+			writeDocument();
+		}
+		}
+		return path ;
 	}
 	
 	/**
@@ -319,6 +387,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -332,6 +401,7 @@ public final class ConfigManager {
 
 		/* Save changes */
 		writeDocument();
+		}
 	}
 	
 	/**
@@ -343,6 +413,7 @@ public final class ConfigManager {
 		/* Load file */
 		readDocument();
 		
+		if (document != null) {
 		Element racine = document.getDocumentElement();
 		
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
@@ -356,6 +427,7 @@ public final class ConfigManager {
 
 		/* Save changes */
 		writeDocument();
+		}
 	}
 	
 	/**
@@ -364,6 +436,8 @@ public final class ConfigManager {
 	private static void readDocument() {
 		File xml = null;
 		DocumentBuilder docBuilder = null;
+		createUserCopy();
+
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			docBuilder = factory.newDocumentBuilder();

@@ -75,14 +75,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strstr('This is a simple string','simple')
 strstr('This is a simple string','sample')
 strstr(['This is a simple string','in scilab'],'is')
 strstr(['This is a sample string','in scilab'],['a','scilab'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

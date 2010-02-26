@@ -67,9 +67,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">str2code('Scilab')'
+    <programlisting role="example"><![CDATA[ 
+str2code('Scilab')'
 code2str([-28 12 18 21 10 11])
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

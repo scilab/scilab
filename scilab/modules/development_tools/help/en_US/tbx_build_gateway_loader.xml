@@ -44,10 +44,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // Recommended usage
 tbx_build_gateway_loader(['c', 'fortran'], get_absolute_file_path('builder_gateway.sce'))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

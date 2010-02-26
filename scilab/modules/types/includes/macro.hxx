@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2009-2010 - DIGITEO - Bruno JOFRET
  * 
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -24,22 +24,28 @@ namespace types
   class Macro : public Callable
   {
   public :
-		Macro *getAsMacro(void);
-    RealType getType(void);
+    Macro(): Callable(){};
+    Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule);
+    virtual ~Macro();
 
+    // FIXME : Should not return NULL;
+    Macro* clone() { return NULL; }
+
+    Macro *getAsMacro(void);
+    RealType getType(void);
+    
     void whoAmI();
 
-		Macro(): Callable(){};
-		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule);
-		virtual ~Macro();
-		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
-  
-  public :
+    std::string toString(int _iPrecision, int _iLineLen);
+    
+    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+    
+		ast::SeqExp* body_get();
+
+  private :
     std::list<symbol::Symbol>	*m_inputArgs;
     std::list<symbol::Symbol>	*m_outputArgs;
     ast::SeqExp			*m_body;
-    std::string			m_stName;
-    std::string			m_stModule;
   };
 }
 

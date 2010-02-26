@@ -14,29 +14,30 @@
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
-int get_int(int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData);
+int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData);
 
-int int8_from_double(int* _piAddress, int* _piKey);
-int uint8_from_double(int* _piAddress, int* _piKey);
-int int16_from_double(int* _piAddress, int* _piKey);
-int uint16_from_double(int* _piAddress, int* _piKey);
-int int32_from_double(int* _piAddress, int* _piKey);
-int uint32_from_double(int* _piAddress, int* _piKey);
-int int64_from_double(int* _piAddress, int* _piKey);
-int uint64_from_double(int* _piAddress, int* _piKey);
+int int8_from_double(int* _piKey, int* _piAddress);
+int uint8_from_double(int* _piKey, int* _piAddress);
+int int16_from_double(int* _piKey, int* _piAddress);
+int uint16_from_double(int* _piKey, int* _piAddress);
+int int32_from_double(int* _piKey, int* _piAddress);
+int uint32_from_double(int* _piKey, int* _piAddress);
+int int64_from_double(int* _piKey, int* _piAddress);
+int uint64_from_double(int* _piKey, int* _piAddress);
 
-int int8_from_int(int* _piAddress, int* _piKey);
-int uint8_from_int(int* _piAddress, int* _piKey);
-int int16_from_int(int* _piAddress, int* _piKey);
-int uint16_from_int(int* _piAddress, int* _piKey);
-int int32_from_int(int* _piAddress, int* _piKey);
-int uint32_from_int(int* _piAddress, int* _piKey);
-int int64_from_int(int* _piAddress, int* _piKey);
-int uint64_from_int(int* _piAddress, int* _piKey);
+int int8_from_int(int* _piKey, int* _piAddress);
+int uint8_from_int(int* _piKey, int* _piAddress);
+int int16_from_int(int* _piKey, int* _piAddress);
+int uint16_from_int(int* _piKey, int* _piAddress);
+int int32_from_int(int* _piKey, int* _piAddress);
+int uint32_from_int(int* _piKey, int* _piAddress);
+int int64_from_int(int* _piKey, int* _piAddress);
+int uint64_from_int(int* _piKey, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
 int sci_int8(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
@@ -45,38 +46,32 @@ int sci_int8(char *fname, int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = int8_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = int8_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = int8_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = int8_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -93,43 +88,41 @@ int sci_int8(char *fname, int* _piKey)
 
 int sci_uint8(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = uint8_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = uint8_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = uint8_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = uint8_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -146,43 +139,41 @@ int sci_uint8(char *fname, int* _piKey)
 
 int sci_int16(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = int16_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = int16_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = int16_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = int16_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -199,43 +190,41 @@ int sci_int16(char *fname, int* _piKey)
 
 int sci_uint16(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = uint16_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = uint16_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = uint16_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = uint16_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -252,43 +241,41 @@ int sci_uint16(char *fname, int* _piKey)
 
 int sci_int32(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = int32_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = int32_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = int32_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = int32_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -305,43 +292,41 @@ int sci_int32(char *fname, int* _piKey)
 
 int sci_uint32(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = uint32_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = uint32_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = uint32_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = uint32_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -358,43 +343,41 @@ int sci_uint32(char *fname, int* _piKey)
 
 int sci_int64(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = int64_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = int64_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = int64_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = int64_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -411,43 +394,41 @@ int sci_int64(char *fname, int* _piKey)
 
 int sci_uint64(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	int* piAddr			= NULL;
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
-	{
-		return 1;
-	}
+	CheckRhs(1,1);
+	CheckLhs(1,1);
 
-	iRet = getVarDimension(piAddr, &iRows, &iCols);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	if(iRows == 0 && iCols == 0)
-	{
-		double dbl = 0;
-		iRet = createMatrixOfDouble(Rhs + 1, 0, 0, &dbl, _piKey);
-		if(iRet)
-		{
-			return 1;
-		}
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isEmptyMatrix(_piKey, piAddr))
 	{
-	case sci_matrix :
-		iRet = uint64_from_double(piAddr, _piKey);
-		break;
-	case sci_ints : 
-		iRet = uint64_from_int(piAddr, _piKey);
-		break;
-	default :
+		iRet = createEmptyMatrix(_piKey, Rhs + 1);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+
+	if(isDoubleType(_piKey, piAddr))
+	{
+		iRet = uint64_from_double(_piKey, piAddr);
+	}
+	else if(isIntegerType(_piKey, piAddr))
+	{
+		iRet = uint64_from_int(_piKey, piAddr);
+	}
+	else
+	{
 		OverLoad(1);
 		return 0;
 	}
@@ -462,94 +443,95 @@ int sci_uint64(char *fname, int* _piKey)
 	return 0;
 }
 
-int get_int(int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData)
+int get_int(int* _piKey, int* _piAddress, int* _piRows, int* _piCols, int* _piPrecision, void** pvData)
 {
+	SciErr sciErr;
 	int iRet				= 0;
 	void* pvIn			= NULL;
 
 	char* pcOut			= NULL;
 
-	iRet = getMatrixOfIntegerPrecision(_piAddress, _piPrecision);
-	if(iRet)
+	sciErr = getMatrixOfIntegerPrecision(_piKey, _piAddress, _piPrecision);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = getVarDimension(_piAddress, _piRows, _piCols);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	switch(*_piPrecision)
 	{
 	case SCI_INT8 : 
 		{
-			iRet = getMatrixOfInteger8(_piAddress, _piRows, _piCols, (char**)pvData);
+			sciErr = getMatrixOfInteger8(_piKey, _piAddress, _piRows, _piCols, (char**)pvData);
 		}
 	case SCI_UINT8 : 
 		{
-			iRet = getMatrixOfUnsignedInteger8(_piAddress, _piRows, _piCols, (unsigned char**)pvData);
+			sciErr = getMatrixOfUnsignedInteger8(_piKey, _piAddress, _piRows, _piCols, (unsigned char**)pvData);
 		}
 	case SCI_INT16 : 
 		{
-			iRet = getMatrixOfInteger16(_piAddress, _piRows, _piCols, (short**)pvData);
+			sciErr = getMatrixOfInteger16(_piKey, _piAddress, _piRows, _piCols, (short**)pvData);
 		}
 	case SCI_UINT16 : 
 		{
-			iRet = getMatrixOfUnsignedInteger16(_piAddress, _piRows, _piCols, (unsigned short**)pvData);
+			sciErr = getMatrixOfUnsignedInteger16(_piKey, _piAddress, _piRows, _piCols, (unsigned short**)pvData);
 		}
 	case SCI_INT32 : 
 		{
-			iRet = getMatrixOfInteger32(_piAddress, _piRows, _piCols, (int**)pvData);
+			sciErr = getMatrixOfInteger32(_piKey, _piAddress, _piRows, _piCols, (int**)pvData);
 		}
 	case SCI_UINT32 : 
 		{
-			iRet = getMatrixOfUnsignedInteger32(_piAddress, _piRows, _piCols, (unsigned int**)pvData);
+			sciErr = getMatrixOfUnsignedInteger32(_piKey, _piAddress, _piRows, _piCols, (unsigned int**)pvData);
 		}
 	case SCI_INT64 : 
 		{
-			iRet = getMatrixOfInteger64(_piAddress, _piRows, _piCols, (long long**)pvData);
+			sciErr = getMatrixOfInteger64(_piKey, _piAddress, _piRows, _piCols, (long long**)pvData);
 		}
 	case SCI_UINT64 : 
 		{
-			iRet = getMatrixOfUnsignedInteger64(_piAddress, _piRows, _piCols, (unsigned long long**)pvData);
+			sciErr = getMatrixOfUnsignedInteger64(_piKey, _piAddress, _piRows, _piCols, (unsigned long long**)pvData);
+		}
+	default :
+		{
+			*_piRows = 0;
+			*_piCols = 0;
+			*pvData = NULL;
+			return 1;
 		}
 	}
 
-	if(iRet)
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 	return 0;
 }
 
 
-int int8_from_double(int* _piAddress, int* _piKey)
+int int8_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	double* pdblIn	= NULL;
 
 	char* pcOut			= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfInteger8(_piKey, Rhs + 1, iRows, iCols, &pcOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfInteger8(Rhs + 1, iRows, iCols, &pcOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -560,31 +542,28 @@ int int8_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint8_from_double(int* _piAddress, int* _piKey)
+int uint8_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
 	double* pdblIn				= NULL;
 
 	unsigned char* pucOut	= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger8(_piKey, Rhs + 1, iRows, iCols, &pucOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfUnsignedInteger8(Rhs + 1, iRows, iCols, &pucOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -595,31 +574,28 @@ int uint8_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int16_from_double(int* _piAddress, int* _piKey)
+int int16_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	double* pdblIn	= NULL;
 
 	short* psOut		= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfInteger16(_piKey, Rhs + 1, iRows, iCols, &psOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfInteger16(Rhs + 1, iRows, iCols, &psOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -630,31 +606,28 @@ int int16_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint16_from_double(int* _piAddress, int* _piKey)
+int uint16_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet								= 0;
 	int iRows								= 0;
 	int iCols								= 0;
 	double* pdblIn					= NULL;
 
 	unsigned short* pusOut	= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger16(_piKey, Rhs + 1, iRows, iCols, &pusOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfUnsignedInteger16(Rhs + 1, iRows, iCols, &pusOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -665,31 +638,28 @@ int uint16_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int32_from_double(int* _piAddress, int* _piKey)
+int int32_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet				= 0;
 	int iRows				= 0;
 	int iCols				= 0;
 	double* pdblIn	= NULL;
 
 	int* piOut			= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfInteger32(_piKey, Rhs + 1, iRows, iCols, &piOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfInteger32(Rhs + 1, iRows, iCols, &piOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -700,31 +670,28 @@ int int32_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint32_from_double(int* _piAddress, int* _piKey)
+int uint32_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet							= 0;
 	int iRows							= 0;
 	int iCols							= 0;
 	double* pdblIn				= NULL;
 
 	unsigned int* puiOut	= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger32(_piKey, Rhs + 1, iRows, iCols, &puiOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfUnsignedInteger32(Rhs + 1, iRows, iCols, &puiOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -735,31 +702,28 @@ int uint32_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int64_from_double(int* _piAddress, int* _piKey)
+int int64_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
 	double* pdblIn		= NULL;
 
 	long long* pllOut	= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfInteger64(_piKey, Rhs + 1, iRows, iCols, &pllOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfInteger64(Rhs + 1, iRows, iCols, &pllOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -770,31 +734,28 @@ int int64_from_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint64_from_double(int* _piAddress, int* _piKey)
+int uint64_from_double(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
-	int iRet										= 0;
 	int iRows										= 0;
 	int iCols										= 0;
 	double* pdblIn							= NULL;
 
 	unsigned long long* pullOut	= NULL;
 
-	if(isVarComplex(_piAddress))
+	sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblIn);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblIn);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger64(_piKey, Rhs + 1, iRows, iCols, &pullOut);
+	if(sciErr.iErr)
 	{
-		return 1;
-	}
-
-	iRet = allocMatrixOfUnsignedInteger64(Rhs + 1, iRows, iCols, &pullOut, _piKey);
-	if(iRet)
-	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -806,8 +767,9 @@ int uint64_from_double(int* _piAddress, int* _piKey)
 }
 
 /*from int*/
-int int8_from_int(int* _piAddress, int* _piKey)
+int int8_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet			= 0;
 	int iRows			= 0;
@@ -817,16 +779,17 @@ int int8_from_int(int* _piAddress, int* _piKey)
 
 	char* pcOut		= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfInteger8(Rhs + 1, iRows, iCols, &pcOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfInteger8(_piKey, Rhs + 1, iRows, iCols, &pcOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -837,8 +800,9 @@ int int8_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint8_from_int(int* _piAddress, int* _piKey)
+int uint8_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet								= 0;
 	int iRows								= 0;
@@ -848,16 +812,17 @@ int uint8_from_int(int* _piAddress, int* _piKey)
 
 	unsigned char* pucOut		= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfUnsignedInteger8(Rhs + 1, iRows, iCols, &pucOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger8(_piKey, Rhs + 1, iRows, iCols, &pucOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -868,8 +833,9 @@ int uint8_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int16_from_int(int* _piAddress, int* _piKey)
+int int16_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet			= 0;
 	int iRows			= 0;
@@ -879,16 +845,17 @@ int int16_from_int(int* _piAddress, int* _piKey)
 
 	short* psOut	= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfInteger16(Rhs + 1, iRows, iCols, &psOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfInteger16(_piKey, Rhs + 1, iRows, iCols, &psOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -899,8 +866,9 @@ int int16_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint16_from_int(int* _piAddress, int* _piKey)
+int uint16_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet								= 0;
 	int iRows								= 0;
@@ -910,16 +878,17 @@ int uint16_from_int(int* _piAddress, int* _piKey)
 
 	unsigned short* pusOut	= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfUnsignedInteger16(Rhs + 1, iRows, iCols, &pusOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger16(_piKey, Rhs + 1, iRows, iCols, &pusOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -930,8 +899,9 @@ int uint16_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int32_from_int(int* _piAddress, int* _piKey)
+int int32_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet			= 0;
 	int iRows			= 0;
@@ -941,16 +911,17 @@ int int32_from_int(int* _piAddress, int* _piKey)
 
 	int* piOut		= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfInteger32(Rhs + 1, iRows, iCols, &piOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfInteger32(_piKey, Rhs + 1, iRows, iCols, &piOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -961,8 +932,9 @@ int int32_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint32_from_int(int* _piAddress, int* _piKey)
+int uint32_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet								= 0;
 	int iRows								= 0;
@@ -972,16 +944,17 @@ int uint32_from_int(int* _piAddress, int* _piKey)
 
 	unsigned int* puiOut		= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfUnsignedInteger32(Rhs + 1, iRows, iCols, &puiOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger32(_piKey, Rhs + 1, iRows, iCols, &puiOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -992,8 +965,9 @@ int uint32_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int64_from_int(int* _piAddress, int* _piKey)
+int int64_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet					= 0;
 	int iRows					= 0;
@@ -1003,16 +977,17 @@ int int64_from_int(int* _piAddress, int* _piKey)
 
 	long long* pllOut	= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfInteger64(Rhs + 1, iRows, iCols, &pllOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfInteger64(_piKey, Rhs + 1, iRows, iCols, &pllOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)
@@ -1023,8 +998,9 @@ int int64_from_int(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int uint64_from_int(int* _piAddress, int* _piKey)
+int uint64_from_int(int* _piKey, int* _piAddress)
 {
+	SciErr sciErr;
 	int i;
 	int iRet										= 0;
 	int iRows										= 0;
@@ -1034,16 +1010,17 @@ int uint64_from_int(int* _piAddress, int* _piKey)
 
 	unsigned long long* pullOut	= NULL;
 
-	iRet = get_int(_piAddress, &iRows, &iCols, &iPrec, &pvIn);
+	iRet = get_int(_piKey, _piAddress, &iRows, &iCols, &iPrec, &pvIn);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocMatrixOfUnsignedInteger64(Rhs + 1, iRows, iCols, &pullOut, _piKey);
-	if(iRet)
+	sciErr = allocMatrixOfUnsignedInteger64(_piKey, Rhs + 1, iRows, iCols, &pullOut);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
 	for(i = 0 ; i < iRows * iCols ; i++)

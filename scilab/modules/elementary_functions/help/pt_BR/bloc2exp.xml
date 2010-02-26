@@ -76,21 +76,17 @@
     <literal>(blocd(2),blocd(3),...)</literal> é, por si mesmo, uma lista de
     um dos seguintes tipos :</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 list('transfer','nome_do_sistema_linear')
-   
-    </programlisting>
+ ]]></programlisting>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 list('link','nome_da_ligação',
                [número_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior],
                [caixa_de_fluxo_inferior_1,número_de_porta_da_caixa_inferior_1],
                [caixa_de_fluxo_inferior_2,número_de_porta_da_caixa_inferior_2],
                ...)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Os strings <literal>'transfer'</literal> e
     <literal>'links'</literal> são palavras-chaves as quais indicam o tipo de
@@ -139,8 +135,7 @@ list('link','nome_da_ligação',
     bloco fictício -1, omitido) e à porta (de entrada) 2 do
     adicionador.</para>
 
-    <programlisting>
-
+    <programlisting role = "example"><![CDATA[ 
 //Inicialização
 syst=list('blocd'); l=1;
 //
@@ -150,17 +145,16 @@ l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //Sistema 2
 l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adicionador
 //
 //Links
-// Entradas  -1 --&gt; entrada 1
+// Entradas  -1 --> entrada 1
 l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
 // Internal 
 l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
-// Saídas // -1 -&gt; saída 1
+// Saídas // -1 -> saída 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
 //Chamada de avaliação
 w=bloc2exp(syst);
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>O resultado é o string:
     <literal>w=-(s2*s1-eye())\s2*s1</literal>.</para>
@@ -172,26 +166,25 @@ w=bloc2exp(syst);
 
     <para>[2] segundo exemplo</para>
 
-    <programlisting>
-
+    <programlisting role = "example"><![CDATA[ 
 //Inicialização
 syst=list('blocd'); l=1;
-//
+
 //Sistema (planta de blocos 2x2)
 l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);  
-//
+
 //Controlador
 l=l+1;n_k=l;syst(l)=list('transfer','k'); 
-//
+
 //Links
 l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
 l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
 l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+
 //Chamada de avaliação
 w=bloc2exp(syst);
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Neste caso, o resultado é uma fórmula equivalente à usual:</para>
 

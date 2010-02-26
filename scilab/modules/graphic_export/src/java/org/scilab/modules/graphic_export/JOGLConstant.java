@@ -250,6 +250,14 @@ public class JOGLConstant {
 	public static int get_GL_FLOAT() {
 	    return GL.GL_FLOAT;
 	}
+
+        /**
+	 * get_GL_UNSIGNED_BYTE
+	 * @return GL.GL_UNSIGNED_BYTE
+	 */
+	public static int get_GL_UNSIGNED_BYTE() {
+	    return GL.GL_UNSIGNED_BYTE;
+	}
 	
 	/**
 	 * get_GL_POINTS

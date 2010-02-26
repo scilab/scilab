@@ -20,6 +20,7 @@
 /*--------------------------------------------------------------------------*/
 int sci_zeros(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	int iRet					= 0;
 	int iRows					= 0;
 	int iCols					= 0;
@@ -50,47 +51,54 @@ int sci_zeros(char *fname, int* _piKey)
 	}
 	else if(Rhs == 1)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		if(getVarType(piAddr1) > 10)//pas classe !
+		if(!isVarMatrixType(_piKey, piAddr1))
 		{
 			OverLoad(1);
 			return 0;
 		}
-		iRet = getVarDimension(piAddr1, &iRows, &iCols);
-		if(iRet)
+		
+		sciErr = getVarDimension(_piKey, piAddr1, &iRows, &iCols);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 	else if(Rhs == 2)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-		if(iRet)
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getDimFromVar(piAddr1, &iRows);
-		if(iRet)
+		sciErr = getDimFromVar(_piKey, piAddr1, &iRows);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = getDimFromVar(piAddr2, &iCols);
-		if(iRet)
+		sciErr = getDimFromVar(_piKey, piAddr2, &iCols);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
@@ -100,7 +108,7 @@ int sci_zeros(char *fname, int* _piKey)
 		iCols = 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReal, _piKey);
+	sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblReal);
 	if(iRows != 0)
 	{
 		vDset(iRows * iCols, 0, pdblReal, 1);
@@ -108,5 +116,6 @@ int sci_zeros(char *fname, int* _piKey)
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-	return 0;}
+	return 0;
+}
 /*--------------------------------------------------------------------------*/

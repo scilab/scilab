@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_gettid, fin = 4
  ******************************************/
-int intspvm_gettid(char *fname,unsigned long fname_len)
+int sci_pvm_gettid(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,un=1,l3;
   CheckRhs(2,2);

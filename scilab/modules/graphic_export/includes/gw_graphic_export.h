@@ -13,24 +13,23 @@
 #ifndef __GW_GRAPHIC_EXPORT__
 #define __GW_GRAPHIC_EXPORT__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_graphic_export.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_graphic_export(void);
+GRAPHIC_EXPORT_IMPEXP int gw_graphic_export(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/ 
-#include "sci_xs2bmp.h"
-#include "sci_xs2ps.h"
-#include "sci_xs2ppm.h"
-#include "sci_xs2gif.h"
-#include "sci_xs2jpg.h"
-#include "sci_xs2png.h"
-#include "sci_xs2eps.h"
-#include "sci_xs2pdf.h"
-#include "sci_xs2svg.h"
-
+GRAPHIC_EXPORT_IMPEXP int sci_xs2bmp( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2eps( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2gif( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2jpg( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2pdf( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2png( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2ppm( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2svg( char * fname, unsigned long fname_len ) ;
+GRAPHIC_EXPORT_IMPEXP int sci_xs2ps( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_GRAPHIC_EXPORT__ */
 /*--------------------------------------------------------------------------*/ 

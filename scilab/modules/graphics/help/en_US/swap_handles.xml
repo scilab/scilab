@@ -55,8 +55,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[//-----------------//
-//  First example         //
+    <programlisting role="example"><![CDATA[ 
+//-----------------//
+//  First example  //
 //-----------------//
 
 // create a rectangle
@@ -85,7 +86,7 @@ swap_handles( arrow, circle ) ;
 axes.children
 
 //-----------------//
-//  Second example    //
+//  Second example //
 //-----------------//
 
 // create two windows
@@ -99,9 +100,7 @@ axes2 = gca() ;
 // swap their axes
 // note that the color map does not change.
 swap_handles( axes1, axes2 ) ;
-
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

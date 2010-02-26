@@ -1,7 +1,0 @@
-LIBRARY    signal_processing.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; signal_processing
-; --------------------------------------- 

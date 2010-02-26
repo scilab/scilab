@@ -166,8 +166,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //DISPLAY
 function y=foo(x,flag)
   if flag then 
@@ -178,9 +177,7 @@ function y=foo(x,flag)
 endfunction
 L=macr2lst(foo)
 fun2string(L)
-
-   
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

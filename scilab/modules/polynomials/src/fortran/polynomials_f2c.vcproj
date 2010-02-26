@@ -684,10 +684,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wmptld.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wmptra.c"
 				>
 			</File>
@@ -1009,10 +1005,6 @@
 			</File>
 			<File
 				RelativePath=".\wmpmu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wmptld.f"
 				>
 			</File>
 			<File

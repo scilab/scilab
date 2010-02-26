@@ -42,12 +42,13 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // polynôme simple
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
 w=sfact(p);
 w*numer(horner(w,1/z))
+
 // exemple matriciel
 F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
 P=F1*gtild(F1,'d');  // P est symétrique
@@ -56,6 +57,7 @@ roots(det(P))
 roots(det(gtild(F,'d')))  // Les racines stables
 roots(det(F))             // Les racines antistables
 clean(P-F*gtild(F,'d'))
+
 // Utilisation en temps continu
 s=poly(0,'s');
 p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);

@@ -65,20 +65,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
- a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
- ssprint(syslin('c',a,b,c,d))
- ssprint(syslin('d',a,b,c,d))
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
+ssprint(syslin('c',a,b,c,d))
+ssprint(syslin('d',a,b,c,d))
+ ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
-
-    <simplelist type="inline">
-      <member><link linkend="texprint">texprint</link></member>
-    </simplelist>
-  </refsection>
 </refentry>

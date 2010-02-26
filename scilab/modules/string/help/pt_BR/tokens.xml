@@ -77,15 +77,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 tokens('Isto é um string')
 
 tokens('SCI/demos/scicos','/')
 
 tokens('y=a+b*2',['=','+','*'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

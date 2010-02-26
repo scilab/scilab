@@ -31,11 +31,12 @@
 
 extern "C"
 {
-#include "findfiles.h"
-}
+	#include "findfiles.h"
 #ifndef _MSC_VER
-#include "stricmp.h"
+	#include "stricmp.h"
 #endif
+}
+
 
 
 using namespace std;
@@ -273,9 +274,12 @@ bool FuncManager::CreateModuleList(void)
 {
 	bool bRet = true;
 	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("types", &TypesModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("integer", &IntegerModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("core", &CoreModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("io", &IoModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("functions", &FunctionsModule::Load));
 	return bRet;
 }
 
@@ -302,7 +306,7 @@ bool FuncManager::LoadFuncByModule(void)
 	{
 		//call Load function
 		itMod->second();
-		LoadMacroFile(itMod->first);
+		//LoadMacroFile(itMod->first);
 	}
 	return bRet;
 }
@@ -315,7 +319,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
 	stPath += _stModule;
 	stPath += MACRO_DIR;
 	int iSize = 0;
-	char **pstPath = findfiles(const_cast<char*>(stPath.c_str()), const_cast<char*>("*.sci"), &iSize);
+	char **pstPath = findfiles(const_cast<char*>(stPath.c_str()), const_cast<char*>("*.sci"), &iSize, FALSE);
 
 	if(pstPath)
 	{

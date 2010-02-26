@@ -383,6 +383,33 @@ char *getCurrentLine(void)
 	return line;
 }
 /*--------------------------------------------------------------------------*/
+char *getLineBeforeCaret(void)
+{
+	char *line = NULL;
+
+	reallocLineBuffer();
+	line = strdup_windows(cur_line);
+	line[cur_pos] = '\0';
+	return line;
+}
+/*--------------------------------------------------------------------------*/
+char *getLineAfterCaret(void)
+{
+	char *line = NULL;
+
+	reallocLineBuffer();
+	if (cur_pos != max_pos)
+	{
+		line = strdup_windows(&cur_line[cur_pos]);
+		line[(max_pos - cur_pos) + 1] = '\0';
+	}
+	else
+	{
+		line = strdup_windows("");
+	}
+	return line;
+}
+/*--------------------------------------------------------------------------*/
 void addCharacterCurrentLine(unsigned char ch)
 {
 	int i = 0;

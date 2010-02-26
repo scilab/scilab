@@ -2,23 +2,23 @@
 /* Allan CORNET */
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-	#ifdef __cplusplus
+#ifndef __SCILAB_MALLOC_H__
+#define __SCILAB_MALLOC_H__
+
+#ifdef __cplusplus
 	extern "C"
 	{
-		#include "win_mem_alloc.h" /* MALLOC */
-	};
-	#else
-		#include "win_mem_alloc.h" /* MALLOC */
-	#endif
-#else
-	#ifdef __cplusplus
-	extern "C"
-	{
-		#include "sci_mem_alloc.h" /* MALLOC */
-	}
-	#else
-		#include "sci_mem_alloc.h" /* MALLOC */
-	#endif
 #endif
+
+	#ifdef _MSC_VER
+		#include "win_mem_alloc.h" /* MALLOC */	
+	#else /* others O.S*/
+		#include "sci_mem_alloc.h" /* MALLOC */
+	#endif
+
+#ifdef __cplusplus
+	}; 
+#endif /* extern "C" */
+
+#endif /* __SCILAB_MALLOC_H__ */
 /*-----------------------------------------------------------------------------------*/ 

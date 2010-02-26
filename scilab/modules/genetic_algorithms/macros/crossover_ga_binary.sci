@@ -29,7 +29,7 @@ if ~MultiCross then
   Crossed_Indiv2 = strcat([part1_2 part2_1]);
 else
   mix = ceil((length(Indiv1)-1)*rand(MultiCrossNb,1))+1;
-  mix = -unique(sort(-mix));
+  mix = -unique(gsort(-mix));
   Crossed_Indiv1 = Indiv1;
   Crossed_Indiv2 = Indiv2;
   for i=1:length(mix)

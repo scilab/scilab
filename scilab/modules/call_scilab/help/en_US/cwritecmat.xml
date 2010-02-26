@@ -22,10 +22,10 @@
   </info>
 
   <refnamediv>
-    <refname>cwritecmat</refname>
+    <refname>cwritecmat (obsolete)</refname>
 
     <refpurpose>Write a single complex or a matrix of complex into Scilab
-    memory using call_scilab.</refpurpose>
+    memory using call_scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="Double_management_writing_API">API_Scilab: Complex double writing</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // This example shows how to write a Scilab matrix of complex in Scilab engine
 /* 
  * Write a matrix into Scilab
@@ -112,7 +112,7 @@
  * Note that it is done column by column
  */ 
 
-double B[]={1,3,4,9,2,8,3,2,1,0,-1,0,1/2,42,0,0};   /* Declare the matrix */
+double B[]={1,3,4,9,2,8,3,2,1,0,-1,0,0.5,42,0,0};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
 
@@ -128,7 +128,7 @@ SendScilabJob("disp(B);"); /* Display B */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="Double_management_reading_API">API_Scilab: Complex double reading</link>,  <link linkend="Double_management_writing_API">API_Scilab: Complex double writing</link>, <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="ComplexManagement_callscilab">Complex Management</link>, <link
       linkend="creadcmat">creadcmat</link></member>

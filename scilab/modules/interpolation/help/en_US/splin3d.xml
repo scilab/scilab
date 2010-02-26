@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example 1
 // =============================================================================
 
@@ -121,8 +121,6 @@ vp_exact = f(xp,yp,zp);
 vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // now retry with n=20 and see the error
-
-
 
 // example 2 (see linear_interpn help page which have the
 //            same example with trilinear interpolation)
@@ -143,24 +141,24 @@ val = [ 0.1   0.5   0.9   0.5   0.5];
 ebox = [0 1 0 1 0 1];
 XF=[]; YF=[]; ZF=[]; VF=[];
 for i = 1:length(val)
-   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
-   Vm = interp3d(Xm,Ym,Zm, tl);
-   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
-   Vp = interp3d(Xp,Yp,Zp, tl);
-   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+  Vm = interp3d(Xm,Ym,Zm, tl);
+  [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  Vp = interp3d(Xp,Yp,Zp, tl);
+  [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 xset("colormap",jetcolormap(nb_col));
-xbasc(); xset("hidden3d",xget("background"));
+clf(); xset("hidden3d",xget("background"));
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
 xselect()
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -98,8 +98,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 F=randpencil([],[2],[1,2,3],[]);
 F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com três avaliações em 1,2,3
 [Ws,F1]=rowshuff(F,-1);
@@ -107,8 +106,7 @@ F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com três avaliações em 1,2,3
 svd(E1)           //E1 não-singular
 roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

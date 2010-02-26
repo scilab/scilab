@@ -48,16 +48,14 @@ mtlb_mode(mmode)</synopsis>
         <term>Scilab</term>
 
         <listitem>
-          <para>:</para>
+          <para></para>
 
-          <programlisting>
-
-a+[] --&gt;a
-a-[] --&gt;a
-[]+a --&gt;a
-[]-a --&gt;-a
-   
-        </programlisting>
+          <programlisting role = ""><![CDATA[ 
+a+[] -->a
+a-[] -->a
+[]+a -->a
+[]-a -->-a
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -65,14 +63,12 @@ a-[] --&gt;a
         <term>Matlab</term>
 
         <listitem>
-          <programlisting>
-
-a+[] --&gt;[]
-a-[] --&gt;[]
-[]+a --&gt;[]
-[]-a --&gt;[]
-   
-        </programlisting>
+          <programlisting role = ""><![CDATA[ 
+a+[] -->[]
+a-[] -->[]
+[]+a -->[]
+[]-a -->[]
+ ]]></programlisting>
         </listitem>
       </varlistentry>
     </variablelist>

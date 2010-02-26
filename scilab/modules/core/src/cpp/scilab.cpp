@@ -18,24 +18,24 @@
 
 extern "C"
 {
-	#ifndef _MSC_VER
-		#include <unistd.h>
-	#endif
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 
 	//#include "SetScilabEnvironment.h"
-	#include "prompt.h"
-	#include "localization.h"
-	#include "InitializeLocalization.h"
-	#include "MALLOC.h"
-	#include "setgetSCIpath.h"
-	#include "inisci-c.h"
-	#include "scilabmode.h"
-	#ifdef _MSC_VER
-		#include "../src/c/scilab_windows/getScilabDirectory.h"
-	#endif
-	#include "ConsoleRead.h"
-	#include "../../../console/includes/InitializeConsole.h"
-	#include "../../../jvm/includes/InitializeJVM.h"
+#include "prompt.h"
+#include "localization.h"
+#include "InitializeLocalization.h"
+#include "MALLOC.h"
+#include "setgetSCIpath.h"
+#include "inisci-c.h"
+#include "scilabmode.h"
+#ifdef _MSC_VER
+#include "../src/c/scilab_windows/getScilabDirectory.h"
+#endif
+#include "ConsoleRead.h"
+#include "../../../console/includes/InitializeConsole.h"
+#include "../../../jvm/includes/InitializeJVM.h"
 #include "InitializeCore.h"
 #include "../../../shell/includes/InitializeShell.h"
 #include "../../../console/includes/InitializeConsole.h"
@@ -51,9 +51,9 @@ extern "C"
 #include "scilabmode.h"
 #include "SetScilabEnvironment.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
-  /*
-** HACK HACK HACK
-*/
+	/*
+	** HACK HACK HACK
+	*/
 	extern char *TermReadAndProcess(void);
 }
 
@@ -95,6 +95,7 @@ void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_p
 void Add_Boolean_Constant(string _szName, bool _bBool);
 
 int InitializeEnvironnement(void);
+bool execScilabStart(void);
 
 /*
 ** Usage
@@ -163,8 +164,8 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 			*_piLangIndex = i;
 		}
 		else if (!strcmp("-nw", argv[i]) || !strcmp("-nwni", argv[i])) {
-		  consoleMode = true;
-		  setScilabMode(SCILAB_NWNI);
+			consoleMode = true;
+			setScilabMode(SCILAB_NWNI);
 		}
 	}
 
@@ -187,8 +188,8 @@ extern "C"
 #include <unistd.h>
 #endif
 #include "scilabmode.h"
-  extern char *TermReadAndProcess(void);
-  extern void ConsolePrintf(char*);
+	extern char *TermReadAndProcess(void);
+	extern void ConsolePrintf(char*);
 }
 
 
@@ -209,8 +210,8 @@ static int batchMain (void)
 
 	if (parseResult != Parser::Succeded)
 	{
-	  YaspWrite(Parser::getInstance()->getErrorMessage());
-	  return PARSE_ERROR;
+		YaspWrite(Parser::getInstance()->getErrorMessage());
+		return PARSE_ERROR;
 	}
 
 	/*
@@ -238,35 +239,33 @@ static int batchMain (void)
 static void banner()
 {
 #define SCI_VERSION_STRING "scilab-branch-YaSp"
-  int i;
-  char *line = "        ___________________________________________        ";
-  int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
-  
-  YaspWrite(line);
-  YaspWrite("\n");
-  
-  /* To center the version name */
-  for( i=0 ; i<startVersion ; i++ )
-    {
-      YaspWrite(" ");
-    }
-  
-  YaspWrite(SCI_VERSION_STRING);
-  YaspWrite("\n\n");
-  
-  YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
-  
-  YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
-  YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
-  YaspWrite(line);
-  YaspWrite("\n");
+	int i;
+	char *line = "        ___________________________________________        ";
+	int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
 
-  
-#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
-  YaspWritesciprint("\n\n");
-  YaspWritesciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
-  YaspWritesciprint("   ");
-#endif
+	YaspWrite(line);
+	YaspWrite("\n");
+
+	/* To center the version name */
+	for( i=0 ; i<startVersion ; i++ )
+	{
+		YaspWrite(" ");
+	}
+
+	YaspWrite(SCI_VERSION_STRING);
+	YaspWrite("\n\n");
+
+	YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
+
+	YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
+	YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
+	YaspWrite(line);
+	YaspWrite("\n");
+	YaspWrite("\n");
+	YaspWrite("           -*- THIS IS SCILAB 6.0 aka YaSp -*-\n");
+	YaspWrite("\n");
+	YaspWrite(line);
+	YaspWrite("\n");
 }
 
 /*
@@ -277,28 +276,44 @@ static int interactiveMain (void)
 	Parser::ParserStatus parseResult;
 	bool exit = false;
 	int pause = 0;
-	char *command;
-	
+	char *command = NULL;
+	Parser* pParser = Parser::getInstance();
+
 	banner();
 
 	while (!exit)
 	{
-	  C2F(setprlev)(&pause);
+		//set prompt value
+		C2F(setprlev)(&pause);
 
-	  //	  std::cout << "[" << Parser::getInstance()->getControlStatus()
-	  //		    << "]" << std::endl;
-	  if (Parser::getInstance()->getControlStatus() == Parser::AllControlClosed) 
-	    {
-	      command = YaspRead();
-	    }
-	  else
-	    {
-	      sprintf(command, "%s\n%s", command, YaspRead());
-	    }
+		if (pParser->getControlStatus() == Parser::AllControlClosed) 
+		{
+			if(command)
+			{
+				FREE(command);
+				command = NULL;
+			}
+			command = YaspRead();
+		}
+		else
+		{
+			char* pstRead = YaspRead();
+			//+1 for null termination and +1 for '\n'
+			size_t iLen = strlen(command) + strlen(pstRead) + 2;
+			char* pstNewCommand = (char*)MALLOC(iLen * sizeof(char));
+#ifdef _MSC_VER
+			sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+#else
+			sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+#endif
+			FREE(pstRead);
+			FREE(command);
+			command = pstNewCommand;
+		}
 
-	  //	  std::cout << "---" << std::endl << "Command = " << std::endl;
-	  //	  std::cout << command << std::endl;
-	  //	  std::cout << "---" << std::endl;
+		//std::cout << "---" << std::endl << "Command = " << std::endl;
+		//std::cout << command << std::endl;
+		//std::cout << "---" << std::endl;
 		if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
 		{
 			exit = true;
@@ -334,11 +349,11 @@ static int interactiveMain (void)
 				*/
 				if (dumpStack == true) { dumpStackTask(timed); }
 			}
-			else
-			  {
-			    YaspWrite(Parser::getInstance()->getErrorMessage());
-			    std::cerr << "Parser control : " << Parser::getInstance()->getControlStatus() << std::endl;
-			  }
+			else if(parseResult == Parser::Failed && pParser->getControlStatus() == Parser::AllControlClosed)
+			{
+				YaspWrite(pParser->getErrorMessage());
+				//std::cerr << "Parser control : " << pParser->getControlStatus() << std::endl;
+			}
 		}
 	}
 #ifdef DEBUG
@@ -349,7 +364,7 @@ static int interactiveMain (void)
 
 static void TermPrintf(char *text)
 {
-  std::cout << text;
+	std::cout << text;
 }
 
 /*
@@ -367,19 +382,19 @@ int main(int argc, char *argv[])
 	get_option(argc, argv, &iFileIndex, &iLangIndex);
 
 	if (consoleMode)
-	  {
-	    setYaspInputMethod(&TermReadAndProcess);
-	    setYaspOutputMethod(&TermPrintf);
-	  }
+	{
+		setYaspInputMethod(&TermReadAndProcess);
+		setYaspOutputMethod(&TermPrintf);
+	}
 	else
-	  {
-	    setYaspInputMethod(&ConsoleRead);
-	    setYaspOutputMethod(&ConsolePrintf);
-	  }
+	{
+		setYaspInputMethod(&ConsoleRead);
+		setYaspOutputMethod(&ConsolePrintf);
+	}
 
 	/* Scilab Startup */
 	InitializeEnvironnement();
-	
+
 	InitializeString();
 
 	InitializeLocalization();
@@ -403,22 +418,27 @@ int main(int argc, char *argv[])
 		//InitializeTclTk();
 		InitializeJVM();
 		InitializeGUI();
-		
+
 		/* create needed data structure if not already created */
 		loadGraphicModule() ;
-                
+
 		/* Standard mode -> init Java Console */
 		//if ( !consoleMode ) 
 		{
 			/* Initialize console: lines... */
 			InitializeConsole();
 		}
-		
+
 		loadBackGroundClassPath();
 	}
 
 	/* set current language of scilab */
 	FuncManager *pFM = new FuncManager();
+
+	//execute scilab.start
+	//execScilabStartTask();
+
+
 
 	if (iFileIndex == INTERACTIVE)
 	{
@@ -525,4 +545,3 @@ void Add_Boolean_Constant(string _szName, bool _bBool)
 	types::Bool* pVal = new types::Bool(_bBool);
 	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
-

@@ -36,8 +36,10 @@ status = createdir('dirname')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[createdir(SCIHOME+'/Directory_test')
-removedir(SCIHOME+'/Directory_test') ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+createdir(SCIHOME+'/Directory_test')
+removedir(SCIHOME+'/Directory_test')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

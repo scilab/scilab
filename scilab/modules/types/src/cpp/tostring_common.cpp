@@ -14,11 +14,6 @@
 #include <math.h>
 #include "tostring_common.hxx"
 
-#ifndef _MSC_VER
-	#include <inttypes.h>
-	#define _abs64(x) llabs(x)
-#endif
-
 extern "C"
 {
 	#include "elem_common.h"
@@ -26,29 +21,31 @@ extern "C"
 
 using namespace std;
 
-void GetIntFormat(long long _llVal, int *_piWidth)
-{
-	*_piWidth = (int)(log10((double)_abs64(_llVal)) + 1);
-}
+//template <typename T>
+//void GetIntFormat(T _TVal, int *_piWidth)
+//{
+//	*_piWidth = (int)(log10((double)_abs64(_TVal)) + 1);
+//}
 
-void AddIntValue(ostringstream *_postr, long long _llVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
-{
-	if(bPrintPlusSign == true)
-	{
-		*_postr << (_llVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
-	}
-	else
-	{
-		*_postr << (_llVal < 0 ? MINUS_STRING_INT : NO_SIGN);
-	}
-
-	Config_Stream(_postr, _iWidth, 0, ' ');
-
-	if(bPrintOne == true || _llVal != 1)
-	{
-		*_postr << right << _abs64(_llVal);
-	}
-}
+//template <typename T>
+//void AddIntValue(ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+//{
+//	if(bPrintPlusSign == true)
+//	{
+//		*_postr << (_TVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
+//	}
+//	else
+//	{
+//		*_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
+//	}
+//
+//	Config_Stream(_postr, _iWidth, 0, ' ');
+//
+//	if(bPrintOne == true || _TVal != 1)
+//	{
+//		*_postr << right << _abs64(_TVal);
+//	}
+//}
 
 void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
 {

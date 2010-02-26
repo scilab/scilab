@@ -76,18 +76,16 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 TOKENS = [];
 token = strtok("Um string de ,,fichas e algumas fichas mais"," ,");
 TOKENS = [TOKENS,token];
-while( token &lt;&gt; '' )
+while( token <> '' )
   token = strtok(" ,");
   TOKENS = [TOKENS,token];
 end
 disp(TOKENS);
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

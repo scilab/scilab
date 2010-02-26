@@ -22,41 +22,49 @@ namespace types
   class Bool : public GenericType
   {
   public :
-									Bool(bool _bReal);
-									Bool(int _iRows, int _iCols);
-									Bool(int _iRows, int _iCols, bool **_pbData);
-		void					CreateBool(int _iRows, int _iCols, bool **_pbData);
-		virtual				~Bool();
+										Bool(int _bReal);
+										Bool(int _iRows, int _iCols);
+										Bool(int _iRows, int _iCols, int **_piData);
+										~Bool();
+
+		Bool*						clone();
 
 		/*data management*/
-		bool*					bool_get() const;
-		bool					bool_get(int _iRows, int _iCols) const;
+		int*						bool_get() const;
+		int							bool_get(int _iRows, int _iCols) const;
 
-		bool					bool_set(bool *_pbData);
-		bool					bool_set(int _iRows, int _iCols, bool _bData);
+		bool						bool_set(int *_piData);
+		bool						bool_set(int _iRows, int _iCols, int _iData);
 
 
 		/*zero or one set filler*/
-		bool					false_set();
-		bool					true_set();
+		bool						false_set();
+		bool						true_set();
 
 		/*Config management*/
-    void					whoAmI();
-		bool					isComplex();
+    void						whoAmI();
+		bool						isComplex();
 
-    Bool*					getAsBool(void);
-		string				toString(int _iPrecision, int _iLineLen);
+    Bool*						getAsBool(void);
+		string					toString(int _iPrecision, int _iLineLen);
 
-		bool					operator==(const InternalType& it);
-		bool					operator!=(const InternalType& it);
+		bool						resize(int _iNewRows, int _iNewCols);
+		bool						insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+		static Bool*		insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Bool* _poSource, bool _bAsVector);
+		Bool*						extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+
+		bool						operator==(const InternalType& it);
+		bool						operator!=(const InternalType& it);
   protected :
-		RealType			getType(void);
-
-		/*clean values array*/
-		void					all_delete();
+		RealType				getType(void);
 
   private :
-    bool*					m_pbData;
+		/*clean values array*/
+		void						all_delete();
+		void						CreateBool(int _iRows, int _iCols, int **_ibData);
+
+  private :
+    int*						m_piData;
   };
 }
 #endif /* ! __BOOL_HH__ */

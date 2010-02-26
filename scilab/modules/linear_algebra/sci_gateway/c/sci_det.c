@@ -28,15 +28,17 @@
  * [e,m]=det(X)
  */
 
-int C2F(intdet)(char *fname, int* _piKey)
+int sci_det(char *fname, int* _piKey)
 {
   int ret= 0;
+  int type=0;
   int* arg= NULL;
 
   if ( Rhs>=1 )
     {
-      getVarAddressFromPosition(1, &arg, _piKey);
-      if( getVarType(arg)!=sci_matrix )
+      getVarAddressFromPosition(_piKey, 1, &arg);
+      getVarType(_piKey, arg, &type);
+      if( type!=sci_matrix )
 	{
 	  OverLoad(1);
 	  return 0;
@@ -47,13 +49,13 @@ int C2F(intdet)(char *fname, int* _piKey)
 	double* pData;
 	int iRows, iCols;
 	int complexArg;
-	if( (complexArg= isVarComplex(arg)) )
+	if( (complexArg= isVarComplex(_piKey, arg)) )
 	  {
-	    getComplexZMatrixOfDouble(arg, &iRows, &iCols, (doublecomplex**)&pData);
+	    getComplexZMatrixOfDouble(_piKey, arg, &iRows, &iCols, (doublecomplex**)&pData);
 	  }
 	else
 	  {
-	    getMatrixOfDouble(arg, &iRows, &iCols, &pData);
+	    getMatrixOfDouble(_piKey, arg, &iRows, &iCols, &pData);
 	  }
 	if( iRows != iCols)
 	  {
@@ -72,24 +74,27 @@ int C2F(intdet)(char *fname, int* _piKey)
 		double* pMantissaReal= NULL;
 		double* pMantissaImg= NULL;
 		double* pExponent= NULL;
-		if( (ret= 
-		     (complexArg
-		      ? allocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg, _piKey)
-		      : allocMatrixOfDouble(2, 1, 1, &pMantissaReal, _piKey))
-		     ||( (Lhs == 2) && allocMatrixOfDouble(3, 1, 1, &pExponent, _piKey)))
-		    )
-		  {
-		    Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-		  }
+		int intExponent;
+
+		if(complexArg)
+		{
+			allocComplexMatrixOfDouble(_piKey, 2, 1, 1, &pMantissaReal, &pMantissaImg);
+		}
 		else
-		  {
-		    int intExponent;
-		    ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
-		    if(pExponent)
-		      {
+		{
+			allocMatrixOfDouble(_piKey, 2, 1, 1, &pMantissaReal);
+		}
+
+		if(Lhs == 2)
+		{
+			allocMatrixOfDouble(_piKey, 3, 1, 1, &pExponent);
+		}
+
+		ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
+		if(pExponent)
+		{
 			*pExponent= (double)intExponent;
-		      }
-		  }      
+		}
 		LhsVar(1)= Lhs + 1;
 		if(Lhs == 2)
 		  {
@@ -102,6 +107,6 @@ int C2F(intdet)(char *fname, int* _piKey)
 	    vFreeDoubleComplexFromPointer((doublecomplex*)pData);
 	  }
       }
-    } 
+    }
   return ret;
 }

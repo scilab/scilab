@@ -1,0 +1,134 @@
+ Iteration Func-count   min f(x)            Procedure
+         0          3 2.420000e+001                 init
+         1          3 2.005000e+001                 init
+         2          5 5.161796e+000               expand
+         3          7 4.497796e+000              reflect
+         4          9 4.497796e+000     contract outside
+         5         11 4.381360e+000      contract inside
+         6         13 4.245273e+000      contract inside
+         7         15 4.217625e+000              reflect
+         8         17 4.211291e+000      contract inside
+         9         19 4.135560e+000               expand
+        10         21 4.135560e+000      contract inside
+        11         23 4.012727e+000               expand
+
+Matlab :
+ Iteration   Func-count     min f(x)         Procedure
+     0            1             24.2         
+     1            3            20.05         initial simplex
+     2            5           5.1618         expand
+     3            7           4.4978         reflect
+     4            9           4.4978         contract outside
+     5           11          4.38136         contract inside
+     6           13          4.24527         contract inside
+     7           15          4.21762         reflect
+     8           17          4.21129         contract inside
+     9           19          4.13556         expand
+    10           21          4.13556         contract inside
+    11           23          4.01273         expand
+    12           25          3.93738         expand
+    13           27          3.60261         expand
+    14           28          3.60261         reflect
+    15           30          3.46622         reflect
+    16           32          3.21605         expand
+    17           34          3.16491         reflect
+    18           36          2.70687         expand
+    19           37          2.70687         reflect
+    20           39          2.00218         expand
+    21           41          2.00218         contract inside
+    22           43          2.00218         contract inside
+    23           45          1.81543         expand
+    24           47          1.73481         contract outside
+    25           49          1.31697         expand
+    26           50          1.31697         reflect
+    27           51          1.31697         reflect
+    28           53           1.1595         reflect
+    29           55          1.07674         contract inside
+    30           57         0.883492         reflect
+    31           59         0.883492         contract inside
+    32           61         0.669165         expand
+    33           63         0.669165         contract inside
+    34           64         0.669165         reflect
+    35           66         0.536729         reflect
+    36           68         0.536729         contract inside
+    37           70         0.423294         expand
+    38           72         0.423294         contract outside
+    39           74         0.398527         reflect
+    40           76          0.31447         expand
+    41           77          0.31447         reflect
+    42           79         0.190317         expand
+    43           81         0.190317         contract inside
+    44           82         0.190317         reflect
+    45           84          0.13696         reflect
+    46           86          0.13696         contract outside
+    47           88         0.113128         contract outside
+    48           90          0.11053         contract inside
+    49           92          0.10234         reflect
+    50           94         0.101184         contract inside
+    51           96        0.0794969         expand
+    52           97        0.0794969         reflect
+    53           98        0.0794969         reflect
+    54          100        0.0569294         expand
+    55          102        0.0569294         contract inside
+    56          104        0.0344855         expand
+    57          106        0.0179534         expand
+    58          108        0.0169469         contract outside
+    59          110       0.00401463         reflect
+    60          112       0.00401463         contract inside
+    61          113       0.00401463         reflect
+    62          115      0.000369954         reflect
+    63          117      0.000369954         contract inside
+    64          118      0.000369954         reflect
+    65          120      0.000369954         contract inside
+    66          122     5.90111e-005         contract outside
+    67          124     3.36682e-005         contract inside
+    68          126     3.36682e-005         contract outside
+    69          128     1.89159e-005         contract outside
+    70          130     8.46083e-006         contract inside
+    71          132     2.88255e-006         contract inside
+    72          133     2.88255e-006         reflect
+    73          135     7.48997e-007         contract inside
+    74          137     7.48997e-007         contract inside
+    75          139     6.20365e-007         contract inside
+    76          141     2.16919e-007         contract outside
+    77          143     1.00244e-007         contract inside
+    78          145     5.23487e-008         contract inside
+    79          147     5.03503e-008         contract inside
+    80          149      2.0043e-008         contract inside
+    81          151     1.12293e-009         contract inside
+    82          153     1.12293e-009         contract outside
+    83          155     1.12293e-009         contract inside
+    84          157     1.10755e-009         contract outside
+    85          159     8.17766e-010         contract inside
+
+Matlab :
+ Iteration   Func-count     min f(x)         Procedure
+     0            1             24.2         
+     1            3            20.05         initial simplex
+     2            5           5.1618         expand
+     3            7           4.4978         reflect
+     4            9           4.4978         contract outside
+     5           11          4.38136         contract inside
+     6           13          4.24527         contract inside
+     7           15          4.21762         reflect
+     8           17          4.21129         contract inside
+     9           19          4.13556         expand
+
+ Iteration   Func-count     min f(x)         Procedure
+     0            3             24.2         initial simplex     
+     1            3            20.05         initial simplex     
+     2            5         5.161796         expand              
+     3            7         4.497796         reflect             
+     4            9         4.497796         contract outside    
+     5           11        4.3813601         contract inside     
+     6           13        4.2452728         contract inside     
+     7           15        4.2176247         reflect             
+     8           17        4.2112906         contract inside     
+     9           19        4.1355598         expand              
+    10           21        4.1355598         contract inside     
+    11           23        4.0127268         expand              
+    12           25        3.9373812         expand              
+    13           27         3.602606         expand              
+    14           28         3.602606         reflect             
+    15           30        3.4662211         reflect             
+

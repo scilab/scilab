@@ -17,11 +17,13 @@ function [xy]=rotate(xy,teta,orig)
 select rhs
  case 2 then orig=[0;0];
  case 3 then orig=matrix(orig,2,1);
- else error(39)
+ else error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "scaling", 2, 3));
 end;
 //
 [m,n]=size(xy)
-if m<>2 then  error('xy doit etre un vecteur a 2 lignes [x;y]'),end
+if m<>2 then
+ error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "rotate", "xy", 2));
+end
 //
 xy=xy-orig*ones(1,n)
 c=cos(teta),s=sin(teta)

@@ -84,13 +84,13 @@ xs2fig(fig, file_name [,orientation])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //simple example
 scf(0);
 plot2d();
 xs2fig(0,'foo.fig');
 xs2fig(gcf(),'foo.fig')
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

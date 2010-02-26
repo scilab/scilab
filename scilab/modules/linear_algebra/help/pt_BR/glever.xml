@@ -81,11 +81,9 @@
     <para>pelo algoritmo generalizado de Leverrier para um feixe de
     matrizes.</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 (s*E-A)^-1 = (Bfs/chis) - Bis.
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>chis</literal> = polinômio característico (até uma
     constante multiplicativa).</para>
@@ -109,13 +107,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 [Bfs,Bis,chis]=glever(F)
 inv(F)-((Bfs/chis) - Bis)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

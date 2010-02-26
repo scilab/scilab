@@ -12,13 +12,12 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_polynomials.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intpdiag)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_pdiag)(char *fname, int* _piKey);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_pdiag)(char *fname, int* _piKey)
+int sci_pdiag(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intpdiag)(id);

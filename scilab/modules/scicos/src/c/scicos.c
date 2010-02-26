@@ -190,9 +190,6 @@ struct {
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
-extern void  GetDynFunc();
-extern void  C2F(iislink)();
-
 
 extern  int C2F(cvstr)();
 extern  int C2F(dset)();
@@ -963,7 +960,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
     nclock = 0;
 
-    for (jj = 1; jj <= ncord; ++jj) { /*for each continous block*/
+    for (jj = 1; jj <= ncord; ++jj) { /*for each continuous block*/
       C2F(curblk).kfun = cord[jj];
       flag__ = 6;
       if (funtyp[C2F(curblk).kfun] >= 0) {

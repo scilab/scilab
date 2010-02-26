@@ -28,31 +28,31 @@
       <varlistentry>
         <term>P22</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (nominal plant) in state-space form</para>
+          <para> <literal>syslin</literal> list (nominal plant) in state-space form</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bigQ</term>
         <listitem>
-          <para>: <literal>[Q,S;S',N]</literal> (symmetric) weighting matrix</para>
+          <para> <literal>[Q,S;S',N]</literal> (symmetric) weighting matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>bigR</term>
         <listitem>
-          <para>: <literal>[R,T;T',V]</literal> (symmetric) covariance matrix</para>
+          <para> <literal>[R,T;T',V]</literal> (symmetric) covariance matrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>r</term>
         <listitem>
-          <para>: <literal>1</literal>x<literal>2</literal> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)</para>
+          <para> <literal>1</literal>x<literal>2</literal> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (augmented plant)</para>
+          <para> <literal>syslin</literal> list (augmented plant)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -63,21 +63,17 @@
     design.</para>
     <para><literal>P22=syslin(dom,A,B2,C2)</literal> is the nominal plant; it can be in continuous 
     time (<literal>dom='c'</literal>) or discrete time (<literal>dom='d'</literal>).</para>
-    <programlisting><![CDATA[
-
-  . 
-  x = Ax + w1 + B2u
-  y = C2x + w2
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+. 
+x = Ax + w1 + B2u
+y = C2x + w2
+ ]]></programlisting>
     <para>
     for continuous time plant.</para>
-    <programlisting><![CDATA[
-
-  x[n+1]= Ax[n] + w1 + B2u
-      y = C2x + w2
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x[n+1]= Ax[n] + w1 + B2u
+    y = C2x + w2
+ ]]></programlisting>
     <para>
     for discrete time plant.</para>
     <para>
@@ -94,8 +90,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
@@ -105,8 +100,7 @@ spec(h_cl(P,r,K))      //Closed loop should be stable
 //Same as Cl=P22/.K; spec(Cl('A'))
 s=poly(0,'s')
 lqg2stan(1/(s+2),eye(2,2),eye(2,2))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

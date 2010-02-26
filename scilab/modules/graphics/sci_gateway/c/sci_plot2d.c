@@ -16,13 +16,12 @@
 /* desc : interface for plot2d routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_demo.h"
+#include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "stack-c.h"
 #include "BasicAlgos.h"
 #include "sciCall.h"
 #include "DefaultCommandArg.h"
-#include "sci_plot2d.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"

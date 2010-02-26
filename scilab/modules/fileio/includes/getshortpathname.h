@@ -13,6 +13,7 @@
 #ifndef __GETSHORTPATHNAME_H__
 #define __GETSHORTPATHNAME_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h" /* C2F */
 #include "BOOL.h" /* BOOL */
 
@@ -24,9 +25,9 @@
 * on Linux returns same path name
 * used for Windows
 */
-char *getshortpathname(char *longpathname, BOOL *convertok);
+FILEIO_IMPEXP char *getshortpathname(char *longpathname, BOOL *convertok);
 
-int C2F(getshortpathname)(char *pathname,int *len);
+FILEIO_IMPEXP int C2F(getshortpathname)(char *pathname,int *len);
 
 #endif /* __GETSHORTPATHNAME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -40,7 +40,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.</para>
+          <para> <literal>syslin</literal> list, <literal>sl=[A,B,C,D]</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -52,13 +52,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');NUM=[1+s,s];den=s^2-5*s+1;
 sl=cont_frm(NUM,den); 
 slss=ss2tf(sl);       //Compare with NUM/den
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

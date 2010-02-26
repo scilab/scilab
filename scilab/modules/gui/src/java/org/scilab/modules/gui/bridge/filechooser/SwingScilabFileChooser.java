@@ -25,6 +25,7 @@ import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.SciFileFilter;
 
 /**
@@ -51,6 +52,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public SwingScilabFileChooser() {
 		super();
+		
+		
 		//System.out.println("[Constructor] SwingScilabFileChooser");
 		/** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
 		//putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
@@ -58,6 +61,8 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		 * Bug 4187 fixed: uigetdir() opens on "Desktop" and not on "Computer" on windows
 		 * No need to use 'putClientProperty' anymore (bug 3231)
 		 */
+		/* Bug 5111 : The Current directory have to be set before */
+		super.setCurrentDirectory(new File(ConfigManager.getLastOpenedDirectory()));
 	}	
 
 	/**
@@ -80,17 +85,16 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		
 		//If the mask description is empty we allocate description 
 		//according to the extensions given
-		if (fileMaskDescription.length == 0) {
-			maskDescription = new String[mask.length];			
+		if (fileMaskDescription == null || fileMaskDescription.length == 0) {
 			for (int i = 0; i < mask.length; i++) {
-				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i], i/*, maskSize*/));
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], null, i/*, maskSize*/));
 			}
 		} else {
 			//If the mask description is filled
 			//we use those descriptions given by the user
 			this.maskDescription = fileMaskDescription;
 			for (int i = 0; i < mask.length; i++) {
-				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i],i/*, maskSize*/));
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i], i/*, maskSize*/));
 			}
 		}
 	}
@@ -121,7 +125,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 * Display this chooser and wait for user selection 
 	 */
 	public void displayAndWait() {
-		
 		JFrame parentFrame = new JFrame();
 		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int returnValue = 0;
@@ -149,11 +152,12 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 				if (this.dialogType == JFileChooser.SAVE_DIALOG) {
 					//Test if there is a file with the same name	
 					if (file.exists()) {
-						int actionDialog = JOptionPane.showConfirmDialog(this, Messages.gettext("Replace existing file?"), Messages.gettext("File already exist"), JOptionPane.YES_NO_OPTION);
+						int actionDialog = JOptionPane.showConfirmDialog(this, 
+								Messages.gettext("Replace existing file?"), 
+								Messages.gettext("File already exist"), 
+								JOptionPane.YES_NO_OPTION);
 
-						if (actionDialog == JOptionPane.YES_OPTION) {
-
-						} else {
+						if (actionDialog != JOptionPane.YES_OPTION) {
 							// Same as cancel case
 							selection = new String[1];
 							selection[0] = "";
@@ -178,7 +182,11 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 
 				selection = new String[1];
 				selection[0] = file.getAbsolutePath();
-				selectionPath = file.getParentFile().getPath();
+				if (getFileSelectionMode() == DIRECTORIES_ONLY) {
+					selectionPath = file.getPath();
+				} else {
+					selectionPath = file.getParentFile().getPath();
+				}
 				selectionFileNames = new String[1];
 				selectionFileNames[0] = file.getName();
 				selectionSize = 1;						
@@ -193,11 +201,12 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 			
 			//set the filter index at the last index 
 			//of the list box if the mask "All files" is selected  
-			javax.swing.filechooser.FileFilter AllFilesSelected = getFileFilter();
-			if (AllFilesSelected.getDescription().equals("All Files")){
+			javax.swing.filechooser.FileFilter allFilesSelected = getFileFilter();
+			if (allFilesSelected.getDescription().equals("All Files")) {
 				FileChooserInfos.getInstance().setFilterIndex(maskSize + 1);
 			}
-			
+			//TODO
+			ConfigManager.saveLastOpenedDirectory(selectionPath);
 		//User cancel the uigetfile	
 		} else {			
 			selection = new String[1];

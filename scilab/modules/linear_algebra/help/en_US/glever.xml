@@ -60,11 +60,9 @@
     </para>
     <para>
      by generalized Leverrier's algorithm for a matrix pencil.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 (s*E-A)^-1 = (Bfs/chis) - Bis.
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>chis</literal> = characteristic polynomial (up to a multiplicative constant).</para>
     <para><literal>Bfs</literal>  = numerator polynomial matrix.</para>
     <para><literal>Bis</literal>
@@ -79,13 +77,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 [Bfs,Bis,chis]=glever(F)
 inv(F)-((Bfs/chis) - Bis)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

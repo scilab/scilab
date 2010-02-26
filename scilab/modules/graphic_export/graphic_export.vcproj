@@ -43,9 +43,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;STATIC_LINKED"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -63,7 +64,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -71,7 +72,7 @@
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
-				ModuleDefinitionFile="graphic_export.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -127,8 +128,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;STATIC_LINKED"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -146,7 +147,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -154,7 +155,7 @@
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libmmdd.lib"
-				ModuleDefinitionFile="graphic_export.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -209,11 +210,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;STATIC_LINKED"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -231,15 +233,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
-				ModuleDefinitionFile="graphic_export.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -302,8 +303,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS;STATIC_LINKED"
+				AdditionalIncludeDirectories="includes;../jvm/includes;../localization/includes;../fileio/includes;../graphics/includes;../graphics/includes/handleDrawing;src/cpp;../../libs/doublylinkedlist/includes;../../libs/MALLOC/includes;../core/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../renderer/includes;src/c;../api_scilab/includes;../operations/includes"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_EXPORT_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -321,15 +322,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scigraphic_export.dll %%f &gt;nul&#x0D;&#x0A;copy *.def graphic_exporttmp.def &gt;nul&#x0D;&#x0A;copy ..\graphic_export_header.def+graphic_exporttmp.def  ..\graphic_export.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)graphics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)graphics.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)renderer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scirenderer.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="graphics.lib libscilab.lib scirenderer.lib OpenGL32.lib"
 				OutputFile="../../bin/scigraphic_export.dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
-				ModuleDefinitionFile="graphic_export.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -486,6 +486,10 @@
 				Name="h"
 				>
 				<File
+					RelativePath=".\includes\dynlib_graphic_export.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\c\gl2ps\gl2ps.h"
 					>
 				</File>
@@ -495,42 +499,6 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\JoGLInterface.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2bmp.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2eps.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2gif.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2jpg.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2pdf.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2png.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2ppm.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2ps.h"
-					>
-				</File>
-				<File
-					RelativePath=".\includes\sci_xs2svg.h"
 					>
 				</File>
 				<File
@@ -584,10 +552,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\graphic_export_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

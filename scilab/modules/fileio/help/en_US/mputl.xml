@@ -54,8 +54,6 @@
           <para>A character string giving the name of the file or a logical
           unit returned by mopen.</para>
 
-          <para>OBSOLETE : If omitted, lines are written in the last file
-          opened by mopen.</para>
         </listitem>
       </varlistentry>
 
@@ -79,16 +77,15 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
- fd = mopen(TMPDIR+'/text_mputl.txt','wt');
- mputl('Hello World',fd);
- mclose(fd);
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/text_mputl.txt','wt');
+mputl('Hello World',fd);
+mclose(fd);
 
- fd = mopen(TMPDIR+'/text_mputl.txt','rt');
- disp(mgetl(fd));
- mclose(fd);
-
-  </programlisting>
+fd = mopen(TMPDIR+'/text_mputl.txt','rt');
+disp(mgetl(fd));
+mclose(fd);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

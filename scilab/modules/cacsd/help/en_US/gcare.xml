@@ -52,11 +52,9 @@
     <literal>X</literal> = solution , <literal>F</literal> = gain.</para>
     <para>
     The GCARE for <literal>Sl=[A,B,C,D]</literal> is:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 (A-B*Si*D'*C)'*X+X*(A-B*Si*D'*C)-X*B*Si*B'*X+C'*Ri*C=0
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     where <literal>S=(eye()+D'*D)</literal>, <literal>Si=inv(S)</literal>, <literal>R=(eye()+D*D')</literal>, <literal>Ri=inv(R)</literal> 
     and <literal>F=-Si*(D'*C+B'*X)</literal> is such that <literal>A+B*F</literal> is stable.</para>

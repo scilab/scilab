@@ -125,7 +125,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // this is an artifical example where the datas xd and yd
 // are build from a perturbed sin function
 a = 0; b = 2*%pi;
@@ -143,12 +143,12 @@ x = linspace(a,b,n)';
 // plotting
 ye = sin(xd);
 ys = interp(xd, x, y, d);
-xbasc()
+clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
 xtitle("a least square spline")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

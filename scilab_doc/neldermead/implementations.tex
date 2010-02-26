@@ -1,0 +1,229 @@
+\chapter{Implementations of the Nelder-Mead algorithm}
+
+In the following sections, we analyze the various implementations of the 
+Nelder-Mead algorithm. We analyze the Matlab implementation provided 
+by the \emph{fminsearch} command. We analyze the matlab algorithm provided by 
+C.T. Kelley and the Scilab port by Y. Collette. We 
+present the Numerical Recipes implementations. We analyze the O'Neill 
+fortran 77 implementation "AS47". The Burkardt implementation is also covered.
+The implementation provided in the NAG collection is detailed.
+The Nelder-Mead algorithm from the Gnu Scientific Library is analyzed.
+
+\section{Matlab : fminsearch}
+
+The Matlab command fminsearch implements the Nelder-Mead algorithm \cite{MatlabFminsearch}. 
+It provides features such as 
+\begin{itemize}
+\item maximum number of function evaluations,
+\item maximum number of iterations,
+\item termination tolerance on the function value,
+\item termination tolerance on $x$,
+\item output command to display the progress of the algorithm.
+\end{itemize}
+
+\section{Kelley and the Nelder-Mead algorithm}
+\index{Kelley, C. T.}
+
+C.T. Kelley has written a book \cite{Kelley1999} on optimization method and devotes a 
+complete chapter to direct search algorithms, especially the Nelder-Mead 
+algorithm. Kelley provides in \cite{KelleyMethodsOptimizationMatlabCodes} 
+the Matlab implementation of the 
+Nelder-Mead algorithm. That implementation uses the restart strategy 
+that Kelley has published in \cite{589283} and which improves the possible 
+stagnation of the algorithm on non local optimization points. No tests 
+are provided.
+
+The following is extracted from the README provided with these 
+algorithms. 
+
+\begin{verbatim}
+These files are current as of December 9, 1998.
+
+-----------------
+
+MATLAB/FORTRAN software for Iterative Methods for Optimization
+
+by C. T. Kelley
+
+These M-files are implementations of the algorithms from the book
+"Iterative Methods for Optimization", to be published by SIAM,
+by C. T. Kelley. The book, which describes the algorithms, is available
+from SIAM (service@siam.org). These files can be modified for non-commercial
+purposes provided that the authors: 
+
+C. T. Kelley for all MATLAB codes, 
+P. Gilmore and T. D. Choi for iffco.f
+J. M. Gablonsky for DIRECT
+
+are acknowledged and clear comment lines are inserted
+that the code has been changed. The authors assume no no responsibility
+for any errors that may exist in these routines.
+
+Questions, comments, and bug reports should be sent to
+
+Professor C. T. Kelley
+Department of Mathematics, Box 8205
+North Carolina State University
+Raleigh, NC 27695-8205
+
+(919) 515-7163
+(919) 515-3798 (FAX)
+
+Tim_Kelley@ncsu.edu
+
+\end{verbatim}
+
+
+From Scilab's point of view, that ?licence? is a problem since it 
+prevents the use of the source for commercial purposes.
+
+\section{Nelder-Mead Scilab Toolbox : Lolimot}
+
+The Lolimot project by Yann Collette provide two Scilab-based Nelder-
+Mead implementations \cite{LolimotColletteURL}. The first implementation is a Scilab port of 
+the Kelley script. The licence problem is therefore not solved by this 
+script. The second implementation \cite{NelderMeadColletteURL} implements the restart strategy 
+by Kelley. No tests are provided.
+
+\section{Numerical Recipes}
+
+The Numerical Recipes \cite{NumericalRecipes} provides the C source code of an 
+implementation of the Nelder-Mead algorithm. Of course, this is a 
+copyrighted material which cannot be included in Scilab.
+
+\section{NASHLIB : A19}
+
+Nashlib is a collection of Fortran subprograms from "Compact Numerical 
+Methods for Computers; Linear Algebra and Function Minimisation, " by 
+J.C. Nash. The subprograms are written without many of the extra 
+features usually associated with commercial mathematical software, such 
+as extensive error checking, and are most useful for those applications 
+where small program size is particularly important. The license is 
+public domain.
+
+Nahslib includes one implementation of the Nelder-Mead algorithm \cite{GAMS-A19A20-Desc}, 
+\cite{GAMS-A19A20-Source}. It is written in fortran 77. The coding style is "goto"-based and 
+may not be easy to maintain.
+
+\section{O'Neill implementations}
+
+The paper \cite{O'Neill1971AAF} by R. O'Neil in the journal of Applied Statistics 
+presents a fortran 77 implementation of the Nelder-Mead algorithm. The 
+source code itself is available in \cite{O'NeillAS47}. Many of the following 
+implementations are based on this primary source code. We were not able 
+to get the paper \cite{O'Neill1971AAF} itself.
+
+On his website, John Burkardt gives a fortran 77 source code of the 
+Nelder-Mead algorithm \cite{Burkardtasa047}. The following are the comments in the header 
+of the source code.
+
+\begin{verbatim}
+
+c  Discussion:
+c
+c    This routine seeks the minimum value of a user-specified function.
+c
+c     Simplex function minimisation procedure due to Nelder+Mead(1965),
+c     as implemented by O'Neill(1971, Appl.Statist. 20, 338-45), with
+c     subsequent comments by Chambers+Ertel(1974, 23, 250-1), Benyon(1976,
+c     25, 97) and Hill(1978, 27, 380-2)
+c
+c    The function to be minimized must be defined by a function of
+c    the form
+c
+c      function fn ( x, f )
+c      double precision fn
+c      double precision x(*)
+c
+c    and the name of this subroutine must be declared EXTERNAL in the
+c    calling routine and passed as the argument FN.
+c
+c    This routine does not include a termination test using the
+c    fitting of a quadratic surface.
+c
+c  Modified:
+c
+c    27 February 2008
+c
+c  Author:
+c
+c    FORTRAN77 version by R ONeill
+c    Modifications by John Burkardt
+
+\end{verbatim}
+
+The "Bayesian Survival Analysis" book by Joseph G. Ibrahim, Ming-Hui 
+Chen, and Debajyoti Sinha provides in \cite{SurvivalBookOptim} a fortran 77 implementation 
+of the Nelder-Mead algorithm. The following is the header of the source 
+code.
+
+\begin{verbatim}
+c     Simplex function minimisation procedure due to Nelder+Mead(1965),
+c     as implemented by O'Neill(1971, Appl.Statist. 20, 338-45), with
+c     subsequent comments by Chambers+Ertel(1974, 23, 250-1), Benyon(1976,
+c     25, 97) and Hill(1978, 27, 380-2)
+\end{verbatim}
+
+The O'Neill implementation uses a restart procedure which is 
+based on a local axis by axis search for the optimality of the 
+computed optimum.
+
+\section{Burkardt implementations}
+\index{Burkardt, John}
+
+John Burkardt gives several implementations of the Nelder-Mead 
+algorithm
+\begin{itemize}
+\item in fortran 77 \cite{Burkardtasa047} 
+\item in Matlab by Jeff Borggaard \cite{BurkardtNelderMeadMatlab}.
+\end{itemize}
+
+\section{NAG Fortran implementation}
+\index{NAG}
+
+The NAG Fortran library provides the E04CCF/E04CCA routines \cite{NAGE04CCF} which
+implements the simplex optimization method.
+E04CCA is a version of E04CCF that has additional parameters 
+in order to make it safe for use in multithreaded applications.
+As mentioned in the documentation, "The method tends to be slow, but it 
+is robust and therefore very useful for functions that are subject to inaccuracies.".
+The termination criteria is based on the standard deviation of the function
+values of the simplex.
+
+The specification of the cost function for E04CCA is:
+\begin{verbatim}
+SUBROUTINE FUNCT ( N, XC, FC, IUSER, RUSER)
+\end{verbatim}
+where IUSER and RUSER and integer and double precision array, which allow the 
+user to supply information to the cost function.
+An output routine, called MONIT is called once every iteration in E04CCF/E04CCA.
+It can be used to print out the current values of any selection of its parameters 
+but must not be used to change the values of the parameters.
+
+\section{GSL implementation}
+\index{Gnu Scientific Library}
+
+The Gnu Scientific Library provides two Nelder-Mead implementations.
+The authors are Tuomo Keskitalo, Ivo Alxneit and Brian Gough.
+The size of the simplex is the root mean square sum of length of vectors 
+from simplex center to corner points.
+The termination criteria is based on the size of the simplex.
+
+The C implementation of the minimization algorithm is original.
+The communication is direct, in the sense that the specific optimization 
+algorithm calls back the cost function.
+A specific optimization implementation provides four functions : "alloc", "free", "iterate"
+and "set". A generic optimizer is created by connecting it to a specific optimizer.
+The user must write the loop over the iterations, making successive calls 
+to the generic "iterate" function, which, in turns, calls the specific "iterate" 
+associated with the specific optimization algorithm. 
+
+The cost function can be provided as three function pointers 
+\begin{itemize}
+\item the cost function $f$,
+\item the gradient $g$,
+\item both the cost function and the gradient.
+\end{itemize}
+Some additional parameters can be passed to these functions.
+
+

@@ -1,0 +1,409 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2009-12-14 21:11+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr " был изменён. Cохранить изменения?"
+
+msgid "%s is a directory."
+msgstr "«%s» является каталогом."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Неверный размер входных параметров №%d и №%d: ожидались одинаковые "
+"размерности.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+
+msgid "?"
+msgstr "Справка"
+
+msgid "About"
+msgstr "О текстовом редакторе"
+
+msgid "All"
+msgstr "Весь документ"
+
+msgid "Are you sure that you want to close Text Editor ?"
+msgstr "Закрыть текстовый редактор?"
+
+msgid "Auto (Default)"
+msgstr "Автоматический (По умолчанию)"
+
+msgid "Backward"
+msgstr "Назад"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Cannot load \"xpadConfiguration.xml\""
+msgstr "Не удалось загрузить \"xpadConfiguration.xml\""
+
+msgid "Case sensitive"
+msgstr "Учитывать регистр"
+
+msgid "Change Color"
+msgstr "Изменить"
+
+msgid "Change Colors"
+msgstr "Настройка цветов"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Close All"
+msgstr "Закрыть все"
+
+msgid "Close All But This"
+msgstr "Закрыть другие"
+
+msgid "Colorization canceled"
+msgstr "Подсветка синтаксиса отключена"
+
+msgid "Colorize"
+msgstr "Подсветка синтаксиса"
+
+msgid "Comment Selection"
+msgstr "Добавить комментарии"
+
+msgid "Continue?"
+msgstr "Продолжить?"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Copyright (c)"
+msgstr "Авторское право (c)"
+
+msgid "Correct Indentation"
+msgstr "Исправить отступы"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Не удалось найти командное окно или InterpreterManagement."
+
+msgid "Could not find the temporary file."
+msgstr "Не удалось найти временный файл."
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Direction"
+msgstr "Направление"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "Edit"
+msgstr "Правка"
+
+msgid "Edit selection in a new tab"
+msgstr "Править выделенное в новой вкладке"
+
+msgid "Editor"
+msgstr "Текстовый редактор"
+
+msgid "Editor error"
+msgstr "Ошибка текстового редактора"
+
+msgid "Enable Auto Reformat"
+msgstr "Автоматический отступ"
+
+msgid "Encoding"
+msgstr "Кодировка"
+
+msgid "Enter line number"
+msgstr "Введите номер строки"
+
+msgid "Evaluate Selection"
+msgstr "Вычислить выделенное"
+
+msgid "Execute"
+msgstr "Выполнение"
+
+msgid "Execute File Into Scilab"
+msgstr "Выполнить файл в Scilab"
+
+msgid "Execute selection into Scilab"
+msgstr "Вычислить выделенное в Scilab"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File already exists"
+msgstr "Файл уже существует"
+
+msgid "Find"
+msgstr "Найти"
+
+msgid "Find/Replace"
+msgstr "Найти/заменить"
+
+msgid "Find:"
+msgstr "Найти:"
+
+msgid "Forward"
+msgstr "Вперёд"
+
+msgid "Goto line"
+msgstr "Перейти к строке"
+
+msgid "Help about '"
+msgstr "Справка по '"
+
+msgid "Help about a selected text"
+msgstr "Справка по выделенному тексту"
+
+msgid "Highlight current line"
+msgstr "Подсвечивать текущую строку"
+
+msgid "Invalid regular expression : %s"
+msgstr "Недопустимое регулярное выражение: %s"
+
+msgid "Line Endings"
+msgstr "Конец строки"
+
+msgid "Line Numbers"
+msgstr "Показывать номера строк"
+
+msgid "Load Into Scilab"
+msgstr "Загрузить в Scilab"
+
+msgid "Loading"
+msgstr "Идёт загрузка"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classic (CR)"
+
+msgid "New"
+msgstr "Создать"
+
+msgid "Next tab"
+msgstr "Следующая вкладка"
+
+msgid "No text selected"
+msgstr "Нет выделенного текста"
+
+msgid "Ok"
+msgstr "ОК"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Options"
+msgstr "Настройки"
+
+msgid "Page Setup"
+msgstr "Параметры  страницы"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Previous tab"
+msgstr "Предыдущая вкладка"
+
+msgid "Print"
+msgstr "Печать"
+
+msgid "Print Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Recent Files"
+msgstr "Недавние файлы"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Regular expressions"
+msgstr "Регулярные выражения"
+
+msgid "Replace"
+msgstr "Заменить"
+
+msgid "Replace All"
+msgstr "Заменить всё"
+
+msgid "Replace File?"
+msgstr "Заменить файл?"
+
+msgid "Replace With :"
+msgstr "Заменить на:"
+
+msgid "Replace/Find"
+msgstr "Заменить/найти"
+
+msgid "Reset default font"
+msgstr "Установить шрифт по умолчанию"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save All"
+msgstr "Сохранить все"
+
+msgid "Save as"
+msgstr "Сохранить как"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"
+
+msgid "Scilab text editor"
+msgstr "Текстовый редактор"
+
+msgid "Scilab text editor help"
+msgstr "Справка по текстовому редактору"
+
+msgid "Scope"
+msgstr "Область поиска"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Select All"
+msgstr "Выделить всё"
+
+msgid "Selected lines"
+msgstr "Выделенные строки"
+
+msgid "Set Colors"
+msgstr "Цвета"
+
+msgid "Set Font"
+msgstr "Шрифт"
+
+msgid "Shift Left"
+msgstr "Убрать отступ"
+
+msgid "Shift Right"
+msgstr "Сделать отступ"
+
+msgid "Show/Hide ToolBar"
+msgstr "Показать/скрыть панель инструментов"
+
+msgid "String %s not found"
+msgstr "Фраза %s не найдена"
+
+msgid "Syntax Type"
+msgstr "Режим подсветки синтаксиса"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"Файл %s не существует.\n"
+"Создать файл?"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"Файл %s был изменён другой программой!\n"
+"Перезаписать файл?"
+
+msgid "The file could not be converted."
+msgstr "Не удалось преобразовать файл."
+
+msgid "The file could not be saved."
+msgstr "Не удалось сохранить файл."
+
+msgid "This file"
+msgstr "Этот файл"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr "Данный файл является бинарным, при сохранении он будет испорчен."
+
+msgid "Uncomment Selection"
+msgstr "Удалить комментарии"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "Безымянный документ "
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Whole word"
+msgstr "Слово целиком"
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "Автоматический переход на новую строку"
+
+msgid "Wrap search"
+msgstr "Автоматический переход к началу документа"
+
+msgid "You have passed the beginning of the document"
+msgstr "Пройдено начало документа"
+
+msgid "You have passed the end of the document"
+msgstr "Пройден конец документа"
+
+msgid "You have reached the beginning of the document"
+msgstr "Достигнуто начало документа"
+
+msgid "You have reached the end of the document"
+msgstr "Достигнут конец документа"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+"Необходимо сохранить изменения перед выполнением данного файла в Scilab."
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "Изменения будут потеряны, всё равно изменить кодировку?"
+
+msgid "close this tab"
+msgstr "закрыть эту вкладку"

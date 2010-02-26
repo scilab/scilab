@@ -81,7 +81,7 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
         <term>flag=[type,box]</term>
 
         <listitem>
-          <para>: <literal>type</literal> e <literal>box</literal> possuem o
+          <para> <literal>type</literal> e <literal>box</literal> possuem o
           mesmo significado que em <literal>plot3d</literal>:</para>
 
           <variablelist>
@@ -273,24 +273,25 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">xset('window',20) // criando janela de número 20
+    <programlisting role="example"><![CDATA[ 
+xset('window',20) // criando janela de número 20
 t=[0:0.1:5*%pi]';
 param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
-  list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+         list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
 
-xdel(20) ;
- a=get("current_axes");//obtendo manipulador dos novos eixos criados
- t=[0:0.1:5*%pi]';
- param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
- a.rotation_angles=[65,75]; 
- a.data_bounds=[-1,-1,-1;1,1,2]; //limites fornecidos por data_bounds
- a.thickness = 2;
- h=a.children //obtendo o manipulador para a entidade Param3d: um Compound composto de duas curvas
- h.children(1).foreground = 3 // primeira curva
- curve2 = h.children(2);
- curve2.foreground = 6;
- curve2.mark_style = 2;
- </programlisting>
+xdel(20);
+a=get("current_axes");//obtendo manipulador dos novos eixos criados
+t=[0:0.1:5*%pi]';
+param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+a.rotation_angles=[65,75]; 
+a.data_bounds=[-1,-1,-1;1,1,2]; //limites fornecidos por data_bounds
+a.thickness = 2;
+h=a.children //obtendo o manipulador para a entidade Param3d: um Compound composto de duas curvas
+h.children(1).foreground = 3 // primeira curva
+curve2 = h.children(2);
+curve2.foreground = 6;
+curve2.mark_style = 2;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

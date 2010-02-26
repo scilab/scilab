@@ -14,8 +14,7 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define ELEMENTARY_FUNCTIONS_TAB_SIZE 53
-static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
+static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //abs
 	{NULL, ""}, //real
@@ -64,17 +63,16 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL, ""}, //number_properties
 	{NULL, ""}, //nearfloat
 	{NULL, ""}, //dsearch
-	{NULL, ""},
+	{NULL, ""}, //isequal
 	{C2F(sci_spones),"spones"},
 	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
-	{NULL, ""}, //matrix
-	{NULL, ""} //sort
+	{NULL, ""} //matrix
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{
-	callFunctionFromGateway(Tab,ELEMENTARY_FUNCTIONS_TAB_SIZE);
+{  
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -20,6 +20,8 @@
 #ifndef _SCI_MATRIX_H_
 #define _SCI_MATRIX_H_
 
+#include "dynlib_graphics.h"
+
 /*----------------------------------------------------------------------------------*/
 /**
  * a matrix on void pointers
@@ -38,17 +40,17 @@ sciMatrix ;
 /**
  * allocate a matrix with no elements (nbrow = nbcol = 0)
  */
-sciMatrix * emptyMatrix( void ) ;
+GRAPHICS_IMPEXP sciMatrix * emptyMatrix( void ) ;
 
 /**
  * create a nbRow x nbCol matrix of NULL pointers.
  */
-sciMatrix * newMatrix( int nbRow, int nbCol ) ;
+GRAPHICS_IMPEXP sciMatrix * newMatrix( int nbRow, int nbCol ) ;
 
 /**
  * create a nbRow x nbCol matrix which data are dataMat (directly, no copy).
  */
-sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol ) ;
+GRAPHICS_IMPEXP sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol ) ;
 /*@}*/
 /* note that we cannot use a copy constructor since we don't know how to copy two elements */
 /* of the matrix! Maybe it is possible with some function pointers, but it seems a bit */
@@ -59,12 +61,12 @@ sciMatrix * newCompleteMatrix( void ** dataMat, int nbRow, int nbCol ) ;
 /**
  * delete the structure and data
  */
-void deleteMatrix( sciMatrix * mat ) ;
+GRAPHICS_IMPEXP void deleteMatrix( sciMatrix * mat ) ;
 
 /** 
  * delete only the structure, not the data (use with caution).
  */
-void desallocateMatrix( sciMatrix * mat ) ;
+GRAPHICS_IMPEXP void desallocateMatrix( sciMatrix * mat ) ;
 /*@}*/
 /*----------------------------------------------------------------------------------*/
 /* accessors */
@@ -72,29 +74,29 @@ void desallocateMatrix( sciMatrix * mat ) ;
 /**
  * retrieve the element (row,col) of the matrix.
  */
-void * getMatElement( const sciMatrix * mat, int row, int col ) ;
+GRAPHICS_IMPEXP void * getMatElement( const sciMatrix * mat, int row, int col ) ;
 
-int     getMatNbRow( const sciMatrix * mat ) ;
+GRAPHICS_IMPEXP int     getMatNbRow( const sciMatrix * mat ) ;
 
-int     getMatNbCol( const sciMatrix * mat ) ;
+GRAPHICS_IMPEXP int     getMatNbCol( const sciMatrix * mat ) ;
 
 /**
  * get the pointer on the array of data. May be used for faster access to the data.
  */
-void ** getMatData(  const sciMatrix * mat ) ;
+GRAPHICS_IMPEXP void ** getMatData(  const sciMatrix * mat ) ;
 
 /** 
  * set an element of the matrix to a new value but does not desalocate the previous
  * if one exists.
  * @param newValue the new value which will be inserted directly in the matrix (no copy).
  */
-void setMatElement(    sciMatrix * mat, int row, int col, void * newValue ) ;
+GRAPHICS_IMPEXP void setMatElement(    sciMatrix * mat, int row, int col, void * newValue ) ;
 
 /**
  * desalocate the (row,col) element and put a new one.
  * @param newValue the new value which will be inserted directly in the matrix (no copy).
  */
-void changeMatElement( sciMatrix * mat, int row, int col, void * newValue ) ;
+GRAPHICS_IMPEXP void changeMatElement( sciMatrix * mat, int row, int col, void * newValue ) ;
 
 /**
  * desalocate the (row,col) current element (i,j) and copy the new one. The size of the element
@@ -102,7 +104,7 @@ void changeMatElement( sciMatrix * mat, int row, int col, void * newValue ) ;
  * @param copyValue copied value.
  * @param valueSize size of the data inserted in the matrix (ex: sizeof(double) ).
  */
-void copyMatElement(       sciMatrix * mat      ,
+GRAPHICS_IMPEXP void copyMatElement(       sciMatrix * mat      ,
                            int             row      ,
                            int             col      , 
                      const void          * copyValue,

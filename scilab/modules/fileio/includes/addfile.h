@@ -14,6 +14,7 @@
 #define __ADDFILE_H__
 
 #include <stdio.h>
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
@@ -27,7 +28,7 @@
  * @param filename  
  * @param ierr  
  */
-void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr);
+FILEIO_IMPEXP void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr);
 
 #endif /*  __ADDFILE_H__ */
 /*--------------------------------------------------------------------------*/

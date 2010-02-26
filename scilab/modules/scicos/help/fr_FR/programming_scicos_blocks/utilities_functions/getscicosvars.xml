@@ -50,10 +50,10 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [myvar]=getscicosvars(str)
 [myvar]=getscicosvars([str1;str2;...])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_getscicosvars">
     <title>Paramètres</title>

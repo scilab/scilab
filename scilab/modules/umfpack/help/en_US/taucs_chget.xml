@@ -41,21 +41,21 @@
     pattern  of the Cholesky factorization (or if you  code something which
     use the factors). Traditionnaly, the factorization is written :
   </para>
-    <programlisting><![CDATA[
-    P A P' = C C'
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+P A P' = C C'
+ ]]></programlisting>
     <para>
     with P' the permutation matrix associated to the permutation p.
     As we get the upper triangle Ct (= C'), in scilab syntax we
     can write :
   </para>
-    <programlisting><![CDATA[
-    A(p,p) = Ct' * Ct
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A(p,p) = Ct' * Ct
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Example #1 : a small linear test system 
 A = sparse( [ 2 -1  0  0  0;
              -1  2 -1  0  0; 
@@ -76,14 +76,14 @@ Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level
 [Ct, p] = taucs_chget(Cptr);
 // plot the initial matrix
-xset("window",0) ; xbasc()
+xset("window",0) ; clf()
 PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)")
 // plot the permuted matrix
 B = A(p,p);
-xset("window",1) ; xbasc()
+xset("window",1) ; clf()
 PlotSparse(B) ; xtitle("Permuted matrix B = A(p,p)")
 // plot the upper triangle Ct
-xset("window",2) ; xbasc()
+xset("window",2) ; clf()
 PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)")
 // retrieve cnz
 [OK, n, cnz] = taucs_chinfo(Cptr)

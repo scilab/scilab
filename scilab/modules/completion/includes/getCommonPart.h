@@ -14,6 +14,8 @@
 #ifndef __GETCOMMONPART_H__
 #define __GETCOMMONPART_H__
 
+#include "dynlib_completion.h"
+
 /**
 * get common part of words
 * example gethistory, gethistoryfile, gethist
@@ -22,7 +24,7 @@
 * @param[in] size of array
 * @return a string common part
 */
-char *getCommonPart(char **dictionary, int sizeDictionary);
+COMPLETION_IMPEXP char *getCommonPart(char **dictionary, int sizeDictionary);
 
 #endif /* __GETCOMMONPART_H__ */
 

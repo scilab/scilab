@@ -60,7 +60,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
 
     if txt <> [] then // not a Cancel button
       tt = txt
-      tarpath = pathconvert(TMPDIR + '/Modelica/', %f, %t);
+      tarpath = pathconvert(TMPDIR + '/Modelica/', %t, %t);
       // saving in the filename
       if extF == ''  then
         funam = tarpath + nameF + '.mo';
@@ -69,13 +69,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
         mputl(tt,funam);
       end
 
-      //++ OBSOLETE thanks to automatic detection of MODELICAC
-      //compilerpath = pathconvert(SCI+'/bin/', %f, %t);
-      //if MSDOS then
-      //  compilerpath = compilerpath + 'modelicac.exe';
-      //else
-      //  compilerpath = compilerpath + 'modelicac';
-      //end
+      compilerpath = getmodelicacpath() + "modelicac";
 
       //++ Check that modelica compiler is available
       //++ Otherwise, give some feedback and quit
@@ -84,8 +78,6 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
         ok = %f
         break
       end
-
-      compilerpath = 'modelicac'; //** thanks to automatic detection on both Windows and Unix platforms
 
       if execstr('unix_s(compilerpath + '' -c '' + funam + '' -o '' + tarpath + nameF + ''.moc'')', 'errcatch') <> 0 then
         messagebox(sprintf(gettext("%s: An error occurred during the compilation of the Modelica block."),"MODCOM"),"modal","error");

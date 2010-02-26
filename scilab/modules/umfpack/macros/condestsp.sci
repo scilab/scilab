@@ -162,7 +162,7 @@ function [K1] = condestsp(A, arg2, arg3)
 	Z(:,j) = umf_lusolve(LUp, S(:,j),"A''x=b")
      end
 
-     [h,ind] = sort(max(abs(Z),"c"))
+     [h,ind] = gsort(max(abs(Z),"c"))
      if k >= 2  then
        if h(1) == h(ind_best) then , break , end
      end
@@ -170,7 +170,7 @@ function [K1] = condestsp(A, arg2, arg3)
      if (t > 1) & (k > 1) then
 	j = 1
 	for l=1:t
-	   while %t
+	   while %t & (j<=length(ind))
 	      if find(ind_hist == ind(j)) == [] then  
 	         ind(l) = ind(j)
 		 j = j + 1

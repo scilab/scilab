@@ -145,7 +145,7 @@
       <varlistentry>
         <term>printw</term>
         <listitem>
-          <para>:optionnal, switch for printing the warning messages.</para>
+          <para>optionnal, switch for printing the warning messages.</para>
           <variablelist>
             <varlistentry>
               <term>=  </term>
@@ -210,19 +210,16 @@
     matrices B and D of a discrete-time system, using SLICOT routine 
     IB01CD.
   </para>
-    <programlisting><![CDATA[
-
-
-     [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
-   [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
-        [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
-      [B,Dr,V,rcnd] = findBD(2,1,2,A,C,Y,U)
-       [x0,V,rcnd] = findBD(1,2,1,A,B,C,Y,U)
-       [x0,V,rcnd] = findBD(1,2,2,A,B,C,D,Y,U)
-         [x0,rcnd] = findBD(2,2)      // (Set x0 = 0, rcnd = 1)
-       [x0,V,rcnd] = findBD(1,3,A,C,Y)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+   [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
+[x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
+      [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
+    [B,Dr,V,rcnd] = findBD(2,1,2,A,C,Y,U)
+      [x0,V,rcnd] = findBD(1,2,1,A,B,C,Y,U)
+      [x0,V,rcnd] = findBD(1,2,2,A,B,C,D,Y,U)
+        [x0,rcnd] = findBD(2,2)      // (Set x0 = 0, rcnd = 1)
+      [x0,V,rcnd] = findBD(1,3,A,C,Y)
+ ]]></programlisting>
     <para>
     Note: the example lines above may contain at the end the parameters
     tol, printw, ldwork.
@@ -235,12 +232,10 @@
     <para>
     The model structure is :
   </para>
-    <programlisting><![CDATA[
-
-         x(k+1) = Ax(k) + Bu(k),   k >= 1,
-         y(k)   = Cx(k) + Du(k),
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
     <para>
        where 
      
@@ -287,8 +282,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -312,9 +306,8 @@ METH=3;TOL=-1;
 SYS1=syslin(1,A,B,C,D,X0);
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- 
-  ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

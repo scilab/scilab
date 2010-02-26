@@ -39,8 +39,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ret=findlcccompiler()
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+ret=findlcccompiler()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

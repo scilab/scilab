@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -14,9 +15,7 @@
 #define __CALLABLE_HXX__
 
 #include <string>
-#include <cstdio>
 #include "types.hxx"
-#include <map>
 
 namespace types
 {
@@ -24,19 +23,28 @@ namespace types
   {
   public :
     enum ReturnValue
-    {
-      OK,
-			OK_NoResult,
-      Error
-    };
+      {
+	OK,
+	OK_NoResult,
+	Error
+      };
+    
+    Callable(): InternalType() {}
+    virtual ~Callable() {}
 
     Callable * 	getAsCallable() { return this; }
     bool isCallable() { return true; }
 
     virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out) = 0;
-
-    Callable(): InternalType() {}
-    virtual ~Callable() {}
+    
+    void setName(std::string _stName) { m_stName = _stName; }
+    std::string getName() { return m_stName; }
+    void setModule(std::string _stModule) { m_stModule = _stModule; }
+    std::string getModule() { return m_stModule; }
+    
+  protected :
+    std::string m_stName;
+    std::string	m_stModule;
   };
 }
 

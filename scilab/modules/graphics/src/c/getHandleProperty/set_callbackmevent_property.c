@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,7 +32,7 @@ int set_callbackmevent_property( sciPointObj * pobj, size_t stackPointer, int va
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"callbackmevent") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "callbackmevent");
     return SET_PROPERTY_ERROR ;
   }
 

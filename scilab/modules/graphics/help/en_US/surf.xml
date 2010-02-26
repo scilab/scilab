@@ -180,7 +180,7 @@ surf(&lt;axes_handle&gt;,...)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Z initialisation 
 
 Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
@@ -245,7 +245,6 @@ X=[ -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.666
 Y=X;
 surf(X,Y,Z)
 
-
 //LineSpec and GlobalProperty examples:
 xdel(winsid()) // destroy all existing figures
 surf(Z,Z+5) // color array specified
@@ -267,9 +266,7 @@ scf(11);
 surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','yel') // draw onto the axe of figure 10
 
 xdel(winsid())
-
- 
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

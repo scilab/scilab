@@ -14,7 +14,7 @@
 #define __INIT_UIMENU_H__
 
 #include <stdlib.h>
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "BOOL.h"
@@ -24,7 +24,7 @@
  *
  * @param sciObj Scilab object for this Menu    
  */
-void InitUIMenu(sciPointObj* sciObj);
+GUI_IMPEXP void InitUIMenu(sciPointObj* sciObj);
 
 /**
  * Set the parent of a Menu
@@ -36,7 +36,7 @@ void InitUIMenu(sciPointObj* sciObj);
  * @param nbCol number of columns of the parent
  * @return execution status
  */
-int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 /**
  * Disable/Enable a menu attached to the console
@@ -44,7 +44,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
  * @param name name of the menu 
  * @param status is TRUE to enable the menu, false else
  */
-void EnableRootMenu(char *name, BOOL status);
+GUI_IMPEXP void EnableRootMenu(char *name, BOOL status);
 
 /**
  * Disable/Enable a submenu attached to the console
@@ -53,7 +53,7 @@ void EnableRootMenu(char *name, BOOL status);
  * @param position the position of the menu in its parent
  * @param status is TRUE to enable the menu, false else
  */
-void EnableRootSubMenu(char *name, int position, BOOL status);
+GUI_IMPEXP void EnableRootSubMenu(char *name, int position, BOOL status);
 
 /**
  * Disable/Enable a menu attached to a graphics window
@@ -62,7 +62,7 @@ void EnableRootSubMenu(char *name, int position, BOOL status);
  * @param name name of the menu 
  * @param status is TRUE to enable the menu, false else
  */
-void EnableFigureMenu(int figurenum, char *name, BOOL status);
+GUI_IMPEXP void EnableFigureMenu(int figurenum, char *name, BOOL status);
 
 /**
  * Disable/Enable a submenu attached to a graphics window
@@ -72,14 +72,14 @@ void EnableFigureMenu(int figurenum, char *name, BOOL status);
  * @param position the position of the menu in its parent
  * @param status is TRUE to enable the menu, false else
  */
-void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status);
+GUI_IMPEXP void EnableFigureSubMenu(int figurenum, char *name, int position, BOOL status);
 
 /**
  * Delete a menu attached to the console
  *
  * @param name name of the menu 
  */
-void DeleteRootMenu(char *name);
+GUI_IMPEXP void DeleteRootMenu(char *name);
 
 /**
  * Delete a menu attached to a graphics window
@@ -87,6 +87,6 @@ void DeleteRootMenu(char *name);
  * @param figurenum index of the window
  * @param name name of the menu 
  */
-void DeleteFigureMenu(int figurenum, char *name);
+GUI_IMPEXP void DeleteFigureMenu(int figurenum, char *name);
 
 #endif /* !__INIT_UIMENU_H__ */

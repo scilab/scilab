@@ -28,13 +28,6 @@
     gráficas</refpurpose>
   </refnamediv>
 
-  <refnamediv xml:id="newgraphics">
-    <refname>new graphics</refname>
-
-    <refpurpose>Descrição das estruturas de dados de entidades
-    gráficas</refpurpose>
-  </refnamediv>
-
   <refsection>
     <title>Descrição</title>
 
@@ -296,43 +289,39 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+//execute este exemplo linha por linha
 
+scf() //criando figura no modo de entidade
 
-  //execute este exemplo linha por linha
+//obtendo o manipulador da entidade Figure e exibindo suas propriedades
+f=get("current_figure") 
+a=f.children // o manipulador da galho Axes
+x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+e=a.children //Compound de duas poligonais
 
-  scf() //criando figura no modo de entidade
-
-  //obtendo o manipulador da entidade Figure e exibindo suas propriedades
-  f=get("current_figure") 
-  a=f.children // o manipulador da galho Axes
-  x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-  e=a.children //Compound de duas poligonais
-
-  p1=e.children(1) //as propriedades das últimas poligonais desenhadas
+p1=e.children(1) //as propriedades das últimas poligonais desenhadas
  
-  p1.foreground=5;  // mudando a cor da poligonal
-  e.children.thickness=5; // mudando a espessura das poligonais
+p1.foreground=5;  // mudando a cor da poligonal
+e.children.thickness=5; // mudando a espessura das poligonais
 
-  delete(e.children(2))
+delete(e.children(2))
 
-  move(e.children,[0,30]) //transladando a poligonal
+move(e.children,[0,30]) //transladando a poligonal
 
-  a.axes_bounds=[0 0 0.5 0.5]; 
+a.axes_bounds=[0 0 0.5 0.5]; 
 
-  subplot(222) //criando uma nova entidade Axes
-  plot(1:10);
-  a1=f.children(1); //obtendo seu manipulador
-  copy(e.children,a1); //copiando a poligonal do primeiro esboço nos novos eixos
-  a1.data_bounds=[1 0;10 100]; //mudando os limites dos eixos
+subplot(222) //criando uma nova entidade Axes
+plot(1:10);
+a1=f.children(1); //obtendo seu manipulador
+copy(e.children,a1); //copiando a poligonal do primeiro esboço nos novos eixos
+a1.data_bounds=[1 0;10 100]; //mudando os limites dos eixos
 
-  set("current_figure",10) //criando uma nova figura com figure_id=10
-  plot3d() //os desenhos são enviados à nova figura com figure_id=10
-  set("current_figure",f) //torna a figura anterior a corrente
-  plot2d(x,x^3)  //os desenhos são enviados à figura inicial
-
- 
-  </programlisting>
+set("current_figure",10) //criando uma nova figura com figure_id=10
+plot3d() //os desenhos são enviados à nova figura com figure_id=10
+set("current_figure",f) //torna a figura anterior a corrente
+plot2d(x,x^3)  //os desenhos são enviados à figura inicial
+ ]]></programlisting>
   </refsection>
 
   <refsection>

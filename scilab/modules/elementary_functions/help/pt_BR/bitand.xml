@@ -80,7 +80,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exemplo 1 :
+    <programlisting role="example"><![CDATA[ 
+// exemplo 1 :
 // '1010110' : é a representação binária de 86 
 // '1011011' : é a representação binária de 91   
 // '1010010' : é a representação binária para AND aplicado às formas binárias de 86 e 91 
@@ -88,11 +89,10 @@
 x=86; y=91
 z=bitand(x,y)
 
-
 // exemplo 2 :
 x=[12,45],y=[25,49]
 z=bitand(x,y)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

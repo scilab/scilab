@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -173,7 +173,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -238,7 +238,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -309,6 +309,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\list.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\macro.cpp"
 				>
 			</File>
@@ -326,6 +330,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\string.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\struct.cpp"
 				>
 			</File>
 			<File
@@ -359,6 +367,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\container.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\double.hxx"
 				>
 			</File>
@@ -383,6 +395,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\intt.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\list.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\macro.hxx"
 				>
 			</File>
@@ -400,6 +420,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\string.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\struct.hxx"
 				>
 			</File>
 			<File

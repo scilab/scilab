@@ -52,7 +52,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire';'pour la boite de dialogue'])
 n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
  ]]></programlisting>

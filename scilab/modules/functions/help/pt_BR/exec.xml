@@ -91,7 +91,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     <para><literal>exec(fun [,mode])</literal> executa a função
     <literal>fun</literal> como um script: sem argumentos de entrada ou saída
     nem ambientes de variáveis específicos. Esta forma é mais eficiente,
-    porque o código script pode se pré-compilado (ver getf, comp). Este método
+    porque o código script pode se pré-compilado (ver comp). Este método
     para avaliação de scripts permite armazenar scripts como funções em
     bibliotecas.</para>
 
@@ -113,8 +113,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // criando um arquivo script
 mputl('a=1;b=2',TMPDIR+'/meuscript')
 // executando-o
@@ -130,21 +129,18 @@ foo(1)
 //    ela é destruída quando foo retorna
 whos -name "a "
 
-
 x=1 //criando x para torná-la conhecida pelo script foo
 exec(foo)
 // a e y são criadas no ambiente corrente
 whos -name "a "
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="execstr">execstr</link></member>
 

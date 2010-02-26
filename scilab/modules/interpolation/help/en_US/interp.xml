@@ -170,7 +170,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> is extended by periodicity.</para>
+          <para> <literal>s</literal> is extended by periodicity.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -179,7 +179,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -191,7 +191,7 @@ df = splin(x,y, "fast");
 xx = linspace(a,b,800)';
 [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
 [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
-xbasc()
+clf()
 subplot(3,1,1)
 plot2d(xx, [yyk yyf])
 plot2d(x, y, style=-9)
@@ -216,10 +216,10 @@ yy0 = interp(xx,x,y,d,"C0");
 yy1 = interp(xx,x,y,d,"linear");
 yy2 = interp(xx,x,y,d,"natural");
 yy3 = interp(xx,x,y,d,"periodic");  
-xbasc()
+clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

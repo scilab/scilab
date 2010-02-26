@@ -75,12 +75,6 @@
     </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-    ]]></programlisting>
-  </refsection>
-  <refsection>
     <title>References</title>
     <para>
       Oppenheim, A. V. and R.W. Schafer. Discrete-Time Signal Processing, Englewood Cliffs, NJ: Prentice-Hall, 1989, pp. 311-312. 

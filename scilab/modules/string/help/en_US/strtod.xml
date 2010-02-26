@@ -77,13 +77,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strtod('123.556This is a sample real')
 [d,endstr] = strtod('123.556This is a sample real')
 strtod(['123.556This is a sample real','888.666 here'])
 [d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

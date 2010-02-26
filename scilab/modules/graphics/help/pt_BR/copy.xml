@@ -78,8 +78,7 @@ h_copy=copy(h)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 subplot(211);a1=gca();
 plot2d()
 e=gce();
@@ -88,9 +87,7 @@ p2=copy(p1);p2.data(:,2)=p2.data(:,2)-0.5;
 subplot(212);a2=gca();
 a2.data_bounds=a1.data_bounds;
 copy(p1,a2);
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

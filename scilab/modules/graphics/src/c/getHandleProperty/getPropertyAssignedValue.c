@@ -23,7 +23,7 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
-
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 BOOL isParameterHandle( int type )
 {
@@ -138,6 +138,37 @@ BOOL isStringParamEqual( size_t stackPointer, const char * str )
     return FALSE ;
   }
 }
+/*--------------------------------------------------------------------------*/
+int tryGetBooleanValueFromStack(size_t stackPointer, int valueType, int nbRow, int nbCol, char* propertyName)
+{
+  if(valueType == sci_strings)
+  {
+    if(isStringParamEqual(stackPointer, "on"))  return TRUE;
+    if(isStringParamEqual(stackPointer, "off")) return FALSE;
+    if(isStringParamEqual(stackPointer, "1"))   return TRUE;
+    if(isStringParamEqual(stackPointer, "0"))   return FALSE;
+    if(isStringParamEqual(stackPointer, "T"))   return TRUE;
+    if(isStringParamEqual(stackPointer, "F"))   return FALSE;
+
+    Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), propertyName, "on", "off");
+    return NOT_A_BOOLEAN_VALUE;
+  }
+
+  if(valueType == sci_boolean)
+  {
+    return (int) *istk(stackPointer);
+  }
+
+  if(valueType == sci_matrix)
+  {
+    if(getDoubleFromStack(stackPointer) == 0) return FALSE;
+    return TRUE;    
+  }
+
+  Scierror(999, _("Wrong type for '%s' property: String expected.\n"), propertyName);
+  return NOT_A_BOOLEAN_VALUE;
+}
+
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
 int getStackListNbElement( int paramNum )

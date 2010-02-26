@@ -6,6 +6,7 @@
 	ProjectGUID="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	RootNamespace="elementary_functions_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -799,10 +800,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_spones.c"
 				>
 			</File>
@@ -832,6 +829,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sdot.c"
 				>
 			</File>
 			<File
@@ -964,10 +965,6 @@
 			</File>
 			<File
 				RelativePath=".\wsign.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wsort.c"
 				>
 			</File>
 			<File
@@ -1507,10 +1504,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_sort.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_spones.f"
 				>
 			</File>
@@ -1536,6 +1529,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"
+				>
+			</File>
+			<File
+				RelativePath=".\sdot.f"
 				>
 			</File>
 			<File
@@ -1668,10 +1665,6 @@
 			</File>
 			<File
 				RelativePath=".\wsign.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wsort.f"
 				>
 			</File>
 			<File

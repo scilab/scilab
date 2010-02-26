@@ -158,23 +158,23 @@ y = oldbessely(alpha,x)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example #1: display some I Bessel functions
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
 ys = oldbesseli(0:4,x,2);
-xbasc()
+clf()
 subplot(2,1,1)
-   plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
-   xtitle("Some modified Bessel functions of the first kind")
+plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
+xtitle("Some modified Bessel functions of the first kind")
 subplot(2,1,2)
-   plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
-   xtitle("Some modified scaled Bessel functions of the first kind")
+plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
+xtitle("Some modified scaled Bessel functions of the first kind")
 
 // example #2 : display some J Bessel functions
 x = linspace(0,40,5000)';
 y = besselj(0:4,x);
-xbasc()
+clf()
 plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
 xtitle("Some Bessel functions of the first kind")
 
@@ -186,33 +186,33 @@ y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
 er = abs((y1-y2)./y2);
 ind = find(er &gt; 0 &amp; y2 ~= 0);
-xbasc()
+clf()
 subplot(2,1,1)
-   plot2d(x,y1,style=2)
-   xtitle("besselj(0.5,x)")
+plot2d(x,y1,style=2)
+xtitle("besselj(0.5,x)")
 subplot(2,1,2)
-   plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+plot2d(x(ind), er(ind), style=2, logflag="nl")
+xtitle("relative error between 2 formulae for besselj(0.5,x)") 
 
 // example #4: display some K Bessel functions
 x = linspace(0.01,10,5000)';
 y = besselk(0:4,x);
 ys = besselk(0:4,x,1);
-xbasc()
+clf()
 subplot(2,1,1)
-   plot2d(x,y, style=0:4, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
-   xtitle("Some modified Bessel functions of the second kind")
+plot2d(x,y, style=0:4, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
+xtitle("Some modified Bessel functions of the second kind")
 subplot(2,1,2)
-   plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
-   xtitle("Some modified scaled Bessel functions of the second kind")
+plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
+xtitle("Some modified scaled Bessel functions of the second kind")
 
 // example #5: plot severals Y Bessel functions
-x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -&gt; 0+
+x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
 y = bessely(0:4,x);
-xbasc()
+clf()
 plot2d(x,y, style=0:4, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
 xtitle("Some Bessel functions of the second kind")
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -16,8 +16,8 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-#define SPECIAL_FUNCTIONS1_TAB_SIZE 8
-static gw_generic_table Tab[SPECIAL_FUNCTIONS1_TAB_SIZE]={ 
+static gw_generic_table Tab[] = 
+{ 
   {C2F(sci_oldbesseli),"oldbesseli"},
   {C2F(sci_oldbesselj), "oldbesselj"},
   {C2F(sci_oldbesselk),"oldbesselk"},
@@ -32,7 +32,7 @@ int gw_special_functions1(void)
 {
 	Rhs = Max(0, Rhs);
 
-	callFunctionFromGateway(Tab,SPECIAL_FUNCTIONS1_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

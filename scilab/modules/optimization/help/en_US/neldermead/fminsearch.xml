@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+-->
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="fminsearch" 
+	  xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fminsearch</refname>
+
+    <refpurpose>Computes the unconstrained minimimum of given function with
+    the Nelder-Mead algorithm.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      x = fminsearch ( costf , x0 )
+      x = fminsearch ( costf , x0 , options )
+      [x,fval,exitflag,output] = fminsearch ( costf , x0 , options )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function searches for the unconstrained minimum of a given cost
+    function.</para>
+
+    <para>The provided algorithm is a direct search algorithm, i.e. an
+    algorithm which does not use the derivative of the cost function. It is
+    based on the update of a simplex, which is a set of k&gt;=n+1 vertices,
+    where each vertex is associated with one point and one function value.
+    This algorithm is the Nelder-Mead algorithm.</para>
+  </refsection>
+
+  <refsection>
+    <title>Design</title>
+
+    <para>This function is based on a specialized use of the more general
+    <link linkend="neldermead">neldermead</link> component. Users which want
+    to have a more flexible solution based on direct search algorithms should
+    consider using the neldermead component instead of the fminsearch
+    function.</para>
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>costf</term>
+
+        <listitem>
+          <para>The cost function.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>The initial guess.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>A struct which contains configurable options of the algorithm
+          (see below for details).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>The minimum.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fval</term>
+
+        <listitem>
+          <para>The minimum function value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>exitflag</term>
+
+        <listitem>
+          <para>The flag associated with exist status of the algorithm.</para>
+
+          <para>The following values are available.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>-1</term>
+
+              <listitem>
+                <para>The maximum number of iterations has been
+                reached.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>0</term>
+
+              <listitem>
+                <para>The maximum number of function evaluations has been
+                reached.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>1</term>
+
+              <listitem>
+                <para>The tolerance on the simplex size and function value
+                delta has been reached. This signifies that the algorithm has
+                converged, probably to a solution of the problem.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>output</term>
+
+        <listitem>
+          <para>A struct which stores detailed information about the exit of
+          the algorithm. This struct contains the following fields.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>output.algorithm</term>
+
+              <listitem>
+                <para>A string containing the definition of the algorithm
+                used, i.e. 'Nelder-Mead simplex direct search'.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.funcCount</term>
+
+              <listitem>
+                <para>The number of function evaluations.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.iterations</term>
+
+              <listitem>
+                <para>The number of iterations.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.message</term>
+
+              <listitem>
+                <para>A string containing a termination message.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Options</title>
+
+    <para>In this section, we describe the options input argument which have
+    an effect on the algorithm used by fminsearch.</para>
+
+    <para>
+    The options input argument is a data structure which drives the
+    behaviour of fminsearch. It allows to handle several options in a
+    consistent and simple interface, without the problem of managing many
+    input arguments.
+    </para>
+
+    <para>
+    These options must be set with the <link linkend="optimset">optimset</link> function.
+    See the <link linkend="optimset">optimset</link> help for details 
+    of the options managed by this function.
+    </para>
+
+    <para>
+    The fminsearch function is sensitive to the following
+    options.
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>options.MaxIter</term>
+
+        <listitem>
+          <para>The maximum number of iterations. The default is 200 * n,
+          where n is the number of variables.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.MaxFunEvals</term>
+
+        <listitem>
+          <para>The maximum number of evaluations of the cost function. The
+          default is 200 * n, where n is the number of variables.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.TolFun</term>
+
+        <listitem>
+          <para>The absolute tolerance on function value. The default value is
+          1.e-4.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.TolX</term>
+
+        <listitem>
+          <para>The absolute tolerance on simplex size. The default value is
+          1.e-4.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.Display</term>
+
+        <listitem>
+          <para>
+	  The verbose level. 
+	  </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.OutputFcn</term>
+
+        <listitem>
+          <para>The output function, or a list of output functions. The default 
+	  value is empty.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.PlotFcns</term>
+
+        <listitem>
+          <para>The plot function, or a list of plotput functions. The default 
+	  value is empty.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Termination criteria</title>
+
+    <para>In this section, we describe the termination criteria used by
+    fminsearch.</para>
+
+    <para>The criteria is based on the following variables:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ssize</term>
+
+        <listitem>
+          <para>the current simplex size,</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>shiftfv</term>
+
+        <listitem>
+          <para>the absolute value of the difference of function value between
+          the highest and lowest vertices.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>If both the following conditions</para>
+
+    <programlisting role="example"> 
+ssize &lt; options.TolX
+ </programlisting>
+
+    <para>and</para>
+
+    <programlisting role="example"> 
+shiftfv &lt; options.TolFun
+ </programlisting>
+
+    <para>are true, then the iterations stop.</para>
+
+    <para>The size of the simplex is computed using the "sigmaplus" method of
+    the optimsimplex component. The "sigmamplus" size is the maximum length of
+    the vector from each vertex to the first vertex. It requires one loop over
+    the vertices of the simplex.</para>
+  </refsection>
+
+  <refsection>
+    <title>The initial simplex</title>
+
+    <para>The fminsearch algorithm uses a special initial simplex, which is an
+    heuristic depending on the initial guess. The strategy chosen by
+    fminsearch corresponds to the -simplex0method flag of the neldermead
+    component, with the "pfeffer" method. It is associated with the
+    -simplex0deltausual = 0.05 and -simplex0deltazero = 0.0075 parameters.
+    Pfeffer's method is an heuristic which is presented in "Global
+    Optimization Of Lennard-Jones Atomic Clusters" by Ellen Fan. It is due to
+    L. Pfeffer at Stanford. See in the help of optimsimplex for more
+    details.</para>
+  </refsection>
+
+  <refsection>
+    <title>The number of iterations</title>
+
+    <para>
+    In this section, we present the default values for the number of
+    iterations in fminsearch.
+    </para>
+
+    <para>The <emphasis>options</emphasis> input argument is an optionnal data
+    structure which can contain the <emphasis>options.MaxIter</emphasis>
+    field. It stores the maximum number of iterations. The default value is
+    200n, where n is the number of variables. The factor 200 has not been
+    chosen by chance, but is the result of experiments performed against
+    quadratic functions with increasing space dimension.</para>
+
+    <para>
+    This result is presented in "Effect of dimensionality on the
+    nelder-mead simplex method" by Lixing Han and Michael Neumann. This paper
+    is based on Lixing Han's PhD, "Algorithms in Unconstrained Optimization".
+    The study is based on numerical experiment with a quadratic function where
+    the number of terms depends on the dimension of the space (i.e. the number
+    of variables). Their study shows that the number of iterations required to
+    reach the tolerance criteria is roughly 100n. Most iterations are based on
+    inside contractions. Since each step of the Nelder-Mead algorithm only
+    require one or two function evaluations, the number of required function
+    evaluations in this experiment is also roughly 100n.
+    </para>
+  </refsection>
+  
+  <refsection>
+    <title>Output and plot functions</title>
+
+    <para>
+    The <link linkend="optimset">optimset</link> function can be used to 
+    configure one or more output and plot functions. 
+    </para>
+    <para>
+    The output or plot function is expected to have the following definition:
+    </para>
+      <programlisting role="example">
+      <![CDATA[ 
+function myfun ( x , optimValues , state )
+ ]]>
+ </programlisting>
+    <para>
+    The input arguments <literal>x</literal>, <literal>optimValues</literal>
+    and <literal>state</literal> are described in detail in the <link linkend="optimset">optimset</link> 
+    help page. The <literal>optimValues.procedure</literal> field represent the type of step
+    used during the current iteration and can be equal to one 
+    of the following strings</para>
+    
+    <itemizedlist>
+    
+    <listitem>
+        <para>"" (the empty string),</para>
+    </listitem>
+
+    <listitem>
+    <para>"initial simplex",</para>
+    </listitem>
+
+    <listitem>
+    <para>"expand",</para>
+    </listitem>
+
+    <listitem>
+    <para>"reflect",</para>
+    </listitem>
+
+    <listitem>
+    <para>"contract inside",</para>
+    </listitem>
+
+    <listitem>
+    <para>"contract outside".</para>
+    </listitem>
+
+    </itemizedlist>
+    
+  </refsection>
+
+  <refsection>
+    <title>Example</title>
+
+    <para>
+    In the following example, we use the fminsearch function to compute
+    the minimum of the Rosenbrock function. We first define the function
+    "banana", and then use the fminsearch function to search the minimum,
+    starting with the initial guess [-1.2 1.0].
+    In this particular case, 85 iterations are performed and 159 function 
+    evaluations are 
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+[x, fval, exitflag, output] = fminsearch ( banana , [-1.2 1] );
+x
+fval
+exitflag
+output
+ ]]>
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example with customized options</title>
+
+    <para>
+    In the following example, we configure the absolute tolerance 
+    on the size of the simplex to a larger value, so that the algorithm
+    performs less iterations. Since the default value of "TolX" for the 
+    fminsearch function is 1.e-4, we decide to use 1.e-2.
+    The <link linkend="optimset">optimset</link> function is used to create an
+    optimization data structure and the field associated with the string "TolX" 
+    is set to 1.e-2. The <literal>opt</literal> data structure is then 
+    passed to the <literal>fminsearch</literal> function as the third 
+    input argument.
+    In this particular case, the number of iterations is 70
+    with 130 function evaluations.
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "TolX" , 1.e-2 );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] , opt );
+x
+fval
+exitflag
+output
+ ]]>
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example with a pre-defined plot function</title>
+
+    <para>In the following example, we want to produce a graphic of the 
+      progression of the algorithm, so that we can include that graphic 
+      into a report without defining a customized plot function.
+      The <literal>fminsearch</literal> function comes with the 
+      following 3 pre-defined functions :</para>
+    <itemizedlist>
+      <listitem>
+	<para>optimplotfval, which plots the function value,</para>
+      </listitem>
+      <listitem>
+	<para>optimplotx, which plots the current point <literal>x</literal>,</para>
+      </listitem>
+      <listitem>
+	<para>optimplotfunccount, which plots the number of function evaluations.</para>
+      </listitem>
+    </itemizedlist>
+    <para>In the following example, we use the three pre-defined functions 
+    in order to create one graphic, representing the function value depending on 
+    the number of iterations.</para>
+    
+    <programlisting role="example"><![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "PlotFcns" , optimplotfval );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]></programlisting>
+ 
+     <para>
+     In the previous example, we could replace the "optimplotfval"
+     function with "optimplotx" or "optimplotfunccount" and obtain different
+     results. In fact, we can get all the figures at the same time, by 
+     setting the  "PlotFcns" to a list of functions, as in the following example.
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+myfunctions = list ( optimplotfval , optimplotx , optimplotfunccount );
+opt = optimset ( "PlotFcns" , myfunctions );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]>
+ </programlisting>
+
+  </refsection>
+
+  <refsection>
+    <title>Example with an customized output function</title>
+
+    <para>
+    In the following example, we want to produce intermediate 
+    outputs of the algorithm. We define the <literal>outfun</literal> 
+    function, which takes the current point <literal>x</literal> as input argument. 
+    The function plots the current point into the current graphic window
+    with the <literal>plot</literal> function.
+    We use the "OutputFcn" feature of the <link linkend="optimset">optimset</link> function 
+    and set it to the output function. Then the option data structure is passed to the 
+    <literal>fminsearch</literal> function. At each iteration, the output 
+    function is called back, which creates and update an interactive plot.
+    While this example creates a 2D plot, the user may customized the 
+    output function so that it writes a message in the console, write some 
+    data into a data file, etc... The user can distinguish 
+    between the output function (associated with the "OutputFcn" option)
+    and the plot function (associated with the "PlotFcns" option). 
+    See the <link linkend="optimset">optimset</link> for more details on this feature.
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+function outfun ( x , optimValues , state )
+  plot( x(1),x(2),'.');
+endfunction
+opt = optimset ( "OutputFcn" , outfun);
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]>
+ </programlisting>
+ 
+  </refsection>
+
+  <refsection>
+    <title>Example with customized "Display" option</title>
+
+    <para>
+    The "Display" option allows to get some input about the intermediate 
+    steps of the algorithm as well as to be warned in case of a convergence problem.
+    </para>
+
+    <para>
+    In the following example, we present what happens in case of a convergence problem.
+    We set the number of iterations to 10, instead of the 
+    default 400 iterations. We know that 85 iterations are required to reach the convergence 
+    criteria. 
+    Therefore, the convergence criteria is not met and the maximum number of iterations is reached.
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "MaxIter" , 10 );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]>
+ </programlisting>
+
+    <para>
+    Since the default value of the "Display" option is "notify", a message is generated,
+    which warns the user about a possible convergence problem.
+    The previous script produces the following output.
+    </para>
+
+    <programlisting role="example"> 
+Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
+         Current function value: 4.1355598
+ </programlisting>
+
+    <para>
+    Notice that if the "Display" option is now set to "off", no message is displayed at all.
+    Therefore, the user should be warned that turning the Display "off" should be used 
+    at your own risk...
+    </para>
+
+    <para>
+    In the following example, we present how to display intermediate steps 
+    used by the algorithm. We simply set the "Display" option to the "iter" value.
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+ffunction y = banana (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+opt = optimset ( "Display" , "iter" );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]>
+ </programlisting>
+
+    <para>
+    The previous script produces the following output. It allows to see the number of function 
+    evaluations, the minimum function value and which type of simplex step is used 
+    for the iteration.
+    </para>
+
+    <programlisting role="example"> 
+ Iteration   Func-count     min f(x)         Procedure
+     0            3             24.2                             
+     1            3            20.05         initial simplex     
+     2            5         5.161796         expand              
+     3            7         4.497796         reflect             
+     4            9         4.497796         contract outside    
+     5           11        4.3813601         contract inside     
+     etc...
+ </programlisting>
+
+</refsection>
+
+  <refsection>
+    <title>Example with customized output option</title>
+
+    <para>
+    In this section, we present an example where all the fields from the <literal>optimValues</literal>
+    data structure are used to print a message at each iteration. 
+    </para>
+
+    <programlisting role="example"> 
+     <![CDATA[ 
+function outfun ( x , optimValues , state )
+  fc = optimValues.funccount;
+  fv = optimValues.fval;
+  it = optimValues.iteration;
+  pr = optimValues.procedure;
+  mprintf ( "%d %e %d -%s-\n" , fc , fv , it , pr )
+endfunction
+opt = optimset ( "OutputFcn" , outfun );
+[x fval] = fminsearch ( banana , [-1.2 1] , opt );
+ ]]>
+ </programlisting>
+ 
+    <para>
+    The previous script produces the following output. 
+    </para>
+
+    <programlisting role="example"> 
+3 2.420000e+001 0 --
+3 2.005000e+001 1 -initial simplex-
+5 5.161796e+000 2 -expand-
+7 4.497796e+000 3 -reflect-
+9 4.497796e+000 4 -contract outside-
+11 4.381360e+000 5 -contract inside-
+13 4.245273e+000 6 -contract inside-
+[...]
+157 1.107549e-009 84 -contract outside-
+159 8.177661e-010 85 -contract inside-
+159 8.177661e-010 85 --
+ </programlisting>
+
+</refsection>
+
+  <refsection>
+    <title>Some advices</title>
+
+    <para>
+    In this section, we present some practical advices with respect 
+    to the Nelder-Mead method. A deeper analysis is provided 
+    in the bibliography at the end of this help page,
+    as well as in the "Nelder-Mead User's Manual" provided on Scilab's Wiki.
+    The following is a quick list of tips to overcome problems
+    that may happen with this algorithm.</para>
+    <itemizedlist>
+    
+    <listitem>
+    <para>
+    We should consider the <link linkend="optim">optim</link> function before 
+    considering the <literal>fminsearch</literal> function.
+    Because <link linkend="optim">optim</link> uses the gradient of the 
+    function and uses this information to guess the local curvature
+    of the cost function, the number of iterations and function evaluations
+    is (much) lower with <link linkend="optim">optim</link>, when the 
+    function is sufficiently smooth. If the derivatives of the function are 
+    not available, it is still possible to use numerical derivatives combined 
+    with the <link linkend="optim">optim</link> function (this feature 
+    is provided by the <link linkend="derivative">derivative</link> and 
+    <link linkend="numdiff">numdiff</link> functions).
+    If the function has discontinuous derivatives, the <link linkend="optim">optim</link> 
+    function provides the <literal>nd</literal> solver which is very efficient.
+    Still, there are situations where the cost function is discontinuous or "noisy".
+    In these situations, the <literal>fminsearch</literal> function can perform
+    well.
+    </para>
+    </listitem>
+
+   <listitem>
+    <para>
+    We should not expected a fast convergence with 
+    many parameters, i.e. more that 10 to 20 parameters. It is known that the 
+    efficiency of this algorithm decreases rapidly when the number of 
+    parameters increases.
+    </para>
+    </listitem>
+
+    <listitem>
+    <para>
+    The default tolerances are set to pretty loose values.
+    We should not reduce the tolerances in the goal of getting 
+    very accurate results. Because the convergence rate of 
+    Nelder-Mead's algorithm is low (at most linear), getting a very
+    accurate solution will require a large number of iterations.
+    Instead, we can most of the time expect a "good reduction" 
+    of the cost function with this algorithm.
+    </para>
+    </listitem>
+
+    <listitem>
+    <para>
+    Although the algorithm practically converges in many situations, 
+    the Nelder-Mead algorithm is not a provably convergent algorithm.
+    There are several known counter-examples where the algorithm
+    fails to converge on a stationnary point and, instead, converge
+    to a non-stationnary point. This situation is often indicated by a 
+    repeated application of the contraction step. In that situation, we simply restart the 
+    algorithm with the final point as the new initial guess.
+    If the algorithm converges to the same point, there is a good
+    chance that this point is a "good" solution.
+    </para>
+    </listitem>
+
+    <listitem>
+    <para>
+    Taking into account for bounds constraints or non-linear inequality
+    constraints can be done by penalization methods, i.e.
+    setting the function value to a high value when the constraints 
+    are not satisfied. While this approach works in some situations,
+    it may also fail. In this case, users might be interested in Box's complex 
+    algorithm, provided by Scilab in the <literal>neldermead</literal>
+    component. If the problem is really serious, Box's complex algorithm will 
+    also fail and a more powerful solver is necessary.
+    </para>
+    </listitem>
+
+   </itemizedlist>
+</refsection>
+
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>"Sequential Application of Simplex Designs in Optimisation and
+    Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth, F.
+    R., American Statistical Association and American Society for Quality,
+    1962</para>
+
+    <para>"A Simplex Method for Function Minimization", Nelder, J. A. and
+    Mead, R., The Computer Journal, 1965</para>
+
+    <para>"Iterative Methods for Optimization", C. T. Kelley, SIAM Frontiers
+    in Applied Mathematics, 1999</para>
+
+    <para>"Algorithm AS47 - Function minimization using a simplex procedure",
+    O'Neill, R., Applied Statistics, 1971</para>
+
+    <para>"Effect of dimensionality on the nelder-mead simplex method", Lixing
+    Han and Michael Neumann, Optimization Methods and Software, 21, 1, 1--16,
+    2006.</para>
+
+    <para>"Algorithms in Unconstrained Optimization", Lixing Han, Ph.D., The
+    University of Connecticut, 2000.</para>
+
+    <para>"Global Optimization Of Lennard-Jones Atomic Clusters" Ellen Fan,
+    Thesis, February 26, 2002, McMaster University</para>
+  </refsection>
+
+  <refsection>
+    <title>TODO</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>implement the 'interrupt' state of the algorithm</para>
+      </listitem>
+
+      <listitem>
+        <para>add a demo with an interactive output function, which draws the
+        plot during the optimization.</para>
+      </listitem>
+
+      <listitem>
+        <para>implement the stop of an optimization via the stop output
+        argument of the output function</para>
+      </listitem>
+
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
+  </refsection>
+
+  <refsection>
+    <title>Acknowledgements</title>
+
+    <para>Michael Baudin would like to thank Lixing Han, who kindly sent his
+    PhD thesis.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="optim">optim</link></member>
+      <member><link linkend="neldermead">neldermead</link></member>
+      <member><link linkend="optimset">optimset</link></member>
+      <member><link linkend="optimget">optimget</link></member>
+      <member><link linkend="optimplotfval">optimplotfval</link></member>
+      <member><link linkend="optimplotx">optimplotx</link></member>
+      <member><link linkend="optimplotfunccount">optimplotfunccount</link></member>
+</simplelist>
+  </refsection>
+</refentry>

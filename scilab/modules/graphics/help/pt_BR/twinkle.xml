@@ -68,8 +68,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
 e=gce(); p1=e.children(1); p2=e.children(2);
@@ -79,8 +78,7 @@ twinkle(p1)
 twinkle(p2,10)
 // eixos piscando
 twinkle(gca())
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -70,11 +70,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
-   save("vals.dat",a,b,c)
-   listvarinfile("vals.dat")
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
+save("vals.dat",a,b,c)
+listvarinfile("vals.dat")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

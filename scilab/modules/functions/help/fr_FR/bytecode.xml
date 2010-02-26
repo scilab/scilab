@@ -70,10 +70,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    function a=foo(),a=sin(3),endfunction
-    bytecode(foo)
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+function a=foo(),a=sin(3),endfunction
+bytecode(foo)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

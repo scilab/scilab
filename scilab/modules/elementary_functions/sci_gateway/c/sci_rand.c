@@ -31,6 +31,7 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 /*--------------------------------------------------------------------------*/
 int sci_rand(char *fname, int* _piKey)
 {
+	SciErr sciErr;
 	//save state of rand function
 	static int siRandType = 0;
 	static int siRandSave = 0;
@@ -50,254 +51,227 @@ int sci_rand(char *fname, int* _piKey)
 
 	if(Rhs == 0)
 	{//rand() or rand
-		double *pdblReal = NULL;
-		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblReal, _piKey);
+		double dblReal = 0;
+
+		dblReal = getNextRandValue(siRandType, &siRandSave, 0);
+		iRet = createScalarDouble(_piKey, Rhs + 1, dblReal);
 		if(iRet)
 		{
-			return 1;
+			return 0;
 		}
-
-		pdblReal[0] = getNextRandValue(siRandType, &siRandSave, 0);
+		
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		return 0;
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr))
+	if(isDoubleType(_piKey, piAddr))
 	{
-	case sci_matrix : // generation functions
-		{
-			int *piAddrLast	= NULL;
+		int *piAddrLast	= NULL;
 
-			iRet = getVarAddressFromPosition(Rhs, &piAddrLast, _piKey);
+		sciErr = getVarAddressFromPosition(_piKey, Rhs, &piAddrLast);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		if(isStringType(_piKey, piAddrLast))
+		{
+			char* pstDataLast			= NULL;
+
+			iRet = getAllocatedSingleString(_piKey, piAddrLast, &pstDataLast);
+			if(iRet)
+			{
+				freeAllocatedSingleString(pstDataLast);
+				return 0;
+			}
+
+			//memorize that the law has been changed
+			iRandSave = siRandType;
+			//change the law temporarily
+			siRandType = setRandType(pstDataLast[0]);
+			freeAllocatedSingleString(pstDataLast);
+		}
+
+		if(Rhs == 1 || (Rhs == 2 && iRandSave != -1)) //rand(A) or rand(A, "law")
+		{
+			if(isVarMatrixType(_piKey, piAddr) == 0)
+			{
+				OverLoad(1);
+				return 0;
+			}
+
+			sciErr = getVarDimension(_piKey, piAddr, &iRowsOut, &iColsOut);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+		}
+		else //rand(m,n) or rand(m,n,"law")
+		{
+			int* piAddr2	= NULL;
+			sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			sciErr = getDimFromVar(_piKey, piAddr, &iRowsOut);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
+			sciErr = getDimFromVar(_piKey, piAddr2, &iColsOut);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+		}
+
+		if(iRowsOut == 0 || iColsOut == 0)
+		{
+			iRet = createEmptyMatrix(_piKey, Rhs + 1);
 			if(iRet)
 			{
 				return 1;
 			}
+		}
+		else //generate
+		{
+			int i;
+			double* pdblReal	= NULL;
+			double* pdblImg		= NULL;
 
-			if(getVarType(piAddrLast) == sci_strings)
+			if(Rhs == 1 && isVarComplex(_piKey, piAddr))
 			{
-				int iRowsLast					= 0;
-				int iColsLast					= 0;
-				int iLenLast					= 0;
-				char* pstDataLast[1];
-
-				iRet = getVarDimension(piAddrLast, &iRowsLast, &iColsLast);
-				if(iRet || iRowsLast != 1 || iColsLast != 1)
-				{
-					return 1;
-				}
-
-				iRet = getMatrixOfString(piAddrLast, &iRowsLast, &iColsLast, &iLenLast, NULL);
-				if(iRet)
-				{
-					return 1;
-				}
-
-				pstDataLast[0] = malloc(sizeof(char) * (iLenLast + 1));//+1 for null termination
-				iRet = getMatrixOfString(piAddrLast, &iRowsLast, &iColsLast, &iLenLast, (char**)pstDataLast);
-				if(iRet)
-				{
-					return 1;
-				}
-				//memorize that the law has been changed
-				iRandSave = siRandType;
-				//change the law temporarily
-				siRandType = setRandType(pstDataLast[0][0]);
+				sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRowsOut, iColsOut, &pdblReal, &pdblImg);
+			}
+			else
+			{
+				sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRowsOut, iColsOut, &pdblReal);
 			}
 
-			if(Rhs == 1 || (Rhs == 2 && iRandSave != -1)) //rand(A) or rand(A, "law")
+			if(sciErr.iErr)
 			{
-				if(isVarMatrixType(piAddr) == 0)
-				{
-					OverLoad(1);
-					return 0;
-				}
-
-				iRet = getVarDimension(piAddr, &iRowsOut, &iColsOut);
-				if(iRet)
-				{
-					return 1;
-				}
-			}
-			else //rand(m,n) or rand(m,n,"law")
-			{
-				int* piAddr2	= NULL;
-				iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-				if(iRet)
-				{
-					return 1;
-				}
-
-				iRet = getDimFromVar(piAddr, &iRowsOut);
-				if(iRet)
-				{
-					return 1;
-				}
-
-				iRet = getDimFromVar(piAddr2, &iColsOut);
-				if(iRet)
-				{
-					return 1;
-				}
+				printError(&sciErr, 0);
+				return 0;
 			}
 
-			if(iRowsOut == 0 || iColsOut == 0)
+			for(i = 0 ; i < iRowsOut * iColsOut ; i++)
 			{
-				double* pdblReal = NULL;
-				iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblReal, _piKey);
-				if(iRet)
-				{
-					return 1;
-				}
+				pdblReal[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+				iForceInit = 0;
 			}
-			else //generate
+
+			if(pdblImg)
 			{
-				int i;
-				double* pdblReal	= NULL;
-				double* pdblImg		= NULL;
-
-				if(Rhs == 1 && isVarComplex(piAddr))
-				{
-					iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblReal, &pdblImg, _piKey);
-				}
-				else
-				{
-					iRet = allocMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblReal, _piKey);
-				}
-
-				if(iRet)
-				{
-					return 1;
-				}
-
 				for(i = 0 ; i < iRowsOut * iColsOut ; i++)
 				{
-					pdblReal[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
-					iForceInit = 0;
+					pdblImg[i] = getNextRandValue(siRandType, &siRandSave, 0);
 				}
-
-				if(pdblImg)
-				{
-					for(i = 0 ; i < iRowsOut * iColsOut ; i++)
-					{
-						pdblImg[i] = getNextRandValue(siRandType, &siRandSave, 0);
-					}
-				}
-				if(iRandSave != -1)
-				{//restore old law
-					siRandType = iRandSave;
-				}
+			}
+			if(iRandSave != -1)
+			{//restore old law
+				siRandType = iRandSave;
 			}
 		}
-		break;
-	case sci_strings : //seed, info : setup or info functions
+	}
+	else if(isStringType(_piKey, piAddr))
+	{
+		char* pstData				= NULL;
+
+		iRet = getAllocatedSingleString(_piKey, piAddr, &pstData);
+		if(iRet)
 		{
-			int iRows						= 0;
-			int iCols						= 0;
-			int iLen						= 0;
-			char* pstData[1];
+			return 0;
+		}
 
-			iRet = getVarDimension(piAddr, &iRows, &iCols);
-			if(iRet || iRows != 1 || iCols != 1)
+		if(strcmp(pstData, g_pstConfigSeed) == 0) //seed
+		{
+			if(Rhs == 1) //get
 			{
-				return 1;
-			}
-
-			iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
-			if(iRet)
-			{
-				return 1;
-			}
-
-			pstData[0] = malloc(sizeof(char) * (iLen + 1));//+1 for null termination
-			iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, (char**)pstData);
-			if(iRet)
-			{
-				return 1;
-			}
-
-			if(strcmp(pstData[0], g_pstConfigSeed) == 0) //seed
-			{
-				if(Rhs == 1) //get
-				{
-					iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &siRandSave, _piKey);
-					if(iRet)
-					{
-						return 1;
-					}
-				}
-				else if(Rhs == 2)//set
-				{
-					int iRows2				= 0;
-					int iCols2				= 0;
-					int* piAddr2			= NULL;
-					double* pdblReal2	= NULL;
-
-					iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
-					if(iRet)
-					{
-						return 1;
-					}
-					
-					iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
-					if(iRet || iRows2 != 1 || iCols2 != 1 || isVarComplex(piAddr2))
-					{
-						return 1;
-					}
-
-					iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
-					if(iRet)
-					{
-						return 1;
-					}
-					
-					siRandSave = (int)Max(pdblReal2[0],0);
-					iForceInit = 1;
-				}
-				else
-				{
-					return 1;
-				}
-			}
-			else if(strcmp(pstData[0], g_pstConfigInfo) == 0) //info
-			{
-				char* pstData[1];
-				if(Rhs > 1)
-				{
-					//error
-					return 1;
-				}
-				
-				if(siRandType == 0)
-				{
-					pstData[0] = (char*)g_pstTypeUniform;
-				}
-				else
-				{
-					pstData[0] = (char*)g_pstTypeNormal;
-				}
-				
-				iRet = createMatrixOfString(Rhs + 1, 1, 1, pstData, _piKey);
+				iRet = createScalarDoubleFromInteger(_piKey, Rhs + 1, siRandSave);
 				if(iRet)
 				{
 					return 1;
 				}
 			}
-			else //uniform or normal or 'g' ( 'u', 'n', 'g' )
+			else if(Rhs == 2)//set
 			{
-				siRandType = setRandType(pstData[0][0]);
+				int* piAddr2			= NULL;
+				double dblReal2		= 0;
+
+				sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+				if(sciErr.iErr)
+				{
+					printError(&sciErr, 0);
+					return 0;
+				}
+				
+				if(!isScalar(_piKey, piAddr2) || isVarComplex(_piKey, piAddr2))
+				{
+					return 1;
+				}
+
+				iRet = getScalarDouble(_piKey, piAddr2, &dblReal2);
+				if(iRet)
+				{
+					return 1;
+				}
+				
+				siRandSave = (int)Max(dblReal2,0);
+				iForceInit = 1;
+			}
+			else
+			{
+				return 1;
 			}
 		}
-		break;
-	default :
-		break;
+		else if(strcmp(pstData, g_pstConfigInfo) == 0) //info
+		{
+			char* pstDataOut;
+			if(Rhs > 1)
+			{
+				//error
+				return 0;
+			}
+			
+			if(siRandType == 0)
+			{
+				pstDataOut = (char*)g_pstTypeUniform;
+			}
+			else
+			{
+				pstDataOut = (char*)g_pstTypeNormal;
+			}
+			
+			iRet = createSingleString(_piKey, Rhs + 1, pstDataOut);
+			if(iRet)
+			{
+				return 1;
+			}
+		}
+		else //uniform or normal or 'g' ( 'u', 'n', 'g' )
+		{
+			siRandType = setRandType(pstData[0]);
+		}
+	}
+	else
+	{
+		return 0;
 	}
 
 	LhsVar(1) = Rhs + 1;

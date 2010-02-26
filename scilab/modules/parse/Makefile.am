@@ -1,5 +1,6 @@
 ##
 ##  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+##  Copyright (C) 2008-2009 - DIGITEO - Sylvestre LEDRU
 ##  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
 ##
 ##  This file must be used under the terms of the CeCILL.
@@ -52,9 +53,10 @@ $(BISON_PARSESCILAB_CPP): $(BISON_PARSESCILAB_YY)
 	&& mv y.tab.h $(BISON_PARSESCILAB_HXX) \
 	&& mv y.output $(BISON_PARSESCILAB_OUTPUT)
 
-CLEANFILES = $(BISON_PARSESCILAB_CPP) \
-		$(BISON_PARSESCILAB_HXX) \
-		$(BISON_PARSESCILAB_OUTPUT) \
-		$(FLEX_SCANSCILAB_CPP)
+# Do not clean these files since we are storing them in the repository
+#CLEANFILES = $(BISON_PARSESCILAB_CPP) \
+#		$(BISON_PARSESCILAB_HXX) \
+#		$(BISON_PARSESCILAB_OUTPUT) \
+#		$(FLEX_SCANSCILAB_CPP)
 
 endif

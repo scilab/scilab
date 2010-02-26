@@ -57,14 +57,12 @@
     Given two matrices <literal>A</literal> and <literal>B</literal> with same number of rows,
     returns a square matrix <literal>Xp</literal> (non singular but not necessarily orthogonal) 
     such that :</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
          [A1, 0]    (dim-dimb rows)
 Xp*[A,B]=[A2,B2]    (dima+dimb-dim rows)
          [0, B3]    (dim-dima rows)
          [0 , 0]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     The  first <literal>dima</literal>  columns of <literal>inv(Xp)</literal> span range(<literal>A</literal>).</para>
     <para>
@@ -82,8 +80,7 @@ Xp*[A,B]=[A2,B2]    (dima+dimb-dim rows)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,0,0,4;
    5,6,7,8;
    0,0,11,12;
@@ -94,8 +91,7 @@ Sl=ss2ss(syslin('c',A,B,C),rand(A));
 [uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Unobservable part
 [Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Kalman decomposition
 Slcan=ss2ss(Sl,inv(Xp));
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

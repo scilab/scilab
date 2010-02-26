@@ -270,33 +270,31 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+a.data_bounds=[-10,-10;10,10];
+x=2*%pi*(0:7)/8;
+xv=[2*sin(x);9*sin(x)];
+yv=[2*cos(x);9*cos(x)];
+xsegs(xv,yv,1:8)
 
-   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
-   a.data_bounds=[-10,-10;10,10];
-   x=2*%pi*(0:7)/8;
-   xv=[2*sin(x);9*sin(x)];
-   yv=[2*cos(x);9*cos(x)];
-   xsegs(xv,yv,1:8)
+s=a.children
+s.arrow_size=1;
+s.segs_color=15:22;
+for j=1:2
+  for i=1:8
+    h=s.data(i*2,j);
+    s.data(i*2,j)=s.data(i*2-1,j);
+    s.data(i*2-1,j)=  h;
+  end
+end
 
-   s=a.children
-   s.arrow_size=1;
-    s.segs_color=15:22;
-    for j=1:2
-      for i=1:8
-        h=s.data(i*2,j);
-        s.data(i*2,j)=s.data(i*2-1,j);
-        s.data(i*2-1,j)=  h;
-       end
-    end
+s.segs_color=5; //ajustando todas as cores para 5
 
-   s.segs_color=5; //ajustando todas as cores para 5
-
-   s.clip_box=[-4,4,8,8];
-   a.thickness=4;
-   xrect(s.clip_box);
-
- </programlisting>
+s.clip_box=[-4,4,8,8];
+a.thickness=4;
+xrect(s.clip_box);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

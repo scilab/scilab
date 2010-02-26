@@ -174,7 +174,8 @@ c     .     vect^scalar treated as  vect.^scalar (see matxpow)
 c     
       if (nexp.le.0) then
          rhs=1
-         call intinv('pow')
+c				call remove for Scilab 6, need to convert to C/C++         
+c         call intinv('pow')
          call putlhsvar()
 c         call matlu
          if(err.gt.0.or.err1.gt.0) return

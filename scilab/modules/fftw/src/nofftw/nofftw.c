@@ -13,7 +13,8 @@
 #include "BOOL.h" 
 #include "Scierror.h"
 #include "localization.h"
-
+#include "gw_fftw.h"
+#include "with_fftw.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_fftw(void)
 {

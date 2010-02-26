@@ -15,7 +15,7 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dgettext)(char *fname,unsigned long fname_len)
+int sci_dgettext(char *fname,unsigned long fname_len)
 {
 	CheckRhs(2,2);
 	CheckLhs(1,1);

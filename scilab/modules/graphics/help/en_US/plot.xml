@@ -165,8 +165,8 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
       For a better display <literal>plot</literal> function may modify the <literal>box</literal> property of
       its parent Axes. This happens when the parent Axes were created by the call to <literal>plot</literal> or were empty
       before the call. If one of the axis is centered at origin,
-      the box is disable.
-      Otherwise, the box is enable.
+      the box is disabled.
+      Otherwise, the box is enabled.
     </para>
     <para>
       For more information about box property and axis positionning see <link linkend="axes_properties">axes_properties</link>
@@ -227,7 +227,7 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // x initialisation 
 x=[0:0.1:2*%pi]';
 //simple plot
@@ -248,8 +248,8 @@ clf()
 // axis centered at (0,0)
 plot(x-4,sin(x),x+2,cos(x))
 a=gca(); // Handle on axes entity
-a.x_location = "middle"; 
-a.y_location = "middle"; 
+a.x_location = "origin"; 
+a.y_location = "origin"; 
 
 // Some operations on entities created by plot ...
 a=gca();
@@ -326,7 +326,6 @@ subplot(224);
 plot(x',[t [8;9;10;12]]');
 clf()
 
-
 //Special case 2
 // Case where only x or y is a square matrix
 //x : matrix (t) and y  : vector ([1 2 3 4])
@@ -347,8 +346,7 @@ clf();
 // ..a macro:
 deff('[y]=toto(x)','y=x.*x')
 plot(1:10,toto)
- 
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

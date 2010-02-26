@@ -209,11 +209,11 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 //  besselI functions
 // ==================
    x = linspace(0.01,10,5000)';
-   xbasc()
+   clf()
    subplot(2,1,1)
    plot2d(x,besseli(0:4,x), style=2:6)
    legend('I'+string(0:4),2);
@@ -226,7 +226,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
 // besselJ functions
 // =================
    x = linspace(0,40,5000)';
-   xbasc()
+   clf()
    plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
    legend('I'+string(0:4),1);
    xtitle("Some Bessel functions of the first kind")
@@ -238,7 +238,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
    er = abs((y1-y2)./y2);
    ind = find(er &gt; 0 &amp; y2 ~= 0);
-   xbasc()
+   clf()
    subplot(2,1,1)
    plot2d(x,y1,style=2)
    xtitle("besselj(0.5,x)")
@@ -249,7 +249,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
 // besselK functions
 // =================
    x = linspace(0.01,10,5000)';
-   xbasc()
+   clf()
    subplot(2,1,1)
    plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
    legend('K'+string(0:4),1);
@@ -262,11 +262,10 @@ y = besselh(alpha,K,x [,ice])</synopsis>
 // besselY functions
 // =================
    x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -&gt; 0+
-   xbasc()
+   clf()
    plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
    legend('Y'+string(0:4),4);
    xtitle("Some Bessel functions of the second kind")
-
 
 // besselH functions
 // =================
@@ -279,7 +278,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
    contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
    legends(string(0.2:0.2:3.2),1:16,"ur")
    xtitle("Level curves of |H1(0,z)|")
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -297,7 +296,8 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   <refsection>
     <title>Used Functions</title>
 
-    <para>The source codes can be found in routines/calelm</para>
+    <para>The source codes can be found in SCI/modules/special_functions/src/fortran/slatec and
+	    SCI/modules/special_functions/src/fortran</para>
 
     <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
     dbesy.f, zbesy.f, zbesh.f</para>

@@ -50,12 +50,10 @@ S=tf2des(G,flag)</synopsis>
     <title>Description</title>
     <para>
     Transfer function to descriptor form: <literal>S=list('d',A,B,C,D,E)</literal></para>
-    <programlisting><![CDATA[
-
-  E*xdot = A*x+B*u
-  y = C*x + D*u
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+E*xdot = A*x+B*u
+y = C*x + D*u
+ ]]></programlisting>
     <para>
     Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
     given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
@@ -63,14 +61,12 @@ S=tf2des(G,flag)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);des2tf(S1)
 S2=tf2des(G,"withD");des2tf(S2)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

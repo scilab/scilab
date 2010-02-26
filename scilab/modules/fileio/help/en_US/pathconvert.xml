@@ -78,16 +78,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
+    <programlisting role="example"><![CDATA[ 
 pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
 pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
 pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
 pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
 pathconvert("c:/tmp",%f,%t,"u")
 pathconvert("/cygdrive/c/tmp",%f,%f,"w")
-]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

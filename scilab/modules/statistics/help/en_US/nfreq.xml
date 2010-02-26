@@ -50,12 +50,10 @@ also to vector of strings and returns a sorted <literal>m</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=[2 8 0 3 7 6 8 7 9 1]
 m=nfreq(x)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

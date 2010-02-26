@@ -15,7 +15,7 @@
 #include <stdio.h> 
 #include <string.h> 
 /*--------------------------------------------------------------------------*/
-#include "sci_mpopup.h"
+#include "gw_gui.h"
 #include "MALLOC.h" /* MALLOC */
 #include "gw_gui.h"
 #include "localization.h"

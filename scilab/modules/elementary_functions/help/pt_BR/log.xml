@@ -58,11 +58,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 exp(log([1,%i,-1,-%i]))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

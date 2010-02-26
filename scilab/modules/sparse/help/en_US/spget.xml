@@ -61,12 +61,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 sp=sparse([1,2;4,5;3,10],[1,2,3])
 [ij,v,mn]=spget(sp);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

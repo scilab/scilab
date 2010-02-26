@@ -27,13 +27,13 @@ namespace types
 										String(const char *_pcData);
 		virtual					~String();
 
-		GenericType*		get(int _iPos);
+		GenericType*		get_col_value(int _iPos);
 
     char**					string_get() const;
     char*						string_get(int _iRows, int _iCols) const;
 		char*						string_get(int _iPos) const;
 
-    bool						string_set(const char **_pcData);
+    bool						string_set(char **_pcData);
     bool						string_set(int _iRows, int _iCols, const char *_pcData);
 		bool 						string_set(int _iPos, const char *_pcData);
 
@@ -45,10 +45,14 @@ namespace types
 		bool						resize(int _iNewRows, int _iNewCols);
 		bool						insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
 		static String*	insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector);
+		String*					extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
 		bool						operator==(const InternalType& it);
 		bool						operator!=(const InternalType& it);
-  protected :
+    
+    String *clone();
+
+ protected :
     RealType				getType();//			{ return RealString; }
 
   private :

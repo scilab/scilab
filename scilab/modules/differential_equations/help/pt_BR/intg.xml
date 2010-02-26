@@ -125,8 +125,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //caso de função Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -138,7 +137,6 @@ function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 I=intg(0,2*%pi,list(f1,30))
 abs(exact-I)
 
-
 // caso de código FORTRAN (compilador FORTRAN requerido)
 // escreve o código FORTRAN
 F=['      double precision function ffun(x)'
@@ -148,17 +146,20 @@ F=['      double precision function ffun(x)'
    '      return'
    '      end'];
 mputl(F,TMPDIR+'/ffun.f')
+
 // compile o código FORTRAN
-l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
+
 // linking incremental
 link(l,'ffun','f')
+
 //integrando a função
 I=intg(0,2*%pi,'ffun')
 abs(exact-I)
 
 // caso de código C (compilador C requerido)
 // escreva o código C
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
    '  double y,pi=3.14159265358979312;'
@@ -166,16 +167,17 @@ C=['#include &lt;math.h&gt;'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
 mputl(C,TMPDIR+'/cfun.c')
+
 // compile o código C
-l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.c',[],'c',TMPDIR+'/Makefile');
+
 // linking incremental
 link(l,'cfun','c')
+
 //integrando a função
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -198,7 +200,7 @@ abs(exact-I)
     <title>Funções Utilizadas</title>
 
     <para>As rotinas associadas podem ser encontradas no diretório
-    routines/integ :</para>
+	    SCI/modules/differential_equations/src/fortran :</para>
 
     <para>dqag0.f e dqags.f de quadpack</para>
   </refsection>

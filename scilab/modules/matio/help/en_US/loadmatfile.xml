@@ -69,6 +69,18 @@ loadmatfile(filename[,var1[,var2,[,...[,format]]]])</synopsis>
     converted into the Scilab equivalents.</para>
   </refsection>
   <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+A = rand(10,10);
+B = sprand(100,100,0.1);
+savematfile('test_matfile.mat','A','B','-v6');
+clear;
+loadmatfile('test_matfile.mat');
+disp(A)
+disp(B)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>

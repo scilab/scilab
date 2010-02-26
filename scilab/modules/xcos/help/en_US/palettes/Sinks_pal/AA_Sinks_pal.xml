@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Sinks_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Sinks_pal</refname>
+
+    <refpurpose>Sinks palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/Sinks_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Sinks_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Sinks_pal">
+    <title>Description</title>
+
+      <para>In Sinks palette, you can find a variety of blocks used to display
+      (Scope) and write data during simulation and also some output ports used
+      in superblocks.</para>
+
+      <para>The blocks of that palette doesn't have regular output
+      ports.</para>
+  </refsection>
+
+  <refsection id="Blocks_Sinks_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="AFFICH_m">AFFICH_m - Display</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CANIMXY">CANIMXY - y=f(x) animated viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated
+          viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CFSCOPE">CFSCOPE - Floating point scope</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="CLKOUTV_f">CLKOUTV_f - Output activation port</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CMAT3D">CMAT3D - Matrix z values 3D viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CMATVIEW">CMATVIEW - Matrix Colormapped viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CSCOPE">CSCOPE - Single Display Scope</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY3D">CSCOPXY3D - z=f(x,y) permanent
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="ENDBLK">ENDBLK - END block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="END_c">END_c - END_c block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="HALT_f">HALT_f - Halt block
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUTIMPL_f">OUTIMPL_f - Output implicit port
+          viewer</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Output port
+          viewer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TOWS_c">TOWS_c - Data to Scilab worspace</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TRASH_f">TRASH_f — Trash block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="WFILE_f">WFILE_f — Write to file</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="WRITEAU_f">WRITEAU_f — Write AU sound file</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="WRITEC_f">Write binary data</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

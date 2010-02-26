@@ -84,12 +84,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Creates a dialog window to display a message waiting or not for a user action. This function is used by <link linkend="x_message">x_message</link>.</para>
+    <para>Creates a dialog window to display a message waiting or not for a user action.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Simple example
 messagebox("Single line message")
 
@@ -104,16 +103,7 @@ messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"]
 
 // "modal" given as fifth input argument
 messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
- 
-  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="x_message">x_message</link>
-      </member>
-    </simplelist>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

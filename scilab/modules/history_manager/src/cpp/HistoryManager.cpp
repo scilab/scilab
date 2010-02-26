@@ -22,7 +22,6 @@ extern "C"
 	#include <string.h>
 	#include <stdlib.h>
 	#include "sciprint.h"
-	#include "cluni0.h"
 	#include "SCIHOME.h"
 	#include "inffic.h"
 	#include "InitializeHistoryManager.h"

@@ -18,7 +18,7 @@
 #include "tohome.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tohome)(char *fname,unsigned long fname_len)
+int sci_tohome(char *fname,unsigned long fname_len)
 {
 
 	CheckRhs(0,0);

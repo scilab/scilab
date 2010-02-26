@@ -137,10 +137,10 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
   </refsection>
   <refsection id="Example_MATEXPM">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 u=[1 2 3;2 3 1;4 2 1]
 y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATEXPM">
     <title>Default properties</title>

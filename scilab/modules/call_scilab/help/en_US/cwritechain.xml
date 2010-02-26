@@ -22,10 +22,10 @@
   </info>
 
   <refnamediv>
-    <refname>cwritechain</refname>
+    <refname>cwritechain (obsolete)</refname>
 
     <refpurpose>Write a single string into Scilab memory using
-    call_scilab</refpurpose>
+    call_scilab. Starting with Scilab 5.2, this function is obsolete. See <link linkend="String_management_writing_API">API_Scilab: String writing</link> for remplacement.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -102,7 +102,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
@@ -123,10 +123,10 @@ SendScilabJob("disp(A);"); /* Display A */
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member>
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="String_management_reading_API">API_Scilab: String reading</link>,  <link linkend="String_management_writing_API">API_Scilab: String writing</link>, 
         <link linkend="SendScilabJob">SendScilabJob</link>
         <link linkend="StartScilab">StartScilab</link>
-        <link linkend="creadchains">creadchains</link>
+        <link linkend="creadchain">creadchains</link>
         <link linkend="StringManagement_callscilab">String Management</link>
       </member>
     </simplelist>

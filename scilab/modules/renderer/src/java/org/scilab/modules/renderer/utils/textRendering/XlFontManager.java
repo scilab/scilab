@@ -81,11 +81,11 @@ public class XlFontManager {
 	
 	/**
 	 * add font loaded from a filename
-	 * @param font filename
+	 * @param fontFilename String filename
 	 * @return index
 	 */
-	public int addFontFromFilename(String FontFilename) {
-		return sciFontManager.addFontFromFilename(FontFilename);
+	public int addFontFromFilename(String fontFilename) {
+		return sciFontManager.addFontFromFilename(fontFilename);
 	}
 	
 	/**
@@ -101,11 +101,11 @@ public class XlFontManager {
   /**
 	 * Change Font loaded from a filename
 	 * @param index index of font to replace
-	 * @param font filename
+	 * @param fontFilename filename
 	 * @return index
 	 */
-	public int changeFontFromFilename(int index, String FontFilename) {
-		return sciFontManager.changeFontFromFilename(index, FontFilename);
+	public int changeFontFromFilename(int index, String fontFilename) {
+		return sciFontManager.changeFontFromFilename(index, fontFilename);
 	}	
 	
 	/**

@@ -17,7 +17,7 @@ package org.scilab.modules.renderer.utils.MarkDrawing;
 import javax.media.opengl.GL;
 
 /**
- * Class specilized in drawing cross marks
+ * Class specialized in drawing cross marks
  * @author Jean-Baptiste Silvy
  */
 public class CrossMarkDrawer extends MarkDrawingStrategy {
@@ -36,14 +36,14 @@ public class CrossMarkDrawer extends MarkDrawingStrategy {
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_LINES);
-		gl.glVertex3d(-1.0,  1.0, 0.0);
-		gl.glVertex3d(1.0 , -1.0, 0.0);
-		gl.glVertex3d(-1.0, -1.0, 0.0);
-		gl.glVertex3d(1.0 ,  1.0, 0.0);
-		gl.glEnd();
-
+		if (!isFrontTransparent) {
+			gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+			gl.glBegin(GL.GL_LINES);
+			gl.glVertex3d(-1.0,  1.0, 0.0);
+			gl.glVertex3d(1.0 , -1.0, 0.0);
+			gl.glVertex3d(-1.0, -1.0, 0.0);
+			gl.glVertex3d(1.0 ,  1.0, 0.0);
+			gl.glEnd();
+		}
 	}
-
 }

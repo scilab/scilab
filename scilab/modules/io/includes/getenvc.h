@@ -13,6 +13,8 @@
 
 #ifndef __GETENVC_H__
 #define __GETENVC_H__
+
+#include "dynlib_io.h"
 #include "machine.h"
 
 /**
@@ -23,7 +25,7 @@
  * @param[out] buflen  the length of the variable
  * @param[in] iflag 
  */
-void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
+IO_IMPEXP void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 
 /**
 * Searches for a file using environment paths
@@ -31,7 +33,7 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
 * @param[in] environment variable where we search
 * @return path found
 */
-char *searchEnv(const char *name,const char *env_var);
+IO_IMPEXP char *searchEnv(const char *name,const char *env_var);
 
 
 #endif /* __GETENVC_H__ */

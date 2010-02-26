@@ -11,8 +11,9 @@
  *
  */
 
-#include "sci_get_fftw_wisdom.h"
+
 #include "callfftw.h"
+#include "stack-c.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
 #include "localization.h"
@@ -42,37 +43,42 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	Str = call_fftw_export_wisdom_to_string();
 
 	n1 = 0; j = 0;
-	for(i = 0; i < (int)strlen(Str); i++) 
+	if (Str)
 	{
-		if (Str[i] == '\n') 
+		for(i = 0; i < (int)strlen(Str); i++) 
 		{
-			int len = 0;
-			int k = 0;
-
-			n1++;
-
-			if (Str1) Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1);
-			else Str1 = (char **)MALLOC(sizeof(char *)*n1);
-
-			if (Str1 == NULL) 
+			if (Str[i] == '\n') 
 			{
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return(0);
-			}
-			len = i-j;
-			if ((Str1[n1-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
-			{
-				freeArrayOfString(Str1,n1-1);
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return(0);
-			}
+				int len = 0;
+				int k = 0;
 
-			for(k = 0; k < len;k++) 
-			{
-				Str1[n1-1][k] = Str[k+j];
+				n1++;
+
+				if (Str1) Str1 = (char **)REALLOC(Str1,sizeof(char *)*n1);
+				else Str1 = (char **)MALLOC(sizeof(char *)*n1);
+
+				if (Str1 == NULL) 
+				{
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					if (Str) {FREE(Str); Str = NULL;}
+					return(0);
+				}
+				len = i-j;
+				if ((Str1[n1-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
+				{
+					freeArrayOfString(Str1,n1-1);
+					if (Str) {FREE(Str); Str = NULL;}
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return(0);
+				}
+
+				for(k = 0; k < len;k++) 
+				{
+					Str1[n1-1][k] = Str[k+j];
+				}
+				Str1[n1-1][len] = '\0';
+				j = i+1;
 			}
-			Str1[n1-1][len] = '\0';
-			j = i+1;
 		}
 	}
 
@@ -84,11 +90,13 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	if (Str1 == NULL) 
 	{
 		Scierror(999,_("%s: No more memory.\n"),fname);
+		if (Str) {FREE(Str); Str = NULL;}
 		return(0);
 	}
 	if ((Str1[n1-1] = (char *)MALLOC(sizeof(char))) == NULL) 
 	{
 		freeArrayOfString(Str1,n1-1);
+		if (Str) {FREE(Str); Str = NULL;}
 		Scierror(999,_("%s: No more memory.\n"),fname);
 		return(0);
 	}
@@ -99,6 +107,8 @@ int sci_get_fftw_wisdom(char *fname,unsigned long fname_len)
 	PutLhsVar();
 
 	freeArrayOfString(Str1,n1);
+	if (Str) {FREE(Str); Str = NULL;}
+
 	return(0);
 }
 /*--------------------------------------------------------------------------*/

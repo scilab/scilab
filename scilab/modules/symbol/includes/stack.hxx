@@ -52,9 +52,8 @@ namespace symbol
 			if(iSize > 1)
 			{
 				std::list<Scope>::iterator i;
-				i = l_scope.end();
-				i--;
-				i--;
+				i = l_scope.begin();
+				i++;
 				i->put(key, value);
 			}
 		}

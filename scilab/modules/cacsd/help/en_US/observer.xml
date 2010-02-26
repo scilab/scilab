@@ -29,7 +29,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (linear system)</para>
+          <para> <literal>syslin</literal> list (linear system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -110,8 +110,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
 //nx=5 states, nu=1 input, ny=1 output, 
 //un=3 unobservable states, us=2 of them unstable.
@@ -156,8 +155,7 @@ L = lqe(P21);
 Plant = syslin('c',A,B,C,D);
 Obs = observer(Plant,L);
 spec(Obs.A)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -17,7 +17,6 @@
 
 #include "BOOL.h" /* BOOL */
 
-
 typedef enum { STARTUP = 0,
 			   BACKGROUND = 1,
                ONUSE = 2

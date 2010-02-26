@@ -16,13 +16,13 @@
 
 #ifndef _CHAMP_H_
 #define _CHAMP_H_
-
+#include "dynlib_graphics.h"
 #include "machine.h" /* C2F */
 
-int C2F(champ) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
-int C2F(champ1) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
+GRAPHICS_IMPEXP int C2F(champ) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
+GRAPHICS_IMPEXP int C2F(champ1) (double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr) ; 
 
-void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
+GRAPHICS_IMPEXP void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
             int *n2, char *strflag, double *brect, double *arfact, int lstr) ;
 
 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="movefile" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept.
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>movefile</refname>
+
+    <refpurpose>Move file or directory</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>movefile('source','destination')
+[status,message] = movefile('source','destination')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>movefile('source','destination') moves the file or directory ,
+    source (and subdirectories) to the file or directory, destination.</para>
+
+    <para>If source is a directory, destination can not be a file. movefile
+    replaces existing files without warning.</para>
+
+    <para>[status, message] = movefile('source','destination') moves source
+    to destination, returning the status and a message. </para>
+
+    <para>Whatever the operating system, if the move succeeds, the status is 1
+    and the message is empty ; if the move fails, the status is 0 and the
+    message is not empty.</para>
+
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"> 
+copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+[status,message] = movefile(TMPDIR+"/scilab.start",TMPDIR+"/renamed_scilab.start")
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="copyfile">copyfile</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Allan CORNET</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -17,6 +17,6 @@
  * @param sizeArray the final size of the array
  * @return The array containing the debug information
  */
-char **getDynamicDebugInfo(int *sizeArray);
+char **getDynamicDebugInfo(int *sizeArray, int* _piKey);
 
 /*--------------------------------------------------------------------------*/

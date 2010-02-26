@@ -16,8 +16,7 @@
 /* desc : interface for xtitle routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xtitle.h"
-#include "sci_demo.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "SetProperty.h"
@@ -99,7 +98,10 @@ int sci_xtitle( char * fname, unsigned long fname_len )
     sciPointObj * modifiedLabel = NULL ;
 
     GetRhsVar(narg,MATRIX_OF_STRING_DATATYPE,&m,&n,&Str);
-    if ( m*n == 0 ) { continue ; }
+    if ( m*n == 0 ) 
+	{ 
+		continue ; 
+	}
 
     switch(narg)
     {
@@ -108,7 +110,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
       break;
     case 2:
       modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_x_label ;
-      break;
+	  break;
     case 3:
       modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_y_label ;
       break;

@@ -49,7 +49,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 bool2s([%t %t %f %t])
 bool2s([2.3 0 10 -1])
  ]]></programlisting>

@@ -15,13 +15,14 @@
 #ifndef __INITIALIZEJVM_H__
 #define __INITIALIZEJVM_H__
 
+#include "dynlib_jvm.h"
 #include "BOOL.h"
 
 /**
 * Initialize JVM 
 * @return TRUE or FALSE
 */
-BOOL InitializeJVM(void);
+JVM_IMPEXP BOOL InitializeJVM(void);
 
 #endif /* __INITIALIZEJVM_H__ */
 /*--------------------------------------------------------------------------*/ 

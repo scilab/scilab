@@ -96,13 +96,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d(xx,yy,zz)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

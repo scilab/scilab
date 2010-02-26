@@ -87,12 +87,12 @@ y=prod(x,'m')</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[  
 A=[1,2;0,100];
 prod(A)
 prod(A,'c')
 prod(A,'r')
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

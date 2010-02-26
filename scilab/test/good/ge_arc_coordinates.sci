@@ -22,13 +22,13 @@ function [xx,yy,sel,loops]=ge_arc_coordinates(sel)
   dt=GraphList.node_diam(vtail);dt(dt==0)=GraphList.default_node_diam
   dh=GraphList.node_diam(vhead);dh(dh==0)=GraphList.default_node_diam
   
-  hidden=find(l<=dt/2+dh/2)
-  l(hidden)=[]
-  vhead(hidden)=[]
-  vtail(hidden)=[]
-  dt(hidden)=[]
-  dh(hidden)=[]
-  sel(hidden)=[]
+  __hidden=find(l<=dt/2+dh/2)
+  l(__hidden)=[]
+  vhead(__hidden)=[]
+  vtail(__hidden)=[]
+  dt(__hidden)=[]
+  dh(__hidden)=[]
+  sel(__hidden)=[]
   if vtail==[] then return,end
   
   //compute number of arcs between each couple of nodes

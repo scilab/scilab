@@ -69,19 +69,22 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// criando um dado struct
+    <programlisting role="example"><![CDATA[ 
+// criando um dado struct
 date=struct('dia',25,'mes' ,'DEZ','ano',2006)
+
 //mudando o mes
 date.mes='AGO';
+
 // mudando o ano
 date.ano=1973;
+
 //mudando o dia
 date.dia=19;
+
 // adicionando um novo campo
 date.semana=32
-
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

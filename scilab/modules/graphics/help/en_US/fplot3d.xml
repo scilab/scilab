@@ -68,13 +68,11 @@ fplot3d(xr,yr,f,&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff('z=f(x,y)','z=x^4-y^4')
 x=-3:0.2:3 ;y=x ;
 clf() ;fplot3d(x,y,f,alpha=5,theta=31)  
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

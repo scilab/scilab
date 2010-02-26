@@ -16,7 +16,7 @@
 /* desc : interface for xpolys routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xpoly.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "sciCall.h"
 #include "DrawObjects.h"

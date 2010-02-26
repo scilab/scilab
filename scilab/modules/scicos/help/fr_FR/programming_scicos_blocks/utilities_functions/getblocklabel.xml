@@ -35,9 +35,9 @@
         </para>
       </listitem>
     </itemizedlist>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [label]=getblocklabel(blk)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_getblocklabel">
     <title>Paramètres</title>

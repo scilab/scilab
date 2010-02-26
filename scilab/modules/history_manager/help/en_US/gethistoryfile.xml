@@ -39,10 +39,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[gethistoryfile()
-	gethistoryfile()
-
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+gethistoryfile()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

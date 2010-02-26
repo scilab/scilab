@@ -16,9 +16,8 @@
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_fec.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "sciCall.h"

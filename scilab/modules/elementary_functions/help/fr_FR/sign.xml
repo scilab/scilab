@@ -27,10 +27,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 sign(rand(2,3))
 sign(1+%i)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -53,14 +53,14 @@ for i=1:lstsize(scs_m.objs)
   end
 end
 
-IN=-sort(-IN);
+IN=-gsort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
   ok=%f;%cpr=list()
   message("Input ports are not numbered properly.")
   return
 end
 
-OUT=-sort(-OUT);
+OUT=-gsort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
   ok=%f;%cpr=list()
   message("Output ports are not numbered properly.")

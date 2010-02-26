@@ -41,16 +41,14 @@ res=getmd5(ParamString,'string')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 getmd5('hello world','string')
 getmd5(['hello' 'world'],'string')
 getmd5(['hello' ; 'world'],'string')
 
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

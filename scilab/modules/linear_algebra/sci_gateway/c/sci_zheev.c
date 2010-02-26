@@ -23,12 +23,12 @@ extern int C2F(zheev)();
 //
 // intzheev --
 //   Interface to LAPACK's ZHEEV
-//   Computes the eigenvalues and, if required, the eigenvectors of a complex symetric matrix.
+//   Computes the eigenvalues and, if required, the eigenvectors of a complex symmetric matrix.
 //   Possible uses :
 //   * With 1 LHS :
 //       eigenvalues=spec(A)
 //     where 
-//       A : symetric, square matrix of size NxN
+//       A : symmetric, square matrix of size NxN
 //       eigenvalues : matrix of size Nx1, type real
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)
@@ -70,6 +70,7 @@ int sci_zheev(char *fname, unsigned long fname_len)
 	if (iRows!=iCols)
 	{
 		SciError(20);
+		vFreeDoubleComplexFromPointer(pdblData);
 		return 0;
 	}
 	if (iCols==0)
@@ -77,6 +78,7 @@ int sci_zheev(char *fname, unsigned long fname_len)
 		if (Lhs==1)
 		{
 			LhsVar(1) = 1;
+			vFreeDoubleComplexFromPointer(pdblData);
 			return 0;
 		}
 		else if (Lhs==2)
@@ -85,12 +87,14 @@ int sci_zheev(char *fname, unsigned long fname_len)
 			CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&iCols,&iCols,&lD);
 			LhsVar(1) = 1;
 			LhsVar(2) = 2;
+			vFreeDoubleComplexFromPointer(pdblData);
 			return 0;
 		}
 	}
 	if (C2F(vfiniteComplex)(&totalsize,pdblData)==0)
 	{
 		SciError(264);
+		vFreeDoubleComplexFromPointer(pdblData);
 		return 0;
 	}
 	if (Lhs==1)

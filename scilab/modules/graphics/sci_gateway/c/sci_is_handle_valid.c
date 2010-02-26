@@ -15,7 +15,7 @@
 /* desc : interface for xaxis routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_is_handle_valid.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "Scierror.h"

@@ -42,7 +42,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=testmatrix('hilb',6);
 cond(A)
  ]]></programlisting>

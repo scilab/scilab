@@ -34,7 +34,7 @@ int get_figures_id_property( sciPointObj * pobj )
 	if (pobj != NULL)
 	{
 		/* This property should not be called on an handle */
-		Scierror(999, _("%s property does not exist for this handle.\n"), "figures_id");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
 		return -1;
 	}
 

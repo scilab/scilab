@@ -55,12 +55,10 @@
     <para><literal>X = lyap(A,C,flag)</literal> resolve as equações matriciais
     de tempo contínuo ou de tempo discreto de Lyapunov:</para>
 
-    <programlisting>
-
-       A'*X + X*A = C       ( flag='c' )
-      A'*X*A - X = C       ( flag='d' )
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+A'*X + X*A = C       ( flag='c' )
+A'*X*A - X = C       ( flag='d' )
+ ]]></programlisting>
 
     <para>Perceba que existe uma única solução se e só se um autovalor de
     <literal>A</literal> não é um autovalor de <literal>-A</literal>
@@ -71,15 +69,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(4,4);C=rand(A);C=C+C';
 X=lyap(A,C,'c');
 A'*X + X*A -C
 X=lyap(A,C,'d');
 A'*X*A - X -C
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -14,6 +14,7 @@
 #ifndef __GETSCILABDIRECTORY_H__
 #define __GETSCILABDIRECTORY_H__
 
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -21,7 +22,7 @@
 * @param [in]
 * @return
 */
-char *getScilabDirectory(BOOL UnixStyle);
+SCILAB_WINDOWS_IMPEXP char *getScilabDirectory(BOOL UnixStyle);
 
 #endif /* __GETSCILABDIRECTORY_H__ */
 /*--------------------------------------------------------------------------*/ 

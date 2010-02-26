@@ -54,7 +54,7 @@
 
     <para>Para utilizar <literal>plotprofile</literal>, a função Scilab deve
     ter sido preparada para profiling (análise de desempenho) (ver
-    getf).</para>
+    exec).</para>
 
     <para>Quando tal função é executada, o sistema conta quantas vezes cada
     linha foi executada e quanto tempo de cpu foi gasto para cada linha. Estes
@@ -73,8 +73,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //definindo função e preparando-a para profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -89,8 +88,7 @@ deff('x=foo(n)',['if n==0 then'
 foo(30)
 //obtendo profiles de execução
 plotprofile(foo) // clique em Exit para sair
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

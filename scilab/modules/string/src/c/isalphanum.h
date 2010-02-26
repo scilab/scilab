@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - Allan CORNET - 2009
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@
 #ifndef __ISALPHANUM_H__
 #define __ISALPHANUM_H__
 
+#include <wchar.h>
 #include "BOOL.h"
 
 /**
@@ -22,7 +24,7 @@
 * @param[in] a string
 * @return BOOL array 
 */
-BOOL *isalphanum(char *input_string);
+BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
 
 #endif /* __ISALPHANUM_H__ */
 /*--------------------------------------------------------------------------*/

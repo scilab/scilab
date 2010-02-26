@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="splin2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>splin2d</refname>
+
+    <refpurpose>bicubic spline gridded 2d interpolation</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>strictly increasing row vectors (with at least 2 components)
+          defining the interpolation grid</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>nx x ny matrix (nx being the length of <literal>x</literal>
+          and ny the length of <literal>y</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>spline_type</term>
+
+        <listitem>
+          <para>(optional) a string selecting the kind of bicubic spline to
+          compute</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>a big vector with the coefficients of the bicubic patches (see
+          details in Remarks)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function computes a bicubic spline or sub-spline
+    <emphasis>s</emphasis> which interpolates the
+    <emphasis>(xi,yj,zij)</emphasis> points, ie, we have
+    <emphasis>s(xi,yj)=zij</emphasis> for all <emphasis>i=1,..,nx</emphasis>
+    and <emphasis>j=1,..,ny</emphasis>. The resulting spline
+    <emphasis>s</emphasis> is defined by the triplet
+    <literal>(x,y,C)</literal> where <literal>C</literal> is the vector (of
+    length 16(nx-1)(ny-1)) with the coefficients of each of the (nx-1)(ny-1)
+    bicubic patches : on <emphasis>[x(i) x(i+1)]x[y(j) y(j+1)]</emphasis>,
+    <emphasis>s</emphasis> is defined by :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/splin2d_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>The evaluation of <emphasis>s</emphasis> at some points must be done
+    by the <link linkend="interp2d">interp2d</link> function. Several kind of
+    splines may be computed by selecting the appropriate
+    <literal>spline_type</literal> parameter. The method used to compute the
+    bicubic spline (or sub-spline) is the old fashionned one 's, i.e. to
+    compute on each grid point <emphasis>(xi,yj)</emphasis> an approximation
+    of the first derivatives <emphasis>ds/dx(xi,yj)</emphasis> and
+    <emphasis>ds/dy(xi,yj)</emphasis> and of the cross derivative
+    <emphasis>d2s/dxdy(xi,yj)</emphasis>. Those derivatives are computed by
+    the mean of 1d spline schemes leading to a C2 function
+    (<emphasis>s</emphasis> is twice continuously differentiable) or by the
+    mean of a local approximation scheme leading to a C1 function only. This
+    scheme is selected with the <literal>spline_type</literal> parameter (see
+    <link linkend="splin">splin</link> for details) :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"not_a_knot"</term>
+
+        <listitem>
+          <para>this is the default case.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>to use if the underlying function is periodic : you must have
+          <emphasis>z(1,j) = z(nx,j) for all j in [1,ny] and z(i,1) = z(i,ny)
+          for i in [1,nx]</emphasis> but this is not verified by the
+          interface.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Remarks</title>
+
+    <para>From an accuracy point of view use essentially the <emphasis
+    role="bold">not_a_knot</emphasis> type or <emphasis
+    role="bold">periodic</emphasis> type if the underlying interpolated
+    function is periodic.</para>
+
+    <para>The <emphasis role="bold">natural</emphasis>, <emphasis
+    role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (or
+    <emphasis role="bold">fast_periodic</emphasis>) type may be useful in some
+    cases, for instance to limit oscillations (<emphasis
+    role="bold">monotone</emphasis> being the most powerfull for that).</para>
+
+    <para>To get the coefficients of the bi-cubic patches in a more friendly
+    way you can use <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal> then
+    the coefficient <emphasis>(k,l)</emphasis> of the patch
+    <emphasis>(i,j)</emphasis> (see equation here before) is stored at
+    <literal>c(k,l,i,j)</literal>. Nevertheless the <link
+    linkend="interp2d">interp2d</link> function wait for the big vector
+    <literal>C</literal> and not for the hypermatrix <literal>c</literal>
+    (note that one can easily retrieve <literal>C</literal> from
+    <literal>c</literal> with <literal>C=c(:)</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 : interpolation of cos(x)cos(y)
+n = 7;  // a regular grid with n x n interpolation points
+        // will be used
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+m = 50; // discretisation parameter of the evaluation grid
+xx = linspace(0,2*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz = interp2d(XX,YY, x, y, C);
+emax = max(abs(zz - cos(xx')*cos(yy)));
+clf()
+plot3d(xx, yy, zz, flag=[2 4 4])
+[X,Y] = ndgrid(x,y);
+param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
+str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+xtitle("spline interpolation of cos(x)cos(y)"+str)
+
+// example 2 : different interpolation functions on random datas
+n = 6;
+x = linspace(0,1,n); y = x;
+z = rand(n,n);
+np = 50;
+xp = linspace(0,1,np); yp = xp;
+[XP, YP] = ndgrid(xp,yp);
+ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
+ZP2 = linear_interpn(XP, YP, x, y, z);
+ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
+ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
+xset("colormap", jetcolormap(64))
+clf()
+subplot(2,2,1)
+plot3d1(xp, yp, ZP1, flag=[2 2 4])
+xtitle("not_a_knot")
+subplot(2,2,2)
+plot3d1(xp, yp, ZP2, flag=[2 2 4])
+xtitle("bilinear interpolation")
+subplot(2,2,3)
+plot3d1(xp, yp, ZP3, flag=[2 2 4])
+xtitle("natural")
+subplot(2,2,4)
+plot3d1(xp, yp, ZP4, flag=[2 2 4])
+xtitle("monotone")
+xselect()
+
+// example 3 : not_a_knot spline and monotone sub-spline
+//             on a step function
+a = 0; b = 1; c = 0.25; d = 0.75;
+// create interpolation grid
+n = 11;
+x = linspace(a,b,n);
+ind = find(c &lt;= x &amp; x &lt;= d); 
+z = zeros(n,n); z(ind,ind) = 1;  // a step inside a square
+// create evaluation grid
+np = 220;
+xp = linspace(a,b, np);
+[XP, YP] = ndgrid(xp, xp);
+zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
+zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
+// plot
+clf()
+xset("colormap",jetcolormap(128))
+subplot(1,2,1)
+plot3d1(xp, xp, zp1, flag=[-2 6 4])
+xtitle("spline (not_a_knot)")
+subplot(1,2,2)
+plot3d1(xp, xp, zp2, flag=[-2 6 4])
+xtitle("subspline (monotone)")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cshep2d">cshep2d</link></member>
+
+      <member><link linkend="linear_interpn">linear_interpn</link></member>
+
+      <member><link linkend="interp2d">interp2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

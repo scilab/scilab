@@ -74,14 +74,12 @@ than 4 characters only the first 4 are taken into account.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    
-    s=poly(0,"s");p=1+s+2*s^2;
-    A=rand(2,2);poly(A,"x")
-    //rational fractions
-    h=(1+2*%s)/poly(1:4,'s','c')
-    
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+//rational fractions
+h=(1+2*%s)/poly(1:4,'s','c')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

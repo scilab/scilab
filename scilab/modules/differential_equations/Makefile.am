@@ -51,7 +51,6 @@ src/fortran/hpdel.f \
 src/fortran/hpins.f \
 src/fortran/svcar1.f \
 src/fortran/daux.f \
-src/fortran/dgbfa.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
@@ -161,13 +160,5 @@ libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/d
 #### differential_equations : gateway declaration ####
 libscidifferential_equations_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
-
-#### differential_equations : include files ####
-libscidifferential_equations_la_includedir=$(pkgincludedir)/differential_equations
-libscidifferential_equations_la_include_HEADERS = includes/gw_differential_equations1.h \
-includes/gw_differential_equations2.h \
-includes/gw_differential_equations3.h \
-includes/gw_differential_equations4.h \
-includes/gw_differential_equations6.h
 
 include $(top_srcdir)/Makefile.incl.am

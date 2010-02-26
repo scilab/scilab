@@ -21,8 +21,8 @@ operations \
 output_stream \
 action_binding \
 arnoldi \
-functions_manager \
 elementary_functions \
+functions_manager \
 string \
 api_scilab \
 dynamic_link \
@@ -57,7 +57,6 @@ double \
 pvm \
 io \
 intersci \
-metanet \
 signal_processing \
 core \
 call_scilab \
@@ -72,7 +71,6 @@ overloading \
 maple2scilab \
 m2sci \
 texmacs \
-scipad \
 development_tools \
 compatibility_functions \
 helptools \
@@ -89,9 +87,9 @@ system_env \
 abstractSyntaxTree \
 symbol \
 parse \
-types
-
-# memory_manager
+types \
+xcos \
+xpad
 
 #umfpack
 
@@ -136,15 +134,28 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
+	$(top_builddir)/modules/xpad/libscixpad.la
+
+if HDF5
+GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
+# HDF5 is here because it needs the JVM (see bug #5481)
+endif
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
-	$(top_builddir)/modules/jvm/libscijvm-disable.la
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xcos/libscixcos-disable.la \
+	$(top_builddir)/modules/xpad/libscixpad-disable.la
 
+if HDF5
+NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
+# HDF5 is here because it needs the JVM (see bug #5481)
+endif
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
@@ -173,43 +184,48 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(top_builddir)/modules/sound/libscisound.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/randlib/libscirandlib.la \
-	$(top_builddir)/modules/optimization/libscioptimization.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
-	$(top_builddir)/modules/metanet/libscimetanet.la \
-	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
+	$(top_builddir)/modules/functions/libscifunctions.la
+
+
+# These libraries are loaded dynamically from Scilab.
+ENGINE_LIBS_DYNAMIC_LOAD = \
+	$(top_builddir)/modules/optimization/libscioptimization.la \
+	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/hdf5/libscihdf5.la
-
-OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
-$(top_builddir)/modules/umfpack/libsciumfpack.la \
-$(top_builddir)/modules/scicos/libsciscicos.la
-
-if SCICOS
-OTHER_LIBS += $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-endif
-
-
-# Dev in progress
+	$(top_builddir)/modules/hdf5/libscihdf5.la \
+	$(top_builddir)/modules/symbolic/libscisymbolic.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+	$(top_builddir)/modules/scicos/libsciscicos.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/sound/libscisound.la \
+	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
+	$(top_builddir)/modules/umfpack/libsciumfpack.la \
+	$(top_builddir)/modules/matio/libscimatio.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+if GUI
+libscilab_la_LIBADD += $(GUI_LIBS)
+else
+libscilab_la_LIBADD += $(NO_GUI_LIBS)
+endif
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

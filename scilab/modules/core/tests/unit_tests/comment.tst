@@ -235,6 +235,7 @@ endfunction
 a=foo();
 if a<>15 then pause,end
 
+warning('off');
 //with  getf
 t=['function a=foo'
   'a=0;k=0;//initialization'
@@ -250,10 +251,10 @@ t=['function a=foo'
   'endfunction'];
 
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
 
@@ -273,12 +274,13 @@ t=['//sdffgfgfgggg'
    'endfunction'];
 
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 a=foo();
 if a<>15 then pause,end
+warning('on');
 
 //with macr2lst
 

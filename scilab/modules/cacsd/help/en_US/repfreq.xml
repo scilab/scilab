@@ -31,7 +31,7 @@
       <varlistentry>
         <term>sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list : SIMO linear system</para>
+          <para> <literal>syslin</literal> list : SIMO linear system</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -89,8 +89,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([-1,-2]);B=[1;1];C=[1,1];
 Sys=syslin('c',A,B,C);
 frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;
@@ -105,8 +104,7 @@ ang=ang*180/%pi              //in degrees
 phi(2)
 repf=repfreq(Sys,frq);
 repf(2)-x
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

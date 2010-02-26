@@ -37,25 +37,24 @@
  <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-      // quit Scilab
-      function foo(x),if x then quit,end,endfunction
-      foo(%t) //quits scilab
+    <programlisting role="example"><![CDATA[ 
+// quit Scilab
+function foo(x),if x then quit,end,endfunction
+foo(%t) //quits scilab
 
-      //terminate instruction started in a pause context
-      function foo(x),if x then quit,end,endfunction
-      pause
-      foo(%t) //returns at the main prompt level
+//terminate instruction started in a pause context
+function foo(x),if x then quit,end,endfunction
+pause
+foo(%t) //returns at the main prompt level
 
-      function foo1(x),
-        mprintf('P1\n')
-        if x then pause, mprintf('P2\n'),end,
-        mprintf('P3\n')
-      endfunction
+function foo1(x),
+  mprintf('P1\n')
+  if x then pause, mprintf('P2\n'),end,
+  mprintf('P3\n')
+endfunction
      
-      foo1(%t) //enter quit at the following prompt
-
-  </programlisting>
+foo1(%t) //enter quit at the following prompt
+ ]]></programlisting>
   </refsection>
 
   <refsection>

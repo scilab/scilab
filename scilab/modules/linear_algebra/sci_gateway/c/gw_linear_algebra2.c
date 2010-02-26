@@ -31,15 +31,15 @@ static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
 	{C2F(intbackslash),"backslash"},
 	{C2F(intschur),"schur"},
 	{NULL, ""}, //hess
-	{NULL ,""}, //det
-	{C2F(intbalanc),"balanc"}
+	{NULL, ""}, //det
+	{NULL, ""} //balanc
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_linear_algebra2(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,LINEAR_ALGEBRA2_TAB_SIZE);
-	if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+	if (Err <= 0 && C2F(errgst).err1 <= 0) PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

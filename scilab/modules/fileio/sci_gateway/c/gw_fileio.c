@@ -13,12 +13,12 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "callFunctionFromGateway.h"
+#include "MALLOC.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
-#define FILEIO_TAB_SIZE 36
-static gw_generic_table Tab[FILEIO_TAB_SIZE]={
+static gw_generic_table Tab[]={
 	{sci_mopen, "mopen"},
 	{sci_mputstr, "mputstr"},
 	{sci_mclose, "mclose"},
@@ -46,21 +46,29 @@ static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 	{sci_getlongpathname,"getlongpathname"},
 	{sci_getshortpathname,"getshortpathname"},
 	{sci_fileext,"fileext"},
-	{sci_isdir,"isdir"},
+	{NULL, ""}, //isdir
 	{sci_removedir,"removedir"},
 	{sci_createdir,"createdir"},
 	{sci_pwd,"pwd"},
-	{sci_chdir,"chdir"},
+	{NULL, ""}, //chdir
 	{sci_fileinfo,"fileinfo"},
 	{sci_newest,"newest"},
 	{sci_getrelativefilename,"getrelativefilename"},
-	{sci_get_absolute_file_path,"get_absolute_file_path"}
+	{sci_get_absolute_file_path,"get_absolute_file_path"},
+	{NULL ,""}, //copyfile
+	{NULL, ""}, //isfile
+	{NULL, ""}, //fileparts
+	{NULL, ""}, //movefile
+	{NULL, ""}, //basename
+	{NULL, ""}, //pathconvert
+	{NULL, ""} //cd
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)
 {
 	Rhs = Max(0,Rhs);
-	callFunctionFromGateway(Tab,FILEIO_TAB_SIZE);
+
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

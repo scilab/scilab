@@ -17,7 +17,7 @@
 /* desc : interface for xclick routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xclick.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "CurrentObjectsManagement.h"
 #include "CallJxclick.h"

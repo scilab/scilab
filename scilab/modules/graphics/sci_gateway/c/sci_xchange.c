@@ -16,7 +16,7 @@
 /* desc : interface for xchange routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xchange.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "PloEch.h"
 

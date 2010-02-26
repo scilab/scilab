@@ -67,13 +67,11 @@ A|B</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 or([%t %t %f])
 [%t %t %f]|[%f %t %t]
 [%t %t %f]|%f
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -94,33 +94,31 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-  
-  //transformée 1D
-  a = rand(50,1)+%i*rand(50,1);
-  y = fftw(a);
-  y = fftw(a,-1);
-  //transformée inverse
-  b = fftw(y,1);
+    <programlisting role="example"><![CDATA[ 
+//transformée 1D
+a = rand(50,1)+%i*rand(50,1);
+y = fftw(a);
+y = fftw(a,-1);
+//transformée inverse
+b = fftw(y,1);
 
-  //transformée 2D
-  a = rand(512,512)+%i*rand(512,512);
-  y = fftw(a);
+//transformée 2D
+a = rand(512,512)+%i*rand(512,512);
+y = fftw(a);
 
-  //transformée M-D -ancienne séquence d'appel-
-  a = rand(120,1);
-  y = a;
-  dim=[5 6 4];incr=[1 5 30];
-  for i=1:3
-    y = fftw(y,-1,dim(i),incr(i));
-  end
+//transformée M-D -ancienne séquence d'appel-
+a = rand(120,1);
+y = a;
+dim=[5 6 4];incr=[1 5 30];
+for i=1:3
+  y = fftw(y,-1,dim(i),incr(i));
+end
 
-  //transformée M-D transform -nouvelle séquence d'appel-
-  //plus performante que l'ancienne
-  y = fftw(a,-1,[5 6 4],[1 5 30]);
-  b = fftw(y,1,[5 6 4],[1 5 30]);
-  
-  </programlisting>
+//transformée M-D transform -nouvelle séquence d'appel-
+//plus performante que l'ancienne
+y = fftw(a,-1,[5 6 4],[1 5 30]);
+b = fftw(y,1,[5 6 4],[1 5 30]);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

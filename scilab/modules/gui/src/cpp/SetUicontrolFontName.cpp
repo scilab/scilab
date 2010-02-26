@@ -19,11 +19,11 @@ int SetUicontrolFontName(sciPointObj* sciObj, size_t stackPointer, int valueType
 {
   // Font Name must be only one character string
   if (valueType != sci_strings) {
-    Scierror(999, _("Wrong type for '%s' property: A string expected.\n"), "FontName");
+    Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontName");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "FontName");
+    Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontName");
     return SET_PROPERTY_ERROR;
   }
 
@@ -49,7 +49,7 @@ int SetUicontrolFontName(sciPointObj* sciObj, size_t stackPointer, int valueType
     }
   else
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "FontName");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "FontName");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -29,256 +29,257 @@
 #ifndef __SCI_SET_PROPERTY__
 #define __SCI_SET_PROPERTY__
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
-void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */
+GRAPHICS_IMPEXP void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */
 
-int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
-int sciSetColormap (sciPointObj * pobj, double *rgbmat,
+GRAPHICS_IMPEXP int sciSetEntityType (sciPointObj * pobj, sciEntityType value); /* SET */
+GRAPHICS_IMPEXP int sciSetColormap (sciPointObj * pobj, double *rgbmat,
 			   int m, int n); /* SET */
-int sciInitNumColors( sciPointObj * pobj, int numcolors ) ; /* SET */
-int sciSetNumColors ( sciPointObj * pobj, int numcolors ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitNumColors( sciPointObj * pobj, int numcolors ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetNumColors ( sciPointObj * pobj, int numcolors ) ; /* SET */
 
-int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
-void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
-int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
+GRAPHICS_IMPEXP void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
+GRAPHICS_IMPEXP int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
 
-int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
-int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
+GRAPHICS_IMPEXP int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
-int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
+GRAPHICS_IMPEXP int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitLineWidth( sciPointObj * pobj, double linewidth ) ;
-int sciSetLineWidth ( sciPointObj * pobj, double linewidth ) ;  /* SET */
+GRAPHICS_IMPEXP int sciInitLineWidth( sciPointObj * pobj, double linewidth ) ;
+GRAPHICS_IMPEXP int sciSetLineWidth ( sciPointObj * pobj, double linewidth ) ;  /* SET */
 
-int sciInitIsLine(sciPointObj * pobj, BOOL isline);
-int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
+GRAPHICS_IMPEXP int sciInitIsLine(sciPointObj * pobj, BOOL isline);
+GRAPHICS_IMPEXP int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
 
-int sciInitLineStyle( sciPointObj * pobj, int linestyle ) ;
-int sciSetLineStyle ( sciPointObj * pobj, int linestyle ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitLineStyle( sciPointObj * pobj, int linestyle ) ;
+GRAPHICS_IMPEXP int sciSetLineStyle ( sciPointObj * pobj, int linestyle ) ; /* SET */
 
-int sciInitIsMark(sciPointObj * pobj, BOOL ismark);  /* SET */
-int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
+GRAPHICS_IMPEXP int sciInitIsMark(sciPointObj * pobj, BOOL ismark);  /* SET */
+GRAPHICS_IMPEXP int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
 
-int sciInitIsFilled(sciPointObj * pobj, BOOL isfilled);
-int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled);  /* SET */
+GRAPHICS_IMPEXP int sciInitIsFilled(sciPointObj * pobj, BOOL isfilled);
+GRAPHICS_IMPEXP int sciSetIsFilled (sciPointObj * pobj, BOOL isfilled);  /* SET */
 
-int sciInitPolylineStyle( sciPointObj * pobj, int plot );
-int sciInitArrowSize( sciPointObj * pobj, double size );
+GRAPHICS_IMPEXP int sciInitPolylineStyle( sciPointObj * pobj, int plot );
+GRAPHICS_IMPEXP int sciInitArrowSize( sciPointObj * pobj, double size );
 
-int sciInitMarkStyle(sciPointObj * pobj, int markstyle);
-int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
+GRAPHICS_IMPEXP int sciInitMarkStyle(sciPointObj * pobj, int markstyle);
+GRAPHICS_IMPEXP int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
 
-int sciInitMarkSize(sciPointObj * pobj, int marksize);
-int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
+GRAPHICS_IMPEXP int sciInitMarkSize(sciPointObj * pobj, int marksize);
+GRAPHICS_IMPEXP int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
 
-int sciInitMarkSizeUnit(sciPointObj * pobj, int marksizeunit);
-int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
+GRAPHICS_IMPEXP int sciInitMarkSizeUnit(sciPointObj * pobj, int marksizeunit);
+GRAPHICS_IMPEXP int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
 
-int sciInitMarkBackground(sciPointObj * pobj, int colorindex);
-int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
+GRAPHICS_IMPEXP int sciInitMarkBackground(sciPointObj * pobj, int colorindex);
+GRAPHICS_IMPEXP int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 
-int sciInitMarkForeground(sciPointObj * pobj, int colorindex);
-int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
+GRAPHICS_IMPEXP int sciInitMarkForeground(sciPointObj * pobj, int colorindex);
+GRAPHICS_IMPEXP int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 
-int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type ) ;
-int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type ) ;
+GRAPHICS_IMPEXP int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /* SET */
 
-int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
-int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
+GRAPHICS_IMPEXP int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
+GRAPHICS_IMPEXP int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
 
 /* Text Functions */
-int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */
-int sciSetFontSize (sciPointObj * pobj, double fontSize); /* SET */
+GRAPHICS_IMPEXP int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */
+GRAPHICS_IMPEXP int sciSetFontSize (sciPointObj * pobj, double fontSize); /* SET */
 
-int sciInitFontOrientation(sciPointObj * pobj, double textorientation); /* SET */
-int sciSetFontOrientation (sciPointObj * pobj, double textorientation); /* SET */
+GRAPHICS_IMPEXP int sciInitFontOrientation(sciPointObj * pobj, double textorientation); /* SET */
+GRAPHICS_IMPEXP int sciSetFontOrientation (sciPointObj * pobj, double textorientation); /* SET */
 
-int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ; /* SET */
-int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
-int sciInitFontBackground(sciPointObj * pobj, int color);
-int sciSetFontBackground (sciPointObj * pobj, int color); /* SET */
+GRAPHICS_IMPEXP int sciInitFontBackground(sciPointObj * pobj, int color);
+GRAPHICS_IMPEXP int sciSetFontBackground (sciPointObj * pobj, int color); /* SET */
 
-int sciInitFontForeground(sciPointObj * pobj, int colorindex ) ;
-int sciSetFontForeground (sciPointObj * pobj, int colorindex ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitFontForeground(sciPointObj * pobj, int colorindex ) ;
+GRAPHICS_IMPEXP int sciSetFontForeground (sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitFontStyle(sciPointObj * pobj, int iAttributes ) ;
-int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitFontStyle(sciPointObj * pobj, int iAttributes ) ;
+GRAPHICS_IMPEXP int sciSetFontStyle (sciPointObj * pobj, int iAttributes ) ; /* SET */
 
 /* Legend */
-int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
-int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */
+GRAPHICS_IMPEXP int sciInitLegendPlace(sciPointObj * pobj, sciLegendPlace place);
+GRAPHICS_IMPEXP int sciSetLegendPlace (sciPointObj * pobj, sciLegendPlace place); /* SET */
 
-int sciInitLegendPos(sciPointObj * pobj, double position[]);
-int sciSetLegendPos (sciPointObj * pobj, double position[]); /* SET */
+GRAPHICS_IMPEXP int sciInitLegendPos(sciPointObj * pobj, double position[]);
+GRAPHICS_IMPEXP int sciSetLegendPos (sciPointObj * pobj, double position[]); /* SET */
 
 /* GMODE */
-int sciInitIsClipping(sciPointObj * pobj, int value) ;
-int sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
+GRAPHICS_IMPEXP int sciInitIsClipping(sciPointObj * pobj, int value) ;
+GRAPHICS_IMPEXP int sciSetIsClipping (sciPointObj * pobj, int value); /* SET */
 
-int sciSetClipping (sciPointObj * pobj, double pclip[4] ); /* SET */
+GRAPHICS_IMPEXP int sciSetClipping (sciPointObj * pobj, double pclip[4] ); /* SET */
 
-int sciInitAddPlot (sciPointObj * pobj, BOOL value);
-int sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
+GRAPHICS_IMPEXP int sciInitAddPlot (sciPointObj * pobj, BOOL value);
+GRAPHICS_IMPEXP int sciSetAddPlot (sciPointObj * pobj, BOOL value); /* SET */
 
-int sciInitAutoScale(sciPointObj * pobj, BOOL value);
-int sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
+GRAPHICS_IMPEXP int sciInitAutoScale(sciPointObj * pobj, BOOL value);
+GRAPHICS_IMPEXP int sciSetAutoScale (sciPointObj * pobj, BOOL value); /* SET */
 
-int sciInitZooming(sciPointObj * pobj, BOOL value);
-int sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
+GRAPHICS_IMPEXP int sciInitZooming(sciPointObj * pobj, BOOL value);
+GRAPHICS_IMPEXP int sciSetZooming (sciPointObj * pobj, BOOL value); /* SET */
 
-int sciInitXorMode(sciPointObj * pobj, int value);
-int sciSetXorMode (sciPointObj * pobj, int value); /* SET */
+GRAPHICS_IMPEXP int sciInitXorMode(sciPointObj * pobj, int value);
+GRAPHICS_IMPEXP int sciSetXorMode (sciPointObj * pobj, int value); /* SET */
 
-int sciInitVisibility (sciPointObj * pobj, BOOL value);
-int sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
+GRAPHICS_IMPEXP int sciInitVisibility (sciPointObj * pobj, BOOL value);
+GRAPHICS_IMPEXP int sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
 
-int sciInitResize(sciPointObj * pobj, BOOL value);
-int sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
+GRAPHICS_IMPEXP int sciInitResize(sciPointObj * pobj, BOOL value);
+GRAPHICS_IMPEXP int sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
 
-int sciSetDefaultValues (void); /* SET */
+GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-int sciInitName(sciPointObj * pobj, char * newName); /* SET */
-int sciSetName (sciPointObj * pobj, char * newName); /* SET */
-int sciInitNum( sciPointObj * pobj, int value ) ;
-int sciSetNum ( sciPointObj * pobj, int value ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitName(sciPointObj * pobj, char * newName); /* SET */
+GRAPHICS_IMPEXP int sciSetName (sciPointObj * pobj, char * newName); /* SET */
+GRAPHICS_IMPEXP int sciInitNum( sciPointObj * pobj, int value ) ;
+GRAPHICS_IMPEXP int sciSetNum ( sciPointObj * pobj, int value ) ; /* SET */
 
-int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
-int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitDimension( sciPointObj * pobj, int newWidth, int newHeight ) ;
+GRAPHICS_IMPEXP int sciSetDimension(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
 
-int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight ) ;
-int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitWindowDim( sciPointObj * pobj, int newWidth, int newHeight ) ;
+GRAPHICS_IMPEXP int sciSetWindowDim(  sciPointObj * pobj, int newWidth, int newHeight ) ; /* SET */
 
-int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
-int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy); /* SET */
+GRAPHICS_IMPEXP int sciInitScreenPosition(sciPointObj * pobj, int pposx, int pposy);
+GRAPHICS_IMPEXP int sciSetScreenPosition( sciPointObj * pobj, int pposx, int pposy); /* SET */
 
 
-void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
+GRAPHICS_IMPEXP void sciSelectFirstSubwin( sciPointObj * parentFigure ) ; /* SET */
 
-int sciInitSelectedSubWin (sciPointObj * psubwinobj);
-int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
+GRAPHICS_IMPEXP int sciInitSelectedSubWin (sciPointObj * psubwinobj);
+GRAPHICS_IMPEXP int sciSetSelectedSubWin (sciPointObj * psubwinobj); /* SET */
 
-int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
+GRAPHICS_IMPEXP int sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin); /* SET */
 
-int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol); /* SET */
+GRAPHICS_IMPEXP int sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol); /* SET */
 
-int sciSetdrawmode(BOOL mode); /* SET */
-int sciSwitchWindow(int winnum); /* SET */
+GRAPHICS_IMPEXP int sciSetdrawmode(BOOL mode); /* SET */
+GRAPHICS_IMPEXP int sciSwitchWindow(int winnum); /* SET */
 
-int sciInitUsedWindow( int winNum ) ; /* SET */
-int sciSetUsedWindow( int winNum ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitUsedWindow( int winNum ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetUsedWindow( int winNum ) ; /* SET */
 
-int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
+GRAPHICS_IMPEXP int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 
-int sciInitAutoRotation( sciPointObj * pObj, BOOL value ) ;
-int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
+GRAPHICS_IMPEXP int sciInitAutoRotation( sciPointObj * pObj, BOOL value ) ;
+GRAPHICS_IMPEXP int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
 
-int sciInitAutoPosition( sciPointObj * pObj, BOOL value ) ;
-int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
+GRAPHICS_IMPEXP int sciInitAutoPosition( sciPointObj * pObj, BOOL value ) ;
+GRAPHICS_IMPEXP int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
 
-int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
-int sciSetAutoSize(  sciPointObj * pObj, BOOL autoSize ) ;
+GRAPHICS_IMPEXP int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
+GRAPHICS_IMPEXP int sciSetAutoSize(  sciPointObj * pObj, BOOL autoSize ) ;
 
-int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
-int sciSetAlignment(  sciPointObj * pObj, sciTextAlignment align ) ;
+GRAPHICS_IMPEXP int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
+GRAPHICS_IMPEXP int sciSetAlignment(  sciPointObj * pObj, sciTextAlignment align ) ;
 
-int sciInitUserSize( sciPointObj * pObj, double width, double height ) ;
-int sciSetUserSize(  sciPointObj * pObj, double width, double height ) ;
+GRAPHICS_IMPEXP int sciInitUserSize( sciPointObj * pObj, double width, double height ) ;
+GRAPHICS_IMPEXP int sciSetUserSize(  sciPointObj * pObj, double width, double height ) ;
 
-int sciInitCenterPos( sciPointObj * pObj, BOOL newCP ) ;
-int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
+GRAPHICS_IMPEXP int sciInitCenterPos( sciPointObj * pObj, BOOL newCP ) ;
+GRAPHICS_IMPEXP int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
 
-int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
-int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
+GRAPHICS_IMPEXP int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
+GRAPHICS_IMPEXP int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 
-int sciInitSelectedObject( sciPointObj * pObj ) ;
-int sciSetSelectObject(    sciPointObj * pObj ) ;
+GRAPHICS_IMPEXP int sciInitSelectedObject( sciPointObj * pObj ) ;
+GRAPHICS_IMPEXP int sciSetSelectObject(    sciPointObj * pObj ) ;
 
-int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
-int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
+GRAPHICS_IMPEXP int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
+GRAPHICS_IMPEXP int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
 
-int sciInitHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
-int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
+GRAPHICS_IMPEXP int sciInitHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
+GRAPHICS_IMPEXP int sciSetHiddenAxisColor( sciPointObj * pObj, int newColor ) ;
 
-int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha );
-int sciInitdrawmode( BOOL mode );
+GRAPHICS_IMPEXP int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha );
+GRAPHICS_IMPEXP int sciInitdrawmode( BOOL mode );
 
-int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
+GRAPHICS_IMPEXP int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 
-int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
-int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; 
+GRAPHICS_IMPEXP int sciSetGridStyle( sciPointObj * pObj, int xStyle, int yStyle, int zStyle ) ; /* SET */
 
-int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetViewport(  sciPointObj * pObj, const int viewport[4] ) ; /* SET */
 
-int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage);
-int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
+GRAPHICS_IMPEXP int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage);
+GRAPHICS_IMPEXP int sciSetInfoMessage( sciPointObj * pObj, const char * newMessage ) ; /* SET */
 
-int sciInitEventHandler( sciPointObj * pObj, char * name ) ;
-int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
+GRAPHICS_IMPEXP int sciInitEventHandler( sciPointObj * pObj, char * name ) ;
+GRAPHICS_IMPEXP int sciSetEventHandler(  sciPointObj * pObj, char * name ) ;
 
-int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
-int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
+GRAPHICS_IMPEXP int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable ) ;
+GRAPHICS_IMPEXP int sciSetIsEventHandlerEnable(  sciPointObj * pObj, BOOL enable ) ;
 
-int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
-int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]); /* SET */
+GRAPHICS_IMPEXP int sciSetDataBounds( sciPointObj * pObj, double bounds[6] ) ; /* SET */
+GRAPHICS_IMPEXP int sciSetRealDataBounds(sciPointObj * pObj, const double bounds[6]); /* SET */
 
-int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
-int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
+GRAPHICS_IMPEXP int sciInitViewingAngles( sciPointObj * pObj, double alpha, double theta) ;
+GRAPHICS_IMPEXP int sciSetViewingAngles( sciPointObj * pObj, double alpha, double theta); /* SET */
 
-int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta);
+GRAPHICS_IMPEXP int setInfoMessageWithRotationAngles(sciPointObj * pFigure, double alpha, double theta);
 
-int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff);
-int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
+GRAPHICS_IMPEXP int sciInitPixmapMode(sciPointObj * pObj, BOOL onOrOff);
+GRAPHICS_IMPEXP int sciSetPixmapMode(sciPointObj * pObj, BOOL onOrOff); /* SET */
 
-int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
-int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
+GRAPHICS_IMPEXP int sciInitTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
+GRAPHICS_IMPEXP int sciSetTextPos( sciPointObj * pObj, double posX, double posY, double posZ);
 
-int sciInitLogFlags(sciPointObj * pObj, char logFlags[3]);
-int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
+GRAPHICS_IMPEXP int sciInitLogFlags(sciPointObj * pObj, char logFlags[3]);
+GRAPHICS_IMPEXP int sciSetLogFlags(sciPointObj * pObj, char logFlags[3]) ; /* SET */
 
-int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
-int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
+GRAPHICS_IMPEXP int sciInitAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ);
+GRAPHICS_IMPEXP int sciSetAutoTicks(sciPointObj * pObj, BOOL autoTicksX, BOOL autoTicksY, BOOL autoTicksZ); /* SET */
 
-int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]); /* SET */
+GRAPHICS_IMPEXP int sciSetZoomBox(sciPointObj * pObj, const double zoomBox[6]); /* SET */
 
-int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
-int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
+GRAPHICS_IMPEXP int sciInitImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
+GRAPHICS_IMPEXP int sciSetImmediateDrawingMode(sciPointObj * pObj, BOOL autoRedraw);
 
-int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs);
-int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs); /* SET */
+GRAPHICS_IMPEXP int sciInitUseNurbs(sciPointObj * pObj, BOOL useNurbs);
+GRAPHICS_IMPEXP int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs); /* SET */
 
-int sciInitIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
-int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics); /* SET */
+GRAPHICS_IMPEXP int sciInitIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
+GRAPHICS_IMPEXP int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics); /* SET */
 
-int sciInitColorRange(sciPointObj * pObj, int subset[2]); 
-int sciSetColorRange(sciPointObj * pObj, int subset[2]); /* SET */
+GRAPHICS_IMPEXP int sciInitColorRange(sciPointObj * pObj, int subset[2]); 
+GRAPHICS_IMPEXP int sciSetColorRange(sciPointObj * pObj, int subset[2]); /* SET */
 
-int sciInitOutsideColors(sciPointObj * pObj, int colors[2]);
-int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
+GRAPHICS_IMPEXP int sciInitOutsideColors(sciPointObj * pObj, int colors[2]);
+GRAPHICS_IMPEXP int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
 
-int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
-int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
+GRAPHICS_IMPEXP int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
+GRAPHICS_IMPEXP int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
 
-int sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
-int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
+GRAPHICS_IMPEXP int sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
+GRAPHICS_IMPEXP int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
 
-int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
-int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
+GRAPHICS_IMPEXP int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
+GRAPHICS_IMPEXP int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
 
-int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
-int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */
+GRAPHICS_IMPEXP int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
+GRAPHICS_IMPEXP int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */
 
-BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
+GRAPHICS_IMPEXP BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */
-int checkPercent( char * string ) ;
+GRAPHICS_IMPEXP int checkPercent( char * string ) ;
 /*---------------------------------------------------------------------------*/
 
 #endif /* __SCI_SET_PROPERTY__ */

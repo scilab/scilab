@@ -1,5 +1,8 @@
 /* GuiManagement.i */
-/*  swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i */
+/** 
+ * Windows: swig -java -package org.scilab.modules.console -outdir ../java/org/scilab/modules/console/ GuiManagement.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 %module GuiManagement
 %{
 #include "MALLOC.h"
@@ -37,11 +40,15 @@ public class%}
 		System.err.println(e.getLocalizedMessage());
 		System.exit(-1);
 	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library sciconsole does not exist or cannot be found :");
-		System.err.println(e.getLocalizedMessage());
-		System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
-		System.exit(-1);
-    }
+		   System.err.println("The native library sciconsole does not exist or cannot be found.");
+        if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
+		   System.err.println(e.getLocalizedMessage());
+		   System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
+		   System.exit(-1);
+		}else{
+		   System.err.println("Continuing anyway because of CONTINUE_ON_JNI_ERROR");
+		}
+	}
   }
 %}
 

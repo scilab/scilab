@@ -25,10 +25,7 @@ src/fortran/snorm.f \
 src/fortran/gennch.f \
 src/fortran/genmn.f \
 src/fortran/phrtsd.f \
-src/fortran/spofa.f \
-src/fortran/sdot.f \
 src/fortran/ignnbn.f \
-src/fortran/lennob.f \
 src/fortran/genf.f \
 src/fortran/genunf.f \
 src/fortran/genexp.f \
@@ -80,12 +77,5 @@ libscirandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 #### randlib : gateway declaration ####
 libscirandlib_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
-
-#### randlib : include files ####
-libscirandlib_la_includedir=$(pkgincludedir)/randlib
-libscirandlib_la_include_HEADERS = includes/grand.h \
-includes/clcg4.h \
-includes/others_generators.h \
-includes/gw_randlib.h
 
 include $(top_srcdir)/Makefile.incl.am

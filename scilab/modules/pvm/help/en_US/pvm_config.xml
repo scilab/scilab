@@ -92,14 +92,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 if pvm_start()==0 then
-    res = pvm_config()
-    pvm_halt()
+  res = pvm_config()
+  pvm_halt()
 end
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

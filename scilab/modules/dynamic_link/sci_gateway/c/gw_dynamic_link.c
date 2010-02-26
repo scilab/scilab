@@ -16,8 +16,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define DYNAMIC_LINK_TAB_SIZE 8
-static gw_generic_table Tab[DYNAMIC_LINK_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{sci_getdynlibext,"getdynlibext"},
 	{sci_addinter,"addinter"},
@@ -32,7 +31,7 @@ static gw_generic_table Tab[DYNAMIC_LINK_TAB_SIZE]=
 int gw_dynamic_link(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,DYNAMIC_LINK_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

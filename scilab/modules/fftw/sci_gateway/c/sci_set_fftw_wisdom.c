@@ -11,8 +11,9 @@
  *
  */
 
-#include "sci_set_fftw_wisdom.h"
+
 #include "callfftw.h"
+#include "stack-c.h"
 #include "MALLOC.h"
 #include "gw_fftw.h"
 #include "localization.h"

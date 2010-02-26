@@ -18,13 +18,16 @@
 #include "MALLOC.h"
 #include "isdigit.h"
 /*--------------------------------------------------------------------------*/
-BOOL *IsDigit(char *input_string)
+BOOL *IsDigitW(wchar_t *input_string, int *returnedSizeArray)
 {
 	BOOL *returnedValues = NULL;
+	*returnedSizeArray = 0;
+
 	if (input_string)
 	{
 		int i = 0;
-		int length_input_string = (int)strlen(input_string);
+		int length_input_string = (int)wcslen(input_string);
+		*returnedSizeArray = length_input_string;
 
 		if (length_input_string > 0)
 		{
@@ -33,7 +36,7 @@ BOOL *IsDigit(char *input_string)
 			{
 				for (i = 0;i < length_input_string; i++)
 				{
-					if ( isdigit(input_string[i]) ) returnedValues[i] = TRUE;
+					if ( iswdigit(input_string[i]) ) returnedValues[i] = TRUE;
 					else returnedValues[i] = FALSE;
 				}
 			}

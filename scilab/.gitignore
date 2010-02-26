@@ -1,6 +1,7 @@
 #
 # Linux objects files
 #
+*.loT
 *.lo
 *.la
 *.o
@@ -79,6 +80,12 @@ de_DE.isl
 de_DE_scilab.isl
 es_ES.isl
 es_ES_scilab.isl
+pt_BR_scilab.isl
+ja_JP.isl
+ja_JP_scilab.isl
+it_IT_scilab.isl
+uk_UA.isl
+uk_UA_scilab.isl
 #
 # VS solution files (windows)
 #

@@ -11,12 +11,12 @@
  */
 #include <string.h>
 #include "gw_core.h"
+#include "MALLOC.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define CORE_TAB_SIZE 56
-static gw_generic_table Tab[CORE_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 {C2F(sci_debug),"debug"},
 {C2F(sci_who),"who"},
@@ -45,7 +45,6 @@ static gw_generic_table Tab[CORE_TAB_SIZE]=
 {C2F(sci_delbpt),"delbpt"},
 {C2F(sci_dispbpt),"dispbpt"},
 {NULL,""},//funcprot
-{C2F(sci_whereis),"whereis"},
 {C2F(sci_where),"where"},
 {C2F(sci_havewindow),"havewindow"},
 {C2F(sci_stacksize),"stacksize"},
@@ -69,9 +68,7 @@ static gw_generic_table Tab[CORE_TAB_SIZE]=
 {C2F(sci_getmd5),"getmd5"},
 {C2F(sci_getmodules),"getmodules"},
 {C2F(sci_with_module),"with_module"},
-{C2F(sci_librarieslist),"librarieslist"},
-{C2F(sci_libraryinfo),"libraryinfo"},
-{C2F(sci_getdebuginfo),"getdebuginfo"},
+{NULL, ""}, //getdebuginfo
 {C2F(sci_readgateway),"readgateway"},
 {C2F(sci_exit),"exit"}
 };
@@ -92,7 +89,7 @@ int gw_core(void)
 		}
 	}
 	
-	callFunctionFromGateway(Tab,CORE_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -104,7 +104,7 @@ xsetech()</synopsis>
     padrão de <literal>rect</literal> é <literal>[0,0,1,1]</literal> (na
     criação de janelas, quando se volta para o valor padrão com
     <literal>xset('default')</literal> ou quando se limpa eventos gráficos
-    gravados <literal>xbasc()</literal>).</para>
+    gravados <literal>clf()</literal>).</para>
 
     <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> é utilizado
     para ajustar a moldura gráfica dentro da sub-janela. A moldura gráfica é
@@ -117,11 +117,9 @@ xsetech()</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // para obter uma explanação gráfica dos parâmetros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
 
 // aqui xsetech é usado para dividir a janela de gráficos em duas partes
 // o primeiro xsetech é usado para se ajustar a primeira sub-janela 
@@ -136,7 +134,7 @@ xsetech([0,0.5,1.0,0.5])
 // e nós a modificamos utilizando o argumento rect em plot2d 
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
 // quatro esboços em uma única janela de gráficos
-xbasc()
+clf()
 xset("font",2,0)
 xsetech([0,0,0.5,0.5]); plot3d()
 xsetech([0.5,0,0.5,0.5]); plot2d()
@@ -145,17 +143,16 @@ xsetech([0,0.5,0.5,0.5]); histplot()
 // de volta aos valores padrões para a sub-janela
 xsetech([0,0,1,1])
 // um esboço com arect modificado 
-xbasc()
+clf()
 xset("default")
 xsetech(arect=[0,0,0,0]) 
 x=1:0.1:10;plot2d(x',sin(x)')
-xbasc()
+clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
-xbasc()
+clf()
 xset("default")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

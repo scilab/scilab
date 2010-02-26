@@ -27,6 +27,11 @@ diary(0);
 DIAFILECONTENTS=mgetl(TMPDIR+"/bug1200.dia");
 
 REFFILECONTENTS=[" ";
-	"    0.001  ";]
+"-->disp(J);";
+" ";
+"    0.001  ";
+" ";
+"-->diary(0);"];
+  
 
 if or(DIAFILECONTENTS<>REFFILECONTENTS) then pause,end

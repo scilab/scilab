@@ -182,7 +182,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple Java example 
+    <programlisting role="example"><![CDATA[ 
+// A simple Java example 
 // Filename: BasicExample.java
 
 import javasci.Scilab;
@@ -192,8 +193,7 @@ public class BasicExample {
 	Scilab.Exec("disp((%pi^2)/6);");
 	}
 }
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

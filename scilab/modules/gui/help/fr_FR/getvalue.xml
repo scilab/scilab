@@ -144,11 +144,11 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    labels=["module";"frequence";"phase    "];
-    [ok,mag,freq,ph]=getvalue("signal sinusoidal",labels,...
-    list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+labels=["module";"frequence";"phase    "];
+[ok,mag,freq,ph]=getvalue("signal sinusoidal",labels,...
+list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

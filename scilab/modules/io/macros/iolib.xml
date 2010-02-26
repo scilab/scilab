@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<scilablib name="iolib">
+  <macro name="getscilabkeywords" file="getscilabkeywords.sci"/>
+  <macro name="halt" file="halt.sci"/>
+  <macro name="input" file="input.sci"/>
+  <macro name="readc_" file="readc_.sci"/>
+  <macro name="unix_g" file="unix_g.sci"/>
+  <macro name="unix_s" file="unix_s.sci"/>
+  <macro name="unix_w" file="unix_w.sci"/>
+  <macro name="unix_x" file="unix_x.sci"/>
+</scilablib>

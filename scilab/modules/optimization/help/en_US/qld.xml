@@ -98,7 +98,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>:Floatting point number, required prÃ©cision.</para>
+          <para>Floatting point number, required prÃ©cision.</para>
         </listitem>
       </varlistentry>
 
@@ -166,7 +166,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -174,7 +174,7 @@ C1= [1,-1,1,0,3,1;
      2,5,3,0,1,0];
 b1=[1;2;3];
 
-//C2*x &lt;= b2 (2 inequality constraints)
+//C2*x <= b2 (2 inequality constraints)
 C2=[0,1,0,1,2,-1;
     -1,0,2,1,1,0];
 b2=[-1;2.5];
@@ -191,7 +191,7 @@ b=[b1;b2];
 me=3;
 [x,lagr]=qld(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

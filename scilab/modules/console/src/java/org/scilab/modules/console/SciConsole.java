@@ -28,6 +28,7 @@ import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
+import javax.swing.KeyStroke;
 import javax.xml.parsers.ParserConfigurationException;
 import org.scilab.modules.localization.Messages;
 
@@ -102,10 +103,20 @@ public abstract class SciConsole extends JPanel {
 	public SciConsole(String configFilePath) {
 		super(new BorderLayout());
 
-		String profileName = null;
-
 		try {
 			config = ConfigurationBuilder.buildConfiguration(configFilePath);
+			config.setActiveProfile("scilab");
+			if (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
+			{
+				ConsoleConfiguration configMac = ConfigurationBuilder.buildConfiguration(configFilePath);;
+				configMac.setActiveProfile("macosx");
+				for (KeyStroke key : config.getKeyMapping().keys()){
+					config.getKeyMapping().put(key,"");
+				}
+				for (KeyStroke key : configMac.getKeyMapping().keys()){
+					config.getKeyMapping().put(key, configMac.getKeyMapping().get(key));
+				}
+			}
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,8 +130,6 @@ public abstract class SciConsole extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		config.setActiveProfile(profileName);
-		//
 
 		sciConsole = ConsoleBuilder.buildConsole(config, this);
 		jSP = new JScrollPane(sciConsole);

@@ -75,17 +75,17 @@
     <literal>(blocd(2),blocd(3),...)</literal> is itself a list of one the
     following types :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 list('transfer','name_of_linear_system')
-     </programlisting>
+ ]]></programlisting>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 list('link','name_of_link',
                [number_of_upstream_box,upstream_box_port],
                [downstream_box_1,downstream_box_1_portnumber],
                [downstream_box_2,downstream_box_2_portnumber],
                ...)
-     </programlisting>
+ ]]></programlisting>
 
     <para>The strings <literal>'transfer'</literal> and
     <literal>'links'</literal> are keywords which indicate the type of element
@@ -130,26 +130,29 @@ list('link','name_of_link',
     <literal>S2</literal> to the output (port 0 of fictitious block -1,
     omitted) and to (input)port 2 of the adder.</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;
-//
+
 //Systems
 l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //System 1
 l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
 l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
-//
+
 //Links
-// Inputs  -1 --&gt; input 1
+
+// Inputs  -1 --> input 1
 l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
 // Internal 
 l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
-// Outputs // -1 -&gt; output 1
+
+// Outputs // -1 -> output 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+
 //Evaluation call
 w=bloc2exp(syst);
-     </programlisting>
+ ]]></programlisting>
 
     <para>The result is the character string:
     <literal>w=-(s2*s1-eye())\s2*s1</literal>.</para>
@@ -161,7 +164,7 @@ w=bloc2exp(syst);
 
     <para>[2] second example</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;
 
@@ -179,7 +182,7 @@ l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
 
 //Evaluation call
 w=bloc2exp(syst);
-       </programlisting>
+ ]]></programlisting>
 
     <para>In this case the result is a formula equivalent to the usual
     one:</para>

@@ -47,11 +47,16 @@ public class CompletionAction extends AbstractConsoleAction {
 		Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
 		List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
 
+		int caretPosition = configuration.getInputParsingManager().getCaretPosition();
+		String currentLine = configuration.getInputParsingManager().getCommandLine();
+		String lineBeforeCaret = currentLine.substring(0, caretPosition);
+		String lineAfterCaret = currentLine.substring(caretPosition);
+		
 		if (completionItems != null && completionItems.size() == 1) {
 			/* Only one item returned, autoselected and appended to command line */
 			configuration.getCompletionWindow().show(completionItems, location);
 			
-			String currentLine = configuration.getInputParsingManager().getCommandLine();
+		
 			String stringToAdd = configuration.getCompletionWindow().getCompletionResult();
 			String stringToAddType = ((SciCompletionWindow) configuration.getCompletionWindow()).getCompletionResultType();
 			boolean typeStringIsFile = false;
@@ -60,7 +65,7 @@ public class CompletionAction extends AbstractConsoleAction {
 				typeStringIsFile = true;
 			}
 			
-			String newLine = Completion.completelineforjava(currentLine, stringToAdd, typeStringIsFile);
+			String newLine = Completion.completelineforjava(lineBeforeCaret, stringToAdd, typeStringIsFile, lineAfterCaret);
 			
 			configuration.getInputParsingManager().reset();
 			configuration.getInputParsingManager().append(newLine);
@@ -79,14 +84,19 @@ public class CompletionAction extends AbstractConsoleAction {
 	    
 			java.util.Arrays.sort(completionArray);
 			String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
+			
+			caretPosition = configuration.getInputParsingManager().getCaretPosition();
+			currentLine = configuration.getInputParsingManager().getCommandLine();
 
-			if (commonPartOfWord.length() != 0) {
+			if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
 				if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
-					String currentLine = configuration.getInputParsingManager().getCommandLine();
+					
+					lineBeforeCaret = currentLine.substring(0, caretPosition);
+					lineAfterCaret = currentLine.substring(caretPosition);
 					
 					configuration.getInputParsingManager().reset();
-					String newLine = Completion.completelineforjava(currentLine, commonPartOfWord, false);
-
+					
+					String newLine = Completion.completelineforjava(lineBeforeCaret, commonPartOfWord, false, lineAfterCaret);
 					configuration.getInputParsingManager().append(newLine);
 				}
 			}

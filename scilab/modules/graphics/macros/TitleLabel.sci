@@ -17,7 +17,7 @@ function TitleLabel(varargin)
 
 ListArg = varargin;
 titlelabel = ListArg(1);
-ListArg(1) = null();
+ListArg(1) = null(); // remove this parameter from the list
 
 //detect and set the current axes now:
 if type(ListArg(1)) == 9
@@ -102,21 +102,6 @@ end
 // smart drawnow
 ResetFigureDDM(current_figure, cur_draw_mode);
 
-
-endfunction
-
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure == 9)
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
 
 endfunction
 

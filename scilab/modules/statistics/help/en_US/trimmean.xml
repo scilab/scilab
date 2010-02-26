@@ -152,10 +152,10 @@
     which is much larger than the others is not taken into account. The
     computed trimmed mean is therefore 50.</para>
 
-    <programlisting role="example">
-   data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
-   computed = trimmean(data,verbose=1);
- </programlisting>
+    <programlisting role="example"><![CDATA[ 
+data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
+computed = trimmean(data,verbose=1);
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -167,15 +167,13 @@
     one computes a trimmed mean. The trimmed mean is the line vector [25 25 25
     25].</para>
 
-    <programlisting role="example">
-  data = [
-    10 10 10 10
-    20 20 20 20
-    30 30 30 30
-    4000 4000 4000 4000
-  ];
-  computed = trimmean(data,50,orien="r");
- </programlisting>
+    <programlisting role="example"><![CDATA[ 
+data = [10 10 10 10
+        20 20 20 20
+        30 30 30 30
+        4000 4000 4000 4000];
+computed = trimmean(data,50,orien="r");
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -139,10 +139,8 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
- 
 // GMRES call x=gmres(A,b);
- 
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

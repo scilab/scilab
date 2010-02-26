@@ -17,7 +17,7 @@
 /* desc : interface for unzoom routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_unzoom.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "MALLOC.h"

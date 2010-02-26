@@ -15,8 +15,9 @@
 #define __PROMPTECHO_H__
 
 #include "machine.h"
+#include "dynlib_shell.h"
 
-int C2F(promptecho)(int *lunit, char *string, int *strl,int string_len);
+SHELL_IMPEXP int C2F(promptecho)(int *lunit, char *string, int *strl,int string_len);
 
 #endif /* __PROMPTECHO_H__ */
 /*--------------------------------------------------------------------------*/ 

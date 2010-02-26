@@ -43,9 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="&#x0D;&#x0A;"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -208,10 +208,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -301,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

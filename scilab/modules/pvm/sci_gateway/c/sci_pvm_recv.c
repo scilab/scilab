@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_recv, fin = 21
  ******************************************/
-int intspvm_recv(char *fname,unsigned long fname_len)
+int sci_pvm_recv(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,m2,n2,l2,un=1,l3,sizeUsed,size,l5,count=5,l,tid,tag;
   CheckRhs(2,2);

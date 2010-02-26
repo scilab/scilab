@@ -47,14 +47,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a='  123   ';
 '!'+a+'!'
 '!'+stripblanks(a)+'!'
 a=['  123   ',' xyz']
 strcat(stripblanks(a))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

@@ -9,6 +9,7 @@ src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
+src/c/strsplitfunction.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -59,8 +60,8 @@ sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
 sci_gateway/c/sci_strtod.c \
 sci_gateway/c/sci_strtok.c \
-sci_gateway/c/sci_regexp.c \
-sci_gateway/c/sci_NumTokens.c
+sci_gateway/c/sci_regexp.c
+
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
@@ -104,15 +105,5 @@ libscistring_la_etc_DATA = etc/string.quit etc/string.start
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
-#### string : include files ####
-libscistring_la_includedir=$(pkgincludedir)/string
-libscistring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h includes/InitializeString.h \
-includes/cvstr.h includes/getfastcode.h \
-includes/stricmp.h includes/strsubst.h \
-includes/code2str.h \
-includes/NumTokens.h \
-includes/StringConvert.h \
-includes/scistrtostr.h
-
 include $(top_srcdir)/Makefile.incl.am
+

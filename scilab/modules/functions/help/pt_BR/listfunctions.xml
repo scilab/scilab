@@ -93,11 +93,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   recompilefunction("asinh","p")
-   [flist,compiled,profilable,called] = listfunctions();
-   flist(profilable)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+recompilefunction("asinh","p")
+[flist,compiled,profilable,called] = listfunctions();
+flist(profilable)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -106,7 +106,7 @@
     <simplelist type="inline">
       <member><link linkend="function">function</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="deff">deff</link></member>
 

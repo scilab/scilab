@@ -12,7 +12,7 @@ function [tree]=sci_MFUN(tree)
 // M2SCI function
 // Conversion function for Matlab MFUN()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 global("varslist")
 

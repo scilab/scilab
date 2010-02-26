@@ -81,7 +81,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -101,13 +101,10 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
-				}
-				else if(TypeL == GenericType::RealUInt && TypeR == GenericType::RealUInt)
-				{
 				}
 				else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
 				{
@@ -122,7 +119,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -137,7 +134,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -154,14 +151,14 @@ namespace ast
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
-							os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+							os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 							throw os.str();
 						}
 						else if(iResult == 2)
 						{
 							std::ostringstream os;
 							os << "variables don't have the same formal variable";
-							os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+							os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 							throw os.str();
 						}
 					}
@@ -181,7 +178,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -196,7 +193,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -211,7 +208,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -226,7 +223,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -235,9 +232,6 @@ namespace ast
 				{
 				}
 				else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
-				{
-				}
-				else if(TypeL == GenericType::RealUInt && TypeR == GenericType::RealUInt)
 				{
 				}
 				else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
@@ -258,7 +252,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 
@@ -275,7 +269,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 
@@ -292,7 +286,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 
@@ -309,7 +303,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 
@@ -329,7 +323,7 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -344,7 +338,7 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 
@@ -360,12 +354,33 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
 				}
 
+				break;
+			}
+		case OpExp::dottimes :
+			{
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+				{
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
+
+					
+					int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
+					if(iResult)
+					{
+						std::ostringstream os;
+						os << _("Inconsistent row/column dimensions.\n");
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
+						throw os.str();
+					}
+
+					result_set(pResult);
+				}
 				break;
 			}
 		case OpExp::eq :
@@ -761,7 +776,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -776,7 +791,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << _("Inconsistent row/column dimensions.\n");
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 						throw os.str();
 					}
 					result_set(pResult);
@@ -833,21 +848,21 @@ namespace ast
 				{
 
 					Bool *pL	= execMeL->result_get()->getAsBool();
-					bool *pbL	= pL->bool_get();
-					bool bL		= true;
+					int *piL	= pL->bool_get();
+					int iL		= true;
 
 					for(int i = 0 ; i < pL->size_get() ; i++)
 					{
-						if(pbL[i] == false)
+						if(piL[i] == 1)
 						{
-							bL = false;
+							iL = 1;
 							break;
 						}
 					}
 
-					if(bL)
+					if(iL)
 					{//we don't need to look at ohers exp
-						pResult = new Bool(true);
+						pResult = new Bool(1);
 						result_set(pResult);
 					}
 					else //look at others exp
@@ -869,63 +884,63 @@ namespace ast
 						if(TypeR == GenericType::RealBool)
 						{
 							Bool *pR	= execMeR->result_get()->getAsBool();
-							bool* pbR = pR->bool_get();
-							bool* pbL = pL->bool_get();
+							int* piR = pR->bool_get();
+							int* piL = pL->bool_get();
 
 							if(pR->size_get() == 1)
 							{
-								if(pbR[0] == true)
+								if(piR[0] == 1)
 								{
-									pResult = new Bool(true);
+									pResult = new Bool(1);
 									result_set(pResult);
 								}
 								else
 								{
-									bool bState = true;
+									int iState = 1;
 									for(int i = 0 ; i < pL->size_get() ; i++)
 									{
-										if(pbL[i] == false)
+										if(piL[i] == 1)
 										{
-											bState = false;
+											iState = 0;
 											break;
 										}
 									}
-									pResult = new Bool(bState);
+									pResult = new Bool(iState);
 									result_set(pResult);
 								}
 							}
 							else if(pL->size_get() == 1)
 							{
-								if(pbL[0] == true)
+								if(piL[0] == 1)
 								{
-									pResult = new Bool(true);
+									pResult = new Bool(1);
 									result_set(pResult);
 								}
 								else
 								{
-									bool bState = true;
+									int iState = 1;
 									for(int i = 0 ; i < pR->size_get() ; i++)
 									{
-										if(pbR[i] == false)
+										if(piR[i] == 0)
 										{
-											bState = false;
+											iState = 0;
 											break;
 										}
 									}
-									pResult = new Bool(bState);
+									pResult = new Bool(iState);
 									result_set(pResult);
 								}
 							}
 							else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
 							{
-								bool* pb = NULL;
-								bool* pbR	= pR->bool_get();
-								bool* pbL	= pL->bool_get();
+								int* piB	= NULL;
+								int* piR	= pR->bool_get();
+								int* piL	= pL->bool_get();
 
-								pResult = new Bool(pR->rows_get(), pR->cols_get(), &pb);
+								pResult = new Bool(pR->rows_get(), pR->cols_get(), &piB);
 								for(int i = 0 ; i < pL->size_get(); i++)
 								{
-									pb[i] = pbR[i] || pbL[i];
+									piB[i] = (piR[i] == 1) || (piL[i] == 1);
 								}
 								result_set(pResult);
 							}
@@ -933,7 +948,7 @@ namespace ast
 							{
 								std::ostringstream os;
 								os << _("Inconsistent row/column dimensions.\n");
-								os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+								os << ((Location)e.right_get().location_get()).location_string_get() << std::endl;
 								throw os.str();
 							}
 						}

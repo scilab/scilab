@@ -70,7 +70,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     evH = spec([H11 -gam*b*Rinv*b'; gam*c'*Sinv*c  -H11']);
     idx = find(abs(real(evH)) < 1e-8 & imag(evH) >= 0);
     imev= imag(evH(idx));
-    [imev] = sort(imev);
+    [imev] = gsort(imev);
     q = maxi(size(imev));
     if q <= 1 then
       // q=1 can only happen in the first step if H-norm==maxsv(D) or H-norm==maxsv(0)

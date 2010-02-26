@@ -92,10 +92,11 @@
     intervalos, isto é, para cada X(i), busca em qual dos n-1 intervalos o
     componente do vetor cai, sendo os intervalos definidos por: </para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
             I1 = [val(1), val(2)]
-            Ik = (val(k), val(k+1)] for 1 &lt; k &lt;= n-1 ; 
-</programlisting>
+            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
+
+ ]]></programlisting>
 
     <para>e:</para>
 
@@ -162,27 +163,24 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // exemplo #1 (estatística elementar para U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
 val = linspace(0,1,n+1)';
 [ind, occ] = dsearch(X, val);
-xbasc() ; plot2d2(val, [occ/m;0])  // sem normalização: y deve ser próximo de 1/n
-
+clf() ; plot2d2(val, [occ/m;0])  // sem normalização: y deve ser próximo de 1/n
 
 // exemplo #2 (estatística elementar para B(N,p))
 N = 8 ; p = 0.5; m = 50000;
 X = grand(m,1,"bin",N,p); val = (0:N)';
 [ind, occ] = dsearch(X, val, "d");
 Pexp = occ/m; Pexa = binomial(p,N); 
-xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
+clf() ; hm = 1.1*max(max(Pexa),max(Pexp));
 plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
         "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
 xtitle(  "Distribuição binomial B("+string(N)+","+string(p)+") :" ...
         +" probabilidades exatas versus as experimentais")
-
 
 // exemplo #3 (polinômio de Hermite seccionado)
 x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
@@ -199,12 +197,11 @@ deff("y=Kl(t,k,x)","y=(t-x(k)).*Ll(t,k,x).^2")
 deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
 // plotando a curva
 Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
-xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+clf(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
 xtitle("Um polinômio seccionado de hermite")
 // NOTE : a verificação pode ser feita adicionando-se : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

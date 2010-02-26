@@ -8,58 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2008-06-04 22:36+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"PO-Revision-Date: 2009-11-20 21:57+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr "%s: Неверный аргумент #%d: Ожидался ''%s'' или ''%s''.\n"
-
-#, c-format
-msgid "The file %s does not exist.\n"
-msgstr "Файл %s не существует.\n"
-
-#, c-format
-msgid "%s: File %s is not an ole2 file.\n"
-msgstr "%s: Файл %s не является файлом ole2.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: В файле ole2 %s нет xls-потока.\n"
-
-#, c-format
-msgid "%s: Not an ole2 file.\n"
-msgstr "%s: Не ole2 файл.\n"
-
-#, c-format
-msgid "%s: The file has no Workbook directory.\n"
-msgstr "%s: Файл не содержит каталога Workbook.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "%s: Incorrect or corrupted file.\n"
-msgstr "%s: Файл повреждён или некорректен.\n"
-
-#, c-format
-msgid "%s: Only BIFF8 file format is handled.\n"
-msgstr "%s: Поддерживается только формат файлов BIFF8.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалось число.\n"
+msgid "%s: End of file.\n"
+msgstr "%s: Конец файла.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -67,29 +31,94 @@ msgstr ""
 "%s: Не удалось прочитать ожидаемые данные, возможно неправильный файл xls.\n"
 
 #, c-format
-msgid "%s: End of file.\n"
-msgstr "%s: Конец файла.\n"
+msgid "%s: File %s is not an ole2 file.\n"
+msgstr "%s: Файл %s не является файлом ole2.\n"
 
 #, c-format
-msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
-msgstr "LOGGER_set_logfile: ОШИБК - Не удалось открыть файл лога '%s' (%s)"
+msgid "%s: Incorrect or corrupted file.\n"
+msgstr "%s: Файл повреждён или некорректен.\n"
 
 #, c-format
-msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Not an ole2 file.\n"
+msgstr "%s: Не ole2 файл.\n"
+
+#, c-format
+msgid "%s: Only BIFF8 file format is handled.\n"
+msgstr "%s: Поддерживается только формат файлов BIFF8.\n"
+
+#, c-format
+msgid "%s: The file has no Workbook directory.\n"
+msgstr "%s: Файл не содержит каталога Workbook.\n"
+
+#, c-format
+msgid "%s: There is no xls stream in the ole2 file %s.\n"
+msgstr "%s: В файле ole2 %s нет xls-потока.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога '%s' (%s)\n"
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
 
 #, c-format
-msgid "LOGGER-Default: %s%s"
-msgstr "LOGGER-Default: %s%s"
+msgid "%s: file %s does not exist.\n"
+msgstr "%s: файл %s не существует.\n"
 
 #, c-format
-msgid "ripOLE: %s\n"
-msgstr "ripOLE: %s\n"
+msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
+msgstr "%s:%d:Несовпадение в чтении байт. Запрошено %d, получено %d\n"
 
 #, c-format
-msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr "%s:%d:OLE_set_debug: Уровень отладки установлен в %d"
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:ОТЛАДКА: Attachment %s:%s:%s size = %d\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgstr ""
+"%s:%d:OLEUNWRAP_decode_attachment:ОТЛАДКА: Calling reporter for the filename"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
+"'%s' and '%s'"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось создать имя файла из «%s» и "
+"«%s»"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось открыть %s для записи (%s)\n"
+
+#, c-format
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:ВНИМАНИЕ: Записано только %d из %d байт в файл "
+"%s\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
@@ -101,37 +130,12 @@ msgstr ""
 "%s:%d:OLE_get_block:ОШИБКА: Не удалось выделить %d байт для OLE-блока"
 
 #, c-format
-msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
-msgstr "%s:%d:OLE_get_block:ОШИБКА: Проблема поиска (block=%d:%d)"
-
-#, c-format
-msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr "%s:%d:Несовпадение в чтении байт. Запрошено %d, получено %d\n"
-
-#, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr "%s:%d:OLE_get_block:ОШИБКА: OLE-файл закрыт\n"
 
 #, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
-msgstr "%s:%d:OLE_load_FAT:ОШИБКА: Не удалось выделить %d байт\n"
-
-#, c-format
-msgid ""
-"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
-"position = 0x%x"
-msgstr ""
-"%s:%d:OLE_load_FAT:ОШИБКА: Невозможно загрузить блок, import sector = 0x%x, "
-"fat position = 0x%x"
-
-#, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr ""
-"%s:%d:OLE_load_FAT:ОШИБКА: Превышена предельная граница FAT-памяти %p >= %p"
-
-#, c-format
-msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
-msgstr "%s:%d:OLE_load_FAT:ОШИБКА: запрос сектора был отрицателен (%d)"
+msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
+msgstr "%s:%d:OLE_get_block:ОШИБКА: Проблема поиска (block=%d:%d)"
 
 #, c-format
 msgid ""
@@ -141,30 +145,55 @@ msgstr ""
 "miniChain"
 
 #, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
+msgstr ""
+"%s:%d:OLE_load_FAT:ОШИБКА: Превышена предельная граница FAT-памяти %p >= %p"
+
+#, c-format
+msgid ""
+"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
+"position = 0x%x"
+msgstr ""
+"%s:%d:OLE_load_FAT:ОШИБКА: Не удалось загрузить блок, import sector = 0x%x, "
+"fat position = 0x%x"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
+msgstr "%s:%d:OLE_load_FAT:ОШИБКА: Не удалось выделить %d байт\n"
+
+#, c-format
+msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
+msgstr "%s:%d:OLE_load_FAT:ОШИБКА: запрос сектора был отрицателен (%d)"
+
+#, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr "%s:%d:OLE_load_chain:Ошибка: Load-chain превысила границы памяти"
-
-#, c-format
-msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
-msgstr ""
-"%s:%d:OLE_open_file:ОШИБКА: Не удалось найти файл '%s' для открытия (%s)"
-
-#, c-format
-msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
-msgstr ""
-"%s:%d:OLE_open_file:Ошибка: Не удалось открыть файл %s для чтения (%s)\n"
 
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
 msgstr "%s:%d:OLE_open_directory:ОШИБКА: %s"
 
 #, c-format
+msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
+msgstr ""
+"%s:%d:OLE_open_file:ОШИБКА: Не удалось найти файл «%s» для открытия (%s)"
+
+#, c-format
+msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
+msgstr ""
+"%s:%d:OLE_open_file:Ошибка: Не удалось открыть файл «%s» для чтения (%s)\n"
+
+#, c-format
+msgid "%s:%d:OLE_set_debug: Debug level set to %d"
+msgstr "%s:%d:OLE_set_debug: Уровень отладки установлен в %d"
+
+#, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
 "and '%s'"
 msgstr ""
-"%s:%d:OLE_store_stream:ОШИБКА: Не удалось составить полное имя файл из '%s' "
-"и '%s'"
+"%s:%d:OLE_store_stream:ОШИБКА: Не удалось составить полное имя файла из «%s» "
+"и «%s»"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
@@ -175,43 +204,6 @@ msgstr ""
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
 "%s:%d:OLE_store_stream:ВНИМАНИЕ: Записано только %d из %d байт в файл %s"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось создать имя файла из '%s' и "
-"'%s'"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream:ВНИМАНИЕ: Записано только %d из %d байт в файл "
-"%s\n"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось открыть %s для записи (%s)\n"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-
-#, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-
-#, c-format
-msgid "Unable to decode stream with element string '%s'\n"
-msgstr "Не удалось декодировать поток со строкой элемента '%s'\n"
 
 #, c-format
 msgid ""
@@ -227,38 +219,66 @@ msgid ""
 "with '%s'"
 msgstr ""
 "%s:%d:PLD_strreplace_general: Выделенная память закончилась в процессе "
-"замены '%s' на '%s'"
+"замены «%s» на «%s»"
 
 #, c-format
 msgid ""
 "Cannot interpret option \"%s\"\n"
 "%s\n"
 msgstr ""
-"Не удалось понять опцию \"%s\"\n"
+"Неверный параметр «%s«\n"
 "%s\n"
+
+#, c-format
+msgid "Cannot locate input file '%s'"
+msgstr "Не удалось найти входной файл «%s»"
 
 #, c-format
 msgid "Decoding filename=%s"
 msgstr "Декодирование файла %s"
 
 #, c-format
-msgid "ripOLE requires an input file to decode.\n"
-msgstr "ripOLE требуется входной файл для декодирования.\n"
-
-msgid "ripOLE: Cannot allocate memory for OLE object."
-msgstr "ripOLE: Не удалось выделать память для OLE-объекта."
-
-#, c-format
-msgid "Cannot locate input file '%s'"
-msgstr "Не удалось найти входной файл '%s'"
-
-#, c-format
 msgid "File '%s' is not OLE2 format"
-msgstr "Файл '%s' не является файлом формата OLE2"
+msgstr "Файл «%s» не является файлом формата OLE2"
+
+#, c-format
+msgid "LOGGER-Default: %s%s"
+msgstr "LOGGER-Default: %s%s"
+
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
+msgstr "LOGGER_set_logfile: ОШИБК - Не удалось открыть файл лога «%s» (%s)"
+
+#, c-format
+msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
+msgstr ""
+"LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога «%s» (%s)\n"
 
 #, c-format
 msgid "OLE input file '%s' is insane"
-msgstr "Входной OLE-файл '%s' абсурден"
+msgstr "Неверный входной OLE-файл «%s»"
+
+msgid "Scilab spreadsheet module not installed.\n"
+msgstr "Модуль Spreadsheet (электронная таблица) не установлен.\n"
+
+#, c-format
+msgid "The file %s does not exist.\n"
+msgstr "Файл %s не существует.\n"
+
+#, c-format
+msgid "Unable to decode stream with element string '%s'\n"
+msgstr "Не удалось декодировать поток со строкой элемента «%s»\n"
+
+#, c-format
+msgid "ripOLE requires an input file to decode.\n"
+msgstr "ripOLE требуется входной файл для декодирования.\n"
+
+#, c-format
+msgid "ripOLE: %s\n"
+msgstr "ripOLE: %s\n"
+
+msgid "ripOLE: Cannot allocate memory for OLE object."
+msgstr "ripOLE: Не удалось выделать память для OLE-объекта."
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d\n"
@@ -267,6 +287,3 @@ msgstr "ripOLE: декодирование %s завершилось ошибк�
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: декодирование %s завершилось ошибкой %d.\n"
-
-msgid "Scilab spreadsheet module not installed.\n"
-msgstr "Модуль табличного процессора Scilab не установлен.\n"

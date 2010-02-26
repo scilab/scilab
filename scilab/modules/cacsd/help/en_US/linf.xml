@@ -49,12 +49,10 @@
     <title>Description</title>
     <para>
     returns the L_infinity norm of <literal>g</literal>.</para>
-    <programlisting><![CDATA[
-
-    n=sup [sigmax(g(jw)] 
-       w
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[
+n=sup [sigmax(g(jw)] 
+   w
+ ]]></programlisting>
     <para>
     (sigmax largest singular value).</para>
   </refsection>

@@ -57,42 +57,42 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-  //Exemplo 1:  uma entidade Axes / uma entidade Figure
-  drawlater(); 
-  xfarc(.25,.55,.1,.15,0,64*360);
-  xfarc(.55,.55,.1,.15,0,64*360);
-  xfrect(.3,.8,.3,.2); 
-  xfrect(.2,.7,.5,.2);  
-  xfrect(.32,.78,.1,.1);
-  xfrect(.44,.78,.14,.1);
-  xfrect(-.2,.4,1.5,.8);
-  xstring(0.33,.9,"A Scilab Car");    
-  a=get("current_axes");
-  a.children(1).font_size=4;
-  a.children(1).font_style=4;  
-  a.children(1).background=5;
-  a.children(3).background=8;
-  a.children(4).background=8; 
-  a.children(5).background=17;
-  a.children(6).background=17; 
-  a.children(7).background=25;
-  a.children(8).background=25;
-  xclick();drawnow();
+    <programlisting role="example"><![CDATA[ 
+//Exemplo 1:  uma entidade Axes / uma entidade Figure
+drawlater(); 
+xfarc(.25,.55,.1,.15,0,64*360);
+xfarc(.55,.55,.1,.15,0,64*360);
+xfrect(.3,.8,.3,.2); 
+xfrect(.2,.7,.5,.2);  
+xfrect(.32,.78,.1,.1);
+xfrect(.44,.78,.14,.1);
+xfrect(-.2,.4,1.5,.8);
+xstring(0.33,.9,"A Scilab Car");    
+a=get("current_axes");
+a.children(1).font_size=4;
+a.children(1).font_style=4;  
+a.children(1).background=5;
+a.children(3).background=8;
+a.children(4).background=8; 
+a.children(5).background=17;
+a.children(6).background=17; 
+a.children(7).background=25;
+a.children(8).background=25;
+xclick();drawnow();
  
-  //Exemplo 2: duas entidades Axes/ uma entidade Figure
+//Exemplo 2: duas entidades Axes/ uma entidade Figure
 
-  subplot(212)
-  a=gca();
-  drawlater // o que estará presente nestes eixos será desenhado depois
-  plot2d // desenhará estes eixos e seus galhos depois...
+subplot(212)
+a=gca();
+drawlater // o que estará presente nestes eixos será desenhado depois
+plot2d // desenhará estes eixos e seus galhos depois...
 
-  subplot(211) // aviso: mudamos os eixos
-  plot2d1 // modo de desenho padrão
+subplot(211) // aviso: mudamos os eixos
+plot2d1 // modo de desenho padrão
 
-  draw(a) // ...os eixos são visíveis apenas se você não resdesenhar a janela
-  drawnow() // tudo está visível
-  </programlisting>
+draw(a) // ...os eixos são visíveis apenas se você não resdesenhar a janela
+drawnow() // tudo está visível
+ ]]></programlisting>
   </refsection>
 
   <refsection>

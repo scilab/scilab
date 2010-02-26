@@ -20,11 +20,6 @@
 #include "alltypes.hxx"
 #include "export_symbol.h"
 
-extern "C"
-{
-	#include "elem_common.h"
-}
-
 using namespace types;
 
 namespace symbol
@@ -187,82 +182,82 @@ namespace symbol
 				{
 					Function *pF = (*it_scope).second->getAsFunction();
 					ostr << std::endl;
-					ostr << "Module : " << pF->m_szModule << " Function : " << pF->m_szName << std::endl;
+					ostr << "Module : " << pF->getModule() << " Function : " << pF->getName() << std::endl;
 				}
 				else if((*it_scope).second->isPoly())
 				{
-/*					MatrixPoly *pPoly = (*it_scope).second->getAsPoly();
+					MatrixPoly *pPoly = (*it_scope).second->getAsPoly();
 					ostr << pPoly->DimToString() << std::endl;
 					ostr << pPoly->toString(10, 75);
 					ostr << std::endl;
-*/
-					MatrixPoly *pMP = (*it_scope).second->getAsPoly();
-					ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
-					for(int i = 0 ; i < pMP->rows_get(); i++)
-					{
-						for(int j = 0 ; j < pMP->cols_get(); j++)
-						{
-							ostr << "| ";
-							Poly *poPoly	= pMP->poly_get(i,j);
-							Double *pdbl	= poPoly->coef_get();
-							double *pR		= pdbl->real_get();
-							double *pI		= pdbl->img_get();
 
-							for(int k = poPoly->rank_get() - 1 ; k >= 0 ; k--)
-							{
-								if(k != poPoly->rank_get() - 1)
-								{
-									ostr << " + ";
-								}
+					//MatrixPoly *pMP = (*it_scope).second->getAsPoly();
+					//ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
+					//for(int i = 0 ; i < pMP->rows_get(); i++)
+					//{
+					//	for(int j = 0 ; j < pMP->cols_get(); j++)
+					//	{
+					//		ostr << "| ";
+					//		Poly *poPoly	= pMP->poly_get(i,j);
+					//		Double *pdbl	= poPoly->coef_get();
+					//		double *pR		= pdbl->real_get();
+					//		double *pI		= pdbl->img_get();
 
-								ostr << "(";
-								if(pR[k] != 0 || pI == NULL || pI[k] == 0)
-								{
-									if(isZero(pR[k]) == false)
-									{
-										ostr << pR[k];
-									}
-									else
-									{
-										ostr << 0;
-									}
-								}
+					//		for(int k = poPoly->rank_get() - 1 ; k >= 0 ; k--)
+					//		{
+					//			if(k != poPoly->rank_get() - 1)
+					//			{
+					//				ostr << " + ";
+					//			}
 
- 								if((pI != NULL && pI[k] != 0))
-								{
-									if(pR[k] != 0 && pI[k] > 0)
-									{
-										ostr << "+";
-									}
+					//			ostr << "(";
+					//			if(pR[k] != 0 || pI == NULL || pI[k] == 0)
+					//			{
+					//				if(isZero(pR[k]) == false)
+					//				{
+					//					ostr << pR[k];
+					//				}
+					//				else
+					//				{
+					//					ostr << 0;
+					//				}
+					//			}
 
-									if(pI[k] == 1)
-									{
-										ostr << "i";
-									}
-									else if(pI[k] == -1)
-									{
-										ostr << "-i";
-									}
-									else
-									{
-										ostr << pI[k] << "i";
-									}
-								}
-								ostr << ")";
+ 				//				if((pI != NULL && pI[k] != 0))
+					//			{
+					//				if(pR[k] != 0 && pI[k] > 0)
+					//				{
+					//					ostr << "+";
+					//				}
 
-								if(k != 0)
-								{
-									ostr << " * " << pMP->var_get();
-									if(k != 1)
-									{
-										ostr << "^" << k;
-									}
-								}
-							}
-							ostr << " |";
-						}
-						ostr << std::endl;
-					}
+					//				if(pI[k] == 1)
+					//				{
+					//					ostr << "i";
+					//				}
+					//				else if(pI[k] == -1)
+					//				{
+					//					ostr << "-i";
+					//				}
+					//				else
+					//				{
+					//					ostr << pI[k] << "i";
+					//				}
+					//			}
+					//			ostr << ")";
+
+					//			if(k != 0)
+					//			{
+					//				ostr << " * " << pMP->var_get();
+					//				if(k != 1)
+					//				{
+					//					ostr << "^" << k;
+					//				}
+					//			}
+					//		}
+					//		ostr << " |";
+					//	}
+					//	ostr << std::endl;
+					//}
 					ostr << std::endl << std::endl;
 				}
 			}

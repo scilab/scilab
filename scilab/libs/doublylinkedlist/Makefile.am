@@ -5,7 +5,7 @@
 
 DOUBLYLINKEDLIST_C_SOURCES = src/DoublyLinkedList.c
 
-libscidoublylinkedlist_la_includedir=$(pkgincludedir)/doublylinkedlist
+libscidoublylinkedlist_la_includedir=$(pkgincludedir)
 
 libscidoublylinkedlist_la_include_HEADERS = includes/DoublyLinkedList.h
 

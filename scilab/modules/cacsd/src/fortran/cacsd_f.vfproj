@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}">
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="11.0" ProjectIdGuid="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}">
 	<Platforms>
 		<Platform Name="Win32"/>
 		<Platform Name="x64"/></Platforms>
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/cacsd_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -17,9 +17,10 @@ for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%
 copy *.def cacsd_f.def &gt;nul
 copy cacsd_f.def ..\..\..\..\..\libs\cacsd_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/></Configuration>
+cd .."/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/cacsd_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
@@ -32,7 +33,8 @@ for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%
 copy *.def cacsd_f.def &gt;nul
 copy cacsd_f.def ..\..\..\..\..\libs\cacsd_f.vcdef &gt;nul
 del *.def &gt;nul
-cd .."/></Configuration>
+cd .."/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/cacsd_f.lib"/>
@@ -72,14 +74,9 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="deg1l2.f"/>
 		<File RelativePath="degl2.f"/>
 		<File RelativePath="dfrmg.f"/>
-		<File RelativePath="dgeco.f"/>
-		<File RelativePath="dgedi.f"/>
 		<File RelativePath="dhetr.f"/>
 		<File RelativePath="dlslv.f"/>
 		<File RelativePath="domout.f"/>
-		<File RelativePath="dqrdc.f"/>
-		<File RelativePath="dqrsl.f"/>
-		<File RelativePath="dqrsm.f"/>
 		<File RelativePath="dzdivq.f"/>
 		<File RelativePath="expan.f"/>
 		<File RelativePath="feq.f"/>
@@ -87,7 +84,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="front.f"/>
 		<File RelativePath="giv.f"/>
 		<File RelativePath="hessl2.f"/>
-		<File RelativePath="hhdml.f"/>
 		<File RelativePath="jacl2.f"/>
 		<File RelativePath="lq.f"/>
 		<File RelativePath="modul.f"/>
@@ -136,10 +132,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="tild.f"/>
 		<File RelativePath="watfac.f"/>
 		<File RelativePath="wdegre.f"/>
-		<File RelativePath="wesidu.f"/>
-		<File RelativePath="wgeco.f"/>
-		<File RelativePath="wgefa.f"/>
-		<File RelativePath="wgesl.f"/></Filter>
+		<File RelativePath="wesidu.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\cacsd_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

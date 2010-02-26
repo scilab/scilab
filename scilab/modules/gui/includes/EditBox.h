@@ -12,7 +12,7 @@
 
 #ifndef __EDITBOX_H__
 #define __EDITBOX_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +21,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createEditBox(sciPointObj* sciObj);
+GUI_IMPEXP void createEditBox(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a Edit Box in Scilab GUIs
@@ -29,6 +29,6 @@ void createEditBox(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsEditBoxParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsEditBoxParent(sciPointObj* sciObj);
 
 #endif /* __EDITBOX_H__ */

@@ -341,7 +341,8 @@ plot3d1(xf,yf,zf,&lt;opts_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// esboço simples utilizando z=f(x,y) 
+    <programlisting role="example"><![CDATA[ 
+// esboço simples utilizando z=f(x,y) 
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
 plot3d1(t,t,z) 
 // mesmo esboço utilizando facetas computadas por genfac3d 
@@ -370,8 +371,7 @@ e=gce();
 e.color_flag=1;
 scf(2);
 plot3d1(xx,yy,zz) // os dois gráficos são similares
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

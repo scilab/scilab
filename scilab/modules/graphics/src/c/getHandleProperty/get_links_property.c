@@ -31,7 +31,7 @@ int get_links_property( sciPointObj * pobj )
   int status;
   if (sciGetEntityType(pobj) != SCI_LEGEND)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"links") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"links") ;
     return -1 ;
   }
   handles=(long *)MALLOC(nblegends*sizeof(long));

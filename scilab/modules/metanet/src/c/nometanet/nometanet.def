@@ -1,0 +1,6 @@
+LIBRARY    metanet.dll
+
+
+EXPORTS
+	gw_metanet
+

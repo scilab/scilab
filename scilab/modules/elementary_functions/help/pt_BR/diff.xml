@@ -97,8 +97,7 @@ y=diff(x [,n [,dim]])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 v=(1:8)^3;
 diff(v)
 diff(v,3)
@@ -115,7 +114,6 @@ t=0:step:10;
 y=sin(t);
 dy=diff(sin(t))/step; //diferenciação aproximada da função seno
 norm(dy-cos(t(1:$-1)),%inf)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

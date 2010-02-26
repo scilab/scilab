@@ -21,7 +21,7 @@ Source: bin\libjvm.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: etc\classpath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 Source: etc\librarypath.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#JVM}\etc\jvm_options.xml; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
+Source: etc\jvm_options.xml; DestDir: {app}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\jar\org.scilab.modules.jvm.jar;DestDir: {app}\modules\{#JVM}\jar; Components: {#COMPN_SCILAB}
 ;
@@ -32,7 +32,13 @@ Source: modules\{#JVM}\changelog.txt; DestDir: {app}\modules\{#JVM}; Components:
 ;
 Source: modules\{#JVM}\sci_gateway\jvm_gateway.xml; DestDir: {app}\modules\{#JVM}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#JVM}\includes\*.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+;Source: modules\{#JVM}\includes\*.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\getScilabJavaVM.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\getScilabJNIEnv.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\addToClasspath.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\addToLibrarypath.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\getScilabObject.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#JVM}\includes\dynlib_jvm.h; DestDir: {app}\modules\{#JVM}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#JVM}\etc\{#JVM}.quit; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#JVM}\etc\{#JVM}.start; DestDir: {app}\modules\{#JVM}\etc; Components: {#COMPN_SCILAB}

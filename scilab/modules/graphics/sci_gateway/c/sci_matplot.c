@@ -16,10 +16,9 @@
 /* desc : interface for matplot routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_matplot.h"
+#include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "DefaultCommandArg.h"
-#include "sci_demo.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
 #include "stack-c.h"

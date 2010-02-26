@@ -11,48 +11,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="deletefile">
+<refentry version="5.0-subset Scilab" xml:id="deletefile" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept. 2006)$</pubdate>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim., 10 sept.
+    2006)$</pubdate>
   </info>
+
   <refnamediv>
     <refname>deletefile</refname>
+
     <refpurpose>delete a file</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>f = deletefile(filename)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>filename</term>
+
         <listitem>
-          <para>a file name </para>
+          <para>a file name existing or not.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
-          <para>%t or %f </para>
+          <para>%t or %f</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>delete a file</para>
+
+    <para>delete a file. if file has been deleted, it will return %t else
+    %f.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[fd=mopen(TMPDIR+'/filetodelete.txt','wt');
+
+    <programlisting role="example">fd = mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
-if (fileinfo(TMPDIR+'/filetodelete.txt') <> []) then deletefile(TMPDIR+'/filetodelete.txt'),end;
-  ]]></programlisting>
+if (fileinfo(TMPDIR+'/filetodelete.txt') &lt;&gt; []) then deletefile(TMPDIR+'/filetodelete.txt'),end;
+deletefile(TMPDIR+'/notexistingfile')
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <simplelist type="vert">
       <member>A.C</member>
     </simplelist>

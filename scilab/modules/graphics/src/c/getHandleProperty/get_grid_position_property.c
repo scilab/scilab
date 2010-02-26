@@ -28,7 +28,7 @@ int get_grid_position_property( sciPointObj * pobj )
 	
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"), "grid_position");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
     return -1;
   }
   if ( sciGetGridFront(pobj) )

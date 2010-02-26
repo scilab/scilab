@@ -48,11 +48,9 @@
     <para>
     2- A <literal>whatis.html</literal> file, which must have a special format. Each row
     of the <literal>whatis</literal> must be as follows:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 <BR><A HREF="item.html">item</A> - quick description
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>item</literal> is the item of the help, i.e. the command <literal>help item</literal>
     displays the contents of the file <literal>item.html</literal>.</para>
     <para>

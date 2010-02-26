@@ -91,13 +91,14 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">fd = mopen(TMPDIR +'/filetxt.txt','wt');
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR +'/filetxt.txt','wt');
 [err,msg] = merror(fd)
-if (err &lt;&gt; 0) then 
+if (err <> 0) then 
   printf('Problem\n');
 end
 mclose(fd);
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

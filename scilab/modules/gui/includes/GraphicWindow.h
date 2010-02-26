@@ -14,6 +14,6 @@
 #ifndef _GRAPHIC_WINDOW_H_
 #define _GRAPHIC_WINDOW_H_
 
-
+#include "dynlib_gui.h"
 
 #endif /* _GRAPHIC_WINDOW_H_ */

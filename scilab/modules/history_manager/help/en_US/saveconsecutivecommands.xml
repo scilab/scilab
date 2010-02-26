@@ -48,7 +48,8 @@ boolean_out = saveconsecutivecommands()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[saveconsecutivecommands()
+    <programlisting role="example"><![CDATA[ 
+saveconsecutivecommands()
 saveconsecutivecommands(%t)
 1
 1
@@ -57,7 +58,7 @@ saveconsecutivecommands(%f)
 1
 1
 2
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

@@ -57,14 +57,12 @@ m=nanmean(val,'c') (or m=nanmean(val,2))</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmean(x)
 m=nanmean(x,1)
 m=nanmean(x,2)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

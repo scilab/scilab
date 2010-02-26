@@ -50,10 +50,10 @@ It can be used inside a Scilab block to get information of all type of blocks. T
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [myvar]=getscicosvars(str)
 [myvar]=getscicosvars([str1;str2;...])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_getscicosvars">
     <title>Parameters</title>

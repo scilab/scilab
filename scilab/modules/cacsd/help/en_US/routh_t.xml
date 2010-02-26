@@ -91,29 +91,29 @@ r=routh_t(h [,k])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-    s=%s;
-    P=5*s^3-10*s^2+7*s+20;
-    routh_t(P)
+    <programlisting role="example"><![CDATA[ 
+s=%s;
+P=5*s^3-10*s^2+7*s+20;
+routh_t(P)
 
-    //transfer function with formal feedback
-    routh_t((1+s)/P,poly(0,'k'))
+//transfer function with formal feedback
+routh_t((1+s)/P,poly(0,'k'))
     
-    // One of the coefficients in the polynomial equals zero
-    P1=2*s^3-24*s+32; 
-    routh_t(P1)
+// One of the coefficients in the polynomial equals zero
+P1=2*s^3-24*s+32; 
+routh_t(P1)
 
-    // A row full of zeros
-    P2=s^4-6*s^3+10*s^2-6*s+9;
-    routh_t(P2)
-  </programlisting>
+// A row full of zeros
+P2=s^4-6*s^3+10*s^2-6*s+9;
+routh_t(P2)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="root">root</link></member>
+      <member><link linkend="roots">roots</link></member>
 
       <member><link linkend="kpure">kpure</link></member>
     </simplelist>

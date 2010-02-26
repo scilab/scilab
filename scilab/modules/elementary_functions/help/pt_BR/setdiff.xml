@@ -91,14 +91,12 @@
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
-
- a = [223;111;2;4;2;2];
- b = [2;3;21;223;123;22];
- setdiff(a,b)
- [v,k]=setdiff(string(a),string(b))
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+a = [223;111;2;4;2;2];
+b = [2;3;21;223;123;22];
+setdiff(a,b)
+[v,k]=setdiff(string(a),string(b))
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -107,7 +105,7 @@
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>
 
-      <member><link linkend="sort">sort</link></member>
+      <member><link linkend="gsort">gsort</link></member>
 
       <member><link linkend="union">union</link></member>
     </simplelist>

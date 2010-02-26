@@ -14,9 +14,10 @@
 #ifndef __TERMINATHISTORYMANAGER_H__
 #define __TERMINATHISTORYMANAGER_H__
 
+#include "dynlib_history_manager.h"
 #include "BOOL.h" /* BOOL */
 
-BOOL TerminateHistoryManager(void);
+HISTORY_MANAGER_IMPEXP BOOL TerminateHistoryManager(void);
 
 #endif /* __TERMINATHISTORYMANAGER_H__ */
 /*--------------------------------------------------------------------------*/

@@ -1,0 +1,47 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-06-28 19:00+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-12-15 16:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr ""
+"Clique em um objeto Axes para iniciar a rotação. Clique com o botão direito "
+"ou aperte ESCAPE para cancelar."
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "Clique or aperte ESCAPE para finalizar a rotação."
+
+msgid "Scilab Renderer module not installed.\n"
+msgstr "Módulo Scilab Renderer não instalado.\n"
+
+msgid "Unable to render polyline, memory full.\n"
+msgstr "Não é possível renderizar a poligonal, memória cheia.\n"
+
+#, c-format
+msgid ""
+"Warning !!!\n"
+"Scilab has found a critical error (%s).\n"
+"Save your data and restart Scilab.\n"
+msgstr ""
+"Alerta !!!\n"
+"Scilab encontrou um erro crítico (%s).\n"
+"Salve seus dados e reinicie o Scilab.\n"

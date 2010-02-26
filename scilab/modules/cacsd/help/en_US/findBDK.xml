@@ -193,12 +193,10 @@
     <itemizedlist>
       <listitem>
         <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  computes the system matrices B (if JOB = 1), B and D (if JOB = 2), and the Kalman  predictor gain K (if NSMPL &gt; 0). The model structure is:</para>
-        <programlisting><![CDATA[
-
-     x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
-     y(k)   = Cx(k) + Du(k) + e(k),
-   
-        ]]></programlisting>
+        <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
         <para>
     where x(k) and y(k) are vectors of length N and L, respectively.
   </para>
@@ -217,18 +215,15 @@
     <para>
     The number of output arguments may vary, but should correspond to the 
     input arguments, e.g.,</para>
-    <programlisting><![CDATA[
-
-            B = findBDK(S,N,L,R,A,C,METH,1)  or
-        [B,D] = findBDK(S,N,L,R,A,C,METH,2)  or
-   [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+         B = findBDK(S,N,L,R,A,C,METH,1)  or
+     [B,D] = findBDK(S,N,L,R,A,C,METH,2)  or
+[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -254,9 +249,8 @@ SYS1=syslin(1,A,B,C,D);
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- 
-  ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -5,7 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-messagebox(['x_message: Simple example of message ';
+messagebox(['messagebox: Simple example of message ';
 'First row of comments';
 'Second row';
 'etc...';],"modal");

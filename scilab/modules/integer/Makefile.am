@@ -86,7 +86,7 @@ src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
-GATEWAY_C_SOURCES = \ 
+GATEWAY_C_SOURCES = \
 				sci_gateway/c/gw_integer.c \
 				sci_gateway/c/sci_int.c
 
@@ -165,10 +165,5 @@ libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 #### integer : gateway declaration ####
 libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciinteger_la_sci_gateway_DATA = sci_gateway/integer_gateway.xml
-
-#### integer : include files ####
-libsciinteger_la_includedir=$(pkgincludedir)/integer
-libsciinteger_la_include_HEADERS = includes/gw_integer.h \
-includes/def.h
 
 include $(top_srcdir)/Makefile.incl.am

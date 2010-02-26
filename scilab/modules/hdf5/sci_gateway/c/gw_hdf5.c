@@ -13,6 +13,8 @@
 #include "gw_hdf5.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
+#include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
@@ -25,7 +27,8 @@ static gw_generic_table Tab[HDF5_TAB_SIZE]={
 int gw_hdf5(void)
 {
 	Rhs = Max(0,Rhs);
-	callFunctionFromGateway(Tab, HDF5_TAB_SIZE);
+
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

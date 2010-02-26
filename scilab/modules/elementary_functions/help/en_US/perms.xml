@@ -68,11 +68,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[4, 7, 10]
 y=perms(x)
 x=[1, 5, 2, 5]
 y=perms(x)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

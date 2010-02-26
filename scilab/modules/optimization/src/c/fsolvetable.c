@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "AddFunctionInTable.h"
 #include "machine.h"
+#include "dynlib_optimization.h"
 /***********************************
 * Search Table for fsolve 
 ***********************************/
@@ -25,17 +26,17 @@ typedef void (*fsolvjf)(ARGS_fsolvj);
 
 /**************** fsolvf ***************/
 extern void C2F(fsol1)(ARGS_fsolvf);
-void C2F(fsolvf)(ARGS_fsolvf);
-void C2F(setfsolvf)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(fsolvf)(ARGS_fsolvf);
+OPTIMIZATION_IMPEXP void C2F(setfsolvf)(char *name, int *rep);
 
 FTAB FTab_fsolvf[] ={
 {"fsol1", (voidf)  C2F(fsol1)},
 {(char *) 0, (voidf) 0}};
 /**************** fsolvj ***************/
 extern void C2F(fsolj1)(ARGS_fsolvj);
-void C2F(fsolvj)(ARGS_fsolvj);
-void C2F(setfsolj)(char *name, int *rep);
-void C2F(setfsolvj)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(fsolvj)(ARGS_fsolvj);
+OPTIMIZATION_IMPEXP void C2F(setfsolj)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(setfsolvj)(char *name, int *rep);
 
 FTAB FTab_fsolvj[] ={
 {"fsolj1", (voidf)  C2F(fsolj1)},

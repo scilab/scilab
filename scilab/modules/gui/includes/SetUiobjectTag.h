@@ -12,7 +12,7 @@
 
 #ifndef __SET_UIOBJECT_TAG_H__
 #define __SET_UIOBJECT_TAG_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 
 /**
@@ -25,12 +25,12 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the tag property set has been correcty done
  */
-int SetUiobjectTag(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUiobjectTag(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 /**
  * Destroy the tag for a uicontrol a uimenu or a figure handle.
  * It must be done in C++ code since it must use delete[].
  */
-void destroyUiobjectTag(sciPointObj * pobj);
+GUI_IMPEXP void destroyUiobjectTag(sciPointObj * pobj);
 
 #endif /* __SET_UIOBJECT_TAG_H__ */

@@ -75,15 +75,15 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ txt=['module';'frequence';'phase    '];
- sig=x_mdialog('choisir le signal sinusoidal',txt,['1';'10';'0'])
- mag=evstr(sig(1))
- frq=evstr(sig(2))
- ph=evstr(sig(3))
+    <programlisting role="example"><![CDATA[ 
+txt=['module';'frequence';'phase    '];
+sig=x_mdialog('choisir le signal sinusoidal',txt,['1';'10';'0'])
+mag=evstr(sig(1))
+frq=evstr(sig(2))
+ph=evstr(sig(3))
 
- rep=x_mdialog(['Simulation d''un systeme';'avec un regulateur PI'],...
-                      ['gain P';'gain I'],[' ';' '])
-
+rep=x_mdialog(['Simulation d''un systeme';'avec un regulateur PI'],...
+              ['gain P';'gain I'],[' ';' '])
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -99,7 +99,7 @@ result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
         <link linkend="x_choose">x_choose</link>
       </member>
       <member>
-        <link linkend="x_message">x_message</link>
+        <link linkend="messagebox">messagebox</link>
       </member>
       <member>
         <link linkend="getvalue">getvalue</link>

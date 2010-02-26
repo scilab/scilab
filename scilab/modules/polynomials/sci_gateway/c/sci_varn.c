@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intvarn)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_varn)(char *fname,unsigned long fname_len)
+int sci_varn(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intvarn)(id);

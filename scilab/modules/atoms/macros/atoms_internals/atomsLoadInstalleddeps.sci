@@ -9,7 +9,7 @@
 
 // Internal function
 
-function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(allusers)
+function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(section)
 	
 	lhs = argn(1);
 	rhs = argn(2);
@@ -26,24 +26,25 @@ function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoadInstalleddeps",1));
 	end
 	
-	// Check number of input argument type
+	// Check input argument
 	// =========================================================================
 	
-	if (type(allusers)<>4) & (type(allusers)<>10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean or a string expected.\n"),"atomsLoadInstalleddeps",1));
+	if type(section) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single-string expected.\n"),"atomsLoadInstalleddeps",1));
+	end
+	
+	if size(section,"*")<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single-string expected.\n"),"atomsLoadInstalleddeps",1));
+	end
+	
+	if and(section<>["user","allusers","all"]) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"),"atomsLoadInstalleddeps",1));
 	end
 	
 	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	// the "section" value
 	// =========================================================================
-	
-	if (type(allusers)==10) & (allusers=="all") then
-		installed_deps_file = [ pathconvert(SCI+"/.atoms/installed_deps.bin",%F); pathconvert(SCIHOME+"/atoms/installed_deps.bin",%F) ];
-	elseif allusers then
-		installed_deps_file = pathconvert(SCI+"/.atoms/installed_deps.bin",%F);
-	else
-		installed_deps_file = pathconvert(SCIHOME+"/atoms/installed_deps.bin",%F);
-	end
+	installed_deps_file = atomsPath("system",section) + "installed_deps.bin";
 	
 	// Loop on installed_deps files
 	// =========================================================================

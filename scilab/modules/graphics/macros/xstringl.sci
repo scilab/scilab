@@ -33,7 +33,7 @@ select rhs,
     corners = stringbox(listArg (3), listArg (1), listArg (2), 0, listArg (4), listArg (5));
   else
     // incorrect number of input argmuments
-    error(39);
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "xstringl", 3, 5));
     return ;
 end;
 

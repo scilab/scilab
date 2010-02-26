@@ -39,6 +39,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
+src/c/loadTextRenderingAPI.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -445,110 +446,6 @@ libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-#### graphics : include files ####
-libscigraphics_la_includedir=$(pkgincludedir)/graphics
-libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
-includes/sci_winsid.h \
-includes/sci_addcb.h \
-includes/sci_grayplot.h \
-includes/sci_xlfont.h \
-includes/GetCommandArg.h \
-includes/sci_xgrid.h \
-includes/sci_geom3d.h \
-includes/DefaultCommandArg.h \
-includes/sci_xgraduate.h \
-includes/sci_unzoom.h \
-includes/sci_xsegs.h \
-includes/sci_clear_pixmap.h \
-includes/sci_xarc.h \
-includes/sci_xpolys.h \
-includes/sci_xstring.h \
-includes/Axes.h \
-includes/sci_xsetech.h \
-includes/sciMatrix.h \
-includes/sci_show_window.h \
-includes/sci_param3d1.h \
-includes/graphicModuleLoad.h \
-includes/sci_matplot.h \
-includes/sci_drawaxis.h \
-includes/sci_xrect.h \
-includes/sci_plot2d1.h \
-includes/GetProperty.h \
-includes/SetProperty.h \
-includes/sci_xarrows.h \
-includes/sci_move.h \
-includes/sci_relocate_handle.h \
-includes/BasicAlgos.h \
-includes/sciCall.h \
-includes/sci_showalluimenushandles.h \
-includes/sci_get.h \
-includes/InitObjects.h \
-includes/sci_xfpoly.h \
-includes/sci_drawlater.h \
-includes/Format.h \
-includes/sci_set.h \
-includes/sci_delete.h \
-includes/sci_plot2d.h \
-includes/sci_StringBox.h \
-includes/sci_xgetmouse.h \
-includes/Interaction.h \
-includes/sci_xfarcs.h \
-includes/sci_contour2di.h \
-includes/HandleManagement.h \
-includes/sci_fec.h \
-includes/sci_matplot1.h \
-includes/XsetXgetParameters.h \
-includes/sci_xfpolys.h \
-includes/WindowList.h \
-includes/sci_xget.h \
-includes/sci_swap_handles.h \
-includes/sci_newaxes.h \
-includes/PloEch.h \
-includes/sci_xclick.h \
-includes/sci_xset.h \
-includes/sci_xgetech.h \
-includes/sci_glue.h \
-includes/sci_xstringb.h \
-includes/sci_xname.h \
-includes/DrawObjects.h \
-includes/sci_xpoly.h \
-includes/sci_xchange.h \
-includes/sci_demo.h \
-includes/ObjectStructure.h \
-includes/sci_draw.h \
-includes/sci_plot3d.h \
-includes/sci_copy.h \
-includes/BuildObjects.h \
-includes/CloneObjects.h \
-includes/sci_xarcs.h \
-includes/pixel_mode.h \
-includes/sci_champ.h \
-includes/Champ.h \
-includes/StringMatrix.h \
-includes/sci_unglue.h \
-includes/gw_graphics.h \
-includes/sci_zoom_rect.h \
-includes/DestroyObjects.h \
-includes/sci_xrects.h \
-includes/sci_xtitle.h \
-includes/math_graphics.h \
-includes/sci_drawnow.h \
-includes/sci_param3d.h \
-includes/CurrentObjectsManagement.h \
-includes/ObjectSelection.h \
-includes/axesScale.h \
-includes/Contour.h \
-includes/getDictionaryGetProperties.h \
-includes/getDictionarySetProperties.h \
-includes/GrayPlot.h \
-includes/TerminateGraphics.h \
-includes/sci_rubberbox.h \
-includes/sci_rotate_axes.h \
-includes/sci_is_handle_valid.h \
-includes/sci_show_pixmap.h \
-includes/sci_Legend.h \
-includes/Plot2d.h
-
 ### graphics : ged files ###
 libscigraphics_la_geddir = $(mydatadir)
 nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
@@ -590,10 +487,15 @@ tcl/ged/images/text.gif
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
 libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/renderer/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--Iincludes/ \
--I$(top_srcdir)/libs/doublylinkedlist/includes/
+-I$(top_srcdir)/modules/renderer/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/graphics/includes \
+-I$(top_srcdir)/modules/graphics/src/cpp \
+-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty \
+-I$(top_srcdir)/libs/hashtable \
+-I$(top_srcdir)/libs/doublylinkedlist/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-Iincludes
 
 libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
@@ -604,15 +506,11 @@ libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 pkglib_LTLIBRARIES = libscigraphics-disable.la
 
 if GUI
+USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
-
-
-if GUI
-USEANT=1
-endif
 
 
 include $(top_srcdir)/Makefile.incl.am

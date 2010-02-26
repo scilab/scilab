@@ -269,7 +269,7 @@ evals=spec(A,B)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // AUTOVALORES DA MATRIZ
 A=diag([1,2,3]);
 X=rand(3,3);
@@ -291,8 +291,7 @@ clean(inv(R)*A*R)  //exibindo os autovalores (matriz genérica)
 A=A+%i*rand(A);
 E=rand(A);
 roots(det(A-%s*E))   //caso de complexos
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

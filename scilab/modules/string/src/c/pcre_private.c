@@ -1,14 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+* Copyright (C) DIGITEO - 2009
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*-------------------------------------------------------------------------------*/
 #include <ctype.h>
@@ -28,8 +29,7 @@
 #include "strsubst.h"
 #include "sciprint.h"
 #include "warningmode.h"
-
-
+/*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
 environments, so it was added for release 5.0 to both the input and output. (It
@@ -37,13 +37,12 @@ makes no difference on Unix-like systems.) Later I was told that it is wrong
 for the input on Windows. I've now abstracted the modes into two macros that
 are set here, to make it easier to fiddle with them, and removed "b" from the
 input mode under Windows. */
-
+/*-------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <io.h>                /* For _setmode() */
 #include <fcntl.h>             /* For _O_BINARY */
 #define INPUT_MODE   "r"
 #define OUTPUT_MODE  "wb"
-
 #else
 #include <sys/time.h>          /* These two includes are needed */
 #include <sys/resource.h>      /* for setrlimit(). */
@@ -100,16 +99,14 @@ UTF8 support if PCRE is built without it. */
 #define NOUTF8
 #endif
 #endif
-
-
-
+/*-------------------------------------------------------------------------------*/
 /* Static variables */
 
-static FILE *outfile=NULL;
-static int callout_count=0;
-static int callout_fail_count=0;
-static int callout_fail_id=0;
-static size_t gotten_store=0;
+static FILE *outfile = NULL;
+static int callout_count = 0;
+static int callout_fail_count = 0;
+static int callout_fail_id = 0;
+static size_t gotten_store = 0;
 
 /* The buffers grow automatically if very long input lines are encountered. */
 
@@ -117,8 +114,8 @@ char *buffer = NULL;
 
 
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
-				  int start_offset, int options, int *use_offsets, int use_size_offsets,
-				  int flag, unsigned long int *limit, int errnumber);
+							 int start_offset, int options, int *use_offsets, int use_size_offsets,
+							 int flag, unsigned long int *limit, int errnumber);
 
 /*************************************************
 *              Callout function                  *
@@ -130,20 +127,20 @@ data is not zero. */
 
 static int callout(pcre_callout_block *cb)
 {
-/* Always print appropriate indicators, with callout number if not already
-shown. For automatic callouts, show the pattern offset. */
+	/* Always print appropriate indicators, with callout number if not already
+	shown. For automatic callouts, show the pattern offset. */
 
-if (cb->callout_data != NULL)
-  {
-  int callout_data = *((int *)(cb->callout_data));
-  if (callout_data != 0)
-    {
-    return callout_data;
-    }
-  }
+	if (cb->callout_data != NULL)
+	{
+		int callout_data = *((int *)(cb->callout_data));
+		if (callout_data != 0)
+		{
+			return callout_data;
+		}
+	}
 
-return (cb->callout_number != callout_fail_id)? 0 :
-       (++callout_count >= callout_fail_count)? 1 : 0;
+	return (cb->callout_number != callout_fail_id)? 0 :
+		(++callout_count >= callout_fail_count)? 1 : 0;
 }
 
 
@@ -156,9 +153,9 @@ compiled re. */
 
 static void *new_malloc(size_t size)
 {
-void *block = MALLOC(size);
-gotten_store = size;
-return block;
+	void *block = MALLOC(size);
+	gotten_store = size;
+	return block;
 }
 
 
@@ -179,44 +176,44 @@ static void new_info(pcre *re, pcre_extra *study, int option, void *ptr)
 *************************************************/
 
 static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
-  int start_offset, int options, int *use_offsets, int use_size_offsets,
-  int flag, unsigned long int *limit, int errnumber)
+							 int start_offset, int options, int *use_offsets, int use_size_offsets,
+							 int flag, unsigned long int *limit, int errnumber)
 {
-int count;
-int min = 0;
-int mid = 64;
-int max = -1;
+	int count;
+	int min = 0;
+	int mid = 64;
+	int max = -1;
 
-extra->flags |= flag;
+	extra->flags |= flag;
 
-for (;;)
-  {
-  *limit = mid;
+	for (;;)
+	{
+		*limit = mid;
 
-  count = pcre_exec(re, extra, (char *)bptr, len, start_offset, options,
-    use_offsets, use_size_offsets);
+		count = pcre_exec(re, extra, (char *)bptr, len, start_offset, options,
+			use_offsets, use_size_offsets);
 
-  if (count == errnumber)
-    {
-    min = mid;
-    mid = (mid == max - 1)? max : (max > 0)? (min + max)/2 : mid*2;
-    }
+		if (count == errnumber)
+		{
+			min = mid;
+			mid = (mid == max - 1)? max : (max > 0)? (min + max)/2 : mid*2;
+		}
 
-  else if (count >= 0 || count == PCRE_ERROR_NOMATCH ||
-                         count == PCRE_ERROR_PARTIAL)
-    {
-    if (mid == min + 1)
-      {
-      break;
-      }
-    max = mid;
-    mid = (min + mid)/2;
-    }
-  else break;    /* Some other error */
-  }
+		else if (count >= 0 || count == PCRE_ERROR_NOMATCH ||
+			count == PCRE_ERROR_PARTIAL)
+		{
+			if (mid == min + 1)
+			{
+				break;
+			}
+			max = mid;
+			mid = (min + mid)/2;
+		}
+		else break;    /* Some other error */
+	}
 
-extra->flags &= ~flag;
-return count;
+	extra->flags &= ~flag;
+	return count;
 }
 
 
@@ -227,9 +224,9 @@ return count;
 
 /*
 Arguments:
-  s         first string
-  t         second string
-  n         number of characters to compare
+s         first string
+t         second string
+n         number of characters to compare
 
 Returns:    < 0, = 0, or > 0, according to the comparison
 */
@@ -269,8 +266,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	char copynames[1024];
 	char getnames[1024];
 
-	char *copynamesptr=NULL;
-	char *getnamesptr=NULL;
+	char *copynamesptr = NULL;
+	char *getnamesptr = NULL;
 
 	int rc = 0;
 	(void)pcre_config(PCRE_CONFIG_UTF8, &rc);
@@ -287,6 +284,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 	if (offsets == NULL)
 	{
+		if (buffer) {FREE(buffer); buffer = NULL;}
 		return NOT_ENOUGH_MEMORY_FOR_VECTOR;
 	}
 	/* Main loop */
@@ -295,68 +293,73 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	{
 		pcre *re = NULL;
 		pcre_extra *extra = NULL;
-		const char *error=NULL;
-		char *back_p=NULL;
-		char *p=NULL;
-		char *pp=NULL;
-		char *ppp=NULL;
+		const char *error = NULL;
+		char *back_p = NULL;
+		char *p = NULL;
+		char *pp = NULL;
+		char *ppp = NULL;
 		const unsigned char *tables = NULL;
-		unsigned long int true_size;
+		unsigned long int true_size = 0;
 		int do_G = 0;
 		int do_g = 0;
-		int erroroffset, len, delimiter;
-		
+		int erroroffset = 0, len = 0, delimiter;
+
 		LOOP_PCRE_TST = TRUE;
 		p = strdup(INPUT_PAT);
-		back_p=p;
+		back_p = p;
 		while (isspace(*p)) p++;
 		if (*p == 0) continue;
-	/* In-line pattern (the usual case). Get the delimiter and seek the end of
-	the pattern; if is isn't complete, read more. */
+		/* In-line pattern (the usual case). Get the delimiter and seek the end of
+		the pattern; if is isn't complete, read more. */
 
-	delimiter = *p++;
+		delimiter = *p++;
 
-	if (isalnum(delimiter) || delimiter == '\\')
-    {
-		FREE(back_p);
-		return DELIMITER_NOT_ALPHANUMERIC;
-    }
-
-	pp = p;
-
-	while (*pp != 0)
-	{
-		if (*pp == '\\' && pp[1] != 0) pp++;
-		else if (*pp == delimiter) break;
-		pp++;
-	}
-
-	/* If the delimiter can't be found, it's a syntax error */
-	if(*pp == 0)
-	{
-		FREE(back_p);
-		return CAN_NOT_COMPILE_PATTERN;
-	}
-
-	/* If the first character after the delimiter is backslash, make
-	the pattern end with backslash. This is purely to provide a way
-	of testing for the error message when a pattern ends with backslash. */
-
-	if (pp[1] == '\\') *pp++ = '\\';
-
-	/* Terminate the pattern at the delimiter, and save a copy of the pattern
-	for callouts. */
-
-	*pp++ = 0;
-
-	/* Look for options after final delimiter */
-
-	options = 8192;
-		
-	while (*pp != 0)
-    {
-		switch (*pp++)
+		if (isalnum(delimiter) || delimiter == '\\')
 		{
+			if (buffer) {FREE(buffer); buffer = NULL;}
+			if (offsets) {FREE(offsets); offsets = NULL;}
+			if (back_p) {FREE(back_p); back_p = NULL;}
+			return DELIMITER_NOT_ALPHANUMERIC;
+		}
+
+		pp = p;
+
+		while (*pp != 0)
+		{
+			if (*pp == '\\' && pp[1] != 0) pp++;
+			else if (*pp == delimiter) break;
+			pp++;
+		}
+
+		/* If the delimiter can't be found, it's a syntax error */
+		if(*pp == 0)
+		{
+			if (buffer) {FREE(buffer); buffer = NULL;}
+			if (offsets) {FREE(offsets); offsets = NULL;}
+			if (back_p) {FREE(back_p); back_p = NULL;}
+			if (offsets) FREE(offsets);
+			return CAN_NOT_COMPILE_PATTERN;
+		}
+
+		/* If the first character after the delimiter is backslash, make
+		the pattern end with backslash. This is purely to provide a way
+		of testing for the error message when a pattern ends with backslash. */
+
+		if (pp[1] == '\\') *pp++ = '\\';
+
+		/* Terminate the pattern at the delimiter, and save a copy of the pattern
+		for callouts. */
+
+		*pp++ = 0;
+
+		/* Look for options after final delimiter */
+
+		//options = 8192;
+
+		while (*pp != 0)
+		{
+			switch (*pp++)
+			{
 			case 'f': options |= PCRE_FIRSTLINE; break;
 			case 'g': do_g = 1; break;
 			case 'i': options |= PCRE_CASELESS; break;
@@ -385,6 +388,8 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					(void)pcre_config(PCRE_CONFIG_UTF8, &rc);
 					if (rc != 1)
 					{
+						if (buffer) {FREE(buffer); buffer = NULL;}
+						if (offsets) FREE(offsets);
 						return UTF8_NOT_SUPPORTED;
 					}
 					options |= PCRE_UTF8;
@@ -401,89 +406,94 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				{
 					goto SKIP_DATA;
 				}
-				
+
 				tables = pcre_maketables();
 				pp = ppp;
-			break;
+				break;
 			case '>':
 				while (*pp != 0) pp++;
 				while (isspace(pp[-1])) pp--;
 				*pp = 0;
-			break;
+				break;
 			case '<':
-			{
-				while (*pp++ != '>');
-			}
-			break;
+				{
+					while (*pp++ != '>');
+				}
+				break;
 			case '\r':                      /* So that it works in Windows */
 			case '\n':
 			case ' ':
-			break;
+				break;
 
 			default:
-			goto SKIP_DATA;
+				goto SKIP_DATA;
+			}
 		}
-	}
 
-	/* Handle compiling via the POSIX interface, which doesn't support the
-	timing, showing, or debugging options, nor the ability to pass over
-	local character tables. */
+		/* Handle compiling via the POSIX interface, which doesn't support the
+		timing, showing, or debugging options, nor the ability to pass over
+		local character tables. */
 
 
-    {
-		re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
-		/* Compilation failed; go back for another re, skipping to blank line
-		if non-interactive. */
-		if (re == NULL)
 		{
-		    SKIP_DATA:
-			FREE(back_p);
-			return CAN_NOT_COMPILE_PATTERN;
-		}
-		true_size = ((real_pcre *)re)->size;
-
-    }        /* End of non-POSIX compile */
-
-  /* Read data lines and test them */
-    {
-		char *q=NULL;
-		char *bptr=NULL;
-		int *use_offsets = offsets;
-		int use_size_offsets = size_offsets;
-		int callout_data = 0;
-		int callout_data_set = 0;
-		int count=0;
-		int c=0;
-		int copystrings = 0;
-		int find_match_limit = 0;
-		int getstrings = 0;
-		int gmatched = 0;
-		int start_offset = 0;
-		int g_notempty = 0;
-		int use_dfa = 0;
-	
-		options = 0;
-		*copynames = 0;
-		*getnames = 0;
-
-		copynamesptr = copynames;
-		getnamesptr = getnames;
-  		
-		callout_count = 0;
-		callout_fail_count = 999999;
-		callout_fail_id = -1;
-		
-		if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
-		len = 0;
-		p = buffer;
-		bptr = q = buffer;
-		while ((c = *p++) != 0)
-		{
-			int i = 0;
-			int n = 0;
-
-			if (c == '\\') switch ((c = *p++))
+			re = pcre_compile((char *)p, options, &error, &erroroffset, tables);
+			/* Compilation failed; go back for another re, skipping to blank line
+			if non-interactive. */
+			if (re == NULL)
 			{
+SKIP_DATA:
+				if (buffer) {FREE(buffer); buffer = NULL;}
+				if (offsets) {FREE(offsets); offsets = NULL;}
+				if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+				if (extra) {FREE(extra); extra = NULL;}
+				if (back_p) {FREE(back_p); back_p = NULL;}
+				return CAN_NOT_COMPILE_PATTERN;
+			}
+
+			true_size = ((real_pcre *)re)->size;
+
+		}        /* End of non-POSIX compile */
+
+		/* Read data lines and test them */
+		{
+			char *q = NULL;
+			char *bptr = NULL;
+			int *use_offsets = offsets;
+			int use_size_offsets = size_offsets;
+			int callout_data = 0;
+			int callout_data_set = 0;
+			int count=0;
+			int c = 0;
+			int copystrings = 0;
+			int find_match_limit = 0;
+			int getstrings = 0;
+			int gmatched = 0;
+			int start_offset = 0;
+			int g_notempty = 0;
+			int use_dfa = 0;
+
+			options = 0;
+			*copynames = 0;
+			*getnames = 0;
+
+			copynamesptr = copynames;
+			getnamesptr = getnames;
+
+			callout_count = 0;
+			callout_fail_count = 999999;
+			callout_fail_id = -1;
+
+			if (extra != NULL) extra->flags &= ~(PCRE_EXTRA_MATCH_LIMIT|PCRE_EXTRA_MATCH_LIMIT_RECURSION);
+			len = 0;
+			p = buffer;
+			bptr = q = buffer;
+			while ((c = *p++) != 0)
+			{
+				int i = 0;
+				int n = 0;
+
+				if (c == '\\') switch ((c = *p++))
+				{
 				case 'a': c =    7; break;
 				case 'b': c = '\b'; break;
 				case 'e': c =   27; break;
@@ -496,29 +506,29 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				case '4': case '5': case '6': case '7':
 					c -= '0';
 					while (i++ < 2 && isdigit(*p) && *p != '8' && *p != '9')
-					c = c * 8 + *p++ - '0';
-				break;
+						c = c * 8 + *p++ - '0';
+					break;
 				case 'x':
-				/* Ordinary \x */
-				c = 0;
-				while (i++ < 2 && isxdigit(*p))
-				{
-					c = c * 16 + tolower(*p) - ((isdigit(*p))? '0' : 'W');
-					p++;
-				}
-				break;
+					/* Ordinary \x */
+					c = 0;
+					while (i++ < 2 && isxdigit(*p))
+					{
+						c = c * 16 + tolower(*p) - ((isdigit(*p))? '0' : 'W');
+						p++;
+					}
+					break;
 				case 0:   /* \ followed by EOF allows for an empty line */
 					p--;
-				continue;
+					continue;
 				case '>':
 					while(isdigit(*p)) start_offset = start_offset * 10 + *p++ - '0';
-				continue;
+					continue;
 				case 'A':  /* Option setting */
 					options |= PCRE_ANCHORED;
-				continue;
+					continue;
 				case 'B':
 					options |= PCRE_NOTBOL;
-				continue;
+					continue;
 				case 'C':
 					if (isdigit(*p))    /* Set copy string */
 					{
@@ -536,25 +546,24 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 					else if (*p == '+')
 					{
-						
 						p++;
 					}
 					else if (*p == '-')
 					{
-					   p++;
+						p++;
 					}
 					else if (*p == '!')
 					{
 						callout_fail_id = 0;
 						p++;
 						while(isdigit(*p))
-						callout_fail_id = callout_fail_id * 10 + *p++ - '0';
+							callout_fail_id = callout_fail_id * 10 + *p++ - '0';
 						callout_fail_count = 0;
 						if (*p == '!')
 						{
 							p++;
 							while(isdigit(*p))
-							callout_fail_count = callout_fail_count * 10 + *p++ - '0';
+								callout_fail_count = callout_fail_count * 10 + *p++ - '0';
 						}
 					}
 					else if (*p == '*')
@@ -566,7 +575,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						callout_data *= sign;
 						callout_data_set = 1;
 					}
-				continue;
+					continue;
 				case 'G':
 					if (isdigit(*p))
 					{
@@ -582,29 +591,29 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 						n = pcre_get_stringnumber(re, (char *)getnamesptr);
 						getnamesptr = npp;
 					}
-				continue;
+					continue;
 				case 'L':
-				continue;
+					continue;
 				case 'M':
 					find_match_limit = 1;
-				continue;
+					continue;
 				case 'N':
 					options |= PCRE_NOTEMPTY;
-				continue;
+					continue;
 				case 'O':
 					while(isdigit(*p)) n = n * 10 + *p++ - '0';
 					if (n > size_offsets_max)
 					{
 						size_offsets_max = n;
-						FREE(offsets);
+						if (offsets) FREE(offsets);
 						use_offsets = offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 					}
 					use_size_offsets = n;
 					if (n == 0) use_offsets = NULL;   /* Ensures it can't write to it */
-				continue;
+					continue;
 				case 'P':
 					options |= PCRE_PARTIAL;
-				continue;
+					continue;
 				case 'Q':
 					while(isdigit(*p)) n = n * 10 + *p++ - '0';
 					if (extra == NULL)
@@ -614,7 +623,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 					extra->flags |= PCRE_EXTRA_MATCH_LIMIT_RECURSION;
 					extra->match_limit_recursion = n;
-				continue;
+					continue;
 				case 'q':
 					while(isdigit(*p)) n = n * 10 + *p++ - '0';
 					if (extra == NULL)
@@ -624,217 +633,242 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					}
 					extra->flags |= PCRE_EXTRA_MATCH_LIMIT;
 					extra->match_limit = n;
-				continue;
-			#if !defined NODFA
+					continue;
+#if !defined NODFA
 				case 'R':
 					options |= PCRE_DFA_RESTART;
-				continue;
-			#endif
+					continue;
+#endif
 				case 'S':
-					
-				continue;
+
+					continue;
 				case 'Z':
 					options |= PCRE_NOTEOL;
-				continue;
+					continue;
 				case '?':
 					options |= PCRE_NO_UTF8_CHECK;
-				continue;
+					continue;
 				case '<':
-				{
-					while (*p++ != '>');
+					{
+						while (*p++ != '>');
+					}
+					continue;
 				}
-				continue;
+				*q++ =(char)c;
 			}
-			*q++ =(char)c;
-		}
-		*q = 0;
-		len = (int)(q - buffer);
-		if ((all_use_dfa || use_dfa) && find_match_limit)
-		{
-			FREE(p);
-			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
-		}
-		/* Handle matching via the POSIX interface, which does not
-		support timing or playing with the match limit or callout data. */
-		for (;; gmatched++)    /* Loop for /g or /G */
-		{
-			
-			/* If find_match_limit is set, we want to do repeated matches with
-			varying limits in order to find the minimum value for the match limit and
-			for the recursion limit. */
-
-			if (find_match_limit)
+			*q = 0;
+			len = (int)(q - buffer);
+			if ((all_use_dfa || use_dfa) && find_match_limit)
 			{
-				if (extra == NULL)
-				{
-					extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
-					extra->flags = 0;
-				}
-
-				(void)check_match_limit(re, extra, bptr, len, start_offset,
-					options|g_notempty, use_offsets, use_size_offsets,
-					PCRE_EXTRA_MATCH_LIMIT, &(extra->match_limit),
-					PCRE_ERROR_MATCHLIMIT);
-
-				count = check_match_limit(re, extra, bptr, len, start_offset,
-					options|g_notempty, use_offsets, use_size_offsets,
-					PCRE_EXTRA_MATCH_LIMIT_RECURSION, &(extra->match_limit_recursion),
-				PCRE_ERROR_RECURSIONLIMIT);
+				if (buffer) {FREE(buffer); buffer = NULL;}
+				if (offsets) {FREE(offsets); offsets = NULL;}
+				if (p) {FREE(p); p = NULL;}
+				if (re) { (*pcre_free)(re); re = NULL;}
+				if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+				if (extra) {FREE(extra); extra = NULL;}
+				return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 			}
-			/* If callout_data is set, use the interface with additional data */
-			else if (callout_data_set)
+			/* Handle matching via the POSIX interface, which does not
+			support timing or playing with the match limit or callout data. */
+			for (;; gmatched++)    /* Loop for /g or /G */
 			{
-				if (extra == NULL)
+
+				/* If find_match_limit is set, we want to do repeated matches with
+				varying limits in order to find the minimum value for the match limit and
+				for the recursion limit. */
+
+				if (find_match_limit)
 				{
-					extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
-					extra->flags = 0;
+					if (extra == NULL)
+					{
+						extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
+						extra->flags = 0;
+					}
+
+					(void)check_match_limit(re, extra, bptr, len, start_offset,
+						options|g_notempty, use_offsets, use_size_offsets,
+						PCRE_EXTRA_MATCH_LIMIT, &(extra->match_limit),
+						PCRE_ERROR_MATCHLIMIT);
+
+					count = check_match_limit(re, extra, bptr, len, start_offset,
+						options|g_notempty, use_offsets, use_size_offsets,
+						PCRE_EXTRA_MATCH_LIMIT_RECURSION, &(extra->match_limit_recursion),
+						PCRE_ERROR_RECURSIONLIMIT);
 				}
-				extra->flags |= PCRE_EXTRA_CALLOUT_DATA;
-				extra->callout_data = &callout_data;
-				count = pcre_exec(re, extra, (char *)bptr, len, start_offset,
+				/* If callout_data is set, use the interface with additional data */
+				else if (callout_data_set)
+				{
+					if (extra == NULL)
+					{
+						extra = (pcre_extra *)MALLOC(sizeof(pcre_extra));
+						extra->flags = 0;
+					}
+					extra->flags |= PCRE_EXTRA_CALLOUT_DATA;
+					extra->callout_data = &callout_data;
+					count = pcre_exec(re, extra, (char *)bptr, len, start_offset,
 						options | g_notempty, use_offsets, use_size_offsets);
 
-				extra->flags &= ~PCRE_EXTRA_CALLOUT_DATA;
-			}
-			/* The normal case is just to do the match once, with the default
-			value of match_limit. */
-			else
-			{
-				count = pcre_exec(re, extra, (char *)bptr, len,
-					start_offset, options | g_notempty, use_offsets, use_size_offsets);
-				if (count == 0)
-				{
-					count = use_size_offsets/3;
+					extra->flags &= ~PCRE_EXTRA_CALLOUT_DATA;
 				}
-			}
-			/* Matched */
-			if (count >= 0)
-			{
-				int i, maxcount;
-				maxcount = use_size_offsets/3;
-				/* This is a check against a lunatic return value. */
-				if (count > maxcount)
+				/* The normal case is just to do the match once, with the default
+				value of match_limit. */
+				else
 				{
-					FREE(back_p);
-					return TOO_BIG_FOR_OFFSET_SIZE;
-				}
-
-				for (i = 0; i < count * 2; i += 2)
-				{
-					if (use_offsets[i] >= 0)
+					count = pcre_exec(re, extra, (char *)bptr, len,
+						start_offset, options | g_notempty, use_offsets, use_size_offsets);
+					if (count == 0)
 					{
-						*Output_Start=use_offsets[i];
-						*Output_End=use_offsets[i+1];
-						if (buffer) FREE(buffer);
-
-						/* use_offsets = offsets no need to free use_offsets if we free offsets */
-						if (offsets) FREE(offsets);
-
-						/* "re" allocated by pcre_compile (better to use free function associated)*/
-						if (re) (*pcre_free)(re);
-
-						if (extra) FREE(extra);
-						if (tables)
-						{
-							/* "tables" allocated by pcre_maketables (better to use free function associated to pcre)*/
-							(*pcre_free)((void *)tables);
-							setlocale(LC_CTYPE, "C");
-						}
-						if (back_p) FREE(back_p);
-						return PCRE_FINISHED_OK;
+						count = use_size_offsets/3;
 					}
 				}
-
-				for (copynamesptr = copynames; *copynamesptr != 0;copynamesptr += (int)strlen((char*)copynamesptr) + 1)
+				/* Matched */
+				if (count >= 0)
 				{
-					char copybuffer[256];
-					pcre_copy_named_substring(re, (char *)bptr, use_offsets,count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
-				}
+					int i, maxcount;
+					maxcount = use_size_offsets/3;
+					/* This is a check against a lunatic return value. */
+					if (count > maxcount)
+					{
+						if (buffer) {FREE(buffer); buffer = NULL;}
+						if (offsets) {FREE(offsets); offsets = NULL;}
+						if (re) { (*pcre_free)(re); re = NULL;}
+						if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+						if (extra) {FREE(extra); extra = NULL;}
+						if (back_p) {FREE(back_p);back_p = NULL;}
+						return TOO_BIG_FOR_OFFSET_SIZE;
+					}
 
-				for (i = 0; i < 32; i++)
-				{
-					if ((getstrings & (1 << i)) != 0)
+					for (i = 0; i < count * 2; i += 2)
+					{
+						if (use_offsets[i] >= 0)
+						{
+							*Output_Start=use_offsets[i];
+							*Output_End=use_offsets[i+1];
+							if (buffer) FREE(buffer);
+
+							/* use_offsets = offsets no need to free use_offsets if we free offsets */
+							if (offsets) FREE(offsets);
+
+							/* "re" allocated by pcre_compile (better to use free function associated)*/
+							if (re) (*pcre_free)(re);
+
+							if (extra) FREE(extra);
+							if (tables)
+							{
+								/* "tables" allocated by pcre_maketables (better to use free function associated to pcre)*/
+								(*pcre_free)((void *)tables);
+								tables = NULL;
+								setlocale(LC_CTYPE, "C");
+							}
+
+							if (back_p) {FREE(back_p); back_p = NULL;}
+							return PCRE_FINISHED_OK;
+						}
+					}
+
+					for (copynamesptr = copynames; *copynamesptr != 0;copynamesptr += (int)strlen((char*)copynamesptr) + 1)
+					{
+						char copybuffer[256];
+						pcre_copy_named_substring(re, (char *)bptr, use_offsets,count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
+					}
+
+					for (i = 0; i < 32; i++)
+					{
+						if ((getstrings & (1 << i)) != 0)
+						{
+							const char *substring;
+							pcre_get_substring((char *)bptr, use_offsets, count,i, &substring);
+						}
+					}
+
+					for (getnamesptr = getnames;*getnamesptr != 0;getnamesptr += (int)strlen((char*)getnamesptr) + 1)
 					{
 						const char *substring;
-						pcre_get_substring((char *)bptr, use_offsets, count,i, &substring);
+						pcre_get_named_substring(re, (char *)bptr, use_offsets,count, (char *)getnamesptr, &substring);
 					}
+
 				}
+				/* Failed to match. If this is a /g or /G loop and we previously set
+				g_notempty after a null match, this is not necessarily the end. We want
+				to advance the start offset, and continue. We won't be at the end of the
+				string - that was checked before setting g_notempty.
+				Complication arises in the case when the newline option is "any" or
+				"anycrlf". If the previous match was at the end of a line terminated by
+				CRLF, an advance of one character just passes the \r, whereas we should
+				prefer the longer newline sequence, as does the code in pcre_exec().
+				Fudge the offset value to achieve this.
 
-				for (getnamesptr = getnames;*getnamesptr != 0;getnamesptr += (int)strlen((char*)getnamesptr) + 1)
+				Otherwise, in the case of UTF-8 matching, the advance must be one
+				character, not one byte. */
+				else
 				{
-					const char *substring;
-					pcre_get_named_substring(re, (char *)bptr, use_offsets,count, (char *)getnamesptr, &substring);
-				}
-
-        }
-		/* Failed to match. If this is a /g or /G loop and we previously set
-		g_notempty after a null match, this is not necessarily the end. We want
-		to advance the start offset, and continue. We won't be at the end of the
-		string - that was checked before setting g_notempty.
-		Complication arises in the case when the newline option is "any" or
-		"anycrlf". If the previous match was at the end of a line terminated by
-		CRLF, an advance of one character just passes the \r, whereas we should
-		prefer the longer newline sequence, as does the code in pcre_exec().
-		Fudge the offset value to achieve this.
-
-		Otherwise, in the case of UTF-8 matching, the advance must be one
-		character, not one byte. */
-		else
-        {
-				if (count == PCRE_ERROR_NOMATCH)
-				{
-					if (gmatched == 0) 
+					if (count == PCRE_ERROR_NOMATCH)
 					{
-						if (p) FREE(back_p);
-						return NO_MATCH;
+						if (gmatched == 0) 
+						{
+							if (tables) { (*pcre_free)((void *)tables); tables = NULL; }
+							if (re) { (*pcre_free)((void *)re); re = NULL; }
+							if (buffer) {FREE(buffer); buffer = NULL;}
+							if (offsets) FREE(offsets);
+							if (p) {FREE(back_p); back_p = NULL;}
+							return NO_MATCH;
+						}
 					}
+
+					if (count == PCRE_ERROR_MATCHLIMIT )
+					{
+						if (tables) { (*pcre_free)((void *)tables); tables = NULL; }
+						if (re) { (*pcre_free)((void *)re); re = NULL; }
+						if (buffer) {FREE(buffer); buffer = NULL;}
+						if (offsets) {FREE(offsets); offsets = NULL;}
+						if (back_p){FREE(back_p); back_p = NULL;}
+						return MATCH_LIMIT;
+					}
+					break;  /* Out of loop */
 				}
 
-				if (count == PCRE_ERROR_MATCHLIMIT )
+				/* If not /g or /G we are done */
+				if (!do_g && !do_G) break;
+
+				/* If we have matched an empty string, first check to see if we are at
+				the end of the subject. If so, the /g loop is over. Otherwise, mimic
+				what Perl's /g options does. This turns out to be rather cunning. First
+				we set PCRE_NOTEMPTY and PCRE_ANCHORED and try the match again at the
+				same point. If this fails (picked up above) we advance to the next
+				character. */
+
+				g_notempty = 0;
+
+				if (use_offsets[0] == use_offsets[1])
 				{
-					FREE(back_p);
-					return MATCH_LIMIT;
+					if (use_offsets[0] == len) break;
+					g_notempty = PCRE_NOTEMPTY | PCRE_ANCHORED;
 				}
-				break;  /* Out of loop */
-		}
 
-		/* If not /g or /G we are done */
-		if (!do_g && !do_G) break;
+				/* For /g, update the start offset, leaving the rest alone */
 
-		/* If we have matched an empty string, first check to see if we are at
-		the end of the subject. If so, the /g loop is over. Otherwise, mimic
-		what Perl's /g options does. This turns out to be rather cunning. First
-		we set PCRE_NOTEMPTY and PCRE_ANCHORED and try the match again at the
-		same point. If this fails (picked up above) we advance to the next
-		character. */
+				if (do_g) start_offset = use_offsets[1];
+				/* For /G, update the pointer and length */
+				else
+				{
+					bptr += use_offsets[1];
+					len -= use_offsets[1];
+				}
+			}  /* End of loop for /g and /G */
 
-		g_notempty = 0;
+			if (re) {(*pcre_free)(re); re = NULL;}
+			if (extra) {FREE(extra); extra = NULL;}
+			if (tables) {(*pcre_free)((void *)tables); tables = NULL;}
 
-		if (use_offsets[0] == use_offsets[1])
-        {
-			if (use_offsets[0] == len) break;
-			g_notempty = PCRE_NOTEMPTY | PCRE_ANCHORED;
-		}
+			FREE(back_p); back_p = NULL;
+			continue;
+		}    /* End of loop for data lines */
+	}
 
-		/* For /g, update the start offset, leaving the rest alone */
-
-		if (do_g) start_offset = use_offsets[1];
-		/* For /G, update the pointer and length */
-		else
-        {
-			bptr += use_offsets[1];
-			len -= use_offsets[1];
-        }
-	}  /* End of loop for /g and /G */
-
-	FREE(back_p);
-    continue;
-    }    /* End of loop for data lines */
-  }
-	
-	FREE(buffer);
-	FREE(offsets);
+	if (buffer) {FREE(buffer); buffer = NULL;}
+	if (offsets) {FREE(offsets); offsets = NULL;}
 
 	return PCRE_EXIT;
 }
 
+/*-------------------------------------------------------------------------------*/

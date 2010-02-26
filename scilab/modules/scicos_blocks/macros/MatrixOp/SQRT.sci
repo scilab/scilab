@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;label=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,typ,exprs]=getvalue('Set SQRT Block',..
+    [ok,typ,exprs]=scicos_getvalue('Set SQRT Block',..
 	    ['Datatype(1=real double  2=Complex)'],list('vec',1),label)
     if ~ok then break,end
     if (typ==1) then

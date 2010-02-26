@@ -101,15 +101,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    
-   Matplot((1:xget("lastpattern")))
-   e=gce(); // get current entity
+    <programlisting role="example"><![CDATA[ 
+Matplot((1:xget("lastpattern")))
+e=gce(); // get current entity
 
-   e.data=e.data($:-1:1) // reverse order
-
- 
-  ]]></programlisting>
+e.data=e.data($:-1:1) // reverse order
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

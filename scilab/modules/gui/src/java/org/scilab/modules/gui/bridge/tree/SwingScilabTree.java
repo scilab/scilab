@@ -17,19 +17,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.event.TreeExpansionEvent;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -48,6 +41,7 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.localization.Messages;
 
 public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
 
@@ -139,8 +133,14 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 		
 		Window window = ScilabWindow.createWindow();
-		Tab tab = ScilabTab.createTab("Tree Overview");
-		tab.setCallback(null);
+		final Tab tab = ScilabTab.createTab(Messages.gettext("Tree Overview"));
+		tab.setCallback(new CallBack(null) {
+			private static final long serialVersionUID = 8418506008885202932L;
+
+			public void callBack() {
+				tab.close();
+			}
+		});
 		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
 		window.addTab(tab);
 		tab.setVisible(true);

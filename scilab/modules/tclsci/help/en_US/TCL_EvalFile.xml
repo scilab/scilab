@@ -88,11 +88,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 TCL_EvalFile(SCI+"/modules/tclsci/demos/tk/puzzle");
-scipad();
-TCL_EvalFile(SCI+"/modules/tclsci/demos/tk/puzzle","scipad");
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

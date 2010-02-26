@@ -168,12 +168,10 @@
     initial state X0 and the matrices B and D of a discrete-time 
     system using the system matrices A, C, output data Y and the input 
     data U. The model structure is :</para>
-    <programlisting><![CDATA[
-
-     x(k+1) = Ax(k) + Bu(k),   k >= 1,
-     y(k)   = Cx(k) + Du(k),
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
     <para>
     The vectors y(k) and u(k) are transposes of the k-th rows of Y and U,
     respectively.</para>
@@ -182,17 +180,14 @@
     matrix V which reduces the system state matrix A to a real Schur
     form, as well as some estimates of the reciprocal condition numbers
     of the matrices involved in rank decisions.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
     B = findx0BD(A,C,Y,U,0,0)  returns B only, and
 [B,D] = findx0BD(A,C,Y,U,0)    returns B and D only. 
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -216,11 +211,9 @@ METH=3;TOL=-1;
 [X0,B,D,V,rcnd] = findx0BD(A,C,Y',U');
 SYS1=syslin(1,A,B,C,D,X0);
 
-
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
- 
-  ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

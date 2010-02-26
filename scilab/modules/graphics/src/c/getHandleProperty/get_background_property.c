@@ -31,7 +31,7 @@ int get_background_property( sciPointObj * pobj )
 	if (sciGetGraphicContext(pobj) == NULL)
 	{
 		/* This object has not a background color */
-		Scierror(999, _("%s property does not exist for this handle.\n"),"background");
+		Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
 	}
 
   return sciReturnDouble( sciGetBackgroundToDisplay( pobj ) ) ;

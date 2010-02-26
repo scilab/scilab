@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,7 +35,7 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"figure_id") ;
+    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "figure_id");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -42,7 +43,7 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    Scierror(999, _("%s property undefined for this object.\n"), "figure_id") ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return SET_PROPERTY_ERROR ;
   }
 

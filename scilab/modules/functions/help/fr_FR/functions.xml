@@ -42,9 +42,10 @@
     <itemizedlist>
       <listitem>
 	<para>une ligne de déclaration formelle</para>
-	<programlisting><![CDATA[
+	<programlisting><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
-function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) ]]></programlisting>
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) 
+ ]]></programlisting>
       </listitem>
       <listitem>
 	  <para>une suite d'instructions Scilab.</para>
@@ -103,9 +104,13 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) ]]></programlisting>
       <para>Quand une fonction n'a pas d'argument de sortie et est
       appelée avec des arguments d'entrée de type chaîne de
       caractère, la syntaxe d'appel peut être simplifiée :</para>
-      <programlisting><![CDATA[ fun('a','toto','une chaîne') ]]></programlisting>
+      <programlisting><![CDATA[ 
+fun('a','toto','une chaîne') 
+ ]]></programlisting>
       <para>est alors équivalent à: </para>
-      <programlisting><![CDATA[ fun a toto 'une chaîne']]></programlisting>
+      <programlisting><![CDATA[ 
+fun a toto 'une chaîne'
+ ]]></programlisting>
     </listitem>
   </itemizedlist>
   </refsection>
@@ -123,7 +128,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin) ]]></programlisting>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // définition en ligne
 function [x,y]=myfct(a,b)
 x=a+b
@@ -137,7 +142,6 @@ deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])
 // définition dans un fichier texte (voir exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
-
  ]]></programlisting>
   </refsection>
   <refsection>
@@ -145,7 +149,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
     <simplelist type="inline">
       <member> <link linkend="function">function</link> </member>
       <member> <link linkend="deff">deff</link> </member>
-      <member> <link linkend="getf">getf</link> </member>
+      <member> <link linkend="exec">exec</link> </member>
       <member> <link linkend="comp">comp</link> </member>
       <member> <link linkend="lib">lib</link> </member>
       <member> <link linkend="getd">getd</link> </member>

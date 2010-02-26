@@ -15,7 +15,7 @@
 /* desc : interface for StringBox routine                                 */
 /*------------------------------------------------------------------------*/
 
-#include "sci_StringBox.h"
+#include "gw_graphics.h"
 #include "Scierror.h"
 #include "stack-c.h"
 #include "GetProperty.h"

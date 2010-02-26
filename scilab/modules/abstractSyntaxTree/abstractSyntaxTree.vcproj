@@ -323,6 +323,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\mutevisitor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\printvisitor.cpp"
 				>
 			</File>
@@ -498,6 +502,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\matrixlineexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\mutevisitor.hxx"
 				>
 			</File>
 			<File

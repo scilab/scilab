@@ -53,13 +53,13 @@
       <varlistentry>
         <term>Re</term>
         <listitem>
-          <para>: <literal>K*Se</literal></para>
+          <para> <literal>K*Se</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Te</term>
         <listitem>
-          <para>: <literal>G*K*Se</literal> (output complementary sensitivity function)</para>
+          <para> <literal>G*K*Se</literal> (output complementary sensitivity function)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -73,17 +73,14 @@
     <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>.
     If <literal>flag</literal> = <literal>'i'</literal>, <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>
     returns the input sensitivity functions.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 [Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
 [Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 G=ssrand(1,1,3);K=ssrand(1,1,3);
 [Se,Re,Te]=sensi(G,K);
 Se1=inv(eye()+G*K);  //Other way to compute
@@ -95,8 +92,7 @@ ss2tf(G*K*Se1)
 w1=[ss2tf(Si);ss2tf(Ri);ss2tf(Ti)]
 w2=[ss2tf(inv(eye()+K*G));ss2tf(G*inv(eye()+K*G));ss2tf(K*G*inv(eye()+K*G))];
 clean(w1-w2)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -11,19 +11,20 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "ConvertSlash.h"
+#include "BOOL.h"
+#include "dynlib_scilab_windows.h"
 /*--------------------------------------------------------------------------*/
 #define UNIX_SEPATATOR '/'
 #define WINDOWS_SEPATATOR '\\'
 /*--------------------------------------------------------------------------*/
 static BOOL convertSlash(char *path_in,char *path_out,BOOL slashToAntislash);
 /*--------------------------------------------------------------------------*/
-BOOL slashToAntislash(char *pathunix,char *pathwindows)
+SCILAB_WINDOWS_IMPEXP BOOL slashToAntislash(char *pathunix,char *pathwindows)
 {
 	return convertSlash(pathunix,pathwindows,TRUE);
 }
 /*--------------------------------------------------------------------------*/
-BOOL AntislashToSlash(char *pathwindows,char *pathunix)
+SCILAB_WINDOWS_IMPEXP BOOL AntislashToSlash(char *pathwindows,char *pathunix)
 {
 	return convertSlash(pathwindows,pathunix,FALSE);
 }

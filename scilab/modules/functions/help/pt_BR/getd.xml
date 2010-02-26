@@ -58,26 +58,27 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 getd('SCI/modules/cacsd/macros')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="getf">getf</link></member>
-
-      <member><link linkend="lib">lib</link></member>
-
-      <member><link linkend="getcwd">getcwd</link></member>
-
-      <member><link linkend="pwd">pwd</link></member>
-
-      <member><link linkend="chdir">chdir</link></member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+      <member>
+        <link linkend="pwd">pwd</link>
+      </member>
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -96,7 +96,7 @@ xset()</synopsis>
           <para>alterna o modo de limpeza automática para gráficos entre "on"
           e "off" . Quando o modo de limpeza automática é "on", esboços
           sucessivos não são superpostos, ie, uma operação
-          <literal>xbasc()</literal> (a janela de gráficos é limpa e os
+          <literal>clf()</literal> (a janela de gráficos é limpa e os
           gráficos gravados associados são apagados) é realizada antes de cada
           função gráfica de alto-nível. O valor padrão é "off".</para>
         </listitem>
@@ -280,7 +280,7 @@ xset()</synopsis>
           enviados à janela de gráficos através do comando
           <literal>xset("wshow")</literal>. O pixmap é limpo com o comando
           <literal>xset("wwpc")</literal>. Note que o comando usual
-          <literal>xbasc()</literal> também limpa o pixmap.</para>
+          <literal>clf()</literal> também limpa o pixmap.</para>
         </listitem>
       </varlistentry>
 
@@ -357,13 +357,23 @@ xset()</synopsis>
           <para>se flag= 1então o gráfico é automaticamente redimensionado
           para preencher a janela de gráficos.</para>
 
-          <programlisting>xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)</programlisting>
+          <programlisting role = ""><![CDATA[ 
+xdel();
+xset("wresize",1);
+plot2d();
+xset("wdim",1000,500)
+ ]]></programlisting>
 
           <para>Se flag=0 a escala do gráfico é inalterada quando a janela de
           gráfico é redimensionada. O cursor no canto superior esquerdo ou as
           setas do teclado podem ser utilizadas para rolar o gráfico .</para>
 
-          <programlisting>xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)</programlisting>
+          <programlisting role = ""><![CDATA[ 
+xdel();
+plot2d();
+xset("wresize",0);
+xset("wdim",1000,500)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 

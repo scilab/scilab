@@ -106,7 +106,7 @@
         <term>norm(v)</term>
 
         <listitem>
-          <para>: <literal>=norm(v,2)</literal> : norme euclidienne</para>
+          <para> <literal>=norm(v,2)</literal> : norme euclidienne</para>
         </listitem>
       </varlistentry>
 
@@ -114,7 +114,7 @@
         <term>norm(v,'inf')</term>
 
         <listitem>
-          <para>: <literal>max(abs(v(i)))</literal>.</para>
+          <para> <literal>max(abs(v(i)))</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -123,7 +123,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2,3];
 norm(A,1)
 norm(A,'inf')
@@ -132,7 +132,7 @@ max(svd(A))-norm(A)
 
 A=sparse([1 0 0 33 -1])
 norm(A)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

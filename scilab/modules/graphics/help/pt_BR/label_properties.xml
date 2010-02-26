@@ -205,28 +205,27 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">   
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");
+a.title
+type(a.title)
+plot3d()
+a.x_label
+a.y_label
+a.z_label
+xtitle("Meu título","meu rótulo de eixo x", "Volume","Mês") 
 
-   a=get("current_axes");
-   a.title
-   type(a.title)
-   plot3d()
-   a.x_label
-   a.y_label
-   a.z_label
-   xtitle("Meu título","meu rótulo de eixo x", "Volume","Mês") 
-
-   t=a.title;
-   t.foreground=9;
-   t.font_size=5;
-   t.font_style=5;
-   t.text="SCILAB";
+t=a.title;
+t.foreground=9;
+t.font_size=5;
+t.font_style=5;
+t.text="SCILAB";
    
-   x_label=a.x_label;
-   x_label.text=" Peso"
-   x_label.font_style= 5;
-   a.y_label.foreground = 12;
- </programlisting>
+x_label=a.x_label;
+x_label.text=" Peso"
+x_label.font_style= 5;
+a.y_label.foreground = 12;
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -11,7 +11,7 @@
  */
 #ifndef __SET_UICONTROL_MAX_H__
 #define __SET_UICONTROL_MAX_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 
 /**
@@ -24,6 +24,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the max property set has been correcty done
  */
-int SetUicontrolMax(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolMax(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_MAX_H__ */

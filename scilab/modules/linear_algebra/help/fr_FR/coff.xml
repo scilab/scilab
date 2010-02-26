@@ -69,7 +69,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 M=[1,2;0,3];
 [N,d]=coff(M)
 N/d

@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,n,exprs]=getvalue('Set Halt block parameters',..
+    [ok,n,exprs]=scicos_getvalue('Set Halt block parameters',..
 	['State on halt'],list('vec',1),exprs)
     if ~ok then break,end
     if ok then

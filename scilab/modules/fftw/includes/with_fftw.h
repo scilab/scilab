@@ -15,19 +15,20 @@
 
 #include "machine.h" /* C2F */
 #include "BOOL.h" 
+#include "dynlib_fftw.h"
 
 /** 
 * check if it is with FFTW
 * @param rep 1 (WITH) or 0 (WITHOUT)
 * @return 0
 */
-int C2F(withfftw)(int *rep);
+FTTW_SCILAB_IMPEXP int C2F(withfftw)(int *rep);
 
 /** 
 * check if it is with FFTW
 * @return TRUE or FALSE
 */
-BOOL withfftw(void);
+FTTW_SCILAB_IMPEXP BOOL withfftw(void);
 
 #endif /* __WITH_FFTW_H__ */
 /*--------------------------------------------------------------------------*/ 

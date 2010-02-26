@@ -1,14 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA - Michael Baudin
+// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2009 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-//
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
-//   in the case where the cost function is provided as a Fortran
+//   in the case where the cost function is provided as a Fortran 
 //   routine.
 //   The "genros" function is defined in optimization/sci_gateway/fortran/Ex-optim.f
 //
@@ -22,6 +23,9 @@ bi=-bs;
 x0=1.2*ones(n,1);
 epsx=1.e-15*x0;
 xopt=ones(n,1);
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
 // External function written in C (C compiler required)
 // write down the C code (Rosenbrock problem)
 C=['#include <math.h>'
@@ -45,11 +49,12 @@ C=['#include <math.h>'
 '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
 '  }'
 '}'];
-mputl(C,TMPDIR+'/rosenc.c');
+mputl(C,'rosenc.c');
 // compile the C code
-libpath=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+libpath=ilib_for_link('rosenc','rosenc.c',[],'c');
 // incremental linking
-linkid=link(libpath,'rosenc','c');
+exec loader.sce;
+chdir(cur_dir);
 //solve the problem
 valtd=100;
 // Test with default solver and default settings.
@@ -69,5 +74,3 @@ for verbose=verboselevels
     if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
-// Clean-up
-ulink(linkid);

@@ -40,7 +40,6 @@ src/fortran/mpdiag.f \
 src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
-src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
@@ -64,8 +63,6 @@ src/fortran/quad.f \
 src/fortran/calcsc.f \
 src/fortran/writebufsfact.f
 
-
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
@@ -106,8 +103,6 @@ sci_gateway/fortran/sci_f_simpmd.f
 
 
 
-
-
 libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/operations/includes
@@ -116,7 +111,7 @@ pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
@@ -142,9 +137,5 @@ libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
-
-#### polynomials : include files ####
-libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
-libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 include $(top_srcdir)/Makefile.incl.am

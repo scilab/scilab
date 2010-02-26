@@ -105,8 +105,7 @@ k = mode()</synopsis>
       </varlistentry>
     </variablelist>
 
-    <para>Line display is disabled for compiled scilab function (see getf or
-    comp). By default, Scilab functions are executed using the silent ("-1")
+    <para>Line display is disabled for compiled scilab function (see comp). By default, Scilab functions are executed using the silent ("-1")
     mode.</para>
 
     <para>functions in a function library are executed using "-1" mode.</para>
@@ -115,7 +114,7 @@ k = mode()</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // copy - paste in scilab
 
 function example_mode( level_mode )
@@ -134,8 +133,7 @@ example_mode(3)
 example_mode(7)
 
 mode(2)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -145,8 +143,6 @@ mode(2)
       <member><link linkend="exec">exec</link></member>
 
       <member><link linkend="execstr">execstr</link></member>
-
-      <member><link linkend="getf">getf</link></member>
 
       <member><link linkend="semicolon">semicolon</link></member>
 

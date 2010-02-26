@@ -57,8 +57,8 @@
           <para>This argument is mandatory under Linux, Unix or Mac OS
           X.</para>
 
-          <para>Under Windows, if SCIpath is NULL, Scilab will find the path
-          into the registry.</para>
+          <para>Under Windows, if SCIpath is NULL, Scilab will find the
+          path.</para>
         </listitem>
       </varlistentry>
 
@@ -100,25 +100,25 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"> 
 // A simple StartScilab example
 if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
  {
   fprintf(stderr,"Error while calling StartScilab\n");
   return -1;
  }
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link>, <link
-      linkend="compile_and_run_call_scilab">Compile and run with
+      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,
+<link linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link>, <link linkend="SendScilabJob">SendScilabJob</link>,
       <link linkend="TerminateScilab">TerminateScilab</link>, <link
-      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="DoubleManagement_callscilab">Double Management</link>, <link
       linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
       linkend="ComplexManagement_callscilab">Complex Management</link>, <link
       linkend="StringManagement_callscilab">String Management</link></member>

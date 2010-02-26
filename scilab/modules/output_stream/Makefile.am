@@ -10,6 +10,15 @@
 ## Copyright INRIA 2007
 ##
 
+OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
+	src/cpp/yaspio.cpp \
+	src/cpp/DiaryList.cpp \
+	src/cpp/diary_manager.cpp \
+	src/cpp/getDiaryDate.cpp \
+	src/cpp/getFullFilename.cpp
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_diary.cpp
+
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/cerro.c \
 				src/c/Scierror.c \
@@ -26,9 +35,6 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
 				src/c/set_xxprintf.c
-
-OUTPUT_STREAM_CPP_SOURCES = \
-		src/cpp/yaspio.cpp
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
@@ -69,16 +75,18 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
+-I$(srcdir)/src/cpp/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes
+
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES) \ $(OUTPUT_STREAM_CPP_SOURCES)
+libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
@@ -103,18 +111,10 @@ libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
-libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
-libscioutput_stream_la_include_HEADERS = includes/cerro.h \
-includes/erro.h \
-includes/do_error_number.h \
-includes/errmds.h \
+libscioutput_stream_la_includedir=$(pkgincludedir)
+libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
-includes/Scierror.h \
-includes/basout.h \
-includes/msgs.h \
-includes/sciprint_full.h \
-includes/do_xxprintf.h \
-includes/gw_output_stream.h
+includes/Scierror.h
 
 include $(top_srcdir)/Makefile.incl.am
 

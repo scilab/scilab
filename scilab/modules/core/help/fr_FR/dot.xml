@@ -68,19 +68,23 @@ a.*b
 
           <para>La fonction foo suivante :</para>
 
-          <programlisting>function foo
-    a=1
-    disp(a),..
-    disp('ok')
-endfunction </programlisting>
+          <programlisting role = ""><![CDATA[ 
+function foo
+  a=1
+  disp(a),..
+  disp('ok')
+endfunction
+ ]]></programlisting>
 
           <para>est équivalente à :</para>
 
-          <programlisting>function foo 
-    a=1
+          <programlisting role = ""><![CDATA[ 
+function foo 
+  a=1
 
-    disp(a),disp('ok') 
-endfunction</programlisting>
+  disp(a),disp('ok') 
+endfunction
+ ]]></programlisting>
 
           <para>La ligne logique formée par les lignes physiques 3 et 4 est
           construite comme si elle était entièrement écrite sur la ligne
@@ -96,12 +100,12 @@ endfunction</programlisting>
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 1.345
 x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
 [123,..
  456]
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

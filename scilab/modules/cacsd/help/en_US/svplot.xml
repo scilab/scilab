@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (continuous, discrete or sampled system)</para>
+          <para> <literal>syslin</literal> list (continuous, discrete or sampled system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -44,53 +44,43 @@
     <para>
     computes for the system <literal>sl=(A,B,C,D)</literal>
     the singular values of its transfer function matrix:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
              G(jw) = C(jw*I-A)B^-1+D
 or
              G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
 or
              G(exp(jwT)) = C(exp(jw*T)*I-A)B^-1+D
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     evaluated over the frequency range specified by <literal>w</literal>. (T is the sampling
     period, <literal>T=sl('dt')</literal> for sampled systems).</para>
     <para><literal>sl</literal> is a <literal>syslin</literal> list representing the system
-    <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continous or
+    <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continuous or
     discrete time or sampled system.</para>
     <para>
     The <literal>i</literal>-th column of the output matrix <literal>SVM</literal> contains the singular
     values of <literal>G</literal> for the <literal>i</literal>-th frequency value <literal>w(i)</literal>.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 SVM = svplot(sl)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     is equivalent to</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 SVM = svplot(sl,logspace(-3,3))  (continuous)
-   
-    ]]></programlisting>
-    <programlisting><![CDATA[
-
+ ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
 SVM = svplot(sl,logspace(-3,%pi)) (discrete)
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=logspace(-3,3);
 y=svplot(ssrand(2,2,4),x);
-xbasc();plot2d1("oln",x',20*log(y')/log(10));
+clf();plot2d1("oln",x',20*log(y')/log(10));
 xgrid(12)
 xtitle("Singular values plot","(Rd/sec)", "Db");
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

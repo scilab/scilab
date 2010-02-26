@@ -85,9 +85,9 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 W=sprand(100,1000,0.001);
- s</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

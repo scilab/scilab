@@ -16,13 +16,17 @@
 /* desc : interface for sci_drawaxis routine                              */
 /*------------------------------------------------------------------------*/
 
-#include "sci_drawaxis.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"
+/*--------------------------------------------------------------------------*/
+static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
+					long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
+					int *ntics);
 
 /*--------------------------------------------------------------------------*/
 int sci_drawaxis( char * fname, unsigned long fname_len )
@@ -199,7 +203,7 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
 }
 
 /*--------------------------------------------------------------------------*/
-int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
+static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
              long unsigned int xl, int ypos, int yRow, int yCol, long unsigned int yl, 
              int *ntics)
 {

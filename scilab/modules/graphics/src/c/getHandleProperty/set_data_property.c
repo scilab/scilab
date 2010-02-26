@@ -316,7 +316,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   }
   if( dimvecty > 1 )
   {
-    int monotony = checkMonotony( pvecx, dimvecty ) ;
+    int monotony = checkMonotony( pvecy, dimvecty ) ;
     if ( monotony == 0 )
     {
       Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>sl,slb</term>
         <listitem>
-          <para>: <literal>syslin</literal> lists</para>
+          <para> <literal>syslin</literal> lists</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -49,8 +49,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=[-eye(2,2),rand(2,2);zeros(2,2),-2*eye(2,2)];
 B=[rand(2,2);zeros(2,2)];C=rand(2,4);
 sl=syslin('c',A,B,C);
@@ -60,8 +59,7 @@ ss2tf(slb)
 ctr_gram(sl)
 clean(ctr_gram(slb))
 clean(obs_gram(slb))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

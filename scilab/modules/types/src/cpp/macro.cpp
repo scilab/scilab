@@ -10,9 +10,13 @@
 * 
 */
 
+#include <sstream>
+#include <cstdio>
+
 #include "macro.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
+#include "stack-def.h"
 #include "localization.h"
 #include "yaspio.hxx"
 
@@ -24,12 +28,12 @@ namespace types
 	/*--------------*/
 	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule):
 		Callable(),
-		m_stName(_stName),
 		m_inputArgs(&_inputArgs),
 		m_outputArgs(&_outputArgs),
-		m_stModule(_stModule),
 		m_body(&_body)
 	{
+	  setName(_stName);
+	  setModule(_stModule);
 	}
 
 	Macro::~Macro()
@@ -52,6 +56,21 @@ namespace types
 	InternalType::RealType Macro::getType(void)
 	{ 
 		return RealMacro; 
+	}
+
+	ast::SeqExp* Macro::body_get(void)
+	{
+		return m_body;
+	}
+
+	std::string Macro::toString(int _iPrecision, int _iLineLen)
+	{
+	  std::ostringstream ostr;
+
+	  //FIXME : Implement me.
+	  ostr << "FIXME : Implement Macro::toString" << std::endl;
+
+	  return ostr.str();
 	}
 	
 	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out)

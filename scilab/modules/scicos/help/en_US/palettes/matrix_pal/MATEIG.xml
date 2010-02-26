@@ -153,13 +153,13 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
   </refsection>
   <refsection id="Example_MATEIG">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=[1 12 32;21 35 46;70 8 19]
 When the "Decomposition type" is set to one the output is y=[-35.649;14.279;76.369]
 When the "Decomposition type" is set to two the outputs are:
 y1=[-35.649 0.000 0.000;0.000 14.279 0.000;0.000 0.000 76.369]
 y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATEIG">
     <title>Default properties</title>

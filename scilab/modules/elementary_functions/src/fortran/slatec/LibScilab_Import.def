@@ -5,7 +5,7 @@ EXPORTS
 ;
 ;core
 iop_
-returnanan_
+returnananfortran_
 ;
 ;elementary_functions_f
 d1mach_

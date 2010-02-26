@@ -40,8 +40,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ver
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+ver
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

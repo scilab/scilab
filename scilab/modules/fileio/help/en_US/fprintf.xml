@@ -86,19 +86,16 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 u=file('open','results','unknown') //open the result file
 t=0:0.1:2*%pi;
 for tk=t
- fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line
+  fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line
 end
 file('close',u) //close the result file
 
-
 fprintf(0,'My error which is going to be displayed on the stderr') 
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

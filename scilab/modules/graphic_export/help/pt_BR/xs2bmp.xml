@@ -66,12 +66,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //Exportando para BMP
 xs2bmp(0,'foo.bmp');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

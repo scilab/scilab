@@ -26,15 +26,13 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>help_from_sci() // gera um modelo de função vazio</synopsis>
-
-    <synopsis>help_from_sci(funname,helpdir) // gera helpdir/funname.xml a partir de funname.sci</synopsis>
-
-    <synopsis>help_from_sci(dirname,helpdir) // processa dirname/*.sci e cria helpdir/*.xml.</synopsis>
-
-    <synopsis>help_from_sci(dirname,helpdir,helpdir) // como acima, mas também cria o arquivo de demonstração helpdir/*.dem.sce.</synopsis>
-
-    <synopsis>[helptxt,demotxt]=help_from_sci(funname) // retorna funname.xml e funname.dem.sce como duas matrizes de texto.</synopsis>
+    <synopsis>
+      help_from_sci() // gera um modelo de função vazio
+      help_from_sci(funname,helpdir) // gera helpdir/funname.xml a partir de funname.sci
+      help_from_sci(dirname,helpdir) // processa dirname/*.sci e cria helpdir/*.xml.
+      help_from_sci(dirname,helpdir,helpdir) // como acima, mas também cria o arquivo de demonstração helpdir/*.dem.sce.
+      [helptxt,demotxt]=help_from_sci(funname) // retorna funname.xml e funname.dem.sce como duas matrizes de texto.
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -118,55 +116,33 @@
     "Bibliography".</para>
 
     <para>As seguintes diretrizes devem ser seguidas ao se escrever os
-    comentários de código fonte: <itemizedlist>
-        <listitem>
-           
-
+    comentários de código fonte:</para>
+      <itemizedlist>
+        <listitem><para>       
           <literal>Calling Sequence</literal>
-
            - um exemplo por linha. 
-        </listitem>
-
-        <listitem>
-           
-
+        </para></listitem>
+        <listitem><para>
           <literal>Parameters</literal>
-
            - separe o nome do parâmetro e a descrição por um ":". Mantenha a descrição de cada parâmetro na mesma linha. 
-        </listitem>
-
-        <listitem>
-           
-
+        </para></listitem>
+        <listitem><para>
           <literal>Description</literal>
-
            - a formatação do texto pode ser feita utilizando comandos XML. Adicionar uma linha de comentário vazia na seção Description é interpretado como começo de um novo parágrafo. 
-        </listitem>
-
-        <listitem>
-           
-
+          </para></listitem>
+        <listitem><para>
           <literal>See also</literal>
-
            - liste um nome de função por linha.
-        </listitem>
-
-        <listitem>
-           
-
+          </para></listitem>
+        <listitem><para>
           <literal>Authors</literal>
-
            - escreva um autor em cada linha após o cabeçalho Authors. Use ";" para separar os autores de qualquer informação adicional. 
-        </listitem>
-
-        <listitem>
-           
-
+          </para></listitem>
+        <listitem><para>
           <literal>Bibliography</literal>
-
            - escreva uma referência por linha seguindo o cabeçalho References. 
-        </listitem>
-      </itemizedlist></para>
+          </para></listitem>
+      </itemizedlist>
 
     <para></para>
   </refsection>
@@ -174,8 +150,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-help_from_sci()   // abrindo um modelo de código-fonte vazio no editor Scipad.
+    <programlisting role="example"><![CDATA[ 
+help_from_sci()   // abrindo um modelo de código-fonte vazio no editor.
 // salve este modelo como test_fun.sci no diretório corrente antes de executar
 // os próximos comandos do exemplo
 
@@ -191,8 +167,7 @@ help_from_sci('test_fun','.','.')
 // este comando processaria todos os arquivos .sci no diretório de macros
 // e utilizaria a seção de comentários de cabeçalho para atualizar as ajudas .xml no
 // diretório help\en_US e reconstruiria os arquivos .dem.sce no diretório demos\.
-
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

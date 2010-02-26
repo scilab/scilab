@@ -65,9 +65,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 isvector(ones(10,1))
 isvector(1)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

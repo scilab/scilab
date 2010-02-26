@@ -91,14 +91,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 M=[1,2;0,3];
 [N,d]=coff(M)
 N/d
 inv(%s*eye()-M)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

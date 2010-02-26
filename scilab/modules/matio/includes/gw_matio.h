@@ -11,19 +11,19 @@
  */
 
 /*-----------------------------------------------------------------------------------*/ 
-#include "machine.h"
+#include "dynlib_matio.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef __GW_MATIO_H__
 #define __GW_MATIO_H__
 /*-----------------------------------------------------------------------------------*/
-int gw_matio(void);
+MATIO_IMPEXP int gw_matio(void);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-int sci_matfile_open(char *fname,unsigned long fname_len);
-int sci_matfile_close(char *fname,unsigned long fname_len);
-int sci_matfile_listvar(char *fname,unsigned long fname_len);
-int sci_matfile_varreadnext(char *fname,unsigned long fname_len);
-int sci_matfile_varwrite(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_open(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_close(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_listvar(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_varreadnext(char *fname,unsigned long fname_len);
+MATIO_IMPEXP int sci_matfile_varwrite(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __GW_MATIO_H__ */

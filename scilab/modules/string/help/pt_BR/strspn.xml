@@ -72,20 +72,18 @@
     porção inicial de str1 que consiste apenas de caracteres que fazem parte
     de str2.</para>
 
-    <para>str2 deve ter as mesmas dimensões que str2, ou str2 pode ser um
+    <para>str2 deve ter as mesmas dimensões que str2, ou str1 pode ser um
     string.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 i = strspn("129o","1234567890");
 printf ("O comprimento do numero inicial e %d.\n",i);
 i = strspn(["129o","130o"],["1234567890","130o"])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

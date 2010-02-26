@@ -14,10 +14,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "dynamiclibrary.h"
 #include "JVM.h"
 #include "JVM_functions.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
+#include "getScilabJNIEnv.h"
 #include "fromjava.h"
 #include "localization.h"
 #include "getJvmOptions.h"
@@ -115,6 +117,12 @@ BOOL startJVM(char *SCI_PATH)
 		if (! LoadDynLibJVM(SCI_PATH) ) 
 		{
 			fprintf(stderr,_("\nCould not load JVM dynamic library (libjava).\n"));
+			fprintf(stderr,_("Error: %s\n"),GetLastDynLibError());
+			fprintf(stderr,_("If you are using a binary version of Scilab, please report a bug http://bugzilla.scilab.org/.\n"));
+			fprintf(stderr,_("If you are using a self-built version of Scilab, update the script bin/scilab to provide the path to the JVM.\n"));
+
+			fprintf(stderr,_("The problem might be related to SELinux. Try to deactivate it.\n"));
+
 			return FALSE;
 		}
 		else
@@ -122,7 +130,7 @@ BOOL startJVM(char *SCI_PATH)
 			/**
 			* http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/invocation.html#wp15956
 			*/
-			#define JVM_OPTIONS_FILENAME_FORMAT "%s/modules/jvm/etc/jvm_options.xml"
+			#define JVM_OPTIONS_FILENAME_FORMAT "%s/etc/jvm_options.xml"
 			char *jvm_options_filename = NULL;
 
 			long status = 0;

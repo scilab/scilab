@@ -18,7 +18,7 @@
 /* desc : interface for sci_xgetmouse routine                             */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xgetmouse.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h" /* sciGetNum */
 #include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */
@@ -41,7 +41,6 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   double userCoords2D[2];
   sciPointObj * clickedSubwin = NULL;
 
-  int displayWarning = FALSE;
   int selPosition = 0;
 
   CheckRhs(0,1);

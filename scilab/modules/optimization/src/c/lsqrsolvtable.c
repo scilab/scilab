@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "AddFunctionInTable.h"
 #include "machine.h"
+#include "dynlib_optimization.h"
 /***********************************
 * Search Table for lsqrsolve 
 ***********************************/
@@ -24,8 +25,8 @@ typedef void (*lsqrsolvjf)(ARGS_lsqrsolvj);
 
 /**************** lsqrsolvf ***************/
 extern void C2F(lsqrsol1)(ARGS_lsqrsolvf);
-void C2F(lsqrsolvf)(ARGS_lsqrsolvf);
-void C2F(setlsqrsolvf)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(lsqrsolvf)(ARGS_lsqrsolvf);
+OPTIMIZATION_IMPEXP void C2F(setlsqrsolvf)(char *name, int *rep);
 
 
 FTAB FTab_lsqrsolvf[] =
@@ -35,8 +36,8 @@ FTAB FTab_lsqrsolvf[] =
 };
 /**************** lsqrsolvj ***************/
 extern void C2F(lsqrsolj1)(ARGS_lsqrsolvj);
-void C2F(lsqrsolvj)(ARGS_lsqrsolvj);
-void C2F(setlsqrsolvj)(char *name, int *rep);
+OPTIMIZATION_IMPEXP void C2F(lsqrsolvj)(ARGS_lsqrsolvj);
+OPTIMIZATION_IMPEXP void C2F(setlsqrsolvj)(char *name, int *rep);
 
 FTAB FTab_lsqrsolvj[] ={
 {"lsqrsolj1", (voidf)  C2F(lsqrsolj1)},

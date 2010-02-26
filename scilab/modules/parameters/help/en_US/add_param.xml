@@ -72,10 +72,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   mylist = init_param();
-   mylist = add_param(mylist,'minbound',[0 0 0]);
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

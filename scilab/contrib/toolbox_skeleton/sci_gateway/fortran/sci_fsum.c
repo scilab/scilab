@@ -5,8 +5,7 @@
 /* This file is released into the public domain */
 /* ==================================================================== */
 #include "stack-c.h" 
-#include "api_common.h"
-#include "api_double.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /* ==================================================================== */
@@ -14,13 +13,17 @@ extern int F2C(fsum)(double *a,double *b,double *c);
 /* ==================================================================== */
 int sci_fsum(char *fname)
 {
+  SciErr sciErr;
+  	
   int m1 = 0, n1 = 0;
   int *piAddressVarOne = NULL;
   double *pdVarOne = NULL;
+  int iType1 = 0;  
   
   int m2 = 0, n2 = 0;
   int *piAddressVarTwo = NULL;
   double *pdVarTwo = NULL;
+  int iType2 = 0;  
   
   int m_out = 0, n_out = 0;
   double dOut = 0.0;
@@ -32,36 +35,72 @@ int sci_fsum(char *fname)
   CheckLhs(1,1) ;   
   
   /* get Address of inputs */
-  getVarAddressFromPosition(1, &piAddressVarOne);
-  getVarAddressFromPosition(2, &piAddressVarTwo);
+  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+  if(sciErr.iErr)
+  {
+    printError(&sciErr, 0);
+    return 0;
+  }
+    
+  sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+  if(sciErr.iErr)
+  {
+    printError(&sciErr, 0);
+    return 0;
+  }  
   
   /* check input type */
-  if ( getVarType(piAddressVarOne) != sci_matrix )
+  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+  if(sciErr.iErr)
   {
-  	Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,1);
-  	return 0;
+    printError(&sciErr, 0);
+    return 0;
+  } 
+   
+  if ( iType1 != sci_matrix )
+  {
+    Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,1);
+    return 0;
   }
-  
-  if ( getVarType(piAddressVarTwo) != sci_matrix )
+
+  sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+  if(sciErr.iErr)
   {
-  	Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
-  	return 0;
+    printError(&sciErr, 0);
+    return 0;
+  }   
+  
+  if ( iType2 != sci_matrix )
+  {
+    Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
+    return 0;
   }
 
   /* get matrix */
-  getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
-  getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
+  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
+  if(sciErr.iErr)
+  {
+    printError(&sciErr, 0);
+    return 0;
+  }
+    
+  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
+  if(sciErr.iErr)
+  {
+    printError(&sciErr, 0);
+    return 0;
+  }  
   
   /* check size */
   if ( (m1 != n1) && (n1 != 1) ) 
   {
-  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,1);
-  	return 0;
+    Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,1);
+    return 0;
   }
   if ( (m2 != n2) && (n2 != 1) ) 
   {
-  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
-  	return 0;
+    Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
+    return 0;
   }
   
   /* call fortran subroutine fsum */
@@ -69,7 +108,12 @@ int sci_fsum(char *fname)
   
   /* create result on stack */
   m_out = 1;  n_out = 1;
-  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+  sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
+  if(sciErr.iErr)
+  {
+    printError(&sciErr, 0);
+    return 0;
+  }  
   LhsVar(1) = Rhs + 1; 
   
   return 0;

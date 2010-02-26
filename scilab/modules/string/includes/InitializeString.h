@@ -15,8 +15,9 @@
 #define __INITIALIZESTRING_H__
 
 #include "BOOL.h"
+#include "dynlib_string.h"
 
-BOOL InitializeString(void);
+STRING_IMPEXP BOOL InitializeString(void);
 
 #endif /* __INITIALIZESTRING_H__ */
 /*--------------------------------------------------------------------------*/ 

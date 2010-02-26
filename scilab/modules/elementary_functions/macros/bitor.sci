@@ -16,10 +16,10 @@ function z = bitor(x,y)
 	// of x and y
 	
 	// -Inputs :
-	//  x, y :  scalars/vectors/matices/hypermatices of positives integers, 
+	//  x, y :  scalars/vectors/matices of positives integers, 
 	//          x and y must have the same size
 	// -Output :
-	//  z : scalar/vector/matrix/hypermatice
+	//  z : scalar/vector/matrix
 	//
 	// F.Belahcene
 	
@@ -53,14 +53,14 @@ function z = bitor(x,y)
 		| (type(x)==8  & (inttype(x)<10) ) ..
 		| (type(x)<>1  & type(x)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitor",1));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitor",1));
 	end
 	
 	if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
 		| (type(y)==8  & (inttype(y)<10) ) ..
 		| (type(y)<>1  & type(y)<>8) then
 		
-		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitor",2));
+		error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitor",2));
 	end
 	
 	// Algorithm

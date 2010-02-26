@@ -71,7 +71,7 @@ U=givens(x,y)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=[3,4;5,6];
 U=givens(A(:,1));
 U*A

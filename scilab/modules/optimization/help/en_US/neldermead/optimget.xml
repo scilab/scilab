@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="optimget" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-10-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>optimget</refname>
+
+    <refpurpose>Queries an optimization data structure.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      val = optimget ( options , key )
+      val = optimget ( options , key , value )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function allows to make queries on an existing optimization
+    data structure. This data structure must have been created and updated by
+    the <literal>optimset</literal> function. The <literal>optimget</literal>
+    allows to retrieve the value associated with a given key.</para>
+
+    <para>In the following, we analyse the various ways to call the optimget
+    function.</para>
+
+    <para>The following calling sequence</para>
+
+    <programlisting role="example"> 
+val = optimget(options , key)
+ </programlisting>
+
+    <para>returns the value associated with the given <literal>key</literal>.
+    The <literal>key</literal> is expected to be a string. We search the
+    <literal>key</literal> among the list of all possible fields in the
+    <literal>options</literal> data structure. In this search, the case is
+    ignored. The <literal>key</literal> which matches a possible field is
+    returned. Some letters of the field may be dropped, provided that the
+    matching field is unique. For example, the key "MaxF" corresponds to the
+    field "MaxFunEval". But the key "Tol" corresponds both to the "TolX" and
+    "TolFun" fields and therefore will generate an error.</para>
+
+    <para>The following calling sequence</para>
+
+    <programlisting role="example"> 
+val = optimget(options, key, value)
+ </programlisting>
+
+    <para>allows to manage default value for optimization parameters. Indeed,
+    if the field corresponding to the <literal>key</literal> is empty (i.e.
+    has not been set by the user), the input argument <literal>value</literal>
+    is returned. Instead, if the field corresponding the the key is not empty
+    (i.e. has been set by the user), the parameter stored in the <literal>options</literal>
+    argument is returned.</para>
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>A struct which contains the optimization fields.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>key</term>
+
+        <listitem>
+          <para>A string corresponding to a field of the optimization
+          structure.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value</term>
+
+        <listitem>
+          <para>A real default value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val</term>
+
+        <listitem>
+          <para>The real value corresponding to the key.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Example #1</title>
+
+    <para>In the following example, we create an optimization structure and
+    set the "TolX" field to 1.e-12. Then we use <literal>optimget</literal> to
+    get back the value.</para>
+
+    <programlisting role="example"> 
+op = optimset();
+op = optimset(op,'TolX',1.e-12);
+val = optimget(op,'TolX'); // val is 1.e-12
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #2</title>
+
+    <para>In the following example, we create an empty optimization structure.
+    Then we use <literal>optimget</literal> to get back the value
+    corresponding to the "TolX" field, with 1.e-5 as the default value. Since
+    the field is empty, we retrieve 1.e-5.</para>
+
+    <programlisting role="example"> 
+op = optimset();
+val = optimget(op,'TolX' , 1.e-5); // val = 1.e-5
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #3</title>
+
+    <para>In the following example, we create an optimization structure and
+    set the "TolX" field to 1.e-12. Then we use <literal>optimget</literal> to
+    get back the value corresponding to the "TolX" field, with 1.e-5 as the
+    default value. Since the field is not empty, we retrieve 1.e-12.</para>
+
+    <programlisting role="example"> 
+op = optimset();
+op = optimset(op,'TolX',1.e-12);
+val = optimget(op,'TolX' , 1.e-5); // val = 1.e-12
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #4</title>
+
+    <para>In the following example, we create an optimization structure and
+    configure the maximum number of function evaluations to 1000. Then we
+    quiery the data structure, giving only the "MaxF" key to the
+    <literal>optimget</literal> function. Since that corresponds only to the
+    "MaxFunEvals" field, there is only one match and the function returns
+    10000.</para>
+
+    <programlisting role="example"> 
+op = optimset();
+op = optimset(op, 'MaxFunEvals' , 1000);
+val = optimget(op, 'MaxF'); // val = 1000
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="optimset">optimset</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

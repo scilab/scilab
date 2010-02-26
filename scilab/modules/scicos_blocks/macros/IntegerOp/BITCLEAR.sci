@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,bit,exprs]=getvalue('Set parameters',..
+    [ok,Datatype,bit,exprs]=scicos_getvalue('Set parameters',..
 	['Datatype(3=int32 4=int16 5=int8 ...)';..
 	 'index of bit (0 is leat significant)'],..
 	list('vec',1,'vec',1),exprs)

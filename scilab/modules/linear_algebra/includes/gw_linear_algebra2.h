@@ -14,10 +14,10 @@
 #ifndef __GW_LINEAR_ALGEBRA2__
 #define __GW_LINEAR_ALGEBRA2__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_common.h"
+#include "dynlib_linear_algebra.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int gw_linear_algebra2(void);
+LINEAR_ALGEBRA_IMPEXP int gw_linear_algebra2(void);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA2__ */
 /*--------------------------------------------------------------------------*/

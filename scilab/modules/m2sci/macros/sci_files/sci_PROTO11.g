@@ -11,7 +11,7 @@ function [tree]=sci_MFUN(tree)
 // M2SCI function
 // Conversion function for Matlab MFUN()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 if rhs==2 then
   tree.rhs(2)=null()

@@ -331,17 +331,17 @@ function tk_mpop(ll,but,pos)
   for i=1:50,xpause(5000),end
   for bb=1:but-1
   [txt,MM]=create_pop(ll,bb,pos)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
   for i=1:50,xpause(5000),end
    txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
   end
   [txt,MM]=create_pop(ll,but,pos)
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
 
   xpause(1000000)
   txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TCL_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','errcatch')
 endfunction
 
 function [txt,MM]=create_pop(ll,but,pos)

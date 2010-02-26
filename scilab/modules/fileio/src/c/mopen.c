@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,25 +39,56 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	}
 
 	swap =0;
-	*error=0;
+	*error = (int)MOPEN_NO_ERROR;
 	endptr = (char *) &littlendian;
 	if ( (!*endptr) )
 	{
 		if( *f_swap == 1 ) swap = 1;
-		else swap =0;
+		else swap = 0;
 	}
 
 	C2F(getfiledesc)(fd);
 
 	if ( *fd == -1 )
 	{
-		*error=1; /* Too many opened files */
+		*error = (int)MOPEN_NO_MORE_LOGICAL_UNIT;
+		return;
+	}
+
+	/* bug 4846 */
+	if (file == NULL)
+	{
+		*error = (int)MOPEN_INVALID_FILENAME;
+		return;
+	}
+
+	if (strlen(file) == 0)
+	{
+		*error = (int)MOPEN_INVALID_FILENAME;
+		return;
+	}
+
+	if (status == NULL)
+	{
+		*error = (int)MOPEN_INVALID_STATUS;
+		return;
+	}
+
+	if (strlen(status) == 0)
+	{
+		*error = (int)MOPEN_INVALID_STATUS;
+		return;
+	}
+
+	if ((status[0] != 'a') && (status[0] != 'r') && (status[0] != 'w'))
+	{
+		*error = (int)MOPEN_INVALID_STATUS;
 		return;
 	}
 
 	if (isdir(file))
 	{
-		*error = 2; /* Could not open the file*/
+		*error = (int)MOPEN_CAN_NOT_OPEN_FILE;
 		return;
 	}
 
@@ -65,14 +96,14 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 
 	if (! fa )
 	{     
-		*error=2; /* Could not open the file*/
+		*error = (int)MOPEN_CAN_NOT_OPEN_FILE;
 		return;
 	}
-	mode=Status2Mode(status);
+	mode = Status2Mode(status);
 	C2F(addfile)(fd,fa,&swap,&type,&mode,file,&ierr);
 	if (ierr)
 	{
-		*error=3; /* Not enough memory;*/
+		*error = (int)MOPEN_NO_MORE_MEMORY;
 		return;
 	}
 	SetCurrentFileId(*fd);

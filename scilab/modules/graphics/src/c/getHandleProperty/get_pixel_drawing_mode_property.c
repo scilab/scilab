@@ -34,7 +34,7 @@ int get_pixel_drawing_mode_property( sciPointObj * pobj )
   }
   else
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"pixel_drawing_mode");
     return -1 ;
   }
 

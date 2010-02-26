@@ -13,6 +13,7 @@
 #ifndef __INITIALIZETCLTK_H__
 #define __INITIALIZETCLTK_H__
 
+#include "dynlib_tclsci.h"
 #include "BOOL.h"
 
 /**
@@ -20,7 +21,7 @@
  *
  * @return If the init went well (or not)
  */
-BOOL InitializeTclTk(void);
+TCLSCI_IMPEXP BOOL InitializeTclTk(void);
 
 #endif /* __INITIALIZETCLTK_H__ */
 /*--------------------------------------------------------------------------*/ 

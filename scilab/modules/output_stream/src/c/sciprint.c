@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
-#include "../../fileio/includes/diary.h"
+#include "diary.h"
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
 #include "../../console/includes/ConsolePrintf.h"
@@ -20,6 +20,7 @@
 #include "TermPrintf.h"
 #endif
 #include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   #define vsnprintf _vsnprintf
@@ -66,6 +67,7 @@ static void printf_scilab(char *buffer)
 {
 	if (buffer)
 	{
+		wchar_t *wcBuffer = NULL;
 		if (getScilabMode() == SCILAB_STD)
 		{
 			ConsolePrintf(buffer);
@@ -79,10 +81,12 @@ static void printf_scilab(char *buffer)
 			#endif
 		}
 
-		if ( getdiary() ) 
+		wcBuffer = to_wide_string(buffer);
+		if (wcBuffer)
 		{
-			// diary output line
-			diary(buffer,FALSE);
+			diaryWrite(wcBuffer, FALSE);
+			FREE(wcBuffer);
+			wcBuffer = NULL;
 		}
 	}
 }

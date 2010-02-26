@@ -16,7 +16,7 @@
 /* desc : interface for drawnow routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_drawnow.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"

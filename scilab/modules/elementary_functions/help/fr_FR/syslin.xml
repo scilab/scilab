@@ -101,9 +101,9 @@
 
     <para>Représentation d'état :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,A,B,C [,D [,x0] ])
- </programlisting>
+ ]]></programlisting>
 
     <para>représente le système :</para>
 
@@ -123,10 +123,10 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
 
     <para>Représentation sous forme de matrice de transfert :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,N,D) 
 sl=syslin(dom,H)
-   </programlisting>
+ ]]></programlisting>
 
     <para>La sortie de <literal>syslin</literal> est une liste de la forme :
     <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> ou
@@ -146,7 +146,7 @@ sl=syslin(dom,H)
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   // Définition du système
 S1.A    // La matrice A
@@ -162,7 +162,7 @@ ss2tf(S1)-S1bis
 S1bis+S2bis
 S1*S2bis
 size(S1)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

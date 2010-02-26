@@ -50,7 +50,7 @@ case 'set' then
   
   while %t do
     [ln,fun]=where();  
-    if (fun(3) == "clickin") then // cas standard    
+    if ~or(fun == "do_eval") then // cas standard    
       [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
        CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,..
        a6,b6,a7,b7,k,mesures,params_pde]=IHM_EDP(params_pde);
@@ -71,7 +71,7 @@ case 'set' then
     //***********************************
     okk=%f;rdnom='PDE';ok1=%t;
     while %t do
-      [okk,rdnom,lab]=getvalue('PLEASE, GIVE US THE BLOCK''s NAME. ',..
+      [okk,rdnom,lab]=scicos_getvalue('PLEASE, GIVE US THE BLOCK''s NAME. ',..
 			       'New block''s name :',list('str',1),label(3));
 	
       if okk==%f then ok1=%f;return; end
@@ -188,7 +188,7 @@ case 'define' then
                     'CLb_exp';'points'],"","","",'0',"","IN_EDP1(t)",'0',"","IN_EDP2(t)",'0',"","IN_EDP3(t)",..
                     '0',"","IN_EDP4(t)",'0',"","IN_EDP5(t)",'0',"","IN_EDP6(t)",'0',"","IN_EDP7(t)",'0','0',..
                     '0','0','0','0','','','','','',"","","",'0',"IN_CL1(t)",'0',"IN_CL2(t)","");
-  // dans label on mis infos de getvalue, infos ihm et le code C
+  // dans label on mis infos de scicos_getvalue, infos ihm et le code C
   label=list(params_pde,[],'');
 	gr_i=['txt=CCC;';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']

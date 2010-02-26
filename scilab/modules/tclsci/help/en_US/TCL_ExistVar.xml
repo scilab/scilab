@@ -56,7 +56,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 TCL_SetVar("Scilab","OK")
 TCL_GetVar("Scilab")
 TCL_UnsetVar("Scilab")
@@ -71,7 +71,8 @@ TCL_UnsetVar("aa")
 TCL_GetVar("aa",'SlaveInterp')
 TCL_UnsetVar("aa",'SlaveInterp')
 TCL_ExistVar("aa",'SlaveInterp')
-TCL_DeleteInterp('SlaveInterp')]]></programlisting>
+TCL_DeleteInterp('SlaveInterp') 
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

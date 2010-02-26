@@ -69,4 +69,11 @@
 <PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="newest" />
 <PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="getrelativefilename" />
 <PRIMITIVE gatewayId="34" primitiveId="36" primitiveName="get_absolute_file_path" />
+<PRIMITIVE gatewayId="34" primitiveId="37" primitiveName="copyfile" />
+<PRIMITIVE gatewayId="34" primitiveId="38" primitiveName="isfile" />
+<PRIMITIVE gatewayId="34" primitiveId="39" primitiveName="fileparts" />
+<PRIMITIVE gatewayId="34" primitiveId="40" primitiveName="movefile" />
+<PRIMITIVE gatewayId="34" primitiveId="41" primitiveName="basename" />
+<PRIMITIVE gatewayId="34" primitiveId="42" primitiveName="pathconvert" />
+<PRIMITIVE gatewayId="34" primitiveId="43" primitiveName="cd" />
 </GATEWAY>

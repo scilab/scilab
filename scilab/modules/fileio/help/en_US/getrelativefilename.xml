@@ -53,22 +53,20 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then
-	getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
-	getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
-	getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
-	getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
-	getrelativefilename(pwd(),WSCI+'\bin\Wscilex')
+  getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+  getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+  getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
+  getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
+  getrelativefilename(pwd(),WSCI+'\bin\Wscilex')
 else
-	getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
-	getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
-	getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
-	getrelativefilename(pwd(),SCI+'/bin/scilex')
+  getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+  getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+  getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
+  getrelativefilename(pwd(),SCI+'/bin/scilex')
 end
-
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

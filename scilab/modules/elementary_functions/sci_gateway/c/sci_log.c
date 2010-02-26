@@ -1,15 +1,15 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA  - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -18,15 +18,15 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-
 /*--------------------------------------------------------------------------*/
 int sci_log(char *fname,int* _piKey)
 {
+	SciErr sciErr;
 	int i;
 	int iAlert					= 1; // to print only one warning message
-	int iRet						= 0;
 	int iRows						= 0;
 	int iCols						= 0;
+	int iType						= 0;
 
 	int* piAddr					= NULL;
 
@@ -38,30 +38,40 @@ int sci_log(char *fname,int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr) != sci_matrix)
+	sciErr = getVarType(_piKey, piAddr, &iType);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	if(iType != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(isVarComplex(piAddr))
+	if(isVarComplex(_piKey, piAddr))
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)
@@ -86,10 +96,11 @@ int sci_log(char *fname,int* _piKey)
 	else
 	{
 		int iLessZero	= 0;
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		for(i = 0; i < iRows * iCols ; i++)
@@ -108,17 +119,18 @@ int sci_log(char *fname,int* _piKey)
 				else if(C2F(errgst).ieee == 1)
 				{
 					Msgs(64,0);
-					iAlert = 0; 
+					iAlert = 0;
 				}
 			}
 		}
 
 		if(iLessZero == 0)
 		{//All values > 0
-			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
-			if(iRet)
+			sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+			if(sciErr.iErr)
 			{
-				return 1;
+				printError(&sciErr, 0);
+				return 0;
 			}
 
 			for(i = 0; i < iRows * iCols ; i++)
@@ -128,10 +140,11 @@ int sci_log(char *fname,int* _piKey)
 		}
 		else
 		{
-			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
-			if(iRet)
+			sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+			if(sciErr.iErr)
 			{
-				return 1;
+				printError(&sciErr, 0);
+				return 0;
 			}
 
 			for(i = 0; i < iRows * iCols ; i++)

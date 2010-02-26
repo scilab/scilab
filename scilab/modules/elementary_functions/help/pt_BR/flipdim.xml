@@ -77,7 +77,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exemplo 1: girando os componentes de x ao longo da primeira dimensão
+    <programlisting role="example"><![CDATA[ 
+// exemplo 1: girando os componentes de x ao longo da primeira dimensão
 x=[1 2 3 4; 5 6 7 8];
 dim=1;
 y=flipdim(x,dim)
@@ -90,7 +91,7 @@ y=flipdim(x,dim)
 x=matrix(1:48,[3 2,4,2]);
 dim=3;
 y=flipdim(x,dim)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

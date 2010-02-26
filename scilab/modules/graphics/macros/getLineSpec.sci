@@ -72,7 +72,7 @@ while length(str) > 1
   k=find(part(Table,1)==c1);
 
   if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
-    warning("Error in LineSpec property : bad argument specified");
+    error(msprintf(gettext("%s: Wrong type for input argument.\n"), "getLineSpec"));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end

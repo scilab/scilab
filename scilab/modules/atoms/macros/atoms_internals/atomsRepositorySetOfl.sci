@@ -7,12 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Internal function
+
 // Add an URL to the list of repositories, and returns
 
 function atomsRepositorySetOfl(url)
-	
-	
-	
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -41,5 +40,9 @@ function atomsRepositorySetOfl(url)
 	// Overwrite "repositories" file
 	// =========================================================================
 	mputl(url,pathconvert(SCI+"/modules/atoms/etc/repositories",%F));
+	
+	// Update the toolbox list
+	// =========================================================================
+	atomsSystemUpdate();
 	
 endfunction

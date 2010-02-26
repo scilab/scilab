@@ -32,13 +32,13 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"tics_direction") ;
+    Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_direction");
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    Scierror(999, "tics_direction property does not exist for this handle.\n" ) ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
     }
     else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"top","bottom") ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'top'", "'bottom'");
       return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;
@@ -71,8 +71,8 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
     }
     else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"right","left") ;
-      return -1 ;
+      Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "tics_direction", "'left'", "'right'");
+      return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;
   }

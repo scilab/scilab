@@ -44,6 +44,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../output_stream/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../localization/includes;../../../double/includes;../../../operations/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
@@ -195,6 +196,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -527,6 +529,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_isequal.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_isequalbitwise.c"
 				>
 			</File>
@@ -595,10 +601,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_sort.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_spones.c"
 				>
 			</File>
@@ -636,10 +638,6 @@
 			</File>
 			<File
 				RelativePath=".\scidcopy.c"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\sortTemplate.cpp"
 				>
 			</File>
 			<File
@@ -763,10 +761,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_tools.h"
-				>
-			</File>
-			<File
-				RelativePath=".\sortTemplate.h"
 				>
 			</File>
 			<File

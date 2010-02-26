@@ -59,12 +59,10 @@
     and with a <literal>D</literal> matrix which is full column rank.</para>
     <para><literal>G</literal> must also be stable for having <literal>Gbar</literal> stable.</para>
     <para><literal>G</literal> admits the following inner-outer factorization:</para>
-    <programlisting><![CDATA[
-
-         G = [ Inn ] | Gbar |
-                     |  0   |
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+ G = [ Inn ] | Gbar |
+             |  0   |
+ ]]></programlisting>
     <para>
     where <literal>Inn</literal> is square and inner (all pass and stable) and <literal>Gbar</literal> 
     square and outer i.e:
@@ -72,23 +70,19 @@
     and stable);</para>
     <para>
     Note that:</para>
-    <programlisting><![CDATA[
-
-         [ Gbar ]
-   X*G = [  -   ]
-         [  0   ]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+      [ Gbar ]
+X*G = [  -   ]
+      [  0   ]
+ ]]></programlisting>
     <para>
     is a row compression of <literal>G</literal> where <literal>X</literal> = <literal>Inn</literal> inverse is all-pass i.e:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
  T
 X (-s) X(s) = Identity
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
-    (for the continous time case).</para>
+    (for the continuous time case).</para>
   </refsection>
   <refsection>
     <title>See Also</title>

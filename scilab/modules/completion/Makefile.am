@@ -39,6 +39,7 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/functions/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/operations/includes
 
@@ -76,11 +77,12 @@ libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
 #### completion : include files ####
-libscicompletion_la_includedir=$(pkgincludedir)/completion
+libscicompletion_la_includedir=$(pkgincludedir)
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h \
 includes/getCommonPart.h \
 includes/getPartLine.h \
+includes/dynlib_completion.h \
 includes/completeLine.h
 
 #### completion : test file ####

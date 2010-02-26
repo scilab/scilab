@@ -54,7 +54,7 @@ current_driver=driver()</synopsis>
     <para>Esta função seleciona um driver gráfico, ou, sem argumentos, retorna
     o nome do driver gráfico corrente. Na maioria das vezes, o usuário pode
     ignorar esta função e modificar o driver por uma chamada a funções de alto
-    nível como <literal>xbasc</literal>. O driver selecionado pode ser um dos
+    nível como <literal>clf</literal>. O driver selecionado pode ser um dos
     seguintes:</para>
 
     <variablelist>
@@ -120,18 +120,16 @@ current_driver=driver()</synopsis>
     <literal>img*.gif</literal> é possível construir um arquivo Gif animado
     (chamado anim.gif) por</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 convert -delay 10  img*.gif anim.gif  
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="xbasc">xbasc</link></member>
+      <member><link linkend="clf">clf</link></member>
     </simplelist>
   </refsection>
 

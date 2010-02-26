@@ -28,7 +28,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[bOK=chooselcccompiler();VCtoLCCLib()]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+bOK=chooselcccompiler();
+VCtoLCCLib()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

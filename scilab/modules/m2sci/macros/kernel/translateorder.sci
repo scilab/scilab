@@ -10,7 +10,7 @@
 function  [transorder]=translateorder(transorder,funtxt,overfunname)
 //  TRANSLATEORDER Recursive function  
 //  Determinates a translate order of the M-files found in Paths (used by "translatepaths" function)
-//  Ouput-Input 
+//  Output-Input 
 //  -transorder : a vector containing the M-files names which are arranged in order to respect an priority order of translation
 //  Input 
 //  -funtxt : a vector which contains the name of a M-file found in the Paths (its first component: funtxt(1)), and the called functions by this file (the others components : funtxt(2:$)) 

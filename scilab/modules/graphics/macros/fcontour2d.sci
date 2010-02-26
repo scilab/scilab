@@ -21,7 +21,7 @@ function fcontour2d(xr,yr,f,nz,style,strf,leg,rect,nax,void)
 	end
 
 if rhs<3,
-  error(' I need at least 3 arguments or zero to have a demo');
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fcontour2d", 3));
 end
 
 opts=[]
@@ -33,8 +33,6 @@ if exists('rect','local')==1 then opts=[opts,'rect=rect'],end
 if exists('nax','local')==1 then opts=[opts,'nax=nax'],end
 if exists('frameflag','local')==1 then opts=[opts,'frameflag=frameflag'],end
 if exists('axesflag','local')==1 then opts=[opts,'axesflag=axesflag'],end
-
-if size(opts,2)<rhs-4 then  error('invalid named arguments'),end
 
 if type(f)==11 then comp(f),end;
 execstr('contour2d(xr,yr,feval(xr,yr,f),nz,'+strcat(opts,',')+')')

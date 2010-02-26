@@ -66,32 +66,26 @@ draw(h)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">   subplot(212)
-   a=gca();
-    plot2d
-   drawlater
+    <programlisting role="example"><![CDATA[ 
+subplot(212)
+a=gca();
+plot2d
+drawlater
 
-    subplot(211)
-    plot2d1 // modo de desenho padrão
+subplot(211)
+plot2d1 // modo de desenho padrão
 
-    e=gce();
-    draw(e.children(2)) // desenhando uma única poligonal dos segundos eixos
+e=gce();
+draw(e.children(2)) // desenhando uma única poligonal dos segundos eixos
 
-    e.children(1).visible='off'; // podemos escolher tornar uma linha invisível
+e.children(1).visible='off'; // podemos escolher tornar uma linha invisível
 
-    draw(e) // desenha o Compound e seus galhos &lt;=&gt; desenha todas as poligonais visíveis
-    
-    
-  
+draw(e) // desenha o Compound e seus galhos &lt;=&gt; desenha todas as poligonais visíveis
 
-    drawnow // ...agora!
+drawnow // ...agora!
 
-    e.children(1).visible='on';
-
-
-
- 
-  </programlisting>
+e.children(1).visible='on';
+ ]]></programlisting>
   </refsection>
 
   <refsection>

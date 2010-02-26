@@ -27,7 +27,7 @@ for k=1:size(varargin)
     if varargin(k)==part('unique',1:length(varargin(k))) then
       uniqueflag=%t
     else
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expexted.\n"),"lex_sort",k+1,"unique"));
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"lex_sort",k+1,"unique"));
     end
   else
     error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"lex_sort",k+1));
@@ -37,7 +37,7 @@ end
 // sort rows in lexicographic order
 ind = 1:size(x,1);
 for i=size(sel,'*'):-1:1,
-  [s,k] = sort(x(ind,sel(i)));
+  [s,k] = gsort(x(ind,sel(i)),'g','d');
   ind = ind(k);
 end
 ind=ind(:)

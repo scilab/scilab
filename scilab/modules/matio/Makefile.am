@@ -19,6 +19,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/CreateMatlabVariable.c \
+		  src/c/CreateBooleanVariable.c \
 		  src/c/CreateCharVariable.c \
 		  src/c/CreateDoubleVariable.c \
 		  src/c/CreateIntegerVariable.c \
@@ -73,7 +74,3 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
-
-#### matio : include files ####
-libscimatio_la_includedir=$(pkgincludedir)/matio
-libscimatio_la_include_HEADERS = includes/gw_matio.h

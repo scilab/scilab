@@ -83,8 +83,7 @@ K=stabil(Sys,alfa,beta)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Gain:
 Sys=ssrand(0,2,5,list('st',2,3,3));
 A=Sys('A');B=Sys('B');F=stabil(A,B);
@@ -97,8 +96,7 @@ Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
 K=stabil(Sys,-2,-3);  //Compensator for Sys.
 spec(Sys('A'))
 spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

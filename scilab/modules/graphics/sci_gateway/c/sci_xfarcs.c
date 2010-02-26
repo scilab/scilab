@@ -16,7 +16,7 @@
 /* desc : interface for xfarcs routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xfarcs.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "BuildObjects.h"

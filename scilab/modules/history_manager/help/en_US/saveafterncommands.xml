@@ -52,10 +52,9 @@ v = saveafterncommands()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-	saveafterncommands(3)
-
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+saveafterncommands(3)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

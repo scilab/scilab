@@ -60,8 +60,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 clf()
 a1=newaxes(); 
 a1.axes_bounds=[0,0,1.0,0.5];
@@ -72,14 +71,12 @@ a2.axes_bounds=[0,0.5,1.0,0.5];
 x=0:0.1:4;
 plot(x,sinh(x))
 
-
 sca(a1); //tornando os primeiros eixos correntes
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
 sca(a2); //tornando os segundos eixos correntes
 legend('sinh')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

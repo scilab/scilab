@@ -11,25 +11,25 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define OPTIMIZATION_TAB_SIZE 6
-static gw_generic_table Tab[OPTIMIZATION_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
-{C2F(sci_optim),"optim"},
-{C2F(sci_semidef),"semidef"},
-{C2F(sci_fsolve),"fsolve"},
-{C2F(sci_sqrsolve),"sqrsolve"},
-{C2F(sci_qld),"qld"},
-{C2F(sci_qp_solve),"qp_solve"}
+{sci_optim, "optim"},
+{sci_semidef, "semidef"},
+{sci_fsolve, "fsolve"},
+{sci_sqrsolve, "sqrsolve"},
+{sci_qld, "qld"},
+{sci_qp_solve, "qp_solve"},
+{sci_readmps, "readmps"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_optimization(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,OPTIMIZATION_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

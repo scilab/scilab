@@ -107,9 +107,9 @@ colordef('new',color_scheme)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   // Adicionar aqui instruções Scilab e comentários
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+// Adicionar aqui instruções Scilab e comentários
+ ]]></programlisting>
   </refsection>
 
   <refsection>

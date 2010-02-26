@@ -19,6 +19,7 @@
 #ifndef _FORMAT_H_
 #define _FORMAT_H_
 
+#include "dynlib_graphics.h"
 #include "machine.h" /* C2F */
 #include "ObjectStructure.h"
 #include "StringMatrix.h"
@@ -37,7 +38,7 @@
  * @param ar    
  * @return <ReturnValue>
  */
-int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar) ;
+GRAPHICS_IMPEXP int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, int *np2, int *kminr, int *kmaxr, int *ar) ;
 
 /**
  * @TODO add comment
@@ -46,7 +47,7 @@ int C2F(graduate)(double *xmi, double *xma, double *xi, double *xa, int *np1, in
  * @param c_format  
  * @return <ReturnValue>
  */
-int ComputeC_format( sciPointObj * pobj, char * c_format ) ;
+GRAPHICS_IMPEXP int ComputeC_format( sciPointObj * pobj, char * c_format ) ;
 
 /**
  * @TODO add comment
@@ -58,7 +59,7 @@ int ComputeC_format( sciPointObj * pobj, char * c_format ) ;
  * @param checkdim  
  * @return <ReturnValue>
  */
-int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim ) ;
+GRAPHICS_IMPEXP int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim ) ;
 
 /**
  * @TODO add comment
@@ -66,7 +67,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
  * @param pobj  
  * @return <ReturnValue>
  */
-StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj ) ;
+GRAPHICS_IMPEXP StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj ) ;
 
 /**
  * @TODO add comment
@@ -77,13 +78,13 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj ) ;
  * @param n_grads   
  * @return <ReturnValue>
  */
-int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads ) ;
+GRAPHICS_IMPEXP int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads ) ;
 
 /**
  * same as ChoixFormatE when numbers are given through an 
  * array xx[0:nx-1];
  */
-void ChoixFormatE1(char *fmt, double *xx, int nx) ;
+GRAPHICS_IMPEXP void ChoixFormatE1(char *fmt, double *xx, int nx) ;
 
 /**
  * ChoixFormatE returns a format ("%.*f" or "%.*e")
@@ -97,7 +98,7 @@ void ChoixFormatE1(char *fmt, double *xx, int nx) ;
  * for the numeric values xmin + k*xpas in [xmin,xmax] 
  * and give enough precision. 
  */
-void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas) ;
+GRAPHICS_IMPEXP void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas) ;
 
 
 /**
@@ -108,7 +109,7 @@ void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas) ;
  * @param lBound    
  * @param uBound    
  */
-void correctBounds( double min, double max, double * lBound, double * uBound );
+GRAPHICS_IMPEXP void correctBounds( double min, double max, double * lBound, double * uBound );
 /**
  * Create a new string which is the result the conversion of a double value
  * using a certain format
@@ -117,7 +118,7 @@ void correctBounds( double min, double max, double * lBound, double * uBound );
  *                   and ideally the same length.
  * @return the newly created strings, or NULL if an error occurred.
  */
-char * copyFormatedValue( double value, const char format[5], int bufferSize ) ;
+GRAPHICS_IMPEXP char * copyFormatedValue( double value, const char format[5], int bufferSize ) ;
 
 /**
 * Create a new string array which is the conversion of the doubles values. 
@@ -125,7 +126,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize ) ;
 *                   it to the result. It must greater than the length of any of the strings.
 *                   and ideally the maximum length.
 */
-char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize ) ;
+GRAPHICS_IMPEXP char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize ) ;
 
 /**
  * @TODO add comment
@@ -137,7 +138,7 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
  * @param compNgrads    
  * @return <ReturnValue>
  */
-int TheTicks( double * xminv ,
+GRAPHICS_IMPEXP int TheTicks( double * xminv ,
               double * xmaxv , 
               double * grads , 
               int    * ngrads,
@@ -153,7 +154,7 @@ int TheTicks( double * xminv ,
  * @param compNgrads    
  * @return <ReturnValue>
  */
-int GradLog( double _min, double _max, double *_grads, int * n_grads, int compNgrads);
+GRAPHICS_IMPEXP int GradLog( double _min, double _max, double *_grads, int * n_grads, int compNgrads);
 
 /**
  * @TODO add comment
@@ -162,7 +163,7 @@ int GradLog( double _min, double _max, double *_grads, int * n_grads, int compNg
  * @param ngrads    
  * @return <ReturnValue>
  */
-int GradEqual( const double grads[], const int * ngrads) ;
+GRAPHICS_IMPEXP int GradEqual( const double grads[], const int * ngrads) ;
 
 /**
  * @TODO add comment
@@ -170,8 +171,8 @@ int GradEqual( const double grads[], const int * ngrads) ;
  * @param void  
  * @return <ReturnValue>
  */
-char * getFPF(void);
+GRAPHICS_IMPEXP char * getFPF(void);
 
-int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
+GRAPHICS_IMPEXP int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
 
 #endif /* _FORMAT_H_ */

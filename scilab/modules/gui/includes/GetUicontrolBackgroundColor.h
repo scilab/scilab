@@ -15,13 +15,13 @@
 
 #include "ObjectStructure.h"
 #include "returnProperty.h"
-
+#include "dynlib_gui.h"
 /**
  * Get the background color of a uicontrol
  *
  * @param pobj Scilab object corresponding to the uicontrol
  * @return true if the color has been correcty got
  */
-int GetUicontrolBackgroundColor(sciPointObj * pobj);
+GUI_IMPEXP int GetUicontrolBackgroundColor(sciPointObj * pobj);
 
 #endif /* __GET_UICONTROL_BACKGROUNDCOLOR_H__ */

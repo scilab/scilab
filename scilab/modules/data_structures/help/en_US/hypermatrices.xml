@@ -41,8 +41,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
@@ -53,17 +52,25 @@ a(:,:,1) //dimensionnality reduction
 type(a(:,:,1))
 
 [a a]
-
-
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="hypermat">hypermat</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="grand">grand</link>
+      </member>
+      <member>
+        <link linkend="matrix">matrix</link>
       </member>
     </simplelist>
   </refsection>

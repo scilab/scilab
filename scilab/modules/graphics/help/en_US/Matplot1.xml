@@ -35,7 +35,7 @@
       <varlistentry>
         <term>rect</term>
         <listitem>
-          <para>: <literal>[xmin,ymin,xmax,ymax]</literal></para>
+          <para> <literal>[xmin,ymin,xmax,ymax]</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -50,8 +50,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //--- first example
 clf();
 ax=gca();//get current axes handle
@@ -66,7 +65,6 @@ Matplot1(a,[5,6,7,8])
 
 //--- second example  (animation)
 n=100;
-
 
 clf();
 f=gcf();//get current figure handle
@@ -84,9 +82,7 @@ for k=-n:n,
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //send double buffer to screen
 end
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

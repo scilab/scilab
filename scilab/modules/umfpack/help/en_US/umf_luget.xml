@@ -62,7 +62,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
@@ -90,7 +90,6 @@ for i=1:5, B(i,:) = B(i,:)/R(i); end // apply the row scaling
 B(p,q) - L*U  // must be a (quasi) nul matrix
 
 umf_ludel(Lup) // clear memory
-
  ]]></programlisting>
   </refsection>
   <refsection>

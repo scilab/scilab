@@ -62,11 +62,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=['this','is';'my','matrix'];
 convstr(A,'u')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

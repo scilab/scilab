@@ -51,12 +51,10 @@
     matrices <literal>[A,B,C,D]</literal>. Utility function.</para>
     <para>
     With <literal>U</literal> row compression of <literal>[B;D]</literal> i.e, <literal>U*[B;D]=[0;*]</literal>; one has:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 U*[-sI+A |B;   [ Z |0;      
       C  |D] = [ * |*]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     The zeros of <literal>Z</literal> are the zeros of <literal>Sl</literal>.</para>
   </refsection>

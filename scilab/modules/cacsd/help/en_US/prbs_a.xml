@@ -33,11 +33,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 u=prbs_a(50,10);
 plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

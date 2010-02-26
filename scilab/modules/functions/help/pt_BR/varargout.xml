@@ -63,28 +63,24 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 function varargout=exampl()
-   varargout=list(1,2,3,4)
+  varargout=list(1,2,3,4)
 endfunction
 
 x=exampl()
 [x,y]=exampl()
 [x,y,z]=exampl()
 
-
 function [a,b,varargout]=exampl1()
-   a='first'
-   b='second'
-   varargout=list(1,2,3,4)
+  a='first'
+  b='second'
+  varargout=list(1,2,3,4)
 endfunction
 exampl1()
 [a,b]=exampl1()
 [a,b,c]=exampl1()
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

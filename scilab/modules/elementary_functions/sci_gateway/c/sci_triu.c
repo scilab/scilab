@@ -12,15 +12,17 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "Scierror.h"
 #include "basic_functions.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"
 
-int triu_matrix(int* _piAddress, int _iOffset, int* _piKey);
+int triu_matrix(int* _piKey, int* _piAddress, int _iOffset);
 /*--------------------------------------------------------------------------*/
 int sci_triu(char *fname,int* _piKey)
 {
+	SciErr sciErr;
 	int iRet			= 0;
 	int iOffset		= 0;
 	int *piAddr1	= NULL;
@@ -31,61 +33,43 @@ int sci_triu(char *fname,int* _piKey)
 
 	if(Rhs == 2)
 	{//Get offset
-		int iRows2				= 0;
-		int iCols2				= 0;
 		int* piAddr2			= 0;
-		double* pdblReal	= NULL;
+		double dblReal		= 0;
 
-		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		sciErr = getVarAddressFromPosition(_piKey, 2, &piAddr2);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
+		}
+
+		iRet = getScalarDouble(_piKey, piAddr2, &dblReal);
 		if(iRet)
 		{
 			return 1;
 		}
-
-		if(getVarType(piAddr2) != sci_matrix)
-		{
-			Error(53);
-			return 0;
-		}
-
-		if(isVarComplex(piAddr2))
-		{
-			Error(52);
-			return 0;
-		}
-
-		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
-		if(iRet || iRows2 != 1 || iCols2 != 1)
-		{
-			Error(89);
-			return 0;
-		}
-
-		getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal);
-		if(iRet)
-		{
-			return 1;
-		}
-		iOffset = (int)pdblReal[0];
+		
+		iOffset = (int)dblReal;
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr1);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	switch(getVarType(piAddr1))
+	if(isDoubleType(_piKey, piAddr1))
 	{
-	case sci_matrix :
-		iRet = triu_matrix(piAddr1, iOffset, _piKey);
-		break;
-	case sci_poly :
-		//call sci_ptril
-		break;
-	default : 
+		iRet = triu_matrix(_piKey, piAddr1, iOffset);
+	}
+	else if(isPolyType(_piKey, piAddr1))
+	{
+		//call sci_ptriu
+	}
+	else
+	{
 		OverLoad(1);
-		break;
 	}
 
 	if(iRet)
@@ -98,8 +82,9 @@ int sci_triu(char *fname,int* _piKey)
 	return 0;
 }
 
-int triu_matrix(int* _piAddress, int _iOffset, int* _piKey)
+int triu_matrix(int* _piKey, int* _piAddress, int _iOffset)
 {
+	SciErr sciErr;
 	int i;
 	int iRet						= 0;
 	int iRows						= 0;
@@ -111,18 +96,20 @@ int triu_matrix(int* _piAddress, int _iOffset, int* _piKey)
 	double *pdblRealRet	= NULL;
 	double *pdblImgRet	= NULL;
 
-	if(isVarComplex(_piAddress))
+	if(isVarComplex(_piKey, _piAddress))
 	{
-		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return sciErr.iErr;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return sciErr.iErr;
 		}
 
 		memset(pdblRealRet, 0x00	, sizeof(double) * iRows * iCols);
@@ -137,16 +124,18 @@ int triu_matrix(int* _piAddress, int _iOffset, int* _piKey)
 	}
 	else
 	{
-		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, _piAddress, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return sciErr.iErr;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return sciErr.iErr;
 		}
 
 		memset(pdblRealRet, 0x00, sizeof(double) * iRows * iCols);

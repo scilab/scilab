@@ -34,13 +34,13 @@
       <varlistentry>
         <term>final_rect</term>
         <listitem>
-          <para>:a rectangle defined by [x_left, y_top, width, height]</para>
+          <para>a rectangle defined by [x_left, y_top, width, height]</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>btn</term>
         <listitem>
-          <para>:an integer, the number of the mouse button clicked</para>
+          <para>an integer, the number of the mouse button clicked</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -55,13 +55,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 xsetech(frect=[0,0,100,100])
 r=dragrect([10;10;30;10])
 xrect(r)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

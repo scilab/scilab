@@ -837,7 +837,7 @@ namespace types
 		return !(*this == it);
 	}
 
-	GenericType* MatrixPoly::get(int _iPos)
+	GenericType* MatrixPoly::get_col_value(int _iPos)
 	{
 		MatrixPoly* pMP = NULL;
 		if(_iPos < cols_get())

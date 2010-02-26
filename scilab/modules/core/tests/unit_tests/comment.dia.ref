@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//for version after 3.0 the comments are no more handled by a preprocessor,
+//for version after 3.0 the comments are no more handled by a preprocessor, 
 //but by the parser itself
 a=1//test
  a  =
@@ -218,6 +218,7 @@ function a=foo
 endfunction
 a=foo();
 if a<>15 then bugmes();quit;end
+warning('off');
 //with  getf
 t=['function a=foo'
   'a=0;k=0;//initialization'
@@ -232,10 +233,36 @@ t=['function a=foo'
   '  end //loop end'
   'endfunction'];
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+ 
+function a=foo
+a=0;k=0;//initialization
+  while %t //loop begin
+    k=k+1; //ttttt
+    if a> 10 then //
+ break // go out the loop
+    else //111111
+ a=a-1; //sdfdfd
+    end //xxxxx
+    a=a+k; //hhhhh
+  end //loop end
+endfunction
+ 
 a=foo();
 if a<>15 then bugmes();quit;end
-getf(TMPDIR+'/foo.sci')
+ 
+function a=foo
+a=0;k=0;//initialization
+  while %t //loop begin
+    k=k+1; //ttttt
+    if a> 10 then //
+ break // go out the loop
+    else //111111
+ a=a-1; //sdfdfd
+    end //xxxxx
+    a=a+k; //hhhhh
+  end //loop end
+endfunction
+ 
 a=foo();
 if a<>15 then bugmes();quit;end
 t=['//sdffgfgfgggg'
@@ -253,12 +280,47 @@ t=['//sdffgfgfgggg'
    '  end //loop end'
    'endfunction'];
 mputl(t,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci','n')
+ 
+//sdffgfgfgggg
+ 
+//sdsdsddfgfgfghgfhjhui
+ 
+function a=foo//uuuuuuu
+a=0;k=0;//initialization
+  while %t //loop begin
+    k=k+1; //ttttt
+    if a> 10 then //
+ break // go out the loop
+    else //111111
+ a=a-1; //sdfdfd
+    end //xxxxx
+    a=a+k; //hhhhh
+  end //loop end
+endfunction
+ 
 a=foo();
 if a<>15 then bugmes();quit;end
-getf(TMPDIR+'/foo.sci')
+ 
+//sdffgfgfgggg
+ 
+//sdsdsddfgfgfghgfhjhui
+ 
+function a=foo//uuuuuuu
+a=0;k=0;//initialization
+  while %t //loop begin
+    k=k+1; //ttttt
+    if a> 10 then //
+ break // go out the loop
+    else //111111
+ a=a-1; //sdfdfd
+    end //xxxxx
+    a=a+k; //hhhhh
+  end //loop end
+endfunction
+ 
 a=foo();
 if a<>15 then bugmes();quit;end
+warning('on');
 //with macr2lst
 //first define an utilitary function
 function [C,L,lc]=getcomments(lst,lc)
@@ -390,7 +452,7 @@ if or(L<>Lref) then bugmes();quit;end
 function a=foo
   a=0;k=0;//initialization
   while %t //loop begin
-    k=k+1; //ttttt tttt
+    k=k+1; //ttttt tttt 
     if a> 10 then //ff
       break // go out the loop
     else //111111

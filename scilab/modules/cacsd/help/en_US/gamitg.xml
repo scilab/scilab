@@ -28,7 +28,7 @@
       <varlistentry>
         <term>G</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (plant realization )</para>
+          <para> <literal>syslin</literal> list (plant realization )</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,12 +63,10 @@
     returns the H-infinity optimal gain <literal>gopt</literal>.</para>
     <para><literal>G</literal> contains the state-space matrices <literal>[A,B,C,D]</literal> of
     the plant with the usual partitions:</para>
-    <programlisting><![CDATA[
-
-   B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
-                            ( C2 )          ( D21  D22)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
+                         ( C2 )          ( D21  D22)
+ ]]></programlisting>
     <para>
     These partitions are implicitly given in <literal>r</literal>: <literal>r(1)</literal>
     and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)</para>

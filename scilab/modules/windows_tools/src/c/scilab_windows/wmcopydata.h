@@ -15,6 +15,7 @@
 #define __WMCOPYDATA_H__
 
 #include <windows.h>
+#include "dynlib_scilab_windows.h"
 #include "PATH_MAX.h"
 #include "BOOL.h"
 
@@ -31,7 +32,7 @@ MYREC;
 * @param[in] command to send
 * @return TRUE or FALSE
 */
-BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
+SCILAB_WINDOWS_IMPEXP BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
 
 /**
 * Get a command from another scilab
@@ -39,7 +40,7 @@ BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowN
 * @param[in] command to send
 * @return TRUE or FALSE
 */
-BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
+SCILAB_WINDOWS_IMPEXP BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
 
 /**
 * Receive data from another scilab
@@ -47,7 +48,7 @@ BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
 * @param[in] COPYDATASTRUCT
 * @return TRUE or FALSE
 */
-BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct); 
+SCILAB_WINDOWS_IMPEXP BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct); 
 
 #endif /*__WMCOPYDATA_H__ */
 /*--------------------------------------------------------------------------*/ 

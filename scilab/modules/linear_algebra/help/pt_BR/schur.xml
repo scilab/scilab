@@ -355,8 +355,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //FORMA SCHUR DE UMA MATRIZ
 //----------------------
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
@@ -365,19 +364,19 @@ A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
 [U,dim,T]=schur(A,'c');
 T(1:dim,1:dim)      //autovalores estáveis contínuos
 
-function t=mytest(Ev),t=abs(Ev)&lt;0.95,endfunction
+function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
 [U,dim,T]=schur(A,mytest);
 T(1:dim,1:dim)  
 
 // A mesma função em C (um compilador é requerido)
 C=['int mytest(double *EvR, double *EvI) {' //o codigo C
-   'if (*EvR * *EvR + *EvI * *EvI &lt; 0.9025) return 1;'
+   'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
    'else return 0; }';]
 mputl(C,TMPDIR+'/mytest.c')
 
 
 //construindo e ligando
-lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytest','mytest.c',[],'c',TMPDIR+'/Makefile');
 link(lp,'mytest','c'); 
 
 //executando
@@ -392,7 +391,6 @@ A=coeff(F,0);E=coeff(F,1);
 [As,Es,Q,Z]=schur(A,E);
 Q'*F*Z //isto é As+%s*Es
 
-
 [As,Es,Z,dim] = schur(A,E,'c')
 function t=mytest(Alpha,Beta),t=real(Alpha)&lt;0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
@@ -406,14 +404,13 @@ ftn=['funcao inteira mytestf(ar,ai,b)' //codigo FORTRAN
 mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //construíndo e ligando
-lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytestf','mytestf.f',[],'F',TMPDIR+'/Makefile');
 link(lp,'mytestf','f'); 
 
 //executando
 
 [As,Es,Z,dim] = schur(A,E,'mytestf')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

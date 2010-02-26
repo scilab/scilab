@@ -13,10 +13,11 @@
 #ifndef __TERMREADANDPROCESS_H__
 #define __TERMREADANDPROCESS_H__
 
+#include "dynlib_shell.h"
 /**
 * read line from commandline 
 */
 
-char * TermReadAndProcess(void);
+SHELL_IMPEXP char * TermReadAndProcess(void);
 
 #endif /* __TERMREADANDPROCESS_H__ */

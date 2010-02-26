@@ -88,8 +88,7 @@ chart(gain,phase [,flags])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 black(h,0.01,100)
@@ -100,8 +99,7 @@ h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 black([h1;h],0.01,100,['h1';'h'])
 set(gca(),'data_bounds',[-180 -30;180 30]) //enlarge the frame
 chart(list(1,0));
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

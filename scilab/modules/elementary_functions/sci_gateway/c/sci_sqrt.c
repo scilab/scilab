@@ -18,6 +18,7 @@
 
 int sci_sqrt(char *fname,int* _piKey)
 {
+	SciErr sciErr;
 	int i;
 	int iRet						= 0;
 	int iComplex				= 0;
@@ -34,34 +35,37 @@ int sci_sqrt(char *fname,int* _piKey)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
-	if(iRet)
+	sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+	if(sciErr.iErr)
 	{
-		return 1;
+		printError(&sciErr, 0);
+		return 0;
 	}
 
-	if(getVarType(piAddr) != sci_matrix)
+	if(!isDoubleType(_piKey, piAddr))
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(isVarComplex(piAddr))
+	if(isVarComplex(_piKey, piAddr))
 	{
 		iComplex = 1;
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(iRet)
+		sciErr = getComplexMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 	else
 	{
 		iComplex = 0;
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
-		if(iRet)
+		sciErr = getMatrixOfDouble(_piKey, piAddr, &iRows, &iCols, &pdblReal);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 	}
 
@@ -75,13 +79,14 @@ int sci_sqrt(char *fname,int* _piKey)
 
 	if(iComplex)
 	{
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
-		if(iRet)
+		sciErr = allocComplexMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
-		if(isVarComplex(piAddr))
+		if(isVarComplex(_piKey, piAddr))
 		{
 			for(i = 0 ; i < iRows * iCols ; i++)
 			{
@@ -98,10 +103,11 @@ int sci_sqrt(char *fname,int* _piKey)
 	}
 	else
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
-		if(iRet)
+		sciErr = allocMatrixOfDouble(_piKey, Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(sciErr.iErr)
 		{
-			return 1;
+			printError(&sciErr, 0);
+			return 0;
 		}
 
 		for(i = 0 ; i < iRows * iCols ; i++)

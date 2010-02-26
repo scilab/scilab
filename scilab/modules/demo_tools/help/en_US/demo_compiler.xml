@@ -31,22 +31,22 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 select num,
  case 0
   return;
  case 2 then 
   st = demo_compiler(); //The compiler will be used
   if (st==%t) then
-	  mode(0);
-	  wheel_build_and_load()
-	end
+    mode(0);
+    wheel_build_and_load()
+  end
  case 1 then // A precomputed value
-	x=read(path+'/x.wrt',8,301);
-	wheelg=wheelgs;
-	show(x);
+  x=read(path+'/x.wrt',8,301);
+  wheelg=wheelgs;
+  show(x);
 end
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -72,18 +72,14 @@
     Quasi-Kronecker form of matrix pencil: <literal>quaskro</literal> computes two
     orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
     upper-triangular form:</para>
-    <programlisting><![CDATA[
-
-
+    <programlisting role = ""><![CDATA[ 
            | sE(eps)-A(eps) |        X       |      X     |
            |----------------|----------------|------------|
            |        O       | sE(inf)-A(inf) |      X     |
 Q(sE-A)Z = |=================================|============|
            |                                 |            |
            |                O                | sE(r)-A(r) |
-
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     The dimensions of the blocks are given by:</para>
     <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,

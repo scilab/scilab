@@ -220,7 +220,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 typeof(1)
 typeof(poly(0,'x'))
 
@@ -238,8 +238,7 @@ L=tlist(['V','a','b'],18,'Scilab');
 typeof(L)
 
 typeof(corelib)
- 
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

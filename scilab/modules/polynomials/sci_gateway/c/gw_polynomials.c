@@ -11,41 +11,40 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include <stdlib.h>
+#include <string.h>
+#include "stack-c.h"
 #include "gw_polynomials.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static int C2F(sci_notused)(char *fname,unsigned long fname_len)
+static int sci_notused(char *fname,unsigned long fname_len)
 {
 	/* not used */
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-#define POLYNOMIALS_TAB_SIZE 17
-static gw_generic_table Tab[POLYNOMIALS_TAB_SIZE]=
-{
-{C2F(sci_poly),"poly"},
-{C2F(sci_roots),"roots"},
-{C2F(sci_degree),"degree"},
-{C2F(sci_coeff),"coeff"},
-{C2F(sci_notused),""}, /* not used but required primitives order (short cut fin,fun) */
-{C2F(sci_pppdiv),"pppdiv"},
-{C2F(sci_simp),"simp"},
-{C2F(sci_psum),"sum"},
-{C2F(sci_pprod),"prod"},
+static gw_generic_table Tab[] = {
+{sci_poly,"poly"},
+{sci_roots, "roots"},
+{sci_degree, "degree"},
+{sci_coeff, "coeff"},
+{sci_notused, ""}, /* not used but required primitives order (short cut fin,fun) */
+{sci_pppdiv, "pppdiv"},
+{sci_simp, "simp"},
+{sci_psum, "sum"},
+{sci_pprod, "prod"},
 {NULL, ""}, //"diag"
-{C2F(sci_ptriu),"triu"},
-{C2F(sci_ptril),"tril"},
-{C2F(sci_bezout),"bezout"},
-{C2F(sci_sfact),"sfact"},
-{C2F(sci_simp_mode),"simp_mode"},
-{C2F(sci_varn),"varn"},
-{C2F(sci_cleanp),"cleanp"}
+{sci_ptriu, "triu"},
+{sci_ptril, "tril"},
+{sci_bezout, "bezout"},
+{sci_sfact, "sfact"},
+{sci_simp_mode, "simp_mode"},
+{sci_varn, "varn"},
+{sci_cleanp, "cleanp"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_polynomials(void)
 {
-	callFunctionFromGateway(Tab,POLYNOMIALS_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

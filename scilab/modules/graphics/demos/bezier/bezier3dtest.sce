@@ -18,4 +18,5 @@ function bezier3dtest ()
 endfunction
 
 bezier3dtest();
+demo_viewCode("bezier3dtest.sce");
 clear bezier3dtest;

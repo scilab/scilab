@@ -155,20 +155,20 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [n,m]=size(rand(3,2))
 [n,m]=size(['a','b';'c','d'])
 x=ssrand(3,2,4);[ny,nu]=size(x)
 [ny,nu]=size(ss2tf(x))
 [ny,nu,nx]=size(x)
 
-// Renvois le nombre de ligne
+// Renvoie le nombre de ligne
 n=size(rand(3,2),"r")
-// Renvois le nombre de colonnes
+// Renvoie le nombre de colonnes
 m=size(rand(3,2),"c")
-// Renvois le produit des dimensions
+// Renvoie le produit des dimensions
 nm=size(rand(3,2),"*")
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

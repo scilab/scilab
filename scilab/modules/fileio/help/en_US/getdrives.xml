@@ -42,9 +42,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   getdrives()
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+getdrives()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

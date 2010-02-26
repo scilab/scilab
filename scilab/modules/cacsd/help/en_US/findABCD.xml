@@ -166,12 +166,10 @@ SYS = findABCD(S,N,L,R,METH)
     <itemizedlist>
       <listitem>
         <para>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  computes a state- space realization SYS = (A,B,C,D) (an ss object), and the Kalman predictor gain K (if NSMPL &gt; 0). The model structure is:</para>
-        <programlisting><![CDATA[
-
-     x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
-     y(k)   = Cx(k) + Du(k) + e(k),
-   
-        ]]></programlisting>
+        <programlisting role = ""><![CDATA[ 
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
         <para>
     where x(k) and y(k) are vectors of length N and L, respectively.
   </para>
@@ -180,12 +178,10 @@ SYS = findABCD(S,N,L,R,METH)
         <para>[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  also returns the state, output, and state-output (cross-)covariance matrices Q, Ry, and S (used for computing the Kalman gain), as well as the vector RCND of length lr containing the reciprocal condition numbers of the matrices involved in rank decisions, least squares or Riccati equation solutions, where</para>
       </listitem>
     </itemizedlist>
-    <programlisting><![CDATA[
-
-   lr = 4,  if Kalman gain matrix K is not required, and
-   lr = 12, if Kalman gain matrix K is required.
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+lr = 4,  if Kalman gain matrix K is not required, and
+lr = 12, if Kalman gain matrix K is required.
+ ]]></programlisting>
     <para>
     Matrix R, computed by findR, should be determined with suitable arguments
     METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
@@ -193,8 +189,7 @@ SYS = findABCD(S,N,L,R,METH)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -207,7 +202,6 @@ nsmp=100;
 U=prbs_a(nsmp,nsmp/5);
 Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
 
-
 // Compute R
 S=15;
 [R,N1,SVAL] = findR(S,Y',U');
@@ -217,10 +211,8 @@ SYS1 = findABCD(S,N,1,R) ;SYS1.dt=0.1;
 SYS1.X0 = inistate(SYS1,Y',U');
 
 Y1=flts(U,SYS1);
-xbasc();plot2d((1:nsmp)',[Y',Y1'])
-
- 
-  ]]></programlisting>
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -10,6 +10,10 @@
 *
 */
 
+#include <cstdio>
+
+#include "stack-def.h"
+
 #include "execvisitor.hxx"
 #include "shortcutvisitor.hxx"
 #include "timer.hxx"
@@ -170,30 +174,123 @@ namespace ast
 		/*
 		a.b
 		*/
-		ExecVisitor *execL = new ast::ExecVisitor();
-		e.head_get()->accept(*execL);
-		types::InternalType *head = execL->result_get();
+		ExecVisitor *execHead = new ast::ExecVisitor();
+	 	try
+		{
+		  e.head_get()->accept(*execHead);
+		}
+		catch (string sz) 
+		  {
+		    throw sz;
+		  } 
+		types::InternalType *head = execHead->result_get();
 		const symbol::Symbol &tail = dynamic_cast<const SimpleVar*>(e.tail_get())->name_get();
 		
-		types::ObjectMatrix *obj = dynamic_cast<types::ObjectMatrix*>(head);
-		if(obj != NULL)
-		{
-			types::InternalType *res = obj->Get(tail.name_get());
-			if(res != NULL)
-			{
-				result_set(res);
-				if(e.is_verbose())
-				{
-					std::ostringstream ostr;
-					ostr << obj->toString(10,75) << "." << tail.name_get() << " = " << std::endl;
-					ostr << std::endl;
-					ostr << res->toString(75,10) << std::endl;
-					YaspWrite((char *) ostr.str().c_str());
-				}
-			}
-		}
-		
-		delete execL;
+		/*
+		** We can only acces field in structure
+		** or properties/methods in objects
+		*/
+		if (execHead->result_get() != NULL 
+			&& !execHead->result_get()->isStruct()
+			&& !execHead->result_get()->isObject())
+		  {
+		    char szError[bsiz];
+#ifdef _MSC_VER
+		    sprintf_s(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
+#else
+		    sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+#endif
+		    delete execHead;
+		    throw string(szError);
+		  }
+
+		// Manage 3 cases for structs
+		// head.ID
+		// head.variable
+		// head.functionCall
+		SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+		if (psvRightMember != NULL)
+		  {
+
+			/*
+			** Struct
+			** \{
+			*/
+			if (execHead->result_get()->isStruct())
+			  {
+				Struct* psValue = execHead->result_get()->getAsStruct();
+				if ( psValue->exists(psvRightMember->name_get()) )
+				  {
+					result_set(psValue->get(psvRightMember->name_get())->clone());
+					delete execHead;
+					return;
+				  }
+				else 
+				  {
+					char szError[bsiz];
+#ifdef _MSC_VER
+					sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#else
+					sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#endif
+					delete execHead;
+					throw string(szError);
+				  }
+			  }
+			/*
+			** \}
+			*/
+
+			/*
+			** Object
+			** \{
+			*/
+			types::ObjectMatrix *obj = dynamic_cast<types::ObjectMatrix*>(head);
+			if(obj != NULL)
+			  {
+				types::InternalType *res = obj->Get(tail.name_get());
+				if(res != NULL)
+				  {
+					result_set(res);
+					if(e.is_verbose())
+					  {
+						std::ostringstream ostr;
+						ostr << obj->toString(10,75) << "." << tail.name_get() << " = " << std::endl;
+						ostr << std::endl;
+						ostr << res->toString(75,10) << std::endl;
+						YaspWrite((char *) ostr.str().c_str());
+					  }
+					delete execHead;
+					return;
+				  }
+				else
+				  {
+					char szError[bsiz];
+#ifdef _MSC_VER
+					sprintf_s(szError, bsiz, _("Unknown method/attribute : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#else
+					sprintf(szError, _("Unknown method/attribute : %s.\n"), psvRightMember->name_get().name_get().c_str());
+#endif
+					delete execHead;
+					throw string(szError);					
+				  }
+			  }
+			/*
+			** \}
+			*/
+
+		  }
+
+		/*
+		** If we reached that points this means no known form has been found.
+		*/
+		char szError[bsiz];
+#ifdef _MSC_VER
+		sprintf_s(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
+#else
+		sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
+#endif
+		throw string(szError);
 	}
 
 	void ExecVisitor::visit(const CallExp &e)
@@ -208,7 +305,7 @@ namespace ast
 			types::typed_list out;
 			types::typed_list in;
 			
-			//finc the good macro
+			//find the good macro
 			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
@@ -224,7 +321,8 @@ namespace ast
 				execVar[j]->result_get()->IncreaseRef();
 			}
 			
-			Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+			int iRetCount = Max(1, expected_size_get());
+			Function::ReturnValue Ret = pCall->call(in, iRetCount, out);
 			
 			if(Ret == Callable::OK)
 			{
@@ -248,9 +346,9 @@ namespace ast
 				std::ostringstream os;
 				char szError[bsiz];
 #ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("Function call failed\n"));
+				sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
 #else
-				sprintf(szError, _("Function call failed\n"));
+				sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
 #endif
 				throw string(szError);
 			}
@@ -266,162 +364,104 @@ namespace ast
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
 
-				InternalType *pResult = NULL;
-				ExecVisitor* execMeArg = new ast::ExecVisitor();
-				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = execFunc->result_get();
-				int iArgDim				= (int)e.args_get().size();
-				bool bSeeAsVector	= iArgDim == 1;
+			//get symbol of variable
+			InternalType *pIT = NULL;
+			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
+			if(Var != NULL)
+			{
+				pIT = symbol::Context::getInstance()->get(Var->name_get());
+			}
+			else
+			{
+				pIT = execFunc->result_get();
+			}
+			InternalType *pOut			= NULL;
+			ExecVisitor* execMeArg	= new ast::ExecVisitor();
+			int iArgDim							= (int)e.args_get().size();
+			bool bSeeAsVector				= iArgDim == 1;
 
-				//Create list of indexes
-				//std::vector<std::vector<int>> IndexList;
+			//Create list of indexes
+			//std::vector<std::vector<int>> IndexList;
 
-				int *piIndexSeq		= NULL;
-				int *piMaxDim			= NULL;
-				int *piDimSize		= new int[iArgDim];
-				int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+			int *piIndexSeq		= NULL;
+			int *piMaxDim			= NULL;
+			int *piDimSize		= new int[iArgDim];
+			int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
-				if(pIT->getType() == InternalType::RealDouble)
+			switch(pIT->getType())
+			{
+			case InternalType::RealDouble :
+				pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
+			case InternalType::RealInt :
+				pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
+			case InternalType::RealString :
+				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
+			case InternalType::RealObject :
+			  ObjectMatrix *pObj = pIT->getAsObject();
+			  ObjectMatrix *oResult;
+			  if(iArgDim == 1 && piMaxDim[0] > pObj->size_get() || //SeeAsVector
+				 iArgDim == 2 && (piMaxDim[0] > pObj->rows_get() || piMaxDim[0] > pObj->cols_get()) || //check dimension to extract
+				 iArgDim > 2) //more than 2 dimensions ?
+					{
+					  std::ostringstream os;
+					  os << "inconsistent row/column dimensions";
+					  os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+					  string szErr(os.str());
+					  throw szErr;
+					}
+			  
+			  
+			  int iRowOut = 0;
+			  int iColOut	= 0;
+			  if(iArgDim == 1)
 				{
-					Double *pDouble	= pIT->getAsDouble();
-					Double *dResult;
-					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector
-							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
-							iArgDim > 2) //more than 2 dimensions ?
+				  pResult = oResult = new ObjectMatrix(piDimSize[0], 1);
+				  iRowOut = piDimSize[0];
+				  iColOut = 1;
+				}
+			  else
+				{
+				  // TODO
+				}
+			  
+			  if(bSeeAsVector)
+				{
+				  for(int i = 0 ; i < iTotalCombi ; i++)
 					{
-						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
-						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
-						throw os.str();
-					}
-
-
-					int iRowOut = 0;
-					int iColOut	= 0;
-					if(iArgDim == 1)
-					{
-						if(pDouble->rows_get() == 1)
-						{
-							pResult = new Double(1, piDimSize[0], pDouble->isComplex());
-							iRowOut = 1;
-							iColOut = piDimSize[0];
-						}
-						else
-						{
-							pResult = new Double(piDimSize[0], 1, pDouble->isComplex());
-							iRowOut = piDimSize[0];
-							iColOut = 1;
-						}
-					}
-					else
-					{
-						pResult = dResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
-						iRowOut = piDimSize[0];
-						iColOut = piDimSize[1];
-					}
-
-					double *pRealIn		= pDouble->real_get();
-					double *pImgIn		= pDouble->img_get();
-					double *pRealOut	= dResult->real_get();
-					double *pImgOut		= dResult->img_get();
-
-					if(bSeeAsVector)
-					{
-						if(dResult->isComplex())
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
-								pImgOut[i]	= pImgIn[piIndexSeq[i] - 1];
-							}
-						}
-						else
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
-							}
-						}
-					}
-					else//matrix
-					{
-						int iRowIn = pDouble->rows_get();
-						if(dResult->isComplex())
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
-								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-								pImgOut[iCurIndex] = pImgIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-							}
-						}
-						else
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								//convert vertical indexes to horizontal indexes
-								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
-								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-							}
-						}
+					  oResult->SetElem(i, pObj->GetElem(piIndexSeq[i] - 1));
 					}
 				}
-				else if(pIT->getType() == InternalType::RealObject)
+			  else//matrix
 				{
-					ObjectMatrix *pObj = pIT->getAsObject();
-					ObjectMatrix *oResult;
-					if(iArgDim == 1 && piMaxDim[0] > pObj->size_get() || //SeeAsVector
-							iArgDim == 2 && (piMaxDim[0] > pObj->rows_get() || piMaxDim[0] > pObj->cols_get()) || //check dimension to extract
-							iArgDim > 2) //more than 2 dimensions ?
-					{
-						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
-						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
-						string szErr(os.str());
-						throw szErr;
-					}
-
-
-					int iRowOut = 0;
-					int iColOut	= 0;
-					if(iArgDim == 1)
-					{
-						pResult = oResult = new ObjectMatrix(piDimSize[0], 1);
-						iRowOut = piDimSize[0];
-						iColOut = 1;
-					}
-					else
-					{
-						// TODO
-					}
-
-					if(bSeeAsVector)
-					{
-						for(int i = 0 ; i < iTotalCombi ; i++)
-						{
-							oResult->SetElem(i, pObj->GetElem(piIndexSeq[i] - 1));
-						}
-					}
-					else//matrix
-					{
-						// TODO
-					}
+				  // TODO
 				}
-				delete[] piDimSize;
-				result_set(pResult);
-				if(e.is_verbose())
-				{
-				  std::ostringstream ostr;
-				  ostr <<  pResult->toString(10,75) << std::endl;
-				  YaspWrite((char *) ostr.str().c_str());
-				}
+			  break;
+			default :
+				break;
+			}
+
+			if(pOut == NULL)
+			{
+				std::ostringstream os;
+				os << "inconsistent row/column dimensions";
+				os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+				throw os.str();
+			}
+			result_set(pOut);
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
 			std::ostringstream os;
-			os << "variable must exist";
-			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
-			throw os.str();
+			char pst[bsiz];
+#ifdef _MSC_VER
+			sprintf_s(pst, bsiz, _("Undefined variable %s.\n"), e.name_get());
+#else
+			sprintf(pst, _("Undefined variable %s.\n"), e.name_get());
+#endif
+			throw string(pst);
 		}
 		delete execFunc;
 	}
@@ -546,9 +586,14 @@ namespace ast
 		{
 			ExecVisitor *execBody = new ast::ExecVisitor();
 			ImplicitList* pVar = (ImplicitList*)execVar->result_get();
+			symbol::Symbol symbol = e.vardec_get().name_get();
+
+			InternalType *pIT = NULL;
+
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pVar->extract_value(i));
+				pIT = pVar->extract_value(i);
+				symbol::Context::getInstance()->put(symbol, *pIT);
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
 				{
@@ -569,7 +614,7 @@ namespace ast
 			GenericType* pVar = (GenericType*)execVar->result_get();
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
-				GenericType* pNew = pVar->get(i);
+				GenericType* pNew = pVar->get_col_value(i);
 				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
@@ -597,13 +642,14 @@ namespace ast
 	{
 		if(e.is_global() == false)
 		{//return(x)
-			ExecVisitor execVar;
-			e.exp_get().accept(execVar);
+			ExecVisitor* execVar = new ExecVisitor();
+			e.exp_get().accept(*execVar);
 			
-			for(int i = 0 ; i < execVar.result_size_get() ; i++)
+			for(int i = 0 ; i < execVar->result_size_get() ; i++)
 			{
-				result_set(i, execVar.result_get(i));
+				result_set(i, execVar->result_get(i)->clone());
 			}
+			delete execVar;
 		}
 		((Exp*)&e)->return_set();
 	}
@@ -659,11 +705,11 @@ namespace ast
 					{
 						std::ostringstream os;
 						char szError[bsiz];
-	#ifdef _MSC_VER
-						sprintf_s(szError, bsiz, _("Function call failed\n"));
-	#else
-						sprintf(szError, _("Function call failed\n"));
-	#endif
+#ifdef _MSC_VER
+						sprintf_s(szError, bsiz, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+#else
+						sprintf(szError, _("Function \"%s\" failed\n"), pCall->getName().c_str());
+#endif
 						throw string(szError);
 					}
 				}
@@ -673,6 +719,7 @@ namespace ast
 					symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe->result_get());
 					if((*i)->is_verbose())
 					{
+						//TODO manage multiple returns
 						std::ostringstream ostr;
 						ostr << "ans = " << std::endl;
 						ostr << std::endl;
@@ -708,7 +755,7 @@ namespace ast
 			ExecVisitor *execArg = new ExecVisitor();
 			(*it)->accept(*execArg);
 			//execArg->result_get()->IncreaseRef();
-			result_set(i, execArg->result_get());
+			result_set(i, execArg->result_get()->clone());
 			delete execArg;
 			//result_get(i)->DecreaseRef();
 			i++;
@@ -735,17 +782,10 @@ namespace ast
 			Double *pdbl	= execMe->result_get()->getAsDouble();
 			Bool *pReturn	= new Bool(pdbl->rows_get(), pdbl->cols_get());
 			double *pR		= pdbl->real_get();
-			bool *pB			= pReturn->bool_get();
+			int *piB			= pReturn->bool_get();
 			for(int i = 0 ; i < pdbl->size_get() ; i++)
 			{
-				if(pR[i] == 0)
-				{
-					pB[i] = true;
-				}
-				else
-				{
-					pB[i] = false;
-				}
+				piB[i] = pR[i] == 0 ? 1 : 0;
 			}
 			result_set(pReturn);
 		}
@@ -753,12 +793,12 @@ namespace ast
 		{
 			Bool *pb			= execMe->result_get()->getAsBool();
 			Bool *pReturn	= new Bool(pb->rows_get(), pb->cols_get());
-			bool *pR			= pb->bool_get();
-			bool *pB			= pReturn->bool_get();
+			int *piR			= pb->bool_get();
+			int *piB			= pReturn->bool_get();
 
 			for(int i = 0 ; i < pb->size_get() ; i++)
 			{
-				pB[i] = pR[i];
+				piB[i] = piR[i] == 1 ? 0 : 1;
 			}
 			result_set(pReturn);
 		}
@@ -1121,19 +1161,16 @@ bool bConditionState(ast::ExecVisitor *exec)
 	else if(((GenericType*)exec->result_get())->isBool())
 	{
 		Bool *pB		= (Bool*)exec->result_get();
-		bool *pData		= pB->bool_get();
+		int *piData	= pB->bool_get();
 
 		for(int i = 0 ; i < pB->size_get() ; i++)
 		{
-			if(pData[i] == false)
+			if(piData[i] == 0)
 			{
 				return false;
 				break;
 			}
 		}
-	}
-	else if(((GenericType*)exec->result_get())->isUInt())
-	{
 	}
 	else if(((GenericType*)exec->result_get())->isInt())
 	{
@@ -1193,7 +1230,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 	int iTotalCombi					= 1;
 	ExecVisitor* execMeArg	= new ExecVisitor();
 
-	int *piTabSize					= new int[iProductElem];
+	int *piTabsize					= new int[iProductElem];
 	(*_piMaxDim)						= new int[iProductElem];
 	piIndexList							= new int*[iProductElem];
 
@@ -1244,11 +1281,11 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			Bool *pB			= execMeArg->result_get()->getAsBool();
 			pDbl					= new Double(pB->rows_get(), pB->cols_get());
 			double* pdbl	= pDbl->real_get();
-			bool *pb			= pB->bool_get();
+			int *piB			= pB->bool_get();
 
 			for(int i = 0 ; i < pDbl->size_get() ; i++)
 			{
-				pdbl[i]			= pb[i] == true ? 1 : 0;
+				pdbl[i]			= piB[i] ? 1 : 0;
 			}
 			bDeleteDbl		= true;
 		}
@@ -1285,8 +1322,8 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 		double *pData = pDbl->real_get();
 
 //					std::vector<int> SubList;
-		piTabSize[k] = pDbl->size_get();
-		piIndexList[k] = new int[piTabSize[k]];
+		piTabsize[k] = pDbl->size_get();
+		piIndexList[k] = new int[piTabsize[k]];
 
 		(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
 		int iSize = pDbl->size_get();
@@ -1316,9 +1353,9 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 	delete execMeArg;
 
-	int iTabSize	= iTotalCombi * iProductElem;
-	*_piIndexSeq	= new int[iTabSize];
-	ExpandList(piIndexList, piTabSize, iProductElem, *_piIndexSeq);
+	int iTabsize	= iTotalCombi * iProductElem;
+	*_piIndexSeq	= new int[iTabsize];
+	ExpandList(piIndexList, piTabsize, iProductElem, *_piIndexSeq);
 	return iTotalCombi;
 }
 

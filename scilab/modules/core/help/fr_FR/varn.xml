@@ -62,7 +62,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');p=[s^2+1,s];
 varn(p)
 varn(p,'x')

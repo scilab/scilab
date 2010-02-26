@@ -41,7 +41,9 @@ savehistory(f)</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[savehistory(SCI+'/session.scilab')]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+savehistory(SCI+'/session.scilab') 
+]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

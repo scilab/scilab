@@ -11,7 +11,7 @@
  *
  */
 
-#include "nographic_export.h"
+#include "gw_graphic_export.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

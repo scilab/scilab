@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_chaos.dem.sce");
-scicos_demostration(thispath+"/Chaos_Modelica.cosf");
+xcos(thispath+"/Chaos_Modelica.cosf");
 clear thispath;

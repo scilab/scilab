@@ -61,8 +61,7 @@
     <para><literal>erfc</literal> computa a função de erro
     complementar:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
                    /+oo    2
             2      |     -t
      y = -------   |    e    dt
@@ -70,18 +69,15 @@
                    /x
 
      y = 1 - erf(x)
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 erf([0.5,0.2])+erfc([0.5,0.2])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

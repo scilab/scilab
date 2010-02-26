@@ -16,7 +16,7 @@
 *            
 *     CAUTION
 *        nel_max is the maximum non zeros elements authorized
-*        for B => if this limit is not enought the error
+*        for B => if this limit is not enough the error
 *        indicator ierr is set to -1 (else 0) 
 *
 *     AUTHOR
@@ -71,7 +71,7 @@
          if ( A_mnel(ia) .gt. 0 ) then
 
             if (allcol) then
-               if ( kb+A_mnel(ia) .ge. nel_max ) then  ! not enought memory
+               if ( kb+A_mnel(ia) .ge. nel_max ) then  ! not enough memory
                   ierr = -1
                   return
                endif
@@ -89,7 +89,7 @@
                   ja = A_icol(ka)
                   k = dicho_search(ja, j, nj)
                   if ( k .ne. 0 ) then  ! we have found (the smallest) k such that ja = j(k)
- 100                 if (kb .gt. nel_max) then ! not enought memory
+ 100                 if (kb .gt. nel_max) then ! not enough memory
                         ierr = -1
                         return
                      endif
@@ -114,7 +114,7 @@
                   ja = A_icol(ka)
                   k = dicho_search_bis(ja, j, p, nj)
                   if ( k .ne. 0 ) then  ! we have found (the smallest) k such that ja = j(p(k))
- 200                 if (kb .gt. nel_max) then ! not enought memory
+ 200                 if (kb .gt. nel_max) then ! not enough memory
                         ierr = -1
                         return
                      endif
@@ -135,7 +135,7 @@
                   kk = dicho_search(j(k), A_icol(ptr(ia)), A_mnel(ia))
                   if ( kk .ne. 0 ) then ! we have found kk such that j(k) = A_icol(ptr(ia)-1+kk)
                      ka = kk + ptr(ia) - 1
-                     if (kb .gt. nel_max) then ! not enought memory
+                     if (kb .gt. nel_max) then ! not enough memory
                         ierr = -1
                         return
                      endif

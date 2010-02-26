@@ -116,20 +116,20 @@ namespace symbol
 
 	bool Context::AddFunction(types::Function *_info)
 	{
-		EnvFunTable.put(Symbol(_info->m_szName), *_info);
-		return true;
+	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  return true;
 	}
 
 	bool Context::AddMacro(types::Macro *_info)
 	{
-		EnvFunTable.put(Symbol(_info->m_stName), *_info);
-		return true;
+	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  return true;
 	}
 
 	bool Context::AddMacroFile(types::MacroFile *_info)
 	{
-		EnvFunTable.put(Symbol(_info->m_stName), *_info);
-		return true;
+	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  return true;
 	}
 }
 

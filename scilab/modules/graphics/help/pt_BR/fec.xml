@@ -207,14 +207,14 @@ fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synop
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // definindo uma mini-triangularização (4 vértices, 2 triângulos)
 x = [0 1 0 -1];
 y = [0 0 1  1];
 T = [1 1 2 3 1;
      2 3 4 1 1];
 z = [0 1 0 -1];  // valores da função em cada vértice
-xbasc()
+clf()
 xset("colormap",jetcolormap(64))
 subplot(1,2,1)
    colorbar(-1,1)
@@ -226,20 +226,18 @@ subplot(1,2,2)
    xtitle("exemplo de fec (em a malha)")
 xselect()
 
-
 // este exemplo mostra o efeito de zminmax e usa os
 // dados de exemplos anteriores (você tem que executá-los primeiro)
-xbasc()
+clf()
 xset("colormap",jetcolormap(64))
 colorbar(-0.5,0.5)  // cuidado, a barra de cores deve ser ajustada na mão!
 fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
 xtitle("exemplo de fec: utilizando o argumento zminmax")
 xselect()
 
-
 // este exemplo mostra os efeitos de zminmax e colout. Utiliza
 // também os dados de exemplos anteriores (você tem que executá-los primeiro)
-xbasc()
+clf()
 xset("colormap",jetcolormap(64))
 subplot(2,2,1)
    colorbar(-0.5,0.5)
@@ -259,11 +257,10 @@ subplot(2,2,4)
    xtitle("exemplo de fec: utilizando zminmax e colout =[0 -1]")
 xselect()
 
-
 // este exemplo mostra um recurso de colminmax:
 // utilizando dois mapas de cores para dois subesboços.
 // Também utiliza dados de exemplos anteriores.
-xbasc()
+clf()
 xset("colormap",[hotcolormap(64);jetcolormap(64)])
 subplot(1,2,1)
    colorbar(-1,1,[1 64])
@@ -274,7 +271,7 @@ subplot(1,2,2)
    fec(x,y,T,z,strf="040", colminmax=[65 128], mesh=%t)
    xtitle("fec utilizando mapa de cores jet ")
 xselect()
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -26,7 +26,7 @@ import javax.media.opengl.GL;
 public class PentagramMarkDrawer extends MarkDrawingStrategy {
 
 	/** 
-	 * Distance of the insid epoints from the center
+	 * Distance of the inside points from the center
 	 * To compute this, I compute the intersection between two edges of the star
 	 * (note that each time, 4 points are aligned). Then I compute its distance from
 	 * origin. 1.2 is to make the star a bit larger.
@@ -72,33 +72,34 @@ public class PentagramMarkDrawer extends MarkDrawingStrategy {
 	}
 	
 	/**
-	 * Draw a plus
+	 * Draw a pentagram
 	 * @param gl OpenGL pipeline to use
 	 * @param backColor RGB color of mark background
 	 * @param frontColor RGB color of mark foreground
 	 */
 	public void drawMark(GL gl, double[] backColor, double[] frontColor) {
-		
 		// inside
-		gl.glColor3d(backColor[0], backColor[1], backColor[2]);
-		gl.glBegin(GL.GL_TRIANGLES);
-		for (int i = 0; i < NEEDED_TRIANGLE; i++) {
-			for (int j = 0; j < NB_COORDINATES; j++) {
-				gl.glVertex3d(VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][0], VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][1], 0.0);
+		if (!isBackTransparent) {
+			gl.glColor3d(backColor[0], backColor[1], backColor[2]);
+			gl.glBegin(GL.GL_TRIANGLES);
+			for (int i = 0; i < NEEDED_TRIANGLE; i++) {
+				for (int j = 0; j < NB_COORDINATES; j++) {
+					gl.glVertex3d(VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][0],
+								  VERTICES_COORDINATES[THREE_TRIANGLE[i][j]][1],
+								  0.0);
+				}
 			}
+			gl.glEnd();
 		}
-		
-		gl.glEnd();
 		
 		// outline
-		gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
-		gl.glBegin(GL.GL_LINE_LOOP);
-		for (int i = 0; i < NB_VERTICES; i++) {
-			gl.glVertex3d(VERTICES_COORDINATES[i][0], VERTICES_COORDINATES[i][1], 0.0);
+		if (!isFrontTransparent) {
+			gl.glColor3d(frontColor[0], frontColor[1], frontColor[2]);
+			gl.glBegin(GL.GL_LINE_LOOP);
+			for (int i = 0; i < NB_VERTICES; i++) {
+				gl.glVertex3d(VERTICES_COORDINATES[i][0], VERTICES_COORDINATES[i][1], 0.0);
+			}
+			gl.glEnd();
 		}
-		gl.glEnd();
-		
-
 	}
-
 }

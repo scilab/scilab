@@ -6,14 +6,22 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function cmap = pinkcolormap(n)
+function cmap = pinkcolormap(varargin)
 	
 	//pinkcolormap : Sepia tone on black and white images
 	
+  // Check number of input argument
+  if size(varargin)<>1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "pinkcolormap", 1));
+  end
+  n=varargin(1);
+
+  // Check size of input argument
 	if size(n,'*')<>1 then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"pinkcolormap",1));
 	end
-	
+
+  // Check value of input argument
 	if n<3 then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"pinkcolormap",1,3));
 	end

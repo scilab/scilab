@@ -72,14 +72,12 @@
   <refsection>
     <title>Descrição</title>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 sp2adj converte uma matriz esparsa para usa forma de adjacência 
 (função utilitária).
 A = matriz esparsa n x m . xadj, adjncy, anz = representação
 em adjacência de A, i.e.:
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>xadj(j+1)-xadj(j)</literal> = número de entradas não-nulas
     na linha j. <literal>adjncy</literal> = índice de coluna das entradas
@@ -94,15 +92,13 @@ em adjacência de A, i.e.:
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A = sprand(100,50,.05);
 [xadj,adjncy,anz]= sp2adj(A);
 [n,m]=size(A);
 p = adj2sp(xadj,adjncy,anz,[n,m]);
 A-p,
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

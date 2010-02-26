@@ -15,6 +15,7 @@
 #define __MSGSTORE_H__
 
 #include "machine.h"
+#include "dynlib_output_stream.h"
 
 /* max numbers of lines in "error" buffer */
 #define MAX_MSG_LINES  20
@@ -23,14 +24,14 @@
  * TODO : comment
  * @param n
  */
-int C2F(errstore)(int *n);
+OUTPUT_STREAM_IMPEXP int C2F(errstore)(int *n);
 
 
 /**
  * TODO : comment
  * @param n
  */
-int C2F(linestore)(int *n);
+OUTPUT_STREAM_IMPEXP int C2F(linestore)(int *n);
 
 /**
  * TODO : comment
@@ -38,19 +39,19 @@ int C2F(linestore)(int *n);
  * @param n
  * @param length str (required by fortran)
  */
-int C2F(funnamestore)(char *str,int *n,int lenstr);
+OUTPUT_STREAM_IMPEXP int C2F(funnamestore)(char *str,int *n,int lenstr);
 
 /**
  * TODO : comment
  * @param str
  * @param n
  */
-int C2F(msgstore)(char *str,int *n);
+OUTPUT_STREAM_IMPEXP int C2F(msgstore)(char *str,int *n);
 
 /**
  * TODO : comment
  */
-void C2F(freemsgtable)(void);
+OUTPUT_STREAM_IMPEXP void C2F(freemsgtable)(void);
 
 
 /**
@@ -58,12 +59,12 @@ void C2F(freemsgtable)(void);
  * @param fname
  * @param fname_len
  */
-int C2F(lasterror)(char *fname, unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int C2F(lasterror)(char *fname, unsigned long fname_len);
 
 
 /**
  * TODO : comment
  */
-int GetLastErrorCode(void);
+OUTPUT_STREAM_IMPEXP int GetLastErrorCode(void);
 
 #endif /* __MSGSTORE_H__ */

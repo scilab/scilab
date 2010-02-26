@@ -10,8 +10,15 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
+#ifndef __MODULE_DECLARATION_HXX__
+#define __MODULE_DECLARATION_HXX__
+
+#include "../../elementary_functions/includes/elem_func_gw.hxx"
+#include "../../types/includes/types_gw.hxx"
 #include "../../boolean/includes/boolean_gw.hxx"
 #include "../../integer/includes/integer_gw.hxx"
 #include "../../core/includes/core_gw.hxx"
+#include "../../io/includes/io_gw.hxx"
+#include "../../functions/includes/functions_gw.hxx"
 
+#endif /* !__MODULE_DECLARATION_HXX__ */

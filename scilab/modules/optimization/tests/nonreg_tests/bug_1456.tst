@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH GRAPHIC -->
+// <-- JVM NOT MANDATORY -->
 
 // <-- Non-regression test for bug 1456 -->
 // NOT FIXED

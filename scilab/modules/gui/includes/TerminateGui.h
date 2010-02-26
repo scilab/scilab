@@ -13,8 +13,9 @@
 #ifndef __TERMINATEGUI_H__
 #define __TERMINATEGUI_H__
 #include "BOOL.h"
+#include "dynlib_gui.h"
 
-BOOL TerminateGUI(void);
+GUI_IMPEXP BOOL TerminateGUI(void);
 
 #endif /* _TERMINATEGUI_H__ */
 /*--------------------------------------------------------------------------*/ 

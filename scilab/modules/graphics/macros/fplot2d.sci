@@ -22,9 +22,9 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
 	end
 	
 	if type(xr)=='10' then // logflag passed first
-		error('First argument must be the discretization of x')
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A vector expected.\n"), "fplot2d", 1));
 	elseif rhs < 2 then 
-		error('at least 2 input arguments required')
+    error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot2d", 2));
 	end
 	//handling optionnal arguments
 	

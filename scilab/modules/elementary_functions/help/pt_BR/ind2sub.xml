@@ -91,12 +91,10 @@ Mi = ind2sub(dims,I)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-   ind2sub([2,3,2],1:12)
-   [i,j,k]=ind2sub([2,3,2],1:12)
-  
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+ind2sub([2,3,2],1:12)
+[i,j,k]=ind2sub([2,3,2],1:12)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

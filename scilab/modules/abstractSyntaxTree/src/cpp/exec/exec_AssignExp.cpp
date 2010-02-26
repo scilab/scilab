@@ -107,32 +107,32 @@ namespace ast
 				int *piMaxDim			= NULL;
 				int *piDimSize			= new int[iProductElem];
 				int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+				/*We have the indexlist expanded and the max index*/
 
-				/*I have  the indexlist expanded and the max index*/
 				InternalType *pOut	= NULL;
+
+				//fisrt extract implicit list
+				if(execMeR->result_get()->getType() == InternalType::RealImplicitList)
+				{
+					InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
+					execMeR->result_set(pIL);
+				}
+
 				if(pIT == NULL)
 				{//call static insert function
 					switch(execMeR->result_get()->getType())
 					{
-					case InternalType::RealImplicitList:
-						{
-							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
-							switch(pIL->getType())
-							{
-							case InternalType::RealDouble : 
-								pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
-								break;
-							default :
-								//TOTO YaSp : overlaoding insertion
-								break;
-							}
-							break;
-						}
 					case InternalType::RealDouble : 
 						pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsDouble(), bSeeAsVector);
 						break;
+					case InternalType::RealBool : 
+						pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsBool(), bSeeAsVector);
+						break;
 					case InternalType::RealString : 
 						pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsString(), bSeeAsVector);
+						break;
+					case InternalType::RealInt : 
+						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsInt(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
@@ -141,27 +141,19 @@ namespace ast
 				}
 				else
 				{//call type insert function
-					switch(execMeR->result_get()->getType())
+					switch(pIT->getType())
 					{
-					case InternalType::RealImplicitList:
-						{
-							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
-							switch(pIL->getType())
-							{
-							case InternalType::RealDouble : 
-								bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
-								break;
-							default :
-								//TOTO YaSp : overlaoding insertion
-								break;
-							}
-							break;
-						}
 					case InternalType::RealDouble : 
 						bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
 						break;
+					case InternalType::RealBool : 
+						bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
 					case InternalType::RealString : 
 						bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					case InternalType::RealInt : 
+						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
@@ -180,7 +172,7 @@ namespace ast
 					//manage error
 					std::ostringstream os;
 					os << _("Submatrix incorrectly defined.\n");
-					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				delete piMaxDim;
@@ -196,7 +188,7 @@ namespace ast
 				{
 					std::ostringstream os;
 					os << "Lhs != Rhs";
-					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 					throw os.str();
 				}
 				
@@ -207,8 +199,26 @@ namespace ast
 					delete pIT;
 					pIT = pTemp;
 				}
-				dataNew = pIT;
-				bNew = true;
+
+				const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
+				if(pReturn)
+				{//ReturnExp so, put the value in the previous scope
+					symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
+					((AssignExp*)&e)->break_set();
+				}
+				else
+				{
+					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
+				}
+
+				if(e.is_verbose())
+				{
+					std::ostringstream ostr;
+					ostr << pVar->name_get() << " = " << std::endl;
+					ostr << std::endl;
+					ostr << pIT->toString(10,75) << std::endl;
+					YaspWrite((char *)ostr.str().c_str());
+				}
 			}
 			else if(pList)
 			{//[x,y] = ?
@@ -249,7 +259,7 @@ namespace ast
 			{//Houston ...
 				std::ostringstream os;
 				os << "unknow script form";
-				os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+				os << ((Location)e.right_exp_get().location_get()).location_string_get() << std::endl;
 				throw os.str();
 			}
 			

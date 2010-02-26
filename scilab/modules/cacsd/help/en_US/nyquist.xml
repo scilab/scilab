@@ -45,7 +45,7 @@ nyquist(frq, repf [,comments])</synopsis>
         <term>sl</term>
 
         <listitem>
-          <para>: <literal>syslin</literal> list (SIMO linear system in
+          <para> <literal>syslin</literal> list (SIMO linear system in
           continuous or discrete time )</para>
         </listitem>
       </varlistentry>
@@ -109,7 +109,7 @@ nyquist(frq, repf [,comments])</synopsis>
     <para>Nyquist plot i.e Imaginary part versus Real part of the frequency
     response of <literal>sl</literal>.</para>
 
-    <para>For continous time systems <literal>sl(2*%i*%pi*w)</literal> is
+    <para>For continuous time systems <literal>sl(2*%i*%pi*w)</literal> is
     plotted. For discrete time system or discretized systems
     <literal>sl(exp(2*%i*%pi*w*fd)</literal> is used ( <literal>fd=1</literal>
     for discrete time systems and <literal>fd=sl('dt')</literal> for
@@ -148,8 +148,7 @@ nyquist(frq, repf [,comments])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 clf();
 s=poly(0,'s');
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
@@ -159,8 +158,7 @@ h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 clf();
 nyquist([h1;h],0.01,100,['h1';'h'])
 clf();nyquist([h1;h])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

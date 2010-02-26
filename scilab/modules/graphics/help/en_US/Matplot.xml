@@ -216,17 +216,15 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                   <varlistentry>
                     <term>z=4</term>
                     <listitem>
-                      <para>axes are drawn centred in the middle of the frame
-                      box.</para>
+                      <para>axes are drawn centred in the middle of the frame box,
+                      with the box disabled.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>z=5</term>
                     <listitem>
-                      <para>axes are drawn so as to cross at point
-                      <literal>(0,0)</literal>. If point <literal>(0,0)</literal> does not
-                      lie inside the frame, axes will not appear on the
-                      graph.</para>
+                      <para>axes are drawn centred in the middle of the frame box,
+                      with the box enabled.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -269,14 +267,12 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 Matplot([1 2 3;4 5 6])
 clf()
 // draw the current colormap 
 Matplot((1:xget("lastpattern")))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

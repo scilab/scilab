@@ -31,11 +31,11 @@
   </refsection>
   <refsection>
     <title>Example</title>
-    <programlisting role="example">
-  if MSDOS then
-    disp('Scilab on Windows.');
-  end
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
+  disp('Scilab on Windows.');
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

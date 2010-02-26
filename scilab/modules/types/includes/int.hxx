@@ -1,3 +1,4 @@
+
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
@@ -14,6 +15,7 @@
 #define __INT_HH__
 
 #include "types.hxx"
+#include "core_math.h"
 
 namespace types
 {
@@ -31,104 +33,40 @@ namespace types
       TypeUnsigned64 = 18
 		};
 
-													Int(char _cData);
-													Int(unsigned char _ucData);
-													Int(short _sData);
-													Int(unsigned short _usData);
-													Int(int _iData);
-													Int(unsigned int _uiData);
-													Int(long long _llData);
-													Int(unsigned long long _ullData);
+		  /* constructor & destructor */
+		Int(int _iRows, int _iCols);
+		Int(long long _llData);
+		~Int(){};
 
-													Int(int _iRows, int _iCols, IntType _itType);
+		static Int* createInt(int _iRows, int _iCols, IntType _iIntType);
+		static Int* insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Int* _poSource, bool _bAsVector);
 
-													Int(int _iRows, int _iCols, char* _pcData);
-													Int(int _iRows, int _iCols, unsigned char* _pucData);
-													Int(int _iRows, int _iCols, short* _psData);
-													Int(int _iRows, int _iCols, unsigned short* _pusData);
-													Int(int _iRows, int _iCols, int* _piData);
-													Int(int _iRows, int _iCols, unsigned int* _puiData);
-													Int(int _iRows, int _iCols, long long* _pllData);
-													Int(int _iRows, int _iCols, unsigned long long* _pullData);
-
-		virtual								~Int();
-
-		GenericType*					get(int _iPos);
-
-		/*data management*/
-		void*									data_get(void) const;
-
-		inline bool						data_set(char *_pcData);
-		inline bool						data_set(unsigned char *_pucData);
-		inline bool						data_set(short *_psData);
-		inline bool						data_set(unsigned short *_pusData);
-		inline bool						data_set(int *_piData);
-		inline bool						data_set(unsigned int *_puiData);
-		inline bool						data_set(long long *_pllData);
-		inline bool						data_set(unsigned long long *_pullData);
-
-		bool									data_set(int _iRows, int _iCols, char _cData);
-		bool									data_set(int _iRows, int _iCols, unsigned char _ucData);
-		bool									data_set(int _iRows, int _iCols, short _sData);
-		bool									data_set(int _iRows, int _iCols, unsigned short _usData);
-		bool									data_set(int _iRows, int _iCols, int _iData);
-		bool									data_set(int _iRows, int _iCols, unsigned int _uiData);
-		bool									data_set(int _iRows, int _iCols, long long _llData);
-		bool									data_set(int _iRows, int _iCols, unsigned long long _ullData);
-
-		char									data8_get(int _iRows, int _iCols);
-		unsigned char					dataUnsigned8_get(int _iRows, int _iCols);
-		short									data16_get(int _iRows, int _iCols);
-		unsigned short				dataUnsigned16_get(int _iRows, int _iCols);
-		int										data32_get(int _iRows, int _iCols);
-		unsigned int					dataUnsigned32_get(int _iRows, int _iCols);
-		long long							data64_get(int _iRows, int _iCols);
-		unsigned long long		dataUnsigned64_get(int _iRows, int _iCols);
-
-		/*zero or one set filler*/
-		bool									zero_set(void);
-		bool									one_set(void);
-
-		/*Config management*/
-    void									whoAmI(void);
-
-    Int*									getAsInt(void);
-		IntType								getIntType(void);
-
-		string								toString(int _iPrecision, int _iLineLen);
-		string								toString8(int _iPrecision, int _iLineLen);
-		string								toString16(int _iPrecision, int _iLineLen);
-		string								toString32(int _iPrecision, int _iLineLen);
-		string								toString64(int _iPrecision, int _iLineLen);
-
-		string								toStringUnsigned8(int _iPrecision, int _iLineLen);
-		string								toStringUnsigned16(int _iPrecision, int _iLineLen);
-		string								toStringUnsigned32(int _iPrecision, int _iLineLen);
-		string								toStringUnsigned64(int _iPrecision, int _iLineLen);
-
-		bool									operator==(const InternalType& it);
-		bool									operator!=(const InternalType& it);
-  protected :
+		Int*									getAsInt(void){return this;}
+		IntType								getIntType(){return m_iIntType;}
 		RealType							getType(void);
 
-  private :
-		IntType								m_itType;
-		//8 bits
-    char*									m_pcData;
-    unsigned char*				m_pucData;
-		//16 bits
-    short*								m_psData;
-    unsigned short*				m_pusData;
-		//32 bits
-    int*									m_piData;
-    unsigned int*					m_puiData;
-		//64 bits
-    long long*						m_pllData;
-    unsigned long long*		m_pullData;
+		virtual bool					data_set(Int* _pData) = 0;
+		virtual bool					data_set(int _iRows, int _iCols, long long _llData) = 0;
+		virtual bool					data_set(int _iPos, long long _llData) = 0;
+		virtual long long			data_get(int _iPos) = 0;
+		virtual long long			data_get(int _iRows, int _iCols) = 0;
+		virtual void*					data_get() = 0;
+		virtual bool					resize(int _iNewRows, int _iNewCols) = 0;
+		virtual GenericType*	get_col_value(int _iPos) = 0;
+		virtual Int*					extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) = 0;
+		virtual bool					insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+	
 
-		void									CreateInt(int _iRows, int _iCols, IntType _itType, void* _pvData);
-		bool									data_set(IntType _itType, void *_pvData);
+		virtual string				toString(int _iPrecision, int _iLineLen) = 0;
+	  virtual Int *clone() { return NULL; }
 
+	protected :
+	  /* Only used by Int8,16, ... */
+	  bool									extract_size_get(int* _piMaxDim, int* _piDimSize, bool _bAsVector, int* _piRows, int* _piCols);
+
+	protected : 
+		IntType								m_iIntType;
 	};
 }
+
 #endif /* !__INT_HH__ */

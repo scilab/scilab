@@ -49,13 +49,11 @@
     <para>
     If <literal>a</literal> and <literal>b</literal> are coprime polynomials then</para>
     <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> and the instructions</para>
-    <programlisting><![CDATA[
-
-  u = sylm(a,b) \ eye(na+nb,1)
-  x = poly(u(1:nb),'z','coeff')
-  y = poly(u(nb+1:na+nb),'z','coeff')
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+u = sylm(a,b) \ eye(na+nb,1)
+x = poly(u(1:nb),'z','coeff')
+y = poly(u(nb+1:na+nb),'z','coeff')
+ ]]></programlisting>
     <para>
     compute Bezout factors <literal>x</literal> and <literal>y</literal> of minimal degree
     such that <literal>a*x+b*y = 1</literal></para>

@@ -28,14 +28,14 @@ static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
   {NULL, ""}, //spec
   {NULL, ""}, //bdiag
   {C2F(intvoid),"xxxx"},
-  {C2F(intbalanc),"balanc"}
+  {NULL, ""} //balanc
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_linear_algebra(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,LINEAR_ALGEBRA_TAB_SIZE);
-	C2F(putlhsvar)();
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

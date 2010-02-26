@@ -13,11 +13,13 @@
 #ifndef __STRINGCONVERT_H__
 #define __STRINGCONVERT_H__
 
+#include "dynlib_string.h"
+
 /**
 * changes `\``n` --> `\n` idem for \t and \r 
 * @param[in/out] string to convert
 * @return number of \n found
 */
-int StringConvert(char *str);
+STRING_IMPEXP int StringConvert(char *str);
 
 #endif /* __STRINGCONVERT_H__ */

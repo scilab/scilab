@@ -45,12 +45,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 rev = strrev('This is a simple string')
 strrev(rev)
 strrev(['This is a simple string','scilab'])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

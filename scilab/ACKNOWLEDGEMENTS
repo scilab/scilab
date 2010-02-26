@@ -14,6 +14,9 @@ Scilab a better software.
 	- Misc patches for Solaris
 	- Testing of Scilab under Solaris
 
+* Yuri Chornoivan
+    - Ukrainian localization 
+
 * Yann Collette
 	- Genetic algorithm
 	- Generic probabilistic meta-algorithm
@@ -24,6 +27,11 @@ Scilab a better software.
 
 * Arnaud Dessein
 	- French localization
+
+* Calixte Denizet 
+	- LaTeX and MathML rendering capabilities in the Scilab Graphic
+	- Improved graphic exports
+	- Many contributions
 
 * Markus Dittrich 
 	- Misc patches for Gentoo
@@ -40,12 +48,27 @@ Scilab a better software.
 * Aurélien Gérôme
 	- Misc patches for Debian & Ubuntu
 
+* Samuel Gougeon
+	- Advice
+	- Many feedbacks and bug reports
+	- Patches	
+
+* Paul Griffiths
+	- Misc patches for the Scilab Graphic exports
+
 * Gerard Henry
 	- Misc patches for Solaris/Opensolaris
 
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )	
-	- Scilab Console console ( Jrosetta )
+	- Scilab Console ( Jrosetta )
 
+* Vincent Lejeune
+	- Patches
+	- Feedbacks & bug reports
+
+* Kirill Kirillov
+	- Russian localization
+	
 * Christoph Korn
 	- Misc patches for Debian & Ubuntu
 
@@ -85,8 +108,15 @@ Scilab a better software.
 * Jean-Sebastien Roy 
 	- Misc patches for FreeBSD
 
+* Daniel de Souza Grilo 
+	- Traduction of the help into Portugues do Brazil
+	- Portugues do Brazil localization
+
+* Hiroshi Saito
+	- Japanese localization
+	- Misc patches on localization issues
+
 * Enrico Segre
-	- Scipad
 	- Bug reports
 	- Bug fixes
 	- Advice
@@ -95,7 +125,6 @@ Scilab a better software.
 	- Spanish localization
 
 * François Vogel
-	- Scipad
 	- Bug reports
 	- Bug fixes
 	- Advice
@@ -161,9 +190,6 @@ integ: routines from Odepack and Quadpack.
 interf: Scilab interface with numerical libraries (INRIA/ENPC).
 
 
-metanet: routines for network analysis (Metanet, INRIA and many public
-         programs).
-
 optim: optimization routines (Modulopt library, INRIA).
        semidef : L. Vandenberghe- S. Boyd code sp.c,
        qld     : K.Schittkowski, A.L. Tits and J.L. Zhou
@@ -180,11 +206,6 @@ qsort: qsort.c ( quicksort from the University of California Berkeley)
 
 randlib: Library of Fortran Routines for Random Number Generation
 	  Barry W. Brown, James Lovato, Kathy Russell, John Venier.
-
-scipad: an embedded text editor scipad derived from TkNotepad
-        (http://home.earthlink.net/~joseph-ja/programs.html#Tcl-Tk) and improved by
-        Enrico Segre and François Vogel, two Scilab Developers to take
-        an active part in Scilab development.
 
 SciGui: a tcl gui environment developed by Jaime Urzua: jaime_urzua@yahoo.com
 	used for the help browser, waitbar and editvar 

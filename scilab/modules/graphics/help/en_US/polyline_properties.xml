@@ -243,7 +243,7 @@
         <listitem>
           <para>This field contains the <literal>mark_foreground</literal> property
         value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant edge.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -251,7 +251,7 @@
         <listitem>
           <para>This field contains the <literal>mark_background</literal> property
         value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+        index (relative to the current color_map) or 0 for transparant face.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -335,25 +335,22 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[  
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes")//get the handle of the newly created axes
+a.data_bounds=[-2,-2;2,2];
 
-   a=get("current_axes")//get the handle of the newly created axes
-   a.data_bounds=[-2,-2;2,2];
-
-   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
-   p=get("hdl"); //get handle on current entity (here the polyline entity)
-   p.foreground=2;
-   p.thickness=3;
-   p.mark_style=9;
-   d=p.data;d(1,:)=[0 0];p.data=d;
-   a.rotation_angles=[0 45];
+xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+p=get("hdl"); //get handle on current entity (here the polyline entity)
+p.foreground=2;
+p.thickness=3;
+p.mark_style=9;
+d=p.data;d(1,:)=[0 0];p.data=d;
+a.rotation_angles=[0 45];
    
-   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
-   p.mark_mode="off";
-   p.polyline_style=3;
-   p.line_style=4;
-
-
+p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+p.mark_mode="off";
+p.polyline_style=3;
+p.line_style=4;
  ]]></programlisting>
   </refsection>
   <refsection>

@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -31,13 +31,12 @@
 int sci_findfiles(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, n1 = 0, m1 = 0;
-	char pathextented[PATH_MAX];
+	char *pathextented = NULL;
 	int out_n = 0;
 	char *path = NULL;
 	char *filespec = NULL;
 	char **FilesList = NULL;
 	int sizeListReturned = 0;
-	BOOL needtofreefilespec = FALSE;
 
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,2) ;
@@ -50,7 +49,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			int ierr = 0;
 			int lpath = 0;
 
-			scigetcwd(&path,&lpath,&ierr);
+			path = scigetcwd(&ierr);
 
 			if (ierr)
 			{
@@ -60,7 +59,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			else
 			{
 				filespec = strdup(DEFAULT_FILESPEC);
-				needtofreefilespec = TRUE;
 			}
 		}
 		break;
@@ -70,7 +68,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if (GetType(1) == sci_strings)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = cstk(l1);
+				path = strdup(cstk(l1));
 				filespec = strdup(DEFAULT_FILESPEC);
 			}
 			else
@@ -87,11 +85,10 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path = cstk(l1);
+				path = strdup(cstk(l1));
 
 				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-				filespec = cstk(l1);
-				needtofreefilespec = FALSE;
+				filespec = strdup(cstk(l1));
 			}
 			else
 			{
@@ -102,9 +99,11 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 		break;
 	}
 
-	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
-	FilesList = findfiles(pathextented, filespec, &sizeListReturned);
-	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
+	pathextented = expandPathVariable(path);
+	if (path) {FREE(path); path = NULL;}
+	FilesList = findfiles(pathextented, filespec, &sizeListReturned, FALSE);
+	if (pathextented) {FREE(pathextented); pathextented = NULL;}
+	if (filespec) {FREE(filespec); filespec = NULL;}
 
 	if (FilesList)
 	{

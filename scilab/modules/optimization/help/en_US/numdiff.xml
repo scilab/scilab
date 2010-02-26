@@ -82,27 +82,36 @@
     <literal>R^n</literal> to <literal>R^p</literal> computes the matrix
     <literal>g</literal> such as</para>
 
-    <programlisting> 
-[ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]
-  </programlisting>
+    <programlisting role = ""><![CDATA[ 
+g(i,j) = (df_i)/(dx_j)
+ ]]></programlisting>
 
     <para>using finite difference methods.</para>
 
-    <para>Without parameters, the function fun calling sequence is
+    <para>
+	Without parameters, the function fun calling sequence is
     <literal>y=fun(x)</literal>, and numdiff can be called as
     <literal>g=numdiff(fun,x)</literal>. Else the function fun calling
     sequence must be <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>.
     If parameters <literal>param_1,param_2,..param_q</literal> exist then
     <literal>numdiff</literal> can be called as follow
-    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.</para>
-  </refsection>
+    <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.
+	</para>
+    
+    <para>
+    See the 
+  <link linkend="derivative">derivative</link> with respect to numerical accuracy 
+  issues and comparison between the two algorithms.
+	</para>
+
+</refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example 1 (without parameters)
-// myfun is a function from R^2 to R :   (x(1),x(2)) |--&gt; myfun(x) 
+// myfun is a function from R^2 to R :   (x(1),x(2)) |--> myfun(x) 
 function f=myfun(x)
   f=x(1)*x(1)+x(1)*x(2)
 endfunction
@@ -113,9 +122,8 @@ g=numdiff(myfun,x)
 // The exact gradient (i.e derivate belong x(1) :first component and derivate belong x(2): second component) is  
 exact=[2*x(1)+x(2)  x(1)]
 
-
 //example 2 (with parameters)
-// myfun is a function from R to R:  x(1) |--&gt; myfun(x) 
+// myfun is a function from R to R:  x(1) |--> myfun(x) 
 // myfun contains 3 parameters, a, b, c
 function  f=myfun(x,a,b,c)
   f=(x+a)^c+b
@@ -127,7 +135,7 @@ g2=numdiff(list(myfun,a,b,c),x)
 
 // The exact gradient, i.e derivate belong x(1), is :
 exact2=c*(x+a)^(c-1)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -135,6 +143,8 @@ exact2=c*(x+a)^(c-1)
 
     <simplelist type="inline">
       <member><link linkend="optim">optim</link></member>
+
+      <member><link linkend="derivative">derivative</link></member>
 
       <member><link linkend="external">external</link></member>
     </simplelist>

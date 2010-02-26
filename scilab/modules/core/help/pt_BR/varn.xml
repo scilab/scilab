@@ -84,14 +84,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-// 
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');p=[s^2+1,s];
 varn(p)
 varn(p,'x')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

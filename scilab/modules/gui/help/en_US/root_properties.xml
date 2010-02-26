@@ -75,10 +75,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    get(0, "screensize_px")
-    get(0, "screendepth")
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+get(0, "screensize_px")
+get(0, "screendepth")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

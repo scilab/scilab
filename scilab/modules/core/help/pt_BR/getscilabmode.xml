@@ -42,7 +42,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">getscilabmode()</programlisting>
+    <programlisting role="example"><![CDATA[ 
+getscilabmode()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

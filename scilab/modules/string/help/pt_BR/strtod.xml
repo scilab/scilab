@@ -77,13 +77,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strtod('123.556Este &#233; um real de amostra')
 [d,endstr] = strtod('123.556Este &#233; um real de amostra)
 strtod(['123.556Este &#233; um real de amostra','888.666 aqui'])
 [d,endstr] =strtod(['123.556Este &#233; um real de amostra','888.666 aqui'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

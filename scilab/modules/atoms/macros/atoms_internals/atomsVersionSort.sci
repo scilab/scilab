@@ -50,7 +50,7 @@ function versions_out = atomsVersionSort( versions_in , direction )
 	
 	// Check input parameters value
 	// =========================================================================
-	if regexp(direction,"/^(ASC|DESC)$/i","o") == [] then
+	if and(direction<>["ASC";"DESC"]) then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: ""ASC"" or ""DESC"" expected.\n"),"atomsVersionSort",2));
 	end
 	

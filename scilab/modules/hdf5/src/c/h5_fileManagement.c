@@ -12,32 +12,45 @@
 
 #include <hdf5.h>
 #include "h5_fileManagement.h"
+#include "FileExist.h"
+#include "deleteafile.h"
 
 int createHDF5File(char *name) 
 {
   hid_t       file;
-  /*
+	hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
+	H5Pset_fclose_degree(fapl,H5F_CLOSE_STRONG);
+
+	
+	if(FileExist(name))
+	{
+		deleteafile(name);
+	}
+	/*
    * Create a new file using the default properties.
    */
-  file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+
+	file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
   
   return file;
 }
 
 int openHDF5File(char *name) 
 {
-  hid_t           file;
-  
-  /*
-   * Open file.
-   */
-  file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
+	hid_t           file;
+	file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
 
   return file;
 }
 
 void closeHDF5File(int file)
 {
-	H5Fflush(file, H5F_SCOPE_GLOBAL);
-  H5Fclose(file);
+	herr_t status					= 0;
+
+	//	H5Fflush(file, H5F_SCOPE_GLOBAL);
+  status = H5Fclose(file);
+	if(status < 0)
+	{
+		fprintf(stderr, "%s", "failed to close file");
+	}
 }

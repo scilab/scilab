@@ -51,21 +51,20 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   
-   f=gcf();f.pixmap='on'; //ajustando o modo pixmap
-   a=gca();a.data_bounds=[0 0; 10 10];
-   //construindo dois retângulos
-   xrects([0;10;1;1],5);r1=gce();r1=r1.children;
-   xrects([0;1;1;1],13);r2=gce();r2=r2.children;
-   //laço de animação
-   for k=1:1000
-      //desenhando os retângulos no buffer pixmap
-      move(r1,[0.01,-0.01]);move(r2,[0.01,0.01]) 
-      //exibindo o buffer pixmap
-      show_pixmap()
-   end
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+f=gcf();f.pixmap='on'; //ajustando o modo pixmap
+a=gca();a.data_bounds=[0 0; 10 10];
+//construindo dois retângulos
+xrects([0;10;1;1],5);r1=gce();r1=r1.children;
+xrects([0;1;1;1],13);r2=gce();r2=r2.children;
+//laço de animação
+for k=1:1000
+  //desenhando os retângulos no buffer pixmap
+  move(r1,[0.01,-0.01]);move(r2,[0.01,0.01]) 
+  //exibindo o buffer pixmap
+  show_pixmap()
+end
+ ]]></programlisting>
   </refsection>
 
   <refsection>

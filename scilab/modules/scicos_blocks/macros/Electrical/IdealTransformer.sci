@@ -39,7 +39,7 @@ case 'set' then
 x=arg1
 exprs=x.graphics.exprs
 while %t do
-  [ok,N,exprs]=getvalue(["Set Transformer block parameters:";"";"N:"+...
+  [ok,N,exprs]=scicos_getvalue(["Set Transformer block parameters:";"";"N:"+...
 		    " Turn ratio (N1/N2)"],["N"],list("vec",1),exprs)
   if ~ok then break,end
   x.model.equations.parameters(2)=list(N)

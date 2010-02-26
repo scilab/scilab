@@ -14,6 +14,7 @@
 #define __MPUT_H__
 
 #include <stdio.h>
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
@@ -21,11 +22,11 @@
 * independant way (i.e write in little-endian) 
 * or can be used to write in little or big endian 
 */
-void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr);
+FILEIO_IMPEXP void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr);
 
-void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr);
+FILEIO_IMPEXP void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr);
 
-void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr);
+FILEIO_IMPEXP void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr);
 
 #endif /* __MPUT_H__ */
 /*--------------------------------------------------------------------------*/

@@ -22,8 +22,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-#define HELPTOOLS_TAB_SIZE 1
-static gw_generic_table Tab[HELPTOOLS_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{sci_buildDoc,"buildDoc"}
 };
@@ -35,7 +34,7 @@ int gw_helptools(void)
 
 	if ( getScilabMode() == SCILAB_NWNI)
 	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode."), "helptools");
+		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "helptools");
 		return 0;
 	}
 
@@ -45,7 +44,7 @@ int gw_helptools(void)
 		loadedDep=TRUE;
 	}
 
-	callFunctionFromGateway(Tab,HELPTOOLS_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

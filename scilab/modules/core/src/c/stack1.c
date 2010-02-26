@@ -22,6 +22,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "libinter.h"
 
 /* Table of constant values */
 
@@ -688,7 +689,7 @@ int C2F(crebmat)(char *fname,int *lw,int *m,int *n,int *lr,unsigned long fname_l
   if ( C2F(crebmati)(fname, Lstk(*lw ), m, n, lr, &c_true, fname_len)== FALSE)
     return FALSE ;
 
-  ix1 = *lr + *m * *n + 2;
+  ix1 = *lr + *m * *n + 3;
   *Lstk(*lw +1) = sadr(ix1);
   return TRUE;
 } 
@@ -706,7 +707,7 @@ int C2F(fakecrebmat)(int *lw,int *m,int *n,int *lr)
   }
   if ( C2F(crebmati)("crebmat", Lstk(*lw ), m, n, lr, &c_false, 7L)== FALSE)
     return FALSE ;
-  *Lstk(*lw +1) = sadr( *lr + *m * *n + 2);
+  *Lstk(*lw +1) = sadr( *lr + *m * *n + 3);
   return TRUE;
 } 
 
@@ -2290,7 +2291,7 @@ static int C2F(crepointeri)(char *fname,int *stlw,int *lr,int *flagx,unsigned lo
     return FALSE;
   };
   if (*flagx) {
-    *istk(il ) = sci_lufact_pointer;
+    *istk(il ) = sci_pointer; /* used to be sci_lufact_pointer before Scilab 5.2 */
     /* if m*n=0 then both dimensions are to be set to zero */
     *istk(il + 1) = 1;
     *istk(il + 2) = 1;
@@ -2533,7 +2534,7 @@ static int C2F(getpointeri)(char *fname,int *topk,int *spos,int *lw,int *lr,int 
   int il;
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
-  if (*istk(il ) != sci_lufact_pointer) {
+  if (*istk(il ) != sci_pointer) { /* used to be sci_lufact_pointer before Scilab 5.2 */
     sciprint("----%d\n",*istk(il));
     if (*inlistx) 
       Scierror(197,_("%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);

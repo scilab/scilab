@@ -44,26 +44,24 @@
     <para>
     If <literal>x</literal> is an <literal>m</literal> by <literal>n</literal>  matrix <literal>y</literal> is the matrix
     <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
   [x11 x12]                  [x22 x21]
 x=[       ]        gives   y=[       ]
   [x21 x22]                  [x12 x11]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>y= fftshift(x,n)</literal>  make the swap only along the <literal>n</literal>th dimension</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //make a signal
 t=0:0.1:1000;
 x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
 //compute the fft
 y=fft(x,-1);
+
 //display 
-xbasc();
+clf();
 subplot(2,1,1);plot2d(abs(y))
 subplot(2,1,2);plot2d(fftshift(abs(y)))
 
@@ -73,14 +71,13 @@ x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
   0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
 //compute the fft
 y=fft(x,-1);
+
 //display 
-xbasc();
+clf();
 xset('colormap',hotcolormap(256))
 subplot(2,1,1);Matplot(abs(y))
 subplot(2,1,2);Matplot(fftshift(abs(y)))
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

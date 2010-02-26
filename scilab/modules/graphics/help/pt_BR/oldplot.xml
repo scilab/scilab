@@ -77,20 +77,18 @@ oldplot(y)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=0:0.1:2*%pi;
 // esboço simples
 oldplot(sin(x))
 // usando legendas
-xbasc()
+clf()
 oldplot(x,sin(x),"sin","tempo","esboço de seno")
 // esboço de duas funções
 
-xbasc()
+clf()
 oldplot([sin(x);cos(x)])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// internal function
+// Internal function
 
 // Input arguments :
 
@@ -98,7 +98,7 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	
 	for i=1:size(version,"*")
 		
-		this_package_details = atomsToolboxDetails(name,version(i));
+		this_package_details = atomsToolboxDetails([name,version(i)]);
 		tree_out(name+" - "+version(i)) = this_package_details;
 		
 		if lhs>1 then
@@ -132,16 +132,16 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 			// List versions of the dependency we can test
 			
 			if this_dependency_dir     == "="  then
-				this_dependency_list = this_dependency_version;
+				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,this_dependency_version,%T,%T);
 			
 			elseif this_dependency_dir == "~"  then
 				this_dependency_list = atomsGetVersions(this_dependency_name);
 			
 			elseif this_dependency_dir == ">=" then
-				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version);
+				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,"",%T,%T);
 				
 			elseif this_dependency_dir == "<=" then
-				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version);
+				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version,%T,%T);
 			
 			elseif this_dependency_dir == ">" then
 				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,"",%F,%F);

@@ -43,8 +43,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../statistics/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SIGNAL_PROCESSING_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -63,14 +64,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing.dll %%f &gt;nul&#x0D;&#x0A;copy *.def signal_processingtmp.def &gt;nul&#x0D;&#x0A;copy ..\signal_processing_header.def+signal_processingtmp.def  ..\signal_processing.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib signal_processing_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="signal_processing.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -127,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../statistics/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SIGNAL_PROCESSING_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -146,14 +147,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing.dll %%f &gt;nul&#x0D;&#x0A;copy *.def signal_processingtmp.def &gt;nul&#x0D;&#x0A;copy ..\signal_processing_header.def+signal_processingtmp.def  ..\signal_processing.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib signal_processing_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="signal_processing.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -209,10 +210,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../statistics/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SIGNAL_PROCESSING_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -231,14 +233,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing.dll %%f &gt;nul&#x0D;&#x0A;copy *.def signal_processingtmp.def &gt;nul&#x0D;&#x0A;copy ..\signal_processing_header.def+signal_processingtmp.def  ..\signal_processing.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib signal_processing_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="signal_processing.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -301,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../dynamic_link/includes;../../../string/includes;../../../core/includes;../../../../libs/intl;../../../statistics/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SIGNAL_PROCESSING_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -320,14 +322,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n signal_processing.dll %%f &gt;nul&#x0D;&#x0A;copy *.def signal_processingtmp.def &gt;nul&#x0D;&#x0A;copy ..\signal_processing_header.def+signal_processingtmp.def  ..\signal_processing.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)signal_processing_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib signal_processing_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="signal_processing.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -406,15 +408,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_ffir.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_fft.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_fiir.c"
 				>
 			</File>
 			<File
@@ -435,11 +429,11 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\gw_signal_processing.h"
+				RelativePath="..\..\includes\dynlib_signal_processing.h"
 				>
 			</File>
 			<File
-				RelativePath=".\signal_processing.h"
+				RelativePath="..\..\includes\gw_signal.h"
 				>
 			</File>
 		</Filter>
@@ -454,10 +448,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\signal_processing_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>
