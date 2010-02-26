@@ -75,7 +75,8 @@ lib /DEF:&quot;$(InputDir)randlib_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<Filter Name="Library dependencies">
 		<File RelativePath=".\LibScilab_Import.def"/>
 		<File RelativePath=".\randlib_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\randlib_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\genchi.f"/>
 		<File RelativePath=".\genexp.f"/>

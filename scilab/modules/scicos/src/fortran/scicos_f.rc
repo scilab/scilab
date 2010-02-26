@@ -64,12 +64,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "localization module"
+            VALUE "FileDescription", "scicos_f module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "localization module"
+            VALUE "InternalName", "scicos_f module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
-            VALUE "OriginalFilename", "scilocalization.dll"
-            VALUE "ProductName", "localization module"
+            VALUE "OriginalFilename", "scicos_f.dll"
+            VALUE "ProductName", "scicos_f module"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END
