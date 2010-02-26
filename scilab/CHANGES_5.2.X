@@ -41,6 +41,7 @@ Xcos:
 * bug 6657 fixed - The importXcosDiagram call with specific parameters was 
   crashing scilab.
 
+* bug 6671 fixed - The style was not saved in superBlockDiagram
 
 Bug Fixes:
 ==========
