@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "resource.h"
+//#include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -57,20 +57,19 @@ VS_VERSION_INFO VERSIONINFO
  FILEFLAGS 0x0L
 #endif
  FILEOS 0x4L
- FILETYPE 0x0L
+ FILETYPE 0x2L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "CompanyName", "Scilab"
             VALUE "FileDescription", "output_stream module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "output_stream"
+            VALUE "InternalName", "output_stream module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
             VALUE "OriginalFilename", "output_stream.dll"
-            VALUE "ProductName", "output_stream"
+            VALUE "ProductName", "output_stream module"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END
