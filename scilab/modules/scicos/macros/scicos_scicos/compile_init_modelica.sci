@@ -22,11 +22,6 @@
 
 function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)  
 
-// global bllst
-// global connectmat
-// global clkconnect
-// global cor 
-// global corinv
 
   MODELICAC_FILENAME = 'modelicac';
   if MSDOS then
@@ -101,8 +96,6 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
     return	         
  end
 
- pause
- 
   //build model data structure of the block equivalent to the implicit
   bllst = bllst;
   nblock = length(bllst);
