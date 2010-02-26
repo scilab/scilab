@@ -30,9 +30,6 @@ Xcos:
 
 * modelica compiler 1.12.1
 
-* Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
-  retrieve JAVA_HOME
-
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
 
 * bug 4705 fixed - scicos used a non existing file BEpsf
@@ -56,6 +53,12 @@ Compilation:
   required.
 
 * Windows 2000 is no more supported as operating system.
+
+* Scilab Mac OS X distribution relies only on Java 1.6 and is therefor now
+only available under 64 bits OS (Most of 10.5 and all 10.6 Mac OS X versions)
+
+* Under Mac OS X, uses /usr/libexec/java_home instead of hardcoded paths to
+  retrieve JAVA_HOME
 
 * tclsci module is dynamically loaded by Scilab.
 

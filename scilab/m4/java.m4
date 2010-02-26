@@ -70,7 +70,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
 	     # Don't follow the symlink since Java under MacOS is messy
 	     # Uses the wrapper providing by Apple to retrieve the path
 	     # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-		JAVAC=$(/usr/libexec/java_home)/bin/javac
+		JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -227,7 +227,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 		     *darwin* ) 
 			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
 			# See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-			ac_java_jvm_dir=$(/usr/libexec/java_home)
+			ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
 			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac

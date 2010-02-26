@@ -528,19 +528,31 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
+	AC_MSG_CHECKING([if /sw64/ is available or not])
+	if test -d /sw64/; then
+	AC_MSG_RESULT([yes])
+	 CFLAGS=" $CFLAGS -I/sw64/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw64/include "
+	 LDFLAGS=" $LDFLAGS -L/sw64/lib/ "
+	else
+	AC_MSG_RESULT([no... switch back to /sw/. This might cause issues on link test of third party libraries])
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+    fi
 	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
+#	      i386-apple-darwin*)
+#		CC=" $CC -arch i386 "
+#		CXX=" $CXX -arch i386 "
+#		;;
+# By default, consider that all mac runs 64 bits applications
 	      x86_64-apple-darwin*)
                 CC=" $CC -arch x86_64 "
                 CXX=" $CXX -arch x86_64 "
                 ;;
 	esac
+	#Check that the current Mac OS X can link against system 64 bits libs
+	AC_CHECK_FUNCS([pow])
 	;;
 esac
 ;; # end of the gcc case on the $CC
