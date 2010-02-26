@@ -135,3 +135,4 @@ Bug fixes:
 
 * bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more) on the same file.
 
+* bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
