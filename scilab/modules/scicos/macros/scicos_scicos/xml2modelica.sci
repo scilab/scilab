@@ -50,6 +50,7 @@ function  ok=xml2modelica(xmlfile,Flati)
   
   if execstr('unix_s(instr)','errcatch') == 0 then
     mprintf('%s\n', ' xml->Modelica : ' + Flati);
+    ok = %t;
   else 
     messagebox([_('-------XML to Modelica error:-------');
 		mgetl(Errfile);], 'error', 'modal');	    
