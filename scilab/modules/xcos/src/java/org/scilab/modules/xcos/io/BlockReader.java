@@ -21,6 +21,7 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.hdf5.read.H5Read;
@@ -427,8 +428,9 @@ public class BlockReader {
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
 	    newBlock = fillBlockStructure(data);
-	    newBlock.setStyle(newBlock.getInterfaceFunctionName()
-		    + newBlock.getStyle());
+	    StyleMap style = new StyleMap(newBlock.getStyle());
+	    style.put(newBlock.getInterfaceFunctionName(), null);
+	    newBlock.setStyle(style.toString());
 	    newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
