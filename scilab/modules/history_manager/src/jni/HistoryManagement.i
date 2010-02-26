@@ -38,7 +38,14 @@ class%}
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary("scihistory_manager");
+		/* If the env varialbe disableLoadJNIScilab is set to 1, disable the 
+		 * load of the JNI library. This is usefull in two cases:
+		 * - provide a standalone version of some Scilab component (text editor)
+		 * - run java unitary tests with TestNG
+		 */
+		if (!System.getenv("disableLoadJNIScilab").equals("1")) {
+		        System.loadLibrary("scihistory_manager");
+		}
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
 		e.printStackTrace(System.err);
