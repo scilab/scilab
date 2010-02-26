@@ -2073,7 +2073,7 @@ public class XcosDiagram extends ScilabGraph {
 		    newSP.setParentDiagram(this);
 		    block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
-		    block.setId();
+		    block.generateId();
 		}
 	    }
 	}
