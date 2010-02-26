@@ -37,24 +37,8 @@ void* mc_apply_n_threads(void const* const b,  std::size_t in_size, std::size_t 
 return out;
 }
 
-/*
- * "divides" s in n integers. Used to share s tasks amongst n workers.
- */
-template<typename  Sz, typename Nb, typename Out> 
-Out share_work(Sz s, Nb n, Out o){
-  while(n) {
-    if(n==1) {
-      *o= s;
-    } else {
-      Sz const r(s/n);
-      *o= r;
-      s-= r;
-    }
-    --n;
-    ++o;
-  }
-  return o;
-}
+
+
 
 
 
@@ -68,7 +52,7 @@ void* mc_apply_n_process_worker(void const* const b, std::size_t in_size, std::s
     shares[i]+= shares[i-1];
   }
 
-  pid_t my_id;
+  pid_t my_id=-1;// if no child is forked because nb_process=1, we are the master
   int p;
   int pipes_id[nb_process][2];
   for(p= 1; p != nb_process; ++p) {
@@ -107,5 +91,13 @@ void* mc_apply_n_process_worker(void const* const b, std::size_t in_size, std::s
   }
   return out;
 }
+
+void* mc_apply_n_process(void const* const b, std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int nb_process){
+  // _worker takes a const nb_process that can be used as an array size on the stack.
+  if(nb_process == 0) { nb_process = omp_get_num_procs() ; }
+  if(n<nb_process) { nb_process = n ;}
+  return mc_apply_n_process_worker(b, in_size, n, out,out_size,  f, nb_process);
+}
+
 
 
