@@ -32,6 +32,9 @@ Xcos:
 * bug 6501 fixed - The border color and fill default color was not set 
   when changing it.
 
+* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
+  rotation.
+
 * bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
   Ctrl+Wheel was not working for zooming.
 
