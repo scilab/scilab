@@ -22,6 +22,7 @@
 
 function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)  
 
+
   MODELICAC_FILENAME = 'modelicac';
   if MSDOS then
     MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe'; 
