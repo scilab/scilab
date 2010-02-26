@@ -25,6 +25,8 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
+import com.mxgraph.swing.handler.mxGraphTransferHandler;
+
 /**
  * Paste manager
  * 
@@ -61,7 +63,7 @@ public final class PasteAction extends DefaultAction {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		TransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
+		mxGraphTransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));
 	}
 }
