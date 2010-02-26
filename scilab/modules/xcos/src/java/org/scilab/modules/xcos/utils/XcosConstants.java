@@ -7,14 +7,14 @@ import org.scilab.modules.graph.utils.ScilabConstants;
  */
 public final class XcosConstants extends ScilabConstants {
 
-	/** Any block width on the palette */
+    /** Define the default block width on the palette */
     public static final int PALETTE_BLOCK_WIDTH = 100;
-    /** Any block height on the palette */
+    /** Define the default block height on the palette */
     public static final int PALETTE_BLOCK_HEIGHT = 100;
 
-    /** Horizontal margin between blocks on the palette */
+    /** Define the default block horizontal margin on the palette */
     public static final int PALETTE_HMARGIN = 5;
-    /** Vertical margin between blocks on the palette */
+    /** Define the default block vertical margin on the palette */
     public static final int PALETTE_VMARGIN = 5;
     
     /* Events */

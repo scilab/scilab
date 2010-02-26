@@ -54,7 +54,7 @@ public final class StyleMap extends HashMap<String, String> {
 			str.append(entry.getKey());
 			
 			valueRef = entry.getValue();
-			if (valueRef != null) {
+			if (valueRef != null && valueRef.length() > 0) {
 				str.append("=");
 				str.append(valueRef);
 			}
