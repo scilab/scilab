@@ -46,8 +46,6 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -152,7 +150,7 @@ public final class SuperBlock extends BasicBlock {
 		if (isMasked()) {
 			super.openBlockSettings(context);
 		} else {
-			if (createChildDiagram()) {
+			if (createChildDiagram() || ! getChild().isOpened()) {
 				getChild().setModifiedNonRecursively(false);
 				XcosTab.createTabFromDiagram(getChild());
 				XcosTab.showTabFromDiagram(getChild());

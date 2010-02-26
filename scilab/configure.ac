@@ -541,12 +541,8 @@ case "$CC" in
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
     fi
 	 case "$host" in
-#	      i386-apple-darwin*)
-#		CC=" $CC -arch i386 "
-#		CXX=" $CXX -arch i386 "
-#		;;
-# By default, consider that all mac runs 64 bits applications
-	      x86_64-apple-darwin*)
+	# By default, consider that all mac runs 64 bits applications
+	      x86_64-apple-darwin*|i386-apple-darwin*)
                 CC=" $CC -arch x86_64 "
                 CXX=" $CXX -arch x86_64 "
                 ;;
