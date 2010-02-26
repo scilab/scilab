@@ -1900,6 +1900,7 @@ echo ""
 if test ! -z "$JAVAC"; then
 echo "Documentation, graphic export:"
 echo "  FOP (XML => PDF) .... = $FOP"
+echo "  JLaTeXMath Fop ...... = $JLATEXMATH_FOP"
 echo "  Batik (SVG) ......... = $BATIK"
 echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
 echo "  Commons I/O ......... = $COMMONS_IO"
