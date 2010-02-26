@@ -51,7 +51,7 @@ public class XcosCodec extends mxCodec {
 // CSOFF: MultipleStringLiterals
 	private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
 			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-			"savedFile", "multiplicities"};
+			"savedFile", "multiplicities", "opened"};
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "savedFile", "container" };
@@ -151,7 +151,8 @@ public class XcosCodec extends mxCodec {
 	// Diagram
 	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refs, null);
+	String[] refsSuperBlockDiagram = {"parent", "source", "target","container"};
+	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 
 	//Link 
