@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -386,6 +386,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\interpolation.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_bsplin3val.c"
 				>
 			</File>
@@ -451,6 +455,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath=".\someinterp.h"
 				>
 			</File>
@@ -478,6 +486,10 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 		<File
 			RelativePath="..\..\interpolation.iss"

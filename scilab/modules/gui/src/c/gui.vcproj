@@ -596,10 +596,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gui.rc"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\gw_gui.c"
 				>
 			</File>
@@ -1680,6 +1676,14 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\gui.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\gui.iss"

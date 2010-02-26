@@ -2122,7 +2122,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource Filter"
+			Name="Resource Files"
 			>
 			<File
 				RelativePath=".\graphic.rc"
