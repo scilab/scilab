@@ -71,7 +71,7 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
             }
           else if (strcmp(optionStr, "w")==0)
             {
-              option = MAT_ACC_RDWR;
+              option = 0; // MAT_ACC_RDWR option will be used for append mode
             }
           else
             {
