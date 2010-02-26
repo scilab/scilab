@@ -33,7 +33,6 @@ BEGIN
     "resource.h\0"
 END
 
-
 3 TEXTINCLUDE 
 BEGIN
     "\r\n"
@@ -58,19 +57,19 @@ VS_VERSION_INFO VERSIONINFO
  FILEFLAGS 0x0L
 #endif
  FILEOS 0x4L
- FILETYPE 0x0L
+ FILETYPE 0x2L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "action_binding module"
+            VALUE "FileDescription", "dynamic_link module"
             VALUE "FileVersion", "5, 3, 0, 0"
-            VALUE "InternalName", "action_binding module"
+            VALUE "InternalName", "dynamic_link module"
             VALUE "LegalCopyright", "Copyright (C) 2010"
-            VALUE "OriginalFilename", "action_binding.dll"
-            VALUE "ProductName", " action_binding"
+            VALUE "OriginalFilename", "dynamic_link.dll"
+            VALUE "ProductName", "dynamic_link module"
             VALUE "ProductVersion", "5, 3, 0, 0"
         END
     END
