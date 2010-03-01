@@ -99,6 +99,15 @@ namespace ast
   public:
     virtual void visit(const ListExp &e);
     /** \} */
+
+	/** \name Visit Object dedicated Expressions related node.
+     ** \{ */
+  public:
+    virtual void visit(const ClassDec &e);
+    virtual void visit(const PropertyDec &e);
+    virtual void visit(const MethodDec &e);
+    /** \} */
+
   };
 }
 #endif // !AST_MUTEVISITOR_HXX

@@ -260,4 +260,17 @@ namespace ast {
 	void MuteVisitor::visit(const ListExp &e)
 	{
 	}
+
+	void MuteVisitor::visit(const ClassDec &e)
+	{
+	}
+
+	void MuteVisitor::visit(const PropertyDec &e)
+	{
+	}
+
+	void MuteVisitor::visit(const MethodDec &e)
+	{
+	}
+
 }
