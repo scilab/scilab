@@ -330,7 +330,16 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec SelectExp", e);
-    // FIXME : Follow up Visitor 
+	e.select_get()->accept(*this);
+	ast::cases_t::iterator it;
+	for (it = e.cases_get()->begin() ; it !=  e.cases_get()->end() ; ++it)
+	  {
+		(*it)->accept(*this);
+	  }
+	if (e.default_case_get() != NULL)
+	  {
+		e.default_case_get()->accept(*this);
+	  }
     DEBUG_END_NODE();
   }
 
@@ -338,7 +347,8 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec CaseExp", e);
-    // FIXME : Follow up Visitor 
+	e.test_get()->accept(*this);
+	e.body_get()->accept(*this);
     DEBUG_END_NODE();
   }
 
