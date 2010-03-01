@@ -50,6 +50,10 @@ namespace ast {
     }
     /** \} */
 
+  public :
+	Exp* test_get() const { return _test; }
+	SeqExp* body_get() const { return _body; }
+
   private :
     Exp* _test;
     SeqExp *_body;
