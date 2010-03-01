@@ -47,6 +47,8 @@ description.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
                    some gain blocks.
+                   
+* bug 6674 fixed - modelica generic block did not work.
 
 Compilation:
 ============
