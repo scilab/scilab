@@ -47,6 +47,11 @@ Xcos:
 
 * bug 6694 fixed - The grid was always enabled when openning a diagram.
 
+Obsolete Functions:
+===================
+
+* 'tk_choose' obsolete see 'x_choose'.
+
 Bug Fixes:
 ==========
 
