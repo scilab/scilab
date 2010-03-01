@@ -46,6 +46,8 @@ Xcos:
 
 * bug 6671 fixed - The style was not saved in superBlockDiagram
 
+* bug 6694 fixed - The grid was always enabled when openning a diagram.
+
 Bug Fixes:
 ==========
 

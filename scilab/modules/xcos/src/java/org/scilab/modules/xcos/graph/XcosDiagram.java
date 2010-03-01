@@ -1583,11 +1583,6 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(status);
 	getAsComponent().setGridVisible(status);
 	getAsComponent().repaint();
-
-	// (Un)Check the corresponding menu
-	if (gridMenu != null) {
-	    gridMenu.setChecked(status);
-	}
     }
 
     /**
