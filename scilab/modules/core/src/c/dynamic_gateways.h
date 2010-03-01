@@ -129,13 +129,6 @@ int gw_dynamic_randlib(void);
 int gw_dynamic_arnoldi(void);
 
 /**
-* metanet gateway
-* metanet is loaded dynamically at runtime
-* load gw_metanet in SCI/modules/metanet/sci_gateway/gw_metanet.c
-*/
-int gw_dynamic_metanet(void);
-
-/**
 * symbolic gateway
 * symbolic is loaded dynamically at runtime
 * load gw_symbolic in SCI/modules/symbolic/sci_gateway/gw_symbolic.c
