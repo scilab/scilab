@@ -69,6 +69,9 @@
   ast::WhileExp*	t_while_exp;
   ast::ForExp*		t_for_exp;
   ast::TryCatchExp*	t_try_exp;
+  ast::SelectExp*	t_select_exp;
+  ast::CaseExp*		t_case_exp;
+  ast::cases_t*		t_list_case;
 
   ast::CallExp*		t_call_exp;
 
@@ -223,6 +226,12 @@
 
  // TRY Control
 %type<t_try_exp>	tryControl
+
+ // SELECT Control
+%type<t_select_exp> selectControl
+%type<t_exp>		selectable
+%type<t_list_case>  casesControl
+%type <t_seq_exp>	caseBody
 
  // Implicit Function Call
 %type <t_call_exp>	implicitFunctionCall
@@ -383,7 +392,7 @@ functionDeclaration				{ $$ = $1; }
 | functionCall			%prec TOPLEVEL	{ $$ = $1; }
 | variableDeclaration				{ $$ = $1; }
 | ifControl					{ $$ = $1; }
-| selectControl					{ $$ = new ast::CommentExp(@$, new std::string("!! FIXME : Select Control Sequence !!")); }
+| selectControl					{ $$ = $1; }
 | forControl					{ $$ = $1; }
 | whileControl					{ $$ = $1; }
 | tryControl					{ $$ = $1; }
@@ -1304,12 +1313,11 @@ ELSEIF condition then thenBody						{
 ** -*- SELECT CONTROL -*-
 */
 /* Select Case Then End control block */
-/* FIXME : Add the corresponding AST !!! */
 selectControl :
-SELECT selectable selectConditionBreak casesControl END
-| SELECT selectable selectConditionBreak casesControl else elseBody END
-| SELECT selectable COMMENT selectConditionBreak casesControl END
-| SELECT selectable COMMENT selectConditionBreak casesControl else elseBody END
+SELECT selectable selectConditionBreak casesControl END									{ $$ = new ast::SelectExp(@$, *$2, *$4); }
+| SELECT selectable selectConditionBreak casesControl else elseBody END					{ $$ = new ast::SelectExp(@$, *$2, *$4, *$6); }
+| SELECT selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); }
+| SELECT selectable COMMENT selectConditionBreak casesControl else elseBody END			{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); }
 ;
 
 /*
@@ -1317,8 +1325,8 @@ SELECT selectable selectConditionBreak casesControl END
 */
 /* On what can a select bloc be switch. */
 selectable :
-variable
-| functionCall
+variable				{ $$ = $1; }
+| functionCall			{ $$ = $1; }
 ;
 
 /*
@@ -1337,17 +1345,41 @@ EOL									{ /* !! Do Nothing !! */ }
 */
 /* (Case ... Then ...)+ control block */
 casesControl :
-CASE variable caseControlBreak caseBody
-| comments CASE variable caseControlBreak caseBody
-| CASE variable COMMENT EOL caseBody
-| comments CASE variable COMMENT EOL caseBody
-| casesControl CASE variable caseControlBreak caseBody
-| casesControl CASE variable COMMENT EOL caseBody
+CASE variable caseControlBreak caseBody							{ 
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$2, *$4));
+																}
+| comments CASE variable caseControlBreak caseBody				{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$3, *$5));
+																}
+| CASE variable COMMENT EOL caseBody							{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$2, *$5));
+																}
+| comments CASE variable COMMENT EOL caseBody					{
+																  $$ = new ast::cases_t;
+																  $$->push_back(new ast::CaseExp(@$, *$3, *$6));
+																}
+| casesControl CASE variable caseControlBreak caseBody			{
+																  $1->push_back(new ast::CaseExp(@$, *$3, *$5));
+																  $$ = $1;
+																}
+| casesControl CASE variable COMMENT EOL caseBody				{
+																  $1->push_back(new ast::CaseExp(@$, *$3, *$6));
+																  $$ = $1;
+																}
 ;
 
 caseBody :
-expressions
-| /* Epsilon */
+expressions				{ $$ = $1; }
+| /* Epsilon */			{
+						  ast::exps_t *tmp = new ast::exps_t;
+						#ifdef BUILD_DEBUG_AST
+						  tmp->push_front(new ast::CommentExp(@$, new std::string("Empty case body")));
+						#endif
+						  $$ = new ast::SeqExp(@$, *tmp);
+						}
 ;
 
 /*
