@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabGraphRenderer;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -132,10 +133,7 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
-			    if (doc != null) {
-				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
+			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
 			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
 			    if (doc != null) {

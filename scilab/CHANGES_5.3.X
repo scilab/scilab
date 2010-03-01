@@ -41,6 +41,8 @@ description.
 
 * builnewblock.sci rewritten to use scilab dynamic link module tools.
 
+* bug 5161 fixed - The export to SVG did not work with images or html.
+
 * bug 6661 fixed - "Code Generation" menu failed.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
