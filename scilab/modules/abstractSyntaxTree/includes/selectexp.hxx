@@ -30,9 +30,9 @@ namespace ast
   {
   public :
     SelectExp(const Location& location,
-	      Exp& select,
-	      cases_t& cases, 
-	      SeqExp& defaultCase) :
+			  Exp& select,
+			  cases_t& cases, 
+			  SeqExp& defaultCase) :
       ControlExp (location),
       _selectme (&select),
       _cases (&cases),
@@ -41,8 +41,8 @@ namespace ast
     }
 
     SelectExp(const Location& location,
-	      Exp& select,
-	      cases_t& cases) : 
+			  Exp& select,
+			  cases_t& cases) : 
       ControlExp (location),
       _selectme (&select),
       _cases (&cases)
@@ -55,10 +55,15 @@ namespace ast
       delete _selectme;
       delete _cases;
       if (_default != NULL) 
-	{
-	  delete _default;
-	}
+		{
+		  delete _default;
+		}
     }
+
+  public :
+	Exp* select_get() const { return _selectme; }
+	cases_t* cases_get() const { return _cases; }
+	SeqExp* default_case_get() const { return _default; }
 
     /** \name Visitors entry point.
      ** \{ */
