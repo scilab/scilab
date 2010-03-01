@@ -55,7 +55,8 @@ public final class ViewGridAction extends DefaultAction {
 				XcosDiagram graph = (XcosDiagram) evt.getSource();
 				
 				menu.setChecked(graph.isGridEnabled());
-				graph.setGridVisible(graph.isGridEnabled());
+				graph.getAsComponent().setGridVisible(graph.isGridEnabled());
+				graph.getAsComponent().repaint();
 			}
 		});
 		
