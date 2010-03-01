@@ -269,19 +269,14 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		if (textRenderer != null && rendererPane != null) {
 			if (g.hitClip(x, y, w, h)) {
 				AffineTransform at = g.getTransform();
-				
-				textRenderer.setIcon(icon);
-				textRenderer.setText("");
-				
+
+				int sx = (int) (x / scale) + mxConstants.LABEL_INSET;
+				int sy = (int) (y / scale) + mxConstants.LABEL_INSET;
 				g.scale(scale, scale);
-				rendererPane.paintComponent(g, textRenderer, rendererPane,
-						(int) (x / scale) + mxConstants.LABEL_INSET,
-						(int) (y / scale) + mxConstants.LABEL_INSET,
-						(int) (w / scale), (int) (h / scale), true);
+				icon.paintIcon(textRenderer, g, sx, sy);
 
 				// Restores the previous transformation
 				g.setTransform(at);
-				textRenderer.setIcon(null);
 			}
 		}
 	}
