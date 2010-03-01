@@ -54,6 +54,8 @@ Bug Fixes:
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
+* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
