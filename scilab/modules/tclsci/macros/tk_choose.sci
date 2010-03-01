@@ -10,6 +10,8 @@
 
 function _result=tk_choose(_items,_title,_button)
 
+warnobsolete("x_choose", "5.3");
+
 // Use of a namespace makes things easier (no global variables to pass
 // arguments from the Scilab level).
 
