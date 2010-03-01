@@ -88,7 +88,7 @@ public class ScilabGraphRenderer {
 		ctx.setGenericImageHandler(ihandler);
 
 		// Create an instance of the SVG Generator.
-		final SVGGraphics2D svgGenerator = new SVGGraphics2D(ctx, false);
+		final SVGGraphics2D svgGenerator = new SVGGraphics2D(ctx, true);
 
 		// Render the graph using the SVGGraphics2D object
 		mxCellRenderer.drawCells(graph, cells, scale, clip,
