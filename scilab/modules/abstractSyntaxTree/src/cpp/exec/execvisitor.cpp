@@ -400,10 +400,8 @@ namespace ast
 				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
 			case InternalType::RealObject :
-			  ObjectMatrix *pObj = pIT->getAsObject();
-			  ObjectMatrix *oResult;
-			  if(iArgDim == 1 && piMaxDim[0] > pObj->size_get() || //SeeAsVector
-				 iArgDim == 2 && (piMaxDim[0] > pObj->rows_get() || piMaxDim[0] > pObj->cols_get()) || //check dimension to extract
+			  if(iArgDim == 1 && piMaxDim[0] > pIT->getAsObject()->size_get() || //SeeAsVector
+				 iArgDim == 2 && (piMaxDim[0] > pIT->getAsObject()->rows_get() || piMaxDim[0] > pIT->getAsObject()->cols_get()) || //check dimension to extract
 				 iArgDim > 2) //more than 2 dimensions ?
 					{
 					  std::ostringstream os;
@@ -414,13 +412,9 @@ namespace ast
 					}
 			  
 			  
-			  int iRowOut = 0;
-			  int iColOut	= 0;
 			  if(iArgDim == 1)
 				{
-				  pResult = oResult = new ObjectMatrix(piDimSize[0], 1);
-				  iRowOut = piDimSize[0];
-				  iColOut = 1;
+				  pOut = new ObjectMatrix(piDimSize[0], 1);
 				}
 			  else
 				{
@@ -431,7 +425,7 @@ namespace ast
 				{
 				  for(int i = 0 ; i < iTotalCombi ; i++)
 					{
-					  oResult->SetElem(i, pObj->GetElem(piIndexSeq[i] - 1));
+					  pOut->getAsObject()->SetElem(i, pIT->getAsObject()->GetElem(piIndexSeq[i] - 1));
 					}
 				}
 			  else//matrix
