@@ -54,6 +54,7 @@ mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 mprintf("...Done\n");
 nmplot_display(nm);
+mprintf("==========================\n");
 xcomp = nmplot_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));
@@ -72,7 +73,7 @@ mprintf("Plot contour (please wait)...\n");
 f = scf(100001);
 xset("fpf"," ")
 drawlater();
-contour ( xdata , ydata , zdata , linspace(min(zdata),max(zdata),20) )
+contour ( xdata , ydata , zdata , linspace(min(zdata),max(zdata),10) )
 nmplot_simplexhistory ( nm );
 drawnow();
 

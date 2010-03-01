@@ -15,7 +15,7 @@
 //   Rosenbrock's Post Office
 //
 
-mprintf("Illustrates Box'' algorithm on Box problem A.\n");
+mprintf("Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n");
 mprintf("Defining Rosenbrock Post Office function...\n");
 
 //
@@ -115,8 +115,10 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
+mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));
