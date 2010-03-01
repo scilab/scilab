@@ -26,6 +26,19 @@ namespace ast
     --level;
   }
 
+  static void DEBUG(std::string str)
+  {
+    for(int i = 0 ; i < level; ++i)
+      {
+	std::cerr << "  ";
+      }
+    if (level > 0)
+      {
+	std::cerr << "     ";
+      }
+    std::cerr << str << std::endl;
+  }
+
   static void DEBUG(std::string str, const Exp &e)
   {
     for(int i = 0 ; i < level; ++i)
@@ -338,7 +351,7 @@ namespace ast
       {
 	if(!(*i)->is_verbose())
 	  {
-	    std::cerr << "__MUTE__" << std::endl;
+	    DEBUG("__MUTE__");
 	  }
 	(*i)->accept (*this);
       }
