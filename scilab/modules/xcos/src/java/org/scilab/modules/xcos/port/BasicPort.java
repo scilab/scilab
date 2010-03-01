@@ -26,7 +26,10 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     private static final int DEFAULT_DATALINES = -1;
     private static final int DEFAULT_DATACOLUMNS = -2;
     
-    private static final int DEFAULT_PORTSIZE = 8;
+    /**
+     * The side-size of any port. All ports must have the same size.
+     */
+    public static final int DEFAULT_PORTSIZE = 8;
     
     private int ordering;
     private int connectedLinkId;
