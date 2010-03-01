@@ -133,7 +133,7 @@ namespace types
 		return true;
 	}
 	
-	bool ObjectMatrix::Insert(int row, int col, const ObjectMatrix *other)
+	bool ObjectMatrix::Insert(int row, int col, ObjectMatrix *other)
 	{
 		/* Out of bounds check */
 		if(row + other->rows_get() > m_iRows || col + other->cols_get() > m_iCols)

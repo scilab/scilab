@@ -29,6 +29,15 @@ namespace types
 		
 		typedef Callable::ReturnValue (*GW_METH)(typed_list &_in, int _iRetCount, typed_list &_out, const MethodCallCtx &_ctx);
 	
+	  std::string toString(int _iPrecision, int _iLineLen)
+	  {
+		// FIXME : Return something usable
+		return "FIXME : Method";
+	  }
+	  
+	  // FIXME : Should not return NULL;
+	  Method* clone() { return NULL; }
+
 		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out);
 		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out, const MethodCallCtx &_ctx)
 		{

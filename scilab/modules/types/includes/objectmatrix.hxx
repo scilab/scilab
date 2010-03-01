@@ -28,7 +28,7 @@ namespace types
 		Object **GetElems() { return m_pObj; }
 		bool SetElem(int pos, Object *val);
 		bool SetElem(int row, int col, Object *val);
-		bool Insert(int row, int col, const ObjectMatrix *other);
+		bool Insert(int row, int col,  ObjectMatrix *other);
 	
 		std::string toString(int, int);
 		void whoAmI() { std::cout << "types::Object"; }

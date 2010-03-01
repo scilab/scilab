@@ -71,7 +71,7 @@ namespace types
 	{
 		if(m_instanceSlots.find(p_slotName) != m_instanceSlots.end())
 		{
-			printf("Error: slot already exists\n");
+		  std::cerr <<"Error: slot already exists" << std::endl;
 			return;
 		}
 		
@@ -108,7 +108,7 @@ namespace types
 	{
 		if(m_instanceSlots.find(p_slotName) != m_instanceSlots.end())
 		{
-			printf("Error: slot already exists\n");
+		  std::cerr << "Error: slot already exists" << std::endl;
 			return;
 		}
 		

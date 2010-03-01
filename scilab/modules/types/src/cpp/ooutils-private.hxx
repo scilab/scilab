@@ -20,11 +20,20 @@ namespace types
 	class BoundMethod: public Callable
 	{
 	public:
-		BoundMethod(Callable *_pFunc, Object *_pSelf, Object *_pLevel, ObjectMatrix *_pSender);
-		virtual ~BoundMethod();
+	  BoundMethod(Callable *_pFunc, Object *_pSelf, Object *_pLevel, ObjectMatrix *_pSender);
+	  virtual ~BoundMethod();
+	  
+	  std::string toString(int _iPrecision, int _iLineLen)
+	  {
+		// FIXME : Return something usable
+		return "FIXME : BoundMethod";
+	  }
+	  
+	  // FIXME : Should not return NULL;
+	  BoundMethod* clone() { return NULL; }
 		
-		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out);
-		virtual Callable::ReturnValue InnerCall(typed_list &_in, int _iRetCount, typed_list &_out);
+	  Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out);
+	  virtual Callable::ReturnValue InnerCall(typed_list &_in, int _iRetCount, typed_list &_out);
 	
 	protected:
 		Callable *m_pFunc;
