@@ -26,6 +26,19 @@ namespace ast
     --level;
   }
 
+  static void DEBUG(std::string str)
+  {
+    for(int i = 0 ; i < level; ++i)
+      {
+	std::cerr << "  ";
+      }
+    if (level > 0)
+      {
+	std::cerr << "     ";
+      }
+    std::cerr << str << std::endl;
+  }
+
   static void DEBUG(std::string str, const Exp &e)
   {
     for(int i = 0 ; i < level; ++i)
@@ -432,7 +445,7 @@ namespace ast
     slots_t::const_iterator  slot;
     
     DEBUG_START_NODE();
-    DEBUG("Exec ClassDec");
+    DEBUG("Exec ClassDec", e);
     {
       DEBUG_START_NODE();
       DEBUG("Name: "+e.name_get()->name_get());
@@ -452,7 +465,7 @@ namespace ast
   void DebugVisitor::visit (const PropertyDec &e)
   {
     DEBUG_START_NODE();
-    DEBUG("Exec PropertyDec");
+    DEBUG("Exec PropertyDec", e);
     {
       DEBUG_START_NODE();
       DEBUG("Name: "+e.name_get().name_get());
@@ -473,7 +486,7 @@ namespace ast
   void DebugVisitor::visit (const MethodDec &e)
   {
     DEBUG_START_NODE();
-    DEBUG("Exec MethodDec");
+    DEBUG("Exec MethodDec", e);
     DEBUG_START_NODE();
     {
       DEBUG("Name: "+e.name_get().name_get());
