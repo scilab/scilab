@@ -111,8 +111,6 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 
 //
 // Check that the cost function is correctly connected.
-// The index must be provided, because the additionnal argument "data"
-// comes after.
 //
 [ nm , f ] = neldermead_function ( nm , x0 );
 //
