@@ -31,18 +31,25 @@ import org.scilab.modules.xcos.link.BasicLink;
 
 /**
  * Class used to write a diagram contents into an HDF5 file
- * @author Vincent COUVERT
- *
  */
 public final class BlockWriter {
+	/** Diagram MList header (scs_m) */
 	private static final String[] DIAGRAM_FIELDS = {"diagram", "props", "objs", "version"};
+	/** Diagram properties MList header (scs_m.props) */
 	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	/** Diagram options MList header (scs_m.props.options) */
+	private static final String[] OPTS_FIELDS = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
+	/**
+	 * Window properties (scs_m.props.wpar).
+	 * 
+	 * This property has no impact among simulation
+	 */
+	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}};
 	
 	// The window parameters and diagram options are not used in the simulation
 	// thus we set it to default values.
 	// As the values are scicos dependent we avoid using constant references.
 	// CSOFF: MagicNumber
-	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}}; 
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
 			new String[] {"scsopt", "3D", "Background", "Link", "ID", "Cmap"}) {
 		{
@@ -64,23 +71,22 @@ public final class BlockWriter {
 		}
 	};
 	// CSON: MagicNumber
-
+	
     /**
-     * Constructor (MUST NOT BE USED !!!)
+     * This class is a static singleton thus constructor must not be used.
      */
-    private BlockWriter() {
-
-    }
+    private BlockWriter() { }
 
     /**
-     * Main writing function
+     * Write a diagram to any file.
+     * 
      * @param hdf5File file to create
      * @param diagram diagram to save
      * @return true if file created successfully
      */
     public static boolean writeDiagramToFile(String hdf5File, XcosDiagram diagram)	{
 
-	boolean isSuccess = true; // TODO error management
+	boolean isSuccess = true;
 
 	int fileId = H5Write.createFile(hdf5File);
 	
@@ -90,6 +96,7 @@ public final class BlockWriter {
 	    H5Write.writeInDataSet(fileId, "scs_m", data);
 	} catch (HDF5Exception e) {
 	    e.printStackTrace();
+	    isSuccess = false;
 	}
 	H5Write.closeFile(fileId);
 
@@ -97,8 +104,10 @@ public final class BlockWriter {
     }
 
     /**
-     * @param diagram The diagram to convert
-     * @return The diagram formatted as an mlist
+     * Convert a diagram to a ScilabType.
+     * 
+     * @param diagram the diagram to be converted
+     * @return the scilab formatted datas
      */
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
 	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
@@ -117,7 +126,6 @@ public final class BlockWriter {
      */
     private static ScilabTList getDiagramProps(XcosDiagram diagram) {
 	ScilabTList data = new ScilabTList(PROPS_FIELDS);
-	// This propertie has no impact among simulation
 	data.add(new ScilabDouble(WPAR)); // wpar
 	data.add(new ScilabString(diagram.getTitle())); // title
 	data.add(new ScilabDouble(createTol(diagram))); // tol
@@ -146,6 +154,35 @@ public final class BlockWriter {
 	    diagram.getSolver(),
 	    diagram.getMaximumStepSize()}};
 	return tol;
+    }
+
+    /**
+     * Create a Scilab TList from digram options
+     * @return the TList
+     */
+    private static ScilabTList getDiagramOptions() {
+	ScilabTList data = new ScilabTList(OPTS_FIELDS);
+	ScilabList threeDimension = new ScilabList();
+	threeDimension.add(new ScilabBoolean(true));
+	threeDimension.add(new ScilabDouble(33));
+
+	double[][] background = {{8, 1}};
+	double[][] link = {{1, 5}};
+
+	ScilabList iD = new ScilabList();
+	double[][] iD1 = {{5, 1}};
+	double[][] iD2 = {{4, 1}};
+	iD.add(new ScilabDouble(iD1));
+	iD.add(new ScilabDouble(iD2));
+	double[][] cmap = {{0.8, 0.8, 0.8}};
+
+	data.add(threeDimension); // 3D
+	data.add(new ScilabDouble(background)); // Background
+	data.add(new ScilabDouble(link)); // Link
+	data.add(iD); // ID
+	data.add(new ScilabDouble(cmap)); // Cmap
+
+	return data;
     }
 
     /**
