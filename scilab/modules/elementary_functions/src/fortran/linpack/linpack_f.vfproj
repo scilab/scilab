@@ -70,7 +70,8 @@ copy linpack_f_header.def+linpack_f.vcdef linpack_f.def &gt;nul" Description="Bu
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Library dependencies">
 		<File RelativePath=".\LibScilab_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\linpack_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\dgbfa.f"/>
 		<File RelativePath=".\dgeco.f"/>

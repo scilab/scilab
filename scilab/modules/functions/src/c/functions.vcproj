@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\getmacroslist.c"
 				>
 			</File>
@@ -446,6 +450,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\libraryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File

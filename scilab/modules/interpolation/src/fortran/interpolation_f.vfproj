@@ -75,7 +75,8 @@ lib /DEF:&quot;$(InputDir)interpolation_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<Filter Name="Library Dependencies">
 		<File RelativePath=".\interpolation_Import.def"/>
 		<File RelativePath=".\LibScilab_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\interpolation_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\cshep2d.f"/>
 		<File RelativePath=".\dspfit.f"/>

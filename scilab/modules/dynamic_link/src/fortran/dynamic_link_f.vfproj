@@ -80,7 +80,8 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath=".\LibScilab_Import.def"/>
 		<File RelativePath=".\output_stream_Import.def"/>
 		<File RelativePath=".\string_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\dynamic_link_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\sci_fort.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\dynamic_link_gateway.xml"/>
