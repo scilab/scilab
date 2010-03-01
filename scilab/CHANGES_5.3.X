@@ -50,6 +50,9 @@ description.
                    
 * bug 6674 fixed - modelica generic block did not work.
 
+* bug 6668 fixed - Xcos modelica demos did not work with the new 
+                   modelica compiler.
+
 Compilation:
 ============
 
