@@ -25,6 +25,8 @@ Compilation:
 Xcos:
 =====
 
+* bug 1982 fixed - It was not possible to use links label on a diagram.
+
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
