@@ -654,6 +654,17 @@ namespace ast
 		((Exp*)&e)->return_set();
 	}
 
+	void ExecVisitor::visit (const SelectExp &e)
+	{
+	  // FIXME : exec select ... case ... else ... end
+	}
+
+	void ExecVisitor::visit(const CaseExp &e)
+	{
+	  // FIXME : case ... 
+	}
+
+
 	void ExecVisitor::visit (const SeqExp  &e)
 	{
 		std::list<Exp *>::const_iterator	i;

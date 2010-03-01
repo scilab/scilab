@@ -395,6 +395,19 @@ namespace ast {
       }
   }
 
+  void PrintVisitor::visit (const SelectExp &e)
+  {
+    *ostr << SCI_SELECT;
+    *ostr << "// !! Not Implemented now" << std::endl;
+    *ostr << SCI_ENDSELECT;
+  }
+
+  void PrintVisitor::visit (const CaseExp &e)
+  {
+    *ostr << SCI_CASE;
+    *ostr << "// !! Not Implemented now" << std::endl;    
+  }
+
   void PrintVisitor::visit (const SeqExp  &e)
   {
     std::list<Exp *>::const_iterator	i;

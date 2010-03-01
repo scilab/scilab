@@ -313,6 +313,22 @@ namespace ast
     DEBUG_END_NODE();
   }
 
+  void DebugVisitor::visit (const SelectExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec SelectExp", e);
+    // FIXME : Follow up Visitor 
+    DEBUG_END_NODE();
+  }
+
+  void DebugVisitor::visit (const CaseExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec CaseExp", e);
+    // FIXME : Follow up Visitor 
+    DEBUG_END_NODE();
+  }
+
   void DebugVisitor::visit (const SeqExp  &e)
   {
     DEBUG_START_NODE();

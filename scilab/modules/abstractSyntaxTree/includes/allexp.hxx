@@ -47,6 +47,8 @@
 #include "trycatchexp.hxx"
 #include "breakexp.hxx"
 #include "returnexp.hxx"
+#include "selectexp.hxx"
+#include "caseexp.hxx"
 /*
 ** \}
 */

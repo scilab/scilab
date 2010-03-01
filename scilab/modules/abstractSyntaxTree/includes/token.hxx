@@ -134,6 +134,11 @@
 #define SCI_OPEN_ATTRIBUTES	SCI_LPAREN
 #define SCI_CLOSE_ATTRIBUTES	SCI_RPAREN
 
+// Syntax to have select control structure
+#define SCI_SELECT		"select"
+#define SCI_CASE		"case"
+#define SCI_ENDSELECT		"end"
+
 // Syntax to have return control structure
 #define SCI_RETURN		"return"
 

@@ -116,6 +116,8 @@ namespace ast
     virtual void visit (typename select_const<K, ForExp>::t & e) = 0;
     virtual void visit (typename select_const<K, BreakExp>::t & e) = 0;
     virtual void visit (typename select_const<K, TryCatchExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, SelectExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, CaseExp>::t & e) = 0;
     virtual void visit (typename select_const<K, ReturnExp>::t & e) = 0;
     virtual void visit (typename select_const<K, FieldExp>::t & e) = 0;
     /** \} */
