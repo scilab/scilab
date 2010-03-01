@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.link.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -25,7 +25,7 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link vertical action
  */
-public class LinkStyleVerticalAction extends LinkStyleAction {
+public class StyleVerticalAction extends StyleAction {
 	public static final String NAME = XcosMessages.LINK_STYLE_VERTICAL;
 	public static final String SMALL_ICON = "";
 	public static final int MNEMONIC_KEY = KeyEvent.VK_V;
@@ -36,7 +36,7 @@ public class LinkStyleVerticalAction extends LinkStyleAction {
 	 * @param scilabGraph
 	 *            the graph to associate
 	 */
-	public LinkStyleVerticalAction(ScilabGraph scilabGraph) {
+	public StyleVerticalAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 	}
 
@@ -46,7 +46,7 @@ public class LinkStyleVerticalAction extends LinkStyleAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, LinkStyleVerticalAction.class);
+		return createMenu(scilabGraph, StyleVerticalAction.class);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class LinkStyleVerticalAction extends LinkStyleAction {
 	 * 
 	 * @param e
 	 *            params
-	 * @see org.scilab.modules.xcos.actions.LinkStyleAction#actionPerformed(java.awt.event.ActionEvent)
+	 * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

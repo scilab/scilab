@@ -29,11 +29,12 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
-import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
-import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleStraightAction;
+import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
+import org.scilab.modules.xcos.link.actions.TextAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -332,15 +333,16 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	Menu format = ScilabMenu.createMenu();
 	format.setText(XcosMessages.FORMAT);
 	format.add(BorderColorAction.createMenu(graph));
+	format.add(TextAction.createMenu(graph));
 	menu.add(format);
 	/*--- */
 	menu.getAsSimpleContextMenu().addSeparator();
 	/*--- */
 	Menu linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleHorizontalAction.createMenu(graph));
-	linkStyle.add(LinkStyleStraightAction.createMenu(graph));
-	linkStyle.add(LinkStyleVerticalAction.createMenu(graph));
+	linkStyle.add(StyleHorizontalAction.createMenu(graph));
+	linkStyle.add(StyleStraightAction.createMenu(graph));
+	linkStyle.add(StyleVerticalAction.createMenu(graph));
 
 
 	menu.add(linkStyle);

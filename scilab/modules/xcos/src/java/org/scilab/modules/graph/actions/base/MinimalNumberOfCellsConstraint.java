@@ -14,6 +14,7 @@ package org.scilab.modules.graph.actions.base;
 
 import org.scilab.modules.graph.ScilabGraph;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 
@@ -44,6 +45,7 @@ public final class MinimalNumberOfCellsConstraint extends ActionConstraint {
 		super.install(action, scilabGraph);
 		scilabGraph.addListener(mxEvent.CELLS_ADDED, this);
 		scilabGraph.addListener(mxEvent.CELLS_REMOVED, this);
+		scilabGraph.addListener(mxEvent.ROOT, this);
 	}
 
 	/**
@@ -57,12 +59,26 @@ public final class MinimalNumberOfCellsConstraint extends ActionConstraint {
 	 *      com.mxgraph.util.mxEventObject)
 	 */
 	public void invoke(Object sender, mxEventObject evt) {
-		Object[] cells = (Object[]) evt.getProperty("cells");
+		final String name = evt.getName();
 		
-		if (evt.getName().compareTo(mxEvent.CELLS_ADDED) == 0) {
-			numberOfCells += cells.length;
-		} else {
-			numberOfCells -= cells.length;
+		if (name.equals(mxEvent.ROOT)) {
+			/*
+			 * After diagram loading
+			 */
+			numberOfCells = ((mxCell) ((ScilabGraph) sender).getModel()
+					.getRoot()).getChildCount();
+			
+		} else if (name.equals(mxEvent.CELLS_ADDED) || name.equals(mxEvent.CELLS_REMOVED)) {
+			/*
+			 * After any an add/remove operation
+			 */
+			Object[] cells = (Object[]) evt.getProperty("cells");
+			
+			if (evt.getName().compareTo(mxEvent.CELLS_ADDED) == 0) {
+				numberOfCells += cells.length;
+			} else {
+				numberOfCells -= cells.length;
+			}
 		}
 		
 		setEnabled(numberOfCells >= minimalCount);

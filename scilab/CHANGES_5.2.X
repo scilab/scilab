@@ -25,6 +25,8 @@ Compilation:
 Xcos:
 =====
 
+* bug 1982 fixed - It was not possible to use links label on a diagram.
+
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
@@ -46,12 +48,16 @@ Xcos:
 
 * bug 6671 fixed - The style was not saved in superBlockDiagram
 
+* bug 6694 fixed - The grid was always enabled when openning a diagram.
+
 Bug Fixes:
 ==========
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
