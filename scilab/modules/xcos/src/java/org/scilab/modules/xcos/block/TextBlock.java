@@ -14,13 +14,11 @@ package org.scilab.modules.xcos.block;
 
 import java.util.Map;
 
-import org.scilab.modules.gui.menu.Menu;
-
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 
@@ -30,12 +28,11 @@ import com.mxgraph.util.mxConstants;
  * A textblock is used to annotate diagrams.
  */
 public final class TextBlock extends BasicBlock {
-	private static final long serialVersionUID = -4279562884443733433L;
 	
 	/**
 	 * The factor between a real point and a scicos point
 	 */
-	private static final int FONT_FACTOR = 10;
+	private static final int FONT_FACTOR = 4;
 	private static final String INTERFUNCTION_NAME = "TEXT_f";
 	
     /**
