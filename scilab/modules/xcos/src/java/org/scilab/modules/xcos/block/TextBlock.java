@@ -14,13 +14,11 @@ package org.scilab.modules.xcos.block;
 
 import java.util.Map;
 
-import org.scilab.modules.gui.menu.Menu;
-
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 
@@ -32,7 +30,7 @@ import com.mxgraph.util.mxConstants;
 public final class TextBlock extends BasicBlock {
     
 	/** After investigations, the 1pt of scicos is equivalent to a 10 real pt */
-	private static final int SCICOS_FONTSIZE_RATIO = 10;
+	private static final int SCICOS_FONTSIZE_RATIO = 4;
 	private static final long serialVersionUID = -4279562884443733433L;
 
     /**
