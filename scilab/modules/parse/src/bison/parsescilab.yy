@@ -1334,10 +1334,11 @@ variable				{ $$ = $1; }
 */
 /* Fake Rule : How can we be sure this is the 'select' condition ending. */
 selectConditionBreak :
-EOL									{ /* !! Do Nothing !! */ }
-| COMMA EOL								{ /* !! Do Nothing !! */ }
-| SEMI EOL								{ /* !! Do Nothing !! */ }
-
+EOL								{ /* !! Do Nothing !! */ }
+| COMMA EOL						{ /* !! Do Nothing !! */ }
+| SEMI EOL						{ /* !! Do Nothing !! */ }
+| COMMA							{ /* !! Do Nothing !! */ }
+| SEMI							{ /* !! Do Nothing !! */ }
 ;
 
 /*
