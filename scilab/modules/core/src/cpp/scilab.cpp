@@ -269,6 +269,30 @@ static void banner()
 }
 
 /*
+** -*- stateView
+** Used to show parser state.
+** Find if we are stuck within some control structure.
+*/
+
+static void stateShow(Parser::ControlStatus status)
+{
+  switch (status)
+	{
+	case Parser::WithinFor : YaspWrite("[ for ]"); break;
+	case Parser::WithinWhile : YaspWrite("[ while ]"); break;
+	case Parser::WithinIf : YaspWrite("[ if ]"); break;
+	case Parser::WithinElse : YaspWrite("[ else ]"); break;
+	case Parser::WithinElseIf : YaspWrite("[ elseif ]"); break;
+	case Parser::WithinTry : YaspWrite("[ try ]"); break;
+	case Parser::WithinCatch : YaspWrite("[ catch ]"); break;
+	case Parser::WithinFunction : YaspWrite("[ function ]"); break;
+	case Parser::WithinSelect : YaspWrite("[ select ]"); break;
+	case Parser::WithinCase : YaspWrite("[ case ]"); break;
+	case Parser::AllControlClosed :/* Do Nothing */ break;
+	}
+}
+
+/*
 ** -*- Interactive Main -*-
 */
 static int interactiveMain (void)
@@ -283,6 +307,9 @@ static int interactiveMain (void)
 
 	while (!exit)
 	{
+	  // Show Parser Sate before prompt
+	  stateShow(pParser->getControlStatus());
+
 		//set prompt value
 		C2F(setprlev)(&pause);
 
