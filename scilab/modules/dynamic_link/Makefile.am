@@ -75,4 +75,7 @@ src/scripts/install-sh \
 src/scripts/missing \
 src/scripts/scicompile.sh
 
+# This is a cache file for the dynamic link (on use)
+CLEANFILES = src/scripts/Makefile.orig
+
 include $(top_srcdir)/Makefile.incl.am

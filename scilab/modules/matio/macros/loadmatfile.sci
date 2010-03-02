@@ -101,6 +101,11 @@ if bin then // Uses MATIO interface
   //-- Close the file
   matfile_close(fd)
   
+  //-- Error while reading?
+  if isempty(Names) | isempty(Matrices) then
+    error(msprintf(gettext("%s: No variable read in file ''%s''. Check if your file is not corrupted.\n"),"loadmatfile",fil));
+  end
+  
   //-- Return variables in the calling context
   execstr('['+strcat(Names,',')+']=resume(Matrices(:))')
    

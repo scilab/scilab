@@ -26,24 +26,53 @@ import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * Class Print action for Xpad
+ * @author Sylvestre Koumar
+ *
+ */
 public class PrintAction extends DefaultAction {
 
+	/**
+	 * Default constructor
+	 * @param editor the editor
+	 */
 	private PrintAction(Xpad editor) {
 		super(XpadMessages.PRINT, editor);
 	}
 
+	/**
+	 * Function doAction
+	 */
 	public void doAction() {
 		printXpadDocument(getEditor());
 	}
 
+	/**
+	 * Create the MenuItem for print action
+	 * @param editor Editor
+	 * @return a MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.PRINT, null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.PRINT, null, new PrintAction(editor), 
+						  KeyStroke.getKeyStroke(KeyEvent.VK_P, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	}
 
+	/**
+	 * Create print button
+	 * @param editor Editor
+	 * @return a pushbutton
+	 */
 	public static PushButton createButton(Xpad editor) {
 		return createButton(XpadMessages.PRINT, "document-print.png", new PrintAction(editor));
 	}
 
+	/**
+	 * This function allow to print a document
+	 * by calling a printer job
+	 * @param editor Editor
+	 * @return a boolean
+	 */
 	public static boolean printXpadDocument(Xpad editor) {
 
 		PrinterJob printTask = PrinterJob.getPrinterJob();
