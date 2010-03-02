@@ -16,6 +16,11 @@ FFTW:
   Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
   installation.
 
+Graphics:
+=========
+
+* the set and get functions are now overloadable.
+
 Documentation:
 ==============
 
