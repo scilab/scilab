@@ -555,6 +555,44 @@ namespace ast
 	void ExecVisitor::visit (const SelectExp &e)
 	{
 	  // FIXME : exec select ... case ... else ... end
+		ExecVisitor *execMe = new ast::ExecVisitor();
+		e.select_get()->accept(*execMe);
+		bool bCase = false;
+
+		
+		if(execMe->result_get() != NULL)
+		{//find good case
+			cases_t::iterator it;
+			for(it = e.cases_get()->begin(); it != e.cases_get()->end() ; it++)
+			{
+				ExecVisitor *execCase = new ast::ExecVisitor();
+				CaseExp* pCase = *it;
+				pCase->test_get()->accept(*execCase);
+				if(execCase->result_get() != NULL)
+				{
+					if(execCase->result_get()->isContainer()) //WARNING ONLY FOR CELL
+					{//check each item
+					}
+					else if(*execCase->result_get() == *execMe->result_get())
+					{//the good one
+						ExecVisitor *execBody = new ast::ExecVisitor();
+						pCase->body_get()->accept(*execBody);
+						delete execBody;
+						bCase = true;
+					}
+				}
+				delete execCase;
+			}
+		}
+
+		if(bCase == false)
+		{//default case
+			ExecVisitor *execDefault = new ast::ExecVisitor();
+			e.default_case_get()->accept(*execDefault);
+			delete execDefault;
+		}
+
+		delete execMe;
 	}
 
 	void ExecVisitor::visit(const CaseExp &e)
