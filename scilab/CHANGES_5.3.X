@@ -98,6 +98,8 @@ Removed functions (previously declared as obsolete):
 
 * 'tk_getdir' replaced by 'uigetdir'.
 
+* 'tk_choose' replaced by 'x_choose'.
+
 * 'sci2excel' replaced by 'write_csv'.
 
 * 'excel2sci' replaced by 'read_csv'.
