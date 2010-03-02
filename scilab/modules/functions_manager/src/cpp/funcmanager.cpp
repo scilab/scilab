@@ -306,7 +306,7 @@ bool FuncManager::LoadFuncByModule(void)
 	{
 		//call Load function
 		itMod->second();
-		//LoadMacroFile(itMod->first);
+		LoadMacroFile(itMod->first);
 	}
 	return bRet;
 }
@@ -327,57 +327,56 @@ bool FuncManager::LoadMacroFile(string _stModule)
 		{
 			//version with direct parsing
 			//parse the file to find all functions
-			string stFullPath = stPath + string(pstPath[k]);
-			Parser::getInstance()->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
-			FunctionDec* pFD = NULL;
+			//string stFullPath = stPath + string(pstPath[k]);
+			//Parser::getInstance()->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
+			//FunctionDec* pFD = NULL;
 
-			std::list<Exp *>::iterator j;
-			std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
-			if(Parser::getInstance()->getExitStatus() == Parser::Failed)
-			{
-				continue;
-			}
+			//std::list<Exp *>::iterator j;
+			//std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
+			//if(Parser::getInstance()->getExitStatus() == Parser::Failed)
+			//{
+			//	continue;
+			//}
 
-			for(j = LExp.begin() ; j != LExp.end() ; j++)
-			{
-				pFD = dynamic_cast<FunctionDec*>(*j);
-				if(pFD)
-				{
-					std::list<ast::Var *>::const_iterator	i;
+			//for(j = LExp.begin() ; j != LExp.end() ; j++)
+			//{
+			//	pFD = dynamic_cast<FunctionDec*>(*j);
+			//	if(pFD)
+			//	{
+			//		std::list<ast::Var *>::const_iterator	i;
 
-					//get input parameters list
-					std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
-					ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
-					for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
-					{
-						string sz = ((SimpleVar*)(*i))->name_get().name_get();
-						pVarList->push_back(((SimpleVar*)(*i))->name_get());
-					}
+			//		//get input parameters list
+			//		std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+			//		ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
+			//		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
+			//		{
+			//			string sz = ((SimpleVar*)(*i))->name_get().name_get();
+			//			pVarList->push_back(((SimpleVar*)(*i))->name_get());
+			//		}
 
-					//get output parameters list
-					std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
-					ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
-					for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
-					{
-						pRetList->push_back(((SimpleVar*)(*i))->name_get());
-					}
+			//		//get output parameters list
+			//		std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+			//		ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
+			//		for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
+			//		{
+			//			pRetList->push_back(((SimpleVar*)(*i))->name_get());
+			//		}
 
-					//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-					types::Macro *pMacro = new types::Macro(pFD->name_get().name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
-					symbol::Context::getInstance()->AddMacro(pMacro);
-				}
+			//		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
+			//		types::Macro *pMacro = new types::Macro(pFD->name_get().name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
+			//		symbol::Context::getInstance()->AddMacro(pMacro);
+			//	}
+			//}
 
 			//version with macrofile
 
-			//string stFullPath = stPath + string(pstPath[k]);
-			//string stTemp = pstPath[k];
-			//size_t iPos = stTemp.find(".sci");
-			//if(iPos < stTemp.size())
-			//{
-			//string stFullName = stTemp.substr(0,iPos);
-
-			//symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
-
+			string stFullPath = stPath + string(pstPath[k]);
+			string stTemp = pstPath[k];
+			size_t iPos = stTemp.find(".sci");
+			if(iPos < stTemp.size())
+			{
+				string stFullName = stTemp.substr(0,iPos);
+				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
 			}
 		}
 	}
