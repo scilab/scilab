@@ -55,6 +55,13 @@ int sci_get(char *fname,unsigned long fname_len)
 	char **stkAdr = NULL;
 	int status = SET_PROPERTY_ERROR;
 
+	if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
+	  {
+	    lw = 1 + Top - Rhs;
+	    C2F(overload)(&lw,"get",Rhs);
+	    return 0;
+	  }
+	
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
