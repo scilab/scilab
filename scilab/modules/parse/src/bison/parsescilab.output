@@ -350,81 +350,83 @@ Grammar
   293 selectConditionBreak: "end of line"
   294                     | "," "end of line"
   295                     | ";" "end of line"
+  296                     | ","
+  297                     | ";"
 
-  296 casesControl: "case" variable caseControlBreak caseBody
-  297             | comments "case" variable caseControlBreak caseBody
-  298             | "case" variable "line comment" "end of line" caseBody
-  299             | comments "case" variable "line comment" "end of line" caseBody
-  300             | casesControl "case" variable caseControlBreak caseBody
-  301             | casesControl "case" variable "line comment" "end of line" caseBody
+  298 casesControl: "case" variable caseControlBreak caseBody
+  299             | comments "case" variable caseControlBreak caseBody
+  300             | "case" variable "line comment" "end of line" caseBody
+  301             | comments "case" variable "line comment" "end of line" caseBody
+  302             | casesControl "case" variable caseControlBreak caseBody
+  303             | casesControl "case" variable "line comment" "end of line" caseBody
 
-  302 caseBody: expressions
-  303         | /* empty */
+  304 caseBody: expressions
+  305         | /* empty */
 
-  304 caseControlBreak: "then"
-  305                 | ","
-  306                 | ";"
-  307                 | "end of line"
-  308                 | "then" "end of line"
-  309                 | "," "end of line"
-  310                 | ";" "end of line"
-  311                 | "then" ","
-  312                 | "then" "," "end of line"
+  306 caseControlBreak: "then"
+  307                 | ","
+  308                 | ";"
+  309                 | "end of line"
+  310                 | "then" "end of line"
+  311                 | "," "end of line"
+  312                 | ";" "end of line"
+  313                 | "then" ","
+  314                 | "then" "," "end of line"
 
-  313 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  315 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
 
-  315 forIterator: functionCall
-  316            | variable
+  317 forIterator: functionCall
+  318            | variable
 
-  317 forConditionBreak: "end of line"
-  318                  | ";"
-  319                  | ";" "end of line"
-  320                  | ","
-  321                  | "," "end of line"
-  322                  | "do"
-  323                  | "do" "end of line"
-  324                  | /* empty */
+  319 forConditionBreak: "end of line"
+  320                  | ";"
+  321                  | ";" "end of line"
+  322                  | ","
+  323                  | "," "end of line"
+  324                  | "do"
+  325                  | "do" "end of line"
+  326                  | /* empty */
 
-  325 forBody: expressions
-  326        | /* empty */
+  327 forBody: expressions
+  328        | /* empty */
 
-  327 whileControl: "while" condition whileConditionBreak whileBody "end"
+  329 whileControl: "while" condition whileConditionBreak whileBody "end"
 
-  328 whileBody: expressions
-  329          | /* empty */
+  330 whileBody: expressions
+  331          | /* empty */
 
-  330 whileConditionBreak: ","
-  331                    | ";"
-  332                    | "do"
-  333                    | "do" ","
-  334                    | "do" ";"
-  335                    | "then"
-  336                    | "then" ","
-  337                    | "then" ";"
-  338                    | lineEnd
-  339                    | "," "end of line"
-  340                    | ";" "end of line"
-  341                    | "do" "end of line"
-  342                    | "do" "," "end of line"
-  343                    | "do" ";" "end of line"
-  344                    | "then" "end of line"
-  345                    | "then" "," "end of line"
-  346                    | "then" ";" "end of line"
+  332 whileConditionBreak: ","
+  333                    | ";"
+  334                    | "do"
+  335                    | "do" ","
+  336                    | "do" ";"
+  337                    | "then"
+  338                    | "then" ","
+  339                    | "then" ";"
+  340                    | lineEnd
+  341                    | "," "end of line"
+  342                    | ";" "end of line"
+  343                    | "do" "end of line"
+  344                    | "do" "," "end of line"
+  345                    | "do" ";" "end of line"
+  346                    | "then" "end of line"
+  347                    | "then" "," "end of line"
+  348                    | "then" ";" "end of line"
 
-  347 tryControl: "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  349 tryControl: "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
 
-  351 returnControl: "return"
-  352              | "return" variable
+  353 returnControl: "return"
+  354              | "return" variable
 
-  353 comments: "line comment" "end of line"
-  354         | comments "line comment" "end of line"
+  355 comments: "line comment" "end of line"
+  356         | comments "line comment" "end of line"
 
-  355 lineEnd: "end of line"
-  356        | "line comment" "end of line"
+  357 lineEnd: "end of line"
+  358        | "line comment" "end of line"
 
 
 Terminals, with rules where they appear
@@ -433,9 +435,9 @@ Terminals, with rules where they appear
 error (256) 31
 "line break" (258)
 "end of line" (259) 2 14 17 98 100 229 230 232 233 235 236 268 270
-    271 274 281 282 283 293 294 295 298 299 301 307 308 309 310 312
-    317 319 321 323 339 340 341 342 343 344 345 346 347 348 349 350
-    353 354 355 356
+    271 274 281 282 283 293 294 295 300 301 303 309 310 311 312 314
+    319 321 323 325 341 342 343 344 345 346 347 348 349 350 351 352
+    355 356 357 358
 "spaces" (260)
 "%t or %T" (261) 40 51 201
 "%f or %F" (262) 41 52 202
@@ -443,14 +445,14 @@ error (256) 31
 "~ or @" (264) 184 185
 "$" (265) 39 200
 "," (266) 13 16 61 62 63 64 65 94 99 100 206 207 208 209 210 211 243
-    244 269 270 279 282 294 305 309 311 312 320 321 330 333 336 339
-    342 345
+    244 269 270 279 282 294 296 307 311 313 314 322 323 332 335 338
+    341 344 347
 ":" (267) 58 63 109 112 115 118 121 124 127 130 133 136 179 180 181
     182 249 250
-";" (268) 12 15 97 98 228 230 233 236 267 268 280 283 295 306 310 318
-    319 331 334 337 340 343 346
-"(" (269) 50 51 52 53 54 55 91 92 203 204 314
-")" (270) 50 51 52 53 54 55 91 92 203 204 314
+";" (268) 12 15 97 98 228 230 233 236 267 268 280 283 295 297 308 312
+    320 321 333 336 339 342 345 348
+"(" (269) 50 51 52 53 54 55 91 92 203 204 316
+")" (270) 50 51 52 53 54 55 91 92 203 204 316
 "[" (271) 67 68 71 72 75 76 79 80 83 84 87 88 219 220 221 222 223 224
     225 259
 "]" (272) 67 68 71 72 75 76 79 80 83 84 87 88 219 220 221 222 223 224
@@ -484,35 +486,35 @@ error (256) 31
 "|" (299) 113 114 115
 "||" (300) 116 117 118
 "=" (301) 66 67 68 70 71 72 74 75 76 78 79 80 82 83 84 86 87 88 245
-    246 247 248 249 250 251 252 313 314
+    246 247 248 249 250 251 252 315 316
 "if" (302) 260 261 262
-"then" (303) 272 273 274 275 304 308 311 312 335 336 337 344 345 346
+"then" (303) 272 273 274 275 306 310 313 314 337 338 339 346 347 348
 "else" (304) 278 279 280 281 282 283
 "elseif" (305) 284 285 286
 "end" (306) 70 71 72 73 78 79 80 81 86 87 88 89 260 261 262 287 288
-    289 290 313 314 327 347 348 349 350
+    289 290 315 316 329 349 350 351 352
 "select" (307) 287 288 289 290
-"case" (308) 296 297 298 299 300 301
+"case" (308) 298 299 300 301 302 303
 "function" (309) 66 67 68 69 70 71 72 73 82 83 84 85 86 87 88 89
 "endfunction" (310) 66 67 68 69 74 75 76 77 82 83 84 85
 "#function" (311) 74 75 76 77 78 79 80 81
 "hidden" (312) 82 83 84 85 86 87 88 89
-"for" (313) 313 314
-"while" (314) 327
-"do" (315) 322 323 332 333 334 341 342 343
+"for" (313) 315 316
+"while" (314) 329
+"do" (315) 324 325 334 335 336 343 344 345
 "break" (316) 28
-"try" (317) 347 348 349 350
-"catch" (318) 347 348 349 350
-"return" (319) 351 352
+"try" (317) 349 350 351 352
+"catch" (318) 349 350 351 352
+"return" (319) 353 354
 "string" (320) 38 199
 "identifier" (321) 33 34 42 53 66 67 68 69 70 71 72 73 74 75 76 77
-    78 79 80 81 82 83 84 85 86 87 88 89 94 95 186 195 253 257 313 314
+    78 79 80 81 82 83 84 85 86 87 88 89 94 95 186 195 253 257 315 316
 "integer" (322) 35 196
 "float" (323) 37 198
 "number" (324) 36 197
 "path" (325) 46
-"line comment" (326) 5 7 9 10 30 232 233 235 236 289 290 298 299 301
-    348 349 350 353 354 356
+"line comment" (326) 5 7 9 10 30 232 233 235 236 289 290 300 301 303
+    350 351 352 355 356 358
 "block comment" (327)
 TOPLEVEL (328)
 HIGHLEVEL (329)
@@ -528,8 +530,8 @@ $accept (78)
 program (79)
     on left: 1 2, on right: 0
 expressions (80)
-    on left: 3 4 5 6 7, on right: 1 2 101 263 265 302 325 328 347 348
-    349 350
+    on left: 3 4 5 6 7, on right: 1 2 101 263 265 304 327 330 349 350
+    351 352
 recursiveExpression (81)
     on left: 8 9 10 11, on right: 3 4 5 8 9
 expressionLineBreak (82)
@@ -547,7 +549,7 @@ functionCall (86)
     114 117 120 123 126 129 132 135 138 140 142 144 145 146 148 149
     150 153 154 156 158 160 162 164 166 168 170 172 174 176 178 180
     182 185 187 188 189 191 207 209 210 211 238 240 242 246 247 248
-    250 252 254 255 256 292 315
+    250 252 254 255 256 292 317
 specificFunctionCall (87)
     on left: 51 52, on right: 48
 simpleFunctionCall (88)
@@ -574,7 +576,7 @@ functionBody (96)
     on left: 101 102, on right: 66 67 68 69 70 71 72 73 74 75 76 77
     78 79 80 81 82 83 84 85 86 87 88 89
 condition (97)
-    on left: 103 104, on right: 260 261 262 284 285 286 327
+    on left: 103 104, on right: 260 261 262 284 285 286 329
 comparison (98)
     on left: 105 106, on right: 205
 rightComparable (99)
@@ -597,7 +599,7 @@ variable (104)
     110 113 116 119 122 125 128 131 134 137 139 141 143 144 145 147
     148 149 151 152 155 157 159 161 163 165 167 169 171 173 175 177
     179 181 184 186 187 188 190 203 206 208 210 211 237 239 241 245
-    247 253 254 255 291 296 297 298 299 300 301 316 352
+    247 253 254 255 291 298 299 300 301 302 303 318 354
 variableFields (105)
     on left: 206 207 208 209 210 211, on right: 204 206 207
 cell (106)
@@ -641,38 +643,38 @@ selectControl (123)
 selectable (124)
     on left: 291 292, on right: 287 288 289 290
 selectConditionBreak (125)
-    on left: 293 294 295, on right: 287 288 289 290
+    on left: 293 294 295 296 297, on right: 287 288 289 290
 casesControl (126)
-    on left: 296 297 298 299 300 301, on right: 287 288 289 290 300
-    301
+    on left: 298 299 300 301 302 303, on right: 287 288 289 290 302
+    303
 caseBody (127)
-    on left: 302 303, on right: 296 297 298 299 300 301
+    on left: 304 305, on right: 298 299 300 301 302 303
 caseControlBreak (128)
-    on left: 304 305 306 307 308 309 310 311 312, on right: 296 297
-    300
+    on left: 306 307 308 309 310 311 312 313 314, on right: 298 299
+    302
 forControl (129)
-    on left: 313 314, on right: 23
+    on left: 315 316, on right: 23
 forIterator (130)
-    on left: 315 316, on right: 313 314
+    on left: 317 318, on right: 315 316
 forConditionBreak (131)
-    on left: 317 318 319 320 321 322 323 324, on right: 313 314
+    on left: 319 320 321 322 323 324 325 326, on right: 315 316
 forBody (132)
-    on left: 325 326, on right: 313 314
+    on left: 327 328, on right: 315 316
 whileControl (133)
-    on left: 327, on right: 24
+    on left: 329, on right: 24
 whileBody (134)
-    on left: 328 329, on right: 327
+    on left: 330 331, on right: 329
 whileConditionBreak (135)
-    on left: 330 331 332 333 334 335 336 337 338 339 340 341 342 343
-    344 345 346, on right: 327
+    on left: 332 333 334 335 336 337 338 339 340 341 342 343 344 345
+    346 347 348, on right: 329
 tryControl (136)
-    on left: 347 348 349 350, on right: 25
+    on left: 349 350 351 352, on right: 25
 returnControl (137)
-    on left: 351 352, on right: 29 251 252
+    on left: 353 354, on right: 29 251 252
 comments (138)
-    on left: 353 354, on right: 297 299 354
+    on left: 355 356, on right: 299 301 356
 lineEnd (139)
-    on left: 355 356, on right: 96 213 215 217 220 222 224 338
+    on left: 357 358, on right: 96 213 215 217 220 222 224 340
 
 
 state 0
@@ -816,15 +818,15 @@ state 0
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "end of line"   shift, and go to state 2
@@ -1026,15 +1028,15 @@ state 2
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -1408,8 +1410,8 @@ state 8
   241                    | . variable
   242                    | . functionCall
   259 multipleResults: "[" . matrixOrCellColumns "]"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     "%t or %T"      shift, and go to state 3
@@ -1532,8 +1534,8 @@ state 9
   240                    | . matrixOrCellColumns functionCall
   241                    | . variable
   242                    | . functionCall
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     "%t or %T"      shift, and go to state 3
@@ -2007,8 +2009,8 @@ state 16
 
 state 17
 
-  313 forControl: "for" . "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | "for" . "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  315 forControl: "for" . "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | "for" . "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
 
     "("           shift, and go to state 90
     "identifier"  shift, and go to state 91
@@ -2083,7 +2085,7 @@ state 18
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  327 whileControl: "while" . condition whileConditionBreak whileBody "end"
+  329 whileControl: "while" . condition whileConditionBreak whileBody "end"
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -2121,10 +2123,10 @@ state 19
 
 state 20
 
-  347 tryControl: "try" . "end of line" expressions "catch" "end of line" expressions "end"
-  348           | "try" . "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | "try" . "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | "try" . "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  349 tryControl: "try" . "end of line" expressions "catch" "end of line" expressions "end"
+  350           | "try" . "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | "try" . "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | "try" . "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
 
     "end of line"   shift, and go to state 93
     "line comment"  shift, and go to state 94
@@ -2197,8 +2199,8 @@ state 21
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  351 returnControl: "return" .  ["end of file", "end of line", ",", ";", ")", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
-  352              | "return" . variable
+  353 returnControl: "return" .  ["end of file", "end of line", ",", ";", ")", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
+  354              | "return" . variable
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -2215,7 +2217,7 @@ state 21
     "float"       shift, and go to state 25
     "number"      shift, and go to state 26
 
-    $default  reduce using rule 351 (returnControl)
+    $default  reduce using rule 353 (returnControl)
 
     functionCall           go to state 95
     specificFunctionCall   go to state 34
@@ -2450,15 +2452,15 @@ state 30
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -3288,8 +3290,8 @@ state 55
   240                    | . matrixOrCellColumns functionCall
   241                    | . variable
   242                    | . functionCall
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     "%t or %T"      shift, and go to state 3
@@ -3796,9 +3798,9 @@ state 61
 
 state 62
 
-  355 lineEnd: "end of line" .
+  357 lineEnd: "end of line" .
 
-    $default  reduce using rule 355 (lineEnd)
+    $default  reduce using rule 357 (lineEnd)
 
 
 state 63
@@ -3810,7 +3812,7 @@ state 63
 
 state 64
 
-  356 lineEnd: "line comment" . "end of line"
+  358 lineEnd: "line comment" . "end of line"
 
     "end of line"  shift, and go to state 177
 
@@ -5739,6 +5741,8 @@ state 84
   293 selectConditionBreak: . "end of line"
   294                     | . "," "end of line"
   295                     | . ";" "end of line"
+  296                     | . ","
+  297                     | . ";"
 
     "end of line"   shift, and go to state 203
     ","             shift, and go to state 204
@@ -5835,40 +5839,40 @@ state 89
 
 state 90
 
-  314 forControl: "for" "(" . "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  316 forControl: "for" "(" . "identifier" "=" forIterator ")" forConditionBreak forBody "end"
 
     "identifier"  shift, and go to state 221
 
 
 state 91
 
-  313 forControl: "for" "identifier" . "=" forIterator forConditionBreak forBody "end"
+  315 forControl: "for" "identifier" . "=" forIterator forConditionBreak forBody "end"
 
     "="  shift, and go to state 222
 
 
 state 92
 
-  327 whileControl: "while" condition . whileConditionBreak whileBody "end"
-  330 whileConditionBreak: . ","
-  331                    | . ";"
-  332                    | . "do"
-  333                    | . "do" ","
-  334                    | . "do" ";"
-  335                    | . "then"
-  336                    | . "then" ","
-  337                    | . "then" ";"
-  338                    | . lineEnd
-  339                    | . "," "end of line"
-  340                    | . ";" "end of line"
-  341                    | . "do" "end of line"
-  342                    | . "do" "," "end of line"
-  343                    | . "do" ";" "end of line"
-  344                    | . "then" "end of line"
-  345                    | . "then" "," "end of line"
-  346                    | . "then" ";" "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  329 whileControl: "while" condition . whileConditionBreak whileBody "end"
+  332 whileConditionBreak: . ","
+  333                    | . ";"
+  334                    | . "do"
+  335                    | . "do" ","
+  336                    | . "do" ";"
+  337                    | . "then"
+  338                    | . "then" ","
+  339                    | . "then" ";"
+  340                    | . lineEnd
+  341                    | . "," "end of line"
+  342                    | . ";" "end of line"
+  343                    | . "do" "end of line"
+  344                    | . "do" "," "end of line"
+  345                    | . "do" ";" "end of line"
+  346                    | . "then" "end of line"
+  347                    | . "then" "," "end of line"
+  348                    | . "then" ";" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 223
@@ -6019,17 +6023,17 @@ state 93
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  347           | "try" "end of line" . expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  349           | "try" "end of line" . expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  349           | "try" "end of line" . expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  351           | "try" "end of line" . expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -6085,8 +6089,8 @@ state 93
 
 state 94
 
-  348 tryControl: "try" "line comment" . "end of line" expressions "catch" "end of line" expressions "end"
-  350           | "try" "line comment" . "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  350 tryControl: "try" "line comment" . "end of line" expressions "catch" "end of line" expressions "end"
+  352           | "try" "line comment" . "end of line" expressions "catch" "line comment" "end of line" expressions "end"
 
     "end of line"  shift, and go to state 230
 
@@ -6271,7 +6275,7 @@ state 96
   186 variable: variable . "." "identifier"
   187         | variable . "." functionCall
   190         | variable . listableEnd
-  352 returnControl: "return" variable .  ["end of file", "end of line", ",", ";", ")", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
+  354 returnControl: "return" variable .  ["end of file", "end of line", ",", ";", ")", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
 
     "'"         shift, and go to state 152
     ":"         shift, and go to state 118
@@ -6302,7 +6306,7 @@ state 96
     "|"         shift, and go to state 143
     "||"        shift, and go to state 144
 
-    $default  reduce using rule 352 (returnControl)
+    $default  reduce using rule 354 (returnControl)
 
     rightComparable  go to state 157
     rightOperand     go to state 158
@@ -9298,8 +9302,8 @@ state 145
   248                    | functionCall "=" . functionCall
   250                    | functionCall "=" . ":"
   252                    | functionCall "=" . returnControl
-  351 returnControl: . "return"
-  352              | . "return" variable
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -9943,8 +9947,8 @@ state 160
   246                    | assignable "=" . functionCall
   249                    | assignable "=" . ":"
   251                    | assignable "=" . returnControl
-  351 returnControl: . "return"
-  352              | . "return" variable
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -10807,9 +10811,9 @@ state 176
 
 state 177
 
-  356 lineEnd: "line comment" "end of line" .
+  358 lineEnd: "line comment" "end of line" .
 
-    $default  reduce using rule 356 (lineEnd)
+    $default  reduce using rule 358 (lineEnd)
 
 
 state 178
@@ -12117,15 +12121,15 @@ state 202
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -12194,15 +12198,21 @@ state 203
 state 204
 
   294 selectConditionBreak: "," . "end of line"
+  296                     | "," .  ["case", "line comment"]
 
     "end of line"  shift, and go to state 359
+
+    $default  reduce using rule 296 (selectConditionBreak)
 
 
 state 205
 
   295 selectConditionBreak: ";" . "end of line"
+  297                     | ";" .  ["case", "line comment"]
 
     "end of line"  shift, and go to state 360
+
+    $default  reduce using rule 297 (selectConditionBreak)
 
 
 state 206
@@ -12212,6 +12222,8 @@ state 206
   293 selectConditionBreak: . "end of line"
   294                     | . "," "end of line"
   295                     | . ";" "end of line"
+  296                     | . ","
+  297                     | . ";"
 
     "end of line"  shift, and go to state 203
     ","            shift, and go to state 204
@@ -12224,14 +12236,14 @@ state 207
 
   287 selectControl: "select" selectable selectConditionBreak . casesControl "end"
   288              | "select" selectable selectConditionBreak . casesControl else elseBody "end"
-  296 casesControl: . "case" variable caseControlBreak caseBody
-  297             | . comments "case" variable caseControlBreak caseBody
-  298             | . "case" variable "line comment" "end of line" caseBody
-  299             | . comments "case" variable "line comment" "end of line" caseBody
-  300             | . casesControl "case" variable caseControlBreak caseBody
-  301             | . casesControl "case" variable "line comment" "end of line" caseBody
-  353 comments: . "line comment" "end of line"
-  354         | . comments "line comment" "end of line"
+  298 casesControl: . "case" variable caseControlBreak caseBody
+  299             | . comments "case" variable caseControlBreak caseBody
+  300             | . "case" variable "line comment" "end of line" caseBody
+  301             | . comments "case" variable "line comment" "end of line" caseBody
+  302             | . casesControl "case" variable caseControlBreak caseBody
+  303             | . casesControl "case" variable "line comment" "end of line" caseBody
+  355 comments: . "line comment" "end of line"
+  356         | . comments "line comment" "end of line"
 
     "case"          shift, and go to state 362
     "line comment"  shift, and go to state 363
@@ -12303,8 +12315,8 @@ state 214
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -12348,8 +12360,8 @@ state 218
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -12397,7 +12409,7 @@ state 220
 
 state 221
 
-  314 forControl: "for" "(" "identifier" . "=" forIterator ")" forConditionBreak forBody "end"
+  316 forControl: "for" "(" "identifier" . "=" forIterator ")" forConditionBreak forBody "end"
 
     "="  shift, and go to state 384
 
@@ -12469,9 +12481,9 @@ state 222
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  313 forControl: "for" "identifier" "=" . forIterator forConditionBreak forBody "end"
-  315 forIterator: . functionCall
-  316            | . variable
+  315 forControl: "for" "identifier" "=" . forIterator forConditionBreak forBody "end"
+  317 forIterator: . functionCall
+  318            | . variable
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -12502,54 +12514,54 @@ state 222
 
 state 223
 
-  330 whileConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  339                    | "," . "end of line"
+  332 whileConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  341                    | "," . "end of line"
 
     "end of line"  shift, and go to state 388
 
-    $default  reduce using rule 330 (whileConditionBreak)
+    $default  reduce using rule 332 (whileConditionBreak)
 
 
 state 224
 
-  331 whileConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  340                    | ";" . "end of line"
+  333 whileConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  342                    | ";" . "end of line"
 
     "end of line"  shift, and go to state 389
 
-    $default  reduce using rule 331 (whileConditionBreak)
+    $default  reduce using rule 333 (whileConditionBreak)
 
 
 state 225
 
-  335 whileConditionBreak: "then" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  336                    | "then" . ","
-  337                    | "then" . ";"
-  344                    | "then" . "end of line"
-  345                    | "then" . "," "end of line"
-  346                    | "then" . ";" "end of line"
+  337 whileConditionBreak: "then" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  338                    | "then" . ","
+  339                    | "then" . ";"
+  346                    | "then" . "end of line"
+  347                    | "then" . "," "end of line"
+  348                    | "then" . ";" "end of line"
 
     "end of line"  shift, and go to state 390
     ","            shift, and go to state 391
     ";"            shift, and go to state 392
 
-    $default  reduce using rule 335 (whileConditionBreak)
+    $default  reduce using rule 337 (whileConditionBreak)
 
 
 state 226
 
-  332 whileConditionBreak: "do" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  333                    | "do" . ","
-  334                    | "do" . ";"
-  341                    | "do" . "end of line"
-  342                    | "do" . "," "end of line"
-  343                    | "do" . ";" "end of line"
+  334 whileConditionBreak: "do" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  335                    | "do" . ","
+  336                    | "do" . ";"
+  343                    | "do" . "end of line"
+  344                    | "do" . "," "end of line"
+  345                    | "do" . ";" "end of line"
 
     "end of line"  shift, and go to state 393
     ","            shift, and go to state 394
     ";"            shift, and go to state 395
 
-    $default  reduce using rule 332 (whileConditionBreak)
+    $default  reduce using rule 334 (whileConditionBreak)
 
 
 state 227
@@ -12690,18 +12702,18 @@ state 227
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  327             | "while" condition whileConditionBreak . whileBody "end"
-  328 whileBody: . expressions
-  329          | .  ["end"]
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  329             | "while" condition whileConditionBreak . whileBody "end"
+  330 whileBody: . expressions
+  331          | .  ["end"]
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -12730,7 +12742,7 @@ state 227
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "end"  reduce using rule 329 (whileBody)
+    "end"  reduce using rule 331 (whileBody)
 
     expressions            go to state 396
     recursiveExpression    go to state 30
@@ -12760,15 +12772,15 @@ state 227
 
 state 228
 
-  338 whileConditionBreak: lineEnd .
+  340 whileConditionBreak: lineEnd .
 
-    $default  reduce using rule 338 (whileConditionBreak)
+    $default  reduce using rule 340 (whileConditionBreak)
 
 
 state 229
 
-  347 tryControl: "try" "end of line" expressions . "catch" "end of line" expressions "end"
-  349           | "try" "end of line" expressions . "catch" "line comment" "end of line" expressions "end"
+  349 tryControl: "try" "end of line" expressions . "catch" "end of line" expressions "end"
+  351           | "try" "end of line" expressions . "catch" "line comment" "end of line" expressions "end"
 
     "catch"  shift, and go to state 398
 
@@ -12911,17 +12923,17 @@ state 230
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | "try" "line comment" "end of line" . expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | "try" "line comment" "end of line" . expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | "try" "line comment" "end of line" . expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | "try" "line comment" "end of line" . expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -22489,14 +22501,14 @@ state 361
 
   289 selectControl: "select" selectable "line comment" selectConditionBreak . casesControl "end"
   290              | "select" selectable "line comment" selectConditionBreak . casesControl else elseBody "end"
-  296 casesControl: . "case" variable caseControlBreak caseBody
-  297             | . comments "case" variable caseControlBreak caseBody
-  298             | . "case" variable "line comment" "end of line" caseBody
-  299             | . comments "case" variable "line comment" "end of line" caseBody
-  300             | . casesControl "case" variable caseControlBreak caseBody
-  301             | . casesControl "case" variable "line comment" "end of line" caseBody
-  353 comments: . "line comment" "end of line"
-  354         | . comments "line comment" "end of line"
+  298 casesControl: . "case" variable caseControlBreak caseBody
+  299             | . comments "case" variable caseControlBreak caseBody
+  300             | . "case" variable "line comment" "end of line" caseBody
+  301             | . comments "case" variable "line comment" "end of line" caseBody
+  302             | . casesControl "case" variable caseControlBreak caseBody
+  303             | . casesControl "case" variable "line comment" "end of line" caseBody
+  355 comments: . "line comment" "end of line"
+  356         | . comments "line comment" "end of line"
 
     "case"          shift, and go to state 362
     "line comment"  shift, and go to state 363
@@ -22572,8 +22584,8 @@ state 362
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  296 casesControl: "case" . variable caseControlBreak caseBody
-  298             | "case" . variable "line comment" "end of line" caseBody
+  298 casesControl: "case" . variable caseControlBreak caseBody
+  300             | "case" . variable "line comment" "end of line" caseBody
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -22603,7 +22615,7 @@ state 362
 
 state 363
 
-  353 comments: "line comment" . "end of line"
+  355 comments: "line comment" . "end of line"
 
     "end of line"  shift, and go to state 427
 
@@ -22618,8 +22630,8 @@ state 364
   283     | . "else" ";" "end of line"
   287 selectControl: "select" selectable selectConditionBreak casesControl . "end"
   288              | "select" selectable selectConditionBreak casesControl . else elseBody "end"
-  300 casesControl: casesControl . "case" variable caseControlBreak caseBody
-  301             | casesControl . "case" variable "line comment" "end of line" caseBody
+  302 casesControl: casesControl . "case" variable caseControlBreak caseBody
+  303             | casesControl . "case" variable "line comment" "end of line" caseBody
 
     "else"  shift, and go to state 420
     "end"   shift, and go to state 428
@@ -22630,9 +22642,9 @@ state 364
 
 state 365
 
-  297 casesControl: comments . "case" variable caseControlBreak caseBody
-  299             | comments . "case" variable "line comment" "end of line" caseBody
-  354 comments: comments . "line comment" "end of line"
+  299 casesControl: comments . "case" variable caseControlBreak caseBody
+  301             | comments . "case" variable "line comment" "end of line" caseBody
+  356 comments: comments . "line comment" "end of line"
 
     "case"          shift, and go to state 431
     "line comment"  shift, and go to state 432
@@ -22854,15 +22866,15 @@ state 374
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -23100,15 +23112,15 @@ state 379
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -23199,8 +23211,8 @@ state 383
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -23278,9 +23290,9 @@ state 384
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  314 forControl: "for" "(" "identifier" "=" . forIterator ")" forConditionBreak forBody "end"
-  315 forIterator: . functionCall
-  316            | . variable
+  316 forControl: "for" "(" "identifier" "=" . forIterator ")" forConditionBreak forBody "end"
+  317 forIterator: . functionCall
+  318            | . variable
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -23381,7 +23393,7 @@ state 385
   188 variable: functionCall . "." variable
   189         | functionCall . "." functionCall
   191         | functionCall . listableEnd
-  315 forIterator: functionCall .  [error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", "(", ")", "[", "{", "if", "end", "select", "function", "#function", "hidden", "for", "while", "do", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  317 forIterator: functionCall .  [error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", "(", ")", "[", "{", "if", "end", "select", "function", "#function", "hidden", "for", "while", "do", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "'"         shift, and go to state 117
     ":"         shift, and go to state 118
@@ -23412,15 +23424,15 @@ state 385
     "|"         shift, and go to state 143
     "||"        shift, and go to state 144
 
-    $default  reduce using rule 315 (forIterator)
+    $default  reduce using rule 317 (forIterator)
 
     rightComparable  go to state 146
     rightOperand     go to state 147
     listableBegin    go to state 148
     listableEnd      go to state 149
 
-    Conflict between rule 315 and token "+" resolved as shift (UPLEVEL < "+").
-    Conflict between rule 315 and token "-" resolved as shift (UPLEVEL < "-").
+    Conflict between rule 317 and token "+" resolved as shift (UPLEVEL < "+").
+    Conflict between rule 317 and token "-" resolved as shift (UPLEVEL < "-").
 
 
 state 386
@@ -23495,7 +23507,7 @@ state 386
   186 variable: variable . "." "identifier"
   187         | variable . "." functionCall
   190         | variable . listableEnd
-  316 forIterator: variable .  [error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", "(", ")", "[", "{", "if", "end", "select", "function", "#function", "hidden", "for", "while", "do", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  318 forIterator: variable .  [error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", "(", ")", "[", "{", "if", "end", "select", "function", "#function", "hidden", "for", "while", "do", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "'"         shift, and go to state 152
     ":"         shift, and go to state 118
@@ -23526,125 +23538,125 @@ state 386
     "|"         shift, and go to state 143
     "||"        shift, and go to state 144
 
-    $default  reduce using rule 316 (forIterator)
+    $default  reduce using rule 318 (forIterator)
 
     rightComparable  go to state 157
     rightOperand     go to state 158
     listableBegin    go to state 148
     listableEnd      go to state 159
 
-    Conflict between rule 316 and token "+" resolved as shift (UPLEVEL < "+").
-    Conflict between rule 316 and token "-" resolved as shift (UPLEVEL < "-").
+    Conflict between rule 318 and token "+" resolved as shift (UPLEVEL < "+").
+    Conflict between rule 318 and token "-" resolved as shift (UPLEVEL < "-").
 
 
 state 387
 
-  313 forControl: "for" "identifier" "=" forIterator . forConditionBreak forBody "end"
-  317 forConditionBreak: . "end of line"
-  318                  | . ";"
-  319                  | . ";" "end of line"
-  320                  | . ","
-  321                  | . "," "end of line"
-  322                  | . "do"
-  323                  | . "do" "end of line"
-  324                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  315 forControl: "for" "identifier" "=" forIterator . forConditionBreak forBody "end"
+  319 forConditionBreak: . "end of line"
+  320                  | . ";"
+  321                  | . ";" "end of line"
+  322                  | . ","
+  323                  | . "," "end of line"
+  324                  | . "do"
+  325                  | . "do" "end of line"
+  326                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  shift, and go to state 451
     ","            shift, and go to state 452
     ";"            shift, and go to state 453
     "do"           shift, and go to state 454
 
-    $default  reduce using rule 324 (forConditionBreak)
+    $default  reduce using rule 326 (forConditionBreak)
 
     forConditionBreak  go to state 455
 
 
 state 388
 
-  339 whileConditionBreak: "," "end of line" .
-
-    $default  reduce using rule 339 (whileConditionBreak)
-
-
-state 389
-
-  340 whileConditionBreak: ";" "end of line" .
-
-    $default  reduce using rule 340 (whileConditionBreak)
-
-
-state 390
-
-  344 whileConditionBreak: "then" "end of line" .
-
-    $default  reduce using rule 344 (whileConditionBreak)
-
-
-state 391
-
-  336 whileConditionBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  345                    | "then" "," . "end of line"
-
-    "end of line"  shift, and go to state 456
-
-    $default  reduce using rule 336 (whileConditionBreak)
-
-
-state 392
-
-  337 whileConditionBreak: "then" ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  346                    | "then" ";" . "end of line"
-
-    "end of line"  shift, and go to state 457
-
-    $default  reduce using rule 337 (whileConditionBreak)
-
-
-state 393
-
-  341 whileConditionBreak: "do" "end of line" .
+  341 whileConditionBreak: "," "end of line" .
 
     $default  reduce using rule 341 (whileConditionBreak)
 
 
+state 389
+
+  342 whileConditionBreak: ";" "end of line" .
+
+    $default  reduce using rule 342 (whileConditionBreak)
+
+
+state 390
+
+  346 whileConditionBreak: "then" "end of line" .
+
+    $default  reduce using rule 346 (whileConditionBreak)
+
+
+state 391
+
+  338 whileConditionBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  347                    | "then" "," . "end of line"
+
+    "end of line"  shift, and go to state 456
+
+    $default  reduce using rule 338 (whileConditionBreak)
+
+
+state 392
+
+  339 whileConditionBreak: "then" ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  348                    | "then" ";" . "end of line"
+
+    "end of line"  shift, and go to state 457
+
+    $default  reduce using rule 339 (whileConditionBreak)
+
+
+state 393
+
+  343 whileConditionBreak: "do" "end of line" .
+
+    $default  reduce using rule 343 (whileConditionBreak)
+
+
 state 394
 
-  333 whileConditionBreak: "do" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  342                    | "do" "," . "end of line"
+  335 whileConditionBreak: "do" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  344                    | "do" "," . "end of line"
 
     "end of line"  shift, and go to state 458
 
-    $default  reduce using rule 333 (whileConditionBreak)
+    $default  reduce using rule 335 (whileConditionBreak)
 
 
 state 395
 
-  334 whileConditionBreak: "do" ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  343                    | "do" ";" . "end of line"
+  336 whileConditionBreak: "do" ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  345                    | "do" ";" . "end of line"
 
     "end of line"  shift, and go to state 459
 
-    $default  reduce using rule 334 (whileConditionBreak)
+    $default  reduce using rule 336 (whileConditionBreak)
 
 
 state 396
 
-  328 whileBody: expressions .
+  330 whileBody: expressions .
 
-    $default  reduce using rule 328 (whileBody)
+    $default  reduce using rule 330 (whileBody)
 
 
 state 397
 
-  327 whileControl: "while" condition whileConditionBreak whileBody . "end"
+  329 whileControl: "while" condition whileConditionBreak whileBody . "end"
 
     "end"  shift, and go to state 460
 
 
 state 398
 
-  347 tryControl: "try" "end of line" expressions "catch" . "end of line" expressions "end"
-  349           | "try" "end of line" expressions "catch" . "line comment" "end of line" expressions "end"
+  349 tryControl: "try" "end of line" expressions "catch" . "end of line" expressions "end"
+  351           | "try" "end of line" expressions "catch" . "line comment" "end of line" expressions "end"
 
     "end of line"   shift, and go to state 461
     "line comment"  shift, and go to state 462
@@ -23652,8 +23664,8 @@ state 398
 
 state 399
 
-  348 tryControl: "try" "line comment" "end of line" expressions . "catch" "end of line" expressions "end"
-  350           | "try" "line comment" "end of line" expressions . "catch" "line comment" "end of line" expressions "end"
+  350 tryControl: "try" "line comment" "end of line" expressions . "catch" "end of line" expressions "end"
+  352           | "try" "line comment" "end of line" expressions . "catch" "line comment" "end of line" expressions "end"
 
     "catch"  shift, and go to state 463
 
@@ -24545,15 +24557,15 @@ state 423
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -24627,8 +24639,8 @@ state 425
   283     | . "else" ";" "end of line"
   289 selectControl: "select" selectable "line comment" selectConditionBreak casesControl . "end"
   290              | "select" selectable "line comment" selectConditionBreak casesControl . else elseBody "end"
-  300 casesControl: casesControl . "case" variable caseControlBreak caseBody
-  301             | casesControl . "case" variable "line comment" "end of line" caseBody
+  302 casesControl: casesControl . "case" variable caseControlBreak caseBody
+  303             | casesControl . "case" variable "line comment" "end of line" caseBody
 
     "else"  shift, and go to state 420
     "end"   shift, and go to state 472
@@ -24709,17 +24721,17 @@ state 426
   186 variable: variable . "." "identifier"
   187         | variable . "." functionCall
   190         | variable . listableEnd
-  296 casesControl: "case" variable . caseControlBreak caseBody
-  298             | "case" variable . "line comment" "end of line" caseBody
-  304 caseControlBreak: . "then"
-  305                 | . ","
-  306                 | . ";"
-  307                 | . "end of line"
-  308                 | . "then" "end of line"
-  309                 | . "," "end of line"
-  310                 | . ";" "end of line"
-  311                 | . "then" ","
-  312                 | . "then" "," "end of line"
+  298 casesControl: "case" variable . caseControlBreak caseBody
+  300             | "case" variable . "line comment" "end of line" caseBody
+  306 caseControlBreak: . "then"
+  307                 | . ","
+  308                 | . ";"
+  309                 | . "end of line"
+  310                 | . "then" "end of line"
+  311                 | . "," "end of line"
+  312                 | . ";" "end of line"
+  313                 | . "then" ","
+  314                 | . "then" "," "end of line"
 
     "end of line"   shift, and go to state 474
     "'"             shift, and go to state 152
@@ -24764,9 +24776,9 @@ state 426
 
 state 427
 
-  353 comments: "line comment" "end of line" .
+  355 comments: "line comment" "end of line" .
 
-    $default  reduce using rule 353 (comments)
+    $default  reduce using rule 355 (comments)
 
 
 state 428
@@ -24843,8 +24855,8 @@ state 429
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  300 casesControl: casesControl "case" . variable caseControlBreak caseBody
-  301             | casesControl "case" . variable "line comment" "end of line" caseBody
+  302 casesControl: casesControl "case" . variable caseControlBreak caseBody
+  303             | casesControl "case" . variable "line comment" "end of line" caseBody
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -25013,15 +25025,15 @@ state 430
   288              | "select" selectable selectConditionBreak casesControl else . elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -25145,8 +25157,8 @@ state 431
   223       | . "[" matrixOrCellColumns "]"
   224       | . "[" lineEnd matrixOrCellColumns "]"
   225       | . "[" "]"
-  297 casesControl: comments "case" . variable caseControlBreak caseBody
-  299             | comments "case" . variable "line comment" "end of line" caseBody
+  299 casesControl: comments "case" . variable caseControlBreak caseBody
+  301             | comments "case" . variable "line comment" "end of line" caseBody
 
     "%t or %T"    shift, and go to state 3
     "%f or %F"    shift, and go to state 4
@@ -25176,7 +25188,7 @@ state 431
 
 state 432
 
-  354 comments: comments "line comment" . "end of line"
+  356 comments: comments "line comment" . "end of line"
 
     "end of line"  shift, and go to state 483
 
@@ -25227,8 +25239,8 @@ state 437
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -25301,8 +25313,8 @@ state 444
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -25495,15 +25507,15 @@ state 449
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -25563,46 +25575,46 @@ state 449
 
 state 450
 
-  314 forControl: "for" "(" "identifier" "=" forIterator . ")" forConditionBreak forBody "end"
+  316 forControl: "for" "(" "identifier" "=" forIterator . ")" forConditionBreak forBody "end"
 
     ")"  shift, and go to state 498
 
 
 state 451
 
-  317 forConditionBreak: "end of line" .
+  319 forConditionBreak: "end of line" .
 
-    $default  reduce using rule 317 (forConditionBreak)
+    $default  reduce using rule 319 (forConditionBreak)
 
 
 state 452
 
-  320 forConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  321                  | "," . "end of line"
+  322 forConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  323                  | "," . "end of line"
 
     "end of line"  shift, and go to state 499
 
-    $default  reduce using rule 320 (forConditionBreak)
+    $default  reduce using rule 322 (forConditionBreak)
 
 
 state 453
 
-  318 forConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  319                  | ";" . "end of line"
+  320 forConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  321                  | ";" . "end of line"
 
     "end of line"  shift, and go to state 500
 
-    $default  reduce using rule 318 (forConditionBreak)
+    $default  reduce using rule 320 (forConditionBreak)
 
 
 state 454
 
-  322 forConditionBreak: "do" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  323                  | "do" . "end of line"
+  324 forConditionBreak: "do" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  325                  | "do" . "end of line"
 
     "end of line"  shift, and go to state 501
 
-    $default  reduce using rule 322 (forConditionBreak)
+    $default  reduce using rule 324 (forConditionBreak)
 
 
 state 455
@@ -25743,18 +25755,18 @@ state 455
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  313           | "for" "identifier" "=" forIterator forConditionBreak . forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  325 forBody: . expressions
-  326        | .  ["end"]
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  315           | "for" "identifier" "=" forIterator forConditionBreak . forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  327 forBody: . expressions
+  328        | .  ["end"]
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -25783,7 +25795,7 @@ state 455
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "end"  reduce using rule 326 (forBody)
+    "end"  reduce using rule 328 (forBody)
 
     expressions            go to state 502
     recursiveExpression    go to state 30
@@ -25813,37 +25825,37 @@ state 455
 
 state 456
 
-  345 whileConditionBreak: "then" "," "end of line" .
+  347 whileConditionBreak: "then" "," "end of line" .
 
-    $default  reduce using rule 345 (whileConditionBreak)
+    $default  reduce using rule 347 (whileConditionBreak)
 
 
 state 457
 
-  346 whileConditionBreak: "then" ";" "end of line" .
+  348 whileConditionBreak: "then" ";" "end of line" .
 
-    $default  reduce using rule 346 (whileConditionBreak)
+    $default  reduce using rule 348 (whileConditionBreak)
 
 
 state 458
 
-  342 whileConditionBreak: "do" "," "end of line" .
+  344 whileConditionBreak: "do" "," "end of line" .
 
-    $default  reduce using rule 342 (whileConditionBreak)
+    $default  reduce using rule 344 (whileConditionBreak)
 
 
 state 459
 
-  343 whileConditionBreak: "do" ";" "end of line" .
+  345 whileConditionBreak: "do" ";" "end of line" .
 
-    $default  reduce using rule 343 (whileConditionBreak)
+    $default  reduce using rule 345 (whileConditionBreak)
 
 
 state 460
 
-  327 whileControl: "while" condition whileConditionBreak whileBody "end" .
+  329 whileControl: "while" condition whileConditionBreak whileBody "end" .
 
-    $default  reduce using rule 327 (whileControl)
+    $default  reduce using rule 329 (whileControl)
 
 
 state 461
@@ -25984,16 +25996,16 @@ state 461
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  347           | "try" "end of line" expressions "catch" "end of line" . expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  349           | "try" "end of line" expressions "catch" "end of line" . expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -26049,15 +26061,15 @@ state 461
 
 state 462
 
-  349 tryControl: "try" "end of line" expressions "catch" "line comment" . "end of line" expressions "end"
+  351 tryControl: "try" "end of line" expressions "catch" "line comment" . "end of line" expressions "end"
 
     "end of line"  shift, and go to state 505
 
 
 state 463
 
-  348 tryControl: "try" "line comment" "end of line" expressions "catch" . "end of line" expressions "end"
-  350           | "try" "line comment" "end of line" expressions "catch" . "line comment" "end of line" expressions "end"
+  350 tryControl: "try" "line comment" "end of line" expressions "catch" . "end of line" expressions "end"
+  352           | "try" "line comment" "end of line" expressions "catch" . "line comment" "end of line" expressions "end"
 
     "end of line"   shift, and go to state 506
     "line comment"  shift, and go to state 507
@@ -26294,15 +26306,15 @@ state 473
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
   290              | "select" selectable "line comment" selectConditionBreak casesControl else . elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -26361,47 +26373,47 @@ state 473
 
 state 474
 
-  307 caseControlBreak: "end of line" .
+  309 caseControlBreak: "end of line" .
 
-    $default  reduce using rule 307 (caseControlBreak)
+    $default  reduce using rule 309 (caseControlBreak)
 
 
 state 475
 
-  305 caseControlBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  309                 | "," . "end of line"
+  307 caseControlBreak: "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  311                 | "," . "end of line"
 
     "end of line"  shift, and go to state 513
 
-    $default  reduce using rule 305 (caseControlBreak)
+    $default  reduce using rule 307 (caseControlBreak)
 
 
 state 476
 
-  306 caseControlBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  310                 | ";" . "end of line"
+  308 caseControlBreak: ";" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  312                 | ";" . "end of line"
 
     "end of line"  shift, and go to state 514
 
-    $default  reduce using rule 306 (caseControlBreak)
+    $default  reduce using rule 308 (caseControlBreak)
 
 
 state 477
 
-  304 caseControlBreak: "then" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  308                 | "then" . "end of line"
-  311                 | "then" . ","
-  312                 | "then" . "," "end of line"
+  306 caseControlBreak: "then" .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  310                 | "then" . "end of line"
+  313                 | "then" . ","
+  314                 | "then" . "," "end of line"
 
     "end of line"  shift, and go to state 515
     ","            shift, and go to state 516
 
-    $default  reduce using rule 304 (caseControlBreak)
+    $default  reduce using rule 306 (caseControlBreak)
 
 
 state 478
 
-  298 casesControl: "case" variable "line comment" . "end of line" caseBody
+  300 casesControl: "case" variable "line comment" . "end of line" caseBody
 
     "end of line"  shift, and go to state 517
 
@@ -26544,18 +26556,18 @@ state 479
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  296 casesControl: "case" variable caseControlBreak . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  298 casesControl: "case" variable caseControlBreak . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -26584,9 +26596,9 @@ state 479
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -26686,17 +26698,17 @@ state 480
   186 variable: variable . "." "identifier"
   187         | variable . "." functionCall
   190         | variable . listableEnd
-  300 casesControl: casesControl "case" variable . caseControlBreak caseBody
-  301             | casesControl "case" variable . "line comment" "end of line" caseBody
-  304 caseControlBreak: . "then"
-  305                 | . ","
-  306                 | . ";"
-  307                 | . "end of line"
-  308                 | . "then" "end of line"
-  309                 | . "," "end of line"
-  310                 | . ";" "end of line"
-  311                 | . "then" ","
-  312                 | . "then" "," "end of line"
+  302 casesControl: casesControl "case" variable . caseControlBreak caseBody
+  303             | casesControl "case" variable . "line comment" "end of line" caseBody
+  306 caseControlBreak: . "then"
+  307                 | . ","
+  308                 | . ";"
+  309                 | . "end of line"
+  310                 | . "then" "end of line"
+  311                 | . "," "end of line"
+  312                 | . ";" "end of line"
+  313                 | . "then" ","
+  314                 | . "then" "," "end of line"
 
     "end of line"   shift, and go to state 474
     "'"             shift, and go to state 152
@@ -26818,17 +26830,17 @@ state 482
   186 variable: variable . "." "identifier"
   187         | variable . "." functionCall
   190         | variable . listableEnd
-  297 casesControl: comments "case" variable . caseControlBreak caseBody
-  299             | comments "case" variable . "line comment" "end of line" caseBody
-  304 caseControlBreak: . "then"
-  305                 | . ","
-  306                 | . ";"
-  307                 | . "end of line"
-  308                 | . "then" "end of line"
-  309                 | . "," "end of line"
-  310                 | . ";" "end of line"
-  311                 | . "then" ","
-  312                 | . "then" "," "end of line"
+  299 casesControl: comments "case" variable . caseControlBreak caseBody
+  301             | comments "case" variable . "line comment" "end of line" caseBody
+  306 caseControlBreak: . "then"
+  307                 | . ","
+  308                 | . ";"
+  309                 | . "end of line"
+  310                 | . "then" "end of line"
+  311                 | . "," "end of line"
+  312                 | . ";" "end of line"
+  313                 | . "then" ","
+  314                 | . "then" "," "end of line"
 
     "end of line"   shift, and go to state 474
     "'"             shift, and go to state 152
@@ -26873,9 +26885,9 @@ state 482
 
 state 483
 
-  354 comments: comments "line comment" "end of line" .
+  356 comments: comments "line comment" "end of line" .
 
-    $default  reduce using rule 354 (comments)
+    $default  reduce using rule 356 (comments)
 
 
 state 484
@@ -26887,8 +26899,8 @@ state 484
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -27056,15 +27068,15 @@ state 486
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -27145,8 +27157,8 @@ state 489
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -27314,15 +27326,15 @@ state 491
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -27426,8 +27438,8 @@ state 496
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -27449,64 +27461,64 @@ state 497
 
 state 498
 
-  314 forControl: "for" "(" "identifier" "=" forIterator ")" . forConditionBreak forBody "end"
-  317 forConditionBreak: . "end of line"
-  318                  | . ";"
-  319                  | . ";" "end of line"
-  320                  | . ","
-  321                  | . "," "end of line"
-  322                  | . "do"
-  323                  | . "do" "end of line"
-  324                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  316 forControl: "for" "(" "identifier" "=" forIterator ")" . forConditionBreak forBody "end"
+  319 forConditionBreak: . "end of line"
+  320                  | . ";"
+  321                  | . ";" "end of line"
+  322                  | . ","
+  323                  | . "," "end of line"
+  324                  | . "do"
+  325                  | . "do" "end of line"
+  326                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  shift, and go to state 451
     ","            shift, and go to state 452
     ";"            shift, and go to state 453
     "do"           shift, and go to state 454
 
-    $default  reduce using rule 324 (forConditionBreak)
+    $default  reduce using rule 326 (forConditionBreak)
 
     forConditionBreak  go to state 536
 
 
 state 499
 
-  321 forConditionBreak: "," "end of line" .
-
-    $default  reduce using rule 321 (forConditionBreak)
-
-
-state 500
-
-  319 forConditionBreak: ";" "end of line" .
-
-    $default  reduce using rule 319 (forConditionBreak)
-
-
-state 501
-
-  323 forConditionBreak: "do" "end of line" .
+  323 forConditionBreak: "," "end of line" .
 
     $default  reduce using rule 323 (forConditionBreak)
 
 
+state 500
+
+  321 forConditionBreak: ";" "end of line" .
+
+    $default  reduce using rule 321 (forConditionBreak)
+
+
+state 501
+
+  325 forConditionBreak: "do" "end of line" .
+
+    $default  reduce using rule 325 (forConditionBreak)
+
+
 state 502
 
-  325 forBody: expressions .
+  327 forBody: expressions .
 
-    $default  reduce using rule 325 (forBody)
+    $default  reduce using rule 327 (forBody)
 
 
 state 503
 
-  313 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody . "end"
+  315 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody . "end"
 
     "end"  shift, and go to state 537
 
 
 state 504
 
-  347 tryControl: "try" "end of line" expressions "catch" "end of line" expressions . "end"
+  349 tryControl: "try" "end of line" expressions "catch" "end of line" expressions . "end"
 
     "end"  shift, and go to state 538
 
@@ -27649,16 +27661,16 @@ state 505
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  349           | "try" "end of line" expressions "catch" "line comment" "end of line" . expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  351           | "try" "end of line" expressions "catch" "line comment" "end of line" . expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -27850,16 +27862,16 @@ state 506
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | "try" "line comment" "end of line" expressions "catch" "end of line" . expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | "try" "line comment" "end of line" expressions "catch" "end of line" . expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -27915,7 +27927,7 @@ state 506
 
 state 507
 
-  350 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" . "end of line" expressions "end"
+  352 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" . "end of line" expressions "end"
 
     "end of line"  shift, and go to state 541
 
@@ -28077,15 +28089,15 @@ state 510
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -28160,33 +28172,33 @@ state 512
 
 state 513
 
-  309 caseControlBreak: "," "end of line" .
+  311 caseControlBreak: "," "end of line" .
 
-    $default  reduce using rule 309 (caseControlBreak)
+    $default  reduce using rule 311 (caseControlBreak)
 
 
 state 514
 
-  310 caseControlBreak: ";" "end of line" .
+  312 caseControlBreak: ";" "end of line" .
 
-    $default  reduce using rule 310 (caseControlBreak)
+    $default  reduce using rule 312 (caseControlBreak)
 
 
 state 515
 
-  308 caseControlBreak: "then" "end of line" .
+  310 caseControlBreak: "then" "end of line" .
 
-    $default  reduce using rule 308 (caseControlBreak)
+    $default  reduce using rule 310 (caseControlBreak)
 
 
 state 516
 
-  311 caseControlBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
-  312                 | "then" "," . "end of line"
+  313 caseControlBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "#function", "hidden", "for", "while", "break", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  314                 | "then" "," . "end of line"
 
     "end of line"  shift, and go to state 544
 
-    $default  reduce using rule 311 (caseControlBreak)
+    $default  reduce using rule 313 (caseControlBreak)
 
 
 state 517
@@ -28327,18 +28339,18 @@ state 517
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  298 casesControl: "case" variable "line comment" "end of line" . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  300 casesControl: "case" variable "line comment" "end of line" . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -28367,9 +28379,9 @@ state 517
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -28399,21 +28411,21 @@ state 517
 
 state 518
 
-  302 caseBody: expressions .
+  304 caseBody: expressions .
 
-    $default  reduce using rule 302 (caseBody)
+    $default  reduce using rule 304 (caseBody)
 
 
 state 519
 
-  296 casesControl: "case" variable caseControlBreak caseBody .
+  298 casesControl: "case" variable caseControlBreak caseBody .
 
-    $default  reduce using rule 296 (casesControl)
+    $default  reduce using rule 298 (casesControl)
 
 
 state 520
 
-  301 casesControl: casesControl "case" variable "line comment" . "end of line" caseBody
+  303 casesControl: casesControl "case" variable "line comment" . "end of line" caseBody
 
     "end of line"  shift, and go to state 546
 
@@ -28556,18 +28568,18 @@ state 521
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  300 casesControl: casesControl "case" variable caseControlBreak . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  302 casesControl: casesControl "case" variable caseControlBreak . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -28596,9 +28608,9 @@ state 521
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -28635,7 +28647,7 @@ state 522
 
 state 523
 
-  299 casesControl: comments "case" variable "line comment" . "end of line" caseBody
+  301 casesControl: comments "case" variable "line comment" . "end of line" caseBody
 
     "end of line"  shift, and go to state 548
 
@@ -28778,18 +28790,18 @@ state 524
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  297 casesControl: comments "case" variable caseControlBreak . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  299 casesControl: comments "case" variable caseControlBreak . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -28818,9 +28830,9 @@ state 524
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -28990,15 +29002,15 @@ state 525
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -29065,8 +29077,8 @@ state 526
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -29228,15 +29240,15 @@ state 528
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -29303,8 +29315,8 @@ state 529
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -29333,8 +29345,8 @@ state 531
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -29502,15 +29514,15 @@ state 533
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -29720,18 +29732,18 @@ state 536
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  314           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak . forBody "end"
-  325 forBody: . expressions
-  326        | .  ["end"]
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  316           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak . forBody "end"
+  327 forBody: . expressions
+  328        | .  ["end"]
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -29760,7 +29772,7 @@ state 536
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "end"  reduce using rule 326 (forBody)
+    "end"  reduce using rule 328 (forBody)
 
     expressions            go to state 502
     recursiveExpression    go to state 30
@@ -29790,28 +29802,28 @@ state 536
 
 state 537
 
-  313 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end" .
+  315 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end" .
 
-    $default  reduce using rule 313 (forControl)
+    $default  reduce using rule 315 (forControl)
 
 
 state 538
 
-  347 tryControl: "try" "end of line" expressions "catch" "end of line" expressions "end" .
+  349 tryControl: "try" "end of line" expressions "catch" "end of line" expressions "end" .
 
-    $default  reduce using rule 347 (tryControl)
+    $default  reduce using rule 349 (tryControl)
 
 
 state 539
 
-  349 tryControl: "try" "end of line" expressions "catch" "line comment" "end of line" expressions . "end"
+  351 tryControl: "try" "end of line" expressions "catch" "line comment" "end of line" expressions . "end"
 
     "end"  shift, and go to state 562
 
 
 state 540
 
-  348 tryControl: "try" "line comment" "end of line" expressions "catch" "end of line" expressions . "end"
+  350 tryControl: "try" "line comment" "end of line" expressions "catch" "end of line" expressions . "end"
 
     "end"  shift, and go to state 563
 
@@ -29954,16 +29966,16 @@ state 541
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" . expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" . expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -30050,16 +30062,16 @@ state 543
 
 state 544
 
-  312 caseControlBreak: "then" "," "end of line" .
+  314 caseControlBreak: "then" "," "end of line" .
 
-    $default  reduce using rule 312 (caseControlBreak)
+    $default  reduce using rule 314 (caseControlBreak)
 
 
 state 545
 
-  298 casesControl: "case" variable "line comment" "end of line" caseBody .
+  300 casesControl: "case" variable "line comment" "end of line" caseBody .
 
-    $default  reduce using rule 298 (casesControl)
+    $default  reduce using rule 300 (casesControl)
 
 
 state 546
@@ -30200,18 +30212,18 @@ state 546
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  301 casesControl: casesControl "case" variable "line comment" "end of line" . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  303 casesControl: casesControl "case" variable "line comment" "end of line" . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -30240,9 +30252,9 @@ state 546
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -30272,9 +30284,9 @@ state 546
 
 state 547
 
-  300 casesControl: casesControl "case" variable caseControlBreak caseBody .
+  302 casesControl: casesControl "case" variable caseControlBreak caseBody .
 
-    $default  reduce using rule 300 (casesControl)
+    $default  reduce using rule 302 (casesControl)
 
 
 state 548
@@ -30415,18 +30427,18 @@ state 548
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  299 casesControl: comments "case" variable "line comment" "end of line" . caseBody
-  302 caseBody: . expressions
-  303         | .  ["else", "end", "case"]
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  301 casesControl: comments "case" variable "line comment" "end of line" . caseBody
+  304 caseBody: . expressions
+  305         | .  ["else", "end", "case"]
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -30455,9 +30467,9 @@ state 548
     "number"        shift, and go to state 26
     "line comment"  shift, and go to state 27
 
-    "else"  reduce using rule 303 (caseBody)
-    "end"   reduce using rule 303 (caseBody)
-    "case"  reduce using rule 303 (caseBody)
+    "else"  reduce using rule 305 (caseBody)
+    "end"   reduce using rule 305 (caseBody)
+    "case"  reduce using rule 305 (caseBody)
 
     expressions            go to state 518
     recursiveExpression    go to state 30
@@ -30487,9 +30499,9 @@ state 548
 
 state 549
 
-  297 casesControl: comments "case" variable caseControlBreak caseBody .
+  299 casesControl: comments "case" variable caseControlBreak caseBody .
 
-    $default  reduce using rule 297 (casesControl)
+    $default  reduce using rule 299 (casesControl)
 
 
 state 550
@@ -30643,15 +30655,15 @@ state 551
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -30874,15 +30886,15 @@ state 555
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -31096,15 +31108,15 @@ state 558
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -31171,8 +31183,8 @@ state 559
    98                         | . ";" "end of line"
    99                         | . ","
   100                         | . "," "end of line"
-  355 lineEnd: . "end of line"
-  356        | . "line comment" "end of line"
+  357 lineEnd: . "end of line"
+  358        | . "line comment" "end of line"
 
     "end of line"   shift, and go to state 62
     ","             shift, and go to state 372
@@ -31194,28 +31206,28 @@ state 560
 
 state 561
 
-  314 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody . "end"
+  316 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody . "end"
 
     "end"  shift, and go to state 579
 
 
 state 562
 
-  349 tryControl: "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end" .
+  351 tryControl: "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end" .
 
-    $default  reduce using rule 349 (tryControl)
+    $default  reduce using rule 351 (tryControl)
 
 
 state 563
 
-  348 tryControl: "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end" .
+  350 tryControl: "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end" .
 
-    $default  reduce using rule 348 (tryControl)
+    $default  reduce using rule 350 (tryControl)
 
 
 state 564
 
-  350 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions . "end"
+  352 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions . "end"
 
     "end"  shift, and go to state 580
 
@@ -31361,15 +31373,15 @@ state 565
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -31435,16 +31447,16 @@ state 566
 
 state 567
 
-  301 casesControl: casesControl "case" variable "line comment" "end of line" caseBody .
+  303 casesControl: casesControl "case" variable "line comment" "end of line" caseBody .
 
-    $default  reduce using rule 301 (casesControl)
+    $default  reduce using rule 303 (casesControl)
 
 
 state 568
 
-  299 casesControl: comments "case" variable "line comment" "end of line" caseBody .
+  301 casesControl: comments "case" variable "line comment" "end of line" caseBody .
 
-    $default  reduce using rule 299 (casesControl)
+    $default  reduce using rule 301 (casesControl)
 
 
 state 569
@@ -31644,15 +31656,15 @@ state 576
   288              | . "select" selectable selectConditionBreak casesControl else elseBody "end"
   289              | . "select" selectable "line comment" selectConditionBreak casesControl "end"
   290              | . "select" selectable "line comment" selectConditionBreak casesControl else elseBody "end"
-  313 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
-  314           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
-  327 whileControl: . "while" condition whileConditionBreak whileBody "end"
-  347 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
-  348           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
-  349           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  350           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
-  351 returnControl: . "return"
-  352              | . "return" variable
+  315 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
+  316           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
+  329 whileControl: . "while" condition whileConditionBreak whileBody "end"
+  349 tryControl: . "try" "end of line" expressions "catch" "end of line" expressions "end"
+  350           | . "try" "line comment" "end of line" expressions "catch" "end of line" expressions "end"
+  351           | . "try" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  352           | . "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end"
+  353 returnControl: . "return"
+  354              | . "return" variable
 
     error           shift, and go to state 1
     "%t or %T"      shift, and go to state 3
@@ -31726,16 +31738,16 @@ state 578
 
 state 579
 
-  314 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end" .
+  316 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end" .
 
-    $default  reduce using rule 314 (forControl)
+    $default  reduce using rule 316 (forControl)
 
 
 state 580
 
-  350 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end" .
+  352 tryControl: "try" "line comment" "end of line" expressions "catch" "line comment" "end of line" expressions "end" .
 
-    $default  reduce using rule 350 (tryControl)
+    $default  reduce using rule 352 (tryControl)
 
 
 state 581
