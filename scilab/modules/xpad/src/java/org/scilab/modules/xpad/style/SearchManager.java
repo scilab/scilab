@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 package org.scilab.modules.xpad.style;
 
 import java.util.ArrayList;
@@ -6,11 +17,27 @@ import java.util.regex.Pattern;
 
 import javax.swing.text.BadLocationException;
 
+/**
+ * Class SearchManager
+ * @author Sylvestre Koumar
+ *
+ */
 public class SearchManager {
+
 	/**
 	 * FIND AND REPLACE START
+	 * @param scilabDocument document
+	 * @param word string
+	 * @param currentSelectStart int 
+	 * @param currentSelectEnd int
+	 * @param caseSensitive boolean
+	 * @param wholeWord boolean
+	 * @param useRegexp boolean
+	 * @return ArrayList
 	 */
-	public ArrayList<Integer[]> findWord(ScilabStyleDocument scilabDocument, String word,int currentSelectStart ,int currentSelectEnd, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
+	public ArrayList<Integer[]> findWord(ScilabStyleDocument scilabDocument, String word, 
+										 int currentSelectStart, int currentSelectEnd, 
+										 boolean caseSensitive, boolean wholeWord, boolean useRegexp) {
 		String fullText = getSelectedDocumentLines(scilabDocument, currentSelectStart, currentSelectEnd);
 
 		int offset = scilabDocument.getParagraphElement(currentSelectStart).getStartOffset();
@@ -25,7 +52,7 @@ public class SearchManager {
 				word = "\\b" + word + "\\b";
 			}
 			if (!caseSensitive) {
-				if (useRegexp || wholeWord ) {
+				if (useRegexp || wholeWord) {
 					word = "(?i)" + word;
 				} else {
 					fullText = fullText.toLowerCase();
@@ -41,13 +68,13 @@ public class SearchManager {
 				Matcher matcher = pattern.matcher(fullText);
 
 				while (matcher.find()) {
-					offsetList.add(new Integer[] {matcher.start()+offset ,matcher.end()+offset});
+					offsetList.add(new Integer[] {matcher.start() + offset, matcher.end() + offset});
 				}
 				// ... for other case
-			}else {
+			} else {
 				while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
 					int endIndex = lastIndex + wordSize;
-					offsetList.add(new Integer[] {lastIndex+offset ,endIndex+offset } );
+					offsetList.add(new Integer[] {lastIndex + offset, endIndex + offset});
 					lastIndex = endIndex;
 				}
 			}
@@ -55,7 +82,14 @@ public class SearchManager {
 		return offsetList;
 	}
 
-	public String getSelectedDocumentLines(ScilabStyleDocument scilabDocument, int start , int end ) {
+	/**
+	 * Get lines selected in a document
+	 * @param scilabDocument document
+	 * @param start start offset
+	 * @param end end offset
+	 * @return the selected text
+	 */
+	public String getSelectedDocumentLines(ScilabStyleDocument scilabDocument, int start , int end) {
 		int startOffset;
 		int endOffset;
 
