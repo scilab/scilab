@@ -52,6 +52,7 @@ public final class GraphActionManager {
 		
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
+				// Here we can safely cast the action according to the test.
 				return (T) defaultAction;
 			}
 		}
@@ -115,6 +116,7 @@ public final class GraphActionManager {
 
 		for (DefaultAction defaultAction : actionSet) {
 			if (defaultAction.getClass() == action) {
+				// Here we can safely cast the action according to the test.
 				return (T) defaultAction;
 			}
 		}

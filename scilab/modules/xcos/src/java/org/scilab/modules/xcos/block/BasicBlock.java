@@ -80,7 +80,6 @@ import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
@@ -94,9 +93,9 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram;
     
-    private transient int angle;
-    private transient boolean isFlipped;
-    private transient boolean isMirrored;
+    private int angle;
+    private boolean isFlipped;
+    private boolean isMirrored;
     
 
     // TODO : Must make this types evolve, but for now keep a strong link to Scilab
@@ -243,7 +242,16 @@ public class BasicBlock extends ScilabGraphUniqueObject {
      * @param interfaceFunctionName interface function name
      */
     public void setInterfaceFunctionName(String interfaceFunctionName) {
-	this.interfaceFunctionName = interfaceFunctionName;
+    	String interfunction = getInterfaceFunctionName();
+    	this.interfaceFunctionName = interfaceFunctionName;
+    	
+    	/*
+    	 * Update style
+    	 */
+    	StyleMap style = new StyleMap(getStyle());
+    	style.remove(interfunction);
+    	style.put(interfaceFunctionName, null);
+    	setStyle(style.toString());
     }
 
     /**
