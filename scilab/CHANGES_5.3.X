@@ -48,6 +48,9 @@ description.
 
 * bug 5161 fixed - The export to SVG did not work with images or html.
 
+* bug 5596 fixed - It was not possible to change text block properties (font
+  and color)
+
 * bug 6661 fixed - "Code Generation" menu failed.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
