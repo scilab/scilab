@@ -50,6 +50,9 @@ namespace symbol
 		** most recent insertion. Otherwise return the empty pointer. */
 		InternalType*	get_fun(Symbol key) const;
 
+		/*return function list in the module _stModuleName*/
+		std::list<string>& get_funlist(std::string _stModuleName);
+
 		/*print all tables*/
 		void print();
 
