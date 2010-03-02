@@ -24,9 +24,14 @@ import javax.swing.text.Element;
 
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
+/**
+ * Class for Scilab Style Documents
+ * @author Sylvestre Koumar
+ *
+ */
 public class ScilabStyleDocument extends DefaultStyledDocument {
 
-	
+
 	private boolean contentModified;
 	/*if you want to add a new style just add it in the xml*/
 	private ArrayList<String> listStylesName;
@@ -40,7 +45,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	private boolean autoColorize;
 	private volatile boolean shouldMergeEdits = false;
 	private boolean undoManagerEnabled;
-	
+
 	private String eolStyle = System.getProperty("line.separator");
 
 	/**
@@ -50,7 +55,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	public String getEncoding() {
 		return encoding;
 	}
-	
+
 	/**
 	 * set Encoding 
 	 * @param encoding encoding
@@ -66,7 +71,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	public void setEOL(String eol) {
 		this.eolStyle = eol;
 	}
-	
+
 	/**
 	 * get end of line
 	 * @return end of line
@@ -74,7 +79,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 	public String getEOL() {
 		return this.eolStyle;
 	}
-	
+
 	/**
 	 * getAutoColorize
 	 * @return true or false
@@ -83,39 +88,63 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		return autoColorize;
 	}
 
-	 public void setAutoColorize(boolean b) {
-		 autoColorize = b;
-	 }
+	/**
+	 * setAutoColorize
+	 * @param b boolean
+	 */
+	public void setAutoColorize(boolean b) {
+		autoColorize = b;
+	}
+
+	/**
+	 * isUpdater
+	 * @return boolean
+	 */
+	public boolean isUpdater() {
+		return updater;
+	}
 	
-	 public boolean isUpdater() {
-		 return updater;
-	 }
-	 public boolean getAutoIndent() {
-		 DEBUG("getAutoIndent("+autoIndent+")");
-		 return autoIndent;
-	 }
-	 public void setAutoIndent(boolean b) {
-		 DEBUG("setAutoIndent("+b+")");
-		 autoIndent = b;
-	 }
+	/**
+	 * getAutoIndent
+	 * @return boolean
+	 */
+	public boolean getAutoIndent() {
+		DEBUG("getAutoIndent(" + autoIndent + ")");
+		return autoIndent;
+	}
+	
+	/**
+	 * setAutoIndent
+	 * @param b boolean
+	 */
+	public void setAutoIndent(boolean b) {
+		DEBUG("setAutoIndent(" + b + ")");
+		autoIndent = b;
+	}
 
-	 public void setUpdater(boolean updaterDisabled) {
-		 this.updater = updaterDisabled;
-	 }
+	/**
+	 * setUpdater
+	 * @param updaterDisabled boolean
+	 */
+	public void setUpdater(boolean updaterDisabled) {
+		this.updater = updaterDisabled;
+	}
 
-	 
-    private CompoundUndoManager undo = new CompoundUndoManager();	
+	private CompoundUndoManager undo = new CompoundUndoManager();	
 
+	/**
+	 * Default Constructor
+	 */
 	public ScilabStyleDocument() {
 		super();
 		setAsynchronousLoadPriority(2);
-		
+
 		autoIndent = ConfigXpadManager.getAutoIndent();
 		autoColorize = ConfigXpadManager.getAutoColorize();
 		encoding = ConfigXpadManager.getDefaultEncoding();
-		
+
 		Hashtable< String, Color> stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
-		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold() ;
+		Hashtable< String, Boolean> stylesIsBoldTable = ConfigXpadManager.getAllisBold();
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
 
 		//xpadStyles = XpadStyles.getInstance();
@@ -136,33 +165,51 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 			StyleConstants.setBold(otherStyle, stylesIsBoldTable.get(listStylesName.get(i)));
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
-		
+
 		contentModified = false;
 
 	}
-	public Style getStyle(String styleString){
+	
+	/**
+	 * Get document style
+	 * @param styleString style
+	 * @return style
+	 */
+	public Style getStyle(String styleString) {
 		Style style = super.getStyle(styleString);
 		if (style == null) {
 			super.getStyle("Default");
 		}
 		return style;
-	 }
+	}
+	
 	// TODO: check usefulness of this method
-	public ScilabStyleDocument getScilabDocument(){
+	/**
+	 * getScilabDocument
+	 * @return ScilabStyleDocument
+	 */
+	public ScilabStyleDocument getScilabDocument() {
 		return this;
 	}
 
-	public String getText(){
+	/**
+	 * Get document text
+	 * @return String
+	 */
+	public String getText() {
 		try {
 			return getText(0, getLength());
 		} catch (BadLocationException e) {
 			return "";
 		}
 	}
-	
 
+	/**
+	 * setShouldMergeEdits
+	 * @param b boolean
+	 */
 	public void setShouldMergeEdits(boolean b) {
-	
+
 		if (shouldMergeEdits) {
 			if (!b) { // ending compound editing with a new CaretEdit
 				undo.endCompoundEdit();
@@ -173,41 +220,64 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 			}
 		}
 		shouldMergeEdits = b;
-		
+
 	}
-	
+
+	/**
+	 * getShouldMergeEdits
+	 * @return boolean
+	 */
 	public boolean getShouldMergeEdits() {
 		return shouldMergeEdits;
 	}
-	
+
+	/**
+	 * getColorize
+	 * @return boolean
+	 */
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
 	}
 
+	/**
+	 * setColorize
+	 * @param b boolean
+	 */
 	public void setColorize(boolean b) {
 		//DEBUG("setColorize("+b+")");
 		autoColorize = b;
 	}
 
-
+	/**
+	 * DEBUG
+	 * @param msg string
+	 */
 	private final void DEBUG(String msg) {
 		//System.err.println("[DEBUG] "+msg);
 	}
 
-
-
+	/**
+	 * getUndoManager
+	 * @return CompoundUndoManager
+	 */
 	public CompoundUndoManager getUndoManager() {
 		return undo;
 	}
 
+	/**
+	 * disableUndoManager
+	 */
 	public void disableUndoManager() {
 		if (undoManagerEnabled) {
 			this.removeUndoableEditListener(undo);
 			undoManagerEnabled = false;
 		}
 	}
-	
+
+	/**
+	 * enableUndoManager
+	 */
 	public void enableUndoManager() {
 		if (!undoManagerEnabled) {
 			undoManagerEnabled = true;
@@ -216,41 +286,54 @@ public class ScilabStyleDocument extends DefaultStyledDocument {
 		}
 	}
 
-
+	/**
+	 * isContentModified
+	 * @return boolean
+	 */
 	public boolean isContentModified() {
-		return contentModified && ! undo.isAtReference();
+		return contentModified && !undo.isAtReference();
 	}
 
-	
+	/**
+	 * setContentModified
+	 * @param contentModified boolean
+	 */
 	public void setContentModified(boolean contentModified) {
 		this.contentModified = contentModified;
 		if (contentModified == false) {
 			undo.setReference();
 		}
 	}
-	/*
+	/**
 	 * dump document on stderr with line positions 
 	 */
-	public void dump( ){
+	public void dump() {
 		readLock();
-		try{
-		Element root = getDefaultRootElement();
-		for(int i = 0; i!=root.getElementCount() ; ++i){
-			Element e= root.getElement(i);
-			int start = e.getStartOffset();
-			int end = e.getEndOffset();
-			System.err.println("line "+i+ " from: "+start +"to: "+end+ ":|"+getText(start, end-start)+"|");
-		}
+		try {
+			Element root = getDefaultRootElement();
+			for (int i = 0; i != root.getElementCount(); ++i) {
+				Element e = root.getElement(i);
+				int start = e.getStartOffset();
+				int end = e.getEndOffset();
+				System.err.println("line " + i + " from: " + start + "to: " + end + ":|" + getText(start, end - start) + "|");
+			}
 		} catch (BadLocationException e) {
 			System.err.println(e);
 		}
 		readUnlock();
 
 	}
-	
+
+	/**
+	 * lock
+	 */
 	public void lock() {
 		super.writeLock();
 	}
+	
+	/**
+	 * unlock
+	 */
 	public void unlock() {
 		super.writeUnlock();
 	}
