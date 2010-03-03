@@ -13,6 +13,7 @@
 package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
 import java.awt.Image;
@@ -35,7 +36,6 @@ import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
-import com.mxgraph.util.mxLightweightTextPane;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -262,18 +262,16 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 */
 	protected void drawLatexText(Icon icon, int x, int y, int w, int h,
 			Map<String, Object> style) {
-
-		mxLightweightTextPane textRenderer = mxLightweightTextPane
-		.getSharedInstance();
-
-		if (textRenderer != null && rendererPane != null) {
+		if (rendererPane != null) {
 			if (g.hitClip(x, y, w, h)) {
 				AffineTransform at = g.getTransform();
 
 				int sx = (int) (x / scale) + mxConstants.LABEL_INSET;
 				int sy = (int) (y / scale) + mxConstants.LABEL_INSET;
 				g.scale(scale, scale);
-				icon.paintIcon(textRenderer, g, sx, sy);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
+				icon.paintIcon(rendererPane, g, sx, sy);
 
 				// Restores the previous transformation
 				g.setTransform(at);
@@ -294,14 +292,13 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	protected void drawMathMLText(Component comp, int x, int y, int w, int h,
 			Map<String, Object> style) {
 
-		mxLightweightTextPane textRenderer = mxLightweightTextPane
-		.getSharedInstance();
-
-		if (textRenderer != null && rendererPane != null) {
+		if (rendererPane != null) {
 			if (g.hitClip(x, y, w, h)) {
 				AffineTransform at = g.getTransform();
 				
 				g.scale(scale, scale);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
 				rendererPane.paintComponent(g, comp, rendererPane,
 						(int) (x / scale) + mxConstants.LABEL_INSET,
 						(int) (y / scale) + mxConstants.LABEL_INSET,
