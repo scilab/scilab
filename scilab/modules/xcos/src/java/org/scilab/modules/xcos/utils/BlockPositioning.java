@@ -51,7 +51,7 @@ public final class BlockPositioning {
      * @param ports The ports we have to move on the side.
      */
 	public static void updateWestPortsPosition(BasicBlock block,
-			List<? extends BasicPort> ports) {
+			List< ? extends BasicPort> ports) {
 		
 		double gridSize;
 		if (block.getParentDiagram() == null) {

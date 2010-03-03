@@ -19,9 +19,6 @@ import com.mxgraph.util.mxEvent;
  */
 public final class XcosEvent extends mxEvent {
 
-	/** This class is a static singleton, thus it must not be instantiated */
-	private XcosEvent() { }
-
 	/**
 	 * Fired when a port as been added by the user
 	 */
@@ -36,6 +33,7 @@ public final class XcosEvent extends mxEvent {
 	 * Fired when an {@link EventInputPort} as been updated by the user
 	 */
 	public static final String IN_EVENT_VALUE_UPDATED = "InEventValueUpdated";
+
 	/**
 	 * Fired when an
 	 * {@link org.scilab.modules.xcos.port.input.ExplicitInputPort} as been
@@ -48,11 +46,11 @@ public final class XcosEvent extends mxEvent {
 	 * updated by the user
 	 */
 	public static final String IN_IMPLICIT_VALUE_UPDATED = "InImplicitValueUpdated";
-
 	/**
 	 * Fired when an {@link EventOutputPort} as been updated by the user
 	 */
 	public static final String OUT_EVENT_VALUE_UPDATED = "OutEventValueUpdated";
+
 	/**
 	 * Fired when an
 	 * {@link org.scilab.modules.xcos.port.output.ExplicitOutputPort} as been
@@ -65,10 +63,12 @@ public final class XcosEvent extends mxEvent {
 	 * updated by the user
 	 */
 	public static final String OUT_IMPLICIT_VALUE_UPDATED = "OutImplicitValueUpdated";
-
 	/**
 	 * Fired when an {@link org.scilab.modules.xcos.block.SuperBlock} as been
 	 * updated by the user
 	 */
 	public static final String SUPER_BLOCK_UPDATED = "superBlockUpdated";
+
+	/** This class is a static singleton, thus it must not be instantiated */
+	private XcosEvent() { }
 }
