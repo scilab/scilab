@@ -706,15 +706,16 @@ function p=get_entity_path(e)
 // given a handle e on an entity this function returns its path relative
 // to its parent axes.
 // the path is a vector of child index.
-  p=[];
-  while %t 
-    parent=e.parent
+  p=[];parent=e.parent;
+
+  while  %t
     pos=find(parent.children==e,1)
     if pos==[] then
       error(msprintf(_("%s : Invalid entity %s\n"),"save","Legend"))
     end
     p=[pos p]
-    if or(parent.type==['Axes' 'Figure']) then break,end
+    if parent.type=='Axes' then break,end
     e=parent
+    parent=e.parent;
   end
 endfunction
