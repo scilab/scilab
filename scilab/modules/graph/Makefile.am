@@ -84,7 +84,7 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### graph : gateway declaration ####
 libscigraph_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscigraph_la_sci_gateway_DATA = sci_gateway/graph_gateway.xml
+libscigraph_la_sci_gateway_DATA = 
 
 if GUI
 USEANT=1
