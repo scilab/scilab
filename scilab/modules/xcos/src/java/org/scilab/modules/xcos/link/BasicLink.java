@@ -49,6 +49,11 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
+/**
+ * Root base class for links.
+ * 
+ * A link is always oriented from Input to Output or from Command to Control. 
+ */
 public abstract class BasicLink extends ScilabGraphUniqueObject {
 
 	private static final long serialVersionUID = 8557979393361216098L;

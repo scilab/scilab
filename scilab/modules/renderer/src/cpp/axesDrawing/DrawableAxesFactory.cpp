@@ -53,7 +53,7 @@ void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
 
   // create ticksDrawer
   TicksDrawer * ticksDrawer = new TicksDrawer();
-  ticksDrawer->setTicksDrawer(new TicksDrawerJoGL(axes));
+  ticksDrawer->setTicksDrawer(new AxesTicksDrawerJoGL(axes));
   ticksDrawer->setTicksComputer(new AxesTicksComputer(axes));
   ticksDrawer->setSubticksComputer(new AxesSubticksComputer(axes));
   ticksDrawer->setAxisPositioner(new AxesPositioner(axes));
