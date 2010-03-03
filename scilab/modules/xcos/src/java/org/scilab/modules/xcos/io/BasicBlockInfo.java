@@ -38,14 +38,13 @@ import org.scilab.modules.xcos.port.output.OutputPort;
 public final class BasicBlockInfo {
 
     /**
-     * 
+     * This class is a static singleton.
      */
-    private BasicBlockInfo() {
-
-    }
+    private BasicBlockInfo() { }
 
     /**
-     * @param ports : list of links
+     * Get all the ids.
+     * @param ports the ports
      * @return array of links id
      */
     public static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
@@ -63,7 +62,8 @@ public final class BasicBlockInfo {
 
 
     /**
-     * @param ports
+     * Get all the port data lines.
+     * @param ports the ports
      * @return array of ports data lines
      */
     public static ScilabDouble getAllPortsDataLines(List<? extends BasicPort> ports) {
@@ -79,7 +79,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+     * Get all the port data columns
+     * @param ports the ports
      * @return array of ports data columns
      */
     public static ScilabDouble getAllPortsDataColumns(List<? extends BasicPort> ports) {
@@ -104,7 +105,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+     * Get all the port data type.
+     * @param ports the ports
      * @return array of ports data type
      */
     public static ScilabType getAllPortsDataType(List<? extends BasicPort> ports) {
@@ -120,7 +122,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param ports
+     * Get all the ports types
+     * @param ports the ports
      * @return array of ports type
      */
     public static ScilabType getAllPortsType(List<? extends BasicPort> ports) {
@@ -136,7 +139,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Create a graphic property from block parameters.
+     * @param block the current block.
      * @return graphic structure of given block
      */
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
@@ -185,7 +189,8 @@ public final class BasicBlockInfo {
 
 
     /**
-     * @param block
+     * Create a graphic property from block parameters.
+     * @param block the current block
      * @return model structure of given block
      */
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
@@ -248,7 +253,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Create the Scilab gui properties from block parameters
+     * @param block the current block
      * @return gui structure of given block
      */
     public static ScilabString createScilabGuiProperties(BasicBlock block) {
@@ -256,7 +262,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Create the Scilab doc properties from block parameters
+     * @param block the current block
      * @return doc structure of given block
      */
     public static ScilabList createScilabDocProperties(BasicBlock block) {
@@ -268,7 +275,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Create the Scilab block representation
+     * @param block the current block
      * @return Scilab structure of given block
      */
     public static ScilabMList getAsScilabObj(BasicBlock block) {
@@ -284,7 +292,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the input port associated with this block
+     * @param block the current block
      * @return input ports of given block
      */
     public static List<InputPort> getAllInputPorts(BasicBlock block, boolean revert) {
@@ -305,7 +314,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the explicit input port associated with this block
+     * @param block the current block
      * @return explicit input ports of given block
      */
     public static List<ExplicitInputPort> getAllExplicitInputPorts(BasicBlock block, boolean revert) {
@@ -325,7 +335,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the explicit input port associated with this block
+     * @param block the current block
      * @return implicit input ports of given block
      */
     public static List<ImplicitInputPort> getAllImplicitInputPorts(BasicBlock block, boolean revert) {
@@ -345,7 +356,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the output port associated with this block
+     * @param block the current block
      * @return output ports of given block
      */
     public static List<OutputPort> getAllOutputPorts(BasicBlock block, boolean revert) {
@@ -366,7 +378,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the explicit output port associated with this block
+     * @param block the current block
      * @return explicit output ports of given block
      */
     public static List<ExplicitOutputPort> getAllExplicitOutputPorts(BasicBlock block, boolean revert) {
@@ -386,7 +399,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the implicit output port associated with this block
+     * @param block the current block
      * @return implicit outputs ports of given block
      */
     public static List<ImplicitOutputPort> getAllImplicitOutputPorts(BasicBlock block, boolean revert) {
@@ -406,7 +420,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the command ports associated with this block 
+     * @param block the current block
      * @return command ports of given block
      */
     public static List<CommandPort> getAllCommandPorts(BasicBlock block, boolean revert) {
@@ -427,7 +442,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * @param block
+     * Get all the control ports associated with this block 
+     * @param block the current block
      * @return control ports of given block
      */
     public static List<ControlPort> getAllControlPorts(BasicBlock block, boolean revert) {
