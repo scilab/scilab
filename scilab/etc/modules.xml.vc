@@ -85,5 +85,6 @@
 <module name="xpad" activate="yes"/>
 <module name="api_scilab" activate="yes"/>
 <module name="helptools" activate="yes"/>
+<module name="graph" activate="yes"/>
 <!-- comments -->
 </modules>

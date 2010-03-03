@@ -79,3 +79,6 @@ library.xcos.name=org.scilab.modules.xcos.jar
 
 library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
 library.xpad.name=org.scilab.modules.xpad.jar
+
+library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
+library.graph.name=org.scilab.modules.graph.jar
