@@ -29,7 +29,7 @@ import com.mxgraph.util.mxConstants;
  */
 public final class TextBlock extends BasicBlock {
     
-	/** After investigations, the 1pt of scicos is equivalent to a 10 real pt */
+	/** After investigations, the 1pt of scicos is equivalent to a 4 real pt */
 	private static final int SCICOS_FONTSIZE_RATIO = 4;
 	private static final long serialVersionUID = -4279562884443733433L;
 
