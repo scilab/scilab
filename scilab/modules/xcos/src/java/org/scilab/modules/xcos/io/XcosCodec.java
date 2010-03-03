@@ -46,6 +46,12 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Root codec for Xcos diagram instance.
+ * 
+ * This class register all packages used by Xcos for 
+ * serialization/deserialization. 
+ */
 public class XcosCodec extends mxCodec {
 // The non saved fields are hardcoded and can have the same name.
 // CSOFF: MultipleStringLiterals
@@ -179,14 +185,16 @@ public class XcosCodec extends mxCodec {
 	
     }
     
-    /** Default constructor */
+    /**
+     * Default constructor
+     */
     public XcosCodec() {
 	super();
     }
 
     /**
-     * Default constructor with an associated document
-     * @param document the document instance we have to decode
+     * Construct a new codec associated with the document.
+     * @param document the document containing all the data.
      */
     public XcosCodec(Document document) {
 	super(document);
