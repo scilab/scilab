@@ -20,7 +20,7 @@ namespace types
 	*/
 	List::List() : Container()
 	{
-		m_plData = new std::list<InternalType *>();
+		m_plData = new std::vector<InternalType *>();
 	}
 
 	List::~List() 
@@ -36,18 +36,18 @@ namespace types
 	*/
 	List::List(List *_oListCopyMe)
 	{
-		std::list<InternalType *>::iterator itValues;
-		m_plData = new std::list<InternalType *>();
+		std::vector<InternalType *>::iterator itValues;
+		m_plData = new std::vector<InternalType *>(_oListCopyMe->getData()->size());
 
-		for (itValues = _oListCopyMe->getData()->begin();
-			itValues != _oListCopyMe->getData()->end();
-			itValues++)
+		for(int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
 		{
-			append((*itValues)->clone());
+			InternalType* pIT = (*_oListCopyMe->getData())[i];
+			(*m_plData)[i] = pIT->clone();
+
 		}
 	}
 
-	std::list<InternalType *> *List::getData()
+	std::vector<InternalType *> *List::getData()
 	{
 		return m_plData;
 	}
@@ -94,7 +94,7 @@ namespace types
 		else
 		{
 			int iPosition = 1;
-			std::list<InternalType *>::iterator itValues;
+			std::vector<InternalType *>::iterator itValues;
 			for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
 			{
 				ostr << "     (" << iPosition << ")" << std::endl;
@@ -104,9 +104,9 @@ namespace types
 		return ostr.str();
 	}
 
-	InternalType*	List::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+	std::vector<InternalType*>	List::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
 	{
-		String* pOut	= NULL;
+		std::vector<InternalType*> outList;
 		int iRowsOut	= 0;
 		int iColsOut	= 0;
 
@@ -116,7 +116,7 @@ namespace types
 			_bAsVector == false && _piMaxDim[0] > rows_get() ||
 			_bAsVector == false && _piMaxDim[1] > cols_get())
 		{
-			return NULL;
+			return outList;
 		}
 
 		if(_bAsVector)
@@ -138,29 +138,19 @@ namespace types
 			iColsOut	= _piDimSize[1];
 		}
 
-		pOut				= new String(iRowsOut, iColsOut);
-		char** pst	= pOut->string_get();
-
-
 		if(_bAsVector)
 		{
 			for(int i = 0 ; i < _iSeqCount ; i++)
 			{
-				pst[i] = strdup(m_pstData[_piSeqCoord[i] - 1]);
+				InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
+				outList.push_back(pIT->clone());
 			}
 		}
 		else
 		{
-			int iRowIn = rows_get();
-			for(int i = 0 ; i < _iSeqCount ; i++)
-			{
-				//convert vertical indexes to horizontal indexes
-				int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
-				int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
-				pst[iCurIndex]	= strdup(m_pstData[iInIndex]);
-			}
+			std::cout << "Extract from list must be \"as vector\"" << std::endl;
 		}
 
-		return pOut;
+		return outList;
 	}
 }

@@ -23,7 +23,7 @@ namespace types
 
   private :
     List(List *_oListCopyMe);
-    std::list<InternalType *> *getData();
+    std::vector<InternalType *> *getData();
 
   public :
     int size_get(); 
@@ -48,7 +48,9 @@ namespace types
 
     List *getAsList(void) { return this; }
 
+		std::vector<InternalType*>	extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
+
   private :
-    std::list<InternalType *> *m_plData;
+    std::vector<InternalType *> *m_plData;
   };
 }

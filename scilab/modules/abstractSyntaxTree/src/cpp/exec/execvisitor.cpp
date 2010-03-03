@@ -304,6 +304,8 @@ namespace ast
 
 			//get symbol of variable
 			InternalType *pIT = NULL;
+
+			//WARNING can be a fieldexp
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
@@ -314,6 +316,7 @@ namespace ast
 				pIT = execFunc->result_get();
 			}
 			InternalType *pOut			= NULL;
+			std::vector<InternalType*> ResultList;
 			ExecVisitor* execMeArg	= new ast::ExecVisitor();
 			int iArgDim							= (int)e.args_get().size();
 			bool bSeeAsVector				= iArgDim == 1;
@@ -337,18 +340,41 @@ namespace ast
 			case InternalType::RealString :
 				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
+			case InternalType::RealList :
+				{
+					ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+					for(int i = 0 ; i < ResultList.size() ; i++)
+					{
+						result_set(i, ResultList[i]);
+					}
+					break;
+				}
 			default :
 				break;
 			}
 
-			if(pOut == NULL)
+			//Container type can return multiple items
+			if(pIT->isContainer() == false)
 			{
-				std::ostringstream os;
-				os << "inconsistent row/column dimensions";
-				os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-				throw os.str();
+				if(pOut == NULL)
+				{
+					std::ostringstream os;
+					os << "inconsistent row/column dimensions";
+					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					throw os.str();
+				}
+				result_set(pOut);
 			}
-			result_set(pOut);
+			else 
+			{
+				if(ResultList.size() == 0)
+				{
+					std::ostringstream os;
+					os << "inconsistent row/column dimensions";
+					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					throw os.str();
+				}
+			}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(

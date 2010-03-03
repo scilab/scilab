@@ -31,6 +31,7 @@ namespace types
     virtual bool isAssignable(void) { return true; }
     
     virtual RealType getType(void) { return RealContainer; }
+    virtual bool isContainer(void) { return true; }
   };
 }
 
