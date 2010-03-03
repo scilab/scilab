@@ -208,17 +208,15 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 
     /**
      * Insert point on the nearest link
-     * @param x X coordinate
-     * @param y Y coordinate
+     * @param point the point to add
      */
-    public void insertPoint(double x, double y) {
+    public void insertPoint(mxPoint point) {
 
 	//if it is a loop link, change coordinate origin to block instead of diagram
-	mxPoint point = new mxPoint(x, y);
 	if (isLoopLink()) {
 	    mxGeometry geo = getSource().getParent().getGeometry();
-	    point.setX(x - geo.getX());
-	    point.setY(y - geo.getY());
+	    point.setX(point.getX() - geo.getX());
+	    point.setY(point.getY() - geo.getY());
 	}
 
 	if (getGeometry() == null) {
