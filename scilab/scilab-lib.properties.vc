@@ -82,3 +82,4 @@ library.xpad.name=org.scilab.modules.xpad.jar
 
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar
+
