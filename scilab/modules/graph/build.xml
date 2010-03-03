@@ -11,7 +11,7 @@
  *
  -->
 
-<project name="ui_data" default="jar">
+<project name="graph" default="jar">
 
   <import file="../../build.incl.xml"/>
   <property name="library.name" value="${library.graph.name}" />
