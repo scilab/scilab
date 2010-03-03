@@ -1847,7 +1847,7 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm
      */
-    public void openDiagram(HashMap<String, Object> diagramm) {
+    public void openDiagram(Map<String, Object> diagramm) {
 	if (diagramm != null) {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		loadDiagram(diagramm);
@@ -1867,11 +1867,11 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm diagram structure
      */
-    public void loadDiagram(HashMap<String, Object> diagramm) {
+    public void loadDiagram(Map<String, Object> diagramm) {
 	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
 	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
-	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
-	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
+	Map<String, Object> allLinks = (Map<String, Object>) diagramm.get("Links");
+	Map<String, Object> properties = (Map<String, Object>) diagramm.get("Properties");
 
 	setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
 	setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
