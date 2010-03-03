@@ -50,9 +50,13 @@ import com.mxgraph.util.mxUtils;
  * Diagram export management
  */
 public final class ExportAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.EXPORT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**

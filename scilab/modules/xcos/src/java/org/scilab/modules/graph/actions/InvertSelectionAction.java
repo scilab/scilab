@@ -24,9 +24,13 @@ import org.scilab.modules.gui.menuitem.MenuItem;
  * Selection management
  */
 public final class InvertSelectionAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.INVERT_SELECTION;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

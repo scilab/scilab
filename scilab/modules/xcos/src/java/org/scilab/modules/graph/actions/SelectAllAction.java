@@ -26,9 +26,13 @@ import org.scilab.modules.gui.menuitem.MenuItem;
  * Selection management
  */
 public final class SelectAllAction extends OneBlockDependantAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.SELECT_ALL;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_A;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

@@ -33,9 +33,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Palette Tab visibility management
  */
 public final class ViewPaletteBrowserAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.PALETTE_BROWSER;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
     private static List<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
