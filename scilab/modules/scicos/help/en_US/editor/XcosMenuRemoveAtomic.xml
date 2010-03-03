@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuRemoveAtomic">
+  <refnamediv>
+    <refname>Remove Atomic</refname>
+    <refpurpose>Menu: Transform an atomic  Super Block into a regular one</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This menu applies only to an already atomic superblock. It
+      removes the atomicity so the internal definition of the Super
+      Block can be inspected and edited.
+    </para>
+    <para>
+      To operate first <link linkend="XcosSelect">select</link> the
+      desired atomic super block then activate the menu or activate
+      the menu and click on the desired block.
+    </para>
+    <para>
+     If the super block has several activation input ports the
+     behavior of the atomic super block may not be exactly similar to
+     the regular super block due to different handling of asynchronous
+     activations.
+    </para>
+    <para>
+      Note that the icon of the Super Block remains the same as that
+      of the atomic super block. 
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="SUPER_f">Super Block</link> </member>
+      <member> <link linkend="XcosMenuCreateAtomic">Create_Atomic</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

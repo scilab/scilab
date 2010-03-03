@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuSaveAsPalette">
+  <refnamediv>
+    <refname>Save_as_Palette</refname>
+    <refpurpose>Menu: Save the current Scicos diagram as a palette.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Any Scicos diagram may be used as a palette. 
+    </para>
+    <para>
+      Select the <literal>Save as Palette</literal> menu item to save the block diagram
+      as a palette in a file. A dialog box allows choosing
+      the file which must have a .cos or .cosf extension. The palette
+      takes the name of the file (without the extension).
+      </para>
+      <para>
+	If extension is ".cosf" an ASCII  formatted save is performed
+	instead of binary save. It may take a while.
+      </para>
+      <para>
+	The <literal>.scicos_pal</literal> user file located in the user home
+	directory is updated if
+	necessary so the palette will be usable for futher Scicos diagrams.
+     </para>
+      <para>
+	The <literal>.scicos_pal</literal> file is a Scilab binary
+	file (see <link linkend="load">load</link> and <link
+	linkend="save">save</link>). It contains the value of the
+	Scilab variable <literal>scicos_pal</literal>.
+      </para>
+      <para>
+	The  <literal>scicos_pal</literal> variable is a string
+	matrix with two columns, the first column gives the name of
+	the palettes, the second the path of file (.cos or .cosf )
+	containing the palette definition
+      </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuLoadAsPalette">Load_as_Palette</link> </member>
+      <member> <link linkend="XcosMenuPalette">Palette</link> </member>
+      <member> <link linkend="XcosMenuPalEditor">Pal_editor</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

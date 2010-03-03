@@ -43,7 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS"
@@ -214,7 +214,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -477,10 +477,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_length.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_NumTokens.c"
 				>
 			</File>
 			<File
@@ -764,6 +760,14 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\string.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

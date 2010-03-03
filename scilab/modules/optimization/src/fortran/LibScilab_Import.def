@@ -4,7 +4,9 @@
 EXPORTS
 ;
 ;core
+adre_
 iop_
+intersci_
 stack_
 com_
 vstk_

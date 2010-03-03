@@ -112,8 +112,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimatio_la_LIBADD =
 am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 	src/c/matfile_manager.c src/c/CreateMatlabVariable.c \
-	src/c/CreateCharVariable.c src/c/CreateDoubleVariable.c \
-	src/c/CreateIntegerVariable.c \
+	src/c/CreateBooleanVariable.c src/c/CreateCharVariable.c \
+	src/c/CreateDoubleVariable.c src/c/CreateIntegerVariable.c \
 	src/c/CreateHyperMatrixVariable.c src/c/CreateStructVariable.c \
 	src/c/CreateSparseVariable.c src/c/CreateCellVariable.c \
 	src/c/GetMatlabVariable.c src/c/GetDoubleVariable.c \
@@ -128,6 +128,7 @@ am__libscimatio_la_SOURCES_DIST = src/nomatio/nomatio.c \
 @MATIO_FALSE@am__objects_1 = libscimatio_la-nomatio.lo
 @MATIO_TRUE@am__objects_1 = libscimatio_la-matfile_manager.lo \
 @MATIO_TRUE@	libscimatio_la-CreateMatlabVariable.lo \
+@MATIO_TRUE@	libscimatio_la-CreateBooleanVariable.lo \
 @MATIO_TRUE@	libscimatio_la-CreateCharVariable.lo \
 @MATIO_TRUE@	libscimatio_la-CreateDoubleVariable.lo \
 @MATIO_TRUE@	libscimatio_la-CreateIntegerVariable.lo \
@@ -187,6 +188,7 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -256,14 +258,17 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -319,6 +324,7 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -337,6 +343,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -489,6 +496,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 #### List of the C files ####
 @MATIO_TRUE@MATIO_C_SOURCES = src/c/matfile_manager.c \
 @MATIO_TRUE@		  src/c/CreateMatlabVariable.c \
+@MATIO_TRUE@		  src/c/CreateBooleanVariable.c \
 @MATIO_TRUE@		  src/c/CreateCharVariable.c \
 @MATIO_TRUE@		  src/c/CreateDoubleVariable.c \
 @MATIO_TRUE@		  src/c/CreateIntegerVariable.c \
@@ -609,6 +617,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-CreateBooleanVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-CreateCellVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-CreateCharVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimatio_la-CreateDoubleVariable.Plo@am__quote@
@@ -675,6 +684,13 @@ libscimatio_la-CreateMatlabVariable.lo: src/c/CreateMatlabVariable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateMatlabVariable.c' object='libscimatio_la-CreateMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateMatlabVariable.lo `test -f 'src/c/CreateMatlabVariable.c' || echo '$(srcdir)/'`src/c/CreateMatlabVariable.c
+
+libscimatio_la-CreateBooleanVariable.lo: src/c/CreateBooleanVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateBooleanVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Tpo -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Tpo $(DEPDIR)/libscimatio_la-CreateBooleanVariable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CreateBooleanVariable.c' object='libscimatio_la-CreateBooleanVariable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -c -o libscimatio_la-CreateBooleanVariable.lo `test -f 'src/c/CreateBooleanVariable.c' || echo '$(srcdir)/'`src/c/CreateBooleanVariable.c
 
 libscimatio_la-CreateCharVariable.lo: src/c/CreateCharVariable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimatio_la_CFLAGS) $(CFLAGS) -MT libscimatio_la-CreateCharVariable.lo -MD -MP -MF $(DEPDIR)/libscimatio_la-CreateCharVariable.Tpo -c -o libscimatio_la-CreateCharVariable.lo `test -f 'src/c/CreateCharVariable.c' || echo '$(srcdir)/'`src/c/CreateCharVariable.c

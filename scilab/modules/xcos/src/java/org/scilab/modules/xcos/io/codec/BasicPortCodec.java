@@ -15,10 +15,10 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
-import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

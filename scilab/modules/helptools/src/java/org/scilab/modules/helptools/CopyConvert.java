@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Hussein SHAFIE
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -52,12 +53,12 @@ import net.sourceforge.jeuclid.MutableLayoutContext;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.converter.Converter;
 
+import org.scilab.forge.jlatexmath.TeXConstants; 
+import org.scilab.forge.jlatexmath.TeXFormula;
+import java.awt.Color;
 
 /**
- * @TODO add comment
- *
- * @param inFile
- * @param outFile
+ * Preprocess before building the documentation
  */
 public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
@@ -84,20 +85,42 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private File gs;
     private File ps2pdf;
 
+    private LaTeXElement latexElem = null;
+    private boolean isLatexConverted = true;
 
-	public void setVerbose(boolean verbose){
-		this.verbose=verbose;
+    /**
+     * Enables the verbose mode
+     *
+     * @param verbose true if enable
+	 */
+	public void setVerbose(boolean verbose) {
+		this.verbose = verbose;
 	}
 
-	public void setPrintFormat(String printFormat){
-		this.printFormat=printFormat;
+    /**
+     * Set the print format 
+     *
+     * @param printFormat  The print format
+	 */
+	public void setPrintFormat(String printFormat) {
+		this.printFormat = printFormat;
+	}
+    
+        public void setLatexConverted(boolean isLatexConverted){
+		this.isLatexConverted = isLatexConverted;
 	}
 
     // -----------------------------------------------------------------------
 
-    public void run(File inFile, File outFile)
+    /**
+     * Run the copy/convert process
+     *
+     * @param inFile Input file
+     * @param outputFile Output file
+	 */
+    public void run(File inFile, File outputFile)
         throws SAXParseException, SAXException, IOException {
-        outFile = outFile.getCanonicalFile();
+		File outFile = outputFile.getCanonicalFile();
         outDir = outFile.getParentFile();
         if (!outDir.isDirectory() && !outDir.mkdirs()) {
             throw new IOException("Cannot create directory '" + outDir + "'");
@@ -115,7 +138,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             parser = factory.newSAXParser();
         } catch (Exception e) {
             throw new SAXParseException(
-                "Cannot create a properly configured SAX parser: " + Helpers.reason(e),locator);
+                "Cannot create a properly configured SAX parser: " + Helpers.reason(e), locator);
         }
 
         inScopePrefixes = new ArrayList<String[]>();
@@ -132,10 +155,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             if (out.checkError()) {
                 throw new IOException("Error writing '" + outFile + "'");
 			}
-		} catch (SAXException e){
-			if (locator!=null){
-				throw new SAXParseException("Cannot parse " + inFile + " " + Helpers.reason(e),locator);
-			}else{
+		} catch (SAXException e) {
+			if (locator != null) {
+				throw new SAXParseException("Cannot parse " + inFile + " " + Helpers.reason(e), locator);
+			} else {
 				throw new SAXException("Cannot parse " + inFile + " " + Helpers.reason(e));
 			}
         } finally {
@@ -147,6 +170,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // ContentHandler
     // -----------------------------------------------------------------------
 
+    /**
+     * Set the document Locator
+     *
+     * @param locator  The locator
+	 */
     public void setDocumentLocator(Locator locator) {
         this.locator = locator;
     }
@@ -180,8 +208,14 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                              Attributes atts)
         throws SAXException {
         out.write('<');
+        
+        if ("latex".equals(localName)) {
+            latexElem = new LaTeXElement(atts, isLatexConverted);
+            return;
+        } 
+        
         out.write(qName);
-
+        
         boolean isImage = "imagedata".equals(localName);
         boolean isGraphicsFile = false;
 
@@ -304,6 +338,12 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     public void endElement(String uri, String localName, String qName)
         throws SAXException {
+        if ("latex".equals(localName)) {
+            latexElem.generate();
+            latexElem = null;
+            return;
+        }
+
         if ("imagedata".equals(localName) && mainOut != null) {
             String rootName = "graphics-" + graphicsCounter;
             String baseName = rootName + ".tmp";
@@ -333,8 +373,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             mainOut = null;
 
             if (extractedFile != null) {
-                reportInfo("Extracted embedded graphics from '"+extractedFile+"' to '"
-                           + extractedFile + "'.");
+                reportInfo("Extracted embedded graphics from '" + extractedFile + "' to '" + extractedFile + "'.");
 
                 String converted = copyConvertGraphics(extractedFile);
                 if (converted != null) {
@@ -358,6 +397,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
     public void characters(char[] ch, int start, int length)
         throws SAXException {
+        if (latexElem != null) {
+            latexElem.setLaTeX(new String(ch, start, length));
+            return;
+        }
+        
         Helpers.escapeXML(ch, start, length, out);
     }
 
@@ -401,7 +445,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             }
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting TeX '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -413,7 +457,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             baseName = rootName + "_mml.png";
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting MathML '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -425,7 +469,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             baseName = rootName + "_svg.png";
             File convertedFile = new File(outDir, baseName);
 
-            if (!convertedFile.exists()) {
+            if (!convertedFile.exists() || convertedFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Converting SVG '" + graphicsFile + "' to '"
                            + convertedFile + "'...");
 
@@ -437,7 +481,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             // Just copy the file ---
 
             File outFile = new File(outDir, baseName);
-            if (!outFile.exists()) {
+            if (!outFile.exists() || outFile.lastModified() < graphicsFile.lastModified()) {
                 reportInfo("Copying '" + graphicsFile + "' to '"
                            + outFile + "'...");
 
@@ -617,10 +661,10 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private boolean convertMathML(File inFile, File outFile) {
 		MutableLayoutContext context = new LayoutContextImpl(LayoutContextImpl
                 .getDefaultLayoutContext());
-		context.setParameter(Parameter.ANTIALIAS,"true");
+		context.setParameter(Parameter.ANTIALIAS, "true");
 		// Workaround a XEP problem. FOP 1 is OK.
-		context.setParameter(Parameter.MATHBACKGROUND,"#FFFFFF");
-		context.setParameter(Parameter.MATHSIZE,"18");
+		context.setParameter(Parameter.MATHBACKGROUND, "#FFFFFF");
+		context.setParameter(Parameter.MATHSIZE, "18");
 
         try {
             Converter.getInstance().convert(inFile, outFile, "image/png", context);
@@ -785,4 +829,83 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         }
         return 0;
     }
+
+    protected class LaTeXElement {
+        int size = 18;
+        Color fg = null, bg = null;
+        int disp = TeXConstants.STYLE_DISPLAY;
+        String code = "imageobject><imagedata";
+        String LaTeX = "";
+        boolean exported;
+        String attribs, align = "";
+
+        protected LaTeXElement(Attributes attrs, boolean exported) {
+            this.exported = exported;
+            int n = attrs.getLength();
+            String fgS = "", bgS = "";
+            String dispS = "display";
+            
+            for (int i = 0; i < n; i++) {
+                String attr = attrs.getValue(i);
+                String name = attrs.getLocalName(i);
+                if ("align".equals(name)) {
+                    code += " align=\'" + attr + "\'";
+                    align = attr;
+                } else if ("style".equals(name)) {
+                    if ("text".equals(attr)) {
+                        disp = TeXConstants.STYLE_TEXT;
+                    } else if ("script".equals(attr)) {
+                        disp = TeXConstants.STYLE_SCRIPT;
+                    } else if ("script_script".equals(attr)) {
+                        disp = TeXConstants.STYLE_SCRIPT_SCRIPT;
+                    }
+                    dispS = attr;
+                } else if ("size".equals(name)) {
+                    try {
+                        size = Integer.parseInt(attr);
+                    } catch (NumberFormatException e) {
+                        size = 16;
+                    }
+                } else if ("fg".equals(name)) {
+                    fg = Color.decode(attr);
+                    fgS = attr;
+                } else if ("bg".equals(name)) {
+                    bg = Color.decode(attr);
+                    bgS = attr;
+                }
+            }
+
+            attribs = " align='" + align + "'";
+            attribs += " size='" + size + "'";
+            attribs += " style='" + dispS + "'";
+            if (bg != null) {
+                attribs += " bg='" + bgS + "'";
+            }
+            if (fg != null) {
+                attribs += " fg='" + fgS + "'";
+            }   
+        }
+
+        protected void setLaTeX(String str) {
+            LaTeX += str;
+        }
+
+        protected void generate() {
+            if (exported) {
+                generatePNG();
+                return;
+            }
+            out.write("latex" + attribs  + " xmlns=\"http://forge.scilab.org/p/jlatexmath\"><![CDATA[" + LaTeX + "]]></latex>");
+        }
+                  
+        protected void generatePNG() {
+            TeXFormula tf = new TeXFormula(LaTeX);
+	    File f = new File(outDir, "graphics-" + (++graphicsCounter) + "_latex.png");
+	    reportInfo("Converting LaTeX formula to " + f + "'...");
+            tf.createPNG(disp, size, f.getPath(), bg, fg);	    
+
+            out.write(code + " fileref='graphics-" + graphicsCounter + "_latex.png'/></imageobject>");
+        }
+    }
+
 }

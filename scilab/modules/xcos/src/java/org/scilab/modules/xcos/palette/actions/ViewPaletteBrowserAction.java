@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +13,14 @@
 
 package org.scilab.modules.xcos.palette.actions;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.window.ScilabWindow;
@@ -27,12 +29,13 @@ import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Palette Tab visibility management 
- * @author Vincent COUVERT
+ * Palette Tab visibility management
  */
 public final class ViewPaletteBrowserAction extends DefaultAction {
-
-    private static final long serialVersionUID = 1L;
+	public static final String NAME = XcosMessages.PALETTE_BROWSER;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
     private static List<CheckBoxMenuItem> menus = new ArrayList<CheckBoxMenuItem>();
 
@@ -41,8 +44,8 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
      * 
      * @param scilabGraph associated Scilab Graph
      */
-    private ViewPaletteBrowserAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.PALETTE_BROWSER, scilabGraph);
+    public ViewPaletteBrowserAction(ScilabGraph scilabGraph) {
+    	super(scilabGraph);
     }
 
     /**
@@ -52,20 +55,18 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
      * @return the menu
      */
     public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-	CheckBoxMenuItem menu = createCheckBoxMenu(
-		XcosMessages.PALETTE_BROWSER, null,
-		new ViewPaletteBrowserAction(scilabGraph), null);
-	menus.add(menu);
-	return menu;
+    	CheckBoxMenuItem menu = createCheckBoxMenu(scilabGraph, ViewPaletteBrowserAction.class);
+    	menus.add(menu);
+    	return menu;
     }
 
-    /**
-     * Action !
-     * 
-     * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
-     */
-    public void doAction() {
-	    setPalettesVisible(!PaletteManager.isVisible());
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		setPalettesVisible(!PaletteManager.isVisible());
     }
 
     /**

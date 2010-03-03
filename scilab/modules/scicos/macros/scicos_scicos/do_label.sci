@@ -26,21 +26,26 @@ function [mod,scs_m]=do_label(%pt,scs_m)
 //** 
   mod = %f
   win = %win;
+    K=find(Select(:,2)==curwin);
+  if size(K,'*')>1 then
+    messagebox("Only one block can be selected in current window for this operation.","modal")
+    Cmenu=[];ok=%f;return
+  end
   
-  if Select==[] then
+  if K==[] then
     xc = %pt(1); yc=%pt(2); %pt=[]
     K  = getblock(scs_m,[xc;yc])
-    if K==[] then Cmenu=[];return,end
+    if K==[] then Cmenu=[];ok=%f;return,end
   else
-    K=Select(:,1)';%pt=[]
-    if size(K,'*')>1 | curwin<>Select(1,2) then
-      message("Only one block can be selected in current window for this o"+...
-	      "peration.")
-      Cmenu=[];return
-    end
+    K=Select(K,1)
   end
   
   o = scs_m.objs(K)
+  // avoid error with links
+  if typeof(o)<>'Block' then 
+    messagebox("No label can be placed on Links.","modal")  
+    return,
+  end
   model = o.model
   lab = model.label
   [ok,lab] = scicos_getvalue('Give block label','label',list('str',1),lab)

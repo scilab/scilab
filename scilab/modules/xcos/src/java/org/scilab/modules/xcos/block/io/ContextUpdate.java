@@ -15,12 +15,19 @@ package org.scilab.modules.xcos.block.io;
 import java.io.File;
 import java.io.IOException;
 
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 /**
  * @author Clement DAVID
@@ -36,21 +43,23 @@ public abstract class ContextUpdate extends BasicBlock {
      * It is used to easily loop over a BasicBlock I/O blocks
      */
     public enum IOBlocks {
-	EventInBlock(EventInBlock.class),
-	EventOutBlock(EventOutBlock.class),
-	ExplicitInBlock(ExplicitInBlock.class),
-	ExplicitOutBlock(ExplicitOutBlock.class),
-	ImplicitInBlock(ImplicitInBlock.class),
-	ImplicitOutBlock(ImplicitOutBlock.class),
-	Unknow(ContextUpdate.class);
+	EventInBlock(EventInBlock.class, ControlPort.class),
+	EventOutBlock(EventOutBlock.class, CommandPort.class),
+	ExplicitInBlock(ExplicitInBlock.class, ExplicitInputPort.class),
+	ExplicitOutBlock(ExplicitOutBlock.class, ExplicitOutputPort.class),
+	ImplicitInBlock(ImplicitInBlock.class, ImplicitInputPort.class),
+	ImplicitOutBlock(ImplicitOutBlock.class, ImplicitOutputPort.class);
 	
-	private Class< ? extends ContextUpdate> ioBlock;
+	private final Class< ? extends ContextUpdate> ioBlock;
+	private final Class< ? extends BasicPort> port;
 	
 	/**
 	 * @param ioBlock input/output block
+	 * @param port the associated port class
 	 */
-	private IOBlocks(Class< ? extends ContextUpdate> ioBlock) {
+	private IOBlocks(Class< ? extends ContextUpdate> ioBlock, Class< ? extends BasicPort> port) {
 	    this.ioBlock = ioBlock;
+	    this.port = port;
 	}
 	
 	/**
@@ -59,6 +68,14 @@ public abstract class ContextUpdate extends BasicBlock {
 	public Class< ? extends ContextUpdate> getReferencedClass() {
 	    return ioBlock;
 	}
+	
+	/**
+	 * @return the port referenced class
+	 */
+	public Class< ? extends BasicPort> getReferencedPortClass() {
+	    return port;
+	}
+	
     }
     
 	/**
@@ -73,7 +90,6 @@ public abstract class ContextUpdate extends BasicBlock {
 	 */
 	protected ContextUpdate(String label) {
 		this();
-		setDefaultValues();
 		setValue(label);
 	}
 
@@ -118,7 +134,7 @@ public abstract class ContextUpdate extends BasicBlock {
 	    cmd += ", \"" + tempContext.getAbsolutePath() + "\");";
 
 		try {
-			XcosInterpreterManagement.synchronousScilabExec(cmd);
+			ScilabInterpreterManagement.synchronousScilabExec(cmd);
 		} catch (InterpreterException e) {
 			e.printStackTrace();
 		}

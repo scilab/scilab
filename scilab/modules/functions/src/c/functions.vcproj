@@ -43,7 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../call_scilab/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../fileio/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FUNCTIONS_EXPORTS"
@@ -210,7 +210,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\functions.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\getmacroslist.c"
 				>
 			</File>
@@ -401,10 +405,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_execstr.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_getf.c"
 				>
 			</File>
 			<File
@@ -450,6 +450,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\libraryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File

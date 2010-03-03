@@ -44,7 +44,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../intl"
 				PreprocessorDefinitions="_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
@@ -226,7 +226,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -402,6 +402,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\libst.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\misc.c"
 				>
 			</File>
@@ -418,6 +422,10 @@
 				RelativePath=".\misc.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 	</Files>
 	<Globals>

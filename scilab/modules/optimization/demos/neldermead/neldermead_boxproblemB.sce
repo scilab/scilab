@@ -111,8 +111,6 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 
 //
 // Check that the cost function is correctly connected.
-// The index must be provided, because the additionnal argument "data"
-// comes after.
 //
 [ nm , f ] = neldermead_function ( nm , x0 );
 //
@@ -121,6 +119,7 @@ nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
 mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
+mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));

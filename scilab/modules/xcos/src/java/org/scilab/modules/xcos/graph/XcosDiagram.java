@@ -28,12 +28,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -42,6 +47,8 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -57,23 +64,25 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
-import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -154,14 +163,16 @@ public class XcosDiagram extends ScilabGraph {
     private CheckBoxMenuItem gridMenu;
     private SetContextAction action;
     
-    protected mxIEventListener undoEnabler = new mxIEventListener()
-    {
-	public void invoke(Object source, mxEventObject evt) {
-		if (getParentTab() != null) {
-			((XcosTab) getParentTab()).setEnabledUndo(true);
+    protected mxIEventListener deleteLinkOnMultiPointLinkCreation = new mxIEventListener() {
+		public void invoke(Object sender, mxEventObject evt) {
+			if (waitPathAddEdge) {
+			    if (drawLink != null) {
+				getModel().remove(drawLink);
+			    }
+			    cancelDrawLinkAction();
+			}
 		}
-	}
-    };
+	};
 
     public Object addEdge(Object edge, Object parent, Object source,
     		Object target, Integer index) {	
@@ -352,8 +363,10 @@ public class XcosDiagram extends ScilabGraph {
     	}
     	
     	mxGeometry geom = splitBlock.getGeometry();
-    	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE / 2));
-    	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE / 2));
+    	geom.setX(dragSplitPos.getX());
+    	geom.setY(dragSplitPos.getY());
+    	BlockPositioning.alignPoint(geom, getGridSize(), (SplitBlock.DEFAULT_SIZE / 2));
+    	
     	addCell(splitBlock);
     	
     	
@@ -421,12 +434,9 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram() {
 	super();
-	getModel().addListener(mxEvent.UNDO, undoEnabler);
-	getView().addListener(mxEvent.UNDO, undoEnabler);
-	// The association is inverted there (by the parameter)
-	new XcosShortCut(this);
+	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
+	
 	mxCodec codec = new mxCodec();
-
 	try {
 	    File uri = new File(System.getenv("SCI"));
 	    String xml = mxUtils.readFile(System.getenv("SCI") + "/modules/xcos/etc/Xcos-style.xml");
@@ -457,7 +467,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
-
+	
 	//
 	//setCloneInvalidEdges(false);
 	setCloneInvalidEdges(true);
@@ -748,7 +758,6 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     /**
->>>>>>> e48febf... API compatibility with jgraphx-1.2.0.5:scilab/modules/xcos/src/java/org/scilab/modules/xcos/graph/XcosDiagram.java
      *  SuperBlockUpdateTracker
      *  Called when adding some port in a SuperBlock diagram
      *  to update current sub-diagram (i.e SuperBlock) representation.
@@ -1043,12 +1052,13 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseClicked(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    		double scale = getView().getScale();
 
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
     			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-    			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
-    			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
+    			textBlock.getGeometry().setX((e.getX() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
+    			textBlock.getGeometry().setY((e.getY() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
     			addCell(textBlock);
     			return;
     		}
@@ -1063,7 +1073,9 @@ public class XcosDiagram extends ScilabGraph {
     				block.openBlockSettings(buildEntireContext());
     			}
     			if (cell instanceof BasicLink) {
-    				((BasicLink) cell).insertPoint(e.getX(), e.getY());
+    				mxPoint p = new mxPoint(e.getX() / scale, e.getY() / scale);
+    				BlockPositioning.alignPoint(p, getGridSize(), 0);
+    				((BasicLink) cell).insertPoint(p);
     			}
     			getModel().endUpdate();
     			refresh();
@@ -1163,10 +1175,11 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseReleased(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
-
+    		double scale = getView().getScale();
+    		
     		if (SwingUtilities.isLeftMouseButton(e)) {
     			if (waitSplitRelease) {
-    				dragSplitPos = new mxPoint(e.getX(), e.getY());
+    				dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     				waitSplitRelease = false;
     				addSplitEdge(splitLink, splitPort);
     			} else if (waitPathRelease) {
@@ -1180,7 +1193,8 @@ public class XcosDiagram extends ScilabGraph {
     					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
     					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
     						geoBlock.getY() + geoPort.getCenterY());
-    					mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+    					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
+    					mxPoint point = getPointPosition(lastPoint, click);
 
     					getModel().beginUpdate();
     					drawLink.getGeometry().setTargetPoint(point);
@@ -1202,7 +1216,7 @@ public class XcosDiagram extends ScilabGraph {
     						if (error == null) {
     							if (cell instanceof BasicLink && cell != drawLink) { //no loop
     								//draw link with a SplitBlock
-    								dragSplitPos = new mxPoint(e.getX(), e.getY());
+    								dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     								addSplitEdge((BasicLink) cell, drawLink);
     							} else {
     								getModel().setTerminal(drawLink, cell, false);
@@ -1224,10 +1238,11 @@ public class XcosDiagram extends ScilabGraph {
     							setSelectionCell(drawLink);
     						}
     					} else {
+    						mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
     						if (!e.isControlDown()) {
-    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), click));
     						} else {
-    							geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+    							geo.setTargetPoint(click);
     						}
     					}
     					getModel().endUpdate();
@@ -1257,8 +1272,8 @@ public class XcosDiagram extends ScilabGraph {
 		final double origX = origin.getX();
 		final double origY = origin.getY();
 
-		final double clickX = click.getX() / scale;
-		final double clickY = click.getY() / scale;
+		final double clickX = click.getX();
+		final double clickY = click.getY();
 
 		final boolean signX = clickX > origX;
 		final boolean signY = clickY > origY;
@@ -1572,11 +1587,6 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(status);
 	getAsComponent().setGridVisible(status);
 	getAsComponent().repaint();
-
-	// (Un)Check the corresponding menu
-	if (gridMenu != null) {
-	    gridMenu.setChecked(status);
-	}
     }
 
     /**
@@ -1677,7 +1687,6 @@ public class XcosDiagram extends ScilabGraph {
 	boolean isSuccess = false;
 	String writeFile = fileName;
 	info(XcosMessages.SAVING_DIAGRAM);
-	this.getParentTab().getInfoBar().draw();
 	if (fileName == null) {
 	    // Choose a filename
 	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
@@ -1720,7 +1729,6 @@ public class XcosDiagram extends ScilabGraph {
 	try {
 	    mxUtils.writeFile(xml, writeFile);
 	    isSuccess = true;
-	    resetUndoCounter();
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	    isSuccess = false;
@@ -1925,10 +1933,6 @@ public class XcosDiagram extends ScilabGraph {
 	if (!XcosTab.focusOnExistingFile(diagramFileName)) {
 	    File theFile = new File(diagramFileName);
 	    info(XcosMessages.LOADING_DIAGRAM);
-	    
-	    if (getParentTab() != null) {
-		((XcosTab) getParentTab()).setActionsEnabled(false);
-	    }
 
 	    if (theFile.exists()) {
 		transformAndLoadFile(theFile, false);
@@ -1953,10 +1957,7 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	    }
 	    info(XcosMessages.EMPTY_INFO);
-	    if (getParentTab() != null) {
-		((XcosTab) getParentTab()).setActionsEnabled(true);
-	    }
-	    this.resetUndoManager();
+	    getUndoManager().clear();
 	}
     }
     
@@ -2071,7 +2072,7 @@ public class XcosDiagram extends ScilabGraph {
 		    newSP.setParentDiagram(this);
 		    block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
-		    block.setId();
+		    block.generateId();
 		}
 	    }
 	}
@@ -2209,85 +2210,6 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Revert an action
-     */
-    public void undo() {
-	super.undo();
-
-	if (getParentTab() != null) {
-	    if (getUndoManager().canUndo()) {
-		((XcosTab) getParentTab()).setEnabledUndo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledUndo(false);
-	    }
-	    ((XcosTab) getParentTab()).setEnabledRedo(true);
-	}
-
-	updateUndoModifiedState();
-	/*
-	 * if (undoManager.canRedo()){
-	 * ((Xcos)getParentTab()).setEnabledRedo(true); } else {
-	 * ((Xcos)getParentTab()).setEnabledRedo(false); }
-	 */
-	
-	if (waitPathAddEdge) {
-	    if (drawLink != null) {
-		getModel().remove(drawLink);
-	    }
-	    cancelDrawLinkAction();
-	}
-    }
-
-
-
-    /**
-     * Apply the previously reverted action
-     */
-    public void redo() {
-	super.redo();
-
-	updateUndoModifiedState();
-
-	if (getParentTab() != null) {
-	    if (getUndoManager().canUndo()) {
-		((XcosTab) getParentTab()).setEnabledUndo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledUndo(false);
-	    }
-	    if (getUndoManager().canRedo()) {
-		((XcosTab) getParentTab()).setEnabledRedo(true);
-	    } else {
-		((XcosTab) getParentTab()).setEnabledRedo(false);
-	    }
-	}
-    }
-
-    /**
-     * This function will reset the UndoManager in a stable state.
-     */
-    public void resetUndoManager() {
-	getUndoManager().clear();
-
-	resetUndoCounter();
-
-	if (getParentTab() != null) {
-	    ((XcosTab) getParentTab()).setEnabledRedo(false);
-	    ((XcosTab) getParentTab()).setEnabledUndo(false);
-	}
-    }
-
-    /**
-     * modify undo state
-     */
-    private void updateUndoModifiedState() {
-	if (isZeroUndoCounter()) {
-	    setModified(false);
-	} else {
-	    setModified(true);
-	}
-    }
-
-    /**
      * @param action set context action
      */
     public void setContextAction(SetContextAction action) {
@@ -2301,6 +2223,70 @@ public class XcosDiagram extends ScilabGraph {
 	return action;
     }
 
+    /**
+     * Evaluate the current context
+     * 
+     * @return The resulting data. Keys are variable names and Values are 
+     *         evaluated values. 
+     */
+	public Map<String, String> evaluateContext() {
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			StringBuilder str = new StringBuilder();
+			str.append('[');
+			for (String s : getContext()) {
+				str.append('\"');
+				str.append(s);
+				str.append("\" ");
+			}
+			str.append(']');
+				
+			final File temp = File.createTempFile("xcos_ctx", ".h5", 
+						XcosConstants.TMPDIR);
+			
+			ScilabInterpreterManagement.synchronousScilabExec(
+						"vars = script2var(" + str.toString() + ", struct());" +
+						"export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
+			
+			ScilabList list = new ScilabList();
+			try {
+				int handle = H5Read.openFile(temp.getAbsolutePath());
+				if (handle >= 0) {
+					H5Read.readDataFromFile(handle, list);
+				}
+			} catch (HDF5LibraryException e) {
+				info("The HDF5 library is not loaded");
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				info("Unable to open file");
+				e.printStackTrace();
+			} catch (HDF5Exception e) {
+				info("The HDF5 file is not valid");
+				e.printStackTrace();
+			}
+
+			// We are starting at 2 because a struct is composed of
+			//     - the fields names (ScilabString)
+			//     - the dimension
+			//     - variables values...
+			for (int index = 2; index < list.size(); index++) {
+				String key = ((ScilabString) list.get(0)).getData()[0][index];
+				String value = list.get(index).toString();
+				
+				result.put(key, value);
+			}
+			
+		} catch (IOException e) {
+			info("Unable to create file");
+			e.printStackTrace();
+		} catch (InterpreterException e) {
+			info("Unable to evaluate the contexte");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+    
     /**
      * @param uid block ID
      * @return block

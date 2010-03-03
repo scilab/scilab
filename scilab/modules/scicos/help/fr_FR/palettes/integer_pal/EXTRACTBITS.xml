@@ -235,7 +235,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_UH0.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_UH0.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_UH1.c</para>

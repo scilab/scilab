@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
@@ -28,10 +29,12 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.XcosUIDObject;
-import org.scilab.modules.xcos.block.actions.ColorAction;
-import org.scilab.modules.xcos.actions.LinkStyleAction;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleStraightAction;
+import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
+import org.scilab.modules.xcos.link.actions.TextAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
@@ -43,11 +46,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 
-public abstract class BasicLink extends XcosUIDObject {
+public abstract class BasicLink extends ScilabGraphUniqueObject {
 
 	private static final long serialVersionUID = 8557979393361216098L;
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
@@ -206,17 +208,15 @@ public abstract class BasicLink extends XcosUIDObject {
 
     /**
      * Insert point on the nearest link
-     * @param x X coordinate
-     * @param y Y coordinate
+     * @param point the point to add
      */
-    public void insertPoint(double x, double y) {
+    public void insertPoint(mxPoint point) {
 
 	//if it is a loop link, change coordinate origin to block instead of diagram
-	mxPoint point = new mxPoint(x, y);
 	if (isLoopLink()) {
 	    mxGeometry geo = getSource().getParent().getGeometry();
-	    point.setX(x - geo.getX());
-	    point.setY(y - geo.getY());
+	    point.setX(point.getX() - geo.getX());
+	    point.setY(point.getY() - geo.getY());
 	}
 
 	if (getGeometry() == null) {
@@ -330,16 +330,17 @@ public abstract class BasicLink extends XcosUIDObject {
 	/*--- */
 	Menu format = ScilabMenu.createMenu();
 	format.setText(XcosMessages.FORMAT);
-	format.add(ColorAction.createMenu(graph, XcosMessages.BORDER_COLOR, mxConstants.STYLE_STROKECOLOR));
+	format.add(BorderColorAction.createMenu(graph));
+	format.add(TextAction.createMenu(graph));
 	menu.add(format);
 	/*--- */
 	menu.getAsSimpleContextMenu().addSeparator();
 	/*--- */
 	Menu linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_STRAIGHT, mxConstants.SHAPE_CONNECTOR));
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_HORIZONTAL, mxConstants.ELBOW_HORIZONTAL));
-	linkStyle.add(LinkStyleAction.createMenu(graph, XcosMessages.LINK_STYLE_VERTICAL, mxConstants.ELBOW_VERTICAL));
+	linkStyle.add(StyleHorizontalAction.createMenu(graph));
+	linkStyle.add(StyleStraightAction.createMenu(graph));
+	linkStyle.add(StyleVerticalAction.createMenu(graph));
 
 
 	menu.add(linkStyle);
@@ -359,8 +360,9 @@ public abstract class BasicLink extends XcosUIDObject {
 	 */
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
     	// Pre-conditions
-    	assert from != null;
-    	assert to != null;
+    	if (to == null || from == null) {
+    		throw new NullPointerException();
+    	}
     	
     	BasicLink instance;
     	

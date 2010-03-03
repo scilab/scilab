@@ -13,8 +13,8 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
-import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.port.Orientation;
 
 /**
  * The Ground block has only one specificity : it's port position.
@@ -31,7 +31,7 @@ public class GroundBlock extends BasicBlock {
 	 * @param port the port to add.
 	 */
 	@Override
-	public void addPort(InputPort port) {
+	public void addPort(BasicPort port) {
 		port.setOrientation(Orientation.NORTH);
 		super.addPort(port);
 	}

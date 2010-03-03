@@ -109,8 +109,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private static Xpad editor;
 
-	private final Window parentWindow;
 	private static XpadGUI xpadGUI;
+	private final Window parentWindow;
+
 	private JTabbedPane tabPane;
 	private JTextPane textPane;
 	private JScrollPane scrollingText;
@@ -199,16 +200,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 */
 	public static void xpad() {
 		try  {
-			SwingUtilities.invokeAndWait( new Thread(){
+			SwingUtilities.invokeAndWait(new Thread() {
 				public void run() {
 					Xpad editorInstance = launchXpad();
 					editorInstance.addEmptyTab();				
 				}
 			});
-		} catch(InterruptedException e) {
-			System.err.println("EDT interrupted "+e);
-		} catch(java.lang.reflect.InvocationTargetException e) {
-			System.err.println(" xpad() throw: "+e);
+		} catch (InterruptedException e) {
+			System.err.println("EDT interrupted " + e);
+		} catch (java.lang.reflect.InvocationTargetException e) {
+			System.err.println(" xpad() throw: " + e);
 		}
 		
 	}
@@ -316,7 +317,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			 * Action callback on Exit menu
 			 */
 			public void callBack() {
-			    if(getEditor().getTabPane().getTabCount() != 1) {
+			    if (getEditor().getTabPane().getTabCount() != 1) {
 				if (ScilabModalDialog.show(Xpad.getEditor(), XpadMessages.EXIT_CONFIRM, XpadMessages.EXIT, 
 					IconType.WARNING_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
 					ExitAction.doExit(Xpad.getEditor());						
@@ -411,7 +412,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	 * @return execution status
 	 */
 
-	public boolean save(int indexTab, boolean force, boolean scilabClose){
+	public boolean save(int indexTab, boolean force, boolean scilabClose) {
 
 		JTextPane textPaneAt = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0);
 		//if the file ( empty, new or loaded ) is not modified, exit save process and return true
@@ -547,9 +548,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			// we consider the file has already an extension
 			// we previously only check for .sci and .sce extension, but what if the user open a txt file
 			String fileName = f.getName();
-			if (fileName.lastIndexOf(".")!= -1 ){
-				if ( fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() >= 2
-					&& fileName.substring(fileName.lastIndexOf("."),fileName.length()).length() <= 4){
+			if (fileName.lastIndexOf(".") != -1) {
+				if (fileName.substring(fileName.lastIndexOf("."), fileName.length()).length() >= 2
+					&& fileName.substring(fileName.lastIndexOf("."), fileName.length()).length() <= 4) {
 					hasNoExtension = false;
 				}
 				
@@ -714,9 +715,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		    private void handleEvent(DocumentEvent documentEvent) {
 		        DocumentEvent.EventType type = documentEvent.getType();
-		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
-		        	ScilabStyleDocument doc = ((ScilabStyleDocument)documentEvent.getDocument());
-		        	if(doc.getAutoColorize()) {
+		        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE)) {
+		        	ScilabStyleDocument doc = ((ScilabStyleDocument) documentEvent.getDocument());
+		        	if (doc.getAutoColorize()) {
 		        		SwingUtilities.invokeLater(colorizationManager.new ColorUpdater(documentEvent));
 		        	}
 		        	doc.setContentModified(true);
@@ -795,10 +796,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 	/**
 	 * Add or remove '*' prefix in current tab tile according to isContentModified().
 	 */
-	public void updateTabTitle(){
+	public void updateTabTitle() {
 		StringBuffer newTitle = new StringBuffer();
 		JTextPane currentTextPane = getTextPane();
-		if(((ScilabStyleDocument) currentTextPane.getStyledDocument()).isContentModified()) {
+		if (((ScilabStyleDocument) currentTextPane.getStyledDocument()).isContentModified()) {
 			newTitle.append('*');
 		}
 		String textPaneName = currentTextPane.getName();
@@ -807,40 +808,83 @@ public class Xpad extends SwingScilabTab implements Tab {
 			newTitle.append(f.getName());
 		} catch (Exception e) { // not a file name, no path prefix to remove, but maybe a '*'
 			textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
-			newTitle.append(textPaneName.charAt(0)=='*'? textPaneName.substring(1, textPaneName.length()) : textPaneName);
+			newTitle.append(textPaneName.charAt(0) == '*' ? textPaneName.substring(1, textPaneName.length()) : textPaneName);
 		}
 		getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
 	}
 	
+	/**
+	 * Class CaretUpdater, make an update for caret events
+	 * @author Sylvestre Koumar
+	 *
+	 */
 	class CaretUpdater implements Runnable {
 		private JTextPane jtc;
 		private int offset;
 		
-		CaretUpdater(JTextPane jtc, DocumentEvent e){
-			this.jtc= jtc;
+		/**
+		 * Default constructor
+		 * @param jtc JTextPane
+		 * @param e DocumentEvent
+		 */
+		CaretUpdater(JTextPane jtc, DocumentEvent e) {
+			this.jtc = jtc;
 			this.offset = e.getOffset() + e.getLength();
 			
 		}
-		public void run(){
+		
+		/**
+		 * Function Run
+		 */
+		public void run() {
 			jtc.setCaretPosition(Math.min(offset, jtc.getDocument().getLength()));
 		}	
 	}
 	
+	/**
+	 * Class UpdateListener, make an update for document events
+	 * @author Sylvestre Koumar
+	 *
+	 */
 	class UpdateListener implements DocumentListener {
-		public void insertUpdate(final DocumentEvent e)
-		{
+		
+		/**
+		 * Default constructor
+		 */
+		public UpdateListener() {
+			
+		}
+		
+		/**
+		 * Update on a insert action
+		 * @param e DocumentEvent
+		 */
+		public void insertUpdate(final DocumentEvent e) {
 			updateColor(e);
 			SwingUtilities.invokeLater(new CaretUpdater(getTextPane(), e));
 		}
-		public void removeUpdate(DocumentEvent e)
-		{
+		
+		/**
+		 * Update on a remove action
+		 * @param e DocumentEvent
+		 */
+		public void removeUpdate(DocumentEvent e) {
 			updateColor(e);
 			getTextPane().setCaretPosition(e.getOffset());
 		}
-		public void changedUpdate(DocumentEvent e) {}
 		
-		void updateColor(DocumentEvent e){
-			if( e.getType() != DocumentEvent.EventType.CHANGE) {
+		/**
+		 * Update on a change action
+		 * @param e DocumentEvent
+		 */
+		public void changedUpdate(DocumentEvent e) { }
+		
+		/**
+		 * Update color
+		 * @param e DocumentEvent
+		 */
+		void updateColor(DocumentEvent e) {
+			if (e.getType() != DocumentEvent.EventType.CHANGE) {
 				SwingUtilities.invokeLater(new ColorizationManager().new ColorUpdater(e));
 			}
 		}
@@ -961,9 +1005,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		try {
 			return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
 		} catch (NullPointerException e) {
-			System.err.println("Could not retrieve the current text tab."+e);
+			System.err.println("Could not retrieve the current text tab." + e);
 			return null;
-		} catch( ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
+		} catch (ArrayIndexOutOfBoundsException e) { // can happen between Xpad construction and first call to addTab()
 			//System.err.println("no tab (yet?)."+e); 
 			return null;
 		}
@@ -1115,6 +1159,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 
 		@SuppressWarnings("deprecation")
+		/**
+		 * Fcuntion Run
+		 */
 		public void run() {
 			readFile(fileToRead);
 			this.stop();
@@ -1144,9 +1191,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 						styleDocument.setAutoIndent(false); 
 						try {
 							try {
-							editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),styleDocument.getEncoding())), styleDocument, 0);
-							} catch(ChangedCharSetException e) {
-								editorKit.read(new BufferedReader(new InputStreamReader(new FileInputStream(f),e.getCharSetSpec())), styleDocument, 0);
+							editorKit.read(
+									new BufferedReader(
+									new InputStreamReader(
+									new FileInputStream(f), styleDocument.getEncoding())), styleDocument, 0);
+							} catch (ChangedCharSetException e) {
+								editorKit.read(
+										new BufferedReader(
+										new InputStreamReader(
+										new FileInputStream(f), e.getCharSetSpec())), styleDocument, 0);
 							}
 
 						} catch (BadLocationException e) {
@@ -1160,12 +1213,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 				}
 
 				theTextPane.setName(f.getAbsolutePath());
-				getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 				styleDocument.setContentModified(false);
 
 				getInfoBar().setText("");
 
-				xpadGUI.updateEncodingMenu((ScilabStyleDocument)getTextPane().getStyledDocument());
+				xpadGUI.updateEncodingMenu((ScilabStyleDocument) getTextPane().getStyledDocument());
 				
 				// File does not exist	
 			} else {
@@ -1180,7 +1233,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 					BufferedWriter out = null;
 					try {
-						out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), styleDocument.getEncoding()));
+						out = new BufferedWriter(
+							  new OutputStreamWriter(
+							  new FileOutputStream(f), styleDocument.getEncoding()));
 						try {
 							editorKit.write(out, styleDocument, 0, styleDocument.getLength());
 							out.flush();
@@ -1199,7 +1254,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 					ConfigManager.saveLastOpenedDirectory(f.getPath());
 					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 					theTextPane.setName(f.getPath());
-					getTabPane().setTitleAt(getTabPane().getSelectedIndex() ,f.getName());
+					getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
 					editor.setTitle(f.getPath() + " - " + XpadMessages.SCILAB_EDITOR);
 					updateRecentOpenedFilesMenu();
 
@@ -1225,26 +1280,49 @@ public class Xpad extends SwingScilabTab implements Tab {
 		}
 	}
 
+	/**
+	 * EditorKit Getter
+	 * @return EditorKit
+	 */
 	public EditorKit getEditorKit() {
 		return editorKit;
 	}
 
+	/**
+	 * EditorKit Setter
+	 * @param editorKit EditorKit
+	 */
 	public void setEditorKit(EditorKit editorKit) {
 		this.editorKit = editorKit;
 	}
 	
+	/**
+	 * Getter for file to encode
+	 * @return a File
+	 */
 	public File getFileToEncode() {
 		return fileToEncode;
 	}
 
+	/**
+	 * Setter for file to encode
+	 * @param fileToEncode a File
+	 */
 	public void setFileToEncode(File fileToEncode) {
 		this.fileToEncode = fileToEncode;
 	}
 	
+	/**
+	 * Xpad Getter
+	 * @return editor Xpad
+	 */
 	public static Xpad getEditor() {
 	    return editor;
 	}
 
+	/**
+	 * Close xpad from scilab
+	 */
 	public static void closeXpadFromScilab() {
 	    Xpad xpad = getEditor();
 	    if (xpad == null) {
@@ -1259,12 +1337,30 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 }
 
+/**
+ * Update the table title
+ * @author Sylvestre Koumar
+ *
+ */
 class TabTitleUpdater implements Runnable {
+	
+	/**
+	 * The editor
+	 */
 	Xpad editor;
-	TabTitleUpdater( Xpad e ) {
+	
+	/**
+	 * Default constructor
+	 * @param e Xpad
+	 */
+	TabTitleUpdater(Xpad e) {
 		editor = e;
 	}
-	 public void run() {
-		 editor.updateTabTitle();
+
+	/**
+	 * Function Run
+	 */
+	public void run() {
+		editor.updateTabTitle();
 	}
 }

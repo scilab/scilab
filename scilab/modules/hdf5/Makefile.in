@@ -62,11 +62,11 @@ build_triplet = @build@
 host_triplet = @host@
 
 # When Scilab is built with HDF5, we need some libraries for a workaround
-@HDF5_TRUE@am__append_1 = libscihdf5-forceload.la \
-@HDF5_TRUE@	libscihdf5-forceload-disable.la
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__append_1 = libscihdf5-forceload.la
+@HDF5_TRUE@am__append_2 = libscihdf5-forceload-disable.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/hdf5
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -132,7 +132,7 @@ libscihdf5_forceload_disable_la_LINK = $(LIBTOOL) --tag=CXX \
 @HDF5_TRUE@	$(pkglibdir)
 libscihdf5_forceload_la_LIBADD =
 am__libscihdf5_forceload_la_SOURCES_DIST = src/cpp/forceJHDF5load.cpp
-@HDF5_TRUE@am__objects_2 = libscihdf5_forceload_la-forceJHDF5load.lo
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__objects_2 = libscihdf5_forceload_la-forceJHDF5load.lo
 @HDF5_TRUE@am_libscihdf5_forceload_la_OBJECTS = $(am__objects_2)
 libscihdf5_forceload_la_OBJECTS =  \
 	$(am_libscihdf5_forceload_la_OBJECTS)
@@ -140,7 +140,8 @@ libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(libscihdf5_forceload_la_CXXFLAGS) $(CXXFLAGS) \
 	$(libscihdf5_forceload_la_LDFLAGS) $(LDFLAGS) -o $@
-@HDF5_TRUE@am_libscihdf5_forceload_la_rpath = -rpath $(pkglibdir)
+@HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath = -rpath \
+@HDF5_TRUE@@NEED_JAVA_TRUE@	$(pkglibdir)
 libscihdf5_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -160,8 +161,8 @@ am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
 @HDF5_TRUE@am__objects_4 = libscihdf5_la-sci_export_to_hdf5.lo \
 @HDF5_TRUE@	libscihdf5_la-sci_import_from_hdf5.lo
 @HDF5_TRUE@am__objects_5 = libscihdf5_la-gw_hdf5.lo
-@HDF5_TRUE@am__objects_6 = libscihdf5_la-jhdf5load.lo \
-@HDF5_TRUE@	libscihdf5_la-GiwsException.lo
+@HDF5_TRUE@@NEED_JAVA_TRUE@am__objects_6 = libscihdf5_la-jhdf5load.lo \
+@HDF5_TRUE@@NEED_JAVA_TRUE@	libscihdf5_la-GiwsException.lo
 am_libscihdf5_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
 libscihdf5_la_OBJECTS = $(am_libscihdf5_la_OBJECTS)
@@ -213,6 +214,7 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -282,14 +284,17 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -345,6 +350,7 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -363,6 +369,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -446,20 +453,24 @@ top_srcdir = @top_srcdir@
 @HDF5_TRUE@src/c/h5_writeDataToFile.c \
 @HDF5_TRUE@src/c/h5_readDataFromFile.c
 
-@HDF5_TRUE@HDF5_CPP_SOURCES = src/jni/jhdf5load.hxx \
-@HDF5_TRUE@src/jni/jhdf5load.cpp \
-@HDF5_TRUE@src/jni/GiwsException.hxx \
-@HDF5_TRUE@src/jni/GiwsException.cpp
+@HDF5_TRUE@@NEED_JAVA_FALSE@HDF5_CPP_SOURCES = 
+@HDF5_TRUE@@NEED_JAVA_TRUE@HDF5_CPP_SOURCES = src/jni/jhdf5load.hxx \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/jhdf5load.cpp \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/GiwsException.hxx \
+@HDF5_TRUE@@NEED_JAVA_TRUE@src/jni/GiwsException.cpp
 
+
+# This is due to an ugly hack for bug #5481
+@HDF5_TRUE@@NEED_JAVA_FALSE@FORCE_LOAD_SOURCES = 
+
+# This is due to an ugly hack for bug #5481
+@HDF5_TRUE@@NEED_JAVA_TRUE@FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
 @HDF5_FALSE@GATEWAY_C_SOURCES = 
 @HDF5_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 @HDF5_FALSE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 @HDF5_TRUE@GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 @HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp
 
-
-# This is due to an ugly hack for bug #5481
-@HDF5_TRUE@FORCE_LOAD_SOURCES = src/cpp/forceJHDF5load.cpp
 @HDF5_TRUE@FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 @HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 @HDF5_TRUE@libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
@@ -497,7 +508,7 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 #### hdf5 : gateway declaration ####
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
-pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1)
+pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
@@ -533,7 +544,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro

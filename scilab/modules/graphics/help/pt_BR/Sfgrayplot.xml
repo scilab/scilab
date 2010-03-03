@@ -124,7 +124,7 @@ function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
-xbasc()
+clf()
 xset("colormap",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
@@ -150,7 +150,7 @@ xselect()
 
 // exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",hotcolormap(128))
@@ -165,7 +165,7 @@ xselect()
 // exemplo #3: esboço de surf3 e uso dos argumentos opcionais zminmax e colout
 //             para restringir o esboço em -0.5&lt;= z &lt;= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",jetcolormap(128))

@@ -18,48 +18,48 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgesvd)();
 extern int C2F(dlaset)();
 extern int C2F(dlacpy)();
 extern int C2F(dmmul)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
-{         double *l0;
-	  double *LA;
-          double *LSV;
-          double *LVT;
-          double *dwork;
+{         
+	double *l0;
+	double *LA;
+	double *LSV;
+	double *LVT;
+	double *dwork;
 } mat_sdv_struct ;
-void mat_svd(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void mat_svd(scicos_block *block,int flag)
 {
- double *u;
- double *y1,*y2,*y3;
- int nu,mu;
- int info;
- int i,j,ij,ji,ii,lwork;
- mat_sdv_struct *ptr;
+ double *u = NULL;
+ double *y1 = NULL,*y2 = NULL,*y3 = NULL;
+ int nu = 0, mu = 0;
+ int info = 0;
+ int i = 0,j = 0,ij = 0,ji = 0,ii = 0,lwork = 0;
+ mat_sdv_struct *ptr = NULL;
+
  mu=GetInPortRows(block,1);
  nu=GetInPortCols(block,1);
  u=GetRealInPortPtrs(block,1);
  y1=GetRealOutPortPtrs(block,1);
  y2=GetRealOutPortPtrs(block,2);
  y3=GetRealOutPortPtrs(block,3);
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4);
+ /* for lapack 3.1 (2006)*/
+ lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
+ lwork=max(1,lwork); 
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_sdv_struct*) scicos_malloc(sizeof(mat_sdv_struct)))==NULL)
@@ -135,3 +135,4 @@ else
 	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

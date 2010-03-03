@@ -35,7 +35,7 @@ reg = list(); rect=[]
 kc = find(win==windows(:,2))
 
 if kc==[] then
-  message('This window is not an active palette')
+  messagebox('This window is not an active palette','modal')
   //** xset('window',wins)
   scf(wins); 
   //** xset('alufunction',alu)
@@ -55,7 +55,7 @@ elseif slevel>1 then
   execstr('scs_m=scs_m_'+string(windows(kc,1)))
 
 else
-  message('This window is not an active palette')
+  messagebox('This window is not an active palette','modal')
   //** xset('window',wins)
   scf(wins); 
   //** xset('alufunction',alu)

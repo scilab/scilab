@@ -16,31 +16,77 @@ package org.scilab.modules.graph.actions;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
+import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-
-import com.mxgraph.swing.util.mxGraphActions;
 
 /**
  * Zoom management
  * @author Bruno JOFFRET
  */
 public class ZoomOutAction extends DefaultAction implements ActionListener {
+	public static final String NAME = ScilabGraphMessages.ZOOM_OUT;
+	public static final String SMALL_ICON = "list-remove.png";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_MINUS;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Implement custom mouse handling for the zoom
+	 */
+	private static final class CustomMouseWheelListener implements MouseWheelListener {
+		private final ScilabGraph scilabGraph;
+		
+		/**
+		 * Default constructor
+		 * @param scilabGraph the current graph
+		 */
+		public CustomMouseWheelListener(ScilabGraph scilabGraph) {
+			this.scilabGraph = scilabGraph;
+		}
+		
+		/**
+		 * When the wheel is used
+		 * @param e the parameters
+		 * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
+		 */
+		public void mouseWheelMoved(MouseWheelEvent e) {
+			if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
+				if (e.getWheelRotation() > 0) {
+					scilabGraph.getAsComponent().zoomOut();
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public ZoomOutAction(ScilabGraph scilabGraph) {
-		super(ScilabGraphMessages.ZOOM_OUT, scilabGraph);
+		super(scilabGraph);
+		
+		MouseWheelListener mouseListener = new CustomMouseWheelListener(scilabGraph);
+		scilabGraph.getAsComponent().getViewport().addMouseWheelListener(mouseListener);
+		
+		// On the KeyPad
+		scilabGraph.getAsComponent().registerKeyboardAction(
+				this, "zoomOut", KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, ACCELERATOR_KEY), 
+				JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		// When the MINUS key is accessible with the shift key.
+		scilabGraph.getAsComponent().registerKeyboardAction(
+				this, "zoomOut", KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, ACCELERATOR_KEY | InputEvent.SHIFT_DOWN_MASK), 
+				JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
 
 	/**
@@ -49,7 +95,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @return the button
 	 */
 	public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_OUT, "list-remove.png", new ZoomOutAction(scilabGraph));
+		return createButton(scilabGraph, ZoomOutAction.class);
 	}
 
 	/**
@@ -58,8 +104,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @return the menu
 	 */
 	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
-		return createMenu(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ZoomOutAction.class);
 	}
 
 	/**
@@ -68,8 +113,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		mxGraphActions.getZoomOutAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
-				e.getID(), e.getActionCommand()));
+		getGraph(e).getAsComponent().zoomOut();
 	}
 
 }

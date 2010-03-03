@@ -43,10 +43,10 @@
   <refsection id="Description_scicos_simulate">
     <title>Description</title>
     <para>
-This function is used to simulate scicos diagrams in batch mode. It requires the scs_m structure which can be obtained by loading in Scilab the .cos file (e.g. load mydiagram.cos).  
+Cette fonction est utilisée pour simuler des diagrammes Scicos en mode batch. Elle requiert la structure scs_m qui peut-être obtenue en chargeant un diagramme Scicos dans Scilab (par exemple -load mydiagram.cos).  
 </para>
     <para>
-Contrary to the function , the diagram need not be compiled before being saved.  
+Contrairement à la fonction , le diagramme ne nécessite pas d'être compilé avant d'être sauvegardé.  
 </para>
     <para>
 </para>

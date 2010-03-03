@@ -10,4 +10,3 @@ exec("SCI/modules/xcos/demos/anim_pen.sci");
 
 // Open the cosf file with xcos
 xcos("SCI/modules/scicos/demos/pendulum_anim5.cosf");
-

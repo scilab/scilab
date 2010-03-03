@@ -112,7 +112,7 @@ spec(A)
     <title> Funções Utilizadas </title>
 
     <para>O código fonte de rpoly.f pode ser achado no diretório
-    routines/control de uma distribuição fonte do Scilab. A computação de
+	    SCI/modules/polynomials/src/fortran de uma distribuição fonte do Scilab. A computação de
     autovalores é feita utilizando-se os códigos do LAPACK DGEEV e ZGEEV.
     </para>
   </refsection>

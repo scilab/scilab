@@ -18,12 +18,15 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
-
+#include "machine.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-void csslti4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void csslti4(scicos_block *block,int flag)
 {
   /*  Copyright INRIA
 
@@ -34,7 +37,7 @@ void csslti4(scicos_block *block,int flag)
       rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
       rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D */
   
-  int un=1,lb,lc,ld;
+  int un=1,lb = 0,lc = 0,ld = 0;
   int nx=block->nx;
   double* x=block->x;
   double* xd=block->xd;
@@ -44,8 +47,8 @@ void csslti4(scicos_block *block,int flag)
   int* outsz=block->outsz;
   int* insz=block->insz;
   
-  lb=nx*nx;
-  lc=lb+nx*insz[0];
+  lb = nx * nx;
+  lc = lb + nx * insz[0];
   
   if (flag ==1 || flag ==6){
     /* y=c*x+d*u     */
@@ -64,6 +67,6 @@ void csslti4(scicos_block *block,int flag)
     C2F(dmmul1)(&rpar[lb],&nx,u,insz,xd,&nx,&nx,insz,&un);
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 
 

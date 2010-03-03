@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,23 +35,24 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
- * @author Allan SIMON
- *
+ * Set the debug level
  */
-public class DebugLevelAction extends DefaultAction {
-	private static final long serialVersionUID = 1L;
+public class DebugLevelAction extends SimulationNotRunningAction {
+	public static final String NAME = XcosMessages.SET_DEBUG;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JList debugList;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JList debugList;
 
 	/**
 	 * @author Allan SIMON
@@ -91,7 +93,7 @@ public class DebugLevelAction extends DefaultAction {
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public DebugLevelAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SET_DEBUG, scilabGraph);
+		super(scilabGraph);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -104,13 +106,13 @@ public class DebugLevelAction extends DefaultAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SET_DEBUG, null, new DebugLevelAction(scilabGraph), null);
+		return createMenu(scilabGraph, DebugLevelAction.class);
 	}
 
 	/**
 	 * @param diagramArgu diagram
 	 */
-	public static void debugLevel(XcosDiagram diagramArgu){
+	public void debugLevel(XcosDiagram diagramArgu){
 
 		diagram = diagramArgu;
 
@@ -174,7 +176,7 @@ public class DebugLevelAction extends DefaultAction {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
 				try {
-					XcosInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
+					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
 				} catch (InterpreterException e1) {
 					e1.printStackTrace();
 				}

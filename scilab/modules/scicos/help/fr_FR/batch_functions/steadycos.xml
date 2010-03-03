@@ -43,7 +43,7 @@
   <refsection id="Description_steadycos">
     <title>Description</title>
     <para>
-This function finds the steady state for a given system described by a Scicos diagram. The diagram consists in general of a Super block with input and output port blocks. The steady state concerns only the continuous-time dynamics.  
+Cette fonction trouve le régime établi d'un système décrit par un diagramme Scicos. Le diagramme sera en général supposé être comme un superbloc avec des ports d'entrées/sorties réguliers. Le régime établi concerne seulement les dynamiques à temps continu.  
 </para>
     <para>
 </para>

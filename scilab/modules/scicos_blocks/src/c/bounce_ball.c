@@ -18,27 +18,27 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "MALLOC.h"
 #include "scicos_block.h"
-
-void 
-bounce_ball(scicos_block *block,int flag)
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void bounce_ball(scicos_block *block,int flag)
 {
-
-     int nevprt,nx,*ipar;
-     int *outsz;
-     double *x,*xd,*rpar;
-     double *g;
-     int ng;
-     int *jroot;
+  int nevprt = 0,nx = 0,*ipar = NULL;
+  int *outsz = NULL;
+  double *x = NULL,*xd = NULL,*rpar = NULL;
+  double *g = NULL;
+  int ng = 0;
+  int *jroot = NULL;
      
-     
-  int i1;
-  double d1, d2, d3;
+  int i1 = NULL;
+  double d1 = 0., d2 = 0., d3 = 0.;
   
-  static double a, b, c;
-  static int i, j, k, n;
-  static double s1, s2, s3, s4, xsi,*y1,*y2;
+  static double a = 0., b = 0., c = 0.;
+  static int i = 0, j = 0, k = 0, n = 0;
+  static double s1 = 0., s2 = 0., s3 = 0., s4 = 0., xsi = 0.,*y1 = NULL,*y2 = NULL;
   
   /*     Scicos block simulator */
   /*     bouncing ball */
@@ -157,3 +157,4 @@ bounce_ball(scicos_block *block,int flag)
     }
   }
 } 
+/*--------------------------------------------------------------------------*/ 

@@ -231,7 +231,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
           <emphasis role="bold">regular outputs:</emphasis>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>

@@ -43,7 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
@@ -204,7 +204,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/arch:IA32"
+				AdditionalOptions=""
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
@@ -370,12 +370,20 @@
 				RelativePath=".\includes\dynamiclibrary_windows.h"
 				>
 			</File>
+			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath=".\dynamiclibrary.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\Makefile.am"

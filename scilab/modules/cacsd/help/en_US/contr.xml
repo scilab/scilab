@@ -105,7 +105,7 @@
   <refsection>
     <title>Reference</title>
     <para>
-    Slicot library (see ab01od in SCIDIR/routines/slicot).</para>
+	    Slicot library (see ab01od in SCI/modules/cacsd/src/slicot).</para>
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -101,6 +101,14 @@ FILEIO_IMPEXP void SetFileModeOpenedInScilab(int Id,int mode);
 */
 FILEIO_IMPEXP int GetFileTypeOpenedInScilab(int Id);
 
+
+/**
+* Get the type of file Id
+* @param Id
+* @return Type 'C' or 'F' (Fortran,C) (to free)
+*/
+FILEIO_IMPEXP char *GetFileTypeOpenedInScilabAsString(int Id);
+
 /**
 * Set the mode of file Id
 * @param Id
@@ -156,10 +164,58 @@ FILEIO_IMPEXP BOOL IsAlreadyOpenedInScilab(char *filename);
 
 /**
 * Get ID of a filename opened in scilab
-* @param[in] filen name
+* @param[in] filename
 * @return file ID or FILE_ID_NOT_DEFINED
 */
 FILEIO_IMPEXP int GetIdFromFilename(char *filename);
+
+/**
+* Get Ids opened in Scilab
+* @param[out] size of returned array
+* @return Array of Id
+*/
+FILEIO_IMPEXP double *GetFilesIdUsed(int *sizeArrayReturned);
+
+/**
+* Get Ids opened in Scilab
+* @param[out] size of returned array
+* @return Array of Id
+*/
+FILEIO_IMPEXP double *GetSwapsUsed(int *sizeArrayReturned);
+
+/**
+* Get Modes used in Scilab
+* @param[out] size of returned array
+* @return Modes associated to Id
+*/
+FILEIO_IMPEXP double *GetModesUsed(int *sizeArrayReturned);
+
+/**
+* Get Types used in Scilab
+* @param[out] size of returned array
+* @return Types associated to Id
+*/
+FILEIO_IMPEXP int *GetTypesUsed(int *sizeArrayReturned);
+
+/**
+* Get Types used in Scilab
+* @param[out] size of returned array
+* @return Types associated to Id as Strings (user reading)
+*/
+FILEIO_IMPEXP char **GetTypesUsedAsString(int *sizeArrayReturned);
+
+/**
+* Get filenames used in Scilab
+* @param[out] size of returned array
+* @return filenames
+*/
+FILEIO_IMPEXP char **GetFilenamesUsed(int *sizeArrayReturned);
+
+/**
+* Get number of Ids Used in Scilab
+* @return number of Ids
+*/
+FILEIO_IMPEXP int GetNumberOfIdsUsed(void);
 
 #endif /* __FILESMANAGEMENT_H__ */
 /*--------------------------------------------------------------------------*/

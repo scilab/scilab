@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * ...
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -72,16 +72,28 @@ void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
 		*err=1;
 	}
 	else
-		*err=0;
-#else
-	if (fseek(fa,(long) *offset,iflag) == -1 ) 
 	{
-		int errnum=errno; /* global variable produced by fseek */
-		sciprint(_("%s: An error occurred in %s: errno=%s\n"),"mseek","fseek",strerror(errnum));
-		*err=1;
+		*err=0;
+	}
+#else
+	#ifdef _MSC_VER
+		#if _WIN64 
+			if (_fseeki64(fa,(long) *offset,iflag) == -1 ) 
+		#else
+			if (fseek(fa,(long) *offset,iflag) == -1 ) 
+		#endif
+	#else
+	if (fseek(fa,(long) *offset,iflag) == -1 ) 
+	#endif
+	{
+		int errnum = errno; /* global variable produced by fseek */
+		sciprint(_("%s: An error occurred in %s: errno=%s\n"), "mseek", "fseek", strerror(errnum));
+		*err = 1;
 	}
 	else 
-		*err=0;
+	{
+		*err = 0;
+	}
 #endif
 }
 /*--------------------------------------------------------------------------*/

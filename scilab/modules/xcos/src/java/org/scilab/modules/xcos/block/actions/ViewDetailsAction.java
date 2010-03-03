@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,10 +14,12 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -24,21 +27,24 @@ import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BasicBlockInfo;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 
 /**
- * @author Vincent COUVERT
- *
+ * View the details of the action
  */
-public final class ViewDetailsAction extends DefaultAction {
+public final class ViewDetailsAction extends VertexSelectionDependantAction {
+	public static final String NAME = XcosMessages.DETAILS;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 
     /**
+     * Constructor
      * @param scilabGraph graph
      */
-    private ViewDetailsAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.DETAILS, scilabGraph);
+    public ViewDetailsAction(ScilabGraph scilabGraph) {
+	super(scilabGraph);
     }
 
     /**
@@ -46,10 +52,15 @@ public final class ViewDetailsAction extends DefaultAction {
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.DETAILS, null, new ViewDetailsAction(scilabGraph), null);
+	return createMenu(scilabGraph, ViewDetailsAction.class);
     }
 
-    public void doAction() {
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	XcosDiagram graph = (XcosDiagram) getGraph(null);
 	Object[] selectedCells = graph.getSelectionCells();
 
@@ -64,9 +75,9 @@ public final class ViewDetailsAction extends DefaultAction {
 		    int fileId = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(fileId, "scs_m", BasicBlockInfo.getAsScilabObj((BasicBlock) selectedCells[i]));
 		    H5Write.closeFile(fileId);
-		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
+		    ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
 			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e) {
+		} catch (Exception e2) {
 		    // Do Nothing !!!
 		}
 	    }
@@ -77,9 +88,9 @@ public final class ViewDetailsAction extends DefaultAction {
 		    int fileId = H5Write.createFile(temp.getAbsolutePath());
 		    H5Write.writeInDataSet(fileId, "scs_m", ((BasicLink) selectedCells[i]).getAsScilabObj());
 		    H5Write.closeFile(fileId);
-		    XcosInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
+		    ScilabInterpreterManagement.synchronousScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");tree_show(scs_m);"
 			    + "deletefile(\"" + temp.getAbsolutePath() + "\");");
-		} catch (Exception e) {
+		} catch (Exception e2) {
 		    // Do Nothing !!!
 		}
 	    }

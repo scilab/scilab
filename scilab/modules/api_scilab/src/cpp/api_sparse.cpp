@@ -398,18 +398,18 @@ static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iC
 	}
 
 	*_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
-	memcpy(_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
+	memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
 
 	*_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
-	memcpy(_piColPos, piColPos, sizeof(int) * *_piNbItem);
+	memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
 
 	*_pdblReal			= (double*)MALLOC(sizeof(double) * *_piNbItem);
-	memcpy(_pdblReal, pdblReal, sizeof(double) * *_piNbItem);
+	memcpy(*_pdblReal, pdblReal, sizeof(double) * *_piNbItem);
 
 	if(_iComplex)
 	{
 		*_pdblImg			= (double*)MALLOC(sizeof(double) * *_piNbItem);
-		memcpy(_pdblImg, pdblImg, sizeof(double) * *_piNbItem);
+		memcpy(*_pdblImg, pdblImg, sizeof(double) * *_piNbItem);
 	}
 
 	return 0;

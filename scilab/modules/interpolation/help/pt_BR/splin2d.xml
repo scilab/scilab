@@ -164,7 +164,7 @@ xx = linspace(0,2*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz = interp2d(XX,YY, x, y, C);
 emax = max(abs(zz - cos(xx')*cos(yy)));
-xbasc()
+clf()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
@@ -183,7 +183,7 @@ ZP2 = linear_interpn(XP, YP, x, y, z);
 ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
 ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
 xset("colormap", jetcolormap(64))
-xbasc()
+clf()
 subplot(2,2,1)
 plot3d1(xp, yp, ZP1, flag=[2 2 4])
 xtitle("not_a_knot")
@@ -213,7 +213,7 @@ xp = linspace(a,b, np);
 zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
 zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
 // plot
-xbasc()
+clf()
 xset("colormap",jetcolormap(128))
 subplot(1,2,1)
 plot3d1(xp, xp, zp1, flag=[-2 6 4])

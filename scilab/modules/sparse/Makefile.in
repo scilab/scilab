@@ -135,7 +135,7 @@ am__objects_2 = spcompack.lo wsposp.lo dspmax.lo findl.lo spcho1.lo \
 	wspasp.lo wij2sp.lo wspcsp.lo lspops.lo spifp.lo isort1.lo \
 	dspis.lo wspxs.lo lspe2.lo wspisp.lo dsmsp.lo dspms.lo \
 	spord.lo dsosp.lo dspmat.lo wspmsp.lo lspis.lo dspmin.lo \
-	writebuf.lo
+	writebuf.lo ta2lpd.lo
 am__objects_3 = libscisparse_la-sci_spcompa.lo \
 	libscisparse_la-sci_full.lo libscisparse_la-sci_blkslvi.lo \
 	libscisparse_la-sci_inpnvi.lo libscisparse_la-sci_nnz.lo \
@@ -155,7 +155,7 @@ am__objects_4 = sci_spcompa.lo sci_sparse.lo sci_full.lo \
 	sci_bfinit.lo spops.lo sci_spmatrix.lo sci_blkfc1i.lo \
 	sci_lufact.lo sci_symfcti.lo sci_luget.lo sci_ordmmd.lo \
 	sci_spget.lo sci_spclean.lo sci_spchol.lo sci_spmax.lo \
-	sci_lusolve.lo sci_fadj2sp.lo sci_sfinit.lo
+	sci_lusolve.lo sci_fadj2sp.lo sci_sfinit.lo sci_ta2lpd.lo
 am_libscisparse_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
@@ -202,6 +202,7 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -271,14 +272,17 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -334,6 +338,7 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -352,6 +357,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -527,7 +533,8 @@ src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
 src/fortran/dspmin.f \
-src/fortran/writebuf.f
+src/fortran/writebuf.f \
+src/fortran/ta2lpd.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \
 sci_gateway/c/sci_full.c \
@@ -577,7 +584,8 @@ sci_gateway/fortran/sci_spchol.f \
 sci_gateway/fortran/sci_spmax.f \
 sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
-sci_gateway/fortran/sci_sfinit.f
+sci_gateway/fortran/sci_sfinit.f \
+sci_gateway/fortran/sci_ta2lpd.f
 
 libscisparse_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -1317,6 +1325,9 @@ dspmin.lo: src/fortran/dspmin.f
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
+ta2lpd.lo: src/fortran/ta2lpd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ta2lpd.lo `test -f 'src/fortran/ta2lpd.f' || echo '$(srcdir)/'`src/fortran/ta2lpd.f
+
 sci_spcompa.lo: sci_gateway/fortran/sci_spcompa.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_spcompa.lo `test -f 'sci_gateway/fortran/sci_spcompa.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_spcompa.f
 
@@ -1382,6 +1393,9 @@ sci_fadj2sp.lo: sci_gateway/fortran/sci_fadj2sp.f
 
 sci_sfinit.lo: sci_gateway/fortran/sci_sfinit.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_sfinit.lo `test -f 'sci_gateway/fortran/sci_sfinit.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_sfinit.f
+
+sci_ta2lpd.lo: sci_gateway/fortran/sci_ta2lpd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ta2lpd.lo `test -f 'sci_gateway/fortran/sci_ta2lpd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ta2lpd.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

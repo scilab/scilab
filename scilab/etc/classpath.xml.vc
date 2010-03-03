@@ -61,7 +61,7 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-        <load on="xcos"/>
+        <load on="XCos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
@@ -76,13 +76,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
-</path>
-<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="graphics_mathml_textrendering"/>
-</path>
-<path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
-	<load on="documentationGeneration"/>
+	<load on="xcos_mathml_rendering"/>
 </path>
 <path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -91,6 +85,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="$SCILAB/thirdparty/fop.jar" load="onUse">
 	<load on="documentationGeneration"/>
@@ -99,6 +94,7 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <!-- PDF doc generation -->
@@ -106,6 +102,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
@@ -113,16 +110,29 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.8.7.jar" load="onUse">
-		<load on="graphics_latex_textrendering"/>
-		<load on="pdf_ps_eps_graphic_export"/>
-</path>
+<path value="$SCILAB/thirdparty/xalan.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>	
+
+<path value="$SCILAB/thirdparty/jlatexmath-0.8.9.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="graphics_latex_textrendering"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+	<load on="XCos"/>
+</path>	
+
+<path value="$SCILAB/thirdparty/jlatexmath-fop-0.8.9.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>	
 
 <!-- helptools module doc generation -->
 <path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="onUse">

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -201,8 +201,8 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: il grado deve "
 "essere nell'insieme {%s}.\n"
 
-msgid "Arma identifcation"
-msgstr "Identificazione dello ARMA"
+msgid "Arma identification"
+msgstr ""
 
 msgid "Signal Processing"
 msgstr "Elaborazione dei segnali"
@@ -210,8 +210,8 @@ msgstr "Elaborazione dei segnali"
 msgid "Spectral power"
 msgstr "Energia spettrale"
 
-msgid "Theoritical value"
-msgstr "Valore teorico"
+msgid "Theoretical value"
+msgstr ""
 
 msgid "Using macro mese"
 msgstr "Usando la macro MESE"

@@ -22,9 +22,9 @@
 #ifndef __SCICOS_MALLOC_H__
 #define __SCICOS_MALLOC_H__
 
-#include "stdlib.h"
+#include <stdlib.h>
 
-void * scicos_malloc(size_t size);
+void *scicos_malloc(size_t size);
 
 #endif /*__SCICOS_MALLOC_H__*/
 

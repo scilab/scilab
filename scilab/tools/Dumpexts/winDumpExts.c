@@ -217,8 +217,8 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
     unsigned i = 0;
     PSTR stringTable = NULL;
     char *s = NULL, *f = NULL;
-    char symbol[1024];
-	
+    char symbol[4096];
+
     /*
      * The string table apparently starts right after the symbol table
      */

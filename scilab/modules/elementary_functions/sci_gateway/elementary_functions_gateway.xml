@@ -85,5 +85,4 @@
 <PRIMITIVE gatewayId="6" primitiveId="49" primitiveName="spones" />
 <PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="gsort" />
 <PRIMITIVE gatewayId="6" primitiveId="51" primitiveName="isequalbitwise" />
-<PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="sort" />
 </GATEWAY>

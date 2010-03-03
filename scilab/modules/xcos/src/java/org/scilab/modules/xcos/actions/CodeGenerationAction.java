@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -20,19 +21,18 @@ import java.io.IOException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.actions.SuperBlockSelectedAction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosFileType;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
@@ -40,25 +40,18 @@ import com.mxgraph.util.mxUtils;
 /**
  * Generate code for the current graph.
  */
-public class CodeGenerationAction extends DefaultAction {
-
-    private static final long serialVersionUID = -7756467773530338202L;
-
+public class CodeGenerationAction extends SuperBlockSelectedAction {
+	public static final String NAME = XcosMessages.CODE_GENERATION;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
+	
     /**
 	 * Constructor
 	 * @param scilabGraph associated Scilab graph
 	 */
     public CodeGenerationAction(ScilabGraph scilabGraph) {
-	super(XcosMessages.CODE_GENERATION, scilabGraph);
-    }
-
-    /**
-	 * Create a button to add in Scilab Graph tool bar
-	 * @param scilabGraph associated Scilab Graph
-	 * @return the button
-	 */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
-	return createButton(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph));
+    	super(scilabGraph);
     }
 
     /**
@@ -67,14 +60,15 @@ public class CodeGenerationAction extends DefaultAction {
 	 * @return the menu
 	 */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-	return createMenu(XcosMessages.CODE_GENERATION, null, new CodeGenerationAction(scilabGraph), null);
+    	return createMenu(scilabGraph, CodeGenerationAction.class);
     }
 
-    /**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	/**
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-    public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	Object selectedObj = getGraph(null).getSelectionCell();
 		if (!(selectedObj instanceof SuperBlock)) {
 			((XcosDiagram) getGraph(null)).error(XcosMessages.ERROR_GENERATING_C_CODE);
@@ -87,10 +81,10 @@ public class CodeGenerationAction extends DefaultAction {
 	try {
 			final File tempOutput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 			final File tempInput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
@@ -109,15 +103,15 @@ public class CodeGenerationAction extends DefaultAction {
 				}
 			};
 			
-			XcosInterpreterManagement.asynchronousScilabExec(command, callback);
-	} catch (IOException e) {
-	    e.printStackTrace();
+			ScilabInterpreterManagement.asynchronousScilabExec(command, callback);
+	} catch (IOException ex) {
+		ex.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (HDF5Exception e) {
-		e.printStackTrace();
+	} catch (HDF5Exception ex) {
+		ex.printStackTrace();
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
-	} catch (InterpreterException e) {
-		e.printStackTrace();
+	} catch (InterpreterException ex) {
+		ex.printStackTrace();
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 	}
     }

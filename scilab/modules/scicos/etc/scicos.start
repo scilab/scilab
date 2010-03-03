@@ -11,37 +11,6 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 
 //Load functions libraries
 // =============================================================================
+load('SCI/modules/scicos/macros/scicos_utils/lib');
 load('SCI/modules/scicos/macros/scicos_auto/lib')
-load('SCI/modules/scicos/macros/scicos_utils/lib')
-load('SCI/modules/scicos/macros/scicos_menus/lib')
-
-// Add help chapter
 // =============================================================================
-if WITH_HELPTOOLS then
-	//add_module_help_chapter("scicos");
-end
-
-// Add demos
-// =============================================================================
-if WITH_DEMOS then
-	//pathdemos = pathconvert(SCI+"/modules/scicos/demos/scicos.dem.gateway.sce",%f,%t);
-	//add_demo(gettext("Xcos"),pathdemos);
-	//clear pathdemos;
-end
-
-// Define Scicos data tables ===========================================
-
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-
-    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
-     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,...
-       %scicos_contrib ] = initial_scicos_tables()
-
-    clear initial_scicos_tables
-  end
-
-// Define Scicos data tables ===========================================

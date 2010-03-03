@@ -35,7 +35,7 @@ function [scs_m, fct] = do_addnew(scs_m)
   name = stripblanks(name);
 
   if name==emptystr() then
-      message("No block name specified");
+      messagebox("No block name specified",'modal');
       return
   end ; //** --> Exit point
 
@@ -50,8 +50,8 @@ function [scs_m, fct] = do_addnew(scs_m)
 
   if to_get then // try to get it
 
-    message(['Problem loading block '+name+'.';
-             'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
+    messagebox(['Problem loading block '+name+'.';
+             'Use Activate_Scilab_Window and redefine it in Scilab.'], 'modal' ) ;
     return;
 
     //path = name+'.sci'
@@ -59,12 +59,12 @@ function [scs_m, fct] = do_addnew(scs_m)
     //if length(path)<=0 then return,end
     //[u,err]=file('open',path,'old','formatted')
     //if err<>0 then
-    //  message(path+' file, Not found')
+    //  messagebox(path+' file, Not found','modal')
     //  return
     //end
     //if execstr('exec(u)','errcatch')<>0 then
     //  file('close',u)
-    //  message([name + " erroneous function:"; lasterror()])
+    //  messagebox([name + " erroneous function:"; lasterror()],'modal')
     //  return
     //end
     //file('close',u)
@@ -83,15 +83,15 @@ function [scs_m, fct] = do_addnew(scs_m)
   //define the block
   ierror = execstr('blk='+name+'(''define'')','errcatch')
   if ierror <>0 & ierror <>4 then
-    message([ "Error in GUI function"; lasterror() ])
+    messagebox([ "Error in GUI function"; lasterror() ],'modal')
     fct = [] ;
     return
   end
 
   if ierror == 4 then
-    irr=message(['Error in GUI function--The error was:';
+    irr = messagebox(['Error in GUI function--The error was:';
 		            lasterror();'It could be an old GUI';
-	              'Should I try to translate (no guarantee)?'],['yes','no'])
+	              'Should I try to translate (no guarantee)?'],'modal',['yes','no'])
 
     if irr==2 then
 
@@ -106,7 +106,7 @@ function [scs_m, fct] = do_addnew(scs_m)
       ierror=execstr('blk='+name+'(''define'')','errcatch')
 
       if ierror <>0 then
-	         message("Translation did not work, sorry")
+	         messagebox("Translation did not work, sorry","modal")
 	         fct=[]
 	         return
       end
@@ -116,7 +116,7 @@ function [scs_m, fct] = do_addnew(scs_m)
       ierror = execstr('blk=up_to_date(blk)','errcatch');
 
       if ierror <>0 then
-        message("Translation did not work, sorry")
+        messagebox("Translation did not work, sorry","modal")
         fct=[]
         return
       end
@@ -128,7 +128,12 @@ function [scs_m, fct] = do_addnew(scs_m)
   //**------ Al@n's update 2 ---------/////////////
   // update blk !
 
-  o_new=scicos_block();
+  if typeof(blk)=='Text' then
+    o_new = mlist(['Text','graphics','model','void','gui'],...
+                    scicos_graphics(),scicos_model(),' ','TEXT_f')
+  else
+    o_new=scicos_block();
+  end
   T = getfield(1,blk);
 
   for k=2:size(T,2)
@@ -194,18 +199,16 @@ function [scs_m, fct] = do_addnew(scs_m)
 
     scs_m_super = blk.model.rpar;
 
-    //check version
-    current_version = get_scicos_version()
-    scicos_ver = find_scicos_version(scs_m_super)
+    [ierr,scicos_ver,scs_m_super]=update_version(scs_m_super)
 
-    //do version
-    if scicos_ver<>current_version then
-      ierr=execstr('scs_m_super=do_version(scs_m_super,scicos_ver)','errcatch')
-      if ierr<>0 then
-        message("Can''t import block in scicos, sorry (problem in version)")
-        fct=[]
-        return
-      end
+    if ierr<>0 then
+      messagebox("Can''t import block in scicos, sorry (problem in version)","modal")
+      fct=[]
+      return
+    end
+
+    //## if we have do a convertion
+    if scicos_ver<>get_scicos_version() then
       blk.model.rpar = scs_m_super;
 
       //check name
@@ -223,7 +226,7 @@ function [scs_m, fct] = do_addnew(scs_m)
         //**------ R@min's update ---------/////////////
          [u,err]=file('open',TMPDIR+'/'+name+'.sci','unknown')
          if err<>0 then
-           message('The file '+TMPDIR+'/'+name+'.sci'+' cannot be opened.')
+           messagebox('The file '+TMPDIR+'/'+name+'.sci'+' cannot be opened.',"modal")
            return
          end
 
@@ -236,7 +239,7 @@ function [scs_m, fct] = do_addnew(scs_m)
                ];
          ierr=execstr('write(u,Txte,''(a)'')','errcatch','n')
          if ierr<>0 then 
-               message('Impossible to write in '+TMPDIR+'/'+name+'.sci'+'; possibly locked.')
+               messagebox('Impossible to write in '+TMPDIR+'/'+name+'.sci'+'; possibly locked.','modal')
                file('close',u)
                return
          end
@@ -286,11 +289,11 @@ function [scs_m, fct] = do_addnew(scs_m)
         //**-------------------------------/////////////
       end
       nam_file=strcat([name,name+'_new']+'.sci',' ')
-      message(["Old csuper/super block have been detected !";
+      messagebox(["Old csuper/super block have been detected !";
                "New interfacing functions "+nam_file;
                " have been re-generated in "+TMPDIR+".";
                "Please save and edit the generated file at your convenience";
-               "to have an updated interfacing function of that block."])
+               "to have an updated interfacing function of that block."],"modal")
     end
   end
   //**------------------------------------/////////////
@@ -315,14 +318,14 @@ function [scs_m, fct] = do_addnew(scs_m)
 //**-----------------------------------------------------------------
 //** ---> main loop that move the empty box until you click
   rep(3)=-1 ;
-  while rep(3)==-1 , //move loop
+  while rep(3)<=-1 , //move loop
 
     // get new position
     rep = xgetmouse([%t,%t]); //** 
 
     //** Protection from window closing
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu] = resume(curwin,"Quit")
+      [%win,Cmenu] = resume(curwin,"XcosMenuQuit")
     end
 
     xm = rep(1) ; //** coordinate acquisition  
@@ -331,10 +334,7 @@ function [scs_m, fct] = do_addnew(scs_m)
     dy = ym - %yc ;
     drawlater();
      move (gh_blk , [dx dy]);
-     //**draw(gh_blk.parent); //** re-draw the graphic object and show on screen
      drawnow(); 
-     //** show_pixmap() ; //** not useful on Scilab 5
-
      %xc = xm ;%yc = ym ; //** position update
 
   end //** ---> of the while loop
@@ -344,7 +344,7 @@ function [scs_m, fct] = do_addnew(scs_m)
   gh_window = gcf(); 
   if gh_window.figure_id <> curwin then
     //active window has been closed
-    [%win, Cmenu] = resume(curwin,"Quit")
+    [%win, Cmenu] = resume(curwin,"XcosMenuQuit")
   end
 
   xinfo(" "); 

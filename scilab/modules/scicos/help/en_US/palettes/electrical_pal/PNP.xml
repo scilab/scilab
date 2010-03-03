@@ -311,7 +311,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Tauf'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.200E-10
+            <para><emphasis role="bold">Default value :</emphasis> 1.200D-10
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -321,7 +321,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Taur'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 5.000E-09
+            <para><emphasis role="bold">Default value :</emphasis> 5.000D-09
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -331,7 +331,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Ccs'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E-12
+            <para><emphasis role="bold">Default value :</emphasis> 1.000D-12
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -341,7 +341,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Cje'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 4.000E-13
+            <para><emphasis role="bold">Default value :</emphasis> 4.000D-13
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -351,7 +351,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Cjc'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 5.000E-13
+            <para><emphasis role="bold">Default value :</emphasis> 5.000D-13
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -401,7 +401,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Gbc'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E-15
+            <para><emphasis role="bold">Default value :</emphasis> 1.000D-15
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -411,7 +411,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
           <listitem>
             <para><emphasis role="bold">Modelica parameter name :</emphasis> 'Gbe'
 </para>
-            <para><emphasis role="bold">Default value :</emphasis> 1.000E-15
+            <para><emphasis role="bold">Default value :</emphasis> 1.000D-15
 </para>
             <para><emphasis role="bold">Is a state variable :</emphasis> no.
 
@@ -457,7 +457,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Electrical/PNP.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Electrical.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

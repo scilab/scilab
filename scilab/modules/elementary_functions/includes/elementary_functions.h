@@ -19,7 +19,6 @@ typedef int(*I_fp)();
 
 int C2F(vfinite)(int *n, double *v);
 
-extern int C2F(wsort)(double *countr, double *counti, int *n, int *index, I_fp test);
 
 extern int C2F(rcsort)(I_fp test, int *isz, int *iptr, int *iv, int *n, int *index);
 

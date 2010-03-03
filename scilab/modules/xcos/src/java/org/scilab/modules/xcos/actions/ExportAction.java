@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,10 +27,10 @@ import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabGraphRenderer;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -47,19 +49,19 @@ import com.mxgraph.util.mxUtils;
 
 /**
  * Diagram export management
- * @author Vincent COUVERT
- *
  */
 public final class ExportAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
-
+	public static final String NAME = XcosMessages.EXPORT;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private ExportAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.EXPORT, scilabGraph);
+	public ExportAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -68,15 +70,15 @@ public final class ExportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.EXPORT, null, new ExportAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ExportAction.class);
 	}
 
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
 	    XcosDiagram graph = (XcosDiagram) getGraph(null);
 		mxGraphComponent graphComponent = graph.getAsComponent();
@@ -91,7 +93,7 @@ public final class ExportAction extends DefaultAction {
 		Set<String> mask = new TreeSet<String>();
 		Set<String> maskDesc = new TreeSet<String>();
 
-		/* TODO : why hardcoded ? */
+		/* FIXME : why hardcoded ? */
 		mask.add(".svg");
 		mask.add(".html");
 		mask.add(".vml");
@@ -131,10 +133,7 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
-			    if (doc != null) {
-				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
+			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
 			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
 			    if (doc != null) {

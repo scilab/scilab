@@ -435,7 +435,7 @@ int getNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long 
  * @param[in] _pcData array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarInteger8(void* _pvCtx, int _iVar, char cData);
+int createScalarInteger8(void* _pvCtx, int _iVar, char _cData);
 
 /**
  * create scalar integer variable data
@@ -443,7 +443,7 @@ int createScalarInteger8(void* _pvCtx, int _iVar, char cData);
  * @param[in] _psData array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarInteger16(void* _pvCtx, int _iVar, short sData);
+int createScalarInteger16(void* _pvCtx, int _iVar, short _sData);
 
 /**
  * create scalar integer variable data
@@ -451,7 +451,7 @@ int createScalarInteger16(void* _pvCtx, int _iVar, short sData);
  * @param[in] _piData array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarInteger32(void* _pvCtx, int _iVar, int iData);
+int createScalarInteger32(void* _pvCtx, int _iVar, int _iData);
 
 /**
  * create scalar integer variable data
@@ -460,7 +460,7 @@ int createScalarInteger32(void* _pvCtx, int _iVar, int iData);
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createScalarInteger64(void* _pvCtx, int _iVar, long long llData);
+int createScalarInteger64(void* _pvCtx, int _iVar, long long _llData);
 #endif
 
 /**
@@ -469,7 +469,7 @@ int createScalarInteger64(void* _pvCtx, int _iVar, long long llData);
  * @param[in] _pucData array of unsigned integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char ucData);
+int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char _ucData);
 
 /**
  * create scalar integer variable data
@@ -477,7 +477,7 @@ int createScalarUnsignedInteger8(void* _pvCtx, int _iVar, unsigned char ucData);
  * @param[in] _pusData array of unsigned integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short usData);
+int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usData);
 
 /**
  * create scalar integer variable data
@@ -485,7 +485,7 @@ int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short usData
  * @param[in] _puiData array of unsigned integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int uiData);
+int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData);
 
 /**
  * create scalar integer variable data
@@ -494,7 +494,7 @@ int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int uiData);
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long ullData);
+int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long _ullData);
 #endif
 
 /**
@@ -503,7 +503,7 @@ int createScalarUnsignedInteger64(void* _pvCtx, int _iVar, unsigned long long ul
  * @param[in] _pcData array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char cData);
+int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char _cData);
 
 /**
  * create named scalar integer variable data
@@ -511,7 +511,7 @@ int createNamedScalarInteger8(void* _pvCtx, char* _pstName, char cData);
  * @param[in] _psData array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short sData);
+int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short _sData);
 
 /**
  * create named scalar integer variable data
@@ -519,7 +519,7 @@ int createNamedScalarInteger16(void* _pvCtx, char* _pstName, short sData);
  * @param[in] _piData array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int iData);
+int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int _iData);
 
 /**
  * create named scalar integer variable data
@@ -528,7 +528,7 @@ int createNamedScalarInteger32(void* _pvCtx, char* _pstName, int iData);
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long llData);
+int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long _llData);
 #endif
 
 /**
@@ -537,7 +537,7 @@ int createNamedScalarInteger64(void* _pvCtx, char* _pstName, long long llData);
  * @param[in] _pucData array of unsigned integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char ucData);
+int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned char _ucData);
 
 /**
  * create named scalar integer variable data
@@ -545,7 +545,7 @@ int createNamedScalarUnsignedInteger8(void* _pvCtx, char* _pstName, unsigned cha
  * @param[in] _pusData array of unsigned integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short usData);
+int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned short _usData);
 
 /**
  * create named scalar integer variable data
@@ -553,7 +553,7 @@ int createNamedScalarUnsignedInteger16(void* _pvCtx, char* _pstName, unsigned sh
  * @param[in] _puiData array of unsigned integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int uiData);
+int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned int _uiData);
 
 /**
  * create named scalar integer variable data
@@ -562,7 +562,7 @@ int createNamedScalarUnsignedInteger32(void* _pvCtx, char* _pstName, unsigned in
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long ullData);
+int createNamedScalarUnsignedInteger64(void* _pvCtx, char* _pstName, unsigned long long _ullData);
 #endif
 
 

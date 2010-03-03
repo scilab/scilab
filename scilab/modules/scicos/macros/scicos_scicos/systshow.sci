@@ -22,7 +22,7 @@
 function win=systshow(scs_m,win)
   [lhs,rhs]=argn(0)
   if rhs<2 then win=xget('window'),end
-  xset('window',win);xbasc()
+  xset('window',win);clf()
   wpar=scs_m.props
 
   wsiz=wpar.wpar

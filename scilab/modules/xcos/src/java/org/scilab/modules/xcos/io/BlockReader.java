@@ -21,6 +21,7 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.hdf5.read.H5Read;
@@ -107,7 +108,7 @@ public class BlockReader {
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + currentBlock.getStyle());
+		    currentBlock.setStyle("blockWithLabel;" + currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);
@@ -139,39 +140,13 @@ public class BlockReader {
 		    int endPortIndex = getEndPortIndex(link); // 7.1
 		    PortType endPortType = getEndPortType(link); // 5.1
 
-		    switch (startPortType) {
-		    case INPUT:
-			startingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case OUTPUT:
-			startingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case COMMAND:
-			startingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    case CONTROL:
-			startingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(startBlockIndex), false).get(startPortIndex - 1);
-			break;
-		    default:
-			break;
-		    }
+			startingPort = BasicBlockInfo.getAllTypedPorts(
+							indexedBlock.get(startBlockIndex), false,
+							startPortType.getKlass()).get(startPortIndex - 1);
 
-		    switch (endPortType) {
-		    case INPUT:
-			endingPort = BasicBlockInfo.getAllInputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case OUTPUT:
-			endingPort = BasicBlockInfo.getAllOutputPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case COMMAND:
-			endingPort = BasicBlockInfo.getAllCommandPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    case CONTROL:
-			endingPort = BasicBlockInfo.getAllControlPorts(indexedBlock.get(endBlockIndex), false).get(endPortIndex - 1);
-			break;
-		    default:
-			break;
-		    }
+			endingPort = BasicBlockInfo.getAllTypedPorts(
+							indexedBlock.get(endBlockIndex), false,
+							endPortType.getKlass()).get(endPortIndex - 1);
 
 		    BasicPort[] startAndEnd = {startingPort, endingPort};
 		    linkPorts.add(startAndEnd);
@@ -427,8 +402,9 @@ public class BlockReader {
 	    H5Read.readDataFromFile(fileId, data);
 	    H5Read.closeFile(fileId);
 	    newBlock = fillBlockStructure(data);
-	    newBlock.setStyle(newBlock.getInterfaceFunctionName()
-		    + newBlock.getStyle());
+	    StyleMap style = new StyleMap(newBlock.getStyle());
+	    style.put(newBlock.getInterfaceFunctionName(), null);
+	    newBlock.setStyle(style.toString());
 	    newBlock.setGeometry(new mxGeometry(newBlock.getGeometry().getX(),
 		    newBlock.getGeometry().getY(), newBlock.getGeometry()
 			    .getWidth(), newBlock.getGeometry().getHeight()));
@@ -816,7 +792,7 @@ public class BlockReader {
 		    newBlock.setId(uid.getData()[0][0]);
 		}
 	    } else {
-		newBlock.setId();
+		newBlock.generateId();
 	    }
 	}
 	return newBlock;
@@ -1275,7 +1251,7 @@ public class BlockReader {
 	if (modelFields.get(15) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(15))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock, false);
+		    .getAllTypedPorts(newBlock, false, CommandPort.class);
 	    if (modelFields.get(15).getHeight() >= modelFields.get(15)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {
@@ -1611,7 +1587,7 @@ public class BlockReader {
 	if (modelFields.get(17) instanceof ScilabDouble
 		&& !isEmptyField(modelFields.get(17))) {
 	    List<CommandPort> allCommandPorts = BasicBlockInfo
-		    .getAllCommandPorts(newBlock, false);
+		    .getAllTypedPorts(newBlock, false, CommandPort.class);
 	    if (modelFields.get(17).getHeight() >= modelFields.get(17)
 		    .getWidth()) {
 		for (int i = 0; i < allCommandPorts.size(); ++i) {
@@ -1689,8 +1665,31 @@ public class BlockReader {
 	}
     };
 
-    private static enum PortType {
-	INPUT, OUTPUT, CONTROL, COMMAND
-    }
+	/**
+	 * Used internally to type ports
+	 */
+	private static enum PortType {
+		INPUT(InputPort.class), OUTPUT(OutputPort.class), CONTROL(
+				ControlPort.class), COMMAND(CommandPort.class);
+
+		private final Class< ? extends BasicPort> klass;
+
+		/**
+		 * Default cstr
+		 * 
+		 * @param klass
+		 *            the associated class
+		 */
+		private PortType(Class< ? extends BasicPort> klass) {
+			this.klass = klass;
+		}
+
+		/**
+		 * @return the associated data type
+		 */
+		public Class< ? extends BasicPort> getKlass() {
+			return klass;
+		}
+	}
 
 }

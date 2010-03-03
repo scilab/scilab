@@ -13,14 +13,26 @@
 package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Composite;
+import java.awt.Image;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.Hashtable;
-
 import java.util.Map;
 
+import javax.swing.Icon;
+
+import org.apache.batik.gvt.GraphicsNode;
+import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
+import org.scilab.modules.graph.utils.ScilabGraphUtils;
+import org.scilab.modules.graph.view.SupportedLabelType;
+import org.scilab.modules.jvm.LoadClassPath;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
@@ -192,5 +204,154 @@ public class ScilabCanvas extends mxInteractiveCanvas {
     private static boolean isNearHorizontalSide(double angle) {
     	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
+
+	/**
+	 * Draws the specified markup.
+	 * 
+	 * @param text
+	 *            Markup to be painted.
+	 * @param x
+	 *            X-coordinate of the text.
+	 * @param y
+	 *            Y-coordinate of the text.
+	 * @param w
+	 *            Width of the text.
+	 * @param h
+	 *            Height of the text.
+	 * @param style
+	 *            Style to be used for painting the text.
+	 */
+    @Override
+    protected void drawHtmlText(String text, int x, int y, int w, int h,
+    		Map<String, Object> style) {
+
+    	SupportedLabelType type = SupportedLabelType.getFromText(text);
+    	
+    	switch (type) {
+		case Latex:
+			try {
+				drawLatexText(ScilabGraphUtils.getTexIcon(text), x, y, w, h, style);
+	    	} catch (RuntimeException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+	    	}
+			break;
+			
+		case MathML:
+			try {
+				drawMathMLText(MathMLRenderUtils.getMathMLComponent(text), x, y, w, h, style);
+			} catch (SAXException e) {
+				super.drawHtmlText(text, x, y, w, h, style);
+			}
+			break;
+
+		default:
+			super.drawHtmlText(text, x, y, w, h, style);
+			break;
+		}
+    }
+
+	/**
+	 * Draws the specified Latex markup
+	 * 
+	 * @param icon Latex icon to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawLatexText(Icon icon, int x, int y, int w, int h,
+			Map<String, Object> style) {
+		if (rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+
+				int sx = (int) (x / scale) + mxConstants.LABEL_INSET;
+				int sy = (int) (y / scale) + mxConstants.LABEL_INSET;
+				g.scale(scale, scale);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
+				icon.paintIcon(rendererPane, g, sx, sy);
+
+				// Restores the previous transformation
+				g.setTransform(at);
+			}
+		}
+	}
+	
+	/**
+	 * Draws the specified MathML markup
+	 * 
+	 * @param comp the component to be painted.
+	 * @param x X-coordinate of the text.
+	 * @param y Y-coordinate of the text.
+	 * @param w Width of the text.
+	 * @param h Height of the text.
+	 * @param style Style to be used for painting the text.
+	 */
+	protected void drawMathMLText(Component comp, int x, int y, int w, int h,
+			Map<String, Object> style) {
+
+		if (rendererPane != null) {
+			if (g.hitClip(x, y, w, h)) {
+				AffineTransform at = g.getTransform();
+				
+				g.scale(scale, scale);
+				Color text = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+				rendererPane.setForeground(text);
+				rendererPane.paintComponent(g, comp, rendererPane,
+						(int) (x / scale) + mxConstants.LABEL_INSET,
+						(int) (y / scale) + mxConstants.LABEL_INSET,
+						(int) (w / scale), (int) (h / scale), true);
+				
+				// Restores the previous transformation
+				g.setTransform(at);
+			}
+		}
+	}
+	
+	/**
+	 * Draws an image for the given parameters.
+	 * This function handle all the awt supported {@link Image} plus the SVG
+	 * format.
+	 * 
+	 * @param x X-coordinate of the image.
+	 * @param y Y-coordinate of the image.
+	 * @param w Width of the image.
+	 * @param h Height of the image.
+	 * @param image URL of the image.
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(int, int, int, int, java.lang.String)
+	 */
+	@Override
+	protected void drawImage(int x, int y, int w, int h, String image) {
+		if (image.endsWith(".svg")) {
+			LoadClassPath.loadOnUse("xcos_block_rendering");
+			
+			File f = new File(image);
+			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
+			
+			// Scale
+			Rectangle2D bounds = node.getBounds();
+			
+			double sh = h / bounds.getHeight();
+			double sw = w / bounds.getWidth();
+			double tx = x;
+			double ty = y;
+			
+			AffineTransform scaleTransform = new AffineTransform(new double[] {
+			          sw,   0.0,
+			         0.0,     sh
+			});
+			node.setTransform(scaleTransform);
+			
+			// Translate
+			g.translate(tx, ty);
+			
+			// Paint
+			node.paint(g);
+		} else {
+			super.drawImage(x, y, w, h, image);
+		}
+	}
 }
 

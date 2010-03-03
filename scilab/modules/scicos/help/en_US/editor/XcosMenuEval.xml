@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuEval">
+  <refnamediv>
+    <refname>Eval</refname>
+    <refpurpose>Menu: (re)-evaluate the Scicos block parameters</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Block parameters may be Scilab instructions.  They are evaluated
+      immediately when set but the entered expressions are also stored
+      as character strings (see the <literal>exprs</literal> field in
+      the <link linkend="scicos_graphics">scicos_graphics</link> data
+      structure).
+    </para>
+    <para> 
+      Select this menu item to have them re-evaluated according to new
+      values of <link linkend="XcosMenuContext">Scicos context</link> or
+      Scilab variables.
+    </para>
+    <para> 
+      When a formal variable definition is changed in the <link
+      linkend="XcosMenuContext">Scicos context</link> the parameters of each
+      bloks are automatically re-evaluated, so the
+      <literal>Eval</literal> menu has only to be used in special
+      cases (use of variables defined in the Scilab environment, ...)
+
+    </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="XcosMenuContext">Context</link> </member>
+      <member> <link linkend="scicos_graphics">scicos_graphics</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

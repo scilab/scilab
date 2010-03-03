@@ -12,23 +12,25 @@
 
 package org.scilab.modules.graph;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Rectangle;
-
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
 
 /**
  * Implement the default component for the {@link ScilabGraph}.
  */
 public class ScilabComponent extends mxGraphComponent {
+	private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
 	private static final double SCALE_MULTIPLIER = 1.1;
+	private boolean isReadOnly;
 
 	/**
 	 * Construct the component with the associated graph
@@ -36,7 +38,7 @@ public class ScilabComponent extends mxGraphComponent {
 	 * @param graph
 	 *            The associated graph
 	 */
-	public ScilabComponent(mxGraph graph) {
+	public ScilabComponent(ScilabGraph graph) {
 		super(graph);
 	}
 
@@ -147,5 +149,34 @@ public class ScilabComponent extends mxGraphComponent {
 			}
 		}
 		return rect;
+	}
+	
+	/**
+	 * Draw a foreground if the graph is read only
+	 * @param g The global graphic context
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		boolean currentReadOnly = ((ScilabGraph) getGraph()).isReadonly();
+		if (isReadOnly != currentReadOnly) {
+			isReadOnly = currentReadOnly;
+			
+			// Draw the foreground if read only
+			if (currentReadOnly) {
+
+				// Workaround for the jgraphx bufffer. We need to force a graph
+				// refresh in order to invalidate previous background.
+				getGraph().getView().reload();
+
+				Rectangle rect = getViewportBorderBounds();
+				Color tmp = g.getColor();
+				g.setColor(MASK_COLOR);
+				g.fillRect(rect.x, rect.y, rect.width, rect.height);
+				g.setColor(tmp);
+			}
+		}
 	}
 }

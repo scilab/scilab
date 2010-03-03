@@ -1481,7 +1481,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   filestan=[rdnom+'_standalone' rdnom+'_act_sens_events' rdnom+'_Cblocks']
 
   if ok then
-    ok = buildnewblock(rdnom,files,filestan,libs,rpat,'','')
+    ok = buildnewblock(rdnom,files,filestan,rpat,libs,'','')
   end
 
   //**
@@ -1776,7 +1776,7 @@ function Code=make_actuator(standalone)
   end
 
   // pour fprintf
-  nc=size(act,'*') // Alan : d'o� viens act ?????
+  nc=size(act,'*') // Alan : d'o? viens act ?????
                    // reponse : de do_compile_superblock!
   typ=['""%f ']; //time
   for i=1:nc
@@ -3137,7 +3137,7 @@ endfunction
 //generates code of the standalone simulation procedure
 //
 //
-// rmq : La fonction zdoit n'est pas utilis�e pour le moment
+// rmq : La fonction zdoit n'est pas utilis?e pour le moment
 function Code=make_standalone42()
   x=cpr.state.x;
   modptr=cpr.sim.modptr;

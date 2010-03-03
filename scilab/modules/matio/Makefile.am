@@ -19,6 +19,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
 #### List of the C files ####
 MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/CreateMatlabVariable.c \
+		  src/c/CreateBooleanVariable.c \
 		  src/c/CreateCharVariable.c \
 		  src/c/CreateDoubleVariable.c \
 		  src/c/CreateIntegerVariable.c \

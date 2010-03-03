@@ -30,7 +30,7 @@
      use HeapAlloc and VirtualAlloc (for scilab stack)
      Correction Bug 1576
      n=10000
-     xbasc();
+     clf();
      plot2d([0,1],[0,n],0)
      xpols=[zeros(1,n); ones(2,n); zeros(1,n)];
      ypols=[2:n+1; 2:n+1; 1:n; 1:n];

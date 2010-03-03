@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,30 +38,31 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Opens context settings Window
- * @author Allan SIMON
  */
-public class SetContextAction extends DefaultAction {
-	
-	private static final long serialVersionUID = 1L;
+public class SetContextAction extends SimulationNotRunningAction {
+	public static final String NAME = XcosMessages.SET_CONTEXT;
+	public static final String SMALL_ICON = "";
+	public static final int MNEMONIC_KEY = 0;
+	public static final int ACCELERATOR_KEY = 0;
 	
 	private XcosDiagram diagram;
 	private JFrame mainFrame;
 	private JTextArea contextArea;
 	private boolean windowAlreadyExist;
+	private String[] context;
 	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public SetContextAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SET_CONTEXT, scilabGraph);
+		super(scilabGraph);
 	}
 	
 	/**
@@ -71,7 +73,7 @@ public class SetContextAction extends DefaultAction {
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		SetContextAction action = new SetContextAction(scilabGraph);
 		((XcosDiagram) scilabGraph).setContextAction(action);
-		return createMenu(XcosMessages.SET_CONTEXT, null, action, null);
+		return createMenu(scilabGraph, SetContextAction.class);
 	}
 	
 	/**
@@ -87,7 +89,7 @@ public class SetContextAction extends DefaultAction {
 	 * Window creation
 	 * @param e the event
 	 */
-	public void setContextBox(ActionEvent e) {
+	protected void setContextBox(ActionEvent e) {
 		
 		/** Avoid to have this window created two times */
 		if (windowAlreadyExist) {
@@ -186,7 +188,7 @@ public class SetContextAction extends DefaultAction {
 				/** Test for modifications */
 				String[] oldContext = diagram.getContext();
 				boolean modified = false;
-				/* I more or less lines --> modified */
+				/* If more or less lines --> modified */
 				if (oldContext.length != i) {
 					modified = true;
 				} else {
@@ -199,10 +201,12 @@ public class SetContextAction extends DefaultAction {
 				}
 				if (modified) {
 					if (i == 0) { /* Empty context */
-						diagram.setContext(new String[]{""});
+						context = new String[]{""};
 					} else {
-						diagram.setContext(contextList.toArray(new String[i]));
+						context = contextList.toArray(new String[i]);
 					}
+					
+					diagram.setContext(context);
 					diagram.setModified(true);
 				}
 				windowAlreadyExist = false;

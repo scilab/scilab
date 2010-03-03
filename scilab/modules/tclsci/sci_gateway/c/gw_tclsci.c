@@ -22,6 +22,10 @@
 #include "scilabmode.h"
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */
+#include "InitializeTclTk.h"
+#include "BOOL.h"
+/*--------------------------------------------------------------------------*/
+static BOOL bFirstTclInit = TRUE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -44,6 +48,12 @@ int gw_tclsci(void)
 {
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
+		if (bFirstTclInit)
+		{
+			InitializeTclTk();
+			bFirstTclInit = FALSE;
+		}
+		
 		if (isTkStarted())
 		{
 			Rhs = Max(0, Rhs);

@@ -48,6 +48,7 @@
     </variablelist>
   </refsection>
 
+
   <refsection>
     <title>Descrição</title>
 
@@ -59,7 +60,20 @@
 
     <para>list_keywords(4) : funções Scilab</para>
 
-    <para>list_keywords(5) : funções Scicos</para>
+    <para>list_keywords(5) : funções xcos</para>
+  </refsection>
+
+<refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+list_keywords = getscilabkeywords();
+primitives = list_keywords(1)
+commands = list_keywords(2)
+predef_var = list_keywords(3)
+scilab_functions = list_keywords(4)
+xcos_functions = list_keywords(5)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

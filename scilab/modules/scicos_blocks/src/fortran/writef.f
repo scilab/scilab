@@ -38,8 +38,9 @@ c
 
 
       include 'stack.h'
-      integer i,n
+      integer i, n, jj
       integer mode(2)
+      integer fmttyp
 c     
       N=ipar(4)
       K=int(z(1))
@@ -55,6 +56,8 @@ c     add new point to the buffer
          z(1)=K
          if(K.lt.N) return
 c     write on the file
+         jj=fmttyp(ipar(5+ipar(1)),ipar(2))
+         if (fmttyp(ipar(5+ipar(1)),ipar(2)).eq.0) GOTO 100
          if (ipar(2).gt.0) then
 c     .     formatted write
             call cvstr(ipar(2),ipar(5+ipar(1)),buf,1)
@@ -71,6 +74,7 @@ c     .     unformatted write
          z(1)=0.0d0
       elseif(flag.eq.4) then
 c     file opening
+         if (fmttyp(ipar(5+ipar(1)),ipar(2)).le.0) GOTO 110
          lfil=ipar(1)
          call cvstr(lfil,ipar(5),buf,1)
          lfmt=ipar(2)
@@ -119,5 +123,7 @@ c     .        unformatted write
  100  continue
       err=0
       call basout(io,wte,'File '//buf(1:lfil)//' Cannot be opened')
+ 110  continue      
       flag=-1
+      return
       end

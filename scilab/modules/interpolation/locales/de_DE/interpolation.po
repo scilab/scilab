@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -36,8 +36,8 @@ msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
 msgstr "%s: Matrix Abszisse der Dimension %d ist nicht stetig steigend.\n"
 
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s: nicht genug Punkte, um zu passen.\n"
+msgid "%s: Not enough points for the fit.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"

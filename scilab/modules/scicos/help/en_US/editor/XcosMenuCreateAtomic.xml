@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuCreateAtomic">
+  <refnamediv>
+    <refname>Create_Atomic</refname>
+    <refpurpose>Menu: Transform a regular Super Block into an atomic one</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      A regular <link linkend="SUPER_f">Super Block</link> is just a
+      graphical facility to make diagrams more readable and
+      modular. When such Super Block exists in a diagram the
+      compilation process replace them by their flat equivalent. It is
+      some time interesting to consider a Super Block as an atomic
+      block (treated by the editor and the compiler as a single
+      elementary block)
+    </para>
+    <para>
+      This menu applies to a single <link
+      linkend="XcosSelect">selected</link> Super Block, transforming
+      it into an atomic superblock.
+    </para>
+    <para>
+      In the current version the transformation to an atomic super
+      block uses the <link linkend="XcosMenuCodeGeneration">code generation
+      tool</link>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Remarks</title>
+    <para>
+      If the Super Block contains continuous time states, The atomic
+      super block calls a fixed step ODE solver to integrate the ODE
+      part of the diagram. Consequently the behavior of the generated
+      simulation function may not be exactly similar to the original
+      super block.
+   </para>
+   <para>
+      If the super block has several activation input ports the
+      behavior of the atomic super block may not be exactly similar to
+      the original super block due to different handling of
+      asynchronous activations.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="SUPER_f">Super Block</link> </member>
+      <member> <link linkend="XcosMenuRemoveAtomic">Remove_Atomic</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

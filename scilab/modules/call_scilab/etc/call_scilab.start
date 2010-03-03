@@ -7,7 +7,4 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if WITH_HELPTOOLS then
-	add_module_help_chapter("call_scilab");
-end
 

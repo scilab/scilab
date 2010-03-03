@@ -7,16 +7,24 @@ import org.scilab.modules.graph.utils.ScilabConstants;
  */
 public final class XcosConstants extends ScilabConstants {
 
+    /** Define the default block width on the palette */
     public static final int PALETTE_BLOCK_WIDTH = 100;
+    /** Define the default block height on the palette */
     public static final int PALETTE_BLOCK_HEIGHT = 100;
 
+    /** Define the default block horizontal margin on the palette */
     public static final int PALETTE_HMARGIN = 5;
+    /** Define the default block vertical margin on the palette */
     public static final int PALETTE_VMARGIN = 5;
     
     /* Events */
-    public static final String EVENT_CHANGE_EDIT = "edit";   
+    /**
+     * When a block changed
+     */
     public static final String EVENT_BLOCK_UPDATED = "block";
+    /** Change event old name */
     public static final String EVENT_CHANGE_OLD = "old";
+    /** Change event new name */
     public static final String EVENT_CHANGE_NEW = "new";
     
     /** This class is a static singleton, thus it must not be instantiated */

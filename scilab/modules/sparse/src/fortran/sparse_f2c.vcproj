@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -679,6 +679,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_ta2lpd.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sp2col.c"
 				>
 			</File>
@@ -752,6 +756,10 @@
 			</File>
 			<File
 				RelativePath=".\sz2ptr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\ta2lpd.c"
 				>
 			</File>
 			<File
@@ -1143,6 +1151,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_ta2lpd.f"
+				>
+			</File>
+			<File
 				RelativePath=".\sp2col.f"
 				>
 			</File>
@@ -1216,6 +1228,10 @@
 			</File>
 			<File
 				RelativePath=".\sz2ptr.f"
+				>
+			</File>
+			<File
+				RelativePath=".\ta2lpd.f"
 				>
 			</File>
 			<File

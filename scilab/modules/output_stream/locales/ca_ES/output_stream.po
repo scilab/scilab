@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-12-15 16:52+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -52,9 +52,6 @@ msgstr ""
 
 msgid "\"unknown data\""
 msgstr "\"dades desconegudes\""
-
-msgid "%: This method is NOT implemented.\n"
-msgstr "%: Aquest mètode no està implementat.\n"
 
 #, c-format
 msgid "%d graphic terminal?\n"
@@ -193,8 +190,12 @@ msgid "%s: Stop requested by simulator (ind=0)\n"
 msgstr "%s: El simulador ha aturat la simulació (ind=0)\n"
 
 #, c-format
-msgid "%s: Th colocation matrix is singular.\n"
-msgstr "%s: La matriu de col·locació és singular.\n"
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -502,8 +503,8 @@ msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr "%s: L'error relatiu entre dues iteracions consecutives és %s.\n"
 
 #, c-format
-msgid "%s: singular or assymetric problem.\n"
-msgstr "%s: El problema és singular o assimètric.\n"
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
@@ -548,8 +549,8 @@ msgstr "%s: S'han definit les dimensions de la finestra menors que 2^16.\n"
 msgid "'o' format not allowed."
 msgstr "El format 'o' no està permès."
 
-msgid "A sparse matrix entry is defined with two differents values.\n"
-msgstr "S'ha definit una matriu dispersa amb dos valors diferents.\n"
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
 
 msgid "Argument type must be boolean.\n"
 msgstr "L'argument ha de ser un booleà.\n"
@@ -558,8 +559,8 @@ msgid "Arguments are :\n"
 msgstr "Els arguments són:\n"
 
 #, c-format
-msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-msgstr "A l'hora: %s ,Massa iteracions per a assolir la precisió demanada.\n"
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
 
 #, c-format
 msgid "Bad call to primitive: %s\n"
@@ -568,8 +569,8 @@ msgstr "La crida a la primitiva és incorrecta: %s\n"
 msgid "Bad conversion."
 msgstr "Conversió incorrecta."
 
-msgid "Binary direct acces files must be opened by 'file'.\n"
-msgstr "Heu d'obrir els fitxers d'accés directe binari amb 'file'.\n"
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
 
 #, c-format
 msgid "Breakpoints of function : %s\n"
@@ -636,9 +637,8 @@ msgstr "No s'ha trobat el nom de l'entrada.\n"
 msgid "Error while linking.\n"
 msgstr "Error en l'enllaç.\n"
 
-msgid "Error while writing in file,(disk full or deleted file.\n"
+msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
-"Error d'escriptura al fitxer (el disc és ple o s'ha eliminat el fitxer).\n"
 
 msgid "Eye variable undefined in this context.\n"
 msgstr "La variable objectiu no està definida en aquest context.\n"
@@ -893,8 +893,8 @@ msgstr "No s'ha implementat al Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar cap variable nul·la.\n"
 
-msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-msgstr "Els operands d'operacions / i \\ no poden contenir el NaN de Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr ""
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -936,12 +936,12 @@ msgid "Quapro encounters cycles on degenerate point.\n"
 msgstr "El Quapro ha trobat cicles en un punt degenerat.\n"
 
 #, c-format
-msgid "Rank defficient. rank = %d\n"
-msgstr "El rang és deficient. rank = %d\n"
-
-#, c-format
 msgid "Rank deficient : rank = %s  - tol = %s .\n"
 msgstr "El rang és deficient: rank = %s  - tol = %s .\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
 
 msgid "Real part\n"
 msgstr "Part real\n"
@@ -1068,14 +1068,14 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "S'ha definit massa funcions (màxim #:%d).\n"
 
 #, c-format
-msgid "Too many global variables! , max number is %d.\n"
-msgstr "Hi ha massa variables globals, el nombre màxim és %d.\n"
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
 
-msgid "Too many input/output entries for hilited block.\n"
-msgstr "Hi ha massa entrades d'entrada/sortida per al bloc marcat.\n"
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
 
-msgid "Too many input/output ports for hilited block.\n"
-msgstr "Hi ha massa blocs d'entrada/sortida per al bloc marcat.\n"
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
 
 msgid "Too many linked routines.\n"
 msgstr "Hi ha massa rutines enllaçades.\n"
@@ -1179,10 +1179,8 @@ msgstr "Avís: El resultat pot ser inexacte.\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
-" not used!,  see %ODEOPTIONS(6).\n"
+" not used! See %ODEOPTIONS(6).\n"
 msgstr ""
-"Avís: S'ha donat una Jacobiana externa, però\n"
-" no s'ha utilitzat. Veieu %ODEOPTIONS(6).\n"
 
 msgid ""
 "Warning: No Jacobian external given but\n"
@@ -1202,11 +1200,9 @@ msgid "Warning: function is already compiled.\n"
 msgstr "Avís: La funció ja s'ha compilat.\n"
 
 msgid ""
-"Warning: integration not completed! check tolerance parameters or step "
+"Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
 msgstr ""
-"Avís: No s'ha completat la integració. Comproveu els paràmetres de "
-"tolerància o la mida del pas.\n"
 
 msgid "Warning: integration up to tcrit.\n"
 msgstr "Avís: Integració fins al tcrit.\n"
@@ -1221,8 +1217,8 @@ msgstr ""
 msgid "Warning: obsolete use of '=' instead of '=='.\n"
 msgstr "Avís: Utilització obsoleta de '=' en comptes de '=='.\n"
 
-msgid "Warning: obsolete use of eye rand or ones.\n"
-msgstr "Avís: Utilització obsoleta d'identitat aleatòria, o uns.\n"
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"
