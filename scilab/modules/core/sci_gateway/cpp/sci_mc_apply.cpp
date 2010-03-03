@@ -533,13 +533,14 @@ struct wrapper {
   template<bool byName>
   void macro(void const** args, void ** res)  {
     // rhs models from 
+    int save_Nbvars= Nbvars, save_current_top=current_top;
     for( std::vector<scilab_var const*>::const_iterator it(scilab_function_rhs_models.begin())
 	   ; it != scilab_function_rhs_models.end(); ++it, ++args){
 
       scilab_allocated_var* scilab_arg= scilab_allocated_var::create(**it,0);
-      //      std::cerr<<"creating temp arg for macro of type"<<scilab_arg->get_type()<<std::endl;
+      //            std::cerr<<"creating temp arg for macro of type"<<scilab_arg->get_type()<<std::endl;
       memcpy(scilab_arg->data(), *args,scilab_arg->sizeof_data());
-      //      std::cerr<<"value:"<<*((double*)scilab_arg->data())<<std::endl;
+      //            std::cerr<<"value:"<<*((double*)scilab_arg->data())<<std::endl;
     }
 
     int  sci_rhs = scilab_function_rhs_models.size();
@@ -555,7 +556,7 @@ struct wrapper {
 
     int sci_arg_pos = current_top-sci_rhs+1;
     //  fprintf(stderr, " Nbvars = %d\n", 	Nbvars);
-    int saveNbvars= Nbvars;
+
     //  std::cerr<<"sci_rhs :"<<sci_rhs<<" Nbvars: "<<Nbvars<<std::endl;
     Nbvars = Rhs+Lhs+sci_rhs; // sinon MALLOC incorrect Size Error File src/c/stack2.c Line 3311
     // r = scilabfoo(x)	
@@ -572,6 +573,7 @@ struct wrapper {
       double* tmp;
       int* addr;
       int rm1, rn1;
+      //      std::cerr<<"Nbvars:"<<Nbvars<<"Top:"<<Top<<"curent_top:"<<current_top<<std::endl;
       Nbvars = Rhs+Lhs+sci_rhs+dummy_vars;
       int res_pos=Rhs+Lhs+1; // 
 
@@ -579,12 +581,12 @@ struct wrapper {
 
 	//      std::cerr<<"res_pos :"<<res_pos<<" Nbvars: "<<Nbvars<<std::endl;
         scilab_allocated_var* scilab_res= scilab_allocated_var::get(res_pos);
-
-
+	/*	for(int tmpi(0); tmpi <  (scilab_res->sizeof_data()/sizeof(double)); ++tmpi)
+	{ std::cerr<<"res:"<< (*(((double*)scilab_res->data())+tmpi))<<std::endl; }*/
 	memcpy(*res, scilab_res->data(), scilab_res->sizeof_data());
       }
-      Nbvars= saveNbvars;
-      --current_top;
+      Nbvars= save_Nbvars;
+      current_top=save_current_top;
     }
 
     //    std::cerr<<"calling a macro"<<(byName ? "by name" : "by ref")<<std::endl;
