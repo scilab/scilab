@@ -23,6 +23,7 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
 
@@ -56,7 +57,7 @@ public final class SplitBlock extends BasicBlock {
 		this();
 		setValue(label);
 	}
-
+	
 	/**
 	 * Connect the splitblock to a source and 2 targets.
 	 * @param source source to be connected with
@@ -179,13 +180,29 @@ public final class SplitBlock extends BasicBlock {
 	}
 
 	/**
-	 * @param geometry change split block geometry
+	 * Set the geometry of the block
+	 * 
+	 * @param geometry
+	 *            change split block geometry
 	 */
 	public void setGeometry(mxGeometry geometry) {
 		if (geometry != null) {
 			geometry.setWidth(DEFAULT_SIZE);
 			geometry.setHeight(DEFAULT_SIZE);
+			
+			/*
+			 * Align the geometry on the grid
+			 */
+			double gridSize;
+			if (getParentDiagram() != null) {
+				gridSize = getParentDiagram().getGridSize();
+			} else {
+				gridSize = BlockPositioning.DEFAULT_GRIDSIZE;
+			}
+			BlockPositioning.alignPoint(geometry, gridSize,
+					(geometry.getWidth() / 2.0));
 		}
+		
 		super.setGeometry(geometry);
 	}
 
