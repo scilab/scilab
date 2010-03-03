@@ -102,7 +102,10 @@ public enum SupportedLabelType {
 	    		LoadClassPath.loadOnUse(CLASSPATH_MATHML_NAME);
 	    		return MathML;
 	    	}
+		} else {
+			return getFromText(html);
 		}
+		
 		return HTML;
 	}
 	
