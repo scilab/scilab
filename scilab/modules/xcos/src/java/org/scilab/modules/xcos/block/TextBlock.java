@@ -28,13 +28,13 @@ import com.mxgraph.util.mxConstants;
  * A textblock is used to annotate diagrams.
  */
 public final class TextBlock extends BasicBlock {
-	
+
 	/**
 	 * The factor between a real point and a scicos point
 	 */
 	private static final int FONT_FACTOR = 4;
 	private static final String INTERFUNCTION_NAME = "TEXT_f";
-	
+
     /**
      * Font list from http://www.w3.org/TR/CSS2/fonts.html#generic-font-families
      * Scicos has a number descriptor < 7 and > 0 

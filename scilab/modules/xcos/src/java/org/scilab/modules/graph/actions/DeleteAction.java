@@ -26,9 +26,13 @@ import org.scilab.modules.gui.pushbutton.PushButton;
  * Delete manager
  */
 public final class DeleteAction extends OneSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.DELETE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "edit-delete.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_DELETE;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

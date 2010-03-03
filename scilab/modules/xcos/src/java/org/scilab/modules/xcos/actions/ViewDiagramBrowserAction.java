@@ -30,9 +30,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * View the diagram as a scilab tree
  */
 public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.DIAGRAM_BROWSER;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	/**

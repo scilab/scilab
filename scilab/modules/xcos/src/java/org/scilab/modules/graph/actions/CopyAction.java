@@ -30,9 +30,13 @@ import com.mxgraph.swing.handler.mxGraphTransferHandler;
  * Copy manager
  */
 public final class CopyAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.COPY;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "edit-copy.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_C;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

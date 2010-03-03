@@ -33,9 +33,13 @@ import com.mxgraph.util.mxUndoManager;
  * Redo manager
  */
 public class RedoAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.REDO;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "edit-redo.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_Y;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
