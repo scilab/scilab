@@ -27,6 +27,9 @@ import com.mxgraph.model.mxCell;
  * Codec for any xcos object
  */
 public class XcosObjectCodec extends ScilabObjectCodec {
+	/**
+	 * Attribute name containing {@link mxCell} style.
+	 */
     protected static final String STYLE = "style";
     private static final String ROTATION = "rotation";
     private static final String DIRECTION = "direction";
