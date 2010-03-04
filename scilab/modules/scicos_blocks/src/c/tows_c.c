@@ -56,11 +56,11 @@ extern int C2F(namstr)();
 	ptr_i[17]  = ptr_i[16] + 2; \
 	ptr_i[18]  = ptr_i[17] + 4; \
 	ptr_i[19]  = ptr_i[18] + 7; \
-	i = strlen(str_hmlst[0]);   \
+	i = (int)strlen(str_hmlst[0]);   \
 	C2F(cvstr)(&i,&ptr_i[20],str_hmlst[0],(l=0,&l),(unsigned long) i); \
-	j = strlen(str_hmlst[1]); \
+	j = (int)strlen(str_hmlst[1]); \
 	C2F(cvstr)(&j,&ptr_i[20+i],str_hmlst[1],(l=0,&l),(unsigned long) j); \
-	k = strlen(str_hmlst[2]); \
+	k = (int)strlen(str_hmlst[2]); \
 	C2F(cvstr)(&k,&ptr_i[20+i+j],str_hmlst[2],(l=0,&l),(unsigned long) k); \
 	ptr_i[33]  = 8; \
 	ptr_i[34]  = 1; \
