@@ -26,6 +26,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 
@@ -129,8 +130,8 @@ public final class BlockWriter {
 	data.add(new ScilabDouble(WPAR)); // wpar
 	data.add(new ScilabString(diagram.getTitle())); // title
 	data.add(new ScilabDouble(createTol(diagram))); // tol
-	data.add(new ScilabDouble(diagram.getFinalIntegrationTime())); // tf
-	data.add(new ScilabString(diagram.getContext())); // context
+	data.add(new ScilabDouble(diagram.getScicosParameters().getFinalIntegrationTime())); // tf
+	data.add(new ScilabString(diagram.getScicosParameters().getContext())); // context
 	data.add(new ScilabDouble()); // void1
 	data.add(DIAGRAM_OPTIONS); // options
 	data.add(new ScilabDouble()); // void2
@@ -146,13 +147,14 @@ public final class BlockWriter {
      * @return a matrix of values
      */
     private static double[][] createTol(XcosDiagram diagram) {
-	double[][] tol = {{diagram.getIntegratorAbsoluteTolerance(), 
-	    diagram.getIntegratorRelativeTolerance(),
-	    diagram.getToleranceOnTime(),
-	    diagram.getMaxIntegrationTimeinterval(),
-	    diagram.getRealTimeScaling(),
-	    diagram.getSolver(),
-	    diagram.getMaximumStepSize()}};
+    	ScicosParameters parameters = diagram.getScicosParameters();
+	double[][] tol = {{parameters.getIntegratorAbsoluteTolerance(), 
+	    parameters.getIntegratorRelativeTolerance(),
+	    parameters.getToleranceOnTime(),
+	    parameters.getMaxIntegrationTimeinterval(),
+	    parameters.getRealTimeScaling(),
+	    parameters.getSolver(),
+	    parameters.getMaximumStepSize()}};
 	return tol;
     }
 
@@ -243,7 +245,7 @@ public final class BlockWriter {
      * @return the Scilab String
      */
     private static ScilabString getDiagramVersion(XcosDiagram diagram) {
-	return new ScilabString(diagram.getVersion());
+	return new ScilabString(diagram.getScicosParameters().getVersion());
     }
 
 

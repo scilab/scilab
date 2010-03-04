@@ -129,7 +129,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 
 		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
 		debugList = new JList(DebugLevel.values());
-		debugList.setSelectedIndex(diagram.getDebugLevel());
+		debugList.setSelectedIndex(diagram.getScicosParameters().getDebugLevel());
 		debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);

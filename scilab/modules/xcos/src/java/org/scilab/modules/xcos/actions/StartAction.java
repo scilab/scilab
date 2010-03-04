@@ -80,7 +80,7 @@ public class StartAction extends DefaultAction {
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
 	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getDebugLevel() + ");"
+	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getScicosParameters().getDebugLevel() + ");"
 	    				+ "xcos_simulate(scs_m);"
 	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {

@@ -30,6 +30,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
+import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.Orientation;
@@ -155,14 +156,13 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
+	ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 	String[] refsSuperBlockDiagram = {"parent", "source", "target","container"};
-	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
+	ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
-
-	//Link 
 	
+	//Link 
 	XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null , null);
 	mxCodecRegistry.register(explicitlinkCodec);
 	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);

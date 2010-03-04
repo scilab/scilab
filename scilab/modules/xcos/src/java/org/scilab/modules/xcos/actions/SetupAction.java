@@ -38,6 +38,7 @@ import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -142,42 +143,43 @@ public class SetupAction extends SimulationNotRunningAction {
 		mainFrame.setIconImage(imageForIcon);
 
 		diagram = (XcosDiagram) getGraph(e);
+		ScicosParameters parameters = diagram.getScicosParameters();
 
 		JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
 		integration = new JFormattedTextField(CURRENT_FORMAT);
 		integration.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		integration.setValue(new BigDecimal(diagram.getFinalIntegrationTime()));
+		integration.setValue(new BigDecimal(parameters.getFinalIntegrationTime()));
 
 		JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
 		rts = new JFormattedTextField(CURRENT_FORMAT);
 		rts.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		rts.setValue(new BigDecimal(diagram.getRealTimeScaling()));
+		rts.setValue(new BigDecimal(parameters.getRealTimeScaling()));
 
 		JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
 		integrator = new JFormattedTextField(CURRENT_FORMAT);
 		integrator.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		integrator.setValue(new BigDecimal(diagram.getIntegratorAbsoluteTolerance()));
+		integrator.setValue(new BigDecimal(parameters.getIntegratorAbsoluteTolerance()));
 
 		JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
 		integratorRel = new JFormattedTextField(CURRENT_FORMAT);
 		integratorRel.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		integratorRel.setValue(new BigDecimal(diagram.getIntegratorRelativeTolerance()));
+		integratorRel.setValue(new BigDecimal(parameters.getIntegratorRelativeTolerance()));
 
 		JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
 		toleranceOnTime = new JFormattedTextField(CURRENT_FORMAT);
 		toleranceOnTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		toleranceOnTime.setValue(new BigDecimal(diagram.getToleranceOnTime()));
+		toleranceOnTime.setValue(new BigDecimal(parameters.getToleranceOnTime()));
 
 		JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
 		maxIntegrationTime = new JFormattedTextField(CURRENT_FORMAT);
 		maxIntegrationTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-		maxIntegrationTime.setValue(new BigDecimal(diagram.getMaxIntegrationTimeinterval()));
+		maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeinterval()));
 
 		JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 		solverChoice = new Choice();
 		solverChoice.addItem(XcosMessages.CVODE);
 		solverChoice.addItem(XcosMessages.IDA);
-		if (diagram.getSolver() == 0.0) {
+		if (parameters.getSolver() == 0.0) {
 			solverChoice.select(0);
 		} else {
 			solverChoice.select(1);
@@ -186,7 +188,7 @@ public class SetupAction extends SimulationNotRunningAction {
 
 
 		JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
-		SpinnerNumberModel spinnerModel = new SpinnerNumberModel((int) diagram.getMaximumStepSize(), 0, null, 1);
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel((int) parameters.getMaximumStepSize(), 0, null, 1);
 		maxStepSize = new JSpinner();
 		maxStepSize.setModel(spinnerModel);
 		maxStepSize.setEditor(new JSpinner.NumberEditor(maxStepSize, "0"));
@@ -303,67 +305,59 @@ public class SetupAction extends SimulationNotRunningAction {
 
 		defaultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				integration.setValue(new BigDecimal(100000.0)); //TODO thou shall not let value hardcoded!
-				rts.setValue(new BigDecimal(0.0));
-				integrator.setValue(new BigDecimal(1e-4));
-				integratorRel.setValue(new BigDecimal(1e-6));
-				toleranceOnTime.setValue(new BigDecimal(1e-10));
-				maxIntegrationTime.setValue(new BigDecimal(100001.0));
-				solverChoice.select(0);
-				maxStepSize.setValue(0);
-
-				diagram.setFinalIntegrationTime((Double) integration.getValue());
-				diagram.setRealTimeScaling((Double) rts.getValue());
-				diagram.setIntegratorAbsoluteTolerance((Double) integrator.getValue());
-				diagram.setIntegratorRelativeTolerance((Double) integratorRel.getValue());
-				diagram.setToleranceOnTime((Double) toleranceOnTime.getValue());
-				diagram.setMaxIntegrationTimeinterval((Double) maxIntegrationTime.getValue());
-				diagram.setSolver(0);
-				diagram.setMaximumStepSize(((Integer) maxStepSize.getValue()).doubleValue());
+				integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
+				rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
+				integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABS_TOLERANCE));
+				integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
+				toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
+				maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
+				solverChoice.select((int) ScicosParameters.SOLVER);
+				maxStepSize.setValue((int) ScicosParameters.MAX_STEP_SIZE);
 			}
 		});
 
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    if (((JButton) e.getSource()).hasFocus()) {
+			    	ScicosParameters parameters = diagram.getScicosParameters();
+			    	
 				if (solverChoice.getSelectedItem().equals(XcosMessages.CVODE)) {
-					if (diagram.getSolver() != 0) {
+					if (parameters.getSolver() != 0) {
 						diagram.setSolver(0);
 						diagram.setModified(true);
 					}
 				} else {
-					if (diagram.getSolver() != 100) {
+					if (parameters.getSolver() != 100) {
 						diagram.setSolver(100);
 						diagram.setModified(true);
 					}
 				}
 
-				if (diagram.getFinalIntegrationTime() != ((BigDecimal) integration.getValue()).doubleValue()) {
+				if (parameters.getFinalIntegrationTime() != ((BigDecimal) integration.getValue()).doubleValue()) {
 					diagram.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getRealTimeScaling() != ((BigDecimal) rts.getValue()).doubleValue()) {
+				if (parameters.getRealTimeScaling() != ((BigDecimal) rts.getValue()).doubleValue()) {
 					diagram.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getIntegratorAbsoluteTolerance() != ((BigDecimal) integrator.getValue()).doubleValue()) {
+				if (parameters.getIntegratorAbsoluteTolerance() != ((BigDecimal) integrator.getValue()).doubleValue()) {
 					diagram.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getIntegratorRelativeTolerance() != ((BigDecimal) integratorRel.getValue()).doubleValue()) {
+				if (parameters.getIntegratorRelativeTolerance() != ((BigDecimal) integratorRel.getValue()).doubleValue()) {
 					diagram.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getToleranceOnTime() != ((BigDecimal) toleranceOnTime.getValue()).doubleValue()) {
+				if (parameters.getToleranceOnTime() != ((BigDecimal) toleranceOnTime.getValue()).doubleValue()) {
 					diagram.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getMaxIntegrationTimeinterval() != ((BigDecimal) maxIntegrationTime.getValue()).doubleValue()) {
+				if (parameters.getMaxIntegrationTimeinterval() != ((BigDecimal) maxIntegrationTime.getValue()).doubleValue()) {
 					diagram.setMaxIntegrationTimeinterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
-				if (diagram.getMaximumStepSize() != ((Integer) maxStepSize.getValue()).doubleValue()) {
+				if (parameters.getMaximumStepSize() != ((Integer) maxStepSize.getValue()).doubleValue()) {
 					diagram.setMaximumStepSize(((Integer) maxStepSize.getValue()).doubleValue());
 					diagram.setModified(true);
 				}
