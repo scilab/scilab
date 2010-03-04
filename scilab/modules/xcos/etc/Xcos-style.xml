@@ -335,7 +335,7 @@
     <add as="displayedLabel" value="MIN"/>
   </add>
   <add as="BIGSOM_f" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.gif"/>
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.svg"/>
     <!-- <add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
 				        &lt;TD&gt;+&lt;/TD&gt;
 				        &lt;TD ROWSPAN=&quot;2&quot;&gt;
@@ -929,7 +929,7 @@
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif"/>
   </add>
   <add as="PotentialSensor" extend="Icon">
-    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.gif"/>
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.svg"/>
   </add>
   <add as="VariableResistor" extend="Icon">
     <add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif"/>
