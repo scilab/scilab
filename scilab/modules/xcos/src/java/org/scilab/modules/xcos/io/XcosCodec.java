@@ -30,6 +30,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
+import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.Orientation;
@@ -46,6 +47,12 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Root codec for Xcos diagram instance.
+ * 
+ * This class register all packages used by Xcos for 
+ * serialization/deserialization. 
+ */
 public class XcosCodec extends mxCodec {
 // The non saved fields are hardcoded and can have the same name.
 // CSOFF: MultipleStringLiterals
@@ -149,14 +156,13 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
+	ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
 	String[] refsSuperBlockDiagram = {"parent", "source", "target","container"};
-	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
+	ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
-
-	//Link 
 	
+	//Link 
 	XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null , null);
 	mxCodecRegistry.register(explicitlinkCodec);
 	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);
@@ -179,14 +185,16 @@ public class XcosCodec extends mxCodec {
 	
     }
     
-    /** Default constructor */
+    /**
+     * Default constructor
+     */
     public XcosCodec() {
 	super();
     }
 
     /**
-     * Default constructor with an associated document
-     * @param document the document instance we have to decode
+     * Construct a new codec associated with the document.
+     * @param document the document containing all the data.
      */
     public XcosCodec(Document document) {
 	super(document);

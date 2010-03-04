@@ -85,8 +85,14 @@ int sci_x_mdialog(char *fname,unsigned long fname_len)
       if (Rhs == 3)
         {
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRowDefaultValues,&nbColDefaultValues,&defaultValuesAdr);
+		  if ((nbRowDefaultValues != nbRowLineLabels) || (nbColDefaultValues != nbColLineLabels))
+		  {
+			  Scierror(999, _("%s: Wrong size for input argument #%d: It must have same dimensions that argument #%d.\n"), fname, 3, 2);
+			  return FALSE;
+		  }
+
           if (nbRowDefaultValues !=1 && nbColDefaultValues !=1)
-            {
+			{
               Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
               return FALSE;
             }

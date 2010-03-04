@@ -51,6 +51,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -93,9 +94,9 @@ public class BasicBlock extends ScilabGraphUniqueObject {
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram;
     
-    private transient int angle;
-    private transient boolean isFlipped;
-    private transient boolean isMirrored;
+    private int angle;
+    private boolean isFlipped;
+    private boolean isMirrored;
     
 
     // TODO : Must make this types evolve, but for now keep a strong link to Scilab
@@ -892,11 +893,6 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		value = RegionToSuperblockAction.createMenu(graph);
 		menuList.put(RegionToSuperblockAction.class, value);
 		menu.add(value);
-//		Menu mask = ScilabMenu.createMenu();
-//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-//		menu.add(mask);
-//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -932,8 +928,12 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(BorderColorAction.createMenu(graph));
-		format.add(FilledColorAction.createMenu(graph));
+		if (graph.getSelectionCells().length > 1) {
+			format.add(BorderColorAction.createMenu(graph));
+			format.add(FilledColorAction.createMenu(graph));
+		} else {
+			format.add(EditBlockFormatAction.createMenu(graph));
+		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */

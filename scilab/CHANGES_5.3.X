@@ -16,6 +16,11 @@ FFTW:
   Select "Download FFTW3 wrapper optimized by Intel Math Kernel Library" during
   installation.
 
+Graphics:
+=========
+
+* the set and get functions are now overloadable.
+
 Documentation:
 ==============
 
@@ -41,10 +46,20 @@ description.
 
 * builnewblock.sci rewritten to use scilab dynamic link module tools.
 
+* bug 5161 fixed - The export to SVG did not work with images or html.
+
+* bug 5596 fixed - It was not possible to change text block properties (font
+  and color)
+
 * bug 6661 fixed - "Code Generation" menu failed.
 
 * bug 6672 fixed - "Code generation" failed if superblock had 
                    some gain blocks.
+                   
+* bug 6674 fixed - modelica generic block did not work.
+
+* bug 6668 fixed - Xcos modelica demos did not work with the new 
+                   modelica compiler.
 
 Compilation:
 ============
@@ -91,6 +106,8 @@ Removed functions (previously declared as obsolete):
 
 * 'tk_getdir' replaced by 'uigetdir'.
 
+* 'tk_choose' replaced by 'x_choose'.
+
 * 'sci2excel' replaced by 'write_csv'.
 
 * 'excel2sci' replaced by 'read_csv'.
@@ -119,6 +136,8 @@ Bug fixes:
 * bug 6419 fixed - gstacksize() There was no way to retrieve minimum from Scilab.
 
 * bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
+
+* bug 6435 fixed - error 4 returned a wrong message.
 
 * bug 6484 fixed - file did not return filename of a opened fortran file.
 

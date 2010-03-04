@@ -18,6 +18,9 @@ public final class XcosConstants extends ScilabConstants {
     public static final int PALETTE_VMARGIN = 5;
     
     /* Events */
+    /**
+     * When a block changed
+     */
     public static final String EVENT_BLOCK_UPDATED = "block";
     /** Change event old name */
     public static final String EVENT_CHANGE_OLD = "old";

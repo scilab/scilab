@@ -1048,11 +1048,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xcos-Ant", "modules\xcos\sr
 	ProjectSection(ProjectDependencies) = postProject
 		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
 		{9B6500B0-66F6-44F0-910D-47A1435B4E02} = {9B6500B0-66F6-44F0-910D-47A1435B4E02}
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD} = {968FD6C1-5845-4B22-B61E-F6DE987D47AD}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "modelicat", "modules\scicos\src\translator\translator.vcproj", "{9E0DE362-60A0-4584-9FF1-BB537DA94F40}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml2modelica", "modules\scicos\src\xml2modelica\xml2modelica.vcproj", "{7CF15086-6DED-4F83-9C40-C4951FD373B3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graph-Ant", "modules\graph\src\java\graph-JAVA.vcproj", "{968FD6C1-5845-4B22-B61E-F6DE987D47AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9783492-017E-4811-9CC7-6B71856F847C} = {E9783492-017E-4811-9CC7-6B71856F847C}
+		{F01C26E3-E409-4E74-BA84-C7C4A71A7FDC} = {F01C26E3-E409-4E74-BA84-C7C4A71A7FDC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2142,6 +2149,14 @@ Global
 		{7CF15086-6DED-4F83-9C40-C4951FD373B3}.Debug|x64.ActiveCfg = Debug|x64
 		{7CF15086-6DED-4F83-9C40-C4951FD373B3}.Release|Win32.ActiveCfg = Release|Win32
 		{7CF15086-6DED-4F83-9C40-C4951FD373B3}.Release|x64.ActiveCfg = Release|x64
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Debug|Win32.Build.0 = Debug|Win32
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Debug|x64.ActiveCfg = Debug|x64
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Debug|x64.Build.0 = Debug|x64
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|Win32.ActiveCfg = Release|Win32
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|Win32.Build.0 = Release|Win32
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|x64.ActiveCfg = Release|x64
+		{968FD6C1-5845-4B22-B61E-F6DE987D47AD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

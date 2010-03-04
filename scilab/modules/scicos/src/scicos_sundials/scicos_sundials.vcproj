@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -532,6 +532,14 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
+		</Filter>
+		<Filter
+			Name="Resource Filter"
+			>
+			<File
+				RelativePath=".\scicos_sundials.rc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

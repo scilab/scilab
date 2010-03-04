@@ -80,7 +80,8 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\LibScilab_Import.def"/>
 		<File RelativePath=".\Output_stream_Import.def"/>
 		<File RelativePath=".\Scicos_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\scicos_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\coselm.f"/>
 		<File RelativePath=".\ftree2.f"/>

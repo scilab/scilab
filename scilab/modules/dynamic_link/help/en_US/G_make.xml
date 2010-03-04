@@ -81,6 +81,7 @@ end
       <member>
         <link linkend="addinter">addinter</link>
       </member>
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 </refentry>
