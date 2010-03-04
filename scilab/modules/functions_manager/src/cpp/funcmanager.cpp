@@ -280,6 +280,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<string, GW_MOD>("core", &CoreModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("io", &IoModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("functions", &FunctionsModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("output_stream", &OutputStreamModule::Load));
 	return bRet;
 }
 

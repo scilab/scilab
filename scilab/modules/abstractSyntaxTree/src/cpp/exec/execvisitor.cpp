@@ -254,9 +254,14 @@ namespace ast
 				{
 					ImplicitList* pIL = execVar[j]->result_get()->getAsImplicitList();
 					execVar[j]->result_set(pIL->extract_matrix());
+					delete pIL;
 				}
-				in.push_back(execVar[j]->result_get());
-				execVar[j]->result_get()->IncreaseRef();
+				
+				for(int i = 0 ; i < execVar[j]->result_size_get() ; i++)
+				{
+					in.push_back(execVar[j]->result_get(i));
+					execVar[j]->result_get(i)->IncreaseRef();
+				}
 			}
 			
 			int iRetCount = Max(1, expected_size_get());

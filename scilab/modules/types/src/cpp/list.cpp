@@ -43,8 +43,9 @@ namespace types
 		{
 			InternalType* pIT = (*_oListCopyMe->getData())[i];
 			(*m_plData)[i] = pIT->clone();
-
 		}
+
+		m_iSize = (int)m_plData->size();
 	}
 
 	std::vector<InternalType *> *List::getData()
@@ -68,6 +69,7 @@ namespace types
 	void List::append(InternalType *_typedValue)
 	{
 		m_plData->push_back(_typedValue);
+		m_iSize = m_plData->size();
 	}
 
 	/**
