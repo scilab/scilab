@@ -128,8 +128,7 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 /**
- * @author Bruno JOFRET
- *
+ * The base class for a diagram. This class contains jgraphx + Scicos data.
  */
 public class XcosDiagram extends ScilabGraph {
 
@@ -438,9 +437,9 @@ public class XcosDiagram extends ScilabGraph {
 	
 	mxCodec codec = new mxCodec();
 	try {
-	    File uri = new File(System.getenv("SCI"));
-	    String xml = mxUtils.readFile(System.getenv("SCI") + "/modules/xcos/etc/Xcos-style.xml");
-	    xml = xml.replaceAll("\\$SCILAB", uri.toURI().toURL().toString());
+		final String sci = XcosConstants.SCI.toURI().toURL().toString();
+	    String xml = mxUtils.readFile(sci + "/modules/xcos/etc/Xcos-style.xml");
+	    xml = xml.replaceAll("\\$SCILAB", sci);
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
