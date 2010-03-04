@@ -1422,6 +1422,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\axesDrawing\AxesTicksDrawerJoGL.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\axesDrawing\ConcreteDrawableAxes.cpp"
 					>
 				</File>
