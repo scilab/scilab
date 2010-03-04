@@ -15,7 +15,7 @@ package org.scilab.modules.graph.io;
 import java.awt.Color;
 import java.util.Map;
 
-import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.graph.ScilabGraph;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -59,7 +59,7 @@ public class ScilabGraphCodec extends mxObjectCodec {
 	 */
 	public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 		((Element) node).setAttribute(BACKGROUND,
-				String.valueOf(((XcosDiagram) obj).getAsComponent().getBackground().getRGB()));
+				String.valueOf(((ScilabGraph) obj).getAsComponent().getBackground().getRGB()));
 		return super.beforeEncode(enc, obj, node);
 	}
 
@@ -73,7 +73,7 @@ public class ScilabGraphCodec extends mxObjectCodec {
 	 */
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		
-		((XcosDiagram) obj).getAsComponent().setBackground((new Color(
+		((ScilabGraph) obj).getAsComponent().setBackground((new Color(
 				Integer.parseInt((((Element) node).getAttribute(BACKGROUND))))));
 		return super.afterDecode(dec, node, obj);
 	}
