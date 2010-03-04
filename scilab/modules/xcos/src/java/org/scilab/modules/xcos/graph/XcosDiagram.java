@@ -428,9 +428,10 @@ public class XcosDiagram extends ScilabGraph {
 	
 	mxCodec codec = new mxCodec();
 	try {
-		final String sci = XcosConstants.SCI.toURI().toURL().toString();
-	    String xml = mxUtils.readFile(sci + "/modules/xcos/etc/Xcos-style.xml");
-	    xml = xml.replaceAll("\\$SCILAB", sci);
+		final String sciURL = XcosConstants.SCI.toURI().toURL().toString();
+		final String sciPath = XcosConstants.SCI.getAbsolutePath();
+	    String xml = mxUtils.readFile(sciPath + "/modules/xcos/etc/Xcos-style.xml");
+	    xml = xml.replaceAll("\\$SCILAB", sciURL);
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
