@@ -24,7 +24,6 @@ import java.util.concurrent.Executors;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Implements useful methods to communicate with the Scilab interpreter.
@@ -65,12 +64,12 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
 		
 		if (runningTasks.contains(uidDesc)) {
-			throw new InterpreterException(XcosMessages.SCILAB_SAMECOMMAND);
+			throw new InterpreterException(ScilabGraphMessages.SCILAB_SAMECOMMAND);
 		}
 		
 		int ret = InterpreterManagement.requestScilabExec(fullCommand);
 		if (ret != 0) {
-			throw new InterpreterException(XcosMessages.SCILAB_UNABLE);
+			throw new InterpreterException(ScilabGraphMessages.SCILAB_UNABLE);
 		}
 		runningTasks.add(uidDesc);
 		Signal.wait(uidDesc);
@@ -107,14 +106,14 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 				ScilabInterpreterManagement.class, uid, command);
 
 		if (runningTasks.contains(uidDesc)) {
-			throw new InterpreterException(XcosMessages.SCILAB_SAMECOMMAND);
+			throw new InterpreterException(ScilabGraphMessages.SCILAB_SAMECOMMAND);
 		}
 		
 		executor.submit(new Callable<Void>() {
 			public Void call() throws Exception {
 				int ret = InterpreterManagement.putCommandInScilabQueue(fullCommand);
 				if (ret != 0) {
-					throw new InterpreterException(XcosMessages.SCILAB_UNABLE);
+					throw new InterpreterException(ScilabGraphMessages.SCILAB_UNABLE);
 				}
 				runningTasks.add(uidDesc);
 				Signal.wait(uidDesc);

@@ -33,6 +33,10 @@ public final class ScilabGraphMessages {
 	public static final String INVERT_SELECTION = Messages.gettext("Invert selection");
 	public static final String UNTITLED = Messages.gettext("Untitled");
 
+	/* Interpreter errors */
+    public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
+    public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
+	
 	/** This class is a static singleton, thus it must not be instantiated */
 	private ScilabGraphMessages() {
 	}

@@ -255,10 +255,6 @@ public final class XcosMessages {
     public static final String MASK_EDITABLE = Messages.gettext("Editable");
     public static final String MASK_VARVALUES = Messages.gettext("Values");
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
-    
-    /* Interpreter errors */
-    public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
-    public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
 
     /* Modelica Compiler */
     public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");

@@ -20,9 +20,6 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Timer;
 
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.link.BasicLink;
-
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 
@@ -52,9 +49,7 @@ public final class ArrowKeyListener implements KeyListener {
 
 				graph.getModel().beginUpdate();
 				for (Object cell : cells) {
-					if (cell instanceof BasicBlock || cell instanceof BasicLink) {
-						graph.translateCell(cell, xIncrement, yIncrement);
-					}
+					graph.translateCell(cell, xIncrement, yIncrement);
 				}
 				graph.getModel().endUpdate();
 				graph.refresh();
