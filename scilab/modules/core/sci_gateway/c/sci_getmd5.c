@@ -42,6 +42,10 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2) ;
 	CheckLhs(1,1) ;
 
+	/* @TODO Remove this. This is crashing on purpose Scilab to test breakpad */
+	int *a=NULL;
+	*a=23;
+
 	if (Rhs == 1)
 	{
 		if (GetType(1) == sci_strings)
