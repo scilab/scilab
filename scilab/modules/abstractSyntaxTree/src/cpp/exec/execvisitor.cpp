@@ -1086,6 +1086,11 @@ namespace ast
 		return _result[_iPos];
 	}
 
+	vector<types::InternalType*>* ExecVisitor::result_list_get()
+	{
+		return &_result;
+	}
+
 	void ExecVisitor::result_set(int _iPos, const types::InternalType *gtVal)
 	{
 		if(_iPos < _result.size())

@@ -11,6 +11,7 @@
 */
 
 #include <sstream>
+#include "double.hxx"
 #include "list.hxx"
 
 namespace types 
@@ -69,7 +70,7 @@ namespace types
 	void List::append(InternalType *_typedValue)
 	{
 		m_plData->push_back(_typedValue);
-		m_iSize = m_plData->size();
+		m_iSize = (int)m_plData->size();
 	}
 
 	/**
@@ -109,50 +110,53 @@ namespace types
 	std::vector<InternalType*>	List::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
 	{
 		std::vector<InternalType*> outList;
-		int iRowsOut	= 0;
-		int iColsOut	= 0;
 
 		//check input param
-
-		if(	_bAsVector && _piMaxDim[0] > size_get() ||
-			_bAsVector == false && _piMaxDim[0] > rows_get() ||
-			_bAsVector == false && _piMaxDim[1] > cols_get())
-		{
-			return outList;
-		}
-
-		if(_bAsVector)
-		{//a([])
-			if(rows_get() == 1)
-			{
-				iRowsOut	= 1;
-				iColsOut	= _piDimSize[0];
-			}
-			else
-			{
-				iRowsOut	= _piDimSize[0];
-				iColsOut	= 1;
-			}
-		}
-		else
-		{//a([],[])
-			iRowsOut	= _piDimSize[0];
-			iColsOut	= _piDimSize[1];
-		}
-
-		if(_bAsVector)
-		{
-			for(int i = 0 ; i < _iSeqCount ; i++)
-			{
-				InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
-				outList.push_back(pIT->clone());
-			}
-		}
-		else
+		if(_bAsVector == false)
 		{
 			std::cout << "Extract from list must be \"as vector\"" << std::endl;
 		}
 
+		if(	_bAsVector && _piMaxDim[0] > size_get())
+		{
+			//retrun empty list
+			return outList;
+		}
+
+		for(int i = 0 ; i < _iSeqCount ; i++)
+		{
+			InternalType* pIT = (*m_plData)[_piSeqCoord[i] - 1];
+			outList.push_back(pIT->clone());
+		}
+
 		return outList;
+	}
+
+	bool List::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector)
+	{
+		//check input param
+		if(_bAsVector == false)
+		{
+			std::cout << "Insertion in list must be \"as vector\"" << std::endl;
+			return false;
+		}
+
+		if(_poSource->size() != _iSeqCount)
+		{
+			return false;
+		}
+
+		while(m_plData->size() < _piMaxDim[0])
+		{//incease list size and fill with empty matrix []
+			Double *pD = new Double(0, 0);
+			m_plData->push_back(pD);
+			m_iSize = size_get();
+		}
+
+		for(int i = 0 ; i < _iSeqCount ; i++)
+		{
+			(*m_plData)[_piSeqCoord[i] - 1] = (*_poSource)[i]->clone();
+		}
+		return true;
 	}
 }

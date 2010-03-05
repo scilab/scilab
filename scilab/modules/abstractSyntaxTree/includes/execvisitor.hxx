@@ -134,6 +134,7 @@ namespace ast
 		void expected_size_set(int _iSize);
 		types::InternalType*		result_get(void);
 		types::InternalType*		result_get(int _iPos);
+		vector<types::InternalType*>* result_list_get();
 		void	result_set(const types::InternalType *gtVal);
 		void	result_set(int _iPos, const types::InternalType *gtVal);
 

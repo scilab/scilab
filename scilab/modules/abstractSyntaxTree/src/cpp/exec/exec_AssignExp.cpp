@@ -90,6 +90,9 @@ namespace ast
 					case InternalType::RealInt : 
 						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsInt(), bSeeAsVector);
 						break;
+					case InternalType::RealList : 
+						//never occur !
+						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
 						break;
@@ -110,6 +113,9 @@ namespace ast
 						break;
 					case InternalType::RealInt : 
 						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					case InternalType::RealList : 
+						 bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_list_get(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
