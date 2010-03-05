@@ -33,7 +33,7 @@ if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		=
+scilab_bin_CXXFLAGS 		= $(BREAKPAD_CXXFLAGS)
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -50,15 +50,15 @@ SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
 
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.cpp
 
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB) $(BREAKPAD_LIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
-scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.cpp
+ 
+scilab_cli_bin_CXXFLAGS 		= -DWITHOUT_GUI $(BREAKPAD_CXXFLAGS)
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB) $(BREAKPAD_LIBS)
 
 
 if NEED_JAVA
