@@ -31,7 +31,6 @@ import org.scilab.modules.graph.utils.MathMLRenderUtils;
 import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import org.scilab.modules.graph.view.SupportedLabelType;
-import org.scilab.modules.jvm.LoadClassPath;
 import org.xml.sax.SAXException;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
@@ -325,8 +324,6 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	@Override
 	protected void drawImage(int x, int y, int w, int h, String image) {
 		if (image.endsWith(".svg")) {
-			LoadClassPath.loadOnUse("xcos_block_rendering");
-			
 			File f = new File(image);
 			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
 			
