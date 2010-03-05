@@ -19,10 +19,7 @@
 extern "C" {
 #endif
 
-#ifdef _MSC_VER
 #include "machine.h" /* HAVE_LIBINTL_H */
-#endif
-
 
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
