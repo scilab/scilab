@@ -23,6 +23,8 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +42,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.graph.ScilabCanvas;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -437,6 +440,19 @@ public class XcosDiagram extends ScilabGraph {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
+	
+	// Set Canvas background
+	URL background = null;
+	try {
+		Map<String, Object> style = getStylesheet().getCellStyle("Icon", null);
+		if (style != null) {
+			background = new URL((String) style.get(XcosConstants.STYLE_IMAGE));
+		}
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+	}
+	((ScilabCanvas) getAsComponent().getCanvas())
+			.setSvgBackgroundImage(background);
 
 	getAsComponent().setToolTips(true);
 
