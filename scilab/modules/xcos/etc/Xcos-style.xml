@@ -41,6 +41,7 @@
   <!-- Icon -->
   <add as="Icon" extend="block">
     <add as="shape" value="image"/>
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/background.svg"/>
   </add>
 
   <!-- *** PORT DEFINITION *** -->
