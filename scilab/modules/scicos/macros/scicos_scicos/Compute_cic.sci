@@ -20,7 +20,6 @@
 //
 function ok=Compute_cic(method,Nunknowns)
 
-
   %_winId=TCL_GetVar("IHMLoc");
   global icpr
   
@@ -69,9 +68,10 @@ function ok=Compute_cic(method,Nunknowns)
   Ida_ierr=0;
   if method=='Ida (init)' then     
     try
-     setmenu(curwin,'stop')  
+     // scicos menu, not any more in xcos
+     // setmenu(curwin,'stop')  
      Ida_ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''run'',tolerances)','errcatch')
-     unsetmenu(curwin,'stop')
+     // unsetmenu(curwin,'stop')
      if Ida_ierr<>0 then,
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
        messagebox(msprintf(_('Initialisation problem in %s '),'Sundials'),'error','modal'); 
@@ -82,19 +82,20 @@ function ok=Compute_cic(method,Nunknowns)
     end  
   end
   //--------------------------------------------------------------
-  if method=='Kinsol' then     
+  if method=='Kinsol' then
     try
-    setmenu(curwin,'stop')  
-    ierr=execstr('[state2,t]=scicosim(state,%tcur,tf,icpr.sim,''Kinsol'',tolerances)','errcatch')
+    // scicos menu, not any more in xcos
+    // setmenu(curwin,'stop')  
+     ierr=execstr('[state2,t]=scicosim(state,%tcur,tf,icpr.sim,''Kinsol'',tolerances)','errcatch')
     if ierr==0 & (or(isnan(state2.x)) | or(isinf(state2.x))) then 
 	ierr=-1;
     end
     if ierr==0 then 
       state=state2;
     end
-    unsetmenu(curwin,'stop')
+    // unsetmenu(curwin,'stop')
      if ierr<>0 then,
-       TCL_EvalStr("Compute_finished nok "+ %_winId); 
+       TCL_EvalStr("Compute_finished nok "+ %_winId);
        messagebox(msprintf(_('Initialisation problem in %s '),'Kinsol'),'error','modal'); 
      end
     catch
@@ -206,7 +207,9 @@ function ok=Compute_cic(method,Nunknowns)
  //------------------------------
  TCL_SetVar("sciGUITable(win,"+%_winId+",data,IERROR)",Err);
  TCL_EvalStr("Compute_finished ok "+ %_winId); 
+ ok=%t;
 endfunction
+
 //------------------------------------------------------------
 function  res=fsim(xin)
   nx=size(xin,'r');  

@@ -220,7 +220,7 @@ static void initial_c1_local(void)
         { return 0;  }
 
 /* the real function error is defined in output_stream */
-#define Error(x) C2F(error)((c_local=x,&c_local))
+#define Error(x) SciError(x)
 
 #define Errorinfo(routinename,info) C2F(errorinfo)(routinename,(c_local=info, &c_local), strlen(routinename));
 

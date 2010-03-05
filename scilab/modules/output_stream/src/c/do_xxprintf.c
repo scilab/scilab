@@ -446,8 +446,19 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 			break;
 
 		case 'o':
-			Scierror(998,_("%s: An error occurred: %s\n"),fname,_("'o' format not allowed."));
-			return RET_BUG;
+			{
+				rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
+				if (rval <= 0) 
+				{
+					if (rval== NOT_ENOUGH_ARGS) 
+					{
+						error_on_rval(xxprintf, flush, target);
+						return RET_BUG;
+					}
+					return rval;
+				}
+				conversion_type = PF_D;
+			}
 			break;
 
 		default:

@@ -52,10 +52,8 @@ public class ExportBitmap extends ExportToFile {
 	public int exportToBitmap() {				
     String suffix = ExportRenderer.getFileExtension();
 
-    if(suffix.length()==0)
-    {
-		  switch (getFiletype())
-      {
+    if (suffix.length() == 0) {
+		  switch (getFiletype()) {
 		    case ExportRenderer.BMP_EXPORT:  suffix = "bmp";
 		    break;
 		    case ExportRenderer.GIF_EXPORT:  suffix = "gif";
@@ -64,6 +62,8 @@ public class ExportBitmap extends ExportToFile {
 		    break;
 		    case ExportRenderer.PNG_EXPORT:  suffix = "png";
 		    break;
+		    
+		    default: return ExportRenderer.INVALID_FILE;
       }
     }
 
@@ -124,7 +124,7 @@ public class ExportBitmap extends ExportToFile {
 		boolean needFlip;
 		try {
 			// raises an exception if hardware acceleration is on
-			needFlip = !((GLContextImpl)GLContext.getCurrent()).offscreenImageNeedsVerticalFlip();
+			needFlip = !((GLContextImpl) GLContext.getCurrent()).offscreenImageNeedsVerticalFlip();
 		} catch (GLException e) {
 			// hardware acceleration is on
 			needFlip = false;

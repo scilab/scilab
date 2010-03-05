@@ -86,6 +86,11 @@ options_codes=[1;2;3;
   
   drawlater()
   c=captions(H,leg)
+  if options_codes(kopt)<0 then
+    c.background=f.background
+  else
+    c.background=Acur.background
+  end
   if with_box then c.line_mode='on',else c.line_mode='off',end
   c.legend_location=options_names(kopt)
   if opt==5 then

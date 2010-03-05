@@ -57,6 +57,14 @@ int sci_set(char *fname, unsigned long fname_len)
 {
 	int lw = 0;
 	int isMatrixOfString = 0;
+
+	if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
+	  {
+	    lw = 1 + Top - Rhs;
+	    C2F(overload)(&lw,"set",Rhs);
+	    return 0;
+	  }
+
 	CheckRhs(2,3);
 	CheckLhs(0,1);
 

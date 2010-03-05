@@ -25,6 +25,7 @@ import java.util.Map;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
@@ -46,11 +47,11 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -83,7 +84,7 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
-public class BasicBlock extends XcosUIDObject {
+public class BasicBlock extends ScilabGraphUniqueObject {
 	private static final long serialVersionUID = 2189690915516168262L;
 	private static final String INTERNAL_FILE_PREFIX = "xcos";
 	private static final String INTERNAL_FILE_EXTENSION = ".h5";
@@ -93,9 +94,9 @@ public class BasicBlock extends XcosUIDObject {
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
     private transient XcosDiagram parentDiagram;
     
-    private transient int angle;
-    private transient boolean isFlipped;
-    private transient boolean isMirrored;
+    private int angle;
+    private boolean isFlipped;
+    private boolean isMirrored;
     
 
     // TODO : Must make this types evolve, but for now keep a strong link to Scilab
@@ -241,7 +242,16 @@ public class BasicBlock extends XcosUIDObject {
      * @param interfaceFunctionName interface function name
      */
     public void setInterfaceFunctionName(String interfaceFunctionName) {
-	this.interfaceFunctionName = interfaceFunctionName;
+    	String interfunction = getInterfaceFunctionName();
+    	this.interfaceFunctionName = interfaceFunctionName;
+    	
+    	/*
+    	 * Update style
+    	 */
+    	StyleMap style = new StyleMap(getStyle());
+    	style.remove(interfunction);
+    	style.put(interfaceFunctionName, null);
+    	setStyle(style.toString());
     }
 
     /**
@@ -883,11 +893,6 @@ public class BasicBlock extends XcosUIDObject {
 		value = RegionToSuperblockAction.createMenu(graph);
 		menuList.put(RegionToSuperblockAction.class, value);
 		menu.add(value);
-//		Menu mask = ScilabMenu.createMenu();
-//		mask.setText(XcosMessages.SUPERBLOCK_MASK);
-//		menu.add(mask);
-//		mask.add(SuperblockMaskCreateAction.createMenu(graph));
-//		mask.add(SuperblockMaskRemoveAction.createMenu(graph));
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */
@@ -923,8 +928,12 @@ public class BasicBlock extends XcosUIDObject {
 		/*--- */
 		format.addSeparator();
 		/*--- */
-		format.add(BorderColorAction.createMenu(graph));
-		format.add(FilledColorAction.createMenu(graph));
+		if (graph.getSelectionCells().length > 1) {
+			format.add(BorderColorAction.createMenu(graph));
+			format.add(FilledColorAction.createMenu(graph));
+		} else {
+			format.add(EditBlockFormatAction.createMenu(graph));
+		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
 		/*--- */

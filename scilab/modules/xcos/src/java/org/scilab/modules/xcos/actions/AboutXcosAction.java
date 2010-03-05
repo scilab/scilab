@@ -28,9 +28,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Display about box for Xcos
  */
 public class AboutXcosAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.ABOUT_XCOS;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

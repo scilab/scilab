@@ -187,6 +187,7 @@ end // if haveacompiler()
       <member><link linkend="newfun">newfun</link></member>
 
       <member><link linkend="clearfun">clearfun</link></member>
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
   

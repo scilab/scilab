@@ -130,7 +130,7 @@ int isVarMatrixType(void* _pvCtx, int* _piAddress);
 * @param[in] _pstName variable name
 * @return if matrix form type variable 1 otherwise 0
 */
-int isNamedVarMatrixType(char *_pstName);
+int isNamedVarMatrixType(void* _pvCtx, char *_pstName);
 
 /**
  * get process mode from input variable

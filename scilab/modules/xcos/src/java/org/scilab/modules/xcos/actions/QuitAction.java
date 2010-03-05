@@ -27,9 +27,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Management of exit of Xcos
  */
 public final class QuitAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.QUIT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_Q;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

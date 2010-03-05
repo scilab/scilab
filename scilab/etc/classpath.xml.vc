@@ -165,6 +165,12 @@ The option is "disableUnderMode" and can be:
 	<load on="Xpad"/>
 </path>
 
+
+<!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
+
+<!-- TO DO Load only when we need -->
+<path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar"/>
+
 
 </classpaths>

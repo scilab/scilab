@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -407,6 +407,10 @@
 				RelativePath="..\jni\Xpad.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\xpad.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -464,6 +468,10 @@
 				RelativePath="..\jni\ScilabKeywords.i"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

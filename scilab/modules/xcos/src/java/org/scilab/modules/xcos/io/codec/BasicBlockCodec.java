@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Element;

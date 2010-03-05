@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -402,6 +402,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\libst.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\misc.c"
 				>
 			</File>
@@ -418,6 +422,10 @@
 				RelativePath=".\misc.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 	</Files>
 	<Globals>

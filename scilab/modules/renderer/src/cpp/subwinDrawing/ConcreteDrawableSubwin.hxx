@@ -22,6 +22,11 @@
 #include "TicksDrawer.hxx"
 #include "../labelDrawing/LabelPositioner.hxx"
 
+/**
+ * Accuracy used when determining whether axes min and max bounds
+ * are equal or not
+ */
+#define BOUNDS_COMPARE_ACCURACY		1e-6
 
 namespace sciGraphics
 {

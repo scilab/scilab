@@ -2006,7 +2006,7 @@ public class ScilabBridge {
 	
 	/**
 	 * Retrieve the CallBack associated to this Menu
-	 * @param menuItem the Menu
+	 * @param menu the Menu
 	 * @return the CallBack
 	 */
 	public static CallBack getCallback(Menu menu) {
@@ -5232,14 +5232,27 @@ public class ScilabBridge {
 	/* Tree Bridge    */
 	/******************/
 
+	/**
+	 * Display a given tree
+	 * @param tree a tree structure
+	 */
 	public static void  showTree(Tree tree) {
 		ScilabTreeBridge.showTree(tree);
 	}
 
+	/**
+	 * Create a Scilab Tree
+	 * @param scilabTree a tree structure
+	 * @return a graphical tree
+	 */
 	public static SimpleTree createTree(Tree scilabTree) {
 	    return ScilabTreeBridge.createTree(scilabTree);
 	}
 
+	/**
+	 * Function help on the keyword
+	 * @param console scilab console
+	 */
 	public static void helpOnTheKeyword(ScilabConsole console) {
 		ScilabConsoleBridge.helpOnTheKeyword(console);
 		

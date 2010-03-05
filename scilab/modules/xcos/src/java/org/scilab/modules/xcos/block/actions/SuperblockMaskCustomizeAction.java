@@ -47,9 +47,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Customize the mask of the {@link SuperBlock}.
  */
 public final class SuperblockMaskCustomizeAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.CUSTOMIZE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	/**

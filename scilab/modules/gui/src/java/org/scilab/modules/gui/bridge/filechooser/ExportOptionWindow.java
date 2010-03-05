@@ -133,8 +133,9 @@ public class ExportOptionWindow extends JFrame implements ActionListener {
 			
 			//now we manage only one option (portrait/landscape)
 			//later we will have to manage more options (Vector<String> properties)
-			String exportcmd = "xs2" + exportData.getExportExtension() + "(" + exportData.getFigureId() + ", '" + exportData.getExportName()
-			+ "', '" + exportData.getExportProperties().elementAt(0) + "');";
+			String exportcmd = "xs2" + exportData.getExportExtension()
+							   + "(" + exportData.getFigureId() + ", '" + exportData.getExportName()
+							   + "', '" + exportData.getExportProperties().elementAt(0) + "');";
 			
 			InterpreterManagement.putCommandInScilabQueue(exportcmd);
 		}

@@ -46,9 +46,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Opens context settings Window
  */
 public class SetContextAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SET_CONTEXT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	private XcosDiagram diagram;
@@ -110,8 +114,8 @@ public class SetContextAction extends SimulationNotRunningAction {
         
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
         StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0; i < diagram.getContext().length; i++) {
-        	contextBuilder.append(diagram.getContext()[i]);
+        for (int i = 0; i < diagram.getScicosParameters().getContext().length; i++) {
+        	contextBuilder.append(diagram.getScicosParameters().getContext()[i]);
         	contextBuilder.append(System.getProperty("line.separator"));
         }
         
@@ -186,7 +190,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 					e1.printStackTrace();
 				}
 				/** Test for modifications */
-				String[] oldContext = diagram.getContext();
+				String[] oldContext = diagram.getScicosParameters().getContext();
 				boolean modified = false;
 				/* If more or less lines --> modified */
 				if (oldContext.length != i) {

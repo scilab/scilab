@@ -21,14 +21,26 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
+/**
+ * Class Page setup action for Xpad
+ * @author Sylvestre Koumar
+ *
+ */
 public class PageSetupAction extends DefaultAction {
 
 	private static PageFormat pageFormat;
 
+	/**
+	 * Default constructor
+	 * @param editor Editor
+	 */
 	private PageSetupAction(Xpad editor) {
 		super(XpadMessages.PAGE_SETUP, editor);
 	}
 
+	/**
+	 * Function Run
+	 */
 	public void doAction() {
 		PrinterJob printTask = PrinterJob.getPrinterJob();
 		if (pageFormat == null) {
@@ -38,10 +50,19 @@ public class PageSetupAction extends DefaultAction {
 		}
 	}
 
+	/**
+	 * Create the MenuItem for page setup action
+	 * @param editor Editor
+	 * @return a MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu(XpadMessages.PAGE_SETUP, null, new PageSetupAction(editor), null);
 	}
 
+	/**
+	 * Get the page format
+	 * @return PageFormat
+	 */
 	public static PageFormat getPageFormat() {
 		return pageFormat;
 	}

@@ -150,7 +150,8 @@ public class Juigetfile {
 	 * @param multipleSelection enable or not the multiple selection
 	 * @param dialogType SAVE or OPEN a file ?
 	 */
-	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle, boolean multipleSelection, int dialogType) {
+	public static void uigetfile(String[] mask, String[] description, String initialDirectory, 
+								 String boxtTitle, boolean multipleSelection, int dialogType) {
 		Juigetfile.mask = mask;
 		Juigetfile.initialDirectory = initialDirectory;
 		Juigetfile.boxtTitle = boxtTitle;

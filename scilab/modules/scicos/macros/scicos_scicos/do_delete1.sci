@@ -66,7 +66,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   outin = ['out','in']
 
   //** Acquire the current clicked window 
-  gh_curwin = scf(%win) ;
+  //gh_curwin = scf(%win) ;
   gh_axes = gca(); 
   o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
                                     //** at the beginning of this operation

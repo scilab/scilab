@@ -33,9 +33,13 @@ import com.mxgraph.swing.mxGraphComponent;
  * Diagram printing management
  */
 public final class PrintAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.PRINT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "document-print.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_P;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/** Constructor

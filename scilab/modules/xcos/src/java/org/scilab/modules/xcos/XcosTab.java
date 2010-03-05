@@ -59,9 +59,6 @@ import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
-import org.scilab.modules.xcos.actions.LinkStyleHorizontalAction;
-import org.scilab.modules.xcos.actions.LinkStyleStraightAction;
-import org.scilab.modules.xcos.actions.LinkStyleVerticalAction;
 import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
 import org.scilab.modules.xcos.actions.OpenAction;
@@ -98,6 +95,9 @@ import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleStraightAction;
+import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
 import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -439,9 +439,9 @@ public class XcosTab extends ScilabTab {
 
 	linkStyle = ScilabMenu.createMenu();
 	linkStyle.setText(XcosMessages.LINK_STYLE);
-	linkStyle.add(LinkStyleHorizontalAction.createMenu(diagram));
-	linkStyle.add(LinkStyleStraightAction.createMenu(diagram));
-	linkStyle.add(LinkStyleVerticalAction.createMenu(diagram));
+	linkStyle.add(StyleHorizontalAction.createMenu(diagram));
+	linkStyle.add(StyleStraightAction.createMenu(diagram));
+	linkStyle.add(StyleVerticalAction.createMenu(diagram));
 	format.add(linkStyle);
 	format.addSeparator();
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\console.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\ConsoleIsWaitingForInput.cpp"
 				>
 			</File>
@@ -510,6 +514,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\PromptToHome.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File

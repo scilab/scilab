@@ -26,9 +26,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * View Xcos demos
  */
 public final class XcosDemonstrationsAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.XCOS_DEMONSTRATIONS;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "applications-system.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

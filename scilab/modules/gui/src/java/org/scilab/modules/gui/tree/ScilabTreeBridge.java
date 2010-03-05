@@ -19,11 +19,25 @@ import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
  * @author Sylvestre KOUMAR
  */
 public class ScilabTreeBridge {
+	
+	/**
+	 * Default constructor
+	 */
+	public ScilabTreeBridge() { };
 
+	/**
+	 * Display a tree
+	 * @param tree a tree
+	 */
 	public static void showTree(Tree tree) {
 		SwingScilabTree.showTree(tree);
 	}
 
+	/**
+	 * Create a tree
+	 * @param scilabTree a tree
+	 * @return a simple tree
+	 */
 	public static SimpleTree createTree(Tree scilabTree) {
 	    return new SwingScilabTree(scilabTree);
 	}

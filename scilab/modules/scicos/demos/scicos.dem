@@ -119,7 +119,7 @@ while %t do
 	  'The Cblock2 block'
 	  ];
     while %t do
-      n=tk_choose(tuti,'Choose a tutorial (must be played in order).')
+      n=x_choose(tuti,'Choose a tutorial (must be played in order).')
       if n ==0 then break,end
       dirr=pwd()
       chdir(TMPDIR)

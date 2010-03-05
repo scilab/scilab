@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabGraphRenderer;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -50,9 +51,13 @@ import com.mxgraph.util.mxUtils;
  * Diagram export management
  */
 public final class ExportAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.EXPORT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**
@@ -132,10 +137,7 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-			    Document doc = mxCellRenderer.createSvgDocument(graph, null, 1, null, null);
-			    if (doc != null) {
-				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
-			    }
+			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
 			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
 			    if (doc != null) {

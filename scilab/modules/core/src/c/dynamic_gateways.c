@@ -191,22 +191,6 @@ int gw_dynamic_symbolic(void)
 							  &ptr_gw_symbolic);
 }
 /*--------------------------------------------------------------------------*/
-/* metanet module */
-#define METANET_MODULE_NAME "metanet"
-static DynLibHandle hMetanetLib = NULL;
-static PROC_GATEWAY ptr_gw_metanet = NULL;
-static char* dynlibname_metanet = NULL;
-static char* gatewayname_metanet = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_metanet(void)
-{
-	return gw_dynamic_generic(METANET_MODULE_NAME,
-		                      &dynlibname_metanet,
-							  &gatewayname_metanet,
-							  &hMetanetLib,
-							  &ptr_gw_metanet);
-}
-/*--------------------------------------------------------------------------*/
 /* interpolation module */
 #define INTERPOLATION_MODULE_NAME "interpolation"
 static DynLibHandle hInterpolationLib = NULL;

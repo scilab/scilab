@@ -17,57 +17,88 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoManager;
 
+/**
+ * Class CompoundUndoManager
+ * @author Bernard Hugueney
+ *
+ */
 public class CompoundUndoManager extends UndoManager {
 
-	CompoundEdit compoundEdit=null;
+	CompoundEdit compoundEdit = null;
 	private int nbEdits = 0;
 	
-	void startCompoundEdit(){
+	/**
+	 * startCompoundEdit
+	 */
+	void startCompoundEdit() {
 		//System.err.println("starting compound edit");
 		compoundEdit = new CompoundEdit();
 		addEdit(compoundEdit);
 	}
-	void endCompoundEdit(){
+	
+	/**
+	 * endCompoundEdit
+	 */
+	void endCompoundEdit() {
 		//System.err.println("ending compound edit");
 		compoundEdit.end();
 		compoundEdit = null;
 	}
 	
-	public void undo(){
+	/**
+	 * undo
+	 */
+	public void undo() {
 		--nbEdits;
 		super.undo();
 	}
 
-	public void redo(){
+	/**
+	 * redo
+	 */
+	public void redo() {
 		++nbEdits;
 		super.redo();
 	}
 
-	public boolean isAtReference(){
+	/**
+	 * isAtReference
+	 * @return boolean
+	 */
+	public boolean isAtReference() {
 		return nbEdits == 0;
 	}
 	
-	public void setReference(){
+	/**
+	 * setReference
+	 */
+	public void setReference() {
 		nbEdits = 0;
 	}
 	
+	/**
+	 * discardAllEdits
+	 */
 	public void discardAllEdits() {
 		super.discardAllEdits();
 		setReference();
 	}
 	
+	/**
+	 * undoableEditHappened
+	 * @param e UndoableEditEvent
+	 */
 	public void undoableEditHappened(UndoableEditEvent e) {
 		
 		AbstractDocument.DefaultDocumentEvent event =
-			(AbstractDocument.DefaultDocumentEvent)e.getEdit();
+			(AbstractDocument.DefaultDocumentEvent) e.getEdit();
 
-		if  (event.getType().equals(DocumentEvent.EventType.CHANGE))
-		{
+		if  (event.getType().equals(DocumentEvent.EventType.CHANGE)) {
 			// do not store change events
 			return;
 		}
 		//System.err.println("storing an edit");
-		addEdit( e.getEdit() );
+		addEdit(e.getEdit());
 		++nbEdits;
 	}
 }

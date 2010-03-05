@@ -33,9 +33,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Start the simulation
  */
 public class StartAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.START;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "media-playback-start.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -76,7 +80,7 @@ public class StartAction extends DefaultAction {
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
 	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getDebugLevel() + ");"
+	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getScicosParameters().getDebugLevel() + ");"
 	    				+ "xcos_simulate(scs_m);"
 	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {

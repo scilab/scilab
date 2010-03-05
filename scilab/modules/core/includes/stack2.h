@@ -48,7 +48,7 @@ extern int C2F(allowptr)(int *);
 extern int C2F(ref2val)(void);
 extern int C2F(allops)(void);
 extern int C2F(putfunnam)(char *fname,int *lw, unsigned long);
-
+extern void SciError(int n);
 
 /* from somewhere (maybe stack1.h) */
 

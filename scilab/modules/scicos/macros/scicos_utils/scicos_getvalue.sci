@@ -87,6 +87,24 @@ end
 %16=[];%17=[];%18=[];%19=[];%20=[];
 
 if %rhs==3 then  %ini=emptystr(%nn,1),end
+
+// Transform a list of strings into a vector of strings
+// Has no effect if %ini is already a vector of strings
+// An empty item in the source list is converted to an empty string in the
+//  destination vector
+// %ini = cat(1,%ini(:))
+if typeof(%ini) <> 'string'
+  %new_ini = []
+  for k = 1:length(%ini)
+    if isempty(%ini(k))
+      %new_ini(k) = ''
+    else
+      %new_ini(k) = %ini(k)
+    end
+  end
+  %ini = %new_ini
+end
+
 %ok=%t
 while %t do
   %str=x_mdialog(%desc,%labels,%ini)
@@ -155,7 +173,7 @@ while %t do
         %ierr=execstr('%vv=['+%str(%kk)+']','errcatch');
       end
       if %ierr<>0 then %nok=-%kk;break,end
-      if (type(%vv)>2 &type(%vv)<>8 ) then %nok=-%kk,break,end
+      if type(%vv)>2 then %nok=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssz=string(%sz(1))
       %nv=prod(size(%vv))
@@ -247,15 +265,17 @@ while %t do
     execstr('%'+string(%kk)+'=%vv')
   end
   if %nok>0 then
-    messagebox(msprintf(_('answer given for %s\n has invalid dimension: \n'+..
-             'waiting for dimension  %s'),%labels(%nok),%ssz),'error','modal');
+    messagebox(['answer given for '+%labels(%nok);
+             'has invalid dimension: ';
+             'waiting for dimension  '+%ssz],"modal","error");
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      messagebox(msprintf(_('answer given for %s has incorrect type: %s'),%labels(-%nok),%typ(-2*%nok-1)),'error','modal');
+      messagebox(['answer given for '+%labels(-%nok);
+	'has incorrect type :'+ %typ(-2*%nok-1)],"modal","error");
     else
-      messagebox([msprintf(_('answer given for %s is incorrect: %s'), %labels(-%nok))
-		  lasterror()],'error','modal');
+      messagebox(['answer given for '+%labels(-%nok);
+	'is incorrect:'+lasterror()],"modal","error");
     end
     %ini=%str
   else

@@ -22,7 +22,6 @@ import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollPane;
 import javax.swing.Scrollable;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
@@ -335,7 +334,11 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		ScilabSwingUtilities.removeFromParent(frame);
 	}
 	
-	
+	/**
+	 * Add a Jtree to a scrolling pane
+	 * @param member a graphical tree
+	 * @return an integer
+	 */
 	public int addTree(SwingScilabTree member) {
 		// Add the jtree to a scrolling pane		
 		this.add(member.getAsComponent(), WIDGET_LAYER, TOP_POSITION);
@@ -343,6 +346,11 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 		return this.getComponentZOrder(member.getAsComponent());
 	}
 
+	/**
+	 * Remove a Jtree to a scrolling pane
+	 * @param member a graphical tree
+	 * @return an integer
+	 */
 	public int removeTree(SwingScilabTree member) {
 		// Add the jtree to a scrolling pane
 		this.remove(member.getAsComponent());
