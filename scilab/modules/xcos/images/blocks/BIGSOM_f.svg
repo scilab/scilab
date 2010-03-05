@@ -13,8 +13,8 @@
    inkscape:export-ydpi="90.000000"
    inkscape:export-xdpi="90.000000"
    inkscape:export-filename="/Users/izo/Dropbox/scilab/palette/png/BIGSOM_f.png"
-   width="44.958942"
-   height="41.061924"
+   width="30.135286"
+   height="23.283943"
    id="svg11300"
    sodipodi:version="0.32"
    inkscape:version="0.47 r22583"
@@ -124,7 +124,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.97558"
-     inkscape:cx="0.089892731"
+     inkscape:cx="0.089892414"
      inkscape:cy="22.624007"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -177,38 +177,14 @@
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     transform="translate(2.2330551e-7,-6.9380772)">
+     transform="translate(-9.3959022e-8,-24.716057)">
     <g
        inkscape:label="Layer 1"
        id="layer1-0"
-       transform="matrix(0,0.68137179,-0.68137179,0,35.782322,10.869068)">
+       transform="matrix(0,0.68137179,-0.68137179,0,28.938139,20.184192)">
       <g
          id="g9544"
          transform="translate(-2.0023665,2.2530854)">
-        <g
-           id="g9570"
-           transform="translate(3.2818836,-4.6642035)">
-          <rect
-             ry="7.9963875"
-             rx="8.775136"
-             y="-6.280921"
-             x="-54.158413"
-             height="58.727955"
-             width="64.447327"
-             id="rect11518"
-             style="color:#000000;fill:url(#radialGradient9588);fill-opacity:1;fill-rule:evenodd;stroke:#2e3436;stroke-width:1.535653;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
-             transform="matrix(0,-1,1,0,0,0)" />
-          <rect
-             style="color:#000000;fill:none;stroke:#ffffff;stroke-width:1.53565264;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible"
-             id="rect11528"
-             width="60.642223"
-             height="55.260536"
-             x="-52.212566"
-             y="-4.5472221"
-             rx="6.8251028"
-             ry="6.2194099"
-             transform="matrix(0,-1,1,0,0,0)" />
-        </g>
         <g
            id="g4015"
            style="fill:#cc0000"
