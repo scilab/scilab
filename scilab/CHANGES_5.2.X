@@ -60,6 +60,9 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend entity's default background color
+                   to change.
+
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
 * bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes and their attached entities
