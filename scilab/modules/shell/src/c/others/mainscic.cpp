@@ -13,6 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include <unistd.h> /* isatty */
 #include <stdlib.h> /* stdin */
+extern "C" {
+#include "./modules/io/includes/setenvc.h"
 #include <stdio.h>
 #include "core_math.h"
 #include "version.h"
@@ -33,7 +35,13 @@
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
 #endif
+}
 
+#include <cstdio>
+#include <exception_handler.h>
+//#include <linux_thread.h>
+#include <pthread.h>
+using namespace google_breakpad;
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
@@ -49,6 +57,15 @@ extern "C"
 int F77_DUMMY_MAIN() { return 1; }
 #endif
 
+// Callback when minidump written.
+bool MinidumpCallback(const char *dump_path,
+                   const char *minidump_id,
+                   void *context,
+                   bool succeeded) {
+  printf("%s is dumped\n", minidump_id);
+  return succeeded;
+}
+
 int main(int argc, char **argv)
 {
   int i;
@@ -57,6 +74,11 @@ int main(int argc, char **argv)
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
+  printf("handle declaration\n");
+
+  google_breakpad::ExceptionHandler handler_process(".", NULL, MinidumpCallback, NULL, true);
+	//  int *a=NULL;
+	//  *a=23;
 
   /* This bug only occurs under Linux 32 bits
    * See: http://wiki.scilab.org/Scilab_precision
@@ -81,6 +103,7 @@ fpsetmask(0);
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
   {
+	  printf("arg : %s\n", argv[i]);
       if ( strcmp(argv[i],"-nw") == 0)
       {
       	setScilabMode(SCILAB_NW);
@@ -112,9 +135,19 @@ fpsetmask(0);
 			  }
 		  }
       }
-      else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
-      else if ( strcmp(argv[i],"-mem") == 0) { i++; memory = Max(atoi(argv[i]),MIN_STACKSIZE );}
-      else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];}
+      else if ( strcmp(argv[i],"-ns") == 0)
+	  { 
+		  no_startup_flag = 1;
+	  }
+      else if ( strcmp(argv[i],"-mem") == 0) 
+	  {  
+		  i++; 
+		  memory = Max(atoi(argv[i]),MIN_STACKSIZE );
+	  }
+      else if ( strcmp(argv[i],"-f") == 0)
+	  { 
+		  initial_script = argv[++i];
+	  }
       else if ( strcmp(argv[i],"-e") == 0)
       {
 		  initial_script = argv[++i];
@@ -129,7 +162,11 @@ fpsetmask(0);
       {
       	setScilabMode(SCILAB_NWNI);
       }
-      else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
+      else if ( strcmp(argv[i],"-version") == 0)
+	  {
+		  disp_scilab_version();
+		  exit(1);
+	  }
     }
 
 
