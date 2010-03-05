@@ -640,6 +640,23 @@ AC_SUBST(HDF5_ENABLE)
 AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 
 
+#################
+## BREAKPAD
+#################
+
+AC_ARG_WITH(breakpad,
+	AC_HELP_STRING([--without-breakpad],[Disable the error management (breakpad library)]))	
+
+BREAKPAD_ENABLE=no
+
+if test "$with_breakpad" != no; then
+   AC_BREAKPAD()
+   BREAKPAD_ENABLE=yes
+fi
+
+AC_SUBST(BREAKPAD_ENABLE)
+AM_CONDITIONAL(BREAKPAD, test "$with_breakpad" != no)
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -1835,6 +1852,11 @@ echo ""
 #else
 #   echo "Not using MPI"
 #fi
+
+echo ""
+echo "Breakpad:"
+echo "  BREAKPAD_CXXFLAGS ......... = $BREAKPAD_CXXFLAGS"
+echo "  BREAKPAD_LIBS ............. = $BREAKPAD_LIBS"
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then
