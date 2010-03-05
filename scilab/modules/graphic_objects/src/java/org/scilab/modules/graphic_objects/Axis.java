@@ -14,10 +14,10 @@ public class Axis extends ClippableContouredObject {
 	private TicksDirection ticksDirection;
 
 	/** Ticks x-coordinate position vector */
-	private ArrayList <Double> xTicksCoords; 
+	private double [] xTicksCoords; 
 
 	/** Ticks y-coordinate position vector */
-	private ArrayList <Double> yTicksCoords;
+	private double [] yTicksCoords;
 	
 	/** Ticks color */
 	private int ticksColor;

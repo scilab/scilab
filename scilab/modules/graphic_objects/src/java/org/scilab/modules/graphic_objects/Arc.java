@@ -8,7 +8,7 @@ public class Arc extends ClippableContouredObject {
 	/** Arc drawing method */
 	private enum ArcDrawingMethod { NURBS, LINES };
 
-	/** Bounding box upper-left point coordinates */
+	/** Bounding box upper-left point (x,y,z) coordinates */
 	private double [] upperLeftPoint;
 
 	/** Bounding box width */

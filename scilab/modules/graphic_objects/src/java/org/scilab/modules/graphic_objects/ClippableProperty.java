@@ -11,7 +11,7 @@ public class ClippableProperty {
 	/** Clipping state */
 	private ClipStateType clipState;
 
-	/** Clip box */
+	/** Clip box (4- or 6-element array) */
 	private double [] clipBox;
 
 	// Methods: to be done

@@ -67,6 +67,12 @@ public class Figure extends GraphicObject {
 	/** Info message */
 	private String infoMessage;
 
+	/**
+	 * Default colormap: (3 x N) matrix, where N is the
+	 * number of colors
+	 */
+	private int [][] colorMap;
+
 	/** Rendering mode */
 	private RenderingMode renderingMode;
 

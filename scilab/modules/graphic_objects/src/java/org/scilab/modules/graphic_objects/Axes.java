@@ -5,7 +5,7 @@ package org.scilab.modules.graphic_objects;
  * @author juliachs
  */
 public class Axes extends GraphicObject {
-	/** Grid position */
+	/** Specifies the grid position relative to the graphics entities */
 	private static enum GridPosition { FOREGROUND, BACKGROUND };
 
 	/** 3-element array (properties of the X, Y and Z axes) */
@@ -26,13 +26,16 @@ public class Axes extends GraphicObject {
 	/** Camera */
 	private Camera camera;
 
-	/** Box */
+	/** Box: properties related to the data bounds */
 	private Box box;
 	
 	/** Margins enclosing the drawing area (left, right, top, bottom) */
 	private double [] margins;
 	
-	/** Axes bounds (x, y, width, height) */
+	/**
+	 * Axes bounds relative to their parent figure's
+	 * drawing area (x, y, width, height)
+	 */
 	private double [] axesBounds;
 
 	//	 Methods: to be done

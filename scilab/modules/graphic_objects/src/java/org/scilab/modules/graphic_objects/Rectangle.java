@@ -5,13 +5,13 @@ package org.scilab.modules.graphic_objects;
  * @author juliachs
  */
 public class Rectangle extends ClippableContouredObject {
-	/** Upper-left corner coordinates */
+	/** Upper-left corner (x,y,z) coordinates */
 	private double [] upperLeftPoint;
 	
 	/** Width */
 	private double width;
 
-	/** height */
+	/** Height */
 	private double height;
 	
 	//	 Methods: to be done

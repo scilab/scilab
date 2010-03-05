@@ -20,7 +20,7 @@ public class Box {
 	/** Data bounding box (6-element array) */
 	private double [] dataBounds;
 
-	/** Data bounding box, as modified by ticks computation (6-element array) */
+	/** Data bounding box, as modified by automatic ticks computation (6-element array) */
 	private double [] realDataBounds;
 
 	/** Magnified 3D sub-region (6-element array) */

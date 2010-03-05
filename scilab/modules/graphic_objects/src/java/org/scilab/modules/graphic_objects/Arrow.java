@@ -5,7 +5,11 @@ package org.scilab.modules.graphic_objects;
  * @author juliachs
  */
 public class Arrow extends ContouredObject {
-	// TBD: Data
+	/** Arrow base (x,y,z) coordinates */
+	private double [] base;
+
+	/** Arrow vector (x,y,z) coordinates */
+	private double [] direction;
 
 	/** Arrow size */
 	private double arrowSize;

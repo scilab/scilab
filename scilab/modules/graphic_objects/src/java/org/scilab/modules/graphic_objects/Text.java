@@ -23,7 +23,7 @@ public class Text extends ClippableTextObject {
 	/** Specifies whether a box is drawn */
 	private boolean box;
 
-	/** Text box (2-element array) */
+	/** Text box dimensions (2-element array) */
 	private double [] textBox;
 
 	/** Text box mode */
