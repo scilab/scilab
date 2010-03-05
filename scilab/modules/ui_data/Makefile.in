@@ -15,10 +15,16 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) DIGITEO - 2010 - Allan CORNET
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -59,7 +65,8 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-subdir = modules/arnoldi
+@GUI_TRUE@am__append_2 = libsciui_data.la 
+subdir = modules/ui_data
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -103,47 +110,33 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciarnoldi_la_etcdir)" \
-	"$(DESTDIR)$(libsciarnoldi_la_rootdir)" \
-	"$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libsciui_data_la_etcdir)" \
+	"$(DESTDIR)$(libsciui_data_la_rootdir)" \
+	"$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciarnoldi_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la
-am__objects_1 = libsciarnoldi_la-dsconv.lo libsciarnoldi_la-dsortc.lo \
-	libsciarnoldi_la-dsaup2.lo libsciarnoldi_la-dneigh.lo \
-	libsciarnoldi_la-znaupd.lo libsciarnoldi_la-dsesrt.lo \
-	libsciarnoldi_la-zneupd.lo libsciarnoldi_la-smout.lo \
-	libsciarnoldi_la-znaitr.lo libsciarnoldi_la-zngets.lo \
-	libsciarnoldi_la-second.lo libsciarnoldi_la-znapps.lo \
-	libsciarnoldi_la-zlarnv.lo libsciarnoldi_la-dsortr.lo \
-	libsciarnoldi_la-zmout.lo libsciarnoldi_la-dseigt.lo \
-	libsciarnoldi_la-zgetv0.lo libsciarnoldi_la-znaup2.lo \
-	libsciarnoldi_la-icnteq.lo libsciarnoldi_la-icopy.lo \
-	libsciarnoldi_la-zneigh.lo libsciarnoldi_la-zsortc.lo \
-	libsciarnoldi_la-dstatn.lo libsciarnoldi_la-dlaruv.lo \
-	libsciarnoldi_la-dstqrb.lo libsciarnoldi_la-cvout.lo \
-	libsciarnoldi_la-dvout.lo libsciarnoldi_la-dstats.lo \
-	libsciarnoldi_la-dlaqrb.lo libsciarnoldi_la-ivout.lo \
-	libsciarnoldi_la-dnaupd.lo libsciarnoldi_la-dneupd.lo \
-	libsciarnoldi_la-dsaupd.lo libsciarnoldi_la-svout.lo \
-	libsciarnoldi_la-dnaitr.lo libsciarnoldi_la-iswap.lo \
-	libsciarnoldi_la-zstatn.lo libsciarnoldi_la-dseupd.lo \
-	libsciarnoldi_la-dngets.lo libsciarnoldi_la-dnapps.lo \
-	libsciarnoldi_la-dsaitr.lo libsciarnoldi_la-dlarnv.lo \
-	libsciarnoldi_la-cmout.lo libsciarnoldi_la-dnconv.lo \
-	libsciarnoldi_la-zvout.lo libsciarnoldi_la-dmout.lo \
-	libsciarnoldi_la-dsgets.lo libsciarnoldi_la-dgetv0.lo \
-	libsciarnoldi_la-dnaup2.lo libsciarnoldi_la-dsapps.lo
-am__objects_2 = libsciarnoldi_la-sci_dseupd.lo \
-	libsciarnoldi_la-sci_zneupd.lo libsciarnoldi_la-gw_arnoldi.lo \
-	libsciarnoldi_la-sci_dnaupd.lo libsciarnoldi_la-sci_dneupd.lo \
-	libsciarnoldi_la-sci_dsaupd.lo libsciarnoldi_la-sci_znaupd.lo
-am_libsciarnoldi_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libsciarnoldi_la_OBJECTS = $(am_libsciarnoldi_la_OBJECTS)
-libsciarnoldi_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libsciarnoldi_la_FFLAGS) $(FFLAGS) \
-	$(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
+libsciui_data_disable_la_LIBADD =
+am__objects_1 = libsciui_data_disable_la-noui_data.lo
+am_libsciui_data_disable_la_OBJECTS = $(am__objects_1)
+libsciui_data_disable_la_OBJECTS =  \
+	$(am_libsciui_data_disable_la_OBJECTS)
+libsciui_data_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciui_data_disable_la_CFLAGS) $(CFLAGS) \
+	$(libsciui_data_disable_la_LDFLAGS) $(LDFLAGS) -o $@
+libsciui_data_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+am__objects_2 =
+am__objects_3 = libsciui_data_la-gw_ui_data.lo
+am__objects_4 = libsciui_data_la-sci_editvar.lo
+am_libsciui_data_la_OBJECTS = $(am__objects_2) $(am__objects_2) \
+	$(am__objects_3) $(am__objects_4) $(am__objects_2)
+libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
+libsciui_data_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(libsciui_data_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libsciui_data_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -157,17 +150,21 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
-F77LD = $(F77)
-F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciarnoldi_la_SOURCES)
-DIST_SOURCES = $(libsciarnoldi_la_SOURCES)
-DATA = $(libsciarnoldi_la_etc_DATA) $(libsciarnoldi_la_root_DATA) \
-	$(libsciarnoldi_la_sci_gateway_DATA)
+SOURCES = $(libsciui_data_disable_la_SOURCES) \
+	$(libsciui_data_la_SOURCES)
+DIST_SOURCES = $(libsciui_data_disable_la_SOURCES) \
+	$(libsciui_data_la_SOURCES)
+DATA = $(libsciui_data_la_etc_DATA) $(libsciui_data_la_root_DATA) \
+	$(libsciui_data_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -410,95 +407,19 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-ARNOLDI_FORTRAN_SOURCES = src/arpack/dsconv.f \
-src/arpack/dsortc.f \
-src/arpack/dsaup2.f \
-src/arpack/dneigh.f \
-src/arpack/znaupd.f \
-src/arpack/dsesrt.f \
-src/arpack/zneupd.f \
-src/arpack/smout.f \
-src/arpack/znaitr.f \
-src/arpack/zngets.f \
-src/arpack/second.f \
-src/arpack/znapps.f \
-src/arpack/zlarnv.f \
-src/arpack/dsortr.f \
-src/arpack/zmout.f \
-src/arpack/dseigt.f \
-src/arpack/zgetv0.f \
-src/arpack/znaup2.f \
-src/arpack/icnteq.f \
-src/arpack/icopy.f \
-src/arpack/zneigh.f \
-src/arpack/zsortc.f \
-src/arpack/dstatn.f \
-src/arpack/dlaruv.f \
-src/arpack/dstqrb.f \
-src/arpack/cvout.f \
-src/arpack/dvout.f \
-src/arpack/dstats.f \
-src/arpack/dlaqrb.f \
-src/arpack/ivout.f \
-src/arpack/dnaupd.f \
-src/arpack/dneupd.f \
-src/arpack/dsaupd.f \
-src/arpack/svout.f \
-src/arpack/dnaitr.f \
-src/arpack/iswap.f \
-src/arpack/zstatn.f \
-src/arpack/dseupd.f \
-src/arpack/dngets.f \
-src/arpack/dnapps.f \
-src/arpack/dsaitr.f \
-src/arpack/dlarnv.f \
-src/arpack/cmout.f \
-src/arpack/dnconv.f \
-src/arpack/zvout.f \
-src/arpack/dmout.f \
-src/arpack/dsgets.f \
-src/arpack/dgetv0.f \
-src/arpack/dnaup2.f \
-src/arpack/dsapps.f
-
-GATEWAY_C_SOURCES = sci_gateway/c/sci_zneupd \
-sci_gateway/c/sci_dseupd.c \
-sci_gateway/c/sci_zneupd.c \
-sci_gateway/c/gw_arnoldi.c \
-sci_gateway/c/sci_dnaupd.c \
-sci_gateway/c/sci_dneupd.c \
-sci_gateway/c/sci_dsaupd.c \
-sci_gateway/c/sci_znaupd.c
-
-libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes/
-
-libsciarnoldi_la_FFLAGS = -I$(srcdir)/src/arpack/
-pkglib_LTLIBRARIES = libsciarnoldi.la
-libsciarnoldi_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-
-# For the code check (splint)
-CHECK_SRC = $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
-libsciarnoldi_la_LIBADD = $(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
-modulename = arnoldi
+modulename = ui_data
 
-#### arnoldi : Conf files ####
-libsciarnoldi_la_rootdir = $(mydatadir)
-libsciarnoldi_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+#### ui_data : Conf files ####
+libsciui_data_la_rootdir = $(mydatadir)
+libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
-#### arnoldi : init scripts ####
-libsciarnoldi_la_etcdir = $(mydatadir)/etc
-libsciarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
+#### ui_data : init scripts ####
+libsciui_data_la_etcdir = $(mydatadir)/etc
+libsciui_data_la_etc_DATA = etc/ui_data.quit \
+				etc/ui_data.start
 
-#### arnoldi : gateway declaration ####
-libsciarnoldi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -562,10 +483,64 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+UI_DATA_JNI_SOURCES = 
+UI_DATA_C_SOURCES = 
+UI_DATA_CPP_SOURCES = 
+GIWS_WRAPPERS = 
+@GIWS_TRUE@BUILT_SOURCES = giws
+@SWIG_TRUE@BUILT_SOURCES = swig
+GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_editvar.cpp
+libsciui_data_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/core/includes
+
+libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/jni/ \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes
+
+
+# Without the ui_data module 
+libsciui_data_disable_la_CFLAGS = -Iincludes/ \
+			-I$(top_srcdir)/modules/output_stream/includes
+
+UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
+libsciui_data_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
+pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_2)
+libsciui_data_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC = $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = 
+libsciui_data_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
+
+#### ui_data : gateway declaration ####
+libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
+@GUI_TRUE@USEANT = 1
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -575,9 +550,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/arnoldi/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign modules/ui_data/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign modules/arnoldi/Makefile
+	  $(AUTOMAKE) --foreign modules/ui_data/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -627,8 +602,10 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsciarnoldi.la: $(libsciarnoldi_la_OBJECTS) $(libsciarnoldi_la_DEPENDENCIES) 
-	$(libsciarnoldi_la_LINK) -rpath $(pkglibdir) $(libsciarnoldi_la_OBJECTS) $(libsciarnoldi_la_LIBADD) $(LIBS)
+libsciui_data-disable.la: $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_DEPENDENCIES) 
+	$(libsciui_data_disable_la_LINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
+libsciui_data.la: $(libsciui_data_la_OBJECTS) $(libsciui_data_la_DEPENDENCIES) 
+	$(libsciui_data_la_LINK) $(am_libsciui_data_la_rpath) $(libsciui_data_la_OBJECTS) $(libsciui_data_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -636,13 +613,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_dneupd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_dseupd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_znaupd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciarnoldi_la-sci_zneupd.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_disable_la-noui_data.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-gw_ui_data.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -665,279 +638,113 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libsciarnoldi_la-sci_dseupd.lo: sci_gateway/c/sci_dseupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dseupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Tpo -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dseupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dseupd.c' object='libsciarnoldi_la-sci_dseupd.lo' libtool=yes @AMDEPBACKSLASH@
+libsciui_data_disable_la-noui_data.lo: src/noui_data/noui_data.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_disable_la_CFLAGS) $(CFLAGS) -MT libsciui_data_disable_la-noui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_disable_la-noui_data.Tpo -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_disable_la-noui_data.Tpo $(DEPDIR)/libsciui_data_disable_la-noui_data.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noui_data/noui_data.c' object='libsciui_data_disable_la-noui_data.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dseupd.lo `test -f 'sci_gateway/c/sci_dseupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dseupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_disable_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_disable_la-noui_data.lo `test -f 'src/noui_data/noui_data.c' || echo '$(srcdir)/'`src/noui_data/noui_data.c
 
-libsciarnoldi_la-sci_zneupd.lo: sci_gateway/c/sci_zneupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_zneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Tpo -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_zneupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_zneupd.c' object='libsciarnoldi_la-sci_zneupd.lo' libtool=yes @AMDEPBACKSLASH@
+libsciui_data_la-gw_ui_data.lo: sci_gateway/c/gw_ui_data.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_la_CFLAGS) $(CFLAGS) -MT libsciui_data_la-gw_ui_data.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-gw_ui_data.Tpo -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-gw_ui_data.Tpo $(DEPDIR)/libsciui_data_la-gw_ui_data.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_ui_data.c' object='libsciui_data_la-gw_ui_data.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(libsciui_data_la_CFLAGS) $(CFLAGS) -c -o libsciui_data_la-gw_ui_data.lo `test -f 'sci_gateway/c/gw_ui_data.c' || echo '$(srcdir)/'`sci_gateway/c/gw_ui_data.c
 
-libsciarnoldi_la-gw_arnoldi.lo: sci_gateway/c/gw_arnoldi.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-gw_arnoldi.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo $(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_arnoldi.c' object='libsciarnoldi_la-gw_arnoldi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
-libsciarnoldi_la-sci_dnaupd.lo: sci_gateway/c/sci_dnaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dnaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dnaupd.c' object='libsciarnoldi_la-sci_dnaupd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-libsciarnoldi_la-sci_dneupd.lo: sci_gateway/c/sci_dneupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dneupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Tpo -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dneupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dneupd.c' object='libsciarnoldi_la-sci_dneupd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dneupd.lo `test -f 'sci_gateway/c/sci_dneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dneupd.c
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libsciarnoldi_la-sci_dsaupd.lo: sci_gateway/c/sci_dsaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_dsaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Tpo -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_dsaupd.c' object='libsciarnoldi_la-sci_dsaupd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_dsaupd.lo `test -f 'sci_gateway/c/sci_dsaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dsaupd.c
-
-libsciarnoldi_la-sci_znaupd.lo: sci_gateway/c/sci_znaupd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -MT libsciarnoldi_la-sci_znaupd.lo -MD -MP -MF $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Tpo -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Tpo $(DEPDIR)/libsciarnoldi_la-sci_znaupd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_znaupd.c' object='libsciarnoldi_la-sci_znaupd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciarnoldi_la_CFLAGS) $(CFLAGS) -c -o libsciarnoldi_la-sci_znaupd.lo `test -f 'sci_gateway/c/sci_znaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_znaupd.c
-
-.f.o:
-	$(F77COMPILE) -c -o $@ $<
-
-.f.obj:
-	$(F77COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.f.lo:
-	$(LTF77COMPILE) -c -o $@ $<
-
-libsciarnoldi_la-dsconv.lo: src/arpack/dsconv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsconv.lo `test -f 'src/arpack/dsconv.f' || echo '$(srcdir)/'`src/arpack/dsconv.f
-
-libsciarnoldi_la-dsortc.lo: src/arpack/dsortc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsortc.lo `test -f 'src/arpack/dsortc.f' || echo '$(srcdir)/'`src/arpack/dsortc.f
-
-libsciarnoldi_la-dsaup2.lo: src/arpack/dsaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaup2.lo `test -f 'src/arpack/dsaup2.f' || echo '$(srcdir)/'`src/arpack/dsaup2.f
-
-libsciarnoldi_la-dneigh.lo: src/arpack/dneigh.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dneigh.lo `test -f 'src/arpack/dneigh.f' || echo '$(srcdir)/'`src/arpack/dneigh.f
-
-libsciarnoldi_la-znaupd.lo: src/arpack/znaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaupd.lo `test -f 'src/arpack/znaupd.f' || echo '$(srcdir)/'`src/arpack/znaupd.f
-
-libsciarnoldi_la-dsesrt.lo: src/arpack/dsesrt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsesrt.lo `test -f 'src/arpack/dsesrt.f' || echo '$(srcdir)/'`src/arpack/dsesrt.f
-
-libsciarnoldi_la-zneupd.lo: src/arpack/zneupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zneupd.lo `test -f 'src/arpack/zneupd.f' || echo '$(srcdir)/'`src/arpack/zneupd.f
-
-libsciarnoldi_la-smout.lo: src/arpack/smout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-smout.lo `test -f 'src/arpack/smout.f' || echo '$(srcdir)/'`src/arpack/smout.f
-
-libsciarnoldi_la-znaitr.lo: src/arpack/znaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaitr.lo `test -f 'src/arpack/znaitr.f' || echo '$(srcdir)/'`src/arpack/znaitr.f
-
-libsciarnoldi_la-zngets.lo: src/arpack/zngets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zngets.lo `test -f 'src/arpack/zngets.f' || echo '$(srcdir)/'`src/arpack/zngets.f
-
-libsciarnoldi_la-second.lo: src/arpack/second.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-second.lo `test -f 'src/arpack/second.f' || echo '$(srcdir)/'`src/arpack/second.f
-
-libsciarnoldi_la-znapps.lo: src/arpack/znapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znapps.lo `test -f 'src/arpack/znapps.f' || echo '$(srcdir)/'`src/arpack/znapps.f
-
-libsciarnoldi_la-zlarnv.lo: src/arpack/zlarnv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zlarnv.lo `test -f 'src/arpack/zlarnv.f' || echo '$(srcdir)/'`src/arpack/zlarnv.f
-
-libsciarnoldi_la-dsortr.lo: src/arpack/dsortr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsortr.lo `test -f 'src/arpack/dsortr.f' || echo '$(srcdir)/'`src/arpack/dsortr.f
-
-libsciarnoldi_la-zmout.lo: src/arpack/zmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zmout.lo `test -f 'src/arpack/zmout.f' || echo '$(srcdir)/'`src/arpack/zmout.f
-
-libsciarnoldi_la-dseigt.lo: src/arpack/dseigt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dseigt.lo `test -f 'src/arpack/dseigt.f' || echo '$(srcdir)/'`src/arpack/dseigt.f
-
-libsciarnoldi_la-zgetv0.lo: src/arpack/zgetv0.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zgetv0.lo `test -f 'src/arpack/zgetv0.f' || echo '$(srcdir)/'`src/arpack/zgetv0.f
-
-libsciarnoldi_la-znaup2.lo: src/arpack/znaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaup2.lo `test -f 'src/arpack/znaup2.f' || echo '$(srcdir)/'`src/arpack/znaup2.f
-
-libsciarnoldi_la-icnteq.lo: src/arpack/icnteq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-icnteq.lo `test -f 'src/arpack/icnteq.f' || echo '$(srcdir)/'`src/arpack/icnteq.f
-
-libsciarnoldi_la-icopy.lo: src/arpack/icopy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-icopy.lo `test -f 'src/arpack/icopy.f' || echo '$(srcdir)/'`src/arpack/icopy.f
-
-libsciarnoldi_la-zneigh.lo: src/arpack/zneigh.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zneigh.lo `test -f 'src/arpack/zneigh.f' || echo '$(srcdir)/'`src/arpack/zneigh.f
-
-libsciarnoldi_la-zsortc.lo: src/arpack/zsortc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zsortc.lo `test -f 'src/arpack/zsortc.f' || echo '$(srcdir)/'`src/arpack/zsortc.f
-
-libsciarnoldi_la-dstatn.lo: src/arpack/dstatn.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstatn.lo `test -f 'src/arpack/dstatn.f' || echo '$(srcdir)/'`src/arpack/dstatn.f
-
-libsciarnoldi_la-dlaruv.lo: src/arpack/dlaruv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlaruv.lo `test -f 'src/arpack/dlaruv.f' || echo '$(srcdir)/'`src/arpack/dlaruv.f
-
-libsciarnoldi_la-dstqrb.lo: src/arpack/dstqrb.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstqrb.lo `test -f 'src/arpack/dstqrb.f' || echo '$(srcdir)/'`src/arpack/dstqrb.f
-
-libsciarnoldi_la-cvout.lo: src/arpack/cvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-cvout.lo `test -f 'src/arpack/cvout.f' || echo '$(srcdir)/'`src/arpack/cvout.f
-
-libsciarnoldi_la-dvout.lo: src/arpack/dvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dvout.lo `test -f 'src/arpack/dvout.f' || echo '$(srcdir)/'`src/arpack/dvout.f
-
-libsciarnoldi_la-dstats.lo: src/arpack/dstats.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstats.lo `test -f 'src/arpack/dstats.f' || echo '$(srcdir)/'`src/arpack/dstats.f
-
-libsciarnoldi_la-dlaqrb.lo: src/arpack/dlaqrb.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlaqrb.lo `test -f 'src/arpack/dlaqrb.f' || echo '$(srcdir)/'`src/arpack/dlaqrb.f
-
-libsciarnoldi_la-ivout.lo: src/arpack/ivout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-ivout.lo `test -f 'src/arpack/ivout.f' || echo '$(srcdir)/'`src/arpack/ivout.f
-
-libsciarnoldi_la-dnaupd.lo: src/arpack/dnaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaupd.lo `test -f 'src/arpack/dnaupd.f' || echo '$(srcdir)/'`src/arpack/dnaupd.f
-
-libsciarnoldi_la-dneupd.lo: src/arpack/dneupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dneupd.lo `test -f 'src/arpack/dneupd.f' || echo '$(srcdir)/'`src/arpack/dneupd.f
-
-libsciarnoldi_la-dsaupd.lo: src/arpack/dsaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaupd.lo `test -f 'src/arpack/dsaupd.f' || echo '$(srcdir)/'`src/arpack/dsaupd.f
-
-libsciarnoldi_la-svout.lo: src/arpack/svout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-svout.lo `test -f 'src/arpack/svout.f' || echo '$(srcdir)/'`src/arpack/svout.f
-
-libsciarnoldi_la-dnaitr.lo: src/arpack/dnaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaitr.lo `test -f 'src/arpack/dnaitr.f' || echo '$(srcdir)/'`src/arpack/dnaitr.f
-
-libsciarnoldi_la-iswap.lo: src/arpack/iswap.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-iswap.lo `test -f 'src/arpack/iswap.f' || echo '$(srcdir)/'`src/arpack/iswap.f
-
-libsciarnoldi_la-zstatn.lo: src/arpack/zstatn.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zstatn.lo `test -f 'src/arpack/zstatn.f' || echo '$(srcdir)/'`src/arpack/zstatn.f
-
-libsciarnoldi_la-dseupd.lo: src/arpack/dseupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dseupd.lo `test -f 'src/arpack/dseupd.f' || echo '$(srcdir)/'`src/arpack/dseupd.f
-
-libsciarnoldi_la-dngets.lo: src/arpack/dngets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dngets.lo `test -f 'src/arpack/dngets.f' || echo '$(srcdir)/'`src/arpack/dngets.f
-
-libsciarnoldi_la-dnapps.lo: src/arpack/dnapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnapps.lo `test -f 'src/arpack/dnapps.f' || echo '$(srcdir)/'`src/arpack/dnapps.f
-
-libsciarnoldi_la-dsaitr.lo: src/arpack/dsaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaitr.lo `test -f 'src/arpack/dsaitr.f' || echo '$(srcdir)/'`src/arpack/dsaitr.f
-
-libsciarnoldi_la-dlarnv.lo: src/arpack/dlarnv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlarnv.lo `test -f 'src/arpack/dlarnv.f' || echo '$(srcdir)/'`src/arpack/dlarnv.f
-
-libsciarnoldi_la-cmout.lo: src/arpack/cmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-cmout.lo `test -f 'src/arpack/cmout.f' || echo '$(srcdir)/'`src/arpack/cmout.f
-
-libsciarnoldi_la-dnconv.lo: src/arpack/dnconv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnconv.lo `test -f 'src/arpack/dnconv.f' || echo '$(srcdir)/'`src/arpack/dnconv.f
-
-libsciarnoldi_la-zvout.lo: src/arpack/zvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zvout.lo `test -f 'src/arpack/zvout.f' || echo '$(srcdir)/'`src/arpack/zvout.f
-
-libsciarnoldi_la-dmout.lo: src/arpack/dmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dmout.lo `test -f 'src/arpack/dmout.f' || echo '$(srcdir)/'`src/arpack/dmout.f
-
-libsciarnoldi_la-dsgets.lo: src/arpack/dsgets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsgets.lo `test -f 'src/arpack/dsgets.f' || echo '$(srcdir)/'`src/arpack/dsgets.f
-
-libsciarnoldi_la-dgetv0.lo: src/arpack/dgetv0.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dgetv0.lo `test -f 'src/arpack/dgetv0.f' || echo '$(srcdir)/'`src/arpack/dgetv0.f
-
-libsciarnoldi_la-dnaup2.lo: src/arpack/dnaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaup2.lo `test -f 'src/arpack/dnaup2.f' || echo '$(srcdir)/'`src/arpack/dnaup2.f
-
-libsciarnoldi_la-dsapps.lo: src/arpack/dsapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsapps.lo `test -f 'src/arpack/dsapps.f' || echo '$(srcdir)/'`src/arpack/dsapps.f
+libsciui_data_la-sci_editvar.lo: sci_gateway/cpp/sci_editvar.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciui_data_la-sci_editvar.lo -MD -MP -MF $(DEPDIR)/libsciui_data_la-sci_editvar.Tpo -c -o libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciui_data_la-sci_editvar.Tpo $(DEPDIR)/libsciui_data_la-sci_editvar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_editvar.cpp' object='libsciui_data_la-sci_editvar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciarnoldi_la_etcDATA: $(libsciarnoldi_la_etc_DATA)
+install-libsciui_data_la_etcDATA: $(libsciui_data_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciarnoldi_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciarnoldi_la_etcdir)"
-	@list='$(libsciarnoldi_la_etc_DATA)'; test -n "$(libsciarnoldi_la_etcdir)" || list=; \
+	test -z "$(libsciui_data_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_etcdir)"
+	@list='$(libsciui_data_la_etc_DATA)'; test -n "$(libsciui_data_la_etcdir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciarnoldi_la_etcdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciarnoldi_la_etcdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciui_data_la_etcdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciui_data_la_etcdir)" || exit $$?; \
 	done
 
-uninstall-libsciarnoldi_la_etcDATA:
+uninstall-libsciui_data_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciarnoldi_la_etc_DATA)'; test -n "$(libsciarnoldi_la_etcdir)" || list=; \
+	@list='$(libsciui_data_la_etc_DATA)'; test -n "$(libsciui_data_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciarnoldi_la_etcdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciarnoldi_la_etcdir)" && rm -f $$files
-install-libsciarnoldi_la_rootDATA: $(libsciarnoldi_la_root_DATA)
+	echo " ( cd '$(DESTDIR)$(libsciui_data_la_etcdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciui_data_la_etcdir)" && rm -f $$files
+install-libsciui_data_la_rootDATA: $(libsciui_data_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciarnoldi_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciarnoldi_la_rootdir)"
-	@list='$(libsciarnoldi_la_root_DATA)'; test -n "$(libsciarnoldi_la_rootdir)" || list=; \
+	test -z "$(libsciui_data_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_rootdir)"
+	@list='$(libsciui_data_la_root_DATA)'; test -n "$(libsciui_data_la_rootdir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciarnoldi_la_rootdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciarnoldi_la_rootdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciui_data_la_rootdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciui_data_la_rootdir)" || exit $$?; \
 	done
 
-uninstall-libsciarnoldi_la_rootDATA:
+uninstall-libsciui_data_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciarnoldi_la_root_DATA)'; test -n "$(libsciarnoldi_la_rootdir)" || list=; \
+	@list='$(libsciui_data_la_root_DATA)'; test -n "$(libsciui_data_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciarnoldi_la_rootdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciarnoldi_la_rootdir)" && rm -f $$files
-install-libsciarnoldi_la_sci_gatewayDATA: $(libsciarnoldi_la_sci_gateway_DATA)
+	echo " ( cd '$(DESTDIR)$(libsciui_data_la_rootdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciui_data_la_rootdir)" && rm -f $$files
+install-libsciui_data_la_sci_gatewayDATA: $(libsciui_data_la_sci_gateway_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libsciarnoldi_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"
-	@list='$(libsciarnoldi_la_sci_gateway_DATA)'; test -n "$(libsciarnoldi_la_sci_gatewaydir)" || list=; \
+	test -z "$(libsciui_data_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"
+	@list='$(libsciui_data_la_sci_gateway_DATA)'; test -n "$(libsciui_data_la_sci_gatewaydir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" || exit $$?; \
 	done
 
-uninstall-libsciarnoldi_la_sci_gatewayDATA:
+uninstall-libsciui_data_la_sci_gatewayDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libsciarnoldi_la_sci_gateway_DATA)'; test -n "$(libsciarnoldi_la_sci_gatewaydir)" || list=; \
+	@list='$(libsciui_data_la_sci_gateway_DATA)'; test -n "$(libsciui_data_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1023,13 +830,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciarnoldi_la_etcdir)" "$(DESTDIR)$(libsciarnoldi_la_rootdir)" "$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciui_data_la_etcdir)" "$(DESTDIR)$(libsciui_data_la_rootdir)" "$(DESTDIR)$(libsciui_data_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1054,6 +863,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1077,9 +887,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsciarnoldi_la_etcDATA \
-	install-libsciarnoldi_la_rootDATA \
-	install-libsciarnoldi_la_sci_gatewayDATA
+install-data-am: install-data-local install-libsciui_data_la_etcDATA \
+	install-libsciui_data_la_rootDATA \
+	install-libsciui_data_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1125,12 +935,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciarnoldi_la_etcDATA \
-	uninstall-libsciarnoldi_la_rootDATA \
-	uninstall-libsciarnoldi_la_sci_gatewayDATA \
+uninstall-am: uninstall-libsciui_data_la_etcDATA \
+	uninstall-libsciui_data_la_rootDATA \
+	uninstall-libsciui_data_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
@@ -1141,17 +951,17 @@ uninstall-am: uninstall-libsciarnoldi_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libsciarnoldi_la_etcDATA \
-	install-libsciarnoldi_la_rootDATA \
-	install-libsciarnoldi_la_sci_gatewayDATA install-man \
+	install-libsciui_data_la_etcDATA \
+	install-libsciui_data_la_rootDATA \
+	install-libsciui_data_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libsciarnoldi_la_etcDATA \
-	uninstall-libsciarnoldi_la_rootDATA \
-	uninstall-libsciarnoldi_la_sci_gatewayDATA \
+	tags uninstall uninstall-am uninstall-libsciui_data_la_etcDATA \
+	uninstall-libsciui_data_la_rootDATA \
+	uninstall-libsciui_data_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
