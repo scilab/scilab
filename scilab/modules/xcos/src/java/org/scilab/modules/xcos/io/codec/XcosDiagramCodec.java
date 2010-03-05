@@ -12,12 +12,16 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import org.scilab.modules.graph.io.ScilabGraphCodec;
+import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.icl.saxon.functions.Current;
 import com.mxgraph.io.mxCodec;
 
 /**
@@ -102,6 +106,32 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 			if (params.getChildNodes().getLength() == 0) {
 				node.removeChild(params);
 			}
+		}
+	}
+	
+	/**
+	 * Load the ScicosParameters fields from the current object 
+	 * 
+	 * @param obj the {@link XcosDiagram} instance
+	 * @param fieldname the {@link Current} field name
+	 * @param value the current field value
+	 * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)
+	 */
+	@Override
+	protected void setFieldValue(Object obj, String fieldname, Object value) {
+		Field field;
+		try {
+			field = ScicosParameters.class.getDeclaredField(fieldname);
+			ScicosParameters params = ((XcosDiagram) obj).getScicosParameters();
+			super.setFieldValue(params, fieldname, value);
+		} catch (SecurityException e) {
+			field = null;
+		} catch (NoSuchFieldException e) {
+			field = null;
+		}
+		
+		if (field == null) {
+			super.setFieldValue(obj, fieldname, value);
 		}
 	}
 }
