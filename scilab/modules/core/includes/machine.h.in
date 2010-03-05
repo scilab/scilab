@@ -5,6 +5,12 @@
 /* This file defines global element configuration of the build host */
 
 
+/* BREAKPAD cflags */
+#undef BREAKPAD_CXXFLAGS
+
+/* BREAKPAD library */
+#undef BREAKPAD_LIBS
+
 /* Define C2F without Trailing Underscore */
 #undef C2F
 
@@ -130,6 +136,9 @@
 
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT
+
+/* Define to 1 if you have the `breakpad' library (-lbreakpad). */
+#undef HAVE_LIBBREAKPAD
 
 /* Define to 1 if you have the `curses' library (-lcurses). */
 #undef HAVE_LIBCURSES
@@ -472,6 +481,9 @@
 
 /* Version number of package */
 #undef VERSION
+
+/* With the BREAKPAD library */
+#undef WITH_BREAKPAD
 
 /* With the FFTW library */
 #undef WITH_FFTW
