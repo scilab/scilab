@@ -162,8 +162,8 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms hdf5 graph xcos xpad scicos_blocks \
-	scicos . javasci
+	parameters matio atoms hdf5 graph xcos xpad ui_data \
+	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -445,7 +445,8 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 graph xcos xpad $(am__append_1) scicos . $(am__append_2)
+	hdf5 graph xcos xpad ui_data $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -469,7 +470,9 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la $(am__append_3)
+	$(top_builddir)/modules/xpad/libscixpad.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(am__append_3)
 # HDF5 is here because it needs the JVM (see bug #5481)
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -478,6 +481,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
 	$(top_builddir)/modules/xpad/libscixpad-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(am__append_4)
 # HDF5 is here because it needs the JVM (see bug #5481)
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
