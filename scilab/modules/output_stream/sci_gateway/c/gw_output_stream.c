@@ -23,7 +23,7 @@ static gw_generic_table Tab[]=
 	{sci_print, "print"},
 	{sci_mprintf, "mprintf"},
 	{sci_msprintf, "msprintf"},
-	{sci_disp, "disp"},
+	{NULL, ""}, //disp
 	{NULL, ""} //diary
 };
 /*--------------------------------------------------------------------------*/
@@ -37,7 +37,7 @@ int gw_output_stream(void)
 		if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
 		{
 			#define disp_fname "disp"
-			sci_disp(disp_fname,(unsigned long)strlen(disp_fname));
+//			sci_disp(disp_fname,(unsigned long)strlen(disp_fname));
 			return 0;
 		}
 	}

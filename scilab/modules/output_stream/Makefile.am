@@ -17,7 +17,11 @@ OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getFullFilename.cpp
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_diary.cpp
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_diary.cpp \
+	sci_gateway/cpp/sci_disp.cpp \
+	sci_gateway/cpp/output_stream_gw.cpp
+	
 
 OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/cerro.c \
@@ -57,8 +61,7 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 		sci_gateway/c/sci_print.c \
 		sci_gateway/c/sci_mprintf.c \
-		sci_gateway/c/sci_msprintf.c \
-		sci_gateway/c/sci_disp.c
+		sci_gateway/c/sci_msprintf.c
 		
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
@@ -79,7 +82,11 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/functions_manager/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/abstractSyntaxTree/includes
 
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
