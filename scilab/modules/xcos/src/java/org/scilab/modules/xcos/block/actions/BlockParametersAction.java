@@ -62,7 +62,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
 	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
 		XcosDiagram diagram = (XcosDiagram) getGraph(null); 
-		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.buildEntireContext());
+		((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram.getScicosParameters().getContext());
 	    }
 	}
 
