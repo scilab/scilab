@@ -131,6 +131,8 @@ end
       <member><link linkend="ilib_gen_Make">ilib_build</link></member>
 
       <member><link linkend="ilib_for_link">ilib_for_link</link></member>
+
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 

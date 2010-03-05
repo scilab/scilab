@@ -75,7 +75,6 @@ function scs_m=delete_unconnected(scs_m);
 			break
 		end
 	end
-
 	// Notify by hiliting and message edition
 	if DEL<>[] then
 		//** save the current scs_m structure
@@ -86,7 +85,8 @@ function scs_m=delete_unconnected(scs_m);
 			scs_m=all_scs_m;
 		end
 		
-		if path<>[] then //** super block case
+		// Blouno : Remove that check for errors to show up.
+		//if path<>[] then //** super block case
 			//** entity in the current figure
 			k=DEL
 			//** find any indices of k which are not in DELL
@@ -101,7 +101,7 @@ function scs_m=delete_unconnected(scs_m);
 			
 			//errorDiagramPath(path, [path_out, path_in], msg, "", %t);
 			errorDiagramPath(path, k, msg, "", %f, %t);
-		end
+		//end
 		//** restore original scs_m structure
 		scs_m = scs_save;
 	end

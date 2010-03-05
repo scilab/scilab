@@ -66,5 +66,13 @@ typedef struct {
 	int cosd;
 } COSDEBUG_struct;
 
+typedef struct {
+	char buf[4096];
+} COSERR_struct;
+
+typedef struct {
+	int isrun;
+} COSIM_struct;
+
 
 #endif /*SCICOS_DEF*/

@@ -39,18 +39,20 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
     };
 
   /* Computes column indexes from Matlab indexes */
-  colIndexes = (int*) MALLOC(sizeof(int) *  (sparseData->njc-1));
-  if (colIndexes==NULL)
+  if (sparseData->njc > 1)
     {
-      Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
-      return FALSE;
-    };
-
-  for (K=0; K<sparseData->njc-1; K++)
-    {
-      colIndexes[K] = sparseData->jc[K+1] - sparseData->jc[K];
+      colIndexes = (int*) MALLOC(sizeof(int) *  (sparseData->njc-1));
+      if (colIndexes==NULL)
+        {
+          Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
+          return FALSE;
+        };
+      
+      for (K=0; K<sparseData->njc-1; K++)
+        {
+          colIndexes[K] = sparseData->jc[K+1] - sparseData->jc[K];
+        }
     }
-
   /* Computes row indexes from Matlab indexes */
   rowIndexes = (int*) MALLOC(sizeof(int) * sparseData->nir);
   if (rowIndexes==NULL)
@@ -94,30 +96,43 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
   scilabSparseT->n = scilabSparse->m;
   scilabSparseT->it = scilabSparse->it;
   scilabSparseT->nel =  scilabSparse->nel;
-  workArray = (int*) MALLOC(sizeof(int) * scilabSparseT->n);
+  if (scilabSparseT->m == 0)
+    {
+      workArray = (int*) MALLOC(sizeof(int));
+    }
+  else
+    {
+      workArray = (int*) MALLOC(sizeof(int) * scilabSparseT->m);
+    }
   if (workArray==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
       return FALSE;
     }
-  scilabSparseT->mnel = (int*) MALLOC(sizeof(int) * scilabSparseT->m);
+  if (scilabSparseT->m != 0) {
+  scilabSparseT->mnel = (int*) MALLOC(sizeof(int) * scilabSparseT->m); 
   if (scilabSparseT->mnel==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
       return FALSE;
     };
-  scilabSparseT->icol = (int*) MALLOC(sizeof(int) * scilabSparseT->nel);
+  }
+  if (scilabSparseT->nel != 0) {
+  scilabSparseT->icol = (int*) MALLOC(sizeof(int) * scilabSparseT->nel); 
   if (scilabSparseT->icol==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
       return FALSE;
     };
-  scilabSparseT->R = (double*) MALLOC(sizeof(double) * scilabSparseT->nel);
+  }
+  if (scilabSparseT->nel != 0) {
+  scilabSparseT->R = (double*) MALLOC(sizeof(double) * scilabSparseT->nel); 
   if (scilabSparseT->R==NULL)
     {
       Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
       return FALSE;
     };
+  }
   if (scilabSparseT->it)
     {
       scilabSparseT->I = (double*) MALLOC(sizeof(double) * scilabSparseT->nel);
@@ -135,18 +150,42 @@ int CreateSparseVariable(int stkPos, matvar_t *matVariable)
   CreateVarFromPtr(stkPos, SPARSE_MATRIX_DATATYPE, &scilabSparseT->m, &scilabSparseT->n, scilabSparseT);
 
   /* Free all arrays */
-  FREE(scilabSparse);
-  FREE(colIndexes);
-  FREE(rowIndexes);
-  FREE(workArray);
-  FREE(scilabSparseT->mnel);
-  FREE(scilabSparseT->icol);
-  FREE(scilabSparseT->R);
-  if (scilabSparseT->it)
+  if (scilabSparse != NULL)
+    {
+      FREE(scilabSparse);
+    }
+  if (colIndexes != NULL) 
+    {
+      FREE(colIndexes);
+    }
+  if (rowIndexes != NULL)
+    {
+      FREE(rowIndexes);
+    }
+  if (workArray != NULL)
+    {
+      FREE(workArray);
+    }
+  if (scilabSparseT->m != 0)
+    {
+      FREE(scilabSparseT->mnel);
+    }
+  if (scilabSparseT->nel != 0)
+    {
+      FREE(scilabSparseT->icol);
+    }
+  if (scilabSparseT->nel != 0)
+    {
+      FREE(scilabSparseT->R);
+    }
+  if ((scilabSparseT->nel != 0) && (scilabSparseT->it != 0))
     {
       FREE(scilabSparseT->I);
     }
-  FREE(scilabSparseT);
+  if (scilabSparseT != NULL)
+    {
+      FREE(scilabSparseT);
+    }
   
   return TRUE;
 }

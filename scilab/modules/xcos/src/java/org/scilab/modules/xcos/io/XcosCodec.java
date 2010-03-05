@@ -12,44 +12,53 @@
 
 package org.scilab.modules.xcos.io;
 
+import org.scilab.modules.graph.io.ScilabBooleanCodec;
+import org.scilab.modules.graph.io.ScilabDoubleCodec;
+import org.scilab.modules.graph.io.ScilabGraphCodec;
+import org.scilab.modules.graph.io.ScilabIntegerCodec;
+import org.scilab.modules.graph.io.ScilabListCodec;
+import org.scilab.modules.graph.io.ScilabObjectCodec;
+import org.scilab.modules.graph.io.ScilabStringCodec;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
-import org.scilab.modules.xcos.io.codec.ScilabBooleanCodec;
-import org.scilab.modules.xcos.io.codec.ScilabDoubleCodec;
-import org.scilab.modules.xcos.io.codec.ScilabIntegerCodec;
-import org.scilab.modules.xcos.io.codec.ScilabListCodec;
-import org.scilab.modules.xcos.io.codec.ScilabStringCodec;
+import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
-
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Root codec for Xcos diagram instance.
+ * 
+ * This class register all packages used by Xcos for 
+ * serialization/deserialization. 
+ */
 public class XcosCodec extends mxCodec {
 // The non saved fields are hardcoded and can have the same name.
 // CSOFF: MultipleStringLiterals
 	private static final String[] DIAGRAM_IGNORED_FIELDS = {"stylesheet",
 			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-			"savedFile", "multiplicities"};
+			"savedFile", "multiplicities", "opened"};
 	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
 			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
 			"selectionModel", "multiplicities", "savedFile", "container" };
@@ -64,6 +73,7 @@ public class XcosCodec extends mxCodec {
     mxCodecRegistry.addPackage("org.scilab.modules.xcos");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
@@ -110,19 +120,19 @@ public class XcosCodec extends mxCodec {
 	String[] refs = {"parent", "source", "target"};
 
 	// Types
-	XcosObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
+	ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
 	mxCodecRegistry.register(scilabStringCodec);
-	XcosObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+	ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
 	mxCodecRegistry.register(scilabBooleanCodec);
-	XcosObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+	ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
 	mxCodecRegistry.register(scilabDoubleCodec);
-	XcosObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+	ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
 	mxCodecRegistry.register(scilabIntegerCodec);
 
 
 
     //
-	XcosObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
+	ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
 	mxCodecRegistry.register(scilabListCodec);
 
 
@@ -147,13 +157,13 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	XcosDiagramCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
+	ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	XcosDiagramCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refs, null);
+	String[] refsSuperBlockDiagram = {"parent", "source", "target","container"};
+	ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, refsSuperBlockDiagram, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
-
-	//Link 
 	
+	//Link 
 	XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null , null);
 	mxCodecRegistry.register(explicitlinkCodec);
 	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);
@@ -172,16 +182,20 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(commandPortCodec);
 	XcosObjectCodec controltPortCodec = new BasicPortCodec(new ControlPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(controltPortCodec);
+	mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
+	
     }
     
-    /** Default constructor */
+    /**
+     * Default constructor
+     */
     public XcosCodec() {
 	super();
     }
 
     /**
-     * Default constructor with an associated document
-     * @param document the document instance we have to decode
+     * Construct a new codec associated with the document.
+     * @param document the document containing all the data.
      */
     public XcosCodec(Document document) {
 	super(document);

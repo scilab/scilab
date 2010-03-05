@@ -83,7 +83,7 @@ int spawncommand(char *command,BOOL DetachProcess)
 
 		char *TMPDirLong = getTMPDIR();
 		char *TMPDirShort = getshortpathname(TMPDirLong, &bConvert);
-		
+
 		sprintf(FileTMPDir,"%s\\DOS.OK",TMPDirLong);
 		FREE(TMPDirLong); TMPDirLong = NULL;
 		FREE(TMPDirShort); TMPDirShort = NULL;

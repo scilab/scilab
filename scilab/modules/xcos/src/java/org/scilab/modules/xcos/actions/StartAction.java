@@ -22,20 +22,24 @@ import java.io.IOException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Start the simulation
  */
 public class StartAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.START;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "media-playback-start.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -76,11 +80,11 @@ public class StartAction extends DefaultAction {
 	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
 	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
-	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getDebugLevel() + ");"
+	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getScicosParameters().getDebugLevel() + ");"
 	    				+ "xcos_simulate(scs_m);"
 	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
 	    try {
-			XcosInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+			ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					updateUI(false);
 				}

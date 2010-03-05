@@ -18,10 +18,14 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-void deadband(scicos_block *block,int flag)
-{/* rpar[0]:upper limit,  rpar[1]:lower limit */
+#include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void deadband(scicos_block *block,int flag)
+{
+	/* rpar[0]:upper limit,  rpar[1]:lower limit */
   if (flag==1){
     if (get_phase_simulation()==1||block->ng==0) {
       if (*block->inptr[0]>=block->rpar[0]){
@@ -54,4 +58,4 @@ void deadband(scicos_block *block,int flag)
     }
   }
 }
-
+/*--------------------------------------------------------------------------*/ 

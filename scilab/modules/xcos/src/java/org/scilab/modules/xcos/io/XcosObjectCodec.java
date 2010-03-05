@@ -14,31 +14,22 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
-import org.scilab.modules.xcos.utils.StyleMap;
+import org.scilab.modules.graph.io.ScilabObjectCodec;
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
-import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
 /**
  * Codec for any xcos object
  */
-public class XcosObjectCodec extends mxObjectCodec {
-    /**
-     * Throw when we cannot load the XML.
-     */
-	public class UnrecognizeFormatException extends Exception {
-		/**
-		 * Default constructor
-		 */
-		public UnrecognizeFormatException() {
-			super();
-		}
-	}
-	
+public class XcosObjectCodec extends ScilabObjectCodec {
+	/**
+	 * Attribute name containing {@link mxCell} style.
+	 */
     protected static final String STYLE = "style";
     private static final String ROTATION = "rotation";
     private static final String DIRECTION = "direction";

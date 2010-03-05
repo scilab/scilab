@@ -35,29 +35,28 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 /**
  * Set the debug level
  */
 public class DebugLevelAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SET_DEBUG;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
-	/*
-	 * FIXME: these following fields must be graph dependent instead of static.
-	 * Imagine the situation when Xcos has 2 diagrams opened and perform the
-	 * action.
-	 */
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JList debugList;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JList debugList;
 
 	/**
 	 * @author Allan SIMON
@@ -117,7 +116,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 	/**
 	 * @param diagramArgu diagram
 	 */
-	public static void debugLevel(XcosDiagram diagramArgu){
+	public void debugLevel(XcosDiagram diagramArgu){
 
 		diagram = diagramArgu;
 
@@ -130,7 +129,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 
 		JLabel textLabel = new JLabel(XcosMessages.DEBUG_LEVEL_LABEL);
 		debugList = new JList(DebugLevel.values());
-		debugList.setSelectedIndex(diagram.getDebugLevel());
+		debugList.setSelectedIndex(diagram.getScicosParameters().getDebugLevel());
 		debugList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
@@ -181,7 +180,7 @@ public class DebugLevelAction extends SimulationNotRunningAction {
 				int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
 				diagram.setDebugLevel(value);
 				try {
-					XcosInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
+					ScilabInterpreterManagement.synchronousScilabExec("scicos_debug(" + value + ");");
 				} catch (InterpreterException e1) {
 					e1.printStackTrace();
 				}

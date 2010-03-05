@@ -19,10 +19,11 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=FROMWSB(job,arg1,arg2)
+function [x,y,typ] = FROMWSB(job,arg1,arg2)
 x=[];y=[],typ=[]
 select job
 case 'plot' then
+  varnam=string(arg1.model.rpar.objs(1).graphics.exprs(1))
   standard_draw(arg1)
 case 'getinputs' then
   [x,y,typ]=standard_inputs(arg1)
@@ -97,7 +98,7 @@ case 'set' then
           needcompile=4
         end
       end
-     //parameter or states changed
+      //parameter or states changed
       arg1(spath)=xxn// Update
       newpar(size(newpar)+1)=path// Notify modification
       y=max(y,needcompile)
@@ -105,9 +106,6 @@ case 'set' then
   end
   x=arg1
   typ=newpar
-  //## modif made by hand
-  varnam=arg1.model.rpar.objs(1).graphics.exprs(1)
-  x.graphics.id=string(varnam)
 case 'define' then
 scs_m_1=scicos_diagram(..
         version="scicos4.2",..
@@ -244,10 +242,17 @@ model=scicos_model(..
          nzcross=0,..
          nmode=0,..
          equations=list())
-  gr_i='xstringb(orig(1),orig(2),''From workspace'',sz(1),sz(2),''fill'')';
-  x=standard_define([3.5 2],model,[],gr_i)
   //## modif made by hand
-  varnam=scs_m_1.objs(1).graphics.exprs(1)
-  x.graphics.id=string(varnam)
+  gr_i=['xstringb(orig(1),orig(2),''From workspace'',sz(1),sz(2),''fill'')'
+        'txt=varnam;'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;']
+  x=standard_define([3.5 2],model,[],gr_i)
 end
 endfunction

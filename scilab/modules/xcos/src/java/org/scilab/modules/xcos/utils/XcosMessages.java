@@ -95,6 +95,14 @@ public final class XcosMessages {
     public static final String GRID = Messages.gettext("Grid");
     public static final String DIAGRAM_BACKGROUND = Messages.gettext("Diagram background") + DOTS;
     
+    /* Format - Edit dialog */
+    public static final String BOLD = Messages.gettext("Bold");
+    public static final String ITALIC = Messages.gettext("Italic");
+    public static final String FONT_SIZE = Messages.gettext("Font size");
+    public static final String FONT_NAME = Messages.gettext("Font name");
+    public static final String FONT_STYLE = Messages.gettext("Font style");
+    public static final String TEXT_SETTINGS = Messages.gettext("Text settings");
+    
     /* Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
     public static final String CODE_GENERATION = Messages.gettext("Code generation");
@@ -176,6 +184,7 @@ public final class XcosMessages {
     
     public static final String BORDER_COLOR = Messages.gettext("Border Color");
     public static final String FILL_COLOR = Messages.gettext("Fill Color");
+    public static final String TEXT_COLOR = Messages.gettext("Text Color");
 
     public static final String LINK_STYLE = Messages.gettext("Link Style");
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
@@ -246,10 +255,10 @@ public final class XcosMessages {
     public static final String MASK_EDITABLE = Messages.gettext("Editable");
     public static final String MASK_VARVALUES = Messages.gettext("Values");
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
-    
-    /* Interpreter errors */
-    public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
-    public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
+
+    /* Modelica Compiler */
+    public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
+    public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
     
 // CSON: JavadocVariable
 // CSON: LineLength

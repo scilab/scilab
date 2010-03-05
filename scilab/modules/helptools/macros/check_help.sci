@@ -39,6 +39,12 @@ function check_help(dirs)
 		
 		global %helps;
 		global %helps_modules
+    if %helps_modules == [] then
+      moduleslist = getmodules();
+      for i = 1:size(moduleslist,'*')
+        add_module_help_chapter(moduleslist(i));
+      end
+    end
 		%HELPS=[%helps_modules;%helps];
 		dirs_to_build = %HELPS;
 		clear %HELPS;

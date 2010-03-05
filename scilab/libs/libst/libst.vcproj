@@ -402,6 +402,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\libst.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\misc.c"
 				>
 			</File>
@@ -418,6 +422,10 @@
 				RelativePath=".\misc.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
 		</Filter>
 	</Files>
 	<Globals>

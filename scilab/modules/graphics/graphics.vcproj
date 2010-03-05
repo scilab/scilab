@@ -2121,6 +2121,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource Files"
+			>
+			<File
+				RelativePath=".\graphic.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\graphics.iss"
 			>

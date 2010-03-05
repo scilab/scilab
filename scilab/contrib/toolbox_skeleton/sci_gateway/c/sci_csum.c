@@ -14,17 +14,12 @@ int sci_csum(char *fname)
 {
   SciErr sciErr;
   
-  int m1 = 0, n1 = 0;
   int *piAddressVarOne = NULL;
-  double *pdVarOne = NULL;
-  int iType1 = 0;  
+  double dVarOne = 0.0;
   
-  int m2 = 0, n2 = 0;
   int *piAddressVarTwo = NULL;
-  double *pdVarTwo = NULL;
-  int iType2 = 0;  
+  double dVarTwo = 0.0;
   
-  int m_out = 0, n_out = 0;
   double dOut = 0.0;
 
   /* --> result = csum(3,8)
@@ -48,67 +43,36 @@ int sci_csum(char *fname)
     return 0;
   }
   
-  
   /* check input type */
-  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-  if(sciErr.iErr)
+  if ( !isDoubleType(pvApiCtx, piAddressVarOne) )
   {
-    printError(&sciErr, 0);
+    Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 1);
     return 0;
-  } 
-   
-  if ( iType1 != sci_matrix )
+  }
+  
+  if ( !isDoubleType(pvApiCtx, piAddressVarTwo) )
   {
-    Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,1);
+    Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 2);
     return 0;
   }
 
-  sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-  if(sciErr.iErr)
+  if ( getScalarDouble(pvApiCtx, piAddressVarOne, &dVarOne) )
   {
-    printError(&sciErr, 0);
+    Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 1);
     return 0;
-  }   
-  
-  if ( iType2 != sci_matrix )
-  {
-  	Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
-  	return 0;
   }
 
-  /* get matrix */
-  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
-  if(sciErr.iErr)
+  if ( getScalarDouble(pvApiCtx, piAddressVarTwo, &dVarTwo) )
   {
-    printError(&sciErr, 0);
+    Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 2);
     return 0;
-  }
-  
-  sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    return 0;
-  }
-  
-  /* check size */
-  if ( (m1 != n1) && (n1 != 1) ) 
-  {
-  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,1);
-  	return 0;
-  }
-  if ( (m2 != n2) && (n2 != 1) ) 
-  {
-  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
-  	return 0;
   }
   
   /* call c function csum */
-  csum(&pdVarOne[0],&pdVarTwo[0],&dOut);
+  csum(&dVarOne, &dVarTwo, &dOut);
   
   /* create result on stack */
-  m_out = 1;  n_out = 1;
-  createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);
+  createScalarDouble(pvApiCtx, Rhs + 1, dOut);
   
   LhsVar(1) = Rhs + 1; 
   

@@ -483,6 +483,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\randlib.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -378,6 +378,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_gateways.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_tclsci.c"
 				>
 			</File>
 			<File
@@ -967,6 +971,10 @@
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dynamic_tclsci.h"
 				>
 			</File>
 			<File

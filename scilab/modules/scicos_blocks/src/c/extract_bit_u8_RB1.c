@@ -18,14 +18,17 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
-void extract_bit_u8_RB1(scicos_block *block,int flag)
+#include "scicos_block4.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void extract_bit_u8_RB1(scicos_block *block,int flag)
 {
-   int i,maxim,numb;
-   unsigned char *y,*u,ref,n;
-   int *ipar;
+   int i = 0,maxim = 0,numb = 0;
+   unsigned char *y = NULL,*u = NULL,ref = 0,n = 0;
+   int *ipar = NULL;
    y=Getuint8OutPortPtrs(block,1);
    u=Getuint8InPortPtrs(block,1);
    ipar=GetIparPtrs(block);
@@ -38,3 +41,4 @@ void extract_bit_u8_RB1(scicos_block *block,int flag)
    *y=(*u)&(ref);
    *y=*y>>*ipar;
 }
+/*--------------------------------------------------------------------------*/ 

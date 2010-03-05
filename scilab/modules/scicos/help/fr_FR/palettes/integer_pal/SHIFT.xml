@@ -216,7 +216,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/shift_32_LA.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>

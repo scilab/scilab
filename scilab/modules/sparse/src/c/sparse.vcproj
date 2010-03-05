@@ -534,6 +534,14 @@
 			Name="Libraries Dependencies"
 			>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\sparse.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"
 			>

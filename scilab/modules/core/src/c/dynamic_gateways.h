@@ -20,6 +20,13 @@
 int gw_dynamic_ui_data(void);
 
 /**
+* pvm gateway
+* pvm is loaded dynamically at runtime
+* load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
+*/
+int gw_dynamic_pvm(void);
+
+/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
@@ -126,13 +133,6 @@ int gw_dynamic_randlib(void);
 * load gw_arnoldi in SCI/modules/arnoldi/sci_gateway/gw_arnoldi.c
 */
 int gw_dynamic_arnoldi(void);
-
-/**
-* metanet gateway
-* metanet is loaded dynamically at runtime
-* load gw_metanet in SCI/modules/metanet/sci_gateway/gw_metanet.c
-*/
-int gw_dynamic_metanet(void);
 
 /**
 * symbolic gateway

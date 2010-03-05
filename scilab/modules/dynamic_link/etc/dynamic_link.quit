@@ -11,8 +11,3 @@
 // free all dynamics libraries
 ulink();
 // =============================================================================
-// Delete help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	del_help_chapter("dynamic_link",%t);
-end

@@ -24,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.XcosUIDObject;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -68,9 +68,13 @@ import com.mxgraph.model.mxGeometry;
  * contains this new diagram.
  */
 public final class RegionToSuperblockAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	private static final String INTERFUNCTION_NAME = "SUPER_f";
@@ -171,7 +175,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	/*
 	 * Update selection and return it.
 	 */
-	List<XcosUIDObject> selectedCells = updateForNotSelectedLinks(graph);
+	List<ScilabGraphUniqueObject> selectedCells = updateForNotSelectedLinks(graph);
 	
 	/*
 	 * Sort the selected cells to avoid misplacement
@@ -183,9 +187,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 */
 	Object[] cellArrays = getGraph(null).cloneCells(selectedCells.toArray());
 	Collection<Object> cells = Arrays.asList(cellArrays);
-	XcosUIDObject[] typedCells = new XcosUIDObject[cellArrays.length];
+	ScilabGraphUniqueObject[] typedCells = new ScilabGraphUniqueObject[cellArrays.length];
 	cells.toArray(typedCells);
-	List<XcosUIDObject> cellsCopy = Arrays.asList(typedCells);
+	List<ScilabGraphUniqueObject> cellsCopy = Arrays.asList(typedCells);
 	Object[] translationMatrix = new Object[cellsCopy.size()]; 
 	for (int i = 0; i < translationMatrix.length; i++) {
 	    translationMatrix[i] = selectedCells.get(i);
@@ -244,7 +248,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	 * Update block with real parameters
 	 */
 	superBlock.setRealParameters(BlockWriter.convertDiagramToMList(diagram));
-	superBlock.createChildDiagram();
+	superBlock.setChild(diagram);
 	
 	/*
 	 * Update the parent
@@ -299,9 +303,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param cellsCopy list of selected cells
      * @return list of blocks
      */
-    private List<BasicBlock> getBlocks(List<XcosUIDObject> cellsCopy) {
+    private List<BasicBlock> getBlocks(List<ScilabGraphUniqueObject> cellsCopy) {
 	List<BasicBlock> list = new ArrayList<BasicBlock>(cellsCopy.size());
-	for (XcosUIDObject cell : cellsCopy) {
+	for (ScilabGraphUniqueObject cell : cellsCopy) {
 	    if (cell instanceof BasicBlock) {
 		if (!(cell instanceof SplitBlock)) {
 		    list.add((BasicBlock) cell);
@@ -316,12 +320,12 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param graph parent diagram
      * @return new selected list
      */
-    private List<XcosUIDObject> updateForNotSelectedLinks(XcosDiagram graph) {
+    private List<ScilabGraphUniqueObject> updateForNotSelectedLinks(XcosDiagram graph) {
 
 	graph.getModel().beginUpdate();
 
 	for (int i = 0; i < graph.getSelectionCells().length; i++) {
-	    XcosUIDObject current = (XcosUIDObject) graph.getSelectionCells()[i];
+	    ScilabGraphUniqueObject current = (ScilabGraphUniqueObject) graph.getSelectionCells()[i];
 	    if (current instanceof BasicBlock) {
 		BasicBlock block = (BasicBlock) current;
 		for (int j = 0; j < block.getChildCount(); j++) {
@@ -346,10 +350,10 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	
 	Object[] selectedCells = graph.getSelectionCells();
 	Collection<Object> cells = Arrays.asList(selectedCells);
-	XcosUIDObject[] typedCells = new XcosUIDObject[selectedCells.length];
+	ScilabGraphUniqueObject[] typedCells = new ScilabGraphUniqueObject[selectedCells.length];
 	cells.toArray(typedCells);
 	
-	return new ArrayList<XcosUIDObject>(Arrays.asList(typedCells));
+	return new ArrayList<ScilabGraphUniqueObject>(Arrays.asList(typedCells));
     }
 
 	/**
@@ -399,21 +403,21 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 	    	target = (BasicPort) link.getLink().getTarget();
 
 	    	if (link.getLink() instanceof ExplicitLink) {
-	    		source = BasicBlockInfo.getAllExplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, ExplicitOutputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof ImplicitLink) {
-	    		source = BasicBlockInfo.getAllImplicitOutputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, ImplicitOutputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof CommandControlLink) {
-	    		source = BasicBlockInfo.getAllCommandPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		source = BasicBlockInfo.getAllTypedPorts(superBlock, false, CommandPort.class).get(link.getPortNumber() - 1);
 	    	}
 	    } else {
 	    	source = (BasicPort) link.getLink().getSource();
 
 	    	if (link.getLink() instanceof ExplicitLink) {
-	    		target = BasicBlockInfo.getAllExplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ExplicitInputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof ImplicitLink) {
-	    		target = BasicBlockInfo.getAllImplicitInputPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ImplicitInputPort.class).get(link.getPortNumber() - 1);
 	    	} else if (link.getLink() instanceof CommandControlLink) {
-	    		target = BasicBlockInfo.getAllControlPorts(superBlock, false).get(link.getPortNumber() - 1);
+	    		target = BasicBlockInfo.getAllTypedPorts(superBlock, false, ControlPort.class).get(link.getPortNumber() - 1);
 	    	}
 	    }
 
@@ -548,7 +552,7 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
      * @param copiedCells The copy of the selected cells
      * @return all the broken links in the diagram
      */
-    private List<BrokenLink> getBrokenLinks(List<XcosUIDObject> objs, List<XcosUIDObject> copiedCells) {
+    private List<BrokenLink> getBrokenLinks(List<ScilabGraphUniqueObject> objs, List<ScilabGraphUniqueObject> copiedCells) {
 	List<BrokenLink> breaks = new ArrayList<BrokenLink>();	
 
 	int objsLength = objs.size();
@@ -592,28 +596,15 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
     }
 
     /**
-     * @param breaks List of broken link in current selection
-     */
-    private void printBreakingLink(List<BrokenLink> breaks) {
-	System.err.println("breaks count : " + breaks.size());
-
-	for (BrokenLink brk : breaks) {
-	    System.err.println("Link : " + brk.getLink());
-	    System.err.println("OutGoing : " + brk.getOutGoing());
-	    System.err.println("Geometry : " + brk.getGeometry());
-	}
-    }
-
-    /**
      * @param blocks list of blocks
      * @return integer list of max values
      */
-    private List<Integer> getMaxBlocksValues(List<XcosUIDObject> blocks) {
+    private List<Integer> getMaxBlocksValues(List<ScilabGraphUniqueObject> blocks) {
 	List<Integer> values = new ArrayList<Integer>();
 	Map<ContextUpdate.IOBlocks, List<BasicBlock>> items = new EnumMap<ContextUpdate.IOBlocks, List<BasicBlock>>(ContextUpdate.IOBlocks.class);
 
 	// ExplicitInBlock
-	for (XcosUIDObject cell : blocks) {
+	for (ScilabGraphUniqueObject cell : blocks) {
 	    if (cell instanceof ContextUpdate) {
 	    if (cell instanceof ExplicitOutBlock) {
 		if (!items.containsKey(IOBlocks.ExplicitInBlock)) {

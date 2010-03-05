@@ -25,7 +25,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Orientation;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -60,12 +60,13 @@ public final class BasicBlockInfo {
 	private static final int GRAPHICS_INSTRUCTION_SIZE = 8;
 	
     /**
-     * Default constructor
+     * This class is a static singleton.
      */
     private BasicBlockInfo() { }
 
     /**
-     * @param ports : list of links
+     * Get all the ids.
+     * @param ports the ports
      * @return array of links id
      */
     public static ScilabDouble getAllLinkId(List< ? extends BasicPort> ports) {
@@ -83,8 +84,8 @@ public final class BasicBlockInfo {
 
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data lines.
+     * @param ports the ports
      * @return array of ports data lines
      */
     public static ScilabDouble getAllPortsDataLines(List< ? extends BasicPort> ports) {
@@ -100,8 +101,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data columns
+     * @param ports the ports
      * @return array of ports data columns
      */
     public static ScilabDouble getAllPortsDataColumns(List< ? extends BasicPort> ports) {
@@ -126,8 +127,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the port data type.
+     * @param ports the ports
      * @return array of ports data type
      */
     public static ScilabType getAllPortsDataType(List< ? extends BasicPort> ports) {
@@ -143,8 +144,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param ports
-	 *            the ports we are working on
+     * Get all the ports types
+     * @param ports the ports
      * @return array of ports type
      */
     public static ScilabType getAllPortsType(List< ? extends BasicPort> ports) {
@@ -160,8 +161,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create a graphic property from block parameters.
+     * @param block the current block.
      * @return graphic structure of given block
      */
     public static ScilabMList createScilabGraphicsProperties(BasicBlock block) {
@@ -211,8 +212,8 @@ public final class BasicBlockInfo {
 
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create a graphic property from block parameters.
+     * @param block the current block
      * @return model structure of given block
      */
     public static ScilabMList createScilabModelProperties(BasicBlock block) {
@@ -276,8 +277,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab gui properties from block parameters
+     * @param block the current block
      * @return gui structure of given block
      */
     public static ScilabString createScilabGuiProperties(BasicBlock block) {
@@ -285,8 +286,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab doc properties from block parameters
+     * @param block the current block
      * @return doc structure of given block
      */
     public static ScilabList createScilabDocProperties(BasicBlock block) {
@@ -298,8 +299,8 @@ public final class BasicBlockInfo {
     }
 
     /**
-	 * @param block
-	 *            the block we are working on
+     * Create the Scilab block representation
+     * @param block the current block
      * @return Scilab structure of given block
      */
     public static ScilabMList getAsScilabObj(BasicBlock block) {
@@ -311,46 +312,6 @@ public final class BasicBlockInfo {
 	obj.add(BasicBlockInfo.createScilabDocProperties(block));
 
 	return obj;
-    }
-
-    @Deprecated
-    public static List<InputPort> getAllInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, InputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ExplicitInputPort> getAllExplicitInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ExplicitInputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ImplicitInputPort> getAllImplicitInputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ImplicitInputPort.class);
-    }
-    
-    @Deprecated
-    public static List<OutputPort> getAllOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, OutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ExplicitOutputPort> getAllExplicitOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ExplicitOutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ImplicitOutputPort> getAllImplicitOutputPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ImplicitOutputPort.class);
-    }
-    
-    @Deprecated
-    public static List<ControlPort> getAllControlPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, ControlPort.class);
-    }
-    
-    @Deprecated
-    public static List<CommandPort> getAllCommandPorts(BasicBlock block, boolean revert) {
-    	return getAllTypedPorts(block, revert, CommandPort.class);
     }
     
 	/**
@@ -391,8 +352,8 @@ public final class BasicBlockInfo {
      * @param block The block we are working on
      * @return Lists of ports where key are BasicPort.Orientation
      */
-    public static Map<BasicPort.Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
-    	EnumMap<BasicPort.Orientation, List<BasicPort>> map = new EnumMap<BasicPort.Orientation, List<BasicPort>>(BasicPort.Orientation.class);
+    public static Map<Orientation, List<BasicPort>> getAllOrientedPorts(BasicBlock block) {
+    	EnumMap<Orientation, List<BasicPort>> map = new EnumMap<Orientation, List<BasicPort>>(Orientation.class);
     	List<BasicPort> northPorts = new ArrayList<BasicPort>();
     	List<BasicPort> southPorts = new ArrayList<BasicPort>();
     	List<BasicPort> eastPorts = new ArrayList<BasicPort>();

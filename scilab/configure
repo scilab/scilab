@@ -632,13 +632,8 @@ BUILD_HELP_FALSE
 BUILD_HELP_TRUE
 HELP_ENABLE
 DOCBOOK_ROOT
-AVALON_FRAMEWORK
-XML_APIS_EXT
-XMLGRAPHICS_COMMONS
-COMMONS_IO
-FOP
+JLATEXMATH_FOP
 SAXON
-BATIK
 MATIO_FALSE
 MATIO_TRUE
 MATIO_ENABLE
@@ -747,6 +742,12 @@ CHECKSTYLE
 JLATEXMATH
 COMMONS_LOGGING
 JHDF5
+XML_APIS_EXT
+AVALON_FRAMEWORK
+XMLGRAPHICS_COMMONS
+COMMONS_IO
+BATIK
+FOP
 JEUCLID_CORE
 JROSETTA_ENGINE
 JROSETTA_API
@@ -9118,19 +9119,40 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if /sw64/ is available or not" >&5
+$as_echo_n "checking if /sw64/ is available or not... " >&6; }
+	if test -d /sw64/; then
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	 CFLAGS=" $CFLAGS -I/sw64/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw64/include "
+	 LDFLAGS=" $LDFLAGS -L/sw64/lib/ "
+	else
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no... switch back to /sw/. This might cause issues on link test of third party libraries" >&5
+$as_echo "no... switch back to /sw/. This might cause issues on link test of third party libraries" >&6; }
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+    fi
 	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
-	      x86_64-apple-darwin*)
+	# By default, consider that all mac runs 64 bits applications
+	      x86_64-apple-darwin*|i386-apple-darwin*)
                 CC=" $CC -arch x86_64 "
                 CXX=" $CXX -arch x86_64 "
                 ;;
 	esac
+	#Check that the current Mac OS X can link against system 64 bits libs
+	for ac_func in pow
+do :
+  ac_fn_c_check_func "$LINENO" "pow" "ac_cv_func_pow"
+if test "x$ac_cv_func_pow" = x""yes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_POW 1
+_ACEOF
+
+fi
+done
+
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -9653,7 +9675,8 @@ $as_echo "not defined" >&6; }
 		     *darwin* )
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Darwin (Mac OS X) found. Use the standard paths." >&5
 $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
-			ac_java_jvm_dir="/System/Library/Frameworks/JavaVM.framework/Home/"
+			# See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+			ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
 			JAVAC=$ac_java_jvm_dir/bin/javac
 			;;
 		esac
@@ -9672,7 +9695,9 @@ $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
 	case "$host_os" in
 	     *darwin* )
 	     # Don't follow the symlink since Java under MacOS is messy
-		JAVAC="/System/Library/Frameworks/JavaVM.framework/Home/bin/javac"
+	     # Uses the wrapper providing by Apple to retrieve the path
+	     # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+		JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
 		DONT_FOLLOW_SYMLINK=yes
 		;;
 	esac
@@ -9817,7 +9842,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 9820 "configure"
+// #line 9845 "configure"
 
 
 public class conftest {
@@ -9877,7 +9902,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 9880 "configure"
+// #line 9905 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -9935,7 +9960,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 9938 "configure"
+// #line 9963 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -9974,7 +9999,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 9977 "configure"
+// #line 10002 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -10125,7 +10150,7 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
 		# Solaris 10 x86
           machine=i386
           ;;
-		sun*)
+		sun*|sparc64)
        # Sun
           machine=sparc
           ;;
@@ -10137,6 +10162,9 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
 		  ;;
 		  s390x) # s390 arch can also returns s390x
 		  machine=s390
+		  ;;
+	    sh*)
+	  	  machine=sh
 		  ;;
     esac
 
@@ -11224,7 +11252,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11227 "configure"
+// #line 11255 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -11311,7 +11339,7 @@ $as_echo_n "checking minimal version (1.2.0.7) of jgraphx... " >&6; }
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11314 "configure"
+// #line 11342 "configure"
 import com.mxgraph.view.mxGraph;
 
 public class conftest {
@@ -11375,7 +11403,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11378 "configure"
+// #line 11406 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11476,7 +11504,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11479 "configure"
+// #line 11507 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11577,7 +11605,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11580 "configure"
+// #line 11608 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11679,7 +11707,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11682 "configure"
+// #line 11710 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11780,7 +11808,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11783 "configure"
+// #line 11811 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11981,7 +12009,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11984 "configure"
+// #line 12012 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12137,7 +12165,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12140 "configure"
+// #line 12168 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12238,7 +12266,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12241 "configure"
+// #line 12269 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12340,7 +12368,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12343 "configure"
+// #line 12371 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -12441,7 +12469,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12444 "configure"
+// #line 12472 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -12544,7 +12572,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12547 "configure"
+// #line 12575 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -12625,6 +12653,821 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jeuclid-co
 
 
 
+				################ Mandatory for graphic_export features #####
+				# XML to PDF/other Translator
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking fop" >&5
+$as_echo_n "checking fop... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 12678 "configure"
+import org.apache.fop.pdf.PDFInfo;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" "$LINENO" 5
+	  fi
+    fi
+
+				FOP=$PACKAGE_JAR_FILE
+
+
+				# xml.apache.org SVG Library (under mandriva for example)
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik-all" >&5
+$as_echo_n "checking batik-all... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 12779 "configure"
+import org.apache.batik.parser.Parser;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" "$LINENO" 5
+	  fi
+    fi
+
+				BATIK=$PACKAGE_JAR_FILE
+
+				if test -z "$BATIK"; then
+				   # Other other distribs
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik" >&5
+$as_echo_n "checking batik... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 12880 "configure"
+import org.apache.batik.parser.Parser;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" "$LINENO" 5
+	  fi
+    fi
+
+				   BATIK=$PACKAGE_JAR_FILE
+				fi
+
+
+				# Commons I/O library
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking commons-io" >&5
+$as_echo_n "checking commons-io... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 12982 "configure"
+import org.apache.commons.io.output.CountingOutputStream;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" "$LINENO" 5
+	  fi
+    fi
+
+				COMMONS_IO=$PACKAGE_JAR_FILE
+
+
+				# XML graphics common
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xmlgraphics-commons" >&5
+$as_echo_n "checking xmlgraphics-commons... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13083 "configure"
+import org.apache.xmlgraphics.util.Service;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" "$LINENO" 5
+	  fi
+    fi
+
+				XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+
+
+				# Avalon Framework (PDF)
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking avalon-framework" >&5
+$as_echo_n "checking avalon-framework... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13184 "configure"
+import org.apache.avalon.framework.configuration.ConfigurationException;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" "$LINENO" 5
+	  fi
+    fi
+
+				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+
+
+	# XML API EXT (conversion of a SVG => PNG)
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-apis-ext" >&5
+$as_echo_n "checking xml-apis-ext... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13285 "configure"
+import org.w3c.dom.svg.SVGDocument;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test ""yes"" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" "$LINENO" 5
+	  fi
+    fi
+
+				XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+				if test -z "$XML_APIS_EXT"; then
+					# Other other distribs (Ex: Fedora/Redhat)
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-commons-apis-ext" >&5
+$as_echo_n "checking xml-commons-apis-ext... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13386 "configure"
+import org.w3c.dom.svg.SVGDocument;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
+	  else
+		  as_fn_error "Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" "$LINENO" 5
+	  fi
+    fi
+
+					XML_APIS_EXT=$PACKAGE_JAR_FILE
+				fi
+
+
+				################ END Mandatory for graphic_export features #####
+
+
+				############ XCOS ############
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 
@@ -12647,7 +13490,7 @@ $as_echo_n "checking jhdf5... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12650 "configure"
+// #line 13493 "configure"
 import ncsa.hdf.hdf5lib.HDF5Constants;
 
 public class conftest {
@@ -12749,7 +13592,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12752 "configure"
+// #line 13595 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -12829,7 +13672,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-lo
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 
 
-                                # JLaTeXMath
+				# JLaTeXMath
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jlatexmath" >&5
 $as_echo_n "checking jlatexmath... " >&6; }
@@ -12850,7 +13693,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12853 "configure"
+// #line 13696 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -12927,7 +13770,57 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jlatexmath
 	  fi
     fi
 
-                                JLATEXMATH=$PACKAGE_JAR_FILE
+                JLATEXMATH=$PACKAGE_JAR_FILE
+
+
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (0.8.8) of jlatexmath" >&5
+$as_echo_n "checking minimal version (0.8.8) of jlatexmath... " >&6; }
+   saved_ac_java_classpath=$ac_java_classpath
+   export ac_java_classpath="$JLATEXMATH:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13783 "configure"
+import org.scilab.forge.jlatexmath.TeXFormula;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="0.8.8";
+   						   	if (minVersion.compareTo(TeXFormula.VERSION) > 0) {
+							   	System.exit(-1);
+								}
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error "Wrong version of jlatexmath. Expected at least 0.8.8" "$LINENO" 5
+        					fi
+		fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error "Wrong version of jlatexmath. Expected at least 0.8.8" "$LINENO" 5
+            fi
+
+   ac_java_classpath=$saved_ac_java_classpath
 
 
 
@@ -12957,7 +13850,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12960 "configure"
+// #line 13853 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -13058,7 +13951,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13061 "configure"
+// #line 13954 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -13159,7 +14052,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13162 "configure"
+// #line 14055 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -13260,7 +14153,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13263 "configure"
+// #line 14156 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -13361,7 +14254,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13364 "configure"
+// #line 14257 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -13462,7 +14355,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13465 "configure"
+// #line 14358 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -13563,7 +14456,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13566 "configure"
+// #line 14459 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -14262,7 +15155,7 @@ esac
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-for ac_func in pow sqrt finite floor
+for ac_func in pow sqrt finite floor exp10
 do :
   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
 ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -14274,21 +15167,6 @@ _ACEOF
 
 fi
 done
-
-
-ac_fn_c_check_func "$LINENO" "exp10" "ac_cv_func_exp10"
-if test "x$ac_cv_func_exp10" = x""yes; then :
-
-else
-
-
-$as_echo "#define log_10_ 2.3025850929940456840179914546844" >>confdefs.h
-
-
-$as_echo "#define exp10(x) exp( (log_10_) * (x) )" >>confdefs.h
-
-
-fi
 
 
 ### If isinf exists or not (used to not be the case under Solaris)
@@ -21752,7 +22630,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 21755 "configure"
+#line 22633 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -22064,7 +22942,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 22067 "configure"
+#line 22945 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -22625,208 +23503,6 @@ fi
 	if test -z "$DOCBOOK_ROOT"; then
 		as_fn_error "Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug" "$LINENO" 5
 	fi
-	# xml.apache.org SVG Library (under mandriva for example)
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik-all" >&5
-$as_echo_n "checking batik-all... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/batik-all.jar" "$jardir/libbatik-all.jar" "$jardir/libbatik-all-java.jar" "$jardir/batik-all*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 22649 "configure"
-import org.apache.batik.parser.Parser;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" "$LINENO" 5
-	  fi
-    fi
-
-	BATIK=$PACKAGE_JAR_FILE
-
-	if test -z "$BATIK"; then
-		# Other other distribs
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik" >&5
-$as_echo_n "checking batik... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/batik.jar" "$jardir/libbatik.jar" "$jardir/libbatik-java.jar" "$jardir/batik*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 22750 "configure"
-import org.apache.batik.parser.Parser;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" "$LINENO" 5
-	  fi
-    fi
-
-		BATIK=$PACKAGE_JAR_FILE
-	fi
-
 
 
 	# Saxon XSLT Processor
@@ -22850,7 +23526,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22853 "configure"
+// #line 23529 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -22930,16 +23606,16 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar saxon used
 	SAXON=$PACKAGE_JAR_FILE
 
 
-	# XML to PDF/other Translator
+    # JLaTeXMath FOP
 
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking fop" >&5
-$as_echo_n "checking fop... " >&6; }
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jlatexmath-fop" >&5
+$as_echo_n "checking jlatexmath-fop... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/fop.jar" "$jardir/libfop.jar" "$jardir/libfop-java.jar" "$jardir/fop*.jar"; do
+      for jar in "$jardir/jlatexmath-fop.jar" "$jardir/libjlatexmath-fop.jar" "$jardir/libjlatexmath-fop-java.jar" "$jardir/jlatexmath-fop*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
 #	echo "protected $jar"
 #	jar_resolved=`ls $jar 2>/dev/null`
@@ -22951,8 +23627,8 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 22954 "configure"
-import org.apache.fop.pdf.PDFInfo;
+// #line 23630 "configure"
+import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -23021,524 +23697,14 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&2;}
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jlatexmath-fop used by LaTex Rendering - FOP plugin (looking for package org.scilab.forge.jlatexmath.fop.JLaTeXMathObj)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jlatexmath-fop used by LaTex Rendering - FOP plugin (looking for package org.scilab.forge.jlatexmath.fop.JLaTeXMathObj)" >&2;}
 	  else
-		  as_fn_error "Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" "$LINENO" 5
+		  as_fn_error "Could not find or use the Java package/jar jlatexmath-fop used by LaTex Rendering - FOP plugin (looking for package org.scilab.forge.jlatexmath.fop.JLaTeXMathObj)" "$LINENO" 5
 	  fi
     fi
 
-	FOP=$PACKAGE_JAR_FILE
-
-
-	# Commons I/O library
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking commons-io" >&5
-$as_echo_n "checking commons-io... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/commons-io.jar" "$jardir/libcommons-io.jar" "$jardir/libcommons-io-java.jar" "$jardir/commons-io*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 23055 "configure"
-import org.apache.commons.io.output.CountingOutputStream;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" "$LINENO" 5
-	  fi
-    fi
-
-	COMMONS_IO=$PACKAGE_JAR_FILE
-
-
-	# XML graphics common
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xmlgraphics-commons" >&5
-$as_echo_n "checking xmlgraphics-commons... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/xmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons.jar" "$jardir/libxmlgraphics-commons-java.jar" "$jardir/xmlgraphics-commons*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 23156 "configure"
-import org.apache.xmlgraphics.util.Service;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" "$LINENO" 5
-	  fi
-    fi
-
-	XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
-
-
-	# XML API EXT (conversion of a SVG => PNG)
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-apis-ext" >&5
-$as_echo_n "checking xml-apis-ext... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 23257 "configure"
-import org.w3c.dom.svg.SVGDocument;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" "$LINENO" 5
-	  fi
-    fi
-
-	XML_APIS_EXT=$PACKAGE_JAR_FILE
-
-	if test -z "$XML_APIS_EXT"; then
-		# Other other distribs (Ex: Fedora/Redhat)
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-commons-apis-ext" >&5
-$as_echo_n "checking xml-commons-apis-ext... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/xml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext.jar" "$jardir/libxml-commons-apis-ext-java.jar" "$jardir/xml-commons-apis-ext*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 23358 "configure"
-import org.w3c.dom.svg.SVGDocument;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar xml-commons-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" "$LINENO" 5
-	  fi
-    fi
-
-		XML_APIS_EXT=$PACKAGE_JAR_FILE
-	fi
-
-
-
-
-
-	# Avalon Framework (PDF)
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking avalon-framework" >&5
-$as_echo_n "checking avalon-framework... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/avalon-framework.jar" "$jardir/libavalon-framework.jar" "$jardir/libavalon-framework-java.jar" "$jardir/avalon-framework*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 23463 "configure"
-import org.apache.avalon.framework.configuration.ConfigurationException;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >&5 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&2;}
-	  else
-		  as_fn_error "Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" "$LINENO" 5
-	  fi
-    fi
-
-	AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
-
+    JLATEXMATH_FOP=$PACKAGE_JAR_FILE
 
 
 
@@ -29731,7 +29897,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29734 "configure"
+#line 29900 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -29837,7 +30003,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 29840 "configure"
+#line 30006 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -35859,7 +36025,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/xpad/Makefile modules/ui_data/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/xpad/Makefile modules/graph/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -37246,7 +37412,7 @@ do
     "modules/atoms/Makefile") CONFIG_FILES="$CONFIG_FILES modules/atoms/Makefile" ;;
     "modules/xcos/Makefile") CONFIG_FILES="$CONFIG_FILES modules/xcos/Makefile" ;;
     "modules/xpad/Makefile") CONFIG_FILES="$CONFIG_FILES modules/xpad/Makefile" ;;
-    "modules/ui_data/Makefile") CONFIG_FILES="$CONFIG_FILES modules/ui_data/Makefile" ;;
+    "modules/graph/Makefile") CONFIG_FILES="$CONFIG_FILES modules/graph/Makefile" ;;
     "modules/Makefile") CONFIG_FILES="$CONFIG_FILES modules/Makefile" ;;
     "libs/Makefile") CONFIG_FILES="$CONFIG_FILES libs/Makefile" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
@@ -39228,11 +39394,7 @@ echo ""
 if test $HELP_ENABLE = yes; then
    echo "Documentation building configuration:"
    echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
-   echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Commons I/O ............ = $COMMONS_IO"
-   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
@@ -39273,6 +39435,18 @@ echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
+
+echo ""
+if test ! -z "$JAVAC"; then
+echo "Documentation, graphic export:"
+echo "  FOP (XML => PDF) .... = $FOP"
+echo "  JLaTeXMath Fop ...... = $JLATEXMATH_FOP"
+echo "  Batik (SVG) ......... = $BATIK"
+echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
+echo "  Commons I/O ......... = $COMMONS_IO"
+echo "  XML graphics commons  = $XMLGRAPHICS_COMMONS"
+fi
+
 
 echo ""
 echo "Code quality (optional):"

@@ -392,6 +392,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_link.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_dynamic_link.c"
 				>
 			</File>
@@ -458,6 +462,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\ilib_verbose.h"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 		</Filter>

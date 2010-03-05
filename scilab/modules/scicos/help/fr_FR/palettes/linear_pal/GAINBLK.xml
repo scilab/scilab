@@ -214,7 +214,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entr
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/gainblk.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/gainblk.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/gainblk_i32n.c</para>

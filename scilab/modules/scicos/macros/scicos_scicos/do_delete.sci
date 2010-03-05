@@ -20,67 +20,55 @@
 //
 
 function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
-//!
 // do_delete - delete a scicos object
+  
+// ** Serge Steer 24/06/2009
+//  - make it more coherent with do_delete
+//
+
 // get first object to delete
 
   if %win<>curwin then
-    disp("Window mismatch in do_delete"); 
+    messagebox("Window mismatch in do_delete","modal","error"); 
     return ; //** EXIT point 
   end
 
-  win = %win;
-
-  Select = Select(find(Select(:,2)==curwin),:)  //** make sure only current window selects are considered
-
-  //** check for no selection empty object 
-   K = Select(:,1)' ; //** recover the id of selected objects 
-   if K==[] then
-     return ; // nothing to do
-   end  
+ 
+  Select1 = Select(find(Select(:,2)==curwin),:)  //** make sure only current window selects are considered
+  if Select1==[] then
+    xc = %pt(1); yc = %pt(2)  ;
+    K = getobj(scs_m,[xc;yc]) ;
+  else
+    K=Select1(:,1)'
+  end
+  if K==[] then return,end  //nothing to do
+  
 
   needreplay = replayifnecessary() ;
   scs_m_save = scs_m               ;
   nc_save = needcompile            ;
 
-  [scs_m,DEL] = do_delete1(scs_m,K,%t); //** this is the function that do most of the work
-                                        
-  gh_curwin = scf(%win) ;
-  gh_axes = gca(); 
+   //** eliminate the selected objects and connected links
+  [scs_m,DEL] = do_delete1(scs_m,K,%t); 
 
   if DEL<>[] then //** if any object has been deleted .....
 
     needcompile = 4 ; //** signal to the compiler
+    edited = %t
+    enable_undo = %t
 
-    //** Update Selection
-    if (Select<>[]) & (find(Select(:,2)==gh_curwin.figure_id))<>[] then
-        new_Select = []
-        for i=1:size(Select,1)
-            if find(Select(i,1)==DEL)==[] | ...
-             find(Select(i,2)==%win)==[] then
-               new_Select = [new_Select; Select(i,:)];
-            end
-        end
-        Select = new_Select;
-    end
+    //** Update Selection retaining selected objects in other windows
+    //   (all selected objects of the current windows have been deleted)
+    Select(find(Select(:,2)==curwin),:)=[];
 
-    //suppress right-most deleted elements
-    //** while ("the last elements of "scs_m.objs" is 'Deleted' type ....
-    while getfield(1,scs_m.objs($)) == "Deleted" then
-
+    //**  suppress right-most "deleted" elements
+    gh_curwin = scf(curwin);gh_axes = gca();  ; //** acquire the associated window axes handler
+    while lstsize(scs_m.objs)>0&getfield(1,scs_m.objs($)) == "Deleted" then
       scs_m.objs($) = null(); //** erase the 'Deleted' elements from scs_m.objs
-      gh_object_to_delete = gh_axes.children(1); //** the top element
-      delete(gh_object_to_delete) ; //** delete the elements from the graphics datastructure 
-                                    //** in order to mantain the coherency 
-      if lstsize(scs_m.objs)==0 then
-           break
-      end
-
+      delete(gh_axes.children(1)) ; //** delete the elements from the graphics datastructure 
     end
 
     [scs_m_save,nc_save,enable_undo,edited,needreplay] = resume(scs_m_save,nc_save,%t,%t,needreplay);
 
   end
-
-
 endfunction

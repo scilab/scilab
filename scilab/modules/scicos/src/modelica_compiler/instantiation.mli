@@ -1,23 +1,24 @@
-
-(*  Scicos *)
-(* *)
-(*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr> *)
-(* *)
-(* This program is free software; you can redistribute it and/or modify *)
-(* it under the terms of the GNU General Public License as published by *)
-(* the Free Software Foundation; either version 2 of the License, or *)
-(* (at your option) any later version. *)
-(* *)
-(* This program is distributed in the hope that it will be useful, *)
-(* but WITHOUT ANY WARRANTY; without even the implied warranty of *)
-(* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the *)
-(* GNU General Public License for more details. *)
-(* *) 
-(* You should have received a copy of the GNU General Public License *)
-(* along with this program; if not, write to the Free Software *)
-(* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. *)
-(*  *)
-(* See the file ./license.txt *)
+(*
+ *  Modelicac
+ *
+ *  Copyright (C) 2005 - 2007 Imagine S.A.
+ *  For more information or commercial use please contact us at www.amesim.com
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ *)
 
 (** This module provides the functions that yield instances of compiled
 Modelica classes.*)
@@ -36,16 +37,23 @@ and instantiated_component =
 
 and instantiated_parameter =
     InstantiatedIntegerParameter of string * parameter_kind *
-      typed_expression
-  | InstantiatedRealParameter of string * parameter_kind * typed_expression
+      typed_expression * Compilation.variable_infos
+  | InstantiatedStringParameter of string * parameter_kind *
+      typed_expression * Compilation.variable_infos
+  | InstantiatedRealParameter of string * parameter_kind * typed_expression *
+      Compilation.variable_infos
 
 and parameter_kind = Main | Sub
 
 and instantiated_variable =
-    InstantiatedDiscreteVariable of string * Compilation.inout *
-      typed_expression
+    InstantiatedIntegerVariable of string * Compilation.inout *
+    typed_expression * Compilation.variable_infos
+  | InstantiatedStringVariable of string * Compilation.inout *
+    typed_expression * Compilation.variable_infos
+  | InstantiatedDiscreteVariable of string * Compilation.inout *
+      typed_expression * Compilation.variable_infos
   | InstantiatedRealVariable of string * Compilation.inout *
-      Compilation.nature * typed_expression
+      Compilation.nature * typed_expression * Compilation.variable_infos
   | InstantiatedCompoundVariable of string * typed_expression
 
 and equation =
@@ -76,18 +84,27 @@ and expression_type =
   | StringType of int array
 
 and expression =
-    Abs of typed_expression
+  | Abs of typed_expression
+  | Acos of typed_expression
+  | Acosh of typed_expression
   | Addition of typed_expression * typed_expression
   | And of typed_expression * typed_expression
+  | Asin of typed_expression
+  | Asinh of typed_expression
+  | Atan of typed_expression
+  | Atanh of typed_expression
   | Boolean of bool
   | Cardinality of typed_expression
   | CompoundElement of instantiated_class
   | Cos of typed_expression
+  | Cosh of typed_expression
   | Der of typed_expression
   | Division of typed_expression * typed_expression
   | Equals of typed_expression * typed_expression
   | Exp of typed_expression
-  | ExternalFunctionCall of string list * typed_expression list
+  | ExternalFunctionCall of
+      string list * expression_type list * expression_type list *
+      typed_argument list
   | Floor of typed_expression
   | GreaterEqualThan of typed_expression * typed_expression
   | GreaterThan of typed_expression * typed_expression
@@ -105,8 +122,10 @@ and expression =
   | Or of typed_expression * typed_expression
   | ParameterValue of int * reference
   | Power of typed_expression * typed_expression
+  | Pre of typed_expression
   | Real of float
   | Sin of typed_expression
+  | Sinh of typed_expression
   | Sqrt of typed_expression
   | String of string
   | Subtraction of typed_expression * typed_expression
@@ -116,6 +135,10 @@ and expression =
   | VariableStart of int * reference
   | VariableValue of int * reference
   | Vector of typed_expression array
+
+and typed_argument =
+  | ScalarArgument of typed_expression
+  | ArrayArgument of int list * typed_expression array
 
 and reference = (string * int array) list
 

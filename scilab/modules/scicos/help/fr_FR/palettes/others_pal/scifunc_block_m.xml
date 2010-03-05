@@ -93,11 +93,11 @@
   <refsection id="Description_scifunc_block_m">
     <title>Description</title>
     <para>
-This block can realize any type of Scicos block. The function of the
-block is defined interactively using dialogue boxes and in Scilab
-language. During simulation, these instructions are interpreted by
-Scilab; the simulation of diagrams that include these types of blocks
-is slower. For more information see Scicos reference manual. 
+Ce bloc peut réaliser tous types de bloc Scicos. La fonction de calcul
+de ce bloc est une fonction Scilab définie interactivement par la boîte
+de dialogue. Pendant la simulation, les instructions sont interprétées
+par Scilab et donc la simulation d'un diagramme comportant un tel bloc
+peut devenir plus lente.
 
 </para>
   </refsection>
@@ -245,7 +245,7 @@ is slower. For more information see Scicos reference manual.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos/src/fortran/scifunc.f (Type 3)</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/scifunc.f (Type 3)</para>
       </listitem>
     </itemizedlist>
   </refsection>

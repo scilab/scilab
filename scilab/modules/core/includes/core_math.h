@@ -90,6 +90,11 @@
 #define M_PI 3.14159265358979323846 
 #endif
 
+#ifndef HAVE_EXP10
+#define log_10_ 2.3025850929940456840179914546844
+/* Provide a macro to do exp10 */
+#define exp10(x) exp( (log_10_) * (x) )
+#endif
 
 #endif /* __BASE_MATH_H__ */
 

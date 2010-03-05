@@ -10,11 +10,10 @@
 ;
 #define FFTW "fftw"
 ;
-#ifdef WITH_FFTW_LIBRARY
 Source: bin\fftw\libfftw3-3.dll; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
 Source: bin\fftw\COPYRIGHT; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
 Source: bin\fftw\COPYING; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
-#endif
+
 Source: bin\fftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: {#COMPN_FFTW}
 Source: bin\nofftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: not ({#COMPN_FFTW})
 ;
@@ -28,8 +27,6 @@ Source: modules\{#FFTW}\sci_gateway\fftw_gateway.xml; DestDir: {app}\modules\{#F
 ;
 Source: modules\{#FFTW}\etc\{#FFTW}.quit; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
-;
-Source: modules\{#FFTW}\help\addchapter.sce; DestDir: {app}\modules\{#FFTW}\help; Flags: recursesubdirs; Components:  {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\demos\*.*; DestDir: {app}\modules\{#FFTW}\demos; Flags: recursesubdirs; Components: {#COMPN_FFTW}
 ;

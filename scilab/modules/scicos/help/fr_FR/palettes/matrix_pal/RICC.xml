@@ -227,7 +227,7 @@ The user can choose between two methods of computation. For the continuous time 
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/ricc_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/ricc_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

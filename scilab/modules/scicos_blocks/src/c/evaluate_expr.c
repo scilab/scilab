@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #if _MSC_VER
 #include <float.h>
@@ -28,16 +28,11 @@
 #include <ieeefp.h>
 #endif
 
+#include "scicos_block.h"
 #include "machine.h" /* isinf */
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+#include "scicos_math.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
 /*
 arcsinh z = log (z+sqrt(1+z2))
@@ -46,12 +41,12 @@ double asinh(double x)
 {
   return log(x+sqrt(x*x+1));
 }
-
+/*--------------------------------------------------------------------------*/ 
 double acosh(double x)
 {
   return log(x+sqrt(x*x-1));
 }
-
+/*--------------------------------------------------------------------------*/ 
 /*
 Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 – x)) / 2 
 */
@@ -60,13 +55,13 @@ double atanh(double x)
 	return (double)(log ((1.+x)/(1.-x))/2);
 }
 #endif
-
-void evaluate_expr(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block,int flag)
 {
   static double stack [1000];
-  static int count,bottom,nzcr,i,phase; 
-  int j;  
-  if (flag==1||flag==9){
+  static int count = 0,bottom = 0,nzcr = 0,i = 0,phase = 0; 
+  int j = 0;  
+  if (flag==1||flag==6||flag==9){
     phase=get_phase_simulation();
     bottom=-1;
     count=-1;
@@ -521,6 +516,7 @@ void evaluate_expr(scicos_block *block,int flag)
     #else
      if(isinf(stack[bottom])||isnan(stack[bottom])){
     #endif
+	  if (flag==6) return;
       set_block_error(-2);
       return;
     }else{
@@ -528,3 +524,4 @@ void evaluate_expr(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

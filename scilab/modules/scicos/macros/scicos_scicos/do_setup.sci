@@ -47,7 +47,7 @@ while %t do
       [string([tf;scale;atol;rtol;ttol;deltat;solver;hmax])])
   if ~ok then break,end
   if or([tf,atol,rtol,ttol,deltat]<=0) then
-    message('Parameter must  be positive')
+    messagebox('Parameter must  be positive','modal')
   else
     wpar.tol=[atol;rtol;ttol;deltat;scale;solver;hmax]
     wpar.tf=tf

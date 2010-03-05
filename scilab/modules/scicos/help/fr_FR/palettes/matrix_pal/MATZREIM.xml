@@ -199,7 +199,7 @@ This block decomposes a complex number by seperating the real and imaginary part
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_reim.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/matz_reim.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_reimc.c</para>

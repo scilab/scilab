@@ -39,10 +39,11 @@ case 'set' then
   while %t do
     [ok,inh,nmod,exprs]=scicos_getvalue('Set parameters',..
 	['Inherit (1: no, 0: yes)';'zero-crossing (0: no, 1: yes)'],..
-				 list('vec',1,'vec',1),exprs)
+	list('vec',1,'vec',1),exprs)
     if ~ok then break,end
+    model.dep_ut=[%t %f];  //compatibility
     if nmod<>0 then nmod=1,end
-    if inh==0 then inh=[]; else inh=1;end
+    if inh<>1 then inh=[]; end
     [model,graphics,ok]=check_io(model,graphics,1,[],inh,[1;1])
       if ok then
 	graphics.exprs=exprs;

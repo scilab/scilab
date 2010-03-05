@@ -219,7 +219,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasi
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/rndblk_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/rndblk_m.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/rndblkz_m.c</para>

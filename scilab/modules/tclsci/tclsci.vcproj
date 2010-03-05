@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -379,10 +379,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\GedManagement.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\GlobalTclInterp.c"
 				>
 			</File>
@@ -494,10 +490,6 @@
 				RelativePath=".\src\c\TerminateTclTk.c"
 				>
 			</File>
-			<File
-				RelativePath=".\src\c\withtk.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -513,10 +505,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\GedManagement.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\GlobalTclInterp.h"
 				>
 			</File>
@@ -526,10 +514,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\InitializeTclTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Messages.h"
 				>
 			</File>
 			<File
@@ -573,19 +557,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\TclEvents.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\TerminateTclTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Thread_Wrapper.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\withtk.h"
 				>
 			</File>
 		</Filter>

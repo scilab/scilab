@@ -528,19 +528,27 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
+	AC_MSG_CHECKING([if /sw64/ is available or not])
+	if test -d /sw64/; then
+	AC_MSG_RESULT([yes])
+	 CFLAGS=" $CFLAGS -I/sw64/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw64/include "
+	 LDFLAGS=" $LDFLAGS -L/sw64/lib/ "
+	else
+	AC_MSG_RESULT([no... switch back to /sw/. This might cause issues on link test of third party libraries])
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+    fi
 	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
-	      x86_64-apple-darwin*)
+	# By default, consider that all mac runs 64 bits applications
+	      x86_64-apple-darwin*|i386-apple-darwin*)
                 CC=" $CC -arch x86_64 "
                 CXX=" $CXX -arch x86_64 "
                 ;;
 	esac
+	#Check that the current Mac OS X can link against system 64 bits libs
+	AC_CHECK_FUNCS([pow])
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -757,6 +765,53 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(JEUCLID_CORE)
 
 
+				################ Mandatory for graphic_export features #####
+				# XML to PDF/other Translator
+				AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+				FOP=$PACKAGE_JAR_FILE
+				AC_SUBST(FOP)
+
+				# xml.apache.org SVG Library (under mandriva for example)
+				AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+				BATIK=$PACKAGE_JAR_FILE
+
+				if test -z "$BATIK"; then
+				   # Other other distribs
+				   AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+				   BATIK=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(BATIK)
+
+				# Commons I/O library
+				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+				COMMONS_IO=$PACKAGE_JAR_FILE
+				AC_SUBST(COMMONS_IO)
+
+				# XML graphics common
+				AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+				XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+				AC_SUBST(XMLGRAPHICS_COMMONS)
+
+				# Avalon Framework (PDF)
+				AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+				AC_SUBST(AVALON_FRAMEWORK)
+
+	# XML API EXT (conversion of a SVG => PNG)
+				AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
+				XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+				if test -z "$XML_APIS_EXT"; then
+					# Other other distribs (Ex: Fedora/Redhat)
+					AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+					XML_APIS_EXT=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(XML_APIS_EXT)
+
+				################ END Mandatory for graphic_export features #####
+
+
+				############ XCOS ############
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
@@ -769,10 +824,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-                                # JLaTeXMath
-                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
-                                JLATEXMATH=$PACKAGE_JAR_FILE
-                                AC_SUBST(JLATEXMATH)
+				# JLaTeXMath
+                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                JLATEXMATH=$PACKAGE_JAR_FILE
+                AC_SUBST(JLATEXMATH)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.8.8],[TeXFormula.VERSION])
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -927,12 +984,7 @@ LT_LIB_M()
 # Provided by math.h
 
 LDFLAGS="$LDFLAGS $LIBM"
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
-
-AC_CHECK_FUNC([exp10],,[
-				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
-				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
-				])
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
@@ -1578,6 +1630,7 @@ modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
 modules/ui_data/Makefile
+modules/graph/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1799,11 +1852,7 @@ echo ""
 if test $HELP_ENABLE = yes; then
    echo "Documentation building configuration:"
    echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
-   echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Commons I/O ............ = $COMMONS_IO"
-   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
@@ -1844,6 +1893,18 @@ echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
+
+echo ""
+if test ! -z "$JAVAC"; then
+echo "Documentation, graphic export:"
+echo "  FOP (XML => PDF) .... = $FOP"
+echo "  JLaTeXMath Fop ...... = $JLATEXMATH_FOP"
+echo "  Batik (SVG) ......... = $BATIK"
+echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
+echo "  Commons I/O ......... = $COMMONS_IO"
+echo "  XML graphics commons  = $XMLGRAPHICS_COMMONS"
+fi
+
 
 echo ""
 echo "Code quality (optional):"

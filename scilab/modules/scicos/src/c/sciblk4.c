@@ -18,126 +18,56 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-
 #include "stack-c.h"
 #include "scicos_block4.h"
 #include "Scierror.h"
-
+#include "scicos.h"
+#include "sciblk4.h"
+#include "import.h"
+#include "createblklist.h"
+#include "localization.h"
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
 extern void C2F(scifunc)();
 extern int *listentry(int *header, int i);
 extern void C2F(itosci)();
-extern int getscicosvarsfromimport(char *what,void *v,int *nv,int *mv);
-
-/* Define var2sci,sci2var,createblklist function */
-extern int var2sci(void *x,int n,int m,int typ_var); /*it's now in intcscicos.c*/
-extern int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun); /*it's now in intcscicos.c*/
-int sci2var(void *x,void *y,int typ_var);
-
-/* sciblk4. Run scilab block type 5.
- *
- * Input parameters :
- * Blocks : Tlist
- *    - 1 : Blocks(1)      : !scicos_block nevprt funpt type   scsptr  nz
- *                            z            nx     x     xd     res     nin
- *                            insz         inptr  nout  outsz  outptr  nevout
- *                            evout        nrpar  rpar  nipar  ipar    ng
- *                            g            ztyp   jroot label  work    nmode
- *                            mode !
- *    - 2  : Blocks.nevprt  :
- *    - 3  : Blocks.funpt   :
- *    - 4  : Blocks.type    :
- *    - 5  : Blocks.scsptr  :
- *    - 6  : Blocks.nz      :
- *    - 7  : Blocks.z       :
- *    - 8  : Blocks.noz     :
- *    - 9  : Blocks.ozsz    :
- *    - 10 : Blocks.oztyp   :
- *    - 11 : Blocks.oz      :
- *    - 12 : Blocks.nx      :
- *    - 13 : Blocks.x       :
- *    - 14 : Blocks.xd      :
- *    - 15 : Blocks.res     :
- *    - 16 : Blocks.nin     :
- *    - 17 : Blocks.insz    :
- *    - 18 : Blocks.inptr   :
- *    - 19 : Blocks.nout    :
- *    - 20 : Blocks.outsz   :
- *    - 21 : Blocks.outptr  :
- *    - 22 : Blocks.nevout  :
- *    - 23 : Blocks.evout   :
- *    - 24 : Blocks.nrpar   :
- *    - 25 : Blocks.rpar    :
- *    - 26 : Blocks.nipar   :
- *    - 27 : Blocks.ipar    :
- *    - 28 : Blocks.nopar   :
- *    - 29 : Blocks.oparsz  :
- *    - 30 : Blocks.opartyp :
- *    - 31 : Blocks.opar    :
- *    - 32 : Blocks.ng      :
- *    - 33 : Blocks.g       :
- *    - 34 : Blocks.ztyp    :
- *    - 35 : Blocks.jroot   :
- *    - 36 : Blocks.label   :
- *    - 37 : Blocks.work    :
- *    - 38 : Blocks.nmode   :
- *    - 39 : Blocks.mode    :
- *
- * flag : integer
- *         0 : update continuous state
- *         1 : update output state
- *         2 : update state
- *         3 : update event output state
- *         4 : state initialisation
- *         5 : finish
- *         6 : output state initialisation
- *         7 : define property of continuous time states
- *         9 : zero crossing surface computation
- *        10 : Jacobian computation
- *
- * Output parameters :
- * Blocks : Scilab Tlist (updated blocks Scilab list)
- *
- * 08/06/06, Alan   : Rewritten from original code of sciblk4.c
- *                    of scicos 2.7.
- * 09/02/07, Alan   : Add oz as a discrete state
- *                    Update taking to account implicit/explicit call of simulator
- *                    for some output elements
- */
-
-/* prototype */
-void sciblk4(Blocks,flag)
-     scicos_block *Blocks;
-     int flag;
+/*--------------------------------------------------------------------------*/
+static int sci2var(void *x,void *y,int typ_var);
+/*--------------------------------------------------------------------------*/
+void sciblk4(scicos_block *Blocks, int flag)
 {
   /*counter and address variable declaration*/
-  int i,j,k,topsave;
+  int i = 0,j = 0,k = 0,topsave = 0;
   int ierr = 0;
-  int kfun;
+  int kfun = 0;
 
-  int *header,ne1;
-  double *le111;
+  int *header = NULL,ne1 = 0;
+  double *le111 = NULL;
 
-  int *il_xd, *il_res, *il_out, *il_outptr;
-  int *il_z, *il_oz, *il_ozptr, *il_x;
-  int *il_mode, *il_evout, *il_g;
-  double *l_mode;
+  int *il_xd = NULL, *il_res = NULL, *il_out = NULL, *il_outptr = NULL;
+  int *il_xprop = NULL;
+
+  int *il_z = NULL, *il_oz = NULL, *il_ozptr = NULL, *il_x = NULL;
+  int *il_mode = NULL, *il_evout = NULL, *il_g = NULL;
+  double *l_mode = NULL;
+  double *l_xprop = NULL;
 
   /* variable for output typed port */
-  int nout;
+  int nout = 0;
 
-  int nv,mv;
-  int *ptr, *funtyp;
+  int nv = 0,mv = 0;
+  int *ptr = NULL, *funtyp = NULL;
 
   /* set number of left and right hand side parameters */
-  int mlhs=1,mrhs=2;
+  int mlhs = 1,mrhs = 2;
 
   /* Save Top counter */
-  topsave=Top;
+  topsave = Top;
 
   /* Retrieve block number */
   kfun = get_block_number();
@@ -151,7 +81,7 @@ void sciblk4(Blocks,flag)
   /****************************
    * create scilab tlist Blocks
    ****************************/
-  if((createblklist(&Blocks[0], &ierr,(i=-1),kfun))==0) goto err;
+  if((createblklist(&Blocks[0], &ierr,(i=-1),funtyp[kfun-1]))==0) goto err;
 
   /* * flag * */
   C2F(itosci)(&flag,(i=1,&i),(j=1,&j));
@@ -511,9 +441,14 @@ void sciblk4(Blocks,flag)
    *******************************************/
    case 7 :
    {
-     /* nothing to do
-      * (only used for implicit block with set_pointer_xproperty) 
-      */
+	   if (Blocks[0].nx != 0) {
+		   /* 40 - x */
+		   il_xprop = (int *) listentry(header,40);
+		   l_xprop = (double *)(il_xprop + 4);
+		   for (nv=0;nv<Blocks[0].nx;nv++) {
+			   Blocks[0].xprop[nv]=(int) l_xprop[nv];
+		   }
+	   }
    }
    break;
 
@@ -573,13 +508,13 @@ void sciblk4(Blocks,flag)
    {
     switch (ierr)
     {
-     case 1  : Scierror(888,"var2sci : error %d. Stack is full.\n",ierr);
+     case 1  : Scierror(888,_("%s: error %d. Stack is full.\n"),"var2sci",ierr);
                break;
 
-     case 2  : Scierror(888,"var2sci : error %d. No more space on the stack for new data.\n",ierr);
+     case 2  : Scierror(888,_("%s: error %d. No more space on the stack for new data.\n"),"var2sci",ierr);
                break;
 
-     default : Scierror(888,"var2sci : error %d. Undefined error.\n",ierr);
+     default : Scierror(888,_("%s: error %d. Undefined error.\n"),"var2sci",ierr);
                break;
     }
    }
@@ -587,27 +522,26 @@ void sciblk4(Blocks,flag)
    {
     switch (ierr)
     {
-     case 1001  : Scierror(888,"sci2var : error %d. Only int or double object are accepted.\n",ierr);
+     case 1001  : Scierror(888,_("%s: error %d. Only int or double object are accepted.\n"),"sci2var",ierr);
                   break;
 
-     case 1002  : Scierror(888,"sci2var : error %d. Bad double object sub_type.\n",ierr);
+     case 1002  : Scierror(888,_("%s: error %d. Bad double object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1003  : Scierror(888,"sci2var : error %d. Bad int object sub_type.\n",ierr);
+     case 1003  : Scierror(888,_("%s: error %d. Bad int object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1004  : Scierror(888,"sci2var : error %d. A type of a scilab object has changed.\n",ierr);
+     case 1004  : Scierror(888,_("%s: error %d. A type of a scilab object has changed.\n"),"sci2var",ierr);
                   break;
 
-     default    : Scierror(888,"sci2var : error %d. Undefined error.\n",ierr);
+     default    : Scierror(888,_("%s: error %d. Undefined error.\n"),"sci2var",ierr);
                   break;
     }
    }
   }
   set_block_error(-1);
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 /* sci2var function to convert scilab object
  * to an array of scicos blocks.
  *
@@ -635,7 +569,7 @@ void sciblk4(Blocks,flag)
  */
 
 /* prototype */
-int sci2var(void *x,void *y, int typ_var)
+static int sci2var(void *x,void *y, int typ_var)
 {
  /************************************
   * variables and constants définition

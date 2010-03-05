@@ -5,6 +5,16 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 load('SCI/modules/scicos/macros/scicos_scicos/lib');
+load('SCI/modules/scicos/macros/scicos_utils/lib');
+load('SCI/modules/scicos/macros/scicos_menus/lib');
+if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+       ~isdef("scicos_pal_libs") ) then
+     [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
+     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+end
 options=default_options();
 //build the block set
 blockslib='scs'+['Branching','Events','Misc','Sinks','Threshold','Linear', ...
@@ -132,6 +142,7 @@ return;end
 //
 // 05/02/07 -Alan- : update to %20 rhs parameters
 //
+// Copyright INRIA
 [%lhs,%rhs]=argn(0)
 %nn=prod(size(%lables))
 if %lhs<>%nn+2&%lhs<>%nn+1 then error(41),end
@@ -156,7 +167,7 @@ while %t do
       %str(%kk)=ascii(%cod)
     end
   end
-  [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context);
+  [%vv_list,%ierr_vec]=context_evstr(%str,%scicos_context,%typ);
   %noooo=0
   for %kk=1:%nn
     %vv=%vv_list(%kk)
@@ -194,7 +205,7 @@ while %t do
 	%noooo=-%kk,break,
       end
       if %ierr<>0 then %noooo=-%kk;break,end
-      if type(%vv)>2 then %noooo=-%kk,break,end
+      if (type(%vv)>2 & type(%vv)<>8) then %noooo=-%kk,break,end
       %sz=%typ(2*%kk);if type(%sz)==10 then %sz=evstr(%sz),end
       %ssss=string(%sz(1))
       %nnnnn=prod(size(%vv))
@@ -263,6 +274,8 @@ while %t do
 	if %sz(1)>=0 then if %mmmm<>%sz(1) then %noooo=%kk,break,end,end
 	if %sz(2)>=0 then if %nnnnn<>%sz(2) then %noooo=%kk,break,end,end
       end
+    case 'gen'
+      //accept all
     else
       error('Incorrect type :'+%typ(2*%kk-1))
     end
@@ -270,14 +283,14 @@ while %t do
     clear %vv
   end
   if %noooo>0 then 
-    message(['answer given for  '+%lables(%noooo);
+    messagebox(['answer given for  '+%lables(%noooo);
              'has invalid dimension: ';
-             'waiting for dimension  '+%ssss])
+             'waiting for dimension  '+%ssss],'modal')
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
-    message(['answer given for  '+%lables(-%noooo);
-             'has incorrect type :'+ %typ(-2*%noooo-1)])
+    messagebox(['answer given for  '+%lables(-%noooo);
+             'has incorrect type :'+ %typ(-2*%noooo-1)],'modal')
     %ini=%str
     %ok=%f;break
   else

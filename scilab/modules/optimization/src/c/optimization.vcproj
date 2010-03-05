@@ -465,6 +465,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\optimization.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"
 			>

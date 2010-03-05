@@ -12,7 +12,7 @@
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.xcos.XcosUIDObject;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
@@ -20,121 +20,16 @@ import com.mxgraph.model.mxGeometry;
 /**
  * Common implementation of any Port.
  */
-public abstract class BasicPort extends XcosUIDObject {
+public abstract class BasicPort extends ScilabGraphUniqueObject {
 
 	/**
-	 * Represent a port orientation related to the associated block. These
-	 * orientation semantics are valid when there is no rotation/mirror/flip
-	 * applied to the block.
-	 */
-	public static enum Orientation {
-		/** The port is on the left (west) side of the block */
-		WEST,
-		/** The port is on the top (north) side of the block */
-		NORTH,
-		/** The port is on the right (east) side of the block */
-		EAST,
-		/** The port is on the bottom (south) side of the block */
-		SOUTH;
-		
-		private static final int MAX_ROTATION = 360;
-		private static final int PERPENDICULAR_ROTATION = 90;
-		
-		/**
-		 * Get the orientation angle where the associated block angle is
-		 * blockAngle.
-		 * 
-		 * @param blockAngle
-		 *            The value of the block angle
-		 * @param flipped
-		 *            The block flip state
-		 * @param mirrored
-		 *            The block mirror state
-		 * @return The value of the angle.
-		 */
-		public int getAngle(int blockAngle, boolean flipped, boolean mirrored) {
-			int angle;
-
-			/* Specific settings */
-			switch (this) {
-			case WEST:
-			case EAST:
-				angle = 0;
-				if (flipped) {
-					angle = angle + (MAX_ROTATION / 2);
-				}
-				break;
-
-			case NORTH:
-			case SOUTH:
-				angle = PERPENDICULAR_ROTATION;
-				if (mirrored) {
-					angle = angle + (MAX_ROTATION / 2);
-				}
-				break;
-
-			default:
-				angle = 0;
-				break;
-			}
-
-			/* Calculate angle */
-			return (angle + blockAngle) % MAX_ROTATION;
-		}
-		
-		/**
-		 * Check the style values with this position
-		 * @param rotationValue Rotation value to check
-		 * @param flipped Flip informations
-		 * @param mirrored Mirror informations
-		 * @return true is the rotation is correct, false otherwise.
-		 */
-		public boolean isDefaultRotation(int rotationValue, boolean flipped, boolean mirrored) {
-			int angle = getBlockRotationValue(rotationValue, flipped, mirrored);
-			return angle == 0;
-		}
-
-		/**
-		 * Get the block rotation value from the style of the port.
-		 * @param angle Rotation value of the port.
-		 * @param flipped Flip state of the port
-		 * @param mirrored Mirror state of the port.
-		 * @return The parent block angle value (calculated).
-		 */
-		public int getBlockRotationValue(int angle, boolean flipped, boolean mirrored) {
-			int rotation = angle;
-			
-			switch (this) {
-			case WEST:
-			case EAST:
-				rotation -= 0;
-				if (flipped) {
-					rotation -= (MAX_ROTATION / 2);
-				}
-				break;
-
-			case NORTH:
-			case SOUTH:
-				rotation -= PERPENDICULAR_ROTATION;
-				if (mirrored) {
-					rotation -= (MAX_ROTATION / 2);
-				}
-				break;
-
-			default:
-				break;
-			}
-			
-			rotation = (rotation + MAX_ROTATION) % MAX_ROTATION;
-			return rotation;
-		}
-	}
+     * The side-size of any port. All ports must have the same size.
+     */
+    public static final int DEFAULT_PORTSIZE = 8;
 	
-    private static final long serialVersionUID = -5022701071026919015L;
+	private static final long serialVersionUID = -5022701071026919015L;
     private static final int DEFAULT_DATALINES = -1;
     private static final int DEFAULT_DATACOLUMNS = -2;
-    
-    private static final int DEFAULT_PORTSIZE = 8;
     
     private int ordering;
     private int connectedLinkId;
@@ -145,8 +40,10 @@ public abstract class BasicPort extends XcosUIDObject {
     private transient String typeName;
 
     /** Type of any dataport */
-    public enum Type { 
+    public enum Type {
+    /** The link direction as no impact on simulation */
 	IMPLICIT,
+	/** The link keep its direction on simulation */
 	EXPLICIT;
 
 	/**
@@ -166,14 +63,23 @@ public abstract class BasicPort extends XcosUIDObject {
 
     /** Type of any data on any dataport */
     public enum DataType {
+    	/** A not specific type */
     	UNKNOW_TYPE,
+    	/** Data is real (double) numbers */
     	REAL_MATRIX,
+    	/** Data is complex (double + i * double) numbers */
     	COMPLEX_MATRIX,
+    	/** Data is int32 (32 bits) numbers */
     	INT32_MATRIX,
+    	/** Data is int16 (16 bits) numbers */
     	INT16_MATRIX,
+    	/** Data is int8 (8bits) numbers */
     	INT8_MATRIX,
+    	/** Data is uint32 (unsigned 32 bits) numbers */
     	UINT32_MATRIX,
+    	/** Data is uint16 (unsigned 16 bits) numbers */
     	UINT16_MATRIX,
+    	/** Data is uint8 (unsigned 8 bits) numbers */
     	UINT8_MATRIX;
 
     	/**

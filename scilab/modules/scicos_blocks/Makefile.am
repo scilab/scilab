@@ -318,7 +318,19 @@ src/c/tows_c.c \
 src/c/variable_delay.c \
 src/c/writeau.c \
 src/c/writec.c \
-src/c/zcross2.c
+src/c/zcross2.c \
+src/c/assignment.c \
+src/c/constraint_c.c \
+src/c/diffblk_c.c \
+src/c/foriterator.c \
+src/c/lookup2d.c \
+src/c/lookup_c.c \
+src/c/matbyscal_e.c \
+src/c/matbyscal_s.c \
+src/c/matmul2_e.c \
+src/c/matmul2_s.c \
+src/c/tablex2d_c.c \
+src/c/whileiterator.c
 
 SCICOS_BLOCKS_CPP_SOURCES = \
 src/cpp/affich2.cpp
@@ -328,14 +340,15 @@ src/c/scoSetProperty.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
 src/c/scoWindowScope.c \
-src/c/affich.c
+src/c/affich.c \
+src/c/scicos_evalhermite.c \
+src/c/scicos_indexfinder.c
 
 NON_BLOCK_CPP_SOURCES = \
 src/jni/XcosDiagram.cpp
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
 src/fortran/affich.f \
-src/fortran/constraint.f \
 src/fortran/csslti.f \
 src/fortran/cstblk.f \
 src/fortran/delay.f \
@@ -411,6 +424,7 @@ libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/scicos/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/string/includes \
 			-I$(top_srcdir)/modules/elementary_functions/includes
 
 libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -420,9 +434,11 @@ libsciscicos_blocks_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
+
 
 libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
 $(SCICOS_BLOCKS_FORTRAN_SOURCES) \
@@ -477,7 +493,7 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 
 
 # cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-libsciscicos_blocks_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciscicos_blocks_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### scicos_blocks : Conf files ####
@@ -489,10 +505,11 @@ libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
-libsciscicos_blocks_la_includedir=$(pkgincludedir)
+libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
 libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
 includes/blocks.h
+
 
 #### scicos_blocks : MACROS ####
 MACROSDIRSEXT= macros/Branching \
@@ -752,3 +769,4 @@ libsciscicos_blocks_la_SOURCES =
 endif
 
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
+

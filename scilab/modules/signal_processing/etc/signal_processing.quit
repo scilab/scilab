@@ -10,6 +10,3 @@
 
 // Delete help chapter
 // =============================================================================
-if WITH_HELPTOOLS then
-	del_help_chapter("signal_processing",%t);
-end

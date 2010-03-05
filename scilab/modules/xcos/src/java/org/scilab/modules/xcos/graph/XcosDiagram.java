@@ -28,12 +28,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
+import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.PasteAction;
@@ -42,6 +47,8 @@ import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -57,7 +64,10 @@ import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
@@ -67,12 +77,12 @@ import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -118,23 +128,11 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxMultiplicity;
 
 /**
- * @author Bruno JOFRET
- *
+ * The base class for a diagram. This class contains jgraphx + Scicos data.
  */
 public class XcosDiagram extends ScilabGraph {
-
-    // Default values : SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
-    private double finalIntegrationTime = 100000;
-    private double integratorAbsoluteTolerance = 1e-4;
-    private double integratorRelativeTolerance = 1e-6;
-    private double toleranceOnTime = 1e-10;
-    private double maxIntegrationTimeinterval = finalIntegrationTime + 1;
-    private double realTimeScaling;
-    private double solver;
-    private double maximumStepSize;
-    private int debugLevel;
-    private String[] context = new String[]{""};
-    private String version = "scicos4.2";
+	// the associated parameters
+	private ScicosParameters scicosParameters;
     //private Window palette;
     private Tab viewPort;
     
@@ -353,8 +351,10 @@ public class XcosDiagram extends ScilabGraph {
     	}
     	
     	mxGeometry geom = splitBlock.getGeometry();
-    	geom.setX(dragSplitPos.getX() - (SplitBlock.DEFAULT_SIZE / 2));
-    	geom.setY(dragSplitPos.getY() - (SplitBlock.DEFAULT_SIZE / 2));
+    	geom.setX(dragSplitPos.getX());
+    	geom.setY(dragSplitPos.getY());
+    	BlockPositioning.alignPoint(geom, getGridSize(), (SplitBlock.DEFAULT_SIZE / 2));
+    	
     	addCell(splitBlock);
     	
     	
@@ -422,13 +422,16 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram() {
 	super();
+	scicosParameters = new ScicosParameters();
+	
 	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
 	
 	mxCodec codec = new mxCodec();
 	try {
-	    File uri = new File(System.getenv("SCI"));
-	    String xml = mxUtils.readFile(System.getenv("SCI") + "/modules/xcos/etc/Xcos-style.xml");
-	    xml = xml.replaceAll("\\$SCILAB", uri.toURI().toURL().toString());
+		final String sciURL = XcosConstants.SCI.toURI().toURL().toString();
+		final String sciPath = XcosConstants.SCI.getAbsolutePath();
+	    String xml = mxUtils.readFile(sciPath + "/modules/xcos/etc/Xcos-style.xml");
+	    xml = xml.replaceAll("\\$SCILAB", sciURL);
 	    Document document = mxUtils.parse(xml);
 	    codec.decode(document.getDocumentElement(), getStylesheet());
 	} catch (IOException e) {
@@ -455,7 +458,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
-
+	
 	//
 	//setCloneInvalidEdges(false);
 	setCloneInvalidEdges(true);
@@ -1040,12 +1043,13 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseClicked(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
+    		double scale = getView().getScale();
 
     		// Double Click within empty diagram Area
     		if (e.getClickCount() >= 2 && SwingUtilities.isLeftMouseButton(e) && cell == null) {
     			TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-    			textBlock.getGeometry().setX(e.getX() - textBlock.getGeometry().getWidth() / 2.0);
-    			textBlock.getGeometry().setY(e.getY() - textBlock.getGeometry().getWidth() / 2.0);
+    			textBlock.getGeometry().setX((e.getX() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
+    			textBlock.getGeometry().setY((e.getY() / scale) - (textBlock.getGeometry().getWidth() / 2.0));
     			addCell(textBlock);
     			return;
     		}
@@ -1057,10 +1061,12 @@ public class XcosDiagram extends ScilabGraph {
     			if (cell instanceof BasicBlock) {
     				BasicBlock block = (BasicBlock) cell;
     				e.consume();
-    				block.openBlockSettings(buildEntireContext());
+    				block.openBlockSettings(getScicosParameters().getContext());
     			}
     			if (cell instanceof BasicLink) {
-    				((BasicLink) cell).insertPoint(e.getX(), e.getY());
+    				mxPoint p = new mxPoint(e.getX() / scale, e.getY() / scale);
+    				BlockPositioning.alignPoint(p, getGridSize(), 0);
+    				((BasicLink) cell).insertPoint(p);
     			}
     			getModel().endUpdate();
     			refresh();
@@ -1160,10 +1166,11 @@ public class XcosDiagram extends ScilabGraph {
 
     	public void mouseReleased(MouseEvent e) {
     		Object cell = getAsComponent().getCellAt(e.getX(), e.getY());
-
+    		double scale = getView().getScale();
+    		
     		if (SwingUtilities.isLeftMouseButton(e)) {
     			if (waitSplitRelease) {
-    				dragSplitPos = new mxPoint(e.getX(), e.getY());
+    				dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     				waitSplitRelease = false;
     				addSplitEdge(splitLink, splitPort);
     			} else if (waitPathRelease) {
@@ -1177,7 +1184,8 @@ public class XcosDiagram extends ScilabGraph {
     					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
     					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
     						geoBlock.getY() + geoPort.getCenterY());
-    					mxPoint point = getPointPosition(lastPoint, new mxPoint(e.getX(), e.getY()));
+    					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
+    					mxPoint point = getPointPosition(lastPoint, click);
 
     					getModel().beginUpdate();
     					drawLink.getGeometry().setTargetPoint(point);
@@ -1199,7 +1207,7 @@ public class XcosDiagram extends ScilabGraph {
     						if (error == null) {
     							if (cell instanceof BasicLink && cell != drawLink) { //no loop
     								//draw link with a SplitBlock
-    								dragSplitPos = new mxPoint(e.getX(), e.getY());
+    								dragSplitPos = new mxPoint(e.getX() / scale, e.getY() / scale);
     								addSplitEdge((BasicLink) cell, drawLink);
     							} else {
     								getModel().setTerminal(drawLink, cell, false);
@@ -1221,10 +1229,11 @@ public class XcosDiagram extends ScilabGraph {
     							setSelectionCell(drawLink);
     						}
     					} else {
+    						mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
     						if (!e.isControlDown()) {
-    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), new mxPoint(e.getX(), e.getY())));
+    							geo.setTargetPoint(getPointPosition(geo.getTargetPoint(), click));
     						} else {
-    							geo.setTargetPoint(new mxPoint(e.getX(), e.getY()));
+    							geo.setTargetPoint(click);
     						}
     					}
     					getModel().endUpdate();
@@ -1254,8 +1263,8 @@ public class XcosDiagram extends ScilabGraph {
 		final double origX = origin.getX();
 		final double origY = origin.getY();
 
-		final double clickX = click.getX() / scale;
-		final double clickY = click.getY() / scale;
+		final double clickX = click.getX();
+		final double clickY = click.getY();
 
 		final boolean signX = clickX > origX;
 		final boolean signY = clickY > origY;
@@ -1409,117 +1418,83 @@ public class XcosDiagram extends ScilabGraph {
 
 	BlockWriter.writeDiagramToFile(writeFile, this);
     }
-
+    
     /**
-     * @return integration time
-     */
-    public double getFinalIntegrationTime() {
-	return finalIntegrationTime;
-    }
+	 * @return the parameters
+	 */
+	public ScicosParameters getScicosParameters() {
+		return scicosParameters;
+	}
 
-    /**
+	/**
+	 * @param the simulation parameters
+	 */
+	public void setScicosParameters(ScicosParameters scicosParameters) {
+		this.scicosParameters = scicosParameters;
+	}
+	
+	/**
      * @param finalIntegrationTime set integration time
+     * @category XMLCompatibility
      */
     public void setFinalIntegrationTime(double finalIntegrationTime) {
-	this.finalIntegrationTime = finalIntegrationTime;
-    }
-
-    /**
-     * @return integrator absolute tolerance
-     */
-    public double getIntegratorAbsoluteTolerance() {
-	return integratorAbsoluteTolerance;
+    	scicosParameters.setFinalIntegrationTime(finalIntegrationTime);
     }
 
     /**
      * @param integratorAbsoluteTolerance set integrator absolute tolerance
+     * @category XMLCompatibility
      */
     public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
-	this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
-    }
-
-    /**
-     * @return integrator relative tolerance
-     */
-    public double getIntegratorRelativeTolerance() {
-	return integratorRelativeTolerance;
+		scicosParameters.setIntegratorAbsoluteTolerance(integratorAbsoluteTolerance);
     }
 
     /**
      * @param integratorRelativeTolerance integrator relative tolerance
+     * @category XMLCompatibility
      */
     public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
-	this.integratorRelativeTolerance = integratorRelativeTolerance;
-    }
-
-    /**
-     * @return max step size
-     */
-    public double getMaximumStepSize() {
-	return maximumStepSize;
+    	scicosParameters.setIntegratorRelativeTolerance(integratorRelativeTolerance);
     }
 
     /**
      * @param maximumStepSize set max step size
+     * @category XMLCompatibility
      */
     public void setMaximumStepSize(double maximumStepSize) {
-	this.maximumStepSize = maximumStepSize;
-    }
-
-    /**
-     * @return max integration time
-     */
-    public double getMaxIntegrationTimeinterval() {
-	return maxIntegrationTimeinterval;
+    	scicosParameters.setMaximumStepSize(maximumStepSize);
     }
 
     /**
      * @param maxIntegrationTimeinterval set max integration time
+     * @category XMLCompatibility
      */
     public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
-	this.maxIntegrationTimeinterval = maxIntegrationTimeinterval;
-    }
-
-    /**
-     * @return real time scaling
-     */
-    public double getRealTimeScaling() {
-	return realTimeScaling;
+	 scicosParameters.setMaxIntegrationTimeinterval(maxIntegrationTimeinterval);
     }
 
     /**
      * @param realTimeScaling set real time scaling
+     * @category XMLCompatibility
      */
     public void setRealTimeScaling(double realTimeScaling) {
-	this.realTimeScaling = realTimeScaling;
-    }
-
-    /**
-     * @return solver
-     */
-    public double getSolver() {
-	return solver;
+    	scicosParameters.setRealTimeScaling(realTimeScaling);
     }
 
     /**
      * @param solver set solver
+     * @category XMLCompatibility
      */
     public void setSolver(double solver) {
-	this.solver = solver;
-    }
-
-    /**
-     * @return tolerance time
-     */
-    public double getToleranceOnTime() {
-	return toleranceOnTime;
+    	scicosParameters.setSolver(solver);
     }
 
     /**
      * @param toleranceOnTime set tolerance time
+     * @category XMLCompatibility
      */
     public void setToleranceOnTime(double toleranceOnTime) {
-	this.toleranceOnTime = toleranceOnTime;
+		scicosParameters.setToleranceOnTime(toleranceOnTime);
     }
 
     /**
@@ -1569,11 +1544,6 @@ public class XcosDiagram extends ScilabGraph {
 	setGridEnabled(status);
 	getAsComponent().setGridVisible(status);
 	getAsComponent().repaint();
-
-	// (Un)Check the corresponding menu
-	if (gridMenu != null) {
-	    gridMenu.setChecked(status);
-	}
     }
 
     /**
@@ -1749,27 +1719,13 @@ public class XcosDiagram extends ScilabGraph {
 	    getParentTab().draw();
 	}
     }
-
-    /**
-     * @return context string array
-     */
-    public String[] buildEntireContext() {
-	return getContext();
-    }
     
     /**
      * @param context set context
      */
     public void setContext(String[] context) {
-	this.context = context;
+    	scicosParameters.setContext(context);
 	updateCellsContext();
-    }
-
-    /**
-     * @return current context
-     */
-    public String[] getContext() {
-	return context;
     }
 
     /**
@@ -1781,7 +1737,7 @@ public class XcosDiagram extends ScilabGraph {
 	for (int i = 0; i < childCount; ++i) {
 	    Object obj = getModel().getChildAt(rootParent, i);
 	    if (obj instanceof ContextUpdate) {
-		String[] globalContext = buildEntireContext();
+		String[] globalContext = getScicosParameters().getContext();
 
 		/* Determine if the context is not empty */
 		int nbOfDetectedChar = 0;
@@ -1805,26 +1761,13 @@ public class XcosDiagram extends ScilabGraph {
 	    }
 	}
     }
-
-    /**
-     * @return current version
-     */
-    public String getVersion() {
-	return version;
-    }
-    
-    /**
-     * @return current debug level
-     */
-    public int getDebugLevel() {
-    	return debugLevel;
-    }
     
     /**
      * @param debugLevel change debug level
+     * @category XMLCompatibility
      */
     public void setDebugLevel(int debugLevel) {
-    	this.debugLevel = debugLevel;
+    	scicosParameters.setDebugLevel(debugLevel);
     }
 
     /**
@@ -1834,7 +1777,7 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm
      */
-    public void openDiagram(HashMap<String, Object> diagramm) {
+    public void openDiagram(Map<String, Object> diagramm) {
 	if (diagramm != null) {
 	    if (getModel().getChildCount(getDefaultParent()) == 0) {
 		loadDiagram(diagramm);
@@ -1854,11 +1797,11 @@ public class XcosDiagram extends ScilabGraph {
      * 
      * @param diagramm diagram structure
      */
-    public void loadDiagram(HashMap<String, Object> diagramm) {
+    public void loadDiagram(Map<String, Object> diagramm) {
 	List<BasicBlock> allBlocks = (List<BasicBlock>) diagramm.get("Blocks");
 	List<TextBlock> allTextBlocks = (List<TextBlock>) diagramm.get("TextBlocks");
-	HashMap<String, Object> allLinks = (HashMap<String, Object>) diagramm.get("Links");
-	HashMap<String, Object> properties = (HashMap<String, Object>) diagramm.get("Properties");
+	Map<String, Object> allLinks = (Map<String, Object>) diagramm.get("Links");
+	Map<String, Object> properties = (Map<String, Object>) diagramm.get("Properties");
 
 	setFinalIntegrationTime((Double) properties.get("finalIntegrationTime"));
 	setIntegratorAbsoluteTolerance((Double) properties.get("integratorAbsoluteTolerance"));
@@ -2059,7 +2002,7 @@ public class XcosDiagram extends ScilabGraph {
 		    newSP.setParentDiagram(this);
 		    block.setRealParameters(BlockWriter.convertDiagramToMList(newSP.getChild()));
 		} else if (block.getId() == null || block.getId().compareTo("") == 0) {
-		    block.setId();
+		    block.generateId();
 		}
 	    }
 	}
@@ -2210,6 +2153,70 @@ public class XcosDiagram extends ScilabGraph {
 	return action;
     }
 
+    /**
+     * Evaluate the current context
+     * 
+     * @return The resulting data. Keys are variable names and Values are 
+     *         evaluated values. 
+     */
+	public Map<String, String> evaluateContext() {
+		Map<String, String> result = new HashMap<String, String>();
+		try {
+			StringBuilder str = new StringBuilder();
+			str.append('[');
+			for (String s : getScicosParameters().getContext()) {
+				str.append('\"');
+				str.append(s);
+				str.append("\" ");
+			}
+			str.append(']');
+				
+			final File temp = File.createTempFile("xcos_ctx", ".h5", 
+						XcosConstants.TMPDIR);
+			
+			ScilabInterpreterManagement.synchronousScilabExec(
+						"vars = script2var(" + str.toString() + ", struct());" +
+						"export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
+			
+			ScilabList list = new ScilabList();
+			try {
+				int handle = H5Read.openFile(temp.getAbsolutePath());
+				if (handle >= 0) {
+					H5Read.readDataFromFile(handle, list);
+				}
+			} catch (HDF5LibraryException e) {
+				info("The HDF5 library is not loaded");
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				info("Unable to open file");
+				e.printStackTrace();
+			} catch (HDF5Exception e) {
+				info("The HDF5 file is not valid");
+				e.printStackTrace();
+			}
+
+			// We are starting at 2 because a struct is composed of
+			//     - the fields names (ScilabString)
+			//     - the dimension
+			//     - variables values...
+			for (int index = 2; index < list.size(); index++) {
+				String key = ((ScilabString) list.get(0)).getData()[0][index];
+				String value = list.get(index).toString();
+				
+				result.put(key, value);
+			}
+			
+		} catch (IOException e) {
+			info("Unable to create file");
+			e.printStackTrace();
+		} catch (InterpreterException e) {
+			info("Unable to evaluate the contexte");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+    
     /**
      * @param uid block ID
      * @return block
@@ -2369,6 +2376,4 @@ public class XcosDiagram extends ScilabGraph {
 	drawLink = null;
 	info(XcosMessages.EMPTY_INFO);
     }
-    
 }
-

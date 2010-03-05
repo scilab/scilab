@@ -3,11 +3,15 @@
 
 EXPORTS
 ; core
+recu_
+errgst_
+cha1_
 com_
 adre_
 iop_
 stack_
 vstk_  
+intersci_
 ;
 ;core_f
 intstr_

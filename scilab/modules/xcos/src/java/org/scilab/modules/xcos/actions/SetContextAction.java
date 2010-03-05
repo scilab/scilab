@@ -46,15 +46,20 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Opens context settings Window
  */
 public class SetContextAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SET_CONTEXT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	private XcosDiagram diagram;
 	private JFrame mainFrame;
 	private JTextArea contextArea;
 	private boolean windowAlreadyExist;
+	private String[] context;
 	
 	/**
 	 * Constructor
@@ -88,7 +93,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 	 * Window creation
 	 * @param e the event
 	 */
-	public void setContextBox(ActionEvent e) {
+	protected void setContextBox(ActionEvent e) {
 		
 		/** Avoid to have this window created two times */
 		if (windowAlreadyExist) {
@@ -109,8 +114,8 @@ public class SetContextAction extends SimulationNotRunningAction {
         
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
         StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0; i < diagram.getContext().length; i++) {
-        	contextBuilder.append(diagram.getContext()[i]);
+        for (int i = 0; i < diagram.getScicosParameters().getContext().length; i++) {
+        	contextBuilder.append(diagram.getScicosParameters().getContext()[i]);
         	contextBuilder.append(System.getProperty("line.separator"));
         }
         
@@ -185,9 +190,9 @@ public class SetContextAction extends SimulationNotRunningAction {
 					e1.printStackTrace();
 				}
 				/** Test for modifications */
-				String[] oldContext = diagram.getContext();
+				String[] oldContext = diagram.getScicosParameters().getContext();
 				boolean modified = false;
-				/* I more or less lines --> modified */
+				/* If more or less lines --> modified */
 				if (oldContext.length != i) {
 					modified = true;
 				} else {
@@ -200,10 +205,12 @@ public class SetContextAction extends SimulationNotRunningAction {
 				}
 				if (modified) {
 					if (i == 0) { /* Empty context */
-						diagram.setContext(new String[]{""});
+						context = new String[]{""};
 					} else {
-						diagram.setContext(contextList.toArray(new String[i]));
+						context = contextList.toArray(new String[i]);
 					}
+					
+					diagram.setContext(context);
 					diagram.setModified(true);
 				}
 				windowAlreadyExist = false;

@@ -19,13 +19,12 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.utils.UIElementMapper;
-import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
@@ -46,11 +45,24 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxEventObject;
 
 /**
- * @author Bruno JOFRET
- *
+ * A SuperBlock contains an entire diagram on it. Thus it can be easily
+ * customized by the user.
+ * 
+ * A SuperBlock can be created from any part of the diagram y selecting blocks
+ * and applying the {@link RegionToSuperblockAction}.
+ * 
+ * It can also appear to users as a normal block by applying a mask on it. In
+ * this case the creator can use any SuperBlock context defined variable on a
+ * prompt to the user.
+ * 
+ * @see SuperBlockDiagram
+ * @see SuperblockMaskCreateAction
+ * @see SuperblockMaskCustomizeAction
+ * @see SuperblockMaskRemoveAction
  */
 public final class SuperBlock extends BasicBlock {
 	private static final long serialVersionUID = 3005281208417373333L;
@@ -127,74 +139,99 @@ public final class SuperBlock extends BasicBlock {
 	}
 
 	/**
-	 * openBlockSettings this method is called when a double click occured on a
+	 * openBlockSettings this method is called when a double click occurred on a
 	 * super block 
 	 * @param context parent diagram context
 	 * @see BasicBlock.openBlockSettings
 	 */
 	@Override
 	public void openBlockSettings(String[] context) {
+		
+		/*
+		 * Do nothing when something happen on the Palette
+		 */
 		if (getParentDiagram() instanceof PaletteDiagram) {
 			return;
 		}
-
+		
+		/*
+		 * Specific case when we want to generate code.
+		 */
 		if (getChild() == null
 				&& getSimulationFunctionType().compareTo(
 						SimulationFunctionType.DEFAULT) != 0) {
-			// This means we have a SuperBlock and we generated C code for it.
-			this.setLocked(false);
 			return;
 		}
 
+		/*
+		 * When the block is masked it perform actions like any other blocks.
+		 */
 		if (isMasked()) {
 			super.openBlockSettings(context);
-		} else {
-			if (createChildDiagram()) {
-				getChild().setModifiedNonRecursively(false);
-				XcosTab.createTabFromDiagram(getChild());
-				XcosTab.showTabFromDiagram(getChild());
-			} else {
-				getChild().setVisible(true);
-			}
-
-			getChild().updateCellsContext();
+			return;
 		}
+		
+		// Lock the block because we are really performing actions
+		setLocked(true);
+		
+		/*
+		 * Compatibility with older diagrams.
+		 * 
+		 * Before Scilab 5.2.2, saved diagrams don't contains XML children but
+		 * use a pseudo scs_m structure instead.
+		 * 
+		 * In this case child was null and we need to reconstruct child diagram
+		 * from scs_m.
+		 */
+		if (getChild() == null) {
+			createChildDiagram();
+		}
+		
+		/*
+		 * Construct the view or set it visible.
+		 */
+		if (!getChild().isOpened()) {
+			updateAllBlocksColor();
+			getChild().setModifiedNonRecursively(false);
+			XcosTab.createTabFromDiagram(getChild());
+			XcosTab.showTabFromDiagram(getChild());
+			getChild().setOpened(true);
+			getChild().setVisible(true);
+			
+		} else {
+			getChild().setVisible(true);
+		}
+		
+		/*
+		 * Update the cells from the context values.
+		 */
+		getChild().updateCellsContext();
+		
+		XcosTab.getAllDiagrams().add(getChild());
 	}
 
 	/**
-	 * 
+	 * Action to be performed when the diagram is closed
 	 */
 	public void closeBlockSettings() {
-
-		// Do not ask the user, the diagram is saved and closed
+		/*
+		 * Do not ask the user, the diagram is saved and closed.
+		 * 
+		 * By this way we are sure that the main scs_m structure is always
+		 * valid.
+		 */
 		if (getChild().isModified()) {
 			setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
 			getChild().setModified(true);
 			getChild().setModifiedNonRecursively(false);
 		}
 
-		if (!getChild().canClose()) {
-			getChild().setVisible(false);
-			return;
-		}
-
-		if (getChild().getParentTab() != null) {
-			ScilabWindow xcosWindow = (ScilabWindow) UIElementMapper
-					.getCorrespondingUIElement(getChild().getParentTab()
-							.getParentWindowId());
-			xcosWindow.removeTab(getChild().getParentTab());
-			getChild().getViewPort().close();
-			getChild().setOpened(false);
-			XcosTab.closeDiagram(getChild());
-			if (getParentDiagram().isOpened()
-					&& !getParentDiagram().isVisible()) {
-				getParentDiagram().closeDiagram();
-			}
-		}
-
-		child.removeListener(null);
+		/*
+		 * Hide the current child window
+		 */
+		getChild().setVisible(false);
 		setLocked(false);
-		child = null;
+		XcosTab.getAllDiagrams().remove(getChild());
 	}
 
 	/**
@@ -233,6 +270,7 @@ public final class SuperBlock extends BasicBlock {
 		return createChildDiagram(false);
 	}
 
+	
 	/**
 	 * @param generatedUID does we need to generated a new unique ID
 	 * @return status
@@ -243,6 +281,7 @@ public final class SuperBlock extends BasicBlock {
 			child.installListeners();
 			child.loadDiagram(BlockReader.convertMListToDiagram(
 					(ScilabMList) getRealParameters(), false));
+			
 			child.installSuperBlockListeners();
 			child.setChildrenParentDiagram();
 			updateAllBlocksColor();

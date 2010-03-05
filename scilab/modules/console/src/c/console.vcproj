@@ -388,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\console.rc"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\ConsoleIsWaitingForInput.cpp"
 				>
 			</File>
@@ -510,6 +514,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\PromptToHome.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File

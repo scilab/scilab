@@ -21,6 +21,8 @@ import java.io.IOException;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -30,9 +32,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosFileType;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.utils.XcosInterpreterManagement.InterpreterException;
 
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
@@ -41,9 +41,13 @@ import com.mxgraph.util.mxUtils;
  * Generate code for the current graph.
  */
 public class CodeGenerationAction extends SuperBlockSelectedAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.CODE_GENERATION;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**
@@ -81,10 +85,10 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	try {
 			final File tempOutput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 			final File tempInput = File.createTempFile(XcosFileType.XCOS
 					.getExtension(), XcosFileType.HDF5.getExtension(),
-					new File(System.getenv(XcosConstants.TMPDIR)));
+					XcosConstants.TMPDIR);
 	    tempOutput.deleteOnExit();
 	    tempInput.deleteOnExit();
 	    // Write scs_m
@@ -103,7 +107,7 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 				}
 			};
 			
-			XcosInterpreterManagement.asynchronousScilabExec(command, callback);
+			ScilabInterpreterManagement.asynchronousScilabExec(command, callback);
 	} catch (IOException ex) {
 		ex.printStackTrace();
 	    ((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);

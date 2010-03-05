@@ -541,6 +541,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\linear_algebra.rc"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"
 			>

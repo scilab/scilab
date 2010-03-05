@@ -56,7 +56,7 @@ function %pt=do_block_info(%pt,scs_m)
   
   //** Object selected  
     if size(Select,1)>1 then
-      message("Only one block can be selected for this operation.")
+      messagebox("Only one block can be selected for this operation.","modal")
       Cmenu=[]; %pt=[]; return
     end
     

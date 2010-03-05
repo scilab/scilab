@@ -83,3 +83,7 @@ library.xpad.name=org.scilab.modules.xpad.jar
 
 library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
 library.ui_data.name=org.scilab.modules.ui_data.jar
+
+library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
+library.graph.name=org.scilab.modules.graph.jar
+

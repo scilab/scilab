@@ -21,78 +21,88 @@
 
 function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
 //
+ [dirF,nameF,extF]=fileparts(funam);
 
-  [dirF,nameF,extF]=fileparts(funam);
+ //the new head
+ class_txt_new=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
 
-  //the new head
-  class_txt_new=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
+ if (tt==[]) then
+   tete4= ['';' //     Real x(start=1), y(start=2);']
+   tete5='equation';
 
-  if (tt==[]) then
-    tete4= ['';' //     Real x(start=1), y(start=2);']
-    tete5='equation';
-
-    tete6=['      // exemple'];
-    tete7='      //der(x)=x-x*y;';
-    tete8='      //der(y)+2*y=x*y;';
-    tete9='end '+nameF+';';
-    textmp=[class_txt_new;tete4;tete5;tete6;tete7;tete8;tete9];
-  else
-    modif=%f;
-    for i=1:size(tt,'*')
-    if strindex(stripblanks(tt(i)),...
-               '////do not modif above this line ////')<>[] then
-      //Alan, 07/10/07
-      //tt(1:i-1) : the current head
-      textmp=[class_txt_new;tt(i+1:$)]
-      modif=%t
-      break
-    end
-    end
-    if ~modif then textmp=tt, end;
-  end
-
-  while %t
-    txt=textmp;
-    if (extF=='' | (extF=='.mo' & fileinfo(funam)==[])) then
-    [txt]=x_dialog(['Function definition in Modelica';
-         'Here is a skeleton of the functions which you should edit'],textmp);
-    end
-
-    if txt <> [] then // not a Cancel button
-      tt = txt
-      tarpath = pathconvert(TMPDIR + '/Modelica/', %t, %t);
-      // saving in the filename
-      if extF == ''  then
-        funam = tarpath + nameF + '.mo';
-        mputl(tt,funam);
-      elseif fileinfo(funam) == [] then
-        mputl(tt,funam);
-      end
-
-      compilerpath = getmodelicacpath() + "modelicac";
-
-      //++ Check that modelica compiler is available
-      //++ Otherwise, give some feedback and quit
-      if ~with_modelica_compiler() then
-        messagebox(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "MODCOM"),"modal","error");
-        ok = %f
+   tete6=['      // exemple'];
+   tete7='      //der(x)=x-x*y;';
+   tete8='      //der(y)+2*y=x*y;';
+   tete9='end '+nameF+';';
+   textmp=[class_txt_new;tete4;tete5;tete6;tete7;tete8;tete9];
+ else
+   modif=%f;
+   for i=1:size(tt,'*')
+     if strindex(stripblanks(tt(i)),...
+                 '////do not modif above this line ////')<>[] then
+        //Alan, 07/10/07
+        //tt(1:i-1) : the current head
+        textmp=[class_txt_new;tt(i+1:$)]
+        modif=%t
         break
-      end
+     end
+   end
+   if ~modif then textmp=tt, end;
+ end
 
-      if execstr('unix_s(compilerpath + '' -c '' + funam + '' -o '' + tarpath + nameF + ''.moc'')', 'errcatch') <> 0 then
-        messagebox(sprintf(gettext("%s: An error occurred during the compilation of the Modelica block."),"MODCOM"),"modal","error");
-        textmp = txt
-        ok = %f
-      else
-        tt = txt
-        ok = %t
-        break
-      end
-    else // Cancel button
-      ok = %f
-      break
-    end
-  end
+ editblk=%f
+ //## set param of scstxtedit
+ ptxtedit = scicos_txtedit(clos = 0,...
+            typ  = "ModelicaClass",...
+            head = ['Function definition in Modelica';
+                    'Here is a skeleton of the functions'+...
+                     ' which you should edit'])
+
+ while %t
+
+   if (extF=='' | (extF=='.mo' & fileinfo(funam)==[])) then
+     editblk=%t;
+     [txt,Quit] = scstxtedit(textmp,ptxtedit);
+   elseif (extF=='.mo' & fileinfo(funam)<>[]) then
+     txt=tt;
+   end
+   
+   
+   if ptxtedit.clos==1 then
+     break;
+   end
+
+   if txt<>[] then
+     //## TODO : compilation
+     //## printf("Compil !!");
+     ok=%t;
+
+     //** saving in the filename
+     if ok then
+       tarpath=pathconvert(TMPDIR+'/Modelica/',%f,%t);
+
+       if (extF=='')  then
+         funam=tarpath+nameF+'.mo';
+         mputl(txt,funam);
+       elseif fileinfo(funam)==[] then
+         mputl(txt,funam);
+       end
+       ptxtedit.clos = 1;
+       tt   = txt;
+     end
+     textmp    = txt;
+   end
+
+   if editblk then
+     if Quit==1 then
+       ok=%f;
+       break;
+     end
+   elseif txt==[] then
+     ok=%f; // cancel bouton
+     break
+   end
+ end
 endfunction
 
 //build_classhead : build the head of the modelica function

@@ -125,20 +125,21 @@
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
-//Scilab function case
+//External écrit en Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
 I=intg(0,2*%pi,f)
 abs(exact-I)
 
-//Scilab function case with parameter
+//External écrit en Scilab avec un argument
 function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 I=intg(0,2*%pi,list(f1,30))
 abs(exact-I)
 
 
-// Fortran code case (Fortran compiler required)
-// write down the fortran code
+// External écrit en Fortran (un compilateur Fortran est nécessaire)
+// Ecriture du code fortran
+cd TMPDIR;
 F=['      double precision function ffun(x)'
    '      double precision x,pi'
    '      pi=3.14159265358979312d+0'
@@ -147,18 +148,18 @@ F=['      double precision function ffun(x)'
    '      end'];
 mputl(F,TMPDIR+'/ffun.f')
 
-// compile the fortran code
-l=ilib_for_link('ffun','ffun.f',[],'f',TMPDIR+'/Makefile');
+// compilation du code Fortran
+l=ilib_for_link('ffun','ffun.f',[],'f');
 
-// incremental linking
+// link incrémental
 link(l,'ffun','f')
 
-//integrate the function
+// integration de la fonction
 I=intg(0,2*%pi,'ffun')
 abs(exact-I)
 
-// C code case (C compiler required)
-// write down the C code
+// External écrit en C (un compilateur C est nécessaire)
+// Ecriture du code C
 C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
@@ -168,13 +169,13 @@ C=['#include <math.h>'
    '}'];
 mputl(C,TMPDIR+'/cfun.c')
 
-// compile the C code
-l=ilib_for_link('cfun','cfun.f',[],'c',TMPDIR+'/Makefile');
+// compilation du code C
+l=ilib_for_link('cfun','cfun.f',[],'c');
 
 // incremental linking
 link(l,'cfun','c')
 
-//integrate the function
+// integration de la fonction
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
  ]]></programlisting>
@@ -199,7 +200,7 @@ abs(exact-I)
   <refsection>
     <title>Used Functions</title>
 
-    <para>The associated routines can be found in routines/integ directory
+    <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
     :</para>
 
     <para>dqag0.f and dqags.f from quadpack</para>

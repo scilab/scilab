@@ -423,8 +423,8 @@ function [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
      if ok then return, end //if ok then exit adjust
   end
   //if failed then display message and set flag ok to false
-  message(['Not enough information to determine port sizes';
-           'Compile the diagram before running.']);
+  messagebox(['Not enough information to determine port sizes';
+           'Compile the diagram before running.'],"modal");
   ok=%f
 
 endfunction
