@@ -31,27 +31,36 @@ import org.scilab.modules.xcos.link.BasicLink;
 
 /**
  * Class used to write a diagram contents into an HDF5 file
- * @author Vincent COUVERT
- *
  */
 public final class BlockWriter {
-
+	/** Diagram MList header (scs_m) */
+	private static final String[] DIAGRAM_FIELDS = {"diagram", "props", "objs", "version"};
+	/** Diagram properties MList header (scs_m.props) */
+	private static final String[] PROPS_FIELDS = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
+	/** Diagram options MList header (scs_m.props.options) */
+	private static final String[] OPTS_FIELDS = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
+	/**
+	 * Window properties (scs_m.props.wpar).
+	 * 
+	 * This property has no impact among simulation
+	 */
+	private static final double[][] WPAR = {{600, 450, 0, 0, 600, 450}};
+	
     /**
-     * Constructor (MUST NOT BE USED !!!)
+     * This class is a static singleton thus constructor must not be used.
      */
-    private BlockWriter() {
-
-    }
+    private BlockWriter() { }
 
     /**
-     * Main writing function
+     * Write a diagram to any file.
+     * 
      * @param hdf5File file to create
      * @param diagram diagram to save
      * @return true if file created successfully
      */
     public static boolean writeDiagramToFile(String hdf5File, XcosDiagram diagram)	{
 
-	boolean isSuccess = true; // TODO error management
+	boolean isSuccess = true;
 
 	int fileId = H5Write.createFile(hdf5File);
 	
@@ -61,16 +70,21 @@ public final class BlockWriter {
 	    H5Write.writeInDataSet(fileId, "scs_m", data);
 	} catch (HDF5Exception e) {
 	    e.printStackTrace();
+	    isSuccess = false;
 	}
 	H5Write.closeFile(fileId);
 
 	return isSuccess;
     }
 
+    /**
+     * Convert a diagram to a ScilabType.
+     * 
+     * @param diagram the diagram to be converted
+     * @return the scilab formatted datas
+     */
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
-	String[] diagramFields = {"diagram", "props", "objs", "version"};
-
-	ScilabMList data = new ScilabMList(diagramFields);
+	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
 	data.add(getDiagramProps(diagram));
 	data.add(getDiagramObjs(diagram));
 	data.add(getDiagramVersion(diagram));
@@ -85,11 +99,8 @@ public final class BlockWriter {
      * @return a TList
      */
     private static ScilabTList getDiagramProps(XcosDiagram diagram) {
-	String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
-	ScilabTList data = new ScilabTList(propsFields);
-	// This propertie has no impact among simulation
-	double[][] wpar = {{600,450,0,0,600,450}};
-	data.add(new ScilabDouble(wpar)); // wpar
+	ScilabTList data = new ScilabTList(PROPS_FIELDS);
+	data.add(new ScilabDouble(WPAR)); // wpar
 	data.add(new ScilabString(diagram.getTitle())); // title
 	data.add(new ScilabDouble(createTol(diagram))); // tol
 	data.add(new ScilabDouble(diagram.getFinalIntegrationTime())); // tf
@@ -124,9 +135,7 @@ public final class BlockWriter {
      * @return the TList
      */
     private static ScilabTList getDiagramOptions() {
-	String[] optionsFields = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
-
-	ScilabTList data = new ScilabTList(optionsFields);
+	ScilabTList data = new ScilabTList(OPTS_FIELDS);
 	ScilabList threeDimension = new ScilabList();
 	threeDimension.add(new ScilabBoolean(true));
 	threeDimension.add(new ScilabDouble(33));
@@ -167,13 +176,13 @@ public final class BlockWriter {
     		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
     		
     		
-    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock) ) {
+    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock)) {
     			blockList.add((BasicBlock) currentObject);
     			//
     			// Look inside a Block to see if there is no "AutoLink"
     			// Jgraphx will store this link as block's child  
     			//
-    			for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
+    			for (int j = 0; j < ((BasicBlock) currentObject).getChildCount(); ++j) {
     				if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
     					linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
     				}

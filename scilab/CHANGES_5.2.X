@@ -27,12 +27,17 @@ Compilation:
 Xcos:
 =====
 
+* bug 1982 fixed - It was not possible to use links label on a diagram.
+
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
   when changing it.
+
+* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
+  rotation.
 
 * bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
   Ctrl+Wheel was not working for zooming.
@@ -43,13 +48,29 @@ Xcos:
 * bug 6657 fixed - The importXcosDiagram call with specific parameters was 
   crashing scilab.
 
+* bug 6671 fixed - The style was not saved in superBlockDiagram
+
+* bug 6694 fixed - The grid was always enabled when openning a diagram.
+
+Obsolete Functions:
+===================
+
+* 'tk_choose' obsolete see 'x_choose'.
 
 Bug Fixes:
 ==========
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend entity's default background color
+                   to change.
+
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes and their attached entities
+                   to disappear when data min and max bounds were equal (for any of the X,Y or Z axes).
+
+* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab

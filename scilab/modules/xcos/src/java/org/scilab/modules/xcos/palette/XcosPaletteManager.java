@@ -252,7 +252,7 @@ public final class XcosPaletteManager {
 
 			});
 		
-		// Add a default Java bloc in HashMap
+		// Add a default Java bloc in Map
 		((SwingScilabTab) palettes.getAsSimpleTab()).setContentPane(allpalettes);
 
 		allpalettes.setVisible(false);
@@ -341,7 +341,7 @@ public final class XcosPaletteManager {
      */
     private static void createPaletteWindow() {
 	paletteLoadStarted = false;
-	// Add a default Java bloc in HashMap
+	// Add a default Java bloc in Map
 	// Xcos.getAllBlocks().put("TEXT_f", new TextBlock("TEXT_f"));
 
 	Window palWin = ScilabWindow.createWindow();

@@ -28,9 +28,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Block flip handling
  */
 public class FlipAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.FLIP;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_F;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

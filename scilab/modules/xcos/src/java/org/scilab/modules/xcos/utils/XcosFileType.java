@@ -24,6 +24,9 @@ import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterExc
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
+	/**
+	 * Represent the old Scicos text format.
+	 */
 	COSF("cosf", XcosMessages.FILE_COSF) {
 		/**
 		 * Export the typed file to the HDF5 format.
@@ -35,6 +38,9 @@ public enum XcosFileType {
 			return loadScicosDiagram(arg0);
 		}
 	},
+	/**
+	 * Represent the old Scicos binary format.
+	 */
 	COS("cos", XcosMessages.FILE_COS) {
 		/**
 		 * Export the typed file to the HDF5 format.
@@ -46,6 +52,9 @@ public enum XcosFileType {
 			return loadScicosDiagram(arg0);
 		}
 	},
+	/**
+	 * Represent the Scilab I/O format.
+	 */
 	HDF5("h5", XcosMessages.FILE_HDF5) {
 		/**
 		 * Export the typed file to the HDF5 format. (does nothing there)
@@ -57,7 +66,13 @@ public enum XcosFileType {
 			return arg0;
 		}
 	},
+	/**
+	 * Represent the Xcos XML format.
+	 */
 	XCOS("xcos", XcosMessages.FILE_XCOS),
+	/**
+	 * Any other format.
+	 */
 	UNKNOW("", "");
 	
 	

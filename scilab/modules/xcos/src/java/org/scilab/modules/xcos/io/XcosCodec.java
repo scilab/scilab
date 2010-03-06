@@ -46,6 +46,12 @@ import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
+/**
+ * Root codec for Xcos diagram instance.
+ * 
+ * This class register all packages used by Xcos for 
+ * serialization/deserialization. 
+ */
 public class XcosCodec extends mxCodec {
     /**
      * Register usefull codecs and packages for encoding/decoding diagrams
@@ -56,6 +62,7 @@ public class XcosCodec extends mxCodec {
     mxCodecRegistry.addPackage("org.scilab.modules.xcos");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+	mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.commandcontrol");
 	mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
@@ -94,7 +101,7 @@ public class XcosCodec extends mxCodec {
 	};
 
 	
-	String[] refs = {"parent", "source", "target"};
+	String[] refs = {"parent", "source", "target", "container"};
 
 	// Types
 	ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
@@ -134,11 +141,20 @@ public class XcosCodec extends mxCodec {
 	
 	
 	// Diagram
-	String[] diagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile", "multiplicities"};
+	String[] diagramIgnore = {
+			"stylesheet",
+			"parentTab",
+			"viewPort",
+			"viewPortMenu",
+			"view",
+			"selectionModel",
+			"savedFile",
+			"multiplicities",
+			"opened"
+		};
 	ScilabGraphCodec diagramCodec = new ScilabGraphCodec(new XcosDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(diagramCodec);
-	String[] superBlockDiagramIgnore = {"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "multiplicities", "savedFile", "container"};
-	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), superBlockDiagramIgnore, refs, null);
+	ScilabGraphCodec superBlockDiagramCodec = new ScilabGraphCodec(new SuperBlockDiagram(), diagramIgnore, refs, null);
 	mxCodecRegistry.register(superBlockDiagramCodec);
 
 	//Link 
@@ -165,10 +181,17 @@ public class XcosCodec extends mxCodec {
 	
     }
     
+    /**
+     * Default constructor
+     */
     public XcosCodec() {
 	super();
     }
 
+    /**
+     * Construct a new codec associated with the document.
+     * @param document the document containing all the data.
+     */
     public XcosCodec(Document document) {
 	super(document);
     }

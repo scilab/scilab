@@ -16,6 +16,7 @@ package org.scilab.modules.xcos;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -134,15 +135,22 @@ public final class Xcos {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
 	
 	/*
-	 * We are looping in the inverted order because we have to close latest
-	 * add diagrams (eg SuperBlockDiagrams) before any others.
-	 * 
-	 * Furthermore the closeDiagram operation modify the diagram list.
+	 * Stop any running simulation
 	 */
-	int i = diagrams.size() - 1;
-	while (i >= 0) {
-		diagrams.get(i).closeDiagram();
-		i = diagrams.size() - 1;
+	ScilabInterpreterManagement.requestScilabExec("haltscicos");
+	
+	/*
+	 * Using an iterator because the collection is modified during the
+	 * iteration.
+	 */
+	for (Iterator<XcosDiagram> iterator = diagrams.iterator(); iterator.hasNext();) {
+		XcosDiagram xcosDiagram = iterator.next();
+		
+		/*
+		 * We need to close children before closing main diagram
+		 */
+		xcosDiagram.closeChildren();
+		xcosDiagram.closeDiagram();
 	}
 
 	ViewPaletteBrowserAction.setPalettesVisible(false);

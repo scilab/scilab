@@ -33,9 +33,13 @@ import com.mxgraph.util.mxUndoManager;
  * Undo manager
  */
 public class UndoAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.UNDO;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "edit-undo.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_Z;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**

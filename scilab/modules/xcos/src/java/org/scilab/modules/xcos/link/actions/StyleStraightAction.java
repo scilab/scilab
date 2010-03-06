@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.link.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -25,10 +25,13 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link horizontal action
  */
-public class LinkStyleHorizontalAction extends LinkStyleAction {
-	public static final String NAME = XcosMessages.LINK_STYLE_HORIZONTAL;
+public class StyleStraightAction extends StyleAction {
+	/** Name of the action */
+	public static final String NAME = XcosMessages.LINK_STYLE_STRAIGHT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
-	public static final int MNEMONIC_KEY = KeyEvent.VK_H;
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
 
 	/**
 	 * Default constructor the associated graph
@@ -36,7 +39,7 @@ public class LinkStyleHorizontalAction extends LinkStyleAction {
 	 * @param scilabGraph
 	 *            the graph to associate
 	 */
-	public LinkStyleHorizontalAction(ScilabGraph scilabGraph) {
+	public StyleStraightAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
 	}
 
@@ -46,7 +49,7 @@ public class LinkStyleHorizontalAction extends LinkStyleAction {
 	 * @return menu item
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(scilabGraph, LinkStyleHorizontalAction.class);
+		return createMenu(scilabGraph, StyleStraightAction.class);
 	}
 
 	/**
@@ -54,15 +57,12 @@ public class LinkStyleHorizontalAction extends LinkStyleAction {
 	 * 
 	 * @param e
 	 *            params
-	 * @see org.scilab.modules.xcos.actions.LinkStyleAction#actionPerformed(java.awt.event.ActionEvent)
+	 * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		BasicLink[] links = getLinks();
-		getGraph(e).setCellStyles(mxConstants.STYLE_EDGE,
-				mxConstants.EDGESTYLE_ELBOW, links);
-		getGraph(e).setCellStyles(mxConstants.STYLE_ELBOW,
-				mxConstants.ELBOW_HORIZONTAL, links);
+		getGraph(e).setCellStyles(mxConstants.STYLE_EDGE, "", links);
 
 		removePointsOnLinks(links);
 	}

@@ -11,42 +11,28 @@
  *
  */
 
-package org.scilab.modules.xcos.actions;
+package org.scilab.modules.xcos.link.actions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.graph.actions.base.SpecificCellSelectedConstraint;
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
  * base class for changing the link style
  */
-public abstract class LinkStyleAction extends DefaultAction {
+public abstract class StyleAction extends DefaultAction {
+	/** Accelerator key for all children actions */
 	public static final int ACCELERATOR_KEY = 0;
-	
-	/**
-	 * Enable on link selected constraint
-	 */
-    protected final class LinkSelectedConstraint extends SpecificCellSelectedConstraint {
-    	/**
-		 * Default constructor
-		 */
-		public LinkSelectedConstraint() {
-			super(BasicLink.class);
-		}
-    }
+
     /**
      * Default constructor
      * @param scilabGraph the graph to associate
      */
-    public LinkStyleAction(ScilabGraph scilabGraph) {
+    public StyleAction(ScilabGraph scilabGraph) {
     	super(scilabGraph);
-    	
-    	LinkSelectedConstraint c = new LinkSelectedConstraint();
-    	c.install(this, scilabGraph);
     }
 	
 	/**

@@ -25,15 +25,21 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
+import com.mxgraph.swing.handler.mxGraphTransferHandler;
+
 /**
  * Paste manager
  * 
  * This action is enabled by the {@link CutAction} and {@link CopyAction}.
  */
 public final class PasteAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = ScilabGraphMessages.PASTE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "edit-paste.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_V;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**
@@ -61,7 +67,7 @@ public final class PasteAction extends DefaultAction {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		TransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
+		mxGraphTransferHandler.getPasteAction().actionPerformed(new ActionEvent(getGraph(e).getAsComponent(),
 				e.getID(), e.getActionCommand()));
 	}
 }
