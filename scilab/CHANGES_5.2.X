@@ -4,6 +4,9 @@
 Scilab:
 =======
 
+* Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
+See bug #5023
+
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
 the startup script. 
 
