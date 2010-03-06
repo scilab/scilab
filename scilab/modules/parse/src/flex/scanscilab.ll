@@ -129,9 +129,16 @@ assign			"="
   return scan_throw(END);
 }
 
-"select"	return scan_throw(SELECT);
-"case"		return scan_throw(CASE);
+"select"	{
+  Parser::getInstance()->pushControlStatus(Parser::WithinSelect);
+  return scan_throw(SELECT);
+}
 
+"case"		{
+  Parser::getInstance()->popControlStatus();
+  Parser::getInstance()->pushControlStatus(Parser::WithinCase);
+  return scan_throw(CASE);
+}
 
 "function" {
 	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);

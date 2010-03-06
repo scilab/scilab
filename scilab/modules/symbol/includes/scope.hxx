@@ -116,6 +116,26 @@ namespace symbol
 			return _name;
 		}
 
+		/** Return name of current scope, use for namespace. */
+		std::list<string>& get_names(std::string _stModuleName) const
+		{
+			std::list<std::string>* pNames = new std::list<std::string>;
+			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
+			{
+				if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
+				{
+					types::Callable* pC = it_scope->second->getAsCallable();
+					if(pC->getModule() == _stModuleName)
+					{
+						pNames->push_back(it_scope->first.name_get());
+					}
+				}
+			}
+
+			return *pNames;
+		}
+
 		/** Send the content of this table on ostr in a readable manner, the top
 		** of the stack being displayed last. */
 		void	print (std::ostream& ostr) const

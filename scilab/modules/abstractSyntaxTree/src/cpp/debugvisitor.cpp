@@ -26,6 +26,19 @@ namespace ast
     --level;
   }
 
+  static void DEBUG(std::string str)
+  {
+    for(int i = 0 ; i < level; ++i)
+      {
+	std::cerr << "  ";
+      }
+    if (level > 0)
+      {
+	std::cerr << "     ";
+      }
+    std::cerr << str << std::endl;
+  }
+
   static void DEBUG(std::string str, const Exp &e)
   {
     for(int i = 0 ; i < level; ++i)
@@ -306,13 +319,36 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec ReturnExp", e);
-    // FIXME
-    /*
       if (!e.is_global())
       {
-      e.exp_get().accept(*this);
+	e.exp_get().accept(*this);
       }
-    */
+    DEBUG_END_NODE();
+  }
+
+  void DebugVisitor::visit (const SelectExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec SelectExp", e);
+	e.select_get()->accept(*this);
+	ast::cases_t::iterator it;
+	for (it = e.cases_get()->begin() ; it !=  e.cases_get()->end() ; ++it)
+	  {
+		(*it)->accept(*this);
+	  }
+	if (e.default_case_get() != NULL)
+	  {
+		e.default_case_get()->accept(*this);
+	  }
+    DEBUG_END_NODE();
+  }
+
+  void DebugVisitor::visit (const CaseExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec CaseExp", e);
+	e.test_get()->accept(*this);
+	e.body_get()->accept(*this);
     DEBUG_END_NODE();
   }
 
@@ -325,7 +361,7 @@ namespace ast
       {
 	if(!(*i)->is_verbose())
 	  {
-	    std::cerr << "__MUTE__" << std::endl;
+	    DEBUG("__MUTE__");
 	  }
 	(*i)->accept (*this);
       }

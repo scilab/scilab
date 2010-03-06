@@ -63,16 +63,18 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
 		pstLibName = "";
 	}
 
-	//std::vector<pair<std::string, std::string> > FuncList = pContext->get_funlist("env", pstLibName);
+	std::list<string> FuncList = pContext->get_funlist(pstLibName);
 
-	//String *pS = new String((int)FuncList.size(), 2);
-	//for(int i = 0 ; i < FuncList.size() ; i++)
-	//{
-	//	pS->string_set(i, 0, FuncList[i].first.c_str());
-	//	pS->string_set(i, 1, FuncList[i].second.c_str());
-	//}
+	String *pS = new String((int)FuncList.size(), 1);
 
-	//out.push_back(pS);
+	std::list<string>::iterator it;
+	int i = 0;
+	for(it = FuncList.begin() ; it != FuncList.end() ; it++)
+	{
+		pS->string_set(i++, 0, it->c_str());
+	}
+
+	out.push_back(pS);
 	return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

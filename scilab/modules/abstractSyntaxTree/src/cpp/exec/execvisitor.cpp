@@ -254,12 +254,18 @@ namespace ast
 				{
 					ImplicitList* pIL = execVar[j]->result_get()->getAsImplicitList();
 					execVar[j]->result_set(pIL->extract_matrix());
+					delete pIL;
 				}
-				in.push_back(execVar[j]->result_get());
-				execVar[j]->result_get()->IncreaseRef();
+				
+				for(int i = 0 ; i < execVar[j]->result_size_get() ; i++)
+				{
+					in.push_back(execVar[j]->result_get(i));
+					execVar[j]->result_get(i)->IncreaseRef();
+				}
 			}
 			
-			Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+			int iRetCount = Max(1, expected_size_get());
+			Function::ReturnValue Ret = pCall->call(in, iRetCount, out);
 			
 			if(Ret == Callable::OK)
 			{
@@ -303,6 +309,8 @@ namespace ast
 
 			//get symbol of variable
 			InternalType *pIT = NULL;
+
+			//WARNING can be a fieldexp
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
@@ -313,6 +321,7 @@ namespace ast
 				pIT = execFunc->result_get();
 			}
 			InternalType *pOut			= NULL;
+			std::vector<InternalType*> ResultList;
 			ExecVisitor* execMeArg	= new ast::ExecVisitor();
 			int iArgDim							= (int)e.args_get().size();
 			bool bSeeAsVector				= iArgDim == 1;
@@ -333,18 +342,44 @@ namespace ast
 			case InternalType::RealInt :
 				pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
+			case InternalType::RealString :
+				pOut = pIT->getAsString()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
+			case InternalType::RealList :
+				{
+					ResultList = pIT->getAsList()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+					for(int i = 0 ; i < ResultList.size() ; i++)
+					{
+						result_set(i, ResultList[i]);
+					}
+					break;
+				}
 			default :
 				break;
 			}
 
-			if(pOut == NULL)
+			//Container type can return multiple items
+			if(pIT->isContainer() == false)
 			{
-				std::ostringstream os;
-				os << "inconsistent row/column dimensions";
-				os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
-				throw os.str();
+				if(pOut == NULL)
+				{
+					std::ostringstream os;
+					os << "inconsistent row/column dimensions";
+					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					throw os.str();
+				}
+				result_set(pOut);
 			}
-			result_set(pOut);
+			else 
+			{
+				if(ResultList.size() == 0)
+				{
+					std::ostringstream os;
+					os << "inconsistent row/column dimensions";
+					os << ((Location)(*e.args_get().begin())->location_get()).location_string_get() << std::endl;
+					throw os.str();
+				}
+			}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
@@ -536,16 +571,66 @@ namespace ast
 	{
 		if(e.is_global() == false)
 		{//return(x)
-			ExecVisitor execVar;
-			e.exp_get().accept(execVar);
+			ExecVisitor* execVar = new ExecVisitor();
+			e.exp_get().accept(*execVar);
 			
-			for(int i = 0 ; i < execVar.result_size_get() ; i++)
+			for(int i = 0 ; i < execVar->result_size_get() ; i++)
 			{
-				result_set(i, execVar.result_get(i));
+				result_set(i, execVar->result_get(i)->clone());
 			}
+			delete execVar;
 		}
 		((Exp*)&e)->return_set();
 	}
+
+	void ExecVisitor::visit (const SelectExp &e)
+	{
+	  // FIXME : exec select ... case ... else ... end
+		ExecVisitor *execMe = new ast::ExecVisitor();
+		e.select_get()->accept(*execMe);
+		bool bCase = false;
+
+		
+		if(execMe->result_get() != NULL)
+		{//find good case
+			cases_t::iterator it;
+			for(it = e.cases_get()->begin(); it != e.cases_get()->end() ; it++)
+			{
+				ExecVisitor *execCase = new ast::ExecVisitor();
+				CaseExp* pCase = *it;
+				pCase->test_get()->accept(*execCase);
+				if(execCase->result_get() != NULL)
+				{
+					if(execCase->result_get()->isContainer()) //WARNING ONLY FOR CELL
+					{//check each item
+					}
+					else if(*execCase->result_get() == *execMe->result_get())
+					{//the good one
+						ExecVisitor *execBody = new ast::ExecVisitor();
+						pCase->body_get()->accept(*execBody);
+						delete execBody;
+						bCase = true;
+					}
+				}
+				delete execCase;
+			}
+		}
+
+		if(bCase == false)
+		{//default case
+			ExecVisitor *execDefault = new ast::ExecVisitor();
+			e.default_case_get()->accept(*execDefault);
+			delete execDefault;
+		}
+
+		delete execMe;
+	}
+
+	void ExecVisitor::visit(const CaseExp &e)
+	{
+	  // FIXME : case ... 
+	}
+
 
 	void ExecVisitor::visit (const SeqExp  &e)
 	{
@@ -612,6 +697,7 @@ namespace ast
 					symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe->result_get());
 					if((*i)->is_verbose())
 					{
+						//TODO manage multiple returns
 						std::ostringstream ostr;
 						ostr << "ans = " << std::endl;
 						ostr << std::endl;
@@ -647,7 +733,7 @@ namespace ast
 			ExecVisitor *execArg = new ExecVisitor();
 			(*it)->accept(*execArg);
 			//execArg->result_get()->IncreaseRef();
-			result_set(i, execArg->result_get());
+			result_set(i, execArg->result_get()->clone());
 			delete execArg;
 			//result_get(i)->DecreaseRef();
 			i++;
@@ -998,6 +1084,11 @@ namespace ast
 			return NULL;
 		}
 		return _result[_iPos];
+	}
+
+	vector<types::InternalType*>* ExecVisitor::result_list_get()
+	{
+		return &_result;
 	}
 
 	void ExecVisitor::result_set(int _iPos, const types::InternalType *gtVal)

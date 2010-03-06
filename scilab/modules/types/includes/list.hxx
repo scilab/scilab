@@ -18,37 +18,40 @@ namespace types
   class List : public Container
   {
   public :
-    List();
-    ~List(); 
+																	 List();
+																	~List(); 
 
   private :
-    List(List *_oListCopyMe);
-    std::list<InternalType *> *getData();
+																	List(List *_oListCopyMe);
+    std::vector<InternalType *>*	getData();
 
   public :
-    int size_get(); 
+    int														size_get(); 
 
-    void whoAmI(void) { std::cout << "types::List"; };
+    void													whoAmI(void) { std::cout << "types::List"; };
 
-    RealType getType(void) { return RealList; } 
+    RealType											getType(void) { return RealList; } 
 
   /**
    ** append(InternalType *_typedValue)
    ** Append the given value to the end of the List
    */
-    void append(InternalType *_typedValue);
+    void													append(InternalType *_typedValue);
 
   /**
    ** Clone
    ** Create a new List and Copy all values.
    */
-    List *clone();
+    List*													clone();
 
-    std::string toString(int _iPrecision, int _iLineLen);
+    std::string										toString(int _iPrecision, int _iLineLen);
 
-    List *getAsList(void) { return this; }
+    List*													getAsList(void) { return this; }
+
+		bool													insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, vector<types::InternalType*>* _poSource, bool _bAsVector);
+		std::vector<InternalType*>		extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
   private :
-    std::list<InternalType *> *m_plData;
+    std::vector<InternalType *>*	m_plData;
   };
 }

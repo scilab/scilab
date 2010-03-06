@@ -62,7 +62,9 @@ public:
     WithinElseIf,
     WithinTry,
     WithinCatch,
-    WithinFunction
+    WithinFunction,
+	WithinSelect,
+	WithinCase
   };
 
 public:

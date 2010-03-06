@@ -222,6 +222,9 @@ typedef union YYSTYPE
   ast::WhileExp*	t_while_exp;
   ast::ForExp*		t_for_exp;
   ast::TryCatchExp*	t_try_exp;
+  ast::SelectExp*	t_select_exp;
+  ast::CaseExp*		t_case_exp;
+  ast::cases_t*		t_list_case;
 
   ast::CallExp*		t_call_exp;
 

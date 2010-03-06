@@ -52,9 +52,8 @@ namespace symbol
 			if(iSize > 1)
 			{
 				std::list<Scope>::iterator i;
-				i = l_scope.end();
-				i--;
-				i--;
+				i = l_scope.begin();
+				i++;
 				i->put(key, value);
 			}
 		}
@@ -99,6 +98,13 @@ namespace symbol
       return result;
     }
 
+		std::list<std::string>& get_funlist(std::string _stModuleName)
+		{
+			//get hightest scope
+			std::list<Scope>::iterator i = l_scope.end();
+			i--;
+			return i->get_names(_stModuleName);
+		}
   };
 
   inline std::ostream& operator<< (std::ostream& ostr, const Stack &tbl)

@@ -104,6 +104,8 @@ namespace ast
 		virtual void visit (const ForExp  &e);
 		virtual void visit (const BreakExp &e);
 		virtual void visit (const ReturnExp &e);
+		virtual void visit (const SelectExp &e);
+		virtual void visit (const CaseExp &e);
 		virtual void visit (const SeqExp  &e);
 		virtual void visit (const ArrayListExp  &e);
 		virtual void visit (const AssignListExp  &e);
@@ -132,6 +134,7 @@ namespace ast
 		void expected_size_set(int _iSize);
 		types::InternalType*		result_get(void);
 		types::InternalType*		result_get(int _iPos);
+		vector<types::InternalType*>* result_list_get();
 		void	result_set(const types::InternalType *gtVal);
 		void	result_set(int _iPos, const types::InternalType *gtVal);
 

@@ -126,6 +126,12 @@
 #define SCI_CLOSE_ARGS		SCI_RPAREN
 #define SCI_ENDFUNCTION		"endfunction"
 
+// Syntax to have select control structure
+#define SCI_SELECT		"select"
+#define SCI_CASE		"case"
+#define SCI_DEFAULT_CASE "else"
+#define SCI_ENDSELECT	"end"
+
 // Syntax to have return control structure
 #define SCI_RETURN		"return"
 

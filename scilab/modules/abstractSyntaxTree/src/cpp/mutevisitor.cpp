@@ -203,6 +203,14 @@ namespace ast {
 	{
 	}
 
+	void MuteVisitor::visit (const SelectExp &e)
+	{
+	}
+
+	void MuteVisitor::visit (const CaseExp &e)
+	{
+	}
+	
 	void MuteVisitor::visit (const SeqExp  &e)
 	{
 		std::list<Exp *>::const_iterator seq;

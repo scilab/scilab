@@ -74,6 +74,8 @@ namespace ast
     virtual void visit (const ForExp  &e);
     virtual void visit (const BreakExp &e);
     virtual void visit (const ReturnExp &e);
+    virtual void visit (const SelectExp &e);
+    virtual void visit (const CaseExp &e);
     virtual void visit (const SeqExp  &e);
     virtual void visit (const ArrayListExp  &e);
     virtual void visit (const AssignListExp  &e);

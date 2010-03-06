@@ -83,6 +83,11 @@ namespace symbol
 		// FIXME
 	}
 
+	std::list<string>& Context::get_funlist(std::string _stModuleName)
+	{
+		return EnvFunTable.get_funlist(_stModuleName);
+	}
+
 	bool Context::put(Symbol key, InternalType &type)
 	{
 		// FIXME

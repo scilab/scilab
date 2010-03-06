@@ -20,4 +20,5 @@
     <module name="integer" activate="yes"/>
     <module name="io" activate="yes"/>
     <module name="functions" activate="yes"/>
+    <module name="output_stream" activate="yes"/>
 </modules>

@@ -409,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\caseexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\colonvar.hxx"
 				>
 			</File>
@@ -526,6 +530,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\returnexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\selectexp.hxx"
 				>
 			</File>
 			<File

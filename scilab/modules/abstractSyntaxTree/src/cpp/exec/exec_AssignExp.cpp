@@ -90,6 +90,9 @@ namespace ast
 					case InternalType::RealInt : 
 						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsInt(), bSeeAsVector);
 						break;
+					case InternalType::RealList : 
+						//never occur !
+						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
 						break;
@@ -110,6 +113,9 @@ namespace ast
 						break;
 					case InternalType::RealInt : 
 						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					case InternalType::RealList : 
+						 bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_list_get(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
@@ -168,16 +174,16 @@ namespace ast
 					pIT = pTemp;
 				}
 
-				//const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
-				//if(pReturn)
-				//{//ReturnExp so, put the value in the previous scope
-				//	symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
-				//	((AssignExp*)&e)->break_set();
-				//}
-				//else
-				//{
+				const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
+				if(pReturn)
+				{//ReturnExp so, put the value in the previous scope
+					symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
+					((AssignExp*)&e)->break_set();
+				}
+				else
+				{
 					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
-				//}
+				}
 
 				if(e.is_verbose())
 				{

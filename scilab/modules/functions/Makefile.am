@@ -13,7 +13,6 @@ FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
-sci_gateway/c/sci_whereis.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c
 
@@ -21,6 +20,7 @@ GATEWAY_CPP_SOURCES =  \
 sci_gateway/cpp/functions_gw.cpp \
 sci_gateway/cpp/sci_exec.cpp \
 sci_gateway/cpp/sci_functionlist.cpp \
+sci_gateway/cpp/sci_whereis.cpp \
 sci_gateway/cpp/sci_execstr.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \

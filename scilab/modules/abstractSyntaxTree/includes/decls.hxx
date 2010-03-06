@@ -56,6 +56,8 @@ namespace ast
   class FieldExp;
   class TryCatchExp;
   class ReturnExp;
+  class SelectExp;
+  class CaseExp;
 
   // Single operations expressions
   class NotExp;

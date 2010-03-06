@@ -395,6 +395,42 @@ namespace ast {
       }
   }
 
+  void PrintVisitor::visit (const SelectExp &e)
+  {
+    *ostr << SCI_SELECT;
+    *ostr << " " << SCI_OPEN_TEST;
+	e.select_get()->accept(*this);
+	*ostr << SCI_CLOSE_TEST << std::endl;
+	++indent;
+	cases_t::const_iterator it;
+	for (it = e.cases_get()->begin() ; it != e.cases_get()->end() ; ++it)
+      {
+		this->apply_indent();
+		(*it)->accept (*this);
+      }
+	if (e.default_case_get() != NULL)
+	  {
+		this->apply_indent();
+		*ostr << SCI_DEFAULT_CASE << std::endl;
+		++indent;
+		e.default_case_get()->accept(*this);
+		--indent;
+	  }
+	--indent;
+	this->apply_indent();
+	*ostr << SCI_ENDSELECT;
+  }
+
+  void PrintVisitor::visit (const CaseExp &e)
+  {
+    *ostr << SCI_CASE;
+	*ostr << " " << SCI_OPEN_TEST;
+	e.test_get()->accept(*this);
+	*ostr << SCI_CLOSE_TEST << std::endl;
+	this->apply_indent();
+	e.body_get()->accept(*this);	
+  }
+
   void PrintVisitor::visit (const SeqExp  &e)
   {
     std::list<Exp *>::const_iterator	i;

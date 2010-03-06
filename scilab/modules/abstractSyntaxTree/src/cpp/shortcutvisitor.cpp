@@ -150,6 +150,14 @@ namespace ast
 	{
 	}
 
+	void ShortCutVisitor::visit (const SelectExp &e)
+	{
+	}
+
+	void ShortCutVisitor::visit (const CaseExp &e)
+	{
+	}
+
 	void ShortCutVisitor::visit (const SeqExp  &e)
 	{
 		std::list<Exp*>::const_iterator it;

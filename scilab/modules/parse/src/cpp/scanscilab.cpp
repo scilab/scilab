@@ -1001,11 +1001,18 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-return scan_throw(SELECT);
+{
+  Parser::getInstance()->pushControlStatus(Parser::WithinSelect);
+  return scan_throw(SELECT);
+}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-return scan_throw(CASE);
+{
+  Parser::getInstance()->popControlStatus();
+  Parser::getInstance()->pushControlStatus(Parser::WithinCase);
+  return scan_throw(CASE);
+}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP

@@ -472,10 +472,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_disp.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_mprintf.c"
 				>
 			</File>

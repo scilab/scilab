@@ -269,6 +269,30 @@ static void banner()
 }
 
 /*
+** -*- stateView
+** Used to show parser state.
+** Find if we are stuck within some control structure.
+*/
+
+static void stateShow(Parser::ControlStatus status)
+{
+	switch (status)
+	{
+	case Parser::WithinFor : SetTemporaryPrompt("-for->"); break;
+	case Parser::WithinWhile : SetTemporaryPrompt("-while->"); break;
+	case Parser::WithinIf : SetTemporaryPrompt("-if->"); break;
+	case Parser::WithinElse : SetTemporaryPrompt("-else->"); break;
+	case Parser::WithinElseIf : SetTemporaryPrompt("-elseif->"); break;
+	case Parser::WithinTry : SetTemporaryPrompt("-try->"); break;
+	case Parser::WithinCatch : SetTemporaryPrompt("-catch->"); break;
+	case Parser::WithinFunction : SetTemporaryPrompt("-function->"); break;
+	case Parser::WithinSelect : SetTemporaryPrompt("-select->"); break;
+	case Parser::WithinCase : SetTemporaryPrompt("-case->"); break;
+	case Parser::AllControlClosed : SetTemporaryPrompt(SCIPROMPT); break;
+	}
+}
+
+/*
 ** -*- Interactive Main -*-
 */
 static int interactiveMain (void)
@@ -283,6 +307,9 @@ static int interactiveMain (void)
 
 	while (!exit)
 	{
+	  // Show Parser Sate before prompt
+	  stateShow(pParser->getControlStatus());
+
 		//set prompt value
 		C2F(setprlev)(&pause);
 
