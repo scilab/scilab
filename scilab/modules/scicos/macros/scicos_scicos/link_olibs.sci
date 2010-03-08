@@ -85,7 +85,7 @@ function [ok, libs, for_link] = link_olibs(libs,rpat)
   //** add double quote for include in
   //   Makefile
   libs = xlibs;
-  if MSDOS then
+  if getos() == 'Windows' then
     libs = '""' + libs + '""';
   else
     libs = '''' + libs + '''';

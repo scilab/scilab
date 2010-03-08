@@ -115,7 +115,7 @@ function [str_out,Quit] = scstxtedit_tk (str_in,ptxtedit)
   head = ptxtedit.head
 
   //## input param of editor
-  if MSDOS then
+  if getos() == 'Windows' then
     InFile = strsubst(TMPDIR,'/','\')+'\TTMPin';
     InFile = strsubst(InFile,'\','\\\\')';
     OutFile = strsubst(TMPDIR,'/','\')+'\TTMPout';

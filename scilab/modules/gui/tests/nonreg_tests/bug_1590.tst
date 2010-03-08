@@ -17,7 +17,7 @@
 //    clipboard function crashes scilab when called from a script
 
 
-if MSDOS then
+if getos() == 'Windows' then
 	if ( ~or(sciargs()==['-nw']) & ~or(sciargs()==['-nwni']) ) then
 		a="put in clipboard";
 		clipboard('copy',a);

@@ -23,7 +23,7 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
 //Scilab interface with external tool modelicac
 
   MODELICAC_FILENAME = 'modelicac';
-  if MSDOS then
+  if getos() == 'Windows' then
     MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
   end
 
@@ -64,7 +64,7 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
 
   instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC, Errfile], ' ');
  
-  if MSDOS then
+  if getos() == 'Windows' then
     if init then
       mputl(instr,tmpdir+'igenm.bat'); 
       instr = tmpdir + 'igenm.bat';

@@ -41,7 +41,7 @@
       <varlistentry>
         <term>flagexpand</term>
         <listitem>
-          <para>boolean optional parameter. Its default value depends on the MSDOS variable.</para>
+          <para>boolean optional parameter. Its default value depends on the getos() == 'Windows' variable.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -59,8 +59,8 @@
     filename to posix-style pathnames and back. The target style 
     is given by the optional string <literal>type</literal> which can be 
     <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
-    style is set according to the value of <literal>MSDOS</literal>. 
-    If <literal>MSDOS</literal> is TRUE (resp. FALSE ) then default type is <literal>'w'</literal>
+    style is set according to the value of <literal>getos() == 'Windows'</literal>. 
+    If <literal>getos() == 'Windows'</literal> is TRUE (resp. FALSE ) then default type is <literal>'w'</literal>
     (resp.  <literal>'u'</literal>).</para>
     <para>
     Windows pathnames starting with <literal>name:</literal> are converted to 

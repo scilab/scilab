@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // LCC-Win32 does not work with this example
 
-if MSDOS then
+if getos() == 'Windows' then
   ilib_verbose(0);
   if with_lcc() then
     copyfile(SCI + '/modules/dynamic_link/tests/nonreg_tests/bug_5484.c',TMPDIR + '/bug_5484.c');

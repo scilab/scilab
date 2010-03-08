@@ -58,7 +58,7 @@
     pattern for both unix and windows.</para>
     <para>
     if <literal>flag</literal> is true the pathnames given by <literal>paths</literal> are 
-    converted according to the MSDOS value (See <literal>pathconvert</literal>). 
+    converted according to the getos() == 'Windows' value (See <literal>pathconvert</literal>). 
     Moreover, if <literal>flagexpand</literal> is true leading strings like
     <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
     variables.</para>

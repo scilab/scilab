@@ -49,7 +49,7 @@ function varargout = unix_g(cmd)
   stat = 1;
   rep = emptystr();
 
-  if MSDOS then 
+  if getos() == 'Windows' then 
     [rep,stat] = dos(cmd);
     if (stat == %t) then
       stat = 0;

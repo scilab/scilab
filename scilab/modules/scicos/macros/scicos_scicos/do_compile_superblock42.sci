@@ -1942,7 +1942,7 @@ function Code=make_computational42()
         '#include ""scicos.h"" '
         '']
 
-  if MSDOS then
+  if getos() == 'Windows' then
    Code=[Code;
          ' '
          '#define max(a,b) ((a) >= (b) ? (a) : (b))'
@@ -3195,7 +3195,7 @@ function Code=make_standalone42()
         Protostalone
         '']
   
-  if MSDOS then
+  if getos() == 'Windows' then
    Code=[Code;
          ' '
          '#define max(a,b) ((a) >= (b) ? (a) : (b))'

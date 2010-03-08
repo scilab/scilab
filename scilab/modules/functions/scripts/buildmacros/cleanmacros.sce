@@ -13,7 +13,7 @@ lines(0);
 CurrentDirectory=pwd();
 
 chdir ('SCI/modules');
-if MSDOS then
+if getos() == 'Windows' then
   dos('del *.bin /s 2>NUL','-echo');
   dos('del lib /s 2>NUL','-echo');
   dos('del names /s 2>NUL','-echo');
