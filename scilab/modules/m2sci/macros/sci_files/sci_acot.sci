@@ -14,7 +14,7 @@ function tree=sci_acot(tree)
 // Ouput: tree = Scilab equivalent for tree
 
 X=getrhs(tree)
-//X=convert2double(X)
+X=convert2double(X)
 
 tree.name="atan"
 Op=Operation("./",list(Cste(1),X),list())
