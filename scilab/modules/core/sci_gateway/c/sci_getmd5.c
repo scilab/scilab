@@ -38,13 +38,15 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 	char **Input_Matrix  = NULL;
 	char **Output_Matrix = NULL;
 
+	/* @TODO Remove this. This is crashing on purpose Scilab to test breakpad */
+	int *a = NULL;
+
 	Rhs = Max(Rhs, 0);
 	CheckRhs(1,2) ;
 	CheckLhs(1,1) ;
 
 	/* @TODO Remove this. This is crashing on purpose Scilab to test breakpad */
-	int *a=NULL;
-	*a=23;
+	*a = 23;
 
 	if (Rhs == 1)
 	{

@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include "GetWindowsVersion.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "breakpad.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_2K_OR_MORE "Scilab requires Windows 2000 or more."
 #define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
@@ -59,22 +60,13 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 			fRunTimeLinkSuccess = TRUE;
 
 			#ifndef _DEBUG
-			/* catch system errors msgbox (release mode only) */
-			/* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-			// LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
-			_try
-			{
+			/* initialize breakpad just before true main */
+			/* disable in debug mode to access to VS debugger */
+			initializeBreakPad();
 			#endif
-
 			/* launch main */
 			(Windows_Main)(hInstance,hPrevInstance,szCmdLine, iCmdShow);
 		
-			#ifndef _DEBUG
-			}
-			_except (EXCEPTION_EXECUTE_HANDLER)
-			{	
-			}
-			#endif
 
 		}
 		fFreeResult = FreeLibrary(hinstLib); 

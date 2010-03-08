@@ -13,5 +13,6 @@ umfpack
 zlib
 hdf5
 gl2ps
+google_breakpad
 *.lib
 
