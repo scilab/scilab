@@ -86,6 +86,8 @@ Bug Fixes:
 * bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
                    its tics_direction property.
 
+* bug 6734 fixed - read_csv function contained erroneous error messages.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
