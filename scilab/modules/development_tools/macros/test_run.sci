@@ -24,6 +24,9 @@
 //   These are the available tags :
 //     <-- INTERACTIVE TEST -->
 //       This test will be skipped because it is interactive.
+//     <-- LONG TIME EXECUTION -->
+//       This test will be skipped because it needs long-time duration. It will
+//       launched if the optional argument "enable_lt" is called
 //     <-- NOT FIXED -->
 //       This test will be skipped because it is a known, but unfixed bug.
 //     <-- TEST WITH GRAPHIC -->
@@ -358,6 +361,16 @@ function test_run(varargin)
 			testsuite = testsuite_set_EO(testsuite,"skip")
 		end
 		
+		// Enable long-time tests
+		
+		if grep(option_mat,"disable_lt") <> [] then
+			testsuite = testsuite_set_LT(testsuite,"skip")
+		end
+		
+		if grep(option_mat,"enable_lt") <> [] then
+			testsuite = testsuite_set_LT(testsuite,"enable")
+		end
+		
 	end
 	
 	// =========================================================================
@@ -612,6 +625,7 @@ function st = st_new()
 				 "content"        ..
 				 "interactive"    ..
 				 "notyetfixed"    ..
+				 "longtime"       ..    // needs long-time duration 
 				 "reopened"       ..
 				 "platform"       ..
 				 "language"       ..
@@ -635,6 +649,7 @@ function st = st_new()
 	st.skip          = %F;
 	st.interactive   = %F;
 	st.notyetfixed   = %F;
+	st.longtime      = %F;
 	st.reopened      = %F;
 	st.jvm_mandatory = %T;
 	st.graphic       = %F;
@@ -726,6 +741,10 @@ function st = st_set_notyetfixed(st,notyetfixed)
 	st.notyetfixed = notyetfixed;
 endfunction
 
+function st = st_set_longtime(st,longtime)
+	st.longtime = longtime;
+endfunction
+
 function st = st_set_reopened(st,reopened)
 	st.reopened = reopened;
 endfunction
@@ -778,6 +797,7 @@ function st_show(st)
 	if st.skip           then st_skip           = "Yes"; else st_skip           = "No"; end
 	if st.interactive    then st_interactive    = "Yes"; else st_interactive    = "No"; end
 	if st.notyetfixed    then st_notyetfixed    = "Yes"; else st_notyetfixed    = "No"; end
+	if st.longtime       then st_longtime       = "Yes"; else st_longtime       = "No"; end
 	if st.reopened       then st_reopened       = "Yes"; else st_reopened       = "No"; end
 	if st.jvm_mandatory  then st_jvm_mandatory  = "Yes"; else st_jvm_mandatory  = "No"; end
 	if st.graphic        then st_graphic        = "Yes"; else st_graphic        = "No"; end
@@ -803,6 +823,7 @@ function st_show(st)
 	mprintf("  skip           = %s\n"   ,st_skip);
 	mprintf("  interactive    = %s\n"   ,st_interactive);
 	mprintf("  notyetfixed    = %s\n"   ,st_notyetfixed);
+	mprintf("  longtime       = %s\n"   ,st_longtime);
 	mprintf("  reopened       = %s\n"   ,st_reopened);
 	mprintf("  platform       = %s\n"   ,st.platform);
 	mprintf("  jvm_mandatory  = %s\n"   ,st_interactive);
@@ -873,6 +894,10 @@ function st = st_analyse(st)
 	
 	if ~ isempty( grep(st.content,"<-- INTERACTIVE TEST -->") ) then
 		st = st_set_interactive(st,%T);
+	end
+	
+	if ~ isempty( grep(st.content,"<-- LONG TIME EXECUTION -->") ) then
+		st = st_set_longtime(st,%T);
 	end
 	
 	if ~ isempty( grep(st.content,"<-- TEST WITH GRAPHIC -->") ) then
@@ -949,6 +974,14 @@ function st = st_run(st)
 	if st.interactive then
 		st.status = status_set_id(st.status,10);
 		st.status = status_set_message(st.status,"skipped : interactive test");
+		return;
+	end
+	
+	// The test needs long-time duration
+	
+	if st.longtime & (testsuite.longtime == "skip") then
+		st.status = status_set_id(st.status,10);
+		st.status = status_set_message(st.status,"skipped : Long time duration");
 		return;
 	end
 	
@@ -1468,6 +1501,7 @@ function testsuite = testsuite_new()
 				 "wanted_mode"     ..    // NW, NWNI, GUI
 				 "reference"       ..    // check, create, skip
 				 "error_output"    ..    // check, skip
+				 "longtime"        ..    // enable, skip
 				 ]);
 	
 	testsuite.items = list();
@@ -1483,6 +1517,7 @@ function testsuite = testsuite_new()
 	testsuite.wanted_mode  = "";
 	testsuite.reference    = "check";
 	testsuite.error_output = "check";
+	testsuite.longtime     = "skip";
 	
 endfunction
 
@@ -1517,6 +1552,11 @@ endfunction
 
 function testsuite = testsuite_set_EO(testsuite,error_output)
 	testsuite.error_output = error_output;
+endfunction
+
+// Enable/Disable Long Time Execution tests
+function testsuite = testsuite_set_LT(testsuite,lt)
+	testsuite.longtime = lt;
 endfunction
 
 // List tests
