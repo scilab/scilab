@@ -101,7 +101,7 @@ Text Rendering:
 Obsolete Functions:
 ===================
 
-* 'MSDOS' obsolete see 'getos'.
+* 'MSDOS' obsolete see 'getos' (SEP #39).
 
 
 Removed functions (previously declared as obsolete):
