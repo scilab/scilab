@@ -52,6 +52,8 @@ Xcos:
 
 * bug 6694 fixed - The grid was always enabled when openning a diagram.
 
+* bug 6697 fixed - The multi-point link did not align it's edges on the grid.
+
 Obsolete Functions:
 ===================
 
