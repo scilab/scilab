@@ -8,5 +8,7 @@
 //
 
 thispath = get_absolute_file_path("rlc_circuit.dem.sce");
-xcos(thispath+"/RLC_circuit.xcos");
+
+// electrical blocks are simulated with Modelica
+xcos(thispath+"../ModelicaBlocks/RLC_Modelica.xcos");
 clear thispath;

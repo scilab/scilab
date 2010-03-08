@@ -26,9 +26,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Use maximum of space inside the diagram
  */
 public final class FitDiagramToViewAction extends OneBlockDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.FIT_DIAGRAM_TO_VIEW;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "view-fullscreen.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

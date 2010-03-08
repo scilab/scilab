@@ -28,9 +28,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Diagram closing management
  */
 public class CloseAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.CLOSE;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_W;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**

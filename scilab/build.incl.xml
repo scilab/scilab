@@ -63,7 +63,7 @@
 
 
 	<path id="compile.classpath">
-	
+		<pathelement location="${library.graph.dir}/${library.graph.name}"/>
 		<pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
 		<pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
 		<pathelement location="${library.xpad.dir}/${library.xpad.name}"/>
