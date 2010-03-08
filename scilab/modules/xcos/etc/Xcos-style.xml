@@ -1,7 +1,8 @@
 <mxStylesheet>
   <!-- *** BLOCK DEFINITION *** -->
   <add as="block" extend="defaultVertex">
-    <add as="shape" value="rectangle"/>
+    <add as="shape" value="image"/>
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/empty.svg" />
     <add as="perimeter" value="rectanglePerimeter"/>
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="white"/>
@@ -24,7 +25,12 @@
 
 	
   <!-- Label -->
-  <add as="Label" extend="blockWithLabel">
+  <add as="Label" extend="defaultVertex">
+  	<add as="shape" value="rectangle" />
+  	<add as="perimeter" value="rectanglePerimeter"/>
+    <add as="fillColor" value="white"/>
+    <add as="fontColor" value="black"/>
+    <add as="noLabel" value="0"/>
     <add as="strokeColor" value="white"/>
   </add>
 
