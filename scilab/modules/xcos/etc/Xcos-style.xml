@@ -137,7 +137,7 @@
 				    generator" />
 	</add>
 	<add as="RAMP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/RAMP.svg" />
 	</add>
 	<add as="RAND_m" extend="blockWithLabel">
 		<add as="displayedLabel" value="Random&lt;BR&gt;
