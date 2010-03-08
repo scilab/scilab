@@ -75,6 +75,9 @@
             <listitem>
               <para>skip_tests</para>
             </listitem>
+            <listitem>
+              <para>enable_lt : Enable long-time execution tests</para>
+            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -105,8 +108,15 @@
        &#60;-- INTERACTIVE TEST --&#62;
        This test will be skipped because it is interactive.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
+       <para>
+       &#60;-- LONG TIME EXECUTION --&#62;
+       This test will be skipped because it needs long-time duration. To enable
+       the test, call test_run with the following option: "enable_lt"
+       </para>
+     </listitem>
+      <listitem>
        <para>
        &#60;-- NOT FIXED --&#62;
        This test will be skipped because it is a known, but unfixed bug.
