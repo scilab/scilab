@@ -768,7 +768,9 @@
 		<add as="displayedLabel" value="Multiple&lt;BR&gt;
 				    frequency" />
 	</add>
-	<add as="ANDBLK" extend="blockWithLabel" />
+	<add as="ANDBLK" extend="Icon">
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg" />
+	</add>
 	<add as="HALT_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="STOP" />
 	</add>
