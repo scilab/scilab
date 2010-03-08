@@ -945,13 +945,13 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif" />
 	</add>
 	<add as="CurrentSensor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.svg" />
 	</add>
 	<add as="Resistor" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif" />
 	</add>
 	<add as="VoltageSensor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.svg" />
 	</add>
 	<add as="Diode" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif" />
