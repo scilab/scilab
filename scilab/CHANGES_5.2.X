@@ -4,6 +4,9 @@
 Scilab:
 =======
 
+* Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
+See bug #5023
+
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
 the startup script. 
 
@@ -68,6 +71,8 @@ Bug Fixes:
                    to disappear when data min and max bounds were equal (for any of the X,Y or Z axes).
 
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore its tics_direction property.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
