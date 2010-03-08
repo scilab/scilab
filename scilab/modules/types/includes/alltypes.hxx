@@ -36,5 +36,9 @@
 #include "macrofile.hxx"
 #include "list.hxx"
 #include "struct.hxx"
+#include "listoperation.hxx"
+#include "listdelete.hxx"
+#include "listinsert.hxx"
+#include "listundefined.hxx"
 
 #endif /* !ALL_TYPES_HXX */

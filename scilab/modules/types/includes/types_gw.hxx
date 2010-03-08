@@ -32,5 +32,7 @@ public :
 
 Function::ReturnValue sci_list(types::typed_list &in, int _iRetCount, types::typed_list &out);
 Function::ReturnValue sci_struct(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_null(types::typed_list &in, int _iRetCount, types::typed_list &out);
+Function::ReturnValue sci_insert(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 #endif /* !__TYPES_GW_HXX__ */

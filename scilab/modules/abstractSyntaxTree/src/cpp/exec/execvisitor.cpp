@@ -732,10 +732,8 @@ namespace ast
 		{
 			ExecVisitor *execArg = new ExecVisitor();
 			(*it)->accept(*execArg);
-			//execArg->result_get()->IncreaseRef();
 			result_set(i, execArg->result_get()->clone());
 			delete execArg;
-			//result_get(i)->DecreaseRef();
 			i++;
 		}
 	}

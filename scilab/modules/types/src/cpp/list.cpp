@@ -13,6 +13,8 @@
 #include <sstream>
 #include "double.hxx"
 #include "list.hxx"
+#include "listundefined.hxx"
+#include "listinsert.hxx"
 
 namespace types 
 {
@@ -146,16 +148,42 @@ namespace types
 			return false;
 		}
 
-		while(m_plData->size() < _piMaxDim[0])
-		{//incease list size and fill with empty matrix []
-			Double *pD = new Double(0, 0);
-			m_plData->push_back(pD);
-			m_iSize = size_get();
-		}
 
 		for(int i = 0 ; i < _iSeqCount ; i++)
 		{
-			(*m_plData)[_piSeqCoord[i] - 1] = (*_poSource)[i]->clone();
+			if((*_poSource)[i]->isListDelete())
+			{//delete item
+				if((_piSeqCoord[i] - 1) < m_plData->size())
+				{
+					m_plData->erase(m_plData->begin() + (_piSeqCoord[i] - 1));
+				}
+			}
+			else if((*_poSource)[i]->isListInsert())
+			{//insert item
+				ListInsert* pInsert = (*_poSource)[i]->getAsListInsert();
+				if(m_plData->size() < _piSeqCoord[i])
+				{//try to insert after the last index, increase list size and assign value
+					while(m_plData->size() < _piSeqCoord[i])
+					{//incease list size and fill with "Undefined"
+						m_plData->push_back(new ListUndefined());
+						m_iSize = size_get();
+					}
+					(*m_plData)[_piSeqCoord[i] - 1] = pInsert->insert_get();
+				}
+				else
+				{
+					m_plData->insert(m_plData->begin() + (_piSeqCoord[i] - 1), pInsert->insert_get());
+				}
+			}
+			else
+			{
+				while(m_plData->size() < _piSeqCoord[i])
+				{//incease list size and fill with "Undefined"
+					m_plData->push_back(new ListUndefined());
+					m_iSize = size_get();
+				}
+				(*m_plData)[_piSeqCoord[i] - 1] = (*_poSource)[i]->clone();
+			}
 		}
 		return true;
 	}

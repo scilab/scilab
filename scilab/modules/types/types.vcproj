@@ -313,6 +313,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\listdelete.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\listinsert.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\listoperation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\listundefined.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\macro.cpp"
 				>
 			</File>
@@ -400,6 +416,22 @@
 			</File>
 			<File
 				RelativePath=".\includes\list.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\listdelete.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\listinsert.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\listoperation.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\listundefined.hxx"
 				>
 			</File>
 			<File

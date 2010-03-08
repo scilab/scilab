@@ -49,7 +49,12 @@ namespace types
       RealList,
       RealStruct,
       /* User */
-      RealUserType
+      RealUserType,
+			/*For list operation*/
+			RealListOperation, //parent type
+			RealListInsertOperation,
+			RealListDeleteOperation,
+			RealListUndefinedOperation
     };
     
   protected :
@@ -171,7 +176,29 @@ namespace types
     bool isImplicitList(void) { return (getType() == RealImplicitList); }
     virtual ImplicitList* getAsImplicitList(void) { return NULL; }
 
-  private :
+
+    /**
+     ** List Operations
+     ** \{
+     */
+
+		/* ListOperation */
+    bool isListOperation(void) { return (getType() == RealListOperation); }
+		virtual ListOperation* getAsListOperation(void) { return NULL; }
+
+		/* ListDelete */
+    bool isListDelete(void) { return (getType() == RealListDeleteOperation); }
+		virtual ListDelete* getAsListDelete(void) { return NULL; }
+
+		/* ListAdd */
+    bool isListInsert(void) { return (getType() == RealListInsertOperation); }
+		virtual ListInsert* getAsListInsert(void) { return NULL; }
+
+    /**
+     ** \}
+     */
+
+	private :
     int m_iRef;
     bool m_bAllowDelete; //use to know if we can delete this variables or if it's link to a scilab variable.
   };
