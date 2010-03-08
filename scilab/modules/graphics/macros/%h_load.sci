@@ -1301,7 +1301,15 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       xtics_coord      = mget(nx,'dl',fd)'
       ny               = mget(1,'il',fd) // ytics_coord
       ytics_coord      = mget(ny,'dl',fd)'
-      if nx>1 then axisdir='u',else axisdir='l',end
+
+      if tics_direction == "bottom" then axisdir='d';
+      elseif tics_direction == "top" then axisdir='u';
+      elseif tics_direction == "left" then axisdir='l';
+      elseif tics_direction == "right" then axisdir='r';
+      elseif nx>1 then axisdir='u';
+      else axisdir='l';
+      end
+
       drawaxis(x=xtics_coord,y=ytics_coord,dir=axisdir);
       h=gce()
 
@@ -1461,6 +1469,7 @@ function links=get_links_from_path(ax,paths)
   links=[];ok=%t
   for p=paths
     e=ax;
+    p(1)=p(1)-1// the caption does not exists yet
     for kp=1:size(p,'*'),
       if or(e.type==['Axes','Compound'])&p(kp)<=size(e.children,'*') then
 	e=e.children(p(kp)),

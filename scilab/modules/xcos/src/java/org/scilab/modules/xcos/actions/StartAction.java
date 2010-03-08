@@ -33,9 +33,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Start the simulation
  */
 public class StartAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.START;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "media-playback-start.png";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
     /**

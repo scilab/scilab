@@ -171,7 +171,7 @@ public class Scilab {
 			try {
 				/* CONSOLE */
 				/* Create a tab to put console into */
-				consoleTab = ScilabTab.createTab(Messages.gettext("Console"));
+				consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"));
 				/* Exit Scilab when the console is closed */
 				consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
 

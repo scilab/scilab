@@ -46,9 +46,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Opens context settings Window
  */
 public class SetContextAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SET_CONTEXT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	private XcosDiagram diagram;

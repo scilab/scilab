@@ -175,7 +175,7 @@ public class BlockPalette extends JLabel {
 			if (getText().compareTo("TEXT_f") != 0) {
 				String blocksPath = System.getenv("SCI") + "/modules/scicos_blocks/blocks/";
 
-				// Search the bloc in global hashmap
+				// Search the bloc in global Map
 				block = BlockReader.readBlockFromFile(blocksPath + getText() + ".h5");
 
 				if (block.getStyle().compareTo("") == 0) {

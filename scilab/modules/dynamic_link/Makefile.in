@@ -472,6 +472,9 @@ src/scripts/missing \
 src/scripts/scicompile.sh
 
 
+# This is a cache file for the dynamic link (on use)
+CLEANFILES = src/scripts/Makefile.orig
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -973,6 +976,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)

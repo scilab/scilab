@@ -27,9 +27,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Show the parent graph (only installed on a {@link SuperBlockDiagram})
  */
 public class ShowParentAction extends DefaultAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SHOW_PARENT;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_HOME;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 	
 	/**

@@ -176,13 +176,13 @@ public final class BlockWriter {
     		Object currentObject = diagram.getModel().getChildAt(diagram.getDefaultParent(), i);
     		
     		
-    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock) ) {
+    		if (currentObject instanceof BasicBlock && !(currentObject instanceof TextBlock)) {
     			blockList.add((BasicBlock) currentObject);
     			//
     			// Look inside a Block to see if there is no "AutoLink"
     			// Jgraphx will store this link as block's child  
     			//
-    			for(int j = 0 ; j < ((BasicBlock) currentObject).getChildCount() ; ++j) {
+    			for (int j = 0; j < ((BasicBlock) currentObject).getChildCount(); ++j) {
     				if (((BasicBlock) currentObject).getChildAt(j) instanceof BasicLink) {
     					linkList.add((BasicLink) ((BasicBlock) currentObject).getChildAt(j));
     				}

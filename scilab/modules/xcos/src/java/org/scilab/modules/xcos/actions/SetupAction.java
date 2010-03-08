@@ -45,9 +45,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Setup dialog for Xcos
  */
 public class SetupAction extends SimulationNotRunningAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SETUP;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	private static final DecimalFormatSymbols FORMAT_SYMBOL = new DecimalFormatSymbols();

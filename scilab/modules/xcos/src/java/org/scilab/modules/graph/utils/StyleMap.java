@@ -27,7 +27,7 @@ public final class StyleMap extends HashMap<String, String> {
 	private static final int VALUE_GROUP = 3;
 	
 	/**
-	 * Create a hashmap from a style string
+	 * Create a Map from a style string
 	 * @param style The string which contains key=value list 
 	 */
 	public StyleMap(String style) {

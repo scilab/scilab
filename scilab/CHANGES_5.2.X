@@ -4,6 +4,9 @@
 Scilab:
 =======
 
+* Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
+See bug #5023
+
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
   the startup script. 
 
@@ -66,9 +69,17 @@ Bug Fixes:
 
 * bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
 
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend entity's default background color
+                   to change.
+
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
+* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes and their attached entities
+                   to disappear when data min and max bounds were equal (for any of the X,Y or Z axes).
+
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore its tics_direction property.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab

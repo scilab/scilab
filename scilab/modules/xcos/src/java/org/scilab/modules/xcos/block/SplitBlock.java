@@ -23,14 +23,14 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxGeometry;
 
 
 
 /**
- * @author Bruno JOFRET
- *
+ * A SplitBlock is used on a junction between links.
  */
 public final class SplitBlock extends BasicBlock {
 
@@ -46,17 +46,17 @@ public final class SplitBlock extends BasicBlock {
 		super();
 	}
 
-	// SPLIT_f <-> lsplit
-	// CLKSPLIT_f <-> split
-	// IMPSPLIT_F <-> limpsplit
 	/**
 	 * @param label block label
 	 */
 	protected SplitBlock(String label) {
+		// SPLIT_f <-> lsplit
+		// CLKSPLIT_f <-> split
+		// IMPSPLIT_F <-> limpsplit
 		this();
 		setValue(label);
 	}
-
+	
 	/**
 	 * Connect the splitblock to a source and 2 targets.
 	 * @param source source to be connected with
@@ -179,13 +179,29 @@ public final class SplitBlock extends BasicBlock {
 	}
 
 	/**
-	 * @param geometry change split block geometry
+	 * Set the geometry of the block
+	 * 
+	 * @param geometry
+	 *            change split block geometry
 	 */
 	public void setGeometry(mxGeometry geometry) {
 		if (geometry != null) {
 			geometry.setWidth(DEFAULT_SIZE);
 			geometry.setHeight(DEFAULT_SIZE);
+			
+			/*
+			 * Align the geometry on the grid
+			 */
+			double gridSize;
+			if (getParentDiagram() != null) {
+				gridSize = getParentDiagram().getGridSize();
+			} else {
+				gridSize = BlockPositioning.DEFAULT_GRIDSIZE;
+			}
+			BlockPositioning.alignPoint(geometry, gridSize,
+					(geometry.getWidth() / 2.0));
 		}
+		
 		super.setGeometry(geometry);
 	}
 

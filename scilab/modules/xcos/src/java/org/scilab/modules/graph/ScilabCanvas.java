@@ -13,17 +13,22 @@
 package org.scilab.modules.graph;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Composite;
+import java.awt.Paint;
+import java.awt.Rectangle;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.util.Hashtable;
-
+import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.utils.ScilabConstants;
 
 import com.mxgraph.swing.view.mxInteractiveCanvas;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -192,5 +197,87 @@ public class ScilabCanvas extends mxInteractiveCanvas {
     private static boolean isNearHorizontalSide(double angle) {
     	return ((angle - ROTATION_STEP) % (MAX_ROTATION / 2)) == 0;
     }
+
+	
+	/**
+	 * Draws the given lines as segments between all points of the given list
+	 * of mxPoints.
+	 * 
+	 * @param pts List of points that define the line.
+	 * @param style Style to be used for painting the line.
+	 */
+	public void drawLine(List<mxPoint> pts, Map<String, Object> style) {
+		Color penColor = mxUtils.getColor(style, mxConstants.STYLE_STROKECOLOR,
+				Color.black);
+		float penWidth = mxUtils.getFloat(style, mxConstants.STYLE_STROKEWIDTH,
+				1);
+
+		if (penColor != null && penWidth > 0) {
+
+			// Draws the shape
+			String shape = mxUtils
+					.getString(style, mxConstants.STYLE_SHAPE, "");
+
+
+			if (shape.equals(mxConstants.SHAPE_ARROW)) {
+				if (mxUtils.isTrue(style, mxConstants.STYLE_DASHED, false)) {
+					g.setStroke(new BasicStroke((float) (penWidth * scale),
+							BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+							10.0f, new float[] {(float) (3 * scale),
+									(float) (3 * scale)}, 0.0f));
+				} else {
+					g.setStroke(new BasicStroke((float) (penWidth * scale)));
+				}
+
+				// Base vector (between end points)
+				mxPoint p0 = pts.get(0);
+				mxPoint pe = pts.get(pts.size() - 1);
+
+				Rectangle bounds = new Rectangle(p0.getPoint());
+				bounds.add(pe.getPoint());
+
+				Color fillColor = mxUtils.getColor(style,
+						mxConstants.STYLE_FILLCOLOR);
+				Paint fillPaint = getFillPaint(bounds, fillColor, style);
+				boolean shadow = mxUtils.isTrue(style,
+						mxConstants.STYLE_SHADOW, false);
+				
+	
+
+				drawArrow(pts, fillColor, fillPaint, penColor, shadow);
+
+				
+			} else {
+				Object startMarker = style.get(mxConstants.STYLE_STARTARROW);
+				Object endMarker = style.get(mxConstants.STYLE_ENDARROW);
+
+				float startSize = (float) (mxUtils.getFloat(style,
+						mxConstants.STYLE_STARTSIZE,
+						mxConstants.DEFAULT_MARKERSIZE));
+				float endSize = (float) (mxUtils.getFloat(style,
+						mxConstants.STYLE_ENDSIZE,
+						mxConstants.DEFAULT_MARKERSIZE));
+				float centerSize = (float) (mxUtils.getFloat(style,
+						ScilabConstants.STYLE_CENTERSIZE,
+						mxConstants.DEFAULT_MARKERSIZE));
+				boolean rounded = mxUtils.isTrue(style,
+						mxConstants.STYLE_ROUNDED, false);
+				boolean dashed = mxUtils.isTrue(style,
+						mxConstants.STYLE_DASHED, false);
+				drawConnector(pts, penWidth, penColor, startMarker, startSize,
+						endMarker, endSize, dashed, rounded);
+				
+				Object centerMarker = style.get(ScilabConstants.STYLE_CENTERARROW);
+				if (centerMarker != null) {
+					double x = (pts.get(pts.size() - 2).getX() + pts.get(1).getX()) / 2.0;
+					double y = (pts.get(pts.size() - 2).getY() + pts.get(1).getY()) / 2.0;
+				
+					drawMarker(centerMarker, pts.get(1), new mxPoint(x, y), centerSize, penWidth);
+				}
+			}
+		}
+	}
+
+
 }
 

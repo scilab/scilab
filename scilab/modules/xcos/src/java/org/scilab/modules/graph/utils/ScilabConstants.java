@@ -12,12 +12,41 @@
 
 package org.scilab.modules.graph.utils;
 
+import java.io.File;
+
 import com.mxgraph.util.mxConstants;
 
 /**
  * Define all the constants used on a Scilab graph
  */
 public class ScilabConstants extends mxConstants {
+	
+	/**
+	 * Defines the size of the arcs for rounded edges. Default is 10.
+	 */
+	public static final double LINE_ARCSIZE = 200;
+	
+	/**
+	 * Defines the key for the centerArrow style.
+	 */
+	public static final String STYLE_CENTERARROW = "centerArrow";
+
+	/**
+	 * Defines the key for the centerSize style. The type of this value is 
+	 * <code>float</code> and the value represents the size of the center
+	 * marker in pixels.
+	 */
+	public static final String STYLE_CENTERSIZE = "centerSize";
+	
+	/** 
+	 * Defines the value for spline edge shape
+	 */
+	public static final String SHAPE_SPLINE = "spline";
+	/**
+	 * Defines the value if we want the arrow to be centered
+	 */
+	public static final String ARROW_POSITION_CENTER = "center";
+	
     /**
      * Defines the key for flip image .
      */
@@ -52,6 +81,11 @@ public class ScilabConstants extends mxConstants {
      * The tmp directory
      */
     public static final String TMPDIR = "TMPDIR";
+    
+    /**
+     * The SCI directory (Scilab root directory)
+     */
+    public static final File SCI = new File(System.getenv("SCI"));
     
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
