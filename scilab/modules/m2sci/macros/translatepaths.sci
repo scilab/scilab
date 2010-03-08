@@ -75,7 +75,7 @@ end
 mfiles=[]
 for k=1:size(Paths,'*')
   path = Paths(k);
-  mfiles = [mfiles; ls('*.m')];
+  mfiles = [mfiles; ls(path+'*.m')];
 end
 
 // fnamvect is a vector which contains all M-files names (just the names) found in Paths
