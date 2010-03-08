@@ -10,7 +10,7 @@ tkpath = get_absolute_file_path("scroll.dem.sce");
 
 TCL_EvalFile(tkpath+'cscroll')
 
-if MSDOS then
+if getos() == 'Windows' then
    consolestatus = consolebox();
    if consolestatus == 'off' then
      consolebox("on");
@@ -23,7 +23,7 @@ while %t //wait for toplevel to disapear
   sleep(1);
 end
 
-if MSDOS then
+if getos() == 'Windows' then
    consolebox(consolestatus);
 end
 

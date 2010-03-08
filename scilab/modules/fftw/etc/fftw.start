@@ -9,7 +9,7 @@
 
 if %fftw then
 
-	if MSDOS then
+	if getos() == 'Windows' then
 		librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
 		librarynamefftw3 = '';
 	else

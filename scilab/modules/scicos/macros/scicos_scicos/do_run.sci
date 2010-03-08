@@ -191,7 +191,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     XMLTMP=pathconvert(XMLTMP,%f,%t);
     
     if fileinfo(XML)<>[] then 
-      if MSDOS then 
+      if getos() == 'Windows' then 
 	cmnd='copy /Y /A '+XML+' '+XMLTMP;
       else
 	cmnd='cp -f '+XML+' '+XMLTMP;

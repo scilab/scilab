@@ -17,7 +17,7 @@ computed = deletefile ( filename );
 if computed <> %t then pause,end
 
 // Second test-case : Wrong use then correct use
-if MSDOS then
+if getos() == 'Windows' then
 	fd=mopen ( filename , "w" );
 	computed = deletefile ( filename );
 	if computed <> %f then pause,end

@@ -324,7 +324,7 @@ end
 endfunction
 
 function tk_mpop(ll,but,pos)
-  if MSDOS then return,end
+  if getos() == 'Windows' then return,end
   [lhs,rhs]=argn(0)
   if rhs<3 then pos=-1;end
   if length(ll)==0 then return;end

@@ -56,7 +56,7 @@ function colordef(varargin)
     a.font_color=a.foreground;
     a.mark_foreground=a.foreground;
   case 'black'
-    if MSDOS then c=0.2, else c=0.35,end
+    if getos() == 'Windows' then c=0.2, else c=0.35,end
     f.color_map=[jetcolormap(64);[1 1 1]*c];
     f.background=65;f.foreground=-2;
     a.background=-1;a.foreground=-2;

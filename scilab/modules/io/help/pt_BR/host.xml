@@ -72,7 +72,7 @@
     <programlisting role="example"><![CDATA[ 
 //criando uma função getdir baseda no host
 function wd=getdir()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');

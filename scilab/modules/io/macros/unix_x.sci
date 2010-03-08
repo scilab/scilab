@@ -38,7 +38,7 @@ function unix_x(cmd)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_x",1));
 	end
 
-if MSDOS then
+if getos() == 'Windows' then
    [rep,stat]=dos(cmd);
     if (stat) then
       messagebox(rep);

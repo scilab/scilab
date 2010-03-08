@@ -126,7 +126,7 @@ function test_run(varargin)
 	global MACOSX;
 	global LINUX;
 	
-	if ~MSDOS then
+	if getos() <> 'Windows' then
 		OSNAME = unix_g('uname');
 		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
 		LINUX  = (strcmpi(OSNAME,"linux") == 0);
@@ -688,7 +688,7 @@ function st = st_set_path(st,path)
 	st.path_dia_ref = basepath + ".dia.ref";
 	
 	// Reference file management OS by OS
-	if MSDOS then
+	if getos() == 'Windows' then
 		altreffile = [ basepath+".win.dia.ref" ];
 	elseif MACOSX then
 		altreffile = [ basepath+".unix.dia.ref" ; basepath+".macosx.dia.ref" ];
@@ -970,13 +970,13 @@ function st = st_run(st)
 	
 	// The test cannot be launched on this platform
 	
-	if (st.platform=="windows") & (~MSDOS) then
+	if (st.platform=="windows") & (getos() <> 'Windows') then
 		st.status = status_set_id(st.status,10);
 		st.status = status_set_message(st.status,"skipped : Windows only");
 		return;
 	end
 	
-	if (st.platform=="unix") & MSDOS then
+	if (st.platform=="unix") & getos() == 'Windows' then
 		st.status = status_set_id(st.status,10);
 		st.status = status_set_message(st.status,"skipped : Unix only");
 		return;
@@ -1075,7 +1075,7 @@ function st = st_run(st)
 	// Gestion de l'emplacement de bin/scilab
 	// -------------------------------------------------------------------------
 	
-	if (~MSDOS) & (fileinfo(SCI+"/bin/scilab")==[]) then
+	if (getos() <> 'Windows') & (fileinfo(SCI+"/bin/scilab")==[]) then
 		SCI_BIN = strsubst(SCI,'share/scilab','');
 	else
 		SCI_BIN = SCI;
@@ -1105,7 +1105,7 @@ function st = st_run(st)
 	
 	if st.language == "any" then
 		language_arg = "";
-	elseif MSDOS then
+	elseif getos() == 'Windows' then
 		language_arg = "-l "+ st.language;
 	else
 		language_arg = "LANG=" + st.language + " ; ";
@@ -1114,7 +1114,7 @@ function st = st_run(st)
 	// Assembly
 	// -------------------------------------------------------------------------
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+mode_arg+" "+language_arg+" -nb -f """+st.tmp_tst+""" > """+st.tmp_res+""" ) 2> """+st.tmp_err+"""";
 	else
 		test_cmd = "( "+language_arg+" "+SCI_BIN+"/bin/scilab "+mode_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
@@ -1247,7 +1247,7 @@ function st = st_run(st)
 		dia = strsubst(dia,TMPDIR ,"TMPDIR");
 		dia = strsubst(dia,TMPDIR1,"TMPDIR");
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
 			dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
 			dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
@@ -1260,7 +1260,7 @@ function st = st_run(st)
 		
 		dia = strsubst(dia,SCI,"SCI");
 	
-		if MSDOS then
+		if getos() == 'Windows' then
 			dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
 			dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
 			dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
