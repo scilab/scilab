@@ -1,0 +1,57 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ANY
+if ~m2sciTestExecution("ANY") then bugmes();quit;end
+
+
+
+
+
+  Mode verbeux : 0
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+
+  ****** Fin de la session mfile2sci() ******
+ 
+ res165: Double <> Boolean   
+ 
+ res164: Double <> Boolean   
+ 
+ res163: Double <> Boolean   
+ 
+ res111: [0,0] <> [0,1]   
+ 
+ res111: Double <> Boolean   
+ 
+ res110: [0,0] <> [0,1]   
+ 
+ res110: Double <> Boolean   
+ 
+ res109: [0,0] <> [0,1]   
+ 
+ res109: Double <> Boolean   
+ 
+ res57: [0,0] <> [1,0]   
+ 
+ res57: Double <> Boolean   
+ 
+ res56: [0,0] <> [1,0]   
+ 
+ res56: Double <> Boolean   
+ 
+ res55: [0,0] <> [1,0]   
+ 
+ res55: Double <> Boolean   

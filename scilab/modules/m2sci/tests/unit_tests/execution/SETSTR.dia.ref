@@ -1,0 +1,68 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: SETSTR
+if ~m2sciTestExecution("SETSTR") then bugmes();quit;end
+
+
+
+
+
+  Mode verbeux : 0
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+  ****** Fin de la session mfile2sci() ******
+ 
+ res30: [2,1] <> [2,12]   
+ 
+ res29: [3,1] <> [3,4]   
+ 
+ res28: [1,1] <> [1,12]   
+ 
+ res27: [1,1] <> [1,4]   
+ 
+ res25: [2,1] <> [2,12]   
+ 
+ res24: [3,1] <> [3,4]   
+ 
+ res23: [1,1] <> [1,12]   
+ 
+ res22: [1,1] <> [1,4]   
+ 
+ res20: [2,1] <> [2,12]   
+ 
+ res19: [3,1] <> [3,4]   
+ 
+ res18: [1,1] <> [1,12]   
+ 
+ res17: [1,1] <> [1,4]   
+ 
+ res15: [2,1] <> [2,3]   
+ 
+ res13: [1,1] <> [1,3]   
+ 
+ res11: [2,1] <> [2,3]   
+ 
+ res9: [1,1] <> [1,3]   
+ 
+ res7: [2,1] <> [2,3]   
+ 
+ res5: [1,1] <> [1,3]   
+ 
+ res3: [1,1] <> [0,0]   
+ 
+ res2: [1,1] <> [0,0]   
+ 
+ res1: [1,1] <> [0,0]   

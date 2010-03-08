@@ -1,0 +1,59 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: REALMAX
+mprintf("%s\n", m2sciTestConversionNoExe("REALMAX"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+  L.6 : La variable inconnue realmax est un fichier M.
+  L.7 : La variable inconnue realmax est un fichier M.
+  L.8 : La variable inconnue realmax est un fichier M.
+
+  L.10 : La variable inconnue realmax est un fichier M.
+  L.12 : La variable inconnue realmax est un fichier M.
+  L.13 : La variable inconnue realmax est un fichier M.
+  L.14 : La variable inconnue realmax est un fichier M.
+
+  L.15 : La variable inconnue realmax est un fichier M.
+
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function realmax()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+number_properties("huge");
+number_properties("huge");
+realmax("single");
+typ = "double";
+mtlb_realmax(typ);
+
+val = number_properties("huge");
+val = number_properties("huge");
+val = realmax("single");
+val = mtlb_realmax(typ);

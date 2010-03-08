@@ -1,0 +1,147 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ACOTH
+if ~m2sciTestConversion("ACOTH") then bugmes();quit;end
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+  !! L.5: Si [] est en dehors de [-1,1]
+
+  !! L.7: Si mtlb_double(m2sciUnknownType([])) est en dehors de [-1,1]
+
+  !! L.9: Si m2sciUnknownDims([]) est en dehors de [-1,1]
+
+  !! L.11: Si 1 est en dehors de [-1,1]
+
+  !! L.13: Si [1,2,3] est en dehors de [-1,1]
+
+  !! L.15: Si [1;2;3] est en dehors de [-1,1]
+
+  !! L.17: Si [1,2,3;4,5,6] est en dehors de [-1,1]
+
+  !! L.19: Si mtlb_double(m2sciUnknownType(1)) est en dehors de [-1,1]
+
+  !! L.21: Si mtlb_double(m2sciUnknownType([1,2,3])) est en dehors de [-1,1]
+
+  !! L.23: Si mtlb_double(m2sciUnknownType([1;2;3])) est en dehors de [-1,1]
+
+  !! L.25: Si mtlb_double(m2sciUnknownType([1,2,3;4,5,6])) est en dehors de [-1,1]
+
+  !! L.27: Si m2sciUnknownDims(1) est en dehors de [-1,1]
+
+  !! L.29: Si m2sciUnknownDims([1,2,3]) est en dehors de [-1,1]
+
+  !! L.31: Si m2sciUnknownDims([1;2;3]) est en dehors de [-1,1]
+
+  !! L.33: Si m2sciUnknownDims([1,2,3;4,5,6]) est en dehors de [-1,1]
+
+
+  !! L.35: Si %%i est en dehors de [-1,1]
+
+
+  !! L.37: Si [%%i,2*%%i,3*%%i] est en dehors de [-1,1]
+
+
+  !! L.39: Si [%%i;2*%%i;3*%%i] est en dehors de [-1,1]
+
+
+  !! L.41: Si [%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i] est en dehors de [-1,1]
+
+
+  !! L.43: Si mtlb_double(m2sciUnknownType(%%i)) est en dehors de [-1,1]
+
+
+  !! L.45: Si mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i])) est en dehors de [-1,1]
+
+
+  !! L.47: Si mtlb_double(m2sciUnknownType([%%i;2*%%i;3*%%i])) est en dehors de [-1,1]
+
+
+  !! L.49: Si mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) est en dehors de [-1,1]
+
+
+  !! L.51: Si m2sciUnknownDims(%%i) est en dehors de [-1,1]
+
+
+  !! L.53: Si m2sciUnknownDims([%%i,2*%%i,3*%%i]) est en dehors de [-1,1]
+
+
+  !! L.55: Si m2sciUnknownDims([%%i;2*%%i;3*%%i]) est en dehors de [-1,1]
+
+
+  !! L.57: Si m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) est en dehors de [-1,1]
+
+  !! L.59: Si asciimat("s") est en dehors de [-1,1]
+
+  !! L.61: Si asciimat("str1") est en dehors de [-1,1]
+
+  !! L.63: Si asciimat("str1"+"str2"+"str3") est en dehors de [-1,1]
+
+  !! L.65: Si asciimat(["str1";"str2";"str3"]) est en dehors de [-1,1]
+
+  !! L.67: Si asciimat(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]) est en dehors de [-1,1]
+
+  !! L.69: Si mtlb_double(m2sciUnknownType("s")) est en dehors de [-1,1]
+
+  !! L.71: Si mtlb_double(m2sciUnknownType("str1")) est en dehors de [-1,1]
+
+  !! L.73: Si mtlb_double(m2sciUnknownType("str1"+"str2"+"str3")) est en dehors de [-1,1]
+
+  !! L.75: Si mtlb_double(m2sciUnknownType(["str1";"str2";"str3"])) est en dehors de [-1,1]
+
+  !! L.77: Si mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) est en dehors de [-1,1]
+
+  !! L.79: Si asciimat(m2sciUnknownDims("s")) est en dehors de [-1,1]
+
+  !! L.81: Si asciimat(m2sciUnknownDims("str1")) est en dehors de [-1,1]
+
+  !! L.83: Si asciimat(m2sciUnknownDims("str1"+"str2"+"str3")) est en dehors de [-1,1]
+
+  !! L.85: Si asciimat(m2sciUnknownDims(["str1";"str2";"str3"])) est en dehors de [-1,1]
+
+  !! L.87: Si asciimat(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) est en dehors de [-1,1]
+
+  !! L.89: Si bool2s(1==1) est en dehors de [-1,1]
+
+  !! L.91: Si bool2s([1,2,3]==[1,0,3]) est en dehors de [-1,1]
+
+  !! L.93: Si bool2s([1;2;3]==[1;0;3]) est en dehors de [-1,1]
+
+  !! L.95: Si bool2s([1,2,3;4,5,6]==[1,0,3;4,5,0]) est en dehors de [-1,1]
+
+  !! L.97: Si mtlb_double(m2sciUnknownType(1==1)) est en dehors de [-1,1]
+
+  !! L.99: Si mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3])) est en dehors de [-1,1]
+
+  !! L.101: Si mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3])) est en dehors de [-1,1]
+
+  !! L.103: Si mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) est en dehors de [-1,1]
+
+  !! L.105: Si bool2s(m2sciUnknownDims(1==1)) est en dehors de [-1,1]
+
+  !! L.107: Si bool2s(m2sciUnknownDims([1,2,3]==[1,0,3])) est en dehors de [-1,1]
+
+  !! L.109: Si bool2s(m2sciUnknownDims([1;2;3]==[1;0;3])) est en dehors de [-1,1]
+
+  !! L.111: Si bool2s(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0])) est en dehors de [-1,1]
+
+
+
+
+  ****** Fin de la session mfile2sci() ******

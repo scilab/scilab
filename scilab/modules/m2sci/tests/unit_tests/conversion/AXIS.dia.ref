@@ -1,0 +1,100 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: AXIS
+mprintf("%s\n", m2sciTestConversionNoExe("AXIS"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+  L.12 : La variable inconnue axis est un fichier M.
+  L.14 : La variable inconnue axis est un fichier M.
+  L.15 : La variable inconnue axis est un fichier M.
+  L.16 : La variable inconnue axis est un fichier M.
+  L.17 : La variable inconnue axis est un fichier M.
+
+  L.19 : La variable inconnue axis est un fichier M.
+  L.20 : La variable inconnue axis est un fichier M.
+  L.22 : La variable inconnue axis est un fichier M.
+  L.23 : La variable inconnue axis est un fichier M.
+
+  L.24 : La variable inconnue axis est un fichier M.
+
+  L.25 : La variable inconnue axis est un fichier M.
+  L.26 : La variable inconnue axis est un fichier M.
+
+  L.28 : La variable inconnue axis est un fichier M.
+  L.29 : La variable inconnue axis est un fichier M.
+  L.34 : La variable inconnue axis est un fichier M.
+
+  L.35 : La variable inconnue axis est un fichier M.
+  L.37 : La variable inconnue axis est un fichier M.
+
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function axis()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+xmin = 1;
+ymin = 1;
+zmin = 1;
+cmin = 1;
+xmax = 10;
+ymax = 10;
+zmax = 10;
+cmax = 10;
+
+set(gca(),"data_bounds",matrix([xmin,xmax,ymin,ymax],2,-1))
+set(gca(),"data_bounds",matrix([xmin,xmax,ymin,ymax,zmin,zmax],2,-1))
+axis([xmin,xmax,ymin,ymax,zmin,zmax,cmin,cmax])
+v = set(gca(),"data_bounds")
+
+set(gca(),"auto_scale","on")
+set(gca(),"auto_scale","off")
+set(gca(),"tight_limits","on")
+axis("fill")
+
+set(gca(),"rotation_angles",[180;270])
+set(gca(),"rotation_angles",[0;270])
+
+set(gca(),"isoview","on")
+axis("image")
+set(gca(),"cube_scaling","on")
+set(gca(),"view","3d")
+axis("normal")
+
+set(gca(),"axes_visible","off")
+set(gca(),"axes_visible","on")
+
+
+
+
+set(gca(),"auto_scale","on")
+[mode,visibility,direction] = mtlb_axis("state")
+
+set(gca(),"axes_visible","on")

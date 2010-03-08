@@ -1,0 +1,60 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ISA
+mprintf("%s\n", m2sciTestConversionNoExe("ISA"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function isa()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+
+a = type(x)==4
+b = type(x)==10
+c = or(type(x)==[1,5,8])
+d = typeof(x)=="int8"
+e = typeof(x)=="uint8"
+f = typeof(x)=="int16"
+g = typeof(x)=="uint16"
+h = typeof(x)=="int32"
+k = typeof(x)=="uint32"
+l = type(x)==1
+m = type(x)==1
+n = typeof(x)=="ce"
+o = typeof(x)=="st"
+p = type(x)==13
+q = type(x)==5
+r = typeof(x)=="state-space"
+s = isa(x,"user_defined_class")
+
+t = mtlb_isa(x,class)

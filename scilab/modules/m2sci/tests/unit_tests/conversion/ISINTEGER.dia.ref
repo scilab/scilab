@@ -1,0 +1,41 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ISINTEGER
+mprintf("%s\n", m2sciTestConversionNoExe("ISINTEGER"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function isinteger()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+
+type(A)==8
+tf = type(A)==8

@@ -1,0 +1,42 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ERROR
+mprintf("%s\n", m2sciTestConversionNoExe("ERROR"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function error()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// F.B.
+
+error("Hello")
+mtlb_error("The matrix must be square, the size is %dx%d",2,3)
+mtlb_error("MyToolbox:SquareMatrix","Matrix must be square")
+mtlb_error("MyToolbox:SquareMatrix","The matrix must be square, the size is %dx%d",5,7)

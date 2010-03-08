@@ -1,0 +1,63 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: FGETL
+mprintf("%s\n", m2sciTestConversionNoExe("FGETL"));
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+
+
+
+  ****** Fin de la session mfile2sci() ******
+
+// Mode d'affichage
+mode(0);
+
+// Affiche un warning pour une exception en virgule flottante
+ieee(1);
+
+// Test file for function fgetl()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+fid = 1;
+
+// Example 1
+%v0 = mgetl(fid,1);
+if meof()~=0 then
+  %v0 = -1;
+end;
+%v0;
+
+// Example 2
+%v02 = mgetl(fid,1);
+if meof()~=0 then
+  %v02 = -1;
+end;
+if [] then
+  disp("eof");
+end;
+
+// Example 3
+l = mgetl(fid,1);
+if meof()~=0 then
+  l = -1;
+end;

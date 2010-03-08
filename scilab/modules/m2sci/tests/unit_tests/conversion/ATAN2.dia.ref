@@ -1,0 +1,87 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// Unitary test for conversion of Matlab function: ATAN2
+if ~m2sciTestConversion("ATAN2") then bugmes();quit;end
+
+
+
+
+
+  Mode verbeux : -1
+
+  Lecture du fichier M ...
+
+  Modification de syntaxe ...
+
+  Conversion de macro vers arbre ...
+  Conversion de l'arbre Matlab ...
+
+  !     m2sciUnknownType([]) si m2sciUnknownType([]) is real
+
+  !     m2sciUnknownType([]) si m2sciUnknownType([]) is real
+
+  !     m2sciUnknownType(1) si m2sciUnknownType(1) is real
+
+  !     m2sciUnknownType(1) si m2sciUnknownType(1) is real
+
+  !     m2sciUnknownType([1,2,3]) si m2sciUnknownType([1,2,3]) is real
+
+  !     m2sciUnknownType([3,2,1]) si m2sciUnknownType([3,2,1]) is real
+
+  !     m2sciUnknownType([1;2;3]) si m2sciUnknownType([1;2;3]) is real
+
+  !     m2sciUnknownType([3;2;1]) si m2sciUnknownType([3;2;1]) is real
+
+  !     m2sciUnknownType([1,2,3;4,5,6]) si m2sciUnknownType([1,2,3;4,5,6]) is real
+
+  !     m2sciUnknownType([6,5,4;3,2,1]) si m2sciUnknownType([6,5,4;3,2,1]) is real
+
+
+
+
+
+
+
+
+
+
+
+  !     m2sciUnknownType(%%i) si m2sciUnknownType(%%i) is real
+
+  !     m2sciUnknownType(%%i) si m2sciUnknownType(%%i) is real
+
+
+
+  !     m2sciUnknownType([%%i,2*%%i,3*%%i]) si m2sciUnknownType([%%i,2*%%i,3*%%i]) is real
+
+  !     m2sciUnknownType([3*%%i,2*%%i,%%i]) si m2sciUnknownType([3*%%i,2*%%i,%%i]) is real
+
+
+
+  !     m2sciUnknownType([%%i;2*%%i;3*%%i]) si m2sciUnknownType([%%i;2*%%i;3*%%i]) is real
+
+  !     m2sciUnknownType([3*%%i;2*%%i;%%i]) si m2sciUnknownType([3*%%i;2*%%i;%%i]) is real
+
+
+
+  !     m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) si m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) is real
+
+  !     m2sciUnknownType([6*%%i,5*%%i,4*%%i;3*%%i,2*%%i,%%i]) si m2sciUnknownType([6*%%i,5*%%i,4*%%i;3*%%i,2*%%i,%%i]) is real
+
+
+
+
+
+
+
+
+
+
+
+  ****** Fin de la session mfile2sci() ******
