@@ -410,7 +410,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		File f = new File(image);
 		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
 		
-		if (icon == null) {
+		if (icon == null || icon.getBounds() == null) {
 			return;
 		}
 
