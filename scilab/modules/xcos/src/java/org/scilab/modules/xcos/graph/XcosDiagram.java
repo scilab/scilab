@@ -1303,7 +1303,9 @@ public class XcosDiagram extends ScilabGraph {
 			diffY = -diffY;
 		}
 
-		return new mxPoint(origX + diffX, origY + diffY);
+		mxPoint p = new mxPoint(origX + diffX, origY + diffY);
+		BlockPositioning.alignPoint(p, getGridSize(), 0);		
+		return p;
 	}
 	
     /*
