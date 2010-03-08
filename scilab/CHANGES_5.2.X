@@ -72,6 +72,8 @@ Bug Fixes:
 
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
 
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore its tics_direction property.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
