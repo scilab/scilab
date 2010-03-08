@@ -53,7 +53,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	private static final int OPACITY_MAX = 100;
 	
 	/** The border size between the background image and the icon image */
-	private static final double BORDER_SIZE = 4;
+	private static final int BORDER_SIZE = 4;
 	
 	private URL svgBackgroundImage; 
 	
@@ -413,27 +413,24 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 		if (icon == null || icon.getBounds() == null) {
 			return;
 		}
-
-		// Calculate scaled border (zoom)
-		int scaledBorderSize = (int) (BORDER_SIZE * scale);
 		
 		// Iso scale to the bounds - border size
 		Rectangle2D bounds = icon.getBounds();
 		
-		double sh = h / (bounds.getHeight() + (2 * scaledBorderSize));
-		double sw = w / (bounds.getWidth() + (2 * scaledBorderSize));
+		double sh = h / (bounds.getHeight() + (2 * BORDER_SIZE));
+		double sw = w / (bounds.getWidth() + (2 * BORDER_SIZE));
 		
 		double ratio;
 		double tx;
 		double ty;
 		if (sh > sw) {
 			ratio = sw;
-			tx = scaledBorderSize * ratio;
+			tx = BORDER_SIZE * ratio;
 			ty = (h - (bounds.getHeight() * ratio)) / 2;
 		} else {
 			ratio = sh;
 			tx = (w - (bounds.getWidth() * ratio)) / 2;
-			ty = scaledBorderSize * ratio;
+			ty = BORDER_SIZE * ratio;
 		}
 		
 		AffineTransform isoScaleTransform = new AffineTransform(new double[] {
