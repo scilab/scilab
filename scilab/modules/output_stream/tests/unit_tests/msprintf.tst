@@ -41,13 +41,13 @@ if msprintf("%g" ,35.551234567890)   <> "35.5512"         then pause,end
 if msprintf("%+g",35.551234567890)   <> "+35.5512"        then pause,end
 if msprintf("%g" ,0.00433)           <> "0.00433"         then pause,end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%g" ,0.0000000345456)   <> "3.45456e-008"  then pause,end
 else
   if msprintf("%g" ,0.0000000345456)   <> "3.45456e-08"   then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%g" ,11124234534545)    <> "1.11242e+013"  then pause,end
 else
   if msprintf("%g" ,11124234534545)    <> "1.11242e+13"   then pause,end
@@ -56,37 +56,37 @@ end
 if msprintf("%15g",-35)              <> "            -35" then pause,end
 if msprintf("%15g",0.00433)          <> "        0.00433" then pause,end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15g",0.0000000345456)  <> "   3.45456e-008" then pause,end
 else
   if msprintf("%15g",0.0000000345456)  <> "    3.45456e-08" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15g",11124234534545)   <> "   1.11242e+013" then pause,end
 else
   if msprintf("%15g",11124234534545)   <> "    1.11242e+13" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.1g",-35.1)            <> "-4e+001"         then pause,end
 else
   if msprintf("%.1g",-35.1)            <> "-4e+01"          then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.0g",-35.1)            <> "-4e+001"         then pause,end
 else
   if msprintf("%.0g",-35.1)            <> "-4e+01"          then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%#.0g",-35.1)           <> "-4.e+001"        then pause,end
 else
   if msprintf("%#.0g",-35.1)           <> "-4.e+01"         then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%#.0G",-35.1)           <> "-4.E+001"        then pause,end
 else
   if msprintf("%#.0G",-35.1)           <> "-4.E+01"         then pause,end
@@ -94,13 +94,13 @@ end
 
 if msprintf("%.1g",0.00433)            <> "0.004"           then pause,end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.15g",0.0000000345456) <> "3.45456e-008"    then pause,end
 else
   if msprintf("%.15g",0.0000000345456) <> "3.45456e-08"     then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.1g",11124234534545)   <> "1e+013"          then pause,end
 else
   if msprintf("%.1g",11124234534545)   <> "1e+13"           then pause,end
@@ -109,110 +109,110 @@ end
 // format '%e'
 // =============================================================================
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",-35)                <> "-3.500000e+001"  then pause,end
 else
   if msprintf("%e",-35)                <> "-3.500000e+01"   then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",35.55)              <> "3.555000e+001"   then pause,end
 else
   if msprintf("%e",35.55)              <> "3.555000e+01"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%+e",35.55)             <> "+3.555000e+001"  then pause,end
 else
   if msprintf("%+e",35.55)             <> "+3.555000e+01"   then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",35.551234567890)    <> "3.555123e+001"   then pause,end
 else
   if msprintf("%e",35.551234567890)    <> "3.555123e+01"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",0.00433)            <> "4.330000e-003"   then pause,end
 else
   if msprintf("%e",0.00433)            <> "4.330000e-03"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",0.0000000345456)    <> "3.454560e-008"   then pause,end
 else
   if msprintf("%e",0.0000000345456)    <> "3.454560e-08"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%e",11124234534545)     <> "1.112423e+013"   then pause,end
 else
   if msprintf("%e",11124234534545)     <> "1.112423e+13"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%E",11124234534545)     <> "1.112423E+013"   then pause,end
 else
   if msprintf("%E",11124234534545)     <> "1.112423E+13"    then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15e",-35)              <> " -3.500000e+001" then pause,end
 else
   if msprintf("%15e",-35)              <> "  -3.500000e+01" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15e",0.00433)          <> "  4.330000e-003" then pause,end
 else
   if msprintf("%15e",0.00433)          <> "   4.330000e-03" then pause,end
 end
 
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15e",0.0000000345456)  <> "  3.454560e-008" then pause,end
 else
   if msprintf("%15e",0.0000000345456)  <> "   3.454560e-08" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%+15e",0.0000000345456) <> " +3.454560e-008" then pause,end
 else
   if msprintf("%+15e",0.0000000345456) <> "  +3.454560e-08" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%15e",11124234534545)   <> "  1.112423e+013" then pause,end
 else
   if msprintf("%15e",11124234534545)   <> "   1.112423e+13" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.1e",-35)              <> "-3.5e+001"       then pause,end
 else
   if msprintf("%.1e",-35)              <> "-3.5e+01"        then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if  msprintf("%.0e",-35.1)            <> "-4e+001"        then pause,end
 else
   if  msprintf("%.0e",-35.1)            <> "-4e+01"         then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.1e",0.00433)          <> "4.3e-003"        then pause,end
 else
   if msprintf("%.1e",0.00433)          <> "4.3e-03"         then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.15e",0.0000000345456) <> "3.454560000000000e-008" then pause,end
 else
   if msprintf("%.15e",0.0000000345456) <> "3.454560000000000e-08" then pause,end
 end
 
-if MSDOS then
+if getos() == 'Windows' then
   if msprintf("%.1e",11124234534545)   <> "1.1e+013"       then pause,end
 else
   if msprintf("%.1e",11124234534545)   <> "1.1e+13"        then pause,end

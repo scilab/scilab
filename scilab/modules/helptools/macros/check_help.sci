@@ -64,7 +64,7 @@ function check_help(dirs)
 	
 	for k=1:size(dirs,'*');
 		chdir(dirs(k));
-		if MSDOS then
+		if getos() == 'Windows' then
 			dirs(k) = getlongpathname(pwd());
 		else
 			dirs(k) = pwd();

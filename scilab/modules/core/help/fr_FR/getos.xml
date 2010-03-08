@@ -21,7 +21,12 @@
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 OS=getos()
-[OS,version]=getos()
+[OS,version] = getos()
+if (getos() == "Windows") then disp("Scilab on Windows"); end
+if (getos() == "Linux") then disp("Scilab on Linux"); end
+if (getos() == "SunOS") then disp("Scilab on Solaris"); end
+if (getos() == "Darwin") then disp("Scilab on MacOs"); end
+
  ]]></programlisting>
   </refsection>
   <refsection>

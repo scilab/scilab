@@ -94,6 +94,13 @@ Text Rendering:
 
 * Antialiasing activated by default to render text
 
+
+Obsolete Functions:
+===================
+
+* 'MSDOS' obsolete see 'getos'.
+
+
 Removed functions (previously declared as obsolete):
 ====================================================
 

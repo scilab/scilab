@@ -17,7 +17,7 @@
 // Checks on windows that we have a Fortran 90 compiler (Intel)
 
 if haveacompiler() then
-  if ( (MSDOS & findmsifortcompiler() <> 'unknown') | (~MSDOS) ) then
+  if ( (getos() == 'Windows' & findmsifortcompiler() <> 'unknown') | (~MSDOS) ) then
     ilib_verbose(0);
     sourcecode=['subroutine incrdoublef90(x,y)'
                 '  implicit none'

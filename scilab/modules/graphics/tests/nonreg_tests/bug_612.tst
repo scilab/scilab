@@ -22,7 +22,7 @@
 xset("wresize",0);
 xset('wdim',2^16+3,5000);
 
-if ~MSDOS then
+if getos() <> 'Windows' then
 	resultLinux   = xget("wdim");
 	resultWindows = [ 65535.    5000.];
 	if or(resultLinux <> resultWindows) then pause,end

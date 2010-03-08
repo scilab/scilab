@@ -5,7 +5,7 @@
 // This file is released into the public domain
 // ====================================================================
 
-if MSDOS then
+if getos() == 'Windows' then
   // to manage long pathname
   includes_src_c = '-I""' + get_absolute_file_path('builder_gateway_c.sce') + '../../src/c""';
 else

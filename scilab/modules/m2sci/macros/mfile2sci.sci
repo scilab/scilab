@@ -22,7 +22,7 @@ if rhs<4 then only_double=%F,end
 if rhs<3 then Recmode=%F,end
 if rhs<2 then res_path="./",end
 if rhs<1 then m2sci_gui();res=[];return;end
-if MSDOS then
+if getos() == 'Windows' then
   fil=strsubst(fil,filesep(),"/")
   res_path=strsubst(res_path,"\","/")
 end
@@ -93,7 +93,7 @@ end
 // Others M-files in directory
 if exists("Paths")==0 then
   Paths=file_path,
-  if MSDOS then
+  if getos() == 'Windows' then
     Paths=strsubst(Paths,"/","\")
     mfiles=listfiles(Paths+"*.m")
     sep=filesep()

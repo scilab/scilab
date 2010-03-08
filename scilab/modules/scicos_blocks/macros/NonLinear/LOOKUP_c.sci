@@ -270,7 +270,7 @@ rect=[xmn,ymn;xmx,ymx];
 //===================================================================
 f=scf();
 
-if ~MSDOS then
+if getos() <> 'Windows' then
   delmenu(curwin,'3D Rot.')
   delmenu(curwin,'Edit')
   delmenu(curwin,'File')

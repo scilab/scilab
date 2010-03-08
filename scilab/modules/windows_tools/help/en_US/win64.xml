@@ -32,7 +32,7 @@
   <refsection>
     <title>Example</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   if win64() then
     disp('Scilab built for Windows x64.');
   else
@@ -45,7 +45,7 @@ end
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="MSDOS">MSDOS</link>
+        <link linkend="getos">getos</link>
       </member>
     </simplelist>
   </refsection>

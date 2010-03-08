@@ -30,7 +30,7 @@ function maketests(myTests,job)
 endfunction
 
 function cleantests(myTests)
-	if MSDOS then
+	if getos() == 'Windows' then
 		path=SCI+'\tests\basic_tests'
 		file_to_clean=path+strsubst(myTests,'.tst','.dia')
 		unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')

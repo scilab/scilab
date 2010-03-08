@@ -80,7 +80,7 @@
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   scf(0);
   plot2d();
   //Exportando para EMF
