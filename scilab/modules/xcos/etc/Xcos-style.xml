@@ -173,7 +173,7 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg" />
 	</add>
 	<add as="CLOCK_c" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg" />
 	</add>
 	<add as="GENSIN_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="Sinusoid&lt;BR&gt;
@@ -189,7 +189,7 @@
 				    C binary file" />
 	</add>
 	<add as="TIME_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/TIME_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.svg" />
 	</add>
 	<add as="Modulo_Count" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
@@ -1121,7 +1121,7 @@
 				    0 &amp;#8594; 2" />
 	</add>
 	<add as="CLOCK_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CLOCK_c.svg" />
 	</add>
 	<add as="CLKSPLIT_f" extend="Split" />
 	<add as="IMPSPLIT_f" extend="Split" />
