@@ -36,7 +36,7 @@ test=c_link(routine-name,num)</synopsis>
       <varlistentry>
         <term>num</term>
         <listitem>
-          <para>:</para>
+          <para></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -70,6 +70,7 @@ test=c_link(routine-name,num)</synopsis>
       <member>
         <link linkend="fort">fort</link>
       </member>
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 </refentry>

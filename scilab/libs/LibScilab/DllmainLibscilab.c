@@ -7,16 +7,6 @@
 	#include "f2c.h"
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef USE_F2C
-	#ifdef _DEBUG
-		#pragma comment(lib,"libifcoremdd.lib")
-		#pragma comment(lib,"libmmdd.lib")
-	#else
-		#pragma comment(lib,"libifcoremd.lib")
-		#pragma comment(lib,"libmmd.lib")
-	#endif
-#endif
-/*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libxml2.lib")
 #pragma comment(lib,"../../bin/libintl.lib")
 /*-----------------------------------------------------------------------------------*/ 

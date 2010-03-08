@@ -37,8 +37,6 @@ Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.start; DestDir: 
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\examples\*.*; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\examples; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-;Source: modules\{#MODULE_CALL_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#MODULE_CALL_SCILAB}\macros\buildmacros.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\macros\buildmacros.bat; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}

@@ -20,7 +20,7 @@
 #include "MALLOC.h"
 #include "core_math.h"
 #include "rendererBasicAlgos.h"
-
+#include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin( const double x[], int n )
 {
@@ -158,13 +158,7 @@ double * createNewArrayFromSource( int destSize, const double src[], int srcSize
 /*------------------------------------------------------------------------*/
 void destroyStringArray( char * src[], int nbStrings )
 {
-  int i ;
-  for ( i = 0 ; i < nbStrings ; i++ )
-  {
-    FREE( src[i] ) ;
-    src[i] = NULL ;
-  }
-  FREE( src ) ;
+	freeArrayOfString(src, nbStrings);
 }
 /*--------------------------------------------------------------------------*/
 void destroyCppString(char * string)

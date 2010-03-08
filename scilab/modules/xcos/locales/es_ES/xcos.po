@@ -1,0 +1,646 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-12-29 13:22+0000\n"
+"Last-Translator: Federico Vera <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr "%s: El archivo ''%s'' no existe.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr "%s: Imposible importar el archivo %s de xcos.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+"%s: Tipo incorrecto para argumento %d: Se esperaba string o estructura de "
+"diagrama"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s: Tipo incorrecto para argumento %d: Se esperaba estructura de diagrama"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+msgid "?"
+msgstr "¿?"
+
+msgid "A SuperBlock must be selected to generate code"
+msgstr "Debe seleccionarse un SuperBloque para generar código"
+
+msgid "About Xcos"
+msgstr "Acerca de Xcos"
+
+msgid "Add to"
+msgstr "Añadir a"
+
+msgid "Add to new diagram"
+msgstr "Añadir a un nuevo diagrama"
+
+msgid "Align Blocks"
+msgstr "Alinear Bloques"
+
+msgid "Annotations"
+msgstr "Anotaciones"
+
+msgid "Based on Scicos"
+msgstr "Basado en Scicos"
+
+msgid "Block Help"
+msgstr "Ayuda de Bloque"
+
+msgid "Block Parameters"
+msgstr "Parámetros del Bloque"
+
+msgid "Border Color"
+msgstr "Color de Borde"
+
+msgid "Bottom"
+msgstr "Inferior"
+
+msgid "CVODE"
+msgstr "CVODE"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Center"
+msgstr "Centrar"
+
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+"Click en el diagrama para añadir un punto de enlace o sobre un objetivo "
+"compatible para terminar"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Code generation"
+msgstr "Generación de código"
+
+msgid "Command port must be connected to control port"
+msgstr "El puerto de comando debe estar conectado al puerto de control"
+
+msgid "Commonly Used Blocks"
+msgstr "Bloques Usados Comúnmente"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+"Compilado en progreso, los resultados serán almacenados en la variable "
+"'scicos_cpr'"
+
+msgid "Compile"
+msgstr "Compilar"
+
+msgid "Continuous time systems"
+msgstr "Sistemas de tiempo continuo"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Copyright (c) 1989-2009 (INRIA)"
+
+msgid "Could not save diagram."
+msgstr "No se pudo guardar el diagrama."
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Customize"
+msgstr "Personalizar"
+
+msgid "Cut"
+msgstr "Cortar"
+
+msgid "Debug block calls without trace"
+msgstr "Depurar llamadas de bloques sin traza"
+
+msgid "Default"
+msgstr "Predeterminado"
+
+msgid "Default values"
+msgstr "Valores predeterminados"
+
+msgid "Delete"
+msgstr "Borrar"
+
+msgid "Demonstrations Blocks"
+msgstr "Bloques de Demostración"
+
+msgid "Details"
+msgstr "Detalles"
+
+msgid "Diagram background"
+msgstr "Fondo de pantalla del diagrama"
+
+msgid "Diagram browser"
+msgstr "Explorador de diagramas"
+
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgstr ""
+"El diagrama fue modificado desde la última vez.<br/> ¿Desea guardarlo?"
+
+msgid "Discontinuities"
+msgstr "Discontinuidades"
+
+msgid "Discrete time systems"
+msgstr "Sistemas de tiempo discreto"
+
+msgid "Do you want a transparent background image?"
+msgstr "¿Desea una imagen de fondo transparente?"
+
+msgid "Do you want to overwrite existing file?"
+msgstr "¿Desea sobreescribir el archivo existente?"
+
+msgid "Dump"
+msgstr "Volcado"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Editable"
+msgstr "Editable"
+
+msgid "Electrical"
+msgstr "Eléctrica"
+
+msgid "Event handling"
+msgstr "Gestión de eventos"
+
+msgid "Execution trace and Debug"
+msgstr "Ejecutar traza y depurar"
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Un puerto de entrada explícito debe estar conectado a un puerto de salida "
+"explícito"
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"Un puerto de salida explícito debe estar conectado a un puerto de entrada "
+"explícito"
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Export to XML"
+msgstr "Exportar a XML"
+
+#, c-format
+msgid "FAILED TO EXPORT: %s\n"
+msgstr "FALLÓ LA EXPORTACIÓN: %s\n"
+
+msgid "Failed to load Diagram"
+msgstr "Fallo al cargar el Diagrama"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Fill Color"
+msgstr "Color de relleno"
+
+msgid "Final integration time"
+msgstr "Tiempo final de integración"
+
+msgid "Fit diagram to view"
+msgstr "Ajustar el diagrama a la vista"
+
+msgid "Flip"
+msgstr "Voltear"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Generate SuperBlock, please wait ..."
+msgstr "Generando SuperBloque, por favor espere ..."
+
+msgid "Generating C Code for SuperBlock"
+msgstr "Generando código de C para el Super-Bloque"
+
+msgid "Get infos"
+msgstr "Obtener información"
+
+msgid "Grid"
+msgstr "Cuadrilla"
+
+msgid "Group"
+msgstr "Agrupar"
+
+msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "IDA"
+msgstr "IDA"
+
+msgid "Image contains no data."
+msgstr "La imagen no contiene datos."
+
+msgid "Implicit"
+msgstr "Implícito"
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr ""
+"Un puerto de entrada implícito debe estar conectado a un puerto de salida "
+"implícito"
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr ""
+"Un puerto de salida implícito debe estar conectado a un puerto de entrada "
+"implícito"
+
+msgid "Import from XML"
+msgstr "Importar de XML"
+
+msgid "Insert"
+msgstr "Insertar"
+
+msgid "Integer"
+msgstr "Entero"
+
+msgid "Integrator absolute tolerance"
+msgstr "Tolerancia absoluta del integrador"
+
+msgid "Integrator relative tolerance"
+msgstr "Tolerancia relativa del integrador"
+
+msgid "Invert selection"
+msgstr "Invertir selección"
+
+msgid "Left"
+msgstr "Izquierda"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+
+msgid "Link Style"
+msgstr "Estilo del enlace"
+
+msgid "Load as palette"
+msgstr "Cargar como paleta"
+
+msgid "Loading diagram"
+msgstr "Cargando diagrama"
+
+msgid "Loading palettes"
+msgstr "Cargar paletas"
+
+msgid "Loading user defined palettes"
+msgstr "Cargando las paletas definidas por el usuario"
+
+msgid "Lookup Tables"
+msgstr "Buscar Tablas"
+
+msgid "Masked SuperBlock editor"
+msgstr ""
+
+msgid "Mathematical Operations"
+msgstr "Operaciones matemáticas"
+
+msgid "Matrix"
+msgstr "Matriz"
+
+msgid "Max integration time interval"
+msgstr "Intervalo de tiempo máximo para la integración"
+
+msgid "Middle"
+msgstr "Medio"
+
+msgid "Mirror"
+msgstr "Reflejar"
+
+msgid "Move Down"
+msgstr "Bajar"
+
+msgid "Move Up"
+msgstr "Subir"
+
+msgid "New"
+msgstr "Nuevo"
+
+msgid "New diagram"
+msgstr "Nuevo diagrama"
+
+msgid "New palette"
+msgstr "Nueva paleta"
+
+msgid "No block selected"
+msgstr "No hay ningún bloque seleccionado"
+
+msgid "No trace nor debug printing"
+msgstr "No mostrar ni la traza ni la depuración"
+
+msgid "Normal 100%"
+msgstr "Normal 100%"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Palette browser"
+msgstr "Explorador de paletas"
+
+msgid "Palettes"
+msgstr "Paletas"
+
+msgid "Paste"
+msgstr "Pegar"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Ejecución de traza y depuración por bloque"
+
+msgid "Port & Subsystem"
+msgstr "Puerto y Subsistema"
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
+msgstr ""
+"El puerto ya esta conectado, por favor seleccione un puerto sin conexión o "
+"un enlace válido."
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "Quit Xcos"
+msgstr "Salir de Xcos"
+
+msgid "Real time scaling"
+msgstr "Escalamiento en tiempo real"
+
+msgid "Recent Files"
+msgstr "Archivos Recientes"
+
+msgid "Redo"
+msgstr "Rehacer"
+
+msgid "Region to superblock"
+msgstr "Región al superbloque"
+
+msgid "Remove"
+msgstr "Quitar"
+
+msgid "Resize"
+msgstr "Redimensionar"
+
+msgid "Right"
+msgstr "Derecha"
+
+msgid "Rotate"
+msgstr "Rotar"
+
+msgid "Rows"
+msgstr "Filas"
+
+msgid "Same command executed again"
+msgstr ""
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Save as"
+msgstr "Guardar como"
+
+msgid "Save as interface function"
+msgstr "Guardar como función de interfaz"
+
+msgid "Save block GUI"
+msgstr "Guardar bloque de Interfaz Gráfica de Usuario"
+
+msgid "Saving diagram"
+msgstr "Guardando diagrama"
+
+msgid "Scicos file"
+msgstr "Archivo de Scicos"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "El módulo «%s» de Scilab está deactivado en modo -nogui o -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "El módulo '%s' de Scilab no está instalado.\n"
+
+msgid "Scilab file"
+msgstr "Archivo de Scilab"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Set Context"
+msgstr "Asignar Contexto"
+
+msgid "Set Parameters"
+msgstr "Configurar Parámetros"
+
+msgid "Set block parameters"
+msgstr ""
+
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
+msgstr ""
+"Seleccionar el nivel de depuración (0,1,2,3) <br/> ejecuta scicos_debug(n)"
+
+msgid "Setup"
+msgstr "Configuración"
+
+msgid "Show parent diagram"
+msgstr "Mostrar el diagrama padre"
+
+msgid "Show/Hide shadow"
+msgstr "Mostrar/Ocultar sombra"
+
+msgid "Signal Processing"
+msgstr "Procesamiento de Señales"
+
+msgid "Signal Routing"
+msgstr "Enrutamiento de Señal"
+
+msgid "Simulation"
+msgstr "Simulación"
+
+msgid "Simulation in progress"
+msgstr "Simulación en progreso"
+
+msgid "Sinks"
+msgstr "Sinks"
+
+msgid "Solver 0 (CVODE) - 100 (IDA)"
+msgstr "Solver 0 (CVODE) - 100 (IDA)"
+
+msgid "Sources"
+msgstr "Fuentes"
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Stop"
+msgstr "Detener"
+
+msgid "Straight"
+msgstr "Directo"
+
+msgid "Superblock mask"
+msgstr "Máscara del superbloque"
+
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "The Scilab Consortium (DIGITEO)"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"El archivo %s no existe\n"
+" ¿Desea crearlo?"
+
+msgid "Thermo-Hydraulics"
+msgstr "Termo-Hidráulica"
+
+msgid "Tolerance on time"
+msgstr "Tolerancia en el tiempo"
+
+msgid "Tools"
+msgstr "Herramientas"
+
+msgid "Top"
+msgstr "Superior"
+
+msgid "UnGroup"
+msgstr "Desagrupar"
+
+msgid "Unable to communicate with the interpreter"
+msgstr ""
+
+msgid "Undo"
+msgstr "Deshacer"
+
+msgid "Unknown Diagram Version : "
+msgstr ""
+
+msgid "Untitled"
+msgstr "Sin título"
+
+msgid "User-Defined"
+msgstr "Definido por el usuario"
+
+msgid "User-Defined Functions"
+msgstr "Funciones Definidas por el Usuario"
+
+msgid "Values"
+msgstr "Valores"
+
+msgid "Variable descriptions"
+msgstr "Descripción de variables"
+
+msgid "Variable names"
+msgstr "Nombre de variables"
+
+msgid "Variable settings"
+msgstr "Configuraciones de variables"
+
+msgid "Vertical"
+msgstr "Vertical"
+
+msgid "View"
+msgstr "Ver"
+
+msgid "View in Scicos"
+msgstr "Ver en Scicos"
+
+msgid "Viewport"
+msgstr "Puerto de vista"
+
+msgid "Will try to continue..."
+msgstr "Intentará continuar..."
+
+msgid "WinTitle"
+msgstr ""
+
+msgid "Window title"
+msgstr "Título de la ventana"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos Demos"
+msgstr "Demos de Xcos"
+
+msgid "Xcos Help"
+msgstr "Ayuda de Xcos"
+
+msgid "Xcos error"
+msgstr "Error de Xcos"
+
+msgid "Xcos file"
+msgstr "Archivo de Xcos"
+
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+"diagram is loaded.)"
+msgstr ""
+"Puede ingresar aquí instrucciones de Scilab para definir parámetros "
+"simbólicos que serán usados en definiciones de bloque usando instrucciones "
+"de Scilab.<br/>Estas instrucciones son evaluadas una vez confirmadas.(i.e. "
+"hace click en OK, por Eval y cada vez se carga un diagrama.)"
+
+msgid "Zero crossing detection"
+msgstr "Detección de cruce por cero"
+
+msgid "Zoom In"
+msgstr "Acercar"
+
+msgid "Zoom Out"
+msgstr "Alejar"
+
+msgid "control port must be connected to command port"
+msgstr "Un puerto de control debe estar conectado a un puerto de comandos"
+
+msgid "maximum step size (0 means no limit)"
+msgstr "tamaño máximo del paso (0 significa sin límites)"

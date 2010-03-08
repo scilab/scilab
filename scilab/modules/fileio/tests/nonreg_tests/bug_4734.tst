@@ -25,7 +25,7 @@ save(TMPDIR + filesep() + 'pb.dat',t);
 clear t;
 
 load(TMPDIR + filesep() + 'pb.dat');
-ierr = execstr("r = msscanf(-1,t,''%f\n'');","errcath");
+ierr = execstr("r = msscanf(-1,t,''%f\n'');","errcatch");
 if ierr <> 0 then pause,end
 if size(r,'*') <> 500 then pause,end
 

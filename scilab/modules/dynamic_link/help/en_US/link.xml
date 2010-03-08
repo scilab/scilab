@@ -128,11 +128,11 @@ lst=link()</synopsis>
     <programlisting role="example"><![CDATA[ 
 //Example of the use of ilib_for_link with  a simple C code
 cd TMPDIR
-f1=['#include &lt;math.h&gt;'
+f1=['#include <math.h>'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
     '{'
     '   int i;'
-    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
@@ -172,6 +172,8 @@ exec cleaner.sce;
       <member><link linkend="ilib_for_link">ilib_for_link</link></member>
 
       <member><link linkend="ilib_build">ilib_build</link></member>
+
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 </refentry>

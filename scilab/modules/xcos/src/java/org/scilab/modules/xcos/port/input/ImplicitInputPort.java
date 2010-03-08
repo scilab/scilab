@@ -12,13 +12,25 @@
 
 package org.scilab.modules.xcos.port.input;
 
-
+/**
+ * An implicit output port is a port where the output characteristic does not
+ * imply the transfer of information in an a priori known direction (Output and
+ * Input are equivalent).
+ * 
+ * This kind of port are used primarily used on Modelica blocks. In fact the
+ * modelica description language has an equality symbol with mathematical
+ * meaning.
+ */
 public class ImplicitInputPort extends InputPort {
 
+    private static final long serialVersionUID = 8711291857895989304L;
+
+    /** Default constructor */
     public ImplicitInputPort() {
 	super("ImplicitInputPort");
     }
 
+    /** @return always Type.IMPLICIT */
     public Type getType() {
 	return Type.IMPLICIT;
     }

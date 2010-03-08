@@ -49,6 +49,17 @@ ieee(0);
 %T = %t;
 %F = %f;
 
+%pvm = with_module('pvm');
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+args = sciargs();
+larg = find(args=="-l");
+if larg<>[] & larg<=size(args,"*") then
+  L = args(larg+1);
+  setlanguage(L);
+end
+clear larg args L
+
 // Startup message  ===================================================
 
 if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
@@ -74,27 +85,16 @@ global demolist
 demolist = [];
 clear demolist;
 
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-args = sciargs();
-larg = find(args=="-l");
-if larg<>[] & larg<=size(args,"*") then
-  L = args(larg+1);
-  setlanguage(L);
-end
-clear larg args L
-
 // loads modules ======================================================
 
 modules = getmodules();
-WITH_HELPTOOLS = ((with_module("helptools"))  & (getscilabmode() <> "NWNI"));
 WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
 
 for i=1:size(modules,"*")
   exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
-clear modules i add_demo add_help_chapter add_module_help_chapter WITH_HELPTOOLS WITH_DEMOS
+clear modules i add_demo WITH_DEMOS
 
 // Create some configuration variables ================================
 home = getenv("HOME",SCI);
@@ -107,6 +107,13 @@ else
   end
 end
 setenv("VERSION",getversion());
+
+// ATOMS ===============================================================
+if with_module('atoms') then
+  atomsSystemInit();
+  atomsAutoload();
+  clear atomsSystemInit atomsAutoload
+end
 
 // Protect variable previously defined  ================================
 predef("all");
@@ -126,13 +133,6 @@ if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   global %toolboxes_dir;
   exec(SCI+'/contrib/loader.sce');
   clear %toolboxes %toolboxes_dir;
-end
-
-// ATOMS ===============================================================
-if with_module('atoms') then
-  atomsSystemInit();
-  atomsAutoload();
-  clear atomsSystemInit atomsAutoload
 end
 
 // calling user initialization =========================================
@@ -168,7 +168,7 @@ if getscilabmode() == "STD" then
   if ~with_module("xpad") then // Desactivate Editor menu
     unsetmenu(gettext("&Applications"),1);
   end
-  if ~with_module("scicos") then // Desactivate Scicos menu
+  if ~with_module("xcos") then // Desactivate xcos menu
     unsetmenu(gettext("&Applications"),3);
   end
   if ~with_module("m2sci") then // Desactivate mfile2sci menu

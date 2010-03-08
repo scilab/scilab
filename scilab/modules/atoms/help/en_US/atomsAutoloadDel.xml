@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAutoloadDel">
+  <refnamediv>
+    <refname>atomsAutoloadDel</refname>
+    <refpurpose>Remove one or several modules from the autoload system</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  nbDel = atomsAutoloadDel(modules[,section])
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+			
+			<!-- 1st input parameter -->
+			
+			<varlistentry>
+        <term>modules</term>
+        <listitem>
+          <para>
+						mx1, mx2 or mx3 character string matrix:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present, all versions
+								of the module are removed from the autoload system
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installed section</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present, modules installed in
+								both "user" and "allusers" sections are searched.
+							</td>
+						</tr>
+						
+					</informaltable>
+					
+        </listitem>
+      </varlistentry>
+			
+			<!-- 2nd input parameter -->
+			
+			<varlistentry>
+        <term>section</term>
+        <listitem>
+          <para>
+						This argument controls the list of sections where search
+						modules(s) to remove from autoload system.
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"all"</literal>: module(s) to remove from autotoload list
+								are searched in both "user" and "allusers" sections.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: module(s) to remove from autotoload
+								system are only searched in the "allusers" autoload list.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: module(s) to remove from autotoload
+								system are only searched in the "user" autoload list.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						If SCI is write accessible, "all" is the default value.
+						Otherwise, the default value is "user".
+					</para>
+        </listitem>
+			</varlistentry>
+			
+      <varlistentry>
+        <term>nbDel</term>
+        <listitem>
+          <para>
+						An integer : the number of modules successfully removed from the
+						autoload system.
+					</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para>
+			<literal>atomsAutoloadDel</literal> remove one or several modules from the
+			autoload system.
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+atomsRepositoryAdd('http://scene1.test.atoms.scilab.org');
+
+atomsInstall("toolbox_5","user");
+atomsAutoloadList()
+
+atomsAutoloadDel("toolbox_5");
+atomsAutoloadList()
+
+
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0"]);
+atomsAutoloadList()
+
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0" "user"]);
+atomsAutoloadList()
+
+atomsAutoloadAdd(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+atomsAutoloadDel(["toolbox_5" "1.0" "user"],"user");
+atomsAutoloadList()
+
+atomsRemove("toolbox_5","user");
+atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
+ ]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
+      </member>
+      <member>
+        <link linkend="atomsAutoloadList">atomsAutoloadList</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

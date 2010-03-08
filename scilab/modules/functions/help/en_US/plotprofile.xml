@@ -39,7 +39,7 @@
     <title>Description</title>
     <para>
     To use <literal>plotprofile</literal>, the Scilab function must have been prepared for
-    profiling (see getf).</para>
+    profiling (see exec).</para>
     <para>
     When such a function is executed, the system
     counts how many times each line is executed and how much cpu time is

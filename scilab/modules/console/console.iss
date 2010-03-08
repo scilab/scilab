@@ -37,8 +37,6 @@ Source: modules\{#CONSOLE}\version.xml; DestDir: {app}\modules\{#CONSOLE}; Compo
 ;
 ;Source: modules\{#CONSOLE}\includes\*.h; DestDir: {app}\modules\{#CONSOLE}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#CONSOLE}\help\addchapter.sce; DestDir: {app}\modules\{#CONSOLE}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#CONSOLE}\etc\{#CONSOLE}.quit; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#CONSOLE}\etc\{#CONSOLE}.start; DestDir: {app}\modules\{#CONSOLE}\etc; Components: {#COMPN_SCILAB}
 ;

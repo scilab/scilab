@@ -25,7 +25,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 //** Alan, 15/10/7 : patch for rotated blocks
 //**  
 
-  scs_m_save = scs_m ;
+  scs_m_save = scs_m
   nc_save    = needcompile ; 
 
   keep = [] ; del = [] ;
@@ -46,7 +46,8 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 		    'CLKOUT_f'
                     'INIMPL_f'
 		    'OUTIMPL_f']) then
-	message('Input/Output ports are not allowed in the region.')
+
+	messagebox('Input/Output ports are not allowed in the region.','error','modal')
 	return ; //** Exit point !
       end //** check block type 
       
@@ -63,16 +64,15 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     end
   end
   
-  
+  drawlater()
   prt = splitted_links(scs_m,keep,del) ; //** OK 
-  
-  [reg,DEL] = do_delete2(scs_m,del,%f)   ; //** OK 
-  
+  [reg,DEL]=do_delete2(scs_m,del,%f)   ; //** OK 
   rect = dig_bound(reg) ; 
   nin=0
   nout=0
   ncin=0
   ncout=0
+  is_flip=[]
  
   //add input and output ports
   for k=1:size(prt,1)
@@ -80,6 +80,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     k1=prt(k,1); typ=prt(k,5);tp=prt(k,3)
     o1=reg.objs(k1) //block inside the region
     orient=o1.graphics.flip
+    is_flip=[is_flip,orient]
 
     if tp==1 then //input port
       // build the link between block and port
@@ -209,38 +210,31 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     reg.objs(nreg+2)=lk
     reg.objs(k1)=o1
   end
-  reg = do_purge(reg)
+  reg=do_purge(reg)
   
-  if lstsize(reg.objs)==0 then
-     return
-  end
-
-  
-  //** From this point you are in drawlater() mode
-  drawlater(); 
-
-  // superblock should not inherit the context nor the name
+  if lstsize(reg.objs)==0 then drawnow();return, end
+  //superblock should not inherit the context nor the name
   reg.props.context=' ' 
   reg.props.title(1)='SuperBlock'
 
   sup = SUPER_f('define')
   sup.graphics.orig   = [(rect(1)+rect(3))/2-20,(rect(2)+rect(4))/2-20]
   sup.graphics.sz     = [40 40]
+  sup.graphics.flip   = or(is_flip)
   
   sup.model.in        = 1
   sup.model.out       = 1
   sup.model.rpar      = reg
   sup.model.blocktype = 'h'
   sup.model.dep_ut    = [%f %f]
-  
   // open the superblock in editor
   [ok,sup] = adjust_s_ports(sup)
 
-  [scs_m,DEL] = do_delete2(scs_m,keep,%f) //** Quick speed improvement using %f (was %t)
+  [scs_m,DEL] = do_delete2(scs_m,keep,%t) //** Quick speed improvement using %f (was %t)
   
-  drawobj(sup); //** draw the super block icon 
-  
-  scs_m.objs($+1) = sup; 
+  drawobj(sup)
+
+  scs_m.objs($+1)=sup
   // connect it
   nn=lstsize(scs_m.objs)  //superblock number
   nnk=nn
@@ -389,18 +383,15 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
       end
     end
 
-    lk = scicos_link(xx=xl,yy=yl,ct=prt(k,4:5),from=from,to=to)
-    
-    drawobj(lk); //** draw the link 
+    lk=scicos_link(xx=xl,yy=yl,ct=prt(k,4:5),from=from,to=to)
+    drawobj(lk)
 
     scs_m.objs($+1)=lk
     scs_m.objs(k1)=o1
     nnk=nnk+1
   end
-  
-  drawnow(); //** at the end of the operation the diagram is updated 
-
-  [scs_m_save,nc_save,enable_undo,edited,needcompile, needreplay] = resume(scs_m_save,nc_save,%t,%t,4,needreplay);
+  drawnow()
+  [scs_m_save,nc_save,enable_undo,edited,needcompile,..
+   needreplay]=resume(scs_m_save,nc_save,%t,%t,4,needreplay)
 
 endfunction
-

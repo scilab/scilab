@@ -56,30 +56,23 @@ function modules = atomsAutoloadList(section)
 		
 	end
 	
-	// All users autoload
-	// =========================================================================
-	
-	if or(section==["all";"allusers"]) then
-		autoloaded_file = atomsPath("system","allusers") + "autoloaded";
-		if fileinfo(autoloaded_file) <> [] then
-			module_list = mgetl(autoloaded_file);
-			for i=1:size(module_list,"*")
-				modules = [ modules ; module_list(i)  "allusers" ];
-			end
-		end
+	if section == "all" then
+		sections = ["user";"allusers"];
+	else
+		sections = section;
 	end
 	
-	// User repositories
+	// Loop on sections
 	// =========================================================================
 	
-	if or(section==["all";"user"]) then
-		autoloaded_file = atomsPath("system","user") + "autoloaded";
-		if fileinfo(autoloaded_file) <> [] then
-			module_list = mgetl(autoloaded_file);
-			for i=1:size(module_list,"*")
-				modules = [ modules ; module_list(i)  "user" ];
-			end
+	for i=1:size(sections,"*")
+		
+		autoloaded = atomsAutoloadLoad(sections(i));
+		
+		if ~ isempty(autoloaded) then
+			modules = [ modules ; autoloaded emptystr(size(autoloaded(:,1),"*"),1) + sections(i) ];
 		end
+		
 	end
 	
 endfunction

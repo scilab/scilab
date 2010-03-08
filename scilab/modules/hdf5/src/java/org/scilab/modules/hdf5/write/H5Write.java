@@ -61,6 +61,15 @@ public class H5Write {
 		H5.H5Aclose(attributeId);
 	}
 
+	public static void createIntAttribute(int datasetId, String attributeName, int attributeValue) throws NullPointerException, HDF5Exception {
+		long[] attributeDims = {1};
+		int attributespaceId = H5.H5Screate_simple(1, attributeDims, null);
+		int attributeId = H5.H5Acreate(datasetId, attributeName, HDF5Constants.H5T_NATIVE_INT, 
+			attributespaceId, HDF5Constants.H5P_DEFAULT);
+		H5.H5Awrite(attributeId, HDF5Constants.H5T_NATIVE_INT, new Integer[]{attributeValue});
+		H5.H5Aclose(attributeId);
+	}
+
 	//    public static void writeInDataSet(int fileId, String dataSetName, int[] data) throws NullPointerException, HDF5Exception {
 	//	int size = data.length;
 	//

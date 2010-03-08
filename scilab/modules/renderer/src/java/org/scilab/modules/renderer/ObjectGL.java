@@ -178,10 +178,10 @@ public class ObjectGL {
 	
 	/**
 	 * This function is used to know if the object is using
-	 * some OpenGL ressources that need to be released when the object is destroyed
+	 * some OpenGL resources that need to be released when the object is destroyed
 	 * This function will be called from outside the OpenGL thread so should not contain any
 	 * OpenGL call.
-	 * @return true if the object contains such ressources, false otherwise
+	 * @return true if the object contains such resources, false otherwise
 	 */
 	public boolean isUsingOGLResources() {
 		// by default return false

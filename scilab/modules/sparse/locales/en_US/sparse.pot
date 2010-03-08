@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: src/c/spOutput.c, line: 332
 #, c-format
@@ -142,10 +142,10 @@ msgstr ""
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 #
-# File: macros/qmr.sci, line: 261
-# File: macros/gmres.sci, line: 152
 # File: macros/pcg.sci, line: 62
 # File: macros/pcg.sci, line: 65
+# File: macros/qmr.sci, line: 261
+# File: macros/gmres.sci, line: 152
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -163,11 +163,11 @@ msgid ""
 "d"
 msgstr ""
 #
-# File: macros/gmres.sci, line: 128
 # File: macros/pcg.sci, line: 126
 # File: macros/pcg.sci, line: 162
 # File: macros/pcg.sci, line: 191
 # File: macros/pcg.sci, line: 199
+# File: macros/gmres.sci, line: 128
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
@@ -179,18 +179,18 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 #
-# File: macros/qmr.sci, line: 73
 # File: macros/pcg.sci, line: 112
 # File: macros/pcg.sci, line: 155
 # File: macros/pcg.sci, line: 184
+# File: macros/qmr.sci, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 #
+# File: macros/pcg.sci, line: 122
 # File: macros/qmr.sci, line: 115
 # File: macros/gmres.sci, line: 71
 # File: macros/gmres.sci, line: 142
-# File: macros/pcg.sci, line: 122
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
@@ -210,24 +210,24 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: macros/pcg.sci, line: 131
+# File: macros/pcg.sci, line: 135
 # File: macros/qmr.sci, line: 235
 # File: macros/qmr.sci, line: 249
 # File: macros/gmres.sci, line: 83
 # File: macros/gmres.sci, line: 93
 # File: macros/gmres.sci, line: 103
-# File: macros/pcg.sci, line: 131
-# File: macros/pcg.sci, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 #
+# File: macros/pcg.sci, line: 117
+# File: macros/pcg.sci, line: 159
+# File: macros/pcg.sci, line: 188
 # File: macros/qmr.sci, line: 79
 # File: macros/qmr.sci, line: 140
 # File: macros/qmr.sci, line: 191
 # File: macros/gmres.sci, line: 122
-# File: macros/pcg.sci, line: 117
-# File: macros/pcg.sci, line: 159
-# File: macros/pcg.sci, line: 188
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
@@ -243,8 +243,8 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: macros/qmr.sci, line: 105
 # File: macros/pcg.sci, line: 196
+# File: macros/qmr.sci, line: 105
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""

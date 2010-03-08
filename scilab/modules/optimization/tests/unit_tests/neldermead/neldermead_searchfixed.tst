@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 //
 // assert_close --
@@ -40,7 +41,6 @@ nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.5);
 nm = neldermead_configure(nm,"-method","fixed");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
 xopt = neldermead_get(nm,"-xopt");

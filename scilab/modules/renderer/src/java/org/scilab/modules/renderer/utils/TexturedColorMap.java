@@ -205,7 +205,7 @@ public class TexturedColorMap extends ColorMap {
 	}
 	
 	/**
-	 * Desalocate ressources used by the texture
+	 * Deallocate resources used by the texture
 	 */
 	public void clearTexture() {
 		if (colorMapTexture != null) {

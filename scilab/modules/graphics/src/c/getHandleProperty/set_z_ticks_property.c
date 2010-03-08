@@ -96,20 +96,21 @@ int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   }
 
   /*  labels */
-
-  labels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+  // Here we check the size of "locations" instead of "labels", but they have the same size.
+  // We need to check the size to not be 0 because an empty matrix is a matrix of double
+  // and 'getCurrentStringMatrixFromList' expect a matrix of string (see bug 5148).
+  // P.Lando
   if( nbTicsCol * nbTicsRow )
   {
-/* Check if we should load LaTex / MathML Java libraries */
-	  loadTextRenderingAPI(labels, nbTicsCol, nbTicsRow);
-
-    ppSubWin->axes.u_zlabels = createStringArrayCopy( labels,  nbTicsCol * nbTicsRow );
+    ppSubWin->axes.u_zlabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+    /* Check if we should load LaTex / MathML Java libraries */
+    loadTextRenderingAPI(ppSubWin->axes.u_zlabels, nbTicsCol, nbTicsRow);
   }
   else
   {
     ppSubWin->axes.u_zlabels = NULL;
   }
-  freeArrayOfString( labels, nbTicsRow * nbTicsCol );
+
 
   ppSubWin->axes.u_nzgrads = nbTicsRow * nbTicsCol ;
   ppSubWin->axes.auto_ticks[2] = FALSE ;

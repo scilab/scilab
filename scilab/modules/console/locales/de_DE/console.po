@@ -14,26 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Could not change the Console Font."
+msgstr "Kann den Konsolenzeichensatz nicht ändern."
+
+msgid "Could not change the Console Foreground."
+msgstr "Kann den Konsolenvordergrund nicht ändern."
 
 msgid "File or Directory"
 msgstr "Datei oder Verzeichnis"
 
-msgid "Scilab Command"
-msgstr "Scilab Befehl"
-
-msgid "Scilab Function"
-msgstr "Scilab Funktion"
-
 msgid "Graphics handle field"
 msgstr "Feld für Graphen"
-
-msgid "Scilab Macro"
-msgstr "Scilab Macro"
-
-msgid "Scilab Variable"
-msgstr "Scilab Variable"
 
 msgid "No help"
 msgstr "Keine Hilfe"
@@ -41,8 +35,14 @@ msgstr "Keine Hilfe"
 msgid "Out of Screen"
 msgstr "Aushalb des Bildschirms"
 
-msgid "Could not change the Console Font."
-msgstr "Kann den Konsolenzeichensatz nicht ändern."
+msgid "Scilab Command"
+msgstr "Scilab Befehl"
 
-msgid "Could not change the Console Foreground."
-msgstr "Kann den Konsolenvordergrund nicht ändern."
+msgid "Scilab Function"
+msgstr "Scilab Funktion"
+
+msgid "Scilab Macro"
+msgstr "Scilab Macro"
+
+msgid "Scilab Variable"
+msgstr "Scilab Variable"

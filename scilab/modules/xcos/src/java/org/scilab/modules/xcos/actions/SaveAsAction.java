@@ -13,15 +13,15 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -29,15 +29,22 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * @author Vincent COUVERT
  */
 public final class SaveAsAction extends DefaultAction {
-
-	private static final long serialVersionUID = -4514688723281001116L;
+	/** Name of the action */
+	public static final String NAME = XcosMessages.SAVE_AS;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "document-save-as.png";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = KeyEvent.SHIFT_DOWN_MASK
+			| Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Xcos diagram
 	 */
-	private SaveAsAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SAVE_AS, scilabGraph);
+	public SaveAsAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -46,9 +53,7 @@ public final class SaveAsAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SAVE_AS, null, new SaveAsAction(scilabGraph), 
-				KeyStroke.getKeyStroke(KeyEvent.VK_S, 
-						KeyEvent.SHIFT_DOWN_MASK | Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, SaveAsAction.class);
 	}
 
 	/**
@@ -57,14 +62,19 @@ public final class SaveAsAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.SAVE_AS, "document-save-as.png", new SaveAsAction(scilabGraph));
+		return createButton(scilabGraph, SaveAsAction.class);
 	}
 
 	/**
-	 * Associated action
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		((XcosDiagram) getGraph(null)).saveDiagramAs(null);
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (((XcosDiagram) getGraph(null)).saveDiagramAs(null)) {
+			((XcosDiagram) getGraph(null)).setModified(false);
+			XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
+		}
+		
 	}
 }

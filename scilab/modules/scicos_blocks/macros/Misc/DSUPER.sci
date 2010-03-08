@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=DSUPER(job,arg1,arg2)
+function [x,y,typ] = DSUPER(job,arg1,arg2)
 x=[];y=[],typ=[]
 
 select job
@@ -41,22 +41,23 @@ case 'set' then
  bitems=graphics.exprs(2)(2)(2:$)
  if exprs0==[] then x=arg1,return,end
 
- tt='%scicos_context.'+exprs0(1);
+ tt='scicos_context.'+exprs0(1);
  for i=2:size(exprs0,1)
-   tt=tt+',%scicos_context.'+exprs0(i),
+   tt=tt+',scicos_context.'+exprs0(i),
  end
 
  ss=graphics.exprs(2)(3)
- %scicos_context=struct()
- execstr('[ok,'+tt+',exprs]=getvalue(btitre,bitems,ss,exprs)')
+scicos_context=struct()
+ execstr('[ok,'+tt+',exprs]=scicos_getvalue(btitre,bitems,ss,exprs)')
  
  if ok then
   x=arg1
+  %scicos_context=scicos_context;
   context=[x.model.rpar.props.context]
   [%scicos_context,ierr]=script2var(context,%scicos_context)
   if ierr==0 then 
     sblock=x.model.rpar
-    [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
+    [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),%scicos_context)
     y=max(2,needcompile,needcompile2)
     x.graphics.exprs(1)=exprs
     x.model.rpar=sblock

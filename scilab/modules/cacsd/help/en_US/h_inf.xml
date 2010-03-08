@@ -29,7 +29,7 @@
       <varlistentry>
         <term>P</term>
         <listitem>
-          <para>: <literal>syslin</literal> list : continuous-time linear system (``augmented'' plant given in state-space form  or in transfer form)</para>
+          <para> <literal>syslin</literal> list : continuous-time linear system (``augmented'' plant given in state-space form  or in transfer form)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

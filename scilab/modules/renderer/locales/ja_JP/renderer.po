@@ -1,23 +1,23 @@
-# Localization of the module renderer
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-09 16:31+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
 
 # File: src/cpp/fecDrawing/ConcreteDrawableFec.cpp, line: 79
 # File: src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp, line: 59
@@ -51,6 +51,22 @@ msgid "%s: No more memory.\n"
 msgstr "%s: これ以上メモリがありません。\n"
 
 #
+# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr "Axesオブジェクトをクリックオンでローテーションを開始します。右クリック、またはエスケープキーでキャンセルします。"
+
+#
+# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 89
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "クリック、またはエスケープキーでローテーションを終わらせます。"
+
+#
+# File: src/norenderer/norenderer.c, line: 19
+msgid "Scilab Renderer module not installed.\n"
+msgstr "Scilabレンダラーモジュールはインストールされていません。\n"
+
+#
 # File: src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp, line: 62
 msgid "Unable to render polyline, memory full.\n"
 msgstr "ポリラインを表現できません、メモリ不足です。\n"
@@ -66,19 +82,3 @@ msgstr ""
 "警告!!!\n"
 "Scilabは深刻なエラーを見つけました(%s).\n"
 "データを保存して、Scilabをリスタートしてください。\n"
-
-#
-# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 66
-msgid "Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr "Axesオブジェクトをクリックオンでローテーションを開始します。右クリック、またはエスケープキーでキャンセルします。"
-
-#
-# File: src/java/org/scilab/modules/renderer/utils/graphicEvents/InteractiveRotationEvent.java, line: 89
-msgid "Click or press ESCAPE to terminate rotation."
-msgstr "クリック、またはエスケープキーでローテーションを終わらせます。"
-
-#
-# File: src/norenderer/norenderer.c, line: 19
-msgid "Scilab Renderer module not installed.\n"
-msgstr "Scilabレンダラーモジュールはインストールされていません。\n"
-

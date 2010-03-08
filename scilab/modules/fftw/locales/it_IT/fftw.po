@@ -1,0 +1,99 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
+"PO-Revision-Date: 2009-11-09 18:15+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+"%s: Gli argomenti \"#%d\" e \"#%d\" sono incompatibili: erano attese le "
+"stesse dimensioni.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: non era atteso %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
+"reale o uno complesso.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di interi.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha dei valori sbagliati.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso il flag "
+"FFTW.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attesi degli "
+"interi non-negativi.\n"
+
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "La libreria di FFTW %s non è stata trovata.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "La libreria FFTW non è stata trovata.\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW non può leggere un wisdom"
+
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Il modulo FFTW di Scilab non è installato\n"

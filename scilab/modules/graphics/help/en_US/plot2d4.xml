@@ -53,7 +53,6 @@ plot2d4(x,y &lt;,opt_args&gt;)</synopsis>
 // compare the following with plot2d1
 x=[0:0.1:2*%pi]';
 plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
-// In New graphics only
 clf()
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();

@@ -6,6 +6,7 @@
 	ProjectGUID="{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	RootNamespace="WScilex"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -42,6 +43,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;&quot;$(SolutionDir)modules\windows_tools\src\c\scilab_windows&quot;"
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
@@ -207,6 +209,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;&quot;$(SolutionDir)modules\windows_tools\src\c\scilab_windows&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"

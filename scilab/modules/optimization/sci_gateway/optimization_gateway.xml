@@ -37,4 +37,5 @@
 <PRIMITIVE gatewayId="11" primitiveId="4" primitiveName="lsqrsolve" />
 <PRIMITIVE gatewayId="11" primitiveId="5" primitiveName="qld" />
 <PRIMITIVE gatewayId="11" primitiveId="6" primitiveName="qp_solve" />
+<PRIMITIVE gatewayId="11" primitiveId="7" primitiveName="readmps" />
 </GATEWAY>

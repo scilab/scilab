@@ -108,7 +108,7 @@ endfunction
           script (ver exec). Para compatibilidade com versões Scilab antigas,
           as funções podem ser definidas em um arquivo script contendo apenas
           definições de funções podem ser "carregadas" no Scilab através da
-          função <literal>getf</literal>.</para>
+          função <literal>exec</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -161,7 +161,7 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
 
       <member><link linkend="exec">exec</link></member>
 
-      <member><link linkend="getf">getf</link></member>
+      <member><link linkend="exec">exec</link></member>
     </simplelist>
   </refsection>
 </refentry>

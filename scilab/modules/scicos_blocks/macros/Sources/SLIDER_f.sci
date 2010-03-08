@@ -19,7 +19,8 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=SLIDER_f(job,arg1,arg2)
+function [x,y,typ] = SLIDER_f(job,arg1,arg2)
+//
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -37,7 +38,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,min_r,max_r,sl_type,color,herit,exprs]=getvalue(..
+    [ok,min_r,max_r,sl_type,color,herit,exprs]=scicos_getvalue(..
 	'Set  parameters',..
 	['Min range';
 	 'Max range';

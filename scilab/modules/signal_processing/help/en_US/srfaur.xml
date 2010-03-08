@@ -83,7 +83,7 @@ hk=hank(20,20,c);
 r0=c(1:2,1:2);
 [P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,200);
 
-//Make covariance matrix exactly symetric
+//Make covariance matrix exactly symmetric
 Rt=(Rt+Rt')/2
  ]]></programlisting>
   </refsection>

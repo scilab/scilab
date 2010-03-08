@@ -74,7 +74,10 @@ src/fortran/calbx.f \
 src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
-src/fortran/qpgen1sci.f
+src/fortran/qpgen1sci.f \
+src/fortran/intreadmps.f \
+src/fortran/rdmps1.f \
+src/fortran/rdmpsz.f
 
 MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
@@ -101,7 +104,8 @@ sci_gateway/c/gw_optimization.c \
 sci_gateway/c/sci_optim.c \
 sci_gateway/c/sci_fsolv.c \
 sci_gateway/c/sci_sqrsolve.c \
-sci_gateway/c/sci_qp_solve.c
+sci_gateway/c/sci_qp_solve.c \
+sci_gateway/c/sci_readmps.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_semidef.f \
 sci_gateway/fortran/sci_f_fsolve.f \
@@ -118,6 +122,7 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 

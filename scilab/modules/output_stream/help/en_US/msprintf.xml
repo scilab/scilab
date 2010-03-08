@@ -22,7 +22,7 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
 
-  <refnamediv xml:id="msprintf">
+  <refnamediv>
     <refname>msprintf</refname>
 
     <refpurpose>converts, formats, and writes data in a string</refpurpose>

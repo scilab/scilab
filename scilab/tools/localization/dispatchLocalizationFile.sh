@@ -10,7 +10,7 @@ if test $# -ne 1; then
 	echo "here https://translations.launchpad.net/scilab/trunk/+export "
 	echo "and dispatch them into Scilab source tree"
 	echo ""
-	echo "Syntax : $0 <path_to_launchpad_localization_file"
+	echo "Syntax : $0 <path_to_launchpad_localization_file>"
 	exit -1
 fi
 
@@ -42,6 +42,7 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
 	if test "$LOC" == "ca"; then LOC="ca_ES"; fi
 	if test "$LOC" == "es"; then LOC="es_ES"; fi
 	if test "$LOC" == "ja"; then LOC="ja_JP"; fi
+	if test "$LOC" == "it"; then LOC="it_IT"; fi
 
 	# check that it is the right format
 	echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY

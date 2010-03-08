@@ -7,6 +7,12 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+//
+// Do not check ref, because imp option create a output messages
+// which contains lots of floating point values which may
+// be slightly different across platforms, without being bugs.
+//
 // optim_script.tst --
 //   Test the optim command with the Rosenbrock test case 
 //   in the case where the cost function is a Scilab function.
@@ -52,9 +58,6 @@ endfunction
 //
 // Configure the test so that verbose message do not interrupt the test.
 lines(0);
-// Open up the console for messages which may appear there
-consolebox("on");
-Only on Windows Mode, not in Console Mode.
 //
 // 1. Test unconstrained BFGS
 // Test without arguments
@@ -89,7 +92,7 @@ dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=      
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
- iter num   38, nb calls=  46, f=0.0000E+00
+ iter num   38, nb calls=  46, f= 0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 Norm of projected gradient lower than   0.0000000D+00.
 
@@ -138,7 +141,7 @@ max number of calls to costf allowed: nap=       100
  iter num   35, nb calls=  43, f=0.4239E-20
  iter num   36, nb calls=  44, f=0.2642E-25
  iter num   37, nb calls=  45, f=0.4980E-29
- iter num   38, nb calls=  46, f=0.0000E+00
+ iter num   38, nb calls=  46, f= 0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 Norm of projected gradient lower than   0.0000000D+00.
 
@@ -268,8 +271,8 @@ max number of calls to costf allowed: nap=       100
                 step length= 1.000    , df=-.2642E-25, derivative=0.4543E-15
  iter num   37, nb calls=  45, f=0.4980E-29
  linear search: initial derivative=-.2682E-13
-                step length= 1.000    , df=-.4980E-29, derivative=0.0000E+00
- iter num   38, nb calls=  46, f=0.0000E+00
+                step length= 1.000    , df=-.4980E-29, derivative= 0.000
+ iter num   38, nb calls=  46, f= 0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 Norm of projected gradient lower than   0.0000000D+00.
 
@@ -448,7 +451,7 @@ n1fc1   eta2 assigned to  0.444D-14
  n1fc1     26   76   0.1360041D-02   convergence a 0.224D-02 pres  ( 0.44D-15)
  n1fc1     26   77   0.7792185D-03   faisceau reduit a  3 gradients
 n1fc1   eta2 assigned to  0.444D-14
- n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  ( 0.00D+00)
+ n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  (-0.00D+00)
  n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
 n1fc1      Incorrect end of fprf2
 End of optimization.
@@ -496,7 +499,7 @@ n1fc1     30   83   0.6090815D-05  0.57D-04  0.35D-06  0.19D-01  3
 n1fc1     31   85   0.1944220D-05  0.84D-05  0.75D-03  0.68D+02  2
 n1fc1     32   87   0.7841516D-06  0.23D-05  0.23D-06  0.65D-01  3
 n1fc1   eta2 assigned to  0.444D-14
- n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  ( 0.00D+00)
+ n1fc1     33   88   0.2192247D-06   convergence a 0.926D-06 pres  (-0.00D+00)
 n1fc1     33   88   0.2192247D-06  0.93D-07  0.51D-04  0.12D+03  2
  n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
 n1fc1     34   90   0.1890964D-06  0.93D-07  0.14D-06  0.00D+00  3
@@ -979,7 +982,7 @@ id  t= 0.1000E-02 h= 0.2126E-18 dh/dt= 0.4252E-15 dfh/dt= 0.2128E-12 dt-0.1E+01
 id  t= 0.1000E-04 h= 0.2092E-22 dh/dt= 0.4218E-17 dfh/dt= 0.2147E-15 dt-0.1E-02
 d   t= 0.1000E-05 h= 0.1767E-24 dh/dt= 0.3901E-18 dfh/dt= 0.2305E-17 dt-0.9E-05
 d   t= 0.5000E-06 h= 0.3717E-25 dh/dt= 0.1781E-18 dfh/dt= 0.2790E-18 dt-0.5E-06
-    t= 0.2500E-06 h= 0.5251E-26 dh/dt= 0.1781E-18 dfh/dt= 0.0000E+00 dt-0.3E-06
+    t= 0.2500E-06 h= 0.5251E-26 dh/dt= 0.1781E-18 dfh/dt=-0.0000E+00 dt-0.3E-06
  qnbd : indqn=      13
 End of optimization (linear search fails).
 

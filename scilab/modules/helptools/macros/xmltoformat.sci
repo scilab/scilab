@@ -30,7 +30,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	global %helps;
 	global %helps_modules;
-	%HELPS=[%helps_modules;%helps];
+	
+	if %helps_modules == [] then
+	  moduleslist = getmodules();
+	  for i = 1:size(moduleslist,'*')
+	    add_module_help_chapter(moduleslist(i));
+	  end
+	end
+	
+	%HELPS = [%helps_modules; %helps];
 	
 	SCI_long = pathconvert(getlongpathname(SCI),%F,%F);
 	
@@ -1442,7 +1450,7 @@ function master_document = x2f_tree_to_master( tree )
 	if isfield(tree,"xml_list") then
 		xmllist        = tree("xml_list");
 		if xmllist <> [] then
-			master_document = [ master_document ; "<part xml:id=''section_"+getmd5(tree("path"),"string")+"''>" ];
+			master_document = [ master_document ; "<part xml:id=''section_"+getmd5(strsubst(tree("path"),SCI,""),"string")+"''>" ];
 			master_document = [ master_document ; "<title>"+section_title+"</title>" ];
 			master_document = [ master_document ; "&"+xmllist(:,1)+";" ];
 			offset          = 1;
@@ -1551,7 +1559,7 @@ function master_section = x2f_tree_to_section( tree , offset )
 	section_title  = strsubst(section_title,"<"  ,"&lt;");
 	
 	master_section = [];
-	master_section = [ master_section ; "<"+section_type+" xml:id=''section_"+getmd5(tree("path"),"string")+"''>" ];
+	master_section = [ master_section ; "<"+section_type+" xml:id=''section_"+getmd5(strsubst(tree("path"),SCI,""),"string")+"''>" ];
 	master_section = [ master_section ; "<title>"+section_title+"</title>" ];
 	
 	// Loop on dir_

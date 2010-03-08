@@ -10,13 +10,8 @@
 
 //Load  functions libraries
 // =============================================================================
-load('SCI/modules/gui/macros/lib');
-
-// Add help chapter
-// =============================================================================
-if WITH_HELPTOOLS then
-	add_module_help_chapter("gui");
-end
+load("SCI/modules/gui/macros/lib");
+load("SCI/modules/gui/macros/tree/lib");
 
 // Add demo
 // =============================================================================

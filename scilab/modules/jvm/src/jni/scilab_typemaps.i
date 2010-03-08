@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Vincent COUVERT
@@ -11,6 +10,12 @@
  *
  */
 /* Utilities for writing JNIs which use datatypes not handled by SWIG */
+
+/** 
+ * To regenerate:
+ * Windows: @TODO
+ * Other: Use the option --enable-build-swig to the configure
+*/
 
 /* ------------------------------------------------------------------------- */
 

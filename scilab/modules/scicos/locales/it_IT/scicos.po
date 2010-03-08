@@ -1,0 +1,141 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"PO-Revision-Date: 2009-12-10 16:03+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " %s.mo non può essere compilato\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " è stata forzata la compilazione %s.mo\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo deve essere ricompilato\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation of the Modelica block."
+msgstr ""
+"%s: Si è verificato un errore durante la compilazione del blocco di Modelica"
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr ""
+"%s: Non è possibile trovare alcun file MO nella posizione seguente: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: Il diagramma non compila nel passo %d.\n"
+
+#, c-format
+msgid "%s: Error : the following command line failed to execute: %s.\n"
+msgstr "%s: Errore: la seguente linea di comando non è stata eseguita: %s.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Errore: un blocco scifunc non è stato definito."
+
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: Errore: il compilatore Modelica (MODELICAC) non è disponibile."
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Le porte di ingresso non sono numerate adeguatamente.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Le porte di uscita non sono numerate adeguatamente.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato. Deve essere tra %d e "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: era atteso %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"singolo intero.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"singola stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Modifica"
+
+msgid "&File"
+msgstr "&File"
+
+msgid "&Tools"
+msgstr "&Strumenti"
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr "\"scicos\" non è più disponibile, usare \"xcos\" invece.\n"
+
+msgid "A compatible C compiler required."
+msgstr "È richiesto un compilatore C compatibile."
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+"Può essere selezionato solo un blocco nella finestra attuale per questa "
+"operazione"
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "C'è stato un problema durante la creazione della libreria %s\n"
+
+msgid "Sorry compiling problem"
+msgstr "Ci sono problemi di compilazione"
+
+msgid "The current icon depends on block parameter\n"
+msgstr "La icona attuale dipende dal parametro del blocco\n"

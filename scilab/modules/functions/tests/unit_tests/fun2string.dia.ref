@@ -109,7 +109,8 @@ ref=["function []=foo()";
      "  z = 3;";
      "endfunction"];
 mputl(ref,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci')
+warning('off');
+warning('on');
 if or(fun2string(foo,'foo')<>ref) then bugmes();quit;end
 // with nested functions
 // ---------------------
@@ -147,13 +148,13 @@ function foo()
 endfunction	
 ref=["function []=foo()";
      "  function foo3,a=1,endfunction";
-     "endfunction"];
+     "endfunction"]; 
 if or(fun2string(foo,'foo')<>ref) then bugmes();quit;end
 // with comments
 // -------------
 function a=foo//
     if a> 10 then //
-    end
+    end 
 endfunction
 ref= ["function a=foo(),//";
       "  if a > 10 then   //";

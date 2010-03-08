@@ -179,6 +179,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='CBLOCK4' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='CCS' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Masoud Najafi'>
@@ -367,12 +375,20 @@ INRIA
 </AUTHORS>
 </FILE>
 
-<FILE name='CONSTRAINT_f' type='XML'>
-<AUTHORS>
-<AUTHORS_ITEM label='Ramine Nikoukhah'>
-INRIA
-</AUTHORS_ITEM>
-</AUTHORS>
+<FILE name='CONSTRAINT2_c' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='CONSTRAINT_c' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+   INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='CONST_f' type='XML'>
@@ -587,10 +603,18 @@ INRIA
 </AUTHORS>
 </FILE>
 
-<FILE name='DIFF_f' type='XML'>
-<AUTHORS>
+<FILE name='DIFF_c' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
 
-</AUTHORS>
+<FILE name='DIFF_f' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='DLATCH' type='XML'>
@@ -847,6 +871,12 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='Flowmeter' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
+</FILE>
+
 <FILE name='GAINBLK' type='XML'>
   <AUTHORS>
     <AUTHORS_ITEM label='Fady NASSIF'>
@@ -897,6 +927,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='GEN_SQR' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Fady NASSIF'>
+INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='GOTO' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Fady NASSIF'>
@@ -933,6 +971,14 @@ INRIA
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='Ground_g' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Fady NASSIF'>
+INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
@@ -1130,6 +1176,22 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='LOOKUP2D' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='LOOKUP_c' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='LOOKUP_f' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -1142,6 +1204,12 @@ INRIA
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='Lookup_Tables_pal' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='Lorentz_diagr' type='XML'>
@@ -1362,6 +1430,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='MPBLOCK' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='M. Najafi/A. Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='MUX' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -1402,6 +1478,20 @@ INRIA
 <AUTHORS>
 
 </AUTHORS>
+</FILE>
+
+<FILE name='ModelicaBlocks' type='XML'>
+  <AUTHORS>
+   <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+   </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='Modelica_pal' type='XML'>
+  <AUTHORS>
+
+  </AUTHORS>
 </FILE>
 
 <FILE name='Modulo_Count' type='XML'>
@@ -1488,12 +1578,28 @@ www.modelica.org
 </AUTHORS>
 </FILE>
 
+<FILE name='PAL_f' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label=''>
 EADS 2005-01-16
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Masoud Najafi'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='PID' type='XML'>
@@ -1546,6 +1652,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='PULSE_SC' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Fady NASSIF'>
+INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='PerteDP' type='XML'>
@@ -2052,6 +2166,14 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='VirtualCLK0' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Fady NASSIF'>
+INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='VoltageSensor' type='XML'>
 <AUTHORS>
 
@@ -2126,9 +2248,35 @@ INRIA
 </AUTHORS>
 </FILE>
 
+<FILE name='callblk' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='create_palette' type='XML'>
   <AUTHORS>
-
+    <AUTHORS_ITEM label='RN/AL'>
+    INRIA
+    </AUTHORS_ITEM>
   </AUTHORS>
 </FILE>
 
@@ -2138,6 +2286,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='data2sig' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='data_type' type='XML'>
@@ -2226,6 +2382,14 @@ INRIA
 INRIA
 </AUTHORS_ITEM>
 </AUTHORS>
+</FILE>
+
+<FILE name='model2blk' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
 </FILE>
 
 <FILE name='phase_simulation' type='XML'>
@@ -2378,6 +2542,14 @@ INRIA
   </AUTHORS>
 </FILE>
 
+<FILE name='sig2data' type='XML'>
+  <AUTHORS>
+    <AUTHORS_ITEM label='Alan Layec'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</FILE>
+
 <FILE name='steadycos' type='XML'>
 <AUTHORS>
 <AUTHORS_ITEM label='Ramine Nikoukhah'>
@@ -2407,4 +2579,5 @@ INRIA
 </FILE>
 
 
-</DATA>
+</DATA> 
+ 

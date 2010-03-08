@@ -427,7 +427,6 @@ r=0.3;orig=[1.5 0 0];
 cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32; 
 clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
 
-//Available operations using only New Graphics...
 delete(gcf());
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);

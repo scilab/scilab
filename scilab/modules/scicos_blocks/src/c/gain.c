@@ -18,30 +18,31 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-
 #include "core_math.h"
 #include "elementary_functions.h" /* C2F(dmmul) */
-
 #include "scicos.h"
-
-/*------------------------------------------------
- *     Scicos block simulator 
- *     A set of elementary blocks 
- *------------------------------------------------*/
-
-/*------------------------------------------------
- *     Scicos block simulator 
- *     input to output Gain
- *     rpar=gain matrix
- *------------------------------------------------*/
-
-void gain(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
-	  ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
-          int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
-          double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void gain(int *flag, int *nevprt, double *t, 
+							   double*xd, double*x, int*nx, double *z, int *nz,
+							   double *tvec, int *ntvec, double *rpar,
+							   int *nrpar, int *ipar, int *nipar, double *u,
+							   int *nu, double *y, int *ny)
 {
-  int un = 1;
-  C2F(dmmul)(rpar,ny,u,nu,y,ny,ny,nu,&un);
+	int one = 1;
+	C2F(dmmul)(rpar,ny,u,nu,y,ny,ny,nu,&one);
 }
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void C2F(gain)(int *flag, int *nevprt, double *t, 
+									double*xd, double*x, int*nx, double *z, int *nz,
+									double *tvec, int *ntvec, double *rpar,
+									int *nrpar, int *ipar, int *nipar, double *u,
+									int *nu, double *y, int *ny)
+{
+	gain(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
+		ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny);
+}
+/*--------------------------------------------------------------------------*/ 

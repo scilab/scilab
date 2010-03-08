@@ -116,16 +116,18 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   select status
   case "maxiter" then
     if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
-      mprintf(gettext("Exiting: Maximum number of iterations has been exceeded\n"))
-      mprintf(gettext("         - increase MaxIter option.\n"))
-      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+      msg = "%s: Exiting: Maximum number of iterations has been exceeded\n" + ...
+            "         - increase MaxIter option.\n" + ...
+            "         Current function value: %s\n"
+      mprintf(gettext(msg) , "fminsearch" , string(fval) )
     end
     exitflag = 0;
   case "maxfuneval" then
     if ( ( Display == "notify" ) | ( Display == "iter" ) | ( Display == "final" ) ) then
-      mprintf(gettext("Exiting: Maximum number of function evaluations has been exceeded\n"))
-      mprintf(gettext("         - increase MaxFunEvals option.\n"))
-      mprintf(gettext("         Current function value: %s\n") , string(fval) )
+      msg = "%s: Exiting: Maximum number of function evaluations has been exceeded\n" + ...
+            "          - increase MaxFunEvals option.\n" + ...
+            "         Current function value: %s\n"
+      mprintf(gettext(msg) , "fminsearch" , string(fval) )
     end
     exitflag = 0;
   case "tolsizedeltafv" then
@@ -207,8 +209,8 @@ function fminsearch_outputfun ( state , data , fmsdata )
   //
   if ( fmsdata.Display == "iter" ) then
     if ( data.step <> "done" ) then
-    mprintf ( "%6s        %5s     %12s         %-20s\n", ...
-      string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
+      mprintf ( "%6s        %5s     %12s         %-20s\n", ...
+        string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
     else
       mprintf ( "\n" )
     end
@@ -233,7 +235,7 @@ function fminsearch_outputfun ( state , data , fmsdata )
       end
     else
       // The user did something wrong...
-      errmsg = msprintf(gettext("%s: The output function associated with ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
+      errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
       error(errmsg)
     end
   end
@@ -249,7 +251,7 @@ function fminsearch_outputfun ( state , data , fmsdata )
       end
     else
       // The user did something wrong...
-      errmsg = msprintf(gettext("%s: The output function associated with ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
+      errmsg = msprintf(gettext("%s: The value of the ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
       error(errmsg)
     end
   end

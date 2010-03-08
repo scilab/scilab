@@ -21,7 +21,7 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, size_t stackPointer, int valueTy
   
   if (sciGetEntityType( sciObj ) != SCI_UICONTROL)
     {
-      Scierror(999, _("No '%s' property for this object.\n"), "SliderStep");
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "SliderStep");
       return SET_PROPERTY_ERROR;
     }
 
@@ -30,7 +30,7 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, size_t stackPointer, int valueTy
       if((nbRow > 1) || (nbCol != 2))
         {
           /* Wrong value size */
-          Scierror(999, _("Wrong size for '%s' property: A 1 x %d real row vector expected.\n"), "SliderStep", 2);
+          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
           return SET_PROPERTY_ERROR;
         }
       
@@ -63,7 +63,7 @@ int SetUicontrolSliderStep(sciPointObj* sciObj, size_t stackPointer, int valueTy
   else
     {
       /* Wrong datatype */
-      Scierror(999, _("Wrong type for '%s' property: A 1 x %d real row vector expected.\n"), "SliderStep", 2);
+      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A 1 x %d real row vector expected.\n")), "SliderStep", 2);
       return SET_PROPERTY_ERROR;
     }
 

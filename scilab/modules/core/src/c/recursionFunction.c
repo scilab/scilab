@@ -59,7 +59,7 @@ recursion_function_called getRecursionFunctionToCall(void)
 			function_number = (recursion_function_called) ir;
 		}
 	}
-	return function_number;
+	return (recursion_function_called)function_number;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getrecursiongatewaytocall)(int *callID)
@@ -78,10 +78,6 @@ int C2F(getrecursiongatewaytocall)(int *callID)
 		break;
 	case RECURSION_CALL_EXECSTR:
 		/* see execstr (intexecstr.f) */
-		gw = GW_FUNCTIONS_ID; /* gw_functions */
-		break;
-	case RECURSION_CALL_GETF:
-		/* see getf (intgetf.f) */
 		gw = GW_FUNCTIONS_ID; /* gw_functions */
 		break;
 	case RECURSION_CALL_SAVE:

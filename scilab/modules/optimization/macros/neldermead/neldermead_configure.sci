@@ -14,7 +14,7 @@
 function this = neldermead_configure (this,key,value)
   select key
   case "-method" then
-    assert_typestring ( value );
+    assert_typestring ( value , "value" , 3 );
     select value
     case "fixed" then
       this.method = "fixed";
@@ -25,14 +25,13 @@ function this = neldermead_configure (this,key,value)
     case "mine" then
       this.method = "mine";
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
-      error(errmsg);
+      unknownValueForOption ( value , "-method" )
     end
   case "-coords0" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.coords0 = value;
   case "-simplex0method" then
-    assert_typestring ( value );
+    assert_typestring ( value , "value" , 3 );
     select value
     case "given" then
       this.simplex0method = "given";
@@ -45,158 +44,176 @@ function this = neldermead_configure (this,key,value)
     case "randbounds" then
       this.simplex0method = "randbounds";
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-simplex0method" )
     end
   case "-simplex0length" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.simplex0length = value;
   case "-simplex0deltausual" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.simplex0deltausual = value;
   case "-simplex0deltazero" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.simplex0deltazero = value;
   case "-rho" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.rho = value;
   case "-chi" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.chi = value;
   case "-gamma" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.gamma = value;
   case "-sigma" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.sigma = value;
   case "-tolsimplexizeabsolute" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.tolsimplexizeabsolute = value;
   case "-tolsimplexizerelative" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.tolsimplexizerelative = value;
   case "-tolsimplexizemethod" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     select value
     case %t then
       this.tolsimplexizemethod = value;
     case %f then
       this.tolsimplexizemethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolsimplexizemethod" )
     end
   case "-toldeltafv" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.toldeltafv = value;
   case "-tolssizedeltafvmethod" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     select value
     case %t then
       this.tolssizedeltafvmethod = value;
     case %f then
       this.tolssizedeltafvmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-tolssizedeltafvmethod" )
     end
   case "-restartmax" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.restartmax = value;
   case "-restarteps" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
+    steprows = size ( value , "r" );
+    stepcols = size ( value , "c" );
+    if ( steprows * stepcols <> 1 ) then
+      errmsg = msprintf(gettext("%s: The restarteps option is expected to be a scalar, but current shape is %d x %d"),"neldermead_configure",steprows,stepcols);
+      error(errmsg);
+    end
+    if ( or( value <= 0 ) ) then
+      errmsg = msprintf(gettext("%s: The restarteps option is expected to be positive"),"neldermead_configure");
+      error(errmsg);
+    end
     this.restarteps = value;
   case "-restartstep" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
+    n = optimbase_cget ( this.optbase , "-numberofvariables" );
+    steprows = size ( value , "r" );
+    stepcols = size ( value , "c" );
+    if ( steprows * stepcols <> 1 ) then
+      if ( ( steprows <> n ) | ( stepcols <> 1 ) ) then
+        errmsg = msprintf(gettext("%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d"),"neldermead_configure",n,1,steprows,stepcols);
+        error(errmsg);
+      end
+    end
+    if ( or( value <= 0 ) ) then
+      errmsg = msprintf(gettext("%s: The restartstep vector is expected to be positive"),"neldermead_configure");
+      error(errmsg);
+    end
     this.restartstep = value;
   case "-kelleystagnationflag" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     this.kelleystagnationflag = value;
   case "-kelleynormalizationflag" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     this.kelleynormalizationflag = value;
   case "-kelleystagnationalpha0" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.kelleystagnationalpha0 = value;
   case "-restartflag" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     this.restartflag = value;
   case "-restartdetection" then
-    assert_typestring ( value )
+    assert_typestring ( value , "value" , 3 )
     this.restartdetection = value;
   case "-restartsimplexmethod" then
-    assert_typestring ( value );
+    assert_typestring ( value , "value" , 3 );
     this.restartsimplexmethod = value;
   case "-checkcostfunction" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     select value
     case %f then
       this.checkcostfunction = value;
     case %t then
       this.checkcostfunction = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-checkcostfunction" )
     end
   case "-boxnbpoints" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxnbpoints = value;
   case "-boxineqscaling" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxineqscaling = value;
   case "-scalingsimplex0" then
-    assert_typestring ( value );
+    assert_typestring ( value , "value" , 3 );
     this.scalingsimplex0 = value;
   case "-guinalphamin" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     if ( value <=0.0 ) then 
-      errmsg = msprintf(gettext("%s: Unexpected negative value %s for -guinalphamin option"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unexpected negative value %s for %s option"),"neldermead_configure", value , "-guinalphamin" );
       error(errmsg);
     end
     this.guinalphamin = value;
   case "-boxboundsalpha" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxboundsalpha = value
   case "-boxtermination" then
-    assert_typeboolean ( value );
+    assert_typeboolean ( value , "value" , 3 );
     this.boxtermination = value
   case "-boxtolf" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxtolf = value
   case "-boxnbmatch" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxnbmatch = value
   case "-boxreflect" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.boxreflect = value
   case "-mymethod" then
-    assert_typefunction ( value );
+    assert_typefunction ( value , "value" , 3 );
     this.mymethod = value
   case "-myterminate" then
-    assert_typefunction ( value );
+    assert_typefunction ( value , "value" , 3 );
     this.myterminate = value
   case "-myterminateflag" then
-    assert_typeboolean ( value );
+    assert_typeboolean ( value , "value" , 3 );
     select value
     case %f then
       this.myterminateflag = value;
     case %t then
       this.myterminateflag = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -myterminateflag option"),"neldermead_configure", value);
-      error(errmsg);
+      unknownValueForOption ( value , "-myterminateflag" )
     end
   case "-tolvarianceflag" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     this.tolvarianceflag = value
   case "-tolabsolutevariance" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.tolabsolutevariance = value
   case "-tolrelativevariance" then
-    assert_typereal ( value );
+    assert_typereal ( value , "value" , 3 );
     this.tolrelativevariance = value
   case "-greedy" then
-    assert_typeboolean ( value )
+    assert_typeboolean ( value , "value" , 3 )
     this.greedy = value
   else
     // Delegate to the optimization object
@@ -204,32 +221,41 @@ function this = neldermead_configure (this,key,value)
   end
 endfunction
 // Generates an error if the given variable is not of type real
-function assert_typereal ( var )
+function assert_typereal ( var , varname , ivar )
   if ( type ( var ) <> 1 ) then
-    errmsg = msprintf(gettext("%s: Expected real variable but got %s instead"),"assert_typereal", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected real variable for variable %s at input #%d, but got %s instead."),"assert_typereal", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type string
-function assert_typestring ( var )
+function assert_typestring ( var , varname , ivar )
   if ( type ( var ) <> 10 ) then
-    errmsg = msprintf(gettext("%s: Expected string variable but got %s instead"),"assert_typestring", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected string variable for variable %s at input #%d, but got %s instead."),"assert_typestring", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type function (macro)
-function assert_typefunction ( var )
+function assert_typefunction ( var , varname , ivar )
   if ( type ( var ) <> 13 ) then
-    errmsg = msprintf(gettext("%s: Expected function but got %s instead"),"assert_typefunction", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected function but for variable %s at input #%d, got %s instead."),"assert_typefunction", varname , ivar , typeof(var) );
     error(errmsg);
   end
 endfunction
 // Generates an error if the given variable is not of type boolean
-function assert_typeboolean ( var )
+function assert_typeboolean ( var , varname , ivar )
   if ( type ( var ) <> 4 ) then
-    errmsg = msprintf(gettext("%s: Expected boolean but got %s instead"),"assert_typeboolean", typeof(var) );
+    errmsg = msprintf(gettext("%s: Expected boolean but for variable %s at input #%d, got %s instead."),"assert_typeboolean", varname , ivar , typeof(var) );
     error(errmsg);
   end
+endfunction
+
+
+
+
+// Generates an error if the value corresponding to an option is unknown.
+function unknownValueForOption ( value , optionname )
+      errmsg = msprintf(gettext("%s: Unknown value %s for %s option"),"unknownValueForOption",value , optionname );
+      error(errmsg);
 endfunction
 
 

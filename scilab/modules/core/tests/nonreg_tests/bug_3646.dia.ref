@@ -13,8 +13,8 @@
 // Scilab 5.0.2 does not start after installation
 if MSDOS then
   cd(TMPDIR);
-  mkdir('Luk� B��l');
-  path_directory = cd('Luk� B��l');
+  mkdir('Lukáš Bùôl');
+  path_directory = cd('Lukáš Bùôl');
   prv_APPDATA = getenv('APPDATA');
   // set APPDATA to find another SCIHOME
   setenv('APPDATA', path_directory);

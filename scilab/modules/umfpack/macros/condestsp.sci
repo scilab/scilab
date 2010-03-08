@@ -170,7 +170,7 @@ function [K1] = condestsp(A, arg2, arg3)
      if (t > 1) & (k > 1) then
 	j = 1
 	for l=1:t
-	   while %t
+	   while %t & (j<=length(ind))
 	      if find(ind_hist == ind(j)) == [] then  
 	         ind(l) = ind(j)
 		 j = j + 1

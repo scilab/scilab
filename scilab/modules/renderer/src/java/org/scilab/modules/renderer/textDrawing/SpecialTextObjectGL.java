@@ -14,69 +14,123 @@ package org.scilab.modules.renderer.textDrawing;
 import java.nio.Buffer;
 import java.awt.Color;
 
+import com.sun.opengl.util.texture.Texture;
+
 public abstract class SpecialTextObjectGL {
     
     protected Buffer buffer;
     protected float height;
     protected float width;
+    protected Texture texture;
+
+    protected boolean isColored;
 
     public SpecialTextObjectGL() {
     }
 
     /**
      * Return a byte-buffer used to draw content
+     * @return byte-buffer 
      */
     public Buffer getBuffer() {
-		return this.buffer;
+		if (buffer != null) {
+		    return buffer;
+		}
+		makeImage();
+		return buffer;
     }
     
     /**
      * Return the height of the content
+     * @return height
      */
     public float getHeight() {
-		return this.height;
+		return height;
     }
     
     /**
      * Return the width of the content
+     * @return width
      */
     public float getWidth() {
-		return this.width;
+		return width;
     }
     
     /**
+     * Return the texture's name associated to this label
+     * @return the texture object
+     */
+    public Texture getTexture() {
+		return texture;
+    }
+
+    /**
+     * Set the texture's name associated to this label
+     * @param t texture used by GL
+     */
+    public void setTexture(Texture t) {
+		texture = t;
+		/* The buffer is set to null since GL put it into the buffer of the video card */
+		this.buffer = null;
+    }	
+
+    /**
+     * Return the isColored property
+     * @return isColored property
+     */
+    public boolean getIsColored() {
+		return isColored;
+    }
+
+    /**
+     * Set the isColored property
+     * @param isColored the isColored property of the content
+     */
+    public void setIsColored(boolean isColored) {
+		this.isColored = isColored;
+    }
+
+    /**
      * Set the color of the content
      * @param color the color of the content
+     * @return true if the color changed
      */
-    public abstract void setColor(Color color);
+    public abstract boolean setColor(Color color);
     
     /**
      * Set the font size of the content
      * @param fontSize the font size of the content
+     * @return true if the font size changed
      */
-    public abstract void setFontSize(float fontSize);
+    public abstract boolean setFontSize(float fontSize);
 
+    /**
+     * Render the label and set the pixels buffer
+     */
+    public abstract void makeImage();
 
+    /**
+     * Convert an ARGB pixmap into RGBA pixmap
+     * @param pix pixmap ARGB data
+     * @return pixmap RGBA data 
+     */
     protected static byte[] ARGBtoRGBA(int[] pix) {
-        byte[] bytes = new byte[pix.length * 4];
-        int p;
-		int r;
-		int g;
-		int b;
-		int a;
-        int j = 0;
-        for (int i = 0; i < pix.length; i++) {
-            p = pix[i];
-            a = (p >> 24) & 0xFF;
-            r = (p >> 16) & 0xFF;
-            g = (p >> 8) & 0xFF;
-            b = (p >> 0) & 0xFF;
-            bytes[j] = (byte) r;
-            bytes[j + 1] = (byte) g;
-            bytes[j + 2] = (byte) b;
-            bytes[j + 3] = (byte) a;
-            j += 4;
-        }
-        return bytes;
+		byte[] bytes = new byte[pix.length * 4];
+		int p, r, g, b, a;
+		int j = 0;
+		for (int i = 0; i < pix.length; i++) {
+		    p = pix[i];
+		    a = (p >> 24) & 0xFF;
+		    r = (p >> 16) & 0xFF;
+		    g = (p >> 8) & 0xFF;
+		    b = (p >> 0) & 0xFF;
+		    bytes[j] = (byte) r;
+		    bytes[j + 1] = (byte) g;
+		    bytes[j + 2] = (byte) b;
+		    bytes[j + 3] = (byte) a;
+		    j += 4;
+		}
+		
+		return bytes;
     }
 }

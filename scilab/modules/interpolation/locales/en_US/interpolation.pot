@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_linear_interpn.c, line: 99
 #, c-format
@@ -38,7 +38,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_lsq_splin.c, line: 83
 #, c-format
-msgid "%s: Not enought points for the fit.\n"
+msgid "%s: Not enough points for the fit.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin3d.c, line: 126
@@ -82,9 +82,9 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 80
 # File: sci_gateway/c/sci_lsq_splin.c, line: 50
 # File: sci_gateway/c/sci_lsq_splin.c, line: 58
+# File: sci_gateway/c/sci_linear_interpn.c, line: 80
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -132,10 +132,10 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_interp.c, line: 47
-# File: sci_gateway/c/sci_linear_interpn.c, line: 61
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 46
+# File: sci_gateway/c/sci_interp.c, line: 47
 # File: sci_gateway/c/sci_lsq_splin.c, line: 41
+# File: sci_gateway/c/sci_linear_interpn.c, line: 61
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -167,8 +167,8 @@ msgid ""
 msgstr ""
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 74
-# File: sci_gateway/c/sci_interp3d.c, line: 81
 # File: sci_gateway/c/sci_eval_cshep2d.c, line: 66
+# File: sci_gateway/c/sci_interp3d.c, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
 msgstr ""
@@ -235,8 +235,8 @@ msgstr ""
 msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_splin3d.c, line: 86
 # File: sci_gateway/c/sci_bsplin3val.c, line: 107
+# File: sci_gateway/c/sci_splin3d.c, line: 86
 #, c-format
 msgid "%s: Wrong values for input argument #%d.\n"
 msgstr ""
@@ -248,9 +248,9 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 78
-# File: sci_gateway/c/sci_interp3d.c, line: 115
 # File: sci_gateway/c/sci_interp2d.c, line: 67
 # File: sci_gateway/c/sci_linear_interpn.c, line: 133
+# File: sci_gateway/c/sci_interp3d.c, line: 115
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
 msgstr ""

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
 
 
 //
@@ -53,6 +54,8 @@ function [ this , terminate , status ] = mystoppingrule ( this , simplex )
   if ( ssize < 1.e-4 ) then
     terminate = %t;
     status = "mysize";
+  else
+    terminate = %f
   end
 
 endfunction
@@ -74,8 +77,6 @@ nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",400);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
-nm = neldermead_configure(nm,"-verbosetermination",0);
 // Disable default terminations
 nm = neldermead_configure(nm,"-tolxmethod",%f);
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);

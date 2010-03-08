@@ -27,16 +27,35 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>int createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr createPointerInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr createPointerInNamedList(void* _pvCtx, char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_iVar</term>
                 <listitem>
                     <para>
                         Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,6 +83,14 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -76,121 +103,135 @@
         <!--Lib_name: list_createlist-->
         <!--Func_list: list_createlist-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway">
+            <![CDATA[ 
 int list_createlist(char *fname,unsigned long fname_len)
 {
-    int iRet                = 0;
+	SciErr sciErr;
+	int *piAddr             = NULL;
+	int* piChild            = NULL;
+	double pdblData1[]      = {1,3,5,2,4,6};
+	double pdblData2[]      = {6,4,2,5,3,1};
+	char *pstData[]         = {"may","be","the","with","puffin","you"};
+	short psData[]          = {1,4,2,5,3,6};
+	double pdblPoly1[]      = {1};
+	double pdblPoly2[]      = {-2,-1};
+	double pdblPoly3[]      = {1,2,3};
+	double pdblPoly4[]      = {-4,-3,-2,-1};
+	double pdblPoly5[]      = {1,2,3,4,5};
+	double pdblPoly6[]      = {-6,-5,-4,-3,-2,-1};
+	double *pdblPoly[]      = {pdblPoly1, pdblPoly3, pdblPoly5, pdblPoly2, pdblPoly4, pdblPoly6};
+	int piCoef[]            = {1,3,5,2,4,6};
+	int piNbItemRow[]       = {1,2,1};
+	int piColPos[]          = {8,4,7,2};
+	double pdblSReal[]      = {1,2,3,4};
+	double pdblSImg[]       = {4,3,2,1};
+	int piBool[]            = {1,0,1,0,1,0,1,0,1};
+	double* pdblDataPtr     = NULL;
 
-    int *piAddr             = NULL;
-    int* piChild            = NULL;
-    double pdblData1[]      = {1,3,5,2,4,6};
-    double pdblData2[]      = {6,4,2,5,3,1};
-    char *pstData[]         = {"may","be","the","with","puffin","you"};
-    short psData[]          = {1,4,2,5,3,6};
-    double pdblPoly1[]      = {1};
-    double pdblPoly2[]      = {-2,-1};
-    double pdblPoly3[]      = {1,2,3};
-    double pdblPoly4[]      = {-4,-3,-2,-1};
-    double pdblPoly5[]      = {1,2,3,4,5};
-    double pdblPoly6[]      = {-6,-5,-4,-3,-2,-1};
-    double *pdblPoly[]      = {pdblPoly1, pdblPoly3, pdblPoly5, pdblPoly2, pdblPoly4, pdblPoly6};
-    int piCoef[]            = {1,3,5,2,4,6};
-    int piNbItemRow[]       = {1,2,1};
-    int piColPos[]          = {8,4,7,2};
-    double pdblSReal[]      = {1,2,3,4};
-    double pdblSImg[]       = {4,3,2,1};
-    int piBool[]            = {1,0,1,0,1,0,1,0,1};
-    double* pdblDataPtr     = NULL;
-    
-    
-    iRet = createList(1, 8, &piAddr);
-    if(iRet)
-    {
-        return 1;
-    }
 
-    iRet = createComplexMatrixOfDoubleInList(Rhs + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createList(pvApiCtx, 1, 8, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createMatrixOfStringInList(Rhs + 1, piAddr, 2, 2, 3, pstData);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createComplexMatrixOfDoubleInList(pvApiCtx, Rhs + 1, piAddr, 1, 3, 2, pdblData1, pdblData2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createMatrixOfInteger16InList(Rhs + 1, piAddr, 3, 2, 3, psData);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createMatrixOfStringInList(pvApiCtx, Rhs + 1, piAddr, 2, 2, 3, pstData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createMatrixOfPolyInList(Rhs + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createMatrixOfInteger16InList(pvApiCtx, Rhs + 1, piAddr, 3, 2, 3, psData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createComplexSparseMatrixInList(Rhs + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createMatrixOfPolyInList(pvApiCtx, Rhs + 1, piAddr, 4, "x", 3, 2, piCoef, pdblPoly);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createMatrixOfBooleanInList(Rhs + 1, piAddr, 6, 3, 3, piBool);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createComplexSparseMatrixInList(pvApiCtx, Rhs + 1, piAddr, 5, 3, 10, 4, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createBooleanSparseMatrixInList(Rhs + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createMatrixOfBooleanInList(pvApiCtx, Rhs + 1, piAddr, 6, 3, 3, piBool);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    //add list in list
-    iRet = createListInList(Rhs + 1, piAddr, 8, 3, &piChild);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createBooleanSparseMatrixInList(pvApiCtx, Rhs + 1, piAddr, 7, 3, 10, 4, piNbItemRow, piColPos);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createMatrixOfDoubleInList(Rhs + 1, piChild, 1, 3, 2, pdblData1);
-    if(iRet)
-    {
-        return 1;
-    }
+	//add list in list
+	sciErr = createListInList(pvApiCtx, Rhs + 1, piAddr, 8, 3, &piChild);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    iRet = createSparseMatrixInList(Rhs + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createMatrixOfDoubleInList(pvApiCtx, Rhs + 1, piChild, 1, 3, 2, pdblData1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    pdblDataPtr     = (double*)malloc(sizeof(double) * 4);
-    pdblDataPtr[0]  = 1;
-    pdblDataPtr[1]  = 2;
-    pdblDataPtr[2]  = 3;
-    pdblDataPtr[3]  = 4;
-    
-    iRet = createPointerInList(Rhs + 1, piChild, 3, pdblDataPtr);
-    if(iRet)
-    {
-        return 1;
-    }
+	sciErr = createSparseMatrixInList(pvApiCtx, Rhs + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
-    LhsVar(1) = 1;
-    return 0;
+	pdblDataPtr     = (double*)malloc(sizeof(double) * 4);
+	pdblDataPtr[0]  = 1;
+	pdblDataPtr[1]  = 2;
+	pdblDataPtr[2]  = 3;
+	pdblDataPtr[3]  = 4;
+
+	sciErr = createPointerInList(pvApiCtx, Rhs + 1, piChild, 3, pdblDataPtr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	LhsVar(1) = 1;
+	return 0;
 }
- ]]></programlisting>
+ ]]>
+        </programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab">
+            <![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -201,6 +242,7 @@ for i = 1 : size_ref
     if typeof(l(i)) <> type_ref(i) then error("failed"), end
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
- ]]></programlisting>
+ ]]>
+        </programlisting>
     </refsection>
 </refentry>

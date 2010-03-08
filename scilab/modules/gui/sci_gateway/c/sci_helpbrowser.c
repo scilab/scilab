@@ -18,6 +18,9 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "freeArrayOfString.h"
+#include "loadOnUseClassPath.h"
+/*--------------------------------------------------------------------------*/
+static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 int sci_helpbrowser(char *fname,unsigned long fname_len)
 {
@@ -31,6 +34,14 @@ int sci_helpbrowser(char *fname,unsigned long fname_len)
   
   CheckRhs(2,4);
   CheckLhs(0,1);
+
+  /* We load Xpad when calling javahelp because we have no way to know
+   * to load it when using Javahelp because it can call Xpad directly */
+  if (!loadedDep) 
+  {
+	  loadOnUseClassPath("Xpad");
+	  loadedDep = TRUE;
+  }
 
   if (VarType(1) == sci_strings)
     {

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>P12</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (state-space linear system)</para>
+          <para> <literal>syslin</literal> list (state-space linear system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

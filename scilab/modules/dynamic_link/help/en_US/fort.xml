@@ -252,6 +252,7 @@ c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
       <member><link linkend="intersci">intersci</link></member>
 
       <member><link linkend="addinter">addinter</link></member>
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 </refentry>

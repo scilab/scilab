@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cscope.c
    \author Benoit Bayol
@@ -26,8 +27,10 @@
    \brief CSCOPE is a typical scope which links its input to the simulation time but there is only one input instead of CMSCOPE
    \see CSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "CurrentObjectsManagement.h"
+#include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -35,25 +38,30 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
-
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i;
-  double *rpar;
-  int *ipar, nipar;
-  double period;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int buffer_size;
+  int i = 0;
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;
+  double period = 0.;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int buffer_size = 0;
   int win_pos[2];
   int win_dim[2];
-  int win;
-  int number_of_subwin;
+  int win = 0;
+  int number_of_subwin = 0;
   int number_of_curves_by_subwin[1];
-  int * colors;
+  int * colors = NULL;
+  char *label = NULL;
 
   /*Retrieving Parameters*/
   rpar = GetRparPtrs(block);
@@ -74,7 +82,7 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   number_of_subwin = 1;
   ymin = rpar[1];
   ymax = rpar[2];
-
+  label = GetLabelPtrs(block);
 
   colors = (int*)scicos_malloc(number_of_curves_by_subwin[0]*sizeof(int));
   for(i = 0 ; i < number_of_curves_by_subwin[0] ; i++)
@@ -101,32 +109,36 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
       /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
       scoAddCoupleOfPolylines(*pScopeMemory,colors);
       /* scoAddPolylineLineStyle(*pScopeMemory,colors); */
     }
   scicos_free(colors);
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 
+  /* use only single buffering to be sure to draw on the screen */
+  if (scoGetPointerScopeWindow(*pScopeMemory) != NULL)
+    {
+      sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    }
+  
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cscope(scicos_block * block,int flag)
+SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
-  int i;
-  double t;
-  int NbrPtsShort;
-  double * u1;
+  ScopeMemory * pScopeMemory = NULL;
+  int i = 0;
+  double t = 0.;
+  int NbrPtsShort = 0;
+  double * u1 = NULL;
   scoGraphicalObject pShortDraw;
 
-  double d_current_real_time ; 
+  double d_current_real_time = 0.; 
 
   switch(flag) 
     {
@@ -166,10 +178,13 @@ void cscope(scicos_block * block,int flag)
 	    for (i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
 	       {
 	         pShortDraw  = scoGetPointerShortDraw(pScopeMemory,0,i);
-	         NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
-	         pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
-	         pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 if (pShortDraw)
+			 {
+				NbrPtsShort = pPOLYLINE_FEATURE(pShortDraw)->n1;
+				pPOLYLINE_FEATURE(pShortDraw)->pvx[NbrPtsShort] = t;
+				pPOLYLINE_FEATURE(pShortDraw)->pvy[NbrPtsShort] = u1[i];
+				pPOLYLINE_FEATURE(pShortDraw)->n1++;
+			 }
   	       }
 	    // End of Cannot
 
@@ -210,3 +225,4 @@ void cscope(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -5,6 +5,7 @@
 	Name="intersciexe"
 	ProjectGUID="{73AA7612-4297-4339-B521-8C2870E7BEC1}"
 	RootNamespace="intersciexe"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -45,6 +46,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../core/includes;../../../../core/includes;../../../../../libs/intl;../../../includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
@@ -222,6 +224,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"

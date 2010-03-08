@@ -1,0 +1,836 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-07-06 22:09+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : No feasible ro in bounds [%g  %g]\n"
+msgstr "%s : Não existe ro viável nos limites [%g  %g]\n"
+
+#, c-format
+msgid "%s:   %s is not detectable.\n"
+msgstr "%s:   %s não é detectável.\n"
+
+#, c-format
+msgid "%s:  %s is not stabilizable.\n"
+msgstr "%s:  %s não é estabilizável.\n"
+
+#, c-format
+msgid "%s: %s has a zero on/close the imaginary axis.\n"
+msgstr "%s: %s possui um zero em/próximo do eixo imaginário.\n"
+
+#, c-format
+msgid "%s: %s has pure imaginary eigenvalue(s).\n"
+msgstr "%s: %s possui auto-valor(es) puramente imaginários.\n"
+
+#, c-format
+msgid "%s: %s has zero(s) near the imaginary axis.\n"
+msgstr "%s: %s possui zero(s) próximo ao eixo imaginário.\n"
+
+#, c-format
+msgid "%s: %s is detectable.\n"
+msgstr "%s: %s é detectável.\n"
+
+#, c-format
+msgid "%s: %s is indefinite.\n"
+msgstr "%s: %s é indefinida.\n"
+
+#, c-format
+msgid "%s: %s is nearly unstabilizable.\n"
+msgstr "%s: %s é praticamente não-estabilizável.\n"
+
+#, c-format
+msgid "%s: %s is not full rank at the machine precision.\n"
+msgstr "%s: %s não tem posto cheio na precisão da máquina.\n"
+
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s não é zero! (ajuste para zero)"
+
+#, c-format
+msgid "%s: %s is numerically singular.\n"
+msgstr "%s: %s é numericamente singular.\n"
+
+#, c-format
+msgid "%s: %s is stabilizable.\n"
+msgstr "%s: %s é estabilizável.\n"
+
+#, c-format
+msgid "%s: %s must be of dimension (%s, %s).\n"
+msgstr "%s: %s deve ter dimensão (%s, %s).\n"
+
+#, c-format
+msgid "%s: %s non symmetric.\n"
+msgstr "%s: %s não é simétrico.\n"
+
+#, c-format
+msgid "%s: %s not full rank.\n"
+msgstr "%s: %s não possui posto cheio.\n"
+
+#, c-format
+msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
+msgstr ""
+"%s: Todos os modos de %s são aproximadamente não-minimais de tal forma que "
+"%s é no máximo %d.\n"
+
+#, c-format
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgstr ""
+"%s: Todos os modos de A são aproximadamente não-minimais tal que || G || é "
+"quase 0.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
+msgstr ""
+"%s: Um auto-valor de %s (controlador) está próximo do eixo imaginário.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr ""
+"%s: Um auto-valor de %s (observador) está próximo do eixo imaginário.\n"
+
+#, c-format
+msgid "%s: At least %s past values needed.\n"
+msgstr "%s: São necessários pelo menos %s valores passados.\n"
+
+#, c-format
+msgid "%s: Bad conditioning.\n"
+msgstr "%s: Mau condicionamento.\n"
+
+#, c-format
+msgid "%s: Bad conditionning.\n"
+msgstr "%s: Mau condicionamento.\n"
+
+#, c-format
+msgid "%s: Cannot find the state dimension.\n"
+msgstr "%s: Não se consegue achar a dimensão de estado.\n"
+
+#, c-format
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr ""
+"%s: Modo(s) controlável e observável de %s próximo ao eixo imaginário.\n"
+
+#, c-format
+msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
+msgstr ""
+"%s: Modo controlável e observável de A estão próximos ao eixo imaginário."
+
+#, c-format
+msgid "%s: Curve truncated to the first %d discretization points.\n"
+msgstr "%s: Curva truncada para os primeiros %d pontos de discretização.\n"
+
+#, c-format
+msgid "%s: Dimensions of %s are inadequate.\n"
+msgstr "%s: Dimensões de %s são inadequadas.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgstr ""
+"%s: Feedthrough direto ajustado para o seu coeficiente de grau zero.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to zero.\n"
+msgstr "%s: Feedthrough direto ajustado para zero.\n"
+
+#, c-format
+msgid "%s: Francis equations not satisfied.\n"
+msgstr "%s: As equações de Francisnão não são satisfeitas.\n"
+
+#, c-format
+msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
+msgstr ""
+"%s: As frequências maiores que a frequência de Nyquist são ignoradas.\n"
+
+#, c-format
+msgid "%s: Hybrid system not implemented.\n"
+msgstr "%s: Sistema híbrido não implementado.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: "
+msgstr "%s: Argumentos de entrada #%d e #%d incompatíveis: "
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se a mesma "
+"dimensão das colunas.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
+"expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se nomes de "
+"variáveis formais iguais.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of elements "
+"expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se o mesmo "
+"número de elementos.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se o mesmo "
+"número de elementos.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se as mesmas "
+"dimensões de linha.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se as mesmas "
+"dimensões.\n"
+
+#, c-format
+msgid "%s: Incorrect answer.\n"
+msgstr "%s: Resposta incorreta.\n"
+
+#, c-format
+msgid "%s: Incorrect link: %s"
+msgstr "%s: Link incorreto: %s"
+
+#, c-format
+msgid "%s: Infinite solution.\n"
+msgstr "%s: Solução infinita.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: O argumento de entrada #%d deve ser real.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be strictly positive.\n"
+msgstr "%s: O argumento de entrada #%d deve ser estritamente positivo.\n"
+
+#, c-format
+msgid "%s: Input argument %d is assumed continuous time.\n"
+msgstr ""
+"%s: Argumento de entrada %d é assumido como sendo de tempo contínuo.\n"
+
+#, c-format
+msgid "%s: Invalid sizes found during the process.\n"
+msgstr "%s: Tamanhos inválidos encontrados durante o processo.\n"
+
+#, c-format
+msgid "%s: Iteration %s, error=%s.\n"
+msgstr "%s: Iteração %s, erro=%s.\n"
+
+#, c-format
+msgid "%s: More than %d iterations.\n"
+msgstr "%s: Mais de %d iterações.\n"
+
+#, c-format
+msgid "%s: Multi rate discrete system not implemented.\n"
+msgstr "%s: Sistema discreto de taxas múltiplas não implementado.\n"
+
+#, c-format
+msgid "%s: Needs %s => Use default value %s=%d.\n"
+msgstr "%s: É necessário %s => Use o valor padrão %s=%d.\n"
+
+#, c-format
+msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
+msgstr ""
+"%s: As frequências menores que a frequência de Nyquist são ignoradas.\n"
+
+#, c-format
+msgid "%s: No input found.\n"
+msgstr "%s: Nenhuma entrada encontrada.\n"
+
+#, c-format
+msgid "%s: No output found.\n"
+msgstr "%s: Nenhuma saída encontrada.\n"
+
+#, c-format
+msgid "%s: Number of rows of %s are incompatible with %s object.\n"
+msgstr "%s: Número de colunas de %s é incompatível com o objeto %s.\n"
+
+#, c-format
+msgid "%s: Residual norm = %g\n"
+msgstr "%s: Norma residual = %g\n"
+
+#, c-format
+msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
+msgstr "%s: Solução de Riccati imprecisa: erro da equação = %g.\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: Alguma(s) entradas não estão definidas.\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: Alguma(s) saída(s) não foi(foram) definida(s).\n"
+
+#, c-format
+msgid "%s: Square but singular system.\n"
+msgstr "%s: Sistema quadrado mas singular.\n"
+
+#, c-format
+msgid "%s: Stable subspace is too small.\n"
+msgstr "%s: O subspaço estável é muito pequeno.\n"
+
+#, c-format
+msgid "%s: Standard deviation of the estimator %s:\n"
+msgstr "%s: Desvio padrão do estimador %s:\n"
+
+#, c-format
+msgid "%s: Stationary Riccati solver failed.\n"
+msgstr "%s: O solucionador estacionário de Riccati falhou.\n"
+
+#, c-format
+msgid "%s: System is not stable.\n"
+msgstr "%s: O sistema não é estável.\n"
+
+#, c-format
+msgid ""
+"%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
+"part.\n"
+msgstr ""
+"%s: Sistema não estabilizável (ou detectável) => Estabilizando a parte "
+"estabilizável.\n"
+
+#, c-format
+msgid "%s: The computed value of || G || may be inaccurate.\n"
+msgstr "%s: O valor computado de || G || pode ser impreciso.\n"
+
+#, c-format
+msgid "%s: Undefined type ''%s''.\n"
+msgstr "%s: tipo ''%s'' não definido.\n"
+
+#, c-format
+msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
+msgstr ""
+"%s: ALERTA: a matriz A possui auto-valores próximos da eixo imaginário.\n"
+
+#, c-format
+msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgstr "%s: Dimensão errada (%d) de subespaço estável: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Número de argumentos de entrada incorreto: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Quantidade errada de argumentos de entrada: Esperava-se %d"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Número errado de argumentos de entrada: Esperava-se pelo menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Número errado de argumento de saída: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Quantidade errada de argumentos de saída: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: Número errado de argumentos de saída: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Número errado de argumentos de saída: Esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr ""
+"%s: Número errado de argumentos de saída: Esperava-se pelo menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: Esperava-se um "
+"polinômio.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row vector with length>%d "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: Esperava-se um vetor "
+"linha de comprimento >%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"vazia.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um sistema "
+"de entrada-saída simples.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"quadrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um sistema "
+"quadrado.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: a dimensão da coluna "
+"deve ser igual a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for link from block %s.\n"
+msgstr "%s: Tamanho errado do link do bloco %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+"with %s.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Número de colunas é "
+"incompativel com %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: Tipo errado do argumento de entrada #%d: esperava estrutura de dados "
+"%s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A linear dynamical system or a "
+"polynomial expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um sistema "
+"linear dinâmico ou um polinômio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma lista.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado do argumento de entrada #%d: esperava um array de pontos "
+"flutuantes.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Continuous-time linear system "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se um sistema "
+"linear de tempo contínuo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um sistema "
+"linear dinâmico.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgstr ""
+"%s: Tipo errado do argumento de entrada #%d: esperava um sistema linear "
+"dinâmico.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
+"of floats expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um sistema "
+"linear dinâmico ou um vetor linha de pontos flutuantes.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um espaço de "
+"estados linear.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"function expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el parámetro de entrada #%d: Se esperaba espacio de "
+"estados lineal o una función de transferencia.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um sistema de "
+"espaço de estados linear.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgstr ""
+"%s: Argumento de entrada errado para #%d: Esperava-se array de polinômios.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um estado de "
+"espaços.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um sistema "
+"linear de espaço de estados.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"textos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se string, "
+"escalar ou uma matriz vazia.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um array de "
+"frações racionais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgstr ""
+"%s: Tipo errado de argumento de entrada: esperava um sistema linear "
+"dinâmico.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type of input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um array de "
+"números de pontos flutuantes.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema de "
+"tempo contínuo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema "
+"detectável.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Deve estar em [%d %d].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor errado do argumento de entrada #%d: deve estar no conjunto {%s}.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema "
+"próprio.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Não se esperava pólos "
+"imáginários puros.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema de "
+"entrada única e saída única.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema "
+"estabilizável.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sistema "
+"estável.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: O domínio do tempo deve "
+"ser ''c'' ou ''d''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgstr ""
+"%s: Valor errado para argumentos de entrada #%d e #%d: Esperava-se %s < %s "
+".\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgstr ""
+"%s:Valor errado dos argumentos de entrada: Se %s e %s não há nada para "
+"identificar.\n"
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgstr ""
+"%s: Valores errado para o argumento de entrada #%d:  %s não possui posto "
+"cheio.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: Esperava-se um sistema "
+"de tempo discreto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se uma função de "
+"transferência própria.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: Valores errados do argumento de entrada #%d: esperava um sistema "
+"estável.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: A matriz de estados é "
+"singular.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se elementos "
+"próprios.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgstr ""
+"%s: Valore errados para o argumento de entrada #%d: você deve escolher "
+"rk<nout.\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: Valores errados para os argumentos de entrada #%d e #%d.\n"
+
+#, c-format
+msgid "%s: gamma too small.\n"
+msgstr "%s: gamma muito pequeno.\n"
+
+#, c-format
+msgid ""
+"%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
+"Hinfnorm is probably exactly max sv(D)\n"
+"The system might be all-pass"
+msgstr ""
+"%s: A norma não pode ser computada. Precisão relativa menor que 1e-3\n"
+"Hinfnorm provavelmente é exatamente max sv(D)\n"
+"O sistema pode ser passa-tudo."
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr "%s: Domínios de tempo incompatíveis.\n"
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "Amplitud y contornos de fase de y/(1+y)"
+
+msgid "Autocorrelation Function"
+msgstr "Função de Auto-correlação"
+
+msgid "CACSD"
+msgstr "CACSD"
+
+msgid "Denominator :"
+msgstr "Denominador:"
+
+msgid "Evans root locus"
+msgstr "Locus da raiz de Evans"
+
+msgid "Frequency (Hz)"
+msgstr "Frequência (Hz)"
+
+msgid "Gain :"
+msgstr "Ganho :"
+
+msgid "Imaginary axis"
+msgstr "Eixo imaginário"
+
+msgid "Irreducible Factors of transfer function (click below)"
+msgstr "Fatores irredutíveis da função de transferência (clique abaixo)"
+
+msgid ""
+"Irreducible Factors of transfer function natural frequency and damping "
+"factor (click below)"
+msgstr ""
+"Fatores irredutíveis da frequência natural e do fator de amortecimento da "
+"função de transferência (clique abaixo)"
+
+msgid "Magnitude (Db)"
+msgstr "Magnitude (Db)"
+
+msgid "Numerator :"
+msgstr "Numerador:"
+
+msgid "Nyquist plot"
+msgstr "Esboço Nyquist"
+
+msgid "Phase (deg)"
+msgstr ""
+
+msgid "Phase (degree)"
+msgstr "Fase (grau)"
+
+msgid "Poles"
+msgstr "Pólos"
+
+msgid "Real axis"
+msgstr "Eixo real"
+
+msgid "Transmission zeros and poles"
+msgstr "Pólos e zeros de transmissão"
+
+msgid "Unfeasible (Hx hamiltonian)"
+msgstr "Inviável (Hx hamiltonian)"
+
+msgid "Unfeasible (Hy hamiltonian)"
+msgstr "No factible (Hy hamiltonian)"
+
+msgid "Unfeasible (spectral radius)"
+msgstr "Inviável (raio espectral)"
+
+msgid "Zeros"
+msgstr "Zeros"
+
+msgid "asymptotic directions"
+msgstr "direções assintóticas"
+
+msgid "magnitude(y) (Db)"
+msgstr "magnitude(y) (Db)"
+
+msgid "open loop poles"
+msgstr "Pólos de laço aberto"
+
+msgid "open loop zeroes"
+msgstr "zeros de loops abertos"
+
+msgid "phase(y) (degree)"
+msgstr "fase(y) (grau)"

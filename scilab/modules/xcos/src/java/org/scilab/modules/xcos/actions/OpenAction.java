@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,35 +14,43 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
+import javax.swing.JFileChooser;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * File opening management
- * @author Vincent COUVERT
  */
 public final class OpenAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+	/** Name of the action */
+	public static final String NAME = XcosMessages.OPEN;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "document-open.png";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = KeyEvent.VK_O;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private OpenAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.OPEN, scilabGraph);
+	public OpenAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -50,8 +59,7 @@ public final class OpenAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, OpenAction.class);
 	}
 
 	/**
@@ -60,30 +68,47 @@ public final class OpenAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.OPEN, "document-open.png", new OpenAction(scilabGraph));
+		return createButton(scilabGraph, OpenAction.class);
 	}
 
 	/**
-	 * Open file action
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		FileChooser fc = ScilabFileChooser.createFileChooser();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
 		/* Standard files */
-		String[] mask = new String[]{"*.cos*", "*.xcos"};
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , null);
-		
-		fc.setMultipleSelection(false);
-		fc.displayAndWait();
+	    fc.setTitle(XcosMessages.OPEN);
+	    fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
+	    fc.setMultipleSelection(false);
+	    
+	    /*
+	     * FIXME: why hardcoded values ?  
+	     */
+	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
+	    SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
+	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
+	    fc.addChoosableFileFilter(xcosFilter);
+	    fc.addChoosableFileFilter(cosFilter);
+	    fc.addChoosableFileFilter(allFilter);
+	    fc.setFileFilter(xcosFilter);
 
-		if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-			return;
-		}
-		if (getGraph(null) == null) { // Called from palettes 
-			Xcos.xcos(fc.getSelection()[0]);
-		} else {
-			((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
-		}
+	    fc.setAcceptAllFileFilterUsed(false);
+	    fc.displayAndWait();
+
+	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
+		return;
+	    }
+	    ConfigXcosManager.saveToRecentOpenedFiles(fc.getSelection()[0]);
+
+	    if (getGraph(null) == null) { // Called from palettes
+		//save to recentopenedfile while opening from palettes is handle in Xcos.xcos(filename)
+		Xcos.xcos(fc.getSelection()[0]);
+	    } else {
+		((XcosDiagram) getGraph(null)).openDiagramFromFile(fc.getSelection()[0]);
+	    }
+	    XcosTab.updateRecentOpenedFilesMenu(((XcosDiagram) getGraph(null)));
 	}
 }

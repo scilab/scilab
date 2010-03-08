@@ -1,0 +1,193 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-04-12 07:49+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s：未知类型，或尚未实现。\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr "%s：第一个输入参数错误：应该为'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s：工作空间（stacksize）太小。\n"
+
+msgid "(group,instance) already exists"
+msgstr ""
+
+msgid "Already in group"
+msgstr ""
+
+msgid "Already oing operation"
+msgstr ""
+
+msgid "Bad message id"
+msgstr ""
+
+msgid "Bad parameter"
+msgstr "错误参数"
+
+msgid "Barrier count mismatch"
+msgstr ""
+
+msgid "Can not decode received msg"
+msgstr ""
+
+msgid "Can not get memory"
+msgstr ""
+
+msgid "Daemon pvmd is not responding"
+msgstr ""
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr ""
+
+msgid "Error pvm_halt - signal\n"
+msgstr ""
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "pvm_reduce错误：没有标量类型\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr ""
+
+msgid "Failed to exec new slave pvmd"
+msgstr ""
+
+msgid "Function not implemented"
+msgstr ""
+
+msgid "Host already configured (Duplicate host)"
+msgstr ""
+
+msgid "Host failed"
+msgstr ""
+
+msgid "No current buffer"
+msgstr ""
+
+msgid "No group with that name"
+msgstr ""
+
+msgid "No parent task"
+msgstr ""
+
+msgid "No such (group,instance)"
+msgstr ""
+
+msgid "No such executable"
+msgstr ""
+
+msgid "No such host"
+msgstr ""
+
+msgid "No such instance in group"
+msgstr ""
+
+msgid "No such task"
+msgstr ""
+
+msgid "Not in group"
+msgstr ""
+
+msgid "Null group name is illegal"
+msgstr ""
+
+msgid "OK"
+msgstr "确定"
+
+msgid "Out of ressources"
+msgstr ""
+
+msgid "PVM exists"
+msgstr "存在PVM"
+
+msgid "PVM not found"
+msgstr "未发现PVM"
+
+msgid "PVM parallel Toolbox"
+msgstr "PVM并行工具箱"
+
+msgid "Pvmd system error"
+msgstr ""
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr ""
+
+msgid "Read past end of buffer"
+msgstr ""
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "未安装Scilab PVM模块。\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "使用配置文件%s。\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+
+msgid "Unknown Error"
+msgstr "未知错误"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "警告：PVM_ROOT未设置。\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "警告：PVM_ROOT被设置为%s\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+
+msgid "but there exists no configuration file:\n"
+msgstr "但是不存在配置文件：\n"

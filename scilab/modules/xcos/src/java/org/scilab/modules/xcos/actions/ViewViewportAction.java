@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,27 +13,34 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Viewport tab visibility managemet 
- * @author Vincent COUVERT
  */
 public final class ViewViewportAction extends DefaultAction {
-	
-	private static final long serialVersionUID = 1L;
+	/** Name of the action */
+	public static final String NAME = XcosMessages.VIEWPORT;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private ViewViewportAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.VIEWPORT, scilabGraph);
+	public ViewViewportAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -41,14 +49,15 @@ public final class ViewViewportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
-		return  createCheckBoxMenu(XcosMessages.VIEWPORT, null, new ViewViewportAction(scilabGraph), null);
+		return createCheckBoxMenu(scilabGraph, ViewViewportAction.class);
 	}
 	
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		Tab viewPort = ((XcosDiagram) getGraph(null)).getViewPort();
 
 		((XcosDiagram) getGraph(null)).setViewPortVisible(!viewPort.isVisible());

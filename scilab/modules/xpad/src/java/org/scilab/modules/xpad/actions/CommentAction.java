@@ -12,57 +12,78 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.CommentManager;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.XpadMessages;
+/**
+ * CommentAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class CommentAction extends DefaultAction {
 
-public class CommentAction extends DefaultAction {
-
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -7258307088402814986L;
+	private CommentManager commentManager = new CommentManager();
+	
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
 	private CommentAction(Xpad editor) {
 		super(XpadMessages.COMMENT_SELECTION, editor);
 	}
 	
-	public void doAction()
-	{
-		int position_start = getEditor().getTextPane().getSelectionStart();
-		int position_end   = getEditor().getTextPane().getSelectionEnd();
-		
-		int line_start     = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_start);
-		int line_end       = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElementIndex(position_end);
-		
-		if(position_start == position_end)
-		{
-			// No selection : comment the current line
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLine(line_start);
-			getEditor().getTextPane().setCaretPosition(position_start+offset);
-		}
-		
-		else if( line_start == line_end )
-		{
-			// A part of the line is selected
-			int offset = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(position_start);
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end+offset);
-		}
-		
-		else
-		{
-			// several lines are selected
-			((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentLines(line_start, line_end);
-			position_end = ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).getDefaultRootElement().getElement(line_end).getEndOffset();
+	/**
+	 * doAction
+	 */
+	public void doAction() {
+		ScilabStyleDocument doc = (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		synchronized (doc) {
+			int positionStart = getEditor().getTextPane().getSelectionStart();
+			int positionEnd   = getEditor().getTextPane().getSelectionEnd();
 			
-			getEditor().getTextPane().setSelectionStart(position_start);
-			getEditor().getTextPane().setSelectionEnd(position_end-1);
+			int lineStart     = doc.getDefaultRootElement().getElementIndex(positionStart);
+			int lineEnd       = doc.getDefaultRootElement().getElementIndex(positionEnd);
+			
+			if (positionStart == positionEnd) {
+				// No selection : comment the current line
+				int offset = commentManager.commentLine(doc, lineStart);
+				getEditor().getTextPane().setCaretPosition(positionStart + offset);
+			} else if (lineStart == lineEnd) {
+				// A part of the line is selected
+				int offset = commentManager.commentText(doc, positionStart);
+				getEditor().getTextPane().setSelectionStart(positionStart);
+				getEditor().getTextPane().setSelectionEnd(positionEnd + offset);
+			} else {
+				// several lines are selected
+				commentManager.commentLines(doc, lineStart, lineEnd);
+				positionEnd = doc.getDefaultRootElement().getElement(lineEnd).getEndOffset();
+				
+				getEditor().getTextPane().setSelectionStart(positionStart);
+				getEditor().getTextPane().setSelectionEnd(positionEnd - 1);
+			}
 		}
 	}
 	
+	/**
+	 * createMenu
+	 * @param editor Xpad
+	 * @return MenuItem
+	 */
 	public static MenuItem createMenu(Xpad editor) {
-		return createMenu(XpadMessages.COMMENT_SELECTION , null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(XpadMessages.COMMENT_SELECTION, null, 
+				new CommentAction(editor), 
+				KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 	 }
 }
+ 

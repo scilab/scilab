@@ -41,7 +41,7 @@ function result = atomsIsPackage(packages)
 	
 	// Get all package description
 	// =========================================================================
-	allpackages = atomsGetTOOLBOXES();
+	allpackages = atomsDESCRIPTIONget();
 	
 	// Loop on packages
 	// =========================================================================
@@ -58,7 +58,38 @@ function result = atomsIsPackage(packages)
 		
 		// 2nd case : Check a specific version
 		elseif isfield(allpackages,name) then
-			result(i) = isfield(allpackages(name),version);
+			
+			// A packaging version is mentionned
+			if strindex(version,"-")<>[] then
+				result(i) = isfield(allpackages(name),version);
+				
+			else
+				
+				// Maybe the version without packaging version exist ...
+				if isfield(allpackages(name),version) then
+					result(i) = %T;
+				
+				// ... second try if it's not the case
+				else
+					// Loop on this packages versions
+					package_versions          = allpackages(name);
+					package_versions_tab      = getfield(1,package_versions);
+					package_versions_tab(1:2) = [];
+					
+					for j=1:size(package_versions_tab,"*")
+						
+						// Split version and packaging version
+						version_mat  = strsubst(strsplit(package_versions_tab(j),strindex(package_versions_tab(j),"-")) , "-" , "" );
+						
+						if version == version_mat(1) then
+							result(i) = %T;
+							break;
+						end
+						
+					end
+				end
+				
+			end
 		end
 		
 	end

@@ -210,7 +210,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/extract.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/extract.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/extractz.c</para>

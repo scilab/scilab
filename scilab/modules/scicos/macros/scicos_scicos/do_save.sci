@@ -60,14 +60,14 @@ function ok = do_save(scs_m, filenamepath)
   [u,err] = mopen(fname,'wb') ;
 
   if err<>0 then
-    message("Directory write access denied") ;
+    messagebox("Directory write access denied",'modal') ;
     ok = %f;
     return ;
   end
 
   // save
   if execstr('save(u,scs_m,%cpr)','errcatch')<>0 then
-    message(["Save error:";lasterror()]) ;
+    messagebox(["Save error:";lasterror()],'modal') ;
     ok = %f   ;
     mclose(u) ;
     return    ;

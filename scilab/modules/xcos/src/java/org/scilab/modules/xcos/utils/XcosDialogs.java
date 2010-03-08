@@ -12,8 +12,9 @@
 
 package org.scilab.modules.xcos.utils;
 
-import org.scilab.modules.gui.messagebox.MessageBox;
-import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Xcos standard dialogs
@@ -30,38 +31,25 @@ public final class XcosDialogs {
 	
 	/**
 	 * Dialog displayed when no  block is selected and one is needed for action
+	 * @param diagram The associated diagram
 	 */
-	public static void noBlockSelected() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.NO_BLOCK_SELECTED);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
+	public static void noBlockSelected(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.NO_BLOCK_SELECTED, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 
 	/**
 	 * Dialog displayed when saving failed
+	 * @param diagram The associated diagram
 	 */
-	public static void couldNotSaveFile() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.FAIL_SAVING_DIAGRAM);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
-
+	public static void couldNotSaveFile(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_SAVING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 	
 	/**
 	 * Dialog displayed when loading failed
+	 * @param diagram The associated diagram
 	 */
-	public static void couldNotLoadFile() {
-		MessageBox messageBox = ScilabMessageBox.createMessageBox();
-		messageBox.setTitle(XcosMessages.XCOS_ERROR);
-		messageBox.setMessage(XcosMessages.FAIL_LOADING_DIAGRAM);
-		messageBox.setModal(true);
-		messageBox.setIcon("error");
-		messageBox.displayAndWait();
+	public static void couldNotLoadFile(XcosDiagram diagram) {
+	    ScilabModalDialog.show(diagram.getParentTab(), XcosMessages.FAIL_LOADING_DIAGRAM, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
 	}
 }

@@ -23,78 +23,46 @@
 function [scs_m]=do_turn(%pt,scs_m,theta)
 //** x,07/07 Alan : do_turn update theta value of blocks
 //**                and text (redraw it)
+//** 16/07/2009, S. Steer, make it work with multiple selection
+  ks=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+  if ks==[] then
+    ks = getblock(scs_m, %pt(:))
+  end
+    
 
-  //** get the current win ID
-  win = %win;
+  if ks==[] then return;end
+  scs_m_save = scs_m ; //** save the diagram for "Undo" ...
 
-  //** get the handle of the current window
-  gh_curwin = scf(%win) ;
-  gh_axes = gca(); 
-  o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
+  for k=ks'
+    path = list('objs',k) ; //** acquire the index in the "global" diagram
+    o = scs_m.objs(k)
+    if typeof(o)<>"Link" then
 
-  //** get the mouse coord.
-  xc = %pt(1);
-  yc = %pt(2);
+      //** Rotation enabled for "Block" and "Text"
 
-  //**--------- check Select ------------------
-  SelectSize = size(Select);
-  SelectSize = SelectSize(1);
-
-  if SelectSize<>0 then
-    if SelectSize==1 & Select(1,2)==%win then
-      k= Select(1,1)
-    elseif SelectSize>1 then
-      if find(Select(:,2)==%win)<>[] then
-         //scs_m=do_multiturn(scs_m,win)
-         k = getobj(scs_m,[xc;yc]);
-      else
-        k = getobj(scs_m,[xc;yc]);
+      //**--------- scs_m theta update -------------------------
+      geom = o.graphics ;
+      geom.theta = geom.theta + theta ;
+  
+      //** angle normalization 
+      while geom.theta>=360 then
+	geom.theta = geom.theta-360;
       end
-    else
-      k = getobj(scs_m,[xc;yc]);
+  
+      while geom.theta<=-360 then
+	geom.theta = geom.theta+360;
+      end
+  
+      //** 
+      o.graphics = geom ;
+
+      scs_m.objs(k) = o ; 
+
+      o_n  = o ; //** "o" is already rotated
+
+      scs_m = changeports(scs_m, path, o_n); //** the real object draw is done here 
     end
-  else
-    k = getobj(scs_m,[xc;yc]);
   end
-
-  //**--------- check k and scs_m.objs(k) ------------------
-  if k==[] then
-    return
-  end //** if you click in the void ... return back
-
-  scs_m_save = scs_m ; //** ... for undo ...
-
-  path = list('objs',k) ; //** acquire the index in the "global" diagram
-
-  o = scs_m.objs(k)
-
-  if typeof(o)=="Link" then
-    return ; //** disable rotation for link
-  end 
-
-  //** Rotation enabled for "Block" and "Text"
-
-  //**--------- scs_m theta update -------------------------
-  geom = o.graphics ;
-  geom.theta = geom.theta + theta ;
-  
-  //** angle normalization 
-  while geom.theta>=360 then
-    geom.theta = geom.theta-360;
-  end
-  
-  while geom.theta<=-360 then
-    geom.theta = geom.theta+360;
-  end
-  
-  //** 
-  o.graphics = geom ;
-
-  scs_m.objs(k) = o ; 
-
-  o_n  = o ; //** "o" is already rotated
-
-  scs_m = changeports(scs_m, path, o_n); //** the real object draw id done here 
   
   [scs_m_save,enable_undo,edited] = resume(scs_m_save,%t,%t); 
 

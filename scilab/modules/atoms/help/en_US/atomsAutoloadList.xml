@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAutoloadList">
+  <refnamediv>
+    <refname>atomsAutoloadList</refname>
+    <refpurpose>Get the list of modules registered to autoload</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+			modules = atomsAutoloadList([section])
+		</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+			
+			<varlistentry>
+        <term>section</term>
+        <listitem>
+          <para>
+						This argument controls the list of section where search URL(s).
+					</para>
+          <para>
+						<literal>section</literal> is a single-string and its value should be :
+					</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+								<literal>"all"</literal>: module(s) present on both "user" and "allusers"
+								autoload lists are returned.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"allusers"</literal>: only module(s) present on the "allusers"
+								autoload lists are returned.
+							</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>"user"</literal>: only module(s) present on the "user"
+								autoload lists are returned.
+							</para>
+            </listitem>
+          </itemizedlist>
+					<para>
+						The default value is "all".
+					</para>
+        </listitem>
+			</varlistentry>
+			
+			<varlistentry>
+        <term>modules</term>
+        <listitem>
+					
+          <para>
+						4xn character string matrix:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- Module's technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's technical name</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Module's version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's version</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Module's installed section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Module's installed section</emphasis>
+							</td>
+						</tr>
+						
+						<!-- Autoload list section -->
+						
+						<tr>
+							<td>
+								<emphasis>4th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Autoload list section</emphasis>
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
+      </varlistentry>
+			
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para><literal>atomsAutoloadList</literal> returns the list of modules registered to autoload
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+atomsRepositoryAdd('http://scene1.test.atoms.scilab.org');
+atomsInstall("toolbox_1");
+
+atomsAutoloadList('user')
+atomsAutoloadList('allusers')
+atomsAutoloadList('all')
+
+atomsRemove("toolbox_1");
+atomsRepositoryDel('http://scene1.test.atoms.scilab.org');
+ ]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
+      </member>
+      <member>
+        <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

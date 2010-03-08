@@ -68,8 +68,8 @@ function [edited,options] = do_options(opt,flag)
     else
       with3d = With3D
     end
-    if with3d then tt = "Yes", else tt = "No", end
-    rep1 = message(["Use 3D aspect?" ; "current choice is " + tt], ["Yes" ; "No"])
+    if with3d then tt = _("Yes"), else tt = _("No"), end
+    rep1 = messagebox([_("Use 3D aspect?") ; _("current choice is ") + tt], 'modal', [_("Yes") ; _("No")])
     
     if rep1 <> 1 then rep1 = 0, end
     if rep1 then
@@ -85,7 +85,7 @@ function [edited,options] = do_options(opt,flag)
   
   elseif flag == "Background" then
   
-    bac = options("Background")
+    bac = options.Background
     if bac == [] then bac = [8 1], end        // for compatibility
     if size(bac,"*") < 2 then bac(2) = 1, end // for compatibility
     //lcols_bg = list("Background colors", bac(1), colors) //++ no longer used
@@ -93,13 +93,13 @@ function [edited,options] = do_options(opt,flag)
     //rep = x_choices("Default background and foreground colors", list(lcols_bg, lcols_fg)) //++ no longer used
     
     rep = [bac(1), bac(2)]
-    rep1 = getcolor("Background color ? :", bac(1))
+    rep1 = getcolor(_("Background color ? :"), bac(1))
     if rep1 <> [] then rep(1) = rep1, end
-    rep2 = getcolor("Foreground color ? :", bac(2))
+    rep2 = getcolor(_("Foreground color ? :"), bac(2))
     if rep2 <> [] then rep(2) = rep2, end
     if or(rep <> [bac(1) bac(2)]) then
       ok = %t
-      options("Background") = rep
+      options.Background = rep
     end
   
   elseif flag == "LinkColor" then
@@ -111,47 +111,48 @@ function [edited,options] = do_options(opt,flag)
     // lcols_el = list("Event links colors  ", options("Link")(2), colors) //++ no longer used
     // rep = x_choices("Default regular and event link colors", list(lcols_rl, lcols_el)) //++ no longer used
     
-    linkColors = options("Link")
+    linkColors = options.Link
     if linkColors == [] then linkColors = [1 5], end // defaults = [black red] 
     rep = [linkColors(1), linkColors(2)]
     
-    rep1 = getcolor("Regular links color ? :", linkColors(1))
+    rep1 = getcolor(_("Regular links color ? :"), linkColors(1))
     if rep1 <> [] then rep(1) = rep1, end
     
-    rep2 = getcolor("Event links color? :",   linkColors(2))
+    rep2 = getcolor(_("Event links color? :"),   linkColors(2))
     if rep2 <> [] then rep(2) = rep2, end
     
     if or(rep <> [linkColors(1) linkColors(2)]) then
       ok = %t
-      options("Link") = rep
+      options.Link = rep
     end
   
   elseif flag == "ID" then
   
-    lfid_l = list("Link ID font name",  options("ID")(2)(1)+1, fontsIds);
-    lfiz_l = list("Link ID font size",  options("ID")(2)(2)+1, fontsSiz);
-    lfid_b = list("Block ID font name", options("ID")(1)(1)+1, fontsIds);
-    lfiz_b = list("Block ID font size", options("ID")(1)(2)+1, fontsSiz);
-    rep    = x_choices("ID font definitions", list(lfid_l, lfiz_l, lfid_b, lfiz_b))
+    lfid_l = list(_("Link ID font name"),  options("ID")(2)(1)+1, fontsIds);
+    lfiz_l = list(_("Link ID font size"),  options("ID")(2)(2)+1, fontsSiz);
+    lfid_b = list(_("Block ID font name"), options("ID")(1)(1)+1, fontsIds);
+    lfiz_b = list(_("Block ID font size"), options("ID")(1)(2)+1, fontsSiz);
+    rep    = x_choices(_("ID font definitions"), list(lfid_l, lfiz_l, lfid_b, lfiz_b))
     if rep <> [] then
       ok = %t
-      options("ID")(1) = rep(3:4) - 1
-      options("ID")(2) = rep(1:2) - 1
+      options.ID(1) = rep(3:4) - 1
+      options.ID(2) = rep(1:2) - 1
     end
     
   elseif flag == "Cmap" then
   //** --------------------- Add a new color ------------------------------------------
  
-  [R, G, B] = uigetcolor("Add a new color at the Scicos palette");
+  [R, G, B] = uigetcolor(_("Add a new color at the Scicos palette"));
 
   if R<>[] & G<>[] & B<>[] then 
      R= R/255; G= G/255; B= B/255 ; //** normalize to one 
-    options("Cmap") = [options("Cmap") ; [R, G, B]]
+    options.Cmap = [options.Cmap ; [R, G, B]]
   end
+
 
 //** ---------------------- OLD CODE---------------------------------------------------- 
 //     while %t do
-//       [ok, R,G,B] = getvalue(["Enter RGB description of new colors"; ..
+//       [ok, R,G,B] = scicos_getvalue(["Enter RGB description of new colors"; ..
 //                               "Each component must be greater or equal to 0"; ..
 //                               "and less or equal to 1"], ..
 //                               ["R","G","B"], ..

@@ -31,7 +31,6 @@ int C2F(sci_spmax) (char *fname,unsigned long fname_len);
 int C2F(sci_spmin) (char *fname,unsigned long fname_len);
 int C2F(sci_spmatrix) (char *fname,unsigned long fname_len);
 int C2F(sci_spchol) (char *fname,unsigned long fname_len);
-int C2F(sci_readmps) (char *fname,unsigned long fname_len);
 int C2F(sci_fadj2sp) (char *fname,unsigned long fname_len);
 int C2F(sci_spcompa) (char *fname,unsigned long fname_len);
 int C2F(sci_ordmmd) (char *fname,unsigned long fname_len);
@@ -44,6 +43,7 @@ int C2F(sci_bfinit) (char *fname,unsigned long fname_len);
 int C2F(sci_msparse) (char *fname,unsigned long fname_len);
 int C2F(sci_mspget) (char *fname,unsigned long fname_len);
 int C2F(sci_mfull) (char *fname,unsigned long fname_len);
+int C2F(scita2lpd) (char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPARSE__ */
 /*--------------------------------------------------------------------------*/

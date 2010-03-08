@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,in,exprs]=getvalue(['Set Zero-Crossing parameters';..
+    [ok,in,exprs]=scicos_getvalue(['Set Zero-Crossing parameters';..
 	                    'All surfaces must cross together'],..
 			    'Input size',list('vec',1),exprs)
     if ~ok then break,end

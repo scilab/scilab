@@ -46,16 +46,16 @@ clf();
 plot2d(x, x, axesflag=4);
 axes = gca();
 if (axes.axes_visible <> ["on","on","on"]) then bugmes();quit;end
-if (axes.x_location <> "origin") then bugmes();quit;end
-if (axes.y_location <> "origin") then bugmes();quit;end
+if (axes.x_location <> "middle") then bugmes();quit;end
+if (axes.y_location <> "middle") then bugmes();quit;end
 // axesflag=5: axes + box + x centered + y centered
 clf();
 plot2d(x, x, axesflag=5);
 axes = gca();
 if (axes.axes_visible <> ["on","on","on"]) then bugmes();quit;end
 if (axes.box <> "on") then bugmes();quit;end;
-if (axes.x_location <> "origin") then bugmes();quit;end
-if (axes.y_location <> "origin") then bugmes();quit;end
+if (axes.x_location <> "middle") then bugmes();quit;end
+if (axes.y_location <> "middle") then bugmes();quit;end
 // axesflag=9: axes + !box + y left
 clf();
 plot2d(x, x, axesflag=9);

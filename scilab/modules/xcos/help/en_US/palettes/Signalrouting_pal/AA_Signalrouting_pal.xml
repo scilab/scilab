@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Signalrouting_pal"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Signalrouting_pal</refname>
+
+    <refpurpose>Signal routing palette</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Block Screenshot</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/SignalRouting_pal.jpg"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Module_Signalrouting_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Signalrouting_pal">
+    <title>Description</title>
+
+    <para>The Signal routing palette includes blocks that transport signals
+    from one point in a block diagram to another.</para>
+  </refsection>
+
+  <refsection id="Blocks_Signalrouting_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      
+      <listitem>
+        <para>
+          <link linkend="DEMUX">DEMUX — Demultiplexer</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXTRACTOR">EXTRACTOR — Extractor</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="FROM">FROM — FROM Receives data from a corresponding
+          GOTO</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="FROMMO">FROMMO — Receives data from a corresponding
+          GOTOMO</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="GOTO">GOTO — GOTO Pass block input to From
+          block</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="GOTOMO">GOTOMO — Pass block input to FROMMO
+          block</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="GotoTagVisibility">GotoTagVisibility — Define Scope
+          of GOTO tag visibility</link>
+        </para>
+      </listitem>
+	  
+	  <listitem>
+        <para>
+          <link linkend="GotoTagVisibilityMO">GotoTagVisibilityMO — Define
+          Scope of GOTOMO tag visibility</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="ISELECT_m">ISELECT_m — Iselect</link>
+        </para>
+      </listitem>
+	  
+      <listitem>
+        <para>
+          <link linkend="MUX">MUX — Multiplexer</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="M_SWITCH">M_SWITCH — Multi-port switch</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NRMSOM_f">NRMSOM_f — Merge data</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RELAY_f">RELAY_f — Relay</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SELECT_m">SELECT_m — Select</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH2_m">SWITCH2_m — Switch2</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SWITCH_f">SWITCH_f — Switch</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

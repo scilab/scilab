@@ -4,7 +4,9 @@
 EXPORTS
 ;
 ;core
+adre_
 iop_
+intersci_
 stack_
 com_
 vstk_
@@ -29,6 +31,15 @@ parse_
 ftob_
 getrecursiongatewaytocall_
 isrecursioncalltofunction_
+;core_f
+clunit_
+getsmat_
+checkval_
+getvect_
+cretlist_
+listcresmat_
+listcremat_
+listcrestring_
 
 ;elementary_functions
 ddif_
@@ -41,3 +52,4 @@ d1mach_
 iset_
 dadd_
 unsfdcopy_
+int2db_

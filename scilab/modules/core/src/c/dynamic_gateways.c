@@ -15,7 +15,23 @@
 #include "gw_dynamic_generic.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-/* optimization module */
+/* pvm module */
+#define PVM_MODULE_NAME "pvm"
+static DynLibHandle hPvmLib = NULL;
+static PROC_GATEWAY ptr_gw_pvm = NULL;
+static char* dynlibname_pvm = NULL;
+static char* gatewayname_pvm = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_pvm(void)
+{
+	return gw_dynamic_generic(PVM_MODULE_NAME,
+		&dynlibname_pvm,
+		&gatewayname_pvm,
+		&hPvmLib,
+		&ptr_gw_pvm);
+}
+/*--------------------------------------------------------------------------*/
+/* helptools module */
 #define HELPTOOLS_MODULE_NAME "helptools"
 static DynLibHandle hHelptoolsLib = NULL;
 static PROC_GATEWAY ptr_gw_helptools = NULL;
@@ -175,22 +191,6 @@ int gw_dynamic_symbolic(void)
 							  &ptr_gw_symbolic);
 }
 /*--------------------------------------------------------------------------*/
-/* metanet module */
-#define METANET_MODULE_NAME "metanet"
-static DynLibHandle hMetanetLib = NULL;
-static PROC_GATEWAY ptr_gw_metanet = NULL;
-static char* dynlibname_metanet = NULL;
-static char* gatewayname_metanet = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_metanet(void)
-{
-	return gw_dynamic_generic(METANET_MODULE_NAME,
-		                      &dynlibname_metanet,
-							  &gatewayname_metanet,
-							  &hMetanetLib,
-							  &ptr_gw_metanet);
-}
-/*--------------------------------------------------------------------------*/
 /* interpolation module */
 #define INTERPOLATION_MODULE_NAME "interpolation"
 static DynLibHandle hInterpolationLib = NULL;
@@ -280,6 +280,13 @@ static char* gatewayname_xpad = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_xpad(void)
 {
+#ifdef _MSC_VER
+	if (dynlibname_xpad == NULL)
+	{
+		dynlibname_xpad = buildModuleDynLibraryName(XPAD_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	
 	return gw_dynamic_generic(XPAD_MODULE_NAME,
 		&dynlibname_xpad,
 		&gatewayname_xpad,
@@ -310,4 +317,27 @@ int gw_dynamic_hdf5(void)
 	return r;
 }
 /*--------------------------------------------------------------------------*/
+/* graphic_exports module */
+#define GRAPHIC_EXPORT_MODULE_NAME "graphic_export"
+static DynLibHandle hGraphic_exportLib = NULL;
+static PROC_GATEWAY ptr_gw_graphic_export = NULL;
+static char* dynlibname_graphic_export = NULL;
+static char* gatewayname_graphic_export = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_graphic_export(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_graphic_export == NULL)
+	{
+		dynlibname_graphic_export = buildModuleDynLibraryName(GRAPHIC_EXPORT_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+	return gw_dynamic_generic(GRAPHIC_EXPORT_MODULE_NAME,
+		&dynlibname_graphic_export,
+		&gatewayname_graphic_export,
+		&hGraphic_exportLib ,
+		&ptr_gw_graphic_export);
+}
+/*--------------------------------------------------------------------------*/
+
 

@@ -26,29 +26,27 @@ nm = nmplot_configure(nm,"-tolxmethod",%f);
 nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = nmplot_configure(nm,"-simplex0method","spendley");
 nm = nmplot_configure(nm,"-method","fixed");
-//nm = nmplot_configure(nm,"-verbose",1);
-//nm = nmplot_configure(nm,"-verbosetermination",0);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","rosenbrock.fixed.history.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","rosenbrock.fixed.history.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","rosenbrock.fixed.history.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 // Plot various histories
 mprintf("Plotting history of fbar...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
 mprintf("Plotting history of fopt...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.fopt.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fopt.txt" , ...
   mytitle = "Logarithm Minimum Function Value" , myxlabel = "Iterations" );
 f.children.log_flags = "nln";
 newticks = tlist(["ticks","locations","labels"]);
@@ -59,14 +57,14 @@ f.children.children(1).children.mark_mode = "on";
 f.children.children(1).children.mark_style = 9;
 mprintf("Plotting history of sigma...\n");
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.fixed.history.sigma.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.sigma.txt" , ...
   mytitle = "Logarithm Maximum Oriented length" , myxlabel = "Iterations" );
 f.children.log_flags = "nln";
 f.children.y_ticks = newticks;
 f.children.children(1).children.mark_mode = "on";
 f.children.children(1).children.mark_style = 9;
 // Plot the contours of the cost function and the simplex history
-mprintf("Plotting contour...\n");
+mprintf("Plotting contour (please wait)...\n");
 nm = nmplot_configure(nm,"-verbose",0);
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -5.0 , xmax = 12.0 , ymin = -2.0 , ymax = 12.0 , nx = 50 , ny = 50 );
 f = scf();
@@ -75,11 +73,12 @@ contour ( xdata , ydata , zdata , [10.0 50 100 1000 2000 5000 10000 20000] )
 nmplot_simplexhistory ( nm );
 drawnow();
 // Clean-up
-deletefile("rosenbrock.fixed.history.simplex.txt");
-deletefile("rosenbrock.fixed.history.fbar.txt");
-deletefile("rosenbrock.fixed.history.fopt.txt");
-deletefile("rosenbrock.fixed.history.sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor

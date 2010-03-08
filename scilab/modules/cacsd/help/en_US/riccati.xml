@@ -29,13 +29,13 @@
       <varlistentry>
         <term>A,B,C</term>
         <listitem>
-          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symetric.</para>
+          <para>real matrices nxn, <literal>B</literal> and  <literal>C</literal> symmetric.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dom</term>
         <listitem>
-          <para>: <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
+          <para> <literal>'c'</literal> or <literal>'d'</literal> for the time domain (continuous or discrete)</para>
         </listitem>
       </varlistentry>
       <varlistentry>

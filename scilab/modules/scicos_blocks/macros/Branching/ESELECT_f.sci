@@ -37,7 +37,7 @@ case 'set' then
   if size(exprs,'*')==2 then exprs(3)=string(0);end
   model=arg1.model;
   while %t do
-    [ok,out,inh,nmod,exprs]=getvalue('Set ESELECT block parameters',..
+    [ok,out,inh,nmod,exprs]=scicos_getvalue('Set ESELECT block parameters',..
 	['number of output event ports';'Inherit (1: no, 0: yes)';
 	 'zero-crossing (0: no, 1: yes)'],..
 				 list('vec',1,'vec',1,'vec',1),exprs)

@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,R,exprs]=getvalue('Set Resistor block parameter',..
+    [ok,R,exprs]=scicos_getvalue('Set Resistor block parameter',..
     			   'R (ohm)',list('vec',1),exprs)
     if ~ok then break,end
     model.rpar=R
@@ -65,11 +65,17 @@ case 'define' then
   model.in=ones(size(mo.inputs,'*'),1)
   model.out=ones(size(mo.outputs,'*'),1)
   exprs=string(R)
-  gr_i=[ 'xx=[0,1,1,7,7,8,7,7,1,1]/8;';
-	 'yy=[1,1,0,0,1,1,1,2,2,1]/2;';
-	 'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); '
-	 'rect=xstringl(0,0,''R=''+R)'
-	 'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''R=''+R);']  
+  gr_i=['xx=[0,1,1,7,7,8,7,7,1,1]/8;';
+        'yy=[1,1,0,0,1,1,1,2,2,1]/2;';
+        'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); '
+        'txt=''R= ''+R;'
+        'style=2;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();']
   x=standard_define([2 0.18],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']

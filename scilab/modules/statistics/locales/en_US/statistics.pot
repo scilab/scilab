@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_cdfnor.c, line: 78
 msgid " Std must not be zero\n"
@@ -31,27 +31,27 @@ msgid "%s: Graph demand out of bounds.\n"
 msgstr ""
 #
 # File: macros/samwr.sci, line: 19
-# File: macros/mvvacov.sci, line: 31
 # File: macros/thrownan.sci, line: 26
 # File: macros/mvcorrel.sci, line: 29
+# File: macros/mvvacov.sci, line: 31
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 #
-# File: macros/moment.sci, line: 46
 # File: macros/meanf.sci, line: 38
-# File: macros/nanmedian.sci, line: 29
+# File: macros/moment.sci, line: 46
+# File: macros/mad.sci, line: 35
 # File: macros/nanstdev.sci, line: 34
 # File: macros/nansum.sci, line: 35
+# File: macros/nanmedian.sci, line: 29
 # File: macros/mean.sci, line: 26
-# File: macros/mad.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr ""
 #
-# File: macros/iqr.sci, line: 34
 # File: macros/quart.sci, line: 40
 # File: macros/msd.sci, line: 33
+# File: macros/iqr.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
@@ -69,25 +69,25 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/cmoment.sci, line: 37
-# File: macros/cmoment.sci, line: 55
-# File: macros/geomean.sci, line: 31
-# File: macros/geomean.sci, line: 37
 # File: macros/center.sci, line: 35
+# File: macros/tabul.sci, line: 58
+# File: macros/wcenter.sci, line: 40
 # File: macros/harmean.sci, line: 33
 # File: macros/harmean.sci, line: 46
-# File: macros/wcenter.sci, line: 40
-# File: macros/samplef.sci, line: 41
-# File: macros/variance.sci, line: 35
-# File: macros/tabul.sci, line: 58
-# File: macros/strange.sci, line: 24
+# File: macros/trimmean.sci, line: 74
 # File: macros/sample.sci, line: 32
-# File: macros/nanmean.sci, line: 31
-# File: macros/variancef.sci, line: 37
+# File: macros/strange.sci, line: 24
+# File: macros/geomean.sci, line: 31
+# File: macros/geomean.sci, line: 37
+# File: macros/samplef.sci, line: 41
 # File: macros/stdevf.sci, line: 36
+# File: macros/cmoment.sci, line: 37
+# File: macros/cmoment.sci, line: 55
+# File: macros/nanmean.sci, line: 31
+# File: macros/variance.sci, line: 35
+# File: macros/variancef.sci, line: 37
 # File: macros/nanmeanf.sci, line: 37
 # File: macros/nand2mean.sci, line: 37
-# File: macros/trimmean.sci, line: 74
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -196,13 +196,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfbet.c, line: 67
-# File: sci_gateway/c/sci_cdfbin.c, line: 67
-# File: sci_gateway/c/sci_cdff.c, line: 64
-# File: sci_gateway/c/sci_cdfnbn.c, line: 67
 # File: sci_gateway/c/sci_cdfnor.c, line: 65
 # File: sci_gateway/c/sci_cdfgam.c, line: 65
+# File: sci_gateway/c/sci_cdff.c, line: 64
+# File: sci_gateway/c/sci_cdfbet.c, line: 67
+# File: sci_gateway/c/sci_cdfnbn.c, line: 67
 # File: sci_gateway/c/sci_cdfchn.c, line: 62
+# File: sci_gateway/c/sci_cdfbin.c, line: 67
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
@@ -221,23 +221,23 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
-# File: macros/cmoment.sci, line: 51
 # File: macros/center.sci, line: 46
-# File: macros/nanmedian.sci, line: 51
-# File: macros/harmean.sci, line: 42
 # File: macros/wcenter.sci, line: 57
+# File: macros/harmean.sci, line: 42
 # File: macros/msd.sci, line: 43
+# File: macros/nanmedian.sci, line: 51
+# File: macros/cmoment.sci, line: 51
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
 msgstr ""
 #
-# File: macros/st_deviation.sci, line: 38
-# File: macros/samplef.sci, line: 71
-# File: macros/sample.sci, line: 49
 # File: macros/stdev.sci, line: 41
-# File: macros/variancef.sci, line: 60
+# File: macros/sample.sci, line: 49
+# File: macros/samplef.sci, line: 71
+# File: macros/st_deviation.sci, line: 38
 # File: macros/stdevf.sci, line: 54
+# File: macros/variancef.sci, line: 60
 # File: macros/nanmeanf.sci, line: 48
 #, c-format
 msgid ""
@@ -319,32 +319,32 @@ msgstr ""
 msgid "A,B,P and Q"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 71
-# File: sci_gateway/c/sci_cdfpoi.c, line: 72
-# File: sci_gateway/c/sci_cdfbet.c, line: 79
-# File: sci_gateway/c/sci_cdft.c, line: 68
-# File: sci_gateway/c/sci_cdfbin.c, line: 78
-# File: sci_gateway/c/sci_cdff.c, line: 75
-# File: sci_gateway/c/sci_cdfnbn.c, line: 79
 # File: sci_gateway/c/sci_cdfnor.c, line: 76
 # File: sci_gateway/c/sci_cdfgam.c, line: 76
-# File: sci_gateway/c/sci_cdfchn.c, line: 75
+# File: sci_gateway/c/sci_cdff.c, line: 75
+# File: sci_gateway/c/sci_cdfbet.c, line: 79
+# File: sci_gateway/c/sci_cdfchi.c, line: 71
+# File: sci_gateway/c/sci_cdfnbn.c, line: 79
 # File: sci_gateway/c/sci_cdffnc.c, line: 82
+# File: sci_gateway/c/sci_cdfpoi.c, line: 72
+# File: sci_gateway/c/sci_cdfchn.c, line: 75
+# File: sci_gateway/c/sci_cdft.c, line: 68
+# File: sci_gateway/c/sci_cdfbin.c, line: 78
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 70
-# File: sci_gateway/c/sci_cdfpoi.c, line: 69
-# File: sci_gateway/c/sci_cdfbet.c, line: 78
-# File: sci_gateway/c/sci_cdft.c, line: 67
-# File: sci_gateway/c/sci_cdfbin.c, line: 77
-# File: sci_gateway/c/sci_cdff.c, line: 74
-# File: sci_gateway/c/sci_cdfnbn.c, line: 78
 # File: sci_gateway/c/sci_cdfnor.c, line: 75
 # File: sci_gateway/c/sci_cdfgam.c, line: 75
-# File: sci_gateway/c/sci_cdfchn.c, line: 74
+# File: sci_gateway/c/sci_cdff.c, line: 74
+# File: sci_gateway/c/sci_cdfbet.c, line: 78
+# File: sci_gateway/c/sci_cdfchi.c, line: 70
+# File: sci_gateway/c/sci_cdfnbn.c, line: 78
 # File: sci_gateway/c/sci_cdffnc.c, line: 81
+# File: sci_gateway/c/sci_cdfpoi.c, line: 69
+# File: sci_gateway/c/sci_cdfchn.c, line: 74
+# File: sci_gateway/c/sci_cdft.c, line: 67
+# File: sci_gateway/c/sci_cdfbin.c, line: 77
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
@@ -394,16 +394,16 @@ msgstr ""
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr ""
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 75
-# File: sci_gateway/c/sci_cdfpoi.c, line: 78
-# File: sci_gateway/c/sci_cdfbet.c, line: 83
-# File: sci_gateway/c/sci_cdft.c, line: 71
-# File: sci_gateway/c/sci_cdfbin.c, line: 82
-# File: sci_gateway/c/sci_cdfnbn.c, line: 83
 # File: sci_gateway/c/sci_cdfnor.c, line: 80
 # File: sci_gateway/c/sci_cdfgam.c, line: 80
-# File: sci_gateway/c/sci_cdfchn.c, line: 78
+# File: sci_gateway/c/sci_cdfbet.c, line: 83
+# File: sci_gateway/c/sci_cdfchi.c, line: 75
+# File: sci_gateway/c/sci_cdfnbn.c, line: 83
 # File: sci_gateway/c/sci_cdffnc.c, line: 85
+# File: sci_gateway/c/sci_cdfpoi.c, line: 78
+# File: sci_gateway/c/sci_cdfchn.c, line: 78
+# File: sci_gateway/c/sci_cdft.c, line: 71
+# File: sci_gateway/c/sci_cdfbin.c, line: 82
 #, c-format
 msgid ""
 "Input argument %c is out of range.\n"

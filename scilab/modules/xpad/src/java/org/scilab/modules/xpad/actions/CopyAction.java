@@ -12,9 +12,8 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
@@ -24,20 +23,48 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.XpadMessages;
 
-public class CopyAction extends DefaultAction {
+/**
+ * CopyAction Class
+ * @author Bruno JOFRET
+ *
+ */
+public final class CopyAction extends DefaultAction {
 
-    private CopyAction(Xpad editor) {
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = -8858655782952121924L;
+
+	/**
+	 * Constructor
+	 * @param editor Xpad
+	 */
+	private CopyAction(Xpad editor) {
 	super(XpadMessages.COPY, editor);
     }
     
+	/**
+	 * doAction
+	 */
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
     }
     
+    /**
+     * createMenu
+     * @param editor Xpad
+     * @return createMenu
+     */
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu(XpadMessages.COPY, null, new CopyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+	return createMenu(XpadMessages.COPY, null, new CopyAction(editor), 
+			KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
     }
     
+    /**
+     * createButton
+     * @param editor Xpad
+     * @return PushButton
+     */
     public static PushButton createButton(Xpad editor) {
 	return createButton(XpadMessages.COPY, "edit-copy.png", new CopyAction(editor));
     }

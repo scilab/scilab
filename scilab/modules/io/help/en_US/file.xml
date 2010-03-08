@@ -210,7 +210,7 @@ file(action,unit)
                     <term>b</term>
 
                     <listitem>
-                      <para>0 stands for sequential acces and 1 for direct
+                      <para>0 stands for sequential access and 1 for direct
                       access</para>
                     </listitem>
                   </varlistentry>
@@ -233,14 +233,13 @@ file(action,unit)
               <listitem>
                 <variablelist>
                   <varlistentry>
+                  <varlistentry>
                     <term>a</term>
 
                     <listitem>
-                      <para>is 1 if file has been opened with a "b" (binary)
-                      mode</para>
+                      <para>1 stands for "r" (read), 2 stands for "w" (write)
+                      and 3 for "a" (append)</para>
                     </listitem>
-                  </varlistentry>
-
                   <varlistentry>
                     <term>b</term>
 
@@ -249,15 +248,15 @@ file(action,unit)
                       mode</para>
                     </listitem>
                   </varlistentry>
-
-                  <varlistentry>
-                    <term>c</term>
+                  </varlistentry>                  	
+                    <term>b</term>
 
                     <listitem>
-                      <para>1 stands for "r" (read), 2 stands for "w" (write)
-                      and 3 for "a" (append)</para>
+                      <para>is 1 if file has been opened with a "b" (binary)
+                      mode</para>
                     </listitem>
                   </varlistentry>
+
                 </variablelist>
               </listitem>
             </varlistentry>

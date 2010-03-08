@@ -1,28 +1,35 @@
-# Localization of the module history_manager
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"PO-Revision-Date: 2009-10-08 15:58+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
 
-# File: sci_gateway/c/sci_addhistory.c, line: 44
+#
+# File: sci_gateway/c/sci_gethistoryfile.c, line: 41
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 配列文字列を想定します。\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが起こりました: %s.\n"
+
+#
+# File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 54
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_gethistory.c, line: 59
@@ -32,16 +39,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 配列文字列を想定します�
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
 
-#
-# File: sci_gateway/c/sci_gethistoryfile.c, line: 41
+# File: sci_gateway/c/sci_addhistory.c, line: 44
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが起こりました: %s.\n"
-
-#
-# File: sci_gateway/c/sci_gethistoryfile.c, line: 41
-msgid "filename not defined."
-msgstr "ファイル名が定義されていません。"
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 配列文字列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_historymanager.c, line: 76
@@ -52,24 +53,99 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' または '%s'であるべき
 #
 # File: sci_gateway/c/sci_removelinehistory.c, line: 37
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr "%s: 入力引数 #%d で不正な値: [%d、%d] 間隔であるべきです。\n"
-
-#
-# File: sci_gateway/c/sci_saveconsecutivecommands.c, line: 54
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: ブーリアンを想定します。\n"
 
 #
 # File: src/c/getCommentDateSession.c, line: 25
 msgid "// Begin Session : "
-msgstr "// セッションの開始 :"
+msgstr "// セッションの開始 : "
 
 #
 # File: src/c/getCommentDateSession.c, line: 26
 msgid "// End Session   : "
-msgstr "// セッションの終わり :"
+msgstr "// セッションの終わり : "
+
+#
+# File: src/c/getCommentDateSession.c, line: 129
+msgid "Apr"
+msgstr "4月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 133
+msgid "Aug"
+msgstr "8月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 137
+msgid "Dec"
+msgstr "12月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 127
+msgid "Feb"
+msgstr "2月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 113
+msgid "Fri"
+msgstr "金"
+
+#
+# File: src/c/getCommentDateSession.c, line: 126
+msgid "Jan"
+msgstr "1月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 132
+msgid "Jul"
+msgstr "7月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 131
+msgid "Jun"
+msgstr "6月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 128
+msgid "Mar"
+msgstr "3月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 130
+msgid "May"
+msgstr "5月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 109
+msgid "Mon"
+msgstr "月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 136
+msgid "Nov"
+msgstr "11月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 135
+msgid "Oct"
+msgstr "10月"
+
+#
+# File: src/c/getCommentDateSession.c, line: 114
+msgid "Sat"
+msgstr "土"
+
+#
+# File: src/nohistory_manager/nohistory_manager.c, line: 23
+msgid "Scilab history_manager module not installed.\n"
+msgstr "Scilabモジュール history_manager はインストールされていません。\n"
+
+#
+# File: src/c/getCommentDateSession.c, line: 134
+msgid "Sep"
+msgstr "9月"
 
 #
 # File: src/c/getCommentDateSession.c, line: 108
@@ -77,9 +153,9 @@ msgid "Sun"
 msgstr "日"
 
 #
-# File: src/c/getCommentDateSession.c, line: 109
-msgid "Mon"
-msgstr "月"
+# File: src/c/getCommentDateSession.c, line: 112
+msgid "Thu"
+msgstr "木"
 
 #
 # File: src/c/getCommentDateSession.c, line: 110
@@ -92,82 +168,6 @@ msgid "Wed"
 msgstr "水"
 
 #
-# File: src/c/getCommentDateSession.c, line: 112
-msgid "Thu"
-msgstr "木"
-
-#
-# File: src/c/getCommentDateSession.c, line: 113
-msgid "Fri"
-msgstr "金"
-
-#
-# File: src/c/getCommentDateSession.c, line: 114
-msgid "Sat"
-msgstr "土"
-
-#
-# File: src/c/getCommentDateSession.c, line: 126
-msgid "Jan"
-msgstr "1月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 127
-msgid "Feb"
-msgstr "2月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 128
-msgid "Mar"
-msgstr "3月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 129
-msgid "Apr"
-msgstr "4月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 130
-msgid "May"
-msgstr "5月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 131
-msgid "Jun"
-msgstr "6月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 132
-msgid "Jul"
-msgstr "7月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 133
-msgid "Aug"
-msgstr "8月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 134
-msgid "Sep"
-msgstr "9月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 135
-msgid "Oct"
-msgstr "10月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 136
-msgid "Nov"
-msgstr "11月"
-
-#
-# File: src/c/getCommentDateSession.c, line: 137
-msgid "Dec"
-msgstr "12月"
-
-#
-# File: src/nohistory_manager/nohistory_manager.c, line: 23
-msgid "Scilab history_manager module not installed.\n"
-msgstr "Scilabモジュール history_manager はインストールされていません。\n"
-
+# File: sci_gateway/c/sci_gethistoryfile.c, line: 41
+msgid "filename not defined."
+msgstr "ファイル名が定義されていません。"

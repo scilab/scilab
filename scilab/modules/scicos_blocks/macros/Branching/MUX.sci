@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,in,exprs]=getvalue('Set MUX block parameters',..
+    [ok,in,exprs]=scicos_getvalue('Set MUX block parameters',..
 	'number of input ports or vector of sizes',list('vec',-1),exprs)
     if ~ok then break,end
     if size(in,'*')==1 then
@@ -73,8 +73,15 @@ case 'set' then
   model.dep_ut=[%t %f]
 
   exprs=string(in)
-  gr_i=' ' //'xstringb(orig(1),orig(2),''Mux'',sz(1),sz(2),''fill'')'
+  gr_i=['txt=''Mux'';'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;']
   x=standard_define([.5 2],model,exprs,gr_i)
-  x.graphics.id="Mux"
 end
 endfunction

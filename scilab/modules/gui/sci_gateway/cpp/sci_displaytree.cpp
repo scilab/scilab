@@ -148,7 +148,8 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 		FREE(tab[i]);
 	}
 
-	FREE(tab);
+	delete [] tab;
+	tab = NULL;
 
 	return 0;
 }

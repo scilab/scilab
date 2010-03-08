@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,31 +14,35 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.KeyStroke;
-
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Management of "Diagram Saving"
- * @author Vincent COUVERT
  */
 public final class SaveAction extends DefaultAction {
-
-	private static final long serialVersionUID = 455320507172108275L;
+	/** Name of the action */
+	public static final String NAME = XcosMessages.SAVE;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "media-floppy.png";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = KeyEvent.VK_S;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Xcos diagram
 	 */
-	private SaveAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SAVE, scilabGraph);
+	public SaveAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -46,8 +51,7 @@ public final class SaveAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SAVE, null, new SaveAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, SaveAction.class);
 	}
 
 	/**
@@ -56,15 +60,15 @@ public final class SaveAction extends DefaultAction {
 	 * @return the button
 	 */
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.SAVE, "document-save.png", new SaveAction(scilabGraph));
+		return createButton(scilabGraph, SaveAction.class);
 	}
 	
 	/**
-	 * Associated action
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		((XcosDiagram) getGraph(null)).saveDiagram();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	    ((XcosDiagram) getGraph(null)).getRootDiagram().saveDiagram();
 	}
-
 }

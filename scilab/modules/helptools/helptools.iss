@@ -47,28 +47,18 @@ Source: thirdparty\fop-hyph.README;DestDir: {app}\thirdparty; Components: {#COMP
 Source: thirdparty\fop.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\fop.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\fop.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\isorelax.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\jeuclid-core.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\jeuclid.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\jeuclid.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jimi.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jimi.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jimi.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jing.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jing.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\jing.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\js.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\js.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\js.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\saxon.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\saxon.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\saxon.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
-Source: thirdparty\xercesImpl.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xml-apis.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xml-apis-ext.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons-1.3.1.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.LICENSE;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 Source: thirdparty\xmlgraphics-commons.README;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+Source: thirdparty\xalan.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
 Source: thirdparty\batik-all-1.7.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
 ;
@@ -87,8 +77,6 @@ Source: modules\{#HELPTOOLS}\xsl\*.*; DestDir: {app}\modules\{#HELPTOOLS}\xsl; F
 ;
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.quit; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\etc\{#HELPTOOLS}.start; DestDir: {app}\modules\{#HELPTOOLS}\etc; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#HELPTOOLS}\help\addchapter.sce; DestDir: {app}\modules\{#HELPTOOLS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 Source: modules\{#HELPTOOLS}\macros\buildmacros.sce; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\macros\buildmacros.bat; DestDir: {app}\modules\{#HELPTOOLS}\macros; Components: {#COMPN_SCILAB}

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,30 +13,37 @@
 
 package org.scilab.modules.xcos.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Diagram compilation management
- * @author Allan SIMON
  */
-public class CompileAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public class CompileAction extends SimulationNotRunningAction {
+	/** Name of the action */
+	public static final String NAME = XcosMessages.COMPILE;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public CompileAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.COMPILE, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -44,23 +52,40 @@ public class CompileAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.COMPILE, null, new CompileAction(scilabGraph), null);
+		return createMenu(scilabGraph, CompileAction.class);
 	}
 
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
-		File temp;
-		try {
-			temp = File.createTempFile("xcos", ".hdf5");
-			temp.delete();
-			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\"" + temp.getAbsolutePath() + "\");xcos_compile(scs_m);");
-			temp.deleteOnExit();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
+			Thread launchMe = new Thread() {
+				public void run() {
+					File temp;
+					try {
+						temp = File.createTempFile("xcos", ".h5");
+						temp.deleteOnExit();
+						((XcosDiagram) getGraph(null)).dumpToHdf5File(temp.getAbsolutePath());
+						
+						String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+						               + "xcos_compile(scs_m);";
+						try {
+							ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+								public void actionPerformed(ActionEvent arg0) {
+									((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);	
+								}
+							});
+						} catch (InterpreterException e) {
+							e.printStackTrace();
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+			launchMe.start();
 	}
 }

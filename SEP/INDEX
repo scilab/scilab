@@ -28,3 +28,11 @@ SEP #28 : Creating a function returning the tlist and mlist field names
 SEP #29 : Datatips
 SEP #30 : Change of header files directory in the Scilab distribution (linux)
 SEP #31 : Unit tests and submodules
+SEP #32 : Dynamic Link includes
+SEP #33 : POO
+SEP #34 : Call Scilab Header renamed
+SEP #35 : Selection of installed header
+SEP #36 : Pretty Print
+SEP #37 : Scilab Syntax
+SEP #38 : Editvar & Browsevar
+SEP #39 : MSDOS variable replaced by getos()

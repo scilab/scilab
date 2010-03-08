@@ -12,7 +12,15 @@
 
 package org.scilab.modules.hdf5;
 
-public class H5ScilabConstant {
+/**
+ * Constants that will be used in hdf5 file
+ * as type name or attributes
+ *
+ */
+public final class H5ScilabConstant {
+    
+   
+    
     public static final String SCILAB_CLASS = "SCILAB_Class";
     public static final String SCILAB_CLASS_DOUBLE = "double";
     public static final String SCILAB_CLASS_LIST = "list";
@@ -20,12 +28,16 @@ public class H5ScilabConstant {
     public static final String SCILAB_CLASS_MLIST = "mlist";
     public static final String SCILAB_CLASS_STRING = "string";
     public static final String SCILAB_CLASS_INT = "integer";
+
+    public static final String SCILAB_CLASS_ROWS = "SCILAB_rows";
+    public static final String SCILAB_CLASS_COLS = "SCILAB_cols";
+    public static final String SCILAB_CLASS_ITEMS = "SCILAB_items";
     
     public static final String SCILAB_EMPTY = "SCILAB_empty";
     public static final String SCILAB_EMPTY_TRUE = "true";
     
     public static final String SCILAB_COMPLEX = "SCILAB_complex";
-    public static final String SCILAB_COMPLEX_TRUE = "true";
+    public static final String SCILAB_COMPLEX_TRUE = SCILAB_EMPTY_TRUE;
     public static final String SCILAB_CLASS_BOOLEAN = "boolean";
     public static final String SCILAB_CLASS_PREC = "SCILAB_precision";
     
@@ -38,4 +50,8 @@ public class H5ScilabConstant {
     public static final String SCILAB_CLASS_INT64 = "64";
     public static final String SCILAB_CLASS_UINT64 = "u64";
     
+    /**
+     * Private Constructor for utility class.
+     */
+    private H5ScilabConstant() { };
 }

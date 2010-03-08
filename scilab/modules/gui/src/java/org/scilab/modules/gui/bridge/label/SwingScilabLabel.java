@@ -12,11 +12,12 @@
  */
 package org.scilab.modules.gui.bridge.label;
 
+import java.awt.Color;
 import java.awt.Font;
-import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
+import javax.swing.JScrollPane;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
@@ -35,16 +36,21 @@ import org.scilab.modules.gui.utils.Size;
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JLabel implements SimpleLabel {
+public class SwingScilabLabel extends JScrollPane implements SimpleLabel {
 	
 	private static final long serialVersionUID = 7177323379068859441L;
+	
+	private JLabel label;
 
 	/**
 	 * Constructor
 	 */
 	public SwingScilabLabel() {
 		super();
-		setOpaque(true);
+		getViewport().add(getLabel());
+		setBorder(BorderFactory.createEmptyBorder());
+		setViewportBorder(BorderFactory.createEmptyBorder());
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	/**
@@ -52,26 +58,47 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 * @param font new font to use.
 	 */
 	public void setFont(Font font) {
-		final Font fontF = font;
-		try {
-			SwingUtilities.invokeAndWait(new Runnable() {
-				public void run() {
-					superSetFont(fontF);
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
+		getLabel().setFont(font);
 	}
 	
 	/**
-	 * Just call super.setFont
-	 * @param font cool font
+	 * To get the Font of the element.
+	 * @return font the Font
 	 */
-	private void superSetFont(Font font) {
-		super.setFont(font);
+	public Font getFont() {
+		return getLabel().getFont();
+	}
+	
+	/**
+	 * To get the Foreground color of the element.
+	 * @return color the Color
+	 */
+	public Color getForeground() {
+		return getLabel().getForeground();
+	}
+	
+	/**
+	 * To set the Foreground color of the element.
+	 * @param color the Color
+	 */
+	public void setForeground(Color color) {
+		getLabel().setForeground(color);
+	}
+	
+	/**
+	 * To set the Background color of the element.
+	 * @param color the Color
+	 */
+	public void setBackground(Color color) {
+		getLabel().setBackground(color);
+	}
+	
+	/**
+	 * To get the Background color of the element.
+	 * @return color the Color
+	 */
+	public Color getBackground() {
+		return getLabel().getBackground();
 	}
 	
 	/**
@@ -84,12 +111,22 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	}
 
 	/**
+	 * Sets the visibility status of an UIElement
+	 * @param newVisibleState the visibility status we want to set for the UIElement
+	 *                      (true if the UIElement is visible, false if not)
+	 */
+	public void setVisible(boolean newVisibleState) {
+		super.setVisible(newVisibleState);
+		getLabel().setVisible(newVisibleState);
+	}
+	
+	/**
 	 * Gets the dimensions (width and height) of a swing Scilab element
 	 * @return the dimensions of the element
 	 * @see org.scilab.modules.gui.uielement.UIElement#getDims()
 	 */
 	public Size getDims() {
-		return new Size(super.getSize().width, super.getSize().height);
+		return new Size(getWidth(), getHeight());
 	}
 
 	/**
@@ -107,7 +144,7 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 * @see org.scilab.modules.gui.uielement.UIElement#setDims(org.scilab.modules.gui.utils.Size)
 	 */
 	public void setDims(Size newSize) {
-		super.setSize(newSize.getWidth(), newSize.getHeight());
+		setSize(newSize.getWidth(), newSize.getHeight());
 	}
 
 	/**
@@ -169,7 +206,7 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setHorizontalAlignment(String alignment) {
-		setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		getLabel().setHorizontalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 
 	/**
@@ -177,7 +214,7 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	 * @param alignment the value for the alignment (See ScilabAlignment.java)
 	 */
 	public void setVerticalAlignment(String alignment) {
-		setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
+		getLabel().setVerticalAlignment(ScilabAlignment.toSwingAlignment(alignment));
 	}
 
 	/**
@@ -211,6 +248,37 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	public TextBox getInfoBar() {
 		/* Unimplemented for Labels */
 		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Create/Return the label Java object
+	 * @return the label
+	 */
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel();
+			label.setOpaque(true);
+		}
+		return label;
+		
+	}
+
+	/**
+	 * get the text displayed in the label
+	 * @return the label
+	 * @see org.scilab.modules.gui.text.SimpleText#getText()
+	 */
+	public String getText() {
+		return getLabel().getText();
+	}
+
+	/**
+	 * Set the text displayed in the label
+	 * @param newText the text
+	 * @see org.scilab.modules.gui.text.SimpleText#setText(java.lang.String)
+	 */
+	public void setText(String newText) {
+		getLabel().setText(newText);
 	}
 
 }

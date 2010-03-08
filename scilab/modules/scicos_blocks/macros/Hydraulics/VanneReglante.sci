@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Cvmax,p_rho,exprs]=getvalue('Paramètres de la vanne reglante',..
+    [ok,Cvmax,p_rho,exprs]=scicos_getvalue('Paramètres de la vanne reglante',..
        ['Cvmax';'p_rho'],..
        list('vec',-1,'vec',-1),exprs)
     if ~ok then break,end
@@ -79,3 +79,129 @@ case 'define' then
   x.graphics.out_implicit=['I']
 end
 endfunction
+
+function [x,y,typ]=vanne_inputs(o)
+
+xf=60
+yf=40
+[orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+//[orig,sz,orient]=o(2)(1:3);
+  inp=size(o.model.in,1);clkinp=size(o.model.evtin,1);
+
+if orient then
+  x1=orig(1)
+  dx1=-xf/7
+  x2=orig(1)+sz(1)
+  dx2=xf/7
+else
+  x1=orig(1)+sz(1)
+  dx1=yf/7
+  x2=orig(1)
+  dx2=-xf/7
+end
+
+//y=[orig(2)+sz(2)-(sz(2)/2) ,orig(2)+yf/7+sz(2)]
+y=[orig(2)+2*sz(2)/10 ,orig(2)+yf/7+sz(2)]
+x=[(x1+dx1)  orig(1)+sz(1)/2]
+typ=[2 1]
+
+endfunction
+
+function [x,y,typ]=vanne_outputs(o)
+// Copyright INRIA
+xf=60
+yf=40
+[orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+//[orig,sz,orient]=o(2)(1:3);
+ out=size(o.model.out,1);clkout=size(o.model.evtout,1);
+if orient then
+  x1=orig(1)
+  dx1=-xf/7
+  x2=orig(1)+sz(1)
+  dx2=xf/7
+else
+  x1=orig(1)+sz(1)
+  dx1=yf/7
+  x2=orig(1)
+  dx2=-xf/7
+end
+
+y=[orig(2)+2*sz(2)/10]
+x=[(x2+dx2) ]
+typ=[2]
+
+endfunction
+function vanne_draw_ports(o)
+[orig,sz,orient]=(o.graphics.orig,o.graphics.sz,o.graphics.flip)
+    xset('pattern',default_color(0))
+  // draw input/output ports
+  //------------------------
+
+  if orient then  //standard orientation
+    // set port shape
+    out2=[ 0  -1
+	   1  -1
+	   1   1
+	   0   1]*diag([xf/7,yf/14])
+    
+    in2= [-1  -1
+	   0  -1
+	   0   1
+	  -1   1]*diag([xf/7,yf/14])
+    //dy=sz(2)/2
+    xset('pattern',default_color(1))
+    //xpoly(out2(:,1)+(orig(1)+sz(1)),..
+	//  out2(:,2)+(orig(2)+sz(2)-dy),"lines",1)
+    xpoly(out2(:,1)+(orig(1)+sz(1)),..
+	  out2(:,2)+(orig(2)+2*sz(2)/10),"lines",1)
+
+    //dy=sz(2)/2
+    //xfpoly(in2(:,1)+orig(1),..
+	//   in2(:,2)+(orig(2)+sz(2)-dy),1)
+   
+    xfpoly(in2(:,1)+orig(1),..
+	   in2(:,2)+(orig(2)+2*sz(2)/10),1)	
+  else //tilded orientation
+      out2=[0  -1
+	   -1  -1
+	   -1   1
+	    0   1]*diag([xf/7,yf/14])
+      
+      in2= [1  -1
+	    0  -1
+	    0   1
+	    1   1]*diag([xf/7,yf/14])
+
+      
+      //dy=sz(2)/2
+      xset('pattern',default_color(1))
+      //xpoly(out2(:,1)+ones(4,1)*orig(1)-1,..
+	//    out2(:,2)+ones(4,1)*(orig(2)+sz(2)-dy),"lines",1)  
+      //dy=sz(2)/2
+      //xfpoly(in2(:,1)+ones(4,1)*(orig(1)+sz(1))+1,..
+	//     in2(:,2)+ones(4,1)*(orig(2)+sz(2)-dy),1) 
+      xpoly(out2(:,1)+ones(4,1)*orig(1)-1,..
+	    out2(:,2)+ones(4,1)*(orig(2)+2*sz(2)/10),"lines",1)  
+      dy=sz(2)/2
+      xfpoly(in2(:,1)+ones(4,1)*(orig(1)+sz(1))+1,..
+	     in2(:,2)+ones(4,1)*(orig(2)+2*sz(2)/10),1) 
+  end
+  // valve command port port
+  //------------------------
+  // set port shape
+
+
+
+  in= [-1  1
+        0  0
+        1  1
+       -1  1]*diag([xf/14,yf/7])
+
+
+
+  dx=sz(1)/2
+
+  xfpoly(in(:,1)+ones(4,1)*(orig(1)+dx),..
+	 in(:,2)+ones(4,1)*(orig(2)+sz(2)),1)
+
+endfunction 

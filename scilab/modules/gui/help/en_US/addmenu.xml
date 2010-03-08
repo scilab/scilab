@@ -34,7 +34,7 @@ addmenu(gwin,button [,submenus] [,action])</synopsis>
           <para>a character string. The button name. An &amp; can be placed
           before the character in the name to be used for keyboard shortcut;
           this character will be underlined on the GUI. Under MacOSX, a
-          sub-menu with the same name is automaticaly added (no button can be
+          sub-menu with the same name is automatically added (no button can be
           added to the menu bar).</para>
         </listitem>
       </varlistentry>
@@ -178,44 +178,43 @@ addmenu(gwin,button [,submenus] [,action])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-if (getscilabmode() == "STD") then
+    <programlisting role="example">if (getscilabmode() == "STD") then
   addmenu('foo');
   foo = 'disp(''hello'')';
 
   addmenu('Hello',['Franck';'Peter'])
   Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
 
-  addmenu(0,'Hello',['Franck';'Peter']);
-  Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
-
   addmenu('Bye',list(0,'French_Bye'));
   French_Bye = 'disp(''Au revoir'')';
-
-  //C defined Callback
-  // creating Callback code
-  code=[ '#include ""machine.h""'
-         '#include ""sciprint.h""'
-         'void foo(char *name, int *win, int *entry)'
-         '{'
-         '  if (*win==-1) '
-         '    sciprint(""menu %s(%i) in Scilab window selected\n."", name, *entry+1);'
-         '  else'
-         '    sciprint(""menu %s(%i) in window %i selected\n."", name, *entry+1, *win);'
-         '}'];
-  //creating foo.c file
-  current_dir = pwd();
-  chdir(TMPDIR);
-  mputl(code, TMPDIR+'/foo.c');
-  //creating Makefile
-  ilib_for_link('foo','foo.o',[],'c');
-  exec('loader.sce');
-  chdir(current_dir);
-  //add menu
-  addmenu('foo',['a','b','c'],list(1,'foo'));
 else
   mprintf('This example requires to use scilab with GUI mode.\n');
 end
+
+addmenu(0,'Hello',['Franck';'Peter']);
+Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+
+//C defined Callback
+// creating Callback code
+code=[ '#include ""machine.h""'
+       '#include ""sciprint.h""'
+       'void foo(char *name, int *win, int *entry)'
+       '{'
+       '  if (*win==-1) '
+       '    sciprint(""menu %s(%i) in Scilab window selected.\n"", name, *entry+1);'
+       '  else'
+       '    sciprint(""menu %s(%i) in window %i selected.\n"", name, *entry+1, *win);'
+       '}'];
+//creating foo.c file
+current_dir = pwd();
+chdir(TMPDIR);
+mputl(code, TMPDIR+'/foo.c');
+//creating Makefile
+ilib_for_link('foo','foo.c',[],'c');
+exec('loader.sce');
+chdir(current_dir);
+//add menu
+addmenu(0,'foo',['a','b','c'],list(1,'foo'));
 
  </programlisting>
   </refsection>

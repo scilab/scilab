@@ -58,9 +58,9 @@ function tree_show(x,titletop)
 
 //-- TCL_EvalStr(tt)
 Path = 'root'
-tree = createNode("Root");
+tree = uiCreateNode("Root");
 tree = crlist3(x,Path, tree);
-displaytree(tree);
+uiDisplayTree(tree);
 
 //-- TCL_EvalStr(' .ss.t bindText <Double-1> {ppx}')
 //-- TCL_EvalStr(' .ss.t bindText <3> {qqx}')
@@ -86,16 +86,16 @@ function java = crlist3(x,Path, java)
         w=getfield(1,o);
 	titre2=titre+' ('+w(1)+')';
 //-- 	TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text {'+titre2+'}')
-	currentNode = createNode(titre2);
+	currentNode = uiCreateNode(titre2);
 	currentNode = crlist3(o,path,currentNode); //* recursive
-	java = concatTree(java, currentNode);
+	java = uiConcatTree(java, currentNode);
 
     elseif type(o)==15 then
 	titre2=titre;
 //-- 	TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text {'+titre2+'}')
-	currentNode = createNode(titre2);
+	currentNode = uiCreateNode(titre2);
 	currentNode = crlist3(o,path,currentNode); //* recursive
-	java = concatTree(java, currentNode);
+	java = uiConcatTree(java, currentNode);
     else
         if size(o,'*')>40 then
           tts=typeof(o)+' of size '+sci2exp(size(o))
@@ -105,7 +105,7 @@ function java = crlist3(x,Path, java)
         titre2=titre+': '+tts  ;
 //--       TCL_EvalStr('set yy {'+titre2+'}')
 //--       TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -text $yy')
-	java = concatTree(java, createNode(titre2));
+	java = uiConcatTree(java, uiCreateNode(titre2));
     end
   end
 

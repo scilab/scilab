@@ -100,7 +100,7 @@ function plotprofile(fun)
 
   profpath = TMPDIR+"/profiled.sci"
   mputl(txt,profpath);
-  editor_highlightline(profpath, 1);
+  editor(profpath, 1);
   
   k=1
   while %t
@@ -156,7 +156,7 @@ function plotprofile(fun)
         msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), kstr, ncallsstr, tcpustr) + txt(k);
       end
       
-      editor_highlightline(profpath,k)
+      editor(profpath,k)
     end
     for i=1:3
       d=marker(i).data; 

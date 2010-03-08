@@ -19,11 +19,13 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=Counter(job,arg1,arg2)
+function [x,y,typ] = Counter(job,arg1,arg2)
 x=[];y=[];typ=[];
 select job
  case 'plot' then
   graphics=arg1.graphics;
+  ierr=execstr('(evstr(graphics.exprs(3))==1)','errcatch')
+  if ierr<>0 then graphics.exprs(3)='1';end
   if (evstr(graphics.exprs(3))==1) then
   from=graphics.exprs(1)
   to=graphics.exprs(2)
@@ -43,7 +45,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,minim,maxim,rule,exprs]=getvalue('Set Counter  block parameters',..
+    [ok,minim,maxim,rule,exprs]=scicos_getvalue('Set Counter  block parameters',..
 	['Minimum';'Maximum';'Rule (1=Increment 2=Decrement)'],..
           list('vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end

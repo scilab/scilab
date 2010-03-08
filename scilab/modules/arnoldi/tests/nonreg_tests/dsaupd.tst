@@ -7,11 +7,11 @@
 
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
 
-stacksize('max');
+stacksize(300000);
 
-N = 100000;
+N = 1000;
 
-A = sprand(N, N, 0.0001);
+A = sprand(N, N, 0.01);
 
 IDO   = 0;
 BMAT  = 'I'; //standard eigenvalue problem

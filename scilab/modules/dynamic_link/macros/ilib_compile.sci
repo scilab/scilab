@@ -84,7 +84,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
   else
     //** ---------- Linux/MacOS/Unix section ---------------------  
 	
-	ScilabTreeFound=%f
+	ScilabTreeFound=%f;
 
     // Source tree version
 	// Headers are dispatched in the source tree
@@ -104,14 +104,14 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	end
 
 	// Binary version
-	if isdir(SCI+"/../../include/scilab/") & ScilabTreeFound then
+	if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
   	  cflags="-I"+SCI+"/../../include/scilab/ " + cflags
   	  fflags="-I"+SCI+"/../../include/scilab/ " + fflags
 	  ScilabTreeFound=%t
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/include/scilab/") & ScilabTreeFound then
+	if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
 	   cflags="-I/usr/include/scilab/ "+cflags
 	   fflags="-I/usr/include/scilab/ "+fflags
 	   ScilabTreeFound=%t
@@ -121,7 +121,8 @@ function libn = ilib_compile(lib_name,makename,files, ..
 	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
 	end
 
-      oldPath = pwd();
+	  oldPath = pwd();
+
 	  // Switch back to the TMPDIR where the mandatory files are
 	  chdir(TMPDIR);
 	  cmd = "make "
@@ -138,7 +139,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		   mprintf(gettext("stderr: %s\n"),stderr);
 		end
 	  if ierr <> 0 then
-	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
+	      mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
 	      lines(0);
 	      disp(stderr);
 		    mprintf("\n");

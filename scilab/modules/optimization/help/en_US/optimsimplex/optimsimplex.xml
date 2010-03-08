@@ -260,12 +260,19 @@ newobj = optimsimplex_new ( coords , fun )
               <listitem>
                 <para>optional, the function to compute at vertices.</para>
 
-                <para>The function is expected to have the following input and
-                output arguments :</para>
+                <para>
+		The function is expected to have the following input and
+                output arguments :
+                </para>
 
                 <programlisting> 
 function y = myfunction (x)
- </programlisting>
+                </programlisting>
+ 
+                 <para>
+		where <literal>x</literal> is a row vector.
+                </para>
+
               </listitem>
             </varlistentry>
 
@@ -986,7 +993,7 @@ function [ y , data ] = myfunction ( x , data )
               <term>x</term>
 
               <listitem>
-                <para>the coordinates of the point, as a row vector</para>
+                <para>the coordinates of the point, as a row vector.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1784,7 +1791,7 @@ function [ y , data ] = myfunction ( x , data )
 
         <listitem>
           <para>Returns the center of n vertices, by excluding the vertex with
-          index iexcl.</para>
+          index iexcl. Returns a row vector.</para>
 
           <variablelist>
             <varlistentry>

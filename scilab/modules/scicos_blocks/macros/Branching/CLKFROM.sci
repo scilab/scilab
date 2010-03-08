@@ -80,7 +80,7 @@ case 'set' then
   model=arg1.model;
   exprs=graphics.exprs
   while %t do
-    [ok,tag,exprs]=getvalue('Set block parameters',..
+    [ok,tag,exprs]=scicos_getvalue('Set block parameters',..
 	'Tag',list('str',-1),exprs)
     if ~ok then break,end
     if model.opar<>list(tag) then needcompile=4;y=needcompile,end

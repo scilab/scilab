@@ -14,12 +14,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr ""
+"Feu clic a l'objecte Eixos per iniciar la rotació. Feu clic amb el botó dret "
+"o premeu Esc per a cancel·lar."
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "Feu clic o premeu Esc per a finalitzar la rotació."
+
+msgid "Scilab Renderer module not installed.\n"
+msgstr "El mòdul Renderer del Scilab no està instal·lat.\n"
 
 msgid "Unable to render polyline, memory full.\n"
 msgstr "No s'ha pogut renteritzar la polilínia, la memòria està plena.\n"
@@ -33,15 +45,3 @@ msgstr ""
 "Avís!!!\n"
 "El Scilab ha trobat un error crític (%s).\n"
 "Deseu les dades i reinicieu el Scilab.\n"
-
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr ""
-"Feu clic a l'objecte Eixos per iniciar la rotació. Feu clic amb el botó dret "
-"o premeu Esc per a cancel·lar."
-
-msgid "Click or press ESCAPE to terminate rotation."
-msgstr "Feu clic o premeu Esc per a finalitzar la rotació."
-
-msgid "Scilab Renderer module not installed.\n"
-msgstr "El mòdul Renderer del Scilab no està instal·lat.\n"

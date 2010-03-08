@@ -18,7 +18,6 @@
 //
 // See the file ../license.txt
 //
-
 function [x,y,typ]=PID(job,arg1,arg2)
   x=[];y=[],typ=[]
   select job
@@ -33,17 +32,17 @@ function [x,y,typ]=PID(job,arg1,arg2)
    case 'set' then
     newpar=list();
     xx1=arg1.model.rpar.objs(3)
-    exprs(1)=xx1.graphics.exprs
+    exprs(1)=xx1.graphics.exprs(1)
     p_old=xx1.model.rpar
     xx2=arg1.model.rpar.objs(5)
-    exprs(2)=xx2.graphics.exprs
+    exprs(2)=xx2.graphics.exprs(1)
     i_old=xx2.model.rpar
     xx3=arg1.model.rpar.objs(6)
-    exprs(3)=xx3.graphics.exprs
+    exprs(3)=xx3.graphics.exprs(1)
     d_old=xx3.model.rpar
     y=0
     while %t do
-      [ok,p,i,d,exprs0]=getvalue('Set PID parameters',..
+      [ok,p,i,d,exprs0]=scicos_getvalue('Set PID parameters',..
 				['Proportional';'Integral';'Derivation'],list('vec',-1,'vec',-1,'vec',-1),exprs)
       if ~ok then break,end
       if ok then

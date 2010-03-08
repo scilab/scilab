@@ -58,82 +58,75 @@ function gh_blk = drawobj(o, gh_window)
   mark_size = int(%zoom * 3.0); //** in pixel : size of the selection square markers
 
   if typeof(o)=="Block" then //** Block draw 
+    
     //** ---------------------- Block -----------------------------
 
     o_size = size ( gh_axes.children ) ; //** initial size (number of graphic object
 
 
-   //** Save graphics axes state
-      //** Save the state of the graphics window to avoid problems in case of not "well behaved"
-      //** incorrect "gr_i" old graphics instructions
+    //** Save the state of the graphics window to avoid problems in case of not "well behaved"
+    //** incorrect "gr_i" old graphics instructions
 
-      //** figure_background = gh_curwin.background  ;
+    //** figure_background = gh_curwin.background  ;
+    axes_font_style = gh_axes.font_style ;
+    axes_font_size  = gh_axes.font_size  ;
+    axes_font_color = gh_axes.font_color ; //** optional
+    //** axes_line_mode   = gh_axes.line_mode ; //** optional
+    axes_line_style  = gh_axes.line_style  ;
+    axes_thickness   = gh_axes.thickness   ;
+    //** axes_mark_mode       = gh_axes.mark_mode       ;
+    //** axes_mark_style      = gh_axes.mark_style      ;
+    //** axes_mark_size       = gh_axes.mark_size       ;
+    //** axes_mark_foreground = gh_axes.mark_foreground ; 
+    //** axes_mark_background = gh_axes.mark_background ; 
 
-      axes_font_style = gh_axes.font_style ;
-      axes_font_size  = gh_axes.font_size  ;
-      axes_font_color = gh_axes.font_color ; //** optional
+    axes_foreground = gh_axes.foreground ;
+    axes_background = gh_axes.background ; //** if not used cause some problem
 
-      //** axes_line_mode   = gh_axes.line_mode ; //** optional
-      axes_line_style  = gh_axes.line_style  ;
-      axes_thickness   = gh_axes.thickness   ;
+    //**... end of figure and axes saving
 
-      //** axes_mark_mode       = gh_axes.mark_mode       ;
-      //** axes_mark_style      = gh_axes.mark_style      ;
-      //** axes_mark_size       = gh_axes.mark_size       ;
-      //** axes_mark_foreground = gh_axes.mark_foreground ; 
-      //** axes_mark_background = gh_axes.mark_background ; 
+    //** Block drawing works throught call (execstr) the block function
+    //** ... see "standard_draw" function
+    ierr = execstr(o.gui+'(''plot'',o);','errcatch')
 
-      axes_foreground = gh_axes.foreground ;
-      axes_background = gh_axes.background ; //** if not used cause some problem
+    [orig, sz, orient] = (o.graphics.orig, o.graphics.sz, o.graphics.flip) ;
 
-   //**... end of figure and axes saving
+    //** Add the 'select' box and put "mark_mode" off, ready for 'Select' operation
+    sel_x = orig(1) ; sel_y = orig(2)+sz(2) ;
+    sel_w = sz(1)   ; sel_h = sz(2)   ;
 
-        //** Block drawing works throught call (execstr) the block function
-        //** ... see "standard_draw" function
-        //** WARINING: this indirect "gr_i" execution can ruin the axis graphics proprieties because a not
-        //**           formaly correct use of OLD graphics global primitives with "xset(..,..)"
-        ierr = execstr(o.gui+'(''plot'',o);','errcatch')
+    xrect(sel_x, sel_y, sel_w, sel_h); //** draw the selection box 
 
-        [orig, sz, orient] = (o.graphics.orig, o.graphics.sz, o.graphics.flip) ;
+    gh_e = gce()                  ; //** get the "select box" handle
+    gh_e.mark_size_unit = "point" ;
+    gh_e.mark_size = mark_size    ; // size of the square selection boxes
+    gh_e.mark_style = 11          ; //** boxes
+    gh_e.mark_background = -1     ; //** filled boxes 
+    gh_e.mark_mode = "off"        ; //** put it off 
+    gh_e.line_mode = "off"        ; //** idem 
 
-        //** Add the 'select' box and put "mark_mode" off, ready for 'Select' operation
-        sel_x = orig(1) ; sel_y = orig(2)+sz(2) ;
-        sel_w = sz(1)   ; sel_h = sz(2)   ;
+    //** Restore graphics axes state 
+    //** Restore the state of the graphics window 
+    gh_axes.font_style = axes_font_style ;
+    gh_axes.font_size  = axes_font_size  ;
+    gh_axes.font_color = axes_font_color ; //** optional
 
-        xrect(sel_x, sel_y, sel_w, sel_h); //** draw the selection box 
+    //** gh_axes.line_mode   = axes_line_mode   ; //** optional
+    gh_axes.line_style  = axes_line_style  ;
+    gh_axes.thickness   = axes_thickness   ;
 
-        gh_e = gce()                  ; //** get the "select box" handle
-         gh_e.mark_size_unit = "point" ;
-         gh_e.mark_size = mark_size    ; // size of the square selection boxes
-         gh_e.mark_style = 11          ; //** boxes
-         gh_e.mark_background = -1     ; //** filled boxes 
-         gh_e.mark_mode = "off"        ; //** put it off 
-         gh_e.line_mode = "off"        ; //** idem 
+    //** gh_axes.mark_mode       = axes_mark_mode       ; //** optional
+    //** gh_axes.mark_style      = axes_mark_style      ;
+    //** mark_size_unit = "tabulated"                   ; 
+    //** gh_axes.mark_size       = axes_mark_size       ;
+    //** gh_axes.mark_foreground = axes_mark_foreground ; //** optional
+    //** gh_axes.mark_background = axes_mark_background ; //** optional
 
-   //** Restore graphics axes state 
-      //** Restore the state of the graphics window 
+    gh_axes.foreground = axes_foreground ;
+    gh_axes.background = axes_background ;
 
-      gh_axes.font_style = axes_font_style ;
-      gh_axes.font_size  = axes_font_size  ;
-      gh_axes.font_color = axes_font_color ; //** optional
-
-      //** gh_axes.line_mode   = axes_line_mode   ; //** optional
-      gh_axes.line_style  = axes_line_style  ;
-      gh_axes.thickness   = axes_thickness   ;
-
-      //** gh_axes.mark_mode       = axes_mark_mode       ; //** optional
-      //** gh_axes.mark_style      = axes_mark_style      ;
-      //** mark_size_unit = "tabulated"                   ; 
-      //** gh_axes.mark_size       = axes_mark_size       ;
-      //** gh_axes.mark_foreground = axes_mark_foreground ; //** optional
-      //** gh_axes.mark_background = axes_mark_background ; //** optional
-
-      gh_axes.foreground = axes_foreground ;
-      gh_axes.background = axes_background ;
-
-      //** gh_curwin.background = figure_background ;
-
-   //**... end of figure and axes state restoring
+    //** gh_curwin.background = figure_background ;
+    //**... end of figure and axes state restoring
 
     p_size = size(gh_axes.children); //** size after the draw
     //** aggregate the graphics entities
@@ -149,13 +142,11 @@ function gh_blk = drawobj(o, gh_window)
     //** Block rotation end 
 
     if ierr<>0 then 
-      message(['Problem loading block '+o.gui'; lasterror();
-	       'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
+      messagebox(['Problem loading block '+o.gui'; lasterror();
+	       'Use Activate_Scilab_Window and redefine it in Scilab.'],'modal' ) ;
       gh_blk = [];
     end
     
-
-
 
   //** ---------- Link -------------------------------
   elseif typeof(o)=="Link" then //** Link draw 

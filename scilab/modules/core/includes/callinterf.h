@@ -35,7 +35,7 @@
 /* 12 */						#include "../../differential_equations/includes/gw_differential_equations1.h"
 /* 13 */						#include "gw_core.h"
 /* 14  gw_user(); RESERVED to gw_user (see callinter.h) */						
-/* 15 */						#include "dynamic_gateways.h" /* metanet */
+/* 15  gw_user(); FREE */
 /* 16 */						#include "../../polynomials/includes/gw_polynomials.h"
 /* 17 */						#include "../../data_structures/includes/gw_data_structures1.h"
 /* 18 */						#include "dynamic_gateways.h" /* signal_processing */
@@ -61,9 +61,9 @@
 /* 37 */						#include "dynamic_gateways.h" /* statistics */
 /* 38 */						#include "dynamic_gateways.h" /* randlib */
 /* 39 */						#include "../../special_functions/includes/gw_special_functions2.h"
-/* 40 */						#include "../../tclsci/includes/gw_tclsci.h"
+/* 40 */						#include "dynamic_tclsci.h"
 /* 41 */						#include "../../data_structures/includes/gw_data_structures2.h"
-/* 42 */						#include "../../pvm/includes/gw_pvm.h"
+/* 42 */						#include "dynamic_gateways.h" /* pvm */
 /* 43 */						#include "../../integer/includes/gw_integer.h"
 /* 44 */						#include "../../linear_algebra/includes/gw_linear_algebra2.h"
 /* 45 */						#include "dynamic_gateways.h" /* scicos */
@@ -78,7 +78,7 @@
 /* 54 */						#include "../../completion/includes/gw_completion.h"
 /* 55 */						#include "../../history_manager/includes/gw_history_manager.h"
 /* 56 */						#include "dynamic_gateways.h" /* spreadsheet */
-/* 57 */						#include "../../graphic_export/includes/gw_graphic_export.h"
+/* 57 */						#include "dynamic_gateways.h" /* graphic_export */
 /* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
 /* 59 */						#include "dynamic_gateways.h" /* matio */
 /* 60 */						#include "dynamic_gateways.h" /* helptools */

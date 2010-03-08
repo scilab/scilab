@@ -7,9 +7,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-// Delete help chapter
 // =============================================================================
-if WITH_HELPTOOLS then
-	del_help_chapter("dynamic_link",%t);
-end
+// free all dynamics libraries
+ulink();
+// =============================================================================

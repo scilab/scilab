@@ -282,9 +282,6 @@ src/jni/SubwinBackgroundDrawerGL.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
 src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
-# List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
-
 # Includes need for the compilation
 libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
@@ -304,6 +301,8 @@ libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
 libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+
+SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
@@ -370,19 +369,9 @@ if GIWS
 BUILT_SOURCES=giws
 endif
 
-# All the sources needed by libscirenderer.la
-libscirenderer_disable_la_SOURCES = src/norenderer/norenderer.c
-
-libscirenderer_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-# Name of the future library (.la will be replace by .so, .a, etc regarding
-# the system)
-pkglib_LTLIBRARIES =  libscirenderer-disable.la
-
 if GUI
 USEANT=1
-pkglib_LTLIBRARIES += libscirenderer.la
+pkglib_LTLIBRARIES = libscirenderer.la
 endif
 
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

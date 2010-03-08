@@ -33,6 +33,9 @@ static void strip_blank(char *source);
 static void displayAndStoreError(const char *msg,...);
 static void resetLastError(void);
 static char *getConvertedNameFromStack(int cvnametype);
+static char *defaultStringError(void);
+/*--------------------------------------------------------------------------*/
+#define EMPTY_BUFFER "00000000000000000000000"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
@@ -69,7 +72,7 @@ int C2F(errmsg)(int *n,int *errtyp)
 		break;
 		case 2:
 		{
-			displayAndStoreError(("Invalid factor.\n"));
+			displayAndStoreError(_("Invalid factor.\n"));
 			*errtyp = 1;
 		}
 		break;
@@ -81,13 +84,22 @@ int C2F(errmsg)(int *n,int *errtyp)
 		break;
 		case 4:
 		{
+			/* bug 6435 */
 			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_6);
 			if (NameVarOnStack)
 			{
-				displayAndStoreError(_("Undefined variable: %s\n"),NameVarOnStack);
+				if (NameVarOnStack[0] != '0')
+				{
+					displayAndStoreError(_("Undefined variable: %s\n"), NameVarOnStack);
+					FREE(NameVarOnStack);
+					NameVarOnStack = NULL;
+					break;
+				}
+
 				FREE(NameVarOnStack);
 				NameVarOnStack = NULL;
 			}
+			displayAndStoreError(_("Undefined variable.\n"));
 		}
 		break;
 		case 5:
@@ -502,7 +514,7 @@ int C2F(errmsg)(int *n,int *errtyp)
 			displayAndStoreError(_("Fatal error!!! Your variables have been saved in the file : %s\n\
 Bad call to a scilab function ?\n\
 Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
-			displayAndStoreError("http://bugzilla.scilab.org/index.cgi\n");
+			displayAndStoreError("http://bugzilla.scilab.org/\n");
 		}
 		break;
 		case 69:
@@ -645,7 +657,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 88:
 		{
-			displayAndStoreError(_("%s: singular or assymetric problem.\n"),"sfact");
+			displayAndStoreError(_("%s: singular or asymmetric problem.\n"),"sfact");
 		}
 		break;
 		case 89:
@@ -832,7 +844,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		case 115:
 		{
 			displayAndStoreError(_("Stack problem detected within a loop.\nA primitive function has been called with a wrong number of output arguments.\nNo output argument test has been made for this function.\nPlease report this bug :\n"));
-			displayAndStoreError("http://bugzilla.scilab.org/index.cgi\n");
+			displayAndStoreError("http://bugzilla.scilab.org/\n");
 
 			C2F(showstack)(); /* display of calling tree */
 		}
@@ -941,7 +953,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 136:
 		{
-			displayAndStoreError(_("%: This method is NOT implemented.\n"),"optim");
+			displayAndStoreError(_("%s: This method is NOT implemented.\n"),"optim");
 		}
 		break;
 		case 137:
@@ -1216,7 +1228,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 221:
 		{
-			displayAndStoreError(_("A sparse matrix entry is defined with two differents values.\n"));
+			displayAndStoreError(_("A sparse matrix entry is defined with two different values.\n"));
 		}
 		break;
 		case 222:
@@ -1268,7 +1280,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 229:
 		{
-			displayAndStoreError(_("Operands of / and \\ operations  must not contain NaN of Inf.\n"));
+			displayAndStoreError(_("Operands of / and \\ operations must not contain NaN of Inf.\n"));
 		}
 		break;
 		case 230:
@@ -1345,7 +1357,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 242:
 		{
-			displayAndStoreError(_("Binary direct acces files must be opened by 'file'.\n"));
+			displayAndStoreError(_("Binary direct access files must be opened by 'file'.\n"));
 		}
 		break;
 		case 243:
@@ -1437,7 +1449,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		break;
 		case 260:
 		{
-			displayAndStoreError(_("%s: Th colocation matrix is singular.\n"),"bvode");
+			displayAndStoreError(_("%s: The colocation matrix is singular.\n"),"bvode");
 		}
 		break;
 		case 261:
@@ -1448,12 +1460,12 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		case 262:
 		{
 			int maxglobalvariables = isizt - C2F(vstk).isiz - 1;
-			displayAndStoreError(_("Too many global variables! , max number is %d.\n"),maxglobalvariables);
+			displayAndStoreError(_("Too many global variables! Max number is %d.\n"),maxglobalvariables);
 		}
 		break;
 		case 263:
 		{
-			displayAndStoreError(_("Error while writing in file,(disk full or deleted file.\n"));
+			displayAndStoreError(_("Error while writing in file: disk full or deleted file.\n"));
 		}
 		break;
 		case 264:
@@ -1553,29 +1565,17 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 
 		default:
 		{
-			int bufl;
-			char *buffer = NULL;
-			/* message d'erreur soft */
-			/* Bug 1422 corrected - Francois VOGEL June 2006 */
-			bufl = 1;
-			while(*(unsigned char *)&C2F(cha1).buf[bufl - 1] != '\0' && bufl < 80)
-			{
-				++bufl;
-			}
-			--bufl;
-			/* remove blank */
-			buffer = (char*)MALLOC((strlen(C2F(cha1).buf)+1)*sizeof(char));
+			char *buffer = defaultStringError();
 			if (buffer)
 			{
-				strcpy(buffer,C2F(cha1).buf);
-				strip_blank(buffer);
 				displayAndStoreError(buffer);
 				FREE(buffer);
+				buffer = NULL;
 			}
 		}
 		break;
     }
-		return 0;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void strip_blank(char *source)
@@ -1603,7 +1603,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_1 : 
 		{
 			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
 			local_variable_buffer[nlgh-1] = '\0';
 		}
 		break;
@@ -1618,7 +1618,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_3 :
 		{
 			C2F(cvname)(&C2F(recu).ids[C2F(recu).pt * nsiz - nsiz], C2F(cha1).buf, &one, bsiz);
-			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
 			local_variable_buffer[nlgh-1] = '\0';
 		}
 		break;
@@ -1626,8 +1626,8 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_4 :
 		{
 			#define SHIFT_CHAR 3
-			cvname_(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf + SHIFT_CHAR, &one, nlgh+1);
-			strncpy(local_variable_buffer, C2F(cha1).buf+SHIFT_CHAR,nlgh);
+			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf + SHIFT_CHAR, &one, nlgh+1);
+			strncpy(local_variable_buffer, C2F(cha1).buf+SHIFT_CHAR, nlgh);
 			local_variable_buffer[nlgh] = '\0';
 		}
 		break;
@@ -1642,7 +1642,7 @@ static char *getConvertedNameFromStack(int cvnametype)
 	case CVNAME_READING_TYPE_6 :
 		{
 			C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], C2F(cha1).buf, &one, nlgh+1);
-			strncpy(local_variable_buffer, C2F(cha1).buf,nlgh);
+			strncpy(local_variable_buffer, C2F(cha1).buf, nlgh);
 			local_variable_buffer[nlgh-1] = '\0';
 		}
 		break;
@@ -1695,4 +1695,26 @@ static void resetLastError(void)
 	C2F(freemsgtable)();
 }
 /*--------------------------------------------------------------------------*/
+static char *defaultStringError(void)
+{
+	char *buffer = NULL;
+	int bufl = 1;
 
+	while(*(unsigned char *)&C2F(cha1).buf[bufl - 1] != '\0' && bufl < 80)
+	{
+		++bufl;
+	}
+	--bufl;
+
+	
+	buffer = (char*)MALLOC( ((int)strlen(C2F(cha1).buf) + 1) * sizeof(char));
+
+	/* remove blank */
+	if (buffer)
+	{
+		strcpy(buffer, C2F(cha1).buf);
+		strip_blank(buffer);
+	}
+	return buffer;
+}
+/*--------------------------------------------------------------------------*/

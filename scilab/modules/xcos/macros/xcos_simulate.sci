@@ -11,7 +11,94 @@
 //
 
 function xcos_simulate(scs_m)
-   //** extract tolerances from scs_m.props.tol
+
+//-- BJ : Alias Warning Function
+  prot = funcprot();
+  funcprot(0);
+//  hilite_obj = xcosShowBlockWarning;
+//  unhilite_obj = xcosClearBlockWarning;
+//  scs_show = xcos_open;
+
+//    function ret = fake_gcf() 
+//        disp("fake_gcf");
+//        ret = [];
+//    endfunction;
+//    gcf = fake_gcf;
+
+//    function ret = fake_scf(id) 
+//        disp("fake_scf");
+//        ret = [];
+//    endfunction;
+//    scf = fake_scf;
+
+//    function ret = fake_gca() 
+//        disp("fake_gca");
+//        ret = [];
+//    endfunction;
+//    gca = fake_gca;
+
+//    function ret = fake_sca(id) 
+//        disp("fake_sca");
+//        ret = [];
+//    endfunction;
+//    sca = fake_sca;
+
+if ~isdef('scicos_menuslib') then
+  load('SCI/modules/scicos/macros/scicos_menus/lib')
+end
+
+if exists('scicos_scicoslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
+
+// Define Scicos data tables ===========================================
+if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
+  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
+   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
+   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+end
+// =====================================================================
+
+
+  funcprot(prot);
+  //-- end
+
+  //**---- prepare from and to workspace stuff ( "From workspace" block )
+  curdir = pwd() ;
+  chdir(TMPDIR)     ;
+  mkdir("Workspace");
+  chdir("Workspace");
+  %a = who("get")   ;
+  %a = %a(1:$-predef()+1);  //** exclude protected variables
+
+  for %ij=1:size(%a,1)
+    var = %a(%ij)
+    if var<>'ans' & typeof(evstr(var))=='st' then
+      ierr = execstr('x='+var+'.values','errcatch')
+      if ierr==0 then
+        ierr = execstr('t='+var+'.time','errcatch')
+      end
+      if ierr==0 then
+        execstr('save('"'+var+''",x,t)')
+      end
+    end
+  end
+
+  chdir(curdir)
+  //**----- end of /prepare from and to workspace stuff
+
+//** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
   solver = tolerances(6) ; 
@@ -163,10 +250,8 @@ function xcos_simulate(scs_m)
           if kfun<>0 then //** block error
             path = corinv(kfun)
             //** get error cmd for the block
-            cmd = get_errorcmd(path,'End problem.',str_err);
-            //** send error cmd to scicos via the Scicos_commands global variable
-            global Scicos_commands ; 
-            Scicos_commands = cmd;
+            get_errorcmd(path,'End problem.',str_err);
+
           else //** simulator error
             message(["End problem:";str_err])
             //scf(curwin);
@@ -219,15 +304,13 @@ function xcos_simulate(scs_m)
       if kfun<>0 then  //** block error
         path=corinv(kfun)
         //** get error cmd for the block
-        cmd=get_errorcmd(path,'Initialisation problem.',str_err);
-        //** send error cmd to scicos via the Scicos_commands global variable
-        global Scicos_commands
-        Scicos_commands=cmd;
+        get_errorcmd(path,'Initialisation problem.',str_err);
 
       else //** simulator error
         message(['Initialisation problem:';str_err])
         //scf(curwin);
       end
+
       ok = %f;
       //xset('window',curwin)
       return
@@ -277,10 +360,7 @@ function xcos_simulate(scs_m)
         if kfun<>0 then //** block error
           path = corinv(kfun)
           //** get error cmd for the block
-          cmd = get_errorcmd(path,'End problem.',str_err);
-          //** send error cmd to scicos via the Scicos_commands global variable
-          global Scicos_commands
-          Scicos_commands = cmd;
+          get_errorcmd(path,'End problem.',str_err);
         else //** simulator error
           message(['End problem:';str_err])
           //scf(curwin);
@@ -300,17 +380,22 @@ function xcos_simulate(scs_m)
     if kfun<>0 then //** block error
       path = corinv(kfun);
       //** get error cmd for the block
-      cmd = get_errorcmd(path,"Simulation problem.",str_err);
-      //** send error cmd to scicos via the Scicos_commands global variable
-      global Scicos_commands;
-      Scicos_commands = cmd;
-
+      get_errorcmd(path,"Simulation problem.",str_err);
     else //** simulateur error
       message(['Simulation problem:';str_err])
       //scf(curwin);
     end
     ok = %f;
   end
+  
+  //restore saved variables in Scilab environment ( "To workspace" block )
+  [txt,files]=returntoscilab()
+  n=size(files,1)
+  for i=1:n
+    load(TMPDIR+'/Workspace/'+files(i))
+    execstr(files(i)+'=struct('"values'",x,'"time'",t)')
+  end
+  execstr(txt)
 
   needreplay = resume(needreplay);
 endfunction

@@ -19,17 +19,21 @@
 // See the file ../license.txt
 //
 
-function scs_m = do_doc(scs_m,%pt)
-  xc=%pt(1);yc=%pt(2);
-  k=getobj(scs_m,[xc;yc])
-  if k==[] then return,end
+function [scs_m,ok] = do_doc(scs_m,%pt)
+  K=find(Select(:,2)==curwin);
+  if size(K,'*')>1 then
+    messagebox("Only one block can be selected in current window for this operation.","modal")
+    Cmenu=[];ok=%f;return
+  end
+  if K==[] then
+    K  = getblock(scs_m,%pt(:))
+    if K==[] then Cmenu=[];ok=%f;return,end
+  else
+    K=Select(K,1)
+  end
 
-  numero_objet=k
-  scs_m_save=scs_m
-
-  objet = scs_m.objs(numero_objet)
+  objet = scs_m.objs(K)
   type_objet = typeof(objet)
-
   //
   if type_objet == 'Block' then
     documentation = objet.doc
@@ -38,7 +42,7 @@ function scs_m = do_doc(scs_m,%pt)
 		     'would you like to use standard_doc ?'],"modal","question",['yes','no'])
       funname='standard_doc'
       if rep==2 then
-	[ok, funname] = getvalue('Enter the name of the documentation function',..
+	[ok, funname] = scicos_getvalue('Enter the name of the documentation function',..
 				 'fun name',list('str', 1),'standard_doc')
 	if ~ok then return,end
       end
@@ -46,6 +50,7 @@ function scs_m = do_doc(scs_m,%pt)
       ierr=execstr('docfun='+funname,'errcatch')
       if ierr<>0 then
 	messagebox('function '+funname+' not found',"modal","error");
+	ok=%f
 	return
       end
       documentation=list(docfun,doc)
@@ -66,7 +71,7 @@ function scs_m = do_doc(scs_m,%pt)
     if ok then
       documentation(2)=doc
       objet.doc = documentation
-      scs_m.objs(numero_objet) = objet
+      scs_m.objs(K) = objet
     else
       messagebox(documentation(1)+'(''set'',...) failed',"modal","error");
     end
@@ -74,7 +79,6 @@ function scs_m = do_doc(scs_m,%pt)
     messagebox('It is impossible to set Documentation for this type of object',"modal","error");
   end
   //
-  if ok then [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t),end
 
 endfunction
 function doc=standard_doc(job,doc)

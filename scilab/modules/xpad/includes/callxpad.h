@@ -16,14 +16,6 @@
 #include "dynlib_xpad.h"
 /*--------------------------------------------------------------------------*/
 /**
-* call Xpad from C
-* @param[in] _filenames to open
-* @param[in] size of _wcfilenames
-* @return 0
-*/
-XPAD_IMPEXP int callXpad(char **_filenames, int _nbfiles);
-/*--------------------------------------------------------------------------*/
-/**
 * call Xpad from C (Wide Char as input filesname)
 * used by Windows for localized files name
 * @param[in] _wcfilenames wide char encoding (filenames to open)
@@ -31,5 +23,6 @@ XPAD_IMPEXP int callXpad(char **_filenames, int _nbfiles);
 * @return 0
 */
 XPAD_IMPEXP int callXpadW(wchar_t **_wcfilenames, int _nbfiles);
+XPAD_IMPEXP int callXpadWWithLineNumber(wchar_t **_wcfilenames, double* pdblLineNumber, int _nbfiles);
 /*--------------------------------------------------------------------------*/
 #endif /* __CALLXPAD_H__ */

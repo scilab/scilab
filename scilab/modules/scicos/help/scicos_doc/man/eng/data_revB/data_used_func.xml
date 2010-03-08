@@ -1,3 +1,24 @@
+<!--  Scicos
+
+   Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+  See the file ../license.txt
+-->
+
 <DATA flag="ufunc">
 
 <FILE name='ABCD_Blocks' type='XML'>
@@ -57,8 +78,6 @@
 
 <FILE name='BACKLASH' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -129,6 +148,12 @@
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='CBLOCK4' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='CCS' type='XML'>
@@ -281,10 +306,16 @@
 </USED_FUNCTIONS>
 </FILE>
 
-<FILE name='CONSTRAINT_f' type='XML'>
-<USED_FUNCTIONS>
+<FILE name='CONSTRAINT2_c' type='XML'>
+  <USED_FUNCTIONS>
 
-</USED_FUNCTIONS>
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='CONSTRAINT_c' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='CONST_f' type='XML'>
@@ -465,10 +496,16 @@
 </USED_FUNCTIONS>
 </FILE>
 
-<FILE name='DIFF_f' type='XML'>
-<USED_FUNCTIONS>
+<FILE name='DIFF_c' type='XML'>
+  <USED_FUNCTIONS>
 
-</USED_FUNCTIONS>
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='DIFF_f' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='DLATCH' type='XML'>
@@ -734,6 +771,12 @@ For this block we have two differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='Flowmeter' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='GAINBLK' type='XML'>
 <USED_FUNCTIONS>
 <SP>
@@ -790,6 +833,12 @@ For this block we have two differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='GEN_SQR' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='GOTO' type='XML'>
 <USED_FUNCTIONS>
 <SP>
@@ -826,6 +875,14 @@ For this block we have two differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='Ground_g' type='XML'>
+  <USED_FUNCTIONS>
+    <SP>
+     <LINK>cstblk4_m</LINK>
+    </SP>
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
@@ -1014,6 +1071,18 @@ For this block we have two differents functions:
 <LINK>logicalop_ui8</LINK>
 </SP>
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='LOOKUP2D' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='LOOKUP_c' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='LOOKUP_f' type='XML'>
@@ -1266,6 +1335,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='MPBLOCK' type='XML'>
+<USED_FUNCTIONS>
+
+</USED_FUNCTIONS>
+</FILE>
+
 <FILE name='MUX' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1294,6 +1369,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='ModelicaBlocks' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='Modulo_Count' type='XML'>
@@ -1350,9 +1431,21 @@ for this block we have four differents functions:
   </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='PAL_f' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <USED_FUNCTIONS>
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='PID' type='XML'>
@@ -1397,6 +1490,12 @@ for this block we have four differents functions:
 <USED_FUNCTIONS>
 
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='PULSE_SC' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='PerteDP' type='XML'>
@@ -1732,9 +1831,7 @@ for this block we have four differents functions:
 
 <FILE name='SampleCLK' type='XML'>
 <USED_FUNCTIONS>
-<SP>
 
-</SP>
 </USED_FUNCTIONS>
 </FILE>
 
@@ -1846,6 +1943,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='VirtualCLK0' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='VoltageSensor' type='XML'>
 <USED_FUNCTIONS>
 
@@ -1912,6 +2015,24 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='callblk' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='create_palette' type='XML'>
   <USED_FUNCTIONS>
 
@@ -1924,6 +2045,12 @@ for this block we have four differents functions:
 </USED_FUNCTIONS>
 </FILE>
 
+<FILE name='data2sig' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
 <FILE name='data_type' type='XML'>
   <USED_FUNCTIONS>
 
@@ -1933,15 +2060,11 @@ for this block we have four differents functions:
 <FILE name='fortran_block' type='XML'>
 <USED_FUNCTIONS>
 
-
-
 </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='freq_div' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1960,8 +2083,6 @@ for this block we have four differents functions:
 
 <FILE name='generic_block2' type='XML'>
 <USED_FUNCTIONS>
-
-
 
 </USED_FUNCTIONS>
 </FILE>
@@ -1993,6 +2114,12 @@ for this block we have four differents functions:
 <FILE name='lincos' type='XML'>
 <USED_FUNCTIONS>
 </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='model2blk' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
 </FILE>
 
 <FILE name='phase_simulation' type='XML'>
@@ -2120,6 +2247,12 @@ for this block we have four differents functions:
 </FILE>
 
 <FILE name='set_xproperty' type='XML'>
+  <USED_FUNCTIONS>
+
+  </USED_FUNCTIONS>
+</FILE>
+
+<FILE name='sig2data' type='XML'>
   <USED_FUNCTIONS>
 
   </USED_FUNCTIONS>

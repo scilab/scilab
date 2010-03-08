@@ -27,6 +27,6 @@ if isnum('d')          then bugmes();quit;end
 if isnum('E')          then bugmes();quit;end
 if isnum('e')          then bugmes();quit;end
 if isnum('-1.2a+345')  then bugmes();quit;end
-if isnum('-1.2e+3+45') then bugmes();quit;end
-if isnum('-1.2e+3+45') then bugmes();quit;end
+if ~isnum('-1.2e+3+45') then bugmes();quit;end
+if ~isnum('-1.2e+3-45') then bugmes();quit;end
 if execstr("isnum(1)","errcatch") == 0 then bugmes();quit;end

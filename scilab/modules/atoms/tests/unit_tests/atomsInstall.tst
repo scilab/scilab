@@ -9,13 +9,13 @@
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
-// Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
-atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
+// Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 
 // Do not use the autoload system
-config_autoload = atomsGetConfig("autoload");
+config_autoload = atomsGetConfig("autoloadAddAfterInstall");
 config_Verbose  = atomsGetConfig("Verbose");
-atomsSetConfig("autoload","False");
+atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 
 // Install the toolbox 5
@@ -24,10 +24,44 @@ atomsSetConfig("Verbose" ,"False");
 atomsInstall("toolbox_5");
 
 // Check if the module is really installed
-if ~atomsIsInstalled("toolbox_5") then pause, end
-if ~atomsIsInstalled("toolbox_4") then pause, end
-if ~atomsIsInstalled("toolbox_2") then pause, end
-if ~atomsIsInstalled("toolbox_1") then pause, end
+if ~atomsIsInstalled("toolbox_5")           then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4")           then pause, end
+if ~atomsIsInstalled("toolbox_2")           then pause, end
+if ~atomsIsInstalled("toolbox_1")           then pause, end
+
+// Remove the module
+atomsRemove("toolbox_5");
+
+// Install the toolbox 5 (version is mentioned)
+// =============================================================================
+
+atomsInstall(["toolbox_5" "1.0"]);
+
+// Check if the module is really installed
+if ~atomsIsInstalled("toolbox_5")           then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4")           then pause, end
+if ~atomsIsInstalled("toolbox_2")           then pause, end
+if ~atomsIsInstalled("toolbox_1")           then pause, end
+
+// Remove the module
+atomsRemove("toolbox_5");
+
+// Install the toolbox 5 (version + packaging version are mentioned)
+// =============================================================================
+
+atomsInstall(["toolbox_5" "1.0-1"]);
+
+// Check if the module is really installed
+if ~atomsIsInstalled("toolbox_5")           then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0"])   then pause, end
+if ~atomsIsInstalled(["toolbox_5" "1.0-1"]) then pause, end
+if ~atomsIsInstalled("toolbox_4")           then pause, end
+if ~atomsIsInstalled("toolbox_2")           then pause, end
+if ~atomsIsInstalled("toolbox_1")           then pause, end
 
 // Remove the module
 atomsRemove("toolbox_5");
@@ -118,8 +152,30 @@ if ~atomsIsInstalled("toolbox_1","allusers") then pause, end
 
 atomsRemove("toolbox_5","allusers");
 
+// Install the toolbox 7 (Local package)
+// =============================================================================
+
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","user");
+
+if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
+if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+
+atomsRemove("toolbox_7","allusers");
+
+if atomsIsInstalled("toolbox_7","allusers")  then pause, end
+if ~atomsIsInstalled("toolbox_7","user")     then pause, end
+
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip","allusers");
+atomsRemove("toolbox_7","user");
+
+if atomsIsInstalled("toolbox_7","user")      then pause, end
+if ~atomsIsInstalled("toolbox_7","allusers") then pause, end
+
+atomsRemove("toolbox_7","allusers");
+
 // Restore original values
 // =============================================================================
-atomsSetConfig("autoload",config_autoload);
+atomsSetConfig("autoloadAddAfterInstall",config_autoload);
 atomsSetConfig("Verbose" ,config_Verbose);
 atomsRepositorySetOfl("http://atoms.scilab.org");

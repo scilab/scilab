@@ -51,7 +51,7 @@
         <term>y</term>
 
         <listitem>
-          <para>: <literal> 1x2</literal> integer vector or integer
+          <para> <literal> 1x2</literal> integer vector or integer
           number</para>
         </listitem>
       </varlistentry>

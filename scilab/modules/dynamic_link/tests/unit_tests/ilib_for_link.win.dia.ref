@@ -27,14 +27,14 @@ mputl(f1,TMP_DIR+filesep()+'fun1.c');
 //generated. 
 cur_dir = pwd();
 chdir(TMP_DIR);
-ilib_for_link('ext1c','fun1.o',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c") 
    Generate a loader file
 
    Generate a Makefile
 
    Running the Makefile
 
-   Compilation of fun1
+   Compilation of fun1.c
 
    Building shared library (be patient)
 

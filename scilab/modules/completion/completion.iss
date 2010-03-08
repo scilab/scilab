@@ -26,8 +26,6 @@ Source: modules\{#COMPLETION}\sci_gateway\completion_gateway.xml; DestDir: {app}
 ;
 Source: modules\{#COMPLETION}\includes\*.h; DestDir: {app}\modules\{#COMPLETION}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COMPLETION}\help\addchapter.sce; DestDir: {app}\modules\{#COMPLETION}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#COMPLETION}\etc\{#COMPLETION}.quit; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 ;

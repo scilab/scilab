@@ -22,53 +22,53 @@
 function [params,param_types]=FindSBParams(scs_m,params)
   prot = funcprot();
   funcprot(0);
-  deff('varargout=getvalue(a,b,c,d)',..
+  deff('varargout=scicos_getvalue(a,b,c,d)',..
     ['global par_types'
      'par_types=c'
      'x=1;y=x(2)'])
-  funcprot(prot); 
-      
+  funcprot(prot);
+
   global par_types
 
   Fun=scs_m.props.context;
   for i=1:size(scs_m.objs)
     o=scs_m.objs(i);
     if typeof(o)=='Block' then
-      model=o.model;
-      if model.sim=='super'|model.sim=='csuper' then
-        Funi='['+FindSBParams(model.rpar,params)+']'
-      else
-        if typeof(o.graphics.exprs)=="MBLOCK" then //modelica block
-          Funi=[];
-          for j=1:lstsize(o.graphics.exprs.paramv)
-             Funi=[Funi;
-                   '['+o.graphics.exprs.paramv(j)+']'];
-          end
+      if o.gui<>'PAL_f' then
+        model=o.model;
+        if model.sim=='super'|model.sim=='csuper'|model.sim(1)=='asuper' then
+          Funi='['+FindSBParams(model.rpar,params)+']'
         else
-          if type(o.graphics.exprs)==15 then
-            Funi='['+o.graphics.exprs(1)(:)+']';
+          if typeof(o.graphics.exprs)=="MBLOCK" then //modelica block
+            Funi=[];
+            for j=1:lstsize(o.graphics.exprs.paramv)
+               Funi=[Funi;
+                     '['+o.graphics.exprs.paramv(j)+']'];
+            end
           else
-            Funi='['+o.graphics.exprs(:)+']';
+            if type(o.graphics.exprs)==15 then
+              Funi='['+o.graphics.exprs(1)(:)+']';
+            else
+              Funi='['+o.graphics.exprs(:)+']';
+            end
+            par_types=[];
+            execstr('blk='+o.gui+'(''define'')')
+            execstr(o.gui+'(''set'',blk)','errcatch')
+            Del=[];kk=1;
+            for jj=1:2:length(par_types)
+              if par_types(jj)=='str' then Del=[Del,kk],end
+              kk=kk+1
+            end
+            Funi(Del)=[]
           end
-          par_types=[];
-          execstr('blk='+o.gui+'(''define'')')
-          execstr(o.gui+'(''set'',blk)','errcatch')
-
-          Del=[];kk=1;
-          for jj=1:2:length(par_types)
-            if par_types(jj)=='str' then Del=[Del,kk],end
-            kk=kk+1
-          end
-          Funi(Del)=[]
         end
+        Fun=[Fun;Funi]
       end
-      Fun=[Fun;Funi]
     end
   end
   deff('%Font3()',Fun)
   xx=macrovar(%Font3);
   params=xx(3)
-
   %vaar=["%s" "%z" "%e" "%i" "%pi"]
   [%junk,%ind]=intersect(params,%vaar)  
   params(%ind)=[]
@@ -78,7 +78,6 @@ function [params,param_types]=FindSBParams(scs_m,params)
    if ~exists(params(ii)) then Del=[Del,ii],end
   end
   params(Del)=[]
-
   param_types=list()
   for X=params'
     select evstr('type('+X+')')
@@ -99,6 +98,9 @@ function [params,param_types]=FindSBParams(scs_m,params)
       param_types($+1)=-1
     case 17
       param_types($+1)='lis'
+      param_types($+1)=-1
+    else
+      param_types($+1)='gen'
       param_types($+1)=-1
     end
   end

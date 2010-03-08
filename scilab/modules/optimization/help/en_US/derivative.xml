@@ -175,44 +175,43 @@ If the problem is correctly scaled, increasing the accuracy reduces
 the total error but requires more function evaluations.
 The following list presents the number of function evaluations required to 
 compute the Jacobian depending on the order of the formula and the dimension of <literal>x</literal>, 
-denoted by <literal>n</literal>:
+denoted by <literal>n</literal>:</para>
 <itemizedlist>
-<listitem>
-<para>
-<literal>order=1</literal>, the number of function evaluations is <literal>n+1</literal>,
-</para>
-</listitem>
-<listitem>
-<para>
-<literal>order=2</literal>, the number of function evaluations is <literal>2n</literal>,
-</para>
-</listitem>
-<listitem>
-<para>
-<literal>order=4</literal>, the number of function evaluations is <literal>4n</literal>.
-</para>
-</listitem>
+  <listitem>
+    <para>
+      <literal>order=1</literal>, the number of function evaluations is <literal>n+1</literal>,
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <literal>order=2</literal>, the number of function evaluations is <literal>2n</literal>,
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <literal>order=4</literal>, the number of function evaluations is <literal>4n</literal>.
+    </para>
+  </listitem>
 </itemizedlist>
-Computing the Hessian matrix requires square the number of function evaluations,
-as detailed in the following list.
+<para>Computing the Hessian matrix requires square the number of function evaluations,
+as detailed in the following list.</para>
 <itemizedlist>
-<listitem>
-<para>
-<literal>order=1</literal>, the number of function evaluations is <literal>(n+1)^2</literal>,
-</para>
-</listitem>
-<listitem>
-<para>
-<literal>order=2</literal>, the number of function evaluations is <literal>4n^2</literal>,
-</para>
-</listitem>
-<listitem>
-<para>
-<literal>order=4</literal>, the number of function evaluations is <literal>16n^2</literal>.
-</para>
-</listitem>
+  <listitem>
+    <para>
+      <literal>order=1</literal>, the number of function evaluations is <literal>(n+1)^2</literal>,
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <literal>order=2</literal>, the number of function evaluations is <literal>4n^2</literal>,
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <literal>order=4</literal>, the number of function evaluations is <literal>16n^2</literal>.
+    </para>
+  </listitem>
 </itemizedlist>
-</para>
   </refsection>
 
   <refsection>

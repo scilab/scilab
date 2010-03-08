@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
-# File: sci_gateway/c/sci_pvm_tasks.c, line: 45
 # File: sci_gateway/c/sci_pvm_config.c, line: 39
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 45
 # File: src/c/pvm_info.c, line: 52
 # File: src/c/pvm_info.c, line: 115
 #, c-format
@@ -29,9 +29,9 @@ msgstr ""
 msgid "%s: Error while creating processes: %s.\n"
 msgstr ""
 #
+# File: src/c/pvm_proc_ctrl.c, line: 315
 # File: src/c/sci_tools.c, line: 94
 # File: src/c/sci_tools.c, line: 118
-# File: src/c/pvm_proc_ctrl.c, line: 315
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -42,9 +42,13 @@ msgid "%s: No such file or directory.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_pvm_send.c, line: 53
+#, c-format
+msgid "%s: Unknown type or not yet implemented\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_pvm_bcast.c, line: 52
 #, c-format
-msgid "%s: Unknow type or not yet implemented\n"
+msgid "%s: Unknown type or not yet implemented.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_pvm_error_mode.c, line: 43
@@ -53,21 +57,25 @@ msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_pvm_send.c, line: 51
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
 #, c-format
 msgid "%s: work space (stacksize) is too small d\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
+#, c-format
+msgid "%s: work space (stacksize) is too small.\n"
 msgstr ""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 242
 msgid "(group,instance) already exists"
 msgstr ""
 #
-# File: src/c/pvm_proc_ctrl.c, line: 219
-msgid "Already in group"
+# File: src/c/pvm_proc_ctrl.c, line: 231
+msgid "Already doing operation"
 msgstr ""
 #
-# File: src/c/pvm_proc_ctrl.c, line: 231
-msgid "Already oing operation"
+# File: src/c/pvm_proc_ctrl.c, line: 219
+msgid "Already in group"
 msgstr ""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 217
@@ -110,7 +118,7 @@ msgstr ""
 #
 # File: src/c/pvm_grp.c, line: 138
 #, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
 msgstr ""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 230
@@ -174,7 +182,7 @@ msgid "OK"
 msgstr ""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 228
-msgid "Out of ressources"
+msgid "Out of resources"
 msgstr ""
 #
 # File: src/c/pvm_proc_ctrl.c, line: 235

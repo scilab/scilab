@@ -37,7 +37,7 @@ function [a,b,c]=obsvss(a,b,c,tol)
     [a,b,c,d,x0,dom]=a(2:7)
   else
     if rhs==1 then
-      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space  expected.\n"),"obsvss",1))
+      error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"obsvss",1))
     else
       error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"obsvss",1))
     end

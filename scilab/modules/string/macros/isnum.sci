@@ -24,10 +24,16 @@ function res = isnum(str)
 	
 	for j=1:nc
 		for i=1:nr
-			res(i,j) = (grep(str(i,j),"/^([+-]?(([0-9]+)?\.)?[0-9]+([eEdD][-+]?[0-9]+)?)$/","r") == 1);
-			if str(i,j) == '%pi' then
-				res(i,j) = %T;
-			end
+		  ierr = execstr('r = type(eval(str(i,j)))','errcatch');
+		  if ierr == 0 then
+		    if r == 1 then
+		      res(i,j) = %T;
+		    else
+		      res(i,j) = %F;
+		    end
+		  else
+		    res(i,j) = %F;
+		  end
 		end
 	end
 	

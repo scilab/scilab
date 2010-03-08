@@ -108,7 +108,7 @@ function [x,y,typ]=FROMMO(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,tag,exprs]=getvalue('Set parameters',..
+      [ok,tag,exprs]=scicos_getvalue('Set parameters',..
 		['Tag'],..
 		    list('str',-1),exprs)
       if ~ok then break,end

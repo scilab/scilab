@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="GetListRhsVar"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>GetListRhsVar</refname>
+
+    <refpurpose>a C gateway function which allows to access a parameter stored
+    in a [mt]list transmitted to a Scilab function</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>GetListRhsVar(StackPos,ListPos, Type, &amp;m_rows, &amp;n_cols, &amp;l_stack_pos);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>StackPos</term>
+
+        <listitem>
+          <para>the rank of the [mt]list to be accessed (input
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ListPos</term>
+
+        <listitem>
+          <para>the rank in the list of the parameter to be accessed (input
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Type</term>
+
+        <listitem>
+          <para>the Scilab type of the parameter to be accessed (input
+          parameter). Can be (see Scilab C Type for more informations):</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>STRING_DATATYPE "c"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_STRING_DATATYPE "S"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_DOUBLE_DATATYPE "d"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_RATIONAL_DATATYPE "r"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE "I"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_INTEGER_DATATYPE "i"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_BOOLEAN_DATATYPE "b"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_COMPLEX_DATATYPE "z"</para>
+            </listitem>
+
+            <listitem>
+              <para>SPARSE_MATRIX_DATATYPE "s"</para>
+            </listitem>
+
+            <listitem>
+              <para>TYPED_LIST_DATATYPE "t"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_ORIENTED_TYPED_LIST_DATATYPE "m"</para>
+            </listitem>
+
+            <listitem>
+              <para>SCILAB_POINTER_DATATYPE "p"</para>
+            </listitem>
+
+            <listitem>
+              <para>GRAPHICAL_HANDLE_DATATYPE "h"</para>
+            </listitem>
+
+            <listitem>
+              <para>EXTERNAL_DATATYPE "f"</para>
+            </listitem>
+
+            <listitem>
+              <para>MATRIX_OF_POLYNOMIAL_DATATYPE "x"</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m_rows</term>
+
+        <listitem>
+          <para>the number of lines of the accessed parameter (output
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n_cols</term>
+
+        <listitem>
+          <para>the number of columns of the accessed parameter (output
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>l_stack_pos</term>
+
+        <listitem>
+          <para>the position on the stack of the accessed parameter (output
+          parameter)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A C gateway function which allows to access a parameter stored in a
+    [mt]list transmitted to a Scilab function</para>
+
+    <para>WARNING: this API is deprecated. It will be removed in Scilab 6. Please use the new API instead.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>In this example, the function has one input parameter. It gets a
+    mlist and the prints some informations related to the content of the
+    mlist.</para>
+
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <sciprint.h>
+
+int sci_print_list(char * fname)
+{
+  int m_list_in, n_list_in, l_list_in;
+  int m_type,    n_type;
+  int m_var1,    n_var1,    l_var1;
+  int m_var2,    n_var2,    l_var2;
+  char ** LabelList = NULL;
+  
+  CheckRhs(1,1); // We accept only 1 parameter
+  
+  GetRhsVar(1,"m",&m_list_in,&n_list_in,&l_list_in); // Get a mlist
+  
+  // Get the type and the name of the variables (the first element of the mlist)
+  GetListRhsVar(1,1,"S",&m_type,&n_type,&LabelList);
+  
+  if (strcmp(LabelList[0],"mytype")!=0)
+    {
+      sciprint("error, you must ship a mlist or type mytype\n");
+      return 0;
+    }
+    
+  // Get the first variable (a string)
+  GetListRhsVar(1,2,"c",&m_var1,&n_var1,&l_var1);
+  sciprint("var1 = %s\n",cstk(l_var1));
+  
+  // Get the second variable (a double matrix)
+  GetListRhsVar(1,3,"d",&m_var2,&n_var2,&l_var2);
+  sciprint("var2 = [%f %f %f %f]\n",*stk(l_var2+0),
+                                    *stk(l_var2+1),
+                                    *stk(l_var2+2),
+                                    *stk(l_var2+3));
+    
+  return 0;
+}
+ ]]></programlisting>
+
+    <para>This example is available in
+    SCI/modules/core/example/print_list.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
+      <member><link linkend="istk">istk</link></member>
+
+      <member><link linkend="LhsVar">LhsVar</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

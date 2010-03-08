@@ -99,7 +99,7 @@
     <title>Description</title>
     <para>
 This block routes one of the regular inputs to the unique regular
-output. the choice of which input is to be routed is done, initially
+output. The choice of which input is to be routed is done, initially
 by the "initial connected input" parameter. Then, every time an input
 event arrives on the i-th input event port, the i-th regular input
 port is routed to the regular output.   

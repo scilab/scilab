@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Allan CORNET
@@ -80,7 +80,7 @@ if haveacompiler() then
   chdir(TMPDIR);
   f1=['int ext1c(int *n, double *a, double *b, double *c)'
       '{int k;'
-      '  for (k = 0; k &lt; *n; ++k) '
+      '  for (k = 0; k < *n; ++k) '
       '      c[k] = a[k] + b[k];'
       '  return(0);}'];
 
@@ -92,13 +92,13 @@ if haveacompiler() then
   //using the new primitive
   a=[1,2,3];b=[4,5,6];n=3;
   c = call('ext1c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
-  if norm(c-(a+b)) &gt; %eps then pause,end
+  if norm(c-(a+b)) > %eps then pause,end
 
   ilib_verbose(1);
 
   f2=['int ext2c(int *n, double *a, double *b, double *c)'
       '{int k;'
-      '  for (k = 0; k &lt; *n; ++k) '
+      '  for (k = 0; k < *n; ++k) '
       '      c[k] = a[k] + b[k];'
       '  return(0);}'];
 
@@ -110,7 +110,7 @@ if haveacompiler() then
   //using the new primitive
   a = [1,2,3]; b = [4,5,6];n = 3;
   c = call('ext2c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');
-  if norm(c-(a+b)) &gt; %eps then pause,end
+  if norm(c-(a+b)) > %eps then pause,end
 
   ilib_verbose(cur_verbose);
 
@@ -131,6 +131,8 @@ end
       <member><link linkend="ilib_gen_Make">ilib_build</link></member>
 
       <member><link linkend="ilib_for_link">ilib_for_link</link></member>
+
+      <member><link linkend="api_scilab">api_scilab</link></member>
     </simplelist>
   </refsection>
 

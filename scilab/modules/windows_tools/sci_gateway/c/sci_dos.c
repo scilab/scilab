@@ -35,7 +35,7 @@ static int PrintOuput(char **ouput,int nbrlines);
 /*--------------------------------------------------------------------------*/
 int sci_dos(char *fname,unsigned long l)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int *piAddressVarOne = NULL;
 	int iType1	= 0;
 	int m1 = 0, n1 = 0;
@@ -57,17 +57,17 @@ int sci_dos(char *fname,unsigned long l)
 		char *pStVarTwo = NULL;
 		int lenStVarTwo = 0;
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -77,10 +77,10 @@ int sci_dos(char *fname,unsigned long l)
 			return 0;
 		}
 
-		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-		if(strErr.iErr)
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -93,10 +93,10 @@ int sci_dos(char *fname,unsigned long l)
 		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 		if (pStVarTwo)
 		{
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -118,17 +118,17 @@ int sci_dos(char *fname,unsigned long l)
 		}
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -138,10 +138,10 @@ int sci_dos(char *fname,unsigned long l)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1, &n1, &lenStVarOne, &pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1, &n1, &lenStVarOne, &pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -158,10 +158,10 @@ int sci_dos(char *fname,unsigned long l)
 		BOOL DetachProcessOption = FALSE;
 		BOOL *StatusExit = NULL;
 
-		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-		if(strErr.iErr)
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -222,10 +222,10 @@ int sci_dos(char *fname,unsigned long l)
 		if (Lhs == 1)
 		{
 			int m_out = 1, n_out = 1;
-			strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out, n_out, StatusExit);
-			if(strErr.iErr)
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out, n_out, StatusExit);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -240,28 +240,28 @@ int sci_dos(char *fname,unsigned long l)
 			{
 				int m_out1 = numberoflines;
 				int n_out1 = 1;
-				strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out1, n_out1, Output);
+				sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out1, n_out1, Output);
 			}
 			else
 			{
 				/* returns [] */
 				int m_out1 = 0;
 				int n_out1 = 0;
-				strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out1, n_out1, NULL);
+				sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out1, n_out1, NULL);
 			}
 
-			if(strErr.iErr)
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
 			LhsVar(1) = Rhs + 1;
 
-			strErr = createMatrixOfBoolean(pvApiCtx, Rhs + 2, m_out2, n_out2, StatusExit);
-			if(strErr.iErr)
+			sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 2, m_out2, n_out2, StatusExit);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -271,10 +271,10 @@ int sci_dos(char *fname,unsigned long l)
 		if (Lhs > 2)
 		{
 			int m_out3 = 1, n_out3 = 1;
-			strErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, m_out3, n_out3, &exitCode); 
-			if(strErr.iErr)
+			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, m_out3, n_out3, &exitCode); 
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 

@@ -14,12 +14,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: kein weiterer Speicher verfügbar\n"
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr ""
+"Auf die Achsen klicken, um Rotation zu starten. Rechtsklick oder Esc um zu "
+"beenden"
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "Klicken oder Esc drücken, um Rotation zu beenden."
+
+msgid "Scilab Renderer module not installed.\n"
+msgstr "Grafikrenderer von Scilab nicht installiert.\n"
 
 msgid "Unable to render polyline, memory full.\n"
 msgstr "Kann Polyline nicht rendern, Speicher voll.\n"
@@ -33,15 +45,3 @@ msgstr ""
 "Warnung !!!\n"
 "Scliab hat einen kritischen Fehler gefunden (%s).\n"
 "Speichern Sie Ihre Daten und starten Sie Scilab neu.\n"
-
-msgid ""
-"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
-msgstr ""
-"Auf die Achsen klicken, um Rotation zu starten. Rechtsklick oder Esc um zu "
-"beenden"
-
-msgid "Click or press ESCAPE to terminate rotation."
-msgstr "Klicken oder Esc drücken, um Rotation zu beenden."
-
-msgid "Scilab Renderer module not installed.\n"
-msgstr "Grafikrenderer von Scilab nicht installiert.\n"

@@ -31,7 +31,7 @@ function fname=do_saveblockgui(o)
   [u,err]=file('open',fname,'unknown')
 
   if err<>0 then
-    message(path+': Directory or file write access denied')
+    messagebox(path+': Directory or file write access denied','modal')
     return
   end
 
@@ -42,9 +42,9 @@ function fname=do_saveblockgui(o)
   if exprs0==[] then 
      txtset='x=arg1,return'
   else
-     tt='%scicos_context.'+exprs0(1);
+     tt='scicos_context.'+exprs0(1);
      for i=2:size(exprs0,1)
-       tt=tt+',%scicos_context.'+exprs0(i),
+       tt=tt+',scicos_context.'+exprs0(i),
      end
      ss=graphics.exprs(2)(3)
 
@@ -61,23 +61,28 @@ function fname=do_saveblockgui(o)
           '    '+sci2exp(bitems)
           '  Ss=..'
           '    '+sci2exp(ss)
-          '  %scicos_context=struct()'
-          '  [ok,'+tt+',exprs]=getvalue(Btitre,Exprs0,Ss,exprs)'
-          '  if ok then'
+          '  scicos_context=struct()'
           '     x=arg1'
+	  '  ok=%f'
+	  '  while ~ok do'
+          '    [ok,'+tt+',exprs]=scicos_getvalue(Btitre,Bitems,Ss,exprs)'
+	  '    if ~ok then return;end'
+	  '     %scicos_context=scicos_context'
           '     sblock=x.model.rpar'
           '     [%scicos_context,ierr]=script2var(sblock.props.context,%scicos_context)'
           '     if ierr==0 then'
-	  '       [sblock,%w,needcompile2,ok]=do_eval(sblock,list())'
-          '       y=max(2,needcompile,needcompile2)'
-          '       x.graphics.exprs=exprs'
-          '       x.model.rpar=sblock'
+	  '       [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),%scicos_context)'
+	  '	  if ok then'
+          '          y=max(2,needcompile,needcompile2)'
+          '          x.graphics.exprs=exprs'
+          '          x.model.rpar=sblock'
+	  '          break'
+	  '	  end'
 	  '     else'
-	  '       message(lasterror())'
+	  '       messagebox(lasterror(),''modal'')'
+	  '	  ok=%f'
 	  '     end'
-          ' else '
-          '     x=arg1'
-          ' end ']
+	  '  end']
   end
 
 
@@ -101,7 +106,7 @@ function fname=do_saveblockgui(o)
 
   ierr=execstr('write(u,txt,''(a)'')','errcatch','n')
   if ierr<>0 then 
-    message('Impossible to write in this file; possibly locked.')
+    messagebox('Impossible to write in this file; possibly locked.','modal')
     file('close',u)
   fname=emptystr()
   end
@@ -110,6 +115,7 @@ function fname=do_saveblockgui(o)
 
   textdef=['  model=scicos_model()']
   model=o.model
+  model.ipar=1;
   cc=getfield(1,model)
   cos2cosf(u,model.rpar,0)
   for ch=cc(2:$)
@@ -135,7 +141,7 @@ function fname=do_saveblockgui(o)
 
   textdef=[textdef;
            '  exprs=[..';
-           '       sci2exp('+exprs0+')'
+           '       sci2exp('+exprs0+',0)'
            '        ]'
           ]
 

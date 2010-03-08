@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -413,10 +413,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intlib.c"
 				>
 			</File>
@@ -450,10 +446,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intexecstr.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
 				>
 			</File>
 			<File

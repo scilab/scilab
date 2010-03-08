@@ -8,90 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-01-19 21:34+0000\n"
-"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
+"PO-Revision-Date: 2009-11-20 22:34+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "&File"
-msgstr "Файл (&F)"
-
-msgid "&Tools"
-msgstr "Инструменты (&T)"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&?"
-msgstr "&?"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалось логическое выражение.\n"
-
-#, c-format
-msgid "%s: Slave interpreter already exists.\n"
-msgstr "%s: Ведомый интерпретатор уже существует.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалась вещественная или "
-"строковая матрица.\n"
-
-#, c-format
-msgid "%s: No such slave interpreter.\n"
-msgstr "%s: Нет такого ведомого интерпретатора.\n"
-
-msgid "Updating, please wait"
-msgstr "Обновление, пожалуйста, подождите"
-
-#, c-format
-msgid "Error %s while loading library %s"
-msgstr "Ошибка %s при загрузке библиотеки %s"
-
-msgid "Tcl/Tk interface not loaded."
-msgstr "Интерфейс Tcl/Tk не загружен."
-
-msgid "Open"
-msgstr ""
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-"Предупреждение: Проблема(ы) с интерфейсом TCL/TK. Интерфейс не доступен.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "Tcl/TK интерфейс отключён в режиме -nogui.\n"
-
-#, c-format
-msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Ошибка: основной TCL интерпретатор не инициализирован.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: File %s not found.\n"
-msgstr "%s: Файл %s не найден.\n"
+msgid " Flushing starts for queued commands.\n"
+msgstr " Начался сдвиг очереди команд.\n"
 
 #, c-format
 msgid ""
@@ -102,19 +29,93 @@ msgstr ""
 "\t%s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or vector of strings "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента #%d: Ожидалась строка или вектор строк.\n"
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Could not read Tcl Variable.\n"
+msgstr "%s: Невозможно прочесть переменную Tcl.\n"
+
+#, c-format
+msgid "%s: Error TCL interpreter not initialized.\n"
+msgstr "%s: Ошибка: интерпретатор TCL не инициализирован.\n"
+
+#, c-format
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr "%s: Ошибка: основной TCL интерпретатор не инициализирован.\n"
+
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr "%s: Файл %s не найден.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Could not read Tcl Variable.\n"
-msgstr "%s: Невозможно прочесть переменную Tcl.\n"
+msgid "%s: No such slave interpreter.\n"
+msgstr "%s: Нет такого ведомого интерпретатора.\n"
+
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr "%s: Ведомый интерпретатор уже существует.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось не менее одного.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or vector of strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась строка или вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+msgid "&?"
+msgstr "&Справка"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Инструменты"
 
 msgid "Alpha Release"
 msgstr "Альфа-версия"
@@ -122,33 +123,35 @@ msgstr "Альфа-версия"
 msgid "Beta Release"
 msgstr "Бета-версия"
 
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr "Ошибка %s при загрузке библиотеки %s"
+
+#, c-format
+msgid "Execution ends for %s"
+msgstr "Окончено выполнение %s"
+
+#, c-format
+msgid "Execution starts for %s"
+msgstr "Начато выполнение %s"
+
 msgid "Final Release"
 msgstr "Финальная версия"
 
-msgid "Unknown Release"
-msgstr "Неизвестная версия"
+#, c-format
+msgid "Flushed execution ends for %s"
+msgstr "Окончено выполнение сдвига %s"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Неверное значение аргумента #%d: Ожидалось '%s'.\n"
-
-msgid "This function doesn't work with Complex.\n"
-msgstr "Эта функция не работает с комплексными числами.\n"
-
-msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr "[] не работает с Tcl/Tk.\n"
+msgid "Flushed execution starts for %s - No option"
+msgstr "Начато выполнение сдвига %s - Без параметров"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица.\n"
+msgid "Flushed execution starts for %s - seq"
+msgstr "Начато выполнение сдвига %s - seq"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Неверный тип аргумента #%d или #%d: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
+msgid "Flushing ends\n"
+msgstr "Сдвиг завершен\n"
 
 msgid "Impossible to set environment variable."
 msgstr "Невозможно задать переменную окружения."
@@ -156,48 +159,20 @@ msgstr "Невозможно задать переменную окружени�
 msgid "Impossible to set system encoding."
 msgstr "Невозможно задать системную кодировку."
 
-msgid ""
-"The SCI environment variable is not set.\n"
-"TCL initialisation failed !\n"
-msgstr ""
-"Переменная окружения SCI не задана.\n"
-"Сбой инициализации TCL!\n"
-
-msgid ""
-"Unable to find Tcl initialisation scripts.\n"
-"Check your SCI environment variable.\n"
-"Tcl initialisation failed !"
-msgstr ""
-"Невозможно найти скрипт инициализации Tcl.\n"
-"Проверьте вашу переменную окружения SCI.\n"
-"Сбой инициализации Tcl!"
-
-msgid ""
-"The SCI environment variable is not set.\n"
-"Tcl initialisation failed !\n"
-msgstr ""
-"Переменная окружения SCI не задана.\n"
-"Сбой инициализации TCL!\n"
-
-msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Ошибка Tcl: Невозможно создать интерпретатор Tcl (Tcl_CreateInterp).\n"
+msgid "Scilab TCL/TK module not installed.\n"
+msgstr "Модуль TCL/TK не установлен.\n"
 
 #, c-format
-msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr "Ошибка Tcl: Ошибка во время инициализации Tcl (Tcl_Init): %s\n"
+msgid "TCL_EvalScilabCmd %s"
+msgstr "TCL_EvalScilabCmd %s"
 
 #, c-format
-msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
-msgstr ""
+msgid "Tcl Error : %s\n"
+msgstr "Ошибка Tcl : %s\n"
 
 #, c-format
-msgid ""
-"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
-"%s\n"
-msgstr ""
-"Ошибка Tcl: Ошибка во время процесса инициализации Scilab/TK. Невозможно "
-"задать SciPath: %s\n"
+msgid "Tcl Error: %s\n"
+msgstr "Ошибка Tcl: %s\n"
 
 #, c-format
 msgid ""
@@ -208,56 +183,71 @@ msgstr ""
 "загрузке %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
-
-#, c-format
-msgid "Execution starts for %s"
-msgstr "Начато выполнение %s"
-
-#, c-format
-msgid "Execution ends for %s"
-msgstr "Окончено выполнение %s"
-
-msgid " Flushing starts for queued commands.\n"
+msgid ""
+"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
+"%s\n"
 msgstr ""
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Предупреждение: Слишком много обратных вызовов в очереди!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "Начато выполнение сдвига %s - Без параметров"
+"Ошибка Tcl: Ошибка во время процесса инициализации Scilab/TK. Невозможно "
+"задать SciPath: %s\n"
 
 #, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "Начато выполнение сдвига %s - seq"
+msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
+msgstr "Ошибка Tcl: Ошибка в процесс инициализации TK (Tk_Init): %s\n"
 
 #, c-format
-msgid "Flushed execution ends for %s"
-msgstr "Окончено выполнение сдвига %s"
+msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
+msgstr "Ошибка Tcl: Ошибка во время инициализации Tcl (Tcl_Init): %s\n"
 
-msgid "Flushing ends\n"
-msgstr "Сдвиг завершен\n"
+msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
+msgstr ""
+"Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидался хотя бы один.\n"
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr "Tcl/TK интерфейс отключён в режиме -nogui.\n"
 
-#, c-format
-msgid "Tcl Error : %s\n"
-msgstr "Ошибка Tcl : %s\n"
+msgid "Tcl/Tk interface not loaded."
+msgstr "Интерфейс Tcl/Tk не загружен."
 
-#, c-format
-msgid "Tcl Error: %s\n"
-msgstr "Ошибка Tcl: %s\n"
+msgid ""
+"The SCI environment variable is not set.\n"
+"TCL initialisation failed !\n"
+msgstr ""
+"Переменная окружения SCI не задана.\n"
+"Сбой инициализации TCL!\n"
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"Tcl initialisation failed !\n"
+msgstr ""
+"Переменная окружения SCI не задана.\n"
+"Сбой инициализации TCL!\n"
+
+msgid "This function doesn't work with Complex.\n"
+msgstr "Эта функция не работает с комплексными числами.\n"
+
+msgid ""
+"Unable to find Tcl initialisation scripts.\n"
+"Check your SCI environment variable.\n"
+"Tcl initialisation failed !"
+msgstr ""
+"Не удалось найти скрипт инициализации Tcl.\n"
+"Проверьте вашу переменную окружения SCI.\n"
+"Сбой инициализации Tcl!"
+
+msgid "Unknown Release"
+msgstr "Неизвестная версия"
+
+msgid "Updating, please wait"
+msgstr "Идёт обновление, пожалуйста, подождите"
 
 msgid "Variable too long.\n"
 msgstr "Слишком длинная переменная.\n"
 
-#, c-format
-msgid "%s: Error TCL interpreter not initialized.\n"
-msgstr "%s: Ошибка: Интерпретатор TCL не инициализирован.\n"
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr "Внимание: проблемы с интерфейсом TCL/TK. Интерфейс недоступен.\n"
 
-msgid "Scilab TCL/TK module not installed.\n"
-msgstr "Модуль Scilab TCL/TK не установлен.\n"
+msgid "Warning: Too many callbacks in queue!\n"
+msgstr "Внимание: слишком много обратных вызовов в очереди!\n"
+
+msgid "[] doesn't work with Tcl/Tk.\n"
+msgstr "[] не работает с Tcl/Tk.\n"

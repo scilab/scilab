@@ -47,16 +47,14 @@ static gw_generic_table Tab[] =
 	{sci_strtok,"strtok"},
 	{sci_strspn,"strspn"},
 	{sci_strtod,"strtod"},
-	{sci_regexp,"regexp"},
-	{sci_NumTokens,"NumTokens"}
-
+	{sci_regexp,"regexp"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)
 {  
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

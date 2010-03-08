@@ -23,11 +23,11 @@ DWIN=-DWIN32
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 DIR_OBJ=Debug
 LINKER_OPTIMISATION_MODE=/DEBUG -PDB:"$(DIR_OBJ)\$(LIBRARY).pdb"
-CC__OPTIMISATION_MODE=-Zi -Od -MDd
+CC__OPTIMISATION_MODE=-Zi -Od -MTd
 !ELSE
 DIR_OBJ=Release
 LINKER_OPTIMISATION_MODE=/RELEASE 
-CC__OPTIMISATION_MODE=-Z7 -O2 -MD
+CC__OPTIMISATION_MODE=-Z7 -O2 -MT
 !ENDIF
 
 CC_COMMON=-D__MSC__ -DFORDLL $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
@@ -42,6 +42,7 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/output_stream/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
+-I"$(SCIDIR)/modules/dynamic_link/includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
 -I"$(SCIDIR)/modules/windows_tools/includes" \
@@ -73,7 +74,7 @@ USE_F2C=NO
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
 FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
-/noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
+/noaltparam /f77rtl /arch:IA32 /fpscomp:nolibs /names:lowercase \
 /iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"
@@ -98,7 +99,7 @@ RCVARS=-r -DWIN32
 # SCILAB_LIBS is used by the binary version of Scilab for linking external codes
 SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libf2c.lib" "$(SCIDIR1)/bin/lapack.lib" \
-"$(SCIDIR1)/bin/scicos.lib" "$(SCIDIR1)/bin/intersci.lib" \
+"$(SCIDIR1)/bin/intersci.lib" \
 "$(SCIDIR1)/bin/output_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
 "$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \

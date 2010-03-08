@@ -14,26 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Could not change the Console Font."
+msgstr "No s'ha pogut canviar el tipus de lletra de la consola."
+
+msgid "Could not change the Console Foreground."
+msgstr "No s'ha pogut canviar el color en primer pla de la consola."
 
 msgid "File or Directory"
 msgstr "Fitxer o directori"
 
-msgid "Scilab Command"
-msgstr "Comanda de Scilab"
-
-msgid "Scilab Function"
-msgstr "Funció de Scilab"
-
 msgid "Graphics handle field"
 msgstr "Camp de tractament de gràfics"
-
-msgid "Scilab Macro"
-msgstr "Macro de Scilab"
-
-msgid "Scilab Variable"
-msgstr "Variable de Scilab"
 
 msgid "No help"
 msgstr "Sense ajuda"
@@ -41,8 +35,14 @@ msgstr "Sense ajuda"
 msgid "Out of Screen"
 msgstr "Fora de la pantalla"
 
-msgid "Could not change the Console Font."
-msgstr "No s'ha pogut canviar el tipus de lletra de la consola."
+msgid "Scilab Command"
+msgstr "Comanda de Scilab"
 
-msgid "Could not change the Console Foreground."
-msgstr "No s'ha pogut canviar el color en primer pla de la consola."
+msgid "Scilab Function"
+msgstr "Funció de Scilab"
+
+msgid "Scilab Macro"
+msgstr "Macro de Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variable de Scilab"

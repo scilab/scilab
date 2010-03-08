@@ -1,0 +1,266 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"PO-Revision-Date: 2009-12-10 00:33+0000\n"
+"Last-Translator: Federico Vera <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Error de asignación de memoria.\n"
+
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr "%s ya está compilado para hacer perfiles, nada para hacer!"
+
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr "%s ya está compilado, nada para hacer!"
+
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr "%s ya está no-compilado, nada para hacer!"
+
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr "%s: El archivo %s no pudo ser creado\n"
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s: Se forzó la compilación del archivo %s\n"
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s: El archivo %s no contiene ninguna función.\n"
+
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr "%s: El archivo %s no existe.\n"
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s: No puedo encontrar ningún archivo con la extensión %s en %s\n"
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s: Imposible abrir el archivo %s para escritura\n"
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: Función incorrecta en el archivo %s.\n"
+
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr "%s: Biblioteca %s inválida.\n"
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s: No se encontraron archivos con extensión %s en %s\n"
+
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr "%s: Por favor revise: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Procesando el archivo: %s\n"
+
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr "%s: Regenerar nombres y bibliotecas\n"
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: La función no fue construida para hacer perfiles"
+
+#, c-format
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr ""
+"%s: No hay ningún archivo llamado %s.sci en el directorio de bibliotecas "
+"%s.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Variable indefinida %s.\n"
+
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s: Advertencia: Error en el archivo %s : %s. Archivo ignorado\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamaño incorrecto para el argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un caracter "
+"string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
+"un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una función de "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr ""
+"%s: valor incorrecto de argumento de entrada nº %d. Se experaba un "
+"'errcatch'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 'm' o 'n'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba el nombre de "
+"una función de Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba el nombre de "
+"una función de Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr "%s: Valores incorrectos de los argumentos de entrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr ""
+"%s: Valores incorrectos de argumentos de entrada: No hay perfil de datos en "
+"la función\n"
+
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: op-code %d obsoleto.\n"
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- Creación de [%s] (Macros) --\n"
+
+msgid "?"
+msgstr "?"
+
+#, c-format
+msgid "Checking: %s.\n"
+msgstr "Revisando: %s.\n"
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr "Click para obtener la línea correspondiente, mover con a-z."
+
+msgid "Complexity"
+msgstr "Complejidad"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Exit"
+msgstr "Salir"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr "La función %s es obsoleta."
+
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+"El archivo de biblioteca %s fue actualizado,\n"
+"pero no puede ser cargado en Scilab porque %s es una variable protegida.\n"
+
+msgid "No comment available.\n"
+msgstr "No hay comentario disponible.\n"
+
+#, c-format
+msgid "No variable named: %s"
+msgstr "No hay variable llamada: %s"
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Por favor use %s en su lugar."
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Esta función será removida permanentemente de Scilab %s"
+
+msgid "Tools"
+msgstr "Herramientas"
+
+#, c-format
+msgid "WARNING: Function %s is obsolete.\n"
+msgstr "ADVERTENCIA: La función %s es obsoleta.\n"
+
+#, c-format
+msgid "WARNING: Please use %s instead.\n"
+msgstr "ADVERTENCIA: Por favor en su lugar use %s.\n"
+
+#, c-format
+msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+msgstr ""
+"ADVERTENCIA: Esta función será eliminada permanentemente en Scilab %s.\n"
+
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr "línea %s [%s llamado, %s seg] :: "
+
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr "línea %s [%s llamados, %s seg] :: "

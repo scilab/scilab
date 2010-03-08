@@ -389,7 +389,7 @@ function myfun ( x , optimValues , state )
     and <literal>state</literal> are described in detail in the <link linkend="optimset">optimset</link> 
     help page. The <literal>optimValues.procedure</literal> field represent the type of step
     used during the current iteration and can be equal to one 
-    of the following strings
+    of the following strings</para>
     
     <itemizedlist>
     
@@ -419,8 +419,6 @@ function myfun ( x , optimValues , state )
 
     </itemizedlist>
     
-    </para>
- 
   </refsection>
 
   <refsection>
@@ -484,37 +482,33 @@ output
   <refsection>
     <title>Example with a pre-defined plot function</title>
 
-    <para>
-    In the following example, we want to produce a graphic of the 
-    progression of the algorithm, so that we can include that graphic 
-    into a report without defining a customized plot function.
-    The <literal>fminsearch</literal> function comes with the 
-    following 3 pre-defined functions :
+    <para>In the following example, we want to produce a graphic of the 
+      progression of the algorithm, so that we can include that graphic 
+      into a report without defining a customized plot function.
+      The <literal>fminsearch</literal> function comes with the 
+      following 3 pre-defined functions :</para>
     <itemizedlist>
-    <listitem>
-    <para>optimplotfval, which plots the function value,</para>
-    </listitem>
-    <listitem>
-    <para>optimplotx, which plots the current point <literal>x</literal>,</para>
-    </listitem>
-    <listitem>
-    <para>optimplotfunccount, which plots the number of function evaluations.</para>
-    </listitem>
+      <listitem>
+	<para>optimplotfval, which plots the function value,</para>
+      </listitem>
+      <listitem>
+	<para>optimplotx, which plots the current point <literal>x</literal>,</para>
+      </listitem>
+      <listitem>
+	<para>optimplotfunccount, which plots the number of function evaluations.</para>
+      </listitem>
     </itemizedlist>
-    In the following example, we use the three pre-defined functions 
+    <para>In the following example, we use the three pre-defined functions 
     in order to create one graphic, representing the function value depending on 
-    the number of iterations.
-    </para>
-
-    <programlisting role="example"> 
-     <![CDATA[ 
+    the number of iterations.</para>
+    
+    <programlisting role="example"><![CDATA[ 
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 opt = optimset ( "PlotFcns" , optimplotfval );
 [x fval] = fminsearch ( banana , [-1.2 1] , opt );
- ]]>
- </programlisting>
+ ]]></programlisting>
  
      <para>
      In the previous example, we could replace the "optimplotfval"
@@ -701,7 +695,7 @@ opt = optimset ( "OutputFcn" , outfun );
     in the bibliography at the end of this help page,
     as well as in the "Nelder-Mead User's Manual" provided on Scilab's Wiki.
     The following is a quick list of tips to overcome problems
-    that may happen with this algorithm.
+    that may happen with this algorithm.</para>
     <itemizedlist>
     
     <listitem>
@@ -774,7 +768,6 @@ opt = optimset ( "OutputFcn" , outfun );
     </listitem>
 
    </itemizedlist>
-    </para>
 </refsection>
 
 

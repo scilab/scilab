@@ -30,8 +30,8 @@ function res = atomsGetInstalledDetails(packages,section)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
-	if size(packages(1,:),"*") <> 2 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"),"atomsGetInstalledDetails",1));
+	if and(size(packages(1,:),"*") <> [2 3]) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"),"atomsGetInstalledDetails",1));
 	end
 	
 	// Allusers/user management
@@ -55,6 +55,13 @@ function res = atomsGetInstalledDetails(packages,section)
 		
 	end
 	
+	// Complete packages matrix with empty columns
+	// =========================================================================
+	
+	if size(packages(1,:),"*") == 2 then
+		packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+	end
+	
 	// Get the list of installed packages
 	// =========================================================================
 	installedpackages = atomsGetInstalled(section);
@@ -67,8 +74,39 @@ function res = atomsGetInstalledDetails(packages,section)
 		// Filter on names
 		packages_filtered = installedpackages( find(installedpackages(:,1) == packages(i,1)) , : );
 		
+		// Filter on section
+		if ~isempty(packages(i,3)) & packages(i,3)<>"all" then
+			packages_filtered = packages_filtered( find(packages_filtered(:,3) == packages(i,3)) , : );
+		end
+		
 		// Filter on versions
-		packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
+		
+		//  + The packaging version is mentioned
+		if ~ isempty(strindex(packages(i,2),"-")) then
+			packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
+		
+		//  + The packaging version is not mentioned
+		else
+			
+			candidates        = packages_filtered;
+			packages_filtered = [];
+			
+			// Loop on installed versions
+			for j=1:size(candidates(:,2),"*")
+				
+				candidate_version = candidates(j,2);
+				
+				if ~ isempty(strindex(candidate_version,"-")) then
+					candidate_version = part(candidate_version,1:strindex(candidate_version,"-")-1);
+				end
+				
+				if packages(i,2) == candidate_version then
+					packages_filtered = [ packages_filtered ; candidates(j,:) ];
+				end
+				
+			end
+			
+		end
 		
 		if ~ isempty(packages_filtered) then
 			res = [ res ; packages_filtered(1,:) ];

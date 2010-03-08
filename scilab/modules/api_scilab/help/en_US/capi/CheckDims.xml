@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="CheckDims" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>CheckDims</refname>
+
+    <refpurpose>C interface function which checks if a parameter send to the C
+    function has the required dimensions</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>CheckDims(StackPos,m_var,n_var,m_required,n_required)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>StackPos</term>
+
+        <listitem>
+          <para>the position in the Scilab memory of the parameter for which
+          we want to know the type (input parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m_var</term>
+
+        <listitem>
+          <para>the number of lines of the parameter at position StackPos in
+          the Scilab memory (input parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n_var</term>
+
+        <listitem>
+          <para>the number of columns of the parameter at position StackPos in
+          the Scilab memory (input parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m_required</term>
+
+        <listitem>
+          <para>the required number of lines (input parameter)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n_required</term>
+
+        <listitem>
+          <para>the required number of columns (input parameter)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>C interface function which checks if a parameter send to the C
+    function has the required dimensions. You must include stack-c.h to
+    benefit from this function. If the test fails, we return from the C
+    interface and an adequate error message is printed in the Scilab
+    console.</para>
+
+    <para>WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+
+int sci_check_properties(char * fname)
+{
+  int m1, n1, l1;
+
+  CheckRhs(1,1);
+
+  GetRhsVar(1, "d", &m1, &n1, &l1);
+
+  CheckDims(1,m1,n1,1,4); // Check that argument is a 1x4 matrix
+
+  return 0;
+}
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="CheckColumn">CheckColumn</link></member>
+
+      <member><link linkend="CheckRow">CheckRow</link></member>
+
+      <member><link linkend="CheckScalar">CheckScalar</link></member>
+
+      <member><link linkend="CheckVector">CheckVector</link></member>
+
+      <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
+      <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
+      <member><link linkend="CheckLength">CheckLength</link></member>
+
+      <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
+      <member><link linkend="CheckSquare">CheckSquare</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

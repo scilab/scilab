@@ -14,12 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Wert erwartet.\n"
+msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
+msgstr "%s: nur eine von arg1 und arg2 könnte ein Vektor sein.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument.\n"
+msgstr "%s: falscher Typ für erstes Eingangsargument.\n"
 
 #, c-format
 msgid ""
@@ -30,20 +34,12 @@ msgstr ""
 "Eingangsargumente erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments: Must be > %d.\n"
-msgstr "%s: falscher Wert für Eingangsargument: muß >%d sein.\n"
-
-#, c-format
-msgid "%s: Wrong type for first input argument.\n"
-msgstr "%s: falscher Typ für erstes Eingangsargument.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
 
 #, c-format
-msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
-msgstr "%s: nur eine von arg1 und arg2 könnte ein Vektor sein.\n"
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Wert erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -58,11 +54,15 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: overflow or underflow of an extended range number\n"
-msgstr ""
-"%s: Bereichsüberschreitung oder Bereichsunterschreitung einer Zahl mit "
-"erweitertem Bereich\n"
+msgid "%s: Wrong value for input arguments: Must be > %d.\n"
+msgstr "%s: falscher Wert für Eingangsargument: muß >%d sein.\n"
 
 #, c-format
 msgid "%s: error number %d\n"
 msgstr "%s: Fehler Nummer %d\n"
+
+#, c-format
+msgid "%s: overflow or underflow of an extended range number\n"
+msgstr ""
+"%s: Bereichsüberschreitung oder Bereichsunterschreitung einer Zahl mit "
+"erweitertem Bereich\n"

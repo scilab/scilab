@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cscopxy.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CSCOPXY is a scope in 2D which draw its input as a XY scope, there is no animation, everything is keep in memory instead of CANIMXY
    \see CSCOPXY.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -35,28 +37,31 @@
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
 #include "SetJavaProperty.h"
-
+#include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
- int * ipar; //Integer Parameters
-  int color_flag; //Flag on Color
+  int * ipar = NULL; //Integer Parameters
+  int color_flag = 0; //Flag on Color
   int color[2];
-  int line_size;
-  int animed;
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int line_size = 0;
+  int animed = 0;
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int nipar;
-  double * rpar; //Reals parameters
-  double xmin, xmax, ymin, ymax; //Ymin and Ymax are vectors here
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
+  int nipar = 0;
+  double * rpar = NULL; //Reals parameters
+  double xmin = 0., xmax = 0., ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
   int dimension = 2;
-  int i;
+  int i = 0;
+  char *label = NULL;
   scoGraphicalObject ShortDraw;
   scoGraphicalObject LongDraw;
 
@@ -78,6 +83,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   xmax = rpar[1];
   ymin = rpar[2];
   ymax = rpar[3];
+  label = GetLabelPtrs(block);
 
   number_of_subwin = 1;
   number_of_curves_by_subwin = ipar[10]; //it is a trick to recognize the type of scope, not sure it is a good way because normally a curve is the combination of a short and a longdraw
@@ -104,27 +110,26 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	  sciSetLineWidth(LongDraw, line_size);
 	  sciSetMarkSize(LongDraw, line_size);
 	}
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 
 	/* use only single buffering to be sure to draw on the screen */
 	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cscopxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cscopxy(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 {
   /* Declarations*/
-  ScopeMemory * pScopeMemory;
-  double *u1,*u2;
+  ScopeMemory * pScopeMemory = NULL;
+  double *u1 = NULL,*u2 = NULL;
   scoGraphicalObject Pinceau; 
-  int NbrPtsShort;
-  int i;
+  int NbrPtsShort = 0;
+  int i = 0;
 
   /* State Machine Control */
   switch(flag)
@@ -197,3 +202,4 @@ void cscopxy(scicos_block * block, int flag)
       //free the memory which is allocated at each turn by some variables
     }
 }
+/*--------------------------------------------------------------------------*/ 

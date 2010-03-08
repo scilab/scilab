@@ -33,8 +33,6 @@ Source: modules\{#HISTORY_MANAGER}\sci_gateway\history_manager_gateway.xml; Dest
 ;
 ;Source: modules\{#HISTORY_MANAGER}\includes\*.h; DestDir: {app}\modules\{#HISTORY_MANAGER}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#HISTORY_MANAGER}\help\addchapter.sce; DestDir: {app}\modules\{#HISTORY_MANAGER}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
-;
 Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.quit; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.start; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 ;

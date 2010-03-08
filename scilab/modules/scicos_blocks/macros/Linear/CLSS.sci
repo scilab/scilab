@@ -36,7 +36,7 @@ case 'set' then
   if size(exprs,'*')==7 then exprs=exprs([1:4 7]),end //compatibility
   model=arg1.model;
   while %t do
-    [ok,A,B,C,D,x0,exprs]=getvalue('Set continuous linear system parameters',..
+    [ok,A,B,C,D,x0,exprs]=scicos_getvalue('Set continuous linear system parameters',..
 	['A matrix';
 	'B matrix';
 	'C matrix';

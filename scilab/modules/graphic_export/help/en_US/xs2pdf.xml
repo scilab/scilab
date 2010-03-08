@@ -96,7 +96,7 @@ xs2pdf(gcf(),filename);
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member>figure_size property</member>
+      <member><link linkend="figure_properties">figure_size property</link></member>
 
       <member><link linkend="toprint">toprint</link></member>
 

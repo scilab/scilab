@@ -15,19 +15,35 @@ package org.scilab.modules.xcos.block;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
-public class GainBlock extends BasicBlock {
+/**
+ * @author Bruno JOFRET
+ *
+ */
+public final class GainBlock extends BasicBlock {
 
+     private static final long serialVersionUID = 7762548847345910801L;
+
+    /**
+     * Constructor
+     */
     public GainBlock() {
 	super();
-	setVertex(false);
-	setVisible(false);
     }
     
-    protected GainBlock(String label) {
-	super(label);
-	setInterfaceFunctionName("GAINBLK_f");
+    /**
+     *  Initialize the block with the default values
+     */  
+    @Override
+    protected void setDefaultValues() {
+		super.setDefaultValues();
+    	setInterfaceFunctionName("GAINBLK_f");
+    	setValue("1.0");
     }
     
+    
+    /**
+     * @param exprs new exprs
+     */
     public void setExprs(ScilabType exprs) {
 	super.setExprs(exprs);
 	setValue(((ScilabString) getExprs()).getData()[0][0]);

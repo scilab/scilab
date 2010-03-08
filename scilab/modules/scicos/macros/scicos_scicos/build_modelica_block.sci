@@ -19,8 +19,7 @@
 // See the file ../license.txt
 //
 
-function [model,ok] = build_modelica_block(blklstm, cmmat, NiM, NoM, name, path)
-
+function [model,ok]=build_modelica_block(blklstm,corinvm,cmmat,NiM,NoM,scs_m,path)
 // given the blocks definitions in blklstm and connections in cmmat this
 // function first create  the associated modelicablock  and writes its code
 // in the file named 'imppart_'+name+'.mo' in the directory given by path
@@ -29,35 +28,50 @@ function [model,ok] = build_modelica_block(blklstm, cmmat, NiM, NoM, name, path)
 // dynamically linked with Scilab.
 // The correspondind model data structure is returned.
 
-//** Thanks to Serge Steer for this "superbe" explanation :) 
 
-name = "imppart_" + stripblanks(name);
-path = pathconvert(stripblanks(path),%t,%t);
+//## get the name of the generated main modelica file
+name=stripblanks(scs_m.props.title(1))+'_im'; 
 
-[txt,rpar,ipar] = create_modelica1(blklstm,cmmat,name);
+//## generation of the txt for the main modelica file
+//## plus return ipar/rpar for the model of THE modelica block
+[txt,rpar,ipar]=create_modelica(blklstm,corinvm,cmmat,name,scs_m);
 
-mputl(txt, path+name+'.mo');
+//## write txt in the file path+name+'.mo'
+path=pathconvert(stripblanks(path),%t,%t)
+mputl(txt,path+name+'.mo');
+mprintf('%s\n',['--------------------------------------------\';
+		msprintf(_(' Main Modelica : %s'),path+name+'.mo')
+		''])
 
-mprintf('   Modelica code generated at '+path+name+'.mo\n'); 
+//## search for 
 
-[ok,name1,nx,nin,nout,ng,nm,nz] = compile_modelica(path+name+'.mo'); //** here we are 
-
-if ~ok then
-   return
+Mblocks = [];
+for i=1:lstsize(blklstm)
+  if type(blklstm(i).sim)==15 then
+    if blklstm(i).sim(2)==30004 then
+      o = scs_m(scs_full_path(corinvm(i)))
+      Mblocks=[Mblocks;
+	       o.graphics.exprs.nameF]
+    end
+  end
 end
 
-// nx is the state dimension
-// ng is the number of surfaces
+//generating XML and Flat_Model
+//## compile modelica files
+[ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=compile_modelica(path+name+'.mo',Mblocks);
 
-// build model data structure of the block equivalent to the implicit part
-model = scicos_model(sim = list(name,10004),.. 
-	             in  = ones(nin,1),out=ones(nout,1),..
-	  	     state  = zeros(nx*2,1),..
-		     dstate = zeros(nz,1),..
-		     rpar   = rpar,..
-		     ipar   = ipar,..
-		     dep_ut = [%f %t],..
-                     nzcross = ng,..
-                     nmode   = nm) ; 
+if ~ok then return,end
 
+//nx is the state dimension
+//ng is the number of surfaces
+//name1 of the model+flat
+
+//build model data structure of the block equivalent to the implicit part
+model=scicos_model(sim=list(name,10004),.. 
+                   in=ones(nin,1),out=ones(nout,1),..
+                   state=zeros(nx*2,1),..
+                   dstate=zeros(nz,1),..
+                   rpar=rpar,..
+                   ipar=ipar,..
+                   dep_ut=[dep_u %t],nzcross=ng,nmode=nm)
 endfunction

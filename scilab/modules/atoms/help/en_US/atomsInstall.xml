@@ -24,8 +24,9 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(module[,section]])
-	</synopsis>
+    result = atomsInstall(modules[,section])
+    result = atomsInstall(file)
+  </synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
   <!-- Parameters -->
@@ -35,31 +36,83 @@
     <variablelist>
       
 			<varlistentry>
-        <term>module</term>
+        <term>modules</term>
         <listitem>
+					
           <para>
-						mx1 or mx2 Matrix of strings:
+						mx1, mx2 Matrix of strings:
 					</para>
 					
-          <itemizedlist>
-            <listitem>
-              <para>
-								<literal>"1st column" (mandatory)</literal>: devoted to module's
-								technical name.
-							</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>"2nd column" (optional)</literal>: devoted to module's
-								version. If this field is empty or is not present, the most recent
-								version is installed.
-							</para>
-            </listitem>
-          </itemizedlist>
-					
-        </listitem>
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+								Optionnal
+							</td>
+							<td>
+								If this field is empty or is not present,
+								the most recent	version is used
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
       </varlistentry>
       
+			<varlistentry>
+        <term>file</term>
+        <listitem>
+					
+          <para>
+						mx1 Matrix of strings:
+					</para>
+					
+					<informaltable border="1">
+						
+						<!-- File-system path -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">File-system path</emphasis>
+							</td>
+							<td>
+								Mandatory
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+					</informaltable>
+				</listitem>
+      </varlistentry>
+			
 			<varlistentry>
         <term>section</term>
 				
@@ -95,33 +148,78 @@
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>5xn String matrix :</para>
-          <itemizedlist>
-            <listitem>
-              <para><literal>1st column</literal> : External module's technical name
-							</para>
-						</listitem>
-						<listitem>
-							<para><literal>2nd column</literal> : External module's version
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
-								the external module has been installed for all users or only for the
-								current user.
-								</para>
-            </listitem>
-            <listitem>
-              <para>
-								<literal>4th column</literal> : External module's installation path
-							</para>
-            </listitem>
-            <listitem>
-              <para><literal>5th column</literal> : I/A, this parameter tell if
-								the external module has been automatically or intentionnaly installed.
-							</para>
-            </listitem>
-          </itemizedlist>
+          <para>5xn character string matrix:</para>
+					<informaltable border="1">
+						
+						<!-- Technical name -->
+						
+						<tr>
+							<td>
+								<emphasis>1st Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Technical name</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Version -->
+						
+						<tr>
+							<td>
+								<emphasis>2nd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Version</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Section -->
+						
+						<tr>
+							<td>
+								<emphasis>3rd Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation section</emphasis>
+							</td>
+							<td>
+								this parameter determines whether the module has been installed
+								for all users or only for the	current user.
+							</td>
+						</tr>
+						
+						<!-- Installation path -->
+						
+						<tr>
+							<td>
+								<emphasis>4th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Installation path</emphasis>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+						<!-- Status -->
+						
+						<tr>
+							<td>
+								<emphasis>5th Col.</emphasis>
+							</td>
+							<td>
+								<emphasis role="strong">Status</emphasis>
+							</td>
+							<td>
+								"I" stands for "Intentionnaly", "A" stands for "Automatically"
+							</td>
+						</tr>
+						
+					</informaltable>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -141,8 +239,12 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
+		
+		<para>
+			<emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
+		</para>
+		
     <programlisting role="example"><![CDATA[
-
 // Display some additionnal informations
 atomsSetConfig("Verbose","True");
 
@@ -163,15 +265,44 @@ atomsInstall(["toolbox_5"],"user");
 
 // Install a module in the allusers section
 // (write access on SCI directory is needed):
-atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"],"allusers");
+atomsInstall(["toolbox_6" "1.0";"toolbox_3" "1.0"], ..
+             "allusers");
 
 // Get the list of installed modules:
 disp( atomsGetInstalled() );
 
 // Cleaning :)
-atomsRemove(["toolbox_1";"toolbox_2";"toolbox_3";"toolbox_4";"toolbox_5";"toolbox_6"]);
+atomsRemove(["toolbox_1"; ..
+             "toolbox_2"; ..
+             "toolbox_3"; ..
+             "toolbox_4"; ..
+             "toolbox_5"; ..
+             "toolbox_6"]);
 
-]]></programlisting>
+]]>
+</programlisting>
+		
+		<para>
+			<emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
+			installing modules from the central repository, you can also install
+			modules directly from your own machine.
+		</para>
+		
+    <programlisting role="example"><![CDATA[
+// Display some additionnal informations
+atomsSetConfig("Verbose","True");
+
+// Install a module
+atomsInstall(SCI+"/modules/atoms/tests/unit_tests/toolbox_7_1.0-1.bin.zip");
+
+// Get the list of installed modules:
+disp( atomsGetInstalled() );
+
+// Cleaning :)
+atomsRemove("toolbox_7");
+]]>
+</programlisting>
+
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

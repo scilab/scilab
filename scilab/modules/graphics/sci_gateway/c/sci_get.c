@@ -55,6 +55,13 @@ int sci_get(char *fname,unsigned long fname_len)
 	char **stkAdr = NULL;
 	int status = SET_PROPERTY_ERROR;
 
+	if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
+	  {
+	    lw = 1 + Top - Rhs;
+	    C2F(overload)(&lw,"get",Rhs);
+	    return 0;
+	  }
+	
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 
@@ -81,13 +88,14 @@ int sci_get(char *fname,unsigned long fname_len)
 				}
 
 				status = GetScreenProperty(stkAdr[0]);
-				freeArrayOfString(stkAdr, m1 * n1);
 
 				if(status != SET_PROPERTY_SUCCEED) /* Return property */
 				{
 					Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", stkAdr[0]);
+					freeArrayOfString(stkAdr, m1 * n1);
 					return FALSE;
 				}
+				freeArrayOfString(stkAdr, m1 * n1);
 			}
 			else
 			{
@@ -119,30 +127,30 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_strings:/* string argument (string) */
 		CheckRhs(1,1);
 		GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
-                if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
-                  {
-                    if ( strcmp(cstk(l2),"current_figure") == 0 ||  strcmp(cstk(l2),"current_axes") == 0 ||  strcmp(cstk(l2),"current_entity") == 0 ||  strcmp(cstk(l2),"hdl") == 0)
-                      {
-                        hdl = 0;
-                      }
-                    else
-                      {
-                        /* Test debug F.Leray 13.04.04 */
-                        if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0)) 
-                          {
-                            SciWin();
-                            hdl = sciGetHandle(sciGetCurrentObj());
-                          }
-                        else
-                          {
-                            hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
-                          }
-                      }/* DJ.A 08/01/04 */
-                  }
-                else
-                  {
-                    hdl = 0;
-                  }
+		if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
+		{
+			if ( strcmp(cstk(l2),"current_figure") == 0 ||  strcmp(cstk(l2),"current_axes") == 0 ||  strcmp(cstk(l2),"current_entity") == 0 ||  strcmp(cstk(l2),"hdl") == 0)
+			{
+				hdl = 0;
+			}
+			else
+			{
+				/* Test debug F.Leray 13.04.04 */
+				if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0)) 
+				{
+					SciWin();
+					hdl = sciGetHandle(sciGetCurrentObj());
+				}
+				else
+				{
+					hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
+				}
+			}/* DJ.A 08/01/04 */
+		}
+		else
+		{
+			hdl = 0;
+		}
 		break;
 	default:
 		lw = 1 + Top - Rhs;

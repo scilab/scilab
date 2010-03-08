@@ -528,19 +528,27 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
+	AC_MSG_CHECKING([if /sw64/ is available or not])
+	if test -d /sw64/; then
+	AC_MSG_RESULT([yes])
+	 CFLAGS=" $CFLAGS -I/sw64/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw64/include "
+	 LDFLAGS=" $LDFLAGS -L/sw64/lib/ "
+	else
+	AC_MSG_RESULT([no... switch back to /sw/. This might cause issues on link test of third party libraries])
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
+    fi
 	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
-	      x86_64-apple-darwin*)
+	# By default, consider that all mac runs 64 bits applications
+	      x86_64-apple-darwin*|i386-apple-darwin*)
                 CC=" $CC -arch x86_64 "
                 CXX=" $CXX -arch x86_64 "
                 ;;
 	esac
+	#Check that the current Mac OS X can link against system 64 bits libs
+	AC_CHECK_FUNCS([pow])
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -664,6 +672,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JGRAPHX=$PACKAGE_JAR_FILE
 				AC_SUBST(JGRAPHX)
 
+				AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.2.0.7],[mxGraph.VERSION])
+
 				# Docking system
 				AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
 				FLEXDOCK=$PACKAGE_JAR_FILE
@@ -691,13 +701,21 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(JOGL)
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled"
+				   echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
-				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],
-				   [AC_MSG_ERROR([libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
+				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
+				   	   LDFLAGS="$LDFLAGS -lGL "
+					   # the space after "jogl" in the following line is on	
+					   # purpose to disable the cache
+				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
+					   [JOGL_LIBS="-ljogl -lGL"],
+					   [AC_MSG_ERROR(["libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - or libGL are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])])
+				   fi
+
 				   LDFLAGS=$LDFLAGS_save
 				fi
 
@@ -707,7 +725,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_SUBST(GLUEGEN_RT)
 
 				if test "$MACOSX" = 1; then
-				   echo "Check of the presence of libgluegen-rt.jnilib disabled"
+				   echo "Check of the presence of libgluegen-rt.jnilib disabled under Mac OS X"
 				else
 				   LDFLAGS_save=$LDFLAGS
 				   # Provide known paths where distribs/OS can store JNI libs
@@ -739,6 +757,61 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+
+				# MathML rendering solution
+				# Used in both graphic & help 
+				AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
+				JEUCLID_CORE=$PACKAGE_JAR_FILE
+				AC_SUBST(JEUCLID_CORE)
+
+
+				################ Mandatory for graphic_export features #####
+				# XML to PDF/other Translator
+				AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+				FOP=$PACKAGE_JAR_FILE
+				AC_SUBST(FOP)
+
+				# xml.apache.org SVG Library (under mandriva for example)
+				AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+				BATIK=$PACKAGE_JAR_FILE
+
+				if test -z "$BATIK"; then
+				   # Other other distribs
+				   AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+				   BATIK=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(BATIK)
+
+				# Commons I/O library
+				AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+				COMMONS_IO=$PACKAGE_JAR_FILE
+				AC_SUBST(COMMONS_IO)
+
+				# XML graphics common
+				AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+				XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
+				AC_SUBST(XMLGRAPHICS_COMMONS)
+
+				# Avalon Framework (PDF)
+				AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+				AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
+				AC_SUBST(AVALON_FRAMEWORK)
+
+	# XML API EXT (conversion of a SVG => PNG)
+				AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
+				XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+				if test -z "$XML_APIS_EXT"; then
+					# Other other distribs (Ex: Fedora/Redhat)
+					AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+					XML_APIS_EXT=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(XML_APIS_EXT)
+
+				################ END Mandatory for graphic_export features #####
+
+
+				############ XCOS ############
 				if test $HDF5_ENABLE = yes;  then
 				# HDF5 java lib
 				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
@@ -751,10 +824,12 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
-                                # JLaTeXMath
-                                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
-                                JLATEXMATH=$PACKAGE_JAR_FILE
-                                AC_SUBST(JLATEXMATH)
+				# JLaTeXMath
+                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                JLATEXMATH=$PACKAGE_JAR_FILE
+                AC_SUBST(JLATEXMATH)
+
+				AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[0.8.8],[TeXFormula.VERSION])
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -774,6 +849,27 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 		AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
 		ANTLR=$PACKAGE_JAR_FILE
 		AC_SUBST(ANTLR)
+
+		# Test NG (java unitary test)
+		AC_JAVA_CHECK_PACKAGE([testng],[org.testng.TestNG],[TestNG - Unit tests],"yes")
+		TESTNG=$PACKAGE_JAR_FILE
+		AC_SUBST(TESTNG)
+
+		# Qdox (parses declarations and Javadoc) - dependency of TestNG
+		AC_JAVA_CHECK_PACKAGE([qdox],[com.thoughtworks.qdox.tools.QDoxTester],[Parses declarations and Javadoc ],"yes")
+		QDOX=$PACKAGE_JAR_FILE
+		AC_SUBST(QDOX)
+
+                # bsh (Java scripting environment) - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([bsh],[bsh.Console],[Java scripting environment],"yes")
+                BSH=$PACKAGE_JAR_FILE
+                AC_SUBST(BSH)
+
+                # Junit - dependency of TestNG
+                AC_JAVA_CHECK_PACKAGE([junit],[junit.framework.Assert],[Unitary tests],"yes")
+                JUNIT=$PACKAGE_JAR_FILE
+                AC_SUBST(JUNIT)
+
 
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -880,23 +976,22 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
-# Provided by math.h
+
+# Check of the libm (lib math). Macro provided by libtool.
 save_LDFLAGS="$LDFLAGS"
-LDFLAGS="$LDFLAGS -lm"
+LT_LIB_M()
 
-AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor])
+# Provided by math.h
 
-AC_CHECK_FUNC([exp10],,[
-				AC_DEFINE([log_10_],[2.3025850929940456840179914546844],[Provide a macro to do exp10])
-				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
-				])
+LDFLAGS="$LDFLAGS $LIBM"
+AC_CHECK_FUNCS([pow] [sqrt] [finite] [floor] [exp10])
 
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
-
+LIBS="$LIBS $LIBM"
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -1042,9 +1137,9 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
 
-
+if test $HDF5_ENABLE = yes;  then
    if test "$MACOSX" = 1; then
-   	  echo "Check of the presence of libjhdf5.jnilib disabled"
+   	  echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
    else
       LDFLAGS_save=$LDFLAGS
    # Provide known paths where distribs/OS can store JNI libs
@@ -1054,6 +1149,7 @@ if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    	    [AC_MSG_ERROR([libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
       LDFLAGS=$LDFLAGS_save
     fi
+fi #HDF5_ENABLE
 
 #################
 ## ocaml which only called when using Scicos
@@ -1137,7 +1233,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1538,6 +1634,7 @@ modules/mpi/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
+modules/graph/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1759,12 +1856,7 @@ echo ""
 if test $HELP_ENABLE = yes; then
    echo "Documentation building configuration:"
    echo "  Docbook XSL path ....... = $DOCBOOK_ROOT"
-   echo "  Batik (SVG) ............ = $BATIK"
    echo "  Saxon XSLT ............. = $SAXON"
-   echo "  FOP (XML => PDF) ....... = $FOP"
-   echo "  Jeuclid (MathML) ....... = $JEUCLID_CORE"
-   echo "  Commons I/O ............ = $COMMONS_IO"
-   echo "  XML graphics commons ... = $XMLGRAPHICS_COMMONS"
    echo "  XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
@@ -1797,18 +1889,33 @@ echo "  JOGL ................ = $JOGL"
 echo "  JOGL LIBS (JNI) ..... = $JOGL_LIBS"
 echo "  Gluegen ............. = $GLUEGEN_RT"
 echo "  Gluegen LIBS (JNI) .. = $GLUEGEN_RT_LIBS"
+echo "  Jeuclid (MathML) .... = $JEUCLID_CORE"
 echo "  Jhall  .............. = $JHALL"
 echo "  Jrosetta (API) ...... = $JROSETTA_API"
 echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
 echo "  Commons Logging ..... = $COMMONS_LOGGING"
 echo "  JGraph X ............ = $JGRAPHX"
+echo "  JLaTeXMath .......... = $JLATEXMATH"
 fi
+
+echo ""
+if test ! -z "$JAVAC"; then
+echo "Documentation, graphic export:"
+echo "  FOP (XML => PDF) .... = $FOP"
+echo "  JLaTeXMath Fop ...... = $JLATEXMATH_FOP"
+echo "  Batik (SVG) ......... = $BATIK"
+echo "  Avalon Framework .... = $AVALON_FRAMEWORK"
+echo "  Commons I/O ......... = $COMMONS_IO"
+echo "  XML graphics commons  = $XMLGRAPHICS_COMMONS"
+fi
+
 
 echo ""
 echo "Code quality (optional):"
 echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
+echo "  TestNG .............. = $TESTNG"
 echo "  splint .............. = $SPLINT"
 
 echo "" 

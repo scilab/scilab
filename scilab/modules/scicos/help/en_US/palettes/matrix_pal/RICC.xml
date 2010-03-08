@@ -118,7 +118,7 @@ The Riccati equation in discrete time is:
 A*X*(inv(In-D))*A-X+C=0 
 </para>
     <para>
-where A is an NxN matrix, it is the first input of the block, C and D are two NxN symetrics matrices and are respectively the second and third input of the RICC block. X represent the output of the block, it is also a NxN matrix.  
+where A is an NxN matrix, it is the first input of the block, C and D are two NxN symmetrics matrices and are respectively the second and third input of the RICC block. X represent the output of the block, it is also a NxN matrix.  
 </para>
     <para>
 The user can choose between two methods of computation. For the continuous time he can use even the Schur method or the matrix sign function approach method, by setting the Model parameter to 1 or 2. For the discrete time, the models are the Schur method and the inverse free spectral decomposition method.  
@@ -227,7 +227,7 @@ The user can choose between two methods of computation. For the continuous time 
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/ricc_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/ricc_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

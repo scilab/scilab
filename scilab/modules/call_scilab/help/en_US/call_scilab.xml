@@ -38,13 +38,16 @@
     order to interface Scilab's features from an other code/application or to
     be able to interface Scilab's features from an other language.</para>
 
-    <para>It is also possible to read and write the most important Scilab's
-    datastructures thanks to this module</para>
+    <para>Since Scilab 5.2.0, all Scilab datatype can be handle by call_scilab.
+    This is done thanks to <link linkend="api_scilab">API_Scilab</link></para>
 
     <para>This help describes the features of the call_scilab API.</para>
 
-    <para>Note that the <link linkend="javasci">javasci</link> module is based
+    <para>Note: The <link linkend="javasci">javasci</link> module is based
     on call_scilab.</para>
+
+   <para>Note: old APIs (stackX.h) will not be available after Scilab 6.0 (included).</para>
+
   </refsection>
 
   <refsection>
@@ -93,7 +96,7 @@ int main(void)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      <member><link linkend="api_scilab">api Scilab</link>,<link linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link>, <link linkend="DoubleManagement_callscilab">Matrix
       Management</link>, <link linkend="BooleanManagement_callscilab">Boolean
       Management</link>, <link linkend="ComplexManagement_callscilab">Complex

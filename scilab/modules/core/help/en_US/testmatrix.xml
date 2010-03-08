@@ -29,7 +29,7 @@
       <varlistentry>
         <term>y</term>
         <listitem>
-          <para>: <literal>n</literal> x <literal>m</literal> matrix</para>
+          <para> <literal>n</literal> x <literal>m</literal> matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>

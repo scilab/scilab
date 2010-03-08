@@ -18,6 +18,6 @@
 
 //internal functions
 //internal boolean sparse functions
-StrErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 #endif /* __INTERNAL_BOOLEAN_SPARSE_API__ */

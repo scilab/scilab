@@ -22,6 +22,7 @@ extern "C"
 #include "pixel_mode.h"
 #include "DrawingBridge.h"
 #include "HandleManagement.h"
+#include "math_graphics.h"
 }
 
 using namespace std;
@@ -177,8 +178,11 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   double userBounds[6];
   sciGetDisplayedDataBounds(m_pDrawed, userBounds);
 
-  // check wether the subwin is zoomed or not
+  // check whether the subwin is zoomed or not
   bool isZoomed = (sciGetZooming(m_pDrawed) == TRUE);
+
+  // check whether tight limits are enabled or not
+  bool tightLimitsEnabled = (sciGetTightLimitsOn(m_pDrawed) == TRUE);
 
   double bestBounds[6]; // output bounds
 
@@ -196,14 +200,45 @@ void ConcreteDrawableSubwin::computeRealDataBounds(void)
   m_pYBoundsStrategy->applyScaleModification(userYBounds, bestYBounds);
   m_pZBoundsStrategy->applyScaleModification(userZBounds, bestZBounds);
 
+  // if the X axis are origin and we are not in zoom mode
+  // we need to add 0
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.xdir == 'o' && !isZoomed) {
+    addZeroInRange(bestYBounds);
+  }
+
+  // same for Y axis
+  if (pSUBWIN_FEATURE(m_pDrawed)->axes.ydir == 'o' && !isZoomed) {
+    addZeroInRange(bestXBounds);
+  }
+
   // fit them if needed
-  // for a more accurate zoom, tigth limits are enable if the zoom
-  // is enable
-  if (!sciGetTightLimitsOn(m_pDrawed) && !isZoomed)
+  // for a more accurate zoom, tight limits are enabled if the zoom
+  // is enabled
+  if (!tightLimitsEnabled && !isZoomed)
   {
     m_pXBoundsStrategy->applyBestFitting(bestXBounds, bestXBounds);
     m_pYBoundsStrategy->applyBestFitting(bestYBounds, bestYBounds);
     m_pZBoundsStrategy->applyBestFitting(bestZBounds, bestZBounds);
+  }
+
+  /* If tight limits are enabled, check whether the min and max bounds are equal,
+  for each of the 3 axes; in this case, the automatically computed bounds are kept */
+  if (tightLimitsEnabled && !isZoomed)
+  {
+    if(SAFE_EQUAL(bestXBounds[0], bestXBounds[1], BOUNDS_COMPARE_ACCURACY))
+    {
+      m_pXBoundsStrategy->applyBestFitting(bestXBounds, bestXBounds);
+    }
+
+    if(SAFE_EQUAL(bestYBounds[0], bestYBounds[1], BOUNDS_COMPARE_ACCURACY))
+    {
+      m_pYBoundsStrategy->applyBestFitting(bestYBounds, bestYBounds);
+    }
+
+    if(SAFE_EQUAL(bestZBounds[0], bestZBounds[1], BOUNDS_COMPARE_ACCURACY))
+    {
+      m_pZBoundsStrategy->applyBestFitting(bestZBounds, bestZBounds);
+    }
   }
 
   sciSetRealDataBounds(m_pDrawed, bestBounds);
@@ -519,6 +554,17 @@ void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double y
 
   sciPointObj * titleLabel = pSUBWIN_FEATURE(m_pDrawed)->mon_title;
   getLabelDrawer(titleLabel)->setDistanceToAxis(titleDist);
+}
+/*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::addZeroInRange(double range[2]) {
+  if (range[0] > 0.0 && range[1] > 0.0) {
+  // both are greater than 0, so put the lowest to 0
+    range[0] = 0.0;
+  }
+  else if (range[0] < 0.0 && range[1] < 0.0) {
+  // both are lower than 0, so put the gretestt to 0
+    range[1] = 0.0;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 int ConcreteDrawableSubwin::computeConcealedCornerIndex(void)

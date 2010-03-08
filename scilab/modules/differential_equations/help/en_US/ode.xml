@@ -115,8 +115,16 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>k0</term>
 
         <listitem>
-          <para>integer (initial time). kvect : integer vector.</para>
+          <para>integer (initial time).</para>
         </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+	<term>kvect</term>
+	
+	<listitem>
+	  <para>integer vector.</para>
+	</listitem>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -387,7 +395,7 @@ ccode=['#include <math.h>'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //create the C file
-ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
 exec(TMPDIR+'/loader.sce') //incremental linking
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');
@@ -474,7 +482,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
   <refsection>
     <title>Used Functions</title>
 
-    <para>The associated routines can be found in routines/integ directory
+    <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
     :</para>
 
     <para>lsode.f lsoda.f lsodar.f</para>

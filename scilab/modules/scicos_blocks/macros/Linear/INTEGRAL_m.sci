@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=INTEGRAL_m(job,arg1,arg2)
+function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,x0,reinit,satur,maxp,lowp,exprs]=getvalue('Set Integral block parameters',..
+    [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue('Set Integral block parameters',..
 	['Initial Condition';
 	'With re-intialization (1:yes, 0:no)';'With saturation (1:yes, 0:no)';
 	'Upper limit';'Lower limit'],..
@@ -128,11 +128,19 @@ case 'define' then
         'pat=xget(''pattern'')'
         'fnt=xget(''font'')'
         'xpoly(orig(1)+[0.7;0.62;0.549;0.44;0.364;0.291]*sz(1),orig(2)+[0.947;0.947;0.884;0.321;0.255;0.255]*sz(2),"'lines"')'
+        'txt=''1/s'';'
+        'style=5;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;'
         'xset(''thickness'',thick)'
         'xset(''pattern'',pat)'
         'xset(''font'',fnt(1),fnt(2))'
        ]
   x=standard_define([2 2],model,exprs,gr_i)
-  x.graphics.id="1/s"
 end
 endfunction

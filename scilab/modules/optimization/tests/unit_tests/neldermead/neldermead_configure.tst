@@ -7,6 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with configured settings.
@@ -61,7 +63,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",10);
 nm = neldermead_search(nm);
@@ -80,8 +81,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-//nm = neldermead_configure(nm,"-verbose",0);
-//nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
@@ -95,7 +94,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -method option";
+expected = "unknownValueForOption: Unknown value foo for -method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -104,7 +103,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "neldermead_configure: Unknown value foo for -simplex0method option";
+expected = "unknownValueForOption: Unknown value foo for -simplex0method option";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -113,7 +112,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolsimplexizemethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but got string instead";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -122,7 +121,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-tolssizedeltafvmethod'',''foo'')";
 execstr(cmd,"errcatch");
 computed = lasterror();
-expected = "assert_typeboolean: Expected boolean but got string instead";
+expected = "assert_typeboolean: Expected boolean but for variable value at input #3, got string instead.";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
@@ -135,7 +134,6 @@ nm = neldermead_configure(nm,"-x0",[1.1 1.1]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-maxfunevals",2);
 nm = neldermead_search(nm);
@@ -156,6 +154,45 @@ cmd = "nm = neldermead_configure(nm,''-x0'',[-1.2 1.0]);";
 execstr(cmd,"errcatch");
 computed = lasterror();
 expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+//
+// Check -restartstep
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+// Check that -restartstep is forced to be of consistent length : 1 or n
+cmd = "nm = neldermead_configure(nm,''-restartstep'',[1 2 3]);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restartstep vector is expected to have 2 x 1 shape, but current shape is 1 x 3";
+assert_equal ( computed , expected );
+// Check that -restartstep is forced to be positive
+cmd = "nm = neldermead_configure(nm,''-restartstep'',[-1 2]'');";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restartstep vector is expected to be positive";
+assert_equal ( computed , expected );
+nm = neldermead_destroy(nm);
+
+
+//
+// Check -restarteps
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+// Check that -restarteps is forced to be a scalar double
+cmd = "nm = neldermead_configure(nm,''-restarteps'',[1 2]);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restarteps option is expected to be a scalar, but current shape is 1 x 2";
+assert_equal ( computed , expected );
+// Check that -restarteps is forced to be positive
+cmd = "nm = neldermead_configure(nm,''-restarteps'',-1);";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "neldermead_configure: The restarteps option is expected to be positive";
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 

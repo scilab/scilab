@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include "machine.h"
 #include "MALLOC.h"
 #include "scicos_block4.h"
 #include "core_math.h"
@@ -23,11 +24,11 @@ extern "C"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-}
 
-extern "C" double C2F(sciround)(double* x);
+double C2F(sciround)(double* x);
+}
 /*--------------------------------------------------------------------------*/
-using namespace org_scilab_modules_xcos;
+using namespace org_scilab_modules_xcos_graph;
 /*--------------------------------------------------------------------------*/
 extern "C" void affich2(scicos_block *block,int flag)
 {

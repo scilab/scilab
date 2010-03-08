@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int ierr = 0;
 	char *default_env_value = NULL;
 	char *env_value = NULL;
@@ -49,17 +49,17 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 	if (Rhs == 2)
 	{
-		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -69,10 +69,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-		if(strErr.iErr)
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -85,10 +85,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
 		if (pStVarTwo)
 		{
-			strErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-			if(strErr.iErr)
+			sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 		}
@@ -99,17 +99,17 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -120,10 +120,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-	if(strErr.iErr)
+	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
@@ -137,10 +137,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
 	if (pStVarOne)
 	{
-		strErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-		if(strErr.iErr)
+		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 	}
@@ -179,10 +179,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 		if (ierr == 0)
 		{
-			strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &env_value);
-			if(strErr.iErr)
+			sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &env_value);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -193,10 +193,10 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		{
 			if (default_env_value)
 			{
-				strErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
-				if(strErr.iErr)
+				sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m_out, n_out, &default_env_value);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -211,6 +211,7 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 		if (default_env_value) {FREE(default_env_value); default_env_value = NULL;}
 		if (env_name) {FREE(env_name); env_name = NULL;}
+		if (env_value) {FREE(env_value); env_value = NULL;}
 
 	}
 	return 0;

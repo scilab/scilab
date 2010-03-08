@@ -67,7 +67,7 @@
     <simplelist type="inline">
       <member><link linkend="string">string</link></member>
 
-      <member><link linkend="pol2tex">pol2tex</link></member>
+      <member><link linkend="prettyprint">prettyprint</link></member>
     </simplelist>
   </refsection>
 </refentry>

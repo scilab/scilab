@@ -226,7 +226,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Puits.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

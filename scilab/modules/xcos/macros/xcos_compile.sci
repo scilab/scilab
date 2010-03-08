@@ -21,6 +21,14 @@
 
 function  [%cpr,ok] = xcos_compile(scs_m)
 
+//-- BJ : Alias Warning Function
+  prot = funcprot();
+  funcprot(0);
+  hilite_obj = xcosShowBlockWarning;
+  unhilite_obj = xcosClearBlockWarning;
+  funcprot(prot);
+  //-- end
+
 ////////////////////////////////////////////////////////////////
 // Add global environment variable so that scicos is not lost //
 ////////////////////////////////////////////////////////////////
@@ -41,6 +49,10 @@ end
 
 if exists('%scicos_solver')==0 then 
   %scicos_solver = 0 ; 
+end
+
+if ~exists('%scicos_debug_gr') then
+  %scicos_debug_gr = %f; //** debug mode : default is "%f"
 end
 
 par = scs_m.props;

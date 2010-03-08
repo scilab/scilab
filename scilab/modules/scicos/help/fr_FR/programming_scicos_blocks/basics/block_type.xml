@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="block_type">
+  <refnamediv>
+    <refname>block_type</refname>
+    <refpurpose>Type des blocs Scicos</refpurpose>
+  </refnamediv>
+  <refsection id="Contenu_block_type">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="block_type">block_type - Type des blocs Scicos</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Module_block_type">Module</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_block_type">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_block_type">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Module_block_type">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_block_type">
+    <title>Description</title>
+    <para>Description</para>
+    <para>
+Scicos has the possibility to handle and to call many different sorts of blocks.
+Some blocks in Scicos palettes are special and are only used
+internally by Scicos, such as synchro blocks and the Debug block, but
+most blocks are regular blocks which the user can get inspired by to
+construct new blocks.
+The following table gives the known Scicos
+block types, and is followed by the report of the type of the computational function
+with its associated calling sequence by block type.
+
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left">
+          <emphasis role="bold">Type</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Description</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Function type</emphasis>
+        </td>
+        <td align="left">
+          <emphasis role="bold">Simulator call</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">-2</td>
+        <td align="left">Event select block (synchro block).</td>
+        <td align="left">-</td>
+        <td align="left">Never called.</td>
+      </tr>
+      <tr>
+        <td align="left">-1</td>
+        <td align="left">If Then Else block (synchro block).</td>
+        <td align="left">-</td>
+        <td align="left">Never called.</td>
+      </tr>
+      <tr>
+        <td align="left">0</td>
+        <td align="left">C, Fortran or Scilab block. Calling sequence fixed. Obsolete.</td>
+        <td align="left">Type 0.</td>
+        <td align="left">Type 0.</td>
+      </tr>
+      <tr>
+        <td align="left">1</td>
+        <td align="left">C or Fortran block. Varying calling sequence. Obsolete.</td>
+        <td align="left">Type 1.</td>
+        <td align="left">Type 1.</td>
+      </tr>
+      <tr>
+        <td align="left">2</td>
+        <td align="left">C block. Calling sequence fixed. Obsolete.</td>
+        <td align="left">Type 2.</td>
+        <td align="left">Type 2.</td>
+      </tr>
+      <tr>
+        <td align="left">3</td>
+        <td align="left">Scilab block. Calling sequence fixed. Used but obsolete.</td>
+        <td align="left">Type 3.</td>
+        <td align="left">Type 2.</td>
+      </tr>
+      <tr>
+        <td align="left">4</td>
+        <td align="left">C block. Calling sequence fixed. In use.</td>
+        <td align="left">Type 4.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">5</td>
+        <td align="left">Scilab block. Calling sequence fixed. In use.</td>
+        <td align="left">Type 5.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">1001</td>
+        <td align="left">Fortran block. Dynamically linked. Obsolete.</td>
+        <td align="left">Type 1.</td>
+        <td align="left">Type 1.</td>
+      </tr>
+      <tr>
+        <td align="left">2001</td>
+        <td align="left">C block. Dynamically linked. Obsolete.</td>
+        <td align="left">Type 1.</td>
+        <td align="left">Type 1.</td>
+      </tr>
+      <tr>
+        <td align="left">2004</td>
+        <td align="left">C block. Dynamically linked. In use.</td>
+        <td align="left">Type 4.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">10001</td>
+        <td align="left">Implicit C or Fortran block. Obsolete.</td>
+        <td align="left">Type 10001.</td>
+        <td align="left">Type 10001.</td>
+      </tr>
+      <tr>
+        <td align="left">10002</td>
+        <td align="left">Implicit C block. Obsolete.</td>
+        <td align="left">Type 10002.</td>
+        <td align="left">Type 10002.</td>
+      </tr>
+      <tr>
+        <td align="left">10004</td>
+        <td align="left">Implicit C block. In use.</td>
+        <td align="left">Type 10004.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">10005</td>
+        <td align="left">Implicit Scilab block. In use.</td>
+        <td align="left">Type 10005.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">30004</td>
+        <td align="left">Generic Modelica block. Dynamically linked. In use.</td>
+        <td align="left">Type 10004.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+      <tr>
+        <td align="left">99</td>
+        <td align="left">Debug block.</td>
+        <td align="left">Type 5.</td>
+        <td align="left">Type 4.</td>
+      </tr>
+    </informaltable>
+    <para>
+Note that even if type 0, 1 and 2  are obsolete, they are still supported
+in Scicos; some blocks in the standard palettes of Scicos are still of
+these types. Block type 3 is still used by scifunc block (Scilab
+block) but users should prefer the type 5 when constructing a
+computational function in Scilab because it takes full advantage of new data
+structures. In fact it has all the the functionalities implemented for
+block type 4. 
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 0</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u,nu,y,ny)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 1</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u1,nu1,u2,nu2,...,y1,ny1,y2,ny2,...)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 10001 (type 1 implicit)</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u1,nu1,u2,nu2,...,y1,ny1,y2,ny2,...)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 2</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 2 (zero crossing)</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout,g,ng)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 10002 (type 2 implicit)</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 10002 (type 2 implicit with zero crossing)</emphasis>
+        </para>
+        <para> void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout,g,ng)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 3</emphasis>
+        </para>
+        <para> [x,y,z,tvec,xd]=myfun(flag,nevprt,t,x,z,rpar,ipar,u)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 4</emphasis>
+        </para>
+        <para> void myfun(scicos_block *block,int flag)</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Calling sequence of computational function type 5</emphasis>
+        </para>
+        <para> [block]=myfun(block,flag)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_block_type">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

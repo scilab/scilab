@@ -14,17 +14,25 @@ package org.scilab.modules.xcos.link.implicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
 
-
+/**
+ * An implicit link connect an {@link ImplicitOutputPort} to an
+ * {@link ImplicitInputPort}.
+ */
 public class ImplicitLink extends BasicLink {
     
+    private static final long serialVersionUID = 1006434636942664464L;
+	// 1 means red color
+	// 2 means implicit link
+	private static final double[][] COLOR_AND_TYPE = {{1.0, 2.0}};
+    
+    
+    /** Default constructor */
     public ImplicitLink() {
 	super("ImplicitLink");
     }
     
+    /** @return A red colored implicit link identifier */
     public double[][] getColorAndType() {
-	// 1 means red color
-	// 2 means implicit link
-	double[][] result = {{1.0, 2.0}};
-	return result;
+	return COLOR_AND_TYPE;
     }
 }

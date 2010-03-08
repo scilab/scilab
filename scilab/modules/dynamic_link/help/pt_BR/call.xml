@@ -195,13 +195,13 @@
 
     <programlisting role="example"><![CDATA[ 
 //Exemplo 1 com um código C simples
-f1=['#include &lt;math.h&gt;'
+f1=['#include <math.h>;'
     'void fooc(c,a,b,m,n)'
     'double a[],*b,c[];'
     'int *m,*n;'
     '{'
     '   int i;'
-    '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+    '   for ( i =0 ; i < (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
@@ -210,7 +210,7 @@ mputl(f1,'fooc.c')
 //criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
 //gerados.)  
 
-ilib_for_link('fooc','fooc.o',[],"c") 
+ilib_for_link('fooc','fooc.c',[],"c") 
 
 // carregando a biblioteca compartilhada  
 
@@ -242,7 +242,7 @@ mputl(f1,'foof.f')
 //criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
 //gerados.)  
 
-ilib_for_link('foof','foof.o',[],"f") 
+ilib_for_link('foof','foof.f',[],"f") 
 
 // carrega a biblioteca compartilhada 
 

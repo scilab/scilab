@@ -14,86 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-msgid "&File"
-msgstr "&Datei"
-
-msgid "&Tools"
-msgstr "&Zusatzprogramme"
-
-msgid "&Edit"
-msgstr "&Editieren"
-
-msgid "&?"
-msgstr "&?"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl an Ausgangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
-
-#, c-format
-msgid "%s: Slave interpreter already exists.\n"
-msgstr "%s: untergeordneter Interpreter existiert bereits.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: reell-wertige- oder "
-"Zeichenketten_matrix erwartet.\n"
-
-#, c-format
-msgid "%s: No such slave interpreter.\n"
-msgstr "%s: kein derartiger untergeordneter Interpreter vorhanden.\n"
-
-msgid "Updating, please wait"
-msgstr "Aktualisiere, bitte warten"
-
-#, c-format
-msgid "Error %s while loading library %s"
-msgstr "Fehler %s während des Ladens der Bibiliothek %s"
-
-msgid "Tcl/Tk interface not loaded."
-msgstr "Tcl/Tk Schnittstelle nicht geladen."
-
-msgid "Open"
-msgstr "Offen"
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-"Warnung: Problem(e) mit Tcl/TK Schnittstelle. Schnittstelle nicht "
-"aktiviert.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "Tcl/TK Schnittstelle im Modus -nogui deaktiviert.\n"
-
-#, c-format
-msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Fehler; TCL Hauptinterpreter nicht initialisiert.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
-
-#, c-format
-msgid "%s: File %s not found.\n"
-msgstr "%s: Datei %s nicht gefunden.\n"
+msgid " Flushing starts for queued commands.\n"
+msgstr " Rückschreiben startet für Kommandos in der Warteschlange.\n"
 
 #, c-format
 msgid ""
@@ -104,6 +29,74 @@ msgstr ""
 "\t %s.\n"
 
 #, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+#, c-format
+msgid "%s: Could not read Tcl Variable.\n"
+msgstr "%s: kann Tcl Variable nicht lesen.\n"
+
+#, c-format
+msgid "%s: Error TCL interpreter not initialized.\n"
+msgstr "%s: Fehler; TCL Interpreter nicht initialisert.\n"
+
+#, c-format
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr "%s: Fehler; TCL Hauptinterpreter nicht initialisiert.\n"
+
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr "%s: Datei %s nicht gefunden.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher verfügbar\n"
+
+#, c-format
+msgid "%s: No such slave interpreter.\n"
+msgstr "%s: kein derartiger untergeordneter Interpreter vorhanden.\n"
+
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr "%s: untergeordneter Interpreter existiert bereits.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+"%s: falsche Anzahl an Eingangsargumenten: mindestene eine erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl an Ausgangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d oder #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: Matrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
@@ -112,12 +105,20 @@ msgstr ""
 "Zeichenketten erwartet.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: kein weiterer Speicher verfügbar\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
 
-#, c-format
-msgid "%s: Could not read Tcl Variable.\n"
-msgstr "%s: kann Tcl Variable nicht lesen.\n"
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editieren"
+
+msgid "&File"
+msgstr "&Datei"
+
+msgid "&Tools"
+msgstr "&Zusatzprogramme"
 
 msgid "Alpha Release"
 msgstr "Alpha Veröffentlichung"
@@ -125,34 +126,35 @@ msgstr "Alpha Veröffentlichung"
 msgid "Beta Release"
 msgstr "Beta Veröffentlichung"
 
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr "Fehler %s während des Ladens der Bibiliothek %s"
+
+#, c-format
+msgid "Execution ends for %s"
+msgstr "Ausführen endet für %s"
+
+#, c-format
+msgid "Execution starts for %s"
+msgstr "Ausführen für %s startet nicht"
+
 msgid "Final Release"
 msgstr "finale Veröffentlichung"
 
-msgid "Unknown Release"
-msgstr "unbekannte Veröffentlichung"
+#, c-format
+msgid "Flushed execution ends for %s"
+msgstr "Durchführen des Rückschreibens endet für %s"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
-
-msgid "This function doesn't work with Complex.\n"
-msgstr "Diese Funktion arbeitet mit komplexen Zahlen nicht.\n"
-
-msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr "[] funktioniert mit Tcl/Tk nicht.\n"
+msgid "Flushed execution starts for %s - No option"
+msgstr "Durchführen des Rückschreibens startet für %s - keine Option"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: Matrix erwartet.\n"
+msgid "Flushed execution starts for %s - seq"
+msgstr "Durchführen des Rückschreibens startet für %s - sequentiell"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d oder #%d: Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+msgid "Flushing ends\n"
+msgstr "Rückschreiben endet\n"
 
 msgid "Impossible to set environment variable."
 msgstr "Es ist unmöglich die Umgebungsvariable zu setzen."
@@ -160,48 +162,20 @@ msgstr "Es ist unmöglich die Umgebungsvariable zu setzen."
 msgid "Impossible to set system encoding."
 msgstr "Unmöglich die System Encodierung zu setzen."
 
-msgid ""
-"The SCI environment variable is not set.\n"
-"TCL initialisation failed !\n"
-msgstr ""
-"Die SCI Umgebungsvariable ist nicht gesetzt.\n"
-"TCL Initialisierung fehlgeschlagen!\n"
-
-msgid ""
-"Unable to find Tcl initialisation scripts.\n"
-"Check your SCI environment variable.\n"
-"Tcl initialisation failed !"
-msgstr ""
-"Kann die Tcl Initialisierungs-Skripts nicht finden.\n"
-"Überprüfen Sie die SCI Umgebungsvariable.\n"
-"Tcl Initialisierung fehlgeschlagen!"
-
-msgid ""
-"The SCI environment variable is not set.\n"
-"Tcl initialisation failed !\n"
-msgstr ""
-"Die SCI Umgebungsvariable ist nicht gesetzt.\n"
-"Tcl Initialisierung fehlgeschlagen!\n"
-
-msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Tcl Fehler: kann Tcl Interpreter nicht erzeugen (Tcl_CreateInterp).\n"
+msgid "Scilab TCL/TK module not installed.\n"
+msgstr "Scilab TCL/TK Modul nicht installiert.\n"
 
 #, c-format
-msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr "Tcl Fehler: Fehler während der Tcl Initialisierung (Tcl_Init):%s\n"
+msgid "TCL_EvalScilabCmd %s"
+msgstr "TCL_EvalScilabCmd %s"
 
 #, c-format
-msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
-msgstr "Tcl Fehler: Fehler während der Initialisierung (Tk_Init): %s\n"
+msgid "Tcl Error : %s\n"
+msgstr "Tcl Fehler: %s\n"
 
 #, c-format
-msgid ""
-"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
-"%s\n"
-msgstr ""
-"Tcl Fehler: Fehler beim Scilab/Tcl Initialisierungsprozess. Kann SciPath "
-"nicht setzen: %s\n"
+msgid "Tcl Error: %s\n"
+msgstr "Tcl Fehler: %s\n"
 
 #, c-format
 msgid ""
@@ -212,57 +186,73 @@ msgstr ""
 "beim Laden %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
-
-#, c-format
-msgid "Execution starts for %s"
-msgstr "Ausführen für %s startet nicht"
-
-#, c-format
-msgid "Execution ends for %s"
-msgstr "Ausführen endet für %s"
-
-msgid " Flushing starts for queued commands.\n"
-msgstr " Rückschreiben startet für Kommandos in der Warteschlange.\n"
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Warnung: zu viele Rückrufe in der Warteschlange!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "Durchführen des Rückschreibens startet für %s - keine Option"
-
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "Durchführen des Rückschreibens startet für %s - sequentiell"
-
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr "Durchführen des Rückschreibens endet für %s"
-
-msgid "Flushing ends\n"
-msgstr "Rückschreiben endet\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgid ""
+"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
+"%s\n"
 msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: mindestene eine erwartet.\n"
+"Tcl Fehler: Fehler beim Scilab/Tcl Initialisierungsprozess. Kann SciPath "
+"nicht setzen: %s\n"
 
 #, c-format
-msgid "Tcl Error : %s\n"
-msgstr "Tcl Fehler: %s\n"
+msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
+msgstr "Tcl Fehler: Fehler während der Initialisierung (Tk_Init): %s\n"
 
 #, c-format
-msgid "Tcl Error: %s\n"
-msgstr "Tcl Fehler: %s\n"
+msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
+msgstr "Tcl Fehler: Fehler während der Tcl Initialisierung (Tcl_Init):%s\n"
+
+msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
+msgstr ""
+"Tcl Fehler: kann Tcl Interpreter nicht erzeugen (Tcl_CreateInterp).\n"
+
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr "Tcl/TK Schnittstelle im Modus -nogui deaktiviert.\n"
+
+msgid "Tcl/Tk interface not loaded."
+msgstr "Tcl/Tk Schnittstelle nicht geladen."
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"TCL initialisation failed !\n"
+msgstr ""
+"Die SCI Umgebungsvariable ist nicht gesetzt.\n"
+"TCL Initialisierung fehlgeschlagen!\n"
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"Tcl initialisation failed !\n"
+msgstr ""
+"Die SCI Umgebungsvariable ist nicht gesetzt.\n"
+"Tcl Initialisierung fehlgeschlagen!\n"
+
+msgid "This function doesn't work with Complex.\n"
+msgstr "Diese Funktion arbeitet mit komplexen Zahlen nicht.\n"
+
+msgid ""
+"Unable to find Tcl initialisation scripts.\n"
+"Check your SCI environment variable.\n"
+"Tcl initialisation failed !"
+msgstr ""
+"Kann die Tcl Initialisierungs-Skripts nicht finden.\n"
+"Überprüfen Sie die SCI Umgebungsvariable.\n"
+"Tcl Initialisierung fehlgeschlagen!"
+
+msgid "Unknown Release"
+msgstr "unbekannte Veröffentlichung"
+
+msgid "Updating, please wait"
+msgstr "Aktualisiere, bitte warten"
 
 msgid "Variable too long.\n"
 msgstr "Variabel zu lang.\n"
 
-#, c-format
-msgid "%s: Error TCL interpreter not initialized.\n"
-msgstr "%s: Fehler; TCL Interpreter nicht initialisert.\n"
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr ""
+"Warnung: Problem(e) mit Tcl/TK Schnittstelle. Schnittstelle nicht "
+"aktiviert.\n"
 
-msgid "Scilab TCL/TK module not installed.\n"
-msgstr "Scilab TCL/TK Modul nicht installiert.\n"
+msgid "Warning: Too many callbacks in queue!\n"
+msgstr "Warnung: zu viele Rückrufe in der Warteschlange!\n"
+
+msgid "[] doesn't work with Tcl/Tk.\n"
+msgstr "[] funktioniert mit Tcl/Tk nicht.\n"

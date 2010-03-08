@@ -199,16 +199,7 @@ of methods:
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/qzrnd.f</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/qztrn.f</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/qzflr.f</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/qzcel.f</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/qzrnd.f (Type 0)</para>
       </listitem>
     </itemizedlist>
   </refsection>

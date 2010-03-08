@@ -30,7 +30,7 @@ else
 	SCI_LIB     = strsubst(SCI,"/share\/scilab$/","lib/scilab"     ,"r");
 	SCI_INCLUDE = strsubst(SCI,"/share\/scilab$/","include/scilab" ,"r");
 	libs        = SCI_LIB + "/libscicompletion";
-	cflags      = "-I " + SCI_INCLUDE +"/completion -I " + SCI_INCLUDE + "/localization";
+	cflags      = "-I " + SCI_INCLUDE
 end
 
 // name known in scilab , C function called

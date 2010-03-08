@@ -49,6 +49,14 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   if rhs <= 8 then ismex  = %f; end 
   if rhs <= 9 then cc  = ''; end 
   
+  if MSDOS then
+    if isdef('makename') then
+      if (makename == []) | (makename == '') then
+        makename = 'makelib';
+      end
+    end
+  end
+  
   // check if library is not already loaded
   if or(link() == ilib_name) then
     error(999,msprintf(_('%s: ''%s'' already loaded in scilab.'),'ilib_build',ilib_name) + ..

@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 1469 -->
 //
 // <-- Bugzilla URL -->
@@ -238,10 +241,10 @@ t=['function foo,//ZZZZ'
 'endfunction'];
 mputl(t,TMPDIR+'/foo.sci');
 warning('off');
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 warning('on');
 L=macr2lst(foo); //getf ignores declaration line comments
-R21=L(4)(1)=='15'&L(5)(1)=='6'&size(L)==10
+R21=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==11
 if ~R21 then pause,end
 clear foo;
 

@@ -38,7 +38,7 @@ case 'set' then
   while %t do
     [ok,junction_name,funtyp,in,it,out,ot,ci,co,xx,z,oz,...
      rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=..
-        getvalue('Set GENERIC block parameters',..
+        scicos_getvalue('Set GENERIC block parameters',..
         ['Simulation function';
          'Function type (0,1,2,..)';
          'Input ports sizes';

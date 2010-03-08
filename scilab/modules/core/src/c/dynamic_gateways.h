@@ -13,6 +13,14 @@
 #define __DYNAMIC_GATEWAYS_H__
 
 /**
+* pvm gateway
+* pvm is loaded dynamically at runtime
+* load gw_pvm in SCI/modules/pvm/sci_gateway/gw_pvm.c
+*/
+int gw_dynamic_pvm(void);
+
+
+/**
 * xcos gateway
 * xcos is loaded dynamically at runtime
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
@@ -121,13 +129,6 @@ int gw_dynamic_randlib(void);
 int gw_dynamic_arnoldi(void);
 
 /**
-* metanet gateway
-* metanet is loaded dynamically at runtime
-* load gw_metanet in SCI/modules/metanet/sci_gateway/gw_metanet.c
-*/
-int gw_dynamic_metanet(void);
-
-/**
 * symbolic gateway
 * symbolic is loaded dynamically at runtime
 * load gw_symbolic in SCI/modules/symbolic/sci_gateway/gw_symbolic.c
@@ -137,9 +138,16 @@ int gw_dynamic_symbolic(void);
 /**
 * hdf5 gateway
 * hdf5 is loaded dynamically at runtime
-* load gw_symbolic in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
+* load gw_hdf5 in SCI/modules/hdf5/sci_gateway/gw_hdf5.c
 */
 int gw_dynamic_hdf5(void);
+
+/**
+* graphic_export gateway
+* graphic_export is loaded dynamically at runtime
+* load gw_graphic_export in SCI/modules/graphic_export/sci_gateway/gw_graphic_export.c
+*/
+int gw_dynamic_graphic_export(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

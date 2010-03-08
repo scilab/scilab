@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // gsort called with a complex array
-
+warning("off");
 c = [1 2 3]+%i;
 v = gsort(c);
 ref_v = [ 3. + %i      2. + %i      1. + %i  ];
@@ -66,7 +66,7 @@ if or(ref_values <> values_4) then pause,end
 if or(ref_indices <> indices_4) then pause,end
 
 [values_gsort,indices_gsort] = gsort(c);
-[values_sort,indices_sort] = sort(c);
+[values_sort,indices_sort] = gsort(c);
 if or(values_gsort <> values_sort) then pause,end
 if or(indices_gsort <> indices_sort) then pause,end
 

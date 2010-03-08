@@ -34,7 +34,7 @@
         <term>url</term>
         <listitem>
           <para>
-						Matrix of strings : list of the URLs to remove
+						character string matrix: list of the URLs to remove
 					</para>
         </listitem>
       </varlistentry>

@@ -29,7 +29,7 @@
       <varlistentry>
         <term>sl</term>
         <listitem>
-          <para>: <literal>syslin</literal> list representing the linear system (state-space).</para>
+          <para> <literal>syslin</literal> list representing the linear system (state-space).</para>
         </listitem>
       </varlistentry>
       <varlistentry>

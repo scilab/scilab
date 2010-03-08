@@ -25,16 +25,14 @@ nm = nmplot_configure(nm,"-maxfunevals",400);
 nm = nmplot_configure(nm,"-tolxmethod",%f);
 nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
 nm = nmplot_configure(nm,"-simplex0method","spendley");
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-//nm = nmplot_configure(nm,"-verbosetermination",0);
 //
 // Perform optimization
 //
-mprintf("Searching for minimum...\n");
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor

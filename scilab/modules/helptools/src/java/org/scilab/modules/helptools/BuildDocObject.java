@@ -48,6 +48,8 @@ public class BuildDocObject extends StyleSheet {
 	private static final String GRAPHICSIZE_EXTENSION_0 = "graphicsize.extension=0";
 	private static final String TOC_SECTION_DEPTH_3 = "toc.section.depth=3";
 	private static final String SECTION_AUTOLABEL_1 = "section.autolabel=1";
+	private static final String USE_ID_AS_FILENAME = "use.id.as.filename=1";
+	private static final String GENERATE_TOC = "\"generate.toc= \"";
 	
 	private String outputDirectory;
 	private String format;
@@ -55,6 +57,7 @@ public class BuildDocObject extends StyleSheet {
 	private String docbookPath;
 	private String styleDoc;
 	private ArrayList<String> specificArgs = new ArrayList<String>();
+	private boolean isLatexConverted = true;
 
     /**
      * Creator ... creates the BuildDocObject object
@@ -103,8 +106,6 @@ public class BuildDocObject extends StyleSheet {
 		return true;
 	}
 
-
-
     /**
      * Defines the language
      *
@@ -117,10 +118,10 @@ public class BuildDocObject extends StyleSheet {
 	
     /**
      * Defines the export format
-     *
      * @param format the format (among the list CHM, HTML, PDF, JH, PS)
 	 */
 	public void setExportFormat(String format) {
+
 		// Need to work with a String instead of a enum since it needs
 		// to be called from C/C++ and GIWS doesn't manage this type.
 		// Can be CHM, HTML, PDF, JavaHelp, Postscript
@@ -135,12 +136,12 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add("shade.verbatim=1");
 			specificArgs.add("img.src.path=" + outputDirectory);
 			this.styleDoc = docbookPath + "/fo/docbook.xsl";
-
+			this.isLatexConverted = false;
 		} 
 
 		/* HTML Format */
 		if (format.equalsIgnoreCase("HTML")) {
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(USE_ID_AS_FILENAME);
 			specificArgs.add("html.stylesheet=html.css");
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
@@ -149,33 +150,37 @@ public class BuildDocObject extends StyleSheet {
 			this.styleDoc = docbookPath + "/html/chunk.xsl";
 
 			/* Copy the css file for thr HTML pages */
-			String cssFile=new String(SCI+"/modules/helptools/css/html.css");
+			String cssFile = new String(SCI + "/modules/helptools/css/html.css");
 			try {
-				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/html.css"));
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory + "/html.css"));
 			} catch (java.io.FileNotFoundException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			} catch (java.io.IOException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			}
 		}
 		
         /* CHM Format */
 		if (format.equalsIgnoreCase("CHM")) {
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(USE_ID_AS_FILENAME);
 			specificArgs.add("html.stylesheet=htmlhelp.css");
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
-			specificArgs.add("\"generate.toc= \"");
+			specificArgs.add(GENERATE_TOC);
 			this.styleDoc = docbookPath + "/htmlhelp/htmlhelp.xsl";
 
 			/* Copy the css file for thr HTML pages */
-			String cssFile=new String(SCI+"/modules/helptools/css/htmlhelp.css");
+			String cssFile = new String(SCI + "/modules/helptools/css/htmlhelp.css");
 			try {
-				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/htmlhelp.css"));
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory + "/htmlhelp.css"));
 			} catch (java.io.FileNotFoundException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			} catch (java.io.IOException e) {
-				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO 
+						+ outputDirectory + COLON + e.getMessage());			
 			}
 		}
 		
@@ -185,8 +190,8 @@ public class BuildDocObject extends StyleSheet {
 			// JavaHelp
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
-			specificArgs.add("\"generate.toc= \"");
-			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add(GENERATE_TOC);
+			specificArgs.add(USE_ID_AS_FILENAME);
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
 		this.format = format;
@@ -219,16 +224,17 @@ public class BuildDocObject extends StyleSheet {
         CopyConvert copyConvert = new CopyConvert();
         copyConvert.setVerbose(true);
         copyConvert.setPrintFormat(this.format);
-		
+		copyConvert.setLatexConverted(isLatexConverted);
+	
         try {
             copyConvert.run(new File(masterXML), masterXMLTransformed);
         } catch (SAXParseException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
 					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
-            System.err.println("Line: "+e.getLineNumber());
+            System.err.println("Line: " + e.getLineNumber());
 			System.err.println("Column: " + e.getColumnNumber());
-			System.err.println("Public ID: "+e.getPublicId());
-			System.err.println("System Id: "+ e.getSystemId());
+			System.err.println("Public ID: " + e.getPublicId());
+			System.err.println("System Id: " + e.getSystemId());
             return null;
         } catch (SAXException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
@@ -240,7 +246,9 @@ public class BuildDocObject extends StyleSheet {
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
             return null;
         }
+
 		return masterXMLTransformed.getAbsolutePath();
+
 	}
 
     /**
@@ -258,6 +266,31 @@ public class BuildDocObject extends StyleSheet {
 		return this.outputDirectory;
 	}
 
+/**
+ * Preprocess the extendedStyle.xsl file
+ * Basically, we load the xsl and replace STYLE_DOC by the actual path
+ * to the xsl file since docbook cannot replace env variables
+ * @return the path to the preprocessed file
+ */
+
+	private File generateExtendedStyle() {
+		String mainStyleDoc = SCI + "/modules/helptools/schema/extendedStyle.xsl";
+		try {
+			String contentMainStyleDoc = Helpers.loadString(new File(mainStyleDoc), "UTF-8");
+
+			/* STYLE_DOC is a predefined variable */
+			File tmpFileForURI = new File(this.styleDoc);
+			contentMainStyleDoc = contentMainStyleDoc.replaceAll("STYLE_DOC", tmpFileForURI.toURI().toString());
+
+			File temporaryStyleFile = File.createTempFile("style_",".xsl");
+
+			Helpers.saveString(contentMainStyleDoc, temporaryStyleFile, "UTF-8");
+			return temporaryStyleFile;
+		} catch (java.io.IOException e) {
+			System.err.println("Could not convert "+mainStyleDoc);
+			return null;
+		}
+	}
 
     /**
      * Launch the whole Saxon process 
@@ -282,6 +315,13 @@ public class BuildDocObject extends StyleSheet {
 			throw new FileNotFoundException(COULD_NOT_FIND_STYLE_DOC + this.styleDoc);
 		}
 
+		String path = styleDoc;
+		File processedStyle = null;
+		if (!isLatexConverted) {
+		    processedStyle = generateExtendedStyle();
+		    path = processedStyle.getAbsolutePath();
+		}
+
 		if (!new File(this.outputDirectory).isDirectory()) {
 			throw new FileNotFoundException("Could not find directory: " + this.outputDirectory);
 		}
@@ -299,7 +339,7 @@ public class BuildDocObject extends StyleSheet {
 		}
 		//args.add("-t");
 		args.add(sourceDocProcessed);
-		args.add(this.styleDoc);
+		args.add(path);
 		args.add("base.dir=" + this.outputDirectory);
 		args.add("html.stylesheet=" + new File(styleSheet).getName());
 		args.addAll(specificArgs);
@@ -313,6 +353,10 @@ public class BuildDocObject extends StyleSheet {
 		if (new File(sourceDocProcessed).isDirectory()) {
 			/* Delete the master temp file to avoid to be shipped with the rest */
 			new File(sourceDocProcessed).delete();
+		}
+		
+		if (processedStyle != null) {
+		    processedStyle.delete();
 		}
 
 		return this.postProcess();
@@ -330,8 +374,8 @@ public class BuildDocObject extends StyleSheet {
 			d.setOutputDirectory("/tmp/");
 			d.setExportFormat(JH_FORMAT);
 			d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-			d.process(SCI+"/modules/helptools/master_en_US_help.xml",
-					SCI+"/modules/helptools/css/javahelp.css");
+			d.process(SCI + "/modules/helptools/master_en_US_help.xml",
+					SCI + "/modules/helptools/css/javahelp.css");
 		} catch (FileNotFoundException e) {
 			System.err.println("Exception catched: " + e.getMessage());
 		}

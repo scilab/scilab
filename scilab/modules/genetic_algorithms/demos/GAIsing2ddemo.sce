@@ -59,6 +59,8 @@ ga_params = add_param(ga_params,'pressure',pressure);
 // Genetic Algorithm //
 ///////////////////////
 
+printf(gettext("%s: optimization starting, please wait ...\n"),"GAIsing");
+
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 printf('Genetic Algorithm: %d points from pop_opt\n', nb_disp);

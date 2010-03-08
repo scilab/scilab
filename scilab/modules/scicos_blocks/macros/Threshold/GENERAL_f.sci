@@ -37,7 +37,7 @@ case 'set' then
   in=model.in;out=model.evtout
   nin=sum(in)
   nout=sum(out)
-    [ok,in,out,exprs]=getvalue('Set General Zero-Crossing parameters',..
+    [ok,in,out,exprs]=scicos_getvalue('Set General Zero-Crossing parameters',..
       ['Input size';
        'Number of event output'],..
       list('vec',1,'vec',1),exprs)

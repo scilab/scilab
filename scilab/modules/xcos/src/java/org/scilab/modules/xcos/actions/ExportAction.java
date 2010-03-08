@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,44 +15,57 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabGraphRenderer;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Document;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
-import com.mxgraph.view.mxGraph;
 
 /**
  * Diagram export management
- * @author Vincent COUVERT
- *
  */
 public final class ExportAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
-
+	/** Name of the action */
+	public static final String NAME = XcosMessages.EXPORT;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = KeyEvent.VK_E;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+	
 	/**
 	 * Constructor
 	 * @param scilabGraph associated Scilab Graph
 	 */
-	private ExportAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.EXPORT, scilabGraph);
+	public ExportAction(ScilabGraph scilabGraph) {
+		super(scilabGraph);
 	}
 
 	/**
@@ -60,54 +74,50 @@ public final class ExportAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.EXPORT, null, new ExportAction(scilabGraph),
-				KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		return createMenu(scilabGraph, ExportAction.class);
 	}
 
 	/**
-	 * Action !
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 
-		mxGraph graph = getGraph(null);
-		mxGraphComponent graphComponent = getGraph(null).getAsComponent();
+	    XcosDiagram graph = (XcosDiagram) getGraph(null);
+		mxGraphComponent graphComponent = graph.getAsComponent();
 		String filename = null;
 
 		FileChooser fc = ScilabFileChooser.createFileChooser();
 		
 		// Adds a filter for each supported image format
-		Object[] imageFormats = ImageIO.getReaderFormatNames();
+		Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFormatNames());
 
-		// Finds all distinct extensions
-		HashSet formats = new HashSet();
+		// The mask and mask description ordered collection
+		Set<String> mask = new TreeSet<String>();
+		Set<String> maskDesc = new TreeSet<String>();
 
-		for (int i = 0; i < imageFormats.length; i++) {
-			String ext = imageFormats[i].toString().toLowerCase();
-			formats.add(ext);
-		}
+		/* FIXME : why hardcoded ? */
+		mask.add(".svg");
+		mask.add(".html");
+		mask.add(".vml");
 
-		imageFormats = formats.toArray();
-
-		String[] mask = new String[imageFormats.length + 3];
-		mask[0] = ".svg";
-		mask[1] = ".html";
-		mask[2] = ".vml";
-		String[] maskDesc = new String[imageFormats.length + 3];
-		maskDesc[0] = "SVG";
-		maskDesc[1] = "HTML";
-		maskDesc[1] = "VML";
+		maskDesc.add("SVG");
+		maskDesc.add("HTML");
+		maskDesc.add("VML");
 		
-		for (int i = 0; i < imageFormats.length; i++) {
-			String ext = imageFormats[i].toString();
-			mask[3 + i] = "." + ext;
-			maskDesc[3 + i] =  ext.toUpperCase();
+		// Add all distinct extensions
+		for (String string : imageFormats) {
+		    String ext = string.toLowerCase();
+		    mask.add("." + ext);
+		    maskDesc.add(ext.toUpperCase());
 		}
 
 		// Adds filter that accepts all supported image formats
 		//fc.addChoosableFileFilter(new DefaultFileFilter.ImageFileFilter(mxResources.get("allImages")));
-		
-		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask , maskDesc);
+				
+		((SwingScilabFileChooser) fc.getAsSimpleFileChooser()).addMask(mask.toArray(new String[mask.size()]) , 
+			maskDesc.toArray(new String[maskDesc.size()]));
 		fc.setTitle(XcosMessages.EXPORT);
 		fc.displayAndWait();
 		
@@ -118,8 +128,8 @@ public final class ExportAction extends DefaultAction {
 		filename = fc.getSelection()[0];
 
 		if (new File(filename).exists()
-				&& JOptionPane.showConfirmDialog(graphComponent,
-						XcosMessages.OVERWRITE_EXISTING_FILE) != JOptionPane.YES_OPTION) {
+			&& ScilabModalDialog.show(graph.getParentTab(), XcosMessages.OVERWRITE_EXISTING_FILE, XcosMessages.XCOS,
+				IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 			return;
 		}
 
@@ -127,20 +137,23 @@ public final class ExportAction extends DefaultAction {
 			String extension = filename.substring(filename.lastIndexOf('.') + 1);
 
 			if (extension.equalsIgnoreCase("svg")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createSvgDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null, filename);
 			} else if (extension.equalsIgnoreCase("vml")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createVmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
+			    if (doc != null) {
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
+			    }
 			} else if (extension.equalsIgnoreCase("html")) {
-				mxUtils.writeFile(mxUtils.getXml(
-						mxCellRenderer.createHtmlDocument(graph, null, 1, null, null).getDocumentElement()), filename);
+			    Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
+			    if (doc != null) {
+				mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename);
+			    }
 			} else 	{
 				Color bg = null;
 
 				if ((!extension.equalsIgnoreCase("gif") && !extension.equalsIgnoreCase("png"))
-						|| JOptionPane.showConfirmDialog(graphComponent, 
-								XcosMessages.TRANSPARENT_BACKGROUND) != JOptionPane.YES_OPTION) {
+					|| ScilabModalDialog.show(graph.getParentTab(), XcosMessages.TRANSPARENT_BACKGROUND, XcosMessages.XCOS, 
+						IconType.QUESTION_ICON, ButtonType.YES_NO) != AnswerOption.YES_OPTION) {
 					bg = graphComponent.getBackground();
 				}
 

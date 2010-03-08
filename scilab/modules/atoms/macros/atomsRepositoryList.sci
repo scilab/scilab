@@ -100,4 +100,19 @@ function repositories = atomsRepositoryList(section)
 		end
 	end
 	
+	// Filter
+	// =========================================================================
+	if atomsGetConfig("offLine") == "True" then
+		
+		repositories_in = repositories;
+		repositories    = [];
+		
+		for i=1:size(repositories_in(:,1),"*")
+			if regexp(repositories_in(i,1),"/^(http|ftp):\/\//","o") <> 1 then
+				repositories = [ repositories ; repositories_in(i,:) ];
+			end
+		end
+		
+	end
+	
 endfunction

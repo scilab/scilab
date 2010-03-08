@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="edit_error">
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="en" 
+	  xml:id="edit_error">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+  
   <refnamediv>
     <refname>edit_error</refname>
     <refpurpose> opens in scilab editor the source of the last recorded error</refpurpose>
   </refnamediv>
+  
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>answ = edit_error(clearerror)</synopsis>
   </refsynopsisdiv>
+  
   <refsection>
     <title>Parameters</title>
     <variablelist>
@@ -18,7 +28,7 @@
         <term>clearerror</term>
         <listitem>
           <para>boolean - if true the error condition is cleared, if false it is kept (as in
-          <link linkend="lasterror">lasterror</link>)
+            <link linkend="lasterror">lasterror</link>)
         </para>
         </listitem>
       </varlistentry>
@@ -31,6 +41,7 @@
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
     <para>
@@ -40,7 +51,7 @@
     <para>
        This function works only for functions which are defined in libraries, i.e.
        not for internal functions, nor with functions defined online, nor loaded with
-       individual <link linkend="getf">getf</link> or <link linkend="getd">getd</link>. This is since Scilab presently
+       individual <link linkend="exec">exec</link> or <link linkend="getd">getd</link>. This is since Scilab presently
        retains only the path to libraries and not to individual function sources.
       </para>
     <para>
@@ -48,6 +59,7 @@
        is tacitly assumed.
       </para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
@@ -55,6 +67,7 @@ acosh abc
 edit_error
  ]]></programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
@@ -66,7 +79,8 @@ edit_error
       </member>
     </simplelist>
   </refsection>
-    <refsection>
+  
+  <refsection>
     <title>Authors</title>
     <simplelist type="vert">
       <member>Enrico Segre</member>

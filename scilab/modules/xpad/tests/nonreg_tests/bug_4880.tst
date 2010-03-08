@@ -21,3 +21,12 @@
 //  "Menu→Search→Find/Replace"
 //  Find : "^aa"
 //  => should hilight all the aa
+
+
+editor SCI/modules/atoms/macros/atomsSearch.sci
+// "Menu→Search→Find/Replace"
+// Find    : "atom(.)*earch"
+// Replace : "------"
+// Check the "Regular expressions" box
+// Click on Replace All
+

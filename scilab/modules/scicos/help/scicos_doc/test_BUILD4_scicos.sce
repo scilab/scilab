@@ -1407,14 +1407,14 @@ generate_xml_file(my_list,%gendoc);
 //import all data in xml/tex files
 //from data files
 if %already_import then
-  irr=message(["                       WARNING";
+  irr=messagebox(["                       WARNING";
                "";
                "You have already import data in xml/tex files by";
                "running this script.";
                "By importing data now, you can earase locally";
                "the modifications that probably you have just made !";
                ""
-               "        Do you really know what you are doing ?"],["yes","no"]);
+               "        Do you really know what you are doing ?"],"modal",["yes","no"]);
   if irr==1 then, import_data_to_file('all',%gendoc), end;
   clear irr;
 else

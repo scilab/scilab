@@ -44,6 +44,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
@@ -195,6 +196,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -407,10 +409,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_readmps.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_sfinit.c"
 				>
 			</File>
@@ -535,6 +533,14 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
+		</Filter>
+		<Filter
+			Name="Resource File"
+			>
+			<File
+				RelativePath=".\sparse.rc"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

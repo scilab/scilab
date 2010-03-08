@@ -91,7 +91,8 @@ for MODULE in $MODULES; do
 # Extract label from xml files
 	process_XML_files
 	FILES=`eval $FILESCMD|tr "\n" " "`
-	if test "$MODULE" = "core"; then
+
+	if test "$MODULE" = "core" -o "$MODULE" = "./core"; then
 		# We want some strings from the ROOTDIR when it is the core module
 		FILES="$FILES `ls $SCI/etc/scilab.*`"
 	fi

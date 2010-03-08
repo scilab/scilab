@@ -21,8 +21,8 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 public class H5ReadScilabCommonList {
    public static void readData(int dataSetId, ArrayList scilabList) throws NullPointerException, HDF5Exception {
 	
-	long[] nbElems = H5Read.getAllDims(dataSetId); 
-	byte[][] data = new byte[(int) nbElems[0]][8];
+	int nbElems = H5Read.getListDim(dataSetId); 
+	byte[][] data = new byte[nbElems][8];
 
 	if (H5Read.isEmpty(dataSetId)) {
 	    return;
@@ -31,7 +31,7 @@ public class H5ReadScilabCommonList {
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL, HDF5Constants.H5P_DEFAULT, data);
 	
 	
-	for( int i = 0 ; i < (int) nbElems[0] ; ++i) {
+	for( int i = 0 ; i < nbElems ; ++i) {
 	    int objectId = H5.H5Rdereference(dataSetId, HDF5Constants.H5R_OBJECT, data[i]);
 	    Object localData = H5Read.getData(objectId);
 	    scilabList.add(localData);

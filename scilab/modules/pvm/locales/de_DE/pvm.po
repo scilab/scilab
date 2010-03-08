@@ -1,0 +1,203 @@
+# German translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-03-04 10:13+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: Fehler beim Erzeugen des Prozesses: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: keine solche Datei oder Verzeichnis.\n"
+
+#, c-format
+msgid "%s: Unknow type or not yet implemented\n"
+msgstr "%s: unbekannter Typ oder noch nicht implementiert\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr "%s: falsches erstes Eingangsargument: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: work space (stacksize) is too small d\n"
+msgstr "%s: Arbeistbereich (Stackgröße) ist zu klein d.\n"
+
+msgid "(group,instance) already exists"
+msgstr "(Gruppe, Instanz) existierte bereits"
+
+msgid "Already in group"
+msgstr "bereist in Gruppe"
+
+msgid "Already oing operation"
+msgstr "Bereist ausführende Operation"
+
+msgid "Bad message id"
+msgstr "Falsche ID der Nachricht"
+
+msgid "Bad parameter"
+msgstr "falscher Parameter"
+
+msgid "Barrier count mismatch"
+msgstr "Fehler beim Zählen der Grenze"
+
+msgid "Can not decode received msg"
+msgstr "kann eigende Nachricht nicht dekodieren"
+
+msgid "Can not get memory"
+msgstr "Kann Speicher nicht belegen"
+
+msgid "Daemon pvmd is not responding"
+msgstr "Hintergrundprozess pvmd reagiert nicht."
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Fehler MALLOC in pvm_error\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "Fehler pvm_halt- Signal\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Fehler beim pvm_reduce: kein Skalartyp.\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr "ehler beim pvm_reduce: unbekannte Reduktion Operation %s\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr "Fehler beim Ausführen des untergeodneten pvmd"
+
+msgid "Function not implemented"
+msgstr "Funktion nicht implementiert"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "Rechner bereits konfiguriert (doppelter Rechner)"
+
+msgid "Host failed"
+msgstr "Rechner fehlgeschlagen"
+
+msgid "No current buffer"
+msgstr "Kein aktueller Buffer"
+
+msgid "No group with that name"
+msgstr "keine Gruppe mit diesem Namen"
+
+msgid "No parent task"
+msgstr "kein übergeordneter Prozess"
+
+msgid "No such (group,instance)"
+msgstr "Kein derartige (Gruppe, Instanz)"
+
+msgid "No such executable"
+msgstr "kein derartige ausführbare Datei"
+
+msgid "No such host"
+msgstr "Kein solcher Rechner"
+
+msgid "No such instance in group"
+msgstr "Keine deratige Instanz in der Gruppe"
+
+msgid "No such task"
+msgstr "kein derartiger Prozess"
+
+msgid "Not in group"
+msgstr "Nicht in der Gruppe"
+
+msgid "Null group name is illegal"
+msgstr "Null Gruppenname illegal"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Out of ressources"
+msgstr "Keine weiteren Ressourcen"
+
+msgid "PVM exists"
+msgstr "PVM existiert"
+
+msgid "PVM not found"
+msgstr "PVM nicht gefunden"
+
+msgid "PVM parallel Toolbox"
+msgstr "PVM paralleles Werkzeug"
+
+msgid "Pvmd system error"
+msgstr "Pvmd System Fehler"
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Pvmd-pvmd Protokoll Fehler"
+
+msgid "Read past end of buffer"
+msgstr "Lese letztes Ende des Buffers"
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "Scilab PVM Modul nicht installiert.\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "Die Konfigurationsdatei %s wird verwendet.\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"Die Standartkonfigurationsdatei $SCI%s wird verwendet.\n"
+"Mit SCI=%s\n"
+"SCI wird auf entfernten Rechner eingestellt\n"
+"um Scliab zu starten\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+"Die Standart Konfigurationsdatei $SCI%s%s benötigt die Umgebungsvariablen "
+"%s, %s, %s gesetzt. PVM kann nicht gestartet werden.\n"
+
+msgid "Unknown Error"
+msgstr "unbekannter Fehler"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Warnung: PVM_ROOT ist nicht gesetzt.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Warnung: PVM_ROOT ist nach %s gesetzt.\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"Warnung: die Standartkonfigurationsdatei $SCI%s kann nicht gefunden werden.\n"
+"Wir nehmen an, daß PVM und Scilab sich in Ihrem Netzwerk an Standartplätzen "
+"befinden\n"
+" (Cf. man pvmd3)\n"
+
+msgid "but there exists no configuration file:\n"
+msgstr "es existiert keine Konfigurationsdatei:\n"

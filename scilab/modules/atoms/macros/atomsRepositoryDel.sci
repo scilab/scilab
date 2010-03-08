@@ -117,12 +117,12 @@ function nbDel = atomsRepositoryDel(url,section)
 		end
 	end
 	
-	// Delete the packages file (created by atomsGetTOOLBOXES) to force reload
+	// Delete the packages file (created by atomsDESCRIPTIONget) to force reload
 	// the different distant TOOLBOXES files
 	// =========================================================================
 	
 	if nbDel > 0 then
-		atomsGetTOOLBOXES(%T);
+		atomsDESCRIPTIONget(%T);
 	end
 	
 endfunction

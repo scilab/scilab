@@ -14,29 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
-# File: sci_gateway/c/sci_PlaySound.c, line: 81
 # File: sci_gateway/c/sci_beep.c, line: 92
+# File: sci_gateway/c/sci_PlaySound.c, line: 81
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
 #
-# File: macros/auwrite.sci, line: 72
-# File: macros/auwrite.sci, line: 88
-# File: macros/auwrite.sci, line: 125
-# File: macros/auwrite.sci, line: 143
-# File: macros/auwrite.sci, line: 147
 # File: macros/savewave.sci, line: 146
 # File: macros/savewave.sci, line: 185
-# File: macros/auread.sci, line: 65
-# File: macros/auread.sci, line: 107
-# File: macros/auread.sci, line: 110
-# File: macros/auread.sci, line: 113
-# File: macros/auread.sci, line: 121
-# File: macros/auread.sci, line: 177
-# File: macros/auread.sci, line: 209
-# File: macros/auread.sci, line: 214
 # File: macros/wavread.sci, line: 82
 # File: macros/wavread.sci, line: 87
 # File: macros/wavread.sci, line: 102
@@ -52,6 +39,19 @@ msgstr ""
 # File: macros/wavread.sci, line: 282
 # File: macros/wavread.sci, line: 286
 # File: macros/wavread.sci, line: 289
+# File: macros/auread.sci, line: 65
+# File: macros/auread.sci, line: 107
+# File: macros/auread.sci, line: 110
+# File: macros/auread.sci, line: 113
+# File: macros/auread.sci, line: 121
+# File: macros/auread.sci, line: 177
+# File: macros/auread.sci, line: 209
+# File: macros/auread.sci, line: 214
+# File: macros/auwrite.sci, line: 72
+# File: macros/auwrite.sci, line: 88
+# File: macros/auwrite.sci, line: 125
+# File: macros/auwrite.sci, line: 143
+# File: macros/auwrite.sci, line: 147
 # File: macros/sound.sci, line: 41
 # File: sci_gateway/c/sci_PlaySound.c, line: 110
 #, c-format
@@ -78,11 +78,11 @@ msgstr ""
 msgid "%s: Audio capabilities not available.\n"
 msgstr ""
 #
-# File: macros/auwrite.sci, line: 68
 # File: macros/savewave.sci, line: 242
-# File: macros/auread.sci, line: 43
 # File: macros/loadwave.sci, line: 32
 # File: macros/wavread.sci, line: 49
+# File: macros/auread.sci, line: 43
+# File: macros/auwrite.sci, line: 68
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
@@ -102,10 +102,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/auwrite.sci, line: 42
-# File: macros/auwrite.sci, line: 44
 # File: macros/wavwrite.sci, line: 20
 # File: macros/auread.sci, line: 34
+# File: macros/auwrite.sci, line: 42
+# File: macros/auwrite.sci, line: 44
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -126,28 +126,22 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
 # File: macros/playsnd.sci, line: 33
-# File: sci_gateway/c/sci_PlaySound.c, line: 74
 # File: sci_gateway/c/sci_beep.c, line: 85
+# File: sci_gateway/c/sci_PlaySound.c, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/playsnd.sci, line: 29
 # File: macros/savewave.sci, line: 228
 # File: macros/loadwave.sci, line: 27
-# File: sci_gateway/c/sci_PlaySound.c, line: 61
+# File: macros/playsnd.sci, line: 29
 # File: sci_gateway/c/sci_beep.c, line: 72
+# File: sci_gateway/c/sci_PlaySound.c, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
 # File: macros/wavread.sci, line: 60
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
-"vector of %d integers.\n"
-msgstr ""
-#
 # File: macros/wavread.sci, line: 75
 #, c-format
 msgid ""

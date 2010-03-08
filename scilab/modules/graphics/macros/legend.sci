@@ -22,6 +22,7 @@ options_codes=[1;2;3;
 	       -5;-6];
   f        = gcf();
   vis      = f.immediate_drawing;
+  vis_on   = vis == "on"; // current figure draw status (to decide if drawnow or standby)
   narg     = size(varargin);
   k0       = 1;
   H        = [];
@@ -50,7 +51,7 @@ options_codes=[1;2;3;
   for k=k0:size(varargin)
     if type(varargin(k))<>10 then break,end
     vk=varargin(k)
-    leg=[leg;vk(:)]
+    leg=[vk(:);leg]
   end
   nleg=size(leg,'*')
 
@@ -78,19 +79,25 @@ options_codes=[1;2;3;
   
   // the number of labels might be lower than the number of polylines
   nbLeg = min(size(H, '*'), size(leg, '*'));
-  H = H(1:nbLeg);
+  first_handle=size(H, '*')-nbLeg+1;
+  H = H(first_handle:size(H, '*'));
   leg = leg(1:nbLeg);
   
   
   drawlater()
   c=captions(H,leg)
+  if options_codes(kopt)<0 then
+    c.background=f.background
+  else
+    c.background=Acur.background
+  end
   if with_box then c.line_mode='on',else c.line_mode='off',end
   c.legend_location=options_names(kopt)
   if opt==5 then
     if pos<>[] then
       c.position=pos;
     else
-      drawnow()
+      if vis_on then drawnow(); end    // draw if figure status allows it (otherwise standbye)
       bnds=get(gca(),'axes_bounds');
       as=get(gcf(),'axes_size');
       while %t
@@ -104,7 +111,7 @@ options_codes=[1;2;3;
       end
     end
   end
-  drawnow()
+  if vis_on then drawnow(); end       // draw if figure status allows it (otherwise standbye)
 endfunction
 
 function h=getvalidchildren(A)
@@ -116,9 +123,9 @@ function h=getvalidchildren(A)
       h=[h;a]
      case 'Axes'
       ax=a.children
-      h=[h;getvalidchildren(ax($:-1:1))]
+      h=[h;getvalidchildren(ax)]
     case 'Compound'
-      for k=size(a.children,'*'):-1:1
+     for k=1:1:size(a.children,'*')
 	h=[h;getvalidchildren(a.children(k))]
 
       end

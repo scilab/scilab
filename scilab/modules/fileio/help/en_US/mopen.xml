@@ -181,7 +181,7 @@
         <term>a+ or a+b</term>
 
         <listitem>
-          <para>:Appends (opens a file for update, writing at the end of the
+          <para>Appends (opens a file for update, writing at the end of the
           file, or creates a file for writing).</para>
         </listitem>
       </varlistentry>
@@ -207,11 +207,66 @@
   </refsection>
 
   <refsection>
+    <programlisting role="example">// open a SCI+'/ACKNOWLEDGEMENTS' as text and read only
+fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
+
+// read five lines of fd_r
+mgetl(fd_r, 5)
+
+// another way to read file
+// here read five words
+mfscanf(5,fd_r,'%s')
+
+// close file descriptor associated to SCI+'/ACKNOWLEDGEMENTS' as text and read only
+mclose(fd_r);</programlisting>
+  </refsection>
+
+  <refsection>
+    <programlisting role="example">// open a file as text with write property
+fd_w = mopen(TMPDIR+'/write.txt','wt');
+
+// write a line in fd_w 
+mputl('This is a line of text', fwd_w);
+mclose(fd_w);
+
+// read text 
+fd_r2 = mopen(TMPDIR+'/write.txt','rt');
+mgetl(fd_r2) 
+mclose(fd_r2);</programlisting>
+  </refsection>
+
+  <refsection>
+    <programlisting role="example">// read write a file as binary
+
+// first we write file
+fd_wb = mopen(TMPDIR+'/writeread.bin','wb')
+
+// put values as binary
+mput(2003,'l',fd_wb);
+mput(2008,'i',fd_wb);
+mput(2012,'s',fd_wb);
+mput(98,'c',fd_wb);
+
+// close file descriptor associated to TMPDIR+'/writeread.bin'
+mclose(fd_wb);
+
+// we read file
+fd_rb = mopen(TMPDIR+'/writeread.bin','rb')
+
+mget(fd_rb, 'l')
+mget(fd_rb, 'i')
+mget(fd_rb, 's')
+mget(fd_rb, 'c')
+
+mclose(fd_rb) </programlisting>
+  </refsection>
+
+  <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="mclose">mclose</link></member>
-      
+
       <member><link linkend="merror">merror</link></member>
 
       <member><link linkend="meof">meof</link></member>

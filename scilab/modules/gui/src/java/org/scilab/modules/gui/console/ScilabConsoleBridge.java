@@ -310,4 +310,8 @@ public class ScilabConsoleBridge {
 		console.getAsSimpleConsole().setCursor(cursor);
 	}
 
+	public static void helpOnTheKeyword(ScilabConsole console) {
+		console.getAsSimpleConsole().helpOnTheKeyword();		
+	}
+
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -44,6 +44,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
@@ -195,6 +196,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions=""
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -379,6 +381,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_tclsci.c"
+				>
+			</File>
+			<File
+				RelativePath=".\eqid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ExceptionMessage.c"
 				>
 			</File>
@@ -479,7 +489,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hashtable_core.c"
+				RelativePath="..\cpp\hashtable_core.cpp"
 				>
 			</File>
 			<File
@@ -964,6 +974,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dynamic_tclsci.h"
+				>
+			</File>
+			<File
+				RelativePath=".\eqid.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\ExceptionMessage.h"
 				>
 			</File>
@@ -1132,6 +1150,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\partition.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\PATH_MAX.h"
 				>
 			</File>
@@ -1277,6 +1299,10 @@
 			</File>
 			<File
 				RelativePath=".\typename.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\unrolled_algorithms.hxx"
 				>
 			</File>
 			<File

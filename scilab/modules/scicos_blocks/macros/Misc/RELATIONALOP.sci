@@ -19,11 +19,11 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=RELATIONALOP(job,arg1,arg2)
+function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
  case 'plot' then
-  VOP=['==', '~=', '<', '<=', '>=','>']
+  VOP=['==', '~=', '<', '<=', '>','>=']
   OPER=VOP(evstr( arg1.graphics.exprs(1))+1)
   standard_draw(arg1)
 case 'getinputs' then
@@ -38,8 +38,8 @@ case 'set' then
   model=arg1.model;
   if size(exprs,1)==2 then exprs=[exprs;sci2exp(1)]; end
   while %t do
-    [ok,rule,zcr,Datatype,exprs]=getvalue('Set parameters',..
-	['Operator: == (0), ~= (1), < (2), <= (3), >= (4), > (5)';..
+    [ok,rule,zcr,Datatype,exprs]=scicos_getvalue('Set parameters',..
+	['Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)';..
 	 'Use zero crossing (no: 0), (yes: 1)'
          'Datatype (1=double 3=int32 ...)'],..
 	list('vec',1,'vec',1,'vec',1),exprs)
@@ -50,7 +50,7 @@ case 'set' then
     end
     if (Datatype==1) then
         model.sim=list('relational_op',4)
-    elseif (Datatype==3) then
+    elseif (Datatype==3|Datatype==9) then
         model.sim=list('relational_op_i32',4)
     elseif(Datatype==4) then
         model.sim=list('relational_op_i16',4)

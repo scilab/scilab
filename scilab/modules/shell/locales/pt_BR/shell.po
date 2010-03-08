@@ -14,29 +14,29 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Valor errado para o argumento de entrada #%d.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Este recurso não foi implementado.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr "%s: Este recurso não foi implementado neste modo.\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr "%s: Não implementado neste modo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s: Este recurso não foi implementado neste modo.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Este recurso não foi implementado.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -44,22 +44,25 @@ msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz.\n"
 
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-"[Continuar a exibir? n (não) para parar, qualquer outra tecla para continuar]"
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Valor errado para o argumento de entrada #%d.\n"
 
 msgid "File or Directory"
 msgstr "Arquivo ou Diretório"
 
-msgid "Scilab Function"
-msgstr "Função do Scilab"
+msgid "Graphics handle field"
+msgstr "Campo de manipulador gráfico"
 
 msgid "Scilab Command"
 msgstr "Comando do Scilab"
+
+msgid "Scilab Function"
+msgstr "Função do Scilab"
 
 msgid "Scilab Macro"
 msgstr "Macro do Scilab"
@@ -67,5 +70,12 @@ msgstr "Macro do Scilab"
 msgid "Scilab Variable"
 msgstr "Variável do Scilab"
 
-msgid "Graphics handle field"
-msgstr "Campo de manipulador gráfico"
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Continuar a exibir? n (não) para parar, qualquer outra tecla para continuar]"

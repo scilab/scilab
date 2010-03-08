@@ -83,7 +83,7 @@ case 'set' then
   exprs=graphics.exprs
 
   while %t do
-    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=getvalue(..
+    [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
 	['Set scifunc_block parameters';'only regular blocks supported'],..
 	  ['input ports sizes';
 	  'output port sizes';

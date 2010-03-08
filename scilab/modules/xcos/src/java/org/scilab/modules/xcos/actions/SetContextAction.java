@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,12 +11,12 @@
  *
  */
 
-
 package org.scilab.modules.xcos.actions;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,65 +28,101 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class SetContextAction extends DefaultAction {
+/**
+ * Opens context settings Window
+ */
+public class SetContextAction extends SimulationNotRunningAction {
+	/** Name of the action */
+	public static final String NAME = XcosMessages.SET_CONTEXT;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = 0;
 	
-	private static final long serialVersionUID = 1L;
-	
-	private static XcosDiagram diagram;
-	private static JFrame mainFrame;
-	private static JTextArea contextArea;
+	private XcosDiagram diagram;
+	private JFrame mainFrame;
+	private JTextArea contextArea;
+	private boolean windowAlreadyExist;
+	private String[] context;
 	
 	/**
 	 * Constructor
 	 * @param scilabGraph corresponding Scilab Graph
 	 */
 	public SetContextAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SET_CONTEXT, scilabGraph);
+		super(scilabGraph);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		diagram = (XcosDiagram)getGraph(e);
-		setContextBox(diagram);
-	}
-
+	/**
+	 * Create the associated menu
+	 * @param scilabGraph corresponding Scilab Graph
+	 * @return the menu
+	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SET_CONTEXT, null, new SetContextAction(scilabGraph), null);
+		SetContextAction action = new SetContextAction(scilabGraph);
+		((XcosDiagram) scilabGraph).setContextAction(action);
+		return createMenu(scilabGraph, SetContextAction.class);
 	}
 	
-	public static void setContextBox(XcosDiagram diagramArgu){
-		
-		diagram = diagramArgu;
-		
-        mainFrame = new JFrame();
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setLayout(new GridBagLayout());
+	/**
+	 * Action !
+	 * @param e the event
+	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		setContextBox(e);
+	}
 
+	/**
+	 * Window creation
+	 * @param e the event
+	 */
+	protected void setContextBox(ActionEvent e) {
+		
+		/** Avoid to have this window created two times */
+		if (windowAlreadyExist) {
+			mainFrame.setVisible(true);
+			return;
+		}
+		
+		Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+		Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
+
+		diagram = (XcosDiagram) getGraph(e);
+        
+		mainFrame = new JFrame();
+        windowAlreadyExist = true;
+        
+        mainFrame.setLayout(new GridBagLayout());
+        mainFrame.setIconImage(imageForIcon);
+        
         JLabel textLabel = new JLabel(XcosMessages.SET_CONTEXT_LABEL_TEXT);
         StringBuilder contextBuilder = new StringBuilder();
-        for (int i = 0 ; i < diagram.getContext().length ; i++){
-        	//System.out.println();
-        	contextBuilder.append(diagram.getContext()[i]);
+        for (int i = 0; i < diagram.getScicosParameters().getContext().length; i++) {
+        	contextBuilder.append(diagram.getScicosParameters().getContext()[i]);
         	contextBuilder.append(System.getProperty("line.separator"));
         }
         
         contextArea = new JTextArea(contextBuilder.toString());
       
-        JScrollPane contextAreaScroll = new JScrollPane(contextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        															 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane contextAreaScroll = new JScrollPane(contextArea, 
+        		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
 		JButton cancelButton = new JButton(XcosMessages.CANCEL);
 		JButton okButton = new JButton(XcosMessages.OK);
@@ -116,7 +153,8 @@ public class SetContextAction extends DefaultAction {
 		
 
 
-		gbc.gridheight = gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
 		
 		gbc.anchor = GridBagConstraints.LAST_LINE_END;
         gbc.fill = GridBagConstraints.NONE;
@@ -128,6 +166,7 @@ public class SetContextAction extends DefaultAction {
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
@@ -136,35 +175,54 @@ public class SetContextAction extends DefaultAction {
 
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> contextList = new ArrayList<String>();
-				int i = 0 ;
-				try
-				{
+				int i = 0;
+				try {
 					StringReader stringReader = new StringReader(contextArea.getText());
 					BufferedReader bufferReader = new BufferedReader(stringReader);
 					String nextLine = "";
 
-					while ((nextLine = bufferReader.readLine()) != null){
-						contextList.add(nextLine) ;
+					while ((nextLine = bufferReader.readLine()) != null) {
+						contextList.add(nextLine);
 						i++;
 					}
 
-				}
-				catch (IOException e1)
-				{
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
-				diagram.setContext(contextList.toArray(new String[i]));
+				/** Test for modifications */
+				String[] oldContext = diagram.getScicosParameters().getContext();
+				boolean modified = false;
+				/* If more or less lines --> modified */
+				if (oldContext.length != i) {
+					modified = true;
+				} else {
+					/* Compare line to line */
+					for (int lineNumber = 0; lineNumber < oldContext.length; lineNumber++) {
+						if (!oldContext[lineNumber].equals(contextList.get(lineNumber))) {
+							modified = true;
+						}
+					}
+				}
+				if (modified) {
+					if (i == 0) { /* Empty context */
+						context = new String[]{""};
+					} else {
+						context = contextList.toArray(new String[i]);
+					}
+					
+					diagram.setContext(context);
+					diagram.setModified(true);
+				}
+				windowAlreadyExist = false;
 				mainFrame.dispose();
 			}
 		});
 		
 		
 		mainFrame.setMinimumSize(textLabel.getPreferredSize());
-        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.setTitle(XcosMessages.SET_CONTEXT);
         mainFrame.pack();
-        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setLocationRelativeTo(diagram.getAsComponent());
         mainFrame.setVisible(true);	
 	}
 }

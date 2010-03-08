@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,a,b,c,exprs]=getvalue('Set Interpolation block parameters',..
+    [ok,a,b,c,exprs]=scicos_getvalue('Set Interpolation block parameters',..
 	['X coord.';'Y coord.';'Z values'],list('vec',-1,'vec',-1,'mat',[-1,-1]),exprs)
     if ~ok then break,end
     if size(a,'*') <> size(c,'c') | size(b,'*') <> size(c,'r') then

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +13,14 @@
 
 package org.scilab.modules.xcos.actions;
 
-import java.util.Hashtable;
+import java.awt.event.ActionEvent;
+import java.util.Map;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.util.mxConstants;
@@ -27,18 +29,23 @@ import com.mxgraph.view.mxCellState;
 
 /**
  * Block shadow handling
- * @author Vincent COUVERT
  */
-public class ShowHideShadowAction extends DefaultAction {
-
-	private static final long serialVersionUID = 1L;
+public class ShowHideShadowAction extends VertexSelectionDependantAction {
+	/** Name of the action */
+	public static final String NAME = XcosMessages.SHOWHIDE_SHADOW;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = 0;
 
 	/**
 	 * Constructor
 	 * @param scilabGraph associated diagram
 	 */
 	public ShowHideShadowAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.SHOWHIDE_SHADOW, scilabGraph);
+		super(scilabGraph);
 	}
 
 	/**
@@ -47,28 +54,33 @@ public class ShowHideShadowAction extends DefaultAction {
 	 * @return the menu
 	 */
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.SHOWHIDE_SHADOW, null, new ShowHideShadowAction(scilabGraph), null);
+		return createMenu(scilabGraph, ShowHideShadowAction.class);
 	}
 	
 	/**
-	 * Action !!
-	 * @see org.scilab.modules.graph.actions.DefaultAction#doAction()
+	 * @param e parameter
+	 * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void doAction() {
+	@Override
+	public void actionPerformed(ActionEvent e) {
 	    if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 		
 		Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 		
-		for (int i = 0 ; i < allCells.length ; ++i) {
+		for (int i = 0; i < allCells.length; ++i) {
 		    if (allCells[i] instanceof BasicBlock) {
 			//((BasicBlock) allCells[i])
 				mxCellState state = getGraph(null).getView().getState(allCells[i]);
-				Hashtable style = (state != null) ? state.getStyle() : getGraph(null).getCellStyle(allCells[i]);
+				Map<String, Object> style;
+				if (state != null) {
+					style = state.getStyle();
+				} else {
+					style = getGraph(null).getCellStyle(allCells[i]);
+				}
 
-				if (style != null)
-				{
-					String value = (mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false)) ? "0" : "1";
-					getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW, value, new Object[] { allCells[i] });
+				if (style != null) {
+					String value = Boolean.toString(mxUtils.isTrue(style, mxConstants.STYLE_SHADOW, false));
+					getGraph(null).setCellStyles(mxConstants.STYLE_SHADOW, value, new Object[] {allCells[i]});
 				}
 		    }
 		}

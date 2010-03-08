@@ -63,19 +63,32 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   end
   clear noguimode
 
-  //** define Scicos data tables
-  if (~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-      ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-      ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-      ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
-      ~isdef("%scicos_contrib") ) then
-         [scicos_pal, %scicos_menu,...
-          %scicos_short, %scicos_help,..
-          %scicos_display_mode, modelica_libs,..
-          scicos_pal_libs, %scicos_gif,..
-          %scicos_contrib] = initial_scicos_tables()
-         clear initial_scicos_tables
-  end
+if ~isdef('scicos_menuslib') then
+  load('SCI/modules/scicos/macros/scicos_menus/lib')
+end
+
+if exists('scicos_scicoslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+end
+
+if exists('scicos_autolib')==0 then
+    load("SCI/modules/scicos/macros/scicos_auto/lib") ;
+end
+
+if exists('scicos_utilslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_utils/lib") ;
+end
+
+// Define Scicos data tables ===========================================
+if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") ) then
+  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
+   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
+   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+end
+// =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
@@ -105,8 +118,6 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
 
   //** redefine some gui functions
   prot = funcprot();funcprot(0);
-  deff('disablemenus()',' ')
-  deff('enablemenus()',' ')
   do_terminate = do_terminate1
   funcprot(prot)
 
@@ -189,7 +200,7 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   if scicos_ver <> current_version then
     ierr = execstr('scs_m = do_version(scs_m, scicos_ver)','errcatch')
     if ierr <> 0 then
-      message("Can''t convert old diagram (problem in version)")
+      messagebox("Can''t convert old diagram (problem in version)","modal")
       return
     end
   end

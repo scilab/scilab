@@ -495,7 +495,7 @@ code=['#include &lt;math.h&gt;'
 mputl(code,TMPDIR+'/t22.c') 
 
 //-2- compilando e carregando
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce')
 
 //-3- executando

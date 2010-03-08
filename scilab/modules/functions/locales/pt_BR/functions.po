@@ -1,0 +1,252 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"PO-Revision-Date: 2009-08-09 13:57+0000\n"
+"Last-Translator: João Paulo Pizani Flor <joaopizani@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s is already compiled for profiling, nothing to do!"
+msgstr "%s já está compilado para profiling, nada a fazer!"
+
+#, c-format
+msgid "%s is already compiled, nothing to do!"
+msgstr "%s já está compilado, nada a fazer!"
+
+#, c-format
+msgid "%s is already noncompiled, nothing to do!"
+msgstr "%s já não está compilado, nada a fazer!"
+
+#, c-format
+msgid "%s: %s file cannot be created\n"
+msgstr "%s: %s arquivo não pode ser criado\n"
+
+#, c-format
+msgid "%s: %s file compilation forced\n"
+msgstr "%s: compilação de arquivo %s forçada\n"
+
+#, c-format
+msgid "%s: File %s does not contain any function.\n"
+msgstr "%s: Arquivo %s não contém nenhuma função.\n"
+
+#, c-format
+msgid "%s: File %s doesn''t exist.\n"
+msgstr "%s: Arquivo %s não existe.\n"
+
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s: Não é possível achar arquivos com a extensão %s em %s\n"
+
+#, c-format
+msgid "%s: Impossible to open file %s for writing\n"
+msgstr "%s: Impossível abrir o arquivo %s para escrita\n"
+
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: Função incorreta em %s.\n"
+
+#, c-format
+msgid "%s: Invalid library %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No files with extension %s found in %s\n"
+msgstr "%s: Nenhum arquivo com extensão %s encontrado em %s\n"
+
+#, c-format
+msgid "%s: Please check: %s\n"
+msgstr "%s: Por favor verifique: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Processando arquivo: %s\n"
+
+#, c-format
+msgid "%s: Regenerate names and lib\n"
+msgstr "%s: Regenerando nomes e biblioteca\n"
+
+#, c-format
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: Esta função não foi construída para profiling"
+
+#, c-format
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr "%s: Não há arquivo de nome %s.sci no diretório de biblioteca %s.\n"
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: Variável indefinida %s.\n"
+
+#, c-format
+msgid "%s: Warning: Error in file %s : %s. File ignored\n"
+msgstr "%s: Aviso: Erro no arquivo %s : %s. Arquivo ignorado\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma função "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um nome de "
+"função Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se o nome de uma "
+"função Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada: Nenhum dado de perfil na "
+"função\n"
+
+#, c-format
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: código de operador %d obsoleto.\n"
+
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- Criação de [%s] (Macros) --\n"
+
+msgid "?"
+msgstr ""
+
+#, c-format
+msgid "Checking: %s.\n"
+msgstr "Verificando: %s.\n"
+
+msgid "Click to get corresponding line, move with a-z."
+msgstr "Clique para obter a linha correspondente, mova com a-z."
+
+msgid "Complexity"
+msgstr "Complexidade"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Exit"
+msgstr "Sair"
+
+#, c-format
+msgid "Function %s is obsolete."
+msgstr "A função %s está obsoleta."
+
+#, c-format
+msgid ""
+"Library file %s has been updated,\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
+msgstr ""
+"O arquivo bibilioteca %s foi atualizado,\n"
+"mas não pode ser carregado no Scilab porque %s é uma variável protegida.\n"
+
+msgid "No comment available.\n"
+msgstr "Nenhum comentário disponível.\n"
+
+#, c-format
+msgid "No variable named: %s"
+msgstr "Não há variável chamada: %s"
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Por favor, utilize %s ao invés."
+
+#, c-format
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Esta função será permanentemente removida no Scilab %s"
+
+msgid "Tools"
+msgstr ""
+
+#, c-format
+msgid "WARNING: Function %s is obsolete.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+msgstr ""
+
+#, c-format
+msgid "line %s [%s call, %s sec] :: "
+msgstr ""
+
+#, c-format
+msgid "line %s [%s calls, %s sec] :: "
+msgstr ""

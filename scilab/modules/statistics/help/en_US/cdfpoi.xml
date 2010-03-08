@@ -42,7 +42,7 @@
       <varlistentry>
         <term>S</term>
         <listitem>
-          <para>:Upper limit of cumulation of the Poisson. Input range: [0, +infinity). Search range: [0,1E300]</para>
+          <para>Upper limit of cumulation of the Poisson. Input range: [0, +infinity). Search range: [0,1E300]</para>
         </listitem>
       </varlistentry>
       <varlistentry>

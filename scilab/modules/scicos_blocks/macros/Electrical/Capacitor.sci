@@ -40,7 +40,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,C,v,exprs]=getvalue('Set Capacitor block parameter',..
+    [ok,C,v,exprs]=scicos_getvalue('Set Capacitor block parameter',..
     			   ['C (F)','Initial Voltage'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=C
@@ -80,8 +80,15 @@ case 'define' then
 	'  xstring(orig(1)+sz(1)*1/12,orig(2)+sz(2)*3/4,''-'');';
 	'  xstring(orig(1)+sz(1)*7/8,orig(2)+sz(2)*3/4,''+'');';
 	'end'
-	'rect=xstringl(0,0,''C=''+C)'
-        'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''C= ''+C);'
+        'txt=''C= ''+C;'
+        'style=2;'
+        'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+        'if ~exists(''%zoom'') then %zoom=1, end;'
+        'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+        'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+        'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+        'e=gce();'
+        'e.font_style=style;'
 	];
   x=standard_define([2 1.1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']

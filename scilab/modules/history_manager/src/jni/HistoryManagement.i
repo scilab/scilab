@@ -2,7 +2,10 @@
 /* INRIA 2007 */
 /* HistoryManagement.i */
 /* To run this file execute the command below from current directory */
-/*  swig -java -package org.scilab.modules.history_manager -outdir ../java/org/scilab/modules/history_manager/ HistoryManagement.i */
+/**
+ * Windows: swig -java -package org.scilab.modules.history_manager -outdir ../java/org/scilab/modules/history_manager/ HistoryManagement.i 
+ * Other: Use the option --enable-build-swig to the configure
+*/
 
 %module HistoryManagement
 %{

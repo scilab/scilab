@@ -147,9 +147,6 @@ nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",1000);
 nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
 nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_configure(nm,"-verbose",1);
-nm = neldermead_configure(nm,"-logfile" , "boxproblemA.txt" );
-nm = neldermead_configure(nm,"-verbosetermination",1);
 // Configure like Box
 nm = neldermead_configure(nm,"-boundsmin",[0.0 1.2 20.0 9.0 6.0]);
 nm = neldermead_configure(nm,"-boundsmax",[5.0 2.5 60.0 9.3 7.0]);
@@ -162,10 +159,11 @@ nm = neldermead_configure(nm,"-nbineqconst",6);
 //
 // Perform optimization
 //
-mprintf("Searching...\n");
+mprintf("Searching (please wait)...\n");
 nm = neldermead_search(nm);
 mprintf("...Done\n");
 neldermead_display(nm);
+mprintf("==========================\n");
 xcomp = neldermead_get(nm,"-xopt");
 mprintf("x computed=%s\n",strcat(string(xcomp)," "));
 mprintf("x expected=%s\n",strcat(string(xopt)," "));
@@ -177,7 +175,8 @@ mprintf("f expected=%f\n",fopt);
 shift = abs(fcomp-fopt)/abs(fopt);
 mprintf("Shift =%f\n",shift);
 nm = neldermead_destroy(nm);
-deletefile ( "boxproblemA.txt" )
+mprintf("End of demo.\n");
+
 //
 // Load this script into the editor
 //

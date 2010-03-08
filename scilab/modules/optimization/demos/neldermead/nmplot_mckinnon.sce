@@ -113,26 +113,23 @@ nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
 nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
 nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
-nm = nmplot_configure(nm,"-simplex0length",1.0);
-nm = nmplot_configure(nm,"-method","variable");
-//nm = nmplot_configure(nm,"-verbose",1);
-nm = nmplot_configure(nm,"-verbosetermination",1);
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","mckinnon.history.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","mckinnon.history.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","mckinnon.history.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",TMPDIR + "\history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn",TMPDIR + "\history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn",TMPDIR + "\history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn",TMPDIR + "\history.sigma.txt");
 //
 // Perform optimization
 //
+mprintf("Searching (please wait)...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
 //
 // Plot
 //
-mprintf("Plot contour...\n");
+mprintf("Plot contour (please wait)...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 f = scf(100001);
 xset("fpf"," ")
@@ -141,19 +138,20 @@ contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
 drawnow();
 f = scf(100002);
-nmplot_historyplot ( nm , "mckinnon.history.fbar.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
 f = scf(100003);
-nmplot_historyplot ( nm , "mckinnon.history.fopt.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
 f = scf(100004);
-nmplot_historyplot ( nm , "mckinnon.history.sigma.txt" , ...
+nmplot_historyplot ( nm , TMPDIR + "\history.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-deletefile("mckinnon.history.simplex.txt");
-deletefile("mckinnon.history.fbar.txt");
-deletefile("mckinnon.history.fopt.txt");
-deletefile("mckinnon.history.sigma.txt");
+deletefile(TMPDIR + "\history.simplex.txt");
+deletefile(TMPDIR + "\history.fbar.txt");
+deletefile(TMPDIR + "\history.fopt.txt");
+deletefile(TMPDIR + "\history.sigma.txt");
 nm = nmplot_destroy(nm);
+mprintf("End of demo.\n");
 
 //
 // Load this script into the editor

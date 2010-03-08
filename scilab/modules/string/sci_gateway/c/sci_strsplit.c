@@ -24,7 +24,7 @@
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname,unsigned long fname_len)
 {
-	StrErr strErr;
+	SciErr sciErr;
 	int lw = 0;
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
@@ -45,18 +45,17 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 		int *piAddressVarTwo = NULL;
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-
-		strErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -66,10 +65,10 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarDimension(pvApiCtx, piAddressVarThree, &m, &n);
-		if(strErr.iErr)
+		sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m, &n);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -80,10 +79,10 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		}
 
 		// get value of third argument
-		strErr = getMatrixOfDouble(pvApiCtx, piAddressVarThree, &m, &n, &pdVarThree);
-		if(strErr.iErr)
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarThree, &m, &n, &pdVarThree);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -94,17 +93,17 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 			return 0;
 		}
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -115,26 +114,26 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		}
 	}
 
-	strErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(strErr.iErr)
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 		
-	strErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(strErr.iErr)
+	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+	if(sciErr.iErr)
 	{
-		printError(&strErr, 0);
+		printError(&sciErr, 0);
 		return 0;
 	}
 
 	if (iType1 == sci_matrix)
 	{
-		strErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
-		if(strErr.iErr)
+		sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m, &n);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -146,10 +145,10 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 
 		// strsplit([], ...) returns []
 
-		strErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
-		if(strErr.iErr)
+		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -174,17 +173,17 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 	{
 		int *piAddressVarTwo = NULL;
 
-		strErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-		if(strErr.iErr)
+		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
-		strErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-		if(strErr.iErr)
+		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+		if(sciErr.iErr)
 		{
-			printError(&strErr, 0);
+			printError(&sciErr, 0);
 			return 0;
 		}
 
@@ -199,6 +198,14 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				return 0;
 			}
 
+			// get lenStVarOne
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return 0;
+			}
+
 			// get value of first argument only now
 			pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
 			if (pStVarOne == NULL)
@@ -207,18 +214,18 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 				return 0;
 			}
 			
-			strErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
-			if(strErr.iErr)
+			sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m,&n,&lenStVarOne,&pStVarOne);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
 			// get value of second argument
-			strErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
-			if(strErr.iErr)
+			sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -237,10 +244,10 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 						m_out = (m2 * n2) + 1;
 						n_out = 1;
 
-						strErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, results);
-						if(strErr.iErr)
+						sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, m_out, n_out, results);
+						if(sciErr.iErr)
 						{
-							printError(&strErr, 0);
+							printError(&sciErr, 0);
 							return 0;
 						}
 
@@ -290,10 +297,10 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 		{
 			int m = 0, n = 0;
 
-			strErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m, &n);
-			if(strErr.iErr)
+			sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m, &n);
+			if(sciErr.iErr)
 			{
-				printError(&strErr, 0);
+				printError(&sciErr, 0);
 				return 0;
 			}
 
@@ -310,10 +317,11 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					return 0;
 				}
 				
-				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
-				if(strErr.iErr)
+				// get lenStVarTwo
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(sciErr.iErr)
 				{
-					printError(&strErr, 0);
+					printError(&sciErr, 0);
 					return 0;
 				}
 
@@ -325,10 +333,21 @@ int sci_strsplit(char *fname,unsigned long fname_len)
 					return 0;
 				}
 
-				strErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
-				if(strErr.iErr)
+				for (k = 0; k < m * n; k++)
 				{
-					printError(&strErr, 0);
+					pStVarTwo[k] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarTwo[k] + 1));
+					if (pStVarTwo[k] == NULL)
+					{
+						freeArrayOfWideString(pStVarTwo, m * n);
+						Scierror(999,_("%s : Memory allocation error.\n"), fname);
+						return 0;
+					}
+				}
+
+				sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m, &n, lenStVarTwo, pStVarTwo);
+				if(sciErr.iErr)
+				{
+					printError(&sciErr, 0);
 					return 0;
 				}
 

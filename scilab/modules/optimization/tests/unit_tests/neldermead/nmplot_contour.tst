@@ -66,3 +66,26 @@ close(f);
 nm = nmplot_destroy(nm);
 
 
+// Test with a function for which the column orientation matters
+function [ y , index ] = myquad ( x , index )
+  y = x' * x;
+endfunction
+
+// Use 20 points in X and 20 points in Y
+NP = 20;
+
+//
+// Test a basic contour plot
+//
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",myquad);
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = NP , ny = NP );
+f = scf();
+drawlater();
+contour ( xdata , ydata , zdata , linspace(0,8,20) );
+drawnow();
+close(f);
+nm = nmplot_destroy(nm);
+
+

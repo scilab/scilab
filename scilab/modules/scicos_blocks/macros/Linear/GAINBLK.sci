@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=GAINBLK(job,arg1,arg2)
+function [x,y,typ] = GAINBLK(job,arg1,arg2)
   
   x=[];y=[];typ=[];
   
@@ -31,23 +31,27 @@ function [x,y,typ]=GAINBLK(job,arg1,arg2)
     orig=arg1.graphics.orig;
     sz=arg1.graphics.sz;
     orient=arg1.graphics.flip;
-    if length(arg1.graphics.exprs(1))>3 then
-       gain="-K-"
+
+    if length(arg1.graphics.exprs(1))>6 then
+       gain=part(arg1.graphics.exprs(1),1:4)+'..'
     else 
        gain=arg1.graphics.exprs(1);
     end
+    ll=length(arg1.graphics.exprs(1))
+    a=ll/(1+ll)/2
 //     gain=evstr(arg1.graphics.exprs(1));
 //     if size(gain,'*')==1 then gain=string(gain);
 //     else gain="-K-";
 //     end
     if orient then
+      
       xx=orig(1)+[0 1 0 0]*sz(1);
       yy=orig(2)+[0 1/2 1 0]*sz(2);
       x1=0
     else
       xx=orig(1)+[0   1 1 0]*sz(1);
       yy=orig(2)+[1/2 0 1 1/2]*sz(2);
-      x1=1/4
+      x1=1-2*a
     end
     gr_i=arg1.graphics.gr_i;
     if type(gr_i)==15 then
@@ -57,14 +61,14 @@ function [x,y,typ]=GAINBLK(job,arg1,arg2)
 //	pcoli=xget('pattern');xset('pattern',coli)
 //	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
 //	xset('pattern',pcoli)
-	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
+	xstringb(orig(1)+(x1)*sz(1),orig(2)+sz(2)*a,gain,sz(1)*(2*a),sz(2)*(1-2*a),'fill');
       else
 	xpoly(xx,yy,'lines');
-	xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
+	xstringb(orig(1)+(x1)*sz(1),orig(2)+sz(2)*a,gain,sz(1)*(2*a),sz(2)*(1-2*a),'fill');
       end
     else
       xpoly(xx,yy,'lines');
-      xstringb(orig(1)+x1*sz(1),orig(2),gain,(1-x1)*sz(1),sz(2));
+      xstringb(orig(1)+(x1)*sz(1),orig(2)+sz(2)*a,gain,sz(1)*(2*a),sz(2)*(1-2*a),'fill');
     end
     xf=60
     yf=40
@@ -158,7 +162,7 @@ function [x,y,typ]=GAINBLK(job,arg1,arg2)
     model=arg1.model;
     if size(exprs,'*')==1 then exprs=[exprs;sci2exp(0)];end // compatibility
     while %t do
-      [ok,gain,over,exprs]=getvalue('Set gain block parameters',..
+      [ok,gain,over,exprs]=scicos_getvalue('Set gain block parameters',..
 			       ['Gain';..
 				'Do On Overflow(0=Nothing 1=Saturate 2=Error)'],..
 				list('mat',[-1,-1],'vec',1),exprs)

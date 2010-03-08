@@ -164,7 +164,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
 
   options = palettes(kpal).props.options ;
     
-  //** I switch to the direct acces 
+  //** I switch to the direct access 
   gh_palette.background = options.Background(1) ; //** "options" is sub structure of scs_m  
      
   if ~set_cmap(palettes(kpal).props.options('Cmap')) then 
@@ -178,7 +178,6 @@ function [palettes,windows] = do_palettes(palettes, windows)
   //** force the proprieties of the palette windows:
   //** the user should be capable to change the size of the window   
   gh_palette.auto_resize = "on"       ; //** 
-  gh_palette.pixmap      = "off"      ;
   gh_palette.immediate_drawing = "on" ;
 
   //** put the focus in the previous window. 

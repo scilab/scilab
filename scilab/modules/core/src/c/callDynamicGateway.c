@@ -65,10 +65,15 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 			sprintf(pathToLib,"%s%s%s%s%s",SciPath,PATHTOMODULE,moduleName,LT_OBJDIR,dynLibName);
 
 			*hlib = LoadDynLibrary(pathToLib);
+		      
 			if (*hlib == NULL) 
 			{
+			        if (SciPath) {FREE(SciPath); SciPath = NULL;}
+			        if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
 				return DYN_GW_LOAD_LIBRARY_ERROR;
 			}
+			if (SciPath) {FREE(SciPath); SciPath = NULL;}
+			if (pathToLib) {FREE(pathToLib); pathToLib = NULL;}
 		}
 #endif
 	}
@@ -76,7 +81,10 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 	if (*ptrGateway == NULL)
 	{
 		*ptrGateway = (PROC_GATEWAY) GetDynLibFuncPtr(*hlib,gw_name);
-		if (*ptrGateway == NULL) return DYN_GW_PTR_FUNCTION_ERROR ;
+		if (*ptrGateway == NULL) 
+		  {
+		    return DYN_GW_PTR_FUNCTION_ERROR ;
+		  }
 	}
 
 	if ( (*hlib) && (*ptrGateway) )
@@ -84,28 +92,57 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 		(*ptrGateway)();
 		return DYN_GW_NO_ERROR;
 	}
+
 	return DYN_GW_CALL_FUNCTION_ERROR;
 }
 /*--------------------------------------------------------------------------*/
-char *buildModuleDynLibraryName(char *modulename)
+char *buildModuleDynLibraryName(char *modulename, dynlib_name_format iType)
 {
-	#ifdef _MSC_VER
-		/* example scicos.dll */
-		#define FORMATGATEWAYLIBNAME "%s%s"
-	#else
-		/* example libsciscicos.so */
-		#define FORMATGATEWAYLIBNAME "libsci%s%s"
-	#endif
-
 	char *dynlibname = NULL;
-	int lenName = (int)(strlen(modulename)+strlen(SHARED_LIB_EXT)+strlen(FORMATGATEWAYLIBNAME));
-	dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
-
-	if (dynlibname)
+	int lenName = (int)(strlen(modulename)+strlen(SHARED_LIB_EXT));
+	switch (iType)
 	{
-		sprintf(dynlibname,FORMATGATEWAYLIBNAME,modulename,SHARED_LIB_EXT);
+	case DYNLIB_NAME_FORMAT_AUTO: default:
+		#ifdef _MSC_VER
+		lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_1);
+		#else
+		lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_3);
+		#endif
+		dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
+		if (dynlibname)
+		{
+			#ifdef _MSC_VER
+			sprintf(dynlibname,FORMATGATEWAYLIBNAME_1,modulename,SHARED_LIB_EXT);
+			#else
+			sprintf(dynlibname,FORMATGATEWAYLIBNAME_3,modulename,SHARED_LIB_EXT);
+			#endif
+		}
+		break;
+	case DYNLIB_NAME_FORMAT_1:
+		lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_1);
+		dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
+		if (dynlibname)
+		{
+			sprintf(dynlibname,FORMATGATEWAYLIBNAME_1,modulename,SHARED_LIB_EXT);
+		}
+		break;
+	case DYNLIB_NAME_FORMAT_2:
+		lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_2);
+		dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
+		if (dynlibname)
+		{
+			sprintf(dynlibname,FORMATGATEWAYLIBNAME_2,modulename,SHARED_LIB_EXT);
+		}
+		break;
+	case DYNLIB_NAME_FORMAT_3:
+		lenName = lenName + (int)strlen(FORMATGATEWAYLIBNAME_3);
+		dynlibname = (char*)MALLOC(sizeof(char)*(lenName+1));
+		if (dynlibname)
+		{
+			sprintf(dynlibname,FORMATGATEWAYLIBNAME_3,modulename,SHARED_LIB_EXT);
+		}
+		break;
 	}
-	
 	return dynlibname;
 }
 /*--------------------------------------------------------------------------*/
@@ -113,10 +150,9 @@ char *buildGatewayName(char *modulename)
 {
 	/* example gw_scicos */
 	#define FORMATGATEWAYNAME "gw_%s" 
-	/* @TODO THIS MUST BE REWRITED !!! It is not portable at all */
 
 	char *gatewayname = NULL;
-	int lenName = (int)(strlen(modulename)+strlen(FORMATGATEWAYLIBNAME));
+	int lenName = (int)(strlen(modulename)+strlen(FORMATGATEWAYNAME));
 	gatewayname = (char*)MALLOC(sizeof(char)*(lenName+1));
 
 	if (gatewayname)

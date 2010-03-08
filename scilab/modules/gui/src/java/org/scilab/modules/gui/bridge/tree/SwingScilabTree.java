@@ -17,19 +17,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.event.TreeExpansionEvent;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -48,7 +41,13 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.localization.Messages;
 
+/**
+ * Class define the Scilab Mutable tree node
+ * @author Sylvestre Koumar
+ *
+ */
 public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
 
 	private static final long serialVersionUID = 1L;
@@ -68,24 +67,40 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		
 		Vector<Tree> children = tree.getChildren();
 		
-		for (int i = 0 ; i < children.size() ; ++i)	{
+		for (int i = 0; i < children.size(); ++i)	{
 			SwingScilabTree swingScilabTree = new SwingScilabTree(children.get(i));
 			this.add(swingScilabTree);
 		}
 	}
 	
+	/**
+	 * Getter for icon
+	 * @return an icon
+	 */
 	public Icon getIcon() {
 		return icon;
 	}
 
+	/**
+	 * Setter for icon
+	 * @param icon an Icon
+	 */
 	public void setIcon(Icon icon) {
 		this.icon = icon;
 	}
 	
+	/**
+	 * Getter for callback
+	 * @return a callback
+	 */
 	public CallBack getCallback() {
 		return callback;
 	}
 
+	/**
+	 * Setter for callback
+	 * @param callback a callback
+	 */
 	public void setCallback(CallBack callback) {
 		this.callback = callback;
 	}
@@ -95,14 +110,22 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	 *  in order we can figure out on which leaff the user clicked on.
 	 */
 	private class ClickListener extends MouseAdapter {
-	    private JTree _jtree;
+	    private JTree myJtree;
 	    
+	    /**
+	     * Constructor
+	     * @param jtree a Jtree
+	     */
 	    public ClickListener(JTree jtree) {
-		_jtree = jtree;
+		myJtree = jtree;
 	    }
 	    
+	    /**
+	     * Mouse clicked actions
+	     * @param arg0 event
+	     */
 	    public void mouseClicked(MouseEvent arg0) {
-		TreePath path = _jtree.getPathForLocation(arg0.getX(),arg0.getY());
+		TreePath path = myJtree.getPathForLocation(arg0.getX(), arg0.getY());
 		/* We only want double click to do something */
 		if (path != null && arg0.getClickCount() >= 2) {
 		    ((SwingScilabTree) path.getLastPathComponent()).getCallback().actionPerformed(null);
@@ -111,6 +134,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	    }
 	}
 	
+	/**
+	 * Get as Component
+	 * @return a component
+	 */
 	public JComponent getAsComponent() {
 		// Tree Model
 		DefaultTreeModel model = new DefaultTreeModel(this);		
@@ -133,14 +160,24 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		return scrollPane;
 	}
 	
+	/**
+	 * Display the tree
+	 * @param tree a tree
+	 */
 	public static void  showTree(Tree tree) {
 		
 		// Scilab tree
 		SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 		
 		Window window = ScilabWindow.createWindow();
-		Tab tab = ScilabTab.createTab("Tree Overview");
-		tab.setCallback(null);
+		final Tab tab = ScilabTab.createTab(Messages.gettext("Tree Overview"));
+		tab.setCallback(new CallBack(null) {
+			private static final long serialVersionUID = 8418506008885202932L;
+
+			public void callBack() {
+				tab.close();
+			}
+		});
 		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
 		window.addTab(tab);
 		tab.setVisible(true);
@@ -242,6 +279,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		
 	}
 
+	/**
+	 * Get size
+	 * @return the size
+	 */
 	public Size getDims() {
 	    return new Size(scrollPane.getSize().width, scrollPane.getSize().height);
 	}
@@ -256,6 +297,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		return null;
 	}
 
+	/**
+	 * Get position
+	 * @return the position
+	 */
 	public Position getPosition() {
 	    return PositionConverter.javaToScilab(scrollPane.getLocation(), scrollPane.getSize(), scrollPane.getParent());
 	}
@@ -270,10 +315,18 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		return false;
 	}
 
+	/**
+	 * Set size
+	 * @param newSize a new size
+	 */
 	public void setDims(Size newSize) {
 	    scrollPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
+	/**
+	 * Set position
+	 * @param newPosition a new position
+	 */
 	public void setPosition(Position newPosition) {
 	    Position javaPosition = PositionConverter.scilabToJava(newPosition, this.getDims(), scrollPane.getParent());
 	    scrollPane.setLocation(javaPosition.getX(), javaPosition.getY());

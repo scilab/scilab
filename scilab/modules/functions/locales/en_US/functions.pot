@@ -14,13 +14,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-10-25 18:42+0100\n"
+"Revision-Date: 2010-01-25 10:32+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 188
 # File: sci_gateway/c/sci_exec.c, line: 267
-# File: sci_gateway/c/sci_whereis.c, line: 96
 # File: sci_gateway/c/sci_execstr.c, line: 162
 # File: sci_gateway/c/sci_execstr.c, line: 231
+# File: sci_gateway/c/sci_whereis.c, line: 101
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr ""
@@ -40,20 +40,20 @@ msgstr ""
 msgid "%s is already noncompiled, nothing to do!"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 114
 # File: macros/genlib.sci, line: 158
+# File: macros/genlib_old.sci, line: 114
 #, c-format
 msgid "%s: %s file cannot be created\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 72
 # File: macros/genlib.sci, line: 101
+# File: macros/genlib_old.sci, line: 72
 #, c-format
 msgid "%s: %s file compilation forced\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 159
 # File: macros/genlib.sci, line: 220
+# File: macros/genlib_old.sci, line: 159
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
 msgstr ""
@@ -68,8 +68,8 @@ msgstr ""
 msgid "%s: I cannot find any files with extension %s in %s\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 153
 # File: macros/genlib.sci, line: 211
+# File: macros/genlib_old.sci, line: 153
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
 msgstr ""
@@ -84,8 +84,8 @@ msgstr ""
 msgid "%s: Invalid library %s.\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 52
 # File: macros/genlib.sci, line: 77
+# File: macros/genlib_old.sci, line: 52
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
 msgstr ""
@@ -95,14 +95,14 @@ msgstr ""
 msgid "%s: Please check: %s\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 93
 # File: macros/genlib.sci, line: 125
+# File: macros/genlib_old.sci, line: 93
 #, c-format
 msgid "%s: Processing file: %s\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 104
 # File: macros/genlib.sci, line: 145
+# File: macros/genlib_old.sci, line: 104
 #, c-format
 msgid "%s: Regenerate names and lib\n"
 msgstr ""
@@ -122,8 +122,8 @@ msgstr ""
 msgid "%s: Undefined variable %s.\n"
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 139
 # File: macros/genlib.sci, line: 189
+# File: macros/genlib_old.sci, line: 139
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
 msgstr ""
@@ -133,11 +133,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_whereis.c, line: 64
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_exec.c, line: 141
 # File: sci_gateway/c/sci_exec.c, line: 220
 #, c-format
@@ -145,15 +140,15 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 #
 # File: macros/get_function_path.sci, line: 18
-# File: sci_gateway/c/sci_whereis.c, line: 89
 # File: sci_gateway/c/sci_execstr.c, line: 135
 # File: sci_gateway/c/sci_execstr.c, line: 204
+# File: sci_gateway/c/sci_whereis.c, line: 94
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
 # File: macros/bytecode.sci, line: 29
-# File: sci_gateway/c/sci_whereis.c, line: 143
+# File: sci_gateway/c/sci_whereis.c, line: 146
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -175,7 +170,7 @@ msgstr ""
 # File: sci_gateway/c/sci_execstr.c, line: 94
 # File: sci_gateway/c/sci_execstr.c, line: 122
 # File: sci_gateway/c/sci_execstr.c, line: 191
-# File: sci_gateway/c/sci_lib.c, line: 58
+# File: sci_gateway/c/sci_lib.c, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -271,8 +266,8 @@ msgstr ""
 msgid "Function %s is obsolete."
 msgstr ""
 #
-# File: macros/genlib_old.sci, line: 123
 # File: macros/genlib.sci, line: 168
+# File: macros/genlib_old.sci, line: 123
 #, c-format
 msgid ""
 "Library file %s has been updated,\n"

@@ -36,7 +36,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,ini_c,base,exprs]=getvalue('Set Modulo_Count  block parameters',..
+    [ok,ini_c,base,exprs]=scicos_getvalue('Set Modulo_Count  block parameters',..
 	['initial state (>=0)';'Modulo what number (>0)'],list('vec',1,'vec',1),exprs)
     if ~ok then break,end
     ini_c=int(ini_c);base=int(base);

@@ -19,7 +19,10 @@
 
 editor('SCI/modules/core/macros/add_demo.bin')
 
+// A warning message is now added when a binary file is opened
 
+// For now we have decided to do not show a warning message
+// due to binary file detection problems
 
 
 

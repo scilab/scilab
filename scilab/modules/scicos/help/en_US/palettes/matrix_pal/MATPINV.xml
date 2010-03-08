@@ -211,10 +211,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_pinv.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_pinv.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_pinv.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

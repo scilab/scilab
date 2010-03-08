@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Factory for axes objects. Automaticaly create an axes 
- * drawer with the right algorithms from the garphic handle
+ * desc : Factory for axes objects. Automatically create an axes 
+ * drawer with the right algorithms from the graphic handle
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -53,7 +53,7 @@ void DrawableAxesFactory::setStrategies( ConcreteDrawableAxes * axes )
 
   // create ticksDrawer
   TicksDrawer * ticksDrawer = new TicksDrawer();
-  ticksDrawer->setTicksDrawer(new TicksDrawerJoGL(axes));
+  ticksDrawer->setTicksDrawer(new AxesTicksDrawerJoGL(axes));
   ticksDrawer->setTicksComputer(new AxesTicksComputer(axes));
   ticksDrawer->setSubticksComputer(new AxesSubticksComputer(axes));
   ticksDrawer->setAxisPositioner(new AxesPositioner(axes));

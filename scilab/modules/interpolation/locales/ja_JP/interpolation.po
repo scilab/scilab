@@ -1,35 +1,192 @@
-# Localization of the module interpolation
-# Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
-# This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-02-13 14:57+0000\n"
 "Last-Translator: Hiroshi Saito <z-saito@guitar.ocn.ne.jp>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2009-01-27 10:37+0100\n"
-"PO-Revision-Date: \n"
-"X-Poedit-Language: Japanese\n"
+"X-Launchpad-Export-Date: 2010-02-15 09:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 99
+#, c-format
+msgid "%s: %s must be a real %d-dim hypermatrix.\n"
+msgstr "%s: %s は、実 %d-次 次元配列でなければなりません。\n"
+
+#
+# File: sci_gateway/c/sci_cshep2d.c, line: 81
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr "%s: 重複したノード、または、全ての直線ノード(ier = %d)\n"
+
+#
+# File: sci_gateway/c/sci_splin.c, line: 83
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr "%s: スプライン制限のために、端点勾配を与えなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 88
+#, c-format
+msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
+msgstr "%s: %d 次のグリッド横軸は、厳密な増加順序ではありません。\n"
+
+#, c-format
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: 適合のための点が足りません。\n"
+
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 126
+#, c-format
+msgid "%s: Problem with 'flag' = %d\n"
+msgstr "%s: 'flag' = %d の問題\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 105
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and grid values in dimension "
+"%d.\n"
+msgstr "%s: 次元 %d グリッド値 とグリッド点との間でサイズに互換性がありません。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 120
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d or "
+"%d.\n"
+msgstr "%s: 次元 %d 値 と %d のグリッド点との間でサイズに互換性がありません。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 115
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgstr "%s: 次元 %d 値 とグリッド点との間でサイズに互換性がありません。\n"
+
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 87
+#, c-format
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr "%s: 警告: 最小の正方行列の階数落ちです。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 43
+# File: sci_gateway/c/sci_splin.c, line: 96
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数の数が不正です。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 43
+# File: sci_gateway/c/sci_splin.c, line: 96
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s: 入力引数の数が不正です: %d と %d の間でなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_linear_interpn.c, line: 80
+# File: sci_gateway/c/sci_lsq_splin.c, line: 50
+# File: sci_gateway/c/sci_lsq_splin.c, line: 58
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
+
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 64
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 実３次元配列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_splin.c, line: 89
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 端点勾配\n"
+
+#
+# File: sci_gateway/c/sci_splin.c, line: 56
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: %s でなければなりません。\n"
 
 # File: macros/interpln.sci, line: 24
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 二つの行を想定します。\n"
 
+# File: macros/interpln.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定します。\n"
+
+# File: macros/interpln.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトル、または、行列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 46
+# File: sci_gateway/c/sci_interp.c, line: 47
+# File: sci_gateway/c/sci_linear_interpn.c, line: 61
+# File: sci_gateway/c/sci_lsq_splin.c, line: 41
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 46
+# File: sci_gateway/c/sci_interp.c, line: 47
+# File: sci_gateway/c/sci_linear_interpn.c, line: 61
+# File: sci_gateway/c/sci_lsq_splin.c, line: 41
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 小さいサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_splin.c, line: 50
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 小さいサイズ、またはベクトルを想定します。\n"
+
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 52
 # File: sci_gateway/c/sci_interp3d.c, line: 60
 #, c-format
-msgid "%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 入力引数 #%d, #%d と #%d で不正なサイズ: 小さなサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_splin2d.c, line: 59
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr "%s: 入力引数  #%d, #%d または #%d. で不正なサイズです。\n"
+
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 57
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
+"points.\n"
+msgstr "%s: 入力引数で不正なサイズ: x, y と z グリッド は最も小さな %d 点を持っていなくてはなりません。\n"
 
 #
 # File: sci_gateway/c/sci_bsplin3val.c, line: 74
@@ -40,6 +197,68 @@ msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: %s tlist を想定します。\n"
 
 #
+# File: sci_gateway/c/sci_bsplin3val.c, line: 74
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 66
+# File: sci_gateway/c/sci_interp3d.c, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実の配列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 78
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または ''%s'' また ''%s'' を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_bsplin3val.c, line: 74
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 66
+# File: sci_gateway/c/sci_interp3d.c, line: 81
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' または、実を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 64
+# File: sci_gateway/c/sci_splin.c, line: 62
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: (厳密に)増加ではありません、または +-inf を見つけました。\n"
+
+#
+# File: sci_gateway/c/sci_bsplin3val.c, line: 74
+# File: sci_gateway/c/sci_eval_cshep2d.c, line: 66
+# File: sci_gateway/c/sci_interp3d.c, line: 81
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 予想された実、しかし、いくつかのNaNが見つかりました。\n"
+
+#
+# File: sci_gateway/c/sci_splin3d.c, line: 78
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d 構成要素のベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_interp2d.c, line: 56
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正な値: 小さいサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_splin.c, line: 103
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr "%s: 周期スプライン %s で不正な値: %s に等しくなければなりません。\n"
+
+#
 # File: sci_gateway/c/sci_bsplin3val.c, line: 107
 # File: sci_gateway/c/sci_splin3d.c, line: 86
 #, c-format
@@ -47,38 +266,11 @@ msgid "%s: Wrong values for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d で不正な値です。\n"
 
 #
-# File: sci_gateway/c/sci_cshep2d.c, line: 40
-#, c-format
-msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
-msgstr "%s: xyz は　(n,3) , 実行列は、n => 10 です。\n"
-
-#
-# File: sci_gateway/c/sci_cshep2d.c, line: 81
-#, c-format
-msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr "%s: 重複した節、または、全ての直線節(ier = %d)\n"
-
-#
-# File: sci_gateway/c/sci_eval_cshep2d.c, line: 46
-# File: sci_gateway/c/sci_interp.c, line: 47
-# File: sci_gateway/c/sci_linear_interpn.c, line: 61
-# File: sci_gateway/c/sci_lsq_splin.c, line: 41
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 小さいサイズを想定します。\n"
-
-#
 # File: sci_gateway/c/sci_interp.c, line: 59
 # File: sci_gateway/c/sci_splin.c, line: 72
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 未知の '%s' 型です。\n"
-
-#
-# File: sci_gateway/c/sci_interp2d.c, line: 56
-#, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正な値: 小さいサイズを想定します。\n"
 
 #
 # File: sci_gateway/c/sci_interp2d.c, line: 67
@@ -90,134 +282,17 @@ msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
 msgstr "%s: 入力引数 #%d で不正な値: '%s' 型はサポートされません。\n"
 
 #
-# File: sci_gateway/c/sci_linear_interpn.c, line: 43
-# File: sci_gateway/c/sci_splin.c, line: 96
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 入力引数(s)で不正な数です。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 80
-# File: sci_gateway/c/sci_lsq_splin.c, line: 50
-# File: sci_gateway/c/sci_lsq_splin.c, line: 58
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 88
-#, c-format
-msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
-msgstr "%s: %d 次のグリッド横軸は、厳密な増加順序ではありません。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 99
-#, c-format
-msgid "%s: %s must be a real %d-dim hypermatrix.\n"
-msgstr "%s: %s は、実 %d-次 次元配列でなければなりません。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 105
-#, c-format
-msgid "%s: Size incompatibility between grid points and grid values in dimension %d.\n"
-msgstr "%s: 次元 %d グリッド値 とグリッド点との間でサイズに互換性がありません。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 115
-#, c-format
-msgid "%s: Size incompatibility between grid points and values in dimension %d.\n"
-msgstr "%s: 次元 %d 値 とグリッド点との間でサイズに互換性がありません。\n"
-
-#
-# File: sci_gateway/c/sci_linear_interpn.c, line: 120
-#, c-format
-msgid "%s: Size incompatibility between grid points and values in dimension %d or %d.\n"
-msgstr "%s: 次元 %d 値 と %d のグリッド点との間でサイズに互換性がありません。\n"
-
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 64
-# File: sci_gateway/c/sci_splin.c, line: 62
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf detected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: (厳密に)増加ではありません、または +-inf を見つけました。\n"
-
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 83
-#, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s: 適合のための十分な地点ではありません。\n"
-
-#
-# File: sci_gateway/c/sci_lsq_splin.c, line: 87
-#, c-format
-msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
-msgstr "%s: 警告: 最小の正方行列の階数落ちです。\n"
-
-#
-# File: sci_gateway/c/sci_splin.c, line: 50
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Vector of same size expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で不正なサイズ: 小さいサイズ、またはベクトルを想定します。\n"
-
-#
-# File: sci_gateway/c/sci_splin.c, line: 56
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: %s でなければなりません。\n"
-
-#
-# File: sci_gateway/c/sci_splin.c, line: 83
-#, c-format
-msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
-msgstr "%s: スプライン制限のために、端点勾配を与えなくてはなりません。\n"
-
-#
-# File: sci_gateway/c/sci_splin.c, line: 89
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 端点勾配\n"
-
-#
-# File: sci_gateway/c/sci_splin.c, line: 103
-#, c-format
-msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
-msgstr "%s: 周期スプライン %s で不正な値: %s に等しくなければなりません。\n"
-
-#
-# File: sci_gateway/c/sci_splin2d.c, line: 59
-#, c-format
-msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
-msgstr "%s: 入力引数  #%d, #%d または #%d. で不正なサイズです。\n"
-
-#
 # File: sci_gateway/c/sci_splin2d.c, line: 67
 #, c-format
-msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr "%s: x あるいは y は、厳密な増加順序を持っていません(または、+-infを見つけました)\n"
 
 #
-# File: sci_gateway/c/sci_splin3d.c, line: 57
+# File: sci_gateway/c/sci_cshep2d.c, line: 40
 #, c-format
-msgid "%s: Wrong size for input arguments: x, y and z grids must have at least %d points.\n"
-msgstr "%s: 入力引数で不正なサイズ: x, y と z グリッド は最も小さな %d 点を持っていなくてはなりません。\n"
-
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 64
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 実３次元配列を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 78
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: %d 構成要素のベクトルを想定します。\n"
-
-#
-# File: sci_gateway/c/sci_splin3d.c, line: 126
-#, c-format
-msgid "%s: Problem with 'flag' = %d\n"
-msgstr "%s: 'flag' = %d の問題\n"
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr "%s: xyz は　(n,3) , 実行列は、n => 10 です。\n"
 
 #
 # File: src/c/interpolation.c, line: 104
@@ -229,5 +304,4 @@ msgstr "入力引数 #%d で不正な型: 実多次元配列を想定します�
 # File: src/c/interpolation.c, line: 120
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
-msgstr "入力引数 #%d で不正な型: 文字列を想定します。\n"
-
+msgstr "入力引数 #%d で不正な型: 文字を想定します。\n"

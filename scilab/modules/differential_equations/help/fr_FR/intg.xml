@@ -128,6 +128,7 @@ abs(exact-I)
 
 // External écrit en Fortran (un compilateur Fortran est nécessaire)
 // Ecriture du code fortran
+cd TMPDIR;
 F=['      double precision function ffun(x)'
    '      double precision x,pi'
    '      pi=3.14159265358979312d+0'
@@ -137,7 +138,7 @@ F=['      double precision function ffun(x)'
 mputl(F,TMPDIR+'/ffun.f')
 
 // compilation du code Fortran
-l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+l=ilib_for_link('ffun','ffun.f',[],'f');
 
 // link incrémental
 link(l,'ffun','f')
@@ -158,7 +159,7 @@ C=['#include <math.h>'
 mputl(C,TMPDIR+'/cfun.c')
 
 // compilation du code C
-l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+l=ilib_for_link('cfun','cfun.f',[],'c');
 
 // incremental linking
 link(l,'cfun','c')
@@ -189,6 +190,6 @@ abs(exact-I)
     <title>Fonctions Utilisées</title>
 
     <para>Les programmes correspondants (dqag0.f et dqags.f de quadpack) se
-    trouvent dabs le repertoire routines/integ :</para>
+	    trouvent dabs le repertoire SCI/modules/differential_equations/src/fortran.</para>
   </refsection>
 </refentry>

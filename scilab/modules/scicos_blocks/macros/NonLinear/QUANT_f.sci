@@ -35,7 +35,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t then
-    [ok,pas,meth,exprs]=getvalue('Set parameters',..
+    [ok,pas,meth,exprs]=scicos_getvalue('Set parameters',..
 	['Step';'Quantization Type (1-4)'],..
 	list('vec',1,'vec',1),exprs)
     if ~ok then break,end

@@ -7,7 +7,7 @@
 *.o
 
 #
-# Linux libtool files
+# Linux autotool files
 #
 .deps
 .libs
@@ -83,6 +83,9 @@ es_ES_scilab.isl
 pt_BR_scilab.isl
 ja_JP.isl
 ja_JP_scilab.isl
+it_IT_scilab.isl
+uk_UA.isl
+uk_UA_scilab.isl
 #
 # VS solution files (windows)
 #

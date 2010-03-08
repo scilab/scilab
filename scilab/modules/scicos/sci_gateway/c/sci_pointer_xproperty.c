@@ -24,13 +24,40 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
+#include "scicos-def.h"
+#include "scicos.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_pointer_xproperty)(char *fname,unsigned long fname_len)
+/* variable defined in scicos.c */
+extern COSIM_struct C2F(cosim);
+/*--------------------------------------------------------------------------*/
+int sci_pointer_xproperty(char *fname,unsigned long fname_len)
 {
-	intxproperty(fname,fname_len);
-	C2F(putlhsvar)();
+	int isrun = C2F(cosim).isrun;
+
+	if (!isrun) 
+	{
+		Scierror(999,_("%s: scicosim is not running.\n"),fname);
+	}
+	else 
+	{
+		int one = 1;
+		int* pointer_xproperty = NULL;
+		int n_pointer_xproperty = 0;
+
+		CheckRhs(-1,0);
+		CheckLhs(1,1);
+
+		pointer_xproperty = get_pointer_xproperty();
+		n_pointer_xproperty = get_npointer_xproperty();
+
+		CreateVarFromPtr(1,MATRIX_OF_INTEGER_DATATYPE,&n_pointer_xproperty,&one,&pointer_xproperty);
+		LhsVar(1) = 1;
+		C2F(putlhsvar)();
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

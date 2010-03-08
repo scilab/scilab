@@ -18,33 +18,33 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
+#include "scicos.h"
 #include "scicos_block4.h"
-
+#include "MALLOC.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "scicos_evalhermite.h"
+#include "dynlib_scicos_blocks.h"
+/*--------------------------------------------------------------------------*/ 
 /*    Masoud Najafi, August 2007 */
 /*    Copyright INRIA
  *    Scicos block simulator
  *    Signal builder block
  */
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 #define rpar     block->rpar 
 #define nPoints  block->ipar[0]
 #define Order    block->ipar[1]
 #define Periodic block->ipar[2]
 #define T        rpar[nPoints-1]-rpar[0]
-
-int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
-
-void curve_c(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/ 
+SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block,int flag)
 {
-  double t,a,b,c,y1,y2,t1,t2;
-  int *ind,i,inow;
-  double *y;
-  double  d1,d2,h, dh, ddh, dddh;
-
+  double t = 0.,a = 0.,b = 0.,c = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.;
+  int *ind = NULL, i = 0,inow = 0;
+  double *y = NULL;
+  double  d1 = 0.,d2 = 0.,h = 0., dh = 0., ddh = 0., dddh = 0.;
   
   switch(flag)
   {
@@ -78,7 +78,7 @@ void curve_c(scicos_block *block,int flag)
               ind=*block->work;
               t=get_scicos_time();
 	      if (Periodic==1) {
-		t=t-(ind[3]-1)*T;
+			  if (ind[3] > 0) t = t-(ind[3]-1)*T;
 	      }
 
 	      inow=nPoints-1;
@@ -128,7 +128,7 @@ void curve_c(scicos_block *block,int flag)
 		y2=rpar[nPoints+inow+1];
 		d1=rpar[2*nPoints+inow];
 		d2=rpar[2*nPoints+inow+1];
-		Myevalhermite(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+		scicos_evalhermite(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
 		y[0]=h;
 		break;
 	      }
@@ -182,29 +182,4 @@ void curve_c(scicos_block *block,int flag)
    default : break;
   }
 }
-
-int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
-{
-  double tmxa, p, c2, c3, dx;
-
-  /*    if (old_i != *i) {*/
-/*        compute the following Newton form : */
-/*           h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb) */
-	dx = 1. / (*xb - *xa);
-	p = (*yb - *ya) * dx;
-	c2 = (p - *da) * dx;
-	c3 = (*db - p + (*da - p)) * (dx * dx);
-	/*	}	 old_i = *i;*/
-
-/*     eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme */
-    tmxa = *t - *xa;
-    *h = c2 + c3 * (*t - *xb);
-    *dh = *h + c3 * tmxa;
-    *ddh = (*dh + c3 * tmxa) * 2.;
-    *dddh = c3 * 6.;
-    *h = *da + *h * tmxa;
-    *dh = *h + *dh * tmxa;
-    *h = *ya + *h * tmxa;
-    return 0; 
-} /* evalhermite_ */
-
+/*--------------------------------------------------------------------------*/ 

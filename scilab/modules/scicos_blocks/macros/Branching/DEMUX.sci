@@ -35,7 +35,7 @@ function [x,y,typ]=DEMUX(job,arg1,arg2)
     graphics=arg1.graphics;exprs=graphics.exprs
     model=arg1.model;
     while %t do
-      [ok,out,exprs]=getvalue('Set DEMUX block parameters',..
+      [ok,out,exprs]=scicos_getvalue('Set DEMUX block parameters',..
 			      ['number of output ports or vector of sizes'],list('vec',-1),exprs)
       if ~ok then break,end
       if size(out,'*')==1 then
@@ -72,10 +72,17 @@ function [x,y,typ]=DEMUX(job,arg1,arg2)
     model.blocktype='c'
     model.firing=[]
     model.dep_ut=[%t %f]
-    
+
     exprs=string(out)
-    gr_i=''  //'xstringb(orig(1),orig(2),''Demux'',sz(1),sz(2),''fill'')'
+    gr_i=['txt=''Demux'';'
+          'style=5;'
+          'rectstr=stringbox(txt,orig(1),orig(2),0,style,1);'
+          'if ~exists(''%zoom'') then %zoom=1, end;'
+          'w=(rectstr(1,3)-rectstr(1,2))*%zoom;'
+          'h=(rectstr(2,2)-rectstr(2,4))*%zoom;'
+          'xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');'
+          'e=gce();'
+          'e.font_style=style;']
     x=standard_define([.5 2],model,exprs,gr_i)
-    x.graphics.id="Demux"
   end
 endfunction

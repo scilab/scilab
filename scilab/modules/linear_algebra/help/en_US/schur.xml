@@ -292,6 +292,7 @@ function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
 T(1:dim,1:dim)  
 
 // The same function in C (a Compiler is required)
+cd TMPDIR;
 C=['int mytest(double *EvR, double *EvI) {' //the C code
    'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
    'else return 0; }';]
@@ -299,7 +300,7 @@ mputl(C,TMPDIR+'/mytest.c')
 
 
 //build and link
-lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytest','mytest.c',[],'c');
 link(lp,'mytest','c'); 
 
 //run it
@@ -328,7 +329,7 @@ ftn=['integer function mytestf(ar,ai,b)' //the fortran code
 mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
-lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+lp=ilib_for_link('mytestf','mytestf.f',[],'F');
 link(lp,'mytestf','f'); 
 
 //run it

@@ -220,7 +220,7 @@ static void initial_c1_local(void)
         { return 0;  }
 
 /* the real function error is defined in output_stream */
-#define Error(x) C2F(error)((c_local=x,&c_local))
+#define Error(x) SciError(x)
 
 #define Errorinfo(routinename,info) C2F(errorinfo)(routinename,(c_local=info, &c_local), strlen(routinename));
 
@@ -381,17 +381,16 @@ int get_optionals(char *name,rhs_opts opts[]);
 
 
 /*------------------------------
- * prototypes
+ * prototypes 
  *-----------------------------*/
+
+/* functions defined in stack-2.c */
 
 extern int C2F(firstopt)(void);
 extern int C2F(findopt)(char *, rhs_opts *);
-
 extern int C2F(isopt)(int *,char *,unsigned long);
-
 extern int C2F(checkrhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
 extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_len);
-
 extern void C2F(freeptr)(double *ip[]);
 
 #ifdef __cplusplus

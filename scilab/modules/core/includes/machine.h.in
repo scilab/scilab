@@ -77,6 +77,9 @@
 /* Define to 1 if you have the `endpwent' function. */
 #undef HAVE_ENDPWENT
 
+/* Define to 1 if you have the `exp10' function. */
+#undef HAVE_EXP10
+
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
@@ -285,13 +288,13 @@
 /* Define to 1 if you have the `strtol' function. */
 #undef HAVE_STRTOL
 
-/* Define to 1 if `struct stat' is a member of `st_blksize'. */
+/* Define to 1 if `st_blksize' is a member of `struct stat'. */
 #undef HAVE_STRUCT_STAT_ST_BLKSIZE
 
-/* Define to 1 if `struct stat' is a member of `st_blocks'. */
+/* Define to 1 if `st_blocks' is a member of `struct stat'. */
 #undef HAVE_STRUCT_STAT_ST_BLOCKS
 
-/* Define to 1 if `struct stat' is a member of `st_rdev'. */
+/* Define to 1 if `st_rdev' is a member of `struct stat'. */
 #undef HAVE_STRUCT_STAT_ST_RDEV
 
 /* Define to 1 if your `struct stat' has `st_blocks'. Deprecated, use
@@ -515,9 +518,6 @@
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
 
-/* Provide a macro to do exp10 */
-#undef exp10
-
 /* Don't use getwd but getcwd */
 #undef getwd
 
@@ -529,9 +529,6 @@
 
 /* Provide a macro to do isinf */
 #undef isinf
-
-/* Provide a macro to do exp10 */
-#undef log_10_
 
 
 

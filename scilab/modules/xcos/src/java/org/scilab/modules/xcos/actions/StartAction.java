@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,41 +15,103 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.DefaultAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class StartAction  extends DefaultAction {
+/**
+ * Start the simulation
+ */
+public class StartAction extends DefaultAction {
+	/** Name of the action */
+	public static final String NAME = XcosMessages.START;
+	/** Icon name of the action */
+	public static final String SMALL_ICON = "media-playback-start.png";
+	/** Mnemonic key of the action */
+	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
+	public static final int ACCELERATOR_KEY = 0;
+	
+    /**
+     * @param scilabGraph graph
+     */
+    public StartAction(ScilabGraph scilabGraph) {
+    	super(scilabGraph);
+    	setEnabled(GraphActionManager.getEnable(StartAction.class));
+    }
 
-	public StartAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.START, scilabGraph);
-	}
+    /**
+     * @param scilabGraph graph
+     * @return push button
+     */
+    public static PushButton createButton(ScilabGraph scilabGraph) {
+    	return createButton(scilabGraph, StartAction.class);
+    }
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
-	}
+    /**
+     * @param scilabGraph graph
+     * @return menu item
+     */
+    public static MenuItem createMenu(ScilabGraph scilabGraph) {
+    	return createMenu(scilabGraph, StartAction.class);
+    }
 
-	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.START, null, new StartAction(scilabGraph), null);
-	}
+    /**
+     * Action !!!
+     * @param e the source event
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    public void actionPerformed(ActionEvent e) {
+	File temp;
+	updateUI(true);
+	
+	try {
+	    temp = File.createTempFile("xcos",".h5");
+	    ((XcosDiagram) getGraph(e)).getRootDiagram().dumpToHdf5File(temp.getAbsolutePath());
 
-	public void actionPerformed(ActionEvent e) {
-		File temp;
-		try {
-			temp = File.createTempFile("xcos",".hdf5");
-			temp.delete();
-			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");xcos_simulate(scs_m);");
-			temp.deleteOnExit();
-		} catch (IOException e1) {
+	    String command = "import_from_hdf5(\"" + temp.getAbsolutePath() + "\");"
+	    				+ "scicos_debug(" + ((XcosDiagram) getGraph(e)).getScicosParameters().getDebugLevel() + ");"
+	    				+ "xcos_simulate(scs_m);"
+	    				+ "deletefile(\"" + temp.getAbsolutePath() + "\");";
+	    try {
+			ScilabInterpreterManagement.asynchronousScilabExec(command, new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					updateUI(false);
+				}
+			});
+		} catch (InterpreterException e1) {
 			e1.printStackTrace();
+			updateUI(false);
+		}
+	} catch (IOException e1) {
+	    e1.printStackTrace();
+	    updateUI(false);
+	}
+    }
+
+	/**
+	 * Update the UI depending on the action selected or not
+	 * @param started the started status
+	 */
+	public void updateUI(boolean started) {
+		GraphActionManager.setEnable(StartAction.class, !started);
+		GraphActionManager.setEnable(StopAction.class, started);
+		((XcosDiagram) getGraph(null)).setReadOnly(started);
+		
+		if (started) {
+			((XcosDiagram) getGraph(null)).info(XcosMessages.SIMULATION_IN_PROGRESS);
+		} else {
+			((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		}
 	}
 }

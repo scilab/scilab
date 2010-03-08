@@ -29,7 +29,7 @@
       <varlistentry>
         <term>Sys</term>
         <listitem>
-          <para>: <literal>syslin</literal> list (linear system)</para>
+          <para> <literal>syslin</literal> list (linear system)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
