@@ -17,7 +17,11 @@
 using namespace  org_scilab_modules_gui_bridge;
 BOOL ConsoleIsWaitingForInput(void)
 {
-  return CallScilabBridge::isWaitingForInput(getScilabJavaVM());
+	if (getScilabJavaVM())
+	{
+		return CallScilabBridge::isWaitingForInput(getScilabJavaVM());
+	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 
