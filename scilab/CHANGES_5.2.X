@@ -5,14 +5,14 @@ Scilab:
 =======
 
 * Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
-the startup script. 
+  the startup script. 
 
 * Clear separation in the help between users and developers arguments in
-the Scilab startup script
+  the Scilab startup script
 
 * Bug 6633 fixed - Unknown arguments are now accepted with option -a. This 
-allows user to access to them throught the Scilab function sciargs:
-scilab -nwni -a 2 3
+  allows user to access to them throught the Scilab function sciargs:
+  scilab -nwni -a 2 3
 
 Compilation:
 ============
@@ -48,6 +48,13 @@ Xcos:
 * bug 6671 fixed - The style was not saved in superBlockDiagram
 
 * bug 6694 fixed - The grid was always enabled when openning a diagram.
+
+Tests:
+======
+
+* The internal tag "<-- LONG TIME EXECUTION -->" has been added. It allows to
+  disable tests that need long-time duration. These tests are enabled if
+  test_run() is called with the "enable_lt" optional argument.
 
 Obsolete Functions:
 ===================
