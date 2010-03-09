@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="typename">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mc_apply</refname>
+    <refpurpose>parallel calls to a function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[R1[,...,Rm]]=mc_apply(A1[,...,Ak], f[,types][,dims])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Ai</term>
+        <listitem>
+          <para>Argument vectors for function f.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>string containing the name of the function to call.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>types</term>
+        <listitem>
+          <para>strings containing the type name (as per <link linkend="typeof">typeof</link>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dims</term>
+        <listitem>
+          <para>matrix with 1 or 2 columns containing the dimensions of the results of the function called</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ri</term>
+        <listitem>
+          <para>vectors of n (see above) columns containing the results of the function called. The number of rows are given by the corresponding size argument if any (1 otherwise).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    mc_apply makes parallel calls (on a multicore system) to the provided function on the supplied vectors of arguments.
+The function can be the name of aither a compiled foreign function (see <link linkend="ilib_for_link">ilib_for_link</link>) or a Scilab macro. In the latter case, the macro should have have side effects because some of them will be lost (those performed in other processes than the main scilab process).
+The prototype of a native should be  <literal>void function_name(void const*const* args, void*const* results)</literal> where <literal>args</literal> is the array of arguments data and  <literal>results</literal> is the array of result data.
+    The number of calls (and dimension of the result vectors) is given by the length of the longest vector of arguments.
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+
+function r=inside(x,y); if((x*x+y*y)<1.) r=1.; else r=0.; end; endfunction
+
+f1=['int inside_to_call(double *x, double *y, double *inside)'
+    '{ *inside= (((*x) * (*x) + (*y) * (*y)) < 1.) ? 1. : 0. ;'
+    '  return 0;}'];
+mputl(f1,'inside_to_call.c');
+ilib_for_link('inside_to_call','inside_to_call.c',[],"c") 
+exec loader.sce 
+
+f1=['void inside_to_apply(void const * const* xy, void * const* res)'
+    '{ double x= ((double const * const*)xy)[0][0], y=((double const * const*)xy)[1][0];'
+'((double*const*)res)[0][0]= (( x*x + y*y) < 1.) ? 1. : 0. ;'
+    '  return ;}'];
+mputl(f1,'inside_to_apply.c');
+ilib_for_link('inside_to_apply','inside_to_apply.c',[],"c") 
+exec loader.sce 
+
+
+function p=monte_carlo_pi(n,parallel, use_macro)
+x=rand(1,n);
+y=rand(1,n);
+
+if(parallel)
+  if( use_macro )
+    name="inside";
+  else
+    name= "inside_to_apply";
+  end;
+  p=sum(mc_apply(x,y,name));
+else
+  p=0.;
+  if( use_macro)
+    for i=1:n
+      p=p+inside(x(i),y(i));
+    end
+  else
+    for i=1:n
+      p=p+call('inside_to_call',x(i),1,'d',y(i),2,'d','out',[1,1],3,'d');
+    end;
+  end;
+end;
+p=p/n*4.;
+endfunction
+
+parallel_names=["sequential","parallel"];
+mode_names=["foreign compiled","scilab macro"];
+
+for parallel=[1,2]
+  for native=[1,2]
+    t_debut=getdate();disp(monte_carlo_pi(1000000,(parallel==2),(native==2)));disp(parallel_names(parallel)+" execution of "+mode_names(native)+" took "+string(etime(getdate(), t_debut))+" seconds.");
+  end;
+end;
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+       <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+     </simplelist>
+  </refsection>
+</refentry>
