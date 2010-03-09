@@ -200,7 +200,7 @@
 		<add as="displayedLabel" value="Signal Builder" />
 	</add>
 	<add as="SampleCLK" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SampleCLK.svg" />
 	</add>
 	<add as="TKSCALE" extend="blockWithLabel">
 		<add as="displayedLabel" value="TK Scale" />
