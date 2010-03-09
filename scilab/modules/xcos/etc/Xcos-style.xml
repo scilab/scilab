@@ -1028,19 +1028,19 @@
 
 	<!-- THERMO-HYDRAULICS -->
 	<add as="Bache" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Bache.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Bache.svg" />
 	</add>
 	<add as="VanneReglante" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VanneReglante.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VanneReglante.svg" />
 	</add>
 	<add as="PerteDP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.svg" />
 	</add>
 	<add as="PuitsP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.svg" />
 	</add>
 	<add as="SourceP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.svg" />
 	</add>
 
 	<!-- DEMONSTRATION BLOCKS -->

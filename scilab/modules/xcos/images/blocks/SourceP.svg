@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="90.000000"
+   inkscape:export-xdpi="90.000000"
+   inkscape:export-filename="/Users/Mathieu Drouet/Dropbox/Take a sip/sites web tas/scilab/subversion/xcosicons/png/SourceP.png"
+   width="48px"
+   height="48px"
+   id="svg11300"
+   sodipodi:version="0.32"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="SourceP.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.1">
+  <title
+     id="title3289">base scilan</title>
+  <defs
+     id="defs3">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective9733" />
+    <linearGradient
+       id="linearGradient2667">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1.0000000;"
+         offset="0.0000000"
+         id="stop2669" />
+      <stop
+         style="stop-color:#fcfcff;stop-opacity:0.0000000;"
+         offset="1.0000000"
+         id="stop2671" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5176">
+      <stop
+         style="stop-color:#a2a59c;stop-opacity:1.0000000;"
+         offset="0.0000000"
+         id="stop5178" />
+      <stop
+         style="stop-color:#535750;stop-opacity:1.0000000;"
+         offset="1.0000000"
+         id="stop5180" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5176"
+       id="linearGradient12888"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.68137181,0,0,0.68137181,93.857167,25.771856)"
+       x1="-56.294029"
+       y1="23.083057"
+       x2="-43.085381"
+       y2="23.083057" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2667"
+       id="linearGradient12897"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.67122955,0,0,0.66402459,133.88177,40.710976)"
+       x1="11.492236"
+       y1="1.6537577"
+       x2="17.199417"
+       y2="26.729263" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2667"
+       id="linearGradient2845"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.67122955,0,0,0.66402459,133.88177,40.710976)"
+       x1="11.492236"
+       y1="1.6537577"
+       x2="17.199417"
+       y2="26.729263" />
+  </defs>
+  <sodipodi:namedview
+     stroke="#ef2929"
+     fill="#eeeeec"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="0.25490196"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="9.3152807"
+     inkscape:cx="1.8341603"
+     inkscape:cy="22.582913"
+     inkscape:current-layer="g5857"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1436"
+     inkscape:window-height="856"
+     inkscape:window-x="4"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4702"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Mathieu Drouet / Take a sip</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>http://www.takeasip.net/</dc:source>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:title>base scilan</dc:title>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       inkscape:label="Layer 1"
+       id="layer1-0"
+       transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+      <g
+         id="g9544"
+         transform="translate(-2.0023665,2.2530854)">
+        <g
+           id="g9570"
+           transform="translate(0.34662852,-1.7289484)">
+          <g
+             id="g28489"
+             transform="translate(2.3098495,0.12996954)">
+            <g
+               id="g5362">
+              <g
+                 inkscape:r_cy="true"
+                 inkscape:r_cx="true"
+                 style="display:inline"
+                 inkscape:label="Layer 1"
+                 id="layer1-8"
+                 transform="matrix(0,-1.4676275,1.4676275,0,-37.823485,137.74736)">
+                <g
+                   id="g5857"
+                   transform="translate(-0.49999954,-9.6375814e-8)">
+                  <g
+                     id="g2837"
+                     transform="translate(11.833914,0)">
+                    <g
+                       transform="translate(-22.999997,6.0340061e-7)"
+                       id="g12890">
+                      <rect
+                         y="30.666075"
+                         x="79.832161"
+                         height="21.66785"
+                         width="21.66785"
+                         id="rect6240"
+                         style="fill:#73d216;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+                      <text
+                         xml:space="preserve"
+                         style="font-size:23.03343391px;font-style:normal;font-weight:normal;fill:#2e3436;fill-opacity:1;stroke:#2e3436;font-family:Bitstream Vera Sans"
+                         x="84.5"
+                         y="49.5"
+                         id="text10145"><tspan
+                           sodipodi:role="line"
+                           id="tspan10147"
+                           x="84.5"
+                           y="49.5">S</tspan></text>
+                      <g
+                         inkscape:label="Layer 1"
+                         id="layer1-01"
+                         transform="translate(-57.109827,-13.041713)">
+                        <path
+                           id="path2443"
+                           d="m 138.60976,44.541721 c -0.28414,0 -0.8546,0.140941 -0.8546,0.760307 l 0.0641,12.239694 c 9.59584,-0.713923 7.66976,-6.118232 19.45581,-8.825393 l -0.034,-3.217623 c -0.0425,-0.833757 -0.29284,-0.912925 -0.8743,-0.908023 l -17.75694,-0.04897 z"
+                           style="opacity:0.53142856;fill:url(#linearGradient2845);fill-opacity:1;fill-rule:evenodd;stroke:none"
+                           sodipodi:nodetypes="ccccccc" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
