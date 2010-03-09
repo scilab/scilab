@@ -4906,7 +4906,8 @@ static void gl2psPrintSVGHeader(void)
   gl2psPrintf("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n");
   gl2psPrintf("<svg xmlns=\"http://www.w3.org/2000/svg\"\n");
   gl2psPrintf("     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
-              "     width=\"%dpx\" height=\"%dpx\" viewBox=\"%d %d %d %d\">\n",
+              "     width=\"%dpx\" height=\"%dpx\" viewBox=\"%d %d %d %d\"\n"
+              "     style=\"stroke:none\">\n",
               width, height, x, y, width, height);
   gl2psPrintf("<title>%s</title>\n", gl2ps->title);
   gl2psPrintf("<desc>\n");
@@ -5200,7 +5201,7 @@ static void gl2psPrintSVGPrimitive(void *data)
 			gl2psGetPSFontFamilyName(fontName, fontFamily);
 			
 			gl2psSVGGetColorString(prim->verts[0].rgba, col);
-			gl2psPrintf("<text fill=\"%s\" x=\"%g\" y=\"%g\" "
+			gl2psPrintf("<text fill=\"%s\" style=\"stroke:none\" x=\"%g\" y=\"%g\" "
 					    "transform=\"rotate(%g, %g, %g)\" "
 					        "font-size=\"%d\" font-family=\"%s\" "
 				          "font-style=\"%s\" font-weight=\"%s\">%s</text>\n",
@@ -5224,7 +5225,7 @@ static void gl2psPrintSVGPrimitive(void *data)
   case GL2PS_SPECIAL_TEXT :
     if(prim->data.text->alignment == GL2PS_SVG) {
       gl2psSVGGetColorString(prim->verts[0].rgba, col);
-      gl2psPrintf("<g fill=\"%s\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
+      gl2psPrintf("<g fill=\"%s\" stroke=\"black\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
     }
     break;
   default :
