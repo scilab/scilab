@@ -13,21 +13,17 @@
 #include "GetMatlabVariable.h"
 #include "freeArrayOfString.h"
 
-matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
+matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version)
 {
   char **fieldNames = NULL;
-
   int nbRow = 0, nbFields = 0;
-
   int ilStruct = 0;
-
   int pointerSave = 0;
-
   int newStkPos = 0;
 
-  if(VarType(stkPos) == sci_mlist)
+  if(VarType(iVar) == sci_mlist)
     {
-      newStkPos = stkPos + Top - Rhs; 
+      newStkPos = iVar + Top - Rhs; 
       
       ilStruct = iadr(*Lstk(newStkPos));
       if (*istk(ilStruct) < 0) /* Reference */
@@ -41,18 +37,18 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       *Lstk(newStkPos) = sadr(ilStruct+2+nbFields+1); /* Address of the first list entry */
  
       /* FIRST LIST ENTRY: fieldnames */
-      GetRhsVar(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, &fieldNames);
+      GetRhsVar(iVar, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, &fieldNames);
 
       if (strcmp(fieldNames[0], "ce")==0)
         {
           *Lstk(newStkPos) = pointerSave;
           freeArrayOfString(fieldNames, nbRow * nbFields);
-          return GetCellVariable(stkPos, name, matfile_version);
+          return GetCellVariable(iVar, name, matfile_version);
         }
       else if (strcmp(fieldNames[0], "st")==0)
         {
           *Lstk(newStkPos) = pointerSave;
-          return GetStructVariable(stkPos, name, matfile_version, fieldNames, nbFields);
+          return GetStructVariable(iVar, name, matfile_version, fieldNames, nbFields);
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {

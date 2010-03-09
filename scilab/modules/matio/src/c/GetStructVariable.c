@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,7 +14,7 @@
 #include "GetMatlabVariable.h"
 #include "freeArrayOfString.h"
 
-matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, char **fieldNames, int nbFields)
+matvar_t *GetStructVariable(int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields)
 {
   int newStkPos = 0;
   int ilStruct = 0;
@@ -30,7 +31,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, c
   matvar_t *dimensionsVariable = NULL;
   matvar_t **structEntries = NULL;
 
-  newStkPos = stkPos + Top - Rhs; 
+  newStkPos = iVar + Top - Rhs; 
   
   ilStruct = iadr(*Lstk(newStkPos));
   if (*istk(ilStruct) < 0) /* Reference */
@@ -42,7 +43,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, c
   
   /* SECOND LIST ENTRY: dimensions */
   *Lstk(newStkPos) = firstItemAdr + *istk(ilStruct + 3) - 1; /* Address of the second list entry */
-  dimensionsVariable = GetMatlabVariable(stkPos, "data", /* Do not need to give the format because this variable is just temp */ 0);
+  dimensionsVariable = GetMatlabVariable(iVar, "data", /* Do not need to give the format because this variable is just temp */ 0);
 
   /* Total number of entries */
   for (K=0; K<dimensionsVariable->rank; K++)
@@ -67,7 +68,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, c
       for (fieldIndex = 2; fieldIndex < nbFields; fieldIndex++)
         {
           *Lstk(newStkPos) = firstItemAdr + *istk(ilStruct + 3 + fieldIndex - 1) - 1;
-          structEntries[fieldIndex - 2] = GetMatlabVariable(stkPos ,fieldNames[fieldIndex], matfile_version);
+          structEntries[fieldIndex - 2] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], matfile_version);
         }
     }
   else
@@ -83,7 +84,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version, c
           for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
               *Lstk(newStkPos) = firstValueAdr + *istk(ilListEntries + 2 + valueIndex) - 1;
-              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(stkPos ,fieldNames[fieldIndex], matfile_version);
+              structEntries[(fieldIndex-1) + (nbFields-2)*valueIndex] = GetMatlabVariable(iVar ,fieldNames[fieldIndex], matfile_version);
             }
         }
     }

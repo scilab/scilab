@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,45 +13,78 @@
 
 #include "GetMatlabVariable.h"
 
-matvar_t *GetIntegerVariable(int stkPos, const char *name)
+#include "api_common.h"
+#include "api_int.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+matvar_t *GetIntegerVariable(int iVar, const char *name)
 {
   SciIntMat integerMatrix;
-
   int rank = 0;
   int *dims = NULL;
-
   matvar_t *createdVar = NULL;
+  int * var_addr = NULL;
+  int var_type;
+  int integerType;
+  SciErr _SciErr;
+  char * tmp_int8 = NULL;
+  short * tmp_int16 = NULL;
+  int * tmp_int32 = NULL;
+  unsigned char * tmp_uint8 = NULL;
+  unsigned short * tmp_uint16 = NULL;
+  unsigned int * tmp_uint32 = NULL;
+#ifdef __SCILAB_INT64__
+  long long * tmp_int64 = NULL;
+  unsigned long long * tmp_uint64 = NULL;
+#endif
 
-  if(VarType(stkPos) == sci_ints) /* 2-D array */
+  _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+
+  if(var_type == sci_ints) /* 2-D array */
     {
       rank = 2;
-      if ((dims = (int*) MALLOC (sizeof(int) * rank)) == NULL)
+      if ((dims = (int*)MALLOC(sizeof(int)*rank)) == NULL)
         {
           Scierror(999, _("%s: No more memory.\n"), "GetIntegerVariable");
           return NULL;
         }
 
-      GetRhsVar(stkPos, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &dims[0], &dims[1], (int *) &integerMatrix);
+      _SciErr = getMatrixOfIntegerPrecision(pvApiCtx, var_addr, &integerType);
 
-      switch(integerMatrix.it)
+      GetRhsVar(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &dims[0], &dims[1], (int *) &integerMatrix);
+
+
+      switch(integerType)
         {
-        case I_CHAR: /* INT8 */
-          createdVar = Mat_VarCreate(name, MAT_C_INT8, MAT_T_INT8, rank, dims, integerMatrix.D, 0);
+        case SCI_INT8: /* INT8 */
+	  _SciErr = getMatrixOfInteger8(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_int8);
+          createdVar = Mat_VarCreate(name, MAT_C_INT8, MAT_T_INT8, rank, dims, tmp_int8, 0);
           break;
-        case I_INT16: /* INT16 */
-          createdVar = Mat_VarCreate(name, MAT_C_INT16, MAT_T_INT16, rank, dims, integerMatrix.D, 0);
+        case SCI_INT16: /* INT16 */
+	  _SciErr = getMatrixOfInteger16(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_int16);
+          createdVar = Mat_VarCreate(name, MAT_C_INT16, MAT_T_INT16, rank, dims, tmp_int16, 0);
           break;
-       case I_INT32: /* INT32 */
-          createdVar = Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, rank, dims, integerMatrix.D, 0);
+       case SCI_INT32: /* INT32 */
+	  _SciErr = getMatrixOfInteger32(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_int32);
+          createdVar = Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, rank, dims, tmp_int32, 0);
           break;
-        case I_UCHAR: /* UINT8 */
-          createdVar = Mat_VarCreate(name, MAT_C_UINT8, MAT_T_UINT8, rank, dims, integerMatrix.D, 0);
+        case SCI_UINT8: /* UINT8 */
+	  _SciErr = getMatrixOfUnsignedInteger8(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_uint8);
+          createdVar = Mat_VarCreate(name, MAT_C_UINT8, MAT_T_UINT8, rank, dims, tmp_uint8, 0);
           break;
-        case I_UINT16: /* UINT16 */
-          createdVar = Mat_VarCreate(name, MAT_C_UINT16, MAT_T_UINT16, rank, dims, integerMatrix.D, 0);
+        case SCI_UINT16: /* UINT16 */
+	  _SciErr = getMatrixOfUnsignedInteger16(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_uint16);
+          createdVar = Mat_VarCreate(name, MAT_C_UINT16, MAT_T_UINT16, rank, dims, tmp_uint16, 0);
            break;
-       case I_UINT32: /* UINT32 */
-          createdVar = Mat_VarCreate(name, MAT_C_UINT32, MAT_T_UINT32, rank, dims, integerMatrix.D, 0);
+       case SCI_UINT32: /* UINT32 */
+	  _SciErr = getMatrixOfUnsignedInteger32(pvApiCtx, var_addr, &dims[0], &dims[1], &tmp_uint32);
+          createdVar = Mat_VarCreate(name, MAT_C_UINT32, MAT_T_UINT32, rank, dims, tmp_uint32, 0);
           break;
         default:
           createdVar = NULL;

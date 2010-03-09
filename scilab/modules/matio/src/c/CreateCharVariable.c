@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,13 +14,22 @@
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 
-int CreateCharVariable(int stkPos, matvar_t *matVariable)
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+int CreateCharVariable(int iVar, matvar_t *matVariable)
 {
-  int nbRow = 0, nbCol = 0, emptyStringAdr = 0;
-
+  int nbRow = 0, nbCol = 0;
   char **charData = NULL;
-
   int K = 0, L = 0;
+  SciErr _SciErr;
 
   if(matVariable->rank==2) /* 2-D array */
     {
@@ -33,7 +43,7 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
             {
               Scierror(999, _("%s: No more memory.\n"), "CreateCharVariable");
               return FALSE;
-            };
+            }
         }
       
       for (K=0; K<nbRow; K++)
@@ -43,8 +53,9 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
             {
               Scierror(999, _("%s: No more memory.\n"), "CreateCharVariable");
               return FALSE;
-            };
+            }
         }
+
       /* Fill items: data in Matlab file is stored columnwise */
       for(K=0; K<matVariable->dims[0]; K++) /* Loop over items */
         {
@@ -64,11 +75,11 @@ int CreateCharVariable(int stkPos, matvar_t *matVariable)
 
       if (nbRow*nbCol != 0)
         {
-          CreateVarFromPtr(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, charData);
+	  _SciErr = createMatrixOfString(pvApiCtx, iVar, nbRow, nbCol, charData); MATIO_ERROR;
         }
       else /* Empty character string */
         {
-          CreateVar(stkPos, STRING_DATATYPE, &nbRow, &nbCol, &emptyStringAdr);
+	  createSingleString(pvApiCtx, iVar, "\0");
         }
       
       freeArrayOfString(charData,nbRow*nbCol);
