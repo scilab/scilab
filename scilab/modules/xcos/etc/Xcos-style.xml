@@ -907,10 +907,10 @@
 
 	<!-- ELECTRICAL -->
 	<add as="Capacitor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Capacitor.svg" />
 	</add>
 	<add as="Ground" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Ground.svg" />
 	</add>
 	<add as="VVsourceAC" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
@@ -927,28 +927,28 @@
 				    &lt;/TABLE&gt;" />
 	</add>
 	<add as="ConstantVoltage" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ConstantVoltage.svg" />
 	</add>
 	<add as="Inductor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Inductor.svg" />
 	</add>
 	<add as="PotentialSensor" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PotentialSensor.svg" />
 	</add>
 	<add as="VariableResistor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VariableResistor.svg" />
 	</add>
 	<add as="CurrentSensor" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CurrentSensor.svg" />
 	</add>
 	<add as="Resistor" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Resistor.svg" />
 	</add>
 	<add as="VoltageSensor" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VoltageSensor.svg" />
 	</add>
 	<add as="Diode" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Diode.svg" />
 	</add>
 	<add as="VsourceAC" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
@@ -965,10 +965,10 @@
 				    &lt;/TABLE&gt;" />
 	</add>
 	<add as="NPN" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NPN.svg" />
 	</add>
 	<add as="PNP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PNP.svg" />
 	</add>
 	<add as="SineVoltage" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
@@ -985,7 +985,7 @@
 				    &lt;/TABLE&gt;" />
 	</add>
 	<add as="Switch" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.svg" />
 	</add>
 	<add as="OpAmp" extend="blockWithLabel">
 		<add as="shape" value="triangle" />
@@ -1008,22 +1008,22 @@
 				    &lt;/TABLE&gt;" />
 	</add>
 	<add as="PMOS" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PMOS.svg" />
 	</add>
 	<add as="NMOS" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/NMOS.svg" />
 	</add>
 	<add as="CCS" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CCS.svg" />
 	</add>
 	<add as="CVS" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CVS.svg" />
 	</add>
 	<add as="IdealTransformer" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/IdealTransformer.svg" />
 	</add>
 	<add as="Gyrator" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Gyrator.svg" />
 	</add>
 
 	<!-- THERMO-HYDRAULICS -->
