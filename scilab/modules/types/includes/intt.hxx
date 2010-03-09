@@ -59,7 +59,7 @@ namespace types
 
 		bool data_set(Int* _pTData)
 		{
-			if(m_iSize =! _pTData->size_get())
+			if(m_iSize != _pTData->size_get())
 			{
 				return false;
 			}
