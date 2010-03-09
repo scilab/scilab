@@ -4919,6 +4919,10 @@ static void gl2psPrintSVGHeader(void)
   gl2psPrintf("<defs>\n");
   gl2psPrintf("</defs>\n");
 
+  if(gl2ps->options & GL2PS_LANDSCAPE){
+    gl2psPrintf("<g transform=\"rotate(90) translate(0,-%d)\">\n", width);
+  }
+  
   if(gl2ps->options & GL2PS_DRAW_BACKGROUND){
     gl2psSVGGetColorString(gl2ps->bgcolor, col);
     gl2psPrintf("<polygon fill=\"%s\" points=\"%d,%d %d,%d %d,%d %d,%d\"/>\n", col,
@@ -5203,7 +5207,7 @@ static void gl2psPrintSVGPrimitive(void *data)
 						      col, xyz[0][0], xyz[0][1],
 						      -(prim->data.text->angle),	xyz[0][0], xyz[0][1],
 							    prim->data.text->fontsize,
-								  fontName,
+								  fontFamily,
 									(isItalicFont ? "italic" : (isObliqueFont ? "oblique" : "normal")),
 									(isBoldFont ? "bold" : "normal"),
 									prim->data.text->str);
@@ -5230,6 +5234,10 @@ static void gl2psPrintSVGPrimitive(void *data)
 
 static void gl2psPrintSVGFooter(void)
 {
+  if(gl2ps->options & GL2PS_LANDSCAPE){
+    gl2psPrintf("</g>\n");
+  }
+
   gl2psPrintf("</g>\n");
   gl2psPrintf("</svg>\n");  
   
