@@ -22,14 +22,14 @@ import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
 import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 
 import java.io.ByteArrayOutputStream;
-import java.io.Writer;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
 import org.apache.batik.dom.GenericDOMImplementation;
 
 import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
 
 import com.sun.opengl.util.j2d.TextRenderer;
 
@@ -73,14 +73,14 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 						   (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
 						   (float) Math.toDegrees(angle));
 			} else {
-			    String SVGcode;
+			    String svgCode;
 			    if (str.charAt(0) == '<') {
-				    SVGcode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
+				    svgCode = new MathMLObjectSVG((MathMLObjectGL) spe).getCode();
 			    } else {
-				    SVGcode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
+				    svgCode = new TeXObjectSVG((TeXObjectGL) spe).getCode();
 			    }
 			    /* the fontsize is set to 0 to include directly the svg code (see gl2ps.c) */
-			    gl2ps.gl2psTextOpt(SVGcode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
+			    gl2ps.gl2psTextOpt(svgCode, getFontPSName(getFont()), (short) 0, GL2PS.GL2PS_SVG, (float) Math.toDegrees(angle));
 			}
 		    
 			return;
@@ -135,8 +135,10 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		
 		try {
 		    g2d.stream(new OutputStreamWriter(buf, "UTF-8"), true, true);
-		} catch (Exception e) {
+		} catch (SVGGraphics2DIOException e) {
 			System.err.println(e.toString());
+		} catch (UnsupportedEncodingException e) {
+		        System.err.println(e.toString());
 		}
 		
 		String code = buf.toString();
