@@ -782,9 +782,6 @@
 		<add as="displayedLabel" value="LOGICAL&lt;BR&gt;
 				    AND" />
 	</add>
-	<add as="EVTDLY_c" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/EVTDLY_c.gif" />
-	</add>
 	<add as="EVTDLY_c" extend="blockWithLabel">
 		<add as="displayedLabel" value="Delay" />
 		<!-- FIXME : Show parameters over block  -->
@@ -866,9 +863,6 @@
 		<add as="shape" value="hexagon" />
 		<add as="rounded" value="1" />
 		<add as="fillColor" value="white" />
-	</add>
-	<add as="RELATIONALOP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/RELATIONALOP.gif" />
 	</add>
 	<add as="RELATIONALOP" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
