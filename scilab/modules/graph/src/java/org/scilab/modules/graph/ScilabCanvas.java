@@ -380,6 +380,10 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			return;
 		}
 		
+		// TODO
+		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
+		// message.
+		
 		// Scale to the bounds
 		Rectangle2D bounds = background.getBounds();
 		

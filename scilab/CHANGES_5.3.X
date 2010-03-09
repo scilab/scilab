@@ -87,6 +87,13 @@ helptools:
 
 * %helps_modules (global variable in scilab) is defined only when 
   scilab build help and no more at scilab's startup.
+
+Matlab to Scilab conversion tools:
+==================================
+
+* Unitary tests added.
+
+* mfile2sci: option only_double set to %T as default.
   
 Tests:
 ======

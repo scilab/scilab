@@ -27,6 +27,8 @@ import org.apache.batik.bridge.UserAgentAdapter;
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -40,6 +42,11 @@ import com.mxgraph.util.mxUtils;
  * Utilities functions for ScilabGraph 
  */
 public final class ScilabGraphUtils extends mxUtils {
+	/**
+	 * Logger for this class
+	 */
+	private static final Log log = LogFactory.getLog(ScilabGraphUtils.class);
+	
 	/**
 	 * Cache for the generated SVG components
 	 */
@@ -125,7 +132,7 @@ public final class ScilabGraphUtils extends mxUtils {
 				node = builder.build(ctx, doc);
 				generatedSVGComponents.put(filename, node);
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error(e.getLocalizedMessage());
 			}
 		}
 		return node;

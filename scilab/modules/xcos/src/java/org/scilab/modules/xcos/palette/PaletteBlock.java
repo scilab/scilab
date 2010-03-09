@@ -17,8 +17,10 @@ import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
+import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseListener;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
@@ -141,8 +143,13 @@ public final class PaletteBlock {
 		// Install the handler for dragging nodes into a graph
 		DragGestureListener dragGestureListener = new DragGestureListener() {
 			public void dragGestureRecognized(DragGestureEvent e) {
+				try {
 				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 						getTransferable(), null);
+				} catch (InvalidDnDOperationException exception) {
+					LogFactory.getLog(PaletteBlock.class)
+						.warn(exception.getMessage());
+				}
 			}
 
 		};
