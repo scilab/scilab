@@ -291,7 +291,7 @@
 
 	<!-- LOOKUP TABLES -->
 	<add as="LOOKUP_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.svg" />
 	</add>
 	<add as="INTRP2BLK_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="Interp 2" />
@@ -376,7 +376,7 @@
 		<add as="displayedLabel" value="a^u" />
 	</add>
 	<add as="PROD_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PROD_f.svg" />
 		<!--
 			<add as="shape" value="ellipse"/> <add as="perimeter"
 			value="ellipsePerimeter"/> <add as="displayedLabel" value="&lt;FONT
@@ -395,7 +395,7 @@
 		<add as="displayedLabel" value="LOG" />
 	</add>
 	<add as="SUMMATION" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUMMATION.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.svg" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -408,7 +408,7 @@
 		<add as="displayedLabel" value="Trig function" />
 	</add>
 	<add as="PRODUCT" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PRODUCT.svg" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt; &lt;TR&gt;
 			&lt;TD&gt;*&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
