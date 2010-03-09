@@ -215,7 +215,7 @@
 		<add as="displayedLabel" value="du / dt" />
 	</add>
 	<add as="INTEGRAL_m" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL_m.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/INTEGRAL.svg" />
 		<!--
 			<add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;
 			&#8747; &lt;/FONT&gt;"/>
