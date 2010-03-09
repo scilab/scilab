@@ -12,25 +12,22 @@
 
 package org.scilab.modules.graphic_export;
 
-import java.awt.Component;
-import java.awt.Color;
 import java.awt.Insets;
 import java.awt.geom.AffineTransform;
 import java.io.ByteArrayOutputStream;
-import java.io.Writer;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
-import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
 import org.scilab.modules.renderer.textDrawing.TeXObjectGL;
 
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
 import org.apache.batik.dom.GenericDOMImplementation;
 
 import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
 
 /**
  * Class to generate a LaTeX label in SVG.
@@ -38,24 +35,29 @@ import org.w3c.dom.Document;
  */
 public class TeXObjectSVG extends TeXObjectGL {
     
+    private static final DOMImplementation DOM = GenericDOMImplementation.getDOMImplementation();
+    
     private String code;
-    private final static DOMImplementation dom = GenericDOMImplementation.getDOMImplementation();
 
     /** 
      * Default constructor.
-     * @param content the LaTeX code
-     * @param color the color of the content
-     * @param fontSize the size of the font
+     * @param t a TeX label in JOGL
      */
     public TeXObjectSVG(TeXObjectGL t) {
 		super(t);
 		makeImage();
     }
 
+    /**
+     * @return the SVG code
+     */
     public String getCode() {
 		return code;
     }
-        
+    
+    /**
+     * Build the SVG code to render the LaTeX label
+     */
     public void makeImage() {
 		texi.setInsets(new Insets(1, 1, 1, 1));
 		width = texi.getIconWidth();
@@ -69,7 +71,7 @@ public class TeXObjectSVG extends TeXObjectGL {
 			height = texi.getIconHeight();
 		}   
 		
-		SVGGraphics2D g2d = new SVGGraphics2D(dom.createDocument("", "svg", null));
+		SVGGraphics2D g2d = new SVGGraphics2D(DOM.createDocument("", "svg", null));
 	
 		AffineTransform gt = new AffineTransform();
 		gt.translate(0, -height);
@@ -80,8 +82,10 @@ public class TeXObjectSVG extends TeXObjectGL {
 		
 		try {
 		    g2d.stream(new OutputStreamWriter(buf, "UTF-8"), true, true);
-		} catch (Exception e) {
-			System.out.println(e.toString());
+		} catch (SVGGraphics2DIOException e) {
+			System.err.println(e.toString());
+		} catch (UnsupportedEncodingException e) {
+		        System.err.println(e.toString());
 		}
 				
 		code = buf.toString();
