@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="40"
+	height="40">
+	<text x="1" y="27" font-family="monospace" font-size="20" fill="#cc0000">
+		+
+	</text>
+	<text x="30" y="27" font-family="monospace" font-size="20" fill="#cc0000">
+		-
+	</text>
+</svg>

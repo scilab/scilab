@@ -344,7 +344,7 @@
 		<add as="displayedLabel" value="MIN" />
 	</add>
 	<add as="BIGSOM_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/BIGSOM_f.svg" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUM.svg" />
 		<!--
 			<add as="displayedLabel" value="&lt;TABLE&gt;&lt;TR&gt;
 			&lt;TD&gt;+&lt;/TD&gt; &lt;TD ROWSPAN=&quot;2&quot;&gt; &lt;FONT
@@ -985,7 +985,7 @@
 				    &lt;/TABLE&gt;" />
 	</add>
 	<add as="Switch" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Switch.svg" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SWITCH.svg" />
 	</add>
 	<add as="OpAmp" extend="blockWithLabel">
 		<add as="shape" value="triangle" />
@@ -1028,7 +1028,7 @@
 
 	<!-- THERMO-HYDRAULICS -->
 	<add as="Bache" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/Bache.svg" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/BACHE.svg" />
 	</add>
 	<add as="VanneReglante" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/VanneReglante.svg" />
@@ -1037,7 +1037,7 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PerteDP.svg" />
 	</add>
 	<add as="PuitsP" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitsP.svg" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/PuitP.svg" />
 	</add>
 	<add as="SourceP" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SourceP.svg" />
