@@ -901,7 +901,7 @@
 		<add as="displayedLabel" value="C block" />
 	</add>
 	<add as="SUPER_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SUPER.svg" />
 	</add>
 	<add as="DSUPER" extend="SUPER_f" />
 
