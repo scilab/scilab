@@ -160,13 +160,29 @@ int StorePrioritaryCommandWithFlag (char *command,int flag)
 	__Signal(&LaunchScilab);
 	return (0);
 }
-
+/*--------------------------------------------------------------------------*/
+int isEmptyCommandQueue(void)
+{
+	int isEmpty = 0;
+	__Lock(&commandQueueSingleAccess);
+	if (commandQueue != NULL)
+	{
+		isEmpty = 0;
+	}
+	else
+	{
+		isEmpty = 1;
+	}
+	__UnLock(&commandQueueSingleAccess);
+	return isEmpty;
+}
 /*--------------------------------------------------------------------------*/
 /*
  * Gets info on the first queue element
  * and remove it from the queue
  */
 /*--------------------------------------------------------------------------*/
+
 int GetCommand ( char *str)
 {
 	int flag = 0;
