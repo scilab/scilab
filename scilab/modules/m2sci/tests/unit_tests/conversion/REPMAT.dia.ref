@@ -6,48 +6,50 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: REPMAT
 mprintf("%s\n", m2sciTestConversionNoExe("REPMAT"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/REPMAT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  ! L.26: real(n) may be replaced by:
+  !     n if n is Real.
+  ! L.27: real(n) may be replaced by:
+  !     n if n is Real.
+  ! L.28: real(n) may be replaced by:
+  !     n if n is Real.
+  ! L.52: real(m1) may be replaced by:
+  !     m1 if m1 is Real.
+  ! L.52: real(n1) may be replaced by:
+  !     n1 if n1 is Real.
+  ! L.53: real(m1) may be replaced by:
+  !     m1 if m1 is Real.
+  ! L.53: real(n1) may be replaced by:
+  !     n1 if n1 is Real.
+  ! L.54: real(m1) may be replaced by:
+  !     m1 if m1 is Real.
+  ! L.54: real(n1) may be replaced by:
+  !     n1 if n1 is Real.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******
 
-
-
-
-
-  Mode verbeux : -1
-
-  Lecture du fichier M ...
-
-  Modification de syntaxe ...
-
-  Conversion de macro vers arbre ...
-  Conversion de l'arbre Matlab ...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ****** Fin de la session mfile2sci() ******
-
-// Mode d'affichage
+// Display mode
 mode(0);
 
-// Affiche un warning pour une exception en virgule flottante
+// Display warning for floating point exception
 ieee(1);
 
 // Test file for function repmat()

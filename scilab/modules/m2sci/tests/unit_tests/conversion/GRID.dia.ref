@@ -6,37 +6,39 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: GRID
 mprintf("%s\n", m2sciTestConversionNoExe("GRID"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/GRID.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  !! L.8: No minor grid in Scilab.
+  L.9: Unknown variable grid is a M-file.
+  L.12: Unknown variable grid is a M-file.
+  L.13: Unknown variable grid is a M-file.
+  L.14: Unknown variable grid is a M-file.
+  !! L.14: No minor grid in Scilab.
+  L.15: Unknown variable grid is a M-file.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******
 
-
-
-
-
-  Mode verbeux : -1
-
-  Lecture du fichier M ...
-
-  Modification de syntaxe ...
-
-  Conversion de macro vers arbre ...
-  Conversion de l'arbre Matlab ...
-  !! L.8: Pas de grille mineure dans Scilab.
-  L.9 : La variable inconnue grid est un fichier M.
-  L.12 : La variable inconnue grid est un fichier M.
-  L.13 : La variable inconnue grid est un fichier M.
-  L.14 : La variable inconnue grid est un fichier M.
-  !! L.14: Pas de grille mineure dans Scilab.
-  L.15 : La variable inconnue grid est un fichier M.
-
-
-
-  ****** Fin de la session mfile2sci() ******
-
-// Mode d'affichage
+// Display mode
 mode(0);
 
-// Affiche un warning pour une exception en virgule flottante
+// Display warning for floating point exception
 ieee(1);
 
 // Test file for function grid
