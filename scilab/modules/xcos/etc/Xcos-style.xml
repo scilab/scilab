@@ -641,7 +641,7 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg" />
 	</add>
 	<add as="CSCOPXY" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg" />
 	</add>
 	<add as="TOWS_c" extend="blockWithLabel">
 		<!-- FIXME : Show workspace under block  -->
@@ -651,7 +651,7 @@
 		<add as="displayedLabel" value="Mat. 3D" />
 	</add>
 	<add as="CSCOPXY3D" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY3D.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg" />
 	</add>
 	<add as="CANIMXY3D" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg" />
