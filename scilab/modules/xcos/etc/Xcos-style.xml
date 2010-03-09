@@ -1052,10 +1052,7 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg" />
 	</add>
 	<add as="BPLATFORM" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.gif" />
-	</add>
-	<add as="AUTOMAT" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/AUTOMAT.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/BPLATFORM.svg" />
 	</add>
 	<add as="AUTOMAT" extend="blockWithLabel">
 		<!-- FIXME : Show parameters over block  -->
