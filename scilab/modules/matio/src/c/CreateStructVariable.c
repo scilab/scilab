@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,7 +15,17 @@
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
-int CreateStructVariable(int stkPos, matvar_t *matVariable)
+
+#include "api_common.h"
+#include "api_list.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+int CreateStructVariable(int iVar, matvar_t *matVariable)
 {
   char **fieldNames = NULL;
   int nbFields = 0;
@@ -70,22 +81,22 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
     }
   
   /* Returned mlist initialization */
-  stkPos = stkPos + Top - Rhs; 
+  iVar = iVar + Top - Rhs; 
 
-  ilStruct = iadr(*Lstk(stkPos));
+  ilStruct = iadr(*Lstk(iVar));
   *istk(ilStruct) = 17;
   *istk(ilStruct+1) = nbFields;
   *istk(ilStruct+2) = 1;
   
-  *Lstk(stkPos+1) = sadr(ilStruct+2+nbFields+1); /* Address of the first list entry */
+  *Lstk(iVar+1) = sadr(ilStruct+2+nbFields+1); /* Address of the first list entry */
  
   /* FIRST LIST ENTRY: fieldnames */
   nbRow = 1;
-  CreateVarFromPtr(stkPos + 1 + Rhs - Top, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, fieldNames);
+  CreateVarFromPtr(iVar + 1 + Rhs - Top, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, fieldNames);
   /* Update the list "pointers" */
-  *istk(ilStruct+3) = *istk(ilStruct+2) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
+  *istk(ilStruct+3) = *istk(ilStruct+2) + *Lstk(iVar + 2) - *Lstk(iVar + 1);
   /* Reinit current variable address */
-  *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
+  *Lstk(iVar + 1) = *Lstk(iVar + 2);
   
   /* SECOND LIST ENTRY: Dimensions (int32 type) */
   integerMatrix.it = I_INT32;
@@ -100,17 +111,17 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
 
   if(matVariable->rank==2) /* Two dimensions */
     {
-      CreateVarFromPtr(stkPos + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &integerMatrix.m, &integerMatrix.n, &integerMatrix);
+      CreateVarFromPtr(iVar + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &integerMatrix.m, &integerMatrix.n, &integerMatrix);
     }
   else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(stkPos + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerMatrix.it, &matVariable->rank, matVariable->dims, matVariable->data, NULL);
+      CreateHyperMatrixVariable(iVar + 1 + Rhs - Top, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerMatrix.it, &matVariable->rank, matVariable->dims, matVariable->data, NULL);
     }
 
   /* Update the list "pointers" */
-  *istk(ilStruct+4) = *istk(ilStruct+3) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
+  *istk(ilStruct+4) = *istk(ilStruct+3) + *Lstk(iVar + 2) - *Lstk(iVar + 1);
   /* Reinit current variable address */
-  *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
+  *Lstk(iVar + 1) = *Lstk(iVar + 2);
 
   /* ALL OTHER ENTRIES: Fields data */
   prodDims = 1;
@@ -123,7 +134,7 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
 
   if (prodDims == 1) /* Scalar struct */
     {
-      listAdr = stkPos + 1;
+      listAdr = iVar + 1;
 
       for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
@@ -144,7 +155,7 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
     }
   else
     {
-      listAdr = stkPos + 1;
+      listAdr = iVar + 1;
       
       for (fieldIndex = 1; fieldIndex < nbFields - 1; fieldIndex++)
         {
@@ -175,15 +186,15 @@ int CreateStructVariable(int stkPos, matvar_t *matVariable)
             }
 
           /* Update the returned list "pointers" */
-          *istk(ilStruct+4+fieldIndex) = *istk(ilStruct+3+fieldIndex) + *Lstk(stkPos + 2) - *Lstk(stkPos + 1);
+          *istk(ilStruct+4+fieldIndex) = *istk(ilStruct+3+fieldIndex) + *Lstk(iVar + 2) - *Lstk(iVar + 1);
           /* Reinit current variable address */
-          *Lstk(stkPos + 1) = *Lstk(stkPos + 2);
+          *Lstk(iVar + 1) = *Lstk(iVar + 2);
           
         }
     }
   /* Emulate stack2.c returned values management */
-  C2F(intersci).ntypes[stkPos - Top + Rhs - 1] = '$';
-  C2F(intersci).lad[stkPos - Top + Rhs - 1] = ilStruct + 2 + nbFields + 1;
+  C2F(intersci).ntypes[iVar - Top + Rhs - 1] = '$';
+  C2F(intersci).lad[iVar - Top + Rhs - 1] = ilStruct + 2 + nbFields + 1;
 
   //freeArrayOfString(fieldNames); /* TODO why is this line commented out ? */
 

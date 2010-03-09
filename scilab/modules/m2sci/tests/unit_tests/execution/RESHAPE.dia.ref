@@ -6,22 +6,23 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: RESHAPE
 if ~m2sciTestExecution("RESHAPE") then bugmes();quit;end
-
-
-
-
-
-  Mode verbeux : 0
-
-  Lecture du fichier M ...
-
-  Modification de syntaxe ...
-
-  Conversion de macro vers arbre ...
-  Conversion de l'arbre Matlab ...
-
-
-
-  ****** Fin de la session mfile2sci() ******
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/RESHAPE.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******

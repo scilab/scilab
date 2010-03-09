@@ -6,30 +6,32 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
 // Unitary test for conversion of Matlab function: KEYBOARD
 mprintf("%s\n", m2sciTestConversionNoExe("KEYBOARD"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/KEYBOARD.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.6: Unknown variable keyboard is a M-file.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
 
-
-
-
-
-  Mode verbeux : -1
-
-  Lecture du fichier M ...
-
-  Modification de syntaxe ...
-
-  Conversion de macro vers arbre ...
-  Conversion de l'arbre Matlab ...
-  L.6 : La variable inconnue keyboard est un fichier M.
-
-
-  ****** Fin de la session mfile2sci() ******
-
-// Mode d'affichage
+// Display mode
 mode(0);
 
-// Affiche un warning pour une exception en virgule flottante
+// Display warning for floating point exception
 ieee(1);
 
 // Test file for function keyboard()
