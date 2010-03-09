@@ -266,10 +266,10 @@
 
 	<!-- DISCONTINUOUS -->
 	<add as="SATURATION" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SATURATION.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/SATURATION.svg" />
 	</add>
 	<add as="DEADBAND" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.svg" />
 	</add>
 	<add as="HYSTHERESIS" extend="Icon">
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/HYSTHERESIS.gif" />
