@@ -17,53 +17,78 @@
 #include "localization.h"
 #include "Scierror.h"
 
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
 /*******************************************************************************
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
 int sci_matfile_open(char *fname,unsigned long fname_len)
 {
-  int nbRow = 0, nbCol = 0, stkAdr = 0;
-
+  int nbRow = 0, nbCol = 0;
   mat_t *matfile;
-
   int fileIndex = 0;
-
-  char *filename = NULL;
-
-  char *optionStr = NULL;
-  int option = 0;
+  char * filename  = NULL;
+  char * optionStr = NULL;
+  int option = 0, var_type;
+  int * filename_addr = NULL, * option_addr = NULL;
+  SciErr _SciErr;
 
   CheckRhs(1, 2);
   CheckLhs(1, 1);
 
-  if (VarType(1) == sci_strings)
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &filename_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, filename_addr, &var_type); MATIO_ERROR;
+
+  if (var_type == sci_strings)
     {
-      GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+      getAllocatedSingleString(pvApiCtx, filename_addr, &filename);
+      _SciErr = getVarDimension(pvApiCtx, filename_addr, &nbRow, &nbCol); MATIO_ERROR;
       if (nbCol != 1) 
         {
           Scierror(999, _("%s: Wrong size for first input argument: Single string expected.\n"), fname);
+
+	  freeAllocatedSingleString(filename);
+
           return FALSE;
         }
-      filename = cstk(stkAdr);
     }
   else
     {
       Scierror(999, _("%s: Wrong type for first input argument: Single string expected.\n"), fname);
+
+      freeAllocatedSingleString(filename);
+      
       return FALSE;
     }
   
   if (Rhs == 2)
     {
-      if (VarType(2) == sci_strings)
+      _SciErr = getVarAddressFromPosition(pvApiCtx, 2, &option_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, option_addr, &var_type); MATIO_ERROR;
+
+      if (var_type == sci_strings)
         {
-          GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &stkAdr);
+	  getAllocatedSingleString(pvApiCtx, option_addr, &optionStr);
+	  _SciErr = getVarDimension(pvApiCtx, option_addr, &nbRow, &nbCol); MATIO_ERROR;
+
           if (nbCol != 1) 
             {
               Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
+
+	      freeAllocatedSingleString(filename);
+	      freeAllocatedSingleString(optionStr);
+
               return FALSE;
             }
-          optionStr = cstk(stkAdr);
           
           if (strcmp(optionStr, "r")==0)
             {
@@ -76,12 +101,20 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
           else
             {
               Scierror(999, _("%s: Wrong value for second input argument: 'r' or 'w' expected.\n"), fname);
+
+	      freeAllocatedSingleString(filename);
+	      freeAllocatedSingleString(optionStr);
+
               return FALSE;
             }
         }
       else
         {
           Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), fname);
+
+	  freeAllocatedSingleString(filename);
+	  freeAllocatedSingleString(optionStr);
+
           return FALSE;
         }
     }
@@ -113,13 +146,14 @@ int sci_matfile_open(char *fname,unsigned long fname_len)
     }
 
   /* Return the index */
-  nbRow = 1;
-  nbCol = 1;
-  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-  *stk(stkAdr) = fileIndex;
+  createScalarDouble(pvApiCtx, Rhs+1, (double)fileIndex);
 
-  LhsVar(1) = Rhs + 1;
+  LhsVar(1) = Rhs+1;
+
   PutLhsVar();
+
+  freeAllocatedSingleString(filename);
+  freeAllocatedSingleString(optionStr);
 
   return TRUE;
 }

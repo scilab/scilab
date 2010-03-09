@@ -16,6 +16,16 @@
 #include "Scierror.h"
 #include "sciprint.h"
 
+#include "api_common.h"
+#include "api_double.h"
+#include "api_boolean.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
 int sci_matfile_close(char *fname,unsigned long fname_len);
 
 /*******************************************************************************
@@ -24,25 +34,31 @@ int sci_matfile_close(char *fname,unsigned long fname_len);
 *******************************************************************************/
 int sci_matfile_close(char *fname,unsigned long fname_len)
 {
-  mat_t *matfile = NULL;
+  mat_t * matfile = NULL;
   int fileIndex = 0; 
-  int nbRow = 0, nbCol = 0, stkAdr = 0;
-
-  int flag = 1;
+  int nbRow = 0, nbCol = 0;
+  int * fd_addr = NULL;
+  int flag = 1, var_type;
+  double * fd_val = NULL;
+  SciErr _SciErr;
 
   CheckRhs(1, 1);
   CheckLhs(1, 1);
 
   /* First Rhs is the index of the file to close */
-  if (VarType(1) == sci_matrix)
+
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
+
+  if (var_type == sci_matrix)
     {
-      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, & nbCol, &stkAdr);
+      _SciErr = getMatrixOfDouble(pvApiCtx, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
       if (nbRow * nbCol != 1)
         {
           Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
           return FALSE;
         }
-      fileIndex = (int)*stk(stkAdr);
+      fileIndex = (int)*fd_val;
     }
   else
     {
@@ -64,10 +80,10 @@ int sci_matfile_close(char *fname,unsigned long fname_len)
 
   /* Return execution flag */
   nbRow = 1; nbCol = 1;
-  CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &stkAdr);
-  *istk(stkAdr) = flag==0;
+  var_type = flag==0;
+  _SciErr = createMatrixOfBoolean(pvApiCtx, Rhs+1, nbRow, nbCol, &var_type); MATIO_ERROR;
 
-  LhsVar(1) = Rhs + 1;
+  LhsVar(1) = Rhs+1;
 
   PutLhsVar();
 

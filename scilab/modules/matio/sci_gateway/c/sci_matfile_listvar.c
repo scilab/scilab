@@ -21,35 +21,48 @@
 #include "strdup_Windows.h"
 #endif
 
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+#include "api_boolean.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
 int sci_matfile_listvar(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0, stkAdr = 0;
-
   mat_t *matfile = NULL;
-
   matvar_t *matvar = NULL;
-
   int fileIndex = 0;
-
   char **varnames = NULL;
   double *varclasses = NULL;
   double *vartypes = NULL;
-
-  int nbvar = 0;
+  int nbvar = 0, var_type;
+  int * fd_addr = NULL;
+  double tmp_dbl;
+  SciErr _SciErr;
 
   CheckRhs(1, 1);
   CheckLhs(1, 3);
 
   /* First Rhs is the index of the file to read */
-  if (VarType(1) == sci_matrix)
+
+  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
+
+  if (var_type == sci_matrix)
     {
-      GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, & nbCol, &stkAdr);
-      if (nbRow * nbCol != 1)
+      getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
+      if (!isScalar(pvApiCtx, fd_addr))
         {
           Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
           return FALSE;
         }
-      fileIndex = (int)*stk(stkAdr);
+      fileIndex = (int)tmp_dbl;
     }
   else
     {
@@ -100,23 +113,22 @@ int sci_matfile_listvar(char *fname,unsigned long fname_len)
   Mat_VarFree(matvar);
 
   /* Return the variable names list */
-  nbRow = nbvar;
-  nbCol = 1;
-  CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, varnames);
-  LhsVar(1) = Rhs + 1;
+  nbRow = nbvar; nbCol = 1;
+  _SciErr = createMatrixOfString(pvApiCtx, Rhs+1, nbRow, nbCol, varnames); MATIO_ERROR;
+  LhsVar(1) = Rhs+1;
 
   /* Return the variable classes */
   if (Lhs >= 2)
     {
-      CreateVarFromPtr(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &varclasses);
-      LhsVar(2) = Rhs + 2;
+      _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+2, nbRow, nbCol, varclasses); MATIO_ERROR;
+      LhsVar(2) = Rhs+2;
     }
 
   /* Return the variable types */
   if (Lhs >= 3)
     {
-      CreateVarFromPtr(Rhs+3, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &vartypes);
-      LhsVar(3) = Rhs + 3;
+      _SciErr = createMatrixOfDouble(pvApiCtx, Rhs+3, nbRow, nbCol, vartypes); MATIO_ERROR;
+      LhsVar(3) = Rhs+3;
     }
 
   PutLhsVar();
