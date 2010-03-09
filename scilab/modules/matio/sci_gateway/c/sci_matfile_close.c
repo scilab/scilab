@@ -16,77 +16,76 @@
 #include "Scierror.h"
 #include "sciprint.h"
 
-#include "api_common.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
-    {				     \
-      printError(&_SciErr, 0);	     \
-      return 0;			     \
-    }
+	{				     \
+	printError(&_SciErr, 0);	     \
+	return 0;			     \
+	}
 
 int sci_matfile_close(char *fname,unsigned long fname_len);
 
 /*******************************************************************************
-   Interface for MATIO function called Mat_Close
-   Scilab function name : matfile_close
+Interface for MATIO function called Mat_Close
+Scilab function name : matfile_close
 *******************************************************************************/
 int sci_matfile_close(char *fname,unsigned long fname_len)
 {
-  mat_t * matfile = NULL;
-  int fileIndex = 0; 
-  int nbRow = 0, nbCol = 0;
-  int * fd_addr = NULL;
-  int flag = 1, var_type;
-  double * fd_val = NULL;
-  SciErr _SciErr;
+	mat_t * matfile = NULL;
+	int fileIndex = 0; 
+	int nbRow = 0, nbCol = 0;
+	int * fd_addr = NULL;
+	int flag = 1, var_type;
+	double * fd_val = NULL;
+	SciErr _SciErr;
 
-  CheckRhs(1, 1);
-  CheckLhs(1, 1);
+	CheckRhs(1, 1);
+	CheckLhs(1, 1);
 
-  /* First Rhs is the index of the file to close */
+	/* First Rhs is the index of the file to close */
 
-  _SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
+	_SciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr); MATIO_ERROR;
+	_SciErr = getVarType(pvApiCtx, fd_addr, &var_type); MATIO_ERROR;
 
-  if (var_type == sci_matrix)
-    {
-      _SciErr = getMatrixOfDouble(pvApiCtx, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
-      if (nbRow * nbCol != 1)
-        {
-          Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
-          return FALSE;
-        }
-      fileIndex = (int)*fd_val;
-    }
-  else
-    {
-      Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
-      return FALSE;
-    }
-  
-  /* Gets the corresponding matfile to close it */
-  /* The manager clears its static matfile table */
-  matfile_manager(MATFILEMANAGER_DELFILE, &fileIndex, &matfile);
+	if (var_type == sci_matrix)
+	{
+		_SciErr = getMatrixOfDouble(pvApiCtx, fd_addr, &nbRow, &nbCol, &fd_val); MATIO_ERROR;
+		if (nbRow * nbCol != 1)
+		{
+			Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
+			return FALSE;
+		}
+		fileIndex = (int)*fd_val;
+	}
+	else
+	{
+		Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
+		return FALSE;
+	}
 
-  /* If the file has not already been closed, it's closed */
-  if(matfile!=NULL)
-    {
-      flag = Mat_Close(matfile);
-    }
-  else /* The user is informed */
-    sciprint("File already closed.\n");
+	/* Gets the corresponding matfile to close it */
+	/* The manager clears its static matfile table */
+	matfile_manager(MATFILEMANAGER_DELFILE, &fileIndex, &matfile);
 
-  /* Return execution flag */
-  nbRow = 1; nbCol = 1;
-  var_type = flag==0;
-  _SciErr = createMatrixOfBoolean(pvApiCtx, Rhs+1, nbRow, nbCol, &var_type); MATIO_ERROR;
+	/* If the file has not already been closed, it's closed */
+	if(matfile!=NULL)
+	{
+		flag = Mat_Close(matfile);
+	}
+	else /* The user is informed */
+		sciprint("File already closed.\n");
 
-  LhsVar(1) = Rhs+1;
+	/* Return execution flag */
+	nbRow = 1; nbCol = 1;
+	var_type = (flag == 0);
+	_SciErr = createMatrixOfBoolean(pvApiCtx, Rhs+1, nbRow, nbCol, &var_type); 
+	MATIO_ERROR;
 
-  PutLhsVar();
+	LhsVar(1) = Rhs+1;
 
-  return TRUE;
+	PutLhsVar();
+
+	return TRUE;
 }
 

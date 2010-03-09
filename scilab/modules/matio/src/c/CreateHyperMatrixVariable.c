@@ -59,7 +59,7 @@ int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int 
 	  
 	  return FALSE;
 	}
-      for(i=0;i<nbRow*nbCol; i++) tmp_int32[i] = realdata[i];
+      for(i=0;i<nbRow*nbCol; i++) tmp_int32[i] = (int)realdata[i];
       _SciErr = createMatrixOfInteger32InList(pvApiCtx, number, hm_addr, 3, nbRow, nbCol, tmp_int32); MATIO_ERROR;
       FREE(tmp_int32);
     }
