@@ -83,6 +83,9 @@ Bug Fixes:
 
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
 
+* bug 6687 fixed - The Matplot function didn't set the clip_state property of the
+                   entities it creates.
+
 * bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
       	   	   exported in eps.
 
