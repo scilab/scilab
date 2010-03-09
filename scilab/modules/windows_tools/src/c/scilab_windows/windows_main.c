@@ -35,6 +35,7 @@
 #include "strdup_windows.h"
 #include "InnosetupMutex.h"
 #include "charEncoding.h"
+#include "WindowShow.h"
 /*--------------------------------------------------------------------------*/ 
 #define MIN_STACKSIZE 180000
 #define WSCILEX "wscilex.exe"
@@ -64,6 +65,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	forbiddenToUseScilab();
 
 	setScilabMode(SCILAB_STD);
+	setWindowShowMode(iCmdShow);
 
 	ScilabDirectory = getScilabDirectory(FALSE);
 
@@ -98,9 +100,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 			ShowMessageBoxInfo = FALSE;
 		}
 	}
-
-	// No more needed
-	//if (ShowMessageBoxInfo) StartupMessageBox();
 
 	for (i = 1; i < my_argc; i++)
 	{
