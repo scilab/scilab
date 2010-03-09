@@ -272,7 +272,7 @@
 		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DEADBAND.svg" />
 	</add>
 	<add as="HYSTHERESIS" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/HYSTHERESIS.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/HYSTHERESIS.svg" />
 	</add>
 	<add as="BACKLASH" extend="blockWithLabel">
 		<add as="displayedLabel" value="Backlash" />
