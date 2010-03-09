@@ -291,7 +291,7 @@
 
 	<!-- LOOKUP TABLES -->
 	<add as="LOOKUP_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/LOOKUP_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/DSCOPE.gif" />
 	</add>
 	<add as="INTRP2BLK_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="Interp 2" />
@@ -306,7 +306,7 @@
 				    f/n f" />
 	</add>
 	<add as="QUANT_f" extend="Icon">
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.gif" />
+		<add as="image" value="$SCILAB/modules/xcos/images/blocks/QUANT_f.svg" />
 	</add>
 	<add as="MFCLCK_f" extend="blockWithLabel">
 		<add as="displayedLabel" value="M. freq&lt;BR&gt;
