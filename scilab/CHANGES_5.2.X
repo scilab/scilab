@@ -95,6 +95,12 @@ Bug Fixes:
 
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 
+* bug 6735 fixed - The "landscape" option in the print dialog as well as in
+      	   	   xs2eps did not work as expected.
+
+* bug 6738 fixed - The horizontal line of the square root symbol was not
+      	   	   drawn when exported.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
