@@ -1,37 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   width="33.259418"
-   height="33.259418"
-   id="svg2855">
-  <g
-     transform="translate(-358.3703,-515.73248)"
-     id="layer1">
-    <g
-       transform="matrix(0,0.68137177,-0.68137177,0,390.03482,516.42453)"
-       id="g31086">
-      <path
-         d="m 31.160714,16.910715 a 14.910714,14.910714 0 1 1 -29.8214281,0 14.910714,14.910714 0 1 1 29.8214281,0 z"
-         transform="matrix(1.5876104,0,0,1.5876104,-2.4081283,-4.7821171)"
-         id="path35549-4"
-         style="fill:none;stroke:#000000;stroke-width:0.92442554;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <path
-         d="m 16.40625,17.28125 a 1.21875,1.21875 0 1 1 -2.4375,0 1.21875,1.21875 0 1 1 2.4375,0 z"
-         transform="matrix(2.073295,0,0,2.073295,-7.310224,-13.13682)"
-         id="path34778"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.70787203;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <path
-         d="M 22.176614,20.718014 13.155702,13.140282"
-         id="path35559"
-         style="fill:none;stroke:#000000;stroke-width:2.93525505;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-      <path
-         d="m 19.408614,29.776506 2.960041,-4.493278"
-         id="path35561"
-         style="fill:none;stroke:#000000;stroke-width:2.93525505;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-    </g>
+<svg id="svg2855" xmlns="http://www.w3.org/2000/svg" height="33.259" width="33.259" version="1.1">
+ <g id="layer1" transform="translate(-358.3703,-515.73248)">
+  <g id="g31086" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" transform="matrix(0,0.68137177,-0.68137177,0,390.03482,516.42453)">
+   <path id="path35549-4" stroke-linejoin="round" style="stroke-dasharray:none;" d="m31.161,16.911a14.911,14.911,0,1,1,-29.821,0,14.911,14.911,0,1,1,29.821,0z" stroke-dashoffset="0" transform="matrix(1.5876104,0,0,1.5876104,-2.4081283,-4.7821171)" stroke-width="0.92442554" fill="none"/>
+   <path id="path34778" stroke-linejoin="round" style="stroke-dasharray:none;" d="m16.406,17.281a1.2188,1.2188,0,1,1,-2.4375,0,1.2188,1.2188,0,1,1,2.4375,0z" fill-rule="evenodd" transform="matrix(2.073295,0,0,2.073295,-7.310224,-13.13682)" stroke-dashoffset="0" stroke-width="0.70787203" fill="#000"/>
+   <path id="path35559" stroke-linejoin="miter" style="stroke-dasharray:none;" d="M22.177,20.718,13.156,13.14" stroke-width="2.93525505" fill="none"/>
+   <path id="path35561" stroke-linejoin="miter" style="stroke-dasharray:none;" d="m19.409,29.777,2.96-4.4933" stroke-width="2.93525505" fill="none"/>
   </g>
+ </g>
 </svg>

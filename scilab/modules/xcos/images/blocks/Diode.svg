@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.0"
-   width="165pt"
-   height="70pt"
-   id="svg2">
-  <defs
-     id="defs4" />
-  <g
-     id="layer1">
-    <path
-       d="m 3.5526161,44.37116 69.1909849,0 0,38.58728 L 132.5604,44.37116 72.743601,7.11448 l 0,37.25668 m 59.211519,-37.25668 0,75.84396 m 0.66529,-38.58728 69.85629,0"
-       id="path2239"
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-  </g>
+<svg id="svg2" xmlns="http://www.w3.org/2000/svg" height="70pt" width="165pt" version="1.0">
+ <g id="layer1">
+  <path id="path2239" stroke-linejoin="miter" style="stroke-dasharray:none;" d="m3.5526,44.371,69.191,0,0,38.587l59.816-38.587-59.816-37.256v37.257m59.212-37.257,0,75.844,0.66529-38.587,69.856,0" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" fill="none"/>
+ </g>
 </svg>

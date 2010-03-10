@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   width="32.39188"
-   height="30.443497"
-   id="svg2847">
-  <defs
-     id="defs2849" />
-  <g
-     transform="translate(-1140.9469,-582.85472)"
-     id="layer1">
-    <g
-       transform="matrix(0,0.68137179,-0.68137179,0,1173.6044,577.49537)"
-       id="g9544">
-      <path
-         d="m 36.224849,1.8574522 c 0,0 22.498866,10.3840988 12.114774,37.8586738 C 37.955533,67.190701 29.734793,1.8574522 28.00411,1.8574522 26.27343,1.8574522 8.1030782,10.975801 9.3992803,34.09141 10.697291,57.239287 23.461071,4.6698163 23.461071,4.6698163 l 0,0"
-         id="path8919"
-         style="fill:none;stroke:#000000;stroke-width:2.93525505;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-    </g>
+<svg id="svg2847" xmlns="http://www.w3.org/2000/svg" height="30.443" width="32.392" version="1.1">
+ <g id="layer1" transform="translate(-1140.9469,-582.85472)">
+  <g id="g9544" transform="matrix(0,0.68137179,-0.68137179,0,1173.6044,577.49537)">
+   <path id="path8919" stroke-linejoin="round" style="stroke-dasharray:none;" d="m36.225,1.8575s22.499,10.384,12.115,37.859-18.605-37.858-20.336-37.858-19.901,9.1185-18.605,32.234c1.2977,23.148,14.062-29.421,14.062-29.421" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.93525505" fill="none"/>
   </g>
+ </g>
 </svg>

@@ -1,83 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg2"
-   sodipodi:version="0.32"
-   inkscape:version="0.45"
-   width="240"
-   height="385"
-   version="1.0"
-   sodipodi:docbase="/home/sean"
-   sodipodi:docname="WPint.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   sodipodi:modified="true">
-  <metadata
-     id="metadata7">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs5">
-    <linearGradient
-       id="linearGradient2785">
-      <stop
-         style="stop-color:#0070a0;stop-opacity:1;"
-         offset="0"
-         id="stop2787" />
-      <stop
-         id="stop2793"
-         offset="0.33000001"
-         style="stop-color:#009070;stop-opacity:1;" />
-      <stop
-         style="stop-color:#0090a0;stop-opacity:1;"
-         offset="0.5"
-         id="stop2797" />
-      <stop
-         style="stop-color:#002080;stop-opacity:1;"
-         offset="0.67000002"
-         id="stop2795" />
-      <stop
-         style="stop-color:#480040;stop-opacity:1;"
-         offset="1"
-         id="stop2789" />
-    </linearGradient>
-  </defs>
-  <sodipodi:namedview
-     inkscape:window-height="687"
-     inkscape:window-width="910"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     guidetolerance="10.0"
-     gridtolerance="10.0"
-     objecttolerance="10.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base"
-     borderlayer="true"
-     inkscape:showpageshadow="false"
-     inkscape:zoom="0.5"
-     inkscape:cx="625.61962"
-     inkscape:cy="281.96312"
-     inkscape:window-x="5"
-     inkscape:window-y="25"
-     inkscape:current-layer="svg2" />
-  <path
-     id="path1873"
-     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="M 137,156.68295 C 139,128.68295 146.75,78 147.25,74.25 C 147.75,70.5 150.75,54.499999 160.5,42.499999 C 170.25,30.499999 186.25,26.249999 186.25,26.249999 C 186.5,26.249999 182.25,26.999999 182.25,37.749999 C 182.25,48.499999 195,56 203,56 C 211,56 225,49 225,37 C 225,25 208.5,18 202,18 C 195.5,18 185,18 176,21.5 C 167,25 146.625,38 138.125,55 C 129.625,72 125,92 120.5,122 C 116,152 111,199.3659 109,227.3659 C 107,255.3659 97.75,307.8659 97.25,311.6159 C 96.75,315.3659 93.75,331.3659 84,343.3659 C 74.25,355.3659 58.25,359.6159 58.25,359.6159 C 58,359.6159 62.25,358.8659 62.25,348.1159 C 62.25,337.3659 49.5,329.8659 41.5,329.8659 C 33.5,329.8659 19.5,336.8659 19.5,348.8659 C 19.5,360.8659 36,367.8659 42.5,367.8659 C 49,367.8659 59.5,367.8659 68.5,364.3659 C 77.5,360.8659 97.875,347.8659 106.375,330.8659 C 114.875,313.8659 119.5,293.8659 124,263.8659 C 126.02445,250.36955 135,178.68295 137,156.68295 z "
-     sodipodi:nodetypes="csscssssssscsscssssssss" />
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="385" width="240" version="1.0" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs id="defs5"></defs>
+ <path id="path1873" d="M137,156.68c2-28,9.75-78.68,10.25-82.43s3.5-19.75,13.25-31.75,25.75-16.25,25.75-16.25c0.25,0-4,0.75-4,11.5s12.75,18.25,20.75,18.25,22-7,22-19-16.5-19-23-19-17,0-26,3.5-29.38,16.5-37.88,33.5-13.12,37-17.62,67-9.5,77.37-11.5,105.37-11.25,80.5-11.75,84.25-3.5,19.75-13.25,31.75-25.75,16.25-25.75,16.25c-0.25,0,4-0.75,4-11.5s-12.75-18.25-20.75-18.25-22,7-22,19,16.5,19,23,19,17,0,26-3.5,29.375-16.5,37.88-33.5c8.5-17,13.12-37,17.62-67,2.02-13.5,11-85.19,13-107.19z" fill-rule="evenodd" fill="#000"/>
 </svg>
