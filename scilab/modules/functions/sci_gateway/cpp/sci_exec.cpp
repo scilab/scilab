@@ -138,6 +138,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		if(Parser::getInstance()->getExitStatus() !=  Parser::Succeded)
 		{
 			YaspWrite(Parser::getInstance()->getErrorMessage());
+			Parser::getInstance()->freeTree();
 			return Function::Error;
 		}
 
@@ -226,6 +227,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
 	}
 
+	Parser::getInstance()->freeTree();
 	file.close();
 	return Function::OK;
 }

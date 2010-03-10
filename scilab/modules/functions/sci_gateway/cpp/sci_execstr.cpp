@@ -178,6 +178,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 		}
 	}
 
+	Parser::getInstance()->freeTree();
 	FREE(pstCommand);
 	return Function::OK;
 }

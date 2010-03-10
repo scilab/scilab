@@ -95,6 +95,7 @@ void dumpAstTask(bool timed)
 	if (Parser::getInstance()->getTree())
 	{
 		Parser::getInstance()->getTree()->accept(debugMe);
+		Parser::getInstance()->freeTree();
 	}
 
 	if(timed)
@@ -117,6 +118,7 @@ void printAstTask(bool timed)
 
 	ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
 	Parser::getInstance()->getTree()->accept(printMe);
+	Parser::getInstance()->freeTree();
 
 	if(timed)
 	{
@@ -141,6 +143,7 @@ void execAstTask(bool timed)
 	{
 		ast::ExecVisitor execMe;
 		Parser::getInstance()->getTree()->accept(execMe);
+		Parser::getInstance()->freeTree();
 	}
 	catch(string sz)
 	{

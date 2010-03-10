@@ -112,6 +112,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 			std::list<ast::Exp *>LExp = ((ast::SeqExp*)Parser::getInstance()->getTree())->exps_get();
 			if(Parser::getInstance()->getExitStatus() == Parser::Failed)
 			{
+				Parser::getInstance()->freeTree();
 				continue;
 			}
 
@@ -123,6 +124,8 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 					AddMacroToXML(pWriter, pair<string, string>(string(pFD->name_get().name_get()), string(pstPath[k])));
 				}
 			}
+
+			Parser::getInstance()->freeTree();
 		}
 	}
 

@@ -149,4 +149,13 @@ void Parser::disableParseTrace(void)
   yydebug = 0;
 }
 
+void Parser::freeTree()
+{
+	if(_the_program != NULL)
+	{
+		delete _the_program;
+		_the_program = NULL;
+	}
+}
+
 Parser* Parser::me;

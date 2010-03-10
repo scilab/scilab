@@ -35,15 +35,16 @@ class EXTERN_PARSE Parser
 private:
   Parser()
   {
-    _stop_on_first_error = false;
-    _strict_mode = false;
-    _exit_status = Succeded;
-    _control_status = new std::list<ControlStatus>();
-    _error_message = new std::string();
+    _stop_on_first_error	= false;
+    _strict_mode					= false;
+    _exit_status					= Succeded;
+    _control_status				= new std::list<ControlStatus>();
+    _error_message				= new std::string();
+		_the_program					= NULL;
   }
   ~Parser()
   {
-    delete _the_program;
+		freeTree();
   }
 
 public:
@@ -83,6 +84,9 @@ public:
 
   /** \brief disable Bison trace mode */
   void disableParseTrace(void);
+
+  /** \brief free current tree */
+	void freeTree();
 
   /** Setters / Getters
       \{ */
