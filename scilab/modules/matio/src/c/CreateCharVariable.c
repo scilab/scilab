@@ -14,9 +14,7 @@
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -24,7 +22,7 @@
       return 0;			     \
     }
 
-int CreateCharVariable(int iVar, matvar_t *matVariable)
+int CreateCharVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   char **charData = NULL;
@@ -75,11 +73,28 @@ int CreateCharVariable(int iVar, matvar_t *matVariable)
 
       if (nbRow*nbCol != 0)
         {
-	  _SciErr = createMatrixOfString(pvApiCtx, iVar, nbRow, nbCol, charData); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfString(pvApiCtx, iVar, nbRow, nbCol, charData); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, charData); MATIO_ERROR;
+	    }
         }
       else /* Empty character string */
         {
-	  createSingleString(pvApiCtx, iVar, "\0");
+	  if (parent==NULL)
+	    {
+	      createSingleString(pvApiCtx, iVar, "\0");
+	    }
+	  else
+	    {
+	      char ** tmp_char = (char **)MALLOC(sizeof(char *));
+	      tmp_char[0] = strdup("\0");
+	      _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, parent, item_position, 1, 1, tmp_char); MATIO_ERROR;
+	      freeArrayOfString(tmp_char, 1);
+	    }
         }
       
       freeArrayOfString(charData,nbRow*nbCol);

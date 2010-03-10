@@ -14,6 +14,8 @@ package org.scilab.modules.graph.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -50,7 +52,7 @@ public final class ScilabGraphUtils extends mxUtils {
 	/**
 	 * Cache for the generated SVG components
 	 */
-	private static Map<File, GraphicsNode> generatedSVGComponents = new WeakHashMap<File, GraphicsNode>();
+	private static Map<File, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<File, WeakReference<GraphicsNode>>();
 	
 	/**
 	 * Cache for the generated latex icons
@@ -115,9 +117,16 @@ public final class ScilabGraphUtils extends mxUtils {
 	 * @return the corresponding graphic node
 	 */
 	public static GraphicsNode getSVGComponent(File filename) {
+		WeakReference<GraphicsNode> nodeRef;
 		GraphicsNode node;
 		
-		node = generatedSVGComponents.get(filename);
+		nodeRef = generatedSVGComponents.get(filename);
+		if (nodeRef != null) {
+			node = nodeRef.get();
+		} else {
+			node = null;
+		}
+		
 		if (node == null) {
 			try {
 				String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
@@ -126,11 +135,12 @@ public final class ScilabGraphUtils extends mxUtils {
 				UserAgent userAgent = new UserAgentAdapter();
 				DocumentLoader loader = new DocumentLoader(userAgent);
 				BridgeContext ctx = new BridgeContext(userAgent, loader);
-				ctx.setDynamicState(BridgeContext.DYNAMIC);
+				ctx.setDynamicState(BridgeContext.STATIC);
 				GVTBuilder builder = new GVTBuilder();
 				
 				node = builder.build(ctx, doc);
-				generatedSVGComponents.put(filename, node);
+				
+				generatedSVGComponents.put(filename, node.getWeakReference());
 			} catch (IOException e) {
 				log.error(e.getLocalizedMessage());
 			}

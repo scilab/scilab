@@ -12,8 +12,7 @@
 
 #include "GetMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_sparse.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -21,7 +20,7 @@
       return 0;			     \
     }
 
-matvar_t *GetSparseVariable(int iVar, const char *name)
+matvar_t *GetSparseVariable(int iVar, const char *name, int * parent, int item_position)
 {
   int K = 0;
   int rank = 0;
@@ -33,11 +32,20 @@ matvar_t *GetSparseVariable(int iVar, const char *name)
   int *colIndexes = NULL;
   int *rowIndexes = NULL;
   int * var_addr = NULL;
+  int * item_addr = NULL;
   int var_type;
   SciErr _SciErr;
 
-  _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+  if (parent==NULL)
+    {
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &item_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, item_addr, &var_type); MATIO_ERROR;
+    }
 
   if (var_type == sci_sparse)
     {
@@ -57,18 +65,114 @@ matvar_t *GetSparseVariable(int iVar, const char *name)
 
       if (isVarComplex(pvApiCtx, var_addr))
 	{
-	  getAllocatedComplexSparseMatrix(pvApiCtx, var_addr, &dims[1], &dims[0], 
-					  &scilabSparse.nel, &scilabSparse.mnel, 
-					  &scilabSparse.icol, &scilabSparse.R, 
-					  &scilabSparse.I);
+	  if (parent==NULL)
+	    {
+	      getAllocatedComplexSparseMatrix(pvApiCtx, var_addr, &dims[1], &dims[0], 
+					      &scilabSparse.nel, &scilabSparse.mnel, 
+					      &scilabSparse.icol, &scilabSparse.R, 
+					      &scilabSparse.I);
+	    }
+	  else
+	    {
+	      _SciErr = getSparseMatrixInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], 
+					      &scilabSparse.nel, NULL, NULL, NULL);
+	      scilabSparse.mnel = (int *)MALLOC(dims[1]*sizeof(int));
+	      if (scilabSparse.mnel==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+
+		  return FALSE;
+		}
+	      scilabSparse.icol = (int *)MALLOC(scilabSparse.nel*sizeof(int));
+	      if (scilabSparse.icol==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+		  FREE(scilabSparse.icol);
+
+		  return FALSE;
+		}
+	      scilabSparse.R    = (double *)MALLOC(scilabSparse.nel*sizeof(double));
+	      if (scilabSparse.R==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+		  FREE(scilabSparse.icol);
+		  FREE(scilabSparse.R);
+
+		  return FALSE;
+		}
+	      scilabSparse.I    = (double *)MALLOC(scilabSparse.nel*sizeof(double));
+	      if (scilabSparse.I==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+		  FREE(scilabSparse.icol);
+		  FREE(scilabSparse.R);
+		  FREE(scilabSparse.I);
+
+		  return FALSE;
+		}
+	      _SciErr = getComplexSparseMatrixInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], 
+						     &scilabSparse.nel, &scilabSparse.mnel, 
+						     &scilabSparse.icol, &scilabSparse.R, &scilabSparse.I);
+	    }
+
 	  scilabSparse.it = 1;
 						    
 	}
       else
 	{
-	  getAllocatedSparseMatrix(pvApiCtx, var_addr, &dims[1], &dims[0], 
-				   &scilabSparse.nel, &scilabSparse.mnel, 
-				   &scilabSparse.icol, &scilabSparse.R);
+	  if (parent==NULL)
+	    {
+	      getAllocatedSparseMatrix(pvApiCtx, var_addr, &dims[1], &dims[0], 
+				       &scilabSparse.nel, &scilabSparse.mnel, 
+				       &scilabSparse.icol, &scilabSparse.R);
+	    }
+	  else
+	    {
+	      _SciErr = getSparseMatrixInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], 
+					      &scilabSparse.nel, NULL, NULL, NULL);
+	      scilabSparse.mnel = (int *)MALLOC(dims[1]*sizeof(int));
+	      if (scilabSparse.mnel==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+
+		  return FALSE;
+		}
+	      scilabSparse.icol = (int *)MALLOC(scilabSparse.nel*sizeof(int));
+	      if (scilabSparse.icol==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+		  FREE(scilabSparse.icol);
+
+		  return FALSE;
+		}
+	      scilabSparse.R    = (double *)MALLOC(scilabSparse.nel*sizeof(double));
+	      if (scilabSparse.R==NULL)
+		{
+		  Scierror(999, _("%s: No more memory.\n"), "GetSparseVariable");
+
+		  FREE(scilabSparse.mnel);
+		  FREE(scilabSparse.icol);
+		  FREE(scilabSparse.R);
+
+		  return FALSE;
+		}
+	      _SciErr = getSparseMatrixInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], 
+					      &scilabSparse.nel, &scilabSparse.mnel, 
+					      &scilabSparse.icol, &scilabSparse.R);
+	    }
+
 	  scilabSparse.it = 0;
 	}
 

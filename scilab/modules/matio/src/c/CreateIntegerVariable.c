@@ -13,8 +13,7 @@
 
 #include "CreateMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_int.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -22,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
+int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow, nbCol, i;
   SciErr _SciErr;
@@ -54,7 +53,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_int8[i] = ((char *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfInteger8(pvApiCtx, iVar, nbRow, nbCol, tmp_int8); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfInteger8(pvApiCtx, iVar, nbRow, nbCol, tmp_int8); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfInteger8InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_int8); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_int8);
 	  break;
@@ -67,7 +73,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_int16[i] = ((short *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfInteger16(pvApiCtx, iVar, nbRow, nbCol, tmp_int16); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfInteger16(pvApiCtx, iVar, nbRow, nbCol, tmp_int16); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfInteger16InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_int16); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_int16);
 	  break;
@@ -80,7 +93,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_int32[i] = ((int *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfInteger32(pvApiCtx, iVar, nbRow, nbCol, tmp_int32); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfInteger32(pvApiCtx, iVar, nbRow, nbCol, tmp_int32); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_int32); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_int32);
 	  break;
@@ -94,7 +114,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_int64[i] = ((long long *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfInteger64(pvApiCtx, iVar, nbRow, nbCol, tmp_int64); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfInteger64(pvApiCtx, iVar, nbRow, nbCol, tmp_int64); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfInteger64InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_int64); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_int64);
 	  break;
@@ -108,7 +135,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_uint8[i] = ((unsigned char *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfUnsignedInteger8(pvApiCtx, iVar, nbRow, nbCol, tmp_uint8); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger8(pvApiCtx, iVar, nbRow, nbCol, tmp_uint8); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger8InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_uint8); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_uint8);
 	  break;
@@ -121,7 +155,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_uint16[i] = ((unsigned short *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfUnsignedInteger16(pvApiCtx, iVar, nbRow, nbCol, tmp_uint16); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger16(pvApiCtx, iVar, nbRow, nbCol, tmp_uint16); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger16InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_uint16); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_uint16);
 	  break;
@@ -134,7 +175,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_uint32[i] = ((unsigned int *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfUnsignedInteger32(pvApiCtx, iVar, nbRow, nbCol, tmp_uint32); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger32(pvApiCtx, iVar, nbRow, nbCol, tmp_uint32); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger32InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_uint32); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_uint32);
 	  break;
@@ -148,7 +196,14 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
             }
 	  for(i=0;i<nbRow*nbCol; i++) tmp_uint64[i] = ((unsigned long long *)matVariable->data)[i];
 
-	  _SciErr = createMatrixOfUnsignedInteger64(pvApiCtx, iVar, nbRow, nbCol, tmp_uint64); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger64(pvApiCtx, iVar, nbRow, nbCol, tmp_uint64); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfUnsignedInteger64InList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, tmp_uint64); MATIO_ERROR;
+	    }
 
 	  FREE(tmp_uint64);
 	  break;
@@ -157,7 +212,7 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable)
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, matVariable->dims, matVariable->data, NULL);
+      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   
   return TRUE;
