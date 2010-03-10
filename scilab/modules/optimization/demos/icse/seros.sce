@@ -10,6 +10,9 @@
 //  calcul coefficients optimaux du modele simplifie 5ht-plaquette
 //  **************************************************************
 
+libn  = ilib_for_link('icsest','icsest.o',[],'f');
+nlink = link('./'+libn,'icsest','f');
+
 // contexte : tue les variables de nom reserve
 exec('icse.contexte');
 
