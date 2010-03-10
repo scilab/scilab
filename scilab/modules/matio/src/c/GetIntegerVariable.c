@@ -12,7 +12,6 @@
  */
 
 #include "GetMatlabVariable.h"
-
 #include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
@@ -23,7 +22,6 @@
 
 matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_position)
 {
-  SciIntMat integerMatrix;
   int rank = 0;
   int *dims = NULL;
   matvar_t *createdVar = NULL;
