@@ -9,6 +9,7 @@
 //                     lqv.bas : demo of icse
 //  *************************************************************
 //
+// YC: link('../../.libs/libscioptimization.so','icse0')
 
 exec('icse.contexte');  // context
 

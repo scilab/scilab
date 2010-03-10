@@ -10,6 +10,9 @@
 //  calcul trajectoire optimale de rentree d'une navette spatiale
 //  *************************************************************
 
+libn  = ilib_for_link('icsenb','icsenb.o',[],'f')
+nlink = link('./'+libn,['icsenb','icsenf'],'f')
+
 exec('icse.contexte');
 
 t0   = 0.d0;  // instant initial
