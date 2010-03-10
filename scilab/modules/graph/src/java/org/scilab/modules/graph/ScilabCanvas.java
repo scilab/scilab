@@ -52,8 +52,8 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	
 	private static final int OPACITY_MAX = 100;
 	
-	/** The border size between the background image and the icon image */
-	private static final int BORDER_SIZE = 4;
+	/** The border ratio between the background image and the icon image */
+	private static final double BORDER_RATIO = 0.9;
 	
 	private URL svgBackgroundImage; 
 	
@@ -411,6 +411,9 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	 * @param image the current image
 	 */
 	private void paintSvgForegroundImage(int w, int h, String image) {
+		/*
+		 * Fetch SVG file representation
+		 */
 		File f = new File(image);
 		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
 		
@@ -418,34 +421,54 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			return;
 		}
 		
+		/*
+		 * Perform calculations
+		 */
+		
 		// Iso scale to the bounds - border size
 		Rectangle2D bounds = icon.getBounds();
 		
-		double sh = h / (bounds.getHeight() + (2 * BORDER_SIZE));
-		double sw = w / (bounds.getWidth() + (2 * BORDER_SIZE));
+		// Calculating icon bordered bounds
+		final double ih = bounds.getHeight();
+		final double iw = bounds.getWidth(); 
 		
+		// Calculate per axis scaling factor
+		final double shFactor = h / ih;
+		final double swFactor = w / iw;
+		
+		// Calculate the default ratio (iso scaling)
 		double ratio;
-		double tx;
-		double ty;
-		if (sh > sw) {
-			ratio = sw;
-			tx = BORDER_SIZE * ratio;
-			ty = (h - (bounds.getHeight() * ratio)) / 2;
+		if (shFactor > swFactor) {
+			ratio = swFactor;
 		} else {
-			ratio = sh;
-			tx = (w - (bounds.getWidth() * ratio)) / 2;
-			ty = BORDER_SIZE * ratio;
+			ratio = shFactor;
 		}
+
+		// Adding borders
+		ratio *= BORDER_RATIO;
 		
-		AffineTransform isoScaleTransform = new AffineTransform(new double[] {
-		       ratio,   0.0,
-		         0.0,  ratio
-		});
-		icon.setTransform(isoScaleTransform);
+		// Translate the icon origin to the drawing origin.
+		double tx = -bounds.getX() * ratio;
+		double ty = -bounds.getY() * ratio;
 		
+		// Calculate scaled height and width
+		final double sh = ratio * ih;
+		final double sw = ratio * iw;
+		
+		// Center the image on the block
+		tx += (w - sw) / 2;
+		ty += (h - sh) / 2;
+		
+		/*
+		 * Everything has been calculated, render now.
+		 */
+
 		// Translate from base point to centered base point
 		g.translate(tx, ty);
-		
+
+		// scale to the ratio
+		g.scale(ratio, ratio);
+				
 		// Paint
 		icon.paint(g);
 	}
