@@ -11,9 +11,7 @@
  *
  */
 
-#include "api_common.h"
-#include "api_double.h"
-#include "api_boolean.h"
+#include "api_scilab.h"
 
 #include "CreateMatlabVariable.h"
 
@@ -23,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateBooleanVariable(int iVar, matvar_t *matVariable)
+int CreateBooleanVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int nbRow = 0, nbCol = 0;
   int * intPtr = NULL;
@@ -49,7 +47,14 @@ int CreateBooleanVariable(int iVar, matvar_t *matVariable)
               intPtr[K] = ((unsigned char*)matVariable->data)[K];
             }
 
-	  _SciErr = createMatrixOfBoolean(pvApiCtx, iVar, nbRow, nbCol, intPtr); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfBoolean(pvApiCtx, iVar, nbRow, nbCol, intPtr); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfBooleanInList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, intPtr); MATIO_ERROR;
+	    }
           
           FREE(intPtr);
         }
@@ -66,14 +71,22 @@ int CreateBooleanVariable(int iVar, matvar_t *matVariable)
             {
               dblPtr[K] = ((unsigned char*)matVariable->data)[K];
             }
-	  _SciErr = createMatrixOfDouble(pvApiCtx, iVar, nbRow, nbCol, dblPtr);
+
+	  if (parent==NULL)
+	    {
+	      _SciErr = createMatrixOfDouble(pvApiCtx, iVar, nbRow, nbCol, dblPtr);
+	    }
+	  else
+	    {
+	      _SciErr = createMatrixOfDoubleInList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, dblPtr);
+	    }
 
           FREE(dblPtr);
         }
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL);
+      CreateHyperMatrixVariable(iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   
   return TRUE;

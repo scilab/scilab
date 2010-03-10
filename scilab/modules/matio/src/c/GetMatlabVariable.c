@@ -12,7 +12,8 @@
  */
 
 #include "GetMatlabVariable.h"
-#include "api_common.h"
+
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -20,28 +21,48 @@
       return 0;			     \
     }
 
-matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version)
+matvar_t *GetMatlabVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   int * var_addr = NULL;
   int var_type;
   SciErr _SciErr;
+  matvar_t * tmp_res = NULL;
 
-  switch(VarType(iVar))
+  if (parent==NULL)
     {
-    case sci_matrix:
-      return GetDoubleVariable(iVar, name, matfile_version);
-    case sci_strings:
-      return GetCharVariable(iVar, name);
-    case sci_ints:
-      return GetIntegerVariable(iVar, name);
-    case sci_mlist: /* Only cells structs and hypermatrices are managed */
-      return GetMlistVariable(iVar, name, matfile_version);
-    case sci_sparse:
-      return GetSparseVariable(iVar, name);
-    default:
       _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
       _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
-      sciprint("Do not known how to get variable of type %d\n", var_type);
-      return NULL;
     }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+    }
+
+  switch(var_type)
+    {
+    case sci_matrix:
+      tmp_res = GetDoubleVariable(iVar, name, matfile_version, parent, item_position);
+      break;
+    case sci_strings:
+      tmp_res = GetCharVariable(iVar, name, parent, item_position);
+      break;
+    case sci_ints:
+      tmp_res = GetIntegerVariable(iVar, name, parent, item_position);
+      break;
+    case sci_mlist: 
+      /* Only cells structs and hypermatrices are managed */
+      //tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, item_position);
+      tmp_res = GetMlistVariable(iVar, name, matfile_version, parent, -1);
+      break;
+    case sci_sparse:
+      //tmp_res = GetSparseVariable(iVar, name, parent, item_position);
+      tmp_res = GetSparseVariable(iVar, name, parent, -1);
+      break;
+    default:
+      sciprint("Do not known how to get variable of type %d\n", var_type);
+      tmp_res = NULL;
+    }
+
+  return tmp_res;
 }

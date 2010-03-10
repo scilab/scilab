@@ -13,10 +13,7 @@
 
 #include "CreateMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
-#include "api_list.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -24,7 +21,7 @@
       return 0;			     \
     }
 
-int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata)
+int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int * rank, int *dims, double *realdata, double *complexdata, int * parent, int item_position)
 {
   static const char *tlistFields[] = {"hm", "dims","entries"};
   int nbRow = 0, nbCol = 0;
@@ -32,7 +29,14 @@ int CreateHyperMatrixVariable(int number, const char *type, int *iscomplex, int 
   int * hm_addr = NULL;
   SciErr _SciErr;
 
-  _SciErr = createMList(pvApiCtx, number, 3, &hm_addr); MATIO_ERROR;
+  if (parent==NULL)
+    {
+      _SciErr = createMList(pvApiCtx, number, 3, &hm_addr); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = createMListInList(pvApiCtx, number, parent, item_position, 3, &hm_addr); MATIO_ERROR;
+    }
 
   /* mlist fields */
   nbRow = 1; nbCol = 3;
