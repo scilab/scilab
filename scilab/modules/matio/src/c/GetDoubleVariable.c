@@ -13,9 +13,7 @@
 
 #include "GetMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -23,7 +21,7 @@
       return 0;			     \
     }
 
-matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version)
+matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version, int * parent, int item_position)
 {
   double * realDataAdr = NULL, * complexDataAdr = NULL;
   int rank = 0;
@@ -32,11 +30,22 @@ matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version)
   struct ComplexSplit mat5ComplexData;
   matvar_t *createdVar = NULL;
   int * var_addr = NULL;
+  int * item_addr = NULL;
   int var_type;
   SciErr _SciErr;
 
-  _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+  if (parent==NULL)
+    {
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+      isComplex = isVarComplex(pvApiCtx, var_addr);
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &item_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, item_addr, &var_type); MATIO_ERROR;
+      isComplex = isVarComplex(pvApiCtx, item_addr);
+    }
 
   if(var_type == sci_matrix) /* 2-D array */
     {
@@ -47,20 +56,33 @@ matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version)
           return NULL;
         }
 
-      isComplex = isVarComplex(pvApiCtx, var_addr);
 
       if (isComplex)
 	{
-	  _SciErr = getComplexMatrixOfDouble(pvApiCtx, var_addr, &dims[0], &dims[1], &realDataAdr, &complexDataAdr); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = getComplexMatrixOfDouble(pvApiCtx, var_addr, &dims[0], &dims[1], &realDataAdr, &complexDataAdr); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = getComplexMatrixOfDoubleInList(pvApiCtx, parent, item_position, &dims[0], &dims[1], &realDataAdr, &complexDataAdr); MATIO_ERROR;
+	    }
 	}
       else
 	{
-	  _SciErr = getMatrixOfDouble(pvApiCtx, var_addr, &dims[0], &dims[1], &realDataAdr); MATIO_ERROR;
+	  if (parent==NULL)
+	    {
+	      _SciErr = getMatrixOfDouble(pvApiCtx, var_addr, &dims[0], &dims[1], &realDataAdr); MATIO_ERROR;
+	    }
+	  else
+	    {
+	      _SciErr = getMatrixOfDoubleInList(pvApiCtx, parent, item_position, &dims[0], &dims[1], &realDataAdr); MATIO_ERROR;
+	    }
 	}
 
       if (isComplex==0)
         {
-          createdVar =  Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, rank, dims, realDataAdr, 0);
+          createdVar = Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, rank, dims, realDataAdr, 0);
         }
       else
         {

@@ -13,8 +13,7 @@
 
 #include "CreateMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_sparse.h"
+#include "api_scilab.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -24,10 +23,10 @@
 
 /* Defined in SCI/modules/sparse/src/fortran/spt.f */
 extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *workArray, 
-             double *A_R, double *A_I, int *A_mnel, int *A_icol,
-             double *At_R, double *At_I, int *At_mnel, int *At_icol);
-
-int CreateSparseVariable(int iVar, matvar_t *matVariable)
+		    double *A_R, double *A_I, int *A_mnel, int *A_icol,
+		    double *At_R, double *At_I, int *At_mnel, int *At_icol);
+		   
+int CreateSparseVariable(int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
   int K = 0;
   sparse_t *sparseData = NULL;
@@ -168,13 +167,31 @@ int CreateSparseVariable(int iVar, matvar_t *matVariable)
 
   if (scilabSparse->it)
     {
-      _SciErr = createComplexSparseMatrix(pvApiCtx, iVar, scilabSparse->m, scilabSparse->n, scilabSparse->nel,
-					  scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R, scilabSparseT->I);
+      if (parent==NULL)
+	{
+	  _SciErr = createComplexSparseMatrix(pvApiCtx, iVar, scilabSparse->m, scilabSparse->n, scilabSparse->nel,
+					      scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R, scilabSparseT->I);
+	}
+      else
+	{
+	  _SciErr = createComplexSparseMatrixInList(pvApiCtx, iVar, parent, item_position,
+						    scilabSparse->m, scilabSparse->n, scilabSparse->nel,
+						    scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R, scilabSparseT->I);
+	}
     }
   else
     {
-      _SciErr = createSparseMatrix(pvApiCtx, iVar, scilabSparseT->m, scilabSparseT->n, scilabSparseT->nel,
-				   scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R);
+      if (parent==NULL)
+	{
+	  _SciErr = createSparseMatrix(pvApiCtx, iVar, scilabSparseT->m, scilabSparseT->n, scilabSparseT->nel,
+				       scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R);
+	}
+      else
+	{
+	  _SciErr = createSparseMatrixInList(pvApiCtx, iVar, parent, item_position, 
+					     scilabSparseT->m, scilabSparseT->n, scilabSparseT->nel,
+					     scilabSparseT->mnel, scilabSparseT->icol, scilabSparseT->R);
+	}
     }
 
   /* Free all arrays */

@@ -13,9 +13,9 @@
 
 #include "GetMatlabVariable.h"
 
-#include "api_common.h"
-#include "api_string.h"
-#include "api_double.h"
+#include "api_scilab.h"
+
+#include "freeArrayOfString.h"
 
 #define MATIO_ERROR if(_SciErr.iErr) \
     {				     \
@@ -23,18 +23,29 @@
       return 0;			     \
     }
 
-matvar_t *GetCharVariable(int iVar, const char *name)
+matvar_t *GetCharVariable(int iVar, const char *name, int * parent, int item_position)
 {
   char * dataAdr = NULL;
-  int rank = 0;
+  int rank = 0, i;
   int *dims = NULL;
   matvar_t *createdVar = NULL;
+  int * pilen = NULL;
+  char ** tmp_char = NULL;
   int * var_addr = NULL;
+  int * item_addr = NULL;
   int var_type;
   SciErr _SciErr;
 
-  _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
-  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+  if (parent==NULL)
+    {
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &item_addr); MATIO_ERROR;
+      _SciErr = getVarType(pvApiCtx, item_addr, &var_type); MATIO_ERROR;
+    }
 
   if(var_type == sci_strings) /* 2-D array */
     {
@@ -45,8 +56,27 @@ matvar_t *GetCharVariable(int iVar, const char *name)
           return NULL;
         }
 
-      getAllocatedSingleString(pvApiCtx, var_addr, &dataAdr);
-      _SciErr = getVarDimension(pvApiCtx, var_addr, &dims[1], &dims[0]); MATIO_ERROR;
+      if (parent==NULL)
+	{
+	  getAllocatedSingleString(pvApiCtx, var_addr, &dataAdr);
+	  _SciErr = getVarDimension(pvApiCtx, var_addr, &dims[1], &dims[0]); MATIO_ERROR;
+	}
+      else
+	{
+	  _SciErr = getMatrixOfStringInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], NULL, NULL);
+	  pilen = (int *)MALLOC(dims[1]*dims[0]*sizeof(int));
+	  tmp_char = (char **)MALLOC(dims[1]*dims[0]*sizeof(char *));	
+	  _SciErr = getMatrixOfStringInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], pilen, NULL);
+	  for(i=0;i<dims[1]*dims[0];i++)
+	    {
+	      tmp_char[i] = (char *)MALLOC((pilen[i]+1)*sizeof(char));	
+	    }
+	  _SciErr = getMatrixOfStringInList(pvApiCtx, parent, item_position, &dims[1], &dims[0], pilen, tmp_char);
+	  dataAdr = strdup(tmp_char[0]);
+	  freeArrayOfString(tmp_char, dims[1]*dims[0]);
+	  FREE(pilen);
+	}
+
 
       if (dims[0] == 0) /* Empty character string */
         {
@@ -68,6 +98,7 @@ matvar_t *GetCharVariable(int iVar, const char *name)
     }
 
   FREE(dims);
+  FREE(dataAdr);
 
   return createdVar;
 }
