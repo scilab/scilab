@@ -28,6 +28,13 @@ int gw_dynamic_pvm(void);
 int gw_dynamic_xcos(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/**
 * xpad gateway
 * functions is loaded dynamically at runtime
 * load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
