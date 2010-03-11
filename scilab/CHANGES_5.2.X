@@ -32,19 +32,21 @@ Xcos:
 
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
+* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
+                   rotation.
+
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
                    when changing it.
 
-* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
-                   rotation.
-
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-                   Ctrl+Wheel was not working for zooming.
+* bug 6575 fixed - The graph mask was not removed at the end of the simulation.
 
 * bug 6576 fixed - Specifying the debug level was not working when two diagrams 
                    were openned.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+                   Ctrl+Wheel was not working for zooming.
 
 * bug 6657 fixed - The importXcosDiagram call with specific parameters was 
                    crashing scilab.
