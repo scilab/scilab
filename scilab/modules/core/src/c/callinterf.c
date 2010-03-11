@@ -33,7 +33,7 @@ static void sci_sigint_addinter(int n);
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 64
+#define INTERFACES_MAX 65
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
 	/* 02  */ {gw_linear_algebra},
