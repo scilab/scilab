@@ -16,7 +16,7 @@
  * SCILAB function : mpi_finalize, fin = 2
  ******************************************/
 
-int C2F(sci_mpi_finalize) (char *fname,unsigned long fname_len)
+int sci_mpi_finalize (char *fname,unsigned long fname_len)
 {
  CheckRhs(0,0);
  CheckLhs(1,1);

@@ -27,7 +27,7 @@ void MPIErrHandler(MPI_Comm *comm, int *errorcode, ...) {
   printf("Erreur mpi : %s\n",buffer);
 }
 
-int C2F(sci_mpi_init) (char *fname,unsigned long fname_len)
+int sci_mpi_init (char *fname,unsigned long fname_len)
 {
 	int flag;
 	CheckRhs(0,0);

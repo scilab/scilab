@@ -51,7 +51,7 @@ int intsmpi_isend (char *fname,unsigned long fname_len)
 	/* cross variable size checking */
 	CreateVar(5,"i",&un,&un,&l5);/* named: request */
 	CreateVar(6,"i",&un,&un,&l6);/* named: res */
-	C2F(s_mpi_isend)(stk(l1),&m1,&n1,istk(l2),istk(l3),istk(opts[0].l),istk(l5),istk(l6));
+	s_mpi_isend(stk(l1),&m1,&n1,istk(l2),istk(l3),istk(opts[0].l),istk(l5),istk(l6));
 	LhsVar(1)= 5;
 	LhsVar(2)= 6;
 	return 0;

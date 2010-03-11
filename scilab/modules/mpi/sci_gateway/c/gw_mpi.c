@@ -18,12 +18,12 @@
 /*-----------------------------------------------------------------------------------*/
 static MPITable Tab[]=
 {
-	{C2F(sci_mpi_init),"MPI_Init"},
-	{C2F(sci_mpi_finalize),"MPI_Finalize"},
-	{C2F(sci_mpi_comm_size),"MPI_Comm_size"},
-	{C2F(sci_mpi_comm_rank),"MPI_Comm_rank"},
-	{C2F(sci_mpi_recv),"MPI_Recv"},
-	{C2F(sci_mpi_send),"MPI_Send"}
+	{sci_mpi_init,"MPI_Init"},
+	{sci_mpi_finalize,"MPI_Finalize"},
+	{sci_mpi_comm_size,"MPI_Comm_size"},
+	{sci_mpi_comm_rank,"MPI_Comm_rank"},
+	{sci_mpi_recv,"MPI_Recv"},
+	{sci_mpi_send,"MPI_Send"}
 };
 /*static MPITable Tab[]=
 {
@@ -37,7 +37,7 @@ static MPITable Tab[]=
 	{intsmpi_comm_size,"mpi_comm_size"}
 };*/
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_mpi)(void)
+int gw_mpi(void)
 {  
 	Rhs = Max(0, Rhs);
 
