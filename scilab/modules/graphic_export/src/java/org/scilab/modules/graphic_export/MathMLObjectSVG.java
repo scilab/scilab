@@ -12,60 +12,63 @@
 
 package org.scilab.modules.graphic_export;
 
-import java.awt.Component;
 import java.awt.Color;
-import java.awt.Insets;
 import java.awt.geom.AffineTransform;
 import java.io.ByteArrayOutputStream;
-import java.io.Writer;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
-import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
 import org.scilab.modules.renderer.textDrawing.MathMLObjectGL;
 
 import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.svggen.SVGGraphics2DIOException;
 import org.apache.batik.dom.GenericDOMImplementation;
 
 import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
 
 /**
- * Class to generate a LaTeX label in SVG.
+ * Class to generate a MathML label in SVG.
  * @author Calixte Denizet
  */
 public class MathMLObjectSVG extends MathMLObjectGL {
     
+    private static final DOMImplementation DOM = GenericDOMImplementation.getDOMImplementation();
+
     private String code;
-    private final static DOMImplementation dom = GenericDOMImplementation.getDOMImplementation();
 
     /** 
      * Default constructor.
-     * @param content the LaTeX code
-     * @param color the color of the content
-     * @param fontSize the size of the font
+     * @param t a MathML label in JOGL
      */
     public MathMLObjectSVG(MathMLObjectGL t) {
 		super(t);
 		makeImage();
     }
 
+    /**
+     * @return the SVG code
+     */
     public String getCode() {
 		return code;
     }
-        
+    
+    /**
+     * Build the SVG code to render the LaTeX label
+     */
     public void makeImage() {
-/* @TODO: why 2 ? */
-		width = (int) Math.ceil(this.getJev().getWidth()) + 2;
+	        // width is increase by 2 because the calcul of the width by
+	        // by jeuclid is not exact !
+	        width = (int) Math.ceil(this.getJev().getWidth()) + 2;
 		final int ascent = (int) Math.ceil(this.getJev().getAscentHeight());
 		height = (int) Math.ceil(this.getJev().getDescentHeight()) + ascent;
 			
-		SVGGraphics2D g2d = new SVGGraphics2D(dom.createDocument("", "svg", null));
+		SVGGraphics2D g2d = new SVGGraphics2D(DOM.createDocument("", "svg", null));
 	
 		AffineTransform gt = new AffineTransform();
 		gt.translate(0, -height);
 		g2d.transform(gt);
 		
-		g2d.setColor(new Color(255, 255, 255, 0));
+		g2d.setColor(Color.WHITE);
 		g2d.fillRect(0, 0, (int) width, (int) height);
 		
 		this.getJev().draw(g2d, 0, ascent);
@@ -74,8 +77,10 @@ public class MathMLObjectSVG extends MathMLObjectGL {
 		
 		try {
 		    g2d.stream(new OutputStreamWriter(buf, "UTF-8"), true, true);
-		} catch (Exception e) {
-			System.err.println(e.getLocalizedMessage());
+		} catch (SVGGraphics2DIOException e) {
+			System.err.println(e.toString());
+		} catch (UnsupportedEncodingException e) {
+		        System.err.println(e.toString());
 		}
 				
 		code = buf.toString();

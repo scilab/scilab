@@ -85,8 +85,25 @@ Bug Fixes:
 
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
 
+* bug 6687 fixed - The Matplot function didn't set the clip_state property of the
+                   entities it creates.
+
+* bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
+                   exported in eps.
+
 * bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
                    its tics_direction property.
+
+* bug 6734 fixed - read_csv function contained erroneous error messages.
+
+* bug 6735 fixed - The "landscape" option in the print dialog as well as in
+                   xs2eps did not work as expected.
+
+* bug 6738 fixed - The horizontal line of the square root symbol was not
+                   drawn when exported.
+
+* bug 6739 fixed - if a Scilab coded library function is redefined in a new 
+                   library, completion on its name maked Scilab crashed.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
