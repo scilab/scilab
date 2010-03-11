@@ -44,7 +44,7 @@ int gw_xcos(void)
 	}
 
 	if (!loadedDep) 
-	{k
+	{
 
 		loadOnUseClassPath("XCos");
 		loadedDep = TRUE;
