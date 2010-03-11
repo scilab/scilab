@@ -60,7 +60,7 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
     double *pdblReal1 = (double*)malloc(sizeof(double) * iRows2 * iCols2);
 	pdblReal1[0]=(double)comm_size;
 	
-	StrErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
+	SciErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
     if(iRet.iErr)
     {
 		Scierror(999,"error in the creation of the variable");
