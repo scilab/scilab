@@ -226,7 +226,10 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
 	}		
 
 #ifndef _DEBUG
-	if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
+	if ( (iCmdShow != SW_HIDE) || (iCmdShow != SW_MINIMIZE) )
+	{
+		if ( (sci_show_banner) && (LaunchAFile == FALSE) ) splashScreen();
+	}
 #endif
 
 	CreateScilabHiddenWndThread();
