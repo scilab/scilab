@@ -56,8 +56,9 @@ public class MathMLObjectSVG extends MathMLObjectGL {
      * Build the SVG code to render the LaTeX label
      */
     public void makeImage() {
-	        /* @TODO: why 2 ? */
-		width = (int) Math.ceil(this.getJev().getWidth()) + 2;
+	        // width is increase by 2 because the calcul of the width by
+	        // by jeuclid is not exact !
+	        width = (int) Math.ceil(this.getJev().getWidth()) + 2;
 		final int ascent = (int) Math.ceil(this.getJev().getAscentHeight());
 		height = (int) Math.ceil(this.getJev().getDescentHeight()) + ascent;
 			
