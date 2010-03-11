@@ -14,19 +14,19 @@ package org.scilab.modules.xcos.io;
 
 import java.util.Map;
 
-import org.scilab.modules.graph.io.ScilabObjectCodec;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 
 /**
  * Codec for any xcos object
  */
-public class XcosObjectCodec extends ScilabObjectCodec {
+public class XcosObjectCodec extends mxCellCodec {
 	/**
 	 * Attribute name containing {@link mxCell} style.
 	 */

@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
 import org.scilab.modules.xcos.io.codec.XcosDiagramCodec;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.Orientation;
@@ -168,6 +169,8 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(explicitlinkCodec);
 	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);
 	mxCodecRegistry.register(implicitlinkCodec);
+	XcosObjectCodec commandControllinkCodec = new XcosObjectCodec(new CommandControlLink() , null , null , null);
+	mxCodecRegistry.register(commandControllinkCodec);
 	
 	// Ports
 	XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), portIgnore, refs, null);
