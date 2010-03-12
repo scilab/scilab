@@ -1,4 +1,3 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // 
@@ -8,6 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
+
 function testOk = m2sciTestExecution(functionName)
 
 mfilesPath = "SCI/modules/m2sci/tests/unit_tests/mfiles/";
