@@ -111,6 +111,8 @@ genfunctestfile('beta',{{1,{numericrealtestcell,numericrealtestcell1}},{1,{numer
 genfunctestfile('conv',{{1,{numerictestcellvectnoempty,numerictestcellvectnoempty}}});
 genfunctestfile('csc',{{1,{numerictestcell}}});
 genfunctestfile('csch',{{1,{numerictestcell}}});
+% Bug of Matlab dec2bin with matrices!!
+genfunctestfile('dec2bin',{{1,{testcellvectnocomplex}},{1,{testcellvectnocomplex,{'10'}}}});
 genfunctestfile('dec2hex',{{1,{testcellnocomplex}},{1,{testcellnocomplex,{'10'}}}});
 genfunctestfile('diag',{{1,{testcell,{'','1','2'}}}});
 genfunctestfile('diff',{{1,{testcellnostring,{'','2','3'}}},{1,{testcellnostring,{'1,1','2,1','1,2','2,2'}}}});

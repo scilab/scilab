@@ -16,6 +16,9 @@ addpath(TESTS_SUITE_DIR);
 % List of all test files
 test_files=dir([TESTS_SUITE_DIR,'*.m']);
 
+% Just one function
+%test_files=dir([TESTS_SUITE_DIR, 'DEC2BIN.m']);;
+
 % Create reference files
 for file_ind=1:size(test_files,1)
   
