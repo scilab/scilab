@@ -288,7 +288,7 @@ static void stateShow(Parser::ControlStatus status)
 	case Parser::WithinFunction : SetTemporaryPrompt("-function->"); break;
 	case Parser::WithinSelect : SetTemporaryPrompt("-select->"); break;
 	case Parser::WithinCase : SetTemporaryPrompt("-case->"); break;
-	case Parser::AllControlClosed : SetTemporaryPrompt(SCIPROMPT); break;
+	case Parser::AllControlClosed : break;
 	}
 }
 
@@ -423,8 +423,6 @@ int main(int argc, char *argv[])
 	InitializeEnvironnement();
 
 	InitializeString();
-
-	InitializeLocalization();
 
 #ifdef _MSC_VER
 	InitializeWindows_tools();

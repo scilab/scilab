@@ -32,7 +32,15 @@ void C2F(setprlev)( int *pause)
 {
 	if ( *pause == 0 ) 
 	{
-		sprintf(Sci_Prompt,SCIPROMPT);
+		if(temporaryPrompt != NULL)
+		{
+			strcpy(Sci_Prompt,temporaryPrompt);
+			ClearTemporaryPrompt();
+		}
+		else
+		{		
+			sprintf(Sci_Prompt,SCIPROMPT);
+		}
 	}
 	else if ( *pause > 0 )
 	{
@@ -68,11 +76,7 @@ void GetCurrentPrompt(char *CurrentPrompt)
 /*------------------------------------------------------------------------*/
 void SetTemporaryPrompt(char *tempPrompt)
 {
-	if (temporaryPrompt) 
-	{
-		FREE(temporaryPrompt);
-		temporaryPrompt = NULL;
-	}
+	ClearTemporaryPrompt();
 	temporaryPrompt = strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
