@@ -51,7 +51,8 @@ int sci_delete(char *fname,unsigned long fname_len)
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
     if (m1!=1||n1!=1) {
       lw = 1 + Top - Rhs;
-      C2F(overload)(&lw,"delete",6);return 0;
+      C2F(overload)(&lw,"delete",6);
+      return 0;
     }
     if (Rhs == 2)
     {
@@ -85,8 +86,12 @@ int sci_delete(char *fname,unsigned long fname_len)
       }
     else
       {
-        Scierror(999,_("%s: Wrong type for input argument #%d: '%s' or handle expected.\n"),fname,1,"all");
-        return 0;
+	lw = 1 + Top - Rhs;
+	C2F(overload)(&lw,"delete",6);
+	return 0;
+
+        /* Scierror(999,_("%s: Wrong type for input argument #%d: '%s' or handle expected.\n"),fname,1,"all"); */
+        /* return 0; */
       }
     break;
   }
@@ -161,5 +166,6 @@ int sci_delete(char *fname,unsigned long fname_len)
   
   LhsVar(1) = 0;
   C2F(putlhsvar)();
+
   return 0;
 }
