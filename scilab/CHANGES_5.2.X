@@ -88,6 +88,8 @@ Bug Fixes:
 * bug 6687 fixed - The Matplot function didn't set the clip_state property of the
                    entities it creates.
 
+* bug 6698 fixed - isreal does not work on hypermatrix
+
 * bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
                    exported in eps.
 
@@ -104,6 +106,8 @@ Bug Fixes:
 
 * bug 6739 fixed - if a Scilab coded library function is redefined in a new 
                    library, completion on its name maked Scilab crashed.
+
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
