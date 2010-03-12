@@ -12,7 +12,7 @@ function [tree]=sci_min(tree)
 // M2SCI function
 // Conversion function for Matlab min()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_min()
 
 // C = min(A) or [C,I] = min(A)
