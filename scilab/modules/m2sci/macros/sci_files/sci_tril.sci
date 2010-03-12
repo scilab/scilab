@@ -12,7 +12,7 @@ function [tree]=sci_tril(tree)
 // M2SCI function
 // Conversion function for Matlab tril()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_tril()
 
 // L = tril(X,k)

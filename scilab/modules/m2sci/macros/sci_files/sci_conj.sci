@@ -12,7 +12,7 @@ function [tree]=sci_conj(tree)
 // M2SCI function
 // Conversion function for Matlab conj()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 tree.name="conj"
 

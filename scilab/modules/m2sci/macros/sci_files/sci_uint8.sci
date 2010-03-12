@@ -12,7 +12,7 @@ function [tree]=sci_uint8(tree)
 // M2SCI function
 // Conversion function for Matlab uint8()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_uint8()
 
 // %c_uint8 and %b_uint8 are not defined in Scilab
