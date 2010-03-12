@@ -169,8 +169,6 @@ int sci_delete(char *fname,unsigned long fname_len)
   // Overload
   lw = 1 + Top - Rhs;
   C2F(overload)(&lw,"delete",6);
-  //LhsVar(1) = 0;
-  //C2F(putlhsvar)();
 
   return 0;
 }
