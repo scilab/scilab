@@ -45,12 +45,14 @@ int sci_delete(char *fname,unsigned long fname_len)
   CheckRhs(0,1);
   CheckLhs(0,1);
 
+  lw = 1 + Top - Rhs;
+
   switch(VarType(1))
   {
   case sci_handles: /* delete Entity given by a handle */
     GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1); /* Gets the Handle passed as argument */
     if (m1!=1||n1!=1) {
-      lw = 1 + Top - Rhs;
+      //lw = 1 + Top - Rhs;
       C2F(overload)(&lw,"delete",6);
       return 0;
     }
@@ -86,7 +88,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       }
     else
       {
-	lw = 1 + Top - Rhs;
+	//lw = 1 + Top - Rhs;
 	C2F(overload)(&lw,"delete",6);
 	return 0;
 
@@ -164,8 +166,10 @@ int sci_delete(char *fname,unsigned long fname_len)
     
   }
   
-  LhsVar(1) = 0;
-  C2F(putlhsvar)();
+  //LhsVar(1) = 0;
+  //C2F(putlhsvar)();
+
+  C2F(overload)(&lw,"delete",6);
 
   return 0;
 }
