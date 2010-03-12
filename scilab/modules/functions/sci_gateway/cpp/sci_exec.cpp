@@ -195,7 +195,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			//update ans variable.
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
-				symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe.result_get());
+				symbol::Context::getInstance()->put("ans", *execMe.result_get());
 				if((*j)->is_verbose() && !checkPrompt(iMode, EXEC_MODE_MUTE) && checkPrompt(iMode, EXEC_MODE_VERBOSE))
 				{
 					std::ostringstream ostr;

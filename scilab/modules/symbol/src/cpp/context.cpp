@@ -53,7 +53,7 @@ namespace symbol
 		HeapVarTable.scope_end();
 	}
 
-	InternalType*	Context::get(Symbol key) const
+	InternalType*	Context::get(string key) const
 	{
 		// FIXME
 		InternalType* pI = NULL;
@@ -77,25 +77,25 @@ namespace symbol
 		}
 	}
 
-	InternalType*	Context::get_fun(Symbol key) const
+	InternalType*	Context::get_fun(string key) const
 	{
 		return EnvFunTable.get(key);
 		// FIXME
 	}
 
-	std::list<string>& Context::get_funlist(std::string _stModuleName)
+	std::list<string>& Context::get_funlist(string _stModuleName)
 	{
 		return EnvFunTable.get_funlist(_stModuleName);
 	}
 
-	bool Context::put(Symbol key, InternalType &type)
+	bool Context::put(string key, InternalType &type)
 	{
 		// FIXME
 		EnvVarTable.put(key, type);
 		return true;
 	}
 
-	bool Context::put_in_previous_scope(Symbol key, InternalType &type)
+	bool Context::put_in_previous_scope(string key, InternalType &type)
 	{
 		// FIXME
 		EnvVarTable.put_in_previous_scope(key, type);
@@ -121,19 +121,19 @@ namespace symbol
 
 	bool Context::AddFunction(types::Function *_info)
 	{
-	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  EnvFunTable.put(_info->getName(), *_info);
 	  return true;
 	}
 
 	bool Context::AddMacro(types::Macro *_info)
 	{
-	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  EnvFunTable.put(_info->getName(), *_info);
 	  return true;
 	}
 
 	bool Context::AddMacroFile(types::MacroFile *_info)
 	{
-	  EnvFunTable.put(Symbol(_info->getName()), *_info);
+	  EnvFunTable.put(_info->getName(), *_info);
 	  return true;
 	}
 }

@@ -93,7 +93,7 @@ namespace types
 		//assign value to variable in the new context
 		for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
 		{
-			pContext->put(*i, **j);
+			pContext->put((*i).name_get(), **j);
 		}
 
 		try
@@ -108,7 +108,7 @@ namespace types
 
 			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
 			{
-				InternalType *pIT = pContext->get(*i);
+				InternalType *pIT = pContext->get((*i).name_get());
 				if(pIT != NULL)
 				{
 					out.push_back(pIT);
