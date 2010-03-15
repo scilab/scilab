@@ -66,7 +66,7 @@ namespace symbol
     */
 
     /** Associate value to key in the global scope. */
-    void	put (Symbol key, InternalType &value)
+    void	put (string key, InternalType &value)
     {
       (this->l_scope.back()).put(key, value);
     }
@@ -76,7 +76,7 @@ namespace symbol
      ** most recent insertion. Otherwise return the empty pointer.
      ** \param key : the key to look for
      */
-    InternalType*	get (Symbol key) const
+    InternalType*	get (string key) const
     {
       InternalType* result = 0;
 
@@ -96,7 +96,7 @@ namespace symbol
      ** \param key : the key.
      ** \param value : the value associated to the key.
     */
-    void	put(std::string name, Symbol key, InternalType &value)
+    void	put(std::string name, string key, InternalType &value)
     {
       std::list<Scope>::iterator it_list_scope;
 
@@ -119,7 +119,7 @@ namespace symbol
      ** most recent insertion. Otherwise return the empty pointer.
      ** \param key : the key to look for
      */
-    InternalType*	get (std::string name, Symbol key) const
+    InternalType*	get (std::string name, string key) const
     {
       std::list<Scope>::const_iterator it_list_scope;
 

@@ -33,19 +33,19 @@ namespace symbol
 		/** \brief Construct a Scope */
 		explicit Scope()
 		{
-			_scope = new std::map<Symbol, InternalType*>();
+			_scope = new std::map<string, InternalType*>();
 			_name = "";
 		}
 		/** \brief Construct a named Scope i.e Namespace */
 		explicit Scope(std::string name)
 		{
-			_scope = new std::map<Symbol, InternalType*>();
+			_scope = new std::map<string, InternalType*>();
 			_name = name;
 		}
 
 		~Scope()
 		{
-			std::map<Symbol, InternalType*>::const_iterator i;
+			std::map<string, InternalType*>::const_iterator i;
 			for(i = _scope->begin() ; i != _scope->end() ; ++i)
 			{
 				i->second->DecreaseRef();
@@ -59,7 +59,7 @@ namespace symbol
 
 		bool isUsed(InternalType* pIT) const
 		{
-			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			std::map<string, InternalType*>::const_iterator it_scope;
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
 				if((*it_scope).second == pIT)
@@ -69,7 +69,7 @@ namespace symbol
 		}
 
 		/** Associate value to key in the current scope. */
-		InternalType*	put (Symbol key, InternalType &value)
+		InternalType*	put (string key, InternalType &value)
 		{
 			InternalType *pOld = (*_scope)[key];
 
@@ -100,9 +100,9 @@ namespace symbol
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get (Symbol key) const
+		InternalType*	get (string key) const
 		{
-			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			std::map<string, InternalType*>::const_iterator it_scope;
 
 			it_scope = (*_scope).find(key);
 			if (it_scope == (*_scope).end())
@@ -120,7 +120,7 @@ namespace symbol
 		std::list<string>& get_names(std::string _stModuleName) const
 		{
 			std::list<std::string>* pNames = new std::list<std::string>;
-			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			std::map<string, InternalType*>::const_iterator it_scope;
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
 				if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
@@ -128,7 +128,7 @@ namespace symbol
 					types::Callable* pC = it_scope->second->getAsCallable();
 					if(pC->getModule() == _stModuleName)
 					{
-						pNames->push_back(it_scope->first.name_get());
+						pNames->push_back(it_scope->first);
 					}
 				}
 			}
@@ -140,7 +140,7 @@ namespace symbol
 		** of the stack being displayed last. */
 		void	print (std::ostream& ostr) const
 		{
-			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			std::map<string, InternalType*>::const_iterator it_scope;
 
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
@@ -273,7 +273,7 @@ namespace symbol
 		}
 
 	private:
-		std::map<Symbol, InternalType*>* 	_scope;
+		std::map<string, InternalType*>* 	_scope;
 		std::string				_name;
 	};
 

@@ -44,22 +44,22 @@ namespace symbol
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get(Symbol key) const;
+		InternalType*	get(string key) const;
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get_fun(Symbol key) const;
+		InternalType*	get_fun(string key) const;
 
 		/*return function list in the module _stModuleName*/
-		std::list<string>& get_funlist(std::string _stModuleName);
+		std::list<string>& get_funlist(string _stModuleName);
 
 		/*print all tables*/
 		void print();
 
 		/*add symbol and value in the stack*/
-		bool put(Symbol key, InternalType &type);
+		bool put(string key, InternalType &type);
 		/*add symbol and value in the previous scope*/
-		bool put_in_previous_scope(Symbol key, InternalType &type);
+		bool put_in_previous_scope(string key, InternalType &type);
 
 		bool AddFunction(types::Function *_info);
 		bool AddMacro(types::Macro *_info);

@@ -159,7 +159,7 @@ namespace types
 		{
 			if(m_pstData[_iPos] != NULL)
 			{
-				delete m_pstData[_iPos];
+				delete[] m_pstData[_iPos];
 				m_pstData[_iPos]	= NULL;
 			}
 		}

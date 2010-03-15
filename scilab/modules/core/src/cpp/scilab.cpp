@@ -288,7 +288,7 @@ static void stateShow(Parser::ControlStatus status)
 	case Parser::WithinFunction : SetTemporaryPrompt("-function->"); break;
 	case Parser::WithinSelect : SetTemporaryPrompt("-select->"); break;
 	case Parser::WithinCase : SetTemporaryPrompt("-case->"); break;
-	case Parser::AllControlClosed : SetTemporaryPrompt(SCIPROMPT); break;
+	case Parser::AllControlClosed : break;
 	}
 }
 
@@ -424,8 +424,6 @@ int main(int argc, char *argv[])
 
 	InitializeString();
 
-	InitializeLocalization();
-
 #ifdef _MSC_VER
 	InitializeWindows_tools();
 #endif
@@ -557,18 +555,18 @@ void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_p
 	types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
 	Poly *poPoly = pVar->poly_get(0,0);
 	poPoly->coef_set(_pdbl);
-	Context::getInstance()->put(symbol::Symbol(_szName), *pVar);
+	Context::getInstance()->put(_szName, *pVar);
 }
 
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
 	types::Double* pVal = new types::Double(1,1,_bComplex);
 	pVal->val_set(0,0,_dblReal,_dblImg);
-	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+	symbol::Context::getInstance()->put(_szName, *pVal);
 }
 
 void Add_Boolean_Constant(string _szName, bool _bBool)
 {
 	types::Bool* pVal = new types::Bool(_bBool);
-	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+	symbol::Context::getInstance()->put(_szName, *pVal);
 }

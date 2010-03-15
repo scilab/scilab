@@ -102,9 +102,9 @@ namespace types
 				if(pFD) // &&	pFD->name_get().name_get() == m_stName
 				{
 					symbol::Context* pContext = symbol::Context::getInstance();
-					if(pContext->get_fun(pFD->name_get())->isMacroFile())
+					if(pContext->get_fun(pFD->name_get().name_get())->isMacroFile())
 					{
-						MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
+						MacroFile* pMacro = pContext->get_fun(pFD->name_get().name_get())->getAsMacroFile();
 						if(pMacro->m_pMacro == NULL)
 						{
 							std::list<Var *>::const_iterator	i;

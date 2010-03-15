@@ -101,7 +101,7 @@ namespace ast
 
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
-		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
+		InternalType *pI = symbol::Context::getInstance()->get(e.name_get().name_get());
 		if(pI != NULL)
 		{
 			result_set(pI);
@@ -314,7 +314,7 @@ namespace ast
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
-				pIT = symbol::Context::getInstance()->get(Var->name_get());
+				pIT = symbol::Context::getInstance()->get(Var->name_get().name_get());
 			}
 			else
 			{
@@ -519,7 +519,7 @@ namespace ast
 
 			InternalType *pIT = NULL;
 			pIT = pVar->extract_value(0);
-			symbol::Context::getInstance()->put(symbol, *pIT);
+			symbol::Context::getInstance()->put(symbol.name_get(), *pIT);
 
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
@@ -536,7 +536,7 @@ namespace ast
 				else
 				{
 					pIT = pVar->extract_value(i);
-					symbol::Context::getInstance()->put(symbol, *pIT);
+					symbol::Context::getInstance()->put(symbol.name_get(), *pIT);
 				}
 
 				e.body_get().accept(*execBody);
@@ -560,7 +560,7 @@ namespace ast
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
 				GenericType* pNew = pVar->get_col_value(i);
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
+				symbol::Context::getInstance()->put(e.vardec_get().name_get().name_get(), *pNew);
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
 				{
@@ -710,7 +710,7 @@ namespace ast
 
 				if(execMe->result_get()->isDeletable())
 				{
-					symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe->result_get());
+					symbol::Context::getInstance()->put("ans", *execMe->result_get());
 					if((*i)->is_verbose())
 					{
 						//TODO manage multiple returns
