@@ -81,6 +81,8 @@ namespace types
 
 		//extract single value in a InternalType
 		InternalType* extract_value(int _iOccur); //Single value
+		double				extract_value_double(int _iOccur);
+		long long			extract_value_int(int _iOccur);
 		//extract matrix in a Internaltype
 		InternalType* extract_matrix();
 		//extract double

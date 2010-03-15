@@ -282,6 +282,18 @@ namespace types
 		return m_eOutSubType;
 	}
 
+	double ImplicitList::extract_value_double(int _iOccur)
+	{
+		double dblStart		= m_poStart->getAsDouble()->real_get(0,0);
+		double dblStep		= m_poStep->getAsDouble()->real_get(0,0);
+		return dblStart + _iOccur * dblStep;
+	}
+
+	long long ImplicitList::extract_value_int(int _iOccur)
+	{
+		return convert_input(m_poStart) + _iOccur * convert_input(m_poStep);
+	}
+
 	//extract single value in a InternalType
 	InternalType* ImplicitList::extract_value(int _iOccur)
 	{

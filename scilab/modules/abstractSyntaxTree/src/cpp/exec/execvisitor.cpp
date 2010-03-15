@@ -518,11 +518,27 @@ namespace ast
 			symbol::Symbol symbol = e.vardec_get().name_get();
 
 			InternalType *pIT = NULL;
+			pIT = pVar->extract_value(0);
+			symbol::Context::getInstance()->put(symbol, *pIT);
 
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				pIT = pVar->extract_value(i);
-				symbol::Context::getInstance()->put(symbol, *pIT);
+				if(pIT->getAsDouble())
+				{
+					Double *pDouble = pIT->getAsDouble();
+					pDouble->real_get()[0] = pVar->extract_value_double(i);
+				}
+				else if(pIT->getAsInt())
+				{
+					Int *pInt = pIT->getAsInt();
+					pInt->data_set(0, 0,  pVar->extract_value_int(i));
+				}
+				else
+				{
+					pIT = pVar->extract_value(i);
+					symbol::Context::getInstance()->put(symbol, *pIT);
+				}
+
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
 				{
