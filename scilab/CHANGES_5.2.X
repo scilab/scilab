@@ -107,6 +107,8 @@ Bug Fixes:
 * bug 6739 fixed - if a Scilab coded library function is redefined in a new 
                    library, completion on its name maked Scilab crashed.
 
+* bug 6712 fixed - The "title" function forced displaying axes.
+
 
 
 
