@@ -341,6 +341,9 @@ namespace ast
 			case InternalType::RealDouble :
 				pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
+			case InternalType::RealBool : 
+				pOut = pIT->getAsBool()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+				break;
 			case InternalType::RealInt :
 				pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
 				break;
@@ -1222,15 +1225,15 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 	symbol::Context *pcontext = symbol::Context::getInstance();
 	int iProductElem				= (int)_plstArg.size();
 	int **piIndexList				= NULL;
+	int *piTabsize					= NULL;
 	int iTotalCombi					= 1;
+	int k										= 0;
+
+	piTabsize			= new int[iProductElem];
+	(*_piMaxDim)	= new int[iProductElem];
+	piIndexList		= new int*[iProductElem];
+
 	ExecVisitor* execMeArg	= new ExecVisitor();
-
-	int *piTabsize					= new int[iProductElem];
-	(*_piMaxDim)						= new int[iProductElem];
-	piIndexList							= new int*[iProductElem];
-
-
-	int k = 0;
 	std::list<Exp *>::const_iterator	i;
 	for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
 	{
@@ -1274,14 +1277,31 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 		else if(execMeArg->result_get()->getType() == InternalType::RealBool)
 		{
 			Bool *pB			= execMeArg->result_get()->getAsBool();
-			pDbl					= new Double(pB->rows_get(), pB->cols_get());
-			double* pdbl	= pDbl->real_get();
 			int *piB			= pB->bool_get();
 
-			for(int i = 0 ; i < pDbl->size_get() ; i++)
+			//find true item count
+			int iItemCount = 0;
+			for(int i = 0 ; i < pB->size_get() ; i++)
 			{
-				pdbl[i]			= piB[i] ? 1 : 0;
+				if(piB[i])
+				{
+					iItemCount++;
+				}
 			}
+
+			//allow new Double variable
+			pDbl					= new Double(iItemCount, 1);
+			double* pdbl	= pDbl->real_get();
+
+			int j = 0;
+			for(int i = 0 ; i < pB->size_get() ; i++)
+			{
+				if(piB[i])
+				{
+					pdbl[j++] = i + 1;
+				}
+			}
+			
 			bDeleteDbl		= true;
 		}
 		else
@@ -1297,6 +1317,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 					int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
 					Double dbl(iMaxDim); // $
 					pDbl = pPoly->evaluate(&dbl);
+					bDeleteDbl = true;
 				}
 				else
 				{//houston we have a problem ...
@@ -1316,7 +1337,6 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 		double *pData = pDbl->real_get();
 
-//					std::vector<int> SubList;
 		piTabsize[k] = pDbl->size_get();
 		piIndexList[k] = new int[piTabsize[k]];
 
