@@ -16,6 +16,8 @@
 
 #include "execvisitor.hxx"
 #include "shortcutvisitor.hxx"
+#include "conditionvisitor.hxx"
+
 #include "timer.hxx"
 #include "localization.h"
 
@@ -23,7 +25,7 @@
 
 using std::string;
 
-bool bConditionState(ast::ExecVisitor *exec);
+bool bConditionState(ast::ConditionVisitor *exec);
 
 void vTransposeRealMatrix(
 			double *_pdblRealIn,
@@ -398,10 +400,10 @@ namespace ast
 	void ExecVisitor::visit (const IfExp  &e)
 	{
 		//Create local exec visitor
-		ExecVisitor *execMeTest		= new ast::ExecVisitor();
-		ShortCutVisitor *SCTest		= new ast::ShortCutVisitor();
-		ExecVisitor *execMeAction = new ast::ExecVisitor();
-		bool bTestStatus					= false;
+		ConditionVisitor *execMeTest	= new ast::ConditionVisitor();
+		ShortCutVisitor *SCTest				= new ast::ShortCutVisitor();
+		ExecVisitor *execMeAction			= new ast::ExecVisitor();
+		bool bTestStatus							= false;
 
 		//condition
 		e.test_get().accept(*SCTest);
@@ -465,9 +467,9 @@ namespace ast
 
 	void ExecVisitor::visit (const WhileExp  &e)
 	{
-		ExecVisitor *execMeTest		= new ast::ExecVisitor();
-		ExecVisitor *execMeAction = new ast::ExecVisitor();
-		bool bTestStatus					= false;
+		ConditionVisitor *execMeTest	= new ast::ConditionVisitor();
+		ExecVisitor *execMeAction			= new ast::ExecVisitor();
+		bool bTestStatus							= false;
 
 		//allow break operation
 		((Exp*)&e.body_get())->breakable_set();
@@ -1132,9 +1134,13 @@ namespace ast
 using namespace ast;
 //using ast::ExecVisitor;
 
-bool bConditionState(ast::ExecVisitor *exec)
+bool bConditionState(ast::ConditionVisitor *exec)
 {
-	if(((GenericType*)exec->result_get())->isDouble() && ((Double*)exec->result_get())->isComplex() == false)
+	if(exec->is_boolean_result())
+	{
+		return exec->result_bool_get();
+	}
+	else if(((GenericType*)exec->result_get())->isDouble() && ((Double*)exec->result_get())->isComplex() == false)
 	{
 		Double *pR		= (Double*)exec->result_get();
 		double *pReal	= pR->real_get();

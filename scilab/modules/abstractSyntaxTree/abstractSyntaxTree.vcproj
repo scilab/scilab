@@ -315,6 +315,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\src\cpp\conditionvisitor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\debugvisitor.cpp"
 				>
 			</File>
@@ -418,6 +422,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\commentexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\conditionvisitor.hxx"
 				>
 			</File>
 			<File
