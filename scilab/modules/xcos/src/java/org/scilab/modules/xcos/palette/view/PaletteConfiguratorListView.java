@@ -80,7 +80,7 @@ public class PaletteConfiguratorListView extends JTable {
 		 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
 		 */
 		@Override
-		public Class<?> getColumnClass(int columnIndex) {
+		public Class< ? > getColumnClass(int columnIndex) {
 			if (columnIndex == 0) {
 				return Boolean.class;
 			} else {
