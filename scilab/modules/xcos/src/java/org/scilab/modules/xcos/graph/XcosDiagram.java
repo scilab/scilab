@@ -2193,8 +2193,8 @@ public class XcosDiagram extends ScilabGraph {
 						XcosConstants.TMPDIR);
 			
 			ScilabInterpreterManagement.synchronousScilabExec(
-						"vars = script2var(" + str.toString() + ", struct());" +
-						"export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
+						  "vars = script2var(" + str.toString() + ", struct());"
+						+ "export_to_hdf5('" + temp.getAbsolutePath() + "', 'vars');");
 			
 			ScilabList list = new ScilabList();
 			try {
