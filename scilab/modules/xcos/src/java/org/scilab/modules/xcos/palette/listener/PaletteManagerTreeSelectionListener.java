@@ -24,7 +24,6 @@ import javax.swing.event.TreeSelectionListener;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
-import org.scilab.modules.xcos.palette.PaletteConfigurator;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
@@ -32,6 +31,7 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
 
 /**
  * Implement the tree selection listener 
@@ -69,15 +69,8 @@ public class PaletteManagerTreeSelectionListener implements
 		final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 		
 		if (node instanceof Category) {
-			JComponent list = new PaletteConfiguratorListView();
-			
-			final int n = node.getChildCount();
-			for (int i = 0; i < n; i++) {
-				final PaletteNode data = (PaletteNode) node.getChildAt(i);
-				final PaletteConfigurator p = new PaletteConfigurator(data);
-				list.add(p.getView());
-			}
-			
+			final PaletteListModel model = new PaletteListModel((Category) node);
+			final JComponent list = new PaletteConfiguratorListView(model);
 			nodeView = new JScrollPane(list);
 		} else if (node instanceof PreLoaded) {
 			final PreLoaded palette = (PreLoaded) node;

@@ -14,6 +14,9 @@ package org.scilab.modules.xcos.palette.view;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
@@ -113,6 +116,16 @@ public class PaletteManagerView extends ScilabTab {
 	public JTree getTree() {
 		return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
 				.getView();
+	}
+	
+	/**
+	 * Update the selected path on the tree
+	 */
+	public static void updateTree() {
+		final JTree t = PaletteManager.getInstance().getView().getTree();
+		final TreePath p = t.getSelectionPath();
+		
+		((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
 	}
 	
 	/** @param info the information to write on the infobar */

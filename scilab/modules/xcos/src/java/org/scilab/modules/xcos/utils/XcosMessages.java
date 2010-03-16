@@ -141,7 +141,8 @@ public final class XcosMessages {
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
     
-    public static final String ACTIVATE_PAL_TITLE = Messages.gettext("Enable this palette");
+    public static final String ENABLE= Messages.gettext("Enable");
+    public static final String PAL_NAME = Messages.gettext("Palette name");
 
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save.<br/> Do you want to save it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");

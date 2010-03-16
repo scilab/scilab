@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,89 +13,138 @@
 package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
-import java.awt.Rectangle;
 
-import javax.swing.JPanel;
-import javax.swing.Scrollable;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+
+import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.palette.model.Category;
+import org.scilab.modules.xcos.palette.model.PaletteNode;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * Implement a view for the configurator.
+ * Implement the edit category view
  */
-public class PaletteConfiguratorListView extends JPanel implements Scrollable {
-	private static final LayoutManager LAYOUT =
-		new ModifiedFlowLayout(FlowLayout.LEADING, 5, 5);
-	private static final int MIN_DIMENSION = 125;
-	private static final Dimension MINIMUM = new Dimension(MIN_DIMENSION, MIN_DIMENSION);
+public class PaletteConfiguratorListView extends JTable {
+	private static final String[] COLUMN_TITLE = {XcosMessages.ENABLE, XcosMessages.PAL_NAME};
 	
 	/**
-	 * Default constructor
+	 * Construct a new view with model
+	 * @param model the model
 	 */
-	public PaletteConfiguratorListView() {
-		setBackground(Color.WHITE);
-		setLayout(LAYOUT);
-		setMinimumSize(MINIMUM);
+	public PaletteConfiguratorListView(PaletteListModel model) {
+		super(model);
+		setBackground(Color.white);
 	}
 	
 	/**
-	 * @return The prefered Scrollable dimension
-	 * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
+	 * The default model
 	 */
-	public Dimension getPreferredScrollableViewportSize() {
-		return getPreferredSize();
-	}
+	public static class PaletteListModel extends AbstractTableModel {
+		private Category category;
+		
+		/**
+		 * Default constructor with data
+		 * @param category the data
+		 */
+		public PaletteListModel(Category category) {
+			super();
+			
+			this.category = category;
+		}
 
-	/**
-	 * @param visibleRect
-	 *            The view area visible within the viewport
-	 * @param orientation
-	 *            Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-	 * @param direction
-	 *            Less than zero to scroll up/left, greater than zero for
-	 *            down/right.
-	 * @return The "block" increment for scrolling in the specified direction.
-	 *         This value should always be positive.
-	 * @see javax.swing.Scrollable#getScrollableBlockIncrement(java.awt.Rectangle,
-	 *      int, int)
-	 */
-	public int getScrollableBlockIncrement(Rectangle visibleRect,
-			int orientation, int direction) {
-		return MIN_DIMENSION;
-	}
+		/**
+		 * @param rowIndex the current row
+		 * @param columnIndex the current column
+		 * @return always true
+		 * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
+		 */
+		@Override
+		public boolean isCellEditable(int rowIndex, int columnIndex) {
+			return true;
+		}
+		
+		/**
+		 * @param column the column
+		 * @return the name
+		 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
+		 */
+		@Override
+		public String getColumnName(int column) {
+			return COLUMN_TITLE[column];
+		}
+		
+		/**
+		 * @param columnIndex the column
+		 * @return the class
+		 * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
+		 */
+		@Override
+		public Class<?> getColumnClass(int columnIndex) {
+			if (columnIndex == 0) {
+				return Boolean.class;
+			} else {
+				return String.class;
+			}
+		}
+		
+		/**
+		 * @return always two
+		 * @see javax.swing.table.TableModel#getColumnCount()
+		 */
+		@Override
+		public int getColumnCount() {
+			return COLUMN_TITLE.length;
+		}
+		
+		/**
+		 * @return the number of {@link PaletteNode}
+		 * @see javax.swing.table.TableModel#getRowCount()
+		 */
+		@Override
+		public int getRowCount() {
+			return category.getNode().size();
+		}
 
-	/**
-	 * @return always false
-	 * @see javax.swing.Scrollable#getScrollableTracksViewportHeight()
-	 */
-	public boolean getScrollableTracksViewportHeight() {
-		return false;
-	}
-
-	/**
-	 * @return always true
-	 * @see javax.swing.Scrollable#getScrollableTracksViewportWidth()
-	 */
-	public boolean getScrollableTracksViewportWidth() {
-		return true;
-	}
-
-	/**
-	 * @param visibleRect
-	 *            The view area visible within the viewport
-	 * @param orientation
-	 *            Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-	 * @param direction
-	 *            Less than zero to scroll up/left, greater than zero for
-	 *            down/right.
-	 * @return PALETTE_BLOCK_HEIGHT or PALETTE_BLOCK_WIDTH depending on
-	 *         direction.
-	 * @see javax.swing.Scrollable#getScrollableUnitIncrement(java.awt.Rectangle,
-	 *      int, int)
-	 */
-	public int getScrollableUnitIncrement(Rectangle visibleRect,
-			int orientation, int direction) {
-		return MIN_DIMENSION;
+		/**
+		 * @param rowIndex the row
+		 * @param columnIndex the column
+		 * @return the associated data
+		 * @see javax.swing.table.TableModel#getValueAt(int, int)
+		 */
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			final PaletteNode p = category.getNode().get(rowIndex);
+			
+			Object ret;
+			if (columnIndex == 0) {
+				ret = p.isEnable();
+			} else {
+				ret = p.toString();
+			}
+			
+			return ret;
+		}
+		
+		/**
+		 * @param aValue the value to set
+		 * @param rowIndex the row
+		 * @param columnIndex the column
+		 * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
+		 */
+		@Override
+		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+			final PaletteNode p = category.getNode().get(rowIndex);
+			
+			if (columnIndex == 0) {
+				p.setEnable((Boolean) aValue);
+			} else {
+				p.setName((String) aValue);
+			}
+			
+			// Refresh the data
+			PaletteManager.getInstance().saveConfig();
+			PaletteManagerView.updateTree();
+		}
 	}
 }
