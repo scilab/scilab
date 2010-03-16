@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -110,7 +111,8 @@ public class PaletteManagerView extends ScilabTab {
 	
 	/** @return the category tree */
 	public JTree getTree() {
-		return (JTree) panel.getLeftComponent();
+		return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
+				.getView();
 	}
 	
 	/** @param info the information to write on the infobar */

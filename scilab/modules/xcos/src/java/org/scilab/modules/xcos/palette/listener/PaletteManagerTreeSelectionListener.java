@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.palette.listener;
 
+import java.awt.Dimension;
+
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -54,7 +56,7 @@ public class PaletteManagerTreeSelectionListener implements
 	 */
 	public void valueChanged(TreeSelectionEvent tree) {
 		JTree component = (JTree) tree.getSource();
-		JSplitPane splitPanel = (JSplitPane) component.getParent();
+		JSplitPane splitPanel = (JSplitPane) component.getParent().getParent().getParent();
 
 		PaletteNode node = (PaletteNode) component.getLastSelectedPathComponent();
 
@@ -64,6 +66,7 @@ public class PaletteManagerTreeSelectionListener implements
 		}
 
 		JScrollPane nodeView = null;
+		final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 		
 		if (node instanceof Category) {
 			JComponent list = new PaletteConfiguratorListView();
@@ -98,6 +101,7 @@ public class PaletteManagerTreeSelectionListener implements
 		}
 		
 		// update
+		nodeView.setPreferredSize(dimension);
 		splitPanel.setRightComponent(nodeView);
 		nodeView.validate();
 	}

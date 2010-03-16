@@ -31,7 +31,6 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 public class PaletteManagerPanel extends JSplitPane {
 
-	private static final double DEFAULT_WEIGHT = 0;
 	private PaletteManager controller;
 	
 	/**
@@ -64,9 +63,8 @@ public class PaletteManagerPanel extends JSplitPane {
 		tree.addMouseListener(new PaletteManagerMouseListener());
 		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
 		tree.setEditable(false);
-		tree.setScrollsOnExpand(true);
 		
-		setLeftComponent(tree);
+		setLeftComponent(new JScrollPane(tree));
 		panel.setViewportView(rootPalette);
 		setRightComponent(panel);
 	}
@@ -96,16 +94,16 @@ public class PaletteManagerPanel extends JSplitPane {
 	 * Setup the default layout 
 	 */
 	public void performStartUpLayout() {
-		JTree tree = (JTree) getLeftComponent();
+		JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
+				.getView();
 		
 		/* Tree layout*/
 		tree.expandRow(1);
-		tree.setMinimumSize(tree.getPreferredSize());
 		tree.setSelectionRow(2);
 		tree.setRootVisible(false);
+		tree.setScrollsOnExpand(true);
 		
 		/* Global layout */
-		setResizeWeight(DEFAULT_WEIGHT);
 		setContinuousLayout(true);
 	}
 }
