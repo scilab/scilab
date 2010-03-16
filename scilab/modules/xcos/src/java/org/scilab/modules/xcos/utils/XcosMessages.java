@@ -259,6 +259,9 @@ public final class XcosMessages {
     public static final String MASK_VARVALUES = Messages.gettext("Values");
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
 
+    /* Configuration Error */
+	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one."); 
+    
     /* Modelica Compiler */
     public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
     public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
