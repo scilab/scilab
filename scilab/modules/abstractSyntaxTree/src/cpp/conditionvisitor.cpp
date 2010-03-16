@@ -25,35 +25,35 @@ namespace ast
 	{
 		bool bResult					= false;
 
-		ExecVisitor* execMeL	= new ast::ExecVisitor();
-		ExecVisitor* execMeR	= new ast::ExecVisitor();
+		ExecVisitor execMeL;
+		ExecVisitor execMeR;
 
 		symbol::Context* pContext = symbol::Context::getInstance();
 		/*getting what to assign*/
-		e.left_get().accept(*execMeL);
+		e.left_get().accept(execMeL);
 		/*getting what to assign*/
-		e.right_get().accept(*execMeR);
-		GenericType::RealType TypeL = execMeL->result_get()->getType();
-		GenericType::RealType TypeR = execMeR->result_get()->getType();
+		e.right_get().accept(execMeR);
+		GenericType::RealType TypeL = execMeL.result_get()->getType();
+		GenericType::RealType TypeR = execMeR.result_get()->getType();
 
 		if(TypeL == GenericType::RealImplicitList)
 		{
-			ImplicitList* pIL = execMeL->result_get()->getAsImplicitList();
+			ImplicitList* pIL = execMeL.result_get()->getAsImplicitList();
 			if(pIL->computable())
 			{
 				InternalType *pIT = pIL->extract_matrix();
-				execMeL->result_set(pIT);
+				execMeL.result_set(pIT);
 				TypeL = pIT->getType();
 			}
 		}
 
 		if(TypeR == GenericType::RealImplicitList)
 		{
-			ImplicitList* pIL = execMeR->result_get()->getAsImplicitList();
+			ImplicitList* pIL = execMeR.result_get()->getAsImplicitList();
 			if(pIL->computable())
 			{
 				InternalType* pIT = pIL->extract_matrix();
-				execMeR->result_set(pIT);
+				execMeR.result_set(pIT);
 				TypeR = pIT->getType();
 			}
 		}
@@ -67,8 +67,8 @@ namespace ast
 		case OpExp::gt :
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double* pL			= execMeL->result_get()->getAsDouble();
-					Double* pR			= execMeR->result_get()->getAsDouble();
+					Double* pL			= execMeL.result_get()->getAsDouble();
+					Double* pR			= execMeR.result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -123,8 +123,8 @@ namespace ast
 		case OpExp::lt :
 			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 			{
-				Double *pL			= execMeL->result_get()->getAsDouble();
-				Double *pR			= execMeR->result_get()->getAsDouble();
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
 
 				if(pR->size_get() == 1)
 				{
