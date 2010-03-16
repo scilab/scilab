@@ -87,6 +87,11 @@ public class ScilabConstants extends mxConstants {
      */
     public static final File SCI = new File(System.getenv("SCI"));
     
+    /**
+     * The SCI configuration directory (Scilab home directory)
+     */
+    public static final File SCIHOME = new File(System.getenv("SCIHOME"));
+    
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
 }

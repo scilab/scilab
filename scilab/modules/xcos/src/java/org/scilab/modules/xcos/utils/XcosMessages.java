@@ -62,6 +62,9 @@ public final class XcosMessages {
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
     public static final String REMOVE_USER_DEFINED = REMOVE;
+    public static final String CREATE_CATEGORY = Messages.gettext("Create a category");
+    public static final String ADDTO_CATEGORY = Messages.gettext("Add to a new category");
+    public static final String DEFAULT_CATEGORY_NAME = Messages.gettext("Category");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");

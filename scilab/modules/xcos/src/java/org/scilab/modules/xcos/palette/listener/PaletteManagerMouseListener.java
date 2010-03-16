@@ -18,8 +18,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -28,13 +27,10 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.xcos.graph.PaletteDiagram;
-import org.scilab.modules.xcos.palette.Palette;
 import org.scilab.modules.xcos.palette.PaletteManager;
-import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
-import org.scilab.modules.xcos.palette.model.PaletteModel;
-import org.scilab.modules.xcos.palette.view.PaletteComponent;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
+import org.scilab.modules.xcos.palette.model.Category;
+import org.scilab.modules.xcos.palette.model.Palette;
+import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -51,77 +47,115 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	public void mouseClicked(MouseEvent e) {
-		//Right click
+		// Right click
 		if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
-			|| e.isPopupTrigger()
-			|| XcosMessages.isMacOsPopupTrigger(e)) {
+				|| e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
 
 			final PaletteManager manager = PaletteManager.getInstance();
 			final JTree paletteTree = manager.getView().getTree();
-			final PaletteManagerModel model = manager.getModel();
-		    final TreePath path = paletteTree.getPathForLocation(e.getX(), e.getY());
-		    paletteTree.setSelectionPath(path);
+			final TreePath path = paletteTree.getPathForLocation(e.getX(), e
+					.getY());
+			paletteTree.setSelectionPath(path);
 
-		    ContextMenu menu = ScilabContextMenu.createContextMenu();
+			ContextMenu menu = ScilabContextMenu.createContextMenu();
 
-		    MenuItem addTo = ScilabMenuItem.createMenuItem();
-
-		    addTo.setText(XcosMessages.REMOVE_USER_DEFINED);
-		    addTo.setCallback(new CallBack(XcosMessages.REMOVE_USER_DEFINED) {
-			private static final long serialVersionUID = 2975508442133933904L;
-
-				public void callBack() {
-					DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (path
-							.getLastPathComponent());
-
-					// remove palette from ConfigXcosManager
-					if (currentNode.getUserObject() instanceof PaletteComponent) {
-						PaletteComponent comp = (PaletteComponent) currentNode
-								.getUserObject();
-						if (comp.getGraph() instanceof PaletteDiagram) {
-							PaletteDiagram diagram = (PaletteDiagram) comp
-									.getGraph();
-							String fileName = diagram.getFileName();
-							ConfigXcosManager
-									.removeUserDefinedPalettes(fileName);
-						}
-					} else {
-						assert currentNode.getUserObject() instanceof Palette;
-						Palette p = (Palette) currentNode.getUserObject();
-						
-						p.getModel().setEnable(false);
-						ConfigXcosManager.saveDefaultPalettes(PaletteModel.values());
-					}
-					
-					
-					model.getTreeModel().removeNodeFromParent(currentNode);
-					MutableTreeNode userDefinedNode = model
-							.getUserDefinedRoot();
-					if (userDefinedNode != null
-							&& userDefinedNode.getChildCount() == 0) {
-						model.getTreeModel().removeNodeFromParent(
-								userDefinedNode);
-						userDefinedNode = null;
-					}
-					paletteTree.setSelectionRow(0);
-				}
-			});
-		    
-			addTo.setEnabled(false);
-			Object[] p = path.getPath();
-			DefaultMutableTreeNode node = (DefaultMutableTreeNode) p[p.length - 1];
-			if (node.isLeaf()) {
-				addTo.setEnabled(true);
-			}
-
-		    menu.add(addTo);
-		    menu.setVisible(true);
-		    ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-			    MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y);
+			MenuItem create = ScilabMenuItem.createMenuItem();
+			setupCreateOrAdd(paletteTree, path, create);
+			menu.add(create);
+			
+			MenuItem remove = ScilabMenuItem.createMenuItem();
+			setupRemove(paletteTree, path, remove);
+			menu.add(remove);
+			
+			menu.setVisible(true);
+			((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
+					.setLocation(MouseInfo.getPointerInfo().getLocation().x,
+							MouseInfo.getPointerInfo().getLocation().y);
 
 		}
-	    }
+	}
 
+	/**
+	 * Setup the create item
+	 * @param paletteTree the current tree
+	 * @param path the current path
+	 * @param create the menu item
+	 */
+	private void setupCreateOrAdd(final JTree paletteTree, final TreePath path,
+			MenuItem create) {
+		final PaletteNode currentNode = (PaletteNode) (path
+				.getLastPathComponent());
+		
+		if (currentNode instanceof Category) {
+			create.setText(XcosMessages.CREATE);
+		} else if (currentNode instanceof Palette) {
+			create.setText(XcosMessages.ADDTO_CATEGORY);
+		} else {
+			throw new IllegalArgumentException("Invalid node selected");
+		}
+		
+		create.setCallback(new CallBack(XcosMessages.CREATE) {
+			public void callBack() {
+				final Category nonModifiedRoot = currentNode.getParent();
+				TreePath newPath = null;
+				
+				Category c = new Category();
+				c.setEnable(true);
+				c.setName(XcosMessages.DEFAULT_CATEGORY_NAME);
+				
+				if (currentNode instanceof Category) {
+					((Category) currentNode).getNode().add(c);
+					c.setParent((Category) currentNode);
+					newPath = path.pathByAddingChild(c);
+				} else if (currentNode instanceof Palette) {
+					final int index = nonModifiedRoot.getIndex(currentNode);
+					nonModifiedRoot.getNode().set(index, c);
+					c.getNode().add(currentNode);
+					currentNode.setParent(c);
+					c.setParent(nonModifiedRoot);
+					newPath = path.getParentPath().pathByAddingChild(c);
+				}
+				
+				((DefaultTreeModel) paletteTree.getModel())
+						.reload(nonModifiedRoot);
+				paletteTree.setSelectionPath(newPath);
+				paletteTree.expandPath(newPath);
+				
+				PaletteManager.getInstance().saveConfig();
+			}
+		});
+
+		create.setEnabled(true);
+	}
+	
+	/**
+	 * Setup the remove item
+	 * @param paletteTree the current tree
+	 * @param path the current path
+	 * @param remove the menu item
+	 */
+	private void setupRemove(final JTree paletteTree, final TreePath path,
+			MenuItem remove) {
+		remove.setText(XcosMessages.REMOVE);
+		remove.setCallback(new CallBack(XcosMessages.REMOVE) {
+			public void callBack() {
+				PaletteNode currentNode = (PaletteNode) (path
+						.getLastPathComponent());
+
+				currentNode.getParent().getNode().remove(currentNode);
+				
+				((DefaultTreeModel) paletteTree.getModel())
+						.reload(currentNode.getParent());
+				paletteTree.setSelectionPath(path.getParentPath());
+				paletteTree.expandPath(path.getParentPath());
+				
+				PaletteManager.getInstance().saveConfig();
+			}
+		});
+
+		remove.setEnabled(true);
+	}
+	
 	/**
 	 * Not used
 	 * @param e Not used

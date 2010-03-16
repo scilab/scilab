@@ -12,106 +12,197 @@
 
 package org.scilab.modules.xcos.palette;
 
-import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.tree.TreePath;
+import java.io.File;
 
+import javax.swing.SwingUtilities;
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.InterpreterManagement;
-import org.scilab.modules.xcos.graph.PaletteDiagram;
-import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
+import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.XcosConstants;
+import org.xml.sax.SAXException;
 
 /**
  * Main class for the palette management.
  * 
- * Each palette can be statically defined or dynamically defined at startup
- * (following configuration) or dynamically defined by the user. If the
- * definition is static then the palette must appear on {@link Palette} with its
- * name and block components. Otherwise the palette correspond to a specific
- * diagram representation implemented on {@link PaletteDiagram}.
+ * All the palette are described in the configuration file.
  */
 public final class PaletteManager {
-	private static final int USER_DEFINED_ROW = 2;
+	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
+	private static final String INSTANCE_FILENAME = "/palettes.xml";
 
 	private static PaletteManager instance;
-	
+
 	private PaletteManagerView view;
-	private PaletteManagerModel model;
-	
+	private Category root;
+
 	/** Default constructor */
-	private PaletteManager() { }
-	
-	/**
-	 * @param view the view to set
-	 */
-	public void setView(PaletteManagerView view) {
-		this.view = view;
+	private PaletteManager() {
 	}
 
 	/**
-	 * @param model the model to set
+	 * @param view
+	 *            the view to set
 	 */
-	public void setModel(PaletteManagerModel model) {
-		this.model = model;
+	public void setView(PaletteManagerView view) {
+		this.view = view;
 	}
 
 	/** @return the view */
 	public PaletteManagerView getView() {
 		return view;
 	}
-	
-	/** @return the model */
-	public PaletteManagerModel getModel() {
-		return model;
+
+	/**
+	 * @param root
+	 *            the root to set
+	 */
+	public void setRoot(Category root) {
+		this.root = root;
+	}
+
+	/**
+	 * @return the root
+	 */
+	public Category getRoot() {
+		return root;
 	}
 
 	/** @return the default instance */
 	public static PaletteManager getInstance() {
 		if (instance == null) {
 			instance = new PaletteManager();
-			instance.setModel(new PaletteManagerModel(instance));
+			instance.loadConfig();
 			instance.setView(new PaletteManagerView(instance));
-			instance.getModel().loadTree();
 			instance.getView().getTree().revalidate();
 			instance.getView().getPanel().performStartUpLayout();
 		}
 		return instance;
 	}
-	
+
 	/** @return true if the palette window is visible, false otherwise */
 	public static boolean isVisible() {
 		return getInstance().getView().isVisible();
 	}
-	
+
 	/**
 	 * Set visible or hide the palette.
-	 * @param status true to set visible, false to hide.
+	 * 
+	 * @param status
+	 *            true to set visible, false to hide.
 	 */
 	public static void setVisible(boolean status) {
 		getInstance().getView().setVisible(status);
 	}
-	
+
 	/**
-	 * Load a user diagram on the palette
-	 * @param fileName File name and path to the diagram
+	 * Load the palette configuration file on {@link #root}.
 	 */
-	public void loadUserPalette(String fileName) {
-		PaletteDiagram diagram = new PaletteDiagram();
-		diagram.installListeners();
-		if (diagram.openDiagramAsPal(fileName)) {
-			getModel().addUserDefinedNode(diagram);
-			
-			JTree tree = getView().getTree();
-			tree.revalidate();
-			tree.expandRow(USER_DEFINED_ROW);
-			tree.setSelectionPath(
-					new TreePath(getModel().getUserNode(diagram).getPath()));
+	public void loadConfig() {
+		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+				+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+
+		try {
+			JAXBContext jaxbContext = JAXBContext
+					.newInstance("org.scilab.modules.xcos.palette.model");
+			Unmarshaller m = jaxbContext.createUnmarshaller();
+
+			try {
+				Schema schema;
+				schema = SchemaFactory.newInstance(
+						XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+						new File(schemaPath));
+				m.setSchema(schema);
+			} catch (SAXException e) {
+				LogFactory.getLog(PaletteManager.class).warn(
+						"Unable to validate the configuration file.\n"
+								+ e);
+			}
+
+			File f;
+			try {
+				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
+						+ INSTANCE_FILENAME);
+				setRoot((Category) m.unmarshal(f));
+			} catch (JAXBException e) {
+				LogFactory.getLog(PaletteManager.class).warn(
+						"user palette configuration file is not valid. "
+								+ "Switching to the default one.\n"
+								+ e);
+
+				try {
+					f = new File(XcosConstants.SCI.getAbsoluteFile()
+							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
+					setRoot((Category) m.unmarshal(f));
+				} catch (JAXBException ex) {
+					LogFactory.getLog(PaletteManager.class).error(
+							"base palette configuration file corrupted.\n"
+							+ e);
+					return;
+				}
+			}
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return;
 		}
 	}
-	
+
+	/**
+	 * Save {@link #root} on the configuration file.
+	 */
+	public void saveConfig() {
+		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+				+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+
+		try {
+			JAXBContext jaxbContext = JAXBContext
+					.newInstance("org.scilab.modules.xcos.palette.model");
+			Marshaller m = jaxbContext.createMarshaller();
+
+			try {
+				Schema schema;
+				schema = SchemaFactory.newInstance(
+						XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+						new File(schemaPath));
+				m.setSchema(schema);
+			} catch (SAXException e) {
+				LogFactory.getLog(PaletteManager.class).warn(
+						"Unable to validate the configuration file.\n"
+								+ e);
+			}
+
+			File f;
+			try {
+				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
+						+ INSTANCE_FILENAME);
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				m.marshal(getRoot(), f);
+			} catch (JAXBException e) {
+				LogFactory.getLog(PaletteManager.class).warn(
+						"unable to save user palette configuration file.\n"
+						+ e);
+			}
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+
 	/**
 	 * For debugging purpose
-	 * @param args Non used
+	 * 
+	 * @param args
+	 *            Non used
 	 */
 	public static void main(String[] args) {
 		InterpreterManagement.requestScilabExec("");
