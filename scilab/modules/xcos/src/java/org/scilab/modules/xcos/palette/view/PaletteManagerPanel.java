@@ -18,12 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
-import org.scilab.modules.xcos.palette.model.PaletteManagerModel;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
@@ -55,14 +55,16 @@ public class PaletteManagerPanel extends JSplitPane {
 		// Set default left component
 		JPanel rootPalette = new JPanel();
 		
-		PaletteManagerModel model = controller.getModel();
-		JTree tree = new JTree(model.getTreeModel());
+		TreeNode root = controller.getRoot();
+		JTree tree = new JTree(new PaletteTreeModel(root));
 		
 		/** Setup tree */
 		tree.getSelectionModel().setSelectionMode(
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.addMouseListener(new PaletteManagerMouseListener());
 		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
+		tree.setEditable(false);
+		tree.setScrollsOnExpand(true);
 		
 		setLeftComponent(tree);
 		panel.setViewportView(rootPalette);
@@ -97,10 +99,10 @@ public class PaletteManagerPanel extends JSplitPane {
 		JTree tree = (JTree) getLeftComponent();
 		
 		/* Tree layout*/
-		tree.expandRow(0);
+		tree.expandRow(1);
 		tree.setMinimumSize(tree.getPreferredSize());
-		tree.setSelectionRow(1);
-		tree.setRootVisible(true);
+		tree.setSelectionRow(2);
+		tree.setRootVisible(false);
 		
 		/* Global layout */
 		setResizeWeight(DEFAULT_WEIGHT);

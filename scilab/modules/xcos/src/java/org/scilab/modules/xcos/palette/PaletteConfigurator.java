@@ -12,12 +12,13 @@
 
 package org.scilab.modules.xcos.palette;
 
-import org.scilab.modules.xcos.graph.PaletteDiagram;
-import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.palette.model.PaletteModel;
-import org.scilab.modules.xcos.palette.view.PaletteComponent;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+
+import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorView;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
 /**
  * A rawPalette configurator is used to configure any rawPalette state. It can
@@ -28,32 +29,24 @@ import org.scilab.modules.xcos.utils.ConfigXcosManager;
  */
 public class PaletteConfigurator {
 	private final PaletteConfiguratorView view;
-	private final Object palette;
+	private final PaletteNode palette;
 	
 	/**
 	 * Default constructor
-	 * @param palette the associated rawPalette
+	 * @param palette the associated palette
 	 */
-	public PaletteConfigurator(Object palette) {
+	public PaletteConfigurator(PaletteNode palette) {
 		this.palette = palette;
 		view = new PaletteConfiguratorView(this);
 		
-		updateCheckedStatus(palette);
+		updateCheckedStatus();
 	}
 
 	/**
 	 * @param palette the palette to work on
 	 */
-	private void updateCheckedStatus(Object palette) {
-		boolean enabled = false;
-		if (palette instanceof Palette) {
-			enabled = ((Palette) palette).getModel().isEnable();
-		} else {
-			assert palette instanceof XcosDiagram;
-			// non checked diagram are not loaded
-			enabled = true;
-		}
-
+	private void updateCheckedStatus() {
+		boolean enabled = palette.isEnable();
 		view.setChecked(enabled);
 	}
 
@@ -75,22 +68,15 @@ public class PaletteConfigurator {
 	 * @param enable the enable state
 	 */
 	public void setEnable(boolean enable) {
-		if (palette instanceof Palette) {
-			((Palette) palette).getModel().setEnable(enable);
-			ConfigXcosManager.saveDefaultPalettes(PaletteModel.values());
-		} else {
-			assert palette instanceof PaletteComponent;
-			PaletteDiagram diagram = (PaletteDiagram) ((PaletteComponent) palette).getGraph();
-			String fileName = diagram.getFileName();
-			if (enable) {
-				PaletteManager.getInstance().getModel().addUserDefinedNode(diagram);
-				ConfigXcosManager.saveUserDefinedPalettes(fileName);
-			} else {
-				ConfigXcosManager.removeUserDefinedPalettes(fileName);
-			}
+		boolean enabled = palette.isEnable();
+		if (enabled != enable) {
+			palette.setEnable(enable);
+			PaletteManager.getInstance().saveConfig();
+			
+			final JTree t = PaletteManager.getInstance().getView().getTree();
+			final TreePath p = t.getSelectionPath();
+			
+			((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
 		}
-		
-		PaletteManager.getInstance().getModel().reloadTree();
-		PaletteManager.getInstance().getView().getTree().revalidate();
 	}
 }

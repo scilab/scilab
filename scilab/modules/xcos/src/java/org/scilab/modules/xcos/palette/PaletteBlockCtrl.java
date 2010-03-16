@@ -26,7 +26,7 @@ import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
-import org.scilab.modules.xcos.palette.model.PaletteBlockModel;
+import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 
@@ -38,25 +38,22 @@ import com.mxgraph.util.mxRectangle;
  * A palette block is the representation of the block in the palette. All the
  * operations there are used to render, load and put (on a diagram) a block.
  */
-public final class PaletteBlock {
+public final class PaletteBlockCtrl {
 
-	private static final String BLOCK_PATH = System.getenv("SCI")
-			+ "/modules/scicos_blocks/blocks/";
 	private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
-	private static PaletteBlock previouslySelected;
+	private static PaletteBlockCtrl previouslySelected;
 	
-	
-	private PaletteBlockModel model;
-	private PaletteBlockView view;
+	private final PaletteBlock model;
+	private final PaletteBlockView view;
 	
 	private mxGraphTransferable transferable;
 	
 	/**
 	 * Default constructor
-	 * @param blockName the block name
+	 * @param model the block data
 	 */
-	protected PaletteBlock(String blockName) {
-		this.model = new PaletteBlockModel(blockName);
+	public PaletteBlockCtrl(PaletteBlock model) {
+		this.model = model;
 		this.view = new PaletteBlockView(this);
 		installListeners(this.view);
 	}
@@ -69,18 +66,19 @@ public final class PaletteBlock {
 	}
 
 	/**
-	 * @return the model
-	 */
-	public PaletteBlockModel getModel() {
-		return model;
-	}
-
-	/**
 	 * @return the view
 	 */
 	public PaletteBlockView getView() {
 		return view;
 	}
+	
+	/**
+	 * @return the model
+	 */
+	public PaletteBlock getModel() {
+		return model;
+	}
+	
 	
 	/**
 	 * This function is the only access to get the block.
@@ -101,10 +99,10 @@ public final class PaletteBlock {
 	 */
 	public BasicBlock loadBlock() {
 		BasicBlock block;
-		if (getModel().getName().compareTo("TEXT_f") != 0) {
+		if (model.getName().compareTo("TEXT_f") != 0) {
 			// Load the block from the file
-			block = BlockReader.readBlockFromFile(BLOCK_PATH
-					+ getModel().getName() + ".h5");
+			String realPath = model.getData().getEvaluatedPath(); 
+			block = BlockReader.readBlockFromFile(realPath);
 
 			if (block.getStyle().compareTo("") == 0) {
 				block.setStyle(block.getInterfaceFunctionName());
@@ -147,7 +145,7 @@ public final class PaletteBlock {
 				e.startDrag(null, mxConstants.EMPTY_IMAGE, new Point(),
 						getTransferable(), null);
 				} catch (InvalidDnDOperationException exception) {
-					LogFactory.getLog(PaletteBlock.class)
+					LogFactory.getLog(PaletteBlockCtrl.class)
 						.warn(exception.getMessage());
 				}
 			}
