@@ -692,13 +692,13 @@ if test "$rest" = "yes"; then
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	      ;;
       -psn_*)
-	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
+	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx
 	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
 	    ;;
-      -display|-f|-l|-e|-d|-args|-mem)
+      -display|-f|-l|-e|-d|-mem)
 	      prevarg=1
 	      ;;
-	  -a) # Accept extra arguments
+	  -args) # Accept extra arguments
 		  extraarg=1
 		  ;;
       -debug)
