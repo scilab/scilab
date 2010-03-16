@@ -37,7 +37,9 @@ scilab-cli &lt;Options&gt;</synopsis>
           Scilab. Ils peuvent être récupérés par la fonction <literal><link
           linkend="sciargs">sciargs</link></literal>. Les arguments multiples
           doivent être passés dans chaîne de caractères les contenant, séparés
-          par des espaces <literal>scilab -args 'foo1 foo2';</literal></para>
+          par des espaces <literal>scilab -args 'foo1 foo2';</literal>. 
+	Sans cette option, les arguments inconnus ne seront pas acceptés.
+	</para>
         </listitem>
       </varlistentry>
 

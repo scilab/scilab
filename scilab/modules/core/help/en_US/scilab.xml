@@ -37,7 +37,8 @@ scilab-cli &lt;Options&gt;</synopsis>
           They can then be got by <link linkend="sciargs">sciargs</link>
           function. For multi arguments passing use a quoted, blank separated
           sequence of words like: <literal>scilab -args 'foo1
-          foo2'</literal></para>
+          foo2'</literal>. Without this option, unknown arguments will not
+	  be accepted.</para>
         </listitem>
       </varlistentry>
 
