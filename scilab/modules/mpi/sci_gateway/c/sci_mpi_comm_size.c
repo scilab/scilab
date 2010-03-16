@@ -9,12 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include <stdio.h>
+
 /**
  * SCILAB function : mpi_comm_size, fin = 3
  * This function returns the rank of a process 

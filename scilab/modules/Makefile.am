@@ -87,9 +87,9 @@ xpad
 
 #umfpack
 
-#if MPI
-#SUBDIRS += mpi
-#endif
+if MPI
+SUBDIRS += mpi
+endif
 
 if SCICOS
 SUBDIRS += scicos_blocks
@@ -202,6 +202,10 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la
 
+if MPI
+ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la
+endif
+
 # Core modules
 libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
@@ -216,9 +220,4 @@ libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL
 
 if ENABLE_STATIC
 libscilab_la_LIBADD += $(ALL_LIBS)
-
 endif
-
-#if MPI
-#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
-#endif

@@ -1205,7 +1205,7 @@ if test "$with_mpi" != no; then
 fi
 AC_SUBST(MPI_ENABLE)
 
-AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+AM_CONDITIONAL(MPI, test "$with_mpi" != no)
 
 #################
 ## PVM
@@ -1603,6 +1603,7 @@ modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
 modules/pvm/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
@@ -1630,7 +1631,6 @@ modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
-modules/mpi/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
@@ -1660,7 +1660,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 
 
 #MAN_FR MAN_ENG
-#modules/mpi/Makefile
+
 #for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
 #  test -f $top_builddir/configure && break
 #done

@@ -156,6 +156,13 @@ int gw_dynamic_hdf5(void);
 */
 int gw_dynamic_graphic_export(void);
 
+/**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 

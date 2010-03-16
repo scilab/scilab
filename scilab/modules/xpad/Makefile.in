@@ -126,7 +126,8 @@ libscixpad_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 libscixpad_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__objects_2 = libscixpad_la-ScilabKeywords.lo
 am__objects_3 = libscixpad_la-ScilabKeywords_wrap.lo
 am__objects_4 = libscixpad_la-gw_xpad.lo
@@ -546,7 +547,8 @@ INCLUDE_FLAGS = $(libscixpad_la_CFLAGS)
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
 libscixpad_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/jvm/libscijvm.la
 
 
 #### xpad : gateway declaration ####

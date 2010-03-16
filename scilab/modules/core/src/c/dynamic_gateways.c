@@ -342,9 +342,10 @@ int gw_dynamic_graphic_export(void)
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
-/* mpi module */
+/* MPI module */
 #define MPI_MODULE_NAME "mpi"
-static DynLibHandle hMpiLib = NULL;
+static DynLibHandle hmpiLib = NULL;
+>>>>>>> 976d45b1a7e9f17d8bf7ae0a604013deb9a24ff6
 static PROC_GATEWAY ptr_gw_mpi = NULL;
 static char* dynlibname_mpi = NULL;
 static char* gatewayname_mpi = NULL;
