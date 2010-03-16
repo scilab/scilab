@@ -5,18 +5,21 @@ Scilab:
 =======
 
 
+* Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
+  See bug #5023
+
 For GNU/Linux, Unix & Mac OS X:
 * Arguments -h / --help added to get help about the startup script.
 
 * Clear separation in the help between users and developers arguments in
-the Scilab startup script
+  the Scilab startup script
 
 * Update of the documentation to explain that -nwni and -nogui are the same
-option
+  options
 
 * Bug 6633 fixed - Unknown arguments are now accepted with option -args. This
-allows user to access to them throught the Scilab function sciargs:
-scilab -nwni -args 2 3
+  allows user to access to them throught the Scilab function sciargs:
+  scilab -nwni -args 2 3
 
 Compilation:
 ============
@@ -32,26 +35,37 @@ Xcos:
 
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
+* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
+                   rotation.
+
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
-  when changing it.
+                   when changing it.
 
-* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
-  rotation.
-
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-  Ctrl+Wheel was not working for zooming.
+* bug 6575 fixed - The graph mask was not removed at the end of the simulation.
 
 * bug 6576 fixed - Specifying the debug level was not working when two diagrams 
-  were openned.
+                   were openned.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+                   Ctrl+Wheel was not working for zooming.
 
 * bug 6657 fixed - The importXcosDiagram call with specific parameters was 
-  crashing scilab.
+                   crashing scilab.
 
 * bug 6671 fixed - The style was not saved in superBlockDiagram
 
 * bug 6694 fixed - The grid was always enabled when openning a diagram.
+
+* bug 6697 fixed - The multi-point link did not align it's edges on the grid.
+
+Tests:
+======
+
+* The internal tag "<-- LONG TIME EXECUTION -->" has been added. It allows to
+  disable tests that need long-time duration. These tests are enabled if
+  test_run() is called with the "enable_lt" optional argument.
 
 Obsolete Functions:
 ===================
@@ -61,17 +75,45 @@ Obsolete Functions:
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
+* bug 4599 fixed - It was possible create many different variables with the same
+                   name in the same scope.
 
-* bug 6531 fixed - Adding a new color to the current colormap caused the Legend entity's default background color
-                   to change.
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend
+                   entity's default background color to change.
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
-* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes and their attached entities
-                   to disappear when data min and max bounds were equal (for any of the X,Y or Z axes).
+* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
+                   and their attached entities to disappear when data min and max
+                   bounds were equal (for any of the X,Y or Z axes).
 
 * bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+
+* bug 6687 fixed - The Matplot function didn't set the clip_state property of the
+                   entities it creates.
+
+* bug 6698 fixed - isreal does not work on hypermatrix
+
+* bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
+                   exported in eps.
+
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
+                   its tics_direction property.
+
+* bug 6734 fixed - read_csv function contained erroneous error messages.
+
+* bug 6735 fixed - The "landscape" option in the print dialog as well as in
+                   xs2eps did not work as expected.
+
+* bug 6738 fixed - The horizontal line of the square root symbol was not
+                   drawn when exported.
+
+* bug 6739 fixed - if a Scilab coded library function is redefined in a new 
+                   library, completion on its name maked Scilab crashed.
+
+* bug 6712 fixed - The "title" function forced displaying axes.
+
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
