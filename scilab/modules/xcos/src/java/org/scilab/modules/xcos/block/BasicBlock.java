@@ -85,7 +85,10 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
 public class BasicBlock extends ScilabGraphUniqueObject {
-	private static final long serialVersionUID = 2189690915516168262L;
+	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 40, 40);
+	private static final double DEFAULT_POSITION_X = 10.0;
+	private static final double DEFAULT_POSITION_Y = 10.0;
+	
 	private static final String INTERNAL_FILE_PREFIX = "xcos";
 	private static final String INTERNAL_FILE_EXTENSION = ".h5";
 	
@@ -211,7 +214,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		setVisible(true);
 		setVertex(true);
 		setConnectable(false);
-		setGeometry(new mxGeometry(0, 0, 40, 40));
+		setGeometry(DEFAULT_GEOMETRY);
 		setValue("");
 		setStyle("");
 	}
@@ -781,8 +784,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    geom.setX(10);
-		    geom.setY(10);
+		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
 		}
@@ -803,8 +805,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 		    theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 		    mxGeometry geom = BasicBlock.this.getGeometry();
-		    geom.setX(10);
-		    geom.setY(10);
+		    setDefaultPosition(geom);
 		    theDiagram.getModel().setGeometry(block, geom);
 		    BlockPositioning.updateBlockView(block);
 		    block.setParentDiagram(theDiagram);
@@ -830,8 +831,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
 			theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
 			mxGeometry geom = BasicBlock.this.getGeometry();
-			geom.setX(10);
-			geom.setY(10);
+		    setDefaultPosition(geom);
 			theDiagram.getModel().setGeometry(block, geom);
 			BlockPositioning.updateBlockView(block);
 		    }
@@ -1056,5 +1056,14 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 		
 		isFlipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
 		isMirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+	}
+
+	/**
+	 * Set the default block position on the geom.
+	 * @param geom the current geom
+	 */
+	private void setDefaultPosition(mxGeometry geom) {
+		geom.setX(DEFAULT_POSITION_X);
+		geom.setY(DEFAULT_POSITION_Y);
 	}
 }
