@@ -40,6 +40,7 @@ import org.xml.sax.SAXException;
  * All the palette are described in the configuration file.
  */
 public final class PaletteManager {
+	private static final String UNABLE_TO_VALIDATE_CONFIG = "Unable to validate the configuration file.\n";
 	private static final String MODEL_CLASS_PACKAGE = "org.scilab.modules.xcos.palette.model";
 	private static final String SCHEMA_FILENAME = "/PaletteConfiguration.xsd";
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
@@ -128,7 +129,7 @@ public final class PaletteManager {
 				m.setSchema(schema);
 			} catch (SAXException e) {
 				LogFactory.getLog(PaletteManager.class).error(
-						"Unable to validate the configuration file.\n"
+						UNABLE_TO_VALIDATE_CONFIG
 								+ e);
 			}
 
@@ -192,7 +193,7 @@ public final class PaletteManager {
 				m.setSchema(schema);
 			} catch (SAXException e) {
 				LogFactory.getLog(PaletteManager.class).warn(
-						"Unable to validate the configuration file.\n"
+						UNABLE_TO_VALIDATE_CONFIG
 								+ e);
 			}
 
