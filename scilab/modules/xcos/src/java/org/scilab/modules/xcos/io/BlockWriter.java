@@ -113,7 +113,7 @@ public final class BlockWriter {
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
 	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
 	data.add(getDiagramProps(diagram));
-	data.add(getDiagramObjs(diagram));
+	data.add(DIAGRAM_OPTIONS);
 	data.add(getDiagramVersion(diagram));
 	
 	return data;
@@ -156,35 +156,6 @@ public final class BlockWriter {
 	    parameters.getSolver(),
 	    parameters.getMaximumStepSize()}};
 	return tol;
-    }
-
-    /**
-     * Create a Scilab TList from digram options
-     * @return the TList
-     */
-    private static ScilabTList getDiagramOptions() {
-	ScilabTList data = new ScilabTList(OPTS_FIELDS);
-	ScilabList threeDimension = new ScilabList();
-	threeDimension.add(new ScilabBoolean(true));
-	threeDimension.add(new ScilabDouble(33));
-
-	double[][] background = {{8, 1}};
-	double[][] link = {{1, 5}};
-
-	ScilabList iD = new ScilabList();
-	double[][] iD1 = {{5, 1}};
-	double[][] iD2 = {{4, 1}};
-	iD.add(new ScilabDouble(iD1));
-	iD.add(new ScilabDouble(iD2));
-	double[][] cmap = {{0.8, 0.8, 0.8}};
-
-	data.add(threeDimension); // 3D
-	data.add(new ScilabDouble(background)); // Background
-	data.add(new ScilabDouble(link)); // Link
-	data.add(iD); // ID
-	data.add(new ScilabDouble(cmap)); // Cmap
-
-	return data;
     }
 
     /**
