@@ -96,6 +96,8 @@ Bug Fixes:
 * bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
                    its tics_direction property.
 
+* bug 6730 fixed - problem with function calls when seen has member of an mlist.
+
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 
 * bug 6735 fixed - The "landscape" option in the print dialog as well as in
