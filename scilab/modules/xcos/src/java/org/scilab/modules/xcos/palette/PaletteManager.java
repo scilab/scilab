@@ -46,7 +46,9 @@ public final class PaletteManager {
 	private static final String INSTANCE_FILENAME = "/palettes.xml";
 
 	private static PaletteManager instance;
-
+	private static Marshaller marshaller;
+	private static Unmarshaller unmarshaller;
+	
 	private PaletteManagerView view;
 	private Category root;
 
@@ -113,26 +115,11 @@ public final class PaletteManager {
 	 * Load the palette configuration file on {@link #root}.
 	 */
 	public void loadConfig() {
-		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
-				+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
-
 		try {
-			JAXBContext jaxbContext = JAXBContext
-					.newInstance(MODEL_CLASS_PACKAGE);
-			Unmarshaller m = jaxbContext.createUnmarshaller();
-
-			try {
-				Schema schema;
-				schema = SchemaFactory.newInstance(
-						XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-						new File(schemaPath));
-				m.setSchema(schema);
-			} catch (SAXException e) {
-				LogFactory.getLog(PaletteManager.class).error(
-						UNABLE_TO_VALIDATE_CONFIG
-								+ e);
+			if (unmarshaller == null) {
+				initUnmarshaller();
 			}
-
+			
 			File f;
 			try {
 				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
@@ -144,7 +131,7 @@ public final class PaletteManager {
 					FileUtils.forceCopy(base, f);
 				}
 				
-				setRoot((Category) m.unmarshal(f));
+				setRoot((Category) unmarshaller.unmarshal(f));
 			} catch (JAXBException e) {
 				LogFactory.getLog(PaletteManager.class).warn(
 						"user palette configuration file is not valid.\n"
@@ -158,7 +145,7 @@ public final class PaletteManager {
 				try {
 					f = new File(XcosConstants.SCI.getAbsoluteFile()
 							+ XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
-					setRoot((Category) m.unmarshal(f));
+					setRoot((Category) unmarshaller.unmarshal(f));
 				} catch (JAXBException ex) {
 					LogFactory.getLog(PaletteManager.class).error(
 							"base palette configuration file corrupted.\n"
@@ -174,35 +161,45 @@ public final class PaletteManager {
 	}
 
 	/**
+	 * Initialize the shared unmarshaller instance
+	 * @throws JAXBException when an unsupported error has occured
+	 */
+	private void initUnmarshaller() throws JAXBException {
+		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+		
+		JAXBContext jaxbContext = JAXBContext
+				.newInstance(MODEL_CLASS_PACKAGE);
+		unmarshaller = jaxbContext.createUnmarshaller();
+
+		try {
+			Schema schema;
+			schema = SchemaFactory.newInstance(
+					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+					new File(schemaPath));
+			unmarshaller.setSchema(schema);
+		} catch (SAXException e) {
+			LogFactory.getLog(PaletteManager.class).error(
+					UNABLE_TO_VALIDATE_CONFIG
+							+ e);
+		}
+	}
+
+	/**
 	 * Save {@link #root} on the configuration file.
 	 */
 	public void saveConfig() {
-		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
-				+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
-
 		try {
-			JAXBContext jaxbContext = JAXBContext
-					.newInstance(MODEL_CLASS_PACKAGE);
-			Marshaller m = jaxbContext.createMarshaller();
-
-			try {
-				Schema schema;
-				schema = SchemaFactory.newInstance(
-						XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
-						new File(schemaPath));
-				m.setSchema(schema);
-			} catch (SAXException e) {
-				LogFactory.getLog(PaletteManager.class).warn(
-						UNABLE_TO_VALIDATE_CONFIG
-								+ e);
+			if (marshaller == null) {
+				initMarshaller();
 			}
 
 			File f;
 			try {
 				f = new File(XcosConstants.SCIHOME.getAbsoluteFile()
 						+ INSTANCE_FILENAME);
-				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-				m.marshal(getRoot(), f);
+				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				marshaller.marshal(getRoot(), f);
 			} catch (JAXBException e) {
 				LogFactory.getLog(PaletteManager.class).warn(
 						"Unable to save user palette configuration file.\n"
@@ -212,6 +209,31 @@ public final class PaletteManager {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			return;
+		}
+	}
+
+	/**
+	 * Initialize the shared marshaller instance
+	 * @throws JAXBException when an unsupported error has occured
+	 */
+	private void initMarshaller() throws JAXBException {
+		final String schemaPath = XcosConstants.SCI.getAbsolutePath()
+		+ XcosConstants.XCOS_ETC + SCHEMA_FILENAME;
+		
+		JAXBContext jaxbContext = JAXBContext
+				.newInstance(MODEL_CLASS_PACKAGE);
+		marshaller = jaxbContext.createMarshaller();
+
+		try {
+			Schema schema;
+			schema = SchemaFactory.newInstance(
+					XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(
+					new File(schemaPath));
+			marshaller.setSchema(schema);
+		} catch (SAXException e) {
+			LogFactory.getLog(PaletteManager.class).warn(
+					UNABLE_TO_VALIDATE_CONFIG
+							+ e);
 		}
 	}
 
