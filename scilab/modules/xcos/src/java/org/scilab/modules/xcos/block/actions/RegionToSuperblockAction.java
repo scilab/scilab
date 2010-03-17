@@ -68,9 +68,13 @@ import com.mxgraph.model.mxGeometry;
  * contains this new diagram.
  */
 public final class RegionToSuperblockAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.REGION_TO_SUPERBLOCK;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 	
 	private static final String INTERFUNCTION_NAME = "SUPER_f";

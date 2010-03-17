@@ -1634,6 +1634,7 @@ modules/matio/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/xpad/Makefile
+modules/graph/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

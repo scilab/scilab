@@ -161,8 +161,8 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	windows_tools functions overloading maple2scilab m2sci texmacs \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms hdf5 xcos xpad mpi scicos_blocks scicos \
-	. javasci
+	parameters matio atoms hdf5 graph xcos xpad mpi scicos_blocks \
+	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -448,7 +448,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	maple2scilab m2sci texmacs development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 xcos xpad $(am__append_1) $(am__append_2) scicos . \
+	hdf5 graph xcos xpad $(am__append_1) $(am__append_2) scicos . \
 	$(am__append_3)
 
 #### Basic files ####

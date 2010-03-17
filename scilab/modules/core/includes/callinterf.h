@@ -86,7 +86,7 @@
 /* 62 */						#include "dynamic_gateways.h" /* hdf5 */
 /* 63 */						#include "dynamic_gateways.h" /* xpad */
 /* 64 */						#include "dynamic_gateways.h" /* xcos */
-/* 65 */						#include "dynamic_gateways.h" /* mpi */
+/* 65 */						#include "dynamic_gateways.h" /* MPI */
 
 /*-------------------------------------
  * long jump to stop interface computation

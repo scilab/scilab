@@ -31,9 +31,13 @@ import com.mxgraph.view.mxCellState;
  * Block shadow handling
  */
 public class ShowHideShadowAction extends VertexSelectionDependantAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.SHOWHIDE_SHADOW;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
+	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = 0;
 
 	/**

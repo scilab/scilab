@@ -81,8 +81,9 @@ parameters \
 matio \
 atoms \
 hdf5 \
+graph\
 xcos \
-xpad
+xpad 
 
 #umfpack
 

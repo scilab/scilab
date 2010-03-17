@@ -218,10 +218,7 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
   sciSetNumColors (pobj,old_m);
 
 
-  if((sciGetEntityType(pobj) != SCI_TEXT)        &&
-     (sciGetEntityType(pobj) != SCI_LEGEND)      &&
-     (sciGetEntityType(pobj) != SCI_AXES)        &&
-     (sciGetEntityType(pobj) != SCI_LABEL)       &&
+  if((sciGetEntityType(pobj) != SCI_AXES)        &&
 		 !sciIsAutomaticallyRedrawn(pobj))
     {
       if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
@@ -343,11 +340,11 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_AXES:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
+	case SCI_LEGEND:
 	  sciSetForeground(pobj,value);
 	  break;
 	case SCI_UIMENU:
 	case SCI_AGREG:
-	case SCI_LEGEND:
 	default:
 	  return -1;
 	  break;
@@ -368,11 +365,11 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_AXES:
 	case SCI_LABEL: /* F.Leray 28.05.04 */
 	case SCI_TEXT:
+	case SCI_LEGEND:
 	  sciSetBackground(pobj,value);
 	  break;
 	case SCI_UIMENU:
 	case SCI_AGREG:
-	case SCI_LEGEND:
 	default:
 	  return -1;
 	  break;

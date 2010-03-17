@@ -26,8 +26,11 @@ import com.mxgraph.util.mxConstants;
  * Implement the set link horizontal action
  */
 public class StyleHorizontalAction extends StyleAction {
+	/** Name of the action */
 	public static final String NAME = XcosMessages.LINK_STYLE_HORIZONTAL;
+	/** Icon name of the action */
 	public static final String SMALL_ICON = "";
+	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_H;
 
 	/**

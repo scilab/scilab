@@ -151,12 +151,13 @@ int read_string(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-    //first call to retrieve dimensions
-    iRet = getMatrixOfString(piAddr, &iRows, &iCols, NULL, NULL);
-    if(iRet)
-    {
-        return 1;
-    }
+	//fisrt call to retrieve dimensions
+	sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
 
 	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 	//second call to retrieve length of each string

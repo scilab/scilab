@@ -26,8 +26,7 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import com.mxgraph.model.mxGeometry;
 
 /**
- * @author Bruno JOFRET
- * 
+ * A SplitBlock is used on a junction between links.
  */
 public final class SplitBlock extends BasicBlock {
 
@@ -45,14 +44,14 @@ public final class SplitBlock extends BasicBlock {
 		super();
 	}
 
-	// SPLIT_f <-> lsplit
-	// CLKSPLIT_f <-> split
-	// IMPSPLIT_F <-> limpsplit
 	/**
 	 * @param label
 	 *            block label
 	 */
 	protected SplitBlock(String label) {
+		// SPLIT_f <-> lsplit
+		// CLKSPLIT_f <-> split
+		// IMPSPLIT_F <-> limpsplit
 		this();
 		setValue(label);
 	}

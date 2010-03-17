@@ -254,6 +254,7 @@ int gw_dynamic_functions(void)
 		&hFunctionsLib,
 		&ptr_gw_functions);
 }
+
 /*--------------------------------------------------------------------------*/
 /* xcos module */
 #define XCOS_MODULE_NAME "xcos"
@@ -340,29 +341,20 @@ int gw_dynamic_graphic_export(void)
 }
 /*--------------------------------------------------------------------------*/
 
-
-
 /*--------------------------------------------------------------------------*/
 /* MPI module */
 #define MPI_MODULE_NAME "mpi"
 static DynLibHandle hmpiLib = NULL;
+>>>>>>> 976d45b1a7e9f17d8bf7ae0a604013deb9a24ff6
 static PROC_GATEWAY ptr_gw_mpi = NULL;
 static char* dynlibname_mpi = NULL;
 static char* gatewayname_mpi = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_mpi(void)
 {
-#ifdef _MSC_VER
-	if (dynlibname_mpi == NULL)
-	{
-		dynlibname_mpi = buildModuleDynLibraryName(MPI_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
-	}
-#endif
 	return gw_dynamic_generic(MPI_MODULE_NAME,
 		&dynlibname_mpi,
 		&gatewayname_mpi,
-		&hmpiLib ,
+		&hMpiLib,
 		&ptr_gw_mpi);
 }
-/*--------------------------------------------------------------------------*/
-
