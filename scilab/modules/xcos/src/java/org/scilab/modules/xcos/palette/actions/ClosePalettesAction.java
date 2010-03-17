@@ -60,8 +60,5 @@ public class ClosePalettesAction extends DefaultAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ViewPaletteBrowserAction.setPalettesVisible(false);
-		
-		// FIXME: DEBUG
-		System.exit(0);
 	}
 }
