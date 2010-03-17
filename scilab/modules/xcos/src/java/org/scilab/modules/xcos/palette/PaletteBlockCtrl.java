@@ -63,6 +63,7 @@ public final class PaletteBlockCtrl {
 	 */
 	private void installListeners(PaletteBlockView view) {
 		view.addMouseListener(MOUSE_LISTENER);
+		installDnd();
 	}
 
 	/**
