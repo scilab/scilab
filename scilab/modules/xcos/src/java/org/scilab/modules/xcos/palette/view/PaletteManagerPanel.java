@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
 
+import javax.swing.DropMode;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -24,6 +25,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
+import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
@@ -62,7 +64,11 @@ public class PaletteManagerPanel extends JSplitPane {
 				TreeSelectionModel.SINGLE_TREE_SELECTION);
 		tree.addMouseListener(new PaletteManagerMouseListener());
 		tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(panel));
+		
 		tree.setEditable(false);
+		tree.setDragEnabled(true);
+		tree.setDropMode(DropMode.INSERT);
+		tree.setTransferHandler(new PaletteTreeTransferHandler());
 		
 		setLeftComponent(new JScrollPane(tree));
 		panel.setViewportView(rootPalette);

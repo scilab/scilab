@@ -19,6 +19,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -83,8 +84,13 @@ public class PaletteManagerMouseListener implements MouseListener {
 	 */
 	private void setupCreateOrAdd(final JTree paletteTree, final TreePath path,
 			MenuItem create) {
-		final PaletteNode currentNode = (PaletteNode) (path
-				.getLastPathComponent());
+		PaletteNode node;
+		if (path != null) {
+			node = (PaletteNode) (path.getLastPathComponent());
+		} else {
+			node = (PaletteNode) paletteTree.getModel().getRoot();
+		}
+		final PaletteNode currentNode = node; 
 		
 		if (currentNode instanceof Category) {
 			create.setText(XcosMessages.CREATE);
@@ -96,7 +102,7 @@ public class PaletteManagerMouseListener implements MouseListener {
 		
 		create.setCallback(new CallBack(XcosMessages.CREATE) {
 			public void callBack() {
-				final Category nonModifiedRoot = currentNode.getParent();
+				Category nonModifiedRoot = currentNode.getParent();
 				TreePath newPath = null;
 				
 				Category c = new Category();
@@ -106,7 +112,11 @@ public class PaletteManagerMouseListener implements MouseListener {
 				if (currentNode instanceof Category) {
 					((Category) currentNode).getNode().add(c);
 					c.setParent((Category) currentNode);
-					newPath = path.pathByAddingChild(c);
+					if (path != null) {
+						newPath = path.pathByAddingChild(c);
+					} else {
+						nonModifiedRoot = (Category) currentNode;
+					}
 				} else if (currentNode instanceof Palette) {
 					final int index = nonModifiedRoot.getIndex(currentNode);
 					nonModifiedRoot.getNode().set(index, c);
@@ -139,6 +149,10 @@ public class PaletteManagerMouseListener implements MouseListener {
 		remove.setText(XcosMessages.REMOVE);
 		remove.setCallback(new CallBack(XcosMessages.REMOVE) {
 			public void callBack() {
+				if (path == null) {
+					return;
+				}
+				
 				PaletteNode currentNode = (PaletteNode) (path
 						.getLastPathComponent());
 
@@ -153,7 +167,10 @@ public class PaletteManagerMouseListener implements MouseListener {
 			}
 		});
 
-		remove.setEnabled(true);
+		final boolean pathNonNull = path != null;
+		final TreeModel model = paletteTree.getModel();
+		final boolean notLastChild = model.getChildCount(model.getRoot()) > 1;
+		remove.setEnabled(pathNonNull && notLastChild);
 	}
 	
 	/**

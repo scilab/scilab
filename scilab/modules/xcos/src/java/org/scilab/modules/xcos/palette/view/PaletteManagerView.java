@@ -128,6 +128,17 @@ public class PaletteManagerView extends ScilabTab {
 		((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
 	}
 	
+	/**
+	 * Update the whole tree
+	 */
+	public static void updateWholeTree() {
+		final JTree t = PaletteManager.getInstance().getView().getTree();
+		
+		TreePath selectedPath = t.getSelectionPath();
+		((DefaultTreeModel) t.getModel()).reload();
+		t.setSelectionPath(selectedPath);
+	}
+	
 	/** @param info the information to write on the infobar */
 	public void setInfo(String info) {
 		getAsSimpleTab().getInfoBar().setText(info);

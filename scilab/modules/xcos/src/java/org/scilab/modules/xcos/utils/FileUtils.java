@@ -69,6 +69,15 @@ public final class FileUtils {
 	public static void forceCopy(File in, File out) {
 		FileChannel inChannel = null;
 		FileChannel outChannel = null;
+		
+		if (!out.exists()) {
+			try {
+				out.createNewFile();
+			} catch (IOException e) {
+				LogFactory.getLog(FileUtils.class).warn(e);
+			}
+		}
+		
 		try {
 			inChannel = new FileInputStream(in).getChannel();
 			outChannel = new FileOutputStream(out).getChannel();
