@@ -5,8 +5,6 @@
 Performance:
 ============
 
-* Fix a regression which was slowing down loops in some cases.
-
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
 
