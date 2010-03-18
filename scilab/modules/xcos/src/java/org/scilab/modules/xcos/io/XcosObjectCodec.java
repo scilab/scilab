@@ -15,18 +15,27 @@ package org.scilab.modules.xcos.io;
 import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
+import org.scilab.modules.xcos.link.explicit.ExplicitLink;
+import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
 
 /**
  * Codec for any xcos object
  */
 public class XcosObjectCodec extends mxCellCodec {
+	/**
+	 * Refs field for codecs
+	 */
+	protected static final String[] REFS = {"parent", "source", "target"};
+	
 	/**
 	 * Attribute name containing {@link mxCell} style.
 	 */
@@ -52,6 +61,18 @@ public class XcosObjectCodec extends mxCellCodec {
 
     }
 
+    /**
+     * Register all the links codecs
+     */
+    public static void registerLinks() {
+    	XcosObjectCodec explicitlinkCodec = new XcosObjectCodec(new ExplicitLink() , null , null , null);
+    	mxCodecRegistry.register(explicitlinkCodec);
+    	XcosObjectCodec implicitlinkCodec = new XcosObjectCodec(new ImplicitLink() , null , null , null);
+    	mxCodecRegistry.register(implicitlinkCodec);
+    	XcosObjectCodec commandControllinkCodec = new XcosObjectCodec(new CommandControlLink() , null , null , null);
+    	mxCodecRegistry.register(commandControllinkCodec);
+    }
+    
 	/**
 	 * Apply compatibility pattern to the decoded object
 	 * @param dec Codec that controls the decoding process.
