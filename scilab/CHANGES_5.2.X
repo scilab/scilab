@@ -1,6 +1,14 @@
                 Changes between Versions 5.2.1 and 5.2.2 of Scilab
                 ==================================================
 
+Performance:
+============
+
+* Fix a regression which was slowing down loops in some cases (this can
+improve performances to 50 %)
+Note that many performance improvements will be also available in 
+Scilab 5.3.0.
+
 Scilab:
 =======
 
@@ -78,6 +86,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused some of them to disappear.
+
 * bug 6531 fixed - Adding a new color to the current colormap caused the Legend
                    entity's default background color to change.
 
@@ -99,6 +110,8 @@ Bug Fixes:
 
 * bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
                    its tics_direction property.
+
+* bug 6730 fixed - problem with function calls when seen has member of an mlist.
 
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 

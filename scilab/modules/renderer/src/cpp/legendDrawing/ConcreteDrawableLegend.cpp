@@ -50,6 +50,28 @@ namespace sciGraphics
 		destroyBox();
 	}
 	/*---------------------------------------------------------------------------------*/
+	void ConcreteDrawableLegend::familyHasChanged(void)
+	{
+		int nbLegends = getNbLegend();
+		DrawableObject::familyHasChanged();
+
+		if (m_aBox) {
+			getHandleDrawer(m_aBox)->familyHasChanged();
+		}
+
+		if (m_pNames) {
+			getHandleDrawer(m_pNames)->familyHasChanged();
+		}
+
+		if (m_aLines) {
+			for (int i = 0; i < nbLegends; i++)
+			{
+				getHandleDrawer(m_aLines[i])->familyHasChanged();
+			}
+		}
+
+	}
+	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::drawLegend(void)
 	{
 		createBox();
