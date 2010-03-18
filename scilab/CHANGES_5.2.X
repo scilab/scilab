@@ -78,6 +78,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused some of them to disappear.
+
 * bug 6531 fixed - Adding a new color to the current colormap caused the Legend
                    entity's default background color to change.
 
