@@ -351,7 +351,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
 			//		ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
 			//		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
 			//		{
-			//			string sz = ((SimpleVar*)(*i))->name_get().name_get();
+			//			string sz = ((SimpleVar*)(*i))->name_get();
 			//			pVarList->push_back(((SimpleVar*)(*i))->name_get());
 			//		}
 
@@ -364,7 +364,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
 			//		}
 
 			//		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-			//		types::Macro *pMacro = new types::Macro(pFD->name_get().name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
+			//		types::Macro *pMacro = new types::Macro(pFD->name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
 			//		symbol::Context::getInstance()->AddMacro(pMacro);
 			//	}
 			//}

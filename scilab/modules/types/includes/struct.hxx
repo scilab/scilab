@@ -29,7 +29,7 @@ namespace types
   private :
     struct ltstr;
     Struct(Struct *_oListCopyMe);
-    std::map<symbol::Symbol, InternalType *> *getData();
+		std::map<std::string, InternalType *> *getData();
 
   public :
     int size_get(); 
@@ -42,18 +42,18 @@ namespace types
    ** add(Symbol *_psKey, InternalType *_typedValue)
    ** Append the given value to the struct
    */
-    void add(symbol::Symbol _sKey, InternalType *_typedValue);
+		void add(const std::string& _sKey, InternalType *_typedValue);
 
     /**
      ** get(Symbol *_psKey)
      ** Append the given value to the end of the List
      */
-    InternalType * get(symbol::Symbol _sKey);
+		InternalType * get(const std::string& _sKey);
 
     /**
      **
      */
-    bool exists(symbol::Symbol _sKey);
+		bool exists(const std::string& _sKey);
 
   /**
    ** Clone
@@ -66,7 +66,7 @@ namespace types
     Struct *getAsStruct(void) { return this; }
 
   private :
-    std::map<symbol::Symbol, InternalType *> *m_plData;
+		std::map<std::string, InternalType *> *m_plData;
   };
 }
 

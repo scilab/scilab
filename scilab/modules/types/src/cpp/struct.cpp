@@ -21,7 +21,7 @@ namespace types
    */
   Struct::Struct() : Container()
   {
-    m_plData = new std::map<symbol::Symbol, InternalType *>();
+    m_plData = new std::map<std::string, InternalType *>();
     m_iRows = 1;
     m_iCols = 1;
     m_iSize = 0;
@@ -40,8 +40,8 @@ namespace types
    */
   Struct::Struct(Struct *_oStructCopyMe)
   {
-    std::map<symbol::Symbol, InternalType *>::iterator itValues;
-    m_plData = new std::map<symbol::Symbol, InternalType *>();
+    std::map<std::string, InternalType *>::iterator itValues;
+    m_plData = new std::map<std::string, InternalType *>();
 
     for (itValues = _oStructCopyMe->getData()->begin();
 	 itValues != _oStructCopyMe->getData()->end();
@@ -51,7 +51,7 @@ namespace types
       }
   }
 
-  std::map<symbol::Symbol, InternalType *> *Struct::getData()
+  std::map<std::string, InternalType *> *Struct::getData()
   {
     return m_plData;
   }
@@ -69,7 +69,7 @@ namespace types
    ** add(symbol::Symbol*_psKey, InternalType *_typedValue)
    ** Append the given value to the struct
    */ 
-  void Struct::add(symbol::Symbol _sKey, InternalType *_typedValue)
+  void Struct::add(const std::string& _sKey, InternalType *_typedValue)
   {
     /* Look if we are replacing some existing value */
     if (exists(_sKey))
@@ -88,14 +88,14 @@ namespace types
    ** get(symbol::Symbol*_psKey)
    ** Append the given value to the end of the List
    */
-  InternalType* Struct::get(symbol::Symbol _sKey)
+  InternalType* Struct::get(const std::string& _sKey)
   {
     return (*m_plData)[_sKey];
   }
 
-  bool Struct::exists(symbol::Symbol _sKey)
+  bool Struct::exists(const std::string& _sKey)
   {
-    std::map<symbol::Symbol, InternalType *>::iterator it = m_plData->find(_sKey);
+    std::map<std::string, InternalType *>::iterator it = m_plData->find(_sKey);
     if (it ==  m_plData->end())
       {
 	return false;
@@ -127,10 +127,10 @@ namespace types
     else
       {
 	int iPosition = 1;
-	std::map<symbol::Symbol, InternalType *>::iterator itValues;
+	std::map<std::string, InternalType *>::iterator itValues;
 	for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
 	  {
-	    ostr << (itValues->first).name_get() << " : ";
+	    ostr << itValues->first << " : ";
 	    switch  ((itValues->second)->getType()) 
 	      {
 	      case RealStruct :

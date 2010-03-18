@@ -24,8 +24,6 @@
 #include "exp.hxx"
 #include "var.hxx"
 
-#include "symbol.hxx"
-
 namespace ast
 {
 
@@ -47,7 +45,7 @@ namespace ast
     ** \param body
     */
     FunctionDec (const Location& location,
-		 symbol::Symbol& name,
+			const std::string name,
 		 ArrayListVar& args,
 		 ArrayListVar& returns,
 		 Exp& body) :
@@ -84,7 +82,7 @@ namespace ast
 
     // \name Accessors.
   public:
-    const symbol::Symbol& name_get (void) const
+		const std::string& name_get (void) const
     {
       return _name;
     }
@@ -122,7 +120,7 @@ namespace ast
     }
 
   protected:
-    symbol::Symbol&	_name;
+		std::string	_name;
     ArrayListVar*	_args;
     ArrayListVar*	_returns;
     Exp*		_body;

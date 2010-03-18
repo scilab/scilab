@@ -26,7 +26,7 @@ namespace types
 	/*--------------*/
 	/*	Contructor  */
 	/*--------------*/
-	Macro::Macro(const std::string& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const string& _stModule):
+	Macro::Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule):
 		Callable(),
 		m_inputArgs(&_inputArgs),
 		m_outputArgs(&_outputArgs),
@@ -82,7 +82,7 @@ namespace types
 			return Callable::Error;
 		}
 
-		std::list<symbol::Symbol>::const_iterator i;
+		std::list<std::string>::const_iterator i;
 		typed_list::const_iterator j;
 		ast::ExecVisitor execFunc;
 
@@ -93,7 +93,7 @@ namespace types
 		//assign value to variable in the new context
 		for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
 		{
-			pContext->put((*i).name_get(), **j);
+			pContext->put((*i), **j);
 		}
 
 		try
@@ -108,7 +108,7 @@ namespace types
 
 			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
 			{
-				InternalType *pIT = pContext->get((*i).name_get());
+				InternalType *pIT = pContext->get((*i));
 				if(pIT != NULL)
 				{
 					out.push_back(pIT);
@@ -118,9 +118,9 @@ namespace types
 				{
 					char sz[bsiz];
 #ifdef _MSC_VER
-					sprintf_s(sz, bsiz, _("Undefined variable %s.\n"), (*i).name_get().c_str());
+					sprintf_s(sz, bsiz, _("Undefined variable %s.\n"), (*i).c_str());
 #else
-					sprintf(sz, _("Undefined variable %s.\n"), (*i).name_get().c_str());
+					sprintf(sz, _("Undefined variable %s.\n"), (*i).c_str());
 #endif
 					YaspWrite(sz);
 				}

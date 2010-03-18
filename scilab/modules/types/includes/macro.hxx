@@ -25,7 +25,7 @@ namespace types
   {
   public :
     Macro(): Callable(){};
-    Macro(const std::string& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
+    Macro(const std::string& _stName, std::list<std::string> &_inputArgs, std::list<std::string> &_outputArgs, ast::SeqExp &_body, const string& _stModule);
     virtual ~Macro();
 
     // FIXME : Should not return NULL;
@@ -43,8 +43,8 @@ namespace types
 		ast::SeqExp* body_get();
 
   private :
-    std::list<symbol::Symbol>	*m_inputArgs;
-    std::list<symbol::Symbol>	*m_outputArgs;
+    std::list<std::string>	*m_inputArgs;
+    std::list<std::string>	*m_outputArgs;
     ast::SeqExp			*m_body;
   };
 }

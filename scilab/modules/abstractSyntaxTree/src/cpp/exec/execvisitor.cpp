@@ -103,7 +103,7 @@ namespace ast
 
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
-		InternalType *pI = symbol::Context::getInstance()->get(e.name_get().name_get());
+		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		if(pI != NULL)
 		{
 			result_set(pI);
@@ -120,9 +120,9 @@ namespace ast
 		{
 			char szError[bsiz];
 #ifdef _MSC_VER
-			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
+			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().c_str());
 #else
-			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
+			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().c_str());
 #endif
 			throw string(szError);
 			//Err, SimpleVar doesn't exist in Scilab scopes.
@@ -212,9 +212,9 @@ namespace ast
 			  {
 			    char szError[bsiz];
 #ifdef _MSC_VER
-			    sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+			    sprintf_s(szError, bsiz, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #else
-			    sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().name_get().c_str());
+			    sprintf(szError, _("Unknown field : %s.\n"), psvRightMember->name_get().c_str());
 #endif
 			    throw string(szError);
 			  }
@@ -321,7 +321,7 @@ namespace ast
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
-				pIT = symbol::Context::getInstance()->get(Var->name_get().name_get());
+				pIT = symbol::Context::getInstance()->get(Var->name_get());
 			}
 			else
 			{
@@ -518,11 +518,11 @@ namespace ast
 		{
 			ExecVisitor execBody;
 			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
-			symbol::Symbol symbol = e.vardec_get().name_get();
 
 			InternalType *pIT = NULL;
 			pIT = pVar->extract_value(0);
-			symbol::Context::getInstance()->put(symbol.name_get(), *pIT);
+			string varName = e.vardec_get().name_get();
+			symbol::Context::getInstance()->put(varName, *pIT);
 
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
@@ -539,7 +539,7 @@ namespace ast
 				else
 				{
 					pIT = pVar->extract_value(i);
-					symbol::Context::getInstance()->put(symbol.name_get(), *pIT);
+					symbol::Context::getInstance()->put(varName, *pIT);
 				}
 
 				e.body_get().accept(execBody);
@@ -562,7 +562,7 @@ namespace ast
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
 				GenericType* pNew = pVar->get_col_value(i);
-				symbol::Context::getInstance()->put(e.vardec_get().name_get().name_get(), *pNew);
+				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
 				e.body_get().accept(execBody);
 				if(e.body_get().is_break())
 				{
@@ -908,16 +908,15 @@ namespace ast
 		std::list<ast::Var *>::const_iterator	i;
 
 		//get input parameters list
-		std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+		std::list<string> *pVarList = new std::list<string>();
 		ArrayListVar *pListVar = (ArrayListVar *)&e.args_get();
 		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
 		{
-			string sz = ((SimpleVar*)(*i))->name_get().name_get();
 			pVarList->push_back(((SimpleVar*)(*i))->name_get());
 		}
 
 		//get output parameters list
-		std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+		std::list<string> *pRetList = new std::list<string>();
 		ArrayListVar *pListRet = (ArrayListVar *)&e.returns_get();
 		for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
 		{
@@ -925,7 +924,7 @@ namespace ast
 		}
 
 		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-		types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get(), "script");
+		types::Macro *pMacro = new types::Macro(e.name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get(), "script");
 		symbol::Context::getInstance()->AddMacro(pMacro);
 	}
 	/** \} */

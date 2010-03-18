@@ -16,8 +16,6 @@
 
 #include "var.hxx"
 
-#include "symbol.hxx"
-
 namespace ast
 {
 
@@ -34,7 +32,7 @@ namespace ast
      ** \param name the name of the variable
      */
     SimpleVar (const Location& location,
-	       symbol::Symbol& name):
+			const std::string name):
       Var (location),
       _name (name)
     {
@@ -44,7 +42,6 @@ namespace ast
      ** Delete name, see constructor. */
     ~SimpleVar ()
     {
-      delete &_name;
     }
 
 
@@ -68,7 +65,7 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the Variable's name. */
-    const symbol::Symbol& name_get () const
+		const std::string& name_get () const
     {
       return _name;
     }
@@ -82,7 +79,7 @@ namespace ast
 
   protected:
     /** \brief Variable's name */
-    symbol::Symbol& _name;
+		std::string _name;
   };
 
 } // namespace ast

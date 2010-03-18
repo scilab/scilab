@@ -41,7 +41,7 @@ namespace ast
 				bool bNew								= false;
 				int iProductElem				= (int)pCall->args_get().size();
 				pVar										= (SimpleVar*)&pCall->name_get();
-				InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get().name_get());
+				InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
 				bool bSeeAsVector				= iProductElem == 1;
 
 				/*getting what to assign*/
@@ -129,7 +129,7 @@ namespace ast
 				{
 					if(bNew)
 					{
-						symbol::Context::getInstance()->put(pVar->name_get().name_get(), *((GenericType*)pOut));
+						symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
 					}
 
 					if(e.is_verbose())
@@ -177,12 +177,12 @@ namespace ast
 				const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
 				if(pReturn)
 				{//ReturnExp so, put the value in the previous scope
-					symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get().name_get(), *((GenericType*)pIT));
+					symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
 					((AssignExp*)&e)->break_set();
 				}
 				else
 				{
-					symbol::Context::getInstance()->put(pVar->name_get().name_get(), *((GenericType*)pIT));
+					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
 				}
 
 				if(e.is_verbose())
@@ -216,7 +216,7 @@ namespace ast
 				for(it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++)
 				{
 					const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
-					symbol::Context::getInstance()->put(pListVar->name_get().name_get(), *((GenericType*)execMeR.result_get(i)));
+					symbol::Context::getInstance()->put(pListVar->name_get(), *((GenericType*)execMeR.result_get(i)));
 					if(e.is_verbose())
 					{
 						std::ostringstream ostr;
