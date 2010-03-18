@@ -63,7 +63,8 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
 		pstLibName = "";
 	}
 
-	std::list<string> FuncList = pContext->get_funlist(pstLibName);
+	string libName(pstLibName);
+	std::list<string> FuncList = pContext->get_funlist(libName);
 
 	String *pS = new String((int)FuncList.size(), 1);
 

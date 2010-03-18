@@ -197,6 +197,10 @@ int GetCommand ( char *str)
 
 int ismenu(void)
 {
+	printf("NOOOOOOOOOOOOOOOOOOOOOOOOOON\n");
+	printf("NOOOOOOOOOOOOOOOOOOOOOOOOOON\n");
+	printf("NOOOOOOOOOOOOOOOOOOOOOOOOOON\n");
+	printf("NOOOOOOOOOOOOOOOOOOOOOOOOOON\n");
   /* Do not manage commands while compiling scilab function */
 	BOOL commandQueueEmpty;
 	__Lock(&commandQueueSingleAccess);

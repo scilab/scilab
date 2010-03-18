@@ -39,7 +39,9 @@ namespace ast
 		ExecVisitor()
 		{
 			_excepted_result = -1;
-			_result.push_back(NULL);
+			_resultVect.push_back(NULL);
+			_result = NULL;
+			m_bSingleResult = true;
 		}
 
 		~ExecVisitor()
@@ -49,13 +51,24 @@ namespace ast
 
 		void result_clear()
 		{
-			for(int i = 0 ; i < _result.size() ; i++)
+			if(is_single_result())
 			{
-				if(_result[i] != NULL && _result[i]->isDeletable() == true)
+				if(_result != NULL && _result->isDeletable() == true)
 				{
-					delete _result[i];
+					delete _result;
 				}
 			}
+			else
+			{
+				for(int i = 0 ; i < _resultVect.size() ; i++)
+				{
+					if(_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
+					{
+						delete _resultVect[i];
+					}
+				}
+			}
+			
 		}
 
 		/** \name Visit Matrix Expressions nodes.
@@ -137,13 +150,16 @@ namespace ast
 		vector<types::InternalType*>* result_list_get();
 		void	result_set(const types::InternalType *gtVal);
 		void	result_set(int _iPos, const types::InternalType *gtVal);
+		bool	is_single_result();
 
 
 		/*-------------.
 		| Attributes.  |
 		`-------------*/
 	protected:
-		vector<types::InternalType*>	_result;
+		vector<types::InternalType*>	_resultVect;
+		types::InternalType*	_result;
+		bool m_bSingleResult;
 		int _excepted_result;
 	};
 }

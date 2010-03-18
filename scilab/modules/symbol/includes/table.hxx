@@ -38,11 +38,11 @@ namespace symbol
 		}
 
 		/** Associate value to key in the current scope. */
-		virtual void put (string key, InternalType &value) = 0 ;
+		virtual void put (const string& key, InternalType &value) = 0 ;
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		virtual InternalType*	get (string key) const = 0 ;
+		virtual InternalType*	get (const string& key) const = 0 ;
 
 		/** Send the content of this table on ostr in a readable manner, the top
 		** of the stack being displayed last. */

@@ -26,7 +26,7 @@ namespace types
 	/*--------------*/
 	/*	Contructor  */
 	/*--------------*/
-	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule):
+	Macro::Macro(const std::string& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const string& _stModule):
 		Callable(),
 		m_inputArgs(&_inputArgs),
 		m_outputArgs(&_outputArgs),

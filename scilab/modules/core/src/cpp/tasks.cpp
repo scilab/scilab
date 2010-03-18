@@ -143,7 +143,7 @@ void execAstTask(bool timed)
 	{
 		ast::ExecVisitor execMe;
 		Parser::getInstance()->getTree()->accept(execMe);
-		Parser::getInstance()->freeTree();
+		//Parser::getInstance()->freeTree();
 	}
 	catch(string sz)
 	{

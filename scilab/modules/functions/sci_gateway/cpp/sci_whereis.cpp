@@ -43,7 +43,8 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 		char* pstFuncName = pS->string_get(0);
 		symbol::Context* pContext = symbol::Context::getInstance();
 
-		pIT = pContext->get_fun(pstFuncName);
+		string funcName(pstFuncName);
+		pIT = pContext->get_fun(funcName);
 		if(pIT == NULL)
 		{
 			return Function::Error;

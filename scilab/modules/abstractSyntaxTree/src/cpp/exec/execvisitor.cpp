@@ -175,16 +175,16 @@ namespace ast
 		/*
 		a.b
 		*/
-	  ExecVisitor *execHead = new ast::ExecVisitor();
+	  ExecVisitor execHead;
 	 	try
 		{
-		  e.head_get()->accept(*execHead);
+		  e.head_get()->accept(execHead);
 		}
 		catch (string sz) 
 		  {
 		    throw sz;
 		  } 
-		if (execHead->result_get() != NULL && !execHead->result_get()->isStruct())
+		if (execHead.result_get() != NULL && !execHead.result_get()->isStruct())
 		  {
 		    char szError[bsiz];
 #ifdef _MSC_VER
@@ -192,7 +192,6 @@ namespace ast
 #else
 		    sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
 #endif
-		    delete execHead;
 		    throw string(szError);
 		  }
 		else
@@ -204,7 +203,7 @@ namespace ast
 		    SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
 		    if (psvRightMember != NULL)
 		      {
-			Struct* psValue = execHead->result_get()->getAsStruct();
+			Struct* psValue = execHead.result_get()->getAsStruct();
 			if ( psValue->exists(psvRightMember->name_get()) )
 			  {
 			    result_set(psValue->get(psvRightMember->name_get())->clone());
@@ -235,34 +234,41 @@ namespace ast
 
 	void ExecVisitor::visit(const CallExp &e)
 	{
-		ExecVisitor *execFunc = new ast::ExecVisitor();
+		ExecVisitor execFunc;
 		std::list<Exp *>::const_iterator	i;
 
-		e.name_get().accept(*execFunc);
-		if(execFunc->result_get() != NULL && execFunc->result_get()->isCallable())
+		e.name_get().accept(execFunc);
+		if(execFunc.result_get() != NULL && execFunc.result_get()->isCallable())
 		{//function call
-			Callable *pCall = execFunc->result_get()->getAsCallable();
+			Callable *pCall = execFunc.result_get()->getAsCallable();
 			types::typed_list out;
 			types::typed_list in;
 			
 			//find the good macro
-			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
+			ExecVisitor *execVar = new ast::ExecVisitor[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
 			{
-				execVar[j] = new ast::ExecVisitor();
-				(*i)->accept (*execVar[j]);
-				if(execVar[j]->result_get()->getType() == InternalType::RealImplicitList)
+				(*i)->accept (execVar[j]);
+				if(execVar[j].result_get()->getType() == InternalType::RealImplicitList)
 				{
-					ImplicitList* pIL = execVar[j]->result_get()->getAsImplicitList();
-					execVar[j]->result_set(pIL->extract_matrix());
+					ImplicitList* pIL = execVar[j].result_get()->getAsImplicitList();
+					execVar[j].result_set(pIL->extract_matrix());
 					delete pIL;
 				}
 				
-				for(int i = 0 ; i < execVar[j]->result_size_get() ; i++)
+				if(execVar[j].is_single_result())
 				{
-					in.push_back(execVar[j]->result_get(i));
-					execVar[j]->result_get(i)->IncreaseRef();
+						in.push_back(execVar[j].result_get());
+						execVar[j].result_get()->IncreaseRef();
+				}
+				else
+				{
+					for(int i = 0 ; i < execVar[j].result_size_get() ; i++)
+					{
+						in.push_back(execVar[j].result_get(i));
+						execVar[j].result_get(i)->IncreaseRef();
+					}
 				}
 			}
 			
@@ -301,12 +307,11 @@ namespace ast
 			
 			for (j = 0; j < e.args_get().size(); j++)
 			{
-				execVar[j]->result_get()->DecreaseRef();
-				delete execVar[j];
+				execVar[j].result_get()->DecreaseRef();
 			}
 			delete[] execVar;
 		}
-		else if(execFunc->result_get() != NULL)
+		else if(execFunc.result_get() != NULL)
 		{//a(xxx) with a variable, extraction
 
 			//get symbol of variable
@@ -320,11 +325,10 @@ namespace ast
 			}
 			else
 			{
-				pIT = execFunc->result_get();
+				pIT = execFunc.result_get();
 			}
 			InternalType *pOut			= NULL;
 			std::vector<InternalType*> ResultList;
-			ExecVisitor* execMeArg	= new ast::ExecVisitor();
 			int iArgDim							= (int)e.args_get().size();
 			bool bSeeAsVector				= iArgDim == 1;
 
@@ -397,22 +401,21 @@ namespace ast
 #endif
 			throw string(pst);
 		}
-		delete execFunc;
 	}
 
 	void ExecVisitor::visit (const IfExp  &e)
 	{
 		//Create local exec visitor
-		ConditionVisitor *execMeTest	= new ast::ConditionVisitor();
-		ShortCutVisitor *SCTest				= new ast::ShortCutVisitor();
-		ExecVisitor *execMeAction			= new ast::ExecVisitor();
+		ConditionVisitor execMeTest;
+		ShortCutVisitor SCTest;
+		ExecVisitor execMeAction;
 		bool bTestStatus							= false;
 
 		//condition
-		e.test_get().accept(*SCTest);
-		e.test_get().accept(*execMeTest);
+		e.test_get().accept(SCTest);
+		e.test_get().accept(execMeTest);
 
-		bTestStatus = bConditionState(execMeTest);
+		bTestStatus = bConditionState(&execMeTest);
 		if(bTestStatus == true)
 		{//condition == true
 			if(e.is_breakable())
@@ -425,7 +428,7 @@ namespace ast
 				((Exp*)&e.then_get())->returnable_set();
 			}
 
-			e.then_get().accept(*execMeAction);
+			e.then_get().accept(execMeAction);
 		}
 		else
 		{//condition == false
@@ -442,12 +445,9 @@ namespace ast
 					((Exp*)&e.else_get())->returnable_set();
 				}
 
-				e.else_get().accept(*execMeAction);
+				e.else_get().accept(execMeAction);
 			}
 		}
-
-		delete execMeAction;
-		delete execMeTest;
 
 		if(e.is_breakable() && ( ((Exp*)&e.else_get())->is_break() || ((Exp*)&e.then_get())->is_break() ))
 		{
@@ -470,9 +470,9 @@ namespace ast
 
 	void ExecVisitor::visit (const WhileExp  &e)
 	{
-		ConditionVisitor *execMeTest	= new ast::ConditionVisitor();
-		ExecVisitor *execMeAction			= new ast::ExecVisitor();
-		bool bTestStatus							= false;
+		ConditionVisitor execMeTest;
+		ExecVisitor execMeAction;
+		bool bTestStatus	= false;
 
 		//allow break operation
 		((Exp*)&e.body_get())->breakable_set();
@@ -483,10 +483,10 @@ namespace ast
 		}
 
 		//condition
-		e.test_get().accept(*execMeTest);
-		while(bConditionState(execMeTest))
+		e.test_get().accept(execMeTest);
+		while(bConditionState(&execMeTest))
 		{
-			e.body_get().accept(*execMeAction);
+			e.body_get().accept(execMeAction);
 			if(e.body_get().is_break())
 			{
 				break;
@@ -497,16 +497,14 @@ namespace ast
 				((Exp*)&e)->return_set();
 				break;
 			}
-			e.test_get().accept(*execMeTest);
+			e.test_get().accept(execMeTest);
 		}
-		delete execMeAction;
-		delete execMeTest;
 	}
 
 	void ExecVisitor::visit (const ForExp  &e)
 	{
-		ExecVisitor *execVar = new ast::ExecVisitor();
-		e.vardec_get().accept(*execVar);
+		ExecVisitor execVar;
+		e.vardec_get().accept(execVar);
 
 		//allow break operation
 		((Exp*)&e.body_get())->breakable_set();
@@ -516,10 +514,10 @@ namespace ast
 			((Exp*)&e.body_get())->is_returnable();
 		}
 
-		if(execVar->result_get()->getType() == InternalType::RealImplicitList)
+		if(execVar.result_get()->getType() == InternalType::RealImplicitList)
 		{
-			ExecVisitor *execBody = new ast::ExecVisitor();
-			ImplicitList* pVar = (ImplicitList*)execVar->result_get();
+			ExecVisitor execBody;
+			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
 			symbol::Symbol symbol = e.vardec_get().name_get();
 
 			InternalType *pIT = NULL;
@@ -544,7 +542,7 @@ namespace ast
 					symbol::Context::getInstance()->put(symbol.name_get(), *pIT);
 				}
 
-				e.body_get().accept(*execBody);
+				e.body_get().accept(execBody);
 				if(e.body_get().is_break())
 				{
 					break;
@@ -556,17 +554,16 @@ namespace ast
 					break;
 				}
 			}
-			delete execBody;
 		}
 		else
 		{//Matrix i = [1,3,2,6] or other type
-			ExecVisitor *execBody = new ast::ExecVisitor();
-			GenericType* pVar = (GenericType*)execVar->result_get();
+			ExecVisitor execBody;
+			GenericType* pVar = (GenericType*)execVar.result_get();
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
 				GenericType* pNew = pVar->get_col_value(i);
 				symbol::Context::getInstance()->put(e.vardec_get().name_get().name_get(), *pNew);
-				e.body_get().accept(*execBody);
+				e.body_get().accept(execBody);
 				if(e.body_get().is_break())
 				{
 					break;
@@ -578,9 +575,7 @@ namespace ast
 					break;
 				}
 			}
-			delete execBody;
 		}
-		delete execVar;
 	}
 
 	void ExecVisitor::visit (const BreakExp &e)
@@ -592,14 +587,13 @@ namespace ast
 	{
 		if(e.is_global() == false)
 		{//return(x)
-			ExecVisitor* execVar = new ExecVisitor();
-			e.exp_get().accept(*execVar);
+			ExecVisitor execVar;
+			e.exp_get().accept(execVar);
 			
-			for(int i = 0 ; i < execVar->result_size_get() ; i++)
+			for(int i = 0 ; i < execVar.result_size_get() ; i++)
 			{
-				result_set(i, execVar->result_get(i)->clone());
+				result_set(i, execVar.result_get(i)->clone());
 			}
-			delete execVar;
 		}
 		((Exp*)&e)->return_set();
 	}
@@ -607,44 +601,39 @@ namespace ast
 	void ExecVisitor::visit (const SelectExp &e)
 	{
 	  // FIXME : exec select ... case ... else ... end
-		ExecVisitor *execMe = new ast::ExecVisitor();
-		e.select_get()->accept(*execMe);
+		ExecVisitor execMe;
+		e.select_get()->accept(execMe);
 		bool bCase = false;
 
 		
-		if(execMe->result_get() != NULL)
+		if(execMe.result_get() != NULL)
 		{//find good case
 			cases_t::iterator it;
 			for(it = e.cases_get()->begin(); it != e.cases_get()->end() ; it++)
 			{
-				ExecVisitor *execCase = new ast::ExecVisitor();
+				ExecVisitor execCase;
 				CaseExp* pCase = *it;
-				pCase->test_get()->accept(*execCase);
-				if(execCase->result_get() != NULL)
+				pCase->test_get()->accept(execCase);
+				if(execCase.result_get() != NULL)
 				{
-					if(execCase->result_get()->isContainer()) //WARNING ONLY FOR CELL
+					if(execCase.result_get()->isContainer()) //WARNING ONLY FOR CELL
 					{//check each item
 					}
-					else if(*execCase->result_get() == *execMe->result_get())
+					else if(*execCase.result_get() == *execMe.result_get())
 					{//the good one
-						ExecVisitor *execBody = new ast::ExecVisitor();
-						pCase->body_get()->accept(*execBody);
-						delete execBody;
+						ExecVisitor execBody;
+						pCase->body_get()->accept(execBody);
 						bCase = true;
 					}
 				}
-				delete execCase;
 			}
 		}
 
 		if(bCase == false)
 		{//default case
-			ExecVisitor *execDefault = new ast::ExecVisitor();
-			e.default_case_get()->accept(*execDefault);
-			delete execDefault;
+			ExecVisitor execDefault;
+			e.default_case_get()->accept(execDefault);
 		}
-
-		delete execMe;
 	}
 
 	void ExecVisitor::visit(const CaseExp &e)
@@ -659,7 +648,7 @@ namespace ast
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
-			ExecVisitor *execMe = new ast::ExecVisitor();
+			ExecVisitor execMe;
 			if(e.is_breakable())
 			{
 				(*i)->breakable_set();
@@ -670,13 +659,13 @@ namespace ast
 				(*i)->returnable_set();
 			}
 
-			(*i)->accept (*execMe);
+			(*i)->accept(execMe);
 
-			if(execMe->result_get() != NULL)
+			if(execMe.result_get() != NULL)
 			{
-				if(execMe->result_get()->getAsCallable())//to manage call without ()
+				if(execMe.result_get()->getAsCallable())//to manage call without ()
 				{
-					Callable *pCall = execMe->result_get()->getAsCallable();
+					Callable *pCall = execMe.result_get()->getAsCallable();
 					types::typed_list out;
 					types::typed_list in;
 
@@ -697,7 +686,7 @@ namespace ast
 						for(int i = 0 ; i < out.size() ; i++)
 						{
 							out[i]->DecreaseRef();
-							execMe->result_set(i, out[i]);
+							execMe.result_set(i, out[i]);
 						}
 					}
 					else if(Ret == Callable::Error)
@@ -713,23 +702,22 @@ namespace ast
 					}
 				}
 
-				if(execMe->result_get()->isDeletable())
+				if(execMe.result_get()->isDeletable())
 				{
-					symbol::Context::getInstance()->put("ans", *execMe->result_get());
+					symbol::Context::getInstance()->put("ans", *execMe.result_get());
 					if((*i)->is_verbose())
 					{
 						//TODO manage multiple returns
 						std::ostringstream ostr;
 						ostr << "ans = " << std::endl;
 						ostr << std::endl;
-						ostr << execMe->result_get()->toString(10,75) << std::endl;
+						ostr << execMe.result_get()->toString(10,75) << std::endl;
 						YaspWrite((char *)ostr.str().c_str());
 					}
 				}
 
 			}
 
-			delete execMe;
 			if(((SeqExp*)&e)->is_breakable() && (*i)->is_break())
 			{
 				((SeqExp*)&e)->break_set();
@@ -751,10 +739,9 @@ namespace ast
 		int i = 0;
 		for(it = e.exps_get().begin() ; it != e.exps_get().end() ; it++)
 		{
-			ExecVisitor *execArg = new ExecVisitor();
-			(*it)->accept(*execArg);
-			result_set(i, execArg->result_get()->clone());
-			delete execArg;
+			ExecVisitor execArg;
+			(*it)->accept(execArg);
+			result_set(i, execArg.result_get()->clone());
 			i++;
 		}
 	}
@@ -771,12 +758,12 @@ namespace ast
 		/*
 		@ or ~= !
 		*/
-		ExecVisitor* execMe = new ast::ExecVisitor();
-		e.exp_get().accept(*execMe);
+		ExecVisitor execMe;
+		e.exp_get().accept(execMe);
 
-		if(execMe->result_get()->isDouble())
+		if(execMe.result_get()->isDouble())
 		{
-			Double *pdbl	= execMe->result_get()->getAsDouble();
+			Double *pdbl	= execMe.result_get()->getAsDouble();
 			Bool *pReturn	= new Bool(pdbl->rows_get(), pdbl->cols_get());
 			double *pR		= pdbl->real_get();
 			int *piB			= pReturn->bool_get();
@@ -786,9 +773,9 @@ namespace ast
 			}
 			result_set(pReturn);
 		}
-		else if(execMe->result_get()->isBool())
+		else if(execMe.result_get()->isBool())
 		{
-			Bool *pb			= execMe->result_get()->getAsBool();
+			Bool *pb			= execMe.result_get()->getAsBool();
 			Bool *pReturn	= new Bool(pb->rows_get(), pb->cols_get());
 			int *piR			= pb->bool_get();
 			int *piB			= pReturn->bool_get();
@@ -799,7 +786,6 @@ namespace ast
 			}
 			result_set(pReturn);
 		}
-		delete execMe;
 	}
 
 	void ExecVisitor::visit (const TransposeExp &e)
@@ -807,20 +793,20 @@ namespace ast
 		/*
 		'
 		*/
-		ExecVisitor* execMe = new ast::ExecVisitor();
-		e.exp_get().accept(*execMe);
+		ExecVisitor execMe;
+		e.exp_get().accept(execMe);
 
 		bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
 
-		if(execMe->result_get()->isImplicitList())
+		if(execMe.result_get()->isImplicitList())
 		{
-			InternalType *pIT = execMe->result_get()->getAsImplicitList()->extract_matrix();
-			execMe->result_set(pIT);
+			InternalType *pIT = execMe.result_get()->getAsImplicitList()->extract_matrix();
+			execMe.result_set(pIT);
 		}
 
-		if(execMe->result_get()->isDouble())
+		if(execMe.result_get()->isDouble())
 		{
-			Double *pdbl		= execMe->result_get()->getAsDouble();
+			Double *pdbl		= execMe.result_get()->getAsDouble();
 			Double *pReturn	= NULL;
 
 			if(pdbl->isComplex())
@@ -843,9 +829,9 @@ namespace ast
 			}
 			result_set(pReturn);
 		}
-		else if(execMe->result_get()->isPoly())
+		else if(execMe.result_get()->isPoly())
 		{
-			MatrixPoly *pMP			= execMe->result_get()->getAsPoly();
+			MatrixPoly *pMP			= execMe.result_get()->getAsPoly();
 			MatrixPoly *pReturn	= NULL;
 
 			//prepare rank array
@@ -890,11 +876,7 @@ namespace ast
 
 			result_set(pReturn);
 		}
-
-
-
-		delete execMe;
-	}
+}
 	/** \} */
 
 	/** \name Visit Declaration nodes.
@@ -903,19 +885,18 @@ namespace ast
 	void ExecVisitor::visit (const VarDec  &e)
 	{
 		/*Create local exec visitor*/
-		ExecVisitor* execMe = new ast::ExecVisitor();
+		ExecVisitor execMe;
 		try
 		{
 			/*getting what to assign*/
-			e.init_get().accept(*execMe);
-			result_set(execMe->result_get());
+			e.init_get().accept(execMe);
+			result_set(execMe.result_get());
 			result_get()->IncreaseRef();
 		}
 		catch(string sz)
 		{
 			throw sz;
 		}
-		delete execMe;
 	}
 
 	void ExecVisitor::visit (const FunctionDec  &e)
@@ -953,32 +934,32 @@ namespace ast
 	** \{ */
 	void ExecVisitor::visit(const ListExp &e)
 	{
-		ExecVisitor*	execMeStart = new ast::ExecVisitor();
-		ExecVisitor*	execMeStep	= new ast::ExecVisitor();
-		ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
+		ExecVisitor	execMeStart;
+		ExecVisitor	execMeStep;
+		ExecVisitor	execMeEnd;
 
 		try
 		{
-			e.start_get().accept(*execMeStart);
-			execMeStart->result_get()->IncreaseRef();
-			GenericType* pITStart = (GenericType*)execMeStart->result_get();
+			e.start_get().accept(execMeStart);
+			execMeStart.result_get()->IncreaseRef();
+			GenericType* pITStart = (GenericType*)execMeStart.result_get();
 			if(pITStart->rows_get() != 1 || pITStart->cols_get() != 1)
 			{
 				throw 1;
 			}
 
 
-			e.step_get().accept(*execMeStep);
-			execMeStep->result_get()->IncreaseRef();
-			GenericType* pITStep = (GenericType*)execMeStep->result_get();
+			e.step_get().accept(execMeStep);
+			execMeStep.result_get()->IncreaseRef();
+			GenericType* pITStep = (GenericType*)execMeStep.result_get();
 			if(pITStep->rows_get() != 1 || pITStep->cols_get() != 1)
 			{
 				throw 2;
 			}
 
-			e.end_get().accept(*execMeEnd);
-			execMeEnd->result_get()->IncreaseRef();
-			GenericType* pITEnd = (GenericType*)execMeEnd->result_get();
+			e.end_get().accept(execMeEnd);
+			execMeEnd.result_get()->IncreaseRef();
+			GenericType* pITEnd = (GenericType*)execMeEnd.result_get();
 			if(pITEnd->rows_get() != 1 || pITEnd->cols_get() != 1)
 			{
 				throw 3;
@@ -986,71 +967,71 @@ namespace ast
 
 			//check compatibility
 
-			if(execMeStart->result_get()->getType() == InternalType::RealInt)
+			if(execMeStart.result_get()->getType() == InternalType::RealInt)
 			{//if Step or End are Int too, they must have the same precision
-				Int::IntType IT = execMeStart->result_get()->getAsInt()->getIntType();
+				Int::IntType IT = execMeStart.result_get()->getAsInt()->getIntType();
 
-				if(execMeStep->result_get()->getType() == InternalType::RealInt)
+				if(execMeStep.result_get()->getType() == InternalType::RealInt)
 				{
-					if(execMeStep->result_get()->getAsInt()->getIntType() != IT)
+					if(execMeStep.result_get()->getAsInt()->getIntType() != IT)
 					{
 						throw string(_("Undefined operation for the given operands.\n"));
 					}
 				}
-				else if(execMeStep->result_get()->getType() == InternalType::RealPoly)
+				else if(execMeStep.result_get()->getType() == InternalType::RealPoly)
 				{
 					throw string(_("Undefined operation for the given operands.\n"));
 				}
 
 
-				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				if(execMeEnd.result_get()->getType() == InternalType::RealInt)
 				{
-					if(execMeEnd->result_get()->getAsInt()->getIntType() != IT)
+					if(execMeEnd.result_get()->getAsInt()->getIntType() != IT)
 					{
 						throw string(_("Undefined operation for the given operands.\n"));
 					}
 				}
-				else if(execMeEnd->result_get()->getType() == InternalType::RealPoly)
+				else if(execMeEnd.result_get()->getType() == InternalType::RealPoly)
 				{
 					throw string(_("Undefined operation for the given operands.\n"));
 				}
 			}
-			else if(execMeStart->result_get()->getType() == InternalType::RealPoly)
+			else if(execMeStart.result_get()->getType() == InternalType::RealPoly)
 			{
-				if(execMeStep->result_get()->getType() == InternalType::RealInt)
+				if(execMeStep.result_get()->getType() == InternalType::RealInt)
 				{
 					throw string(_("Undefined operation for the given operands.\n"));
 				}
 
-				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				if(execMeEnd.result_get()->getType() == InternalType::RealInt)
 				{
 					throw string(_("Undefined operation for the given operands.\n"));
 				}
 			}
-			else if(execMeStep->result_get()->getType() == InternalType::RealInt)
+			else if(execMeStep.result_get()->getType() == InternalType::RealInt)
 			{//if End are Int too, they must have the same precision
-				Int::IntType IT = execMeStep->result_get()->getAsInt()->getIntType();
+				Int::IntType IT = execMeStep.result_get()->getAsInt()->getIntType();
 
-				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				if(execMeEnd.result_get()->getType() == InternalType::RealInt)
 				{
-					if(execMeEnd->result_get()->getAsInt()->getIntType() != IT)
+					if(execMeEnd.result_get()->getAsInt()->getIntType() != IT)
 					{
 						throw string(_("Undefined operation for the given operands.\n"));
 					}
 				}
 			}
-			else if(execMeStep->result_get()->getType() == InternalType::RealPoly)
+			else if(execMeStep.result_get()->getType() == InternalType::RealPoly)
 			{
-				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				if(execMeEnd.result_get()->getType() == InternalType::RealInt)
 				{
 					throw string(_("Undefined operation for the given operands.\n"));
 				}
 			}
 
 			ImplicitList *pIL	= new ImplicitList(
-				execMeStart->result_get(),
-				execMeStep->result_get(),
-				execMeEnd->result_get());
+				execMeStart.result_get(),
+				execMeStep.result_get(),
+				execMeEnd.result_get());
 
 			result_set(pIL);
 		}
@@ -1069,10 +1050,6 @@ namespace ast
 			//TODO YaSp : Overloading
 			throw sz;
 		}
-
-		delete execMeStart;
-		delete execMeStep;
-		delete execMeEnd;
 	}
 	/** \} */
 
@@ -1083,7 +1060,21 @@ namespace ast
 
 	int ExecVisitor::result_size_get(void)
 	{
-		return (int)_result.size();
+		if(is_single_result())
+		{
+			if(_result == NULL)
+			{
+				return 0;
+			}
+			else
+			{
+				return 1;
+			}
+		}
+		else
+		{
+			return (int)_resultVect.size();
+		}
 	}
 
 	void ExecVisitor::expected_size_set(int _iSize)
@@ -1093,45 +1084,60 @@ namespace ast
 
 	InternalType* ExecVisitor::result_get(void)
 	{
-		return result_get(0);
+		if(is_single_result())
+		{
+			return _result;
+		}
+		else
+		{
+			return _resultVect[0];
+		}
 	}
 
 	types::InternalType* ExecVisitor::result_get(int _iPos)
 	{
-		if(_iPos >= _result.size())
+		if(_iPos >= _resultVect.size())
 		{
 			return NULL;
 		}
-		return _result[_iPos];
+		return _resultVect[_iPos];
 	}
 
 	vector<types::InternalType*>* ExecVisitor::result_list_get()
 	{
-		return &_result;
+		return &_resultVect;
 	}
 
 	void ExecVisitor::result_set(int _iPos, const types::InternalType *gtVal)
 	{
-		if(_iPos < _result.size())
+		m_bSingleResult = false;
+		if(_iPos < _resultVect.size())
 		{
-			if(_result[_iPos] != NULL && _result[_iPos]->isDeletable())
+			if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
 			{
-				delete _result[_iPos];
+				delete _resultVect[_iPos];
 			}
 		}
 
-		for(size_t i = _result.size() ; i <= _iPos ; i++)
+		if(_iPos >= _resultVect.size())
 		{
-			_result.push_back(NULL);
+			_resultVect.resize(_iPos + 1, NULL);
 		}
 
-		_result[_iPos] = (InternalType *)gtVal;
+		_resultVect[_iPos] = (InternalType *)gtVal;
 	}
 
 	void ExecVisitor::result_set(const InternalType *gtVal)
 	{
-		result_set(0, gtVal);
+		m_bSingleResult = true;
+		_result = const_cast<InternalType *>(gtVal);
 	}
+
+	bool ExecVisitor::is_single_result()
+	{
+		return m_bSingleResult;
+	}
+			
 }
 
 using namespace ast;
@@ -1233,16 +1239,16 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 	(*_piMaxDim)	= new int[iProductElem];
 	piIndexList		= new int*[iProductElem];
 
-	ExecVisitor* execMeArg	= new ExecVisitor();
+	ExecVisitor execMeArg;
 	std::list<Exp *>::const_iterator	i;
 	for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
 	{
-		(*i)->accept(*execMeArg);
+		(*i)->accept(execMeArg);
 		InternalType *pIn = NULL;
 		Double *pDbl = NULL;
 		bool bDeleteDbl = false;
 
-		if(execMeArg->result_get()->getType() == InternalType::RealImplicitList)
+		if(execMeArg.result_get()->getType() == InternalType::RealImplicitList)
 		{//a:b:c
 			int iMaxDim = 0;
 			if(_pRefVar != NULL)
@@ -1251,7 +1257,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			}
 
 			Double dbl(iMaxDim); // $
-			ImplicitList *pIL = execMeArg->result_get()->getAsImplicitList();
+			ImplicitList *pIL = execMeArg.result_get()->getAsImplicitList();
 			if(pIL->computable() == false)
 			{
 				if(pIL->start_type_get() == InternalType::RealPoly)
@@ -1274,9 +1280,9 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			pDbl = (Double*)pIL->extract_matrix();
 			bDeleteDbl = true;
 		}
-		else if(execMeArg->result_get()->getType() == InternalType::RealBool)
+		else if(execMeArg.result_get()->getType() == InternalType::RealBool)
 		{
-			Bool *pB			= execMeArg->result_get()->getAsBool();
+			Bool *pB			= execMeArg.result_get()->getAsBool();
 			int *piB			= pB->bool_get();
 
 			//find true item count
@@ -1306,7 +1312,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 		}
 		else
 		{
-			pIn = execMeArg->result_get();
+			pIn = execMeArg.result_get();
 
 			if(pIn->getType() == InternalType::RealPoly)
 			{//manage $
@@ -1365,8 +1371,6 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			delete pDbl;
 		}
 	}
-
-	delete execMeArg;
 
 	int iTabsize	= iTotalCombi * iProductElem;
 	*_piIndexSeq	= new int[iTabsize];

@@ -61,64 +61,248 @@ namespace ast
 		switch(e.oper_get())
 		{
 		case OpExp::eq :
-			break;
-		case OpExp::ne :
-			break;
-		case OpExp::gt :
-				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
-				{
-					Double* pL			= execMeL.result_get()->getAsDouble();
-					Double* pR			= execMeR.result_get()->getAsDouble();
+			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+			{
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
 
-					if(pR->size_get() == 1)
+				if(pR->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pR->real_get(0,0);
+					for(int i = 0 ; i < pL->rows_get() ; i++)
 					{
-						bResult = true;
-						double dblRef	= pR->real_get(0,0);
-						for(int i = 0 ; i < pL->rows_get() ; i++)
+						for(int j = 0 ; j < pL->cols_get() ; j++)
 						{
-							for(int j = 0 ; j < pL->cols_get() ; j++)
+							bResult &= (pL->real_get(i, j) == dblRef);
+							if(bResult == false)
 							{
-								bResult &= (pL->real_get(i, j) > dblRef);
-								if(bResult == false)
-								{
-									break;
-								}
+								break;
 							}
 						}
 					}
-					else if(pL->size_get() == 1)
-					{
-						//pResult				= new Bool(pR->rows_get(), pR->cols_get());
-						//double dblRef	= pL->real_get(0,0);
-						//for(int i = 0 ; i < pR->rows_get() ; i++)
-						//{
-						//	for(int j = 0 ; j < pR->cols_get() ; j++)
-						//	{
-						//		pResult->getAsBool()->bool_set(i, j, dblRef > pR->real_get(i, j));
-						//	}
-						//}
-					}
-					else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
-					{
-						//pResult				= new Bool(pR->rows_get(), pR->cols_get());
-
-						//for(int i = 0 ; i < pR->rows_get() ; i++)
-						//{
-						//	for(int j = 0 ; j < pR->cols_get() ; j++)
-						//	{
-						//		pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) > pR->real_get(i, j));
-						//	}
-						//}
-					}
-					else
-					{
-						//pResult = new Bool(false);
-					}
-
-					result_bool_set(bResult);
 				}
+				else if(pL->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) == dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+				{
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) == pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					bResult = false;
+				}
+
+				result_bool_set(bResult);
+			}
+			break;
+		case OpExp::ne :
+			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+			{
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
+
+				if(pR->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pR->real_get(0,0);
+					for(int i = 0 ; i < pL->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pL->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) != dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pL->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) != dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+				{
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) != pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					bResult = false;
+				}
+
+				result_bool_set(bResult);
+			}
+			break;
+		case OpExp::gt :
+			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+			{
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
+
+				if(pR->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pR->real_get(0,0);
+					for(int i = 0 ; i < pL->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pL->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) > dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pL->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) > dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+				{
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) > pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					bResult = false;
+				}
+
+				result_bool_set(bResult);
+			}
 			break;
 		case OpExp::ge :
+			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+			{
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
+
+				if(pR->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pR->real_get(0,0);
+					for(int i = 0 ; i < pL->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pL->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) >= dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pL->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) >= dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+				{
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) >= pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					bResult = false;
+				}
+
+				result_bool_set(bResult);
+			}
 			break;
 		case OpExp::lt :
 			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
@@ -128,48 +312,119 @@ namespace ast
 
 				if(pR->size_get() == 1)
 				{
-					bResult = true;
+					bResult 			= true;
 					double dblRef	= pR->real_get(0,0);
 					for(int i = 0 ; i < pL->rows_get() ; i++)
 					{
 						for(int j = 0 ; j < pL->cols_get() ; j++)
 						{
 							bResult &= (pL->real_get(i, j) < dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
 						}
 					}
 				}
 				else if(pL->size_get() == 1)
 				{
-					//pResult				= new Bool(pR->rows_get(), pR->cols_get());
-					//double dblRef	= pL->real_get(0,0);
-					//for(int i = 0 ; i < pR->rows_get() ; i++)
-					//{
-					//	for(int j = 0 ; j < pR->cols_get() ; j++)
-					//	{
-					//		pResult->getAsBool()->bool_set(i, j, dblRef < pR->real_get(i, j));
-					//	}
-					//}
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) < dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
 				}
 				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
 				{
-					//pResult				= new Bool(pR->rows_get(), pR->cols_get());
-					//for(int i = 0 ; i < pR->rows_get() ; i++)
-					//{
-					//	for(int j = 0 ; j < pR->cols_get() ; j++)
-					//	{
-					//		pResult->getAsBool()->bool_set(i, j, pL->real_get(i, j) < pR->real_get(i, j));
-					//	}
-					//}
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) < pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
 				}
 				else
 				{
-					//pResult = new Bool(false);
+					bResult = false;
 				}
 
 				result_bool_set(bResult);
 			}
 			break;
 		case OpExp::le :
+			if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+			{
+				Double *pL			= execMeL.result_get()->getAsDouble();
+				Double *pR			= execMeR.result_get()->getAsDouble();
+
+				if(pR->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pR->real_get(0,0);
+					for(int i = 0 ; i < pL->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pL->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) <= dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pL->size_get() == 1)
+				{
+					bResult 			= true;
+					double dblRef	= pL->real_get(0,0);
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pR->real_get(i, j) <= dblRef);
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+				{
+					bResult = true;
+					for(int i = 0 ; i < pR->rows_get() ; i++)
+					{
+						for(int j = 0 ; j < pR->cols_get() ; j++)
+						{
+							bResult &= (pL->real_get(i, j) <= pR->real_get(i, j));
+							if(bResult == false)
+							{
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					bResult = false;
+				}
+
+				result_bool_set(bResult);
+			}
 			break;
 		default :
 			ExecVisitor exec;

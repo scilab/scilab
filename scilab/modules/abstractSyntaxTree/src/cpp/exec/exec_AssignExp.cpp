@@ -27,7 +27,7 @@ namespace ast
 	{
 		symbol::Context *pcontext = symbol::Context::getInstance();
 		/*Create local exec visitor*/
-		ExecVisitor* execMeR = new ExecVisitor();
+		ExecVisitor execMeR;
 		try
 		{
 			/*get king of left hand*/
@@ -45,7 +45,7 @@ namespace ast
 				bool bSeeAsVector				= iProductElem == 1;
 
 				/*getting what to assign*/
-				e.right_exp_get().accept(*execMeR);
+				e.right_exp_get().accept(execMeR);
 				if(pIT == NULL)
 				{//Var doesn't exist, create it with good dimensions
 					bNew = true;
@@ -68,27 +68,27 @@ namespace ast
 				InternalType *pOut	= NULL;
 
 				//fisrt extract implicit list
-				if(execMeR->result_get()->getType() == InternalType::RealImplicitList)
+				if(execMeR.result_get()->getType() == InternalType::RealImplicitList)
 				{
-					InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
-					execMeR->result_set(pIL);
+					InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extract_matrix();
+					execMeR.result_set(pIL);
 				}
 
 				if(pIT == NULL)
 				{//call static insert function
-					switch(execMeR->result_get()->getType())
+					switch(execMeR.result_get()->getType())
 					{
 					case InternalType::RealDouble : 
-						pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsDouble(), bSeeAsVector);
+						pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsDouble(), bSeeAsVector);
 						break;
 					case InternalType::RealBool : 
-						pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsBool(), bSeeAsVector);
+						pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsBool(), bSeeAsVector);
 						break;
 					case InternalType::RealString : 
-						pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsString(), bSeeAsVector);
+						pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsString(), bSeeAsVector);
 						break;
 					case InternalType::RealInt : 
-						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsInt(), bSeeAsVector);
+						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_get()->getAsInt(), bSeeAsVector);
 						break;
 					case InternalType::RealList : 
 						//never occur !
@@ -103,19 +103,19 @@ namespace ast
 					switch(pIT->getType())
 					{
 					case InternalType::RealDouble : 
-						bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
 						break;
 					case InternalType::RealBool : 
-						bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
 						break;
 					case InternalType::RealString : 
-						bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
 						break;
 					case InternalType::RealInt : 
-						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR.result_get(), bSeeAsVector);
 						break;
 					case InternalType::RealList : 
-						 bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_list_get(), bSeeAsVector);
+						 bRet = pIT->getAsList()->insert(iTotalCombi, piIndexSeq, piMaxDim, execMeR.result_list_get(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
@@ -155,10 +155,10 @@ namespace ast
 			else if(pVar)
 			{// x = ?
 				/*getting what to assign*/
-				execMeR->expected_size_set(1);
-				e.right_exp_get().accept(*execMeR);
+				execMeR.expected_size_set(1);
+				e.right_exp_get().accept(execMeR);
 
-				if(execMeR->result_size_get() != 1)
+				if(execMeR.result_size_get() != 1)
 				{
 					std::ostringstream os;
 					os << "Lhs != Rhs";
@@ -166,7 +166,7 @@ namespace ast
 					throw os.str();
 				}
 				
-				InternalType *pIT	=	execMeR->result_get();
+				InternalType *pIT	=	execMeR.result_get();
 				if(pIT->isImplicitList())
 				{
 					InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
@@ -200,10 +200,10 @@ namespace ast
 				int iLhsCount = (int)pList->exps_get().size();
 
 				/*getting what to assign*/
-				execMeR->expected_size_set(iLhsCount);
-				e.right_exp_get().accept(*execMeR);
+				execMeR.expected_size_set(iLhsCount);
+				e.right_exp_get().accept(execMeR);
 
-				if(execMeR->result_size_get() != execMeR->expected_size_get())
+				if(execMeR.result_size_get() != execMeR.expected_size_get())
 				{
 					std::ostringstream os;
 					os << "Lhs != Rhs";
@@ -216,13 +216,13 @@ namespace ast
 				for(it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++)
 				{
 					const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
-					symbol::Context::getInstance()->put(pListVar->name_get().name_get(), *((GenericType*)execMeR->result_get(i)));
+					symbol::Context::getInstance()->put(pListVar->name_get().name_get(), *((GenericType*)execMeR.result_get(i)));
 					if(e.is_verbose())
 					{
 						std::ostringstream ostr;
 						ostr << pListVar->name_get() << " = " << std::endl;
 						ostr << std::endl;
-						ostr << execMeR->result_get(i)->toString(10,75) << std::endl;
+						ostr << execMeR.result_get(i)->toString(10,75) << std::endl;
 						YaspWrite((char *)ostr.str().c_str());
 					}
 					i--;
@@ -241,7 +241,6 @@ namespace ast
 		{
 			throw sz;
 		}
-		delete execMeR;
 	}
 }
 

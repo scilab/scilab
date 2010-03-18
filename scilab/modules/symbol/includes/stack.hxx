@@ -46,7 +46,7 @@ namespace symbol
       this->l_scope.pop_front();
     }
 
-    void	put_in_previous_scope(string key, InternalType &value)
+    void	put_in_previous_scope(const string& key, InternalType &value)
 		{
 			size_t iSize = l_scope.size();
 			if(iSize > 1)
@@ -59,7 +59,7 @@ namespace symbol
 		}
 		
     /** Associate value to key in the current scope. */
-    void	put (string key, InternalType &value)
+    void	put (const string& key, InternalType &value)
     {
       InternalType *pOld = (this->l_scope.front()).put(key, value);
 /*			if(pOld != NULL)
@@ -82,7 +82,7 @@ namespace symbol
 
     /** If key was associated to some Entry_T in the open scopes, return the
      ** most recent insertion. Otherwise return the empty pointer. */
-    InternalType*	get (string key) const
+    InternalType*	get (const string& key) const
 		{
 			InternalType* result = 0;
 
@@ -98,7 +98,7 @@ namespace symbol
       return result;
     }
 
-		std::list<std::string>& get_funlist(std::string _stModuleName)
+		std::list<std::string>& get_funlist(const string& _stModuleName)
 		{
 			//get hightest scope
 			std::list<Scope>::iterator i = l_scope.end();

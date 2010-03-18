@@ -53,7 +53,7 @@ namespace symbol
 		HeapVarTable.scope_end();
 	}
 
-	InternalType*	Context::get(string key) const
+	InternalType*	Context::get(const string& key) const
 	{
 		// FIXME
 		InternalType* pI = NULL;
@@ -77,25 +77,25 @@ namespace symbol
 		}
 	}
 
-	InternalType*	Context::get_fun(string key) const
+	InternalType*	Context::get_fun(const string& key) const
 	{
 		return EnvFunTable.get(key);
 		// FIXME
 	}
 
-	std::list<string>& Context::get_funlist(string _stModuleName)
+	std::list<string>& Context::get_funlist(const string& _stModuleName)
 	{
 		return EnvFunTable.get_funlist(_stModuleName);
 	}
 
-	bool Context::put(string key, InternalType &type)
+	bool Context::put(const string& key, InternalType &type)
 	{
 		// FIXME
 		EnvVarTable.put(key, type);
 		return true;
 	}
 
-	bool Context::put_in_previous_scope(string key, InternalType &type)
+	bool Context::put_in_previous_scope(const string& key, InternalType &type)
 	{
 		// FIXME
 		EnvVarTable.put_in_previous_scope(key, type);

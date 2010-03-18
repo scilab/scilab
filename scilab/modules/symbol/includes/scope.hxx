@@ -33,19 +33,19 @@ namespace symbol
 		/** \brief Construct a Scope */
 		explicit Scope()
 		{
-			_scope = new std::map<string, InternalType*>();
+			_scope = new map<string, InternalType*>();
 			_name = "";
 		}
 		/** \brief Construct a named Scope i.e Namespace */
-		explicit Scope(std::string name)
+		explicit Scope(string name)
 		{
-			_scope = new std::map<string, InternalType*>();
+			_scope = new map<string, InternalType*>();
 			_name = name;
 		}
 
 		~Scope()
 		{
-			std::map<string, InternalType*>::const_iterator i;
+			map<string, InternalType*>::const_iterator i;
 			for(i = _scope->begin() ; i != _scope->end() ; ++i)
 			{
 				i->second->DecreaseRef();
@@ -59,7 +59,7 @@ namespace symbol
 
 		bool isUsed(InternalType* pIT) const
 		{
-			std::map<string, InternalType*>::const_iterator it_scope;
+			map<string, InternalType*>::const_iterator it_scope;
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
 				if((*it_scope).second == pIT)
@@ -69,7 +69,7 @@ namespace symbol
 		}
 
 		/** Associate value to key in the current scope. */
-		InternalType*	put (string key, InternalType &value)
+		InternalType*	put (const string& key, InternalType &value)
 		{
 			InternalType *pOld = (*_scope)[key];
 
@@ -90,7 +90,7 @@ namespace symbol
 /*
 			if(value.isRef())
 			{
-				std::cout << "Need copy : " << key.name_get() << std::endl;
+				cout << "Need copy : " << key.name_get() << endl;
 			}
 */
 			(*_scope)[key] = &value;
@@ -100,9 +100,9 @@ namespace symbol
 
 		/** If key was associated to some Entry_T in the open scopes, return the
 		** most recent insertion. Otherwise return the empty pointer. */
-		InternalType*	get (string key) const
+		InternalType*	get (const string& key) const
 		{
-			std::map<string, InternalType*>::const_iterator it_scope;
+			map<string, InternalType*>::const_iterator it_scope;
 
 			it_scope = (*_scope).find(key);
 			if (it_scope == (*_scope).end())
@@ -111,16 +111,16 @@ namespace symbol
 		}
 
 		/** Return name of current scope, use for namespace. */
-		std::string get_name() const
+		string get_name() const
 		{
 			return _name;
 		}
 
 		/** Return name of current scope, use for namespace. */
-		std::list<string>& get_names(std::string _stModuleName) const
+		list<string>& get_names(const string& _stModuleName) const
 		{
-			std::list<std::string>* pNames = new std::list<std::string>;
-			std::map<string, InternalType*>::const_iterator it_scope;
+			list<string>* pNames = new list<string>;
+			map<string, InternalType*>::const_iterator it_scope;
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
 				if(it_scope->second->isFunction() || it_scope->second->isMacro() || it_scope->second->isMacroFile())
@@ -138,9 +138,9 @@ namespace symbol
 
 		/** Send the content of this table on ostr in a readable manner, the top
 		** of the stack being displayed last. */
-		void	print (std::ostream& ostr) const
+		void	print (ostream& ostr) const
 		{
-			std::map<string, InternalType*>::const_iterator it_scope;
+			map<string, InternalType*>::const_iterator it_scope;
 
 			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
 			{
@@ -152,28 +152,28 @@ namespace symbol
 				if((*it_scope).second->isDouble())
 				{
 					Double *pdbl = (*it_scope).second->getAsDouble();
-					ostr << pdbl->DimToString() << std::endl;
+					ostr << pdbl->DimToString() << endl;
 					ostr << pdbl->toString(10, 75);
-					ostr << std::endl;
+					ostr << endl;
 				}
 				else if((*it_scope).second->isInt())
 				{
 					Double *pdbl = (*it_scope).second->getAsDouble();
-					ostr << pdbl->DimToString() << std::endl;
+					ostr << pdbl->DimToString() << endl;
 					ostr << pdbl->toString(10, 75);
-					ostr << std::endl;
+					ostr << endl;
 				}
 				else if((*it_scope).second->isString())
 				{
 					String *psz = (*it_scope).second->getAsString();
-					ostr << psz->DimToString() << std::endl;
+					ostr << psz->DimToString() << endl;
 					ostr << psz->toString(10, 75);
-					ostr << std::endl;
+					ostr << endl;
 				}
 				else if((*it_scope).second->isBool())
 				{
 					Bool *pb = (*it_scope).second->getAsBool();
-					ostr << "( " << pb->rows_get() << ", " << pb->cols_get() << " )" << std::endl;
+					ostr << "( " << pb->rows_get() << ", " << pb->cols_get() << " )" << endl;
 
 					//string szOut = pb->toString(100);
 					//ostr << szOut;
@@ -184,24 +184,24 @@ namespace symbol
 						{
 							ostr << pb->bool_get(i,j) == false ? "F " : "T ";
 						}
-						ostr << std::endl;
+						ostr << endl;
 					}
 				}
 				else if((*it_scope).second->isFunction())
 				{
 					Function *pF = (*it_scope).second->getAsFunction();
-					ostr << std::endl;
-					ostr << "Module : " << pF->getModule() << " Function : " << pF->getName() << std::endl;
+					ostr << endl;
+					ostr << "Module : " << pF->getModule() << " Function : " << pF->getName() << endl;
 				}
 				else if((*it_scope).second->isPoly())
 				{
 					MatrixPoly *pPoly = (*it_scope).second->getAsPoly();
-					ostr << pPoly->DimToString() << std::endl;
+					ostr << pPoly->DimToString() << endl;
 					ostr << pPoly->toString(10, 75);
-					ostr << std::endl;
+					ostr << endl;
 
 					//MatrixPoly *pMP = (*it_scope).second->getAsPoly();
-					//ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
+					//ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << endl;
 					//for(int i = 0 ; i < pMP->rows_get(); i++)
 					//{
 					//	for(int j = 0 ; j < pMP->cols_get(); j++)
@@ -265,19 +265,19 @@ namespace symbol
 					//		}
 					//		ostr << " |";
 					//	}
-					//	ostr << std::endl;
+					//	ostr << endl;
 					//}
-					ostr << std::endl << std::endl;
+					ostr << endl << endl;
 				}
 			}
 		}
 
 	private:
-		std::map<string, InternalType*>* 	_scope;
-		std::string				_name;
+		map<string, InternalType*>* 	_scope;
+		string				_name;
 	};
 
-	inline std::ostream& operator<< (std::ostream& ostr,
+	inline ostream& operator<< (ostream& ostr,
 		const Scope &scope)
 	{
 		scope.print(ostr);

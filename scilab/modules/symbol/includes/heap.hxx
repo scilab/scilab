@@ -42,7 +42,7 @@ namespace symbol
     }
 
     /** Open a new scope */
-    void	scope_begin(std::string name)
+    void	scope_begin(const string& name)
     {
       this->l_scope.push_front(*new Scope(name));
     }
@@ -66,7 +66,7 @@ namespace symbol
     */
 
     /** Associate value to key in the global scope. */
-    void	put (string key, InternalType &value)
+    void	put (const string& key, InternalType &value)
     {
       (this->l_scope.back()).put(key, value);
     }
@@ -76,7 +76,7 @@ namespace symbol
      ** most recent insertion. Otherwise return the empty pointer.
      ** \param key : the key to look for
      */
-    InternalType*	get (string key) const
+    InternalType*	get (const string& key) const
     {
       InternalType* result = 0;
 
@@ -96,9 +96,9 @@ namespace symbol
      ** \param key : the key.
      ** \param value : the value associated to the key.
     */
-    void	put(std::string name, string key, InternalType &value)
+    void	put(const string& name, string key, InternalType &value)
     {
-      std::list<Scope>::iterator it_list_scope;
+      list<Scope>::iterator it_list_scope;
 
       for (it_list_scope = this->l_scope.begin();
 	   it_list_scope != this->l_scope.end();
@@ -119,9 +119,9 @@ namespace symbol
      ** most recent insertion. Otherwise return the empty pointer.
      ** \param key : the key to look for
      */
-    InternalType*	get (std::string name, string key) const
+    InternalType*	get (const string& name, const string& key) const
     {
-      std::list<Scope>::const_iterator it_list_scope;
+      list<Scope>::const_iterator it_list_scope;
 
       for (it_list_scope = this->l_scope.begin();
 	   it_list_scope != this->l_scope.end();
@@ -137,7 +137,7 @@ namespace symbol
 
   };
 
-  inline std::ostream& operator<< (std::ostream& ostr, const Heap &tbl)
+  inline ostream& operator<< (ostream& ostr, const Heap &tbl)
   {
     tbl.print (ostr);
     return ostr;
