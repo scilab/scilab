@@ -21,7 +21,7 @@
 
 function hilite_obj(k,win)
 
-    xcosShowBlockWarning(scs_m.objs(k)); //** new
+    xcosShowBlockWarning(k); //** new
 	return;
 
 //

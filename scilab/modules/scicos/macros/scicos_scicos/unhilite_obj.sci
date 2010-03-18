@@ -20,7 +20,7 @@
 //
 
 function unhilite_obj(k,win)
-    xcosClearBlockWarning(scs_m.objs(k)); //** new
+    xcosClearBlockWarning(k); //** new
 	return;
 
 //
