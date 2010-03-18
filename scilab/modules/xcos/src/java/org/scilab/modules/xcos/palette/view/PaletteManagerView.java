@@ -125,7 +125,12 @@ public class PaletteManagerView extends ScilabTab {
 		final JTree t = PaletteManager.getInstance().getView().getTree();
 		final TreePath p = t.getSelectionPath();
 		
-		((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
+		if (p == null) {
+			updateWholeTree();
+		} else {
+			((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
+			t.setSelectionPath(p);
+		}
 	}
 	
 	/**

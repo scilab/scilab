@@ -79,6 +79,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused some of them to disappear.
+
 * bug 6531 fixed - Adding a new color to the current colormap caused the Legend
                    entity's default background color to change.
 
@@ -100,6 +103,8 @@ Bug Fixes:
 
 * bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
                    its tics_direction property.
+
+* bug 6730 fixed - problem with function calls when seen has member of an mlist.
 
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 

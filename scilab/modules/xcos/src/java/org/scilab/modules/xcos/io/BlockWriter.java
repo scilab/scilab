@@ -52,7 +52,7 @@ public final class BlockWriter {
 	// As the values are scicos dependent we avoid using constant references.
 	// CSOFF: MagicNumber
 	private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(
-			new String[] {"scsopt", "3D", "Background", "Link", "ID", "Cmap"}) {
+			OPTS_FIELDS) {
 		{
 			add(new ScilabList() { // 3D
 				{
@@ -113,7 +113,7 @@ public final class BlockWriter {
     public static ScilabMList convertDiagramToMList(XcosDiagram diagram) {
 	ScilabMList data = new ScilabMList(DIAGRAM_FIELDS);
 	data.add(getDiagramProps(diagram));
-	data.add(DIAGRAM_OPTIONS);
+	data.add(getDiagramObjs(diagram));
 	data.add(getDiagramVersion(diagram));
 	
 	return data;
