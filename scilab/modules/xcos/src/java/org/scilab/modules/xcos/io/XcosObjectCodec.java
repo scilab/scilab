@@ -19,11 +19,8 @@ import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.utils.XcosConstants;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
-import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
 
@@ -71,27 +68,6 @@ public class XcosObjectCodec extends mxCellCodec {
     	mxCodecRegistry.register(implicitlinkCodec);
     	XcosObjectCodec commandControllinkCodec = new XcosObjectCodec(new CommandControlLink() , null , null , null);
     	mxCodecRegistry.register(commandControllinkCodec);
-    }
-    
-	/**
-	 * Apply compatibility pattern to the decoded object
-	 * @param dec Codec that controls the decoding process.
-	 * @param node XML node to decode the object from.
-	 * @param obj Object decoded.
-	 * @return The Object transformed 
-	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
-	 */
-    public Object afterDecode(mxCodec dec, Node node, Object obj) {
-	if (node.getNodeName().equals("mxCell")) {
-	    NamedNodeMap attrs = node.getAttributes();
-	    for (int i = 0; i < attrs.getLength(); i++) {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase("id") == 0) {
-		    ((mxCell) obj).setId(attr.getNodeValue());
-		}
-	    }
-	}
-	return obj;
     }
 
     /**
