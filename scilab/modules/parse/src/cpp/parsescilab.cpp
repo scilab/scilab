@@ -2910,7 +2910,7 @@ yyreduce:
     {
 						  ast::exps_t *tmp = new ast::exps_t;
 						  tmp->push_front((yyvsp[(2) - (2)].t_string_exp));
-						  (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[(1) - (2)]), (yyvsp[(1) - (2)].str)), *tmp);
+						  (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[(1) - (2)]), *(yyvsp[(1) - (2)].str)), *tmp);
 						}
     break;
 
@@ -3027,7 +3027,7 @@ yyreduce:
 
   case 54:
 
-    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[(1) - (4)]), (yyvsp[(1) - (4)].str)), *(yyvsp[(3) - (4)].t_list_exp)); }
+    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[(1) - (4)]), *(yyvsp[(1) - (4)].str)), *(yyvsp[(3) - (4)].t_list_exp)); }
     break;
 
   case 55:
@@ -3122,7 +3122,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), (yyvsp[(2) - (8)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), *(yyvsp[(2) - (8)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(4) - (8)].str),
 							    *new ast::ArrayListVar((yylsp[(5) - (8)]), *(yyvsp[(5) - (8)].t_list_var)),
@@ -3168,7 +3168,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), (yyvsp[(2) - (8)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), *(yyvsp[(2) - (8)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(4) - (8)].str),
 							    *new ast::ArrayListVar((yylsp[(5) - (8)]), *(yyvsp[(5) - (8)].t_list_var)),
@@ -3214,7 +3214,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), (yyvsp[(2) - (8)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), *(yyvsp[(2) - (8)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(4) - (8)].str),
 							    *new ast::ArrayListVar((yylsp[(5) - (8)]), *(yyvsp[(5) - (8)].t_list_var)),
@@ -3260,7 +3260,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), (yyvsp[(2) - (8)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (8)]), *(yyvsp[(2) - (8)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(4) - (8)].str),
 							    *new ast::ArrayListVar((yylsp[(5) - (8)]), *(yyvsp[(5) - (8)].t_list_var)),
@@ -3306,7 +3306,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (9)]), (yyvsp[(3) - (9)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(2) - (9)]), *(yyvsp[(3) - (9)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(5) - (9)].str),
 							    *new ast::ArrayListVar((yylsp[(6) - (9)]), *(yyvsp[(6) - (9)].t_list_var)),
@@ -3352,7 +3352,7 @@ yyreduce:
 
     {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar((yylsp[(3) - (9)]), (yyvsp[(3) - (9)].str)));
+				  tmp->push_front(new ast::SimpleVar((yylsp[(3) - (9)]), *(yyvsp[(3) - (9)].str)));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
 							    *(yyvsp[(5) - (9)].str),
 							    *new ast::ArrayListVar((yylsp[(6) - (9)]), *(yyvsp[(6) - (9)].t_list_var)),
@@ -3417,7 +3417,7 @@ yyreduce:
   case 95:
 
     {
-				  (yyvsp[(1) - (3)].t_list_var)->push_back(new ast::SimpleVar((yylsp[(3) - (3)]), (yyvsp[(3) - (3)].str)));
+				  (yyvsp[(1) - (3)].t_list_var)->push_back(new ast::SimpleVar((yylsp[(3) - (3)]), *(yyvsp[(3) - (3)].str)));
 				  (yyval.t_list_var) = (yyvsp[(1) - (3)].t_list_var);
 				}
     break;
@@ -3426,7 +3426,7 @@ yyreduce:
 
     {
 				  (yyval.t_list_var) = new ast::vars_t;
-				  (yyval.t_list_var)->push_front(new ast::SimpleVar((yyloc), (yyvsp[(1) - (1)].str)));
+				  (yyval.t_list_var)->push_front(new ast::SimpleVar((yyloc), *(yyvsp[(1) - (1)].str)));
 				}
     break;
 
@@ -3906,7 +3906,7 @@ yyreduce:
 
   case 187:
 
-    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[(1) - (3)].t_exp), *new ast::SimpleVar((yyloc), (yyvsp[(3) - (3)].str))); }
+    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[(1) - (3)].t_exp), *new ast::SimpleVar((yyloc), *(yyvsp[(3) - (3)].str))); }
     break;
 
   case 188:
@@ -3959,7 +3959,7 @@ yyreduce:
 
   case 196:
 
-    { (yyval.t_exp) = new ast::SimpleVar((yyloc), (yyvsp[(1) - (1)].str)); }
+    { (yyval.t_exp) = new ast::SimpleVar((yyloc), *(yyvsp[(1) - (1)].str)); }
     break;
 
   case 197:
@@ -4327,7 +4327,7 @@ yyreduce:
 
   case 254:
 
-    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[(1) - (3)].t_exp), *new ast::SimpleVar((yyloc), (yyvsp[(3) - (3)].str))); }
+    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[(1) - (3)].t_exp), *new ast::SimpleVar((yyloc), *(yyvsp[(3) - (3)].str))); }
     break;
 
   case 255:

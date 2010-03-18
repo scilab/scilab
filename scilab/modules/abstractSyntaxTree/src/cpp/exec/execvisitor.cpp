@@ -663,6 +663,7 @@ namespace ast
 
 			if(execMe.result_get() != NULL)
 			{
+				cout << "result : " << execMe.result_get() << endl;
 				if(execMe.result_get()->getAsCallable())//to manage call without ()
 				{
 					Callable *pCall = execMe.result_get()->getAsCallable();

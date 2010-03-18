@@ -421,7 +421,7 @@ implicitFunctionCall implicitCallable		{
 | ID implicitCallable				{
 						  ast::exps_t *tmp = new ast::exps_t;
 						  tmp->push_front($2);
-						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, $1), *tmp);
+						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *$1), *tmp);
 						}
 ;
 
@@ -489,7 +489,7 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 */
 /* Usual way to call functions foo(arg1, arg2, arg3) */
 simpleFunctionCall :
-ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, $1), *$3); }
+ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *$1), *$3); }
 ;
 
 /*
@@ -553,7 +553,7 @@ variable			{
 functionDeclaration :
 FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, $2));
+				  tmp->push_front(new ast::SimpleVar(@2, *$2));
 				  $$ = new ast::FunctionDec(@$,
 							    *$4,
 							    *new ast::ArrayListVar(@5, *$5),
@@ -583,7 +583,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, $2));
+				  tmp->push_front(new ast::SimpleVar(@2, *$2));
 				  $$ = new ast::FunctionDec(@$,
 							    *$4,
 							    *new ast::ArrayListVar(@5, *$5),
@@ -613,7 +613,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, $2));
+				  tmp->push_front(new ast::SimpleVar(@2, *$2));
 				  $$ = new ast::FunctionDec(@$,
 							    *$4,
 							    *new ast::ArrayListVar(@5, *$5),
@@ -643,7 +643,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, $2));
+				  tmp->push_front(new ast::SimpleVar(@2, *$2));
 				  $$ = new ast::FunctionDec(@$,
 							    *$4,
 							    *new ast::ArrayListVar(@5, *$5),
@@ -673,7 +673,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, $3));
+				  tmp->push_front(new ast::SimpleVar(@2, *$3));
 				  $$ = new ast::FunctionDec(@$,
 							    *$5,
 							    *new ast::ArrayListVar(@6, *$6),
@@ -703,7 +703,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@3, $3));
+				  tmp->push_front(new ast::SimpleVar(@3, *$3));
 				  $$ = new ast::FunctionDec(@$,
 							    *$5,
 							    *new ast::ArrayListVar(@6, *$6),
@@ -757,12 +757,12 @@ LPAREN idList RPAREN		{ $$ = $2; }
 /* ID (,ID)* */
 idList:
 idList COMMA ID			{
-				  $1->push_back(new ast::SimpleVar(@3, $3));
+				  $1->push_back(new ast::SimpleVar(@3, *$3));
 				  $$ = $1;
 				}
 | ID				{
 				  $$ = new ast::vars_t;
-				  $$->push_front(new ast::SimpleVar(@$, $1));
+				  $$->push_front(new ast::SimpleVar(@$, *$1));
 				}
 ;
 
@@ -963,7 +963,7 @@ listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@
 variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | NOT functionCall			%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
-| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, $3)); }
+| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
 | variable DOT functionCall				{ 
 							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get())); 
 							  $3->location_set(@$);
@@ -980,7 +980,7 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
 | operation						{ $$ = $1; }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, $1); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *$1); }
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | NUM					%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | VARFLOAT						{ $$ = new ast::DoubleExp(@$, $1); }
@@ -1189,7 +1189,7 @@ assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *
 */
 /* What we can assign something to. */
 assignable :
-variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, $3)); }
+variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *$3)); }
 | variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }

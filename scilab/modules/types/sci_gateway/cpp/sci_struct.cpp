@@ -33,7 +33,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
 
   for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
     {
-       symbol::Symbol psFieldName = symbol::Symbol((*itInput)->getAsString()->string_get(0));
+      std::string psFieldName = std::string((*itInput)->getAsString()->string_get(0));
       ++itInput;
       pFieldValue = (*itInput)->clone();
       pRetVal->add(psFieldName, pFieldValue);
