@@ -94,6 +94,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
     path_out=path_out(k(1)) // "from" block number
     path_in=path_in(k(1))   // "to" block number
 
+<<<<<<< HEAD:scilab/modules/scicos/macros/scicos_scicos/bad_connection.sci
     if path==[] then
       //** hilite_obj(scs_m.objs(path_out)) //** set
       hilite_obj(path_out); //**
@@ -199,6 +200,39 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
         //** unhilite_obj(scs_m.objs(path(1))) //**
         unhilite_obj(path(1))
       end
+=======
+	    xcosShowBlockWarning(path_out); //** new
+        msg = [];
+        if typ==0 then
+            msg = ['Hilited block(s) have connected ports ';
+            'with  incompatible sizes';
+            ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
+            ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)];
+        else
+            msg = ['Hilited block(s) have connected ports ';
+            'with  incompatible type';
+            ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
+            ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)];
+        end
+
+        if path==[] then
+            errorDiagramPath(path, [path_out, path_in], msg, "", %t);
+        else
+            errorDiagramPath(path, [path_out, path_in], msg, "", %t);
+        end
+	    xcosClearBlockWarning(path_out); //** new
+    else // connected links do not verify block contraints
+        mess=prt_out;
+	    xcosShowBlockWarning(path_out); //** new
+        if type(path_out)==15 then //problem with implicit block
+            message('Problem with the block generated from modelica blocks')
+        else
+            path=path_out(1:$-1) // superbloc path
+            path_out=path_out($) //  block number
+            errorDiagramPath(path, path_out, mess, "", %t);
+        end
+	    xcosClearBlockWarning(path_out); //** new
+>>>>>>> origin/5.2:scilab/modules/scicos/macros/scicos_scicos/bad_connection.sci
     end
   end
 

@@ -2,6 +2,14 @@
                 Changes between Versions 5.2.1 and 5.2.2 of Scilab
                 ==================================================
 
+Performance:
+============
+
+* Fix a regression which was slowing down loops in some cases (this can
+improve performances to 50 %)
+Note that many performance improvements will be also available in 
+Scilab 5.3.0.
+
 Scilab:
 =======
 
