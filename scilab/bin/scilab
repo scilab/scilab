@@ -7,7 +7,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 # Simon Lipp 2008:
@@ -100,7 +100,7 @@ start_profiling() {
 
 start_profiling_visu() {
 	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes $SCILAB_VALGRIND_OPT"
-#--dump-instr=yes 
+#--dump-instr=yes
 	if test -n "$DEVENV"; then
 		echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
 		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
@@ -135,7 +135,7 @@ detect_type_of_scilab(){
 		# We are using scilab-bin here because we are going to force the arg -nw
 		SCILABBIN="scilab-bin"
 	fi
-		
+
 	if echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null; then
 		SCILAB_MODE="nwni"
 		SCILABBIN="scilab-cli-bin"
@@ -247,7 +247,7 @@ detect_java_vm() {
 # Once we have JAVA_HOME, we check that native libraries (libjava.so and
 # 2 others) are available
 ###
-    
+
 	if test "${OS}" = ""; then
             OS=`uname -s` # Retrieve the Operating System
 	fi
@@ -421,7 +421,7 @@ fi
 		    "ppc"|"powerpc"|"ppc64")
 				proc="ppc"
 				;;
-			"alpha")  
+			"alpha")
 				proc="alpha"
 				;;
 			"s390"|"s390x")
@@ -435,7 +435,7 @@ fi
 				proc="arm"
 				;;
 			*darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree, 
+        # For Mac OS X, Since path are different from the JVM normal tree,
 		# don't need to detect the CPU
 				JAVA_SHLIB="libjava.jnilib"
 				;;
@@ -448,7 +448,7 @@ fi
                 proc=$MODEL
                 ;;
 		esac
-		
+
 
 # Check if the lib exists or not (we should manage system where .so is not the
 # ext for library
@@ -483,7 +483,7 @@ fi
 
 # See http://bugzilla.scilab.org/show_bug.cgi?id=3486
 # Some Java stuff raises spurious SIGSEGV. The problem is that when bug-buddy
-# is enabled, it catches the signal and terminate Scilab. We have to 
+# is enabled, it catches the signal and terminate Scilab. We have to
 # desactivate bug-buddy.
 # See also https://bugzilla.novell.com/show_bug.cgi?id=331618
 # and: http://bugzilla.gnome.org/show_bug.cgi?id=479929
@@ -561,7 +561,7 @@ do_help()
 	echo     " "
 	echo     "      Possible arguments are:"
 	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
-	echo     "      -d Display      : equivalent to display Display."
+	echo     "      -d Display      : equivalent to -display Display."
 	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
 	echo     "                        -e and -f arguments are mutually exclusive."
 	echo     "      -f File         : execute the scilab script given in File argument."
@@ -573,8 +573,8 @@ do_help()
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 	echo     "      -nw             : start Scilab without dedicated Scilab Window."
 	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
-	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
-	echo     "      -a              : accept all extra arguments and make available through sciargs"
+	echo     "      -nogui          : See -nwni"
+	echo     "      -args           : accept all extra arguments and make them available through sciargs"
 	echo     "      -version        : print product version and exit."
 	echo     "      -h/--help       : display help about this command."
 	echo     "      --texmacs       : reserved for TeXMacs."
@@ -673,7 +673,6 @@ esac
 # really calling Scilab with arguments
 
 if test "$rest" = "yes"; then
-	
   debug=
   debug_kdbg=
   profiling=
@@ -693,13 +692,13 @@ if test "$rest" = "yes"; then
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	      ;;
       -psn_*)
-	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
+	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx
 	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
 	    ;;
-      -display|-f|-l|-e|-d|-args|-mem)
+      -display|-f|-l|-e|-d|-mem)
 	      prevarg=1
 	      ;;
-	  -a) # Accept extra arguments
+	  -args) # Accept extra arguments
 		  extraarg=1
 		  ;;
       -debug)

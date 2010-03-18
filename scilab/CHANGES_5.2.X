@@ -4,18 +4,22 @@
 Scilab:
 =======
 
+
 * Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
   See bug #5023
 
-* Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
-  the startup script. 
+For GNU/Linux, Unix & Mac OS X:
+* Arguments -h / --help added to get help about the startup script.
 
 * Clear separation in the help between users and developers arguments in
   the Scilab startup script
 
-* Bug 6633 fixed - Unknown arguments are now accepted with option -a. This 
+* Update of the documentation to explain that -nwni and -nogui are the same
+  options
+
+* Bug 6633 fixed - Unknown arguments are now accepted with option -args. This
   allows user to access to them throught the Scilab function sciargs:
-  scilab -nwni -a 2 3
+  scilab -nwni -args 2 3
 
 Compilation:
 ============
@@ -108,6 +112,8 @@ Bug Fixes:
 
 * bug 6739 fixed - if a Scilab coded library function is redefined in a new 
                    library, completion on its name maked Scilab crashed.
+
+* bug 6712 fixed - The "title" function forced displaying axes.
 
 
 
