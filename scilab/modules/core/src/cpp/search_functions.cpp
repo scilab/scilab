@@ -35,7 +35,7 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
   static int const* const istk_ptr = ((int*)C2F(stack).Stk)-1;
   *should_return= f_false;
   int k, ilp, nbibn, lbibn;
-  for(k= Bot-1; k < C2F(vstk).isiz; ++k){
+  for(k= Bot; k < C2F(vstk).isiz; ++k){
     int il=iadr(lstk_ptr[k]);
     int ip;
     if(istk_ptr[il] == sci_lib){
@@ -90,7 +90,7 @@ void C2F(sivars)(int* id, int* should_return){
   int k;
   //  idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
   int* id_addr=C2F(vstk).idstk;
-  for(  *should_return= f_false, k= Bot-1, id_addr+=(k-1)*nsiz
+  for(  *should_return= f_false, k= Bot, id_addr+=(k-1)*nsiz
 	  ; k <=  C2F(vstk).isiz && !eq_n<nsiz>(id_addr, id); ++k, id_addr+=nsiz){
   }
   if( k <=  C2F(vstk).isiz ){// eq_id
