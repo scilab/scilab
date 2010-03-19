@@ -51,7 +51,6 @@ spec - bdiag
           <para>Scilab equivalent for eig(A) is spec(A). Scilab eigen vector matrix can differ from Matlab one.</para>
         </listitem>
       </varlistentry>
-    <variablelist>
       <varlistentry>
         <term>eig(A,'nobalance')</term>
         <listitem>
