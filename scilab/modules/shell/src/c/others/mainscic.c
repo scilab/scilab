@@ -14,6 +14,8 @@
 #include <unistd.h> /* isatty */
 #include <stdlib.h> /* stdin */
 #include <stdio.h>
+  /* THIS IS TEMPORARY CODE FOR SCILAB / MPI */
+#include <mpi.h>
 #include "core_math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */
@@ -49,10 +51,21 @@ extern "C"
 int F77_DUMMY_MAIN() { return 1; }
 #endif
 
+  /* THIS IS TEMPORARY CODE FOR SCILAB / MPI */
+MPI_Errhandler errhdl;
+/* should be moved elsewhere */
+void MPIErrHandler(MPI_Comm *comm, int *errorcode, ...) {
+  char buffer[4096];
+  int resultlen;
+  MPI_Error_string(*errorcode,buffer,&resultlen);
+  buffer[resultlen] = 0;
+  printf("Erreur mpi : %s\n",buffer);
+}
+
 int main(int argc, char **argv)
 {
   int i;
-  int no_startup_flag=0;
+  int no_startup_flag=0, flag;
   int memory = MIN_STACKSIZE;
 
   char * initial_script = NULL;
@@ -64,6 +77,13 @@ int main(int argc, char **argv)
 #if defined(linux) && defined(__i386__)
   setFPUToDouble();
 #endif
+
+  /* THIS IS TEMPORARY CODE FOR SCILAB / MPI */
+	MPI_Initialized(&flag);
+	if (!flag) {
+		/* MPI Not yet initialized */
+		MPI_Init(NULL,NULL);
+	}
 
   InitializeLaunchScilabSignal();
 

@@ -338,7 +338,7 @@ AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
 BSH = @BSH@
-CC = @CC@
+CC = $(OPENMPI_CC)
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CHECKSTYLE = @CHECKSTYLE@
@@ -576,8 +576,8 @@ SUBDIRS = libs \
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
-scilab_bin_LDFLAGS = $(am__append_1)
-scilab_cli_bin_LDFLAGS = 
+scilab_bin_LDFLAGS = $(OPENMPI_LIBS) $(am__append_1)
+scilab_cli_bin_LDFLAGS = $(OPENMPI_LIBS)
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
 

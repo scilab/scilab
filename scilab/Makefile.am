@@ -26,8 +26,10 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
-scilab_bin_LDFLAGS 		= 
-scilab_cli_bin_LDFLAGS		=
+CC = $(OPENMPI_CC)
+
+scilab_bin_LDFLAGS 		=   $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS		=  $(OPENMPI_LIBS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa

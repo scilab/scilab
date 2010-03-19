@@ -9,6 +9,8 @@ See : http://en.wikipedia.org/wiki/Message_Passing_Interface
 
 
 
+mpirun -c 5 ./bin/scilab -nwni -e "MPIHelloWorld()"
+
 
 2. MPI Functions available into Scilab 
 2.1  MPI_Init
