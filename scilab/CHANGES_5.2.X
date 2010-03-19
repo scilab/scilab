@@ -68,6 +68,9 @@ Xcos:
 
 * bug 6697 fixed - The multi-point link did not align it's edges on the grid.
 
+* bug 6780 fixed - The region to superblock action did not work when an 
+                   outgoing link is selected.
+
 Tests:
 ======
 
