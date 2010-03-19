@@ -35,7 +35,7 @@ upper(str)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-convstr(str,''u'')
+convstr(str,"u")
 ]]></programlisting>
           </td>
         </tr>
@@ -45,7 +45,7 @@ convstr(str,''u'')
   <refsection>
     <title>Particular cases</title>
     <para>
-If <emphasis role="bold">A</emphasis> is not a character string matrix, Scilab equivalent for <emphasis role="bold">B=upper(A)</emphasis> is <emphasis role="bold">B=A</emphasis>, else equivalent is <emphasis role="bold">B=convstr(A,''u'')</emphasis>.
+If <emphasis role="bold">A</emphasis> is not a character string matrix, Scilab equivalent for <emphasis role="bold">B=upper(A)</emphasis> is <emphasis role="bold">B=A</emphasis>, else equivalent is <emphasis role="bold">B=convstr(A,"u")</emphasis>.
 </para>
   </refsection>
 </refentry>

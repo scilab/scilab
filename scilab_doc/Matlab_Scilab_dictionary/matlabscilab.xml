@@ -169,7 +169,7 @@
 	    <td><para> acos </para></td>
 	  </tr>
 	  <tr>
-	    <td><para> acoth(A) </para></td>
+	    <td><para><link linkend="acoth">acoth(A) </link></para></td>
 	    <td><para> Inverse hyperbolic cotangent </para></td>
 	    <td><para> atanh((1) ./A) </para></td>
 	  </tr>
@@ -735,12 +735,12 @@
 	  <tr>
 	    <td><para><link linkend="fliplr">fliplr(A) </link></para></td>
 	    <td><para> Flip matrix in left/right direction </para></td>
-	    <td><para> A(:,\$:-1:1) </para></td>
+	    <td><para> A(:,$:-1:1) </para></td>
 	  </tr>
 	  <tr>
 	    <td><para> flipud(A) </para></td>
 	    <td><para> Flip matrix in up/down direction </para></td>
-	    <td><para> A(\$:-1:1,:) </para></td>
+	    <td><para> A($:-1:1,:) </para></td>
 	  </tr>
 	  <tr>
 	    <td><para> floor </para></td>
@@ -775,7 +775,7 @@
 	  <tr>
 	    <td><para> frewind(fid) </para></td>
 	    <td><para> Move the file position indicator to the beginning of an open file </para></td>
-	    <td><para> mseek('0',fid) </para></td>
+	    <td><para> mseek("0",fid) </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="fscanf">fscanf </link></para></td>
@@ -955,7 +955,7 @@
 	  <tr>
 	    <td><para> iscell(A) </para></td>
 	    <td><para> Determine if input is a cell array </para></td>
-	    <td><para> typeof(A)=='ce' </para></td>
+	    <td><para> typeof(A)=="ce" </para></td>
 	  </tr>
 	  <tr>
 	    <td><para> ischar(A) </para></td>
@@ -1060,7 +1060,7 @@
 	  <tr>
 	    <td><para> isstruct(A) </para></td>
 	    <td><para> Determine if input is a structure array </para></td>
-	    <td><para> typeof(A)=='st' </para></td>
+	    <td><para> typeof(A)=="st" </para></td>
 	  </tr>
 	  <tr>
 	    <td><para> isstr(A) </para></td>
@@ -1145,7 +1145,7 @@
 	  <tr>
 	    <td><para><link linkend="lower">lower(str) </link></para></td>
 	    <td><para> Convert string to lower case </para></td>
-	    <td><para> convstr(str,'u') </para></td>
+	    <td><para> convstr(str,"l") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="lu">lu </link></para></td>
@@ -1169,7 +1169,7 @@
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="mkdir">mkdir </link></para></td>
-	    <td><para> </para></td>
+	    <td><para> Make new folder </para></td>
 	    <td><para> mkdir </para></td>
 	  </tr>
 	  <tr>
@@ -1190,12 +1190,12 @@
 	  <tr>
 	    <td><para><link linkend="nargin">nargin - nargin('fun') </link></para></td>
 	    <td><para> Number of function input arguments </para></td>
-	    <td><para> argn(2) - size(getfield(1,macrovar(fun)),'*') </para></td>
+	    <td><para> argn(2) - size(getfield(1,macrovar(fun)),"*") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="nargout">nargout - nargout('fun') </link></para></td>
 	    <td><para> Number of function output arguments </para></td>
-	    <td><para> argn(1) - size(getfield(2,macrovar(fun)),'*') </para></td>
+	    <td><para> argn(1) - size(getfield(2,macrovar(fun)),"*") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="ndims">ndims </link></para></td>
@@ -1295,12 +1295,12 @@
 	  <tr>
 	    <td><para><link linkend="randn">randn(A) </link></para></td>
 	    <td><para> Normally distributed random numbers and arrays </para></td>
-	    <td><para> rand(A,'normal') </para></td>
+	    <td><para> rand(A,"normal") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="rand">rand(A) </link></para></td>
 	    <td><para> Uniformly distributed random numbers and arrays </para></td>
-	    <td><para> rand(A[,'uniform']) </para></td>
+	    <td><para> rand(A[,"uniform"]) </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="rcond">rcond </link></para></td>
@@ -1310,12 +1310,12 @@
 	  <tr>
 	    <td><para><link linkend="realmax">realmax </link></para></td>
 	    <td><para> Largest positive floating-point number </para></td>
-	    <td><para> number_properties('huge') </para></td>
+	    <td><para> number_properties("huge") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="realmin">realmin </link></para></td>
 	    <td><para> Smallest positive floating-point number </para></td>
-	    <td><para> number_properties('tiny') </para></td>
+	    <td><para> number_properties("tiny") </para></td>
 	  </tr>
 	  <tr>
 	    <td><para> real </para></td>
@@ -1390,7 +1390,7 @@
 	  <tr>
 	    <td><para><link linkend="sort">sort </link></para></td>
 	    <td><para> Sort elements in ascending order </para></td>
-	    <td><para> No equivalent </para></td>
+            <td><para> No equivalent </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="sparse">sparse </link></para></td>
@@ -1535,7 +1535,7 @@
 	  <tr>
 	    <td><para><link linkend="upper">upper(str) </link></para></td>
 	    <td><para> Convert string to upper case </para></td>
-	    <td><para> convstr(str,'u') </para></td>
+	    <td><para> convstr(str,"u") </para></td>
 	  </tr>
 	  <tr>
 	    <td>
@@ -1705,7 +1705,7 @@
 	  <tr>
 	    <td><para><link linkend="logical_or">| </link></para></td>
 	    <td><para> Logical OR </para></td>
-	    <td><para> </para></td>
+	    <td><para> | </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="greater_than">> </link></para></td>
@@ -1715,7 +1715,7 @@
 	  <tr>
 	    <td><para><link linkend="greater_or_equal_to"> &gt;= </link></para></td>
 	    <td><para> Greater or equal to </para></td>
-	    <td><para> >= </para></td>
+	    <td><para> &gt;= </para></td>
 	  </tr>
 	  <tr>
 	    <td><para><link linkend="smaller_than"> &lt; </link></para></td>
@@ -1786,16 +1786,14 @@
 <refsection id="acoth">
   <title>acoth(A)</title>
   <para>
-    In Matlab y=acoth(x) and Scilab y=atanh(1 ./x), for real elements of x outside the domain [-1,1], the complex part of Scilab y value is the opposite of Matlab y value. See atanh 
+    In Matlab y=acoth(x) and Scilab y=atanh(1 ./x), for real elements of x outside the domain [-1,1], the complex part of Scilab y value is the opposite of Matlab y value. See atanh. 
   </para>
 </refsection>
 
 <refsection id="all">
   <title>all</title>
-  <para>Test to determine if all elements are nonzero </para>
   <para>
-    Matlab <emphasis role="strong">all</emphasis> function can work with complexes, what Scilab <emphasis role="strong">and</emphasis>
-    can not, so a call to <emphasis role="strong">abs</emphasis> function can be necessary when translating from Matlab to Scilab. 
+    Matlab <emphasis role="strong">all</emphasis> function can work with complexes, what Scilab <emphasis role="strong">and</emphasis> can not, so a call to <emphasis role="strong">abs</emphasis> function can be necessary when translating from Matlab to Scilab. 
   </para>
   <para>The Matlab expression <emphasis role="strong">B=all(A)</emphasis> is translated into Scilab by <emphasis role="strong">B=and(A)</emphasis>:</para>
   <para>If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">all(A)</emphasis> is equivalent to 
@@ -1803,12 +1801,10 @@
     is a logical AND of all elements of <emphasis role="strong">A</emphasis>. If <emphasis role="strong">A</emphasis>
     is a multidimensional array then Matlab treats the values along the first non-singleton dimension, but Scilab returns logical AND of all elements of 
     <emphasis role="strong">A</emphasis>.</para>
-  <para>The Matlab expression <emphasis role="strong">B=all(A,dim)</emphasis> is translated into Scilab by <emphasis role="strong">B=and(A,dim)</emphasis>
-    :</para>
-  <para>In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim=r</emphasis> and 
-    <emphasis role="strong">dim=2</emphasis> is equivalent <emphasis role="strong">dim=c</emphasis>. In Matlab, <emphasis role="strong">dim</emphasis>
-    can be greater then the number of dimension of <emphasis role="strong">A</emphasis> (in this case, <emphasis role="strong">B=A</emphasis>
-    ), in Scilab you will get an error message. 
+  <para>The Matlab expression <emphasis role="strong">B=all(A,dim)</emphasis> is translated into Scilab by <emphasis role="strong">B=and(A,dim)</emphasis>:</para>
+  <para>In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim="r"</emphasis> and 
+    <emphasis role="strong">dim=2</emphasis> is equivalent to <emphasis role="strong">dim="c"</emphasis>. In Matlab, <emphasis role="strong">dim</emphasis>
+    can be greater then the number of dimension of <emphasis role="strong">A</emphasis> (in this case, <emphasis role="strong">B=A</emphasis>), in Scilab you will get an error message. 
   </para>
 
   <programlisting role="example"><![CDATA[ 
@@ -1834,15 +1830,15 @@ y = [%T,%F,%F]
   <para>Test to determine if any nonzeros elements </para>
   <para>Matlab <emphasis role="strong">any</emphasis> function can work with complexes, what Scilab <emphasis role="strong">or</emphasis>
     can not, so a call to <emphasis role="strong">abs</emphasis> function can be necessary when translating from Matlab to Scilab.</para>
-  <para>Matlab expression B=any(A) translated into Scilab by B=or(A)</para>
+  <para>Matlab expression B=any(A) translated into Scilab by B=or(A):</para>
   <para>If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">any(A)</emphasis> is equivalent to 
     <emphasis role="strong">any(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="strong">or(A)</emphasis>
     is a logical OR of all elements of <emphasis role="strong">A</emphasis>. If <emphasis role="strong">A</emphasis>
     is a multidimensional array then Matlab treats the values along the first non-singleton dimension, but Scilab returns logical OR of all elements of 
     <emphasis role="strong">A</emphasis>.</para>
-  <para>Matlab expression B=any(A,dim) translated into Scilab by B=or(A,dim)</para>
-  <para>In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim=r</emphasis> and 
-    <emphasis role="strong">dim=2</emphasis> is equivalent to <emphasis role="strong">dim=c</emphasis>. In Matlab, 
+  <para>Matlab expression B=any(A,dim) translated into Scilab by B=or(A,dim):</para>
+  <para>In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim="r"</emphasis> and 
+    <emphasis role="strong">dim=2</emphasis> is equivalent to <emphasis role="strong">dim="c"</emphasis>. In Matlab, 
     <emphasis role="strong">dim</emphasis> can be greater then the number of dimension of <emphasis role="strong">A</emphasis>
     (in this case, <emphasis role="strong">B=A</emphasis>), in Scilab you will get an error message.</para>
 
@@ -1869,15 +1865,15 @@ y = [%T,%T,%T]
   <para>In y=asin(x), for real elements of x outside the domain [-1,1], the complex part of Scilab y value is the opposite of Matlab y value.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 y = asin(2)
 y = 1.5708 - 1.3170i
  ]]></programlisting>
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-   1 y = asin(2)
-   2 y = 1.5708 + 1.3170i
+y = asin(2)
+y = 1.5708 + 1.3170i
  ]]></programlisting>
 </refsection>
 
@@ -1894,7 +1890,7 @@ y = 1.5708 - 1.3170i
   <para>In y=atanh(x), for real elements of x outside the domain [-1,1], the complex part of Scilab y value is the opposite of Matlab y value.</para>
 
   <programlisting role="example"><![CDATA[ 
-% Scilab version
+% Matlab version
 y = atanh(2)
 y = 0.5493 + 1.5708i
  ]]></programlisting>
@@ -1911,6 +1907,16 @@ y = 0.5493061 - 1.5707963i
   <para>Diagonal scaling to improve eigenvalue accuracy </para>
   <para>There is no equivalent for <emphasis role="strong">B=balance(A)</emphasis> in Scilab, <emphasis role="strong">balanc</emphasis>
     function does not work with only one output value. When used with two outputs, these functions return value in inverse order.</para>
+
+  <programlisting role="example"><![CDATA[ 
+% Matlab version
+[T,Ab] = balance(A)
+ ]]></programlisting>
+
+  <programlisting role="example"><![CDATA[ 
+// Scilab version
+[Ab,T] = balanc(A)
+ ]]></programlisting>
 </refsection>
 
 <refsection id="beep">
@@ -1947,9 +1953,9 @@ y = besseli(alpha,x,ice),ice = 1 or ice = 2
 
   <programlisting role="example"><![CDATA[ 
 % Matlab version
-   1 y = besselj(alpha,x)
-   2 y = besselj(alpha,x,1)
-   3 [y,ierr] = besselj(alpha,...)
+y = besselj(alpha,x)
+y = besselj(alpha,x,1)
+[y,ierr] = besselj(alpha,...)
  ]]></programlisting>
 
   <programlisting role="example"><![CDATA[ 
@@ -2036,7 +2042,7 @@ A = ['xxx' blanks(20) 'yyy'];
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-A = 'xxx'+part(' ',ones(1,20))+'yyy';
+A = "xxx"+part(" ",ones(1,20))+"yyy";
  ]]></programlisting>
 </refsection>
 
@@ -2044,31 +2050,40 @@ A = 'xxx'+part(' ',ones(1,20))+'yyy';
   <title>box</title>
   <para>Display axes border </para>
   <para>There is no Scilab equivalent function for Matlab box but it can be easyly replaced by Scilab equivalent instructions.</para>
-  <para>box on box off box box(h,'on') box(h,'off') box(h) </para>
+
+  <programlisting role="example"><![CDATA[ 
+% Matlab version
+box on
+box off
+box
+box(h,'on')
+box(h,'off')
+box(h)
+ ]]></programlisting>
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
 a = gca();
-a.box = 'on';
-a.box = 'off';
-if a.box=='on' then a.box='off';else a.box='on';end;
-h.box = 'on';
-h.box = 'off';
-if h.box=='on' then h.box='off';else h.box='on';end;
+a.box = "on";
+a.box = "off";
+if a.box=="on" then a.box="off";else a.box="on";end;
+h.box = "on";
+h.box = "off";
+if h.box=="on" then h.box="off";else h.box="on";end;
  ]]></programlisting>
 </refsection>
 
 <refsection id="case">
   <title>case</title>
   <para>Case switch </para>
-  <para>In Matlab expression evaluated can be a cell, in this particular use, all values of cell are considered individually (similarly to a OR). In Scilab it can not be a cell (Matlab particularity can be replaced by others 'case' or all switch/case statement can be replaced by a if/then/else statement.).</para>
+  <para>In Matlab expression evaluated can be a cell, in this particular use, all values of cell are considered individually (similarly to a OR). In Scilab it can not be a cell (Matlab particularity can be replaced by others "case" or all switch/case statement can be replaced by a if/then/else statement.).</para>
 </refsection>
 
 <refsection id="cd">
   <title>cd</title>
   <para>Change/get working directory </para>
   <para>Note that <emphasis role="strong">cd ..</emphasis> does not work in Scilab, but it does in Matlab. In Scilab you can use 
-    <emphasis role="strong">cd('..')</emphasis> or <emphasis role="strong"> cd ../ </emphasis>. </para>
+    <emphasis role="strong">cd("..")</emphasis> or <emphasis role="strong"> cd ../ </emphasis>. </para>
 </refsection>
 
 <refsection id="cell">
@@ -2086,35 +2101,34 @@ if h.box=='on' then h.box='off';else h.box='on';end;
 <refsection id="cla">
   <title>cla</title>
   <para>Clear current axes </para>
-  <para>cla: Scilab equivalent could be <emphasis role="strong">a = gca();delete(a.children);</emphasis>
+  <para>cla Scilab equivalent could be <emphasis role="strong">a = gca();delete(a.children);</emphasis>
     but in this case, all current axes children will be deleted because there is no HandleVisibility property in Scilab graphics.</para>
-  <para>cla reset: Scilab equivalent is <emphasis role="strong">a = gca();delete(a.children);</emphasis>.</para>
+  <para>cla reset Scilab equivalent is <emphasis role="strong">a = gca();delete(a.children);</emphasis>.</para>
 </refsection>
 
 <refsection id="clc">
   <title>clc</title>
   <para>Clear Command Window </para>
-  <para>Note that Scilab function allows to clear only a set of lines above the cursor using <emphasis role="strong">clc(nblines)</emphasis>
-    . Note that Scilab function can not be used in no window mode under Unix/Linux while Matlab one clears the terminal display as if you were using 'clear' command.</para>
+  <para>Note that Scilab function allows to clear only a set of lines above the cursor using <emphasis role="strong">clc(nblines)</emphasis>. Note that Scilab function can not be used in no window mode under Unix/Linux while Matlab one clears the terminal display as if you were using "clear" command.</para>
 </refsection>
 
 <refsection id="clear">
   <title>clear</title>
-  <para>Remove items from workspace, freeing up system memory.</para>
+  <para>Remove items from workspace, freeing up system memory</para>
   <para>Scilab and Matlab <emphasis role="strong">clear</emphasis> functions are only equivalent when called using <emphasis role="strong">clear</emphasis>
     or <emphasis role="strong">clear name</emphasis>.</para>
-  <para>clear global ... : Scilab equivalent for Matlab <emphasis role="strong">clear global [name]</emphasis> is 
+  <para>clear global ... Scilab equivalent for Matlab <emphasis role="strong">clear global [name]</emphasis> is 
     <emphasis role="strong">clearglobal([name])</emphasis>.</para>
-  <para>clear variables ... : Scilab equivalent for Matlab <emphasis role="strong">clear variables</emphasis> is simply 
+  <para>clear variables ... Scilab equivalent for Matlab <emphasis role="strong">clear variables</emphasis> is simply 
     <emphasis role="strong">clear</emphasis>.</para>
-  <para>clear keyword ... : For all other keywords, there is no Scilab equivalent for Matlab <emphasis role="strong">clear call</emphasis>.</para>
+  <para>clear keyword ... For all other keywords, there is no Scilab equivalent for Matlab <emphasis role="strong">clear call</emphasis>.</para>
 </refsection>
 
 <refsection id="clf">
   <title>clf</title>
   <para>Clear current figure window </para>
-  <para>clf : In this case, all current figure children will be deleted because there is no HandleVisibility property in Scilab graphics.</para>
-  <para>fig_handle = clf : Scilab equivalent is be <emphasis role="strong">fig_handle = gcf();clf;</emphasis>.
+  <para>clf In this case, all current figure children will be deleted because there is no HandleVisibility property in Scilab graphics.</para>
+  <para>fig_handle = clf Scilab equivalent is be <emphasis role="strong">fig_handle = gcf();clf;</emphasis>.
     In this case, all current figure children will be deleted because there is no HandleVisibility property in Scilab graphics.</para>
 </refsection>
 
@@ -2124,8 +2138,12 @@ if h.box=='on' then h.box='off';else h.box='on';end;
   <para>Even if there no equivalent for Matlab <emphasis role="strong">clock</emphasis> in Scilab, it can be emuled as shown in example.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 c = clock
+ ]]></programlisting>
+
+  <programlisting role="example"><![CDATA[ 
+// Scilab version
 w = getdate();
 w(3:5) = [];
 w(6) = w(6)+w(7)/1000;
@@ -2136,32 +2154,32 @@ c = w(1:6);
 <refsection id="close">
   <title>close</title>
   <para>Delete specified figure </para>
-  <para>close : If current figure is a uicontrol one, Scilab and Matlab <emphasis role="strong">close</emphasis>
-    are equivalent.  But if current figure is a graphic window, Scilab equivalent for Matlab <emphasis role="strong">close</emphasis> is 
+  <para>close If current figure is a uicontrol one, Scilab and Matlab <emphasis role="strong">close</emphasis>
+    are equivalent. But if current figure is a graphic window, Scilab equivalent for Matlab <emphasis role="strong">close</emphasis> is 
     <emphasis role="strong">delete(gcf())</emphasis>.</para>
-  <para>close(h) : If <emphasis role="strong">h</emphasis> is a uicontrol figure, Scilab and Matlab <emphasis role="strong">close(h)</emphasis>
-    are equivalent.  But if <emphasis role="strong">h</emphasis> is a graphic window, Scilab equivalent for Matlab 
+  <para>close(h) If <emphasis role="strong">h</emphasis> is a uicontrol figure, Scilab and Matlab <emphasis role="strong">close(h)</emphasis>
+    are equivalent. But if <emphasis role="strong">h</emphasis> is a graphic window, Scilab equivalent for Matlab 
     <emphasis role="strong">close(h)</emphasis> is <emphasis role="strong">delete(h)</emphasis>.</para>
-  <para>close('all') : Scilab equivalent for Matlab <emphasis role="strong">close('all')</emphasis> is 
+  <para>close('all') Scilab equivalent for Matlab <emphasis role="strong">close('all')</emphasis> is 
     <emphasis role="strong">xdel(winsid())</emphasis>.</para>
-  <para>close(name) :  There is no Scilab equivalent for Matlab <emphasis role="strong">close(name)</emphasis> however, 
+  <para>close(name) There is no Scilab equivalent for Matlab <emphasis role="strong">close(name)</emphasis> however, 
     <emphasis role="strong">mtlb_close</emphasis> can be an equivalent.</para>
-    <para>close('all','hidden') : Scilab equivalent for Matlab <emphasis role="strong">close('all','hidden')</emphasis> is 
+    <para>close('all','hidden') Scilab equivalent for Matlab <emphasis role="strong">close('all','hidden')</emphasis> is 
       <emphasis role="strong">xdel(winsid())</emphasis> but Scilab kills all figures even if they are hidden.</para>
 </refsection>
 
 <refsection id="colordef">
   <title>colordef</title>
   <para>Set default property values to display different color schemes </para>
-  <para>[h = ]mtlb_colordef(color_option) : Scilab equivalent is <emphasis role="strong">fig = gcf();fig.background = -1;[h = fig];</emphasis>
-    if <emphasis role="strong">color_option</emphasis> is equal to 'black' or 'none' and 
+  <para>[h = ]mtlb_colordef(color_option) Scilab equivalent is <emphasis role="strong">fig = gcf();fig.background = -1;[h = fig];</emphasis>
+    if <emphasis role="strong">color_option</emphasis> is equal to "black" or "none" and 
     <emphasis role="strong">fig = gcf();fig.background = -1;[h = fig];</emphasis> else.</para>
-  <para>[h = ]mtlb_colordef(fig,color_option) : Considering <emphasis role="strong">fig</emphasis> is a graphics handle, Scilab equivalent is 
+  <para>[h = ]mtlb_colordef(fig,color_option) Considering <emphasis role="strong">fig</emphasis> is a graphics handle, Scilab equivalent is 
     <emphasis role="strong">fig.background = -1;[h = fig];</emphasis> if <emphasis role="strong">color_option</emphasis>
-    is equal to 'black' or 'none' and <emphasis role="strong">fig.background = -2;[h = fig];</emphasis> else.</para>
-  <para>[h = ]mtlb_colordef('new',color_option) : Scilab equivalent is <emphasis role="strong">
+    is equal to "black" or "none" and <emphasis role="strong">fig.background = -2;[h = fig];</emphasis> else.</para>
+  <para>[h = ]mtlb_colordef('new',color_option) Scilab equivalent is <emphasis role="strong">
       fig=scf(max(winsid())+1);fig.background = -1;[h = fig];</emphasis> if <emphasis role="strong">color_option</emphasis>
-    is equal to 'black' or 'none' and <emphasis role="strong">fig=scf(max(winsid())+1);fig.background = -2;[h = fig];</emphasis>
+    is equal to "black" or "none" and <emphasis role="strong">fig=scf(max(winsid())+1);fig.background = -2;[h = fig];</emphasis>
     else.</para>
 </refsection>
 
@@ -2177,11 +2195,11 @@ c = w(1:6);
 <refsection id="cumprod">
   <title>cumprod</title>
   <para>Cumulative product </para>
-  <para>C = cumprod(A) : If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">cumprod(A)</emphasis>
+  <para>C = cumprod(A) If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">cumprod(A)</emphasis>
     is equivalent to <emphasis role="strong">cumprod(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="strong">cumprod(A)</emphasis>
     gives the cumulative product of all the entries of <emphasis role="strong">A</emphasis>
     taken columnwise. Actually, Matlab works on the first non-singleton dimension and Scilab does not.</para>
-  <para>C = cumprod(A,dim) : Matlab can work with dim greater than number of dimensions of <emphasis role="strong">A</emphasis>
+  <para>C = cumprod(A,dim) Matlab can work with dim greater than number of dimensions of <emphasis role="strong">A</emphasis>
     but Scilab can not, in this can use <emphasis role="strong">mtlb_cumprod</emphasis> instead.</para>
 
   <programlisting role="example"><![CDATA[ 
@@ -2204,11 +2222,11 @@ B = [1,2,3;4,10,18]
 <refsection id="cumsum">
   <title>cumsum</title>
   <para>Cumulative sum </para>
-  <para>C=cumsum(A) : If A is a matrix, <emphasis role="strong">cumsum(A)</emphasis> is equivalent to 
+  <para>C=cumsum(A) If A is a matrix, <emphasis role="strong">cumsum(A)</emphasis> is equivalent to 
     <emphasis role="strong">cumsum(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="strong">cumsum(A)</emphasis>
     gives the cumulative sum of all the entries of <emphasis role="strong">A</emphasis>
     taken columnwise. Actually, Matlab works on the first non-singleton dimension and Scilab does not.</para>
-  <para>C = cumsum(A,dim) : Matlab can work with dim greater than number of dimensions of <emphasis role="strong">A</emphasis>
+  <para>C = cumsum(A,dim) Matlab can work with dim greater than number of dimensions of <emphasis role="strong">A</emphasis>
     but Scilab can not, in this can use <emphasis role="strong">mtlb_cumsum</emphasis> instead.</para>
 
   <programlisting role="example"><![CDATA[ 
@@ -2231,20 +2249,20 @@ B=[1,2,3;5,7,9]
 <refsection id="dec2hex">
   <title>dec2hex</title>
   <para>Decimal to hexadecimal number conversion </para>
-  <para>Empty matrix input : In Matlab <emphasis role="strong">dec2hex</emphasis> returns <emphasis role="strong">""</emphasis>
+  <para>Empty matrix input: In Matlab <emphasis role="strong">dec2hex</emphasis> returns <emphasis role="strong">""</emphasis>
     when input is <emphasis role="strong">[]</emphasis> but Scilab <emphasis role="strong">dec2hex</emphasis> returns 
     <emphasis role="strong">[]</emphasis>.</para>
-  <para>Complex inputs : In Matlab <emphasis role="strong">dec2hex</emphasis> automatically removes complex part of input but not in Scilab.</para>
-  <para>Two inputs : In Matlab <emphasis role="strong">dec2hex</emphasis> can have two inputs, in Scilab <emphasis role="strong">mtlb_dec2hex</emphasis>
+  <para>Complex inputs: In Matlab <emphasis role="strong">dec2hex</emphasis> automatically removes complex part of input but not in Scilab.</para>
+  <para>Two inputs: In Matlab <emphasis role="strong">dec2hex</emphasis> can have two inputs, in Scilab <emphasis role="strong">mtlb_dec2hex</emphasis>
     emulates this case.</para>
 </refsection>
 
 <refsection id="delete">
   <title>delete</title>
   <para>Delete files or graphics objects </para>
-  <para>Files : When Matlab <emphasis role="strong">delete</emphasis> is used to delete a file, Scilab equivalent is 
+  <para>Files When Matlab <emphasis role="strong">delete</emphasis> is used to delete a file, Scilab equivalent is 
     <emphasis role="strong">mdelete</emphasis>.</para>
-  <para>Graphics objects : When Matlab <emphasis role="strong">delete</emphasis> is used to delete a graphics object, Scilab equivalent is 
+  <para>Graphics objects When Matlab <emphasis role="strong">delete</emphasis> is used to delete a graphics object, Scilab equivalent is 
     <emphasis role="strong">delete</emphasis>. Note that Scilab <emphasis role="strong">delete</emphasis>
     can delete a set of graphics handles is its input is a matrix of such objects.</para>
 </refsection>
@@ -2264,10 +2282,10 @@ B = ['s  ';' t ';'  r']
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-B = diag('str')
-B = 'str'
-B = mtlb_diag('str')
-B = ['s  ';' t ';'  r']
+B = diag("str")
+B = "str"
+B = mtlb_diag("str")
+B = ["s  ";" t ";"  r"]
  ]]></programlisting>
 </refsection>
 
@@ -2283,11 +2301,11 @@ B = ['s  ';' t ';'  r']
 <refsection id="diff">
   <title>diff</title>
   <para>Differences and approximate derivatives </para>
-  <para>Y = diff(X[,n]) : For this kind of use of <emphasis role="strong">diff</emphasis>
+  <para>Y = diff(X[,n]) For this kind of use of <emphasis role="strong">diff</emphasis>
     (dim parameter not given), Matlab works on the first non-singleton dimension of <emphasis role="strong">X</emphasis>
-    what Scilab does not.  In this case, Scilab considers dim to be <emphasis role="strong"> '*' </emphasis>
+    what Scilab does not. In this case, Scilab considers dim to be <emphasis role="strong">"*"</emphasis>
     so that diff threats all values of <emphasis role="strong">X</emphasis>, what Matlab does not.</para>
-  <para>Y = diff(X,n,dim) : If dimension given by <emphasis role="strong">dim</emphasis> reaches 1 before <emphasis role="strong">n</emphasis>
+  <para>Y = diff(X,n,dim) If dimension given by <emphasis role="strong">dim</emphasis> reaches 1 before <emphasis role="strong">n</emphasis>
     iterations have been done, Matlab switches to next non-singleton dimension, but Scilab does not, use <emphasis role="strong">mtlb_diff</emphasis>
     to get equivalent results. When <emphasis role="strong">n</emphasis> is greater than all existing dimensions of 
     <emphasis role="strong">X</emphasis>, Matlab returns <emphasis role="strong">[]</emphasis> what Scilab may not give for all inputs.</para>
@@ -2304,8 +2322,8 @@ B = ['s  ';' t ';'  r']
 <refsection id="docopt">
   <title>docopt</title>
   <para>Web browser for UNIX platforms </para>
-  <para>There no Scilab equivalent function, however, information about Web Browser used can be found using globalvariable 
-    <emphasis role="strong">%browsehelp</emphasis>. Those variables exists under all platforms.</para>
+  <para>There no Scilab equivalent function, however, information about Web Browser used can be found using global variable 
+    <emphasis role="strong">%browsehelp</emphasis>. This variable exists under all platforms.</para>
 </refsection>
 
 <refsection id="dos">
@@ -2315,7 +2333,12 @@ B = ['s  ';' t ';'  r']
     to emulate Matlab <emphasis role="strong">-echo</emphasis> option.</para>
 
   <programlisting role="example"><![CDATA[ 
+% Matlab version
 [status,result] = dos(...)
+ ]]></programlisting>
+
+  <programlisting role="example"><![CDATA[
+// Scilab version
 [result,status] = unix_g(...)
  ]]></programlisting>
 </refsection>
@@ -2339,18 +2362,17 @@ B = ['s  ';' t ';'  r']
     are not exactly equivalents but they both change the information displayed during execution. Scilab <emphasis role="strong">mode</emphasis>
     has to be called inside a script or a function but Matlab <emphasis role="strong">echo</emphasis>
     can be called from prompt. However, some uses are equivalents such as:</para>
-  <para>echo : is equivalent to Scilab <emphasis role="strong">mode(abs(mode()-1))</emphasis> for scripts and non-compiled functions</para>
-  <para>echo on : is equivalent to Scilab <emphasis role="strong">mode(1)</emphasis> for scripts and non-compiled functions</para>
-  <para>echo off : is equivalent to Scilab <emphasis role="strong">mode(0)</emphasis></para>
+  <para>echo is equivalent to Scilab <emphasis role="strong">mode(abs(mode()-1))</emphasis> for scripts and non-compiled functions</para>
+  <para>echo on is equivalent to Scilab <emphasis role="strong">mode(1)</emphasis> for scripts and non-compiled functions</para>
+  <para>echo off is equivalent to Scilab <emphasis role="strong">mode(0)</emphasis></para>
 </refsection>
 
 <refsection id="eig">
   <title>eig</title>
   <para>Find eigenvalues and eigenvectors </para>
-  <para>eig(A) : Scilab equivalent for <emphasis role="strong">eig(A)</emphasis> is <emphasis role="strong">spec(A)</emphasis>
-    . Scilab eigen vector matrix can differ from Matlab one.</para>
-  <para>eig(A,'nobalance') : There is no Scilab equivalent for <emphasis role="strong">'nobalance</emphasis>' option. See examples.</para>
-  <para>eig(A,B,flag) : There is no Scilab equivalent for <emphasis role="strong">flag</emphasis></para>
+  <para>eig(A) Scilab equivalent for <emphasis role="strong">eig(A)</emphasis> is <emphasis role="strong">spec(A)</emphasis>. Scilab eigen vector matrix can differ from Matlab one.</para>
+  <para>eig(A,'nobalance') There is no Scilab equivalent for <emphasis role="strong">"nobalance"</emphasis> option. See examples.</para>
+  <para>eig(A,B,flag) There is no Scilab equivalent for <emphasis role="strong">flag</emphasis>.</para>
 
 
   <programlisting role="example"><![CDATA[ 
@@ -2387,9 +2409,9 @@ d = spec(A)
 <refsection id="eval">
   <title>eval</title>
   <para>Execute a string containing an instruction/expression</para>
-  <para>Expression : When <emphasis role="strong">eval</emphasis> has to execute an expression then Scilab equivalent for 
+  <para>Expression: When <emphasis role="strong">eval</emphasis> has to execute an expression then Scilab equivalent for 
     <emphasis role="strong">eval</emphasis> is <emphasis role="strong">evstr</emphasis></para>
-  <para>Instruction : When <emphasis role="strong">eval</emphasis> has to execute an instruction with just one output value then Scilab equivalent for 
+  <para>Instruction: When <emphasis role="strong">eval</emphasis> has to execute an instruction with just one output value then Scilab equivalent for 
     <emphasis role="strong">eval</emphasis> is <emphasis role="strong">evstr</emphasis>. If instruction has more than one output value then 
     <emphasis role="strong">execstr</emphasis> has to be used as follows. When <emphasis role="strong">eval</emphasis> is used with two inputs 
     then an equivalent can be found in examples below.</para>
@@ -2406,11 +2428,11 @@ eval('1+1','1+2')
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-evstr('1+1')
-x = evstr('1+1')
-execstr('[d1,d2]=size(1)')
-execstr('[d1,d2]=size(1)')
-if execstr('1+1','errcatch') then execstr('1+2');end
+evstr("1+1")
+x = evstr("1+1")
+execstr("[d1,d2]=size(1)")
+execstr("[d1,d2]=size(1)")
+if execstr("1+1","errcatch") then execstr("1+2");end
  ]]></programlisting>
 </refsection>
 
@@ -2426,14 +2448,14 @@ if execstr('1+1','errcatch') then execstr('1+2');end
   <para>Identity matrix </para>
   <para>Note that in Matlab, <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of 
     <emphasis role="strong">A</emphasis> is taken in account), what Scilab function do not tolerate.</para>
-  <para>B=eye(A) : If A is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis> identity matrix but in Scilab you get a 
+  <para>B=eye(A) If A is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis> identity matrix but in Scilab you get a 
     <emphasis role="strong">1</emphasis>, use <emphasis role="strong">eye(A,A)</emphasis> to get the same matrix 
     <emphasis role="strong">B</emphasis>. If <emphasis role="strong">A</emphasis> is a vector, Scilab and Matlab give the same 
     <emphasis role="strong">B</emphasis>. Finally, if <emphasis role="strong">A</emphasis> is a matrix, in Scilab, <emphasis role="strong">B</emphasis>
     will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 B = eye(2)
 B = [1,0;0,1]
 B = eye(2,2)
@@ -2462,19 +2484,17 @@ B = [1,0]
 <refsection id="ferror">
   <title>ferror</title>
   <para>Query about errors in file input or output </para>
-  <para>ferror(fid) : When Matlab <emphasis role="strong">ferror</emphasis> is called with just one input and one output, then Scilab equivalent is 
+  <para>ferror(fid) When Matlab <emphasis role="strong">ferror</emphasis> is called with just one input and one output, then Scilab equivalent is 
     <emphasis role="strong">merror</emphasis>.</para>
-  <para>ferror(fid,'clear') : When Matlab <emphasis role="strong">ferror</emphasis>
-    is called with two inputs and just one output, then Scilab equivalent is <emphasis role="strong">mclearerr</emphasis>
-    .For all other cases, there no equivalent in Scilab.</para>
+  <para>ferror(fid,'clear') When Matlab <emphasis role="strong">ferror</emphasis>
+    is called with two inputs and just one output, then Scilab equivalent is <emphasis role="strong">mclearerr</emphasis>. For all other cases, there no equivalent in Scilab.</para>
 </refsection>
 
 <refsection id="feval">
   <title>feval</title>
   <para>Function evaluation </para>
-  <para>One output : In this case Scilab <emphasis role="strong">evstr</emphasis> is an equivalent to <emphasis role="strong">feval</emphasis>
-    , after modifying inputs such as in examples below.</para>
-  <para>More than one output : In this case Scilab <emphasis role="strong">execstr</emphasis> is an equivalent to 
+  <para>One output: In this case Scilab <emphasis role="strong">evstr</emphasis> is an equivalent to <emphasis role="strong">feval</emphasis>, after modifying inputs such as in examples below.</para>
+  <para>More than one output: In this case Scilab <emphasis role="strong">execstr</emphasis> is an equivalent to 
     <emphasis role="strong">feval</emphasis>, after modifying inputs such as in examples below.</para>
 
   <programlisting role="example"><![CDATA[ 
@@ -2485,18 +2505,18 @@ B = [1,0]
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-y1 = evstr('cos(0)')
-execstr('[y1,y2] = size(1)')
+y1 = evstr("cos(0)")
+execstr("[y1,y2] = size(1)")
  ]]></programlisting>
 </refsection>
 
 <refsection id="fftshift">
   <title>fftshift</title>
   <para>Shift zero-frequency component of discrete Fourier transform to center of spectrum </para>
-  <para>fftshift(A[,dim]) : Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal
+  <para>fftshift(A[,dim]) Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal
     if A is a string matrix or vector in fftshift(A) or fftshift(A,dim). <emphasis role="strong">mtlb_fftshift</emphasis>
     can emulate this particularity in Scilab.</para>
-  <para>fftshift(A,dim) : In Matlab, <emphasis role="strong">dim</emphasis> can be greater than the number of dimensions of 
+  <para>fftshift(A,dim) In Matlab, <emphasis role="strong">dim</emphasis> can be greater than the number of dimensions of 
     <emphasis role="strong">A</emphasis> but in Scilab you get an error message in this case. <emphasis role="strong">mtlb_fftshift</emphasis>
     can emulate this particularity in Scilab.</para>
 
@@ -2508,20 +2528,20 @@ Y = 'rst'
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-Y = fftshift('str')
-Y = 'str'
-Y = mtlb_fftshift('str')
-Y = 'rst'
+Y = fftshift("str")
+Y = "str"
+Y = mtlb_fftshift("str")
+Y = "rst"
  ]]></programlisting>
 </refsection>
 
 <refsection id="fft">
   <title>fft(A[,...])</title>
   <para>Discrete Fourier transform </para>
-  <para>Y = fft(X) : If X is a vector then Scilab equivalent for Matlab <emphasis role="strong">fft(X)</emphasis> is 
+  <para>Y = fft(X) If X is a vector then Scilab equivalent for Matlab <emphasis role="strong">fft(X)</emphasis> is 
     <emphasis role="strong">fft(X,-1)</emphasis>. If <emphasis role="strong">X</emphasis> is a matrix then Scilab equivalent for Matlab 
     <emphasis role="strong">fft(X)</emphasis> is <emphasis role="strong">fft(X,-1,2,1)</emphasis>.</para>
-  <para>Y = fft(X,n) / Y = fft(X,n,dim) / Y = fft(X,[],dim) : There is no Scilab equivalent for all these Matlab uses of 
+  <para>Y = fft(X,n) / Y = fft(X,n,dim) / Y = fft(X,[],dim) There is no Scilab equivalent for all these Matlab uses of 
     <emphasis role="strong">fft</emphasis>, in these cases, use <emphasis role="strong">mtlb_fft</emphasis> instead.</para>
 </refsection>
 
@@ -2553,14 +2573,14 @@ fgetstr(n,fid)
 <refsection id="fileparts">
   <title>fileparts</title>
   <para>Return filename parts </para>
-  <para>Scilab function does not get file version but Matlab one does. Scilab function can take a second input parameter specifying the output value we want to get saying: 'path', 'fname' or 'extension'.</para>
+  <para>Scilab function does not get file version but Matlab one does. Scilab function can take a second input parameter specifying the output value we want to get saying: "path", "fname" or "extension".</para>
 </refsection>
 
 <refsection id="filesep">
   <title>filesep</title>
   <para>Return the directory separator for this platform </para>
   <para>There is no Scilab function equivalent to Matlab <emphasis role="strong">filesep</emphasis> but the same output can be obtained with 
-    <emphasis role="strong">pathconvert('/')</emphasis>.</para>
+    <emphasis role="strong">pathconvert("/")</emphasis>.</para>
 </refsection>
 
 <refsection id="findstr">
@@ -2595,12 +2615,12 @@ fgetstr(n,fid)
 <refsection id="fopen">
   <title>fopen</title>
   <para>Open a file or obtain information about open files </para>
-  <para>Access permission : Matlab offers two permissions options not supported by Scilab: <emphasis role="strong">W</emphasis> and 
+  <para>Access permission: Matlab offers two permissions options not supported by Scilab: <emphasis role="strong">W</emphasis> and 
     <emphasis role="strong">A</emphasis> (for tape drives)</para>
-  <para>Input values : In Matlab, <emphasis role="strong">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for 
+  <para>Input values: In Matlab, <emphasis role="strong">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for 
     <emphasis role="strong">fopen</emphasis> does not exist. You can also use <emphasis role="strong">fopen</emphasis> in Matlab to get 
     informations on a file identifier (<emphasis role="strong">fopen(fid)</emphasis>), this case is not implemented in Scilab.</para>
-  <para>Machine format : Note that Scilab does not support machine format values as input or output.Matlab <emphasis role="strong">fopen</emphasis>
+  <para>Machine format: Note that Scilab does not support machine format values as input or output. Matlab <emphasis role="strong">fopen</emphasis>
     can return an error message but not Scilab <emphasis role="strong">mopen</emphasis>, moreover, returned file identifier is 
     <emphasis role="strong">-1</emphasis> in case of error in Matlab but does not exist in this case in Scilab, so an emulation function has 
     been written <emphasis role="strong">mtlb_fopen</emphasis>.</para>
@@ -2608,7 +2628,8 @@ fgetstr(n,fid)
 
 <refsection id="format">
   <title>format</title>
-  <para>Control display format for output Some Matlab formats have no Scilab equivalent, see examples below.</para>
+  <para>Control display format for output </para>
+  <para>Some Matlab formats have no Scilab equivalent, see examples below.</para>
 
   <table>
     <caption/>
@@ -2624,7 +2645,7 @@ fgetstr(n,fid)
 	</tr>
 	<tr>
 	  <td><para> format </para></td>
-	  <td><para> format('v',6) </para></td>
+	  <td><para> format("v",6) </para></td>
 	</tr>
 	<tr>
 	  <td><para> format + </para></td>
@@ -2632,15 +2653,15 @@ fgetstr(n,fid)
 	</tr>
 	<tr>
 	  <td><para> format bank </para></td>
-	  <td><para> No equivalent for: format 'bank' </para></td>
+	  <td><para> No equivalent for: format "bank" </para></td>
 	</tr>
 	<tr>
 	  <td><para> format compact </para></td>
-	  <td><para> No equivalent for: format 'compact' </para></td>
+	  <td><para> No equivalent for: format "compact" </para></td>
 	</tr>
 	<tr>
 	  <td><para> format hex </para></td>
-	  <td><para> No equivalent for: format 'hex' </para></td>
+	  <td><para> No equivalent for: format "hex" </para></td>
 	</tr>
 	<tr>
 	  <td><para> format long </para></td>
@@ -2648,19 +2669,19 @@ fgetstr(n,fid)
 	</tr>
 	<tr>
 	  <td><para> format long e </para></td>
-	  <td><para> format('e',16) </para></td>
+	  <td><para> format("e",16) </para></td>
 	</tr>
 	<tr>
 	  <td><para> format long g </para></td>
-	  <td><para> format('e',16) </para></td>
+	  <td><para> format("e",16) </para></td>
 	</tr>
 	<tr>
 	  <td><para> format loose </para></td>
-	  <td><para> No equivalent for: format 'loose' </para></td>
+	  <td><para> No equivalent for: format "loose" </para></td>
 	</tr>
 	<tr>
 	  <td><para> format rat </para></td>
-	  <td><para> No equivalent for: format 'rat' </para></td>
+	  <td><para> No equivalent for: format "rat" </para></td>
 	</tr>
 	<tr>
 	  <td><para> format short </para></td>
@@ -2668,11 +2689,11 @@ fgetstr(n,fid)
 	</tr>
 	<tr>
 	  <td><para> format short e </para></td>
-	  <td><para> format('e',6) </para></td>
+	  <td><para> format("e",6) </para></td>
 	</tr>
 	<tr>
 	  <td><para> format short g </para></td>
-	  <td><para> format('e',6) </para></td>
+	  <td><para> format("e",6) </para></td>
 	</tr>
       </tbody>
   </table>
@@ -2731,11 +2752,11 @@ fseek(fid,offset,1)
   <programlisting role="example"><![CDATA[ 
 // Scilab version
 // File beginning:
-fseek(offset,fid,'set')
+fseek(offset,fid,"set")
 // Current position:
-fseek(offset,fid,'cur')
+fseek(offset,fid,"cur")
 // File end:
-fseek(offset,fid,'end')
+fseek(offset,fid,"end")
  ]]></programlisting>
 </refsection>
 
@@ -2757,7 +2778,7 @@ fseek(offset,fid,'end')
 <refsection id="graymon">
   <title>graymon</title>
   <para>Set graphics defaults for gray-scale monitors </para>
-  <para>This Matlab function can be replaced in Scilab by: <emphasis role="strong">set(gdf(),'color_map',[0.75,0.5,0.25]'*ones(1,3))</emphasis>.</para>
+  <para>This Matlab function can be replaced in Scilab by: <emphasis role="strong">set(gdf(),"color_map",[0.75,0.5,0.25]'*ones(1,3))</emphasis>.</para>
 </refsection>
 
 <refsection id="grid">
@@ -2765,14 +2786,14 @@ fseek(offset,fid,'end')
   <para>Grid lines for two- and three-dimensional plots </para>
   <para>There is no minor grid in Scilab. There is no equivalent function for Matlab <emphasis role="strong">grid</emphasis>
     function in Scilab but it has equivalents:</para>
-  <para>grid on : may be replaced by <emphasis role="strong">set(gca(),'grid',[1 1])</emphasis></para>
-  <para>grid off : may be replaced by <emphasis role="strong">set(gca(),'auto_clear',[-1 -1])</emphasis></para>
-  <para>grid minor : can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis> but all grids are toggled</para>
-  <para>grid : can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis></para>
-  <para>grid(axes_handle,'on') : may be replaced by <emphasis role="strong">axes_handle.grid=[1 1]</emphasis></para>
-  <para>grid(axes_handle,'off') : may be replaced by <emphasis role="strong">axes_handle.grid=[-1 -1]</emphasis></para>
-  <para>grid(axes_handle,'minor') : can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis> but all grids are toggled</para>
-  <para>grid(axes_handle) : can be emuled in Scilab by <emphasis role="strong">mtlb_hold(axes_handle)</emphasis></para>
+  <para>grid on may be replaced by <emphasis role="strong">set(gca(),"grid",[1 1])</emphasis></para>
+  <para>grid off may be replaced by <emphasis role="strong">set(gca(),"auto_clear",[-1 -1])</emphasis></para>
+  <para>grid minor can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis> but all grids are toggled</para>
+  <para>grid can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis></para>
+  <para>grid(axes_handle,"on") may be replaced by <emphasis role="strong">axes_handle.grid=[1 1]</emphasis></para>
+  <para>grid(axes_handle,"off") may be replaced by <emphasis role="strong">axes_handle.grid=[-1 -1]</emphasis></para>
+  <para>grid(axes_handle,"minor") can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis> but all grids are toggled</para>
+  <para>grid(axes_handle) can be emuled in Scilab by <emphasis role="strong">mtlb_hold(axes_handle)</emphasis></para>
 </refsection>
 
 <refsection id="hankel">
@@ -2791,11 +2812,11 @@ H2 = hankel(C2,R2)
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
-N1 = size(C1,'*');
+N1 = size(C1,"*");
 COV1 = [matrix(C1,1,-1),zeros(1,N1)];
 H1 = hank(N1,N1,COV1);
-M2 = size(C2,'*');
-N2 = size(R2,'*');
+M2 = size(C2,"*");
+N2 = size(R2,"*");
 COV2 = [matrix(C2,1,-1),matrix(R2(2:$),1,-1)];
 H2 = hank(M2,N2,COV2);
  ]]></programlisting>
@@ -2805,23 +2826,23 @@ H2 = hank(M2,N2,COV2);
   <title>help</title>
   <para>Display help </para>
   <para>In Scilab you can not get help on a toolbox, only on a function. Scilab equivalent for Matlab <emphasis role="strong">help syntax</emphasis>
-    is <emphasis role="strong">help('names')</emphasis>.</para>
+    is <emphasis role="strong">help("names")</emphasis>.</para>
 </refsection>
 
 <refsection id="hold">
   <title>hold</title>
   <para>Hold current graph </para>
   <para>There is no equivalent function for Matlab <emphasis role="strong">hold</emphasis> function in Scilab but it has equivalents:</para>
-  <para>hold on : may be replaced by <emphasis role="strong">set(gca(),'auto_clear','off')</emphasis></para>
-  <para>hold off : may be replaced by <emphasis role="strong">set(gca(),'auto_clear','on')</emphasis></para>
-  <para>hold : can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis></para>
+  <para>hold on may be replaced by <emphasis role="strong">set(gca(),"auto_clear","off")</emphasis></para>
+  <para>hold off may be replaced by <emphasis role="strong">set(gca(),"auto_clear","on")</emphasis></para>
+  <para>hold can be emuled in Scilab by <emphasis role="strong">mtlb_hold</emphasis></para>
 </refsection>
 
 <refsection id="home">
   <title>home</title>
   <para>Move the cursor to the upper left corner of the Command Window</para>
   <para>Note that Matlab function has no effect in no window mode under Unix/Linux while Scilab one clears the terminal display 
-    as if you were using 'clear' command.</para>
+    as if you were using "clear" command.</para>
 </refsection>
 
 <refsection id="horzcat">
@@ -2835,10 +2856,10 @@ H2 = hank(M2,N2,COV2);
 <refsection id="ifft">
   <title>ifft(A[,...])</title>
   <para>Inverse discrete Fourier transform </para>
-  <para>Y = ifft(X) : If X is a vector then Scilab equivalent for Matlab <emphasis role="strong">ifft(X)</emphasis> is 
+  <para>Y = ifft(X): If X is a vector then Scilab equivalent for Matlab <emphasis role="strong">ifft(X)</emphasis> is 
     <emphasis role="strong">fft(X,1)</emphasis>. If <emphasis role="strong">X</emphasis> is a matrix then Scilab equivalent for Matlab 
     <emphasis role="strong">ifft(X)</emphasis> is <emphasis role="strong">fft(X,1,2,1)</emphasis>.</para>
-  <para>Y = ifft(X,n) / Y = ifft(X,n,dim) / Y = ifft(X,[],dim) : There is no Scilab equivalent for all these Matlab uses of 
+  <para>Y = ifft(X,n) / Y = ifft(X,n,dim) / Y = ifft(X,[],dim): There is no Scilab equivalent for all these Matlab uses of 
     <emphasis role="strong">ifft</emphasis>, in these cases, use <emphasis role="strong">mtlb_ifft</emphasis> instead.</para>
 </refsection>
 
@@ -2906,7 +2927,7 @@ A = -2147483648
   <para>For infinite values, Scilab and Matlab <emphasis role="strong">int8</emphasis> return different values.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 A = int8(inf)
 A = 127
 A = int8(-inf)
@@ -2947,68 +2968,68 @@ A = 0
 	  <td><para> Scilab </para></td>
 	</tr>
 	<tr>
-	  <td><para> a = isa(x,'logical') </para></td>
+	  <td><para> a = isa(x,"logical") </para></td>
 	  <td><para>a = type(x)==4; </para></td>
 	</tr>
 	<tr>
-	  <td><para> b = isa(x,'char') </para></td>
+	  <td><para> b = isa(x,"char") </para></td>
 	  <td><para>b = type(x)==10; </para></td>
 	</tr>
 	<tr>
-	  <td><para> c = isa(x,'numeric') </para></td>
+	  <td><para> c = isa(x,"numeric") </para></td>
 	  <td><para>c = or(type(x)==[1,5,8]); </para></td>
 	</tr>
 	<tr>
-	  <td><para> d = isa(x,'int8') </para></td>
+	  <td><para> d = isa(x,"int8") </para></td>
 	  <td><para>d = typeof(x)=='int8'; </para></td>
 	</tr>
 	<tr>
-	  <td><para> e = isa(x,'uint8') </para></td>
+	  <td><para> e = isa(x,"uint8") </para></td>
 	  <td><para>e = typeof(x)=='uint8'; </para></td>
 	</tr>
 	<tr>
-	  <td><para> f = isa(x,'int16') </para></td>
-	  <td><para>f = typeof(x)=='int16'; </para></td>
+	  <td><para> f = isa(x,"int16") </para></td>
+	  <td><para>f = typeof(x)=="int16"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> g = isa(x,'uint16') </para></td>
-	  <td><para>g = typeof(x)=='uint16'; </para></td>
+	  <td><para> g = isa(x,"uint16") </para></td>
+	  <td><para>g = typeof(x)=="uint16"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> h = isa(x,'int32') </para></td>
-	  <td><para>h = typeof(x)=='int32'; </para></td>
+	  <td><para> h = isa(x,"int32") </para></td>
+	  <td><para>h = typeof(x)=="int32"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> k = isa(x,'uint32') </para></td>
-	  <td><para>k = typeof(x)=='uint32'; </para></td>
+	  <td><para> k = isa(x,"uint32") </para></td>
+	  <td><para>k = typeof(x)=="uint32"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> l = isa(x,'single') </para></td>
+	  <td><para> l = isa(x,"single") </para></td>
 	  <td><para>l = type(x)==1; </para></td>
 	</tr>
 	<tr>
-	  <td><para> m = isa(x,'double') </para></td>
+	  <td><para> m = isa(x,"double") </para></td>
 	  <td><para>m = type(x)==1; </para></td>
 	</tr>
 	<tr>
-	  <td><para> n = isa(x,'cell') </para></td>
-	  <td><para>n = typeof(x)=='ce'; </para></td>
+	  <td><para> n = isa(x,"cell") </para></td>
+	  <td><para>n = typeof(x)=="ce"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> o = isa(x,'struct') </para></td>
-	  <td><para>o = typeof(x)=='st'; </para></td>
+	  <td><para> o = isa(x,"struct") </para></td>
+	  <td><para>o = typeof(x)=="st"; </para></td>
 	</tr>
 	<tr>
-	  <td><para> p = isa(x,'function_handle') </para></td>
+	  <td><para> p = isa(x,"function_handle") </para></td>
 	  <td><para>p = type(x)==13; </para></td>
 	</tr>
 	<tr>
-	  <td><para> q = isa(x,'sparse') </para></td>
+	  <td><para> q = isa(x,"sparse") </para></td>
 	  <td><para>q = type(x)==5; </para></td>
 	</tr>
 	<tr>
-	  <td><para> r = isa(x,'lti') </para></td>
-	  <td><para>r = typeof(x)=='state-space'; </para></td>
+	  <td><para> r = isa(x,"lti") </para></td>
+	  <td><para>r = typeof(x)=="state-space"; </para></td>
 	</tr>
       </tbody>
   </table>
@@ -3028,7 +3049,7 @@ A = 0
   <para>If A is not a structure and/or field is not a character string: </para>
   <para>Scilab equivalent is <emphasis role="strong">%F</emphasis>.</para>
   <para>If A is a structure and field is a character string: </para>
-  <para>Scilab equivalent is <emphasis role="strong">allfields=getfield(1,A);tf=or(allfields(3:\$)==field);</emphasis>.</para>
+  <para>Scilab equivalent is <emphasis role="strong">allfields=getfield(1,A);tf=or(allfields(3:$)==field);</emphasis>.</para>
 </refsection>
 
 <refsection id="isfinite">
@@ -3042,7 +3063,7 @@ A = 0
   <title>ishold</title>
   <para>Return hold state </para>
   <para>There is no equivalent function for Matlab <emphasis role="strong">ishold</emphasis> function in Scilab but it can be emuled by: 
-    <emphasis role="strong">get(gca(),'auto_clear')=='off';</emphasis>.</para>
+    <emphasis role="strong">get(gca(),"auto_clear")=="off";</emphasis>.</para>
 </refsection>
 
 <refsection id="isletter">
@@ -3052,21 +3073,14 @@ A = 0
     However it can be replaced as follows. Using <emphasis role="strong">mtlb_isletter</emphasis> will give a prettier code.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 tf = isletter(A)
  ]]></programlisting>
-
-<para>If A is a String matrix: </para>
-
   <programlisting role="example"><![CDATA[ 
 // Scilab version
+// If A is a String matrix:
 tf = ((asciimat(A)>=65) & (asciimat(A)<=90)) | ((asciimat(A)>=97) & (asciimat(A)<=122))
- ]]></programlisting>
-
-<para>If A is not a String matrix: </para>
-
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
+// If A is not a String matrix:
 tf = zeros(A)
  ]]></programlisting>
 </refsection>
@@ -3109,25 +3123,22 @@ tf = %T
 
 <refsection id="isspace">
   <title>isspace</title>
-  <para>Detect elements that are ASCII white spaces There is no equivalent function to Matlab <emphasis role="strong">isspace</emphasis>
+  <para>Detect elements that are ASCII white spaces </para>
+  <para>There is no equivalent function to Matlab <emphasis role="strong">isspace</emphasis>
     function in Scilab. However it can be replaced as shown below.</para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 tf = isspace(A)
  ]]></programlisting>
 
-<para>If A is a String matrix: </para>
+<para> </para>
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
+// If A is a String matrix:
 tf = asciimat(A)==32
- ]]></programlisting>
-
-<para>If A is not a String matrix: </para>
-
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
+// If A is not a String matrix:
 tf = zeros(A)
  ]]></programlisting>
 </refsection>
@@ -3141,20 +3152,21 @@ tf = zeros(A)
 
 <refsection id="isvector">
   <title>isvector</title>
-  <para>Determine if input is a vector There is no Scilab equivalent function for Matlab <emphasis role="strong">tf=isvector(A)</emphasis>
+  <para>Determine if input is a vector </para>
+  <para>There is no Scilab equivalent function for Matlab <emphasis role="strong">tf=isvector(A)</emphasis>
     but there are equivalent instructions:</para>
-  <para>If A is not a character string:: Scilab equivalent is <emphasis role="strong">tf = size(A,1)==1 | size(A,2)==1</emphasis>.</para>
-  <para>If A is a character string:: Scilab equivalent is <emphasis role="strong">tf = size(asciimat(A),1)==1 | size(asciimat(A),2)==1</emphasis>.</para>
+  <para>If A is not a character string: Scilab equivalent is <emphasis role="strong">tf = size(A,1)==1 | size(A,2)==1</emphasis>.</para>
+  <para>If A is a character string: Scilab equivalent is <emphasis role="strong">tf = size(asciimat(A),1)==1 | size(asciimat(A),2)==1</emphasis>.</para>
 </refsection>
 
 <refsection id="length">
   <title>length(A)</title>
   <para>Length of vector </para>
   <para>If <emphasis role="strong">A</emphasis> is a vector, Scilab equivalent for <emphasis role="strong">length(A)</emphasis> is 
-    <emphasis role="strong">size(A,'*')</emphasis>.</para>
+    <emphasis role="strong">size(A,"*")</emphasis>.</para>
   <para>If <emphasis role="strong">A</emphasis> is a matrix, Scilab equivalent for <emphasis role="strong">length(A)</emphasis> is 
     <emphasis role="strong">max(size(A))</emphasis>.</para>
-  <para>If <emphasis role="strong">A</emphasis> contains character strings, String matrix has to be converted to a 'character' string matrix using 
+  <para>If <emphasis role="strong">A</emphasis> contains character strings, String matrix has to be converted to a "character" string matrix using 
     <emphasis role="strong">mstr2sci</emphasis> (Using <emphasis role="strong">asciimat</emphasis> to convert will give the same result).</para>
   <para>Scilab <emphasis role="strong">length</emphasis> is different from Matlab <emphasis role="strong">length</emphasis>.</para>
 </refsection>
@@ -3185,7 +3197,7 @@ tf = zeros(A)
   <title>logical(A)</title>
   <para>Convert numeric values to logical </para>
   <para>If <emphasis role="strong">A</emphasis> is not an empty matrix, Scilab equivalent for <emphasis role="strong">logical(A)</emphasis>
-    is is not equal to <emphasis role="strong">0</emphasis> else Scilab equivalent is <emphasis role="strong">[]</emphasis>.</para>
+    is A not equal to <emphasis role="strong">0</emphasis> else Scilab equivalent is <emphasis role="strong">[]</emphasis>.</para>
 </refsection>
 
 <refsection id="lookfor">
@@ -3217,13 +3229,7 @@ tf = zeros(A)
     in Matlab, dimension parameter is given in a third input parameter (in this case, second parameter must be 
     <emphasis role="strong">[]</emphasis>).</para>
 
-
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
-C=max(A)
- ]]></programlisting>
-
-  <para>If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">max(A)</emphasis> is equivalent to 
+  <para>C=max(A) If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">max(A)</emphasis> is equivalent to 
     <emphasis role="strong">max(A,[],1)</emphasis> in Matlab whereas in Scilab <emphasis role="strong">max(A)</emphasis>
     gives the maximum value found in <emphasis role="strong">A</emphasis>. Matlab <emphasis role="strong">max</emphasis>
     treats the values along the first non-singleton dimension.</para>
@@ -3245,7 +3251,7 @@ C = [7,8,9;4,5,6]
 A = [1,2,3;4,5,6]
 C = max(A)
 C = 6
-C = max(A,'r')
+C = max(A,"r")
 C = [4,5,6]
 B = [7,8,9;2,3,4]
 C = max(A,B)
@@ -3262,12 +3268,7 @@ C = [7,8,9;4,5,6]
     in Matlab, dimension parameter is given in a third input parameter (in this case, second parameter must be 
     <emphasis role="strong">[])</emphasis>.</para>
 
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
-C = min(A)
- ]]></programlisting>
-
-  <para>If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">min(A)</emphasis> is equivalent to 
+  <para>C=min(A) If <emphasis role="strong">A</emphasis> is a matrix, <emphasis role="strong">min(A)</emphasis> is equivalent to 
     <emphasis role="strong">min(A,[],1)</emphasis> in Matlab whereas in Scilab <emphasis role="strong">min(A)</emphasis>
     gives the minimum value found in <emphasis role="strong">A</emphasis>. Matlab <emphasis role="strong">min</emphasis>
     treats the values along the first non-singleton dimension.</para>
@@ -3289,7 +3290,7 @@ C = [1,2,3;2,3,4]
 A = [1,2,3;4,5,6]
 C = min(A)
 C = 1
-C = min(A,'r')
+C = min(A,"r")
 C = [1,2,3]
 B = [7,8,9;2,3,4]
 C = min(A,B)
@@ -3299,6 +3300,7 @@ C = [1,2,3;2,3,4]
 
 <refsection id="mkdir">
   <title>mkdir</title>
+  <para>Make new folder </para>
   <para>Scilab <emphasis role="strong">mkdir</emphasis> returns 1 or 2 values but Matlab one can return up to three values
     (third output is a Matlab messageid).</para>
 </refsection>
@@ -3315,7 +3317,7 @@ C = [1,2,3;2,3,4]
   <para>See examples. </para>
 
   <programlisting role="example"><![CDATA[ 
-// Scilab version
+% Matlab version
 more off
 more on
 more(30)
@@ -3351,7 +3353,7 @@ lines(30)
 	</tr>
 	<tr>
 	  <td><para> nargin('fun') </para></td>
-	  <td><para> size(getfield(1,macrovar(fun)),'*') </para></td>
+	  <td><para> size(getfield(1,macrovar(fun)),"*") </para></td>
 	</tr>
       </tbody>
   </table>
@@ -3379,7 +3381,7 @@ lines(30)
 	</tr>
 	<tr>
 	  <td><para> nargout('fun') </para></td>
-	  <td><para> size(getfield(2,macrovar(fun)),'*') </para></td>
+	  <td><para> size(getfield(2,macrovar(fun)),"*") </para></td>
 	</tr>
       </tbody>
   </table>
@@ -3389,14 +3391,14 @@ lines(30)
   <title>ndims</title>
   <para>Number of array dimensions </para>
   <para>There is no Scilab equivalent function for <emphasis role="strong">ndims(A)</emphasis> but it can be emuled by: 
-    <emphasis role="strong">size(size(A),'*')</emphasis>.</para>
+    <emphasis role="strong">size(size(A),"*")</emphasis>.</para>
 </refsection>
 
 <refsection id="num2str">
   <title>num2str</title>
   <para>Number to string conversion </para>
-  <para>num2str(a,precision) : There is no Scilab equivalent for this Matlab expression.</para>
-  <para>num2str(a,format) : Scilab equivalent for Matlab <emphasis role="strong">num2str(a,format)</emphasis>
+  <para>num2str(a,precision) There is no Scilab equivalent for this Matlab expression.</para>
+  <para>num2str(a,format) Scilab equivalent for Matlab <emphasis role="strong">num2str(a,format)</emphasis>
     is <emphasis role="strong">msprintf(format,a)</emphasis>.</para>
 </refsection>
 
@@ -3459,11 +3461,12 @@ B = [1,1]
 
 <refsection id="pause">
   <title>pause</title>
-  <para>Halt execution temporarily Scilab equivalent for Matlab <emphasis role="strong">pause(n)</emphasis>
+  <para>Halt execution temporarily </para>
+  <para>
+    Scilab equivalent for Matlab <emphasis role="strong">pause(n)</emphasis>
     is <emphasis role="strong">xpause(1000*n)</emphasis>.</para>
-  <para>The Matlab expression <emphasis role="strong">pause</emphasis> is translated into Scilab by <emphasis role="strong">halt()</emphasis>
-    : Scilab halt() and Matlab pause are equivalents.</para>
-  <para>pause on/off : There is no Scilab equivalent for Matlab <emphasis role="strong">pause</emphasis> on or 
+  <para>The Matlab expression <emphasis role="strong">pause</emphasis> is translated into Scilab by <emphasis role="strong">halt()</emphasis>: Scilab halt() and Matlab pause are equivalents.</para>
+  <para>pause on/off: There is no Scilab equivalent for Matlab <emphasis role="strong">pause</emphasis> on or 
     <emphasis role="strong">pause off</emphasis></para>
 </refsection>
 
@@ -3476,9 +3479,9 @@ B = [1,1]
 <refsection id="pow2">
   <title>pow2</title>
   <para>Base 2 power and scale floating-point numbers </para>
-  <para>X=pow2(Y) : There is not equivalent function for <emphasis role="strong">pow2</emphasis>
-    in Scilab but, when called with one input argument it ca be emulated by: <emphasis role="strong">2^Y</emphasis></para>
-  <para>X=pow2(F,E) : In this case, Matlab <emphasis role="strong">pow2()</emphasis> ignores imaginary part of input arguments. 
+  <para>X=pow2(Y) There is not equivalent function for <emphasis role="strong">pow2</emphasis>
+    in Scilab but, when called with one input argument it can be emulated by: <emphasis role="strong">2^Y</emphasis></para>
+  <para>X=pow2(F,E) In this case, Matlab <emphasis role="strong">pow2()</emphasis> ignores imaginary part of input arguments. 
     An equivalent expression for this use of <emphasis role="strong">pow2</emphasis> is: <emphasis role="strong">F.* 2 .^ E </emphasis>
     (Note that 2 must be preceeded and followed by a white space).</para>
 </refsection>
@@ -3486,16 +3489,16 @@ B = [1,1]
 <refsection id="prod">
   <title>prod</title>
   <para>Product of array elements </para>
-  <para>M=prod(A) : Scilab <emphasis role="strong">prod(A)</emphasis> returns the product of all components of 
+  <para>M=prod(A) Scilab <emphasis role="strong">prod(A)</emphasis> returns the product of all components of 
     <emphasis role="strong">A</emphasis>. So, if <emphasis role="strong">A</emphasis> is a vector, then Scilab and Matlab work in the same way. If 
     <emphasis role="strong">A</emphasis> is a matrix, Scilab <emphasis role="strong">prod(A)</emphasis> gives the product of all elements of 
     <emphasis role="strong">A</emphasis> but Matlab returns the product of each column. Finally, if <emphasis role="strong">A</emphasis>
     is a multidimensional array, Matlab works on the first non-singleton dimension of <emphasis role="strong">A</emphasis>
     what Scilab does not. So, to be sure to find a Scilab equivalent for Matlab call to <emphasis role="strong">prod</emphasis>
     it is better to precise dimension on which to work.</para>
-  <para>M=prod(A,dim) : In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim=r</emphasis> and 
-    <emphasis role="strong">dim=2</emphasis> is equivalent to <emphasis role="strong">dim=c</emphasis>. In Matlab, 
-    <emphasis role="strong">dim</emphasis> can be greater then the number of dimension of <emphasis role="strong">A</emphasis> (in this case, 
+  <para>M=prod(A,dim) In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim="r"</emphasis> and 
+    <emphasis role="strong">dim=2</emphasis> is equivalent to <emphasis role="strong">dim="c"</emphasis>. In Matlab, 
+    <emphasis role="strong">dim</emphasis> can be greater than the number of dimension of <emphasis role="strong">A</emphasis> (in this case, 
     <emphasis role="strong">M=A</emphasis>), in Scilab you will get an error message.</para>
 
   <programlisting role="example"><![CDATA[ 
@@ -3512,7 +3515,7 @@ M = [4,10,18]
 A = [1,2,3;4,5,6]
 M = prod(A)
 M = 720
-M = prod(A,''r'')
+M = prod(A,"r")
 M = [4,10,18]
  ]]></programlisting>
 </refsection>
@@ -3528,34 +3531,29 @@ M = [4,10,18]
   <title>randn(A)</title>
   <para>Normally distributed random numbers and arrays </para>
   <para>The Matlab expression <emphasis role="strong">B=randn(A)</emphasis> is translated into Scilab by 
-    <emphasis role="strong">B=rand(A,'normal')</emphasis></para>
+    <emphasis role="strong">B=rand(A,"normal"):</emphasis></para>
   <para>If <emphasis role="strong">A</emphasis> is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis>
-    random matrix but in Scilab you get a single random value, use <emphasis role="strong">rand(A,A,'normal')</emphasis> to get the same matrix 
+    random matrix but in Scilab you get a single random value, use <emphasis role="strong">rand(A,A,"normal")</emphasis> to get the same matrix 
     <emphasis role="strong">B</emphasis>. Finally, if <emphasis role="strong">A</emphasis> is a matrix, in Scilab, <emphasis role="strong">B</emphasis>
-    will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message.Note that in Matlab, 
+    will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message. Note that in Matlab, 
     <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="strong">A</emphasis>
     is taken in account), what Scilab function do not tolerate.</para>
-  <para>Particular case : To get the state of the normal generator, in Matlab you have to use <emphasis role="strong">s=randn('state')</emphasis>
-    to get 2 current values of the generator, but Scilab equivalent <emphasis role="strong">s=rand('seed')</emphasis> return only one value.</para>
+  <para>Particular case: To get the state of the normal generator, in Matlab you have to use <emphasis role="strong">s=randn('state')</emphasis>
+    to get 2 current values of the generator, but Scilab equivalent <emphasis role="strong">s=rand("seed")</emphasis> return only one value.</para>
 </refsection>
 
 <refsection id="rand">
   <title>rand(A)</title>
   <para>Uniformly distributed random numbers and arrays </para>
 
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
-B=rand(A)
- ]]></programlisting>
-
-<para>If <emphasis role="strong">A</emphasis> is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis>
+<para>B=rand(A) If <emphasis role="strong">A</emphasis> is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis>
   random matrix but in Scilab you get a single random value, use <emphasis role="strong">rand(A,A)</emphasis> to get the same matrix 
   <emphasis role="strong">B</emphasis>. Finally, if <emphasis role="strong">A</emphasis> is a matrix, in Scilab, <emphasis role="strong">B</emphasis>
-  will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message.Note that in Matlab, 
+  will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message. Note that in Matlab, 
   <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="strong">A</emphasis>
   is taken in account), what Scilab function do not tolerate.</para>
-<para>Particular case : To get the state of the uniform generator, in Matlab you have to use <emphasis role="strong">s=rand('state')</emphasis>
-  to get 35 current values of the generator, but Scilab equivalent <emphasis role="strong">s=rand('seed')</emphasis> return only one value.</para>
+<para>Particular case: To get the state of the uniform generator, in Matlab you have to use <emphasis role="strong">s=rand('state')</emphasis>
+  to get 35 current values of the generator, but Scilab equivalent <emphasis role="strong">s=rand("seed")</emphasis> return only one value.</para>
 </refsection>
 
 <refsection id="rcond">
@@ -3585,7 +3583,7 @@ c = []
 <refsection id="realmin">
   <title>realmin</title>
   <para>Smallest positive floating-point number </para>
-  <para>There is no Scilab equivalent for Matlab <emphasis role="strong">realmin('single')</emphasis></para>
+  <para>There is no Scilab equivalent for Matlab <emphasis role="strong">realmin('single')</emphasis>.</para>
 </refsection>
 
 <refsection id="repmat">
@@ -3593,14 +3591,14 @@ c = []
   <para>Replicate and tile an array </para>
   <para>There is no Scilab equivalent function for Matlab <emphasis role="strong">repmat</emphasis> but it can be replaced by the following 
     expressions (considering <emphasis role="strong">m</emphasis> and <emphasis role="strong">n</emphasis> being real values):</para>
-  <para>repmat(A,m) with m a scalar : can be replaced by <emphasis role="strong">ones(m,m).*.A</emphasis> if 
+  <para>repmat(A,m) with m a scalar: can be replaced by <emphasis role="strong">ones(m,m).*.A</emphasis> if 
     <emphasis role="strong">A</emphasis> is of Double type, by <emphasis role="strong">ones(m,m).*.bool2s(A)</emphasis> if 
     <emphasis role="strong">A</emphasis> is of Boolean type and by <emphasis role="strong">asciimat(ones(m,m).*.asciimat(A)</emphasis> if 
     <emphasis role="strong">A</emphasis> is of String type</para>
-  <para>repmat(A,m) with m a vector : can be replaced by <emphasis role="strong">ones(m(1),m(2),...).*.A</emphasis> is of Double type, by 
+  <para>repmat(A,m) with m a vector: can be replaced by <emphasis role="strong">ones(m(1),m(2),...).*.A</emphasis> is of Double type, by 
     <emphasis role="strong">ones(m(1),m(2),...).*.bool2s(A)</emphasis> if <emphasis role="strong">A</emphasis> is of Boolean type and by 
     <emphasis role="strong">asciimat(ones(m(1),m(2),...).*.asciimat(A)</emphasis> if <emphasis role="strong">A</emphasis> is of String type</para>
-  <para>repmat(A,m,n) : can be replaced by <emphasis role="strong">ones(m,n).*.A</emphasis> if <emphasis role="strong">A</emphasis> 
+  <para>repmat(A,m,n): can be replaced by <emphasis role="strong">ones(m,n).*.A</emphasis> if <emphasis role="strong">A</emphasis> 
     is of Double type, by <emphasis role="strong">ones(m,n).*.bool2s(A)</emphasis> if <emphasis role="strong">A</emphasis> is of Boolean type and by 
     <emphasis role="strong">asciimat(ones(m,n).*.asciimat(A)</emphasis> if <emphasis role="strong">A</emphasis> is of String type </para>
 </refsection>
@@ -3634,11 +3632,9 @@ c = []
   <para>Array dimension </para>
   <para>Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, convert it using 
     <emphasis role="strong">m2scistr</emphasis> to have the same result.</para>
-  <para>d = size(X,dim): If <emphasis role="strong">dim</emphasis> is greater than number of dimensions of <emphasis role="strong">X</emphasis>
-    , Matlab returns <emphasis role="strong">d=1</emphasis>, but in Scilab, you get an error message. Scilab <emphasis role="strong">mtlb_size</emphasis>
+  <para>d = size(X,dim) If <emphasis role="strong">dim</emphasis> is greater than number of dimensions of <emphasis role="strong">X</emphasis>, Matlab returns <emphasis role="strong">d=1</emphasis>, but in Scilab, you get an error message. Scilab <emphasis role="strong">mtlb_size</emphasis>
     can work with <emphasis role="strong">dim</emphasis> greater than number of dimensions of <emphasis role="strong">X</emphasis>.</para>
-  <para>[d1,...dn] = size(X): If <emphasis role="strong">n</emphasis> is greater than number of dimensions of <emphasis role="strong">X</emphasis>
-    , all 'extra' variables are set to <emphasis role="strong">1</emphasis> in Matlab but Scilab returns an error message. Scilab 
+  <para>[d1,...dn] = size(X) If <emphasis role="strong">n</emphasis> is greater than number of dimensions of <emphasis role="strong">X</emphasis>, all "extra" variables are set to <emphasis role="strong">1</emphasis> in Matlab but Scilab returns an error message. Scilab 
     <emphasis role="strong">mtlb_size</emphasis> returns a Matlab like result in these cases. When <emphasis role="strong">n</emphasis>
     is less than number of dimensions of <emphasis role="strong">X</emphasis>, <emphasis role="strong">dn</emphasis>
     contains the product of the sizes of the remaining dimensions in Matlab but in Scilab <emphasis role="strong">dn = size(X,n)</emphasis>, use 
@@ -3650,13 +3646,12 @@ c = []
   <para>Sort elements in ascending order </para>
   <para>Scilab <emphasis role="strong">sort</emphasis> and Matlab <emphasis role="strong">sort</emphasis>
     are different functions ! For character string inputs, please use better <emphasis role="strong">mtlb_sort</emphasis> in Scilab.</para>
-  <para>B = sort(A) : Scilab <emphasis role="strong">gsort</emphasis> can be used as an equivalent for Matlb <emphasis role="strong">sort</emphasis>
-    giving it the good inputs. If <emphasis role="strong">A</emphasis> is a vector, call <emphasis role="strong">gsort(A,'g','i')</emphasis>
-    . If <emphasis role="strong">A</emphasis> is a matrix then call <emphasis role="strong">gsort(A,'r','i')</emphasis>. Note that 
+  <para>B = sort(A) Scilab <emphasis role="strong">gsort</emphasis> can be used as an equivalent for Matlab <emphasis role="strong">sort</emphasis>
+    giving it the good inputs. If <emphasis role="strong">A</emphasis> is a vector, call <emphasis role="strong">gsort(A,"g","i")</emphasis>. If <emphasis role="strong">A</emphasis> is a matrix then call <emphasis role="strong">gsort(A,"r","i")</emphasis>. Note that 
     <emphasis role="strong">gsort</emphasis> does not work with multidimensional arrays.</para>
-  <para>B = sort(A,dim): If in Matlab, <emphasis role="strong">dim</emphasis> is <emphasis role="strong">1</emphasis> (respectively 
-    <emphasis role="strong">2</emphasis>) then replace it by <emphasis role="strong"> 'r' </emphasis> (respectively 
-    <emphasis role="strong"> 'c' </emphasis>) in Scilab when calling <emphasis role="strong">gsort(A,dim,'i')</emphasis>. Note that 
+  <para>B = sort(A,dim) If in Matlab, <emphasis role="strong">dim</emphasis> is <emphasis role="strong">1</emphasis> (respectively 
+    <emphasis role="strong">2</emphasis>) then replace it by <emphasis role="strong">"r"</emphasis> (respectively 
+    <emphasis role="strong">"c"</emphasis>) in Scilab when calling <emphasis role="strong">gsort(A,dim,"i")</emphasis>. Note that 
     <emphasis role="strong">gsort</emphasis> does not work with multidimensional arrays.</para>
 </refsection>
 
@@ -3741,23 +3736,29 @@ c = []
 <refsection id="sum">
   <title>sum</title>
   <para>Sum of array elements </para>
-  <para>M=sum(A) : Scilab <emphasis role="strong">sum(A)</emphasis> returns the sum of all components of <emphasis role="strong">A</emphasis>
-    . So, if <emphasis role="strong">A</emphasis> is a vector, then Scilab and Matlab work in the same way. If <emphasis role="strong">A</emphasis>
+  <para>M=sum(A) Scilab <emphasis role="strong">sum(A)</emphasis> returns the sum of all components of <emphasis role="strong">A</emphasis>. So, if <emphasis role="strong">A</emphasis> is a vector, then Scilab and Matlab work in the same way. If <emphasis role="strong">A</emphasis>
     is a matrix, Scilab <emphasis role="strong">sum(A)</emphasis> gives the sum of all elements of <emphasis role="strong">A</emphasis>
     but Matlab returns the sum of each column. Finally, if <emphasis role="strong">A</emphasis> is a multidimensional array, Matlab works 
     on the first non-singleton dimension of <emphasis role="strong">A</emphasis> what Scilab does not. So, to be sure to find a Scilab 
     equivalent for Matlab call to <emphasis role="strong">sum</emphasis> it is better to precise dimension on which to work.</para>
-  <para>M=sum(A,dim) : In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim=r</emphasis> and 
-    <emphasis role="strong">dim=2</emphasis> is equivalent <emphasis role="strong">dim=c</emphasis>. In Matlab, dim can be greater then 
-    the number of dimension of <emphasis role="strong">A</emphasis> (in this case, <emphasis role="strong">M=A</emphasis>
-    ), in Scilab you will get an error message.</para>
+  <para>M=sum(A,dim) In Scilab <emphasis role="strong">dim=1</emphasis> is equivalent to <emphasis role="strong">dim="r"</emphasis> and 
+    <emphasis role="strong">dim=2</emphasis> is equivalent <emphasis role="strong">dim="c"</emphasis>. In Matlab, dim can be greater then 
+    the number of dimension of <emphasis role="strong">A</emphasis> (in this case, <emphasis role="strong">M=A</emphasis>), in Scilab you will get an error message.</para>
 
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
+          <programlisting role="example"><![CDATA[
+% Matlab version
 A = [1,2,3;4,5,6]
 M = sum(A)
 M = [5,7,9]
 M = sum(A,1)
+M = [5,7,9]
+ ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+// Scilab version
+A = [1,2,3;4,5,6]
+M = sum(A)
+M = 21
+M = sum(A,"r")
 M = [5,7,9]
  ]]></programlisting>
 </refsection>
@@ -3784,10 +3785,10 @@ M = [5,7,9]
   <title>toeplitz</title>
   <para>Toeplitz matrix </para>
   <para><emphasis role="strong">toeplitz</emphasis> can be used with empty matrices in Scilab but not in Matlab.</para>
-  <para>T=toeplitz(c) : If <emphasis role="strong">c</emphasis> is complex, use <emphasis role="strong">mtlb_toeplitz</emphasis>
+  <para>T=toeplitz(c) If <emphasis role="strong">c</emphasis> is complex, use <emphasis role="strong">mtlb_toeplitz</emphasis>
     in Scilab to have the same result than Matlab. Else if <emphasis role="strong">c</emphasis> is not a scalar or a vector, use 
     <emphasis role="strong">mtlb_toeplitz</emphasis> in Scilab to have the same result than Matlab.</para>
-  <para>T=toeplitz(c,r) : If <emphasis role="strong">c</emphasis> and <emphasis role="strong">r</emphasis> are not scalars or vectors or if 
+  <para>T=toeplitz(c,r) If <emphasis role="strong">c</emphasis> and <emphasis role="strong">r</emphasis> are not scalars or vectors or if 
     <emphasis role="strong">c(1,1)&lt;&gt;r(1,1)</emphasis>, use: <emphasis role="strong">mtlb_toeplitz</emphasis>
     in Scilab to have the same result than Matlab.
   </para>
@@ -3796,8 +3797,7 @@ M = [5,7,9]
 <refsection id="tril">
   <title>tril</title>
   <para>Lower triangular part of a matrix </para>
-  <para>In <emphasis role="strong">L=tril(X)</emphasis> and <emphasis role="strong">L=tril(X,k)</emphasis>
-    , Scilab function gives different results from Matlab one if <emphasis role="strong">X</emphasis> is a String matrix. In this case use 
+  <para>In <emphasis role="strong">L=tril(X)</emphasis> and <emphasis role="strong">L=tril(X,k)</emphasis>, Scilab function gives different results from Matlab one if <emphasis role="strong">X</emphasis> is a String matrix. In this case use 
     <emphasis role="strong">mtlb_tril</emphasis> instead.</para>
   <para>Note that <emphasis role="strong">k</emphasis> can be complex in Matlab, in this case, only real part of <emphasis role="strong">k</emphasis>
     is taken in account, Scilab gives an error message for a such use.</para>
@@ -3806,8 +3806,7 @@ M = [5,7,9]
 <refsection id="triu">
   <title>triu</title>
   <para>Upper triangular part of a matrix </para>
-  <para>In <emphasis role="strong">U=triu(X)</emphasis> and <emphasis role="strong">U=triu(X,k)</emphasis>
-    , Scilab function gives different results from Matlab one if <emphasis role="strong">X</emphasis> is a String matrix. In this case use 
+  <para>In <emphasis role="strong">U=triu(X)</emphasis> and <emphasis role="strong">U=triu(X,k)</emphasis>, Scilab function gives different results from Matlab one if <emphasis role="strong">X</emphasis> is a String matrix. In this case use 
     <emphasis role="strong">mtlb_triu</emphasis> instead. </para>
   <para>Note that <emphasis role="strong">k</emphasis> can be complex in Matlab, in this case, only real part of <emphasis role="strong">k</emphasis>
     is taken in account, Scilab gives an error message for a such use.</para>
@@ -3828,7 +3827,8 @@ M = [5,7,9]
 
 <refsection id="uint16">
   <title>uint16</title>
-  <para>Convert to 16-bit unsigned integer For infinite values, Scilab and Matlab <emphasis role="strong">uint16</emphasis> return different values.</para>
+  <para>Convert to 16-bit unsigned integer </para>
+  <para>For infinite values, Scilab and Matlab <emphasis role="strong">uint16</emphasis> return different values.</para>
 
   <programlisting role="example"><![CDATA[ 
 % Matlab version
@@ -3886,7 +3886,12 @@ A = 0
     <emphasis role="strong">-echo</emphasis> option.</para>
 
   <programlisting role="example"><![CDATA[ 
+% Matlab version
 [status,result] = unix(...)
+ ]]></programlisting>
+
+  <programlisting role="example"><![CDATA[
+// Scilab version
 [result,status] = unix_g(...)
  ]]></programlisting>
 </refsection>
@@ -3895,7 +3900,7 @@ A = 0
   <title>upper(str)</title>
   <para>Convert string to upper case </para>
   <para>If <emphasis role="strong">A</emphasis> is not a character string matrix, Scilab equivalent for <emphasis role="strong">B=upper(A)</emphasis>
-    is <emphasis role="strong">B=A</emphasis>, else equivalent is <emphasis role="strong">B=convstr(A,u)</emphasis>.</para>
+    is <emphasis role="strong">B=A</emphasis>, else equivalent is <emphasis role="strong">B=convstr(A,"u")</emphasis>.</para>
 </refsection>
 
 <refsection id="varargin">
@@ -3934,19 +3939,20 @@ A = 0
   <title>whos</title>
   <para>List variables in the workspace </para>
   <para>Scilab <emphasis role="strong">whos</emphasis> is an equivalent for Matlab <emphasis role="strong">whos</emphasis> just when called as follows: 
-    <emphasis role="strong">whos</emphasis> or <emphasis role="strong">whos('global')</emphasis></para>
+    <emphasis role="strong">whos</emphasis> or <emphasis role="strong">whos("global")</emphasis></para>
 </refsection>
 
 <refsection id="who">
   <title>who</title>
   <para>List variables in the workspace </para>
   <para>Scilab <emphasis role="strong">who</emphasis> is an equivalent for Matlab <emphasis role="strong">who</emphasis> just when called as follows: 
-    <emphasis role="strong">who</emphasis> or <emphasis role="strong">who('global')</emphasis></para>
+    <emphasis role="strong">who</emphasis> or <emphasis role="strong">who("global")</emphasis></para>
 </refsection>
 
 <refsection id="winqueryreg">
   <title>winqueryreg</title>
-  <para>Get item from Microsoft Windows registry Scilab function returns a matrix of strings or a int32 value but Matlab function returns 
+  <para>Get item from Microsoft Windows registry </para>
+  <para>Scilab function returns a matrix of strings or a int32 value but Matlab function returns 
     a Cell of strings or a int32 value.</para>
 </refsection>
 
@@ -3954,36 +3960,52 @@ A = 0
   <title>zeros</title>
   <para>Create an array of all zeros </para>
 
-  <programlisting role="example"><![CDATA[ 
-// Scilab version
-   1 B=zeros(A)
- ]]></programlisting>
-
-  <para>If <emphasis role="strong">A</emphasis> is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis>
+  <para>B=zeros(A) If <emphasis role="strong">A</emphasis> is a scalar, then Matlab returns a <emphasis role="strong">A*A</emphasis>
     matrix of zeros but in Scilab you get a <emphasis role="strong">1</emphasis>, use <emphasis role="strong">zeros(A,A)</emphasis>
     to get the same matrix <emphasis role="strong">B</emphasis>. If <emphasis role="strong">A</emphasis> is a row vector, Scilab and Matlab give the same 
     <emphasis role="strong">B</emphasis>. Finally, if <emphasis role="strong">A</emphasis> is a matrix, in Scilab, <emphasis role="strong">B</emphasis>
-    will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message.Note that in Matlab, 
+    will be a matrix having the same size as <emphasis role="strong">A</emphasis> whereas in Matlab, you get an error message. Note that in Matlab, 
     <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="strong">A</emphasis>
     is taken in account), what Scilab function do not tolerate. </para>
+
+    <programlisting role="example"><![CDATA[
+% Matlab version
+B = zeros(2)
+B = [0,;0,0]
+B = zeros(2,2)
+B = [0,0;0,0]
+B = zeros([3,3])
+B = [0,0,0;0,0,0;0,0,0]
+ ]]></programlisting>
+        </td>
+        <td>
+    <programlisting role="example"><![CDATA[
+// Scilab version
+B = zeros(2)
+B = 0
+B = zeros(2,2)
+B = [0,0;0,0]
+B = zeros([3,3])
+B = [0,0]
+ ]]></programlisting>
 </refsection>
 
 <refsection id="colon">
   <title>colon</title>
-  <para>Using colon with empty matrices:: In Matlab if almost one operand is an empty matrix, then result is an empty matrix what gives 
+  <para>Using colon with empty matrices: In Matlab if almost one operand is an empty matrix, then result is an empty matrix what gives 
     an error message in Scilab.</para>
-  <para>Using colon with NaNs and Infs. In Matlab if almost one operand is an empty matrix, then result is a NaN
+  <para>Using colon with NaNs and Infs: In Matlab if almost one operand is an empty matrix, then result is a NaN
     what make Scilab returning an error.</para>
 </refsection>
 
 <refsection id="plus">
   <title>plus</title>
-  <para>Character strings addition : In Scilab, string addition is the same as string concatenation, what is done in Matlab by 
+  <para>Character strings addition: In Scilab, string addition is the same as string concatenation, what is done in Matlab by 
     <emphasis role="strong">strcat</emphasis> function. In Matlab, string addition is the equivalent of the addition of corresponding ASCII codes.</para>
-  <para>Empty matrix and addition : In Matlab, addition can only be made if the operands have the same size unless one is a scalar. 
+  <para>Empty matrix and addition: In Matlab, addition can only be made if the operands have the same size unless one is a scalar. 
     For exemple, empty matrices can only be added to another empty matrix or a scalar. Note that when you add a scalar and an empty matrix, 
     Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.</para>
-  <para>Unary plus : In Matlab, unary plus exists, but in Scilab it is automatically deleted when compiling so we can consider that Scilab 
+  <para>Unary plus: In Matlab, unary plus exists, but in Scilab it is automatically deleted when compiling so we can consider that Scilab 
     unary plus does not exist.</para>
 
 
@@ -4036,7 +4058,7 @@ A = 1
 
 <refsection id="elementwise_multiplication">
   <title>elementwise multiplication</title>
-  <para>WARNING : Expressions like <emphasis role="strong">X.*.23</emphasis> are interpreted in Matlab as <emphasis role="strong">X</emphasis>
+  <para>WARNING: Expressions like <emphasis role="strong">X.*.23</emphasis> are interpreted in Matlab as <emphasis role="strong">X</emphasis>
     elementwisely multiplied by <emphasis role="strong">0.23</emphasis> while Scilab computes the Kronecker product of 
     <emphasis role="strong">X</emphasis> and <emphasis role="strong">23</emphasis>, to have the same result, insert a blank between * and 
     <emphasis role="strong">.23</emphasis></para>
@@ -4044,7 +4066,7 @@ A = 1
 
 <refsection id="elementwise_right_division">
   <title>elementwise right division</title>
-  <para>WARNING : Expressions like <emphasis role="strong">X./.23</emphasis> are interpreted in Matlab as the elementwise right division of 
+  <para>WARNING: Expressions like <emphasis role="strong">X./.23</emphasis> are interpreted in Matlab as the elementwise right division of 
     <emphasis role="strong">X</emphasis> by <emphasis role="strong">0.23</emphasis> while Scilab computes the Kronecker right division of 
     <emphasis role="strong">X</emphasis> and <emphasis role="strong">23</emphasis>, to have the same result, insert a blank between 
     <emphasis role="strong">/</emphasis> and <emphasis role="strong">.23</emphasis></para>
@@ -4052,9 +4074,9 @@ A = 1
 
 <refsection id="elementwise_left_division">
   <title>elementwise left division</title>
-  <para>WARNING : Expressions like <emphasis role="strong">X.\.23</emphasis> are interpreted in Matlab as the elementwise division of 
+  <para>WARNING: Expressions like <emphasis role="strong">X.\.23</emphasis> are interpreted in Matlab as the elementwise division of 
     <emphasis role="strong">0.23</emphasis> by <emphasis role="strong">X</emphasis> while Scilab computes the Kronecker left division of 
-    <emphasis role="strong">X</emphasis> and <emphasis role="strong">23</emphasis>, to have the same result, inser a blank between 
+    <emphasis role="strong">X</emphasis> and <emphasis role="strong">23</emphasis>, to have the same result, insert a blank between 
     <emphasis role="strong">\</emphasis> and <emphasis role="strong">.23</emphasis></para>
 </refsection>
 
@@ -4081,10 +4103,10 @@ s = ['s';'t';'r';'1']
 
 <refsection id="elementwise_exponent">
   <title>elementwise exponent</title>
-  <para>Note that Matlab seems to have a bug when exposant is a character. </para>
-  <para>WARNING : Expressions like <emphasis role="strong">X^.23</emphasis>
+  <para>Note that Matlab seems to have a bug when exposant is a character.</para>
+  <para>WARNING: Expressions like <emphasis role="strong">X.^.23</emphasis>
     are interpreted in Matlab as X to the power of 0.23 while Scilab executes X elementwisely powered to 23, to have the same result, 
-    inser a blank between <emphasis role="strong">.</emphasis> and <emphasis role="strong">23</emphasis>.</para>
+    insert a blank between <emphasis role="strong">^</emphasis> and <emphasis role="strong">.23</emphasis>.</para>
 </refsection>
 
 <refsection id="transpose">
@@ -4092,6 +4114,12 @@ s = ['s';'t';'r';'1']
   <para>Character string transpose: </para>
   <para>In Scilab, the result of a character string transpose is the string itself; but in Matlab, transpose of a character string gives 
     a column vector of characters. To have the same result in Scilab, use: <emphasis role="strong">mtlb_t</emphasis>.</para>
+
+  <programlisting role="example"><![CDATA[
+% Matlab version
+s = ('str1')'
+s = ['s';'t';'r';'1'] 
+ ]]></programlisting>
 
   <programlisting role="example"><![CDATA[ 
 // Scilab version
@@ -4105,14 +4133,14 @@ s = ['s';'t';'r';'1']
 <refsection id="logical_and">
   <title>logical AND</title>
   <para>Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, 
-    convert it to ascii code matrices using m2scistr <emphasis role="strong"> to have the same result. </emphasis></para>
+    convert it to ascii code matrices using <emphasis role="strong">m2scistr</emphasis> to have the same result.</para>
   <para><emphasis role="strong">Scilab function has a bug! </emphasis></para>
 </refsection>
 
 <refsection id="logical_or">
   <title>logical OR</title>
   <para>Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, 
-    convert it to ASCII code matrices using m2scistr<emphasis role="strong"> to have the same result. </emphasis></para>
+    convert it to ASCII code matrices using <emphasis role="strong">m2scistr</emphasis> to have the same result.</para>
   <para><emphasis role="strong">Scilab function has a bug! </emphasis></para>
 </refsection>
 
@@ -4142,15 +4170,13 @@ s = ['s';'t';'r';'1']
 
 <refsection id="exponent">
   <title>exponent</title>
-  <para>Note that Matlab seems to have a bug for X^(Y) when X is a character and that in Scilab operations such as X^(Y)
-    with <emphasis role="strong">X</emphasis> a scalar and <emphasis role="strong">Y</emphasis> a matrix is equivalent to 
-    X.^(Y) (Will change in next Scilab versions...).</para>
+  <para>Note that Matlab seems to have a bug for <emphasis role="bold">X^(Y)</emphasis> when <emphasis role="bold">X</emphasis> is a character and that in Scilab operations such as <emphasis role="bold">X^(Y)</emphasis> with <emphasis role="bold">X</emphasis> a scalar and <emphasis role="bold">Y</emphasis> a matrix is equivalent to <emphasis role="bold">X.^(Y)</emphasis> (Will change in next Scilab versions...).</para>
 </refsection>
 
 <refsection id="negation">
   <title>negation</title>
   <para>Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, 
-    convert it to ascii code matrices using <emphasis role="strong">m2scistr</emphasis> to have the same result.</para>
+    convert it to ascii code matrices using <emphasis role="bold">m2scistr</emphasis> to have the same result.</para>
 </refsection>
 
 <refsection id="last_index">
@@ -4179,7 +4205,6 @@ s = ['s';'t';'r';'1']
 <refsection id="variable_pi">
   <title>pi</title>
   <para>Ratio of a circle's circumference to its diameter </para>
-  <para>%pi </para>
   <para>Only Matlab allows to change the value of this variable.</para>
 </refsection>
 </refentry>

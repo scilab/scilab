@@ -35,8 +35,7 @@ feval
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-evstr
-execstr
+evstr - execstr
 ]]></programlisting>
           </td>
         </tr>
@@ -47,7 +46,7 @@ execstr
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>One output</term>
+        <term>One output:</term>
         <listitem>
           <para>
 In this case Scilab <emphasis role="bold">evstr</emphasis> is an equivalent to <emphasis role="bold">feval</emphasis>, after modifying inputs such as in examples below.
@@ -55,7 +54,7 @@ In this case Scilab <emphasis role="bold">evstr</emphasis> is an equivalent to <
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>More than one output</term>
+        <term>More than one output:</term>
         <listitem>
           <para>
 In this case Scilab <emphasis role="bold">execstr</emphasis> is an equivalent to <emphasis role="bold">feval</emphasis>, after modifying inputs such as in examples below.

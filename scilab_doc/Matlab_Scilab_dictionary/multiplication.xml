@@ -12,8 +12,8 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="multiplication">
   <refnamediv>
-    <refname>multiplication</refname>
-    <refpurpose>(Matlab function)   Mutiplication</refpurpose>
+    <refname>*</refname>
+    <refpurpose>(Matlab function) Multiplication</refpurpose>
   </refnamediv>
   <refsection>
     <title>Matlab/Scilab equivalent</title>

@@ -35,7 +35,7 @@ lower(str)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-convstr(str,''u'')
+convstr(str,"l")
 ]]></programlisting>
           </td>
         </tr>

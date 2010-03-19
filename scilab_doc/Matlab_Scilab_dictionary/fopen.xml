@@ -46,7 +46,7 @@ mopen
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Access permission</term>
+        <term>Access permission:</term>
         <listitem>
           <para>
 Matlab offers two permissions options not supported by Scilab: <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis> (for tape drives) 
@@ -54,7 +54,7 @@ Matlab offers two permissions options not supported by Scilab: <emphasis role="b
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Input values</term>
+        <term>Input values:</term>
         <listitem>
           <para>
 In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis> does not exist. You can also use <emphasis role="bold">fopen</emphasis> in Matlab to get informations on a file identifier (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented in Scilab.
@@ -62,7 +62,7 @@ In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files,
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Machine format</term>
+        <term>Machine format:</term>
         <listitem>
           <para>
 Note that Scilab does not support machine format values as input or output.

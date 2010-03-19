@@ -35,7 +35,7 @@ acsc(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-asin(1 ./A)
+asin((1) ./A)
 ]]></programlisting>
           </td>
         </tr>

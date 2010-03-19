@@ -35,8 +35,7 @@ pause
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-xpause
-halt
+xpause - halt
 ]]></programlisting>
           </td>
         </tr>
@@ -50,7 +49,7 @@ Scilab equivalent for Matlab <emphasis role="bold">pause(n)</emphasis> is <empha
 </para>
     <variablelist>
       <varlistentry>
-        <term>pause &lt;--&gt; halt()</term>
+        <term>The Matlab expression pause is translated into Scilab by halt():</term>
         <listitem>
           <para>
 Scilab halt() and Matlab pause are equivalents.
@@ -58,7 +57,7 @@ Scilab halt() and Matlab pause are equivalents.
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>pause on/off</term>
+        <term>pause on/off:</term>
         <listitem>
           <para>
 There is no Scilab equivalent for Matlab <emphasis role="bold">pause</emphasis> on or <emphasis role="bold">pause off</emphasis>

@@ -45,7 +45,7 @@ convstr(str1)==convstr(str2)
   <refsection>
     <title>Particular cases</title>
     <para>
-Note that <emphasis role="bold">strcmpi</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">0</emphasis>. Scilab <emphasis role="bold">==</emphasis> will in this case return <emphasis role="bold">%T</emphasis> if both inputs are equal...
+Note that <emphasis role="bold">strcmpi</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">0</emphasis>. Scilab <emphasis role="bold">==</emphasis> will in this case return <emphasis role="bold">%T</emphasis> if both inputs are equal.
 </para>
   </refsection>
 </refentry>

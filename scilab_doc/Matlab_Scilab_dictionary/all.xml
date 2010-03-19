@@ -49,7 +49,7 @@ Matlab <emphasis role="bold">all</emphasis> function can work with complexes, wh
 </para>
     <variablelist>
       <varlistentry>
-        <term>B=all(A) &lt;--&gt; B=and(A)</term>
+        <term>The Matlab expression <emphasis role="bold">B=all(A)</emphasis> is translated into Scilab by <emphasis role="bold">B=and(A)</emphasis>:</term>
         <listitem>
           <para>
 If <emphasis role="bold">A</emphasis> is a matrix, <emphasis role="bold">all(A)</emphasis> is equivalent to <emphasis role="bold">all(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">and(A)</emphasis> is a logical AND of all elements of <emphasis role="bold">A</emphasis>. If <emphasis role="bold">A</emphasis> is a multidimensional array then Matlab treats the values along the first non-singleton dimension, but Scilab returns logical AND of all elements of <emphasis role="bold">A</emphasis>.
@@ -57,10 +57,10 @@ If <emphasis role="bold">A</emphasis> is a matrix, <emphasis role="bold">all(A)<
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>B=all(A,dim) &lt;--&gt; B=and(A,dim)</term>
+        <term>The Matlab expression <emphasis role="strong">B=all(A,dim)</emphasis> is translated into Scilab by <emphasis role="strong">B=and(A,dim)</emphasis>:</term>
         <listitem>
           <para>
-In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim=''r''</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent <emphasis role="bold">dim=''c''</emphasis>. In Matlab, <emphasis role="bold">dim</emphasis> can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">B=A</emphasis>), in Scilab you will get an error message.
+In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim="r"</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent to <emphasis role="bold">dim="c"</emphasis>. In Matlab, <emphasis role="bold">dim</emphasis> can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">B=A</emphasis>), in Scilab you will get an error message.
 </para>
         </listitem>
       </varlistentry>

@@ -35,8 +35,7 @@ ferror
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-mclearerr
-merror
+mclearerr - merror
 ]]></programlisting>
           </td>
         </tr>

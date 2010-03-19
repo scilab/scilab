@@ -46,14 +46,14 @@ fft(A,1[,...])
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Y = ifft(X)</term>
+        <term>Y = ifft(X):</term>
         <listitem>
           <para>If X is a vector then Scilab equivalent for Matlab <emphasis role="bold">ifft(X)</emphasis> is <emphasis role="bold">fft(X,1)</emphasis>. If <emphasis role="bold">X</emphasis> is a matrix then Scilab equivalent for Matlab <emphasis role="bold">ifft(X)</emphasis> is <emphasis role="bold">fft(X,1,2,1)</emphasis>. 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Y = ifft(X,n) / Y = ifft(X,n,dim) / Y = ifft(X,[],dim)</term>
+        <term>Y = ifft(X,n) / Y = ifft(X,n,dim) / Y = ifft(X,[],dim):</term>
         <listitem>
           <para>There is no Scilab equivalent for all these Matlab uses of <emphasis role="bold">ifft</emphasis>, in these cases, use <emphasis role="bold">mtlb_ifft</emphasis> instead.
 </para>

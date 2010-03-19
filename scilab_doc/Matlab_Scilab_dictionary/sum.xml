@@ -55,7 +55,7 @@ sum
       <varlistentry>
         <term>M=sum(A,dim)</term>
         <listitem>
-          <para>In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim=''r''</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent <emphasis role="bold">dim=''c''</emphasis>. In Matlab, dim can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">M=A</emphasis>), in Scilab you will get an error message.
+          <para>In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim="r"</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent <emphasis role="bold">dim="c"</emphasis>. In Matlab, dim can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">M=A</emphasis>), in Scilab you will get an error message.
 </para>
         </listitem>
       </varlistentry>
@@ -87,7 +87,7 @@ M = [5,7,9]
 A = [1,2,3;4,5,6]
 M = sum(A)
 M = 21
-M = sum(A,''r'')
+M = sum(A,"r")
 M = [5,7,9]
 ]]></programlisting>
         </td>

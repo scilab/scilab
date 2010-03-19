@@ -45,7 +45,7 @@ mseek
   <refsection>
     <title>Particular cases</title>
     <para>
-Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below. Note that order of input value is different...
+Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below. Note that order of input value is different.
 </para>
   </refsection>
   <refsection>
@@ -62,24 +62,24 @@ Scilab and Matlab functions differ by the flag which indicate the origin of the 
       <tr>
         <td>
           <programlisting role="example"><![CDATA[
-File beginning:
+% File beginning:
 fseek(fid,offset,'bof')
 fseek(fid,offset,-1)
-Current position:
+% Current position:
 fseek(fid,offset,'cof')
 fseek(fid,offset,0)
-File end:
+% File end:
 fseek(fid,offset,'eof')
 fseek(fid,offset,1)
 ]]></programlisting>
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-File beginning:
+// File beginning:
 fseek(offset,fid,"set")
-Current position:
+// Current position:
 fseek(offset,fid,"cur")
-File end:
+// File end:
 fseek(offset,fid,"end")
 ]]></programlisting>
         </td>

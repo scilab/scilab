@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="transpose">
   <refnamediv>
-    <refname>transpose</refname>
+    <refname>'</refname>
     <refpurpose>(Matlab function) Transpose</refpurpose>
   </refnamediv>
   <refsection>
@@ -46,7 +46,7 @@
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Character string transpose</term>
+        <term>Character string transpose:</term>
         <listitem>
           <para>
 In Scilab, the result of a character string transpose is the string itself; but in Matlab, transpose of a character string gives a column vector of characters. To have the same result in Scilab, use: <emphasis role="bold">mtlb_t</emphasis>. 

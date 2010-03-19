@@ -46,7 +46,7 @@ dec2hex
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Empty matrix input</term>
+        <term>Empty matrix input:</term>
         <listitem>
           <para>
 In Matlab <emphasis role="bold">dec2hex</emphasis> returns <emphasis role="bold">""</emphasis> when input is <emphasis role="bold">[]</emphasis> but Scilab <emphasis role="bold">dec2hex</emphasis> returns <emphasis role="bold">[]</emphasis>.
@@ -54,7 +54,7 @@ In Matlab <emphasis role="bold">dec2hex</emphasis> returns <emphasis role="bold"
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Complex inputs</term>
+        <term>Complex inputs:</term>
         <listitem>
           <para>
 In Matlab <emphasis role="bold">dec2hex</emphasis> automatically removes complex part of input but not in Scilab.
@@ -62,7 +62,7 @@ In Matlab <emphasis role="bold">dec2hex</emphasis> automatically removes complex
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Two inputs</term>
+        <term>Two inputs:</term>
         <listitem>
           <para>
 In Matlab <emphasis role="bold">dec2hex</emphasis> can have two inputs, in Scilab <emphasis role="bold">mtlb_dec2hex</emphasis> emulates this case.

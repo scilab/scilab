@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tanh">
   <refnamediv>
     <refname>tanh</refname>
-    <refpurpose>(Matlab function)   Hyperbolic tangent</refpurpose>
+    <refpurpose>(Matlab function) Hyperbolic tangent</refpurpose>
   </refnamediv>
   <refsection>
     <title>Matlab/Scilab equivalent</title>

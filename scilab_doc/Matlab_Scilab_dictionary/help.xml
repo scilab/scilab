@@ -45,7 +45,7 @@ help
   <refsection>
     <title>Particular cases</title>
     <para>
-In Scilab you can not get help on a toolbox, only on a function...
+In Scilab you can not get help on a toolbox, only on a function.
 </para>
     <para>
 Scilab equivalent for Matlab <emphasis role="bold">help syntax</emphasis> is <emphasis role="bold">help("names")</emphasis>.

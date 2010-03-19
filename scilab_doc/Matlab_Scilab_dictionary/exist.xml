@@ -45,10 +45,10 @@ exist
   <refsection>
     <title>Particular cases</title>
     <para>
-Scilab <emphasis role="bold">exist</emphasis> function only works for variables, not for M-files or else...
+Scilab <emphasis role="bold">exist</emphasis> function only works for variables, not for M-files or else.
 </para>
     <para>
-Scilab <emphasis role="bold">mtlb_exist</emphasis> function is a partial emulation for Matlab <emphasis role="bold">exist</emphasis>
+Scilab <emphasis role="bold">mtlb_exist</emphasis> function is a partial emulation for Matlab <emphasis role="bold">exist</emphasis>.
 </para>
   </refsection>
 </refentry>

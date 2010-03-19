@@ -35,9 +35,7 @@ close
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-close
-xdel
-delete
+close - xdel - delete
 ]]></programlisting>
           </td>
         </tr>

@@ -35,7 +35,7 @@ randn(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-rand(A,''normal'')
+rand(A,"normal")
 ]]></programlisting>
           </td>
         </tr>
@@ -46,10 +46,10 @@ rand(A,''normal'')
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>B=randn(A) &lt;--&gt; B=rand(A,``normal'')</term>
+        <term>The Matlab expression B=randn(A) is translated into Scilab by B=rand(A,"normal"):</term>
         <listitem>
           <para>
-If <emphasis role="bold">A</emphasis> is a scalar, then Matlab returns a <emphasis role="bold">A*A</emphasis> random matrix but in Scilab you get a single random value, use <emphasis role="bold">rand(A,A,''normal'')</emphasis> to get the same matrix <emphasis role="bold">B</emphasis>. Finally, if <emphasis role="bold">A</emphasis> is a matrix, in Scilab, <emphasis role="bold">B</emphasis> will be a matrix having the same size as <emphasis role="bold">A</emphasis> whereas in Matlab, you get an error message.
+If <emphasis role="bold">A</emphasis> is a scalar, then Matlab returns a <emphasis role="bold">A*A</emphasis> random matrix but in Scilab you get a single random value, use <emphasis role="bold">rand(A,A,"normal")</emphasis> to get the same matrix <emphasis role="bold">B</emphasis>. Finally, if <emphasis role="bold">A</emphasis> is a matrix, in Scilab, <emphasis role="bold">B</emphasis> will be a matrix having the same size as <emphasis role="bold">A</emphasis> whereas in Matlab, you get an error message.
 </para>
         </listitem>
       </varlistentry>
@@ -58,7 +58,7 @@ If <emphasis role="bold">A</emphasis> is a scalar, then Matlab returns a <emphas
 Note that in Matlab, <emphasis role="bold">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="bold">A</emphasis> is taken in account), what Scilab function do not tolerate.
 </para>
     <para>
-Particular case: To get the state of the normal generator, in Matlab you have to use <emphasis role="bold">s=randn('state')</emphasis> to get 2 current values of the generator, but Scilab equivalent <emphasis role="bold">s=rand(``seed'')</emphasis> return only one value.
+Particular case: To get the state of the normal generator, in Matlab you have to use <emphasis role="bold">s=randn('state')</emphasis> to get 2 current values of the generator, but Scilab equivalent <emphasis role="bold">s=rand("seed")</emphasis> return only one value.
 </para>
   </refsection>
 </refentry>

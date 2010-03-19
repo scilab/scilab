@@ -35,8 +35,7 @@ num2str
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-string
-msprintf
+string - msprintf
 ]]></programlisting>
           </td>
         </tr>

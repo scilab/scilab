@@ -10,9 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="elementwise power">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="elementwise_power">
   <refnamediv>
-    <refname>elementwise power</refname>
+    <refname>.^</refname>
     <refpurpose>(Matlab function) Elementwise exponent</refpurpose>
   </refnamediv>
   <refsection>
@@ -45,10 +45,10 @@
   <refsection>
     <title>Particular cases</title>
     <para>
-Note that Matlab seems to have a bug when exposant is a character...
+Note that Matlab seems to have a bug when exposant is a character.
 </para>
     <para>
-WARNING: Expressions like <emphasis role="bold">X.^.23</emphasis> are interpreted in Matlab as <emphasis role="bold">X</emphasis> to the power of <emphasis role="bold">0.23</emphasis> while Scilab executes <emphasis role="bold">X</emphasis> elementwisely powered to <emphasis role="bold">23</emphasis>, to have the same result, inser a blank between ^ and <emphasis role="bold">.23</emphasis>
+WARNING: Expressions like <emphasis role="bold">X.^.23</emphasis> are interpreted in Matlab as <emphasis role="bold">X</emphasis> to the power of <emphasis role="bold">0.23</emphasis> while Scilab executes <emphasis role="bold">X</emphasis> elementwisely powered to <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between ^ and <emphasis role="bold">.23</emphasis>.
 </para>
   </refsection>
 </refentry>

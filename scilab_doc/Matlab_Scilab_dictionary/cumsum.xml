@@ -48,7 +48,7 @@ cumsum
       <varlistentry>
         <term>C=cumsum(A)</term>
         <listitem>
-          <para>If A is a matrix, <emphasis role="bold">cumsum(A)</emphasis> is equivalent to <emphasis role="bold">cumsum(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">cumsum(A)</emphasis> gives the cumulative sum of all the entries of <emphasis role="bold">A</emphasis> taken columnwise. Actually, Matlab works on the first non-singleton dimension and Scilb does not.
+          <para>If A is a matrix, <emphasis role="bold">cumsum(A)</emphasis> is equivalent to <emphasis role="bold">cumsum(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">cumsum(A)</emphasis> gives the cumulative sum of all the entries of <emphasis role="bold">A</emphasis> taken columnwise. Actually, Matlab works on the first non-singleton dimension and Scilab does not.
 </para>
         </listitem>
       </varlistentry>

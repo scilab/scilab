@@ -45,7 +45,7 @@ cd
   <refsection>
     <title>Particular cases</title>
     <para>
-Note that <emphasis role="bold">cd ..</emphasis> does not work in Scilab, but it does in Matlab. In Scilab you can use <emphasis role="bold">cd("..")</emphasis>.
+Note that <emphasis role="bold">cd ..</emphasis> does not work in Scilab, but it does in Matlab. In Scilab you can use <emphasis role="bold">cd("..")</emphasis> or <emphasis role="strong"> cd ../ </emphasis>.
 </para>
   </refsection>
 </refentry>

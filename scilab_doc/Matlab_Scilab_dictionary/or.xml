@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="or">
   <refnamediv>
-    <refname>or</refname>
+    <refname>|</refname>
     <refpurpose>(Matlab function) Logical OR</refpurpose>
   </refnamediv>
   <refsection>
@@ -48,7 +48,7 @@
 Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, convert it to ASCII code matrices using <emphasis role="bold">m2scistr</emphasis> to have the same result.
 </para>
     <para>
-Scilab function has a bug!
+<emphasis role="bold">Scilab function has a bug! </emphasis>
 </para>
   </refsection>
 </refentry>

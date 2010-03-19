@@ -50,51 +50,73 @@ Some Matlab formats have no Scilab equivalent, see examples below.
   </refsection>
   <refsection>
     <title>Examples</title>
-    <informaltable border="1" pgwide="1">
+  <para>Some Matlab formats have no Scilab equivalent, see examples below.</para>
+  
+  <table>
+    <caption/>
+    <tbody>
       <tr>
-        <td align="center">
-          <emphasis role="bold">Matlab</emphasis>
-        </td>
-        <td align="center">
-          <emphasis role="bold">Scilab</emphasis>
+        <td>
+          <para><emphasis role="strong">Equivalence table</emphasis></para>
         </td>
       </tr>
       <tr>
-        <td>
-          <programlisting role="example"><![CDATA[
-format
-format +
-format bank
-format compact
-format hex
-format long
-format long e
-format long g
-format loose
-format rat
-format short
-format short e
-format short g
-]]></programlisting>
-        </td>
-        <td>
-          <programlisting role="example"><![CDATA[
-format("v",6)
-format(6)
-No equivalent for: format "bank"
-No equivalent for: format "compact"
-No equivalent for: format "hex"
-format(16)
-format("e",16)
-format("e",16)
-No equivalent for: format "loose"
-No equivalent for: format "rat"
-format(6)
-format("e",6)
-format("e",6)
-]]></programlisting>
-        </td>
+        <td><para> Matlab </para></td>
+        <td><para> Scilab </para></td>
       </tr>
-    </informaltable>
+      <tr>
+        <td><para> format </para></td>
+        <td><para> format("v",6) </para></td>
+      </tr>
+      <tr>
+        <td><para> format + </para></td>
+        <td><para> format(6) </para></td>
+      </tr>
+      <tr>
+        <td><para> format bank </para></td>
+        <td><para> No equivalent for: format "bank" </para></td>
+      </tr>
+      <tr>
+        <td><para> format compact </para></td>
+        <td><para> No equivalent for: format "compact" </para></td>
+      </tr>
+      <tr>
+        <td><para> format hex </para></td>
+        <td><para> No equivalent for: format "hex" </para></td>
+      </tr>
+      <tr>
+        <td><para> format long </para></td>
+        <td><para> format(16) </para></td>
+      </tr>
+      <tr>
+        <td><para> format long e </para></td>
+        <td><para> format("e",16) </para></td>
+      </tr>
+      <tr>
+        <td><para> format long g </para></td>
+        <td><para> format("e",16) </para></td>
+      </tr>
+      <tr>
+        <td><para> format loose </para></td>
+        <td><para> No equivalent for: format "loose" </para></td>
+      </tr>
+      <tr>
+        <td><para> format rat </para></td>
+        <td><para> No equivalent for: format "rat" </para></td>
+      </tr>
+      <tr>
+        <td><para> format short </para></td>
+        <td><para> format(6) </para></td>
+      </tr>
+      <tr>
+        <td><para> format short e </para></td>
+        <td><para> format("e",6) </para></td>
+      </tr>
+      <tr>
+        <td><para> format short g </para></td>
+        <td><para> format("e",6) </para></td>
+      </tr>
+    </tbody>
+  </table>
   </refsection>
 </refentry>

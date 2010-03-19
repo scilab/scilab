@@ -51,7 +51,7 @@ To get the same result for character string matrices in Scilab than in Matlab, c
 All unspecified dimensions are represented by a <emphasis role="bold">[]</emphasis> input in Matlab while in Scilab they are given by a <emphasis role="bold">-1</emphasis>.
 </para>
     <para>
-Matlab <emphasis role="bold">reshape</emphasis> suppresses singleton higher dimension, it is not the case for <emphasis role="bold">matrix</emphasis> in Scilab...
+Matlab <emphasis role="bold">reshape</emphasis> suppresses singleton higher dimension, it is not the case for <emphasis role="bold">matrix</emphasis> in Scilab.
 </para>
   </refsection>
 </refentry>

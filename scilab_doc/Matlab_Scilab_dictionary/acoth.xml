@@ -35,7 +35,7 @@ acoth(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-atanh(1 ./A)
+atanh((1) ./A)
 ]]></programlisting>
           </td>
         </tr>

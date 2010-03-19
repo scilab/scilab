@@ -45,7 +45,7 @@ warning
   <refsection>
     <title>Particular cases</title>
     <para>
-Scilab <emphasis role="bold">warning</emphasis> function can only take one character string as input but Matlab function can take more than one character string as input and also numerical values... 
+Scilab <emphasis role="bold">warning</emphasis> function can only take one character string as input but Matlab function can take more than one character string as input and also numerical values. 
 </para>
   </refsection>
 </refentry>

@@ -45,7 +45,7 @@ strindex
   <refsection>
     <title>Particular cases</title>
     <para>
-Note that <emphasis role="bold">strfind</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">1</emphasis> if inputs are equal and <emphasis role="bold">0</emphasis> else but <emphasis role="bold">strindex</emphasis> can not do such comparison...
+Note that <emphasis role="bold">strfind</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">1</emphasis> if inputs are equal and <emphasis role="bold">0</emphasis> else but <emphasis role="bold">strindex</emphasis> can not do such comparison.
 </para>
   </refsection>
 </refentry>

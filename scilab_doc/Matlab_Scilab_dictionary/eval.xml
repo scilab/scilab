@@ -35,8 +35,7 @@ eval
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-evstr
-execstr
+evstr - execstr
 ]]></programlisting>
           </td>
         </tr>
@@ -47,7 +46,7 @@ execstr
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Expression</term>
+        <term>Expression:</term>
         <listitem>
           <para>
 When <emphasis role="bold">eval</emphasis> has to execute an expression then Scilab equivalent for <emphasis role="bold">eval</emphasis> is <emphasis role="bold">evstr</emphasis>
@@ -55,7 +54,7 @@ When <emphasis role="bold">eval</emphasis> has to execute an expression then Sci
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Instruction</term>
+        <term>Instruction:</term>
         <listitem>
           <para>
 When <emphasis role="bold">eval</emphasis> has to execute an instruction with just one output value then Scilab equivalent for <emphasis role="bold">eval</emphasis> is <emphasis role="bold">evstr</emphasis>. If instruction has more than one output value then <emphasis role="bold">execstr</emphasis> has to be used as follows.
@@ -90,10 +89,10 @@ eval('1+1','1+2')
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-evstr('1+1')
-x = evstr('1+1')
-execstr('[d1,d2]=size(1)')
-execstr('[d1,d2]=size(1)')
+evstr("1+1")
+x = evstr("1+1")
+execstr("[d1,d2]=size(1)")
+execstr("[d1,d2]=size(1)")
 if execstr("1+1","errcatch") then execstr("1+2");end
 ]]></programlisting>
         </td>

@@ -35,7 +35,7 @@ asech(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-acosh(1 ./A)
+acosh((1) ./A)
 ]]></programlisting>
           </td>
         </tr>

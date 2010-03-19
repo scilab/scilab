@@ -35,7 +35,7 @@ grid
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -80,21 +80,21 @@ There is no equivalent function for Matlab <emphasis role="bold">grid</emphasis>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>grid(axes_handle,'on')</term>
+        <term>grid(axes_handle,"on")</term>
         <listitem>
           <para> may be replaced by <emphasis role="bold">axes_handle.grid=[1 1]</emphasis>
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>grid(axes_handle,'off')</term>
+        <term>grid(axes_handle,"off")</term>
         <listitem>
           <para> may be replaced by <emphasis role="bold">axes_handle.grid=[-1 -1]</emphasis>
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>grid(axes_handle,'minor')</term>
+        <term>grid(axes_handle,"minor")</term>
         <listitem>
           <para> can be emuled in Scilab by <emphasis role="bold">mtlb_hold</emphasis> but all grids are toggled
 </para>

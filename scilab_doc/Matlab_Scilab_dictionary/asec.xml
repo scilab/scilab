@@ -35,7 +35,7 @@ asec(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-acos(1 ./A)
+acos((1) ./A)
 ]]></programlisting>
           </td>
         </tr>

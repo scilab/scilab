@@ -71,10 +71,10 @@ B = ['s  ';' t ';'  r']
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-B = diag(``str'')
-B = ``str''
-B = mtlb_diag(``str'')
-B = [``s  ``;'' t ``;''  r'']
+B = diag("str")
+B = "str"
+B = mtlb_diag("str")
+B = ["s  ";" t ";"  r"]
 ]]></programlisting>
         </td>
       </tr>

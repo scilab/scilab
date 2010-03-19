@@ -35,7 +35,7 @@ docopt
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -46,7 +46,7 @@ docopt
     <title>Particular cases</title>
     <para>
 There no Scilab equivalent function, however, information about Web Browser used can be found using global
-variable <emphasis role="bold">%browsehelp</emphasis>. Thos variables exists under all platforms.
+variable <emphasis role="bold">%browsehelp</emphasis>. This variable exists under all platforms.
 </para>
   </refsection>
 </refentry>

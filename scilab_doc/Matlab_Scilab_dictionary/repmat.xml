@@ -35,7 +35,7 @@ repmat
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -49,7 +49,7 @@ There is no Scilab equivalent function for Matlab <emphasis role="bold">repmat</
 </para>
     <variablelist>
       <varlistentry>
-        <term>repmat(A,m) with m a scalar</term>
+        <term>repmat(A,m) with m a scalar:</term>
         <listitem>
           <para>
 can be replaced by <emphasis role="bold">ones(m,m).*.A</emphasis> if <emphasis role="bold">A</emphasis> is of Double type, by <emphasis role="bold">ones(m,m).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m,m).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type
@@ -57,7 +57,7 @@ can be replaced by <emphasis role="bold">ones(m,m).*.A</emphasis> if <emphasis r
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>repmat(A,m) with m a vector</term>
+        <term>repmat(A,m) with m a vector:</term>
         <listitem>
           <para>
 can be replaced by <emphasis role="bold">ones(m(1),m(2),...).*.A</emphasis> is of Double type, by <emphasis role="bold">ones(m(1),m(2),...).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m(1),m(2),...).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type
@@ -65,7 +65,7 @@ can be replaced by <emphasis role="bold">ones(m(1),m(2),...).*.A</emphasis> is o
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>repmat(A,m,n)</term>
+        <term>repmat(A,m,n):</term>
         <listitem>
           <para>
 can be replaced by <emphasis role="bold">ones(m,n).*.A</emphasis> if <emphasis role="bold">A</emphasis> is of Double type, by <emphasis role="bold">ones(m,n).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m,n).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type

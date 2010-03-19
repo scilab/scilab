@@ -35,7 +35,7 @@ fscanf
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -45,7 +45,7 @@ fscanf
   <refsection>
     <title>Particular cases</title>
     <para>
-There is no equivalent function for Matlab <emphasis role="bold">fscanf</emphasis> in Scilab but an emulation function has been written: <emphasis role="bold">mtlb_fscanf</emphasis>. This function probably not allows all Matlab <emphasis role="bold">fscanf</emphasis> possibilities... 
+There is no equivalent function for Matlab <emphasis role="bold">fscanf</emphasis> in Scilab but an emulation function has been written: <emphasis role="bold">mtlb_fscanf</emphasis>. This function probably not allows all Matlab <emphasis role="bold">fscanf</emphasis> possibilities.
 </para>
   </refsection>
 </refentry>

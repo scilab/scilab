@@ -35,7 +35,7 @@ logical(A)
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -45,7 +45,7 @@ logical(A)
   <refsection>
     <title>Particular cases</title>
     <para>
-Scilab equivalent for <emphasis role="bold">logical(A)</emphasis> is <emphasis role="italic">A&lt;&gt;0</emphasis> if <emphasis role="bold">A</emphasis> is not an empty matrix and <emphasis role="italic">[]</emphasis> otherwise.
-</para>
+If <emphasis role="bold">A</emphasis> is not an empty matrix, Scilab equivalent for <emphasis role="bold">logical(A)</emphasis>
+    is A not equal to <emphasis role="bold">0</emphasis> else Scilab equivalent is <emphasis role="bold">[]</emphasis>.</para>
   </refsection>
 </refentry>

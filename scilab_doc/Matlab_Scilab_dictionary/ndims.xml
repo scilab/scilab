@@ -35,7 +35,7 @@ ndims
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -45,7 +45,7 @@ ndims
   <refsection>
     <title>Particular cases</title>
     <para>
-There is no Scilab equivalent function for <emphasis role="bold">ndims(A)</emphasis> but it can be emuled by: <emphasis role="bold">size(size(A),"*")</emphasis>
+There is no Scilab equivalent function for <emphasis role="bold">ndims(A)</emphasis> but it can be emuled by: <emphasis role="bold">size(size(A),"*")</emphasis>.
 </para>
   </refsection>
 </refentry>

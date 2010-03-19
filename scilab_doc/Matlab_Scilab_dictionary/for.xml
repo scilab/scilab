@@ -45,7 +45,7 @@ for
   <refsection>
     <title>Particular cases</title>
     <para>
-The variable used as loop index is clear in Scilab if all iterations have been made but is not clear if llop is ended by a break. In Matlab, this variable is never cleared.
+The variable used as loop index is clear in Scilab if all iterations have been made but is not clear if loop is ended by a break. In Matlab, this variable is never cleared.
 </para>
   </refsection>
 </refentry>

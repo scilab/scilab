@@ -10,10 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isfield">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="elementwise_left_division">
   <refnamediv>
-    <refname>isfield</refname>
-    <refpurpose>(Matlab function) Determine if input is a structure array field</refpurpose>
+    <refname>.\</refname>
+    <refpurpose>(Matlab function) Elementwise left division</refpurpose>
   </refnamediv>
   <refsection>
     <title>Matlab/Scilab equivalent</title>
@@ -30,12 +30,12 @@
         <tr>
           <td>
             <programlisting role="example"><![CDATA[
-isfield
+.\
 ]]></programlisting>
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-No equivalent
+.\
 ]]></programlisting>
           </td>
         </tr>
@@ -45,25 +45,7 @@ No equivalent
   <refsection>
     <title>Particular cases</title>
     <para>
-There is no Scilab equivalent function for Matlab <emphasis role="bold">tf=isfield(A,field)</emphasis> but there are equivalent instructions:
+WARNING: Expressions like <emphasis role="bold">X.\.23</emphasis> are interpreted in Matlab as the elementwise division of <emphasis role="bold">0.23</emphasis> by <emphasis role="bold">X</emphasis> while Scilab computes the Kronecker left division of <emphasis role="bold">X</emphasis> and <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between <emphasis role="bold">\</emphasis> and <emphasis role="bold">.23</emphasis>
 </para>
-    <variablelist>
-      <varlistentry>
-        <term>If A is not a structure and/or field is not a character string:</term>
-        <listitem>
-          <para>
-Scilab equivalent is <emphasis role="bold">%F</emphasis>.
-</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>If A is a structure and field is a character string:</term>
-        <listitem>
-          <para>
-Scilab equivalent is <emphasis role="bold">allfields=getfield(1,A);tf=or(allfields(3:$)==field);</emphasis>.
-</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
 </refentry>

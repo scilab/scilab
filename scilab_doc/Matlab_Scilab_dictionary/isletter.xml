@@ -35,7 +35,7 @@ isletter
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -67,9 +67,9 @@ tf = isletter(A)
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-If A is a String matrix:
+// If A is a String matrix:
 tf = ((asciimat(A)&gt;=65) &amp; (asciimat(A)&lt;=90)) | ((asciimat(A)&gt;=97) &amp; (asciimat(A)&lt;=122))
-If A is not a String matrix:
+// If A is not a String matrix:
 tf = zeros(A)
 ]]></programlisting>
         </td>

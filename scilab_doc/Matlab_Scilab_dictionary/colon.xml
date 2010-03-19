@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="colon">
   <refnamediv>
-    <refname>colon</refname>
+    <refname>:</refname>
     <refpurpose>(Matlab function) Colon</refpurpose>
   </refnamediv>
   <refsection>
@@ -46,7 +46,7 @@
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Using colon with empty matrices</term>
+        <term>Using colon with empty matrices:</term>
         <listitem>
           <para>
 In Matlab if almost one operand is an empty matrix, then result is an empty matrix what gives an error message in Scilab.
@@ -54,7 +54,7 @@ In Matlab if almost one operand is an empty matrix, then result is an empty matr
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Using colon with NaNs and Infs</term>
+        <term>Using colon with NaNs and Infs:</term>
         <listitem>
           <para>
 In Matlab if almost one operand is an empty matrix, then result is a NaN what make Scilab returning an error.

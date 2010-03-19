@@ -35,8 +35,7 @@ log2
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-log2
-frexp
+log2 - frexp
 ]]></programlisting>
           </td>
         </tr>

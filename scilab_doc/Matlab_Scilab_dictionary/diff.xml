@@ -55,13 +55,13 @@ diff
       <varlistentry>
         <term>Y = diff(X,n,dim)</term>
         <listitem>
-          <para>If dimension given by <emphasis role="bold">dim</emphasis> reaches 1 before <emphasis role="bold">n</emphasis> iterations have been done, Matlab switches to next non-singleton dimension, but Scilab does not, use <emphasis role="bold">mtlb_diff</emphasis> to get equivalent results...
+          <para>If dimension given by <emphasis role="bold">dim</emphasis> reaches 1 before <emphasis role="bold">n</emphasis> iterations have been done, Matlab switches to next non-singleton dimension, but Scilab does not, use <emphasis role="bold">mtlb_diff</emphasis> to get equivalent results.
 </para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-When <emphasis role="bold">n</emphasis> is greater than all existing dimensions of <emphasis role="bold">X</emphasis>, Matlab returns <emphasis role="bold">[]</emphasis> what Scilab may not give for all inputs...
+When <emphasis role="bold">n</emphasis> is greater than all existing dimensions of <emphasis role="bold">X</emphasis>, Matlab returns <emphasis role="bold">[]</emphasis> what Scilab may not give for all inputs.
 </para>
   </refsection>
 </refentry>

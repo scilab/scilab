@@ -35,7 +35,7 @@ sort
           </td>
           <td>
             <programlisting role="example"><![CDATA[
-
+No equivalent
 ]]></programlisting>
           </td>
         </tr>
@@ -48,14 +48,14 @@ sort
 Scilab <emphasis role="bold">sort</emphasis> and Matlab <emphasis role="bold">sort</emphasis> are different functions !
 </para>
     <para>
-For character string inputs, please use better <emphasis role="bold">mtlb_sort</emphasis> in Scilab...
+For character string inputs, please use better <emphasis role="bold">mtlb_sort</emphasis> in Scilab.
 </para>
     <variablelist>
       <varlistentry>
         <term>B = sort(A)</term>
         <listitem>
           <para>
-Scilab <emphasis role="bold">gsort</emphasis> can be used as an equivalent for Matlb <emphasis role="bold">sort</emphasis> giving it the good inputs. If <emphasis role="bold">A</emphasis> is a vector, call <emphasis role="bold">gsort(A,"g","i")</emphasis>. If <emphasis role="bold">A</emphasis> is a matrix then call <emphasis role="bold">gsort(A,"r","i")</emphasis>. Note that <emphasis role="bold">gsort</emphasis> does not work with multidimensional arrays...
+Scilab <emphasis role="bold">gsort</emphasis> can be used as an equivalent for Matlab <emphasis role="bold">sort</emphasis> giving it the good inputs. If <emphasis role="bold">A</emphasis> is a vector, call <emphasis role="bold">gsort(A,"g","i")</emphasis>. If <emphasis role="bold">A</emphasis> is a matrix then call <emphasis role="bold">gsort(A,"r","i")</emphasis>. Note that <emphasis role="bold">gsort</emphasis> does not work with multidimensional arrays.
 </para>
         </listitem>
       </varlistentry>
@@ -63,7 +63,7 @@ Scilab <emphasis role="bold">gsort</emphasis> can be used as an equivalent for M
         <term>B = sort(A,dim)</term>
         <listitem>
           <para>
-If in Matlab, <emphasis role="bold">dim</emphasis> is <emphasis role="bold">1</emphasis> (respectively <emphasis role="bold">2</emphasis>) then replace it by <emphasis role="bold">"r"</emphasis> (respectively <emphasis role="bold">"c"</emphasis>) in Scilab when calling <emphasis role="bold">gsort(A,dim,"i")</emphasis>. Note that <emphasis role="bold">gsort</emphasis> does not work with multidimensional arrays...
+If in Matlab, <emphasis role="bold">dim</emphasis> is <emphasis role="bold">1</emphasis> (respectively <emphasis role="bold">2</emphasis>) then replace it by <emphasis role="bold">"r"</emphasis> (respectively <emphasis role="bold">"c"</emphasis>) in Scilab when calling <emphasis role="bold">gsort(A,dim,"i")</emphasis>. Note that <emphasis role="bold">gsort</emphasis> does not work with multidimensional arrays.
 </para>
         </listitem>
       </varlistentry>

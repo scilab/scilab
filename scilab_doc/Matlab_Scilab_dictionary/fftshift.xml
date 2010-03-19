@@ -83,10 +83,10 @@ Y = 'rst'
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-Y = fftshift('str')
-Y = 'str'
-Y = mtlb_fftshift('str')
-Y = 'rst'
+Y = fftshift("str")
+Y = "str"
+Y = mtlb_fftshift("str")
+Y = "rst"
 ]]></programlisting>
         </td>
       </tr>

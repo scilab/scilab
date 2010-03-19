@@ -46,7 +46,7 @@ ascii
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>S = setstr(A) with A a caracter string</term>
+        <term>S = setstr(A) with A a caracter string:</term>
         <listitem>
           <para>
 In this case, Scilab <emphasis role="bold">ascii</emphasis> function convert string to ascii code matrix, but <emphasis role="bold">setstr</emphasis> keeps string format.

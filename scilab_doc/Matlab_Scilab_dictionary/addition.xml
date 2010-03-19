@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="addition">
   <refnamediv>
-    <refname>addition</refname>
+    <refname>+</refname>
     <refpurpose>(Matlab function) Plus</refpurpose>
   </refnamediv>
   <refsection>
@@ -46,7 +46,7 @@
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>Character strings addition</term>
+        <term>Character strings addition:</term>
         <listitem>
           <para>
 In Scilab, string addition is the same as string concatenation, what is done in Matlab by <emphasis role="bold">strcat</emphasis> function. In Matlab, string addition is the equivalent of the addition of corresponding ASCII codes.
@@ -54,7 +54,7 @@ In Scilab, string addition is the same as string concatenation, what is done in 
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Empty matrix and addition</term>
+        <term>Empty matrix and addition:</term>
         <listitem>
           <para>
 In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar. Note that when you add a scalar and an empty matrix, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
@@ -62,7 +62,7 @@ In Matlab, addition can only be made if the operands have the same size unless o
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Unary plus</term>
+        <term>Unary plus:</term>
         <listitem>
           <para>
 In Matlab, unary plus exists, but in Scilab it is automatically deleted when compiling so we can consider that Scilab unary plus does not exist.

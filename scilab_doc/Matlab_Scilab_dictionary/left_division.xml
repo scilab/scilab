@@ -10,9 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="left division">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="left_division">
   <refnamediv>
-    <refname>left division</refname>
+    <refname>\</refname>
     <refpurpose>(Matlab function) Left division</refpurpose>
   </refnamediv>
   <refsection>
@@ -45,7 +45,7 @@
   <refsection>
     <title>Particular cases</title>
     <para>
-Note that Matlab left division gives strange results when one operand is a character string matrix and not the other one... 
+Note that Matlab left division gives strange results when one operand is a character string matrix and not the other one.
 </para>
   </refsection>
 </refentry>
