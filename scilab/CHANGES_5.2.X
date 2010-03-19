@@ -97,6 +97,9 @@ Bug Fixes:
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
+* bug 6648 fixed - The description of the format_n property was missing from the
+                   axis_properties online help page.
+
 * bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
                    and their attached entities to disappear when data min and max
                    bounds were equal (for any of the X,Y or Z axes).
