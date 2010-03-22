@@ -78,6 +78,12 @@ Tests:
   disable tests that need long-time duration. These tests are enabled if
   test_run() is called with the "enable_lt" optional argument.
 
+On-line Help building system:
+=============================
+
+* Compilation of the on-line help failed if two XML files had the same name. This
+  constraint has been removed.
+
 Obsolete Functions:
 ===================
 
