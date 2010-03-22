@@ -86,6 +86,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.io.BlockReader;
 import org.scilab.modules.xcos.io.BlockWriter;
 import org.scilab.modules.xcos.io.XcosCodec;
@@ -104,7 +105,6 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosEvent;
@@ -1713,7 +1713,8 @@ public class XcosDiagram extends ScilabGraph {
 	    this.setSavedFile(writeFile);
 	    File theFile = new File(writeFile);
 	    setTitle(theFile.getName().substring(0, theFile.getName().lastIndexOf('.')));
-	    ConfigXcosManager.saveToRecentOpenedFiles(writeFile);
+	    ConfigurationManager.getInstance().addToRecentFiles(writeFile);
+	    ConfigurationManager.getInstance().saveConfig();
 	    setModified(false);
 	} else {
 	    XcosDialogs.couldNotSaveFile(this);

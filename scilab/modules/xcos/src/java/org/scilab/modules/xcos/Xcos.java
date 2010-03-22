@@ -23,15 +23,14 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
 /**
  * Xcos entry point class 
@@ -88,11 +87,12 @@ public final class Xcos {
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
-		ConfigXcosManager.saveToRecentOpenedFiles(filename);
+		ConfigurationManager.getInstance().addToRecentFiles(filename);
 		if (!XcosTab.focusOnExistingFile(filename)) {
 		    XcosDiagram diagram = createEmptyDiagram();
 		    diagram.openDiagramFromFile(filename);
 		}
+		ConfigurationManager.getInstance().saveConfig();
 	    }
 	});
     }
