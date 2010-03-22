@@ -138,11 +138,6 @@ public final class Xcos {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
 	
 	/*
-	 * Stop any running simulation
-	 */
-	ScilabInterpreterManagement.requestScilabExec("haltscicos");
-	
-	/*
 	 * Using an iterator because the collection is modified during the
 	 * iteration.
 	 */
