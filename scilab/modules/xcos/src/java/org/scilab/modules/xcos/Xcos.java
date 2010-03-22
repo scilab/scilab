@@ -85,6 +85,9 @@ public final class Xcos {
      * @param fileName The filename
      */
     public static void xcos(String fileName) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+		
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
