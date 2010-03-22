@@ -72,6 +72,8 @@ Xcos:
 * bug 6780 fixed - The region to superblock action did not work when an 
                    outgoing link is selected.
 
+* bug 6797 fixed - The importXcosDiagram macros was Scicos libraries dependant.
+
 Tests:
 ======
 
