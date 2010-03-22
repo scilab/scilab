@@ -48,17 +48,14 @@ public final class Xcos {
     /** This class is a static singleton, thus it must not be instantiated */
     private Xcos() { }
 
-    /** Palette creation */
-    static {
-	/* load scicos libraries (macros) */
-	ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
-    }
-
     /**
      * Debug main function
      * @param args command line args (Not used)
      */
     public static void main(String[] args) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		xcos();
@@ -70,6 +67,9 @@ public final class Xcos {
      * Entry point without filename
      */
     public static void xcos() {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 	    PaletteManager.setVisible(true);
@@ -84,6 +84,9 @@ public final class Xcos {
      * @param fileName The filename
      */
     public static void xcos(String fileName) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+		
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
@@ -133,11 +136,6 @@ public final class Xcos {
      */
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-	
-	/*
-	 * Stop any running simulation
-	 */
-	ScilabInterpreterManagement.requestScilabExec("haltscicos");
 	
 	/*
 	 * Using an iterator because the collection is modified during the
