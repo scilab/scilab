@@ -36,13 +36,15 @@ namespace symbol
     /** Open a new scope */
     void	scope_begin()
     {
-      this->l_scope.push_front(*new Scope());
+      this->l_scope.push_front(new Scope());
     }
 
     /** Close the last scope, forgetting everything since the latest
      **	scope_begin (). */
     void	scope_end()
     {
+    	Scope* scope = this->l_scope.front();
+    	delete scope;
       this->l_scope.pop_front();
     }
 
@@ -51,17 +53,17 @@ namespace symbol
 			size_t iSize = l_scope.size();
 			if(iSize > 1)
 			{
-				std::list<Scope>::iterator i;
+				std::list<Scope*>::iterator i;
 				i = l_scope.begin();
 				i++;
-				i->put(key, value);
+				(*i)->put(key, value);
 			}
 		}
 		
     /** Associate value to key in the current scope. */
     void	put (const string& key, InternalType &value)
     {
-      InternalType *pOld = (this->l_scope.front()).put(key, value);
+      InternalType *pOld = (this->l_scope.front())->put(key, value);
 /*			if(pOld != NULL)
 			{
 				std::list<Scope>::const_iterator it_list_scope;
@@ -86,11 +88,11 @@ namespace symbol
 		{
 			InternalType* result = 0;
 
-			std::list<Scope>::const_iterator it_list_scope;
+			std::list<Scope*>::const_iterator it_list_scope;
 
 			for (it_list_scope = this->l_scope.begin(); it_list_scope != this->l_scope.end(); ++it_list_scope)
 			{
-				result = (*it_list_scope).get(key);
+				result = (*it_list_scope)->get(key);
 				if (result == 0)
 					continue ;
 				return result;
@@ -101,9 +103,9 @@ namespace symbol
 		std::list<std::string>& get_funlist(const string& _stModuleName)
 		{
 			//get hightest scope
-			std::list<Scope>::iterator i = l_scope.end();
+			std::list<Scope*>::iterator i = l_scope.end();
 			i--;
-			return i->get_names(_stModuleName);
+			return (*i)->get_names(_stModuleName);
 		}
   };
 

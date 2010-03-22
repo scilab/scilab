@@ -243,8 +243,8 @@ namespace ast
 			Callable *pCall = execFunc.result_get()->getAsCallable();
 			types::typed_list out;
 			types::typed_list in;
-			
-			//find the good macro
+
+			//get function arguments
 			ExecVisitor *execVar = new ast::ExecVisitor[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
@@ -287,9 +287,16 @@ namespace ast
 					}
 				}
 
-				for(int i = 0 ; i < out.size() ; i++)
+				if(out.size() == 1)
 				{
-					result_set(i, out[i]);
+					result_set(out[0]);
+				}
+				else 
+				{
+					for(int i = 0 ; i < out.size() ; i++)
+					{
+						result_set(i, out[i]);
+					}
 				}
 			}
 			else if(Ret == Callable::Error)

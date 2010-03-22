@@ -44,19 +44,21 @@ namespace symbol
     /** Open a new scope */
     void	scope_begin(const string& name)
     {
-      this->l_scope.push_front(*new Scope(name));
+      this->l_scope.push_front(new Scope(name));
     }
 
 		/** Open a new scope */
     void	scope_begin()
     {
-      this->l_scope.push_front(*new Scope(""));
+      this->l_scope.push_front(new Scope(""));
     }
 
     /** Close the last scope, forgetting everything since the latest
      **	scope_begin (). */
     void	scope_end()
     {
+    	Scope* scope = this->l_scope.front();
+    	delete scope;
       this->l_scope.pop_front();
     }
 
@@ -68,7 +70,7 @@ namespace symbol
     /** Associate value to key in the global scope. */
     void	put (const string& key, InternalType &value)
     {
-      (this->l_scope.back()).put(key, value);
+      (*this->l_scope.back()).put(key, value);
     }
 
     /** \brief If key was associated to some Entry_T in
@@ -80,7 +82,7 @@ namespace symbol
     {
       InternalType* result = 0;
 
-      result = (this->l_scope.back()).get(key);
+      result = (*this->l_scope.back()).get(key);
       return result;
     }
 
@@ -98,20 +100,18 @@ namespace symbol
     */
     void	put(const string& name, string key, InternalType &value)
     {
-      list<Scope>::iterator it_list_scope;
+      list<Scope*>::iterator it_list_scope;
 
-      for (it_list_scope = this->l_scope.begin();
-	   it_list_scope != this->l_scope.end();
-	   ++it_list_scope)
-	{
-	  if ((*it_list_scope).get_name() == name)
-	    {
-	      (*it_list_scope).put(key, value);
-	      return ;
-	    }
-	}
+      for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end(); ++it_list_scope)
+			{
+	 			if ((*it_list_scope)->get_name() == name)
+		    {
+		      (*it_list_scope)->put(key, value);
+		      return ;
+		    }
+			}
       scope_begin(name);
-      (this->l_scope.front()).put(key, value);
+      (*this->l_scope.front()).put(key, value);
     }
 
     /** \brief If key was associated to some Entry_T in
@@ -121,17 +121,15 @@ namespace symbol
      */
     InternalType*	get (const string& name, const string& key) const
     {
-      list<Scope>::const_iterator it_list_scope;
+      list<Scope*>::const_iterator it_list_scope;
 
-      for (it_list_scope = this->l_scope.begin();
-	   it_list_scope != this->l_scope.end();
-	   ++it_list_scope)
-	{
-	  if ((*it_list_scope).get_name() == name)
-	    {
-	      return (*it_list_scope).get(key);
-	    }
-	}
+      for (it_list_scope = this->l_scope.begin() ; it_list_scope != this->l_scope.end() ; ++it_list_scope)
+			{
+	  		if ((*it_list_scope)->get_name() == name)
+	  	  {
+	  	    return (*it_list_scope)->get(key);
+	  	  }
+			}
       return NULL;
     }
 

@@ -49,7 +49,7 @@ namespace symbol
 		void	print (std::ostream& ostr) const;
 
 	protected:
-		std::list<Scope> l_scope;
+		std::list<Scope*> l_scope;
 	};
 
 }

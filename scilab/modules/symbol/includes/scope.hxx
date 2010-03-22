@@ -48,6 +48,7 @@ namespace symbol
 			map<string, InternalType*>::const_iterator i;
 			for(i = _scope->begin() ; i != _scope->end() ; ++i)
 			{
+				//std::cout << i->first << std::endl;
 				i->second->DecreaseRef();
 				if(i->second->isDeletable())
 				{
