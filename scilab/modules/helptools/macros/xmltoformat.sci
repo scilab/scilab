@@ -1077,7 +1077,7 @@ function xmlfiles = x2f_get_xml_files(directory)
 	// =========================================================================
 	
 	if xmlfiles <> [] then
-		xmlfiles = "a" + getmd5(xmlfiles,"string");
+		xmlfiles = "a" + getmd5(xmlpaths,"string");
 	end
 	
 	// Build the final matrix
