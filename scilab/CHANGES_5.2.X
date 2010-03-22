@@ -79,6 +79,12 @@ Tests:
   disable tests that need long-time duration. These tests are enabled if
   test_run() is called with the "enable_lt" optional argument.
 
+On-line Help building system:
+=============================
+
+* Compilation of the on-line help failed if two XML files had the same name. This
+  constraint has been removed.
+
 Obsolete Functions:
 ===================
 
@@ -97,6 +103,9 @@ Bug Fixes:
                    entity's default background color to change.
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6648 fixed - The description of the format_n property was missing from the
+                   axis_properties online help page.
 
 * bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
                    and their attached entities to disappear when data min and max
