@@ -73,7 +73,6 @@ namespace ast
     virtual ~VarDec()
     {
       delete _init;
-      delete &_name;
     }
     /** \} */
 
