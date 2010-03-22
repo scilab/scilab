@@ -115,6 +115,8 @@ Bug Fixes:
 
 * bug 6712 fixed - The "title" function forced displaying axes.
 
+* bug 6792 fixed - wrong interpretation of macro arguments when the macro call  appears in an list extraction
+
 
 
 
