@@ -49,17 +49,14 @@ public final class Xcos {
     /** This class is a static singleton, thus it must not be instantiated */
     private Xcos() { }
 
-    /** Palette creation */
-    static {
-	/* load scicos libraries (macros) */
-	ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
-    }
-
     /**
      * Debug main function
      * @param args command line args (Not used)
      */
     public static void main(String[] args) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		xcos();
@@ -71,6 +68,9 @@ public final class Xcos {
      * Entry point without filename
      */
     public static void xcos() {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		XcosPaletteManager.loadPalette();
