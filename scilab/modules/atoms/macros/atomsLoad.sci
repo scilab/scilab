@@ -325,15 +325,16 @@ function result = atomsLoad(packages)
 			end
 		end
 		
-		ierr = exec(loader_file,"errcatch");
+		ierr = execstr("exec(loader_file,-1)","errcatch");
 		
 		if ierr > 0 then
+			mprintf(gettext("%s: An error occurred while loading ''%s-%s'':\n"),"atomsLoad",this_package_name,this_package_version);
+			errormsg = lasterror(%T);
+			mprintf("\t%s\n",errormsg);
 			if ATOMSAUTOLOAD then
-				mprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version);
-				lasterror(%T);
 				continue;
 			else
-				error(msprintf(gettext("%s: An error occurred while loading ''%s-%s''.\n"),"atomsLoad",this_package_name,this_package_version));
+				error("");
 			end
 		end
 		

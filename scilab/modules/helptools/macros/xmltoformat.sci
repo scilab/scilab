@@ -1065,6 +1065,13 @@ function xmlfiles = x2f_get_xml_files(directory)
 		lmt   = [];
 	end
 	
+	// xmlfiles => md5sum
+	// =========================================================================
+	
+	if xmlfiles <> [] then
+		xmlfiles = "a" + getmd5(xmlfiles,"string");
+	end
+	
 	// Build the final matrix
 	// =========================================================================
 	xmlfiles = [ xmlfiles xmlpaths lmt ];

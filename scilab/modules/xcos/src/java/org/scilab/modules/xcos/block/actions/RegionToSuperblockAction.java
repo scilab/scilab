@@ -343,7 +343,9 @@ public final class RegionToSuperblockAction extends VertexSelectionDependantActi
 
 				if (isInSelection(graph.getSelectionCells(), otherSide)) {
 				    graph.addSelectionCell(link);
-				} // isInSelection
+				} else {
+					graph.removeSelectionCell(link);
+				}
 				
 				if (otherSide instanceof SplitBlock) {
 				    graph.addSelectionCell(otherSide);

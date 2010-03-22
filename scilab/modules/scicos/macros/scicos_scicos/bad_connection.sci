@@ -95,6 +95,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
         path_out=path_out(k(1)) // "from" block number
         path_in=path_in(k(1))   // "to" block number
 
+	    xcosShowBlockWarning(path_out); //** new
         msg = [];
         if typ==0 then
             msg = ['Hilited block(s) have connected ports ';
@@ -113,8 +114,10 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
         else
             errorDiagramPath(path, [path_out, path_in], msg, "", %t);
         end
+	    xcosClearBlockWarning(path_out); //** new
     else // connected links do not verify block contraints
         mess=prt_out;
+	    xcosShowBlockWarning(path_out); //** new
         if type(path_out)==15 then //problem with implicit block
             message('Problem with the block generated from modelica blocks')
         else
@@ -122,5 +125,6 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
             path_out=path_out($) //  block number
             errorDiagramPath(path, path_out, mess, "", %t);
         end
+	    xcosClearBlockWarning(path_out); //** new
     end
 endfunction

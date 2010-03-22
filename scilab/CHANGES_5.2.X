@@ -1,6 +1,14 @@
                 Changes between Versions 5.2.1 and 5.2.2 of Scilab
                 ==================================================
 
+Performance:
+============
+
+* Fix a regression which was slowing down loops in some cases (this can
+improve performances to 50 %)
+Note that many performance improvements will be also available in 
+Scilab 5.3.0.
+
 Scilab:
 =======
 
@@ -60,12 +68,21 @@ Xcos:
 
 * bug 6697 fixed - The multi-point link did not align it's edges on the grid.
 
+* bug 6780 fixed - The region to superblock action did not work when an 
+                   outgoing link is selected.
+
 Tests:
 ======
 
 * The internal tag "<-- LONG TIME EXECUTION -->" has been added. It allows to
   disable tests that need long-time duration. These tests are enabled if
   test_run() is called with the "enable_lt" optional argument.
+
+On-line Help building system:
+=============================
+
+* Compilation of the on-line help failed if two XML files had the same name. This
+  constraint has been removed.
 
 Obsolete Functions:
 ===================
@@ -78,10 +95,16 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused some of them to disappear.
+
 * bug 6531 fixed - Adding a new color to the current colormap caused the Legend
                    entity's default background color to change.
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6648 fixed - The description of the format_n property was missing from the
+                   axis_properties online help page.
 
 * bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
                    and their attached entities to disappear when data min and max
