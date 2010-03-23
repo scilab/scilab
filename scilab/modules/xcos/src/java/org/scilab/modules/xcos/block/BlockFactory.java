@@ -41,7 +41,7 @@ public final class BlockFactory {
 		TEXT_f(new TextBlock(XcosMessages.DOTS)),
 		SUPER_f(new SuperBlock()),
 		DSUPER(new SuperBlock(true)),
-		CONST_m(new PrintBlock()),
+		CONST_m(new ConstBlock()),
 		CONST(CONST_m.getSharedInstance()),
 		CONST_f(CONST_m.getSharedInstance()),
 		FROM(new PrintBlock(XcosMessages.BLOCK_FROM)),
