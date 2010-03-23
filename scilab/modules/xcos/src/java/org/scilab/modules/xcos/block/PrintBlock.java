@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,26 +17,25 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 /**
- * @author Bruno JOFRET
- *
+ * A {@link BasicBlock} which print getExprs()[0][0] as bloc value.
  */
-public final class ConstBlock extends BasicBlock {
-
-    private static final long serialVersionUID = 4234301593972228584L;
-
-    /**
+public class PrintBlock extends BasicBlock {
+	private final String format;
+	
+	/**
      * Constructor
      */
-    public ConstBlock() {
+    public PrintBlock() {
 	super();
+	format = "%s";
     }
     
     /**
-     * @param label block label
+     * @param format The string to format the value
      */
-    protected ConstBlock(String label) {
-	this();
-	setValue(label);
+    public PrintBlock(String format) {
+	super();
+	this.format = format;
     }
     
     /**
@@ -44,9 +44,6 @@ public final class ConstBlock extends BasicBlock {
     @Override
     protected void setDefaultValues() {
     	super.setDefaultValues();
-    	setInterfaceFunctionName("CONST_m");
-    	setSimulationFunctionName("cstblk4");
-    	setValue("1");
     }
     
     
@@ -54,8 +51,11 @@ public final class ConstBlock extends BasicBlock {
      * @param exprs new exprs
      */
     public void setExprs(ScilabType exprs) {
-	super.setExprs(exprs);
-	setValue(((ScilabString) getExprs()).getData()[0][0]);
-    }
-    
+    	super.setExprs(exprs);
+    	
+    	final String data = ((ScilabString) getExprs()).getData()[0][0];
+    	final String str = String.format(format, data);
+    	
+		setValue(str);
+    }    
 }
