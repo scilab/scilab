@@ -36,6 +36,10 @@ Compilation:
 
 * Support of GNU/Linux sparc64 and sh4
 
+* Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
+Vyskocil
+
+
 Xcos:
 =====
 
