@@ -1,3 +1,15 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include <cstdlib>
 #include <algorithm>
 #include "unrolled_algorithms.hxx"
@@ -54,20 +66,20 @@ void C2F(siflibs)(int* id, int* k_ptr, int* istr, int* lbibn_ptr, int* nbibn_ptr
 
 		if (istk_ptr[il] == sci_lib)
 		{
-			nbibn=istk_ptr[il+1];
-			lbibn=il+2;
-			il+= nbibn+2;
-			ilp=il+1;
-			ip=std::max(1, id_char(id)-9);
+			nbibn = istk_ptr[il+1];
+			lbibn = il+2;
+			il += nbibn+2;
+			ilp = il+1;
+			ip = std::max(1, id_char(id)-9);
 			if (ip <= nclas) 
 			{
 
-				int n=istk_ptr[ilp+ip] -istk_ptr[ilp+ip-1];
+				int n = istk_ptr[ilp+ip] -istk_ptr[ilp+ip-1];
 				if (n != 0)
 				{
 					int iln= ilp+nclas+1+(istk_ptr[ilp+ip-1]-1)*nsiz;
 
-					for (int i= 1; i<=n; ++i, iln+= nsiz)
+					for (int i = 1; i<=n; ++i, iln+= nsiz)
 					{
 						if(eq_n<nsiz>(id, istk_ptr+iln))
 						{ // 39
