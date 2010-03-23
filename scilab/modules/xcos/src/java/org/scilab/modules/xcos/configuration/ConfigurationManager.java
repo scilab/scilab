@@ -260,7 +260,6 @@ public final class ConfigurationManager {
 		/*
 		 * Create the date
 		 */
-		GregorianCalendar calendar = new GregorianCalendar();
 		DatatypeFactory factory;
 		try {
 			factory = DatatypeFactory.newInstance();
@@ -274,7 +273,7 @@ public final class ConfigurationManager {
 		 */
 		DocumentType element = (new ObjectFactory()).createDocumentType();
 		element.setUrl(url);
-		element.setDate(factory.newXMLGregorianCalendar(calendar));
+		element.setDate(factory.newXMLGregorianCalendar(new GregorianCalendar()));
 		
 		/*
 		 * Create an arrays sorted by name.
