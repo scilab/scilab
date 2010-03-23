@@ -781,7 +781,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 
 	// Write context
 	try {
-	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION);
+	    File tempContext = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, new File(System.getenv("TMPDIR"));
 	    tempContext.deleteOnExit();
 	    int contextFileId = H5Write.createFile(tempContext.getAbsolutePath());
 	    H5Write.writeInDataSet(contextFileId, "context", new ScilabString(context));
