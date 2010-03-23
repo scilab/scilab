@@ -4,7 +4,7 @@
    <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
 
    <!-- File menu -->
-   <menu label="&amp;File" enabled="false">
+   <menu label="&amp;File" enabled="true">
         <submenu label="&amp;Execute...">
             <callback
             instruction='
@@ -80,7 +80,7 @@
     </menu>
 
     <!-- Edit menu -->
-    <menu label="&amp;Edit" enabled="false">
+    <menu label="&amp;Edit" enabled="true">
         <submenu label="C&amp;ut">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection' type="3"/>
         </submenu>
@@ -101,7 +101,7 @@
     </menu>
 
     <!-- Preferences menu -->
-    <menu label="&amp;Preferences" enabled="false">
+    <menu label="&amp;Preferences" enabled="true">
         <submenu label="&amp;Colors">
             <submenu label="Console &amp;Background...">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.changeConsoleBackground' type="3"/>
@@ -133,7 +133,7 @@
     </menu>
 
     <!-- Control menu -->
-    <menu label="&amp;Control" enabled="false">
+    <menu label="&amp;Control" enabled="true">
         <submenu label="&amp;Resume">
             <callback instruction='resume;' type="-2"/>
         </submenu>
@@ -146,7 +146,7 @@
     </menu>
 
     <!-- Applications menu -->
-    <menu label="&amp;Applications" enabled="false">
+    <menu label="&amp;Applications" enabled="true">
         <submenu label="&amp;Editor">
             <callback instruction='editor();' type="0"/>
         </submenu>
@@ -165,7 +165,7 @@
     </menu>
 
     <!-- Help menu -->
-    <menu label="&amp;?" enabled="false">
+    <menu label="&amp;?" enabled="true">
         <submenu label="Scilab &amp;Help">
             <callback instruction='help();' type="0"/>
         </submenu>
