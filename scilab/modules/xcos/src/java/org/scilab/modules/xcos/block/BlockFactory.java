@@ -41,11 +41,10 @@ public final class BlockFactory {
 		SUPER_f(new SuperBlock()),
 		/** @see SuperBlock */
 		DSUPER(new SuperBlock(true)),
-		/** @see PrintBlock */
-		CONST_m(new PrintBlock()),
-		/** @see PrintBlock */
+		/** @see ConstBlock */
+		CONST_m(new ConstBlock()),
 		CONST(CONST_m.getSharedInstance()),
-		/** @see PrintBlock */
+		/** @see ConstBlock */
 		CONST_f(CONST_m.getSharedInstance()),
 		/** @see PrintBlock */
 		FROM(new PrintBlock(XcosMessages.BLOCK_FROM)),
