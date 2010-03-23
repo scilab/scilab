@@ -74,6 +74,8 @@ Xcos:
 
 * bug 6797 fixed - The importXcosDiagram macros was Scicos libraries dependant.
 
+* bug 6799 fixed - The TOWS_c block had wrong default values.
+
 Tests:
 ======
 

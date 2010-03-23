@@ -41,12 +41,24 @@ public final class BlockFactory {
 		SUPER_f(new SuperBlock()),
 		/** @see SuperBlock */
 		DSUPER(new SuperBlock(true)),
-		/** @see ConstBlock */
-		CONST_m(new ConstBlock()),
-		/** @see ConstBlock */
+		/** @see PrintBlock */
+		CONST_m(new PrintBlock()),
+		/** @see PrintBlock */
 		CONST(CONST_m.getSharedInstance()),
-		/** @see ConstBlock */
+		/** @see PrintBlock */
 		CONST_f(CONST_m.getSharedInstance()),
+		/** @see PrintBlock */
+		FROM(new PrintBlock(XcosMessages.BLOCK_FROM)),
+		/** @see PrintBlock */
+		GOTO(new PrintBlock(XcosMessages.BLOCK_GOTO)),
+		/** @see PrintBlock */
+		CLKFROM(FROM.getSharedInstance()),
+		/** @see PrintBlock */
+		CLKGOTO(GOTO.getSharedInstance()),
+		/** @see PrintBlock */
+		FROMMO(FROM.getSharedInstance()),
+		/** @see PrintBlock */
+		GOTOMO(GOTO.getSharedInstance()),
 		/** @see AfficheBlock */
 		AFFICH_m(new AfficheBlock()),
 		/** @see AfficheBlock */
