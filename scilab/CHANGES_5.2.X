@@ -75,6 +75,8 @@ Xcos:
 
 * bug 6799 fixed - The TOWS_c block had wrong default values.
 
+* bug 6808 fixed - The GOTO/FROM blocks did not display their parameters.
+
 Tests:
 ======
 
