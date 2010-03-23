@@ -100,7 +100,7 @@ case 'define' then
 
   gr_i=['txt=[''To workspace''];';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  exprs=[string(nz),string(varnam),string(herit)]
+  exprs=[string(nz);string(varnam);string(herit)]
   x=standard_define([3.5 2],model,exprs,gr_i)
   x.graphics.id=string(varnam)
 end

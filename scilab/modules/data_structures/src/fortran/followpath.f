@@ -101,11 +101,17 @@ c     extract infos out of the current sublist
       llisti=sadr(illisti+mi+3)
       voll=istk(illisti+mi+2)-1+sadr(3+mi)
 c     go ahead along the path
+
+      if(typi.eq.13.or.typi.eq.11) then
+c     .  not an extraction but a function call
+         info=2
+         goto 50
+      endif
+
 c
       if(istk(ilindi).eq.10) then
 c     .  current element index is a name
-
-         if(istk(ilindi+1)*istk(ilindi+2).ne.1) then
+         if (istk(ilindi+1)*istk(ilindi+2).ne.1) then
             info=3
             goto 50
 c            call error(21)
