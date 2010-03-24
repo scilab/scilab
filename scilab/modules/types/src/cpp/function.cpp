@@ -114,7 +114,7 @@ namespace types
 			}
 		}
 
-		delete pStr->m_pOutOrder;
+		delete[] pStr->m_pOutOrder;
 		delete pStr;
 		return retVal;
   }

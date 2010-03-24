@@ -103,7 +103,7 @@ bool getMacros(string _stXMLFile)
 			std::cout << "Error: Could not parse file " << _stXMLFile << std::endl;
 			if(encoding)
 			{
-				delete[] encoding;
+				free(encoding);
 				encoding=NULL;
 			}
 			return false;
@@ -167,13 +167,13 @@ bool getMacros(string _stXMLFile)
 
 				if(pstName)
 				{
-					delete[] pstName;
+					free(pstName);
 					pstName = NULL;
 				}
 
 				if(pstFileName)
 				{
-					delete[] pstFileName;
+					free(pstFileName);
 					pstFileName = NULL;
 				}
 			}
@@ -193,7 +193,7 @@ bool getMacros(string _stXMLFile)
 	}
 	if (encoding)
 	{
-		delete[] encoding;
+		free(encoding);
 		encoding = NULL;
 	}
 	return true;
@@ -214,7 +214,7 @@ char *GetXmlFileEncoding(string _filename)
 		{
 			if(encoding)
 			{
-				delete[] encoding;
+				free(encoding);
 				encoding = NULL;
 			}
 			encoding = strdup((char*)doc->encoding);

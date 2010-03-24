@@ -23,6 +23,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 
+#include "MALLOC.h"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
@@ -120,7 +121,7 @@ bool FuncManager::AppendModules()
 			std::cout << "Error: Could not parse file " << m_szXmlFile << std::endl;
 			if(encoding)
 			{
-				delete[] encoding;
+				free(encoding);
 				encoding=NULL;
 			}
 			return false;
@@ -185,7 +186,7 @@ bool FuncManager::AppendModules()
 				}
 				if(name)
 				{
-					delete[] name;
+					free(name);
 					name = NULL;
 				}
 				activate = 0;
@@ -206,7 +207,7 @@ bool FuncManager::AppendModules()
 	}
 	if (encoding)
 	{
-		delete[] encoding;
+		free(encoding);
 		encoding = NULL;
 	}
 	return true;
@@ -259,7 +260,7 @@ char *GetXmlFileEncoding(string _filename)
 		{
 			if(encoding)
 			{
-				delete[] encoding;
+				free(encoding);
 				encoding = NULL;
 			}
 			encoding = strdup((char*)doc->encoding);
@@ -379,7 +380,10 @@ bool FuncManager::LoadMacroFile(string _stModule)
 				string stFullName = stTemp.substr(0,iPos);
 				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
 			}
+			
+			FREE(pstPath[k]);
 		}
+		FREE(pstPath);
 	}
 	return true;
 }
