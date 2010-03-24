@@ -65,7 +65,8 @@ matvar_t * GetDoubleVariable(int iVar, const char* name, int matfile_version, in
 	    }
 	  else
 	    {
-	      _SciErr = getComplexMatrixOfDoubleInList(pvApiCtx, parent, item_position, &dims[0], &dims[1], &realDataAdr, &complexDataAdr); MATIO_ERROR;
+	      _SciErr = getComplexMatrixOfDoubleInList(pvApiCtx, parent, item_position, &dims[0], &dims[1], 
+						       &realDataAdr, &complexDataAdr); MATIO_ERROR;
 	    }
 	}
       else
