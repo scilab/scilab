@@ -37,6 +37,10 @@ Compilation:
 
 * Support of GNU/Linux sparc64 and sh4
 
+* Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
+Vyskocil
+
+
 Xcos:
 =====
 
@@ -145,9 +149,13 @@ Bug Fixes:
 
 * bug 6712 fixed - The "title" function forced displaying axes.
 
-* bug 6792 fixed - wrong interpretation of macro arguments when the macro call  appears in an list extraction
+* bug 6719 fixed - Error fixed in example of root_properties help page
+                   (French version only).
 
+* bug 6792 fixed - Wrong interpretation of macro arguments when the
+                   macro call appeared in an list extraction.
 
+* bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
