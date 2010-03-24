@@ -36,6 +36,10 @@ Compilation:
 
 * Support of GNU/Linux sparc64 and sh4
 
+* Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
+Vyskocil
+
+
 Xcos:
 =====
 
@@ -70,6 +74,12 @@ Xcos:
 
 * bug 6780 fixed - The region to superblock action did not work when an 
                    outgoing link is selected.
+
+* bug 6797 fixed - The importXcosDiagram macros was Scicos libraries dependant.
+
+* bug 6799 fixed - The TOWS_c block had wrong default values.
+
+* bug 6808 fixed - The GOTO/FROM blocks did not display their parameters.
 
 Tests:
 ======
@@ -138,10 +148,15 @@ Bug Fixes:
 
 * bug 6712 fixed - The "title" function forced displaying axes.
 
-* bug 6792 fixed - Wrong interpretation of macro arguments when the macro call  appears in an list extraction
+* bug 6719 fixed - Error fixed in example of root_properties help page
+                   (French version only).
+
+* bug 6792 fixed - Wrong interpretation of macro arguments when the
+                   macro call appeared in an list extraction.
+
+* bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 * bug 6816 fixed - Incoherent extraction when there is no index: M()
-
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================

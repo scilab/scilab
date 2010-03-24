@@ -68,11 +68,13 @@ public class StopAction extends DefaultAction {
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
+		if (!GraphActionManager.getEnable(StartAction.class)) {
 		ScilabInterpreterManagement.requestScilabExec("haltscicos");
 		
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		GraphActionManager.setEnable(StartAction.class, true);
 		GraphActionManager.setEnable(StopAction.class, false);
 		((XcosDiagram) getGraph(null)).setReadOnly(false);
+		}
 	}
 }

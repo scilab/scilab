@@ -249,6 +249,10 @@ public final class XcosMessages {
     public static final String SCILAB_SAMECOMMAND = Messages.gettext("Same command executed again");
     public static final String SCILAB_UNABLE = Messages.gettext("Unable to communicate with the interpreter");
     
+    /* Blocks values */
+    public static final String BLOCK_FROM = Messages.gettext("From %s");
+    public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
+    
 // CSON: JavadocVariable
 // CSON: LineLength
 // CSON: MultipleStringLiterals

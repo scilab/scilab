@@ -700,12 +700,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   AC_CHECK_LIB([jogl], [glTexParameterf], [JOGL_LIBS="-ljogl"],[AC_MSG_WARN([Could not link against -ljogl. Will try against -ljogl -lGL])])
 				   if test -z "$JOGL_LIBS"; then # The previous test failed add more options to the LDFLAGS
-				   	   LDFLAGS="$LDFLAGS -lGL "
 					   # the space after "jogl" in the following line is on	
 					   # purpose to disable the cache
 				   	   AC_CHECK_LIB([jogl ], [glTexParameterf], 
 					   [JOGL_LIBS="-ljogl -lGL"],
-					   [AC_MSG_ERROR(["libjogl: Library missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI) interface for JOGL - or libGL are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])])
+					   [AC_MSG_ERROR(["libjogl: Library
+missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
+interface for JOGL - or libGL are installed and if the version is correct. Note
+that you might have to update etc/librarypath.xml to provide the actual path
+the the JNI libraries."])],
+					   [-lGL])
 				   fi
 
 				   LDFLAGS=$LDFLAGS_save
@@ -724,7 +728,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				   LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -ldl -L$SCI_SRCDIR/thirdparty/ -L$SCI_SRCDIR/bin/"
 				   symbol="Java_com_sun_gluegen_runtime_UnixDynamicLinkerImpl_dlclose__J"
 				   AC_CHECK_LIB([gluegen-rt], [$symbol], [GLUEGEN_RT_LIBS="-lgluegen-rt"],
-				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])])
+				   [AC_MSG_ERROR([libgluegen-rt: Library missing (Cannot find symbol glTexParameterf). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+				   [-ldl])
 				   LDFLAGS=$LDFLAGS_save
 				fi
 

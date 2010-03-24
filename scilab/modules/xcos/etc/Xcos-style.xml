@@ -1,17 +1,24 @@
 <mxStylesheet>
-  <!-- *** BLOCK DEFINITION *** -->
-  <add as="block" extend="defaultVertex">
+<!-- *** OVERLOADING DEFINITION *** -->
+
+  <add as="defaultVertex">
     <add as="shape" value="rectangle"/>
     <add as="perimeter" value="rectanglePerimeter"/>
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="white"/>
     <add as="fontColor" value="black"/>
+    <add as="noLabel" value="0"/>
+  </add>
+
+<!-- *** GENERIC BLOCKS *** -->
+  
+  <add as="block" extend="defaultVertex">
     <add as="noLabel" value="1"/>
   </add>
 
-  <add as="blockWithLabel" extend="block">
-    <add as="noLabel" value="0"/>
-  </add>
+  <add as="blockWithLabel" extend="defaultVertex" />
+
+<!-- *** BLOCK DEFINITION *** -->
 
   <!-- Affiche -->
   <add as="Affiche" extend="blockWithLabel"/>
@@ -448,13 +455,11 @@
     <!-- FIXME : Show parameters over block  -->
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
-    <add as="displayedLabel" value="From"/>
   </add>
   <add as="GOTOMO" extend="blockWithLabel">
     <!-- FIXME : Show parameters over block  -->
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
-    <add as="displayedLabel" value="Goto"/>
   </add>
   <add as="GotoTagVisibilityMO" extend="blockWithLabel">
     <!-- TODO: icon to be verified -->
@@ -723,13 +728,11 @@
     <add as="rounded" value="1"/>
     <add as="fillColor" value="white"/>
     <add as="strokeColor" value="red"/>
-    <add as="displayedLabel" value="From"/>
   </add>
   <add as="CLKGOTO" extend="blockWithLabel">
     <add as="shape" value="rectangle"/>
     <add as="rounded" value="1"/>
     <add as="strokeColor" value="red"/>
-    <add as="displayedLabel" value="Goto"/>
   </add>
   <add as="CLKGotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
@@ -827,7 +830,6 @@
   <add as="GOTO" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
-    <add as="displayedLabel" value="Goto"/>
   </add>
   <add as="GotoTagVisibility" extend="blockWithLabel">
     <add as="displayedLabel" value="&lt;FONT SIZE=&quot;6&quot;&gt;{A}&lt;/FONT&gt;"/>
@@ -835,7 +837,6 @@
   <add as="FROM" extend="blockWithLabel">
     <add as="rounded" value="1"/>
     <add as="shape" value="rectangle"/>
-    <add as="displayedLabel" value="From"/>
   </add>
   <add as="WFILE_f" extend="blockWithLabel">
     <add as="displayedLabel" value="Write to&lt;BR&gt;
