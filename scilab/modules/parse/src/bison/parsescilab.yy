@@ -21,7 +21,7 @@
 ** for instance adding CommentExp
 ** where nothing is needed.
 */
-#define BUILD_DEBUG_AST
+//#define BUILD_DEBUG_AST
 
 #include <string>
 #include <sstream>
