@@ -30,9 +30,9 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.BasicBlockCodec;
 import org.scilab.modules.xcos.io.codec.BasicPortCodec;
+import org.scilab.modules.xcos.io.codec.OrientationCodec;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
-import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -43,7 +43,6 @@ import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
-import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
 /**
@@ -177,8 +176,9 @@ public class XcosCodec extends mxCodec {
 	mxCodecRegistry.register(commandPortCodec);
 	XcosObjectCodec controltPortCodec = new BasicPortCodec(new ControlPort(), portIgnore, refs, null);
 	mxCodecRegistry.register(controltPortCodec);
-	mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
 	
+		// Orientation
+		OrientationCodec.register();
     }
     
     /**
