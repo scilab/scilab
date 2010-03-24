@@ -23,15 +23,14 @@ import java.util.Map;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
-import org.scilab.modules.xcos.utils.ConfigXcosManager;
 
 /**
  * Xcos entry point class 
@@ -49,17 +48,14 @@ public final class Xcos {
     /** This class is a static singleton, thus it must not be instantiated */
     private Xcos() { }
 
-    /** Palette creation */
-    static {
-	/* load scicos libraries (macros) */
-	ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
-    }
-
     /**
      * Debug main function
      * @param args command line args (Not used)
      */
     public static void main(String[] args) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		xcos();
@@ -71,6 +67,9 @@ public final class Xcos {
      * Entry point without filename
      */
     public static void xcos() {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+    
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 	    PaletteManager.setVisible(true);
@@ -85,14 +84,18 @@ public final class Xcos {
      * @param fileName The filename
      */
     public static void xcos(String fileName) {
+    	/* load scicos libraries (macros) */
+		ScilabInterpreterManagement.requestScilabExec("loadScicosLibs();");
+		
 	final String filename = fileName;
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
-		ConfigXcosManager.saveToRecentOpenedFiles(filename);
+		ConfigurationManager.getInstance().addToRecentFiles(filename);
 		if (!XcosTab.focusOnExistingFile(filename)) {
 		    XcosDiagram diagram = createEmptyDiagram();
 		    diagram.openDiagramFromFile(filename);
 		}
+		ConfigurationManager.getInstance().saveConfig();
 	    }
 	});
     }
@@ -133,11 +136,6 @@ public final class Xcos {
      */
     public static void closeSession() {
 	List<XcosDiagram> diagrams = XcosTab.getAllDiagrams();
-	
-	/*
-	 * Stop any running simulation
-	 */
-	ScilabInterpreterManagement.requestScilabExec("haltscicos");
 	
 	/*
 	 * Using an iterator because the collection is modified during the

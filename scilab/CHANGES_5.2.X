@@ -72,12 +72,22 @@ Xcos:
 * bug 6780 fixed - The region to superblock action did not work when an 
                    outgoing link is selected.
 
+* bug 6797 fixed - The importXcosDiagram macros was Scicos libraries dependant.
+
+* bug 6799 fixed - The TOWS_c block had wrong default values.
+
 Tests:
 ======
 
 * The internal tag "<-- LONG TIME EXECUTION -->" has been added. It allows to
   disable tests that need long-time duration. These tests are enabled if
   test_run() is called with the "enable_lt" optional argument.
+
+On-line Help building system:
+=============================
+
+* Compilation of the on-line help failed if two XML files had the same name. This
+  constraint has been removed.
 
 Obsolete Functions:
 ===================
@@ -97,6 +107,9 @@ Bug Fixes:
                    entity's default background color to change.
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
+
+* bug 6648 fixed - The description of the format_n property was missing from the
+                   axis_properties online help page.
 
 * bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
                    and their attached entities to disappear when data min and max
@@ -129,6 +142,8 @@ Bug Fixes:
                    library, completion on its name maked Scilab crashed.
 
 * bug 6712 fixed - The "title" function forced displaying axes.
+
+* bug 6792 fixed - wrong interpretation of macro arguments when the macro call  appears in an list extraction
 
 
 

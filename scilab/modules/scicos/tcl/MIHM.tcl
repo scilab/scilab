@@ -437,6 +437,7 @@ proc Compile { WindowsID } {
 	return
     }
     
+    #ScilabEval "global bllst; global connectmat; global clkconnect; global cor; global corinv; pause;  fw='$Model_name'; paremb='$ParEmbedded'; jaco='$JacobianEnable';compile_init_modelica(fw,paremb,jaco); "
     ScilabEval "fw='$Model_name'; paremb='$ParEmbedded'; jaco='$JacobianEnable';compile_init_modelica(fw,paremb,jaco); "
     #compile_init_modelica( ) calls Compile_finished ok/nok
 }
@@ -461,7 +462,7 @@ proc Compile_finished { res WindowsID } {
 	#----------------- openning/reading the new incidence file -------------
 	set need_compile false 
 	set Smethod [ $w.buttons.combo get ]
-	ScilabEval "method='$Smethod';Nunknowns='$nimpvar';Compute_cic(method,Nunknowns); "	
+	ScilabEval "method='$Smethod';Nunknowns='$nimpvar';ok=Compute_cic(method,Nunknowns); "	
     } else {
 	Compute_finished nok $WindowsID
     }

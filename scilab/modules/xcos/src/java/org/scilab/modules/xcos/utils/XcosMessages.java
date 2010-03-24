@@ -261,11 +261,16 @@ public final class XcosMessages {
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
 
     /* Configuration Error */
-	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one."); 
+	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one.");
+	public static final String ERR_CONFIG_INVALID = Messages.gettext("The user configuration file (xcos.xml) is invalid.<BR> Switching to the default one.");
     
     /* Modelica Compiler */
     public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
     public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
+    
+    /* Blocks values */
+    public static final String BLOCK_FROM = Messages.gettext("From %s");
+    public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
     
 // CSON: JavadocVariable
 // CSON: LineLength
