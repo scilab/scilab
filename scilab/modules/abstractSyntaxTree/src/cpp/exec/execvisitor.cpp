@@ -11,7 +11,8 @@
 */
 
 #include <cstdio>
-
+#include <numeric>
+#include <iostream>
 #include "stack-def.h"
 
 #include "execvisitor.hxx"
@@ -110,7 +111,7 @@ namespace ast
 			if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
 			{
 			  std::ostringstream ostr;
-			  ostr << e.name_get() << " = " << std::endl;
+				ostr << e.name_get() << " = " << "(" << pI->getRef() << ")"<< std::endl;
 			  ostr << std::endl;
 			  ostr << pI->toString(10,75) << std::endl;
 			  YaspWrite((char *) ostr.str().c_str());
@@ -142,7 +143,7 @@ namespace ast
 
 		ImplicitList *pIL = new ImplicitList();
 		pIL->start_set(new Double(1));
-		pIL->step_set(new Double (1));
+		pIL->step_set(new Double(1));
 		pIL->end_set(pVar);
 		result_set(pIL);
 		/*
@@ -260,14 +261,14 @@ namespace ast
 				if(execVar[j].is_single_result())
 				{
 						in.push_back(execVar[j].result_get());
-						execVar[j].result_get()->IncreaseRef();
+						//execVar[j].result_get()->IncreaseRef();
 				}
 				else
 				{
 					for(int i = 0 ; i < execVar[j].result_size_get() ; i++)
 					{
 						in.push_back(execVar[j].result_get(i));
-						execVar[j].result_get(i)->IncreaseRef();
+						//execVar[j].result_get(i)->IncreaseRef();
 					}
 				}
 			}
@@ -314,7 +315,12 @@ namespace ast
 			
 			for (j = 0; j < e.args_get().size(); j++)
 			{
-				execVar[j].result_get()->DecreaseRef();
+				//execVar[j].result_get()->DecreaseRef();
+				//if(execVar[j].result_get()->isRef(0))
+				//{
+				//	std::cout << "DELETE AFTER" << std::endl;
+				//	delete execVar[j].result_get();
+				//}
 			}
 			delete[] execVar;
 		}
@@ -947,8 +953,12 @@ namespace ast
 		try
 		{
 			e.start_get().accept(execMeStart);
-			execMeStart.result_get()->IncreaseRef();
 			GenericType* pITStart = (GenericType*)execMeStart.result_get();
+			if(pITStart->isDeletable())
+			{
+				pITStart->IncreaseRef();
+			}
+
 			if(pITStart->rows_get() != 1 || pITStart->cols_get() != 1)
 			{
 				throw 1;
@@ -956,16 +966,24 @@ namespace ast
 
 
 			e.step_get().accept(execMeStep);
-			execMeStep.result_get()->IncreaseRef();
 			GenericType* pITStep = (GenericType*)execMeStep.result_get();
+			if(pITStep->isDeletable())
+			{
+				pITStep->IncreaseRef();
+			}
+
 			if(pITStep->rows_get() != 1 || pITStep->cols_get() != 1)
 			{
 				throw 2;
 			}
 
 			e.end_get().accept(execMeEnd);
-			execMeEnd.result_get()->IncreaseRef();
 			GenericType* pITEnd = (GenericType*)execMeEnd.result_get();
+			if(pITEnd->isDeletable())
+			{
+				pITEnd->IncreaseRef();
+			}
+
 			if(pITEnd->rows_get() != 1 || pITEnd->cols_get() != 1)
 			{
 				throw 3;
@@ -1059,90 +1077,6 @@ namespace ast
 	}
 	/** \} */
 
-	int ExecVisitor::expected_size_get(void)
-	{
-		return _excepted_result;
-	}
-
-	int ExecVisitor::result_size_get(void)
-	{
-		if(is_single_result())
-		{
-			if(_result == NULL)
-			{
-				return 0;
-			}
-			else
-			{
-				return 1;
-			}
-		}
-		else
-		{
-			return (int)_resultVect.size();
-		}
-	}
-
-	void ExecVisitor::expected_size_set(int _iSize)
-	{
-		_excepted_result = _iSize;
-	}
-
-	InternalType* ExecVisitor::result_get(void)
-	{
-		if(is_single_result())
-		{
-			return _result;
-		}
-		else
-		{
-			return _resultVect[0];
-		}
-	}
-
-	types::InternalType* ExecVisitor::result_get(int _iPos)
-	{
-		if(_iPos >= _resultVect.size())
-		{
-			return NULL;
-		}
-		return _resultVect[_iPos];
-	}
-
-	vector<types::InternalType*>* ExecVisitor::result_list_get()
-	{
-		return &_resultVect;
-	}
-
-	void ExecVisitor::result_set(int _iPos, const types::InternalType *gtVal)
-	{
-		m_bSingleResult = false;
-		if(_iPos < _resultVect.size())
-		{
-			if(_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
-			{
-				delete _resultVect[_iPos];
-			}
-		}
-
-		if(_iPos >= _resultVect.size())
-		{
-			_resultVect.resize(_iPos + 1, NULL);
-		}
-
-		_resultVect[_iPos] = (InternalType *)gtVal;
-	}
-
-	void ExecVisitor::result_set(const InternalType *gtVal)
-	{
-		m_bSingleResult = true;
-		_result = const_cast<InternalType *>(gtVal);
-	}
-
-	bool ExecVisitor::is_single_result()
-	{
-		return m_bSingleResult;
-	}
 			
 }
 
@@ -1230,7 +1164,7 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 }
 
 
-int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
 {
 	//Create list of indexes
 	//std::vector<std::vector<int>> IndexList;
@@ -1242,8 +1176,9 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 	int k										= 0;
 
 	piTabsize			= new int[iProductElem];
-	(*_piMaxDim)	= new int[iProductElem];
 	piIndexList		= new int*[iProductElem];
+
+	(*_piMaxDim)	= new int[iProductElem];
 
 	ExecVisitor execMeArg;
 	std::list<Exp *>::const_iterator	i;
@@ -1340,7 +1275,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			}
 			else if(pIn->getType() == InternalType::RealDouble)
 			{
-				pDbl	= pIn->getAsDouble();
+			  pDbl	= pIn->getAsDouble();//
 			}
 			else
 			{//Heu ... ?
@@ -1361,16 +1296,13 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 		for(int j = 0 ; j < iSize ; j++)
 		{
-			if((int)(pData[j] + 0.5) > (*_piMaxDim)[k])
-			{
-				(*_piMaxDim)[k] = (int)(pData[j] + 0.5);
-			}
-			//SubList.push_back((int)pData[j]);
 			piIndexList[k][j] = (int)(pData[j] + 0.5);
-
+			if(piIndexList[k][j] > (*_piMaxDim)[k])
+			{
+				(*_piMaxDim)[k] = piIndexList[k][j];
+			}
 		}
 		iTotalCombi *= iSize;
-		//IndexList.push_back(SubList);
 
 		if(bDeleteDbl == true)
 		{
@@ -1380,12 +1312,25 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 	int iTabsize	= iTotalCombi * iProductElem;
 	*_piIndexSeq	= new int[iTabsize];
-	ExpandList(piIndexList, piTabsize, iProductElem, *_piIndexSeq);
+
+	if(iTabsize > 1)
+	{
+	  ExpandList(piIndexList, piTabsize, iProductElem, *_piIndexSeq);
+	}
+	else
+	{
+	  _piIndexSeq[0][0] = piIndexList[0][0];
+	}
+
+	delete [] piTabsize;
+	delete [] piIndexList;
 	return iTotalCombi;
 }
 
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
+  //   #define ORIGINAL_IMPLEM 
+#ifdef ORIGINAL_IMPLEM
 	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
 	{
 		int iPreOcc = 1;
@@ -1418,10 +1363,36 @@ void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piRe
 					//Offset in SubBloc -> j2 * _iListSizeSize + i
 					int iPos = j1 * ( iPostOcc * iSize) * _iListSizeSize + m * iPostOcc * _iListSizeSize + j2 * _iListSizeSize + i;
 					_piResultList[iPos] = _piList[i][m];
+
 				}
 			}
 		}
 	}
+#else
+	int iPreOcc= 1;
+	int iPostOcc= std::accumulate(_piListSize, _piListSize + _iListSizeSize, 1, multiplies<int>());
+	for(int i =0; i!= _iListSizeSize;++i)
+	{
+		int const iSize = _piListSize[i];
+		int const delta(iPostOcc * _iListSizeSize);
+		int* ptr = _piResultList + i;
+
+		iPostOcc /= iSize;
+
+		for(int m(0); m != iSize; ++m,ptr += delta)
+		{
+			int const data=_piList[i][m];
+			for(int j1(0); j1 != iPreOcc; ++j1, ptr +=  delta * iSize)
+			{
+				for(int j2(0); j2!= iPostOcc ; ++j2, ptr+=  _iListSizeSize) 
+				{
+					*ptr= data;
+				}
+			}
+		}
+		iPreOcc *= iSize;
+	}
+#endif
 }
 
 int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim)

@@ -86,6 +86,7 @@ namespace types
 
     bool	isDeletable() { return m_iRef == 0; }
     bool	isRef(int _iRef = 0) { return m_iRef > _iRef; }
+		int		getRef() { return m_iRef; }
 
     virtual bool operator==(const InternalType& it) { return (getType() == (const_cast<InternalType *>(&it))->getType()); }
     virtual bool operator!=(const InternalType& it) { return !(*this == it); }
