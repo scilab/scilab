@@ -88,5 +88,6 @@ matvar_t *GetCellVariable(int iVar, const char *name, int matfile_version, int *
           cellEntries[K] = GetMatlabVariable(iVar ,"data", matfile_version, var_addr, 3+K);
         }
     }
+
   return Mat_VarCreate(name, MAT_C_CELL, MAT_T_CELL, dimensionsVariable->rank, dimensionsVariable->data, cellEntries, 0);
 }

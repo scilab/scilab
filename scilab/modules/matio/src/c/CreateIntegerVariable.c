@@ -212,7 +212,8 @@ int CreateIntegerVariable(int iVar, int integerType, matvar_t *matVariable, int 
     }
   else /* Multi-dimension array -> Scilab HyperMatrix */
     {
-      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
+      CreateHyperMatrixVariable(iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,  &integerType, &matVariable->rank, 
+				matVariable->dims, matVariable->data, NULL, parent, item_position);
     }
   
   return TRUE;

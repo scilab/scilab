@@ -52,7 +52,8 @@ int CreateDoubleVariable(int iVar, matvar_t *matVariable, int * parent, int item
 	    }
 	  else
 	    {
-	      _SciErr = createComplexMatrixOfDoubleInList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, mat5ComplexData->Re, mat5ComplexData->Im);
+	      _SciErr = createComplexMatrixOfDoubleInList(pvApiCtx, iVar, parent, item_position, nbRow, nbCol, 
+							  mat5ComplexData->Re, mat5ComplexData->Im);
 	    }
         }
     }
@@ -60,12 +61,14 @@ int CreateDoubleVariable(int iVar, matvar_t *matVariable, int * parent, int item
     {
       if (matVariable->isComplex == 0)
         {
-          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, matVariable->dims, matVariable->data, NULL, parent, item_position);
+          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
+				    matVariable->dims, matVariable->data, NULL, parent, item_position);
         }
       else
         {
           mat5ComplexData = matVariable->data;
-          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, matVariable->dims, mat5ComplexData->Re, mat5ComplexData->Im, parent, item_position);
+          CreateHyperMatrixVariable(iVar, MATRIX_OF_DOUBLE_DATATYPE, &matVariable->isComplex, &matVariable->rank, 
+				    matVariable->dims, mat5ComplexData->Re, mat5ComplexData->Im, parent, item_position);
         }
     }
   return TRUE;

@@ -52,7 +52,7 @@ matvar_t *GetIntegerVariable(int iVar, const char *name, int * parent, int item_
       _SciErr = getVarType(pvApiCtx, item_addr, &var_type); MATIO_ERROR;
     }
 
-  if(var_type == sci_ints) /* 2-D array */
+  if (var_type == sci_ints) /* 2-D array */
     {
       rank = 2;
       if ((dims = (int*)MALLOC(sizeof(int)*rank)) == NULL)
