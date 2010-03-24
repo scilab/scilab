@@ -50,6 +50,9 @@
 //       If the operating system isn't Linux, the test is skipped.
 //     <-- MACOSX ONLY -->
 //       If the operating system isn't MacOSX, the test is skipped.
+//     <-- XCOS TEST -->
+//       This test will launch all the necessary Xcos libs. This test
+//       will be launched in nw mode.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
