@@ -37,7 +37,14 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 
 	import_from_hdf5(hdf5FileToLoad);
 	
-	[new_scs_m, y, typ] = interfaceAlias(job, scs_m, []);
+	ierr = execstr("[new_scs_m, y, typ] = interfaceAlias(job, scs_m, [])", 'errcatch');
+	if ierr <> 0 then
+		[msg, err] = lasterror();
+		disp(msg);
+		export_to_hdf5(hdf5FileToSave, "scs_m");
+		return;
+	end
+	
 	export_to_hdf5(hdf5FileToSave, "new_scs_m");
 endfunction
 
