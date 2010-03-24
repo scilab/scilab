@@ -148,6 +148,9 @@ Bug Fixes:
 
 * bug 6712 fixed - The "title" function forced displaying axes.
 
+* bug 6719 fixed - Error fixed in example of root_properties help page
+                   (French version only).
+
 * bug 6792 fixed - Wrong interpretation of macro arguments when the
                    macro call appeared in an list extraction.
 
