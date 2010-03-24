@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // This script validate the eselect functionnality with a sinus input.
