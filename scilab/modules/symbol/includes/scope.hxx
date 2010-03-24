@@ -52,12 +52,12 @@ namespace symbol
 				i->second->DecreaseRef();
 				if(i->second->isDeletable())
 				{
-					//std::cout << "--- DELETE : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
+//					std::cout << "--- DELETE : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
 					delete i->second;
 				}
 				else
 				{
-					//std::cout << "--- KEEP : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
+//					std::cout << "--- KEEP : " << i->first << " " << i->second << " " << i->second->getRef() << std::endl;
 				}
 			}
 			delete _scope;

@@ -55,7 +55,9 @@ namespace ast
 			{
 				if(_result != NULL && _result->isDeletable() == true)
 				{
+//					std::cout << "before single delete : " << _result << std::endl;
 					delete _result;
+//					std::cout << "after single delete" << std::endl;
 				}
 			}
 			else

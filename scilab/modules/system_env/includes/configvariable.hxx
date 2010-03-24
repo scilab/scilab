@@ -39,7 +39,7 @@ public :
 
   static ConfigVariable* getInstance();
 
-  std::string	get(std::string _szVar);
+  std::string	get(const std::string& _szVar);
   bool		set(std::string _szVar, std::string _szVal);
 
 };

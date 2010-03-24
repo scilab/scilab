@@ -23,7 +23,7 @@ ConfigVariable* ConfigVariable::getInstance()
 	return me;
 }
 
-std::string ConfigVariable::get(std::string _szVar)
+std::string ConfigVariable::get(const std::string& _szVar)
 {
 	std::map<std::string, std::string>::const_iterator it;
 	it = m_VarList.find(_szVar);

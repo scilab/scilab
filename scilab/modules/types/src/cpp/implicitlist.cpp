@@ -34,6 +34,20 @@ namespace types
 	{
 		if(isDeletable() == true)
 		{
+			if(m_poStart)
+			{
+				delete m_poStart;
+			}
+
+			if(m_poStep)
+			{
+				delete m_poStep;
+			}
+
+			if(m_poEnd)
+			{
+				delete m_poEnd;
+			}
 		}
 	}
 
@@ -47,9 +61,9 @@ namespace types
 		m_iSize = -1;
 		m_eOutSubType = Int::Type8;
 		m_eOutType = RealGeneric;
-		start_set(_poStart);
-		step_set(_poStep);
-		end_set(_poEnd);
+		start_set(_poStart->clone());
+		step_set(_poStep->clone());
+		end_set(_poEnd->clone());
 		compute();
 	}
 

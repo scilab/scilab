@@ -261,14 +261,14 @@ namespace ast
 				if(execVar[j].is_single_result())
 				{
 						in.push_back(execVar[j].result_get());
-						//execVar[j].result_get()->IncreaseRef();
+						execVar[j].result_get()->IncreaseRef();
 				}
 				else
 				{
 					for(int i = 0 ; i < execVar[j].result_size_get() ; i++)
 					{
 						in.push_back(execVar[j].result_get(i));
-						//execVar[j].result_get(i)->IncreaseRef();
+						execVar[j].result_get(i)->IncreaseRef();
 					}
 				}
 			}
@@ -315,14 +315,12 @@ namespace ast
 			
 			for (j = 0; j < e.args_get().size(); j++)
 			{
-				//execVar[j].result_get()->DecreaseRef();
-				//if(execVar[j].result_get()->isRef(0))
-				//{
-				//	std::cout << "DELETE AFTER" << std::endl;
-				//	delete execVar[j].result_get();
-				//}
+				execVar[j].result_get()->DecreaseRef();
 			}
+			
+//			std::cout << "before delete[]" << std::endl;
 			delete[] execVar;
+//			std::cout << "after delete[]" << std::endl;
 		}
 		else if(execFunc.result_get() != NULL)
 		{//a(xxx) with a variable, extraction
@@ -402,6 +400,10 @@ namespace ast
 					throw os.str();
 				}
 			}
+			
+			delete[] piDimSize;
+			delete[] piIndexSeq;
+			delete[] piMaxDim;
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
@@ -531,6 +533,7 @@ namespace ast
 		{
 			ExecVisitor execBody;
 			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
+//			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
 
 			InternalType *pIT = NULL;
 			pIT = pVar->extract_value(0);
@@ -567,6 +570,8 @@ namespace ast
 					break;
 				}
 			}
+			
+			pVar->DecreaseRef();
 		}
 		else
 		{//Matrix i = [1,3,2,6] or other type
@@ -954,11 +959,6 @@ namespace ast
 		{
 			e.start_get().accept(execMeStart);
 			GenericType* pITStart = (GenericType*)execMeStart.result_get();
-			if(pITStart->isDeletable())
-			{
-				pITStart->IncreaseRef();
-			}
-
 			if(pITStart->rows_get() != 1 || pITStart->cols_get() != 1)
 			{
 				throw 1;
@@ -967,11 +967,6 @@ namespace ast
 
 			e.step_get().accept(execMeStep);
 			GenericType* pITStep = (GenericType*)execMeStep.result_get();
-			if(pITStep->isDeletable())
-			{
-				pITStep->IncreaseRef();
-			}
-
 			if(pITStep->rows_get() != 1 || pITStep->cols_get() != 1)
 			{
 				throw 2;
@@ -979,11 +974,6 @@ namespace ast
 
 			e.end_get().accept(execMeEnd);
 			GenericType* pITEnd = (GenericType*)execMeEnd.result_get();
-			if(pITEnd->isDeletable())
-			{
-				pITEnd->IncreaseRef();
-			}
-
 			if(pITEnd->rows_get() != 1 || pITEnd->cols_get() != 1)
 			{
 				throw 3;
@@ -1323,7 +1313,12 @@ int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** 
 	}
 
 	delete [] piTabsize;
-	delete [] piIndexList;
+	
+	for(int i = 0 ; i < iProductElem ; i++)
+	{
+		delete[] piIndexList[i];
+	}
+	delete[] piIndexList;
 	return iTotalCombi;
 }
 
