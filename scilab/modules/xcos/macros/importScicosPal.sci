@@ -53,7 +53,7 @@ function importScicosPal(palFiles, outPath)
     block_name = out.gui + ".h5";
     blockFile = outPath + block_name
     
-    doExport = %f;
+    doExport = %t;
     if isfile(blockFile) then
       //if the file already exists try to load data and compare
       out2 = out;
@@ -61,7 +61,7 @@ function importScicosPal(palFiles, outPath)
       
       //data are identical
       if bImport == %t & out == out2 then
-        doExport = %t;
+        doExport = %f;
       end
     end
     
@@ -84,3 +84,4 @@ function importScicosPal(palFiles, outPath)
   disp("exportedBlocks : " + string(exportedBlocks));
   
 endfunction
+
