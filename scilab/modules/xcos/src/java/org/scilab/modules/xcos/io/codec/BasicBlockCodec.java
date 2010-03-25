@@ -134,6 +134,9 @@ public class BasicBlockCodec extends XcosObjectCodec {
 			map.put(name, null);
 		}
 
+		// Remove the abstract blockWithLabel (set as defaultVertex) 
+		map.remove("blockWithLabel");
+		
 		formatStyle(map);
 	}
 }

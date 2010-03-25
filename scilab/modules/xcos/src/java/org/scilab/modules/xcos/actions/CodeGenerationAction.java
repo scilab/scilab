@@ -135,7 +135,6 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
 	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
 	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
 	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-	    block.setStyle("blockWithLabel");
 	    mxUtils.setCellStyles(block.getParentDiagram().getModel(),
 		    new Object[] {block} , mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 	    block.setValue(block.getSimulationFunctionName());

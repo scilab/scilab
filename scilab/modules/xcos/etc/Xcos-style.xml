@@ -1,21 +1,34 @@
 <mxStylesheet>
-	<!-- *** BLOCK DEFINITION *** -->
-	<add as="block" extend="defaultVertex">
-		<add as="shape" value="image" />
-		<add as="image" value="$SCILAB/modules/xcos/images/blocks/empty.svg" />
-		<add as="perimeter" value="rectanglePerimeter" />
-		<add as="strokeColor" value="black" />
-		<add as="fillColor" value="white" />
-		<add as="fontColor" value="black" />
-		<add as="noLabel" value="1" />
-	</add>
+<!-- *** OVERLOADING DEFINITION *** -->
 
-	<add as="blockWithLabel" extend="block">
-		<add as="noLabel" value="0" />
-	</add>
+  <add as="defaultVertex">
+    <add as="shape" value="image" />
+    <add as="image" value="$SCILAB/modules/xcos/images/blocks/empty.svg" />
+    <add as="perimeter" value="rectanglePerimeter" />
+    <add as="strokeColor" value="black" />
+    <add as="fillColor" value="white" />
+    <add as="fontColor" value="black" />
+    <add as="noLabel" value="0"/>
+  </add>
 
-	<!-- Affiche -->
-	<add as="Affiche" extend="blockWithLabel" />
+<!-- *** GENERIC BLOCKS *** -->
+  
+  <add as="block" extend="defaultVertex">
+    <add as="noLabel" value="1"/>
+  </add>
+
+  <add as="blockWithLabel" extend="defaultVertex" />
+
+<!-- *** BLOCK DEFINITION *** -->
+
+  <!-- Affiche -->
+  <add as="Affiche" extend="blockWithLabel"/>
+  
+  <add as="Split" extend="block">
+    <add as="shape" value="rectangle"/>
+    <add as="strokeColor" value="black"/>
+    <add as="fillColor" value="orange"/>
+  </add>
 
 	<add as="Split" extend="block">
 		<add as="shape" value="rectangle" />
