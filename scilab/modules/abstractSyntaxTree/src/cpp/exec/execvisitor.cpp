@@ -40,6 +40,8 @@ void vTransposeComplexMatrix(
 
 namespace ast
 {
+	ExecVisitor* ExecVisitor::m_defaultVisitor;
+
 	void ExecVisitor::visit (const MatrixLineExp &e)
 	{
 	/*
@@ -1324,7 +1326,7 @@ int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** 
 
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
-  //   #define ORIGINAL_IMPLEM 
+#define ORIGINAL_IMPLEM 
 #ifdef ORIGINAL_IMPLEM
 	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
 	{

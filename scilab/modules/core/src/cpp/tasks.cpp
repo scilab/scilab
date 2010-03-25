@@ -16,6 +16,7 @@
 #include "visitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
 
@@ -137,12 +138,12 @@ void execAstTask(bool timed)
 	if(timed)
 	{
 		_timer.start();
+		ast::ExecVisitor::setDefaultVisitor(ast::TimedVisitor());
 	}
 
 	try
 	{
-		ast::ExecVisitor execMe;
-		Parser::getInstance()->getTree()->accept(execMe);
+		Parser::getInstance()->getTree()->accept(ast::ExecVisitor::getDefaultVisitor());
 		//Parser::getInstance()->freeTree();
 	}
 	catch(string sz)

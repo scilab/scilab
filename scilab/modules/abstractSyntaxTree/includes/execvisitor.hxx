@@ -255,6 +255,11 @@ namespace ast
 		int _excepted_result;
 	private :
 		ExecVisitor(ExecVisitor const& e){}
+
+	public : 
+		static ExecVisitor* m_defaultVisitor;
+		static ExecVisitor& getDefaultVisitor(){return *m_defaultVisitor;}
+		static void setDefaultVisitor(ExecVisitor& visitor){m_defaultVisitor = &visitor;}
 	};
 }
 #endif // !AST_EXECVISITOR_HXX

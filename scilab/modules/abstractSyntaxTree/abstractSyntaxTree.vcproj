@@ -338,6 +338,10 @@
 				RelativePath=".\src\cpp\shortcutvisitor.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\cpp\timedvisitor.cpp"
+				>
+			</File>
 			<Filter
 				Name="exec"
 				>
@@ -558,6 +562,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\stringexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\timedvisitor.hxx"
 				>
 			</File>
 			<File
