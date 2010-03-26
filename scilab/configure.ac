@@ -528,19 +528,18 @@ case "$CC" in
 	;;
 
   *-*-darwin*)
-	 CFLAGS=" $CFLAGS -I/sw/include "
-	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
-	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
-	 case "$host" in
-	      i386-apple-darwin*)
-		CC=" $CC -arch i386 "
-		CXX=" $CXX -arch i386 "
-		;;
-	      x86_64-apple-darwin*)
-                CC=" $CC -arch x86_64 "
-                CXX=" $CXX -arch x86_64 "
-                ;;
+	case "$F77" in
+	     gfortran-*|gfortran) 
+	         # Extract from gfortran -v the version it has been built for
+	      	 MAC_DETECTED_ARCH="`$F77 -v 2>&1|grep "Target:"|sed -e "s/Target: \([[a-z0-9A-Z_]]*\).*/\1/g"`"
+		 ;;
+	     *)
+		AC_MSG_WARN([gfortran not used. Could not detect the architecture. Switch to the default case: x86_64])
+		MAC_DETECTED_ARCH="x86_64"
+		 ;;
 	esac
+	 CC=" $CC -arch $MAC_DETECTED_ARCH"
+	 CXX=" $CXX -arch $MAC_DETECTED_ARCH"
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -1958,6 +1957,9 @@ echo "  host_vendor .... = $host_vendor"
 echo "  host_os ... .... = $host_os"
 echo "  hostname ....... = $ac_hostname"
 echo "  CPU 64 bits .... = $IS_64_BITS_CPU"
+if test -n "$MAC_DETECTED_ARCH"; then
+echo "  Mac OS X arch .. = $MAC_DETECTED_ARCH"
+fi
 
 echo ""
 echo "Options used to compile and link:"
