@@ -77,6 +77,7 @@ bool execAst = true;
 bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
+bool ASTtimed = false;
 bool consoleMode = false;
 
 using symbol::Context;
@@ -109,6 +110,7 @@ static void usage (void)
 	std::cerr << "--display-tree : Display Syntax tree formated as understood scilab code." << std::endl;
 	std::cerr << "--context-dump : Display what is stored in scilab at the end." << std::endl;
 	std::cerr << "--timed : Enable timer." << std::endl;
+	std::cerr << "--AST-timed : Enable AST timer." << std::endl;
 	std::cerr << "--no-exec : Do not run the scilab code." << std::endl;
 	std::cerr << "--debug : Print the AST nodes." << std::endl;
 	std::cerr << "-f file : Batch mode on the given file." << std::endl;
@@ -154,6 +156,9 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		}
 		else if (!strcmp("--timed", argv[i])) {
 			timed = true;
+		}
+		else if (!strcmp("--AST-timed", argv[i])) {
+			ASTtimed = true;
 		}
 		else if (!strcmp("-f", argv[i])) {
 			i++;
@@ -222,7 +227,7 @@ static int batchMain (void)
 	/*
 	** -*- EXECUTING TREE -*-
 	*/
-	if (execAst == true) { execAstTask(timed); }
+	if (execAst == true) { execAstTask(timed, ASTtimed); }
 
 	/*
 	** -*- DUMPING STACK AFTER EXECUTION -*-
@@ -369,7 +374,7 @@ static int interactiveMain (void)
 				/*
 				** -*- EXECUTING TREE -*-
 				*/
-				if (execAst == true) { execAstTask(timed); }
+				if (execAst == true) { execAstTask(timed, ASTtimed); }
 
 				/*
 				** -*- DUMPING STACK AFTER EXECUTION -*-

@@ -37,7 +37,7 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
 
-    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc);
 		bool parse(void);
   
 		Macro* macro_get(void);

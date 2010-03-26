@@ -48,7 +48,7 @@ void printAstTask(bool timed);
 **
 ** Execute the stored AST.
 */
-void execAstTask(bool timed);
+void execAstTask(bool timed, bool ASTtimed);
 
 /*
 ** Dump Stack Trace

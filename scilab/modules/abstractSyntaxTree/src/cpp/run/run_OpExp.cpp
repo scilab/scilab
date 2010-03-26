@@ -13,7 +13,9 @@
 #pragma comment(lib,"../../bin/libintl.lib")
 
 #include "timer.hxx"
+#include "runvisitor.hxx"
 #include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "core_math.h"
 
 #include "types_multiplication.hxx"
@@ -22,6 +24,7 @@
 #include "types_divide.hxx"
 #include "types_power.hxx"
 
+#include "context.hxx"
 extern "C"
 {
 	#include "localization.h"
@@ -31,7 +34,11 @@ using std::string;
 
 namespace ast
 {
-	void ExecVisitor::visit(const OpExp &e)
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
+
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const OpExp &e)
 	{
 		ExecVisitor execMeL;
 		ExecVisitor execMeR;
@@ -807,10 +814,11 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit(const LogicalOpExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 	{
-		ExecVisitor execMeL;
-		ExecVisitor execMeR;
+		T execMeL;
+		T execMeR;
 
 		symbol::Context *pContext = symbol::Context::getInstance();
 		e.left_get().accept(execMeL);

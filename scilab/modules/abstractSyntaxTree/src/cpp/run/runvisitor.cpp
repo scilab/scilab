@@ -15,7 +15,9 @@
 #include <iostream>
 #include "stack-def.h"
 
+#include "runvisitor.hxx"
 #include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "shortcutvisitor.hxx"
 #include "conditionvisitor.hxx"
 
@@ -23,6 +25,7 @@
 #include "localization.h"
 
 #include "yaspio.hxx"
+#include "context.hxx"
 
 using std::string;
 
@@ -40,16 +43,19 @@ void vTransposeComplexMatrix(
 
 namespace ast
 {
-	ExecVisitor* ExecVisitor::m_defaultVisitor;
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
 
-	void ExecVisitor::visit (const MatrixLineExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const MatrixLineExp &e)
 	{
 	/*
 		All processes are done in MatrixExp
 	*/
 	}
 
-	void ExecVisitor::visit (const CellExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const CellExp &e)
 	{
 		/*
 			FIXME : container type
@@ -58,53 +64,61 @@ namespace ast
 
 	/** \name Visit Constant Expressions nodes.
 	** \{ */
-	void ExecVisitor::visit (const StringExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const StringExp &e)
 	{
 		String *psz = new String(e.value_get().c_str());
 		result_set(psz);
 	}
 
-	void ExecVisitor::visit (const CommentExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const CommentExp &e)
 	{
 		/*
 		Nothing to do
 		*/
 	}
 
-	void ExecVisitor::visit (const IntExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const IntExp  &e)
 	{
 		/*
 		Int does not exist, Int8 - 16 - 32 - 64 functions
 		*/
 	}
 
-	void ExecVisitor::visit (const FloatExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const FloatExp  &e)
 	{
 		/*
 		Float does not exist, float function
 		*/
 	}
 
-	void ExecVisitor::visit (const DoubleExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const DoubleExp  &e)
 	{
 		Double *pdbl = new Double(e.value_get());
 		result_set(pdbl);
 	}
 
-	void ExecVisitor::visit (const BoolExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const BoolExp  &e)
 	{
 		Bool *pb = new Bool(e.value_get());
 		result_set(pb);
 	}
 
-	void ExecVisitor::visit (const NilExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const NilExp &e)
 	{
 		/*
 		FIXME :
 		*/
 	}
 
-	void ExecVisitor::visit (const SimpleVar &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const SimpleVar &e)
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		if(pI != NULL)
@@ -132,7 +146,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const ColonVar &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ColonVar &e)
 	{
 		int pRank[1] = {2};
 		Double dblCoef(1,2);
@@ -153,7 +168,8 @@ namespace ast
 		*/
 	}
 
-	void ExecVisitor::visit (const DollarVar &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const DollarVar &e)
 	{
 		int pRank[1] = {2};
 		Double dblCoef(1,2);
@@ -166,14 +182,16 @@ namespace ast
 		result_set(pVar);
 	}
 
-	void ExecVisitor::visit (const ArrayListVar &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ArrayListVar &e)
 	{
 		/*
 
 		*/
 	}
 
-	void ExecVisitor::visit (const FieldExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const FieldExp &e)
 	{
 		/*
 		a.b
@@ -235,9 +253,10 @@ namespace ast
 		  }
 	}
 
-	void ExecVisitor::visit(const CallExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const CallExp &e)
 	{
-		ExecVisitor execFunc;
+		T execFunc;
 		std::list<Exp *>::const_iterator	i;
 
 		e.name_get().accept(execFunc);
@@ -276,7 +295,9 @@ namespace ast
 			}
 			
 			int iRetCount = Max(1, expected_size_get());
-			Function::ReturnValue Ret = pCall->call(in, iRetCount, out);
+
+			T execCall;
+			Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
 			
 			if(Ret == Callable::OK)
 			{
@@ -420,7 +441,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const IfExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const IfExp  &e)
 	{
 		//Create local exec visitor
 		ConditionVisitor execMeTest;
@@ -481,11 +503,13 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const TryCatchExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
 	{
 	}
 
-	void ExecVisitor::visit (const WhileExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 	{
 		ConditionVisitor execMeTest;
 		ExecVisitor execMeAction;
@@ -518,7 +542,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const ForExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ForExp  &e)
 	{
 		ExecVisitor execVar;
 		e.vardec_get().accept(execVar);
@@ -598,12 +623,14 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const BreakExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const BreakExp &e)
 	{
 		((BreakExp*)&e)->break_set();
 	}
 
-	void ExecVisitor::visit (const ReturnExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 	{
 		if(e.is_global() == false)
 		{//return(x)
@@ -618,7 +645,8 @@ namespace ast
 		((Exp*)&e)->return_set();
 	}
 
-	void ExecVisitor::visit (const SelectExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const SelectExp &e)
 	{
 	  // FIXME : exec select ... case ... else ... end
 		ExecVisitor execMe;
@@ -656,19 +684,20 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit(const CaseExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const CaseExp &e)
 	{
-	  // FIXME : case ... 
 	}
 
-
-	void ExecVisitor::visit (const SeqExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 	{
+		T execMe;
 		std::list<Exp *>::const_iterator	i;
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
-			ExecVisitor execMe;
+			//ExecVisitor *execMe = getDefaultVisitor();
 			if(e.is_breakable())
 			{
 				(*i)->breakable_set();
@@ -689,7 +718,8 @@ namespace ast
 					types::typed_list out;
 					types::typed_list in;
 
-					Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+					T execCall;
+					Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out, &execCall);
 
 					if(Ret == Callable::OK)
 					{
@@ -753,7 +783,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const ArrayListExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ArrayListExp  &e)
 	{
 		std::list<Exp *>::const_iterator it;
 		int i = 0;
@@ -766,14 +797,16 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const AssignListExp  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const AssignListExp  &e)
 	{
 	}
 	/** \} */
 
 	/** \name Visit Single Operation nodes.
 	** \{ */
-	void ExecVisitor::visit (const NotExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const NotExp &e)
 	{
 		/*
 		@ or ~= !
@@ -808,7 +841,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const TransposeExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 	{
 		/*
 		'
@@ -896,13 +930,14 @@ namespace ast
 
 			result_set(pReturn);
 		}
-}
+	}
 	/** \} */
 
 	/** \name Visit Declaration nodes.
 	** \{ */
 	/** \brief Visit Var declarations. */
-	void ExecVisitor::visit (const VarDec  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const VarDec  &e)
 	{
 		/*Create local exec visitor*/
 		ExecVisitor execMe;
@@ -919,7 +954,8 @@ namespace ast
 		}
 	}
 
-	void ExecVisitor::visit (const FunctionDec  &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
 	{
 		/*
 		function foo
@@ -951,7 +987,8 @@ namespace ast
 
 	/** \name Visit Type dedicated Expressions related node.
 	** \{ */
-	void ExecVisitor::visit(const ListExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const ListExp &e)
 	{
 		ExecVisitor	execMeStart;
 		ExecVisitor	execMeStep;
@@ -1069,7 +1106,174 @@ namespace ast
 	}
 	/** \} */
 
-			
+	template <class T>
+	int RunVisitorT<T>::GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+	{
+		//Create list of indexes
+		//std::vector<std::vector<int>> IndexList;
+		symbol::Context *pcontext = symbol::Context::getInstance();
+		int iProductElem				= (int)_plstArg.size();
+		int **piIndexList				= NULL;
+		int *piTabsize					= NULL;
+		int iTotalCombi					= 1;
+		int k										= 0;
+
+		piTabsize			= new int[iProductElem];
+		piIndexList		= new int*[iProductElem];
+
+		(*_piMaxDim)	= new int[iProductElem];
+
+		T execMeArg;
+		std::list<Exp *>::const_iterator	i;
+		for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
+		{
+			(*i)->accept(execMeArg);
+			InternalType *pIn = NULL;
+			Double *pDbl = NULL;
+			bool bDeleteDbl = false;
+
+			if(execMeArg.result_get()->getType() == InternalType::RealImplicitList)
+			{//a:b:c
+				int iMaxDim = 0;
+				if(_pRefVar != NULL)
+				{
+					iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
+				}
+
+				Double dbl(iMaxDim); // $
+				ImplicitList *pIL = execMeArg.result_get()->getAsImplicitList();
+				if(pIL->computable() == false)
+				{
+					if(pIL->start_type_get() == InternalType::RealPoly)
+					{
+						MatrixPoly *poPoly	= (MatrixPoly*)pIL->start_get();
+						pIL->start_set(poPoly->evaluate(&dbl));
+					}
+					if(pIL->step_type_get() == InternalType::RealPoly)
+					{
+						MatrixPoly *poPoly	= (MatrixPoly*)pIL->step_get();
+						pIL->step_set(poPoly->evaluate(&dbl));
+					}
+					if(pIL->end_type_get() == InternalType::RealPoly)
+					{
+						MatrixPoly *poPoly	= (MatrixPoly*)pIL->end_get();
+						pIL->end_set(poPoly->evaluate(&dbl));
+					}
+				}
+
+				pDbl = (Double*)pIL->extract_matrix();
+				bDeleteDbl = true;
+			}
+			else if(execMeArg.result_get()->getType() == InternalType::RealBool)
+			{
+				Bool *pB			= execMeArg.result_get()->getAsBool();
+				int *piB			= pB->bool_get();
+
+				//find true item count
+				int iItemCount = 0;
+				for(int i = 0 ; i < pB->size_get() ; i++)
+				{
+					if(piB[i])
+					{
+						iItemCount++;
+					}
+				}
+
+				//allow new Double variable
+				pDbl					= new Double(iItemCount, 1);
+				double* pdbl	= pDbl->real_get();
+
+				int j = 0;
+				for(int i = 0 ; i < pB->size_get() ; i++)
+				{
+					if(piB[i])
+					{
+						pdbl[j++] = i + 1;
+					}
+				}
+
+				bDeleteDbl		= true;
+			}
+			else
+			{
+				pIn = execMeArg.result_get();
+
+				if(pIn->getType() == InternalType::RealPoly)
+				{//manage $
+					MatrixPoly *pPoly = pIn->getAsPoly();
+
+					if(_pRefVar != NULL)
+					{
+						int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
+						Double dbl(iMaxDim); // $
+						pDbl = pPoly->evaluate(&dbl);
+						bDeleteDbl = true;
+					}
+					else
+					{//houston we have a problem ...
+						Double dbl(0);
+						pDbl = pPoly->evaluate(&dbl);
+
+					}
+				}
+				else if(pIn->getType() == InternalType::RealDouble)
+				{
+					pDbl	= pIn->getAsDouble();//
+				}
+				else
+				{//Heu ... ?
+				}
+			}
+
+			double *pData = pDbl->real_get();
+
+			piTabsize[k] = pDbl->size_get();
+			piIndexList[k] = new int[piTabsize[k]];
+
+			(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
+			int iSize = pDbl->size_get();
+			if(_iDimSize != NULL)
+			{
+				_iDimSize[k] = iSize;
+			}
+
+			for(int j = 0 ; j < iSize ; j++)
+			{
+				piIndexList[k][j] = (int)(pData[j] + 0.5);
+				if(piIndexList[k][j] > (*_piMaxDim)[k])
+				{
+					(*_piMaxDim)[k] = piIndexList[k][j];
+				}
+			}
+			iTotalCombi *= iSize;
+
+			if(bDeleteDbl == true)
+			{
+				delete pDbl;
+			}
+		}
+
+		int iTabsize	= iTotalCombi * iProductElem;
+		*_piIndexSeq	= new int[iTabsize];
+
+		if(iTabsize > 1)
+		{
+			ExpandList(piIndexList, piTabsize, iProductElem, *_piIndexSeq);
+		}
+		else
+		{
+			_piIndexSeq[0][0] = piIndexList[0][0];
+		}
+
+		delete [] piTabsize;
+
+		for(int i = 0 ; i < iProductElem ; i++)
+		{
+			delete[] piIndexList[i];
+		}
+		delete[] piIndexList;
+		return iTotalCombi;
+	}
 }
 
 using namespace ast;
@@ -1155,178 +1359,9 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 	}
 }
 
-
-int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
-{
-	//Create list of indexes
-	//std::vector<std::vector<int>> IndexList;
-	symbol::Context *pcontext = symbol::Context::getInstance();
-	int iProductElem				= (int)_plstArg.size();
-	int **piIndexList				= NULL;
-	int *piTabsize					= NULL;
-	int iTotalCombi					= 1;
-	int k										= 0;
-
-	piTabsize			= new int[iProductElem];
-	piIndexList		= new int*[iProductElem];
-
-	(*_piMaxDim)	= new int[iProductElem];
-
-	ExecVisitor execMeArg;
-	std::list<Exp *>::const_iterator	i;
-	for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
-	{
-		(*i)->accept(execMeArg);
-		InternalType *pIn = NULL;
-		Double *pDbl = NULL;
-		bool bDeleteDbl = false;
-
-		if(execMeArg.result_get()->getType() == InternalType::RealImplicitList)
-		{//a:b:c
-			int iMaxDim = 0;
-			if(_pRefVar != NULL)
-			{
-				iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
-			}
-
-			Double dbl(iMaxDim); // $
-			ImplicitList *pIL = execMeArg.result_get()->getAsImplicitList();
-			if(pIL->computable() == false)
-			{
-				if(pIL->start_type_get() == InternalType::RealPoly)
-				{
-					MatrixPoly *poPoly	= (MatrixPoly*)pIL->start_get();
-					pIL->start_set(poPoly->evaluate(&dbl));
-				}
-				if(pIL->step_type_get() == InternalType::RealPoly)
-				{
-					MatrixPoly *poPoly	= (MatrixPoly*)pIL->step_get();
-					pIL->step_set(poPoly->evaluate(&dbl));
-				}
-				if(pIL->end_type_get() == InternalType::RealPoly)
-				{
-					MatrixPoly *poPoly	= (MatrixPoly*)pIL->end_get();
-					pIL->end_set(poPoly->evaluate(&dbl));
-				}
-			}
-
-			pDbl = (Double*)pIL->extract_matrix();
-			bDeleteDbl = true;
-		}
-		else if(execMeArg.result_get()->getType() == InternalType::RealBool)
-		{
-			Bool *pB			= execMeArg.result_get()->getAsBool();
-			int *piB			= pB->bool_get();
-
-			//find true item count
-			int iItemCount = 0;
-			for(int i = 0 ; i < pB->size_get() ; i++)
-			{
-				if(piB[i])
-				{
-					iItemCount++;
-				}
-			}
-
-			//allow new Double variable
-			pDbl					= new Double(iItemCount, 1);
-			double* pdbl	= pDbl->real_get();
-
-			int j = 0;
-			for(int i = 0 ; i < pB->size_get() ; i++)
-			{
-				if(piB[i])
-				{
-					pdbl[j++] = i + 1;
-				}
-			}
-			
-			bDeleteDbl		= true;
-		}
-		else
-		{
-			pIn = execMeArg.result_get();
-
-			if(pIn->getType() == InternalType::RealPoly)
-			{//manage $
-				MatrixPoly *pPoly = pIn->getAsPoly();
-
-				if(_pRefVar != NULL)
-				{
-					int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
-					Double dbl(iMaxDim); // $
-					pDbl = pPoly->evaluate(&dbl);
-					bDeleteDbl = true;
-				}
-				else
-				{//houston we have a problem ...
-					Double dbl(0);
-					pDbl = pPoly->evaluate(&dbl);
-
-				}
-			}
-			else if(pIn->getType() == InternalType::RealDouble)
-			{
-			  pDbl	= pIn->getAsDouble();//
-			}
-			else
-			{//Heu ... ?
-			}
-		}
-
-		double *pData = pDbl->real_get();
-
-		piTabsize[k] = pDbl->size_get();
-		piIndexList[k] = new int[piTabsize[k]];
-
-		(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
-		int iSize = pDbl->size_get();
-		if(_iDimSize != NULL)
-		{
-			_iDimSize[k] = iSize;
-		}
-
-		for(int j = 0 ; j < iSize ; j++)
-		{
-			piIndexList[k][j] = (int)(pData[j] + 0.5);
-			if(piIndexList[k][j] > (*_piMaxDim)[k])
-			{
-				(*_piMaxDim)[k] = piIndexList[k][j];
-			}
-		}
-		iTotalCombi *= iSize;
-
-		if(bDeleteDbl == true)
-		{
-			delete pDbl;
-		}
-	}
-
-	int iTabsize	= iTotalCombi * iProductElem;
-	*_piIndexSeq	= new int[iTabsize];
-
-	if(iTabsize > 1)
-	{
-	  ExpandList(piIndexList, piTabsize, iProductElem, *_piIndexSeq);
-	}
-	else
-	{
-	  _piIndexSeq[0][0] = piIndexList[0][0];
-	}
-
-	delete [] piTabsize;
-	
-	for(int i = 0 ; i < iProductElem ; i++)
-	{
-		delete[] piIndexList[i];
-	}
-	delete[] piIndexList;
-	return iTotalCombi;
-}
-
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
 {
-#define ORIGINAL_IMPLEM 
+//#define ORIGINAL_IMPLEM 
 #ifdef ORIGINAL_IMPLEM
 	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
 	{

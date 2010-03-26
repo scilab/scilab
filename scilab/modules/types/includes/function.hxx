@@ -50,7 +50,7 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
 
-    virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc);
 
 
   private :
@@ -61,7 +61,8 @@ namespace types
   {
   public :
     WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
-    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+
+		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc);
   private :
     OLDGW_FUNC m_pOldFunc;
 		InternalType* m_pTempOut[MAX_OUTPUT_VARIABLE];

@@ -15,7 +15,6 @@
 
 #include "macro.hxx"
 #include "context.hxx"
-#include "execvisitor.hxx"
 #include "stack-def.h"
 #include "localization.h"
 #include "yaspio.hxx"
@@ -73,7 +72,7 @@ namespace types
 	  return ostr.str();
 	}
 	
-	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out)
+	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc)
 	{
 		ReturnValue RetVal = Callable::OK;
 		//check excepted and input/output parameters numbers
@@ -84,7 +83,7 @@ namespace types
 
 		std::list<std::string>::const_iterator i;
 		typed_list::const_iterator j;
-		ast::ExecVisitor execFunc;
+		//ast::ExecVisitor execFunc;
 
 		//open a new scope
 		symbol::Context *pContext = symbol::Context::getInstance();
@@ -99,7 +98,7 @@ namespace types
 		try
 		{
 			m_body->returnable_set();
-			m_body->accept(execFunc);
+			m_body->accept(*execFunc);
 			if(m_body->is_return())
 			{
 				m_body->returnable_set();				

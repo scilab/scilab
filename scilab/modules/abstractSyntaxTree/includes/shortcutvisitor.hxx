@@ -18,53 +18,19 @@
 #include <iostream>
 #include <sstream>
 
-#include "visitor.hxx"
+#include "execvisitor.hxx"
 #include "allexp.hxx"
 #include "allvar.hxx"
 #include "alldec.hxx"
 
 namespace ast
 {
-	class EXTERN_AST ShortCutVisitor : public GenVisitor<const_kind>
+	class EXTERN_AST ShortCutVisitor : public ExecVisitor
 	{
 	public:
 		ShortCutVisitor(){}
 		~ShortCutVisitor(){}
-		virtual void visit (const MatrixExp &e);
-		virtual void visit (const MatrixLineExp &e);
-		virtual void visit (const CellExp &e);
-		virtual void visit (const StringExp &e);
-		virtual void visit (const CommentExp &e);
-		virtual void visit (const IntExp  &e);
-		virtual void visit (const FloatExp  &e);
-		virtual void visit (const DoubleExp  &e);
-		virtual void visit (const BoolExp  &e);
-		virtual void visit (const NilExp &e);
-		virtual void visit (const SimpleVar &e);
-		virtual void visit (const ColonVar &e);
-		virtual void visit (const DollarVar &e);
-		virtual void visit (const ArrayListVar &e);
-		virtual void visit (const FieldExp &e);
-		virtual void visit (const OpExp &e);
 		virtual void visit (const LogicalOpExp &e);
-		virtual void visit (const AssignExp  &e);
-		virtual void visit (const CallExp &e);
-		virtual void visit (const IfExp  &e);
-		virtual void visit (const TryCatchExp  &e);
-		virtual void visit (const WhileExp  &e);
-		virtual void visit (const ForExp  &e);
-		virtual void visit (const BreakExp &e);
-		virtual void visit (const ReturnExp &e);
-		virtual void visit (const SelectExp &e);
-		virtual void visit (const CaseExp &e);
-		virtual void visit (const SeqExp  &e);
-		virtual void visit (const ArrayListExp  &e);
-		virtual void visit (const AssignListExp  &e);
-		virtual void visit (const NotExp &e);
-		virtual void visit (const TransposeExp &e);
-		virtual void visit (const VarDec  &e);
-		virtual void visit (const FunctionDec  &e);
-		virtual void visit(const ListExp &e);
 	};
 }
 #endif // !AST_SHORTCUTVISITOR_HXX

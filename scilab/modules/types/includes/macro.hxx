@@ -14,8 +14,8 @@
 #define __MACRO_HXX__
 
 #include <list>
-#include "callable.hxx"
 #include "types.hxx"
+#include "callable.hxx"
 #include "symbol.hxx"
 #include "seqexp.hxx"
 
@@ -38,7 +38,7 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
     
-    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc);
     
 		ast::SeqExp* body_get();
 

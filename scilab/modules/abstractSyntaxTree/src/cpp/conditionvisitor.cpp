@@ -14,6 +14,7 @@
 #include "execvisitor.hxx"
 #include "timer.hxx"
 #include "localization.h"
+#include "context.hxx"
 
 #include "yaspio.hxx"
 

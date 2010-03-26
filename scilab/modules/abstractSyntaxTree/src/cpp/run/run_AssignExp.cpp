@@ -11,7 +11,9 @@
 */
 
 #include "localization.h"
+#include "runvisitor.hxx"
 #include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 #include "context.hxx"
 #include <string>
 
@@ -19,15 +21,19 @@
 
 using std::string;
 using ast::Exp;
-using ast::ExecVisitor;
+using ast::RunVisitor;
 
 namespace ast
 {
-	void ExecVisitor::visit (const AssignExp  &e)
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
+
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 	{
 		symbol::Context *pcontext = symbol::Context::getInstance();
 		/*Create local exec visitor*/
-		ExecVisitor execMeR;
+		T execMeR;
 		try
 		{
 			/*get king of left hand*/

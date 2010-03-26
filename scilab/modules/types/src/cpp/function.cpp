@@ -47,7 +47,7 @@ namespace types
     return this; 
   }
 
-  Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out)
+	Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, RunVisitor* execFunc)
   {
     return this->m_pFunc(in, _iRetCount, out);
   }
@@ -67,7 +67,7 @@ namespace types
     m_stModule = _stModule;
   }
 
-  Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out) 
+	Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc) 
   {
     ReturnValue retVal = Callable::OK;
     GatewayStruct* pStr = new GatewayStruct();

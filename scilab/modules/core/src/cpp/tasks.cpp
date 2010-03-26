@@ -24,7 +24,7 @@
 
 #define SCILAB_START "/etc/scilab.start"
 
-timer _timer;
+Timer _timer;
 
 //#define DEBUG
 
@@ -133,17 +133,26 @@ void printAstTask(bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(bool timed)
+void execAstTask(bool timed, bool ASTtimed)
 {
+	ast::ExecVisitor *exec;
 	if(timed)
 	{
 		_timer.start();
-		ast::ExecVisitor::setDefaultVisitor(ast::TimedVisitor());
+	}
+
+	if(ASTtimed)
+	{
+		exec = (ast::ExecVisitor*)new ast::TimedVisitor();
+	}
+	else
+	{
+		exec = new ast::ExecVisitor();
 	}
 
 	try
 	{
-		Parser::getInstance()->getTree()->accept(ast::ExecVisitor::getDefaultVisitor());
+		Parser::getInstance()->getTree()->accept(*exec);
 		//Parser::getInstance()->freeTree();
 	}
 	catch(string sz)
@@ -151,6 +160,8 @@ void execAstTask(bool timed)
 	  YaspWrite((char *) sz.c_str());
 	  YaspWrite("\n");
 	}
+
+	delete exec;
 
 	if(timed)
 	{
@@ -196,5 +207,5 @@ void execScilabStartTask(void)
 		return;
 	}
 
-	execAstTask(false);
+	execAstTask(false, false);
 }

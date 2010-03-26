@@ -18,12 +18,11 @@
 #include <iostream>
 #include <sstream>
 
-#include "execvisitor.hxx"
-#include "visitor.hxx"
 #include "allexp.hxx"
 #include "allvar.hxx"
 #include "alldec.hxx"
 #include "alltypes.hxx"
+#include "execvisitor.hxx"
 
 namespace ast
 {

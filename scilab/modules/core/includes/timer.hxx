@@ -22,7 +22,7 @@
 #include <iostream>
 #include <iomanip>
 
-class timer
+class Timer
 {
 
 private:
@@ -71,7 +71,7 @@ public:
 		return dblTime;
   } // timer::elapsed_time
 public:
-	timer()
+	Timer()
 	{
 #ifndef _MSC_VER
 		start_hour	= 0;
@@ -140,7 +140,7 @@ public:
   // for an ostream 'os' and a timer 't'.  For example, "cout << t" will
   // print out the total amount of time 't' has been "running".
 
-  inline std::ostream& operator<<(std::ostream& os, timer& t)
+  inline std::ostream& operator<<(std::ostream& os, Timer& t)
   {
     os << std::setprecision(3)
        << std::setiosflags(std::ios::fixed)

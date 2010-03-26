@@ -10,7 +10,9 @@
 *
 */
 
+#include "runvisitor.hxx"
 #include "execvisitor.hxx"
+#include "timedvisitor.hxx"
 
 using std::string;
 
@@ -19,10 +21,14 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 
 namespace ast
 {
+	template class RunVisitorT<ExecVisitor>;
+	template class RunVisitorT<TimedVisitor>;
+
 	/*
 	[1,2;3,4] with/without special character $ and :
 	*/
-	void ExecVisitor::visit (const MatrixExp &e)
+	template <class T>
+	void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 	{
 		try
 		{
@@ -49,7 +55,7 @@ namespace ast
 					list<InternalType*> RowList;
 					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
 					{
-						ExecVisitor* execMe = new ast::ExecVisitor();
+						T* execMe = new T();
 						(*col)->accept (*execMe);
 						if(execMe->result_get()->getType() == InternalType::RealImplicitList)
 						{

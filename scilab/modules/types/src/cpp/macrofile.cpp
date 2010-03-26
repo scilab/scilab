@@ -14,7 +14,6 @@
 #include <sstream>
 #include "macrofile.hxx"
 #include "context.hxx"
-#include "execvisitor.hxx"
 #include "localization.h"
 #include "yaspio.hxx"
 #include "parser.hxx"
@@ -69,14 +68,14 @@ namespace types
 	  return ostr.str();
 	}
 
-	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out)
+	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, RunVisitor* execFunc)
 	{
 		ReturnValue RetVal = Callable::OK;
 
 		parse();
 		if(m_pMacro)
 		{
-			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out);
+			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out, execFunc);
 			return Val;
 		}
 		else
