@@ -82,7 +82,7 @@ namespace ast
     virtual void accept (Visitor& v) = 0;
     /** \} */
 
-		Timer& timer_get(){return _timer;}
+		//Timer& timer_get(){return _timer;}
 
   private:
     /** \brief Construct an Ast by copy. */
@@ -91,7 +91,7 @@ namespace ast
     Ast& operator= (const Ast&);
 
     /** \brief Scanner position informations. */
-		Timer _timer;
+		//Timer _timer;
     Location _location;
   };
 

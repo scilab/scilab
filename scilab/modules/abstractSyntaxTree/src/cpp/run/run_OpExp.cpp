@@ -40,8 +40,8 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const OpExp &e)
 	{
-		ExecVisitor execMeL;
-		ExecVisitor execMeR;
+		T execMeL;
+		T execMeR;
 
 		symbol::Context *pContext = symbol::Context::getInstance();
 		/*getting what to assign*/

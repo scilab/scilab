@@ -13,7 +13,8 @@
 #ifndef __MATRIXPOLY_HH__
 #define __MATRIXPOLY_HH__
 
-#include "types.hxx"
+#include "poly.hxx"
+#include "double.hxx"
 
 #ifdef isComplex
 #undef isComplex

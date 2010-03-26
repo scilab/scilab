@@ -20,8 +20,8 @@
 #endif
 
 #include <string>
-#include "types.hxx"
 #include "callable.hxx"
+#include "types.hxx"
 
 #define MAX_OUTPUT_VARIABLE		64
 

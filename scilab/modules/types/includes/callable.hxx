@@ -19,6 +19,7 @@
 
 #include "runvisitor.hxx"
 
+using namespace ast;
 namespace types
 {
   class Callable : public InternalType

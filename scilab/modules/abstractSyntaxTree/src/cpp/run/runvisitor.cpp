@@ -196,7 +196,7 @@ namespace ast
 		/*
 		a.b
 		*/
-	  ExecVisitor execHead;
+	  T execHead;
 	 	try
 		{
 		  e.head_get()->accept(execHead);
@@ -267,7 +267,7 @@ namespace ast
 			types::typed_list in;
 
 			//get function arguments
-			ExecVisitor *execVar = new ast::ExecVisitor[e.args_get().size()]();
+			T *execVar = new T[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
 			{
@@ -447,7 +447,7 @@ namespace ast
 		//Create local exec visitor
 		ConditionVisitor execMeTest;
 		ShortCutVisitor SCTest;
-		ExecVisitor execMeAction;
+		T execMeAction;
 		bool bTestStatus							= false;
 
 		//condition
@@ -512,7 +512,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 	{
 		ConditionVisitor execMeTest;
-		ExecVisitor execMeAction;
+		T execMeAction;
 		bool bTestStatus	= false;
 
 		//allow break operation
@@ -545,7 +545,7 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const ForExp  &e)
 	{
-		ExecVisitor execVar;
+		T execVar;
 		e.vardec_get().accept(execVar);
 
 		//allow break operation
@@ -558,7 +558,7 @@ namespace ast
 
 		if(execVar.result_get()->getType() == InternalType::RealImplicitList)
 		{
-			ExecVisitor execBody;
+			T execBody;
 			ImplicitList* pVar = (ImplicitList*)execVar.result_get();
 //			std::cout << "ImplicitList references : " << pVar->getRef() << std::endl;
 
@@ -602,7 +602,7 @@ namespace ast
 		}
 		else
 		{//Matrix i = [1,3,2,6] or other type
-			ExecVisitor execBody;
+			T execBody;
 			GenericType* pVar = (GenericType*)execVar.result_get();
 			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
@@ -634,7 +634,7 @@ namespace ast
 	{
 		if(e.is_global() == false)
 		{//return(x)
-			ExecVisitor execVar;
+			T execVar;
 			e.exp_get().accept(execVar);
 			
 			for(int i = 0 ; i < execVar.result_size_get() ; i++)
@@ -649,7 +649,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const SelectExp &e)
 	{
 	  // FIXME : exec select ... case ... else ... end
-		ExecVisitor execMe;
+		T execMe;
 		e.select_get()->accept(execMe);
 		bool bCase = false;
 
@@ -659,7 +659,7 @@ namespace ast
 			cases_t::iterator it;
 			for(it = e.cases_get()->begin(); it != e.cases_get()->end() ; it++)
 			{
-				ExecVisitor execCase;
+				T execCase;
 				CaseExp* pCase = *it;
 				pCase->test_get()->accept(execCase);
 				if(execCase.result_get() != NULL)
@@ -669,7 +669,7 @@ namespace ast
 					}
 					else if(*execCase.result_get() == *execMe.result_get())
 					{//the good one
-						ExecVisitor execBody;
+						T execBody;
 						pCase->body_get()->accept(execBody);
 						bCase = true;
 					}
@@ -679,7 +679,7 @@ namespace ast
 
 		if(bCase == false)
 		{//default case
-			ExecVisitor execDefault;
+			T execDefault;
 			e.default_case_get()->accept(execDefault);
 		}
 	}
@@ -697,7 +697,7 @@ namespace ast
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
-			//ExecVisitor *execMe = getDefaultVisitor();
+			T execMe;
 			if(e.is_breakable())
 			{
 				(*i)->breakable_set();
@@ -790,7 +790,7 @@ namespace ast
 		int i = 0;
 		for(it = e.exps_get().begin() ; it != e.exps_get().end() ; it++)
 		{
-			ExecVisitor execArg;
+			T execArg;
 			(*it)->accept(execArg);
 			result_set(i, execArg.result_get()->clone());
 			i++;
@@ -811,7 +811,7 @@ namespace ast
 		/*
 		@ or ~= !
 		*/
-		ExecVisitor execMe;
+		T execMe;
 		e.exp_get().accept(execMe);
 
 		if(execMe.result_get()->isDouble())
@@ -847,7 +847,7 @@ namespace ast
 		/*
 		'
 		*/
-		ExecVisitor execMe;
+		T execMe;
 		e.exp_get().accept(execMe);
 
 		bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
@@ -940,7 +940,7 @@ namespace ast
 	void RunVisitorT<T>::visitprivate(const VarDec  &e)
 	{
 		/*Create local exec visitor*/
-		ExecVisitor execMe;
+		T execMe;
 		try
 		{
 			/*getting what to assign*/
@@ -990,9 +990,9 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const ListExp &e)
 	{
-		ExecVisitor	execMeStart;
-		ExecVisitor	execMeStep;
-		ExecVisitor	execMeEnd;
+		T	execMeStart;
+		T	execMeStep;
+		T	execMeEnd;
 
 		try
 		{
@@ -1277,7 +1277,6 @@ namespace ast
 }
 
 using namespace ast;
-//using ast::ExecVisitor;
 
 bool bConditionState(ast::ConditionVisitor *exec)
 {

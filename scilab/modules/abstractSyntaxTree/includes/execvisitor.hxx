@@ -18,10 +18,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "allexp.hxx"
-#include "allvar.hxx"
-#include "alldec.hxx"
-#include "alltypes.hxx"
 #include "runvisitor.hxx"
 
 using namespace types;

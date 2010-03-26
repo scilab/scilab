@@ -13,10 +13,7 @@
 #include <math.h>
 #include "implicitlist.hxx"
 #include "core_math.h"
-#include "double.hxx"
-#include "int.hxx"
 #include "tostring_common.hxx"
-#include "alltypes.hxx"
 
 extern "C"
 {

@@ -14,8 +14,9 @@
 #define __IMP_LIST_HXX__
 
 #include "types.hxx"
-#include "alltypes.hxx"
 #include "int.hxx"
+#include "double.hxx"
+#include "matrixpoly.hxx"
 
 namespace types
 {

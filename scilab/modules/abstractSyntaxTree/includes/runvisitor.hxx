@@ -18,14 +18,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "allexp.hxx"
-#include "allvar.hxx"
-#include "alldec.hxx"
+#include "all.hxx"
+#include "types.hxx"
 
-#include "alltypes.hxx"
-
-
-using namespace types;
 
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
@@ -36,7 +31,7 @@ namespace ast
 	{
 	};
 
-	template <class T> class RunVisitorT : public RunVisitor
+	template <class T> class EXTERN_AST RunVisitorT : public RunVisitor
 	{
 	public:
 		RunVisitorT()
@@ -76,7 +71,7 @@ namespace ast
 		}
 
 	protected :
-		int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize);
+		int GetIndexList(std::list<ast::Exp *>const& _plstArg, int** _piIndexSeq, int** _piMaxDim, types::InternalType *_pRefVar, int *_iDimSize);
 
 		/** \name Visit Matrix Expressions nodes.
 		** \{ */
@@ -179,7 +174,7 @@ namespace ast
 			_excepted_result = _iSize;
 		}
 
-		InternalType* result_get(void)
+		types::InternalType* result_get(void)
 		{
 			if(is_single_result())
 			{
@@ -224,10 +219,10 @@ namespace ast
 			_resultVect[_iPos] = (InternalType *)gtVal;
 		}
 
-		void result_set(const InternalType *gtVal)
+		void result_set(const types::InternalType *gtVal)
 		{
 			m_bSingleResult = true;
-			_result = const_cast<InternalType *>(gtVal);
+			_result = const_cast<types::InternalType *>(gtVal);
 		}
 
 		bool is_single_result()

@@ -19,9 +19,7 @@
 #include <sstream>
 
 #include "execvisitor.hxx"
-#include "allexp.hxx"
-#include "allvar.hxx"
-#include "alldec.hxx"
+#include "all.hxx"
 
 namespace ast
 {
