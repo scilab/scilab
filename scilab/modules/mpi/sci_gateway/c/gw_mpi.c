@@ -23,7 +23,9 @@ static MPITable Tab[]=
 	{sci_mpi_comm_size,"MPI_Comm_size"},
 	{sci_mpi_comm_rank,"MPI_Comm_rank"},
 	{sci_mpi_recv,"MPI_Recv"},
-	{sci_mpi_send,"MPI_Send"}
+	{sci_mpi_send,"MPI_Send"},
+	{sci_mpi_serialize,"MPI_serialize"},
+	{sci_mpi_unserialize,"MPI_unserialize"}
 };
 /*static MPITable Tab[]=
 {
