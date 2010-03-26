@@ -76,73 +76,73 @@ namespace ast
 		/** \name Visit Matrix Expressions nodes.
 		** \{ */
 	public :
-		 void visitprivate(const MatrixExp &e);
-		 void visitprivate(const MatrixLineExp &e);
+		 virtual void visitprivate(const MatrixExp &e);
+		 virtual void visitprivate(const MatrixLineExp &e);
 		/** \} */
 
 		/** \name Visit Cell Expressions nodes.
 		** \{ */
 	public :
-		 void visitprivate(const CellExp &e);
+		 virtual void visitprivate(const CellExp &e);
 		/** \} */
 
 		/** \name Visit Constant Expressions nodes.
 		** \{ */
 	public :
-		 void visitprivate(const StringExp &e);
-		 void visitprivate(const CommentExp &e);
-		 void visitprivate(const IntExp  &e);
-		 void visitprivate(const FloatExp  &e);
-		 void visitprivate(const DoubleExp  &e);
-		 void visitprivate(const BoolExp  &e);
-		 void visitprivate(const NilExp &e);
+		 virtual void visitprivate(const StringExp &e);
+		 virtual void visitprivate(const CommentExp &e);
+		 virtual void visitprivate(const IntExp  &e);
+		 virtual void visitprivate(const FloatExp  &e);
+		 virtual void visitprivate(const DoubleExp  &e);
+		 virtual void visitprivate(const BoolExp  &e);
+		 virtual void visitprivate(const NilExp &e);
 		/** \} */
 
 		/** \name Visit Variable related nodes.
 		** \{ */
-		 void visitprivate(const SimpleVar &e);
-		 void visitprivate(const ColonVar &e);
-		 void visitprivate(const DollarVar &e);
-		 void visitprivate(const ArrayListVar &e);
+		 virtual void visitprivate(const SimpleVar &e);
+		 virtual void visitprivate(const ColonVar &e);
+		 virtual void visitprivate(const DollarVar &e);
+		 virtual void visitprivate(const ArrayListVar &e);
 		/** \} */
 
 		/** \name Visit Control Expressions or Instructions nodes.
 		** \{ */
-		 void visitprivate(const FieldExp &e);
-		 void visitprivate(const OpExp &e);
-		 void visitprivate(const LogicalOpExp &e);
-		 void visitprivate(const AssignExp  &e);
-		 void visitprivate(const CallExp &e);
-		 void visitprivate(const IfExp  &e);
-		 void visitprivate(const TryCatchExp  &e);
-		 void visitprivate(const WhileExp  &e);
-		 void visitprivate(const ForExp  &e);
-		 void visitprivate(const BreakExp &e);
-		 void visitprivate(const ReturnExp &e);
-		 void visitprivate(const SelectExp &e);
-		 void visitprivate(const CaseExp &e);
-		 void visitprivate(const SeqExp  &e);
-		 void visitprivate(const ArrayListExp  &e);
-		 void visitprivate(const AssignListExp  &e);
+		 virtual void visitprivate(const FieldExp &e);
+		 virtual void visitprivate(const OpExp &e);
+		 virtual void visitprivate(const LogicalOpExp &e);
+		 virtual void visitprivate(const AssignExp  &e);
+		 virtual void visitprivate(const CallExp &e);
+		 virtual void visitprivate(const IfExp  &e);
+		 virtual void visitprivate(const TryCatchExp  &e);
+		 virtual void visitprivate(const WhileExp  &e);
+		 virtual void visitprivate(const ForExp  &e);
+		 virtual void visitprivate(const BreakExp &e);
+		 virtual void visitprivate(const ReturnExp &e);
+		 virtual void visitprivate(const SelectExp &e);
+		 virtual void visitprivate(const CaseExp &e);
+		 virtual void visitprivate(const SeqExp  &e);
+		 virtual void visitprivate(const ArrayListExp  &e);
+		 virtual void visitprivate(const AssignListExp  &e);
 		/** \} */
 
 		/** \name Visit Single Operation nodes.
 		** \{ */
-		 void visitprivate(const NotExp &e);
-		 void visitprivate(const TransposeExp &e);
+		 virtual void visitprivate(const NotExp &e);
+		 virtual void visitprivate(const TransposeExp &e);
 		/** \} */
 
 		/** \name Visit Declaration nodes.
 		** \{ */
 		/** \brief Visit Var declarations. */
-		 void visitprivate(const VarDec  &e);
-		 void visitprivate(const FunctionDec  &e);
+		 virtual void visitprivate(const VarDec  &e);
+		 virtual void visitprivate(const FunctionDec  &e);
 		/** \} */
 
 		/** \name Visit Type dedicated Expressions related node.
 		** \{ */
 	public:
-		void visitprivate(const ListExp &e);
+		 virtual void visitprivate(const ListExp &e);
 		/** \} */
 
 		int expected_size_get(void)
@@ -216,7 +216,7 @@ namespace ast
 				_resultVect.resize(_iPos + 1, NULL);
 			}
 
-			_resultVect[_iPos] = (InternalType *)gtVal;
+			_resultVect[_iPos] = (types::InternalType *)gtVal;
 		}
 
 		void result_set(const types::InternalType *gtVal)
