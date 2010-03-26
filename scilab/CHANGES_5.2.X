@@ -39,6 +39,7 @@ Compilation:
 * Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
 Vyskocil
 
+* "make clean" continues even if errors are found
 
 Xcos:
 =====
