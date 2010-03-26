@@ -19,10 +19,12 @@ libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/mutevisitor.cpp \
 				src/cpp/shortcutvisitor.cpp \
 				src/cpp/conditionvisitor.cpp \
-				src/cpp/exec/execvisitor.cpp \
-				src/cpp/exec/exec_OpExp.cpp \
-				src/cpp/exec/exec_MatrixExp.cpp \
-				src/cpp/exec/exec_AssignExp.cpp
+				src/cpp/timedvisitor.cpp \
+				src/cpp/execvisitor.cpp \
+				src/cpp/run/runvisitor.cpp \
+				src/cpp/run/run_OpExp.cpp \
+				src/cpp/run/run_MatrixExp.cpp \
+				src/cpp/run/run_AssignExp.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
