@@ -129,7 +129,7 @@ public class BlockReader {
 
 		    // tips to set block direction at load
 		    // "BLOCK_f;direction=east"
-		    currentBlock.setStyle("blockWithLabel;" + currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
+		    currentBlock.setStyle(currentBlock.getInterfaceFunctionName() + ";" + currentBlock.getStyle());
 		    // currentBlock.setValue(currentBlock.getInterfaceFunctionName());
 
 		    blocks.add(currentBlock);

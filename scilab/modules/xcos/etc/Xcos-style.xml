@@ -1,17 +1,24 @@
 <mxStylesheet>
-  <!-- *** BLOCK DEFINITION *** -->
-  <add as="block" extend="defaultVertex">
+<!-- *** OVERLOADING DEFINITION *** -->
+
+  <add as="defaultVertex">
     <add as="shape" value="rectangle"/>
     <add as="perimeter" value="rectanglePerimeter"/>
     <add as="strokeColor" value="black"/>
     <add as="fillColor" value="white"/>
     <add as="fontColor" value="black"/>
+    <add as="noLabel" value="0"/>
+  </add>
+
+<!-- *** GENERIC BLOCKS *** -->
+  
+  <add as="block" extend="defaultVertex">
     <add as="noLabel" value="1"/>
   </add>
 
-  <add as="blockWithLabel" extend="block">
-    <add as="noLabel" value="0"/>
-  </add>
+  <add as="blockWithLabel" extend="defaultVertex" />
+
+<!-- *** BLOCK DEFINITION *** -->
 
   <!-- Affiche -->
   <add as="Affiche" extend="blockWithLabel"/>
