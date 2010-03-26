@@ -39,6 +39,12 @@ Compilation:
 * Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
 Vyskocil
 
+* "make clean" continues even if errors are found
+
+* Add a new option to the configure for Mac OS X --with-fink-prefix
+  This is done to prepare Scilab 5.3 and the mandatory dependency on 
+  Java 1.6 (64 bits only).
+  This option will set the LDFLAGS & source the fink init script.
 
 Xcos:
 =====
@@ -155,6 +161,8 @@ Bug Fixes:
                    macro call appeared in an list extraction.
 
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
+
+* bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
