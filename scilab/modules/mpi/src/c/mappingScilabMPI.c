@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <stdio.h>
 #include <mpi.h>
 #include "api_scilab.h"
 #include "mappingScilabMPI.h"
@@ -19,11 +19,11 @@ static mappinpScilabMPI getMPIMapping(sci_types scilabType);
 
 mappinpScilabMPI getMPIDataStructure(int position){
 	int typevar;
+    SciErr sciErr;
 	mappinpScilabMPI mapping;
 	int iRows, iCols;
 	void *data;
 	int *piAddr                     = NULL;
-	SciErr sciErr;
 	printf("ici 0\n");
 	sciErr = getVarAddressFromPosition(pvApiCtx, position, &piAddr);
 	if(sciErr.iErr)
@@ -42,10 +42,17 @@ mappinpScilabMPI getMPIDataStructure(int position){
 	switch (typevar){
 		case sci_matrix:
 			(*mapping.f)(pvApiCtx, position, &iRows, &iCols, &data);
-	printf("ici 4\n");
+			printf("ici 4\n");
 			mapping.data=data;
 			mapping.count=iRows*iCols;
-			printf("plop %d\n",mapping.count);
+			printf("count %d \n",mapping.count);//, *data[0]);
+			break;
+		case sci_strings:
+			
+			break;
+		default:
+			Scierror(999, "Datatype unknown\n");
+			exit(1);
 			break;
 	}
 	return mapping;
@@ -53,9 +60,13 @@ mappinpScilabMPI getMPIDataStructure(int position){
 
 static mappinpScilabMPI getMPIMapping(sci_types scilabType){
 	mappinpScilabMPI mapping;
+	printf("scilabType getMPIMapping %d\n",scilabType);
+	fflush(NULL);
 	switch (scilabType){
 		case sci_matrix:
 			mapping.MPI=MPI_DOUBLE;
+			printf("MPI plop %d \n",mapping.MPI);//, *data[0]);
+
 			mapping.Scilab=scilabType;
 			mapping.f=getMatrixOfDouble;
 			/* @TODO: rajouter la gestion des pointeurs de fonction pour getmatrix */				
@@ -67,6 +78,7 @@ static mappinpScilabMPI getMPIMapping(sci_types scilabType){
 			//			mapping.functionName=getMatrixOfDouble;
 		
 	}
+	return mapping;
 
 }
 

@@ -36,7 +36,11 @@ int sci_mpi_init (char *fname,unsigned long fname_len)
 	MPI_Initialized(&flag);
 	if (!flag) {
 		/* MPI Not yet initialized */
+		printf("plop 1\n");
+		fflush(NULL);
 		MPI_Init(NULL,NULL);
+		fflush(NULL);
+
 		MPI_Comm_create_errhandler(MPIErrHandler,&errhdl);
 		//		MPI_Comm_set_errhandler(MPI_COMM_WORLD, errhdl);
 
