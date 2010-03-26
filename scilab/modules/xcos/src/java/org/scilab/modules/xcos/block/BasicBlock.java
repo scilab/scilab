@@ -649,11 +649,13 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	    try {
 			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if (tempInput.exists()) {
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
 				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 					    currentBlock));
+					}
 				    setLocked(false);
 				}
 			});

@@ -136,6 +136,10 @@ import com.mxgraph.view.mxMultiplicity;
 public class XcosDiagram extends ScilabGraph {
 	// the associated parameters
 	private ScicosParameters scicosParameters;
+	
+	// the scicos engine current status
+	private final transient CompilationEngineStatus engine; 
+	
     //private Window palette;
     private Tab viewPort;
     
@@ -425,7 +429,11 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram() {
 	super();
+	
+	// Scicos related setup
 	scicosParameters = new ScicosParameters();
+	engine = new CompilationEngineStatus();
+	
 	
 	getUndoManager().addListener(mxEvent.UNDO, deleteLinkOnMultiPointLinkCreation);
 	
@@ -627,18 +635,21 @@ public class XcosDiagram extends ScilabGraph {
 
 	// Track when superblock ask a parent refresh.
 	addListener(XcosEvent.SUPER_BLOCK_UPDATED, new SuperBlockUpdateTracker()); 
-
+	
 	// Track when cells are added.
 	addListener(XcosEvent.CELLS_ADDED, new CellAddedTracker(this)); 
-
+	addListener(XcosEvent.CELLS_ADDED, getEngine());
+	
 	// Track when cells are deleted.
 	addListener(XcosEvent.CELLS_REMOVED, new CellRemovedTracker(this)); 
-		
+	addListener(XcosEvent.CELLS_REMOVED, getEngine());
+	
 	// Track when resizing a cell.
 	addListener(XcosEvent.CELLS_RESIZED, new CellResizedTracker());
 	
 	// Track when we have to force a Block value
 	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, new ForceCellValueUpdate());
+	addListener(XcosEvent.FORCE_CELL_VALUE_UPDATE, getEngine());
 	
 	// Update the blocks view on undo/redo
 	getUndoManager().addListener(mxEvent.UNDO, new UndoUpdateTracker());
@@ -1445,12 +1456,19 @@ public class XcosDiagram extends ScilabGraph {
 	}
 
 	/**
-	 * @param the simulation parameters
+	 * @param scicosParameters the simulation parameters
 	 */
 	public void setScicosParameters(ScicosParameters scicosParameters) {
 		this.scicosParameters = scicosParameters;
 	}
 	
+	/**
+	 * @return the engine
+	 */
+	public CompilationEngineStatus getEngine() {
+		return engine;
+	}
+
 	/**
      * @param finalIntegrationTime set integration time
      * @category XMLCompatibility
