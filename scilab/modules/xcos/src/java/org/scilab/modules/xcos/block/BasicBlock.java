@@ -653,7 +653,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tempInput.exists()) {
-						LOG.info("Updating data.");
+						LOG.trace("Updating data.");
 						
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
@@ -662,7 +662,7 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 					    currentBlock));
 					} else {
-						LOG.info("No needs to update data.");
+						LOG.trace("No needs to update data.");
 					}
 					
 				    setLocked(false);

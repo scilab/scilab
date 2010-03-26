@@ -121,10 +121,10 @@ public class StartAction extends DefaultAction {
 		 * Log compilation info
 		 */
 		final Log log = LogFactory.getLog(StartAction.class);
-		if (needCompile && log.isInfoEnabled()) {
-			log.info("diagram need compilation.");
+		if (needCompile && log.isTraceEnabled()) {
+			log.trace("diagram need compilation.");
 		} else {
-			log.info("diagram doesn't need compilation.");
+			log.trace("diagram doesn't need compilation.");
 		}
 		
 		/*

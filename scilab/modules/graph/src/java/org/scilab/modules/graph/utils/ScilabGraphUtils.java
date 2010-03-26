@@ -47,7 +47,7 @@ public final class ScilabGraphUtils extends mxUtils {
 	/**
 	 * Logger for this class
 	 */
-	private static final Log log = LogFactory.getLog(ScilabGraphUtils.class);
+	private static final Log LOG = LogFactory.getLog(ScilabGraphUtils.class);
 	
 	/**
 	 * Cache for the generated SVG components
@@ -142,7 +142,7 @@ public final class ScilabGraphUtils extends mxUtils {
 				
 				generatedSVGComponents.put(filename, node.getWeakReference());
 			} catch (IOException e) {
-				log.error(e.getLocalizedMessage());
+				LOG.error(e.getLocalizedMessage());
 			}
 		}
 		return node;
