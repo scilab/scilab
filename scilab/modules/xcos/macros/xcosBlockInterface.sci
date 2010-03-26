@@ -48,9 +48,11 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
 	// Check if the block has been updated or not.
 	// If the data has changed then we don't need to recompile (indicated by 
 	// no file creation).
-	updated = or([needcompile == 1, and(new_scs_m == scs_m)]);
+	updated = and([needcompile == 0, and(new_scs_m == scs_m)]) <> %t;
 	if updated then
 		export_to_hdf5(hdf5FileToSave, "new_scs_m");
+	else
+		deletefile(hdf5FileToSave);
 	end
 
 endfunction

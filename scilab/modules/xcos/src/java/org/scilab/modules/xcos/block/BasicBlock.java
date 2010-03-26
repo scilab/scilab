@@ -24,6 +24,8 @@ import java.util.Map;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
@@ -92,6 +94,8 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	
 	private static final String INTERNAL_FILE_PREFIX = "xcos";
 	private static final String INTERNAL_FILE_EXTENSION = ".h5";
+	
+	private static final Log LOG = LogFactory.getLog(BasicBlock.class);
 	
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
@@ -630,7 +634,6 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 	final File tempContext;
 	try {
 	    tempInput = File.createTempFile(INTERNAL_FILE_PREFIX, INTERNAL_FILE_EXTENSION, XcosConstants.TMPDIR);
-	    tempInput.deleteOnExit();
 
 	    // Write scs_m
 	    tempOutput = exportBlockStruct();
@@ -650,13 +653,22 @@ public class BasicBlock extends ScilabGraphUniqueObject {
 			ScilabInterpreterManagement.asynchronousScilabExec(cmd, new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tempInput.exists()) {
+						LOG.info("Updating data.");
+						
 					// Now read new Block
 				    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 				    updateBlockSettings(modifiedBlock);
+				    
 				    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 					    currentBlock));
+					} else {
+						LOG.info("No needs to update data.");
 					}
+					
 				    setLocked(false);
+				    tempInput.delete();
+				    tempOutput.delete();
+				    tempContext.delete();
 				}
 			});
 		} catch (InterpreterException e) {
