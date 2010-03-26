@@ -144,6 +144,8 @@ am__objects_1 = libscimpi_la-sci_mpi_init.lo \
 	libscimpi_la-sci_mpi_comm_size.lo \
 	libscimpi_la-sci_mpi_comm_rank.lo libscimpi_la-gw_mpi.lo \
 	libscimpi_la-sci_mpi_recv.lo libscimpi_la-sci_mpi_send.lo \
+	libscimpi_la-sci_mpi_serialize.lo \
+	libscimpi_la-sci_mpi_unserialize.lo \
 	libscimpi_la-build_buff_type.lo libscimpi_la-s_mpi_recv.lo \
 	libscimpi_la-s_mpi_send.lo
 am__objects_2 = libscimpi_la-mappingScilabMPI.lo
@@ -202,6 +204,7 @@ AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
 BLAS_LIBS = @BLAS_LIBS@
+BSH = @BSH@
 
 #sci_gateway/c/sci_mpi_isend.c \
 #sci_gateway/c/sci_mpi_irecv.c \
@@ -279,14 +282,17 @@ JGRAPHX = @JGRAPHX@
 JHALL = @JHALL@
 JHDF5 = @JHDF5@
 JLATEXMATH = @JLATEXMATH@
+JLATEXMATH_FOP = @JLATEXMATH_FOP@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
+JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
@@ -342,6 +348,7 @@ PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
 PYTHON = @PYTHON@
+QDOX = @QDOX@
 RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
@@ -360,6 +367,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TESTNG = @TESTNG@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -451,6 +459,8 @@ sci_gateway/c/sci_mpi_comm_rank.c \
 sci_gateway/c/gw_mpi.c \
 sci_gateway/c/sci_mpi_recv.c \
 sci_gateway/c/sci_mpi_send.c \
+sci_gateway/c/sci_mpi_serialize.c \
+sci_gateway/c/sci_mpi_unserialize.c \
 src/c/build_buff_type.c \
 src/c/s_mpi_recv.c \
 src/c/s_mpi_send.c
@@ -693,6 +703,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_init.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_recv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_send.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_serialize.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimpi_la-sci_mpi_unserialize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mpi_pi_send.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mpitest.Po@am__quote@
 
@@ -765,6 +777,20 @@ libscimpi_la-sci_mpi_send.lo: sci_gateway/c/sci_mpi_send.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_send.c' object='libscimpi_la-sci_mpi_send.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_send.lo `test -f 'sci_gateway/c/sci_mpi_send.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_send.c
+
+libscimpi_la-sci_mpi_serialize.lo: sci_gateway/c/sci_mpi_serialize.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_serialize.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_serialize.Tpo -c -o libscimpi_la-sci_mpi_serialize.lo `test -f 'sci_gateway/c/sci_mpi_serialize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_serialize.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_serialize.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_serialize.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_serialize.c' object='libscimpi_la-sci_mpi_serialize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_serialize.lo `test -f 'sci_gateway/c/sci_mpi_serialize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_serialize.c
+
+libscimpi_la-sci_mpi_unserialize.lo: sci_gateway/c/sci_mpi_unserialize.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-sci_mpi_unserialize.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-sci_mpi_unserialize.Tpo -c -o libscimpi_la-sci_mpi_unserialize.lo `test -f 'sci_gateway/c/sci_mpi_unserialize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_unserialize.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscimpi_la-sci_mpi_unserialize.Tpo $(DEPDIR)/libscimpi_la-sci_mpi_unserialize.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_mpi_unserialize.c' object='libscimpi_la-sci_mpi_unserialize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o libscimpi_la-sci_mpi_unserialize.lo `test -f 'sci_gateway/c/sci_mpi_unserialize.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_unserialize.c
 
 libscimpi_la-build_buff_type.lo: src/c/build_buff_type.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT libscimpi_la-build_buff_type.lo -MD -MP -MF $(DEPDIR)/libscimpi_la-build_buff_type.Tpo -c -o libscimpi_la-build_buff_type.lo `test -f 'src/c/build_buff_type.c' || echo '$(srcdir)/'`src/c/build_buff_type.c

@@ -37,7 +37,6 @@ int sci_mpi_init (char *fname,unsigned long fname_len)
 	if (!flag) {
 		/* MPI Not yet initialized */
 		MPI_Init(NULL,NULL);
-
 		MPI_Comm_create_errhandler(MPIErrHandler,&errhdl);
 		//		MPI_Comm_set_errhandler(MPI_COMM_WORLD, errhdl);
 

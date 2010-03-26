@@ -22,13 +22,27 @@ mappinpScilabMPI getMPIDataStructure(int position){
 	mappinpScilabMPI mapping;
 	int iRows, iCols;
 	void *data;
-	getVarType(pvApiCtx, position, &typevar);
-
+	int *piAddr                     = NULL;
+	SciErr sciErr;
+	printf("ici 0\n");
+	sciErr = getVarAddressFromPosition(pvApiCtx, position, &piAddr);
+	if(sciErr.iErr)
+        {
+			printError(&sciErr, 0);
+        }
+	printf("ici 1\n");
+	sciErr = getVarType(pvApiCtx, piAddr, &typevar);
+	if(sciErr.iErr)
+        {
+                printError(&sciErr, 0);
+        }
+	printf("ici 2\n");
 	mapping=getMPIMapping((sci_types)typevar);
-
+	printf("ici 3\n");
 	switch (typevar){
 		case sci_matrix:
 			(*mapping.f)(pvApiCtx, position, &iRows, &iCols, &data);
+	printf("ici 4\n");
 			mapping.data=data;
 			mapping.count=iRows*iCols;
 			printf("plop %d\n",mapping.count);
