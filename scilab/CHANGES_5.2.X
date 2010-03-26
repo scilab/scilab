@@ -41,6 +41,11 @@ Vyskocil
 
 * "make clean" continues even if errors are found
 
+* Add a new option to the configure for Mac OS X --with-fink-prefix
+  This is done to prepare Scilab 5.3 and the mandatory dependency on 
+  Java 1.6 (64 bits only).
+  This option will set the LDFLAGS & source the fink init script.
+
 Xcos:
 =====
 

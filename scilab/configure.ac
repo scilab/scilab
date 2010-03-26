@@ -135,6 +135,35 @@ AC_PROG_CPP
 AC_PROG_GREP
 PKG_PROG_PKG_CONFIG
 
+
+######
+#### Mac OS X set of fink path with provided
+######                 
+
+AC_ARG_WITH(fink_prefix,
+AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
+
+case "$host" in
+     *darwin*)
+     if test -n "$with_fink_prefix"; then
+        # If with-fink-prefix is provided, use the provided path to make sure that we will
+	# use it to detect dependencies (for example, gfortran is not provided in xcode.
+	# Therefor, we use the one in fink)
+	# Update the LDFLAGS
+	LDFLAGS="-L$with_fink_prefix/lib/ $LDFLAGS"
+  
+	# Exec the init script of fink to make sure that the env is set
+	if test -f $with_fink_prefix/bin/init.sh; then
+	   echo "source $with_fink_prefix/bin/init.sh executed to set the env"
+	   source $with_fink_prefix/bin/init.sh	
+        else
+	   AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
+	fi
+     else
+        LDFLAGS="-L/sw/lib/ $LDFLAGS"
+     fi
+     ;;
+esac
 #####################################################
 ## check if options are correct (or not)
 #####################################################
