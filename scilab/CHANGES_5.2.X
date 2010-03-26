@@ -157,6 +157,8 @@ Bug Fixes:
 
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
+* bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================

@@ -645,6 +645,7 @@ function st = st_new()
 				 "tmp_res"        ..    // diary file
 				 "tmp_err"        ..    // reference file
 				 "status"         ..    // status
+				 "xcos"           ..    // xcos test ?
 				 "cmd"            ..    // command to launch
 				 ] );
 				 
@@ -676,6 +677,8 @@ function st = st_new()
 	st.content       = "";
 	
 	st.status        = status_new();
+
+	st.xcos          = %F;
 	
 endfunction
 
