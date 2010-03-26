@@ -137,6 +137,11 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		// Remove the abstract blockWithLabel (set as defaultVertex) 
 		map.remove("blockWithLabel");
 		
+		// Remove a custom shape value
+		// This is used for pre-5.2 schema with TEXT_f block with a custom
+		// "shape=label" style attribute.
+		map.remove("shape");
+		
 		formatStyle(map);
 	}
 }

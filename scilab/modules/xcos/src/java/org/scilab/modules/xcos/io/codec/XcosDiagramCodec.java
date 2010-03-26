@@ -154,4 +154,23 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 			super.setFieldValue(obj, fieldname, value);
 		}
 	}
+	
+	/**
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed
+	 * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+	 */
+	@Override
+	public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		XcosDiagram diag = (XcosDiagram) obj;
+		
+		// pre-5.3 diagram may be saved in a locked state
+		// unlock it
+		diag.setReadOnly(false);
+		
+		return super.afterDecode(dec, node, obj);
+	}
 }
