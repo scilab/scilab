@@ -149,8 +149,7 @@ case "$host" in
         # If with-fink-prefix is provided, use the provided path to make sure that we will
 	# use it to detect dependencies (for example, gfortran is not provided in xcode.
 	# Therefor, we use the one in fink)
-	# Update the LDFLAGS
-	LDFLAGS="-L$with_fink_prefix/lib/ $LDFLAGS"
+	FINK_PREFIX="$with_fink_prefix/"
   
 	# Exec the init script of fink to make sure that the env is set
 	if test -f $with_fink_prefix/bin/init.sh; then
@@ -160,7 +159,7 @@ case "$host" in
 	   AC_MSG_WARN([Could not find the fink init.sh script: $with_fink_prefix/bin/init.sh])
 	fi
      else
-        LDFLAGS="-L/sw/lib/ $LDFLAGS"
+	FINK_PREFIX="/sw/"
      fi
      ;;
 esac
@@ -567,8 +566,11 @@ case "$CC" in
 		MAC_DETECTED_ARCH="x86_64"
 		 ;;
 	esac
-	 CC=" $CC -arch $MAC_DETECTED_ARCH"
-	 CXX=" $CXX -arch $MAC_DETECTED_ARCH"
+	CC="$CC -arch $MAC_DETECTED_ARCH"
+	CXX="$CXX -arch $MAC_DETECTED_ARCH"
+	LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
+	CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
+	CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
 	;;
 esac
 ;; # end of the gcc case on the $CC
