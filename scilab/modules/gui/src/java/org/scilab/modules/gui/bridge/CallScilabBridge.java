@@ -46,6 +46,7 @@ import org.scilab.modules.graphic_export.ExportRenderer;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -2084,6 +2085,7 @@ public class CallScilabBridge {
 	 * Close Scilab Help Browser
 	 */
 	public static void closeHelpBrowser() {
+		CallScilabBridge.saveHelpWindowSettings();
 		ScilabHelpBrowser.getHelpBrowser().close();
 	}
 
@@ -2205,6 +2207,19 @@ public class CallScilabBridge {
 
 		ConfigManager.saveMainWindowPosition(mainWindow.getPosition());
 		ConfigManager.saveMainWindowSize(mainWindow.getDims());
+
+	}
+
+	/**
+	 * Save the help Window size and position
+	 */
+	public static void saveHelpWindowSettings() {
+		SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
+		SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
+		Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+
+		ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
+		ConfigManager.saveHelpWindowSize(helpWindow.getDims());
 
 	}
 

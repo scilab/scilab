@@ -22,6 +22,7 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -85,7 +86,11 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 			Window helpWindow = ScilabWindow.createWindow();
 			helpWindow.addTab(helpTab);
 			helpWindow.draw();
-			
+
+			/* Set the dimension / position of the help window */
+			helpWindow.setPosition(ConfigManager.getHelpWindowPosition());
+			helpWindow.setDims(ConfigManager.getHelpWindowSize());
+
 		}
 		return instance;
 	}
