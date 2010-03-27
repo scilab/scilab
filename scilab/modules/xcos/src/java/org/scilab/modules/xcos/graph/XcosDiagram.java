@@ -315,12 +315,16 @@ public class XcosDiagram extends ScilabGraph {
     	    } else if (source instanceof ControlPort || source instanceof CommandPort) {
     		drawLink = (BasicLink) super.addEdge(new CommandControlLink(), getDefaultParent(), source, target, index);
     	    } else if (source instanceof BasicLink) {
-    		SplitBlock split = (SplitBlock) addSplitEdge((BasicLink) source, (BasicPort) target);
-    		drawLink = (BasicLink) split.getOut2().getEdgeAt(0);
+				/*
+				 * This is a very specific case: user wants to put a split block
+				 * on a link and start a new partial link. It's not handled as a
+				 * SplitBlock must not be partially initialized.
+				 */
+    	    	return null;
     	    }
 
     	    if (drawLink != null) {
-    		waitPathRelease = true;
+    	    	waitPathRelease = true;
     	    }
 
     	    info(XcosMessages.DRAW_LINK);
@@ -409,6 +413,8 @@ public class XcosDiagram extends ScilabGraph {
        	}
     	addCell(newLink2);
 
+    	if (target != null) {
+    	
     	if (target instanceof BasicLink) {
     	    //build link inverted ! it will be invert later
     	    ((BasicLink) target).setTarget(splitBlock.getOut2());
@@ -421,6 +427,7 @@ public class XcosDiagram extends ScilabGraph {
     	    addCell(newLink3);
     	}
     	
+    	}
     	dragSplitPos = null;
 	refresh();
 	getModel().endUpdate();
@@ -1190,7 +1197,13 @@ public class XcosDiagram extends ScilabGraph {
     				if (!e.isControlDown()) {
     					//adjust final point
     					mxGeometry geoPort = drawLink.getSource().getGeometry();
-    					mxGeometry geoBlock = drawLink.getSource().getParent().getGeometry();
+    					mxGeometry geoBlock;
+    					final mxICell parent = drawLink.getSource().getParent();
+    					if (parent == null) {
+    						geoBlock = new mxGeometry();
+    					} else {
+    						geoBlock = drawLink.getSource().getParent().getGeometry();
+    					}
     					mxPoint lastPoint = new mxPoint(geoBlock.getX() + geoPort.getCenterX(),
     						geoBlock.getY() + geoPort.getCenterY());
     					mxPoint click = new mxPoint(e.getX() / scale, e.getY() / scale);
