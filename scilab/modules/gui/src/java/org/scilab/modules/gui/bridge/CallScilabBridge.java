@@ -2215,11 +2215,15 @@ public class CallScilabBridge {
 	 */
 	public static void saveHelpWindowSettings() {
 		SwingScilabHelpBrowser sciHelpBrowser = ((SwingScilabHelpBrowser) ScilabHelpBrowser.getHelpBrowser().getAsSimpleHelpBrowser());
-		SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
-		Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
-
-		ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
-		ConfigManager.saveHelpWindowSize(helpWindow.getDims());
+		if (sciHelpBrowser != null) {
+			SwingScilabTab consoleTab = (SwingScilabTab) sciHelpBrowser.getParent();
+			if (consoleTab != null) {
+				Window helpWindow = (Window) UIElementMapper.getCorrespondingUIElement(consoleTab.getParentWindowId());
+				
+				ConfigManager.saveHelpWindowPosition(helpWindow.getPosition());
+				ConfigManager.saveHelpWindowSize(helpWindow.getDims());
+			}
+		}
 
 	}
 
