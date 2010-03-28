@@ -85,11 +85,12 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
 			Window helpWindow = ScilabWindow.createWindow();
 			helpWindow.addTab(helpTab);
-			helpWindow.draw();
 
 			/* Set the dimension / position of the help window */
 			helpWindow.setPosition(ConfigManager.getHelpWindowPosition());
 			helpWindow.setDims(ConfigManager.getHelpWindowSize());
+
+			helpWindow.draw();
 
 		}
 		return instance;
