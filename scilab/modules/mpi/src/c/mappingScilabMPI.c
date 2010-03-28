@@ -41,7 +41,8 @@ mappinpScilabMPI getMPIDataStructure(int position){
 	printf("ici 3\n");
 	switch (typevar){
 		case sci_matrix:
-			(*mapping.f)(pvApiCtx, position, &iRows, &iCols, &data);
+			(*mapping.f)(pvApiCtx, piAddr, &iRows, &iCols, &data);
+//			getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &data);
 			printf("ici 4\n");
 			mapping.data=data;
 			mapping.count=iRows*iCols;
