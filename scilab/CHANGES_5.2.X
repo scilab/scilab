@@ -21,7 +21,6 @@ next usage. See bug #6482
 Scilab:
 =======
 
-
 * Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
   See bug #5023
 
@@ -37,6 +36,11 @@ For GNU/Linux, Unix & Mac OS X:
 * Bug 6633 fixed - Unknown arguments are now accepted with option -args. This
   allows user to access to them throught the Scilab function sciargs:
   scilab -nwni -args 2 3
+
+call_scilab:
+============
+
+* Examples added to show how to manage returned error.
 
 Compilation:
 ============
