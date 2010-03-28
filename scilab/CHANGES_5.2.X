@@ -10,6 +10,15 @@ improve performances to 50 %)
 Note that many performance improvements will be also available in 
 Scilab 5.3.0.
 
+
+Help brower:
+============
+
+* Increase of the default size of the help browser window.
+
+* Help browser window position and size are now stored and restored for the
+next usage. See bug #6482
+
 Scilab:
 =======
 

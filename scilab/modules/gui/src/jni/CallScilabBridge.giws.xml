@@ -526,6 +526,9 @@
 <!-- Main settings -->
 	<method name="saveMainWindowSettings" returnType="void" modifier="static">
         </method> 
+<!-- Help settings -->
+	<method name="saveHelpWindowSettings" returnType="void" modifier="static">
+        </method> 
 <!-- Export GUI-->
 	<method name="newExportFileChooser" returnType="int" modifier="static">
         <parameter type="int" name="figureId"/>
