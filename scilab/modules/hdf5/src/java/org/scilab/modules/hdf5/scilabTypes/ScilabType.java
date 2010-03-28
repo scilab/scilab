@@ -34,7 +34,7 @@ public interface ScilabType extends Serializable, Cloneable {
 	public int getHeight();
 	
     /**
-     * Display the matrix
+     * Display the data
      *
      * @return the pretty print
 	 */
