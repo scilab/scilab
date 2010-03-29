@@ -41,7 +41,7 @@ extern "C" {
 
 #include <cstdlib>
 #include <cstring>
-#include "mc_apply.hxx"
+#include "parallel_run.hxx"
 
 #include <vector>
 #include <iostream>
@@ -56,7 +56,7 @@ extern "C" {
 
  We can handle k Rhs  et m Lhs. Currently, only real (double) matrix are implemented, but the framework is here for any Scilab datatype.
  (see scilab_var and scilab_allocated_var class hierarchy).
- [R1, ... , Rm] = mc_apply(A1, ... , Ak, f [,Types] [,Dims])
+ [R1, ... , Rm] = parallel_run(A1, ... , Ak, f [,Types] [,Dims])
 
  If Args are of différent sizes, the smallest are recycled.
 
@@ -75,7 +75,7 @@ extern "C" {
 */
 
 extern "C" {
-  int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len);
+  int  C2F(sci_parallel_run)(char *fname,unsigned long fname_len);
 }
 
 namespace {
@@ -683,7 +683,7 @@ namespace {
     return ok && at_least_one_arg && (!before_function);
   }
 }
-int  C2F(sci_mc_apply)(char *fname,unsigned long fname_len) 
+int  C2F(sci_parallel_run)(char *fname,unsigned long fname_len) 
 {
   typedef std::vector<scilab_allocated_var*> vars_container_t;
   current_fname=fname;

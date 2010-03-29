@@ -24,12 +24,12 @@ c_prog=['#include  <math.h>'
 make_compiled_function(fun_name, '.c',c_prog);
 
 args=[1,2];
-res=mc_apply(args,fun_name,1);
+res=parallel_run(args,fun_name,1);
 if res<>[2, 4] then pause,end
 
 function a= g(arg1); a=2*arg1; endfunction;
 
-res=mc_apply(args, "g");
+res=parallel_run(args, "g");
 if res<>[2, 4] then pause,end
 
 fun_name='test_fun_2_1';
@@ -40,22 +40,22 @@ c_prog=['#include  <math.h>'
 make_compiled_function(fun_name, '.c',c_prog);
 
 arg1=[1,2;4,5]; arg2=[2,3];
-[res1, res2] =mc_apply(arg1, arg2,fun_name,"constant", [2;1]);
+[res1, res2] =parallel_run(arg1, arg2,fun_name,"constant", [2;1]);
 if res1<>[.5,1;1,1.25]  then pause,end
 if res2 <>[4,6]  then pause,end
 
 function [a,b]= f(arg1, arg2); a=arg1'.*[.5,.25]; b=2*arg2; endfunction;
-[res1, res2] =mc_apply(arg1, arg2,"f","constant", [2;1]);
+[res1, res2] =parallel_run(arg1, arg2,"f","constant", [2;1]);
 if res1<>[.5,1;1,1.25]  then pause,end
 if res2 <>[4,6]  then pause,end
 
 arg1=[1,2;4,5]; arg2=[2];
-[res1, res2] =mc_apply(arg1, arg2,fun_name,"constant", [2;1]);
+[res1, res2] =parallel_run(arg1, arg2,fun_name,"constant", [2;1]);
 if res1<>[.5,1;1,1.25]  then pause,end
 if res2 <>[4,4]  then pause,end
 
 function [a,b]= f(arg1, arg2); a=arg1'.*[.5,.25]; b=2*arg2; endfunction;
-[res1, res2] =mc_apply(arg1, arg2,"f","constant", [2;1]);
+[res1, res2] =parallel_run(arg1, arg2,"f","constant", [2;1]);
 if res1<>[.5,1;1,1.25]  then pause,end
 if res2 <>[4,4]  then pause,end
 
@@ -72,7 +72,7 @@ for i =1:N
   [Min(i), Med(i), Max(i)]= min_med_max(A(i), B(i), C(i));
 end;
 
-[Min_mc,Med_mc,Max_mc]=mc_apply(A,B,C,"min_med_max");
+[Min_mc,Med_mc,Max_mc]=parallel_run(A,B,C,"min_med_max");
 
 if max(max(Min-Min_mc', Med-Med_mc',Max-Max_mc')) > %eps  then pause,end
 
@@ -90,7 +90,7 @@ c_prog=['#include <algorithm>'
 '  }'
 '}'];
 make_compiled_function(fun_name, '.cxx',c_prog);
-[Min_mc,Med_mc,Max_mc]=mc_apply(A,B,C, fun_name);
+[Min_mc,Med_mc,Max_mc]=parallel_run(A,B,C, fun_name);
 
 if max(max(Min-Min_mc', Med-Med_mc',Max-Max_mc')) > %eps  then pause,end
 
@@ -106,7 +106,7 @@ for i =1:N
   R4_6_7(i,:)= quantiles(data(i,:),[4,6,7]);
 end;
 
-R4_6_7_mc=mc_apply(data',[4,6,7]',"quantiles", 3)';
+R4_6_7_mc=parallel_run(data',[4,6,7]',"quantiles", 3)';
 
 if max(R4_6_7-R4_6_7_mc)  > %eps  then pause,end
 
@@ -127,7 +127,7 @@ c_prog=['#include<algorithm>'
 '}'];
 make_compiled_function(fun_name, '.cxx',c_prog);
 
-R4_6_7_mc=mc_apply(data',N,[4,6,7]',3,fun_name, 3)';
+R4_6_7_mc=parallel_run(data',N,[4,6,7]',3,fun_name, 3)';
 
 if max(R4_6_7-R4_6_7_mc)  > %eps  then pause,end
 
@@ -154,7 +154,7 @@ for k=1:L
 end;
 
 idx=matrix(1:(L*N), N,L);
-R3_6_9_mc=mc_apply(idx,idx,[3,6,9]',"quantiles_sparse",3)';
+R3_6_9_mc=parallel_run(idx,idx,[3,6,9]',"quantiles_sparse",3)';
 
 if max(R3_6_9-R3_6_9_mc) > %eps  then pause,end
 
@@ -187,7 +187,7 @@ function blocks_to_sparse(blocks)
   end
 endfunction
 
-blocks_to_sparse(mc_apply(N,1:L,"invert_one_block",[N,N]));
+blocks_to_sparse(parallel_run(N,1:L,"invert_one_block",[N,N]));
 
 
 if max(full(sp_inv-sp_inv_1)) > %eps then pause,end

@@ -4,12 +4,12 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>mc_apply</refname>
+    <refname>parallel_run</refname>
     <refpurpose>parallel calls to a function</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[R1[,...,Rm]]=mc_apply(A1[,...,Ak], f[,types][,dims])</synopsis>
+    <synopsis>[R1[,...,Rm]]=parallel_run(A1[,...,Ak], f[,types][,dims])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -49,7 +49,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    mc_apply makes parallel calls (on a multicore system) to the provided function on the supplied vectors of arguments.
+    parallel_run makes parallel calls (on a multicore system) to the provided function on the supplied vectors of arguments.
 The function can be the name of aither a compiled foreign function (see <link linkend="ilib_for_link">ilib_for_link</link>) or a Scilab macro. In the latter case, the macro should have have side effects because some of them will be lost (those performed in other processes than the main scilab process).
 The prototype of a native should be  <literal>void function_name(void const*const* args, void*const* results)</literal> where <literal>args</literal> is the array of arguments data and  <literal>results</literal> is the array of result data.
     The number of calls (and dimension of the result vectors) is given by the length of the longest vector of arguments.
@@ -88,7 +88,7 @@ if(parallel)
   else
     name= "inside_to_apply";
   end;
-  p=sum(mc_apply(x,y,name));
+  p=sum(parallel_run(x,y,name));
 else
   p=0.;
   if( use_macro)

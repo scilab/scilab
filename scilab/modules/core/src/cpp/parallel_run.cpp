@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "mc_apply.hxx"
+#include "parallel_run.hxx"
 
 #include <omp.h>
 #include <iterator>
@@ -23,7 +23,7 @@ extern "C" {
 #include <iostream>
 #include <algorithm>
 
-void* mc_apply_n_threads(void const* const b,  std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int nb_threads){
+void* parallel_run_n_threads(void const* const b,  std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int nb_threads){
   std::size_t i;
   if(n <  nb_threads) { nb_threads = n;}
   if(nb_threads) {
@@ -42,7 +42,7 @@ return out;
 
 
 
-void* mc_apply_n_process_worker(void const* const b, std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int const nb_process){
+void* parallel_run_n_process_worker(void const* const b, std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int const nb_process){
 
   //  std::cerr<<"using "<<nb_process<<" for "<<n<<" tasks.\n";
 
@@ -92,11 +92,11 @@ void* mc_apply_n_process_worker(void const* const b, std::size_t in_size, std::s
   return out;
 }
 
-void* mc_apply_n_process(void const* const b, std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int nb_process){
+void* parallel_run_n_process(void const* const b, std::size_t in_size, std::size_t n, void* const out,  std::size_t out_size, void (*f)(void const*, void *), int nb_process){
   // _worker takes a const nb_process that can be used as an array size on the stack.
   if(nb_process == 0) { nb_process = omp_get_num_procs() ; }
   if(n<nb_process) { nb_process = n ;}
-  return mc_apply_n_process_worker(b, in_size, n, out,out_size,  f, nb_process);
+  return parallel_run_n_process_worker(b, in_size, n, out,out_size,  f, nb_process);
 }
 
 
