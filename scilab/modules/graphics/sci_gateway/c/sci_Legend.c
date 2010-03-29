@@ -92,17 +92,22 @@ int sci_Legend( char * fname, unsigned long fname_len )
     Scierror(999,_("%s: No more memory.\n"),fname);
     return 0;
   }
-    
-  startGraphicDataWriting();
-  pFigure = sciGetCurrentFigure();
-  psubwin = sciGetCurrentSubWin();
-  endGraphicDataWriting();
-
 
   for (i = 0; i < n;i++)
   {
     handelsvalue = (unsigned long) (hstk(l1))[n-1-i];
 
+    /**
+      We get the current pSubwin & pFigure from the first handel's parents.
+    **/
+    if (i==0) {
+      psubwin = sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) );
+      pFigure = sciGetParentFigure( sciGetPointerFromHandle(handelsvalue) );
+    }
+
+    /**
+      We check that the pSubwin is the same for all given handle.
+    **/
     if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) 
 	{
       Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
