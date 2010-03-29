@@ -40,7 +40,10 @@ import javax.swing.JTextArea;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
+import com.mxgraph.util.mxEventObject;
 
 /**
  * Opens context settings Window
@@ -211,6 +214,7 @@ public class SetContextAction extends SimulationNotRunningAction {
 					}
 					
 					diagram.setContext(context);
+					diagram.fireEvent(new mxEventObject(XcosEvent.DIAGRAM_UPDATED));
 					diagram.setModified(true);
 				}
 				windowAlreadyExist = false;
