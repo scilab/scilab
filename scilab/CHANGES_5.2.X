@@ -37,6 +37,13 @@ For GNU/Linux, Unix & Mac OS X:
   allows user to access to them throught the Scilab function sciargs:
   scilab -nwni -args 2 3
 
+dynamic link:
+=============
+
+* Bug 4787 fixed -  Under Linux/Unix/Mac OS X, when a library is not available, 
+  do not stop during the compiler detection but stop at build time.
+  The error message is much more explicit.
+
 call_scilab:
 ============
 
