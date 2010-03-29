@@ -90,31 +90,33 @@
      ELSEIF = 305,
      END = 306,
      SELECT = 307,
-     CASE = 308,
-     FUNCTION = 309,
-     ENDFUNCTION = 310,
-     HIDDENFUNCTION = 311,
-     HIDDEN = 312,
-     FOR = 313,
-     WHILE = 314,
-     DO = 315,
-     BREAK = 316,
-     TRY = 317,
-     CATCH = 318,
-     RETURN = 319,
-     STR = 320,
-     ID = 321,
-     VARINT = 322,
-     VARFLOAT = 323,
-     NUM = 324,
-     PATH = 325,
-     COMMENT = 326,
-     BLOCKCOMMENT = 327,
-     TOPLEVEL = 328,
-     HIGHLEVEL = 329,
-     UPLEVEL = 330,
-     LISTABLE = 331,
-     FUNCTIONCALL = 332
+     SWITCH = 308,
+     CASE = 309,
+     OTHERWISE = 310,
+     FUNCTION = 311,
+     ENDFUNCTION = 312,
+     HIDDENFUNCTION = 313,
+     HIDDEN = 314,
+     FOR = 315,
+     WHILE = 316,
+     DO = 317,
+     BREAK = 318,
+     TRY = 319,
+     CATCH = 320,
+     RETURN = 321,
+     STR = 322,
+     ID = 323,
+     VARINT = 324,
+     VARFLOAT = 325,
+     NUM = 326,
+     PATH = 327,
+     COMMENT = 328,
+     BLOCKCOMMENT = 329,
+     TOPLEVEL = 330,
+     HIGHLEVEL = 331,
+     UPLEVEL = 332,
+     LISTABLE = 333,
+     FUNCTIONCALL = 334
    };
 #endif
 /* Tokens.  */
@@ -169,31 +171,33 @@
 #define ELSEIF 305
 #define END 306
 #define SELECT 307
-#define CASE 308
-#define FUNCTION 309
-#define ENDFUNCTION 310
-#define HIDDENFUNCTION 311
-#define HIDDEN 312
-#define FOR 313
-#define WHILE 314
-#define DO 315
-#define BREAK 316
-#define TRY 317
-#define CATCH 318
-#define RETURN 319
-#define STR 320
-#define ID 321
-#define VARINT 322
-#define VARFLOAT 323
-#define NUM 324
-#define PATH 325
-#define COMMENT 326
-#define BLOCKCOMMENT 327
-#define TOPLEVEL 328
-#define HIGHLEVEL 329
-#define UPLEVEL 330
-#define LISTABLE 331
-#define FUNCTIONCALL 332
+#define SWITCH 308
+#define CASE 309
+#define OTHERWISE 310
+#define FUNCTION 311
+#define ENDFUNCTION 312
+#define HIDDENFUNCTION 313
+#define HIDDEN 314
+#define FOR 315
+#define WHILE 316
+#define DO 317
+#define BREAK 318
+#define TRY 319
+#define CATCH 320
+#define RETURN 321
+#define STR 322
+#define ID 323
+#define VARINT 324
+#define VARFLOAT 325
+#define NUM 326
+#define PATH 327
+#define COMMENT 328
+#define BLOCKCOMMENT 329
+#define TOPLEVEL 330
+#define HIGHLEVEL 331
+#define UPLEVEL 332
+#define LISTABLE 333
+#define FUNCTIONCALL 334
 
 
 
