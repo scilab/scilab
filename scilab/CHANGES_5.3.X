@@ -93,7 +93,12 @@ Matlab to Scilab conversion tools:
 
 * Unitary tests added.
 
-* mfile2sci: option only_double set to %T as default.
+* Matlab-Scilab equivalents dictionnary added in documentation.
+
+* In 'mfile2sci', option only_double is now set to %T as default.
+
+* Conversion updated with new Scilab functions:
+  - 'filesep' now converted by 'filesep' instead of 'pathconvert'.
   
 Tests:
 ======
