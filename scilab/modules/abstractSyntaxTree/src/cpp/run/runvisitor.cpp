@@ -296,7 +296,7 @@ namespace ast
 			
 			int iRetCount = Max(1, expected_size_get());
 
-			T execCall;
+			ExecVisitor execCall;
 			Function::ReturnValue Ret = pCall->call(in, iRetCount, out, &execCall);
 			
 			if(Ret == Callable::OK)

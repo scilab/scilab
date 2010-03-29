@@ -20,7 +20,6 @@
 
 # include "location.hxx"
 # include "visitor.hxx"
-#include "timer.hxx"
 
 #ifdef _MSC_VER
 	#if AST_EXPORTS
@@ -82,7 +81,7 @@ namespace ast
     virtual void accept (Visitor& v) = 0;
     /** \} */
 
-		//Timer& timer_get(){return _timer;}
+		void elapsedtime_set(double _dblElapsedTime) { m_dblElapsedTime = _dblElapsedTime; }
 
   private:
     /** \brief Construct an Ast by copy. */
@@ -91,8 +90,8 @@ namespace ast
     Ast& operator= (const Ast&);
 
     /** \brief Scanner position informations. */
-		//Timer _timer;
     Location _location;
+		double m_dblElapsedTime;
   };
 
 } // namespace ast
