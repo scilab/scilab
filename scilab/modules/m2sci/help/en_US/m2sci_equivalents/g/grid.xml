@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_grid">
+  <refnamediv>
+    <refname>grid (Matlab function)</refname>
+    <refpurpose>Grid lines for two- and three-dimensional plots</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+grid
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+No equivalent
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+There is no minor grid in Scilab.
+</para>
+    <para>
+There is no equivalent function for Matlab <emphasis role="bold">grid</emphasis> function in Scilab but it has equivalents:
+</para>
+    <variablelist>
+      <varlistentry>
+        <term>grid on</term>
+        <listitem>
+          <para> may be replaced by <emphasis role="bold">set(gca(),"grid",[1 1])</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid off</term>
+        <listitem>
+          <para> may be replaced by <emphasis role="bold">set(gca(),"auto_clear",[-1 -1])</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid minor</term>
+        <listitem>
+          <para> can be emuled in Scilab by <emphasis role="bold">mtlb_hold</emphasis> but all grids are toggled
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid</term>
+        <listitem>
+          <para> can be emuled in Scilab by <emphasis role="bold">mtlb_hold</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid(axes_handle,"on")</term>
+        <listitem>
+          <para> may be replaced by <emphasis role="bold">axes_handle.grid=[1 1]</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid(axes_handle,"off")</term>
+        <listitem>
+          <para> may be replaced by <emphasis role="bold">axes_handle.grid=[-1 -1]</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid(axes_handle,"minor")</term>
+        <listitem>
+          <para> can be emuled in Scilab by <emphasis role="bold">mtlb_hold</emphasis> but all grids are toggled
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>grid(axes_handle)</term>
+        <listitem>
+          <para> can be emuled in Scilab by <emphasis role="bold">mtlb_hold(axes_handle)</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

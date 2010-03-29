@@ -37,6 +37,7 @@ extern int C2F(eptover)(int *, int *);
 #define  plus    45
 #define  minus   46
 #define  ou      57 /* @TODO does 'ou' is 'or' in english ? */
+
 /*--------------------------------------------------------------------------*/ 
 int C2F(expr)(void)
 {
@@ -46,7 +47,12 @@ int C2F(expr)(void)
 	int temp = 0;
 	int kount = 0;
 
-	if (C2F(iop).ddt == 4) { }
+	if (C2F(iop).ddt == 4) {     
+	  static char tmp[100];
+	  static int io;
+	  sprintf(tmp," expr   pt:%d rstk(pt):%d sym:%d",C2F(recu).pt,C2F(recu).rstk[C2F(recu).pt - 1], C2F(com).sym);
+	  C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
+	}
 
 	r = C2F(recu).rstk[C2F(recu).pt - 1];
 	if (r == 204) goto L85;

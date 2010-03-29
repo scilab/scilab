@@ -16,12 +16,21 @@
 #include "setMainWindowTitle.h"
 #include "MALLOC.h"
 #include "buildMainWindowTitle.h"
+#ifdef _MSC_VER
+#include "WindowShow.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 BOOL InitializeGUI(void)
 {
 	if (getScilabMode() == SCILAB_STD)
 	{
-		char *title = buildMainWindowTitle();
+		char *title = NULL;
+
+		#ifdef _MSC_VER
+			WindowShow();
+		#endif
+
+		title = buildMainWindowTitle();
 		if (title)
 		{
 			BOOL bOK = setMainWindowTitle(title);

@@ -13,12 +13,17 @@
 package org.scilab.modules.hdf5.scilabTypes;
 
 public class ScilabInteger implements ScilabType {
+
+	private Long[][] data;
+	private IntegerType prec;
+	private boolean bUnsigned;
+
 	public enum IntegerType{
 		TYPE8,
-		TYPE16,
-		TYPE32,
-		TYPE64
-	}
+			TYPE16,
+			TYPE32,
+			TYPE64
+			}
 	
 	public ScilabInteger() {
 		data = null;
@@ -131,7 +136,7 @@ public class ScilabInteger implements ScilabType {
 	}
 
 	// int32(X), int8(x) , int16([x,x,x;x,x,x])
-//	 uint32(X), uint8(x) , uint16([x,x,x;x,x,x])
+	//	 uint32(X), uint8(x) , uint16([x,x,x;x,x,x])
 	
     public boolean isEmpty(){
     	return (data == null);
@@ -180,8 +185,4 @@ public class ScilabInteger implements ScilabType {
 		return result.toString();
 	}
 	
-	
-	private Long[][] data;
-	private IntegerType prec;
-	private boolean bUnsigned;
 }

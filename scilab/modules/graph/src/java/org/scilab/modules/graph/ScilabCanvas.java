@@ -21,6 +21,7 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -51,9 +52,28 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 	
 	private static final int OPACITY_MAX = 100;
 	
+	/** The border ratio between the background image and the icon image */
+	private static final double BORDER_RATIO = 0.9;
+	
+	private URL svgBackgroundImage; 
+	
 	/** Default constructor */
 	public ScilabCanvas() { }
 	
+	/**
+	 * @param svgBackgroundImage the svgBackgroundImage to set
+	 */
+	public void setSvgBackgroundImage(URL svgBackgroundImage) {
+		this.svgBackgroundImage = svgBackgroundImage;
+	}
+
+	/**
+	 * @return the svgBackgroundImage
+	 */
+	public URL getSvgBackgroundImage() {
+		return svgBackgroundImage;
+	}
+
 	/**
 	 * Draw the vertex
 	 * 
@@ -308,47 +328,149 @@ public class ScilabCanvas extends mxInteractiveCanvas {
 			}
 		}
 	}
-	
+
 	/**
-	 * Draws an image for the given parameters.
-	 * This function handle all the awt supported {@link Image} plus the SVG
-	 * format.
+	 * Draws an image for the given parameters. This function handle all the awt
+	 * supported {@link Image} plus the SVG format.
 	 * 
-	 * @param x X-coordinate of the image.
-	 * @param y Y-coordinate of the image.
-	 * @param w Width of the image.
-	 * @param h Height of the image.
-	 * @param image URL of the image.
-	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(int, int, int, int, java.lang.String)
+	 * Painting an SVG file, first paint the background image (
+	 * {@link #setSvgBackgroundImage(File)}) and then paint the icon image.
+	 * 
+	 * @param x
+	 *            X-coordinate of the image.
+	 * @param y
+	 *            Y-coordinate of the image.
+	 * @param w
+	 *            Width of the image.
+	 * @param h
+	 *            Height of the image.
+	 * @param image
+	 *            URL of the image.
+	 * @see com.mxgraph.canvas.mxGraphics2DCanvas#drawImage(int, int, int, int,
+	 *      java.lang.String)
 	 */
 	@Override
 	protected void drawImage(int x, int y, int w, int h, String image) {
 		if (image.endsWith(".svg")) {
-			File f = new File(image);
-			GraphicsNode node = ScilabGraphUtils.getSVGComponent(f);
+			// Translate from (0,0) to icon base point.
+			g.translate(x, y);
 			
-			// Scale
-			Rectangle2D bounds = node.getBounds();
+			// Paint the background image if applicable
+			if (svgBackgroundImage != null) {
+				paintSvgBackgroundImage(w, h);
+			}
 			
-			double sh = h / bounds.getHeight();
-			double sw = w / bounds.getWidth();
-			double tx = x;
-			double ty = y;
-			
-			AffineTransform scaleTransform = new AffineTransform(new double[] {
-			          sw,   0.0,
-			         0.0,     sh
-			});
-			node.setTransform(scaleTransform);
-			
-			// Translate
-			g.translate(tx, ty);
-			
-			// Paint
-			node.paint(g);
+			paintSvgForegroundImage(w, h, image);
 		} else {
 			super.drawImage(x, y, w, h, image);
 		}
+	}
+
+	/**
+	 * Paint the background image.
+	 * 
+	 * @param w background width
+	 * @param h background height
+	 */
+	private void paintSvgBackgroundImage(int w, int h) {
+		GraphicsNode background = ScilabGraphUtils
+				.getSVGComponent(new File(svgBackgroundImage.toString()));
+		
+		if (background == null) {
+			return;
+		}
+		
+		// TODO
+		// Remove the "Graphics2D from BufferedImage lacks BUFFERED_IMAGE hint"
+		// message.
+		
+		// Scale to the bounds
+		Rectangle2D bounds = background.getBounds();
+		
+		double sh = h / bounds.getHeight();
+		double sw = w / bounds.getWidth();
+		
+		AffineTransform scaleTransform = new AffineTransform(new double[] {
+		          sw,   0.0,
+		         0.0,     sh
+		});
+		
+		background.setTransform(scaleTransform);
+		
+		// Paint
+		background.paint(g);
+	}
+	
+	/**
+	 * Paint the foreground image.
+	 * 
+	 * This method paint an iso-scaled and centered image.
+	 * 
+	 * @param w the width
+	 * @param h the height
+	 * @param image the current image
+	 */
+	private void paintSvgForegroundImage(int w, int h, String image) {
+		/*
+		 * Fetch SVG file representation
+		 */
+		File f = new File(image);
+		GraphicsNode icon = ScilabGraphUtils.getSVGComponent(f);
+		
+		if (icon == null || icon.getBounds() == null) {
+			return;
+		}
+		
+		/*
+		 * Perform calculations
+		 */
+		
+		// Iso scale to the bounds - border size
+		Rectangle2D bounds = icon.getBounds();
+		
+		// Calculating icon bordered bounds
+		final double ih = bounds.getHeight();
+		final double iw = bounds.getWidth(); 
+		
+		// Calculate per axis scaling factor
+		final double shFactor = h / ih;
+		final double swFactor = w / iw;
+		
+		// Calculate the default ratio (iso scaling)
+		double ratio;
+		if (shFactor > swFactor) {
+			ratio = swFactor;
+		} else {
+			ratio = shFactor;
+		}
+
+		// Adding borders
+		ratio *= BORDER_RATIO;
+		
+		// Translate the icon origin to the drawing origin.
+		double tx = -bounds.getX() * ratio;
+		double ty = -bounds.getY() * ratio;
+		
+		// Calculate scaled height and width
+		final double sh = ratio * ih;
+		final double sw = ratio * iw;
+		
+		// Center the image on the block
+		tx += (w - sw) / 2;
+		ty += (h - sh) / 2;
+		
+		/*
+		 * Everything has been calculated, render now.
+		 */
+
+		// Translate from base point to centered base point
+		g.translate(tx, ty);
+
+		// scale to the ratio
+		g.scale(ratio, ratio);
+				
+		// Paint
+		icon.paint(g);
 	}
 }
 

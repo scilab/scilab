@@ -15,7 +15,7 @@ function [tree]=sci_toeplitz(tree)
 
 // T = toeplitz(c)
 if rhs==1 then
-  c=convert2double(tree.rhs(1))
+  c=tree.rhs(1)
   if c.property<>Real then
     tree.name="mtlb_toeplitz"
   elseif ~is_a_vector(c) & ~is_a_scalar(c) then
@@ -26,7 +26,7 @@ if rhs==1 then
 // T = toeplitz(c,r)
 else
   [c,r]=getrhs(tree)
-  tree.rhs=Rhs_tlist(convert2double(c),convert2double(r))
+  tree.rhs=Rhs_tlist(c, r)
   tree.name="mtlb_toeplitz"
   if c.property==Complex | r.property==Complex then
     tree.lhs(1).type=Type(Double,Complex)

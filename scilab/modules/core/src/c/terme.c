@@ -36,7 +36,13 @@ int C2F(terme)(void)
   /* int equal,less,great,char_not */
   r = C2F(recu).rstk[(constnumber + (0 + ( (C2F(recu).pt - 1) << 2)) - constnumber) / 4];
 
-  if (C2F(iop).ddt == 4) { }
+  if (C2F(iop).ddt == 4) {
+    static char tmp[100];
+    static int io;
+    sprintf(tmp," terme pt:%d rstk(pt):%d sym:%d",C2F(recu).pt, C2F(recu).rstk[C2F(recu).pt - 1], C2F(com).sym);
+    C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
+
+  }
 
   if ( (r / 100) != 2) 
     { /* first factor */

@@ -576,7 +576,7 @@ function bOK = commons_msvc90_x64(MS_VS_DIRECTORY)
 endfunction
 //==========================================
 
-  if MSDOS then
+  if getos() == 'Windows' then
     msvc = findmsvccompiler();
     bOK = %F;
     

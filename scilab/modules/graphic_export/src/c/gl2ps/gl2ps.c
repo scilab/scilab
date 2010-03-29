@@ -4906,7 +4906,8 @@ static void gl2psPrintSVGHeader(void)
   gl2psPrintf("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n");
   gl2psPrintf("<svg xmlns=\"http://www.w3.org/2000/svg\"\n");
   gl2psPrintf("     xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n"
-              "     width=\"%dpx\" height=\"%dpx\" viewBox=\"%d %d %d %d\">\n",
+              "     width=\"%dpx\" height=\"%dpx\" viewBox=\"%d %d %d %d\"\n"
+              "     style=\"stroke:none\">\n",
               width, height, x, y, width, height);
   gl2psPrintf("<title>%s</title>\n", gl2ps->title);
   gl2psPrintf("<desc>\n");
@@ -4919,6 +4920,10 @@ static void gl2psPrintSVGHeader(void)
   gl2psPrintf("<defs>\n");
   gl2psPrintf("</defs>\n");
 
+  if(gl2ps->options & GL2PS_LANDSCAPE){
+    gl2psPrintf("<g transform=\"rotate(90) translate(0,-%d)\">\n", width);
+  }
+  
   if(gl2ps->options & GL2PS_DRAW_BACKGROUND){
     gl2psSVGGetColorString(gl2ps->bgcolor, col);
     gl2psPrintf("<polygon fill=\"%s\" points=\"%d,%d %d,%d %d,%d %d,%d\"/>\n", col,
@@ -5196,14 +5201,14 @@ static void gl2psPrintSVGPrimitive(void *data)
 			gl2psGetPSFontFamilyName(fontName, fontFamily);
 			
 			gl2psSVGGetColorString(prim->verts[0].rgba, col);
-			gl2psPrintf("<text fill=\"%s\" x=\"%g\" y=\"%g\" "
+			gl2psPrintf("<text fill=\"%s\" style=\"stroke:none\" x=\"%g\" y=\"%g\" "
 					    "transform=\"rotate(%g, %g, %g)\" "
 					        "font-size=\"%d\" font-family=\"%s\" "
 				          "font-style=\"%s\" font-weight=\"%s\">%s</text>\n",
 						      col, xyz[0][0], xyz[0][1],
 						      -(prim->data.text->angle),	xyz[0][0], xyz[0][1],
 							    prim->data.text->fontsize,
-								  fontName,
+								  fontFamily,
 									(isItalicFont ? "italic" : (isObliqueFont ? "oblique" : "normal")),
 									(isBoldFont ? "bold" : "normal"),
 									prim->data.text->str);
@@ -5220,7 +5225,7 @@ static void gl2psPrintSVGPrimitive(void *data)
   case GL2PS_SPECIAL_TEXT :
     if(prim->data.text->alignment == GL2PS_SVG) {
       gl2psSVGGetColorString(prim->verts[0].rgba, col);
-      gl2psPrintf("<g fill=\"%s\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
+      gl2psPrintf("<g fill=\"%s\" stroke=\"black\" transform=\"rotate(%g,%g,%g) translate(%g,%g)\">%s</g>\n", col, -(prim->data.text->angle), xyz[0][0], xyz[0][1], xyz[0][0], xyz[0][1], prim->data.text->str);
     }
     break;
   default :
@@ -5230,6 +5235,10 @@ static void gl2psPrintSVGPrimitive(void *data)
 
 static void gl2psPrintSVGFooter(void)
 {
+  if(gl2ps->options & GL2PS_LANDSCAPE){
+    gl2psPrintf("</g>\n");
+  }
+
   gl2psPrintf("</g>\n");
   gl2psPrintf("</svg>\n");  
   

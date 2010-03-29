@@ -12,20 +12,26 @@
 
 package org.scilab.modules.xcos.palette.listener;
 
+import java.awt.Dimension;
+
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 
-import org.scilab.modules.xcos.palette.Palette;
-import org.scilab.modules.xcos.palette.PaletteConfigurator;
-import org.scilab.modules.xcos.palette.view.PaletteComponent;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.xcos.graph.PaletteDiagram;
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.model.Category;
+import org.scilab.modules.xcos.palette.model.Custom;
+import org.scilab.modules.xcos.palette.model.PaletteBlock;
+import org.scilab.modules.xcos.palette.model.PaletteNode;
+import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
-import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
 
 /**
  * Implement the tree selection listener 
@@ -50,61 +56,45 @@ public class PaletteManagerTreeSelectionListener implements
 	 */
 	public void valueChanged(TreeSelectionEvent tree) {
 		JTree component = (JTree) tree.getSource();
-		JSplitPane splitPanel = (JSplitPane) component.getParent();
+		JSplitPane splitPanel = (JSplitPane) component.getParent().getParent().getParent();
 
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) component
-				.getLastSelectedPathComponent();
+		PaletteNode node = (PaletteNode) component.getLastSelectedPathComponent();
 
 		if (node == null) {
 			// Nothing is selected.
 			return;
 		}
 
-		JScrollPane nodeView;
+		JScrollPane nodeView = null;
+		final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 		
-		if (!node.getAllowsChildren()) {
-		if (node.getUserObject() instanceof Palette) {
-			// This is a statically configured Palette case
-			PaletteView view = ((Palette) node.getUserObject()).loadView();
-			view.setVisible(true);
-			panel.setViewportView(view);
+		if (node instanceof Category) {
+			final PaletteListModel model = new PaletteListModel((Category) node);
+			final JComponent list = new PaletteConfiguratorListView(model);
+			nodeView = new JScrollPane(list);
+		} else if (node instanceof PreLoaded) {
+			final PreLoaded palette = (PreLoaded) node;
 			
-			nodeView = panel;
-		} else {
-			assert node.getUserObject() instanceof PaletteComponent;
-			// This is a loaded diagram as Palette
-			nodeView = (PaletteComponent) node.getUserObject();
-		}
-		} else {
-			assert !node.isLeaf();
-			assert node.getUserObject() instanceof String;
-			String userObj = (String) node.getUserObject();
-			
-			JComponent list = new PaletteConfiguratorListView();
-			
-			if (userObj.compareTo(XcosMessages.PALETTES) == 0) {
-				// Always instantiate all the default palettes
-				for (Palette pal : Palette.getDatas()) {
-					PaletteConfigurator p = new PaletteConfigurator(pal);
-					list.add(p.getView());
-				}
-			} else {
-				// when not selecting the default palettes node adding all the
-				// sub nodes
-				final int childrenCount = node.getChildCount();
-				for (int i = 0; i < childrenCount; i++) {
-					DefaultMutableTreeNode n = (DefaultMutableTreeNode) node
-							.getChildAt(i);
-					PaletteConfigurator p = new PaletteConfigurator(n
-							.getUserObject());
-					list.add(p.getView());
-				}
+			final PaletteView view = new PaletteView();
+			for (PaletteBlock b : palette.getBlock()) {
+				view.add(new PaletteBlockCtrl(b).getView());
 			}
 			
-			nodeView = new JScrollPane(list);
+			panel.setViewportView(view);
+			nodeView = panel;
+		} else if (node instanceof Custom) {
+			final Custom desc = (Custom) node;
+			PaletteDiagram diagram = new PaletteDiagram();
+			diagram.openDiagramAsPal(desc.getPath().getEvaluatedPath());
+			nodeView = diagram.getAsComponent();
+		} else {
+			LogFactory.getLog(PaletteManagerTreeSelectionListener.class)
+				.error("tree selection is not handled");
+			return;
 		}
 		
 		// update
+		nodeView.setPreferredSize(dimension);
 		splitPanel.setRightComponent(nodeView);
 		nodeView.validate();
 	}

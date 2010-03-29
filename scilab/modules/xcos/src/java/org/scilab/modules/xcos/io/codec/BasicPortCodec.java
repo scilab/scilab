@@ -19,11 +19,19 @@ import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxObjectCodec;
 
 /**
  * Codec for any Port
@@ -31,6 +39,7 @@ import com.mxgraph.io.mxCodec;
 public class BasicPortCodec extends XcosObjectCodec {
 
     private static final String DATA_TYPE = "dataType";
+    private static final String[] IGNORED_FIELDS = new String[] { DATA_TYPE };
 
 	/**
 	 * The constructor used on for configuration
@@ -45,6 +54,25 @@ public class BasicPortCodec extends XcosObjectCodec {
 
     }
 
+    /**
+     * Register all the know codecs on the {@link mxCodecRegistry}
+     */
+    public static void register() {
+    	XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(explicitOutputPortCodec);
+    	XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(explicitInputPortCodec);    
+    	XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(implicitOutputPortCodec);
+    	XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(implicitInputPortCodec);
+    	XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(commandPortCodec);
+    	XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(controlPortCodec);
+    	mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
+    }
+    
 	/**
 	 * Things to do before encoding
 	 * @param enc Codec that controls the encoding process.

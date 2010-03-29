@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg3643" xmlns="http://www.w3.org/2000/svg" height="43.69" width="43.69" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs id="defs3647">
+  <radialGradient id="XMLID_52_" gradientUnits="userSpaceOnUse" cy="23.333" cx="165.06" gradientTransform="matrix(1,0,0,1.0103,0,-0.159801)" r="7.2848">
+   <stop id="stop812" stop-color="#ef3535" offset="0"/>
+   <stop id="stop2239" stop-color="#c91a1a" offset="0"/>
+   <stop id="stop814" stop-color="#ff4c4c" offset="1"/>
+  </radialGradient>
+  <radialGradient id="radialGradient7366" xlink:href="#XMLID_52_" gradientUnits="userSpaceOnUse" cy="6.8283" cx="8.7468" r="29.89"/>
+  <radialGradient id="radialGradient7368" gradientUnits="userSpaceOnUse" cy="10.045" cx="11.902" r="29.293">
+   <stop id="stop2147" stop-color="#fffffd" offset="0"/>
+   <stop id="stop2149" stop-color="#cbcbc9" offset="1"/>
+  </radialGradient>
+  <linearGradient id="linearGradient7370" y2="25.884" gradientUnits="userSpaceOnUse" x2="22.218" y1="7.7893" x1="6.3422">
+   <stop id="stop10655" stop-color="#f3f4ff" offset="0"/>
+   <stop id="stop10657" stop-color="#9193af" offset="1"/>
+  </linearGradient>
+  <radialGradient id="radialGradient7372" xlink:href="#XMLID_52_" gradientUnits="userSpaceOnUse" cy="10.584" cx="11.329" r="15.532"/>
+ </defs>
+ <g id="layer1" transform="translate(2.1701242,-21.184893)">
+  <g id="g7350" transform="translate(-4.5,-3.5000001)">
+   <path id="path27786" stroke-linejoin="round" style="stroke-dasharray:none;" d="m31.161,16.911a14.911,14.911,0,1,1,-29.821,0,14.911,14.911,0,1,1,29.821,0z" fill-rule="evenodd" transform="matrix(1.431529,0,0,1.431529,0.91264925,22.321834)" stroke-dashoffset="0" stroke="#a40000" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.6985538" fill="url(#radialGradient7366)"/>
+   <path id="path35549" stroke-linejoin="round" d="m31.161,16.911a14.911,14.911,0,1,1,-29.821,0,14.911,14.911,0,1,1,29.821,0z" fill-rule="evenodd" transform="matrix(1.163838,0,0,1.163838,5.1679912,26.754008)" stroke-dashoffset="0" stroke="url(#linearGradient7370)" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.71139598" fill="url(#radialGradient7368)"/>
+   <path id="path10651" stroke-linejoin="round" d="m31.161,16.911a14.911,14.911,0,1,1,-29.821,0,14.911,14.911,0,1,1,29.821,0z" stroke-dashoffset="0" transform="matrix(1.357654,0,0,1.357654,2.1130862,23.482717)" stroke="url(#radialGradient7372)" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.73656511" fill="none"/>
+   <g id="g4258" stroke-width="1" stroke="#2e3436" stroke-linecap="round" transform="translate(-0.14684959,23.649759)">
+    <path id="path35559" stroke-linejoin="miter" style="stroke-dasharray:none;" d="m24.495,22.583,7.5777-9.0209" stroke-miterlimit="4" fill="none"/>
+    <path id="path4256" stroke-linejoin="round" style="stroke-dasharray:none;" d="m-78.668,39.378-5.2437-3.0274-5.2437-3.0274,5.2437-3.0274,5.2437-3.0274,0,6.0549,0,6.0549z" transform="matrix(0.42354759,0.05292161,-0.05292161,0.42354759,68.775627,3.4525942)" stroke-miterlimit="10" fill="#2e3436"/>
+   </g>
+   <text id="text4262" font-weight="normal" xml:space="preserve" font-size="10.41038227px" font-style="normal" y="60.001255" x="20.146564" font-family="Bitstream Vera Sans" fill="#000000"><tspan id="tspan4264" y="60.001255" x="20.146564" font-weight="bold">V</tspan></text>
+   <path id="path4266" stroke-linejoin="round" d="m23.93,29.705c0,7.8406,0.16334,7.8406,0.16334,7.8406" stroke="#000" stroke-linecap="round" stroke-width="1px" fill="none"/>
+  </g>
+  <path id="path34778" stroke-linejoin="round" style="stroke-dasharray:none;" d="m16.406,17.281a1.2188,1.2188,0,1,1,-2.4375,0,1.2188,1.2188,0,1,1,2.4375,0z" fill-rule="evenodd" transform="matrix(2.073295,0,0,2.073295,-11.813172,7.2008838)" stroke-dashoffset="0" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-width="0.48232403" fill="#f3f3f3"/>
+ </g>
+</svg>

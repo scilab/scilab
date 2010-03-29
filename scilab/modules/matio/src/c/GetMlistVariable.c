@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,48 +12,69 @@
  */
 
 #include "GetMatlabVariable.h"
-#include "freeArrayOfString.h"
 
-matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
+#include "api_scilab.h"
+
+#include "freeArrayOfString.h"
+#include "MALLOC.h"
+
+#define MATIO_ERROR if(_SciErr.iErr) \
+    {				     \
+      printError(&_SciErr, 0);	     \
+      return 0;			     \
+    }
+
+#define DEBUG 1
+
+matvar_t *GetMlistVariable(int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
   char **fieldNames = NULL;
+  int * pilen = NULL;
+  int nbRow = 0, nbFields = 0, i;
+  int * var_addr = NULL;
+  int var_type;
+  SciErr _SciErr;
+  matvar_t * tmp_res = NULL;
 
-  int nbRow = 0, nbFields = 0;
-
-  int ilStruct = 0;
-
-  int pointerSave = 0;
-
-  int newStkPos = 0;
-
-  if(VarType(stkPos) == sci_mlist)
+  if ((parent==NULL)&&(item_position==-1))
     {
-      newStkPos = stkPos + Top - Rhs; 
-      
-      ilStruct = iadr(*Lstk(newStkPos));
-      if (*istk(ilStruct) < 0) /* Reference */
-        {
-          ilStruct = iadr(*istk(ilStruct + 1));
-        }
+      _SciErr = getVarAddressFromPosition(pvApiCtx, iVar, &var_addr); MATIO_ERROR;
+    }
+  else if ((parent!=NULL)&&(item_position==-1))
+    {
+      var_addr = parent;
+    }
+  else
+    {
+      _SciErr = getListItemAddress(pvApiCtx, parent, item_position, &var_addr); MATIO_ERROR;
+    }
 
-      nbFields = *istk(ilStruct+1);
-  
-      pointerSave = *Lstk(newStkPos);
-      *Lstk(newStkPos) = sadr(ilStruct+2+nbFields+1); /* Address of the first list entry */
- 
+  _SciErr = getVarType(pvApiCtx, var_addr, &var_type); MATIO_ERROR;
+
+  if (var_type == sci_mlist)
+    {
       /* FIRST LIST ENTRY: fieldnames */
-      GetRhsVar(stkPos, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbFields, &fieldNames);
-
+      _SciErr    = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, NULL, NULL); MATIO_ERROR;
+      pilen      = (int *)MALLOC(nbRow*nbFields*sizeof(int));
+      fieldNames = (char **)MALLOC(nbRow*nbFields*sizeof(char *));
+      _SciErr    = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, NULL); MATIO_ERROR;
+      for(i=0;i<nbRow*nbFields;i++)
+      	{
+      	  fieldNames[i] = (char *)MALLOC((pilen[i]+1)*sizeof(char));
+      	}
+      _SciErr = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, fieldNames); MATIO_ERROR;
+      FREE(pilen);
+      
       if (strcmp(fieldNames[0], "ce")==0)
         {
-          *Lstk(newStkPos) = pointerSave;
           freeArrayOfString(fieldNames, nbRow * nbFields);
-          return GetCellVariable(stkPos, name, matfile_version);
+          return GetCellVariable(iVar, name, matfile_version, parent, item_position);
         }
       else if (strcmp(fieldNames[0], "st")==0)
         {
-          *Lstk(newStkPos) = pointerSave;
-          return GetStructVariable(stkPos, name, matfile_version, fieldNames, nbFields);
+          tmp_res = GetStructVariable(iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
+          freeArrayOfString(fieldNames, nbRow * nbFields);
+	  return tmp_res;
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {
@@ -73,5 +95,4 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       Scierror(999, _("%s: Wrong type for first input argument: Mlist expected.\n"), "GetMlistVariable");
       return NULL;
     }
-
 }

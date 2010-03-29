@@ -26,7 +26,7 @@ function  [ok]=Link_modelica_C(Cfile)
   Cfile=pathconvert(Cfile,%f,%t)
   name=basename(Cfile)
   path=strsubst(stripblanks(Cfile),name+'.c','')
-  if MSDOS then Ofile=path+name+'.obj', else Ofile=path+name+'.o', end
+  if getos() == 'Windows' then Ofile=path+name+'.obj', else Ofile=path+name+'.o', end
 
   //below newest(Cfile,Ofile) is used instead of  updateC in case where
   //Cfile has been manually modified (debug,...)
@@ -43,7 +43,7 @@ function  [ok]=Link_modelica_C(Cfile)
     mlibs(rep)=[];
     //--------------------------------
     libs=[];
-    if MSDOS then ext='\*.lib',else ext='/*.a',end 
+    if getos() == 'Windows' then ext='\*.lib',else ext='/*.a',end 
     // removing .a or .ilib sufixs
     for k=1:size(mlibs,'*')
       aa=listfiles(mlibs(k)+ext);
@@ -55,7 +55,7 @@ function  [ok]=Link_modelica_C(Cfile)
     end
 
     // add modelica_libs to the list of directories to be searched for *.h
-    //if MSDOS then ext='\*.h',else ext='/*.h',end
+    //if getos() == 'Windows' then ext='\*.h',else ext='/*.h',end
     EIncludes=''
     for k=1:size(mlibs,'*')
       EIncludes=EIncludes+'  -I""'+ mlibs(k)+'""';

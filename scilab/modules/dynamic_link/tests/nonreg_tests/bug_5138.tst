@@ -14,7 +14,7 @@
 // <-- Short Description -->
 //  if the "makefile name" argument is an empty matrix, the generated Makefile is ".mak"
 
-if MSDOS then
+if getos() == 'Windows' then
   ilib_verbose(0);
   mkdir(pathconvert(TMPDIR+"/string_writing_api"));
   cd(pathconvert(TMPDIR+"/string_writing_api"));

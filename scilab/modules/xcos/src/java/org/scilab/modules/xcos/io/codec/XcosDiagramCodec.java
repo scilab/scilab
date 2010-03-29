@@ -12,19 +12,36 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import org.scilab.modules.graph.io.ScilabGraphCodec;
+import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.icl.saxon.functions.Current;
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
 
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
  */
 public class XcosDiagramCodec extends ScilabGraphCodec {
 	private static final String SCICOS_PARAMETERS = "scicosParameters";
+
+	// The non saved fields are hardcoded and can have the same name.
+	// CSOFF: MultipleStringLiterals
+	private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet",
+			"parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
+			"savedFile", "multiplicities", "opened", "modified", "undoManager" };
+	private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = {
+			"stylesheet", "parentTab", "viewPort", "viewPortMenu", "view",
+			"selectionModel", "multiplicities", "opened", "modified",
+			"undoManager", "savedFile", "container" };
+	// CSON: MultipleStringLiterals
 
 	/**
 	 * Default constructor
@@ -36,6 +53,13 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 		super(template);
 	}
 
+	public static void register() {
+		ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
+		mxCodecRegistry.register(diagramCodec);
+		ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
+		mxCodecRegistry.register(superBlockDiagramCodec);
+	}
+	
 	/**
 	 * The constructor used for configuration
 	 * 
@@ -103,5 +127,50 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 				node.removeChild(params);
 			}
 		}
+	}
+	
+	/**
+	 * Load the ScicosParameters fields from the current object 
+	 * 
+	 * @param obj the {@link XcosDiagram} instance
+	 * @param fieldname the {@link Current} field name
+	 * @param value the current field value
+	 * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)
+	 */
+	@Override
+	protected void setFieldValue(Object obj, String fieldname, Object value) {
+		Field field;
+		try {
+			field = ScicosParameters.class.getDeclaredField(fieldname);
+			ScicosParameters params = ((XcosDiagram) obj).getScicosParameters();
+			super.setFieldValue(params, fieldname, value);
+		} catch (SecurityException e) {
+			field = null;
+		} catch (NoSuchFieldException e) {
+			field = null;
+		}
+		
+		if (field == null) {
+			super.setFieldValue(obj, fieldname, value);
+		}
+	}
+	
+	/**
+	 * Apply compatibility pattern to the decoded object
+	 * @param dec Codec that controls the decoding process.
+	 * @param node XML node to decode the object from.
+	 * @param obj Object decoded.
+	 * @return The Object transformed
+	 * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
+	 */
+	@Override
+	public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		XcosDiagram diag = (XcosDiagram) obj;
+		
+		// pre-5.3 diagram may be saved in a locked state
+		// unlock it
+		diag.setReadOnly(false);
+		
+		return super.afterDecode(dec, node, obj);
 	}
 }

@@ -85,7 +85,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     private File gs;
     private File ps2pdf;
 
-    private LaTeXElement latexElem = null;
+    private LaTeXElement latexElem;
     private boolean isLatexConverted = true;
 
     /**
@@ -106,7 +106,14 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 		this.printFormat = printFormat;
 	}
     
-        public void setLatexConverted(boolean isLatexConverted){
+    
+
+    /**
+     * Set if the LaTeX label are converted in PNG or not to use with 
+     * the jlatexmath-fop plugin.
+     * @param isLatexConverted true if LaTeX label are converted in PNG
+	 */
+	public void setLatexConverted(boolean isLatexConverted) {
 		this.isLatexConverted = isLatexConverted;
 	}
 

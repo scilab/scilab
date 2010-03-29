@@ -129,7 +129,7 @@
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
-if MSDOS then unix('del foo');
+if getos() == 'Windows' then unix('del foo');
 else unix('rm -f foo'); end
 A=rand(3,5); write('foo',A);
 B=read('foo',3,5)

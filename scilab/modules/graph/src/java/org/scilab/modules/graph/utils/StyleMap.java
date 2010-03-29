@@ -61,6 +61,6 @@ public final class StyleMap extends HashMap<String, String> {
 			str.append(";");
 		}
 		
-		return str.toString();
+		return str.substring(0, str.length() - 1);
 	}
 }

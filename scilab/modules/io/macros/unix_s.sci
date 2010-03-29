@@ -37,7 +37,7 @@ function unix_s(cmd)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_s",1));
 	end
 	
-  if MSDOS then 
+  if getos() == 'Windows' then 
     [rep,stat]=dos(cmd);
     if (~stat) then
       for i=1:size(rep,'*') do write(%io(2),'   '+rep(i));end

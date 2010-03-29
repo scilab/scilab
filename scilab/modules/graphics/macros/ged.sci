@@ -87,7 +87,7 @@ function ged(k,win)
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
     
-    TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+    TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
@@ -109,7 +109,7 @@ function ged(k,win)
       TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
     
-    TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+    TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
     // get the number of the window associated with ged
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
@@ -1547,7 +1547,7 @@ for i=1:size(f.color_map,1)
   TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
 end
 
-TCL_SetVar("msdos",string(MSDOS)) // to know the OS
+TCL_SetVar("msdos",string(getos() == 'Windows')) // to know the OS
 // get the number of the window associated with ged
 TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
 TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files

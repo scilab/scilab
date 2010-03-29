@@ -122,14 +122,14 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>	
 
-<path value="$SCILAB/thirdparty/jlatexmath-0.8.9.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-0.9.1.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
 </path>	
 
-<path value="$SCILAB/thirdparty/jlatexmath-fop-0.8.9.jar" load="onUse">
+<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.1.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>	

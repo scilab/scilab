@@ -55,7 +55,7 @@ function display_message_box(str_in)
   [lhs,rhs]=argn(0)
 
   //## input param of editor
-  if MSDOS then
+  if getos() == 'Windows' then
     InFile = strsubst(TMPDIR,'/','\')+'\TTMPin';
     InFile = strsubst(InFile,'\','\\\\')';
   else

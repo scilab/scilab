@@ -281,14 +281,18 @@ if typeof(o)=="Block" then
               if or((eq.parameters(2)(i))<> (eqn.parameters(2)(i))) then
                 needcompile=0
 		
-		XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
-		if ~deletefile(XML) then
-		  messagebox(msprintf(_('Unable to delete the file: %s'),XML),'error','modal');
-		end
-		XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
-		if ~deletefile(XMLTMP) then
-		  messagebox(msprintf(_('Unable to delete the file: %s'),XMLTMP),'error','modal');
-		end
+		// the initialization XML files is re-created by translator if needed
+		// XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
+		// if ~deletefile(XML) then
+		//   messagebox(msprintf(_('Unable to delete the file: %s'),XML),'error','modal');
+		// end
+		
+		// the XML simulation file title_imSim is no more created with Xcos
+		// XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
+		// if ~deletefile(XMLTMP) then
+		  // messagebox(msprintf(_('Unable to delete the file: %s'),XMLTMP),'error','modal');
+		// end
+		
                 break;
               end
             end

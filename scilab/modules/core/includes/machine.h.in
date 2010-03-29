@@ -384,12 +384,6 @@
 /* Define to 1 if you have the `_NSGetExecutablePath' function. */
 #undef HAVE__NSGETEXECUTABLEPATH
 
-/* HDF5 cflags */
-#undef HDF5_CFLAGS
-
-/* HDF5 library */
-#undef HDF5_LIBS
-
 /* Define to the value of ${prefix}, as a string. */
 #undef INSTALLPREFIX
 

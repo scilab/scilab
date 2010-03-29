@@ -43,7 +43,7 @@ if exists("path","local")==1 then
   path=strsubst(path,"\","/")
   arg = arg+" -initialdir {"+path+"}"
 else
-  if MSDOS then
+  if getos() == 'Windows' then
     global("%tk_getfile_defaultpath")
     if exists("%tk_getfile_defaultpath","global")==1 then
       arg = arg+" -initialdir {"+%tk_getfile_defaultpath+"}"
@@ -77,7 +77,7 @@ else
   // -multiple 0 case, just recover the string output from tk_getOpenFile
   p = TCL_GetVar("scifilepath")
 end;
-if MSDOS then
+if getos() == 'Windows' then
   if ~p=="" then
     global("%tk_getfile_defaultpath");
     %tk_getfile_defaultpath = dirname(p(1));

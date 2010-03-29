@@ -14,6 +14,8 @@ package org.scilab.modules.graph.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -27,6 +29,8 @@ import org.apache.batik.bridge.UserAgentAdapter;
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -41,9 +45,14 @@ import com.mxgraph.util.mxUtils;
  */
 public final class ScilabGraphUtils extends mxUtils {
 	/**
+	 * Logger for this class
+	 */
+	private static final Log LOG = LogFactory.getLog(ScilabGraphUtils.class);
+	
+	/**
 	 * Cache for the generated SVG components
 	 */
-	private static Map<File, GraphicsNode> generatedSVGComponents = new WeakHashMap<File, GraphicsNode>();
+	private static Map<File, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<File, WeakReference<GraphicsNode>>();
 	
 	/**
 	 * Cache for the generated latex icons
@@ -108,9 +117,16 @@ public final class ScilabGraphUtils extends mxUtils {
 	 * @return the corresponding graphic node
 	 */
 	public static GraphicsNode getSVGComponent(File filename) {
+		WeakReference<GraphicsNode> nodeRef;
 		GraphicsNode node;
 		
-		node = generatedSVGComponents.get(filename);
+		nodeRef = generatedSVGComponents.get(filename);
+		if (nodeRef != null) {
+			node = nodeRef.get();
+		} else {
+			node = null;
+		}
+		
 		if (node == null) {
 			try {
 				String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
@@ -119,13 +135,14 @@ public final class ScilabGraphUtils extends mxUtils {
 				UserAgent userAgent = new UserAgentAdapter();
 				DocumentLoader loader = new DocumentLoader(userAgent);
 				BridgeContext ctx = new BridgeContext(userAgent, loader);
-				ctx.setDynamicState(BridgeContext.DYNAMIC);
+				ctx.setDynamicState(BridgeContext.STATIC);
 				GVTBuilder builder = new GVTBuilder();
 				
 				node = builder.build(ctx, doc);
-				generatedSVGComponents.put(filename, node);
+				
+				generatedSVGComponents.put(filename, node.getWeakReference());
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOG.error(e.getLocalizedMessage());
 			}
 		}
 		return node;
