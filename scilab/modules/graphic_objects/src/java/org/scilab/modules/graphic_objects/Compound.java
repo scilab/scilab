@@ -6,7 +6,7 @@ package org.scilab.modules.graphic_objects;
  */
 public class Compound extends GraphicObject {
 
-	/** Default constructor */
+	/** Constructor */
 	public Compound() {
 		super();
 	}

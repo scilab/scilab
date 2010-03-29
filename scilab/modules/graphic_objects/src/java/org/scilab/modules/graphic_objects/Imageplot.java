@@ -9,4 +9,9 @@ public abstract class Imageplot extends ClippableContouredObject {
 	// Data -> Data Model
 	
 	// Methods: to be done
+	
+	/** Constructor */
+	public Imageplot() {
+		super();
+	}
 }

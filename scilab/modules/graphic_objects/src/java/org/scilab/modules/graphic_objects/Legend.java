@@ -20,6 +20,56 @@ public class Legend extends ClippableTextObject {
 
 	/** 2D position relative to the parent axes bounds */
 	private double [] position;
+
+	/** Constructor */
+	public Legend() {
+		super();
+		this.links = null;
+		this.legendLocation = null;
+		position = null;
+	}
+
+	/**
+	 * @return the legendLocation
+	 */
+	public LegendLocation getLegendLocation() {
+		return legendLocation;
+	}
+
+	/**
+	 * @param legendLocation the legendLocation to set
+	 */
+	public void setLegendLocation(LegendLocation legendLocation) {
+		this.legendLocation = legendLocation;
+	}
+
+	/**
+	 * @return the links
+	 */
+	public ArrayList<Polyline> getLinks() {
+		return links;
+	}
+
+	/**
+	 * @param links the links to set
+	 */
+	public void setLinks(ArrayList<Polyline> links) {
+		this.links = links;
+	}
+
+	/**
+	 * @return the position
+	 */
+	public double[] getPosition() {
+		return position;
+	}
+
+	/**
+	 * @param position the position to set
+	 */
+	public void setPosition(double[] position) {
+		this.position = position;
+	}
 	
 	//	 Methods: to be done
 }

@@ -5,5 +5,12 @@ package org.scilab.modules.graphic_objects;
  * @author juliachs
  */
 public class Segs extends VectField {
+
+	/** Constructor */
+	public Segs() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	// Methods: to be done
 }

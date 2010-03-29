@@ -19,6 +19,70 @@ public class Line {
 
 	/** Line color */
 	private int color;
+
+	/** Constructor */
+	public Line() {
+		mode = false;
+		lineStyle = null;
+		thickness = 0.0;
+		color = 0;
+	}
+
+	/**
+	 * @return the color
+	 */
+	public int getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(int color) {
+		this.color = color;
+	}
+
+	/**
+	 * @return the lineStyle
+	 */
+	public LineType getLineStyle() {
+		return lineStyle;
+	}
+
+	/**
+	 * @param lineStyle the lineStyle to set
+	 */
+	public void setLineStyle(LineType lineStyle) {
+		this.lineStyle = lineStyle;
+	}
+
+	/**
+	 * @return the mode
+	 */
+	public boolean isMode() {
+		return mode;
+	}
+
+	/**
+	 * @param mode the mode to set
+	 */
+	public void setMode(boolean mode) {
+		this.mode = mode;
+	}
+
+	/**
+	 * @return the thickness
+	 */
+	public double getThickness() {
+		return thickness;
+	}
+
+	/**
+	 * @param thickness the thickness to set
+	 */
+	public void setThickness(double thickness) {
+		this.thickness = thickness;
+	}
 	
 	//	 Methods: to be done
 }

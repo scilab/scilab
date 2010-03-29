@@ -5,5 +5,11 @@ package org.scilab.modules.graphic_objects;
  * @author juliachs
  */
 public class Plot3d extends Surface {
+
+	/** Constructor */
+	public Plot3d() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	//	 Methods: to be done
 }

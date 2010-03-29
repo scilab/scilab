@@ -6,4 +6,9 @@ package org.scilab.modules.graphic_objects;
  */
 public class Matplot extends Imageplot {
 	//	 Methods: to be done
+	
+	/** Constructor */
+	public Matplot() {
+		super();
+	}
 }
