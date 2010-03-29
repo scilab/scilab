@@ -182,6 +182,8 @@ Bug Fixes:
 
 * bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
 
+* bug 6829 fixed - kpure fails to compute  when applied to an high degree system
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
