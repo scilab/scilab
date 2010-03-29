@@ -180,6 +180,8 @@ Bug Fixes:
 * bug 6719 fixed - Error fixed in example of root_properties help page
                    (French version only).
 
+* bug 6720 fiwed - "caption" function doesn't handled properly polylines handles.
+
 * bug 6792 fixed - Wrong interpretation of macro arguments when the
                    macro call appeared in an list extraction.
 
