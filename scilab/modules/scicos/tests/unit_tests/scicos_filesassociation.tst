@@ -5,7 +5,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-if MSDOS then
+if getos() == 'Windows' then
   
   ierr = execstr('res = winqueryreg(''HKEY_CLASSES_ROOT'',''Scilab5.cos'')','errcatch');
   if ierr <> 0 then pause,end

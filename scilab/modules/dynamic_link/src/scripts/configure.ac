@@ -48,11 +48,7 @@ case "$host" in
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
          case "$host" in
-          i386-apple-darwin*)
-                CC=" $CC -arch i386 "
-	        CXX=" $CXX -arch i386 "
-	        ;;
-          x86_64-apple-darwin*)
+          x86_64-apple-darwin*|i386-apple-darwin*)
 	        CC=" $CC -arch x86_64 "
 	        CXX=" $CXX -arch x86_64 "
                 ;;

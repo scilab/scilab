@@ -15,9 +15,6 @@ function [tree]=sci_conv(tree)
 // Emulation function: mtlb_conv()
 
 [A,B]=getrhs(tree)
-A=convert2double(A)
-B=convert2double(B)
-tree.rhs=list(A,B)
 
 if and([A.dims(1),B.dims(1)]==1) | and([A.dims(2),B.dims(2)]>1) then // A and B row vectors
   conv=tree

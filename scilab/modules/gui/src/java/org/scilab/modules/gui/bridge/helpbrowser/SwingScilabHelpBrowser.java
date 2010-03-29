@@ -10,7 +10,6 @@
  *
  */
 package org.scilab.modules.gui.bridge.helpbrowser;
-
 import java.awt.Cursor;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -143,21 +142,21 @@ public class SwingScilabHelpBrowser extends JHelp implements SimpleHelpBrowser {
 	    		int localeHelpIndex = -1;
                         if (all != null) {
                             for (int fileIndex = 0; fileIndex < all.length; fileIndex++) {
-	    			if (all[fileIndex].indexOf(defaultLanguage) != -1) {
+								if (all[fileIndex].indexOf(defaultLanguage) != -1) {
                                     defaultHelpIndex = fileIndex;
-	    			}
-	    			if (all[fileIndex].indexOf(language) != -1) {
+								}
+								if (all[fileIndex].indexOf(language) != -1) {
                                     localeHelpIndex = fileIndex;
-	    			}
+								}
                             }
-
+							
                             /* Add the toolbox help file */
                             if (localeHelpIndex != -1) {
-	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[localeHelpIndex]);
+								jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[localeHelpIndex]);
                             } else if (defaultHelpIndex != -1) {
-	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[defaultHelpIndex]);
+								jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[defaultHelpIndex]);
                             } else if ((all != null) && (all.length != 0)) {
-	    			jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[0]); /* First file as default */
+								jarFiles[nbFilesToLoad++] =  new File(toolboxJarPath + File.separator + all[0]); /* First file as default */
                             }
                         }
 	    	}

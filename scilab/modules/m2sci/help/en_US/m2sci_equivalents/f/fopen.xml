@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_fopen">
+  <refnamediv>
+    <refname>fopen (Matlab function)</refname>
+    <refpurpose>Open a file or obtain information about open files</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+fopen
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+mopen
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>Access permission:</term>
+        <listitem>
+          <para>
+Matlab offers two permissions options not supported by Scilab: <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis> (for tape drives) 
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Input values:</term>
+        <listitem>
+          <para>
+In Matlab, <emphasis role="bold">fopen('all')</emphasis> lists all opened files, in Scilab, this type of call for <emphasis role="bold">fopen</emphasis> does not exist. You can also use <emphasis role="bold">fopen</emphasis> in Matlab to get informations on a file identifier (<emphasis role="bold">fopen(fid)</emphasis>), this case is not implemented in Scilab.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Machine format:</term>
+        <listitem>
+          <para>
+Note that Scilab does not support machine format values as input or output.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+Matlab <emphasis role="bold">fopen</emphasis> can return an error message but not Scilab <emphasis role="bold">mopen</emphasis>, moreover, returned file identifier is <emphasis role="bold">-1</emphasis> in case of error in Matlab but does not exist in this case in Scilab, so an emulation function has been written <emphasis role="bold">mtlb_fopen</emphasis>.
+</para>
+  </refsection>
+</refentry>

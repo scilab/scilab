@@ -26,7 +26,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	// path    :     XML file
 	// xsl     :     abolute path of the xsl path
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 	  generate_cmd='sabcmd';
 	else
 	  generate_cmd='xsltproc';
@@ -73,7 +73,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		
 		// form the html generator command line instruction
 		
-		if  MSDOS then 
+		if  getos() == 'Windows' then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
 			xsl='file://'+getshortpathname(xsl); 
 			generate_cmd='""'+WSCI+'\modules\helptools\bin\sablotron\sabcmd'+'""'

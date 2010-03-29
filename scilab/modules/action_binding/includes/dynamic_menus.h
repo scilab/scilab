@@ -61,4 +61,10 @@ ACTION_BINDING_IMPEXP int StorePrioritaryCommandWithFlag (char *command,int flag
 */
 ACTION_BINDING_IMPEXP  int C2F(getmen)(char * btn_cmd,int * lb, int * entry);
 
+/**
+* check if command queue is empty
+* @return 1 if empty , 0 is not empty
+*/
+ACTION_BINDING_IMPEXP int isEmptyCommandQueue(void);
+
 #endif /* __DYNAMIC_MENUS_H__ */

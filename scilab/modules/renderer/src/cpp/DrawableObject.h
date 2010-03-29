@@ -62,7 +62,7 @@ public:
   /**
    * To specify that an object and its children have changed
    */
-  void familyHasChanged( void ) ;
+  virtual void familyHasChanged( void ) ;
 
   /**
    * Specify that the parent axis have changed.

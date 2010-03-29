@@ -2,8 +2,8 @@
                =================================================
 
 
-Core:
-=====
+Performance:
+============
 
 * Faster access to primitive table (internal). This change improves the overall
 speed of Scilab.
@@ -27,7 +27,8 @@ Documentation:
 * It is now possible to use LaTeX inline in the documentation. Thanks to 
  Calixte Denizet for this feature. (See bug #4329)
 
-* bug 6630 fixed - JavaHelp does not update existing image files when building help.
+* bug 6630 fixed - JavaHelp does not update existing image files when 
+                   building help.
 
 
 Xcos:
@@ -86,6 +87,13 @@ helptools:
 
 * %helps_modules (global variable in scilab) is defined only when 
   scilab build help and no more at scilab's startup.
+
+Matlab to Scilab conversion tools:
+==================================
+
+* Unitary tests added.
+
+* mfile2sci: option only_double set to %T as default.
   
 Tests:
 ======
@@ -96,6 +104,13 @@ Text Rendering:
 ===============
 
 * Antialiasing activated by default to render text
+
+
+Obsolete Functions:
+===================
+
+* 'MSDOS' obsolete see 'getos' (SEP #39).
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
@@ -133,7 +148,8 @@ Removed functions (previously declared as obsolete):
 Bug fixes:
 ==========
 
-* bug 6419 fixed - gstacksize() There was no way to retrieve minimum from Scilab.
+* bug 6419 fixed - gstacksize() There was no way to retrieve minimum 
+                   from Scilab.
 
 * bug 6428 fixed - fscanfMat did not manage format parameter as fprintfMat.
 
@@ -148,10 +164,17 @@ Bug fixes:
 
 * bug 6543 fixed - neldermead issues for automatic restarts.
 
-* bug 6549 fixed - genlib function had a behavior which was not consistent with the load function.
+* bug 6549 fixed - genlib function had a behavior which was not consistent with
+                   the load function.
 
-* bug 6550 fixed - lib(".") returned a relative path in library variable created.
+* bug 6550 fixed - lib(".") returned a relative path in library variable 
+                   created.
 
-* bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more) on the same file.
+* bug 6556 fixed - fprintf() returned an error if it's called 2 times (or more)
+                   on the same file.
 
 * bug 6682 fixed - mprintf, msprintf, mfprintf did not manage octal (%o) format.
+
+* bug 6740 fixed - It was not possible to launch Scilab as Minimized 
+                   or Maximized Window.
+

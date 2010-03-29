@@ -16,7 +16,7 @@ cd(sci_completeline_dir);
 ilib_name  = "completion_c";
 files = ["sci_completeline.c","sci_getpartlevel.c","sci_getfilepartlevel.c","sci_getcommonpart.c"];
 
-if MSDOS then
+if getos() == 'Windows' then
 	libs   = SCI   + "/bin/scicompletion";
 	cflags = "-I " + SCI +"/modules/completion/includes";
 

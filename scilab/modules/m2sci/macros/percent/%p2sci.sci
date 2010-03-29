@@ -18,8 +18,8 @@ function [tree]=%p2sci(tree)
 [A,B] = getoperands(tree)
 
 // Scilab exponent does not work with Strings, Booleans...
-//A = convert2double(A)
-//B = convert2double(B)
+A = convert2double(A)
+B = convert2double(B)
 
 tree.operands=list(A,B)
 

@@ -59,6 +59,8 @@ public final class ConfigManager {
 	private static final String YCOORD = "y";
 	private static final String MAINWINPOSITION = "MainWindowPosition";
 	private static final String MAINWINSIZE = "MainWindowSize";
+	private static final String HELPWINPOSITION = "HelpWindowPosition";
+	private static final String HELPWINSIZE = "HelpWindowSize";
 	private static final String PROFILE = "Profile";
 	private static final String FOREGROUNDCOLOR = "ForegroundColor";
 	private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -314,6 +316,124 @@ public final class ConfigManager {
 	}
 	
 	/**
+	 * Get the position of Scilab Help Window
+	 * @return the position
+	 */
+	public static Position getHelpWindowPosition() {
+
+		/* Load file */
+		readDocument();
+
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+
+		NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINPOSITION);
+		Element helpWindowPosition = (Element) allPositionElements.item(0);
+		if (helpWindowPosition != null) {
+			int x = Integer.parseInt(helpWindowPosition.getAttribute(XCOORD));
+			int y = Integer.parseInt(helpWindowPosition.getAttribute(YCOORD));
+			/* Avoid Scilab Help Window to be out of the screen */
+			if (x <= (Toolkit.getDefaultToolkit().getScreenSize().width - MARGIN)
+					&& y <= (Toolkit.getDefaultToolkit().getScreenSize().height - MARGIN)) {
+				return new Position(x, y);
+			}
+		}
+		}
+		return new Position(0, 0);
+	}
+
+	/**
+	 * Save the position of Scilab Help Window
+	 * @param position the position of Scilab help Window
+	 */
+	public static void saveHelpWindowPosition(Position position) {
+
+		/* Load file */
+		readDocument();
+
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+
+		NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINPOSITION);
+		Element helpWindowPosition = (Element) allPositionElements.item(0);
+
+		// Ascendant compatibility
+		if (helpWindowPosition == null) {
+			helpWindowPosition = document.createElement(HELPWINPOSITION);
+			scilabProfile.appendChild(helpWindowPosition);
+		}
+
+		helpWindowPosition.setAttribute(XCOORD, Integer.toString(position.getX()));
+		helpWindowPosition.setAttribute(YCOORD, Integer.toString(position.getY()));
+
+		/* Save changes */
+		writeDocument();
+		}
+	}
+
+	/**
+	 * Save the size of Scilab Help Window
+	 * @param size the size of Scilab help Window
+	 */
+	public static void saveHelpWindowSize(Size size) {
+
+		/* Load file */
+		readDocument();
+
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+
+		NodeList allPositionElements = scilabProfile.getElementsByTagName(HELPWINSIZE);
+		Element helpWindowSize = (Element) allPositionElements.item(0);
+
+		// Ascendant compatibility
+		if (helpWindowSize == null) {
+			helpWindowSize = document.createElement(HELPWINSIZE);
+			scilabProfile.appendChild(helpWindowSize);
+		}
+
+		helpWindowSize.setAttribute(WIDTH, Integer.toString(size.getWidth()));
+		helpWindowSize.setAttribute(HEIGHT, Integer.toString(size.getHeight()));
+
+		/* Save changes */
+		writeDocument();
+		}
+	}
+
+	/**
+	 * Get the size of Scilab Help Window
+	 * @return the size
+	 */
+	public static Size getHelpWindowSize() {
+
+		/* Load file */
+		readDocument();
+
+		if (document != null) {
+		Element racine = document.getDocumentElement();
+
+		NodeList profiles = racine.getElementsByTagName(PROFILE);
+		Element scilabProfile = (Element) profiles.item(0);
+
+		NodeList allSizeElements = scilabProfile.getElementsByTagName(HELPWINSIZE);
+		Element helpWindowSize = (Element) allSizeElements.item(0);
+		if (helpWindowSize != null) {
+			return new Size(Integer.parseInt(helpWindowSize.getAttribute(WIDTH)), Integer.parseInt(helpWindowSize.getAttribute(HEIGHT)));
+		}
+		}
+		return new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	}
+
+	/**
 	 * Save the Last Opened Directory in Scilab
 	 * @param the directory's path
 	 */
@@ -321,18 +441,18 @@ public final class ConfigManager {
 	public static void saveLastOpenedDirectory(String path ){
 		/* Load file */
 		readDocument();
-		
+
 		if (document != null) {
 		Element racine = document.getDocumentElement();
-		
+
 		NodeList profiles = racine.getElementsByTagName(PROFILE);
 		Element scilabProfile = (Element) profiles.item(0);
-		
+
 		NodeList allSizeElements = scilabProfile.getElementsByTagName(LASTOPENEDDIR);
 		Element lastOpenedDir = (Element) allSizeElements.item(0);
-		
+
 		lastOpenedDir.setAttribute(VALUE, path);
-		
+
 		writeDocument();
 		}
 	}

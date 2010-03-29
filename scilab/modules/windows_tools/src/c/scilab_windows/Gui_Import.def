@@ -1,0 +1,9 @@
+LIBRARY    scigui.dll
+
+
+EXPORTS
+;
+normalMainWindow
+maximizeMainWindow
+iconifyMainWindow
+setVisibleMainWindow

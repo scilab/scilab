@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48px" width="48px" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <title id="title3289">base scilan</title>
+ <metadata id="metadata4">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Mathieu Drouet / Take a sip</dc:title>
+     </cc:Agent>
+    </dc:creator>
+    <dc:source>http://www.takeasip.net/</dc:source>
+    <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+    <dc:title>base scilan</dc:title>
+   </cc:Work>
+   <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+   </cc:License>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="layer1-1" transform="matrix(0,-1.4676275,1.4676275,0,-27.467942,220.66709)">
+     <g id="layer1-0-9" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+      <g id="g9544-0" transform="translate(-2.0023665,2.2530854)">
+       <g id="g17368" transform="translate(0,1.5593554)">
+        <g id="g17390" stroke-linejoin="round" transform="translate(0,1.4676267)" stroke="#2e3436" stroke-linecap="round" stroke-miterlimit="4">
+         <path id="path17362" style="stroke-dasharray:none;" d="m26.846-180.26,0,67.511" transform="translate(-7.1596787e-8,-1.5593549)" stroke-width="1.46762753" fill="none"/>
+         <rect id="rect17387" style="stroke-dasharray:none;" stroke-dashoffset="0" transform="matrix(0,-1,1,0,0,0)" height="33.755" width="24.95" y="27.58" x="148.06" stroke-width="1.4676" fill="none"/>
+         <g id="g17364" stroke-dashoffset="0" transform="translate(0,-5.7787914)" fill="#eeeeec">
+          <rect id="rect17339" style="stroke-dasharray:none;" transform="matrix(0,-1,1,0,0,0)" height="13.209" width="13.209" y="20.242" x="124.49" stroke-width="1.4676"/>
+          <rect id="rect17354" style="stroke-dasharray:none;" transform="matrix(0,-1,1,0,0,0)" height="13.129" width="13.129" y="20.282" x="148.19" stroke-width="1.5473"/>
+         </g>
+         <rect id="rect17356" style="stroke-dasharray:none;" stroke-dashoffset="0" transform="matrix(0,-1,1,0,0,0)" height="13.453" width="13.453" y="55.465" x="153.81" stroke-width="1.223" fill="#eeeeec"/>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

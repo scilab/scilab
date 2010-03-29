@@ -32,7 +32,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   if istssession() then
     disp('Scilab from a ms terminal service session.');
   else

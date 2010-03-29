@@ -147,7 +147,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>-nwni</term>
+        <term>-nwni / -nogui</term>
 
         <listitem>
           <para>Se esta opção estiver presente, então o Scilab não é executado

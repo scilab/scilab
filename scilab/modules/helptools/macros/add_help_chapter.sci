@@ -97,7 +97,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 		
 		chdir(path(i));
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			path(i) = getlongpathname(pwd());
 		else
 			path(i) = pwd();

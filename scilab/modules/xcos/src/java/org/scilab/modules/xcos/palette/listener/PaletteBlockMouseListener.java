@@ -32,7 +32,7 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.palette.PaletteBlock;
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -55,7 +55,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 			ContextMenu menu = ScilabContextMenu.createContextMenu();
 
 			final List<XcosDiagram> allDiagrams = Xcos.getDiagrams();
-			final PaletteBlock control = ((PaletteBlockView) e.getSource()).getController();
+			final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 			
 			// No diagram opened: should never happen as Xcos opens an empty diagram when it is launched
 			assert allDiagrams.size() != 0;
@@ -125,7 +125,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 	 * @return the loaded block
 	 */
 	private BasicBlock loadAndSetupBlock(
-			final PaletteBlock control) {
+			final PaletteBlockCtrl control) {
 		BasicBlock current = control.loadBlock();
 		current.getGeometry().setX(BLOCK_DEFAULT_POSITION);
 		current.getGeometry().setY(BLOCK_DEFAULT_POSITION);

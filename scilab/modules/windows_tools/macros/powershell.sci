@@ -16,7 +16,7 @@ function [resultat,status] = powershell(varargin)
 
 	[lhs,rhs]=argn(0);
 	
-	if (~MSDOS) then
+	if (getos() <> 'Windows') then
 	  resultat = [gettext("Only for Microsoft Windows.")];
 	  return;
 	end

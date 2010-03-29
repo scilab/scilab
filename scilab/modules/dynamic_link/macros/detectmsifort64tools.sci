@@ -13,7 +13,7 @@
 function bOK = detectmsifort64tools()
 
  bOK = %F;
- if MSDOS & win64() then
+ if getos() == 'Windows' & win64() then
    IFORTPATH = '';
    ifortcomp = findmsifortcompiler();
    if ifortcomp <> 'unknown' then

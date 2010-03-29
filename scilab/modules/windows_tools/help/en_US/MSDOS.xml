@@ -16,8 +16,9 @@
     $</pubdate>
   </info>
   <refnamediv>
-    <refname>MSDOS</refname>
+    <refname>MSDOS (obsolete)</refname>
     <refpurpose>Determines if it is the Windows version of scilab</refpurpose>
+    
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -28,11 +29,13 @@
     <title>Description</title>
     <para>MSDOS is a boolean variable (%t) for Windows environment and
     boolean (%f) otherwise.</para>
+    <para>MSDOS is obsolete and removed in Scilab 5.4</para>
+    <para>Please uses getos() == 'Windows'</para>
   </refsection>
   <refsection>
     <title>Example</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   disp('Scilab on Windows.');
 end
  ]]></programlisting>
@@ -41,8 +44,11 @@ end
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="win64">win64</link>
+        <link linkend="getos">getos</link>
       </member>
+      <member>
+        <link linkend="win64">win64</link>
+      </member>      
     </simplelist>
   </refsection>
   <refsection>

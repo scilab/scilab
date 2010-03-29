@@ -10,7 +10,7 @@
 //
 //
 
-function xcos_simulate(scs_m)
+function %cpr = xcos_simulate(scs_m, needcompile)
 
 //-- BJ : Alias Warning Function
   prot = funcprot();
@@ -108,12 +108,18 @@ end
   ////////////////////////////////////////////////////////////////
   // Add global environment variable so that scicos is not lost //
   ////////////////////////////////////////////////////////////////
-  %state0     = list();
-  needcompile = 4;
-  curwin      = 1000;
-  %cpr        = struct();
-  %tcur       = 0;
-  %cpr.state  = %state0;
+  if needcompile == 4 then
+    %state0     = list();
+    needcompile = 4;
+    curwin      = 1000;
+    %cpr        = struct();
+    %tcur       = 0;
+    %cpr.state  = %state0;
+  else
+    %state0 = %cpr.state;
+    alreadyran = %f;
+  end
+  
   tf          = scs_m.props.tf;
   %zoom       = 1.4;
   Select      = [];

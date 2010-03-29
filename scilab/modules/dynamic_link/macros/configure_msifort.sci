@@ -116,7 +116,7 @@ function bOK = set_commons_msi9and10(ifpath,machinepath)
 endfunction
 //==========================================
   bOK = %F;
-  if MSDOS then
+  if getos() == 'Windows' then
     ifortcompiler = findmsifortcompiler();
     if ifortcompiler <> 'unknown' then
       if_path = getIFpath(ifortcompiler);

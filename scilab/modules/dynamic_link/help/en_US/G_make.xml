@@ -59,7 +59,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   txt = ['ex1c.dll:',
          '  @echo ------------------------------------------',
          '  @echo From Makefile.mak',

@@ -57,7 +57,7 @@
     <programlisting role="example"><![CDATA[ 
 //creation d'un fontion pour recuperer la path courant
 function wd=getdir()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');

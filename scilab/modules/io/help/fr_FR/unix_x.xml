@@ -48,7 +48,7 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then 
+if getos() == 'Windows' then 
   unix_x("dir "+""""+WSCI+"modules\graphics\demos"+""""); 
 else 
   unix_x("ls $SCI/modules/graphics/demos");

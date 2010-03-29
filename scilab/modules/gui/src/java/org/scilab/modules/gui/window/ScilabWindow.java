@@ -210,4 +210,31 @@ public class ScilabWindow extends ScilabUIElement implements Window {
 		ScilabBridge.updateDimensions(this);
 	}
 	
+	/**
+	* Deiconified Window
+	*/
+	public void windowDeiconified() {
+		ScilabBridge.windowDeiconified(this);
+	}
+	
+	/**
+	* Iconified Window
+	*/
+	public void windowIconified() {
+		ScilabBridge.windowIconified(this);
+	}
+	
+	/**
+	* Maximized Window
+	*/
+	public void windowMaximized() {
+		ScilabBridge.windowMaximized(this);
+	}
+	
+	/**
+	* Window is in the "normal" state.
+	*/
+	public void windowNormal() {
+		ScilabBridge.windowNormal(this);
+	}
 }

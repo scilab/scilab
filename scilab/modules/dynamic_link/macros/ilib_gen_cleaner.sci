@@ -39,7 +39,7 @@ function ilib_gen_cleaner(makename,loadername,files)
   mfprintf(fd,"end\n");
   mfprintf(fd,"// ------------------------------------------------------\n");
   
-  if MSDOS then
+  if getos() == 'Windows' then
     make_command = get_make_command(makename);  
     mfprintf(fd,"if fileinfo(''%s%s'') <> [] then\n",makename,get_makefile_ext());
     mfprintf(fd,"  unix_s(''%s'');\n",make_command);  
@@ -69,7 +69,7 @@ function ilib_gen_cleaner(makename,loadername,files)
 endfunction
 //==========================================
 function cmd = get_make_command(makename)
-  if MSDOS then // WINDOWS
+  if getos() == 'Windows' then // WINDOWS
     // Visual Studio C++ 
     if ( findmsvccompiler() <> 'unknown' ) then 
       cmd = 'nmake /Y /nologo /f ' + makename + '.mak' + ' clean';
@@ -87,7 +87,7 @@ function cmd = get_make_command(makename)
 endfunction
 //==========================================
 function ext = get_makefile_ext()
-  if MSDOS then // WINDOWS
+  if getos() == 'Windows' then // WINDOWS
     // Visual Studio C++ 
     if ( findmsvccompiler() <> 'unknown' ) then 
       ext = '.mak';

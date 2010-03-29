@@ -16,7 +16,7 @@
 //
 //    Francois
 
-if MSDOS then
+if getos() == 'Windows' then
 	
 	test1 = getrelativefilename("D:\","C:\Program Files\scilab\readme.txt");
 	test2 = getrelativefilename("C:\","C:\Program Files\scilab\readme.txt");

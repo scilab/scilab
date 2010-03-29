@@ -6,7 +6,7 @@ if ~with_pvm() then
   return
 end
 
-if MSDOS then
+if getos() == 'Windows' then
 
 	mes=messagebox(['This demo recquires rsh or ssh client/server on Windows.' ..
 	'Click on Cancel, if you aren''t sure to have it.' ..

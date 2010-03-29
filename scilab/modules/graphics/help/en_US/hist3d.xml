@@ -59,7 +59,7 @@ hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
         <listitem>
           <para>where mtx is a matrix of size (m,n)defining the histogram
           <literal>mtx(i,j)=F(x(i),y(j))</literal>, with <literal>x</literal>
-          and <literal>y</literal> vectors of size (1,n+1) and (1,m+1).</para>
+          and <literal>y</literal> vectors of size (1,m+1) and (1,n+1).</para>
         </listitem>
       </varlistentry>
 

@@ -77,7 +77,7 @@
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
 get(0, "screensize_px")
-get(0, "screeendepth")
+get(0, "screendepth")
  ]]></programlisting>
   </refsection>
   <refsection>

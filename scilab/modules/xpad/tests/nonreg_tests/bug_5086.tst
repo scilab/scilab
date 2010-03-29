@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    Syntax highlighting forgets some important Scilab variables :
 //    %e, %pi, %inf, %i, %z, %s, %nan, %eps,
-//    SCI, SCIHOME, TMPDIR, MSDOS
+//    SCI, SCIHOME, TMPDIR
 
 editor()
 // type those Scilab variables, they should be colored

@@ -14,7 +14,7 @@ function tree=sci_acoth(tree)
 // Ouput: tree = Scilab equivalent for tree
 
 X=getrhs(tree)
-//X=convert2double(X)
+X=convert2double(X)
 
 set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(X),expression2code(tree)),2)
 

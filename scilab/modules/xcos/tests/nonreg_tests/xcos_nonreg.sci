@@ -206,7 +206,7 @@ function status = launch_nonreg(baseDir, testName)
   modelFilename  = fullfile(baseDir, testName + '.xcos')
   // Keep separate references and results for Windows and Linux, as results given
   // by the two versions have always been different (though it's not logical)
-  if MSDOS
+  if getos() == 'Windows'
     baseName = testName + '.win'
   else
     baseName = testName + '.unix'
@@ -295,13 +295,13 @@ function status = launch_nonreg(baseDir, testName)
 
   //-- Launch script using a background Scilab
   // Binary or source version ?
-	if (~MSDOS) & isempty(fileinfo(SCI + '/bin/scilab')) then
+	if (getos() <> 'Windows') & isempty(fileinfo(SCI + '/bin/scilab')) then
 		SCI_BIN = strsubst(SCI, '/share/scilab', '')
 	else
 		SCI_BIN = SCI
 	end
   // Launch previous script inside a NW Scilab and redirect both standard and error output to files
-  if MSDOS then
+  if getos() == 'Windows' then
 		cmd = '(""' + SCI_BIN + '\bin\scilex.exe"" -nw -nb -args -nouserstartup -f ""' + testFilename + '"" > ""' + logFilename + '"") 2> ""' + errFilename + '""'
 	else
 		cmd = '(''' + SCI_BIN + '/bin/scilab'' -nw -nb -args -nouserstartup -f ''' + testFilename + ''' > ''' + logFilename + ''') 2> ''' + errFilename + ''''

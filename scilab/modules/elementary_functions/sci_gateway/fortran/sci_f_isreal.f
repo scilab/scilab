@@ -62,7 +62,7 @@ c     .  check for zero imaginary part
          if(istk(il).ne.1.and.istk(il).ne.2.and.istk(il).ne.5) then
             top=top+1
             call ref2val
-            call funnam(ids(1,pt+1),'isreal',iadr(lstk(top)))
+            call funnam(ids(1,pt+1),'isreal',iadr(lstk(top-1)))
             fun=-1
             return
          endif

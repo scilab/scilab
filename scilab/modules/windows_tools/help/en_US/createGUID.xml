@@ -46,7 +46,7 @@
     <title>Example</title>
 
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   disp(createGUID(1));
 end
  ]]></programlisting>

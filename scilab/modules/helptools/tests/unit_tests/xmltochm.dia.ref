@@ -8,7 +8,7 @@
 // <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 // xmltochm
-if MSDOS then 
+if getos() == 'Windows' then 
 // TEST 1 (french help and english help are complete)
 // =============================================================================
 my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
@@ -74,4 +74,4 @@ chm_info =  fileinfo(my_module_path+"/chm/scilab_en_US_help.chm");
 if chm_info == [] then bugmes();quit;end       // file existence
 if chm_info(1) < 5000 then bugmes();quit;end   // file size
 clean_help(my_english_help_dir);
-end // if MSDOS
+end // if getos() == 'Windows'

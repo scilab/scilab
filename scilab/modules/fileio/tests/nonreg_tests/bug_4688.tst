@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // listfiles('/') returns an error.
 
-if ~MSDOS then 
+if getos() <> 'Windows' then 
     ierr = execstr("listfiles(""/"");","errcatch");
     if ierr<>0 then pause, end
 end

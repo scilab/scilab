@@ -13,14 +13,16 @@
 
 package org.scilab.modules.graph;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import org.scilab.modules.graph.utils.ScilabConstants;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
+import org.scilab.modules.graph.view.ScilabGraphView;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.graph.utils.ScilabConstants;
-import org.scilab.modules.graph.view.ScilabGraphView;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
@@ -101,6 +103,19 @@ public class ScilabGraph extends mxGraph {
 	};
 	
 	/**
+	 * Update the component when the graph is locked
+	 */
+	private PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
+		public void propertyChange(PropertyChangeEvent evt) {
+			if (evt.getPropertyName().equals("cellsLocked")) {
+				getAsComponent().getGraphControl().repaint();
+			}
+		}
+	};
+	
+	/**
+	
+	/**
 	 * Default constructor: - disable unused actions - install listeners -
 	 * Replace JGraphX components by specialized components if needed.
 	 */
@@ -120,6 +135,9 @@ public class ScilabGraph extends mxGraph {
 		undoManager.addListener(mxEvent.REDO, selectionHandler);
 
 		setComponent(new ScilabComponent(this));
+		
+		// graph locked change support
+		changeSupport.addPropertyChangeListener(cellLockBackgroundUpdater);
 
 		// Modified property change
 		getModel().addListener(mxEvent.CHANGE, changeTracker);

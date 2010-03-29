@@ -115,7 +115,18 @@ int gw_graphics(void)
 	}
 	else
 	{
-		Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+          if ( (strcmp(Tab[Fin-1].name, "set")==0 || 
+		strcmp(Tab[Fin-1].name, "delete")==0 || 
+		strcmp(Tab[Fin-1].name, "get")==0) && 
+	       (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
+            {
+              callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+              return 0;
+            }
+	  else
+	    {
+	      Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+	    }
 	}
 
 	return 0;

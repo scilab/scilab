@@ -19,6 +19,7 @@ BOOL TerminateGUI(void)
   if (getScilabMode() == SCILAB_STD)
     {
       saveMainWindowSettings();
+      saveHelpWindowSettings();
     }
   return TRUE;
 }

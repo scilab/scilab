@@ -12,7 +12,7 @@ function [tree]=sci_int32(tree)
 // M2SCI function
 // Conversion function for Matlab int32()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_int32()
 
 // %c_int32 and %b_int32 are not defined in Scilab

@@ -18,7 +18,7 @@ function ret=check_versions(varargin)
     mprintf(gettext("Checking: %s\n"),modules(i))
     if (fileinfo(file_to_check)<>[]) then
       try
-        if MSDOS then
+        if getos() == 'Windows' then
           stat = unix_w(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid "+file_to_check);
         else
     	    stat = unix_w("xmllint --noout --valid "+file_to_check);

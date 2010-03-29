@@ -12,7 +12,7 @@ function generated_files = xmltochm(dirs,titles,directory_language,default_langu
 	
 	all_scilab_help        = %F;
 	
-	if ~MSDOS then
+	if getos() <> 'Windows' then
 		warning(msprintf(gettext("%s: This function is only supported on Windows platforms.\n"),"xmltochm"));
 		return;
 	end
@@ -46,7 +46,7 @@ function generated_files = xmltochm(dirs,titles,directory_language,default_langu
 		all_scilab_help = %T;
 	end
 
-	if MSDOS then
+	if getos() == 'Windows' then
 		if (generated_files <> []) then
 			if (getHHCpath() <> '') then
 				for i = 1:size(generated_files,'*')

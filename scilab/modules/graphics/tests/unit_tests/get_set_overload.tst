@@ -11,7 +11,7 @@
 mymlist = mlist(['objid','A','B'],[],[]);
 
 // overload set / get for objid
-function varargout = %objid_ge(varargin)
+function varargout = %objid_get(varargin)
   // res = get(mymlist,'A');
   obj_tmp   = varargin(1);
   field_tmp = varargin(2);

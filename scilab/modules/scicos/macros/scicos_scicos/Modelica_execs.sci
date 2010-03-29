@@ -26,7 +26,7 @@ function [ok,modelicac,translator,xml2modelica] = Modelica_execs()
   TRANSLATOR_FILENAME = 'modelicat';
   XML2MODELICA_FILENAME = 'XML2Modelica';
 
-  if MSDOS then
+  if getos() == 'Windows' then
     MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
     TRANSLATOR_FILENAME = TRANSLATOR_FILENAME + '.exe';
     XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + '.exe';

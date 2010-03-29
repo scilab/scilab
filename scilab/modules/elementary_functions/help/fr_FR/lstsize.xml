@@ -19,7 +19,7 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>n=lstsize(x)</synopsis>
+    <synopsis>n=lstsize(l)</synopsis>
   </refsynopsisdiv>
 
   <refsection>

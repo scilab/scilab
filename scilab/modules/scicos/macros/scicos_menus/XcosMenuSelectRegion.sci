@@ -29,7 +29,7 @@ function XcosMenuSelectRegion()
 //** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5
 
 
-  if with_gtk()|MSDOS then  // first click under windows treated as
+  if getos() == 'Windows' then  // first click under windows treated as
                             // press move (always the case under gtk)
     Cmenu =[]; Select=[] ;
   else

@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-if MSDOS then
+if getos() == 'Windows' then
   cd('SCI/bin');
   r = powershell('ls');
   if r == [] then bugmes();quit;end

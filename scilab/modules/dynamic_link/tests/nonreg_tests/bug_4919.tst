@@ -16,7 +16,7 @@
 // If the source file was stored in TMPDIR, the dynamic link
 //  was removing the content of this file.
 
-if ~MSDOS then
+if getos() <> 'Windows' then
   ilib_verbose(0);
   chdir(TMPDIR);
   f1=['int ext1c(int *n, double *a, double *b, double *c)'

@@ -14,16 +14,13 @@ function [tree]=sci_linspace(tree)
 // Ouput: tree = Scilab equivalent for tree
 // Emulation function: mtlb_linspace()
 
-// Boolean value: true if one rhs is a String
-//str=%F
-
 A=tree.rhs(1) 
 B=tree.rhs(2)
 
 // %c_linspace and %b_linspace are not defined
-if A.vtype==Complex | B.vtype==Complex then
-  tree.lhs(1).vtype=Complex
-elseif or(A.vtype==[String,Boolean,Unknown]) & or(B.vtype==[String,Boolean,Unknown]) then
+if is_complex(A) | is_complex(B) then
+  tree.lhs(1).property=Complex
+elseif or(A.vtype==[String,Boolean,Unknown]) | or(B.vtype==[String,Boolean,Unknown]) then
   tree.lhs(1).vtype=Unknown
 else 
   tree.lhs(1).vtype=Double
@@ -33,11 +30,14 @@ end
 if rhs==2 then
   tree.rhs=Rhs_tlist(A,B)
   tree.lhs(1).dims=list(1,100);
+  if or(A.vtype==[String,Boolean,Unknown]) | or(B.vtype==[String,Boolean,Unknown]) then
+    tree.name = "mtlb_linspace";
+  end
 else
 // y = linspace(A,B,n)
   n=tree.rhs(3)
   tree.rhs=Rhs_tlist(A,B,n)
-  if typeof(n)=="cste" then
+  if typeof(n)=="cste" & n.vtype==Double then
     if isempty(n.value) then
       tree.lhs(1).dims=list(1,1)
     else
@@ -45,6 +45,9 @@ else
     end
   else
     tree.lhs(1).dims=list(1,Unknown)
+  end
+  if or(A.vtype==[String,Boolean,Unknown]) | or(B.vtype==[String,Boolean,Unknown]) | or(n.vtype==[String,Boolean,Unknown]) then
+    tree.name = "mtlb_linspace";
   end
 end
 

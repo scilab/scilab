@@ -73,7 +73,7 @@ function clean_help(dirs)
 		end
 		
 		chdir(dirs(k));
-		if MSDOS then
+		if getos() == 'Windows' then
 			dirs(k) = getlongpathname(pwd());
 		else
 			dirs(k) = pwd();
@@ -87,7 +87,7 @@ function clean_help(dirs)
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
 			end
 			chdir(dirs_m(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_m(k) = getlongpathname(pwd());
 			else
 				dirs_m(k) = pwd();
@@ -100,7 +100,7 @@ function clean_help(dirs)
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
 			end
 			chdir(dirs_c(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_c(k) = getlongpathname(pwd());
 			else
 				dirs_c(k) = pwd();

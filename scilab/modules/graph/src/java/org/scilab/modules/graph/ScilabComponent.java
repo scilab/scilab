@@ -28,9 +28,12 @@ import com.mxgraph.view.mxGraphView;
  * Implement the default component for the {@link ScilabGraph}.
  */
 public class ScilabComponent extends mxGraphComponent {
+	/**
+	 * Color use to mask the graph when the graph is locked
+	 */
 	private static final Color MASK_COLOR = new Color(240, 240, 240, 100);
+	
 	private static final double SCALE_MULTIPLIER = 1.1;
-	private boolean isReadOnly;
 
 	/**
 	 * Construct the component with the associated graph
@@ -42,6 +45,15 @@ public class ScilabComponent extends mxGraphComponent {
 		super(graph);
 	}
 
+	/**
+	 * @return the associated graph control
+	 * @see com.mxgraph.swing.mxGraphComponent#createGraphControl()
+	 */
+	@Override
+	protected mxGraphControl createGraphControl() {
+		return new ScilabGraphControl();
+	}
+	
 	/**
 	 * Create the associated canvas
 	 * 
@@ -150,32 +162,35 @@ public class ScilabComponent extends mxGraphComponent {
 		}
 		return rect;
 	}
-	
+
 	/**
-	 * Draw a foreground if the graph is read only
-	 * @param g The global graphic context
-	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 * Implement a graph control which paint a foreground on top of the view
+	 * when the graph is locked.
 	 */
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public class ScilabGraphControl extends mxGraphControl {
 		
-		boolean currentReadOnly = ((ScilabGraph) getGraph()).isReadonly();
-		if (isReadOnly != currentReadOnly) {
-			isReadOnly = currentReadOnly;
+		/**
+		 * Default constructor 
+		 */
+		public ScilabGraphControl() {
+			super();
+		}
+		
+		/**
+		 * Paint the component and the foreground color
+		 * @param g the current graphic context
+		 * @see com.mxgraph.swing.mxGraphComponent.mxGraphControl#paintComponent(java.awt.Graphics)
+		 */
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 			
-			// Draw the foreground if read only
-			if (currentReadOnly) {
-
-				// Workaround for the jgraphx bufffer. We need to force a graph
-				// refresh in order to invalidate previous background.
-				getGraph().getView().reload();
-
-				Rectangle rect = getViewportBorderBounds();
-				Color tmp = g.getColor();
+			if (getGraph().isCellsLocked()) {
 				g.setColor(MASK_COLOR);
-				g.fillRect(rect.x, rect.y, rect.width, rect.height);
-				g.setColor(tmp);
+				
+				Rectangle b = getBounds();
+				
+				g.fillRect(b.x, b.y, b.width, b.height);
 			}
 		}
 	}

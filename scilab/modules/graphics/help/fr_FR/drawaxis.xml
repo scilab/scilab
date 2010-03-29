@@ -53,7 +53,8 @@
       <varlistentry>
         <term>format_n=chaîne  </term>
         <listitem>
-          <para>format utilisé pour afficher les nombres au dessus des graduations.
+          <para>format utilisé pour afficher les nombres au dessus des graduations, <literal>chaîne</literal> spécifiant
+                le format comme dans la fonction printf du langage C (par exemple <literal>chaîne="%.3f"</literal>).
 </para>
         </listitem>
       </varlistentry>
@@ -152,6 +153,14 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 // encore un axe horizontal
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axis_properties">axis_properties</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Auteurs</title>

@@ -12,7 +12,7 @@
 // UNC Path not managed 
 
 
-if MSDOS then
+if getos() == 'Windows' then
 	if chdir('\\Machine\folder') == %t                       then pause,end
 	if execstr("cd(''\\Machine\folder'')","errcatch") <> 998 then pause,end
 end

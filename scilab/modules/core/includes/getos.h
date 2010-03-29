@@ -34,13 +34,6 @@
 /*--------------------------------------------------------------------------*/ 
 
 /**
-* get OS name
-* macosx, linux, windows or other
-* @return a string
-*/
-char *getOSName(void);
-
-/**
 * get OS Full name based on uname
 * @return a string
 */

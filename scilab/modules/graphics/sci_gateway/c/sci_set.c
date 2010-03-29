@@ -61,7 +61,7 @@ int sci_set(char *fname, unsigned long fname_len)
 	if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
 	  {
 	    lw = 1 + Top - Rhs;
-	    C2F(overload)(&lw,"set",Rhs);
+	    C2F(overload)(&lw,"set",3);
 	    return 0;
 	  }
 

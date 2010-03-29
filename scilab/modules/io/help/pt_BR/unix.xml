@@ -69,12 +69,12 @@
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 
-if ~MSDOS then
+if getos() <> 'Windows' then
   unix("ls $SCI/demos");
 end
 
 function wd=directory()
-  if MSDOS then
+  if getos() == 'Windows' then
     unix('cd&gt;'+TMPDIR+'\path');
   else
     unix('pwd&gt;'+TMPDIR+'/path');

@@ -9,7 +9,7 @@
 
 //==========================================
 function bOK = haveacompiler()
-  if MSDOS then
+  if getos() == 'Windows' then
     bOK = %F;
     msvc = findmsvccompiler();
     if ( msvc == 'unknown' ) then

@@ -17,7 +17,7 @@
 // Export to GIF ignores xlfont settings
 // 
 
-if MSDOS then
+if getos() == 'Windows' then
 	my_font = "Arial";
 else
 	my_font = "Monospaced";

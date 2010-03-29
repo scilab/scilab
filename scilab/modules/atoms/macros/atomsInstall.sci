@@ -303,7 +303,7 @@ function result = atomsInstall(packages,section)
 		// Rename the created directory
 		// =====================================================================
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			rename_cmd = "rename """+this_package_details("extractedDirectory")+""" """+this_package_version+"""";
 		else
 			rename_cmd = "mv """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
@@ -316,7 +316,7 @@ function result = atomsInstall(packages,section)
 			// Second try after a sleep
 			// This is needed on windows platforms
 			
-			if MSDOS then
+			if getos() == 'Windows' then
 				sleep(2000);
 				[rep,stat,err]=unix_g(rename_cmd);
 			end
@@ -335,7 +335,7 @@ function result = atomsInstall(packages,section)
 		// → Only if it's a local package
 		// =====================================================================
 		
-		if MSDOS & (this_package_details("fromRepository") == "0") then
+		if getos() == 'Windows' & (this_package_details("fromRepository") == "0") then
 			
 			move_cmd = "move """+atoms_tmp_directory+this_package_version+""" """+pathconvert(this_package_directory,%F)+"""";
 			
@@ -346,7 +346,7 @@ function result = atomsInstall(packages,section)
 				// Second try after a sleep
 				// This is needed on windows platforms
 				
-				if MSDOS then
+				if getos() == 'Windows' then
 					sleep(2000);
 					[rep,stat,err]=unix_g(move_cmd);
 				end

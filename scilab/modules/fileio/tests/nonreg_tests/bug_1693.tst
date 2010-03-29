@@ -20,7 +20,7 @@
 
 cd('\');
 
-if MSDOS 
+if getos() == 'Windows' 
   
 	if ~or(getdrives() == pwd()) then pause,end
 else
@@ -34,7 +34,7 @@ if pwd() <> home then pause,end
 
 // ================== Test 3 ==================
 
-if MSDOS then
+if getos() == 'Windows' then
 	cd WSCI;
 	if pwd() <> WSCI then pause,end
 end

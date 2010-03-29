@@ -85,7 +85,7 @@ fpsetmask(0);
       {
       	setScilabMode(SCILAB_NW);
       }
-      else if ( strcmp(argv[i],"-nwni") == 0)
+      else if ( strcmp(argv[i],"-nwni") == 0 || strcmp(argv[i],"-nogui") == 0)
       {
       	setScilabMode(SCILAB_NWNI);
       }
@@ -125,11 +125,10 @@ fpsetmask(0);
       	setScilabMode(SCILAB_NW);
       	settexmacs();
       }
-      else if ( strcmp(argv[i],"-nogui") == 0)
-      {
-      	setScilabMode(SCILAB_NWNI);
-      }
-      else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
+      else if ( strcmp(argv[i],"-version") == 0) {
+		  disp_scilab_version();
+		  exit(1);
+	  }
     }
 
 

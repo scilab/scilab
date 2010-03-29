@@ -19,5 +19,10 @@ void saveMainWindowSettings()
   CallScilabBridge::saveMainWindowSettings(getScilabJavaVM());
 }
 
+void saveHelpWindowSettings()
+{
+  CallScilabBridge::saveHelpWindowSettings(getScilabJavaVM());
+}
+
 
 

@@ -9,7 +9,7 @@
 
 
 function shell=getshell()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     [path,fname,extension]=fileparts(getenv('Comspec','UNKNOW'));
     shell=fname;
   else

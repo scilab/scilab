@@ -14,10 +14,16 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
+import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
+import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;
+import org.scilab.modules.hdf5.scilabTypes.ScilabList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.io.mxObjectCodec;
 import com.mxgraph.model.mxCell;
 
@@ -56,6 +62,23 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 
 	}
 
+	/**
+	 * Register all known codecs on the {@link mxCodecRegistry}.
+	 */
+	public static void register() {
+		ScilabObjectCodec scilabStringCodec = new ScilabStringCodec(new ScilabString(), null, null, null);
+		mxCodecRegistry.register(scilabStringCodec);
+		ScilabObjectCodec scilabBooleanCodec = new ScilabBooleanCodec(new ScilabBoolean(), null, null, null);
+		mxCodecRegistry.register(scilabBooleanCodec);
+		ScilabObjectCodec scilabDoubleCodec = new ScilabDoubleCodec(new ScilabDouble(), null, null, null);
+		mxCodecRegistry.register(scilabDoubleCodec);
+		ScilabObjectCodec scilabIntegerCodec = new ScilabIntegerCodec(new ScilabInteger(), null, null, null);
+		mxCodecRegistry.register(scilabIntegerCodec);
+		
+		ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[]{"scilabClass"}, null, null);
+		mxCodecRegistry.register(scilabListCodec);
+	}
+	
 	/**
 	 * Apply compatibility pattern to the decoded object
 	 * 

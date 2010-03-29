@@ -12,7 +12,7 @@ function [tree]=sci_sign(tree)
 // M2SCI function
 // Conversion function for Matlab sign()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 tree.name="sign"
 

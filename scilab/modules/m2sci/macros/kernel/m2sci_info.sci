@@ -40,6 +40,6 @@ if verb_mode>1 | verb_mode==-1 then
 end
 
 if verb_mode>2 | verb_mode==-1 then
-  write(%io(2),margin+txt); // margin is defined in mfile2sci()
+  mprintf("%s\n",strsubst(strsubst(margin+txt, "%i", "%%i"),"%n","%%n")); // margin is defined in mfile2sci()
 end
 endfunction

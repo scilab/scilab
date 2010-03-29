@@ -12,7 +12,11 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
@@ -23,9 +27,12 @@ import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.configuration.model.PositionType;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
@@ -35,8 +42,6 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  * Implement the default view for the palette
  */
 public class PaletteManagerView extends ScilabTab {
-	private static final Size WIN_SIZE = new Size(700, 600);
-	
 	private PaletteManager controller;
 	private PaletteManagerPanel panel;
 
@@ -74,7 +79,12 @@ public class PaletteManagerView extends ScilabTab {
 	/** Instantiate and setup all the components */
 	private void initComponents() {
 		Window window = ScilabWindow.createWindow();
-		window.setDims(WIN_SIZE);
+		
+		final ConfigurationManager manager = ConfigurationManager.getInstance();
+		final PositionType p = manager.getSettings().getWindows().getPalette();
+		
+		window.setDims(new Size(p.getWidth(), p.getHeight()));
+		window.setPosition(new Position(p.getX(), p.getY()));
 		
 		/* Create the menu bar */
 		MenuBar menuBar = ScilabMenuBar.createMenuBar();
@@ -110,7 +120,34 @@ public class PaletteManagerView extends ScilabTab {
 	
 	/** @return the category tree */
 	public JTree getTree() {
-		return (JTree) panel.getLeftComponent();
+		return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
+				.getView();
+	}
+	
+	/**
+	 * Update the selected path on the tree
+	 */
+	public static void updateTree() {
+		final JTree t = PaletteManager.getInstance().getView().getTree();
+		final TreePath p = t.getSelectionPath();
+		
+		if (p == null) {
+			updateWholeTree();
+		} else {
+			((DefaultTreeModel) t.getModel()).reload((TreeNode) p.getLastPathComponent());
+			t.setSelectionPath(p);
+		}
+	}
+	
+	/**
+	 * Update the whole tree
+	 */
+	public static void updateWholeTree() {
+		final JTree t = PaletteManager.getInstance().getView().getTree();
+		
+		TreePath selectedPath = t.getSelectionPath();
+		((DefaultTreeModel) t.getModel()).reload();
+		t.setSelectionPath(selectedPath);
 	}
 	
 	/** @param info the information to write on the infobar */

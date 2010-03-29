@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,50 +12,16 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.hdf5.scilabTypes.ScilabType;
-
 /**
- * @author Bruno JOFRET
- *
+ * Class defined for compatibility issues.
+ * 
+ * All the logic is now on {@link PrintBlock}.
  */
-public final class ConstBlock extends BasicBlock {
-
-    private static final long serialVersionUID = 4234301593972228584L;
-
-    /**
-     * Constructor
-     */
-    public ConstBlock() {
-	super();
-    }
-    
-    /**
-     * @param label block label
-     */
-    protected ConstBlock(String label) {
-	this();
-	setValue(label);
-    }
-    
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-    	super.setDefaultValues();
-    	setInterfaceFunctionName("CONST_m");
-    	setSimulationFunctionName("cstblk4");
-    	setValue("1");
-    }
-    
-    
-    /**
-     * @param exprs new exprs
-     */
-    public void setExprs(ScilabType exprs) {
-	super.setExprs(exprs);
-	setValue(((ScilabString) getExprs()).getData()[0][0]);
-    }
-    
+public final class ConstBlock extends PrintBlock {
+	/**
+	 * Default constructor
+	 */
+	public ConstBlock() {
+		super();
+	}
 }

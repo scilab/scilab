@@ -43,7 +43,7 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then 
+if getos() == 'Windows' then 
   unix_s("del foo");
 else 
   unix_s("rm -f foo"); 

@@ -12,7 +12,7 @@
 //==========================================
 function res = findlcccompiler()
   res = %F;
-  if MSDOS then
+  if getos() == 'Windows' then
     try
       lccincludepath = winqueryreg('HKEY_CURRENT_USER', ..
                                    'Software\lcc\compiler', ..

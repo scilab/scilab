@@ -15,7 +15,7 @@ MODELICAC_FILENAME = 'modelicac';
 
 compilerpath = "";
 
-if MSDOS then
+if getos() == 'Windows' then
   // --- WINDOWS ---
   MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
   defaultPath = SCI + "/bin/";

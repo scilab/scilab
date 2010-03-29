@@ -15,12 +15,12 @@
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>A_propos_des_outils_M2SCI</refname>
-    <refpurpose>Présentation générale des outils de conversion de fichiers Matlab vers Scilab...</refpurpose>
+    <refname>A propos des outils M2SCI</refname>
+    <refpurpose>Présentation générale des outils de conversion de fichiers Matlab vers Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Scilab 3.0 contient une nouvelle version d'outils pour convertir des fichiers Matlab vers Scilab.</para>
+    <para>Scilab contient des outils pour convertir des fichiers Matlab vers Scilab.</para>
     <para>
   A partir d'un fichier Matlab, <literal>mfile2sci</literal> modifie ce fichier pour qu'il puisse être
   compilé par Scilab. Puis, ce code compilé est converti en "arbre" d'instructions

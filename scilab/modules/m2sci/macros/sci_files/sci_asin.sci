@@ -12,14 +12,18 @@ function [tree]=sci_asin(tree)
 // M2SCI function
 // Conversion function for Matlab asin()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 A=getrhs(tree)
 A=convert2double(A)
 tree.rhs=Rhs_tlist(A)
 
-set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(A),expression2code(tree)),2)
-  
+if tree.name=="atan" then
+  set_infos(msprintf(gettext("If %s is outside [-1,1]\n   real part of output of %s will be the opposite of Matlab one."),expression2code(A),expression2code(tree)),2)
+else
+  set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(A),expression2code(tree)),2)
+end
+
 tree.lhs(1).dims=A.dims
 tree.lhs(1).type=Type(Double,Unknown)
 endfunction

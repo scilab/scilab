@@ -37,7 +37,7 @@ function edit(macroname,ueditor)
     if libr<>[] then // macroname is the name of a defined function
       path = string(evstr(libr));
       path = path(1);
-      // convert path according to MSDOS value and expand SCI
+      // convert path according to getos() == 'Windows' value and expand SCI
       path = pathconvert(path);
       fname = path+macroname+'.sci';
       finded = %t;

@@ -28,7 +28,7 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   if rhs <= 7 then fflags  = ''; end 
   if rhs <= 8 then cc  = ''; end 
   
-  if ~MSDOS then
+  if getos() <> 'Windows' then
     // These flags are important... The rename of the fly the name of the 
     // function in the C / C++ / Fortran code
     cflags=" -DmexFunction=mex_\$* " + cflags

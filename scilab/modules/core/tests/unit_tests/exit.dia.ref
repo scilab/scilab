@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 for i = 1:10
- if MSDOS then
+ if getos() == 'Windows' then
    [outputs,status,exitcode] = dos(SCI + '/bin/scilex.exe -nwni -e exit(' + string(i) + ')');
  else
    exitcode = unix(SCI + '/bin/scilab -nwni -e ""exit(' + string(i) + ')""');

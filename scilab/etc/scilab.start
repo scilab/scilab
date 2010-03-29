@@ -48,7 +48,7 @@ ieee(0);
 // boolean variables
 %T = %t;
 %F = %f;
-
+MSDOS = (getos() == 'Windows');
 %pvm = with_module('pvm');
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
@@ -98,7 +98,7 @@ clear modules i add_demo WITH_DEMOS
 
 // Create some configuration variables ================================
 home = getenv("HOME",SCI);
-if MSDOS then
+if getos() == 'Windows' then
   // path of scilab main directory for Windows
   WSCI = getlongpathname(pathconvert(SCI,%f,%f,"w"));
 else

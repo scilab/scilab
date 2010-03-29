@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
-import org.scilab.modules.xcos.palette.PaletteBlock;
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
@@ -40,14 +40,14 @@ public final class PaletteBlockView extends JLabel {
 	private static final Border NON_SELECTED_BORDER = BorderFactory
 			.createEmptyBorder();
 	
-	private PaletteBlock controller;
+	private PaletteBlockCtrl controller;
 
 	/**
 	 * Default constructor
 	 * @param controller the associated controller
 	 */
-	public PaletteBlockView(PaletteBlock controller) {
-		super(controller.getModel().getName(), controller.getModel().getIcon(),
+	public PaletteBlockView(PaletteBlockCtrl controller) {
+		super(controller.getModel().getName(), controller.getModel().getLoadedIcon(),
 				SwingConstants.CENTER);
 		this.controller = controller;
 		initComponents();
@@ -71,7 +71,7 @@ public final class PaletteBlockView extends JLabel {
 	/**
 	 * @return The associated controller
 	 */
-	public PaletteBlock getController() {
+	public PaletteBlockCtrl getController() {
 		return controller;
 	}
 	

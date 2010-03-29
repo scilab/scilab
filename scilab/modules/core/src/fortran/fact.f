@@ -16,7 +16,7 @@ c
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eptover
-      integer r,excnt,psym,p,count
+      integer r,excnt,psym,p,count,v
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
@@ -52,7 +52,7 @@ c
       dotsep=.false.
       ir=r/100
       if(ir.ne.3) goto 01
-      goto(25,26,91,29,99,51,43,48,55,62,65,66,41),r-300
+      goto(25,26,91,29,99,52,43,48,55,62,65,66,41),r-300
       goto 99
 c     
  01   continue
@@ -118,7 +118,7 @@ c     .        errcatch mode off, really send an error
          r=rstk(p)
          if(int(r/100).ne.3) goto 03
          pt=p
-         goto(25,26,99,29,99,51,43,48,55,62,65,66),r-300
+         goto(25,26,99,29,99,52,43,48,55,62,65,66),r-300
       endif
  04   continue
       call error(2)
@@ -551,15 +551,14 @@ c     skip empty argument list portion
 c     empty argument list   a(...)()
  461  excnt=excnt+1
       call getsym
-      lhs=pstk(pt)
+c      lhs=pstk(pt)
       call putid(id,ids(1,pt))
       if ( eptover(1,psiz-1))  return
       rstk(pt)=314
-      pstk(pt)=lhs
-
+c      pstk(pt)=lhs
+      pstk(pt)=pstk(pt-1)
 
  463  rhs = excnt
-
 c     get function or variable to be evaluated for computed arguments
       fin=0
       fin=-2
@@ -631,19 +630,49 @@ c     .    a(...) is a reference to a macro
             top=top-1
             goto 50
          endif
+c     next if for bug 6730 fix
+         if (istk(il).eq.13.or.istk(il).eq.11) then
+c     .    a(...) is a macro 
+c     .     use negative value to indicate that this variable must be
+c     .     removed after the function has been evaluated
+            fin=-top
+            goto 50
+         endif
+
       endif
       goto 60
 c     
 c     --- variable is macro : execution
 c     
  50   if ( eptover(1,psiz-1)) return
-      call putid(id,ids(1,pt))
+c     next if for bug 6730 fix
+c      call putid(id,ids(1,pt))
+      if(fin.lt.0) then
+         ids(1,pt)=top
+         fin=lstk(top)
+      else
+         ids(1,pt)=0
+      endif
       rstk(pt)=306
       pstk(pt)=wmac
       icall=5
 c     *call* macro
       return
- 51   wmac=pstk(pt)
+ 52   wmac=pstk(pt)
+c     next if for bug 6730 fix
+      if(ids(1,pt).ne.0) then
+c     .  shift storage up to remove the macro
+         mtop=ids(1,pt)
+         v=lstk(mtop+1)-lstk(mtop)
+         call dcopy(lstk(top+1)-lstk(mtop+1),stk(lstk(mtop+1)),1
+     $        ,stk(lstk(mtop)),1) 
+         do  ib = mtop,top-1
+            call putid(idstk(1,ib),idstk(1,ib+1))
+            infstk(ib)=infstk(ib+1)
+            lstk(ib+1) = lstk(ib+2)-v
+         enddo
+         top=top-1
+      endif
       pt=pt-1
       go to 60
 c     

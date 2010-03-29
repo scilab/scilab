@@ -1,0 +1,39 @@
+% Test file for function conv()
+% Matlab version: 7.9.0.529 (R2009b)
+
+% TEST 1
+res1 = conv([1],[1]);
+% TEST 2
+res2 = conv([1,2,3],[1,2,3]);
+% TEST 3
+res3 = conv([1;2;3],[1;2;3]);
+% TEST 4
+res4 = conv(m2sciUnknownType([1]),m2sciUnknownType([1]));
+% TEST 5
+res5 = conv(m2sciUnknownType([1,2,3]),m2sciUnknownType([1,2,3]));
+% TEST 6
+res6 = conv(m2sciUnknownType([1;2;3]),m2sciUnknownType([1;2;3]));
+% TEST 7
+res7 = conv(m2sciUnknownDims([1]),m2sciUnknownDims([1]));
+% TEST 8
+res8 = conv(m2sciUnknownDims([1,2,3]),m2sciUnknownDims([1,2,3]));
+% TEST 9
+res9 = conv(m2sciUnknownDims([1;2;3]),m2sciUnknownDims([1;2;3]));
+% TEST 10
+res10 = conv([i],[i]);
+% TEST 11
+res11 = conv([i,2i,3i],[i,2i,3i]);
+% TEST 12
+res12 = conv([i;2i;3i],[i;2i;3i]);
+% TEST 13
+res13 = conv(m2sciUnknownType([i]),m2sciUnknownType([i]));
+% TEST 14
+res14 = conv(m2sciUnknownType([i,2i,3i]),m2sciUnknownType([i,2i,3i]));
+% TEST 15
+res15 = conv(m2sciUnknownType([1+1i;2+2i;3+3i]),m2sciUnknownType([1+1i;2+2i;3+3i]));
+% TEST 16
+res16 = conv(m2sciUnknownDims([i]),m2sciUnknownDims([i]));
+% TEST 17
+res17 = conv(m2sciUnknownDims([i,2i,3i]),m2sciUnknownDims([i,2i,3i]));
+% TEST 18
+res18 = conv(m2sciUnknownDims([i;2i;3i]),m2sciUnknownDims([i;2i;3i]));

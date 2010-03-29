@@ -16,6 +16,6 @@
 s=grand(500,1,'nor',0,1)';
 a=msprintf("%2.5f ",s')
 
-if ~MSDOS then
+if getos() <> 'Windows' then
 	if unix("cat "+a+" > /dev/null 2>&1")<>256 then pause,end
 end

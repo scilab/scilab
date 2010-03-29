@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // uigetdir crashed Scilab when returning some "root" path
 
-if MSDOS then
+if getos() == 'Windows' then
  r = uigetdir('c:\');
  // click on ok
  if r <> 'c:\' then pause,end

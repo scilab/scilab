@@ -134,11 +134,14 @@ elseif rhs==0 then
 else 
   dims=list()
   for k=2:rhs+1
-    dimsum=0
+    dimprod=1
     for l=1:size(tree.operands(k).dims)
-      dimsum=dimsum+tree.operands(k).dims(l)
+      dimprod=dimprod*tree.operands(k).dims(l)
+      if dimprod<0 then // Last dimension not known exactly
+	break
+      end
     end
-    if dimsum==size(tree.operands(k).dims) // All dims are 1
+    if is_a_scalar(tree.operands(k)) // All dims are 1
       dims(k-1)=1
       if typeof(tree.operands(k))=="cste" then
 	if tree.operands(k).value==":" then
@@ -149,6 +152,8 @@ else
 	  end
 	end
       end
+    elseif dimprod>=0 then
+      dims(k-1)=dimprod
     else
       dims(k-1)=Unknown
     end

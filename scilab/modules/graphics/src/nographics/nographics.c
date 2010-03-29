@@ -14,6 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
+#include "stack-c.h"
+#include "callFunctionFromGateway.h"
 #include "graphicModuleLoad.h"
 #include "TerminateGraphics.h"
 #include "getDictionaryGetProperties.h"
@@ -41,12 +43,40 @@
 #include "Interaction.h"
 #include "InitObjects.h"
 #include "ObjectStructure.h"
+
 /*--------------------------------------------------------------------------*/
+
+/*
+  We need to add "manually" the functions set, get and delete because
+  if the module graphics is not loaded and because set, get and delete
+  are essentially functions from the graphics module, they will not be
+  available in NWNI mode and if Scilab has been compiled with the flag
+  --without-gui.
+*/
+
+#define DELETE_INDEX 62
+#define GET_INDEX    63
+#define SET_INDEX    64
+
 int gw_graphics(void)
 {
-	Scierror(999,_("Scilab Graphics module not installed.\n"));
-	return 0;
+  Rhs = Max(0, Rhs);
+  
+  if ( (Fin==DELETE_INDEX || Fin==GET_INDEX || Fin==SET_INDEX) &&
+       (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
+    {
+      int lw = 1 + Top - Rhs;
+      if (Fin==DELETE_INDEX) C2F(overload)(&lw,"delete",6);
+      if (Fin==GET_INDEX) C2F(overload)(&lw,"get",3);
+      if (Fin==SET_INDEX) C2F(overload)(&lw,"set",3);
+    }
+  else
+    {
+      Scierror(999,_("Scilab Graphics module not installed.\n"));
+    }
+  return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 void loadGraphicModule( void )
 {
@@ -957,4 +987,3 @@ BOOL sciIsExistingFigure(int figNum)
 {
 	return FALSE;
 }
-/*--------------------------------------------------------------------------*/

@@ -14,6 +14,9 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 public class ScilabDouble implements ScilabType {
 
+	private double[][] realPart;
+	private double[][] imaginaryPart;
+
 	public ScilabDouble() {
 		realPart = null;
 		imaginaryPart = null;
@@ -65,9 +68,6 @@ public class ScilabDouble implements ScilabType {
 	public void setImaginaryPart(double[][] imaginaryPart) {
 		this.imaginaryPart = imaginaryPart;
 	}
-
-	private double[][] realPart;
-	private double[][] imaginaryPart;
 
 	public int getHeight() {
 		if (isEmpty()) {

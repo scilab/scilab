@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // getshortpathname , getlongpathname do not manage matrix of strings
 
-if MSDOS then
+if getos() == 'Windows' then
 
 [r1,b1] = getshortpathname([TMPDIR,SCI;SCI,TMPDIR]);
 if size(r1,'*') <> 4 then pause,end

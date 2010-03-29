@@ -11,7 +11,7 @@
 
 // xmltochm
 
-if MSDOS then 
+if getos() == 'Windows' then 
 
 // TEST 1 (french help and english help are complete)
 // =============================================================================
@@ -112,4 +112,4 @@ if chm_info(1) < 5000 then pause, end   // file size
 
 clean_help(my_english_help_dir);
 
-end // if MSDOS
+end // if getos() == 'Windows'

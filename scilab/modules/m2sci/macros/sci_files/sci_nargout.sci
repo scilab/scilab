@@ -12,7 +12,7 @@ function [tree]=sci_nargout(tree)
 // M2SCI function
 // Conversion function for Matlab nargout()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 global("varslist")
 

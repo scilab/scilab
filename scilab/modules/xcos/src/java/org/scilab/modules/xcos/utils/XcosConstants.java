@@ -27,6 +27,10 @@ public final class XcosConstants extends ScilabConstants {
     /** Change event new name */
     public static final String EVENT_CHANGE_NEW = "new";
     
+    /* SCI environment */
+    /** Path from SCI or SCIHOME to the Xcos configuration directory */
+    public static final String XCOS_ETC = "/modules/xcos/etc";
+    
     /** This class is a static singleton, thus it must not be instantiated */
     private XcosConstants() { }
 }

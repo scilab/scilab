@@ -66,7 +66,7 @@ function xcosConfigureModelica()
   sciGUI_init();
   
   // Load Modelica configuration GUI
-  TCL_EvalFile(SCI+"/modules/scicos/macros/scicos_scicos/MIHM.tcl")
+  TCL_EvalFile(SCI+"/modules/scicos/tcl/MIHM.tcl")
   
   if err1==0 then 
     scimihm xmlfile

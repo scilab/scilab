@@ -27,8 +27,8 @@ if or(A.vtype==[String,Unknown]) & or(A.vtype==[String,Unknown]) then
   end
 else
   // Boolean -> Double
-  //A = convert2double(A)
-  //B = convert2double(B)
+  A = convert2double(A)
+  B = convert2double(B)
   
   tree.operands=list(A,B)
   

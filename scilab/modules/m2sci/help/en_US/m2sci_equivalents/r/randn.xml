@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_randn">
+  <refnamediv>
+    <refname>randn (Matlab function)</refname>
+    <refpurpose>Normally distributed random numbers and arrays</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+randn(A)
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+rand(A,"normal")
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>The Matlab expression B=randn(A) is translated into Scilab by B=rand(A,"normal"):</term>
+        <listitem>
+          <para>
+If <emphasis role="bold">A</emphasis> is a scalar, then Matlab returns a <emphasis role="bold">A*A</emphasis> random matrix but in Scilab you get a single random value, use <emphasis role="bold">rand(A,A,"normal")</emphasis> to get the same matrix <emphasis role="bold">B</emphasis>. Finally, if <emphasis role="bold">A</emphasis> is a matrix, in Scilab, <emphasis role="bold">B</emphasis> will be a matrix having the same size as <emphasis role="bold">A</emphasis> whereas in Matlab, you get an error message.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+Note that in Matlab, <emphasis role="bold">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="bold">A</emphasis> is taken in account), what Scilab function do not tolerate.
+</para>
+    <para>
+Particular case: To get the state of the normal generator, in Matlab you have to use <emphasis role="bold">s=randn('state')</emphasis> to get 2 current values of the generator, but Scilab equivalent <emphasis role="bold">s=rand("seed")</emphasis> return only one value.
+</para>
+  </refsection>
+</refentry>

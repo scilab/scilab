@@ -74,7 +74,7 @@ function dir_created = atomsExtract(archive_in,dir_out)
 		
 	elseif regexp(archive_in,"/\.zip$/","o") <> [] then
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			extract_cmd = getshortpathname(pathconvert(SCI+"/tools/zip/unzip.exe",%F));
 		else
 			extract_cmd = "unzip";

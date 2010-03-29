@@ -34,7 +34,7 @@ function scicos_pal=update_scicos_pal(path,name,fname)
       return;
     else
       scicos_pal(inde,2)=fname
-      if MSDOS then 
+      if getos() == 'Windows' then 
 	instr='del '+TMPDIR+'\'+name+'.pal'
       else
 	instr='\rm -f '+TMPDIR+'/'+name+'.pal'

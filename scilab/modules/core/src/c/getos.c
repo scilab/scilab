@@ -25,23 +25,6 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/ 
-char *getOSName(void)
-{
-	#ifdef __APPLE__
-		return strdup("macosx");
-	#else
-		#ifdef __linux__
-			return strdup("linux");
-		#else
-			#ifdef _MSC_VER
-				return strdup("windows");
-			#else
-				return strdup("other");
-			#endif
-		#endif
-	#endif
-}
-/*--------------------------------------------------------------------------*/ 
 char *getOSFullName(void)
 {
 #ifndef _MSC_VER

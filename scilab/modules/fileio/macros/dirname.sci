@@ -10,7 +10,7 @@
 function [files]= dirname(files,flag,flagexpand) 
 // return the dirnames of files 
 // if flag == %t files are first converted 
-// according to MSDOS. if flagexpand is also true 
+// according to getos() == 'Windows'. if flagexpand is also true 
 // HOME SCI or ~ are also expanded. 
 // the returned directory names are not terminated by sep 
   [lhs,rhs]=argn(0) 

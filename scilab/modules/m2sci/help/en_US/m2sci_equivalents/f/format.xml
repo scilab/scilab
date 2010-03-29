@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_format">
+  <refnamediv>
+    <refname>format (Matlab function)</refname>
+    <refpurpose>Control display format for output</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+format
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+format
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Some Matlab formats have no Scilab equivalent, see examples below.
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>Some Matlab formats have no Scilab equivalent, see examples below.</para>
+    <table>
+      <caption/>
+      <tbody>
+        <tr>
+          <td>
+            <para>
+              <emphasis role="strong">Equivalence table</emphasis>
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> Matlab </para>
+          </td>
+          <td>
+            <para> Scilab </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format </para>
+          </td>
+          <td>
+            <para> format("v",6) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format + </para>
+          </td>
+          <td>
+            <para> format(6) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format bank </para>
+          </td>
+          <td>
+            <para> No equivalent for: format "bank" </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format compact </para>
+          </td>
+          <td>
+            <para> No equivalent for: format "compact" </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format hex </para>
+          </td>
+          <td>
+            <para> No equivalent for: format "hex" </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format long </para>
+          </td>
+          <td>
+            <para> format(16) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format long e </para>
+          </td>
+          <td>
+            <para> format("e",16) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format long g </para>
+          </td>
+          <td>
+            <para> format("e",16) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format loose </para>
+          </td>
+          <td>
+            <para> No equivalent for: format "loose" </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format rat </para>
+          </td>
+          <td>
+            <para> No equivalent for: format "rat" </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format short </para>
+          </td>
+          <td>
+            <para> format(6) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format short e </para>
+          </td>
+          <td>
+            <para> format("e",6) </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para> format short g </para>
+          </td>
+          <td>
+            <para> format("e",6) </para>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </refsection>
+</refentry>

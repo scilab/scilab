@@ -80,7 +80,7 @@ function atomsDownload(url_in,file_out,md5sum)
 	elseif atomsGetConfig("downloadTool") == "curl" then
 		CURL=%T;
 	
-	elseif atomsGetConfig("downloadTool") == "httpdownload" & MSDOS then
+	elseif atomsGetConfig("downloadTool") == "httpdownload" & getos() == 'Windows' then
 		HTTPDOWNLOAD=%T;
 	
 	else
@@ -104,7 +104,7 @@ function atomsDownload(url_in,file_out,md5sum)
 				end
 			end
 			
-		elseif MACOSX | MSDOS then
+		elseif MACOSX | getos() == 'Windows' then
 			CURL = %T;
 		end
 		
@@ -173,7 +173,7 @@ function atomsDownload(url_in,file_out,md5sum)
 			
 		end
 		
-		if MSDOS & CURL then
+		if getos() == 'Windows' & CURL then
 			download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""""+proxy_host_arg+proxy_user_arg+timeout_arg+" -s "+url_in + " -o " + file_out;
 		
 		elseif CURL then
@@ -188,7 +188,7 @@ function atomsDownload(url_in,file_out,md5sum)
 		
 		// Second try with httpdownload
 		
-		if ( HTTPDOWNLOAD | stat<>0 ) & MSDOS then
+		if ( HTTPDOWNLOAD | stat<>0 ) & (getos() == 'Windows') then
 			
 			imode = ilib_verbose();
 			ilib_verbose(0) ;
@@ -213,7 +213,7 @@ function atomsDownload(url_in,file_out,md5sum)
 	
 	elseif regexp(url_in,"/^file:\/\//","o") == 1 then
 		
-		if MSDOS then
+		if getos() == 'Windows' then
 			url_pattern = "file:///";
 		else
 			url_pattern = "file://";

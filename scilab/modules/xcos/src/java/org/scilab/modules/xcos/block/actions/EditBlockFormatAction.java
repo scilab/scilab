@@ -238,6 +238,7 @@ public class EditBlockFormatAction extends DefaultAction {
 				.getAsComponent(), NAME, (mxCell) selectedCells[0]);
 		
 		graph.getView().clear(selectedCells[0], true, true);
+		graph.updateCellSize(selectedCells[0]);
 		graph.refresh();
 	}
 	
@@ -250,6 +251,9 @@ public class EditBlockFormatAction extends DefaultAction {
 	// CSOFF: ClassDataAbstractionCoupling
 	// CSOFF: ClassFanOutComplexity
 	private static final class EditFormatDialog extends javax.swing.JDialog  {
+		private static final int TEXT_AREA_ROWS = 5;
+		private static final int TEXT_AREA_COLUMNS = 20;
+		
 		/**
 		 * The default model used to set a font size. 
 		 */
@@ -394,6 +398,11 @@ public class EditBlockFormatAction extends DefaultAction {
 	        
 	        jScrollPane1 = new javax.swing.JScrollPane();
 	        textArea = new javax.swing.JTextArea();
+	        
+	        textArea.setColumns(TEXT_AREA_COLUMNS);
+	        textArea.setRows(TEXT_AREA_ROWS);
+	        textArea.setLineWrap(true);
+	        textArea.setWrapStyleWord(true);
 	        
 	        cancelButton = new javax.swing.JButton(XcosMessages.CANCEL);
 	        okButton = new javax.swing.JButton(XcosMessages.OK);
@@ -547,7 +556,6 @@ public class EditBlockFormatAction extends DefaultAction {
 			textArea.setFont(f);
 			textArea.setBackground(backgroundColorChooser.getColor());
 			textArea.setForeground(textColorChooser.getColor());
-			textArea.repaint();
 		}
 	}
 	// CSON: ClassDataAbstractionCoupling

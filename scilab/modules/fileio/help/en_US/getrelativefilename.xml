@@ -54,7 +54,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
   getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
   getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')

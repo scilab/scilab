@@ -16,8 +16,8 @@ function [tree]=%q2sci(tree)
 [A,B] = getoperands(tree)
 
 // Scilab left division does not work with Strings, Booleans...
-//A = convert2double(A)
-//B = convert2double(B)
+A = convert2double(A)
+B = convert2double(B)
 
 tree.operands=list(A,B)
 

@@ -10,7 +10,7 @@ DEST_FILE_MO = SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC+filesep()+
 DEST_FILE_PO = SCI+filesep()+'locale'+filesep()+LANGUAGE+filesep()+LC+filesep()+'scilab.po';
 LC = 'LC_MESSAGES';
 
-if MSDOS then
+if getos() == 'Windows' then
 PATH_GETTEXT_TOOLS = SCI + filesep() + 'tools/gettext';
 end
 

@@ -47,7 +47,7 @@
       <varlistentry>
         <term>only-double</term>
         <listitem>
-          <para>Boolean flag, if %T mfile2sci considers that numerical function have been used only with numerical data (no Scilab overloading function is needed). Default value: %F</para>
+          <para>Boolean flag, if %T mfile2sci considers that numerical function have been used only with numerical data (no Scilab overloading function is needed). Default value: %T</para>
         </listitem>
       </varlistentry>
       <varlistentry>

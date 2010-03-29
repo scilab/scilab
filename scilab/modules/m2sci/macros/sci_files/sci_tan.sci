@@ -12,7 +12,7 @@ function [tree]=sci_tan(tree)
 // M2SCI function
 // Conversion function for Matlab tan()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 tree.name="tan"
 

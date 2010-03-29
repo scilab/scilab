@@ -144,7 +144,7 @@ function ilib_4_link_gen_loader(names, flag, loadername, libs, libname)
   end
   
   // we manage .f90 as .f on windows
-  if MSDOS then 
+  if getos() == 'Windows' then 
    if findmsifortcompiler()<> "unknown" then
      if flag == "f90" then
       flag = "f";

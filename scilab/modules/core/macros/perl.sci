@@ -38,7 +38,7 @@ function [resultat,status] = perl(varargin)
       if (Chainecmd == '') then
         error(msprintf(gettext("%s: No perl command specified."),"perl"));
       else
-        if MSDOS then
+        if getos() == 'Windows' then
           // For Windows
           CheminPerl= fullfile(pathconvert(SCI,%f,%f,'w'),'\tools\perl\bin\');
           

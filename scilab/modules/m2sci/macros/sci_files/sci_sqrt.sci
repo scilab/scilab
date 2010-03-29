@@ -12,7 +12,7 @@ function [tree]=sci_sqrt(tree)
 // M2SCI function
 // Conversion function for Matlab sqrt()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 
 tree.name="sqrt"
 

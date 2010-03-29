@@ -188,6 +188,9 @@ int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *
 
   /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++)     pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
+  /* Force "cligrf" clipping */
+  sciSetIsClipping (psubwin,0); 
+
   /*---- Boundaries of the frame ----*/
   if (sciGetGraphicMode (psubwin)->autoscaling){
     /* compute and merge new specified bounds with psubwin->Srect */

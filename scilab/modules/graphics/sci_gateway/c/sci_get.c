@@ -58,7 +58,7 @@ int sci_get(char *fname,unsigned long fname_len)
 	if ((VarType(1) == sci_mlist) || (VarType(1) == sci_tlist))
 	  {
 	    lw = 1 + Top - Rhs;
-	    C2F(overload)(&lw,"get",Rhs);
+	    C2F(overload)(&lw,"get",3);
 	    return 0;
 	  }
 	

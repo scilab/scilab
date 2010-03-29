@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // getshortpathname & getlongpathname return '' and not a path with some special pathname
-if MSDOS then
+if getos() == 'Windows' then
   name_dir = 'L.P blabla';
   cd(TMPDIR);
   mkdir(name_dir);

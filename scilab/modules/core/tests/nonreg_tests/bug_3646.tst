@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Scilab 5.0.2 does not start after installation
 
-if MSDOS then
+if getos() == 'Windows' then
 
   cd(TMPDIR);
   mkdir('Lukáš Bùôl');

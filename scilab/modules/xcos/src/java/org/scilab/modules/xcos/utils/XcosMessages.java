@@ -62,6 +62,9 @@ public final class XcosMessages {
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
     public static final String REMOVE_USER_DEFINED = REMOVE;
+    public static final String CREATE_CATEGORY = Messages.gettext("Create a category");
+    public static final String ADDTO_CATEGORY = Messages.gettext("Add to a new category");
+    public static final String DEFAULT_CATEGORY_NAME = Messages.gettext("Category");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -138,7 +141,8 @@ public final class XcosMessages {
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
     public static final String THERMOHYDRAULICS_PAL = Messages.gettext("Thermo-Hydraulics");
     
-    public static final String ACTIVATE_PAL_TITLE = Messages.gettext("Enable this palette");
+    public static final String ENABLE = Messages.gettext("Enable");
+    public static final String PAL_NAME = Messages.gettext("Palette name");
 
     public static final String DIAGRAM_MODIFIED = Messages.gettext("Diagram has been modified since last save.<br/> Do you want to save it?");
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
@@ -256,9 +260,17 @@ public final class XcosMessages {
     public static final String MASK_VARVALUES = Messages.gettext("Values");
     public static final String MASK_DEFAULTWINDOWNAME = Messages.gettext("Set block parameters");
 
+    /* Configuration Error */
+	public static final String ERR_CONFIG_PALETTE_INVALID = Messages.gettext("The user palette configuration file (palettes.xml) is invalid.<BR> Switching to the default one.");
+	public static final String ERR_CONFIG_INVALID = Messages.gettext("The user configuration file (xcos.xml) is invalid.<BR> Switching to the default one.");
+    
     /* Modelica Compiler */
     public static final String INITIALIZING_MODELICA_COMPILER = Messages.gettext("Setting up Modelica Compiler.");
     public static final String INIT_MODELICA = Messages.gettext("Modelica initialize");
+    
+    /* Blocks values */
+    public static final String BLOCK_FROM = Messages.gettext("From %s");
+    public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
     
 // CSON: JavadocVariable
 // CSON: LineLength

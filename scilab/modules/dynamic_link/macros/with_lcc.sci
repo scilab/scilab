@@ -10,7 +10,7 @@
 //==========================================
 function r = with_lcc()
 
- if MSDOS then // Windows
+ if getos() == 'Windows' then // Windows
     // Visual Studio C++ 
     if ( findmsvccompiler() <> 'unknown' ) then 
       r = %F;

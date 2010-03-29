@@ -23,7 +23,7 @@ function [res]=G_make(files,objects_or_dll)
 
   msg = '';
   
-  if MSDOS then // WINDOWS
+  if getos() == 'Windows' then // WINDOWS
 
     if typeof(objects_or_dll)<>'string' then 
       error(sprintf(gettext('%s: Wrong type for input argument #%d: String expected.'),'G_make',2));

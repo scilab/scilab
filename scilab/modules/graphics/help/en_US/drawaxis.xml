@@ -59,7 +59,8 @@
       <varlistentry>
         <term>format_n=string</term>
         <listitem>
-          <para>format to use for displaying numbers along the axis</para>
+          <para>format to use for displaying numbers along the axis, where <literal>string</literal> gives the format according to the C language
+                printf function format syntax (for example <literal>string="%.3f"</literal>).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -151,6 +152,14 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 // horizontal axis again 
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axis_properties">axis_properties</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>

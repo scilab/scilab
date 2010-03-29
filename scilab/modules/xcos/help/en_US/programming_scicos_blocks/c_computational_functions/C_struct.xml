@@ -49,56 +49,55 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module_C_struct">Module</xref>
+              <xref linkend="Module_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Description_C_struct">Description</xref>
+              <xref linkend="Description_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Inputsoutputs_C_struct">Inputs/outputs</xref>
+              <xref linkend="Inputsoutputs_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Events_C_struct">Events</xref>
+              <xref linkend="Events_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Parameters_C_struct">Parameters</xref>
+              <xref linkend="Parameters_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Statesandwork_C_struct">States and work</xref>
+              <xref linkend="Statesandwork_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Zerocrossingsurfacesandmodes_C_struct">Zero
-              crossing surfaces and modes</xref>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Miscallaneous_C_struct">Miscallaneous</xref>
+              <xref linkend="Miscallaneous_C_struct" />
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Authors_C_struct">Authors</xref>
+              <xref linkend="Authors_C_struct" />
             </para>
           </listitem>
         </itemizedlist>
@@ -128,21 +127,72 @@
     <para>That structure of type is defined in the file , and user must
     include that header in each computational functions in the form :</para>
 
-    <para />
+    <funcsynopsis>
+      <funcsynopsisinfo>#include &lt;varargs.h&gt;</funcsynopsisinfo>
+
+      <funcprototype>
+        <funcdef>void <function>computational_function</function></funcdef>
+
+        <paramdef>
+          <parameter>scicos_block *block</parameter>
+
+          <parameter>, int flags</parameter>
+        </paramdef>
+      </funcprototype>
+    </funcsynopsis>
 
     <para>The fields, that can be either C pointers or directly data, are then
-    accessible via the structure :</para>
-
-    <para />
+    accessible via the <code>scicos_block</code> structure :
+    <code>block-&gt;field</code></para>
 
     <para>This access is a approach and most of users should prefer the
     approach for facilities purpose.</para>
 
     <para>In the current version of xcos, the structure is defined :</para>
 
-    <para />
-
-    <para />
+    <para>
+      <programlisting>/* scicos_block structure definition */
+typedef struct {
+  int nevprt;
+  voidg funpt ;
+  int type;
+  int scsptr;
+  int nz;
+  double *z;
+  int noz;
+  int *ozsz;
+  int *oztyp;
+  void **ozptr;
+  int nx;
+  double *x;
+  double *xd;
+  double *res;
+  int nin;
+  int *insz;
+  void **inptr;
+  int nout;
+  int *outsz;
+  void **outptr;
+  int nevout;
+  double *evout;
+  int nrpar;
+  double *rpar;
+  int nipar;
+  int *ipar;
+  int nopar;
+  int *oparsz;
+  int *opartyp;
+  void **oparptr;
+  int ng;
+  double *g;
+  int ztyp;
+  int *jroot;
+  char *label;
+  void **work;
+  int nmode;
+  int *mode;
+} scicos_block;</programlisting>
+    </para>
   </refsection>
 
   <refsection id="Inputsoutputs_C_struct">
@@ -436,12 +486,12 @@
         with : You can also use the C macro to get the pointer of the real
         parameter register.</para>
 
-        <para>Most of time in the xcos C block libraries, the integer
-        register is used to parametrize the length of real parameters. For
-        i.e. if you define the following in a block : the array of real
-        parameters (parametrized by ipar) can be retrieved in the correspondig
-        C computational function with : Note that integer parameters register
-        is only accessible for reading.</para>
+        <para>Most of time in the xcos C block libraries, the integer register
+        is used to parametrize the length of real parameters. For i.e. if you
+        define the following in a block : the array of real parameters
+        (parametrized by ipar) can be retrieved in the correspondig C
+        computational function with : Note that integer parameters register is
+        only accessible for reading.</para>
       </listitem>
 
       <listitem>
@@ -626,8 +676,8 @@
         integer of size noz,1 that contains the type of matrices of discrete
         object states.</para>
 
-        <para>The following table gives the correspondence table for xcos
-        type expressed in Scilab number, in C number and also corresponding C
+        <para>The following table gives the correspondence table for xcos type
+        expressed in Scilab number, in C number and also corresponding C
         pointers and C macros used for : The type of discrete object state can
         also be got by the use of the C macro . For i.e, if we want the C
         number type of the first discrete object state, we'll use the
@@ -770,5 +820,7 @@
     <title>Authors</title>
 
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+
+    <para><emphasis role="bold">Clément David</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

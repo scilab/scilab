@@ -21,7 +21,7 @@
 
 lines(0);
 
-if MSDOS then
+if getos() == 'Windows' then
   // Add SCI/bin to current PATH env
   // not defined by default used to find modelicac
   PATH_env = getenv('PATH');

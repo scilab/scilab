@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // LCC-Win32 does not work with scicos
 
-if MSDOS then
+if getos() == 'Windows' then
 // Install scilab
 // Install lcc-win32
 // launch modelica demos 

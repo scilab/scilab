@@ -47,7 +47,7 @@ function xs2fig(figureNumber, fileName, orientation)
 	//To export FIG file we need Ghostscript & pstoedit
 	//Test if Ghostscript is installed or not
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 	  if fileinfo(SCI+'/tools/pstoedit/gsdll32.dll') == [] then
       msgErr1 = gettext("Please install Ghostscript 32 bits to export an .FIG file.");
       msgErr2 = "http://www.ghostscript.com/awki";
@@ -76,7 +76,7 @@ function xs2fig(figureNumber, fileName, orientation)
 	end
 	
 	// compute pstoedit path
-	if MSDOS then
+	if getos() == 'Windows' then
 	  // pstoedit is embedded in Scilab
 	  pstoeditPath = SCI + "\tools\pstoedit\pstoedit";
 	else

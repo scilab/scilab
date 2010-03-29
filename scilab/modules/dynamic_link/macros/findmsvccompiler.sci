@@ -184,7 +184,7 @@ endfunction
 
   MSCompiler='unknown'; // unknown
   
-  if MSDOS then
+  if getos() == 'Windows' then
 
     if is_msvc100express() then
       MSCompiler = 'msvc100express';          // Microsoft Visual 2010 Express
@@ -231,7 +231,7 @@ endfunction
       return;
     end
     
-  else // NOT MSDOS
+  else // NOT WINDOWS
     MSCompiler = 'unknown'; // unknown
   end
 endfunction

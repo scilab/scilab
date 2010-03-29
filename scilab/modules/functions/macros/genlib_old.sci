@@ -39,7 +39,7 @@ function genlib_old(nam,path,force,verbose,names)
     updatelib=%t
   end
     
-  // convert path according to MSDOS flag 
+  // convert path according to getos() == 'Windows' flag 
   // without env variable substitution
   path1 = pathconvert(path,%t,%f); 
   // with env subsitution 

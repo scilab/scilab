@@ -31,7 +31,7 @@ function mdelete(filename)
 	end
 	
 	// Handle file path
-	if MSDOS then
+	if getos() == 'Windows' then
 		filename = strsubst(filename,filesep(),"/");
 	end
 	
@@ -45,7 +45,7 @@ function mdelete(filename)
 		filename  = part(filename,k($)+1:length(filename));
 	end
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		fullfilename = strsubst(file_path+filename,"/","\");
 		lst_files    = listfiles(fullfilename);
 	else
