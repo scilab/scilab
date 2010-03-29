@@ -134,6 +134,17 @@ assign			"="
   return scan_throw(SELECT);
 }
 
+"switch"	{
+  Parser::getInstance()->pushControlStatus(Parser::WithinSwitch);
+  return scan_throw(SWITCH);
+}
+
+"otherwise" {
+	Parser::getInstance()->popControlStatus();
+	Parser::getInstance()->pushControlStatus(Parser::WithinOtherwise);
+	return scan_throw(OTHERWISE);
+}
+
 "case"		{
   Parser::getInstance()->popControlStatus();
   Parser::getInstance()->pushControlStatus(Parser::WithinCase);
