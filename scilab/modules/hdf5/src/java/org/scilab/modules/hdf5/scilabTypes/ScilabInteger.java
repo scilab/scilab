@@ -12,6 +12,9 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
+/**
+ * This class provides a wrapping on the Scilab Integer datatype
+ */
 public class ScilabInteger implements ScilabType {
 
 	private Long[][] data;
@@ -19,9 +22,13 @@ public class ScilabInteger implements ScilabType {
 	private boolean bUnsigned;
 
 	public enum IntegerType{
+		/** Integer of size 8 */
 		TYPE8,
+		/** Integer of size 16 */
 			TYPE16,
+		/** Integer of size 32 */
 			TYPE32,
+		/** Integer of size 64 */
 			TYPE64
 			}
 	

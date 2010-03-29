@@ -22,7 +22,6 @@ next usage. See bug #6482
 Scilab:
 =======
 
-
 * Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
   See bug #5023
 
@@ -38,6 +37,11 @@ For GNU/Linux, Unix & Mac OS X:
 * Bug 6633 fixed - Unknown arguments are now accepted with option -args. This
   allows user to access to them throught the Scilab function sciargs:
   scilab -nwni -args 2 3
+
+call_scilab:
+============
+
+* Examples added to show how to manage returned error.
 
 Compilation:
 ============
@@ -121,6 +125,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 5466 fixed - "savematfile" no more append variables in file by default, 
+                   file is now reinitialized at each "savematfile" call.
+
 * bug 6472 fixed - Resizing the graphics window after having plotted several 2D
                    curves and a legend caused some of them to disappear.
 
@@ -172,7 +179,11 @@ Bug Fixes:
 
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
+* bug 6816 fixed - Incoherent extraction when there is no index: M()
+
 * bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
+
+* bug 6829 fixed - kpure fails to compute  when applied to an high degree system
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
