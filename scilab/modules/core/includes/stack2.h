@@ -12,6 +12,11 @@
 #ifndef STACK2_H
 #define  STACK2_H
 
+
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack2.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack2.h API will be removed after Scilab 6.0.")
+#endif
+
 #include "machine.h"
 
 /**
