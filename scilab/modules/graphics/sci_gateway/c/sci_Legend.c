@@ -96,27 +96,27 @@ int sci_Legend( char * fname, unsigned long fname_len )
   for (i = 0; i < n;i++)
   {
     handelsvalue = (unsigned long) (hstk(l1))[n-1-i];
+    pobj = sciGetPointerFromHandle(handelsvalue);
 
     /**
       We get the current pSubwin & pFigure from the first handel's parents.
     **/
     if (i==0) {
-      psubwin = sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) );
-      pFigure = sciGetParentFigure( sciGetPointerFromHandle(handelsvalue) );
+      psubwin = sciGetParentSubwin( pobj );
+      pFigure = sciGetParentFigure( pobj );
     }
 
     /**
       We check that the pSubwin is the same for all given handle.
     **/
-    if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) 
-	{
+    if (psubwin!=sciGetParentSubwin(pobj)) 
+    {
       Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
       return 0;
     }
 
-    pobj = sciGetPointerFromHandle(handelsvalue);
     if (pobj == NULL) 
-	{
+    {
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
       Scierror(999,_("%s: The handle is no more valid.\n"),fname);
@@ -124,7 +124,7 @@ int sci_Legend( char * fname, unsigned long fname_len )
     }
     type=sciGetEntityType(pobj);
     if (type != SCI_POLYLINE) 
-	{
+    {
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
       Scierror(999,_("%s: The %d th handle is not a polyline handle.\n"),fname,i+1);
