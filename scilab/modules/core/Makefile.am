@@ -82,11 +82,19 @@ src/c/recursionFunction.c \
 src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c \
+<<<<<<< HEAD
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
 src/c/dynamic_tclsci.c \
 src/c/storeCommand.c
+=======
+src/c/eqid.c
+
+CORE_CPP_SOURCES = \
+src/cpp/parallel_run.cpp \
+src/cpp/hashtable_core.cpp
+>>>>>>> 23a1c3a... find modules/core -type f -print0 |xargs -0 sed -i -e 's/mc_apply/parallel_run/g'
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -255,6 +263,13 @@ sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
+<<<<<<< HEAD
+=======
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
+
+
+>>>>>>> 23a1c3a... find modules/core -type f -print0 |xargs -0 sed -i -e 's/mc_apply/parallel_run/g'
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
