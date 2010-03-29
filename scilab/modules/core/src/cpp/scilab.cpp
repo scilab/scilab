@@ -51,6 +51,12 @@ extern "C"
 #include "scilabmode.h"
 #include "SetScilabEnvironment.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
+
+#include "../../../history_manager/includes/HistoryManager.h"
+#include "../../../history_manager/includes/InitializeHistoryManager.h"
+#include "../../../history_manager/includes/TerminateHistoryManager.h"
+#include "../../../history_manager/src/c/getCommentDateSession.h"
+
 	/*
 	** HACK HACK HACK
 	*/
@@ -311,6 +317,20 @@ static int interactiveMain (void)
 	Parser* pParser = Parser::getInstance();
 
 	banner();
+
+	char *commentbeginsession = NULL;
+	InitializeHistoryManager();
+	
+	/* add date & time @ begin session */
+	commentbeginsession = getCommentDateSession(TRUE);
+	if (commentbeginsession)
+	  {
+		appendLineToScilabHistory(commentbeginsession);
+		FREE(commentbeginsession);
+		commentbeginsession=NULL;
+	  }
+	
+
 
 	while (!exit)
 	{
