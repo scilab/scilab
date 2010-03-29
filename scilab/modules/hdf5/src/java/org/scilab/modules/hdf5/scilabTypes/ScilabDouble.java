@@ -12,6 +12,10 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
+/**
+ * This class provides a wrapping on the Scilab Double datatype<br />
+ * Note that double is the default datatype in Scilab
+ */
 public class ScilabDouble implements ScilabType {
 
 	private double[][] realPart;

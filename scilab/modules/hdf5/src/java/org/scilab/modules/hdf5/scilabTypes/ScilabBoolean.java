@@ -12,6 +12,9 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
+/**
+ * This class provides a wrapping on the Scilab boolean datatype
+ */
 public class ScilabBoolean implements ScilabType {
 
 	/* the boolean data */

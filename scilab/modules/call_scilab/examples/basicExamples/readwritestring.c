@@ -40,9 +40,15 @@ int main(void)
 		myMatrixOfString[0]="my Message";
 		myMatrixOfString[1]="on two lines";
 		char variableName[] = "A";
+		SciErr sciErr;
 
 		/* Write it into Scilab's memory */
-		createNamedMatrixOfString(pvApiCtx, variableName, row, col, myMatrixOfString);
+		sciErr = createNamedMatrixOfString(pvApiCtx, variableName, row, col, myMatrixOfString);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 		/*
 		 * Prior to Scilab 5.2
 		 * C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); 
@@ -64,12 +70,19 @@ int main(void)
 		int row = 2, col = 2; /* Size of the matrix */
 		/* Declare the string */
 		char **myMatrixOfStringB = (char**)malloc(sizeof(char*) * row * col);
+		SciErr sciErr;
+
 		myMatrixOfStringB[0]="My";
 		myMatrixOfStringB[1]="String";
 		myMatrixOfStringB[2]="Great";
 		myMatrixOfStringB[3]=";)";
 		char variableNameB[] = "B";
-		createNamedMatrixOfString(pvApiCtx, variableNameB, row, col, myMatrixOfStringB);
+		sciErr = createNamedMatrixOfString(pvApiCtx, variableNameB, row, col, myMatrixOfStringB);
+		if(sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+		}
+
 
 		printf("\n");
 		printf("Display from Scilab of B:\n");
@@ -87,19 +100,35 @@ int main(void)
 			int* piAddr     = NULL;
 			int* piLen      = NULL;
 			char** pstData  = NULL;
+			SciErr sciErr;
 
 			//fisrt call to retrieve dimensions
-			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			sciErr = readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 			piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 			//second call to retrieve length of each string
-			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			sciErr = readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 			pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
 			for(i = 0 ; i < iRows * iCols ; i++)
 				{
 					pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 				}
 			//third call to retrieve data
-			readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
+			sciErr = readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 
 			printf("\n");
 			printf("Load and display of A:\n");
@@ -133,19 +162,35 @@ int main(void)
 			int* piAddr     = NULL;
 			int* piLen      = NULL;
 			char** pstData  = NULL;
+			SciErr sciErr;
 
 			//fisrt call to retrieve dimensions
-			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			sciErr = readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved,&iRows, &iCols, NULL, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 			piLen = (int*)malloc(sizeof(int) * iRows * iCols);
 			//second call to retrieve length of each string
-			readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			sciErr = readNamedMatrixOfString(pvApiCtx,variableToBeRetrieved, &iRows, &iCols, piLen, NULL);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 			pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
 			for(i = 0 ; i < iRows * iCols ; i++)
 				{
 					pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 				}
 			//third call to retrieve data
-			readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
+			sciErr = readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, piLen, pstData);
+			if(sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+			}
+
 
 			printf("\n");
 			printf("Load and display of B:\n");			

@@ -9,9 +9,17 @@ improve performances to 50 %)
 Note that many performance improvements will be also available in 
 Scilab 5.3.0.
 
+
+Help brower:
+============
+
+* Increase of the default size of the help browser window.
+
+* Help browser window position and size are now stored and restored for the
+next usage. See bug #6482
+
 Scilab:
 =======
-
 
 * Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
   See bug #5023
@@ -29,6 +37,11 @@ For GNU/Linux, Unix & Mac OS X:
   allows user to access to them throught the Scilab function sciargs:
   scilab -nwni -args 2 3
 
+call_scilab:
+============
+
+* Examples added to show how to manage returned error.
+
 Compilation:
 ============
 
@@ -39,6 +52,12 @@ Compilation:
 * Improves the detection of JOGL/Gluegen under Suse/Opensuse. Thanks to Michal
 Vyskocil
 
+* "make clean" continues even if errors are found
+
+* Add a new option to the configure for Mac OS X --with-fink-prefix
+  This is done to prepare Scilab 5.3 and the mandatory dependency on 
+  Java 1.6 (64 bits only).
+  This option will set the LDFLAGS & source the fink init script.
 
 Xcos:
 =====
@@ -105,6 +124,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 5466 fixed - "savematfile" no more append variables in file by default, 
+                   file is now reinitialized at each "savematfile" call.
+
 * bug 6472 fixed - Resizing the graphics window after having plotted several 2D
                    curves and a legend caused some of them to disappear.
 
@@ -157,6 +179,9 @@ Bug Fixes:
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 * bug 6816 fixed - Incoherent extraction when there is no index: M()
+
+* bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================

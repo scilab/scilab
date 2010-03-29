@@ -14,27 +14,27 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 import java.io.Serializable;
 
-/*
+/**
  * This interface specifies what is a Scilab types
  */
 public interface ScilabType extends Serializable, Cloneable {
 
     /**
-     * Return the width (number of element) of the stored data
+     * Return the width (number of elements) of the stored data
      *
      * @return the width
 	 */
 	public int getWidth();
 	
     /**
-     * Return the height (number of element) of the stored data
+     * Return the height (number of elements) of the stored data
      *
      * @return the height
 	 */
 	public int getHeight();
 	
     /**
-     * Display the matrix
+     * Display the data
      *
      * @return the pretty print
 	 */

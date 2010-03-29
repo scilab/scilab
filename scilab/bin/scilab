@@ -368,9 +368,6 @@ fi
 					"ia64")
 						proc="i64"
 						;;
-					"ppc")
-						proc="ppc"
-						;;
 					"alpha")
 						proc="alpha"
 						;;
@@ -379,6 +376,27 @@ fi
 						;;
 					sh*)
 						proc="sh"
+						;;
+					"ia64")
+						proc="ia64"
+						;;
+					"mips"|"mipsel") # under mipsel, uname -m is
+					# usually returning mips ...
+					# but binary are in mipsel
+						if test -d ${JRE_HOME}/lib/mipsel ; then
+							proc="mipsel"
+						else
+							proc="mips"
+						fi
+						;;
+					"ppc"|"powerpc"|"ppc64")
+						proc="ppc"
+						;;
+					"s390"|"s390x")
+						proc="s390"
+						;;
+					"armv4l"|"armv5tel")
+						proc="arm"
 						;;
 					*)
 						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
@@ -406,33 +424,10 @@ fi
 						;;
 				esac
 				;;
-			"mips"|"mipsel") # under mipsel, uname -m is
-					# usually returning mips ...
-					# but binary are in mipsel
-				if test -d ${JRE_HOME}/lib/mipsel ; then
-					proc="mipsel"
-				else
-					proc="mips"
-				fi
-				;;
-			"ia64")
-				proc="ia64"
-				;;
-		    "ppc"|"powerpc"|"ppc64")
-				proc="ppc"
-				;;
-			"alpha")
-				proc="alpha"
-				;;
-			"s390"|"s390x")
-				proc="s390"
-				;;
+
 			*win32* | *WIN32* | *CYGWIN_NT*)
 				proc="win32"
 				JAVA_SHLIB="jvm.dll"
-				;;
-			"armv4l"|"armv5tel")
-				proc="arm"
 				;;
 			*darwin* | *Darwin*) # MacOS X
         # For Mac OS X, Since path are different from the JVM normal tree,
