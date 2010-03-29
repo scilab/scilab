@@ -124,6 +124,9 @@ Bug Fixes:
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
+* bug 5466 fixed - "savematfile" no more append variables in file by default, 
+                   file is now reinitialized at each "savematfile" call.
+
 * bug 6472 fixed - Resizing the graphics window after having plotted several 2D
                    curves and a legend caused some of them to disappear.
 
