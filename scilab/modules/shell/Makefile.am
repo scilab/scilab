@@ -55,6 +55,9 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
+if IS_MACOSX
+libscishell_la_CFLAGS += -msse2
+endif
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

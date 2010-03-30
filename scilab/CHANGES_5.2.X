@@ -67,6 +67,9 @@ Vyskocil
   Java 1.6 (64 bits only).
   This option will set the LDFLAGS & source the fink init script.
 
+* CFLAGS -msse2 added under Mac OS X for Scilab module shell. See bug
+  #6839
+
 Xcos:
 =====
 

@@ -60,9 +60,10 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @IS_MACOSX_TRUE@am__append_1 = src/c/others/initMacOSXEnv.c
+@IS_MACOSX_TRUE@am__append_2 = -msse2
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/shell
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -293,7 +294,6 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
-PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -431,21 +431,18 @@ libscishell_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 
 
 # Includes need for the compilation
-libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-Iincludes/ \
-			-Isrc/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/modules/console/includes/ \
-			-I$(top_srcdir)/modules/history_manager/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/core/includes \
-			-I$(top_srcdir)/modules/completion/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/fileio/includes/
-
+libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
+	-I$(top_srcdir)/modules/history_manager/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/core/includes \
+	-I$(top_srcdir)/modules/completion/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/action_binding/includes/ \
+	-I$(top_srcdir)/modules/fileio/src/c/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/fileio/includes/ $(am__append_2)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -494,7 +491,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
