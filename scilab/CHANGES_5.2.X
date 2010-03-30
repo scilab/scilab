@@ -209,6 +209,8 @@ Bug Fixes:
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
 
+* bug 6841 fixed - fun2string failed on simple examples containing variable extraction.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
