@@ -79,7 +79,7 @@ const char*	file_name;
 
 bool printAst = false;
 bool execAst = true;
-bool execOrig = true;
+bool execOrig = false;
 bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
@@ -160,7 +160,8 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		}
 		else if (!strcmp("--orig", argv[i])) {
 			std::cout << "Original execution" << std::endl;
-			execOrig = false;
+			execOrig = true;
+			execAst = false;
 		}
 		else if (!strcmp("--context-dump", argv[i])) {
 			dumpStack = true;
@@ -407,7 +408,12 @@ static int interactiveMain (void)
 				/*
 				** -*- EXECUTING TREE -*-
 				*/
-				if (execAst == true) { execAstTask(timed, ASTtimed); }
+				if (execAst == true && execOrig == false) { execAstTask(timed, ASTtimed); }
+
+				/*
+				** -*- EXECUTING ORIGINAL TREE -*-
+				*/
+				if (execAst == false && execOrig == true) { origAstTask(timed); }
 
 				/*
 				** -*- DUMPING STACK AFTER EXECUTION -*-
