@@ -121,8 +121,8 @@ Tests:
 On-line Help building system:
 =============================
 
-* Compilation of the on-line help failed if two XML files had the same name. This
-  constraint has been removed.
+* Compilation of the on-line help failed if two XML files had the same name.
+  This constraint has been removed.
 
 Obsolete Functions:
 ===================
@@ -132,11 +132,11 @@ Obsolete Functions:
 Bug Fixes:
 ==========
 
-* bug 2395 fixed - mfile2sci could failed with "undefined variable: mfile_path" 
+* bug 2395 fixed - mfile2sci could failed with "undefined variable: mfile_path"
                    error message for some functions conversion.
 
-* bug 4599 fixed - It was possible create many different variables with the same
-                   name in the same scope.
+* bug 4599 fixed - It was possible create many different variables with the 
+                   same name in the same scope.
 
 * bug 5466 fixed - "savematfile" no more append variables in file by default, 
                    file is now reinitialized at each "savematfile" call.
@@ -149,27 +149,29 @@ Bug Fixes:
 
 * bug 6557 fixed - The legend order of the plzr function was incorrect.
 
-* bug 6648 fixed - The description of the format_n property was missing from the
-                   axis_properties online help page.
+* bug 6648 fixed - The description of the format_n property was missing from
+                   the axis_properties online help page.
 
-* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes
-                   and their attached entities to disappear when data min and max
-                   bounds were equal (for any of the X,Y or Z axes).
+* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the 
+                   Axes and their attached entities to disappear when data min
+                   and max bounds were equal (for any of the X,Y or Z axes).
 
-* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input 
+                   arguments.
 
-* bug 6687 fixed - The Matplot function didn't set the clip_state property of the
-                   entities it creates.
+* bug 6687 fixed - The Matplot function didn't set the clip_state property of 
+                   the entities it creates.
 
 * bug 6698 fixed - isreal does not work on hypermatrix
 
 * bug 6718 fixed - A text in a graphic containing a "<" symbol cannot be
                    exported in eps.
 
-* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly restore
-                   its tics_direction property.
+* bug 6721 fixed - Loading a saved Axis graphics entity didn't correctly 
+                   restore its tics_direction property.
 
-* bug 6730 fixed - problem with function calls when seen has member of an mlist.
+* bug 6730 fixed - problem with function calls when seen has member of an 
+                   mlist.
 
 * bug 6734 fixed - read_csv function contained erroneous error messages.
 
@@ -187,18 +189,24 @@ Bug Fixes:
 * bug 6719 fixed - Error fixed in example of root_properties help page
                    (French version only).
 
-* bug 6720 fiwed - "caption" function doesn't handled properly polylines handles.
+* bug 6720 fiwed - "caption" function doesn't handled properly polylines
+                   handles.
 
-* bug 6792 fixed - Wrong interpretation of macro arguments when the
-                   macro call appeared in an list extraction.
+*  bug 6720 fiwed - "lib" function didn't print the same thing when it was 
+                    entered several times.
+
+* bug 6792 fixed - Wrong interpretation of macro arguments when the macro call
+                   appeared in an list extraction.
 
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 * bug 6816 fixed - Incoherent extraction when there is no index: M()
 
-* bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
+* bug 6817 fixed - The "xstring" function shifted the start position of the 
+                   string relative to the string length.
 
-* bug 6829 fixed - kpure fails to compute  when applied to an high degree system
+* bug 6829 fixed - kpure fails to compute  when applied to an high degree 
+                   system.
 
 * bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
 
