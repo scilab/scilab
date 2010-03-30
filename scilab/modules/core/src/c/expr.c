@@ -9,12 +9,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include "expr.h"
 #include "ifexpr.h"
 #include "msgs.h"
 #include "stack-def.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "basout.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
 static int checkvalue = 4095;
