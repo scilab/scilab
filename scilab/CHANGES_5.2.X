@@ -121,6 +121,9 @@ Obsolete Functions:
 Bug Fixes:
 ==========
 
+* bug 2395 fixed - mfile2sci could failed with "undefined variable: mfile_path" 
+                   error message for some functions conversion.
+
 * bug 4599 fixed - It was possible create many different variables with the same
                    name in the same scope.
 
