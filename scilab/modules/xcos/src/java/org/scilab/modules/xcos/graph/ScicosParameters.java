@@ -12,12 +12,21 @@
 
 package org.scilab.modules.xcos.graph;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 /**
  * Contains Scicos specific parameters.
+ * 
+ * This class is a java beans and follow standard properties accessors.
+ * 
+ * @see http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html
  */
 public class ScicosParameters {
-	// Default values from :
-	// SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
+	/*
+	 * Default instance values from :
+	 * SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
+	 */
 	/**
 	 * The default integration time
 	 */
@@ -55,7 +64,8 @@ public class ScicosParameters {
 	 */
 	public static final int DEBUG_LEVEL = 0;
 	/**
-	 * The context is any Scilab expression evaluated at the start of the simulation.
+	 * The context is any Scilab expression evaluated at the start of the
+	 * simulation.
 	 */
 	public static final String[] CONTEXT = new String[] {""};
 	/**
@@ -63,6 +73,9 @@ public class ScicosParameters {
 	 */
 	public static final String SCICOS_VERSION = "scicos4.2";
 
+	/*
+	 * Instance data
+	 */
 	private double finalIntegrationTime;
 	private double integratorAbsoluteTolerance;
 	private double integratorRelativeTolerance;
@@ -74,6 +87,11 @@ public class ScicosParameters {
 	private int debugLevel;
 	private String[] context;
 	private String version;
+
+	/*
+	 * Beans support, used to follow instance modification
+	 */
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	/**
 	 * Default constructor
@@ -106,7 +124,10 @@ public class ScicosParameters {
 	 *            set integration time
 	 */
 	public void setFinalIntegrationTime(double finalIntegrationTime) {
+		double oldValue = this.finalIntegrationTime;
 		this.finalIntegrationTime = finalIntegrationTime;
+		pcs.firePropertyChange("finalIntegrationTime", oldValue,
+				finalIntegrationTime);
 	}
 
 	/**
@@ -122,7 +143,10 @@ public class ScicosParameters {
 	 */
 	public void setIntegratorAbsoluteTolerance(
 			double integratorAbsoluteTolerance) {
+		double oldValue = this.integratorAbsoluteTolerance;
 		this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
+		pcs.firePropertyChange("integratorAbsoluteTolerance", oldValue,
+				integratorAbsoluteTolerance);
 	}
 
 	/**
@@ -138,7 +162,10 @@ public class ScicosParameters {
 	 */
 	public void setIntegratorRelativeTolerance(
 			double integratorRelativeTolerance) {
+		double oldValue = this.integratorRelativeTolerance;
 		this.integratorRelativeTolerance = integratorRelativeTolerance;
+		pcs.firePropertyChange("integratorRelativeTolerance", oldValue,
+				integratorRelativeTolerance);
 	}
 
 	/**
@@ -153,7 +180,9 @@ public class ScicosParameters {
 	 *            set max step size
 	 */
 	public void setMaximumStepSize(double maximumStepSize) {
+		double oldValue = this.maximumStepSize;
 		this.maximumStepSize = maximumStepSize;
+		pcs.firePropertyChange("maximumStepSize", oldValue, maximumStepSize);
 	}
 
 	/**
@@ -168,7 +197,10 @@ public class ScicosParameters {
 	 *            set max integration time
 	 */
 	public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
+		double oldValue = this.maxIntegrationTimeinterval;
 		this.maxIntegrationTimeinterval = maxIntegrationTimeinterval;
+		pcs.firePropertyChange("maxIntegrationTimeinterval", oldValue,
+				maxIntegrationTimeinterval);
 	}
 
 	/**
@@ -183,7 +215,9 @@ public class ScicosParameters {
 	 *            set real time scaling
 	 */
 	public void setRealTimeScaling(double realTimeScaling) {
+		double oldValue = this.realTimeScaling;
 		this.realTimeScaling = realTimeScaling;
+		pcs.firePropertyChange("realTimeScaling", oldValue, realTimeScaling);
 	}
 
 	/**
@@ -198,7 +232,9 @@ public class ScicosParameters {
 	 *            set solver
 	 */
 	public void setSolver(double solver) {
+		double oldValue = this.solver;
 		this.solver = solver;
+		pcs.firePropertyChange("solver", oldValue, solver);
 	}
 
 	/**
@@ -213,7 +249,9 @@ public class ScicosParameters {
 	 *            set tolerance time
 	 */
 	public void setToleranceOnTime(double toleranceOnTime) {
+		double oldValue = this.toleranceOnTime;
 		this.toleranceOnTime = toleranceOnTime;
+		pcs.firePropertyChange("toleranceOnTime", oldValue, toleranceOnTime);
 	}
 
 	/**
@@ -221,7 +259,9 @@ public class ScicosParameters {
 	 *            set context
 	 */
 	public void setContext(String[] context) {
+		String[] oldValue = this.context;
 		this.context = context;
+		pcs.firePropertyChange("context", oldValue, context);
 	}
 
 	/**
@@ -250,6 +290,64 @@ public class ScicosParameters {
 	 *            change debug level
 	 */
 	public void setDebugLevel(int debugLevel) {
+		int oldValue = this.debugLevel;
 		this.debugLevel = debugLevel;
+		pcs.firePropertyChange("debugLevel", oldValue, debugLevel);
+	}
+
+	/*
+	 * PropertyChangeSupport proxy method
+	 */
+
+	/**
+	 * Each setXXX method fire a property change event. This method register a
+	 * new listener for all events.
+	 * 
+	 * @param listener
+	 *            A listener
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Each setXXX method fire a property change event. This method register a
+	 * new listener for a specific event. Each event name is equal to the field
+	 * name.
+	 * 
+	 * @param propertyName
+	 *            the property name
+	 * @param listener
+	 *            A listener
+	 */
+	public void addPropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
+		this.pcs.addPropertyChangeListener(propertyName, listener);
+	}
+
+	/**
+	 * Each setXXX method fire a property change event. This method remove a
+	 * listener for all events.
+	 * 
+	 * @param listener
+	 *            A listener
+	 */
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		this.pcs.removePropertyChangeListener(listener);
+	}
+
+	/**
+	 * Each setXXX method fire a property change event. This method remove a
+	 * listener for a specific event. Each event name is equal to the field
+	 * name.
+	 * 
+	 * @param propertyName
+	 *            the property name
+	 * @param listener
+	 *            A listener
+	 */
+	public void removePropertyChangeListener(String propertyName,
+			PropertyChangeListener listener) {
+		this.pcs.removePropertyChangeListener(propertyName, listener);
 	}
 }
