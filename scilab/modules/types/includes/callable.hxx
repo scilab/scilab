@@ -38,7 +38,7 @@ namespace types
     Callable * 	getAsCallable() { return this; }
     bool isCallable() { return true; }
 
-		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc) = 0;
+		virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
     
     void setName(std::string _stName) { m_stName = _stName; }
     std::string getName() { return m_stName; }

@@ -38,7 +38,7 @@ namespace types
 
     std::string toString(int _iPrecision, int _iLineLen);
     
-		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc);
+		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
     
 		ast::SeqExp* body_get();
 

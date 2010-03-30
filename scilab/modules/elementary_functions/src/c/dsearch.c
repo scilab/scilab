@@ -10,8 +10,7 @@
  *
  */
 #include "basic_functions.h"
-
-
+#include "string.h"
 /*
 PURPOSE
    val(0..n) being an array (with strict increasing order and n >=1)

@@ -18,15 +18,11 @@
 #include <iostream>
 #include <sstream>
 
-#include "allexp.hxx"
-#include "allvar.hxx"
-#include "alldec.hxx"
-#include "alltypes.hxx"
-#include "execvisitor.hxx"
+#include "originalvisitor.hxx"
 
 namespace ast
 {
-	class EXTERN_AST ConditionVisitor : public ExecVisitor
+	class EXTERN_AST ConditionVisitor : public OriginalVisitor
 	{
 	public:
 		ConditionVisitor(){}

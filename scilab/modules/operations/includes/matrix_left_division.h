@@ -13,10 +13,6 @@
 #ifndef __MATRIX_LDIV__
 #define __MATRIX_LDIV__
 
-#include "operation.hxx"
-#include "basic_functions.h"
-#include "matrix_transpose.h"
-
 EXTERN_OP int	iLeftDivisionOfRealMatrix(
 			double *_pdblReal1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		int _iRows2,	int _iCols2,

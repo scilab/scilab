@@ -10,23 +10,17 @@
 *
 */
 
-#include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "timedvisitor.hxx"
+#include "originalvisitor.hxx"
 #include "visitor_common.hxx"
 
 using std::string;
 
 namespace ast
 {
-	template class RunVisitorT<ExecVisitor>;
-	template class RunVisitorT<TimedVisitor>;
-
 	/*
 	[1,2;3,4] with/without special character $ and :
 	*/
-	template <class T>
-	void RunVisitorT<T>::visitprivate(const MatrixExp &e)
+	void OriginalVisitor::visit(const MatrixExp &e)
 	{
 		try
 		{
@@ -36,31 +30,31 @@ namespace ast
 			int iCols	= -1;
 			int iCurRow = -1;
 			int iCurCol = 0;
-			InternalType *poResult = NULL;
+			types::InternalType *poResult = NULL;
 
 			std::list<MatrixLineExp *>::const_iterator	row;
 			std::list<Exp *>::const_iterator	col;
 			//store all element after evaluation
 			if(e.lines_get().size() == 0)
 			{
-				poResult = new Double(0,0);
+				poResult = new types::Double(0,0);
 			}
 			else
 			{
-				list<list<InternalType*> > MatrixList;
+				list<list<types::InternalType*> > MatrixList;
 				for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
 				{
-					list<InternalType*> RowList;
+					list<types::InternalType*> RowList;
 					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
 					{
-						T* execMe = new T();
+						OriginalVisitor* execMe = new OriginalVisitor();
 						(*col)->accept (*execMe);
-						if(execMe->result_get()->getType() == InternalType::RealImplicitList)
+						if(execMe->result_get()->getType() == types::InternalType::RealImplicitList)
 						{
 							if(execMe->result_get()->getAsImplicitList()->computable() == true)
 							{
 								execMe->result_set(execMe->result_get()->getAsImplicitList()->extract_matrix());
-								iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+								iCurCol += ((types::GenericType*)execMe->result_get())->cols_get();
 							}
 							else
 							{
@@ -69,14 +63,14 @@ namespace ast
 						}
 						else
 						{
-							iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+							iCurCol += ((types::GenericType*)execMe->result_get())->cols_get();
 						}
 
 						if(iCurRow == -1)
 						{
-							iCurRow = ((GenericType*)execMe->result_get())->rows_get();
+							iCurRow = ((types::GenericType*)execMe->result_get())->rows_get();
 						}
-						else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get())
+						else if(iCurRow != ((types::GenericType*)execMe->result_get())->rows_get())
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
@@ -84,7 +78,7 @@ namespace ast
 							throw os.str();
 						}
 
-						InternalType *pResult = execMe->result_get();
+						types::InternalType *pResult = execMe->result_get();
 						RowList.push_back(pResult);
 
 						//tips to delete only execvisitor but not data
@@ -111,8 +105,8 @@ namespace ast
 					MatrixList.push_back(RowList);
 				}
 
-				list<list<InternalType*> >::const_iterator it_ML;
-				list<InternalType*>::const_iterator it_RL;
+				list<list<types::InternalType*> >::const_iterator it_ML;
+				list<types::InternalType*>::const_iterator it_RL;
 
 				int iAddRow = 0;
 				iCurRow			= 0;
@@ -128,7 +122,7 @@ namespace ast
 
 							if((*it_RL)->isDeletable() == true)
 							{
-								if((*it_RL)->getType() == InternalType::RealDouble)
+								if((*it_RL)->getType() == types::InternalType::RealDouble)
 								{
 									delete (*it_RL)->getAsDouble();
 								}
@@ -144,7 +138,7 @@ namespace ast
 							poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
 							if((*it_RL)->isDeletable() == true)
 							{
-								if((*it_RL)->getType() == InternalType::RealDouble)
+								if((*it_RL)->getType() == types::InternalType::RealDouble)
 								{
 									delete (*it_RL)->getAsDouble();
 								}

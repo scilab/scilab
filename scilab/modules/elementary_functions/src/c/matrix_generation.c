@@ -10,6 +10,7 @@
  *
  */
 #include "basic_functions.h"
+#include <string.h>
 
 void franck_matrix(int _iSize, double *_pData)
 {

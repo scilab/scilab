@@ -68,7 +68,7 @@ namespace types
 	  return ostr.str();
 	}
 
-	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, RunVisitor* execFunc)
+	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 	{
 		ReturnValue RetVal = Callable::OK;
 

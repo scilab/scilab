@@ -346,6 +346,10 @@
 				RelativePath=".\src\cpp\timedvisitor.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\cpp\visitor_common.cpp"
+				>
+			</File>
 			<Filter
 				Name="run"
 				>
@@ -363,6 +367,26 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\run\runvisitor.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="original"
+				>
+				<File
+					RelativePath=".\src\cpp\original\original_AssignExp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\original\original_MatrixExp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\original\original_OpExp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\original\originalvisivitor.cpp"
 					>
 				</File>
 			</Filter>
@@ -541,6 +565,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\originalvisitor.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\printvisitor.hxx"
 				>
 			</File>
@@ -598,6 +626,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\visitor.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\visitor_common.hxx"
 				>
 			</File>
 			<File

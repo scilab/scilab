@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "stack-c.h"
+#include "BOOL.h"
 #include "elem_common.h"
 
 #include "abs.h"
@@ -29,6 +29,10 @@
 #include "sqrt.h"
 #include "sign.h"
 
+#define BY_ROWS			1
+#define BY_COLS			2
+#define BY_ALL			0
+#define	BY_MTLB			-1
 
 static double spdblExpmC[41] = {0};
 static double sdblExpmN = 0;

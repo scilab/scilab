@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
-//#include "stack-c.h"
+#include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "api_oldstack.h"

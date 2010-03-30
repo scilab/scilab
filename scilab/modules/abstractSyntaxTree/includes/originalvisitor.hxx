@@ -10,8 +10,8 @@
 *
 */
 
-#ifndef AST_RUNVISITOR_HXX
-# define AST_RUNVISITOR_HXX
+#ifndef AST_ORIGINALVISITOR_HXX
+# define AST_ORIGINALVISITOR_HXX
 
 #include <time.h>
 #include <string>
@@ -19,19 +19,15 @@
 #include <sstream>
 
 #include "all.hxx"
-#include "types.hxx"
+#include "alltypes.hxx"
 
 
 namespace ast
 {
-	class EXTERN_AST RunVisitor : public ConstVisitor
-	{
-	};
-
-	template <class T> class EXTERN_AST RunVisitorT : public RunVisitor
+	class EXTERN_AST OriginalVisitor : public ConstVisitor
 	{
 	public:
-		RunVisitorT()
+		OriginalVisitor()
 		{
 			_excepted_result = -1;
 			_resultVect.push_back(NULL);
@@ -39,7 +35,7 @@ namespace ast
 			m_bSingleResult = true;
 		}
 
-		~RunVisitorT()
+		~OriginalVisitor()
 		{
 			result_clear();
 		}
@@ -50,9 +46,7 @@ namespace ast
 			{
 				if(_result != NULL && _result->isDeletable() == true)
 				{
-//					std::cout << "before single delete : " << _result << std::endl;
 					delete _result;
-//					std::cout << "after single delete" << std::endl;
 				}
 			}
 			else
@@ -73,73 +67,73 @@ namespace ast
 		/** \name Visit Matrix Expressions nodes.
 		** \{ */
 	public :
-		 virtual void visitprivate(const MatrixExp &e);
-		 virtual void visitprivate(const MatrixLineExp &e);
+		 virtual void visit(const MatrixExp &e);
+		 virtual void visit(const MatrixLineExp &e);
 		/** \} */
 
 		/** \name Visit Cell Expressions nodes.
 		** \{ */
 	public :
-		 virtual void visitprivate(const CellExp &e);
+		 virtual void visit(const CellExp &e);
 		/** \} */
 
 		/** \name Visit Constant Expressions nodes.
 		** \{ */
 	public :
-		 virtual void visitprivate(const StringExp &e);
-		 virtual void visitprivate(const CommentExp &e);
-		 virtual void visitprivate(const IntExp  &e);
-		 virtual void visitprivate(const FloatExp  &e);
-		 virtual void visitprivate(const DoubleExp  &e);
-		 virtual void visitprivate(const BoolExp  &e);
-		 virtual void visitprivate(const NilExp &e);
+		 virtual void visit(const StringExp &e);
+		 virtual void visit(const CommentExp &e);
+		 virtual void visit(const IntExp  &e);
+		 virtual void visit(const FloatExp  &e);
+		 virtual void visit(const DoubleExp  &e);
+		 virtual void visit(const BoolExp  &e);
+		 virtual void visit(const NilExp &e);
 		/** \} */
 
 		/** \name Visit Variable related nodes.
 		** \{ */
-		 virtual void visitprivate(const SimpleVar &e);
-		 virtual void visitprivate(const ColonVar &e);
-		 virtual void visitprivate(const DollarVar &e);
-		 virtual void visitprivate(const ArrayListVar &e);
+		 virtual void visit(const SimpleVar &e);
+		 virtual void visit(const ColonVar &e);
+		 virtual void visit(const DollarVar &e);
+		 virtual void visit(const ArrayListVar &e);
 		/** \} */
 
 		/** \name Visit Control Expressions or Instructions nodes.
 		** \{ */
-		 virtual void visitprivate(const FieldExp &e);
-		 virtual void visitprivate(const OpExp &e);
-		 virtual void visitprivate(const LogicalOpExp &e);
-		 virtual void visitprivate(const AssignExp  &e);
-		 virtual void visitprivate(const CallExp &e);
-		 virtual void visitprivate(const IfExp  &e);
-		 virtual void visitprivate(const TryCatchExp  &e);
-		 virtual void visitprivate(const WhileExp  &e);
-		 virtual void visitprivate(const ForExp  &e);
-		 virtual void visitprivate(const BreakExp &e);
-		 virtual void visitprivate(const ReturnExp &e);
-		 virtual void visitprivate(const SelectExp &e);
-		 virtual void visitprivate(const CaseExp &e);
-		 virtual void visitprivate(const SeqExp  &e);
-		 virtual void visitprivate(const ArrayListExp  &e);
-		 virtual void visitprivate(const AssignListExp  &e);
+		 virtual void visit(const FieldExp &e);
+		 virtual void visit(const OpExp &e);
+		 virtual void visit(const LogicalOpExp &e);
+		 virtual void visit(const AssignExp  &e);
+		 virtual void visit(const CallExp &e);
+		 virtual void visit(const IfExp  &e);
+		 virtual void visit(const TryCatchExp  &e);
+		 virtual void visit(const WhileExp  &e);
+		 virtual void visit(const ForExp  &e);
+		 virtual void visit(const BreakExp &e);
+		 virtual void visit(const ReturnExp &e);
+		 virtual void visit(const SelectExp &e);
+		 virtual void visit(const CaseExp &e);
+		 virtual void visit(const SeqExp  &e);
+		 virtual void visit(const ArrayListExp  &e);
+		 virtual void visit(const AssignListExp  &e);
 		/** \} */
 
 		/** \name Visit Single Operation nodes.
 		** \{ */
-		 virtual void visitprivate(const NotExp &e);
-		 virtual void visitprivate(const TransposeExp &e);
+		 virtual void visit(const NotExp &e);
+		 virtual void visit(const TransposeExp &e);
 		/** \} */
 
 		/** \name Visit Declaration nodes.
 		** \{ */
 		/** \brief Visit Var declarations. */
-		 virtual void visitprivate(const VarDec  &e);
-		 virtual void visitprivate(const FunctionDec  &e);
+		 virtual void visit(const VarDec  &e);
+		 virtual void visit(const FunctionDec  &e);
 		/** \} */
 
 		/** \name Visit Type dedicated Expressions related node.
 		** \{ */
 	public:
-		 virtual void visitprivate(const ListExp &e);
+		 virtual void visit(const ListExp &e);
 		/** \} */
 
 		int expected_size_get(void)
@@ -247,9 +241,7 @@ namespace ast
 		types::InternalType*	_result;
 		bool m_bSingleResult;
 		int _excepted_result;
-	//private :
-	//	RunVisitorT(RunVisitorT const& e){}
 	};
 }
 
-#endif // !AST_RUNVISITOR_HXX
+#endif // !AST_ORIGINALVISITOR_HXX

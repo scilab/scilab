@@ -407,6 +407,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\matrix_division.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\matrix_finite.h"
 				>
 			</File>

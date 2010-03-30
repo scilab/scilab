@@ -10,9 +10,8 @@
  *
  */
 
-#include "doublecomplex.h"
-#include "matrix_right_division.h"
-#include "matrix_left_division.h"
+#include "matrix_division.h"
+#include <string.h>
 
 /*iRightDivisionComplexMatrixByComplexMatrix*/
 int iRightDivisionComplexMatrixByComplexMatrix(
@@ -430,7 +429,7 @@ int	iRightDivisionOfComplexMatrix(
 
 	//tranpose A and B
 
-	vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt);
+	vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt, 1);
 
 	{
 		int i,j,ij,ji;
@@ -461,7 +460,7 @@ int	iRightDivisionOfComplexMatrix(
 			{
 				cNorm	= 'N';
 				C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, poAf, &_iCols2, pIpiv, poBt, &_iCols2, &iInfo);
-				vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows2, poOut);
+				vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows2, poOut, 1);
 				vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
 				iExit = 1;
 			}
@@ -821,7 +820,7 @@ void vTransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, doubl
 	}
 }
 
-void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut, double *_pdblImgOut)
+void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut, double *_pdblImgOut, int _iConjugate)
 {
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
@@ -829,12 +828,19 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 		int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 
 		_pdblRealOut[iNewCoord]	= _pdblRealIn[iIndex];
-		//Conjugate
-		_pdblImgOut[iNewCoord]	= -_pdblImgIn[iIndex];
+		if(_iConjugate == 0)
+		{
+			_pdblImgOut[iNewCoord]	= _pdblImgIn[iIndex];
+		}
+		else
+		{
+			//Conjugate
+			_pdblImgOut[iNewCoord]	= -_pdblImgIn[iIndex];
+		}
 	}
 }
 
-void vTransposeDoubleComplexMatrix(doublecomplex *_poIn, int _iRowsIn, int _iColsIn, doublecomplex *_poOut)
+void vTransposeDoubleComplexMatrix(doublecomplex *_poIn, int _iRowsIn, int _iColsIn, doublecomplex *_poOut, int _iConjugate)
 {
 	int iIndex = 0;
 	for(iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
@@ -842,7 +848,14 @@ void vTransposeDoubleComplexMatrix(doublecomplex *_poIn, int _iRowsIn, int _iCol
 		//int iNewCoord	= iIndex % _iColsIn * _iRowsIn + (iIndex / _iColsIn);
 		int iNewCoord	= iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
 		_poOut[iNewCoord].r	= _poIn[iIndex].r;
-		//Conjugate
-		_poOut[iNewCoord].i	= -_poIn[iIndex].i;
+		if(_iConjugate == 0)
+		{
+			_poOut[iNewCoord].i	= _poIn[iIndex].i;
+		}
+		else
+		{
+			//Conjugate
+			_poOut[iNewCoord].i	= -_poIn[iIndex].i;
+		}
 	}
 }

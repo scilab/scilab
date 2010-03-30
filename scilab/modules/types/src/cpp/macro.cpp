@@ -15,7 +15,6 @@
 
 #include "macro.hxx"
 #include "context.hxx"
-#include "stack-def.h"
 #include "localization.h"
 #include "yaspio.hxx"
 
@@ -72,7 +71,7 @@ namespace types
 	  return ostr.str();
 	}
 	
-	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::RunVisitor* execFunc)
+	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 	{
 		ReturnValue RetVal = Callable::OK;
 		//check excepted and input/output parameters numbers

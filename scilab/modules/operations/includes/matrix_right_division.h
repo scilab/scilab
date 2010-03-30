@@ -13,8 +13,6 @@
 #ifndef __MATRIX_RDIV__
 #define __MATRIX_RDIV__
 
-#include "operation.hxx"
-
 EXTERN_OP int	iRightDivisionOfRealMatrix(
 			double *_pdblReal1,		int _iRows1,	int _iCols1,
 			double *_pdblReal2,		int _iRows2,	int _iCols2,

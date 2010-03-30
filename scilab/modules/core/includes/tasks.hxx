@@ -51,6 +51,13 @@ void printAstTask(bool timed);
 void execAstTask(bool timed, bool ASTtimed);
 
 /*
+** Exec Tree with original visitor ( without template )
+**
+** Execute the stored AST.
+*/
+void origAstTask(bool timed);
+
+/*
 ** Dump Stack Trace
 **
 ** Display what is stored in scilab.

@@ -22,9 +22,6 @@
 
 using namespace types;
 
-void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
-int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
-
 namespace ast
 {
 	class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>

@@ -23,12 +23,12 @@ EXTERN_OP void vTransposeRealMatrix(
 EXTERN_OP void vTransposeComplexMatrix(
 			double *_pdblRealIn,	double *_pdblImgIn, 
 			int _iRowsIn,			int _iColsIn, 
-			double *_pdblRealOut,	double *_pdblImgOut);
+			double *_pdblRealOut,	double *_pdblImgOut, int _iConjugate);
 
 EXTERN_OP void vTransposeDoubleComplexMatrix(
 			doublecomplex *_poIn, 
 			int _iRowsIn,			int _iColsIn, 
-			doublecomplex *_poOut);
+			doublecomplex *_poOut, int _iConjugate);
 
 EXTERN_OP void vPretransposeRealMatrix(
 			double *_pdblRealIn, 

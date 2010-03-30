@@ -74,6 +74,7 @@ const char*	file_name;
 
 bool printAst = false;
 bool execAst = true;
+bool execOrig = true;
 bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
@@ -112,6 +113,7 @@ static void usage (void)
 	std::cerr << "--timed : Enable timer." << std::endl;
 	std::cerr << "--AST-timed : Enable AST timer." << std::endl;
 	std::cerr << "--no-exec : Do not run the scilab code." << std::endl;
+	std::cerr << "--orig : use origianl visitor for execution" << std::endl;
 	std::cerr << "--debug : Print the AST nodes." << std::endl;
 	std::cerr << "-f file : Batch mode on the given file." << std::endl;
 	std::cerr << "-l lang : Change the language of scilab ( default : en_US )" << std::endl;
@@ -151,6 +153,10 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		else if (!strcmp("--no-exec", argv[i])) {
 			execAst = false;
 		}
+		else if (!strcmp("--orig", argv[i])) {
+			std::cout << "Original execution" << std::endl;
+			execOrig = false;
+		}
 		else if (!strcmp("--context-dump", argv[i])) {
 			dumpStack = true;
 		}
@@ -158,6 +164,7 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 			timed = true;
 		}
 		else if (!strcmp("--AST-timed", argv[i])) {
+			std::cout << "Timed execution" << std::endl;
 			ASTtimed = true;
 		}
 		else if (!strcmp("-f", argv[i])) {
@@ -228,6 +235,11 @@ static int batchMain (void)
 	** -*- EXECUTING TREE -*-
 	*/
 	if (execAst == true) { execAstTask(timed, ASTtimed); }
+
+	/*
+	** -*- EXECUTING TREE WITH ORIGINAL VISITOR-*-
+	*/
+	if (execOrig == true) { origAstTask(timed); }
 
 	/*
 	** -*- DUMPING STACK AFTER EXECUTION -*-

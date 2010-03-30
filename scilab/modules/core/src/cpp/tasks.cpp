@@ -16,6 +16,7 @@
 #include "visitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
+#include "originalvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
@@ -162,6 +163,36 @@ void execAstTask(bool timed, bool ASTtimed)
 	}
 
 	delete exec;
+
+	if(timed)
+	{
+		_timer.check("Execute AST");
+	}
+}
+
+/*
+** Exec Tree with original visitor ( without template )
+**
+** Execute the stored AST.
+*/
+void origAstTask(bool timed)
+{
+	ast::OriginalVisitor exec;
+	if(timed)
+	{
+		_timer.start();
+	}
+
+	try
+	{
+		Parser::getInstance()->getTree()->accept(exec);
+		//Parser::getInstance()->freeTree();
+	}
+	catch(string sz)
+	{
+	  YaspWrite((char *) sz.c_str());
+	  YaspWrite("\n");
+	}
 
 	if(timed)
 	{
