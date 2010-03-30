@@ -55,7 +55,6 @@ extern "C"
 #include "../../../history_manager/includes/HistoryManager.h"
 #include "../../../history_manager/includes/InitializeHistoryManager.h"
 #include "../../../history_manager/includes/TerminateHistoryManager.h"
-#include "../../../history_manager/src/c/getCommentDateSession.h"
 
 	/*
 	** HACK HACK HACK
@@ -334,13 +333,13 @@ static int interactiveMain (void)
 	InitializeHistoryManager();
 	
 	/* add date & time @ begin session */
-	commentbeginsession = getCommentDateSession(TRUE);
-	if (commentbeginsession)
-	  {
-		appendLineToScilabHistory(commentbeginsession);
-		FREE(commentbeginsession);
-		commentbeginsession=NULL;
-	  }
+	//commentbeginsession = getCommentDateSession(TRUE);
+	//if (commentbeginsession)
+	//  {
+	//	appendLineToScilabHistory(commentbeginsession);
+	//	FREE(commentbeginsession);
+	//	commentbeginsession=NULL;
+	//  }
 	
 
 
