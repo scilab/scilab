@@ -65,7 +65,9 @@ public:
     WithinCatch,
     WithinFunction,
 	WithinSelect,
-	WithinCase
+	WithinSwitch,
+	WithinCase,
+	WithinOtherwise
   };
 
 public:

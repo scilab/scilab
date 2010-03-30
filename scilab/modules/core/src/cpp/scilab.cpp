@@ -51,6 +51,12 @@ extern "C"
 #include "scilabmode.h"
 #include "SetScilabEnvironment.h"
 #include "../../../jvm/includes/loadBackGroundClassPath.h"
+
+#include "../../../history_manager/includes/HistoryManager.h"
+#include "../../../history_manager/includes/InitializeHistoryManager.h"
+#include "../../../history_manager/includes/TerminateHistoryManager.h"
+#include "../../../history_manager/src/c/getCommentDateSession.h"
+
 	/*
 	** HACK HACK HACK
 	*/
@@ -295,16 +301,18 @@ static void stateShow(Parser::ControlStatus status)
 {
 	switch (status)
 	{
-	case Parser::WithinFor :			SetTemporaryPrompt("-for      ->"); break;
-	case Parser::WithinWhile :		SetTemporaryPrompt("-while    ->"); break;
-	case Parser::WithinIf :				SetTemporaryPrompt("-if       ->"); break;
-	case Parser::WithinElse :			SetTemporaryPrompt("-else     ->"); break;
-	case Parser::WithinElseIf :		SetTemporaryPrompt("-elseif   ->"); break;
-	case Parser::WithinTry :			SetTemporaryPrompt("-try      ->"); break;
-	case Parser::WithinCatch :		SetTemporaryPrompt("-catch    ->"); break;
-	case Parser::WithinFunction : SetTemporaryPrompt("-function ->"); break;
-	case Parser::WithinSelect :		SetTemporaryPrompt("-select   ->"); break;
-	case Parser::WithinCase :			SetTemporaryPrompt("-case     ->"); break;
+	case Parser::WithinFor :			SetTemporaryPrompt("-for       ->"); break;
+	case Parser::WithinWhile :		SetTemporaryPrompt("-while     ->"); break;
+	case Parser::WithinIf :				SetTemporaryPrompt("-if        ->"); break;
+	case Parser::WithinElse :			SetTemporaryPrompt("-else      ->"); break;
+	case Parser::WithinElseIf :		SetTemporaryPrompt("-elseif    ->"); break;
+	case Parser::WithinTry :			SetTemporaryPrompt("-try       ->"); break;
+	case Parser::WithinCatch :		SetTemporaryPrompt("-catch     ->"); break;
+	case Parser::WithinFunction : SetTemporaryPrompt("-function  ->"); break;
+	case Parser::WithinSelect :		SetTemporaryPrompt("-select    ->"); break;
+	case Parser::WithinCase :			SetTemporaryPrompt("-case      ->"); break;
+	case Parser::WithinSwitch :		SetTemporaryPrompt("-switch    ->"); break;
+	case Parser::WithinOtherwise :			SetTemporaryPrompt("-otherwise ->"); break;
 	case Parser::AllControlClosed : break;
 	}
 }
@@ -321,6 +329,20 @@ static int interactiveMain (void)
 	Parser* pParser = Parser::getInstance();
 
 	banner();
+
+	char *commentbeginsession = NULL;
+	InitializeHistoryManager();
+	
+	/* add date & time @ begin session */
+	commentbeginsession = getCommentDateSession(TRUE);
+	if (commentbeginsession)
+	  {
+		appendLineToScilabHistory(commentbeginsession);
+		FREE(commentbeginsession);
+		commentbeginsession=NULL;
+	  }
+	
+
 
 	while (!exit)
 	{

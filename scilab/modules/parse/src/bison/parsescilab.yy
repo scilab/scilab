@@ -162,7 +162,9 @@
 %token END		"end"
 
 %token SELECT		"select"
+%token SWITCH	"switch"
 %token CASE		"case"
+%token OTHERWISE "otherwise"
 
 %token FUNCTION		"function"
 %token ENDFUNCTION	"endfunction"
@@ -1314,10 +1316,33 @@ ELSEIF condition then thenBody						{
 */
 /* Select Case Then End control block */
 selectControl :
-SELECT selectable selectConditionBreak casesControl END									{ $$ = new ast::SelectExp(@$, *$2, *$4); }
-| SELECT selectable selectConditionBreak casesControl else elseBody END					{ $$ = new ast::SelectExp(@$, *$2, *$4, *$6); }
-| SELECT selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); }
-| SELECT selectable COMMENT selectConditionBreak casesControl else elseBody END			{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); }
+select selectable selectConditionBreak casesControl END									{ $$ = new ast::SelectExp(@$, *$2, *$4); }
+| select selectable selectConditionBreak casesControl defaultCase elseBody END			{ $$ = new ast::SelectExp(@$, *$2, *$4, *$6); }
+| select selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); }
+| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END	{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); }
+;
+
+/*
+** -*- SELECT -*-
+*/
+/* Fake Rule : Only for lazy syntax */
+select :
+SELECT					{ /* !! Do Nothing !! */ }
+| SWITCH				{ /* !! Do Nothing !! */ }
+;
+
+/*
+** -*- defaultCase -*-
+*/
+/* Fake Rule : Only for lazy syntax */
+defaultCase :
+else								{ /* !! Do Nothing !! */ }
+| OTHERWISE							{ /* !! Do Nothing !! */ }
+| OTHERWISE COMMA					{ /* !! Do Nothing !! */ }
+| OTHERWISE SEMI					{ /* !! Do Nothing !! */ }
+| OTHERWISE EOL						{ /* !! Do Nothing !! */ }
+| OTHERWISE COMMA EOL				{ /* !! Do Nothing !! */ }
+| OTHERWISE SEMI EOL				{ /* !! Do Nothing !! */ }
 ;
 
 /*
