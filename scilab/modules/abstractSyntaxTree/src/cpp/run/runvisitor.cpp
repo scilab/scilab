@@ -684,7 +684,6 @@ namespace ast
 	template <class T>
 	void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 	{
-		T execMe;
 		std::list<Exp *>::const_iterator	i;
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
