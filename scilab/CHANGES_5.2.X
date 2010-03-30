@@ -178,11 +178,14 @@ Bug Fixes:
 * bug 6792 fixed - Wrong interpretation of macro arguments when the
                    macro call appeared in an list extraction.
 
+* bug 6796 fixed - test_run() crashed if SCI directory was read-only.
+
 * bug 6798 fixed - About Matlab to Scilab tools help page updated.
 
 * bug 6816 fixed - Incoherent extraction when there is no index: M()
 
-* bug 6817 fixed - The "xstring" function shifted the start position of the string relative to the string length.
+* bug 6817 fixed - The "xstring" function shifted the start position of the 
+                   string relative to the string length.
 
 * bug 6829 fixed - kpure fails to compute  when applied to an high degree system
 
