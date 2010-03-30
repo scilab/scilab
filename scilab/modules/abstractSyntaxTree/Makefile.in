@@ -90,6 +90,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciabstractSyntaxTree_la_LIBADD =
 am_libsciabstractSyntaxTree_la_OBJECTS =  \
 	libsciabstractSyntaxTree_la-libAst.lo \
+	libsciabstractSyntaxTree_la-visitor_common.lo \
 	libsciabstractSyntaxTree_la-printvisitor.lo \
 	libsciabstractSyntaxTree_la-debugvisitor.lo \
 	libsciabstractSyntaxTree_la-mutevisitor.lo \
@@ -100,7 +101,11 @@ am_libsciabstractSyntaxTree_la_OBJECTS =  \
 	libsciabstractSyntaxTree_la-runvisitor.lo \
 	libsciabstractSyntaxTree_la-run_OpExp.lo \
 	libsciabstractSyntaxTree_la-run_MatrixExp.lo \
-	libsciabstractSyntaxTree_la-run_AssignExp.lo
+	libsciabstractSyntaxTree_la-run_AssignExp.lo \
+	libsciabstractSyntaxTree_la-originalvisitor.lo \
+	libsciabstractSyntaxTree_la-original_OpExp.lo \
+	libsciabstractSyntaxTree_la-original_MatrixExp.lo \
+	libsciabstractSyntaxTree_la-original_AssignExp.lo
 libsciabstractSyntaxTree_la_OBJECTS =  \
 	$(am_libsciabstractSyntaxTree_la_OBJECTS)
 libsciabstractSyntaxTree_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -398,6 +403,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 pkglib_LTLIBRARIES = libsciabstractSyntaxTree.la
 libsciabstractSyntaxTree_la_SOURCES = src/cpp/libAst.cpp \
+				src/cpp/visitor_common.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/mutevisitor.cpp \
@@ -408,7 +414,11 @@ libsciabstractSyntaxTree_la_SOURCES = src/cpp/libAst.cpp \
 				src/cpp/run/runvisitor.cpp \
 				src/cpp/run/run_OpExp.cpp \
 				src/cpp/run/run_MatrixExp.cpp \
-				src/cpp/run/run_AssignExp.cpp
+				src/cpp/run/run_AssignExp.cpp \
+				src/cpp/original/originalvisitor.cpp \
+				src/cpp/original/original_OpExp.cpp \
+				src/cpp/original/original_MatrixExp.cpp \
+				src/cpp/original/original_AssignExp.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS = -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
@@ -538,6 +548,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-execvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-mutevisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-original_AssignExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-original_MatrixExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-original_OpExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-originalvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-run_AssignExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-run_MatrixExp.Plo@am__quote@
@@ -545,6 +559,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-runvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-timedvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testConstExp-testConstExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testControlExp-testControlExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testVarExp-testVarExp.Po@am__quote@
@@ -576,6 +591,13 @@ libsciabstractSyntaxTree_la-libAst.lo: src/cpp/libAst.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/libAst.cpp' object='libsciabstractSyntaxTree_la-libAst.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
+
+libsciabstractSyntaxTree_la-visitor_common.lo: src/cpp/visitor_common.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-visitor_common.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Tpo -c -o libsciabstractSyntaxTree_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-visitor_common.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/visitor_common.cpp' object='libsciabstractSyntaxTree_la-visitor_common.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp
 
 libsciabstractSyntaxTree_la-printvisitor.lo: src/cpp/printvisitor.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-printvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Tpo -c -o libsciabstractSyntaxTree_la-printvisitor.lo `test -f 'src/cpp/printvisitor.cpp' || echo '$(srcdir)/'`src/cpp/printvisitor.cpp
@@ -653,6 +675,34 @@ libsciabstractSyntaxTree_la-run_AssignExp.lo: src/cpp/run/run_AssignExp.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/run/run_AssignExp.cpp' object='libsciabstractSyntaxTree_la-run_AssignExp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-run_AssignExp.lo `test -f 'src/cpp/run/run_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/run/run_AssignExp.cpp
+
+libsciabstractSyntaxTree_la-originalvisitor.lo: src/cpp/original/originalvisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-originalvisitor.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-originalvisitor.Tpo -c -o libsciabstractSyntaxTree_la-originalvisitor.lo `test -f 'src/cpp/original/originalvisitor.cpp' || echo '$(srcdir)/'`src/cpp/original/originalvisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-originalvisitor.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-originalvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/original/originalvisitor.cpp' object='libsciabstractSyntaxTree_la-originalvisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-originalvisitor.lo `test -f 'src/cpp/original/originalvisitor.cpp' || echo '$(srcdir)/'`src/cpp/original/originalvisitor.cpp
+
+libsciabstractSyntaxTree_la-original_OpExp.lo: src/cpp/original/original_OpExp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-original_OpExp.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-original_OpExp.Tpo -c -o libsciabstractSyntaxTree_la-original_OpExp.lo `test -f 'src/cpp/original/original_OpExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_OpExp.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-original_OpExp.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-original_OpExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/original/original_OpExp.cpp' object='libsciabstractSyntaxTree_la-original_OpExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-original_OpExp.lo `test -f 'src/cpp/original/original_OpExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_OpExp.cpp
+
+libsciabstractSyntaxTree_la-original_MatrixExp.lo: src/cpp/original/original_MatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-original_MatrixExp.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-original_MatrixExp.Tpo -c -o libsciabstractSyntaxTree_la-original_MatrixExp.lo `test -f 'src/cpp/original/original_MatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_MatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-original_MatrixExp.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-original_MatrixExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/original/original_MatrixExp.cpp' object='libsciabstractSyntaxTree_la-original_MatrixExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-original_MatrixExp.lo `test -f 'src/cpp/original/original_MatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_MatrixExp.cpp
+
+libsciabstractSyntaxTree_la-original_AssignExp.lo: src/cpp/original/original_AssignExp.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-original_AssignExp.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-original_AssignExp.Tpo -c -o libsciabstractSyntaxTree_la-original_AssignExp.lo `test -f 'src/cpp/original/original_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_AssignExp.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciabstractSyntaxTree_la-original_AssignExp.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-original_AssignExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/original/original_AssignExp.cpp' object='libsciabstractSyntaxTree_la-original_AssignExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-original_AssignExp.lo `test -f 'src/cpp/original/original_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/original/original_AssignExp.cpp
 
 testConstExp-testConstExp.o: src/cpp/testConstExp.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testConstExp_CXXFLAGS) $(CXXFLAGS) -MT testConstExp-testConstExp.o -MD -MP -MF $(DEPDIR)/testConstExp-testConstExp.Tpo -c -o testConstExp-testConstExp.o `test -f 'src/cpp/testConstExp.cpp' || echo '$(srcdir)/'`src/cpp/testConstExp.cpp

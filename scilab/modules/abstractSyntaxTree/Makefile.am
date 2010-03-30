@@ -14,6 +14,7 @@
 pkglib_LTLIBRARIES 	= libsciabstractSyntaxTree.la
 
 libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
+				src/cpp/visitor_common.cpp \
 				src/cpp/printvisitor.cpp \
 				src/cpp/debugvisitor.cpp \
 				src/cpp/mutevisitor.cpp \
@@ -24,7 +25,11 @@ libsciabstractSyntaxTree_la_SOURCES 	=	src/cpp/libAst.cpp \
 				src/cpp/run/runvisitor.cpp \
 				src/cpp/run/run_OpExp.cpp \
 				src/cpp/run/run_MatrixExp.cpp \
-				src/cpp/run/run_AssignExp.cpp
+				src/cpp/run/run_AssignExp.cpp \
+				src/cpp/original/originalvisitor.cpp \
+				src/cpp/original/original_OpExp.cpp \
+				src/cpp/original/original_MatrixExp.cpp \
+				src/cpp/original/original_AssignExp.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS 	= -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \

@@ -692,7 +692,7 @@ if test "$rest" = "yes"; then
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	    ;;
-      --parse-trace|--display-tree|--help|--debug|--no-exec|--context-dump|--timed)
+      --parse-trace|--display-tree|--help|--debug|--no-exec|--context-dump|--timed|--AST-timed|--orig)
 	    #This are Scilab6 dedicated options.
 	    ;;
       -psn_*)
