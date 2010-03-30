@@ -13,8 +13,8 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.port.input.InputPort;
 
 /**
  * Implement a round block with inputs spread around the block.
@@ -33,10 +33,10 @@ public class RoundBlock extends BasicBlock {
 	/**
 	 * Calculate current port position on the block and add it.
 	 * @param port the port to add
-	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.input.InputPort)
+	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
 	 */
 	@Override
-	public void addPort(InputPort port) {
+	public void addPort(BasicPort port) {
 		final int def = port.getOrientation().ordinal() - 1;
 		final int side = getChildCount();
 		
