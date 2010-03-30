@@ -19,12 +19,11 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
-import org.scilab.modules.xcos.port.command.CommandPort;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
+import com.mxgraph.model.mxICell;
 
 /**
  * Ease the creation of blocks
@@ -66,7 +65,11 @@ public final class BlockFactory {
 		IMPSPLIT_f(SPLIT_f.getSharedInstance()),
 		CLKSPLIT_f(SPLIT_f.getSharedInstance()),
 		Ground(new GroundBlock()),
-		VoltageSensor(new VoltageSensorBlock());
+		VoltageSensor(new VoltageSensorBlock()),
+		SUM_f(new RoundBlock("SUM_f")),
+		PROD_f(new RoundBlock("PROD_f")),
+		CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
+		;
 		
 		private BasicBlock block;
 		/**
@@ -150,15 +153,8 @@ public final class BlockFactory {
 
 			/* Clone children */
 			for (int i = 0; i < block.getChildCount(); i++) {
-				if (block.getChildAt(i) instanceof InputPort) {
-					clone.addPort((InputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof OutputPort) {
-					clone.addPort((OutputPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof CommandPort) {
-					clone.addPort((CommandPort) block.getChildAt(i).clone());
-				} else if (block.getChildAt(i) instanceof ControlPort) {
-					clone.addPort((ControlPort) block.getChildAt(i).clone());
-				}
+				mxICell port = block.getChildAt(i);
+				clone.insert((mxICell) port.clone());
 			}
 
 			return clone;

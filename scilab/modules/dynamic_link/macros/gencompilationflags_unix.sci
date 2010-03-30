@@ -33,9 +33,10 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
 	end
 	
 	// LDFLAGS
-	if ldflags <> '' then
-		cmd = cmd +" LDFLAGS="""+ldflags+""""
-	end
+	// Do not set the LDFLAGS See bug #4787
+	//	if ldflags <> '' then
+	//		cmd = cmd +" LDFLAGS="""+ldflags+""""
+	//	end
 	
 	// FFLAGS
 	if fflags <> '' then
