@@ -19,9 +19,12 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.block.positionning.GroundBlock;
+import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
+
+import com.mxgraph.model.mxICell;
 
 /**
  * Ease the creation of blocks
@@ -91,7 +94,14 @@ public final class BlockFactory {
 		/** @see GroundBlock */
 		Ground(new GroundBlock()),
 		/** @see VoltageSensorBlock */
-		VoltageSensor(new VoltageSensorBlock());
+		VoltageSensor(new VoltageSensorBlock()),
+		/** @see RoundBlock */
+		SUM_f(new RoundBlock("SUM_f")),
+		/** @see RoundBlock */
+		PROD_f(new RoundBlock("PROD_f")),
+		/** @see RoundBlock */
+		CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
+		;
 		
 		private BasicBlock block;
 		/**
@@ -175,7 +185,8 @@ public final class BlockFactory {
 
 			/* Clone children */
 			for (int i = 0; i < block.getChildCount(); i++) {
-				clone.addPort((BasicPort) block.getChildAt(i).clone());
+				mxICell port = block.getChildAt(i);
+				clone.insert((mxICell) port.clone());
 			}
 
 			return clone;
