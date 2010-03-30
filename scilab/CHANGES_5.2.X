@@ -196,6 +196,8 @@ Bug Fixes:
 
 * bug 6829 fixed - kpure fails to compute  when applied to an high degree system
 
+* bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
+
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
                 ==================================================
